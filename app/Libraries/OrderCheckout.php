@@ -12,42 +12,19 @@ use DB;
 
 class OrderCheckout
 {
-    /**
-     * @var Order
-     */
-    private $order;
-
-    /**
-     * @var string|null
-     */
-    private $provider;
-
-    /** @var string|null */
-    private $providerReference;
-
-    public function __construct(Order $order, ?string $provider = null, ?string $providerReference = null)
+    public function __construct(private Order $order, private ?string $provider = null, private ?string $providerReference = null)
     {
         if ($provider === Order::PROVIDER_SHOPIFY && $providerReference === null) {
             throw new InvariantException('shopify provider requires a providerReference (checkout id).');
         }
-
-        $this->order = $order;
-        $this->provider = $provider;
-        $this->providerReference = $providerReference;
     }
 
-    /**
-     * @return Order
-     */
-    public function getOrder()
+    public function getOrder(): Order
     {
         return $this->order;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getProvider()
+    public function getProvider(): ?string
     {
         return $this->provider;
     }
@@ -55,7 +32,7 @@ class OrderCheckout
     /**
      * @return string[]
      */
-    public function allowedCheckoutProviders()
+    public function allowedCheckoutProviders(): array
     {
         if ($this->order->isShouldShopify()) {
             return [Order::PROVIDER_SHOPIFY];
@@ -74,7 +51,7 @@ class OrderCheckout
         return [Order::PROVIDER_FREE];
     }
 
-    public function beginCheckout()
+    public function beginCheckout(): void
     {
         // something that shouldn't happen just happened.
         if (!in_array($this->provider, $this->allowedCheckoutProviders(), true)) {
@@ -97,7 +74,7 @@ class OrderCheckout
         });
     }
 
-    public function completeCheckout()
+    public function completeCheckout(): Order
     {
         return DB::connection('mysql-store')->transaction(function () {
             $order = $this->order->lockSelf();
@@ -120,7 +97,7 @@ class OrderCheckout
         });
     }
 
-    public function failCheckout()
+    public function failCheckout(): Order
     {
         return DB::connection('mysql-store')->transaction(function () {
             $order = $this->order->lockSelf();
@@ -139,10 +116,7 @@ class OrderCheckout
         });
     }
 
-    /**
-     * @return array
-     */
-    public function validate()
+    public function validate(): array
     {
         $shouldShopify = $this->order->isShouldShopify();
         // TODO: nested indexed ValidationError...somehow.
@@ -199,15 +173,12 @@ class OrderCheckout
         return new static(Order::whereOrderNumber($orderNumber)->firstOrFail());
     }
 
-    /**
-     * @return bool
-     */
-    private function allowXsollaPayment()
+    private function allowXsollaPayment(): bool
     {
         return !$this->order->requiresShipping();
     }
 
-    private function newOrderTransactionId()
+    private function newOrderTransactionId(): string
     {
         return $this->provider === Order::PROVIDER_SHOPIFY ? "{$this->provider}-{$this->providerReference}" : $this->provider;
     }

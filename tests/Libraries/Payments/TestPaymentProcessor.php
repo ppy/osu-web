@@ -9,52 +9,52 @@ use App\Libraries\Payments\PaymentProcessor;
 
 class TestPaymentProcessor extends PaymentProcessor
 {
-    public function getCountryCode()
+    public function getCountryCode(): ?string
     {
         return $this->params['countryCode'];
     }
 
-    public function getOrderNumber()
+    public function getOrderNumber(): string
     {
         return $this->params['orderNumber'];
     }
 
-    public function getPaymentProvider()
+    public function getPaymentProvider(): string
     {
         return 'test';
     }
 
-    public function getPaymentTransactionId()
+    public function getPaymentTransactionId(): string
     {
         return $this->params['paymentTransactionId'];
     }
 
-    public function getPaymentAmount()
+    public function getPaymentAmount(): float
     {
         return $this->params['paymentAmount'];
     }
 
-    public function getPaymentDate()
+    public function getPaymentDate(): \DateTimeInterface
     {
         return $this->params['paymentDate'];
     }
 
-    public function getNotificationType()
+    public function getNotificationType(): string
     {
         return $this->params['notificationType'];
     }
 
-    public function getNotificationTypeRaw()
+    public function getNotificationTypeRaw(): string
     {
         return $this->params['notificationType'];
     }
 
-    public function isTest()
+    public function isTest(): bool
     {
         return true;
     }
 
-    public function validateTransaction()
+    public function validateTransaction(): bool
     {
         return true;
     }
