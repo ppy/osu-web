@@ -37,7 +37,7 @@ class MatchesController extends Controller
      * params.limit  | integer                       | |
      * params.sort   | string                        | |
      *
-     * @queryParam cursor [Cursor](#cursor). No-example
+     * @usesCursor
      * @queryParam limit integer Maximum number of matches (50 default, 1 minimum, 50 maximum). No-example
      * @queryParam sort string `id_desc` for newest first; `id_asc` for oldest first. Defaults to `id_desc`. No-example
      * @response {
