@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'ระบุพารามิเตอร์ของเคอร์เซอร์ไม่ถูกต้อง',
         'operation_timeout_exception' => 'การค้นหายุ่งกว่าปกติ โปรดลองอีกครั้งในภายหลัง',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

@@ -24,6 +24,11 @@ return [
         'title' => 'Паскардзіцца на пост :username?',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Паскардзіцца на скор',
         'title' => 'Паскардзіцца на скор :username?',

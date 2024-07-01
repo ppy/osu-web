@@ -140,7 +140,13 @@ function shouldReturnLegacyValue(score: SoloScoreJson) {
 }
 
 export function totalScore(score: SoloScoreJson) {
-  return shouldReturnLegacyValue(score)
-    ? score.legacy_total_score
-    : score.total_score;
+  if (shouldReturnLegacyValue(score)) {
+    return score.legacy_total_score;
+  }
+
+  if (score.type === 'solo_score' && core.userPreferences.get('scoring_mode') === 'classic') {
+    return score.classic_total_score;
+  }
+
+  return score.total_score;
 }

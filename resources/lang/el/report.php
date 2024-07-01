@@ -24,6 +24,11 @@ return [
         'title' => 'Αναφορά ανάρτησης :username;',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Βαθμολογία έκθεσης',
         'title' => 'Αναφορά βαθμολογίας του :username;',

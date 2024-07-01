@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => '',
         'operation_timeout_exception' => '',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

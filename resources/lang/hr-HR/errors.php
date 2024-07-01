@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Navedeni su neispravni parametri za pokazivač.',
         'operation_timeout_exception' => 'Pretraga je trenutno zauzetija nego inače, pokušaj ponovo kasnije.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

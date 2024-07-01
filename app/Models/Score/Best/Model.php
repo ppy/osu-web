@@ -6,14 +6,14 @@
 namespace App\Models\Score\Best;
 
 use App\Libraries\ReplayFile;
-use App\Libraries\Score\UserRankCache;
+use App\Libraries\Score\UserRank;
+use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\ReplayViewCount;
 use App\Models\Score\Model as BaseModel;
 use App\Models\Traits;
 use App\Models\User;
-use DB;
 
 /**
  * @property User $user
@@ -153,44 +153,21 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         return route('scores.show', ['rulesetOrScore' => $this->getMode(), 'score' => $this->getKey()]);
     }
 
-    public function userRank($options)
+    public function userRank(?array $params = null): int
     {
         // laravel model has a $hidden property
         if ($this->getAttribute('hidden')) {
-            return;
+            return 0;
         }
 
-        if ($options['cached'] ?? true) {
-            $rank = UserRankCache::fetch(
-                $options,
-                $this->beatmap_id,
-                Beatmap::modeInt($this->getMode()),
-                $this->score,
-            );
-
-            if ($rank !== null && $rank > 50) {
-                return $rank;
-            }
-        }
-
-        $query = static
-            ::where('beatmap_id', '=', $this->beatmap_id)
-            ->cursorSort('score_asc', [
-                'score' => $this->score,
-                'id' => $this->getKey(),
-            ]);
-
-        if (isset($options['type'])) {
-            $query->withType($options['type'], ['user' => $this->user]);
-        }
-
-        if (isset($options['mods'])) {
-            $query->withMods($options['mods']);
-        }
-
-        $countQuery = DB::raw('DISTINCT user_id');
-
-        return 1 + $query->visibleUsers()->default()->count($countQuery);
+        return UserRank::getRank(ScoreSearchParams::fromArray([
+            ...($params ?? []),
+            'beatmap_ids' => [$this->beatmap_id],
+            'before_total_score' => $this->score,
+            'is_legacy' => true,
+            'ruleset_id' => $this->ruleset_id,
+            'user' => $this->user,
+        ]));
     }
 
     public function macroUserBest()

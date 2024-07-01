@@ -24,6 +24,11 @@ return [
         'title' => 'דווח על הפוסט של :username?',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'דווח על תוצאה',
         'title' => 'דווח על התוצאה של :username?',

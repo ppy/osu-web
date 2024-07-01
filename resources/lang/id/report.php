@@ -24,6 +24,11 @@ return [
         'title' => 'Laporkan postingan :username?',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Laporkan Skor',
         'title' => 'Laporkan skor :username?',

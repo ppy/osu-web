@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'Profilbanner ändern',
                 'defaults_info' => 'In der Zukunft wird es mehr Optionen für das Banner geben',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'Verarbeitung des Bildes fehlgeschlagen. Überprüfe das hochgeladene Bild und versuch es erneut.',
                     'button' => 'Bild hochladen',

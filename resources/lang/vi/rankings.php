@@ -24,7 +24,7 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Người dùng này có lịch sử xếp hạng ít hơn 30 ngày.',
     ],
 
     'type' => [

@@ -24,6 +24,11 @@ return [
         'title' => 'Queres denunciar a publicação de :username?',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Denunciar pontuação',
         'title' => 'Denunciar a pontuação de :username?',

@@ -1646,6 +1646,19 @@
         "AlwaysValidForSubmission": false
       },
       {
+        "Acronym": "CS",
+        "Name": "Constant Speed",
+        "Description": "No more tricky speed changes!",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
+      },
+      {
         "Acronym": "AT",
         "Name": "Autoplay",
         "Description": "Watch a perfect automated play through the song.",
@@ -1689,7 +1702,7 @@
       {
         "Acronym": "RX",
         "Name": "Relax",
-        "Description": "No ninja-like spinners, demanding drumrolls or unexpected katus.",
+        "Description": "No need to remember which key is correct anymore!",
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [

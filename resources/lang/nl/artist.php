@@ -46,7 +46,7 @@ return [
             '_' => 'nummers zoeken',
 
             'exclusive_only' => [
-                'all' => '',
+                'all' => 'Alles',
                 'exclusive_only' => '',
             ],
 

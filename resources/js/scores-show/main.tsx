@@ -27,7 +27,7 @@ export default function Main({ score }: Props) {
 
         <Stats beatmap={beatmap} score={score} />
 
-        {score.preserve === false && (
+        {score.type === 'solo_score' && !score.preserve && (
           <div className='wiki-notice wiki-notice--score'>
             <span className='fas fa-info-circle' />
             {` ${trans('scores.show.non_preserved')}`}

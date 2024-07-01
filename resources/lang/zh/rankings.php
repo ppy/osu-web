@@ -24,7 +24,7 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => '该玩家的最近排名历史记录少于 30 天。',
     ],
 
     'type' => [

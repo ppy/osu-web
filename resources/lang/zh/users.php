@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => '更换个人资料封面',
                 'defaults_info' => '在将来会有更多封面可用',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => '上传失败。请检查上传的图片然后重试。',
                     'button' => '上传图片',

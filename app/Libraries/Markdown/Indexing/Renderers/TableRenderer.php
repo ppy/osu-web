@@ -15,12 +15,6 @@ class TableRenderer extends BlockRenderer
 {
     const INLINE_CLASSES = [TableCell::class, TableRow::class];
 
-    /**
-     * @param Node $node
-     * @param ChildNodeRendererInterface $childRenderer
-     *
-     * @return string
-     */
     public function render(Node $node, ChildNodeRendererInterface $childRenderer): string
     {
         if (!$node->hasChildren()) {

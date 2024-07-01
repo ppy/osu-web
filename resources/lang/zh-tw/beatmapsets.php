@@ -53,7 +53,7 @@ return [
             'confirmation' => '您確定要提名這張圖譜嗎？',
             'header' => '提名圖譜',
             'hybrid_warning' => '注意: 您只能提名一次，所以請確保您的提名包含所有您想提名的模式。',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => '目前遊戲模式為: :ruleset',
             'which_modes' => '您想為哪個模式提名？',
         ],
     ],

@@ -11,31 +11,30 @@ interface Props {
   suffix?: React.ReactNode;
 }
 
-export default function PpValue(props: Props) {
-  let title: string;
-  let content: React.ReactNode;
-
-  const isBest = props.score.best_id != null;
-  const isSolo = props.score.type === 'solo_score';
-
-  if (!isBest && !isSolo) {
-    title = trans('scores.status.non_best');
-    content = '-';
-  } else if (props.score.ranked === false || props.score.preserve === false) {
-    title = trans('scores.status.no_pp');
-    content = '-';
-  } else if (props.score.pp == null) {
-    if (isSolo && props.score.processed === true) {
-      title = trans('scores.status.no_pp');
-      content = '-';
-    } else {
-      title = trans('scores.status.processing');
-      content = <span className='fas fa-sync' />;
-    }
-  } else {
-    title = formatNumber(props.score.pp);
-    content = <>{formatNumber(Math.round(props.score.pp))}{props.suffix}</>;
+export default function PpValue({ score, suffix }: Props) {
+  if (score.type !== 'solo_score' && score.best_id == null) {
+    return <span title={trans('scores.status.non_best')}>-</span>;
   }
 
-  return <span title={title}>{content}</span>;
+  if (
+    score.type === 'solo_score' &&
+    (!score.preserve || !score.ranked || (score.pp == null && score.processed))
+  ) {
+    return <span title={trans('scores.status.no_pp')}>-</span>;
+  }
+
+  if (score.pp == null) {
+    return (
+      <span title={trans('scores.status.processing')}>
+        <span className='fas fa-sync' />
+      </span>
+    );
+  }
+
+  return (
+    <span title={formatNumber(score.pp)}>
+      {formatNumber(Math.round(score.pp))}
+      {suffix}
+    </span>
+  );
 }
