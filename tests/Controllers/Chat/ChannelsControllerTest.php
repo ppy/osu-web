@@ -10,6 +10,7 @@ namespace Tests\Controllers\Chat;
 use App\Libraries\UserChannelList;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
+use App\Models\Multiplayer\Room;
 use App\Models\Multiplayer\ScoreLink;
 use App\Models\Multiplayer\UserScoreAggregate;
 use App\Models\User;
@@ -147,6 +148,39 @@ class ChannelsControllerTest extends TestCase
             // ensure now in channel
             $this->getAssertableChannelList($this->user)
                 ->assertFragment(['channel_id' => $channel->getKey()]);
+        }
+    }
+
+    /**
+     * @dataProvider channelJoinMultiplayerDataProvider
+     */
+    public function testChannelJoinMultiplayer(bool $participated)
+    {
+        $channel = Channel::factory()->multiplayer()->create();
+        $status = $participated ? 200 : 403;
+
+        if ($participated) {
+            $room = Room::findOrFail($channel->room_id);
+            $room->userHighScores()->save(new UserScoreAggregate(['user_id' => $this->user->getKey()]));
+        }
+
+        $this->actAsScopedUser($this->user, ['*']);
+
+        $this->getAssertableChannelList($this->user)
+            ->assertMissing(['channel_id' => $channel->getKey()]);
+
+        $request = $this->json('PUT', route('api.chat.channels.join', [
+            'channel' => $channel->getKey(),
+            'user' => $this->user->getKey(),
+        ]))->assertStatus($status);
+
+        if ($participated) {
+            $request->assertJsonFragment(['channel_id' => $channel->getKey()]);
+            $this->getAssertableChannelList($this->user)
+                ->assertFragment(['channel_id' => $channel->getKey()]);
+        } else {
+            $this->getAssertableChannelList($this->user)
+            ->assertMissing(['channel_id' => $channel->getKey()]);
         }
     }
 
@@ -377,6 +411,14 @@ class ChannelsControllerTest extends TestCase
     }
 
     //endregion
+
+    public static function channelJoinMultiplayerDataProvider()
+    {
+        return [
+            [true],
+            [false],
+        ];
+    }
 
     public static function dataProvider()
     {

@@ -13,7 +13,8 @@ class DbCursorHelper
     private $sort;
     private $sortName;
 
-    public function __construct($sorts, $defaultSort, $requestedSort = null)
+    // $prefix is only because itemToCursor will use the non-prefixed column while everything else uses the prefixed one for join queries.
+    public function __construct($sorts, $defaultSort, $requestedSort = null, private string $prefix = '')
     {
         $this->sortName = $requestedSort;
         $this->sort = $sorts[$requestedSort] ?? null;
@@ -39,6 +40,11 @@ class DbCursorHelper
         }
 
         return $ret;
+    }
+
+    public function getPrefix()
+    {
+        return $this->prefix;
     }
 
     public function getSort()

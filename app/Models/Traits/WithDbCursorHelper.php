@@ -14,17 +14,17 @@ trait WithDbCursorHelper
         return new DbCursorHelper(static::SORTS, static::DEFAULT_SORT, $sort);
     }
 
-    private static function cursorSortExecOrder($query, array $sort)
+    private static function cursorSortExecOrder($query, array $sort, string $prefix)
     {
         foreach ($sort as $i => $sortItem) {
             $orderMethod = $i === 0 ? 'reorderBy' : 'orderBy';
-            $query->$orderMethod($sortItem['column'], $sortItem['order']);
+            $query->$orderMethod("{$prefix}{$sortItem['column']}", $sortItem['order']);
         }
 
         return $query;
     }
 
-    private static function cursorSortExecWhere($query, ?array $preparedCursor)
+    private static function cursorSortExecWhere($query, ?array $preparedCursor, string $prefix)
     {
         if (empty($preparedCursor)) {
             return $query;
@@ -35,13 +35,13 @@ trait WithDbCursorHelper
         $dir = $current['order'] === 'DESC' ? '<' : '>';
 
         if (count($preparedCursor) === 0) {
-            $query->where($current['column'], $dir, $current['value']);
+            $query->where("{$prefix}{$current['column']}", $dir, $current['value']);
         } else {
-            $query->where($current['column'], "{$dir}=", $current['value'])
-                ->where(function ($q) use ($current, $dir, $preparedCursor) {
-                    return $q->where($current['column'], $dir, $current['value'])
-                        ->orWhere(function ($qq) use ($preparedCursor) {
-                            return static::cursorSortExecWhere($qq, $preparedCursor);
+            $query->where("{$prefix}{$current['column']}", "{$dir}=", $current['value'])
+                ->where(function ($q) use ($current, $dir, $prefix, $preparedCursor) {
+                    return $q->where("{$prefix}{$current['column']}", $dir, $current['value'])
+                        ->orWhere(function ($qq) use ($prefix, $preparedCursor) {
+                            return static::cursorSortExecWhere($qq, $preparedCursor, $prefix);
                         });
                 });
         }
@@ -64,12 +64,12 @@ trait WithDbCursorHelper
             ? $sortOrCursorHelper
             : static::makeDbCursorHelper(get_string($sortOrCursorHelper));
 
-        $query = static::cursorSortExecOrder($query, $cursorHelper->getSort());
+        $query = static::cursorSortExecOrder($query, $cursorHelper->getSort(), $cursorHelper->getPrefix());
 
         $cursor = $cursorOrStatic instanceof static
             ? $cursorHelper->itemToCursor($cursorOrStatic)
             : $cursorOrStatic;
 
-        return static::cursorSortExecWhere($query, $cursorHelper->prepare($cursor));
+        return static::cursorSortExecWhere($query, $cursorHelper->prepare($cursor), $cursorHelper->getPrefix());
     }
 }
