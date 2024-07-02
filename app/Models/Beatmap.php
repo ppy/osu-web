@@ -10,12 +10,14 @@ use App\Jobs\EsDocument;
 use App\Libraries\Transactions\AfterCommit;
 use DB;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $approved
  * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussions BeatmapDiscussion
  * @property int $beatmap_id
+ * @property-read Collection<User> $beatmapOwners
  * @property Beatmapset $beatmapset
  * @property int|null $beatmapset_id
  * @property float $bpm
@@ -38,6 +40,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon $last_update
  * @property int $max_combo
  * @property mixed $mode
+ * @property-read Collection<User> $mappers
  * @property int $passcount
  * @property int $playcount
  * @property int $playmode
@@ -105,6 +108,11 @@ class Beatmap extends Model implements AfterCommit
     public function baseMaxCombo()
     {
         return $this->difficultyAttribs()->noMods()->maxCombo();
+    }
+
+    public function beatmapOwners()
+    {
+        return $this->hasManyThrough(User::class, BeatmapOwner::class, 'beatmap_id', 'user_id', 'beatmap_id', 'user_id');
     }
 
     public function beatmapset()
@@ -256,12 +264,14 @@ class Beatmap extends Model implements AfterCommit
 
             'diff_size' => $this->getDiffSize(),
             'difficultyrating' => $this->getDifficultyrating(),
+            'mappers' => $this->getMappers(),
             'mode' => $this->getMode(),
             'version' => $this->getVersion(),
 
             'baseDifficultyRatings',
             'baseMaxCombo',
             'beatmapDiscussions',
+            'beatmapOwners',
             'beatmapset',
             'difficulty',
             'difficultyAttribs',
@@ -374,6 +384,14 @@ class Beatmap extends Model implements AfterCommit
         }
 
         return $value;
+    }
+
+    private function getMappers(): Collection
+    {
+        $mappers = $this->beatmapOwners;
+        $mappers->prepend($this->user);
+
+        return $mappers;
     }
 
     private function getMode()
