@@ -50,6 +50,7 @@ interface UserExtendedAdditionalAttributes {
   title: string | null;
   title_url: string | null;
   twitter: string | null;
+  user_style: number | null;
   website: string | null;
 }
 
