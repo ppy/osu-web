@@ -70,6 +70,8 @@ class PaypalPaymentProcessor extends PaymentProcessor
         static $rejectedStatuses = ['Declined', 'Denied', 'Expired', 'Failed', 'Voided'];
 
         $status = $this->getNotificationTypeRaw();
+        // shouldIgnore needs to be first because txn_type needs to be checked in priority over payment_status for ignored notifications,
+        // while payment_status has priority for other notifications.
         if ($this->shouldIgnore($status)) {
             return NotificationType::IGNORED;
         } elseif (in_array($status, $paymentStatuses, true)) {
