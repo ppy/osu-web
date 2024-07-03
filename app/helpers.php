@@ -509,7 +509,7 @@ function log_error_sentry(Throwable $exception, ?array $tags = null): ?string
             $contexts = $exception->getContexts();
 
             foreach ($contexts as $name => $value) {
-                $scope->setContext($name, $value);
+                $scope->setContext($name, $value ?? []);
             }
         }
 
