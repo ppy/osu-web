@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Libraries\Payments;
 
 use App\Models\Store\Order;
@@ -11,12 +13,12 @@ use Sentry\State\Scope;
 
 class PaypalPaymentProcessor extends PaymentProcessor
 {
-    public function getCountryCode()
+    public function getCountryCode(): ?string
     {
         return $this['residence_country'];
     }
 
-    public function getOrderNumber()
+    public function getOrderNumber(): ?string
     {
         // If refund, there might not be an invoice id in production.
         if ($this->getNotificationType() === NotificationType::REFUND) {
@@ -26,25 +28,23 @@ class PaypalPaymentProcessor extends PaymentProcessor
         }
     }
 
-    public function getParentTransactionId()
+    public function getParentTransactionId(): ?string
     {
         return $this['parent_txn_id'];
     }
 
-    public function getPaymentProvider()
+    public function getPaymentProvider(): string
     {
         return Order::PROVIDER_PAYPAL;
     }
 
-    public function getPaymentTransactionId()
+    public function getPaymentTransactionId(): string
     {
         return $this['txn_id'];
     }
 
-    public function getPaymentAmount()
+    public function getPaymentAmount(): float
     {
-        // TODO: less floaty
-
         if ($this->getNotificationType() === NotificationType::REFUND) {
             return (float) $this['mc_gross'] + $this['mc_fee'];
         } else {
@@ -52,17 +52,17 @@ class PaypalPaymentProcessor extends PaymentProcessor
         }
     }
 
-    public function getPaymentDate()
+    public function getPaymentDate(): \DateTimeInterface
     {
         return Carbon::parse($this['payment_date'])->setTimezone('UTC');
     }
 
-    public function isTest()
+    public function isTest(): bool
     {
-        return presence($this['test_ipn']);
+        return get_bool(presence($this['test_ipn']));
     }
 
-    public function getNotificationType()
+    public function getNotificationType(): string
     {
         static $paymentStatuses = ['Completed'];
         static $refundStatuses = ['Refunded', 'Reversed', 'Canceled_Reversal'];
@@ -85,12 +85,12 @@ class PaypalPaymentProcessor extends PaymentProcessor
         }
     }
 
-    public function getNotificationTypeRaw()
+    public function getNotificationTypeRaw(): string
     {
         return $this['payment_status'] ?? $this['txn_type'];
     }
 
-    public function validateTransaction()
+    public function validateTransaction(): bool
     {
         $this->signature->assertValid();
 
@@ -159,10 +159,8 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
     /**
      * Fetches the Order corresponding to this payment and memoizes it.
-     *
-     * @return Order
      */
-    protected function getOrder()
+    protected function getOrder(): ?Order
     {
         return $this->memoize(__FUNCTION__, function () {
             // Order number can come from anywhere when paypal is involved /tableflip.

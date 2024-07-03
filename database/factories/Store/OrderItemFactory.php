@@ -26,6 +26,11 @@ class OrderItemFactory extends Factory
         ];
     }
 
+    public function reserved(): static
+    {
+        return $this->state(['reserved' => true]);
+    }
+
     public function supporterTag(): static
     {
         return $this->state([

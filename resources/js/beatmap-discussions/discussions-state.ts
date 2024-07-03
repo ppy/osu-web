@@ -6,7 +6,7 @@ import { BeatmapsetStatus } from 'interfaces/beatmapset-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import Ruleset from 'interfaces/ruleset';
 import { intersectionWith, maxBy, sum } from 'lodash';
-import { action, computed, makeObservable, observable, reaction } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import moment from 'moment';
 import core from 'osu-core-singleton';
 import BeatmapsetDiscussionsShowStore from 'stores/beatmapset-discussions-show-store';
@@ -53,7 +53,6 @@ export default class DiscussionsState {
   @observable discussionCollapsed = new Map<number, boolean>();
   @observable discussionDefaultCollapsed = false;
   @observable highlightedDiscussionId: number | null = null;
-  @observable jumpToDiscussion = false;
   @observable pinnedNewDiscussion = false;
 
   @observable readPostIds = new Set<number>();
@@ -63,7 +62,6 @@ export default class DiscussionsState {
 
   private previousFilter: Filter = 'total';
   private previousPage: DiscussionPage = 'general';
-  private readonly urlStateDisposer;
 
   get beatmapset() {
     return this.store.beatmapset;
@@ -349,7 +347,6 @@ export default class DiscussionsState {
     if (existingState != null) {
       Object.assign(this, existingState);
     } else {
-      this.jumpToDiscussion = true;
       for (const discussion of store.beatmapset.discussions) {
         if (discussion.posts != null) {
           for (const post of discussion.posts) {
@@ -385,12 +382,6 @@ export default class DiscussionsState {
     }
 
     makeObservable(this);
-
-    this.urlStateDisposer = reaction(() => this.url, (current, prev) => {
-      if (current !== prev) {
-        Turbolinks.controller.advanceHistory(this.url);
-      }
-    });
   }
 
   @action
@@ -470,10 +461,6 @@ export default class DiscussionsState {
     this.currentPostId = postId;
   }
 
-  destroy() {
-    this.urlStateDisposer();
-  }
-
   @action
   markAsRead(ids: number | number[]) {
     if (Array.isArray(ids)) {
@@ -514,7 +501,6 @@ export default class DiscussionsState {
       discussionCollapsed: [...this.discussionCollapsed],
       discussionDefaultCollapsed: this.discussionDefaultCollapsed,
       highlightedDiscussionId: this.highlightedDiscussionId,
-      jumpToDiscussion: this.jumpToDiscussion,
       pinnedNewDiscussion: this.pinnedNewDiscussion,
       readPostIds: [...this.readPostIds],
       selectedUserId: this.selectedUserId,

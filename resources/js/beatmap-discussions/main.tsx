@@ -6,7 +6,7 @@ import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-con
 import BackToTop from 'components/back-to-top';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import { route } from 'laroute';
-import { action, makeObservable, observable, toJS } from 'mobx';
+import { action, makeObservable, observable, reaction, toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -67,12 +67,22 @@ export default class Main extends React.Component<Props> {
     $(document).on(`click.${this.eventId}`, '.js-beatmap-discussion--jump', this.jumpToClick);
     document.addEventListener('turbolinks:before-cache', this.destroy);
 
-    if (this.discussionsState.jumpToDiscussion) {
-      this.disposers.add(core.reactTurbolinks.runAfterPageLoad(this.jumpToDiscussionByHash));
-    }
+    this.disposers.add(core.reactTurbolinks.runAfterPageLoad(action(() => {
+      this.jumpToDiscussionByHash();
 
-    // normalize url after first render because the default discussion filter depends on ranked state.
-    Turbolinks.controller.replaceHistory(this.discussionsState.url);
+      // normalize url after first render because the default discussion filter depends on ranked state.
+      Turbolinks.controller.replaceHistory(this.discussionsState.url);
+
+      // Watch for reactions after the initial render and url normalization;
+      // we don't want state changes to trigger advanceHistory on first render.
+      this.disposers.add(
+        reaction(() => this.discussionsState.url, (current, prev) => {
+          if (current !== prev) {
+            Turbolinks.controller.advanceHistory(current);
+          }
+        }),
+      );
+    })));
 
     this.timeoutCheckNew = window.setTimeout(this.checkNew, checkNewTimeoutDefault);
   }
@@ -168,7 +178,6 @@ export default class Main extends React.Component<Props> {
     this.discussionsState.saveState();
 
     this.disposers.forEach((disposer) => disposer?.());
-    this.discussionsState.destroy();
   };
 
   private readonly handleNewDiscussionFocus = () => {
