@@ -70,7 +70,9 @@ class PaypalPaymentProcessor extends PaymentProcessor
         static $rejectedStatuses = ['Declined', 'Denied', 'Expired', 'Failed', 'Voided'];
 
         $status = $this->getNotificationTypeRaw();
-        if (in_array($status, $paymentStatuses, true)) {
+        if ($this->shouldIgnore($status)) {
+            return NotificationType::IGNORED;
+        } elseif (in_array($status, $paymentStatuses, true)) {
             return NotificationType::PAYMENT;
         } elseif (in_array($status, $refundStatuses, true)) {
             return NotificationType::REFUND;
@@ -78,8 +80,6 @@ class PaypalPaymentProcessor extends PaymentProcessor
             return NotificationType::PENDING;
         } elseif (in_array($status, $rejectedStatuses, true)) {
             return NotificationType::REJECTED;
-        } elseif ($this->shouldIgnore($status)) {
-            return NotificationType::IGNORED;
         } else {
             return "unknown__{$status}";
         }
@@ -188,9 +188,11 @@ class PaypalPaymentProcessor extends PaymentProcessor
     private function shouldIgnore($status)
     {
         static $ignoredStatuses = ['new_case'];
+        // txn_types we ignore that might also have payment_status set.
+        static $ignoredTxnTypes = ['masspay', 'send_money'];
 
         return in_array($status, $ignoredStatuses, true)
-            || $this['txn_type'] === 'masspay'; // masspay may have payment_status set.
+            || in_array($this['txn_type'], $ignoredTxnTypes, true);
     }
 
     /**
