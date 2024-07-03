@@ -49,6 +49,7 @@ class UserTransformer extends UserCompactTransformer
             'title' => $user->title(),
             'title_url' => $user->titleUrl(),
             'twitter' => $user->user_twitter,
+            'user_style' => $user->user_style,
             'website' => $user->user_website,
         ];
     }
