@@ -150,14 +150,14 @@ class Order extends Model
         return $query->whereIn('status', static::STATUS_HAS_INVOICE);
     }
 
-    public function scopeWhereOrderNumber($query, $orderNumber)
+    public function scopeWhereOrderNumber($query, ?string $orderNumber)
     {
         if (
-            !preg_match(static::ORDER_NUMBER_REGEX, $orderNumber, $matches)
+            $orderNumber === null
+            || !preg_match(static::ORDER_NUMBER_REGEX, $orderNumber, $matches)
             || $GLOBALS['cfg']['store']['order']['prefix'] !== $matches['prefix']
         ) {
-            // hope there's no order_id 0 :D
-            return $query->where('order_id', '=', 0);
+            return $query->none();
         }
 
         $userId = (int) $matches['userId'];
