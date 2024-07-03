@@ -45,11 +45,11 @@ class UserTransformer extends UserCompactTransformer
             'playmode' => $user->playmode,
             'playstyle' => $user->osu_playstyle,
             'post_count' => $user->user_posts,
+            'profile_hue' => $user->user_style,
             'profile_order' => $profileOrder,
             'title' => $user->title(),
             'title_url' => $user->titleUrl(),
             'twitter' => $user->user_twitter,
-            'user_style' => $user->user_style,
             'website' => $user->user_website,
         ];
     }
