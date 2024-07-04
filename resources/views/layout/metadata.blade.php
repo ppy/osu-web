@@ -9,8 +9,6 @@
     $opengraph = Request::instance()->attributes->get('opengraph');
 
     $opengraph['description'] ??= $pageDescription ?? null;
-
-    $themeColor = hsl_to_hex($currentHue, 10, 40);
 @endphp
 <link rel="apple-touch-icon" sizes="180x180" href="{{ $appUrl }}/images/favicon/apple-touch-icon.png">
 <link rel="icon" sizes="32x32" href="{{ $appUrl }}/images/favicon/favicon-32x32.png">
@@ -18,7 +16,7 @@
 <link rel="manifest" href="{{ $appUrl }}/site.webmanifest">
 <link rel="mask-icon" href="{{ $appUrl }}/images/favicon/safari-pinned-tab.svg" color="#e2609a">
 <meta name="msapplication-TileColor" content="#603cba">
-<meta name="theme-color" content="{{ $themeColor }}"> {{-- @osu-colour-b1 --}}
+<meta name="theme-color" content="{{ hsl_to_hex($currentHue, 10, 40) }}"> {{-- @osu-colour-b1 --}}
 
 <meta charset="utf-8">
 <meta name="description" content="{{ $opengraph['description'] ?? osu_trans('layout.defaults.page_description') }}">
