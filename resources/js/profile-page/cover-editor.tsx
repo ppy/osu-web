@@ -16,6 +16,7 @@ interface Props {
 
 @observer
 export default class CoverEditor extends React.Component<Props> {
+  private clickStartTarget: unknown;
   private readonly coverSelector = React.createRef<HTMLDivElement>();
   private readonly eventId = `users-show-header-${nextVal()}`;
   @observable private selectingCover = false;
@@ -32,6 +33,7 @@ export default class CoverEditor extends React.Component<Props> {
 
   componentDidMount() {
     $.subscribe(`key:esc.${this.eventId}`, this.tryCloseCoverSelector);
+    $(document).on(`mousedown.${this.eventId}`, this.onDocumentMouseDown);
     $(document).on(`click.${this.eventId}`, this.onDocumentClick);
   }
 
@@ -81,11 +83,19 @@ export default class CoverEditor extends React.Component<Props> {
 
     if (e.button !== 0) return;
 
-    if ('target' in e && this.coverSelector.current != null && $(e.target).closest(this.coverSelector.current).length) {
+    if (
+      this.clickStartTarget instanceof Element &&
+      this.coverSelector.current != null &&
+      $(this.clickStartTarget).closest(this.coverSelector.current).length
+    ) {
       return;
     }
 
     this.tryCloseCoverSelector();
+  };
+
+  private readonly onDocumentMouseDown = (e: JQuery.ClickEvent) => {
+    this.clickStartTarget = e.target;
   };
 
   @action

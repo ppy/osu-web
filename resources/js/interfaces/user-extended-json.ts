@@ -46,11 +46,11 @@ interface UserExtendedAdditionalAttributes {
   playmode: Ruleset;
   playstyle: string[];
   post_count: number;
+  profile_hue: number | null;
   profile_order: ProfileExtraPage[];
   title: string | null;
   title_url: string | null;
   twitter: string | null;
-  user_style: number | null;
   website: string | null;
 }
 
