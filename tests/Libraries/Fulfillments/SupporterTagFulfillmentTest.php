@@ -7,8 +7,8 @@ declare(strict_types=1);
 
 namespace Tests\Libraries\Fulfillments;
 
+use App\Exceptions\Store\FulfillmentException;
 use App\Libraries\Fulfillments\ApplySupporterTag;
-use App\Libraries\Fulfillments\FulfillmentException;
 use App\Libraries\Fulfillments\SupporterTagFulfillment;
 use App\Mail\DonationThanks;
 use App\Mail\SupporterGift;

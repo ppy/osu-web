@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => '指定的游標參數無效。',
         'operation_timeout_exception' => '搜索目前比平常更繁忙，稍後再試。',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

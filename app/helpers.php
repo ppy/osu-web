@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 use App\Exceptions\FastImagesizeFetchException;
+use App\Exceptions\HasExtraExceptionData;
 use App\Http\Controllers\RankingController;
 use App\Libraries\Base64Url;
 use App\Libraries\LocaleMeta;
@@ -13,6 +14,7 @@ use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
+use Sentry\State\Scope;
 
 function api_version(): int
 {
@@ -412,6 +414,28 @@ function get_valid_locale($requestedLocale)
     }
 }
 
+function hsl_to_hex($h, $s, $l)
+{
+    $c = (1 - abs(2 * $l - 1)) * $s;
+    $x = $c * (1 - abs(fmod($h / 60, 2) - 1));
+    $m = $l - ($c / 2);
+
+    [$r, $g, $b] = match (true) {
+        $h < 60  => [$c, $x, 0],
+        $h < 120 => [$x, $c, 0],
+        $h < 180 => [0, $c, $x],
+        $h < 240 => [0, $x, $c],
+        $h < 300 => [$x, 0, $c],
+        default  => [$c, 0, $x]
+    };
+
+    $r = round(($r + $m) * 255);
+    $g = round(($g + $m) * 255);
+    $b = round(($b + $m) * 255);
+
+    return sprintf('#%02x%02x%02x', $r, $g, $b);
+}
+
 function html_entity_decode_better($string)
 {
     // ENT_HTML5 to handle more named entities (&apos;, etc?).
@@ -488,7 +512,7 @@ function log_error_sentry(Throwable $exception, ?array $tags = null): ?string
         return null;
     }
 
-    return Sentry\withScope(function ($scope) use ($exception, $tags) {
+    return Sentry\withScope(function (Scope $scope) use ($exception, $tags) {
         $currentUser = Auth::user();
         $userContext = $currentUser === null
             ? ['id' => null]
@@ -500,6 +524,15 @@ function log_error_sentry(Throwable $exception, ?array $tags = null): ?string
         $scope->setUser($userContext);
         foreach ($tags ?? [] as $key => $value) {
             $scope->setTag($key, $value);
+        }
+
+        if ($exception instanceof HasExtraExceptionData) {
+            $scope->setExtras($exception->getExtras());
+            $contexts = $exception->getContexts();
+
+            foreach ($contexts as $name => $value) {
+                $scope->setContext($name, $value ?? []);
+            }
         }
 
         return Sentry\captureException($exception);
@@ -524,25 +557,6 @@ function markdown($input, $preset = 'default')
     }
 
     return $converter[$preset]->load($input)->html();
-}
-
-function markdown_chat($input)
-{
-    static $converter;
-
-    if (!isset($converter)) {
-        $environment = new League\CommonMark\Environment\Environment([
-            'allow_unsafe_links' => false,
-            'max_nesting_level' => 20,
-            'renderer' => ['soft_break' => '<br />'],
-        ]);
-
-        $environment->addExtension(new App\Libraries\Markdown\Chat\Extension());
-
-        $converter = new League\CommonMark\MarkdownConverter($environment);
-    }
-
-    return $converter->convert($input)->getContent();
 }
 
 function markdown_plain(?string $input): string
@@ -771,11 +785,11 @@ function currency($price, $precision = 2, $zeroShowFree = true)
  * Compares 2 money values from payment processor in a sane manner.
  * i.e. not a float.
  *
- * @param $a money value A
- * @param $b money value B
- * @return 0 if equal, 1 if $a > $b, -1 if $a < $b
+ * @param float $a money value A
+ * @param float $b money value B
+ * @return int 0 if equal, 1 if $a > $b, -1 if $a < $b
  */
-function compare_currency($a, $b)
+function compare_currency(float $a, float $b): int
 {
     return (int) ($a * 100) <=> (int) ($b * 100);
 }

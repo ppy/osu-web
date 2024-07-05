@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'پارامتر مکان نما نامعتبر مشخص شد.',
         'operation_timeout_exception' => 'جستجو از حد معمول شلوغ تر است، بعدا امتحان کنید.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

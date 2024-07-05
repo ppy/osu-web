@@ -40,8 +40,8 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'ผู้เสนอชื่อผู้คุมไม่สามารถเสนอชื่อชุดกฎหลายชุดได้',
+        'full_nomination_required' => 'คุณต้องเป็นผู้ที่มีสิทธิ์ในการเสนอชื่อในฐานะผู้ที่เสนอชื่อในระดับสูงสุดเพื่อเสนอชื่อในกฎระเบียบ',
         'hybrid_requires_modes' => 'บีตแมปแบบไฮบริดจำเป็นให้คุณต้องเลือกโหมดการเล่นอย่างน้อยหนึ่งโหมดเพื่อเสนอชื่อเข้าชิง',
         'incorrect_mode' => 'คุณไม่มีสิทธิในการเสนอชื่อในโหมด :mode',
         'invalid_limited_nomination' => '',

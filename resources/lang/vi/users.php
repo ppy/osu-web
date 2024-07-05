@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'Đổi Ảnh Bìa Trang Cá Nhân',
                 'defaults_info' => 'Sẽ có thêm lựa chọn ảnh bìa trong tương lai',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'Không xử lý được hình ảnh. Kiểm tra hình ảnh đã tải lên và thử lại sau.',
                     'button' => 'Tải ảnh lên',

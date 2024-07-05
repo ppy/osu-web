@@ -182,7 +182,6 @@ return [
     ])->merge([
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
         // Override default migrate:fresh
         App\Providers\MigrationServiceProvider::class,
         App\Providers\PassportServiceProvider::class,

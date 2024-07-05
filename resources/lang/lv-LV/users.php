@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'Mainīt Profila Pārklāju',
                 'defaults_info' => 'Vairāk pārklāja iestatījumu būs pieejami nākotnē',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'Neizdevās apstrādāt bildi. Verificējiet augšupielādēto bildi un mēģiniet vēlreiz.',
                     'button' => 'Augšupielādēt bildi',

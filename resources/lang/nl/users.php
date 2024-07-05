@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'Verander Profiel Cover',
                 'defaults_info' => 'In de toekomst zullen er meer cover opties beschikbaar zijn',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'Afbeelding verwerken mislukt. Controleer de geüploade afbeelding en probeer opnieuw.',
                     'button' => 'Upload afbeelding',

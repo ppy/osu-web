@@ -117,9 +117,14 @@ export class NewReply extends React.Component<Props> {
       case InputEventType.Cancel:
         this.editing = false;
         break;
-      case InputEventType.Submit:
-        this.post(event);
+      case InputEventType.Submit: {
+        const postAction = this.canResolve && this.props.discussion.can_be_resolved && event.ctrlKey
+          ? 'reply_resolve'
+          : 'reply';
+
+        this.post(event, postAction);
         break;
+      }
     }
   };
 
@@ -132,12 +137,11 @@ export class NewReply extends React.Component<Props> {
   };
 
   @action
-  private readonly post = (event: React.SyntheticEvent<HTMLElement>) => {
-    if (!this.validPost || this.postXhr != null) return;
+  private readonly post = (event: React.SyntheticEvent<HTMLElement>, postAction?: string) => {
+    postAction ??= event.currentTarget.dataset.action;
+    if (!this.validPost || this.postXhr != null || postAction == null) return;
     showLoadingOverlay();
 
-    // in case the event came from input box, do 'reply'.
-    const postAction = event.currentTarget.dataset.action ?? 'reply';
     this.posting = postAction;
 
     const data = {
@@ -191,7 +195,9 @@ export class NewReply extends React.Component<Props> {
         </div>
 
         <div className={`${bn}__footer ${bn}__footer--notice`}>
-          {trans('beatmaps.discussions.reply_notice')}
+          {this.canResolve && !this.props.discussion.resolved
+            ? trans('beatmaps.discussions.reply_resolve_notice')
+            : trans('beatmaps.discussions.reply_notice')}
           <DiscussionMessageLengthCounter isTimeline={this.isTimeline} message={this.message} />
         </div>
 

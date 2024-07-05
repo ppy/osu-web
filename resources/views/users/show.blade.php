@@ -5,6 +5,7 @@
 
 @extends('master', [
     'canonicalUrl' => $user->url($mode),
+    'currentHue' => $user->user_style,
     'titlePrepend' => App\Libraries\Opengraph\UserOpengraph::escapeForTitle($user->username),
 ])
 

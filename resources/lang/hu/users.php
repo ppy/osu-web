@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'Profil Borító Változtatása',
                 'defaults_info' => 'További borító lehetőségek a jövőben lesznek elérhetőek',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'Kép feldolgozása sikertelen. Ellenőrizd a feltöltött képet és próbáld meg újra.',
                     'button' => 'Kép feltöltése',

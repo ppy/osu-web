@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Наведени су неисправни курсор параметри.',
         'operation_timeout_exception' => 'Претрага је тренутно заузетија него обично, покушајте поново касније.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

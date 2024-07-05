@@ -5,7 +5,6 @@
 
 namespace App\Libraries\Fulfillments;
 
-use App\Events\Fulfillments\OrderFulfillerEvent;
 use App\Models\Store\OrderItem;
 
 /**
@@ -30,7 +29,7 @@ abstract class BannerFulfillment extends OrderFulfiller
             $this->applyBanner($orderItem);
         }
 
-        event("store.fulfillments.run.{$this->taggedName()}", new OrderFulfillerEvent($this->order));
+        $this->incrementRun();
     }
 
     public function revoke()
@@ -40,7 +39,7 @@ abstract class BannerFulfillment extends OrderFulfiller
             $this->revokeBanner($orderItem);
         }
 
-        event("store.fulfillments.revoke.{$this->taggedName()}", new OrderFulfillerEvent($this->order));
+        $this->incrementRevoke();
     }
 
     protected function getOrderItems()

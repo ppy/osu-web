@@ -103,6 +103,11 @@ class UserReport extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function isRecent(): bool
+    {
+        return $this->timestamp->addDays(1)->isFuture();
+    }
+
     public function isValid()
     {
         $this->validationErrors()->reset();

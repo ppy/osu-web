@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'カバー画像の変更',
                 'defaults_info' => 'カバー画像の選択肢は増える予定です',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => '画像の処理に失敗しました。アップロードした画像を確認してもう一度やり直して下さい。',
                     'button' => '画像のアップロード',

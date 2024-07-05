@@ -24,6 +24,11 @@ return [
         'title' => 'Поскаржитись на пост :username?',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Поскаржитись на гру',
         'title' => 'Поскаржитись на гру :username?',

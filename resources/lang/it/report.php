@@ -24,6 +24,11 @@ return [
         'title' => 'Segnalare il post di :username?',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Segnala Punteggio',
         'title' => 'Segnalare il punteggio di :username?',

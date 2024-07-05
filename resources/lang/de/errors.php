@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Ungültiger Cursor-Parameter angegeben.',
         'operation_timeout_exception' => 'Die Suche ist derzeit höher ausgelastet als normal, versuche es später erneut.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

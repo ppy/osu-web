@@ -31,12 +31,6 @@ class BlockRenderer implements NodeRendererInterface
         return null;
     }
 
-    /**
-     * @param Node $node
-     * @param ChildNodeRendererInterface $childRenderer
-     *
-     * @return string
-     */
     public function render(Node $node, ChildNodeRendererInterface $childRenderer): string
     {
         $rendered = [];

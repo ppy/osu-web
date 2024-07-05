@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Se ha especificado un parámetro para el cursor no válido.',
         'operation_timeout_exception' => 'La búsqueda está más saturada de lo habitual, inténtalo de nuevo más tarde.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'El paràmetre de cursor és invàlid.',
         'operation_timeout_exception' => 'La cerca es troba més congestionada que d\'habitual, prova-ho més tard.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

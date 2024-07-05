@@ -5,8 +5,6 @@
 
 namespace App\Libraries\Fulfillments;
 
-use App\Events\Fulfillments\OrderFulfillerEvent;
-
 /**
  * Placeholder class for handling non-custom class order item fulfillment.
  */
@@ -22,13 +20,13 @@ class GenericFulfillment extends OrderFulfiller
     public function run()
     {
         // almost noop
-        event("store.fulfillments.run.{$this->taggedName()}", new OrderFulfillerEvent($this->order));
+        $this->incrementRun();
     }
 
     public function revoke()
     {
         // almost noop
-        event("store.fulfillments.revoke.{$this->taggedName()}", new OrderFulfillerEvent($this->order));
+        $this->incrementRevoke();
     }
 
     public function validationErrorsTranslationPrefix(): string

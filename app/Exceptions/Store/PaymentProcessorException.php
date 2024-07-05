@@ -3,10 +3,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Libraries\Payments;
+declare(strict_types=1);
 
-use App\Exceptions\ValidationException;
+namespace App\Exceptions\Store;
 
-class PaymentProcessorException extends ValidationException
+class PaymentProcessorException extends OrderException
 {
 }

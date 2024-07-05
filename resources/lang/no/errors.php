@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Ugyldig markørparameter spesifisert.',
         'operation_timeout_exception' => 'Søkefunksjonen ser ikke ut til å fungere akkurat nå. Prøv igjen senere.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];
