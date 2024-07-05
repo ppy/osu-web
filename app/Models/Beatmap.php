@@ -17,7 +17,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $approved
  * @property-read Collection<BeatmapDiscussion> $beatmapDiscussions
  * @property int $beatmap_id
- * @property-read Collection<User> $beatmapOwners
  * @property Beatmapset $beatmapset
  * @property int|null $beatmapset_id
  * @property float $bpm
@@ -41,6 +40,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $max_combo
  * @property mixed $mode
  * @property-read Collection<User> $mappers
+ * @property-read Collection<User> $owners
  * @property int $passcount
  * @property int $playcount
  * @property int $playmode
@@ -112,7 +112,7 @@ class Beatmap extends Model implements AfterCommit
 
     public function beatmapOwners()
     {
-        return $this->hasManyThrough(User::class, BeatmapOwner::class, 'beatmap_id', 'user_id', 'beatmap_id', 'user_id');
+        return $this->hasMany(BeatmapOwner::class);
     }
 
     public function beatmapset()
@@ -133,6 +133,11 @@ class Beatmap extends Model implements AfterCommit
     public function difficultyAttribs()
     {
         return $this->hasMany(BeatmapDifficultyAttrib::class);
+    }
+
+    public function owners()
+    {
+        return $this->hasManyThrough(User::class, BeatmapOwner::class, 'beatmap_id', 'user_id', 'beatmap_id', 'user_id');
     }
 
     public function user()
@@ -271,11 +276,11 @@ class Beatmap extends Model implements AfterCommit
             'baseDifficultyRatings',
             'baseMaxCombo',
             'beatmapDiscussions',
-            'beatmapOwners',
             'beatmapset',
             'difficulty',
             'difficultyAttribs',
             'failtimes',
+            'owners',
             'scoresBestFruits',
             'scoresBestMania',
             'scoresBestOsu',
@@ -310,21 +315,29 @@ class Beatmap extends Model implements AfterCommit
         return $maxCombo?->value;
     }
 
-    public function setOwner($newUserId)
+    public function setOwner(array|int|null $newUserIds)
     {
-        if ($newUserId === null) {
+        $newUserIds = (array) $newUserIds;
+
+        if ($newUserIds === []) {
             throw new InvariantException('user_id must be specified');
         }
 
-        if (User::find($newUserId) === null) {
+        if (User::whereIn('user_id', $newUserIds)->count() !== count($newUserIds)) {
             throw new InvariantException('invalid user_id');
         }
 
-        if ($newUserId === $this->user_id) {
-            throw new InvariantException('the specified user_id is already the owner');
+        // TODO: return if no change?
+
+        $params = [];
+        foreach ($newUserIds as $userId) {
+            $params[] = ['beatmap_id' => $this->getKey(), 'user_id' => $userId];
         }
 
-        $this->fill(['user_id' => $newUserId])->saveOrExplode();
+        $this->fill(['user_id' => $newUserIds[0]])->saveOrExplode();
+        $this->beatmapOwners()->delete();
+        BeatmapOwner::insert($params);
+
         $this->beatmapset->update(['eligible_main_rulesets' => null]);
     }
 
@@ -389,7 +402,7 @@ class Beatmap extends Model implements AfterCommit
     private function getMappers(): Collection
     {
         // TODO: deleted users?
-        $mappers = $this->beatmapOwners;
+        $mappers = $this->owners;
         $mappers->prepend($this->user);
 
         return $mappers;
