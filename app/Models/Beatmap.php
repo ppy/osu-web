@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $approved
- * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussions BeatmapDiscussion
+ * @property-read Collection<BeatmapDiscussion> $beatmapDiscussions
  * @property int $beatmap_id
  * @property-read Collection<User> $beatmapOwners
  * @property Beatmapset $beatmapset
@@ -31,10 +31,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property float $diff_drain
  * @property float $diff_overall
  * @property float $diff_size
- * @property \Illuminate\Database\Eloquent\Collection $difficulty BeatmapDifficulty
- * @property \Illuminate\Database\Eloquent\Collection $difficultyAttribs BeatmapDifficultyAttrib
+ * @property-read Collection<BeatmapDifficulty> $difficulty
+ * @property-read Collection<BeatmapDifficultyAttrib> $difficultyAttribs
  * @property float $difficultyrating
- * @property \Illuminate\Database\Eloquent\Collection $failtimes BeatmapFailtimes
+ * @property-read Collection<BeatmapFailtimes> $failtimes
  * @property string|null $filename
  * @property int $hit_length
  * @property \Carbon\Carbon $last_update
@@ -388,6 +388,7 @@ class Beatmap extends Model implements AfterCommit
 
     private function getMappers(): Collection
     {
+        // TODO: deleted users?
         $mappers = $this->beatmapOwners;
         $mappers->prepend($this->user);
 
