@@ -420,10 +420,10 @@ function hsl_to_hex($h, $s, $l)
     $l /= 100;
 
     $c = (1 - abs(2 * $l - 1)) * $s;
-    $x = $c * (1 - abs(fmod(($h / 60), 2) - 1));
+    $x = $c * (1 - abs(fmod($h / 60, 2) - 1));
     $m = $l - ($c / 2);
 
-    [$r, $g, $b] = match(true) {
+    [$r, $g, $b] = match (true) {
         $h < 60  => [$c, $x, 0],
         $h < 120 => [$x, $c, 0],
         $h < 180 => [0, $c, $x],
