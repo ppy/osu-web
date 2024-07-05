@@ -414,6 +414,28 @@ function get_valid_locale($requestedLocale)
     }
 }
 
+function hsl_to_hex($h, $s, $l)
+{
+    $c = (1 - abs(2 * $l - 1)) * $s;
+    $x = $c * (1 - abs(fmod($h / 60, 2) - 1));
+    $m = $l - ($c / 2);
+
+    [$r, $g, $b] = match (true) {
+        $h < 60  => [$c, $x, 0],
+        $h < 120 => [$x, $c, 0],
+        $h < 180 => [0, $c, $x],
+        $h < 240 => [0, $x, $c],
+        $h < 300 => [$x, 0, $c],
+        default  => [$c, 0, $x]
+    };
+
+    $r = round(($r + $m) * 255);
+    $g = round(($g + $m) * 255);
+    $b = round(($b + $m) * 255);
+
+    return sprintf('#%02x%02x%02x', $r, $g, $b);
+}
+
 function html_entity_decode_better($string)
 {
     // ENT_HTML5 to handle more named entities (&apos;, etc?).
