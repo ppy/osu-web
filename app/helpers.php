@@ -416,9 +416,6 @@ function get_valid_locale($requestedLocale)
 
 function hsl_to_hex($h, $s, $l)
 {
-    $s /= 100;
-    $l /= 100;
-
     $c = (1 - abs(2 * $l - 1)) * $s;
     $x = $c * (1 - abs(fmod($h / 60, 2) - 1));
     $m = $l - ($c / 2);
