@@ -59,7 +59,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
     public function isTest(): bool
     {
-        return get_bool(presence($this['test_ipn']));
+        return get_bool(presence($this['test_ipn'])) ?? false;
     }
 
     public function getNotificationType(): string
