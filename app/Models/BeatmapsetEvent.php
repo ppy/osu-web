@@ -124,8 +124,8 @@ class BeatmapsetEvent extends Model
             }
         }
 
-        $sortField ?? ($sortField = 'id');
-        $sortOrder ?? ($sortOrder = 'desc');
+        $sortField ??= 'id';
+        $sortOrder ??= 'desc';
 
         if ($sortField !== 'id' && $sortOrder !== 'desc') {
             $params['sort'] = "{$sortField}_{$sortOrder}";
