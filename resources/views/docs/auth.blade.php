@@ -208,9 +208,9 @@ Restricted users can grant authorization like anyone else. If your client should
                 'example' => 'authorization_code',
             ],
             'redirect_uri' => [
-                'description' => 'The URL in your application where users will be sent after authorization.',
+                'description' => 'This must be the same as the one used on authorization request.',
                 'name' => 'redirect_uri',
-                'required' => true,
+                'required' => false,
                 'example' => 'http://localhost:4000',
             ],
         ],
