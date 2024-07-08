@@ -111,8 +111,9 @@ class BeatmapsetEvent extends Model
             $query->where('beatmapset_id', '=', $params['beatmapset_id']);
         }
 
-        if (isset($rawParams['sort'])) {
-            $sort = explode('_', strtolower($rawParams['sort']));
+        $sortParam = presence(get_string($rawParams['sort'] ?? null));
+        if (isset($sortParam)) {
+            $sort = explode('_', strtolower($sortParam));
 
             if (in_array($sort[0] ?? null, ['id'], true)) {
                 $sortField = $sort[0];
