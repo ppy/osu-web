@@ -120,6 +120,7 @@ Restricted users can grant authorization like anyone else. If your client should
             'client_id' => [
                 'description' => 'The Client ID you received when you [registered]('.route('account.edit').'#new-oauth-application).',
                 'name' => 'client_id',
+                'required' => true,
                 'type' => 'integer',
                 'example' => 1,
             ],
@@ -131,6 +132,7 @@ Restricted users can grant authorization like anyone else. If your client should
             'response_type' => [
                 'description' => 'This should always be `code` when requesting authorization.',
                 'name' => 'response_type',
+                'required' => true,
                 'example' => 'code',
             ],
             'scope' => [
