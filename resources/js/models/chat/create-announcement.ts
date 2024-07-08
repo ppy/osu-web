@@ -3,13 +3,9 @@
 
 import { FormWithErrors } from 'components/input-container';
 import UserJson from 'interfaces/user-json';
-import { route } from 'laroute';
-import { debounce } from 'lodash';
-import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
-import core from 'osu-core-singleton';
-import { onError } from 'utils/ajax';
+import { action, autorun, computed, makeObservable, observable } from 'mobx';
 import { uuid } from 'utils/seq';
-import { presence, present } from 'utils/string';
+import { present } from 'utils/string';
 import { maxMessageLength } from './channel';
 
 interface LocalStorageProps extends Record<InputKey, string> {
@@ -34,14 +30,16 @@ export function isInputKey(key: string): key is InputKey {
 // This class is owned by ChatStateStore
 export default class CreateAnnouncement implements FormWithErrors<InputKey> {
   @observable inputs: Record<InputKey, string>;
-  @observable lookingUpUsers = false;
   @observable showError: Record<InputKey, boolean>;
   @observable validUsers = new Map<number, UserJson>();
 
-  private readonly debouncedLookupUsers = debounce(() => this.lookupUsers(), 1000);
   private initialized = false;
   private readonly uuid = uuid();
-  private xhrLookupUsers?: JQuery.jqXHR<{ users: UserJson[] }>;
+
+  @computed
+  get allUsers() {
+    return [...this.validUsers.keys(), this.inputs.users].join(',');
+  }
 
   @computed
   get errors() {
@@ -68,8 +66,6 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
 
   @action
   clear() {
-    this.xhrLookupUsers?.abort();
-    this.lookingUpUsers = false;
     this.resetErrors();
     this.resetInputs();
     this.validUsers.clear();
@@ -98,10 +94,7 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
         this.inputs.description = json.description;
         this.inputs.message = json.message;
         this.inputs.name = json.name;
-
-        if (userIds.length > 0) {
-          this.updateUsers(userIds.join(','), true);
-        }
+        this.inputs.users = userIds.join(',');
       } catch (error) {
         console.error('invalid json in localStorage');
         localStorage.removeItem(localStorageKey);
@@ -133,79 +126,8 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
     };
   }
 
-  @action
-  updateUsers(text: string, immediate: boolean) {
-    this.debouncedLookupUsers.cancel();
-    this.inputs.users = text;
-
-    // TODO: check if change is only whitespace.
-    if (text.trim().length === 0) {
-      this.xhrLookupUsers?.abort();
-      this.lookingUpUsers = false;
-
-      return;
-    }
-
-    // spinner should trigger even before request is sent.
-    this.lookingUpUsers = true;
-    this.debouncedLookupUsers();
-
-    if (immediate) {
-      this.debouncedLookupUsers.flush();
-    }
-  }
-
-  /**
-   * Disassembles and extract valid users from the string.
-   */
-  @action
-  private extractValidUsers(users: UserJson[]) {
-    const userIds = this.inputs.users.split(',');
-
-    for (const user of users) {
-      this.validUsers.set(user.id, user);
-    }
-
-    const invalidUsers: string[] = [];
-
-    for (const userId of userIds) {
-      const trimmedUserId = presence(userId.trim());
-
-      if (!this.validUsersContains(trimmedUserId)) {
-        invalidUsers.push(userId);
-      }
-    }
-
-    this.inputs.users = invalidUsers.join(',');
-
-    // current user is implicit, always remove.
-    this.validUsers.delete(core.currentUserOrFail.id);
-  }
-
   private isValidLength(key: Exclude<InputKey, 'users'>, allowEmpty = false) {
     return (allowEmpty || present(this.inputs[key])) && this.inputs[key].length <= maxLengths[key];
-  }
-
-  @action
-  private async lookupUsers() {
-    this.xhrLookupUsers?.abort();
-    this.debouncedLookupUsers.cancel();
-
-    const userIds = this.inputs.users.split(',').map((s) => presence(s.trim())).filter(Boolean);
-    if (userIds.length === 0) {
-      this.lookingUpUsers = false;
-      return;
-    }
-
-    try {
-      this.xhrLookupUsers = $.getJSON(route('chat.users.index'), { ids: userIds });
-      const response = await this.xhrLookupUsers;
-      this.extractValidUsers(response.users);
-    } catch (error) {
-      onError(error);
-    } finally {
-      runInAction(() => this.lookingUpUsers = false);
-    }
   }
 
   @action
@@ -226,13 +148,5 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
       name: '',
       users: '',
     };
-  }
-
-  private validUsersContains(userId?: string | null) {
-    if (userId == null) return false;
-
-    return this.validUsers.has(Number(userId))
-      // maybe it's a username
-      || [...this.validUsers.values()].some((user) => user.username.toLowerCase() === userId.toLowerCase());
   }
 }
