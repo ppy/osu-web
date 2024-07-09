@@ -136,7 +136,8 @@ export default class HueSelector extends React.Component<Props> {
 
   @action
   private readonly onResetClick = () => {
-    if (!this.canSet && !confirm('users.show.edit.hue.reset_no_supporter')) {
+    if (!this.canSet && !confirm(trans('users.show.edit.hue.reset_no_supporter'))) {
+
       return;
     }
 
