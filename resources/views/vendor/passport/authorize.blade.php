@@ -43,6 +43,11 @@
                 <h2 class="dialog-form__client-name">
                     {{ $client->name }}
                 </h2>
+                <p><small>
+                    {!! osu_trans('oauth.authorise.app_owner', [
+                        'owner' => link_to_user($client->user_id, $client->user->username),
+                    ]) !!}
+                </small></p>
                 <p class="dialog-form__client-request">
                     {{ osu_trans('oauth.authorise.request') }}
                 </p>

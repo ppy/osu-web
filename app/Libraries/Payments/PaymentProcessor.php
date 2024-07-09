@@ -11,7 +11,6 @@ use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
-use Datadog;
 use DB;
 use Sentry\State\Scope;
 
@@ -129,9 +128,8 @@ abstract class PaymentProcessor implements \ArrayAccess
                 throw new UnsupportedNotificationTypeException($type);
         }
 
-        Datadog::increment(
-            $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.payment_processor.run',
-            1,
+        datadog_increment(
+            'payment_processor.run',
             ['provider' => $this->getPaymentProvider(), 'type' => $type]
         );
     }
@@ -213,11 +211,7 @@ abstract class PaymentProcessor implements \ArrayAccess
             $order->saveOrExplode();
         });
 
-        \Datadog::increment(
-            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.payments.pending",
-            1,
-            ['provider' => $this->getPaymentProvider()],
-        );
+        datadog_increment('store.payments.pending', ['provider' => $this->getPaymentProvider()]);
     }
 
     /**
@@ -234,11 +228,7 @@ abstract class PaymentProcessor implements \ArrayAccess
 
         $order = $this->getOrder();
 
-        \Datadog::increment(
-            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.payments.rejected",
-            1,
-            ['provider' => $this->getPaymentProvider()],
-        );
+        datadog_increment('store.payments.rejected', ['provider' => $this->getPaymentProvider()]);
     }
 
     /**
