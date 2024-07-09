@@ -211,11 +211,7 @@ abstract class PaymentProcessor implements \ArrayAccess
             $order->saveOrExplode();
         });
 
-        \Datadog::increment(
-            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.payments.pending",
-            1,
-            ['provider' => $this->getPaymentProvider()],
-        );
+        datadog_increment('store.payments.pending', ['provider' => $this->getPaymentProvider()]);
     }
 
     /**
@@ -232,11 +228,7 @@ abstract class PaymentProcessor implements \ArrayAccess
 
         $order = $this->getOrder();
 
-        \Datadog::increment(
-            "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.payments.rejected",
-            1,
-            ['provider' => $this->getPaymentProvider()],
-        );
+        datadog_increment('store.payments.rejected', ['provider' => $this->getPaymentProvider()]);
     }
 
     /**
