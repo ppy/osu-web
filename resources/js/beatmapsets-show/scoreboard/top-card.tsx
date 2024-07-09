@@ -4,6 +4,7 @@
 import FlagCountry from 'components/flag-country';
 import Mod from 'components/mod';
 import ScorePin from 'components/score-pin';
+import ScoreValue from 'components/score-value';
 import ScoreboardTime from 'components/scoreboard-time';
 import StringWithComponent from 'components/string-with-component';
 import TimeWithTooltip from 'components/time-with-tooltip';
@@ -19,7 +20,7 @@ import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { accuracy, filterMods, isPerfectCombo, attributeDisplayTotals, rank, scoreUrl, totalScore } from 'utils/score-helper';
+import { accuracy, filterMods, isPerfectCombo, attributeDisplayTotals, rank, scoreUrl } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;
@@ -113,7 +114,7 @@ export default class TopCard extends React.PureComponent<Props> {
                   {trans('beatmapsets.show.scoreboard.headers.score_total')}
                 </div>
                 <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--score'>
-                  {formatNumber(totalScore(this.props.score))}
+                  <ScoreValue score={this.props.score} />
                 </div>
               </div>
             </div>

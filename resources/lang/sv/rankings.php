@@ -23,6 +23,10 @@ return [
         'used' => 'Spenderat',
     ],
 
+    'performance' => [
+        'insufficient_history' => 'Denna spelare har mindre än 30 dagar av nylig rankinghistorik.',
+    ],
+
     'type' => [
         'charts' => 'i rampljuset',
         'country' => 'land',

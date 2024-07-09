@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'Zmeniť pozadie profilu',
                 'defaults_info' => 'Viac možností pozadia bude dostupných v budúcnosti',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'Spracovanie obrázku zlyhalo. Skontroluj si obrázok a skús to znova.',
                     'button' => 'Nahrať obrázok',

@@ -23,6 +23,10 @@ return [
         'used' => '',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'spotlights',
         'country' => 'država',

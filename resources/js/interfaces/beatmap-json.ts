@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetJson from './beatmapset-json';
-import GameMode from './game-mode';
+import Ruleset from './ruleset';
 import UserJson from './user-json';
 
 interface BeatmapFailTimesArray {
@@ -22,7 +22,7 @@ interface BeatmapJsonDefaultAttributes {
   beatmapset_id: number;
   difficulty_rating: number;
   id: number;
-  mode: GameMode;
+  mode: Ruleset;
   status: string;
   total_length: number;
   user_id: number;

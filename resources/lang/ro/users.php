@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'Schimbă coperta de profil',
                 'defaults_info' => 'Mai multe opțiuni pentru coperți vor fi disponibile în viitor',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'Imposibil de procesat imaginea. Verifică imaginea încărcată și încearcă din nou.',
                     'button' => 'Încarcă imaginea',

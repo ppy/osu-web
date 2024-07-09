@@ -23,6 +23,10 @@ return [
         'used' => 'Folosit',
     ],
 
+    'performance' => [
+        'insufficient_history' => 'Acest utilizator are mai puțin de 30 de zile de istoric în clasamente.',
+    ],
+
     'type' => [
         'charts' => 'promovări',
         'country' => 'național',

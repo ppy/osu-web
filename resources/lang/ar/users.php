@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'تغيير صورة الغلاف',
                 'defaults_info' => 'خيارات اغلفة اضافية ستكون متاحة في المستقبل',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'فشلت معالجة الصورة. تحقق من الصورة المرفوعة وحاول مرة أخرى.',
                     'button' => 'رفع صورة',
@@ -356,7 +358,7 @@ return [
                 'title' => 'الأخيرة',
             ],
             'realtime' => [
-                'title' => 'ألـ ألعاب الجماعية',
+                'title' => 'الألعاب الجماعية',
             ],
             'top_ranks' => [
                 'download_replay' => 'تحميل الـ Replay',

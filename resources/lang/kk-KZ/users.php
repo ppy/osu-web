@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => '',
                 'defaults_info' => '',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => '',
                     'button' => '',
@@ -223,7 +225,7 @@ return [
         ],
 
         'extra' => [
-            'none' => '',
+            'none' => 'жоқ',
             'unranked' => '',
 
             'achievements' => [
@@ -455,7 +457,7 @@ return [
             'level_progress' => '',
             'maximum_combo' => '',
             'medals' => '',
-            'play_count' => '',
+            'play_count' => 'Ойын саны',
             'play_time' => '',
             'ranked_score' => '',
             'replays_watched_by_others' => '',

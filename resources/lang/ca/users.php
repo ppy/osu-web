@@ -200,6 +200,8 @@ return [
             'cover' => [
                 'button' => 'Canvia la portada del perfil',
                 'defaults_info' => 'Més opcions de portada estaran disponibles en el futur',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'Error en processar la imatge. Verifica la imatge pujada i torna-ho a intentar.',
                     'button' => 'Penja una imatge',

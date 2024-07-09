@@ -11,7 +11,7 @@ return [
     ],
 
     'error' => [
-        'contact_support' => 'Contacta al soporte técnico para recuperar tu contraseña.',
+        'contact_support' => 'Contacta al soporte técnico para recuperar tu cuenta.',
         'expired' => 'El código de verificación ha expirado.',
         'invalid' => 'Error inesperado en el código de verificación.',
         'is_privileged' => 'Por favor, póngase en contacto con un administrador de alto nivel para recuperar la cuenta.',
@@ -22,7 +22,7 @@ return [
     ],
 
     'notice' => [
-        'sent' => 'Revise su correo para obtener el código de verificación.',
+        'sent' => 'Revisa tu correo para obtener el código de verificación.',
         'saved' => '¡Nueva contraseña guardada!',
     ],
 
@@ -34,7 +34,7 @@ return [
     ],
 
     'starting' => [
-        'username' => 'Ingrese correo o nombre de usuario',
+        'username' => 'Ingresa el correo o el nombre de usuario',
 
         'reason' => [
             'inactive_different_country' => "Tu cuenta no ha sido usada en mucho tiempo. Para garantizar la seguridad de tu cuenta, por favor restablece tu contraseña.",

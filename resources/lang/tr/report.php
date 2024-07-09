@@ -24,6 +24,11 @@ return [
         'title' => ':username: kullanıcısının gönderisi bildirilsin mi?',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Skoru Bildir',
         'title' => ':username kullanıcısının skoru bildirilsin mi?',

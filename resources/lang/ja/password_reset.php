@@ -37,7 +37,7 @@ return [
         'username' => 'メールアドレスまたはユーザー名を入力してください',
 
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "あなたのアカウントは長い間使用されていません。アカウントのセキュリティを確保するために、パスワードをリセットしてください。",
         ],
         'support' => [
             '_' => 'さらにサポートが必要ですか？ :buttonからお問い合わせください。',

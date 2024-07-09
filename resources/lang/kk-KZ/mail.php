@@ -13,7 +13,7 @@ return [
 
     'common' => [
         'closing' => '',
-        'hello' => '',
+        'hello' => 'Сәлем :user,',
         'report' => '',
         'ignore' => '',
     ],
@@ -23,7 +23,7 @@ return [
         'feedback' => "",
         'keep_free' => '',
         'keep_running' => '',
-        'subject' => '',
+        'subject' => 'Рахмет, osu! сізді <3',
         'translation' => '',
 
         'benefit' => [

@@ -21,10 +21,22 @@ class ScoresController extends Controller
 
         $this->middleware('auth', ['except' => [
             'show',
-            'userRankLookup',
         ]]);
 
         $this->middleware('require-scopes:public');
+    }
+
+    private static function parseIdOrFail(string $id): int
+    {
+        if (ctype_digit($id)) {
+            $ret = (int) $id;
+
+            if ($ret > 0) {
+                return $ret;
+            }
+        }
+
+        abort(404, osu_trans('errors.scores.invalid_id'));
     }
 
     public function download($rulesetOrSoloId, $id = null)
@@ -92,19 +104,11 @@ class ScoresController extends Controller
     public function show($rulesetOrSoloId, $legacyId = null)
     {
         if ($legacyId === null) {
-            $scoreQuery = SoloScore::whereKey($rulesetOrSoloId);
+            $scoreQuery = SoloScore::whereKey(static::parseIdOrFail($rulesetOrSoloId));
         } else {
-            // `SoloScore` tables can have records with `legacy_score_id = 0`
-            // which correspond to rows from `osu_scores_*` (non-high) tables.
-            // do not attempt to perform lookups for zero to avoid weird results.
-            // negative IDs should never occur (ID columns in score tables are all `bigint unsigned`).
-            if ($legacyId <= 0) {
-                abort(404, 'invalid score ID');
-            }
-
             $scoreQuery = SoloScore::where([
                 'ruleset_id' => Ruleset::tryFromName($rulesetOrSoloId) ?? abort(404, 'unknown ruleset name'),
-                'legacy_score_id' => $legacyId,
+                'legacy_score_id' => static::parseIdOrFail($legacyId),
             ]);
         }
         $score = $scoreQuery->whereHas('beatmap.beatmapset')->visibleUsers()->firstOrFail();
@@ -125,31 +129,6 @@ class ScoresController extends Controller
         }
 
         return ext_view('scores.show', compact('score', 'scoreJson'));
-    }
-
-    public function userRankLookup()
-    {
-        $params = get_params(request()->all(), null, [
-            'beatmapId:int',
-            'score:int',
-            'rulesetId:int',
-        ]);
-
-        foreach (['beatmapId', 'score', 'rulesetId'] as $key) {
-            if (!isset($params[$key])) {
-                abort(422, "required parameter '{$key}' is missing");
-            }
-        }
-
-        $score = ScoreBest
-            ::getClassByRulesetId($params['rulesetId'])
-            ::where([
-                'beatmap_id' => $params['beatmapId'],
-                'hidden' => false,
-                'score' => $params['score'],
-            ])->firstOrFail();
-
-        return response()->json($score->userRank(['cached' => false]) - 1);
     }
 
     private function makeReplayFilename(ScoreBest|SoloScore $score): string

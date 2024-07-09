@@ -2,20 +2,22 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
+import { BeatmapsetStatus } from 'interfaces/beatmapset-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
-import GameMode from 'interfaces/game-mode';
-import { maxBy } from 'lodash';
-import { action, computed, makeObservable, observable, reaction } from 'mobx';
+import Ruleset from 'interfaces/ruleset';
+import { intersectionWith, maxBy, sum } from 'lodash';
+import { action, computed, makeObservable, observable } from 'mobx';
 import moment from 'moment';
 import core from 'osu-core-singleton';
 import BeatmapsetDiscussionsShowStore from 'stores/beatmapset-discussions-show-store';
 import { findDefault, group, sortWithMode } from 'utils/beatmap-helper';
-import { canModeratePosts, makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
+import { canModeratePosts, makeUrl, parseUrl, stateFromDiscussion } from 'utils/beatmapset-discussion-helper';
 import { parseJsonNullable, storeJson } from 'utils/json';
 import { Filter, filters } from './current-discussions';
 import DiscussionMode, { discussionModes } from './discussion-mode';
 import DiscussionPage, { isDiscussionPage } from './discussion-page';
 
+const defaultFilterPraise = new Set<BeatmapsetStatus>(['approved', 'ranked']);
 const jsonId = 'json-discussions-state';
 
 export interface UpdateOptions {
@@ -44,21 +46,22 @@ function isFilter(value: unknown): value is Filter {
 
 export default class DiscussionsState {
   @observable currentBeatmapId: number;
-  @observable currentFilter: Filter = 'total'; // TODO: filter should always be total when page is events (also no highlight)
+  @observable currentDiscussionId?: number;
+  @observable currentFilter: Filter = 'total';
   @observable currentPage: DiscussionPage = 'general';
+  @observable currentPostId?: number;
   @observable discussionCollapsed = new Map<number, boolean>();
   @observable discussionDefaultCollapsed = false;
   @observable highlightedDiscussionId: number | null = null;
-  @observable jumpToDiscussion = false;
   @observable pinnedNewDiscussion = false;
 
   @observable readPostIds = new Set<number>();
+  @observable selectedNominatedRulesets: Ruleset[] = [];
   @observable selectedUserId: number | null = null;
   @observable showDeleted = true; // this toggle only affects All and deleted discussion filters, other filters don't show deleted
 
   private previousFilter: Filter = 'total';
   private previousPage: DiscussionPage = 'general';
-  private readonly urlStateDisposer;
 
   get beatmapset() {
     return this.store.beatmapset;
@@ -205,7 +208,20 @@ export default class DiscussionsState {
 
   @computed
   get groupedBeatmaps() {
-    return group([...this.store.beatmaps.values()]);
+    return group([...this.store.beatmaps.values()], false);
+  }
+
+  @computed
+  get rulesetsWithoutDeletedBeatmaps() {
+    const rulesets: Ruleset[] = [];
+
+    for (const [key, values] of this.groupedBeatmaps) {
+      if (values.some((beatmap) => beatmap.deleted_at == null)) {
+        rulesets.push(key);
+      }
+    }
+
+    return rulesets;
   }
 
   @computed
@@ -231,6 +247,25 @@ export default class DiscussionsState {
     return moment(maxLastUpdate).unix();
   }
 
+  get calculatedMainRuleset() {
+    if (this.beatmapset.eligible_main_rulesets.length === 1) {
+      return this.beatmapset.eligible_main_rulesets[0];
+    }
+
+    // If there's more than one eligible main ruleset, the next selection of an eligible ruleset should make it the main ruleset.
+    // This is based on the assumption that the non-main ruleset only needs 1 nomination.
+    // See NominateBeatmapset::requiredNominationsConfig
+    // TODO: swith to Set.intersection in the future; it is currently too new.
+    const intersection = intersectionWith(this.selectedNominatedRulesets, this.beatmapset.eligible_main_rulesets);
+
+    return intersection.length === 1 ? intersection[0] : null;
+  }
+
+  @computed
+  get eligibleMainRulesets() {
+    return new Set(this.beatmapset.eligible_main_rulesets);
+  }
+
   @computed
   get nonDeletedDiscussions() {
     return this.discussionsArray.filter((discussion) => discussion.deleted_at == null);
@@ -249,28 +284,28 @@ export default class DiscussionsState {
   @computed
   get totalHypeCount() {
     return this.nonDeletedDiscussions
-      .reduce((sum, discussion) => +(discussion.message_type === 'hype') + sum, 0);
+      .reduce((total, discussion) => +(discussion.message_type === 'hype') + total, 0);
   }
 
   @computed
   get unresolvedDiscussionTotalCount() {
     return this.nonDeletedDiscussions
-      .reduce((sum, discussion) => {
+      .reduce((total, discussion) => {
         if (discussion.can_be_resolved && !discussion.resolved) {
-          if (discussion.beatmap_id == null) return sum + 1;
+          if (discussion.beatmap_id == null) return total + 1;
 
           const beatmap = this.store.beatmaps.get(discussion.beatmap_id);
-          if (beatmap != null && beatmap.deleted_at == null) return sum + 1;
+          if (beatmap != null && beatmap.deleted_at == null) return total + 1;
         }
 
-        return sum;
+        return total;
       }, 0);
   }
 
   @computed
   get unresolvedDiscussionCounts() {
     const byBeatmap: Partial<Record<number, number>> = {};
-    const byMode: Partial<Record<GameMode, number>> = {};
+    const byMode: Partial<Record<Ruleset, number>> = {};
     // show at least 0 for available rulesets
     this.store.beatmaps.forEach((beatmap) => {
       byMode[beatmap.mode] ??= 0;
@@ -296,9 +331,12 @@ export default class DiscussionsState {
   @computed
   get url() {
     return makeUrl({
-      beatmap: this.currentBeatmap,
+      beatmapId: this.currentBeatmapId,
+      beatmapsetId: this.currentBeatmap.beatmapset_id,
+      discussionId: this.currentDiscussionId,
       filter: this.currentFilter,
       mode: this.currentPage,
+      postId: this.currentPostId,
       user: this.selectedUserId ?? undefined,
     });
   }
@@ -309,7 +347,6 @@ export default class DiscussionsState {
     if (existingState != null) {
       Object.assign(this, existingState);
     } else {
-      this.jumpToDiscussion = true;
       for (const discussion of store.beatmapset.discussions) {
         if (discussion.posts != null) {
           for (const post of discussion.posts) {
@@ -322,7 +359,12 @@ export default class DiscussionsState {
     this.currentBeatmapId = (findDefault({ group: this.groupedBeatmaps }) ?? this.firstBeatmap).id;
 
     // Current url takes priority over saved state.
-    const query = parseUrl(null, store.beatmapset.discussions);
+    const query = parseUrl(
+      null,
+      store.beatmapset.discussions,
+      defaultFilterPraise.has(store.beatmapset.status) ? 'praises' : 'total',
+    );
+
     if (query != null) {
       // TODO: maybe die instead?
       this.currentPage = query.mode;
@@ -330,16 +372,16 @@ export default class DiscussionsState {
       if (query.beatmapId != null) {
         this.currentBeatmapId = query.beatmapId;
       }
+
+      this.currentDiscussionId = query.discussionId;
+      if (this.currentDiscussionId != null) {
+        this.currentPostId = query.postId;
+      }
+
       this.selectedUserId = query.user ?? null;
     }
 
     makeObservable(this);
-
-    this.urlStateDisposer = reaction(() => this.url, (current, prev) => {
-      if (current !== prev) {
-        Turbolinks.controller.advanceHistory(this.url);
-      }
-    });
   }
 
   @action
@@ -356,6 +398,9 @@ export default class DiscussionsState {
     }
 
     this.currentPage = page;
+
+    this.currentDiscussionId = undefined;
+    this.currentPostId = undefined;
   }
 
   @action
@@ -368,18 +413,52 @@ export default class DiscussionsState {
     }
 
     this.currentFilter = filter;
+
+    this.currentDiscussionId = undefined;
+    this.currentPostId = undefined;
   }
 
   @action
-  changeGameMode(mode: GameMode) {
+  changeGameMode(mode: Ruleset) {
     const beatmap = findDefault({ items: this.groupedBeatmaps.get(mode) });
     if (beatmap != null) {
       this.currentBeatmapId = beatmap.id;
     }
+
+    this.currentDiscussionId = undefined;
+    this.currentPostId = undefined;
   }
 
-  destroy() {
-    this.urlStateDisposer();
+  @action
+  changeToDiscussion(discussionId: number, postId?: number) {
+    const discussion = this.store.discussions.get(discussionId);
+
+    if (discussion == null) return;
+
+    const {
+      beatmapId,
+      mode,
+    } = stateFromDiscussion(discussion);
+
+    // unset type filter if discussion would have been filtered out.
+    if (!this.discussionsByMode[mode].some((d) => d.id === discussion.id)) {
+      this.currentFilter = 'total';
+    }
+
+    // unset user filter if new discussion would have been filtered out.
+    if (this.selectedUserId != null && this.selectedUserId !== discussion.user_id) {
+      this.selectedUserId = null;
+    }
+
+    if (beatmapId != null) {
+      this.currentBeatmapId = beatmapId;
+    }
+
+    this.currentPage = mode;
+    this.highlightedDiscussionId = discussion.id;
+
+    this.currentDiscussionId = discussion.id;
+    this.currentPostId = postId;
   }
 
   @action
@@ -389,6 +468,20 @@ export default class DiscussionsState {
     } else {
       this.readPostIds.add(ids);
     }
+  }
+
+  nominationsCount(type: 'current' | 'required') {
+    const nominations = this.beatmapset.nominations;
+    if (nominations.legacy_mode) {
+      return nominations[type];
+    }
+
+    if (type === 'current') {
+      return sum(Object.values(nominations[type]));
+    }
+
+    return nominations.required_meta.main_ruleset
+      + nominations.required_meta.non_main_ruleset * (this.rulesetsWithoutDeletedBeatmaps.length - 1);
   }
 
   saveState() {
@@ -401,12 +494,13 @@ export default class DiscussionsState {
     // the original type when deserializing.
     return {
       currentBeatmapId: this.currentBeatmapId,
+      currentDiscussionId: this.currentDiscussionId,
       currentFilter: this.currentFilter,
       currentPage: this.currentPage,
+      currentPostId: this.currentPostId,
       discussionCollapsed: [...this.discussionCollapsed],
       discussionDefaultCollapsed: this.discussionDefaultCollapsed,
       highlightedDiscussionId: this.highlightedDiscussionId,
-      jumpToDiscussion: this.jumpToDiscussion,
       pinnedNewDiscussion: this.pinnedNewDiscussion,
       readPostIds: [...this.readPostIds],
       selectedUserId: this.selectedUserId,

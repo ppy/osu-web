@@ -43,7 +43,7 @@ return [
             'label' => [
                 'forum' => 'フォーラム内を検索',
                 'forum_children' => 'サブフォーラムを含む',
-                'include_deleted' => '',
+                'include_deleted' => '削除された投稿を非表示',
                 'topic_id' => 'トピック #',
                 'username' => '投稿者',
             ],

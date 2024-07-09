@@ -23,6 +23,10 @@ return [
         'used' => 'Gastat',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'spotlights',
         'country' => 'país',

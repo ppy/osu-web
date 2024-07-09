@@ -177,8 +177,8 @@ return [
 
             'user_achievement_unlock' => [
                 '_' => 'Nueva medalla',
-                'user_achievement_unlock' => '¡Desbloqueado «:title»!',
-                'user_achievement_unlock_compact' => '¡Desbloqueado «:title»!',
+                'user_achievement_unlock' => '¡Desbloqueada «:title»!',
+                'user_achievement_unlock_compact' => '¡Desbloqueada «:title»!',
                 'user_achievement_unlock_group' => '¡Medallas desbloqueadas!',
             ],
         ],

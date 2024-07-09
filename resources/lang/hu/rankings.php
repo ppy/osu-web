@@ -23,6 +23,10 @@ return [
         'used' => 'Elköltve',
     ],
 
+    'performance' => [
+        'insufficient_history' => 'Ennek a felhasználónak kevesebb, mint 30 napos rangsorolási előzménye van.',
+    ],
+
     'type' => [
         'charts' => 'Reflektorfény',
         'country' => 'Ország',

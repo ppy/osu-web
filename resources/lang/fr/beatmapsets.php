@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => 'Les Beatmap Nominators en probation ne peuvent pas nominer plusieurs modes de jeu.',
+        'full_nomination_required' => 'Vous devez être un Beatmap Nominator confirmé pour effectuer la nomination finale d\'un mode de jeu.',
         'hybrid_requires_modes' => 'Un beatmapset hybride nécessite de sélectionner au moins un mode de jeu à nominer.',
         'incorrect_mode' => 'Vous n\'avez pas la permission de nominer pour le mode :mode',
-        'full_bn_required' => 'Vous devez être un Beatmap Nominator confirmé pour effectuer cette qualification.',
+        'invalid_limited_nomination' => 'Cette beatmap ne peut pas être qualifiée en raison de nominations invalides.',
+        'invalid_ruleset' => 'Cette nomination contient des modes de jeu non valides.',
         'too_many' => 'L\'exigence de nomination est déjà remplie.',
+        'too_many_non_main_ruleset' => 'Il y a déjà suffisamment de nominations pour le mode de jeu supplémentaire.',
 
         'dialog' => [
             'confirmation' => 'Êtes-vous sûr de vouloir nominer cette beatmap ?',
             'header' => 'Nominer la beatmap',
             'hybrid_warning' => 'remarque : vous ne pouvez nominer qu\'une seule fois, assurez-vous alors que vous nominez la beatmap pour tous les modes de jeu que vous souhaitez',
+            'current_main_ruleset' => 'Le mode de jeu principal est actuellement : :ruleset',
             'which_modes' => 'Nominer pour quels modes ?',
         ],
     ],

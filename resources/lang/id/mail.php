@@ -5,7 +5,7 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => 'Kami ingin memberitahukan bahwa beatmap ":title" telah diperbarui sejak kunjungan terakhirmu.',
+        'new' => 'Kami ingin memberitahukan kamu bahwa telah terdapat pembaruan baru pada beatmap ":title" sejak kunjungan terakhirmu.',
         'subject' => 'Pembaruan baru untuk beatmap ":title"',
         'unwatch' => 'Apabila kamu tidak lagi ingin mengikuti beatmap ini, kamu dapat mengeklik tombol "Berhenti Ikuti" yang dapat kamu temukan pada tautan di atas atau pada halaman daftar pengamatan berikut:',
         'visit' => 'Kunjungi halaman diskusi beatmap ini di sini:',
@@ -39,10 +39,10 @@ return [
     ],
 
     'forum_new_reply' => [
-        'new' => 'Kami ingin memberitahukan bahwa terdapat balasan baru pada ":title" sejak kunjungan terakhirmu.',
+        'new' => 'Kami ingin memberitahukan kamu bahwa telah terdapat balasan baru pada ":title" sejak kunjungan terakhirmu.',
         'subject' => '[osu!] Balasan baru pada topik ":title"',
         'unwatch' => 'Apabila kamu tidak lagi ingin mengikuti topik ini, kamu dapat mengeklik tombol "Berhenti Ikuti" yang dapat kamu temukan pada tautan di atas atau pada halaman daftar pengamatan berikut:',
-        'visit' => 'Kamu dapat segera melihat balasan terbaru melalui link berikut:',
+        'visit' => 'Kamu dapat langsung menuju ke balasan terbaru melalui tautan berikut:',
     ],
 
     'password_reset' => [
@@ -62,7 +62,7 @@ return [
     ],
 
     'supporter_gift' => [
-        'anonymous_gift' => 'Pengguna yang menghadiahkanmu tag supporter ini memilih untuk tetap anonim, sehingga nama mereka tidak disebutkan pada email ini.',
+        'anonymous_gift' => 'Pengguna yang menghadiahkanmu tag supporter ini dapat memilih untuk tetap anonim, sehingga nama mereka tidak disebutkan pada email ini.',
         'anonymous_gift_maybe_not' => 'Tetapi kamu mungkin sudah tahu siapa itu ;).',
         'duration' => 'Berkat mereka, kamu kini dapat mengakses osu!direct dan berbagai fitur khusus osu!supporter lainnya selama :duration.',
         'features' => 'Kamu dapat membaca rincian lebih lanjut mengenai berbagai fitur ini di sini:',
@@ -86,7 +86,7 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => 'Kami ingin memberitahukan bahwa terdapat perkembangan baru pada berbagai hal yang kamu ikuti.',
+        'new' => 'Kami ingin memberitahukan kamu bahwa telah terdapat perkembangan baru pada berbagai hal yang kamu ikuti.',
         'settings' => 'Ubah preferensi penerimaan notifikasi:',
         'subject' => 'Notifikasi osu! baru',
     ],

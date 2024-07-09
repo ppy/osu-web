@@ -691,6 +691,14 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $this->attributes['user_sig_bbcode_uid'] = $bbcode->uid;
     }
 
+    public function setUserStyleAttribute(?int $value): void
+    {
+        if ($value === null || $value < 1 || $value > 360) {
+            $value = 0;
+        }
+        $this->attributes['user_style'] = $value;
+    }
+
     public function setUserWebsiteAttribute($value)
     {
         // doubles as casting to empty string for not null constraint
@@ -817,7 +825,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'user_sig',
             'user_sig_bbcode_bitfield',
             'user_sig_bbcode_uid',
-            'user_style',
             'user_topic_show_days',
             'user_topic_sortby_dir',
             'user_topic_sortby_type',
@@ -855,6 +862,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'user_avatar' => AvatarHelper::url($this),
             'user_colour' => $this->getUserColour(),
             'user_rank' => $this->getUserRank(),
+            'user_style' => $this->getUserStyle(),
             'user_website' => $this->getUserWebsite(),
 
             // one-liner cast
@@ -977,7 +985,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return in_array($playmode, $groupModes ?? [], true);
     }
 
-    public function isNAT($mode = null)
+    public function isNAT(?string $mode = null)
     {
         return $this->inGroupWithPlaymode('nat', $mode);
     }
@@ -997,17 +1005,17 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->isGroup(app('groups')->byIdentifier('gmt'));
     }
 
-    public function isBNG($mode = null)
+    public function isBNG(?string $mode = null)
     {
         return $this->isFullBN($mode) || $this->isLimitedBN($mode);
     }
 
-    public function isFullBN($mode = null)
+    public function isFullBN(?string $mode = null)
     {
         return $this->inGroupWithPlaymode('bng', $mode);
     }
 
-    public function isLimitedBN($mode = null)
+    public function isLimitedBN(?string $mode = null)
     {
         return $this->inGroupWithPlaymode('bng_limited', $mode);
     }
@@ -2403,10 +2411,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function save(array $options = [])
     {
-        if (!$this->exists) {
-            $this->cover_preset_id ??= $this->cover()->defaultPresetId();
-        }
-
         if ($options['skipValidations'] ?? false) {
             return parent::save($options);
         }
@@ -2463,6 +2467,13 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     private function getUserRank()
     {
         $value = $this->getRawAttribute('user_rank');
+
+        return $value === 0 ? null : $value;
+    }
+
+    private function getUserStyle()
+    {
+        $value = $this->getRawAttribute('user_style');
 
         return $value === 0 ? null : $value;
     }

@@ -1,7 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import GameMode from 'interfaces/game-mode';
+import Reportable from 'interfaces/reportable';
+import Ruleset from 'interfaces/ruleset';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
@@ -9,7 +10,8 @@ import * as React from 'react';
 interface Props {
   children?: React.ReactNode;
   className?: string;
-  mode?: GameMode;
+  mode?: Ruleset;
+  reportable?: Reportable;
   tooltipPosition?: string;
   user: Partial<Pick<UserJson, 'id' | 'username'>>;
 }
@@ -28,6 +30,7 @@ export default class UserLink extends React.PureComponent<Props> {
     return (
       <a
         className={className}
+        data-reportable={JSON.stringify(this.props.reportable)}
         data-tooltip-position={this.props.tooltipPosition}
         data-user-id={this.props.user.id}
         href={href}

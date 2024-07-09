@@ -24,6 +24,11 @@ return [
         'title' => 'Докладвате публикацията на :username?',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Докладване на Резултат',
         'title' => 'Докладвате резултата на :username?',

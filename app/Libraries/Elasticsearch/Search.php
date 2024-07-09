@@ -165,9 +165,6 @@ abstract class Search extends HasSearch implements Queryable
         $this->client()->indices()->refresh(['index' => $this->index]);
     }
 
-    /**
-     * @return SearchResponse
-     */
     public function response(): SearchResponse
     {
         if (!isset($this->response)) {

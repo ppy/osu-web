@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'Вказано недопустимі параметри курсора.',
         'operation_timeout_exception' => 'Пошук зараз навантажений більше, ніж зазвичай, спробуйте ще раз пізніше.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

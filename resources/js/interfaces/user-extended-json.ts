@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import GameMode from 'interfaces/game-mode';
+import Ruleset from 'interfaces/ruleset';
 import UserJson from 'interfaces/user-json';
 
 export const profileExtraPages = [
@@ -43,9 +43,10 @@ interface UserExtendedAdditionalAttributes {
   max_blocks: number;
   max_friends: number;
   occupation: string | null;
-  playmode: GameMode;
+  playmode: Ruleset;
   playstyle: string[];
   post_count: number;
+  profile_hue: number | null;
   profile_order: ProfileExtraPage[];
   title: string | null;
   title_url: string | null;

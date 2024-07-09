@@ -23,6 +23,10 @@ return [
         'used' => 'Digunakan',
     ],
 
+    'performance' => [
+        'insufficient_history' => 'Pengguna ini memiliki riwayat peringkat terkini yang kurang dari 30 hari.',
+    ],
+
     'type' => [
         'charts' => 'spotlights',
         'country' => 'negara',

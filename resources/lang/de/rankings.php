@@ -23,6 +23,10 @@ return [
         'used' => 'Ausgegeben',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'Spotlights (alt)',
         'country' => 'Länder',

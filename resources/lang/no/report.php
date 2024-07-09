@@ -24,6 +24,11 @@ return [
         'title' => 'Rapporter :username sitt innlegg?',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Rapporter Spillresultat',
         'title' => 'Rapporter :username\'s spillresultat?',

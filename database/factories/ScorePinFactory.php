@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\Beatmap;
 use App\Models\ScorePin;
 use App\Models\Solo;
 use App\Models\User;
@@ -28,9 +27,7 @@ class ScorePinFactory extends Factory
     {
         return $this
             ->state([
-                'ruleset_id' => Beatmap::MODES[$score->getMode()],
-                'score_id' => $score->getKey(),
-                'score_type' => $score->getMorphClass(),
+                'ruleset_id' => $score->ruleset_id,
                 'user_id' => $score->user,
             ])->for($score, 'score');
     }

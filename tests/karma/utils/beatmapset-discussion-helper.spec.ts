@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
-import GameMode from 'interfaces/game-mode';
+import GameMode from 'interfaces/ruleset';
 import UserGroupJson from 'interfaces/user-group-json';
 import UserJson from 'interfaces/user-json';
 import User from 'models/user';

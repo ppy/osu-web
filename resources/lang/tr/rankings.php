@@ -23,6 +23,10 @@ return [
         'used' => 'Harcanan',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'Öne Çıkanlar',
         'country' => 'Ülke',

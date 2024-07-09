@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => 'معلوم المؤشر المحدد غير صالح.',
         'operation_timeout_exception' => 'حاليا البحث مشغول اكثر من العادة, حاول مجددا لاحقا.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

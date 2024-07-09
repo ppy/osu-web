@@ -22,3 +22,10 @@
         {{ osu_trans("layout.popup_user.links.legacy_score_only_toggle") }}
     </span>
 </button>
+
+@if (!$legacyScoreMode)
+    <div
+        class="js-react--scoring-mode-toggle u-contents"
+        data-class="{{ $class }}"
+    ></div>
+@endif

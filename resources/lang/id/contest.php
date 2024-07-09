@@ -16,13 +16,13 @@ return [
     'judge' => [
         'hide_judged' => 'sembunyikan entri yang telah dinilai',
         'nav_title' => 'juri',
-        'no_current_vote' => 'kamu belum memilih entri mana pun.',
+        'no_current_vote' => 'kamu belum memberikan suaramu.',
         'update' => 'perbarui',
         'validation' => [
             'missing_score' => 'skor hilang',
             'contest_vote_judged' => 'tidak dapat memilih dalam kontes berjuri',
         ],
-        'voted' => 'Kamu telah memberikan pilihan untuk entri ini.',
+        'voted' => 'Kamu telah memberikan suara untuk entri ini.',
     ],
 
     'judge_results' => [
@@ -46,7 +46,7 @@ return [
         'button' => [
             'add' => 'Pilih',
             'remove' => 'Hapus pilihan',
-            'used_up' => 'Kamu telah menggunakan seluruh hak suara yang kamu miliki',
+            'used_up' => 'Kamu telah menggunakan seluruh hak suaramu',
         ],
 
         'progress' => [

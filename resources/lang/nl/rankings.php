@@ -23,6 +23,10 @@ return [
         'used' => 'Uitgegeven',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'in de schijnwerpers',
         'country' => 'landelijk',

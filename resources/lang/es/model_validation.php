@@ -146,7 +146,7 @@ return [
         'username_invalid_characters' => 'El nombre de usuario solicitado contiene caracteres no válidos.',
         'username_in_use' => '¡El nombre de usuario ya está en uso!',
         'username_locked' => '¡El nombre de usuario ya está en uso!', // TODO: language for this should be slightly different.
-        'username_no_space_userscore_mix' => 'Por favor utiliza guiones bajos o espacios, ¡no ambas!',
+        'username_no_space_userscore_mix' => 'Usa guiones bajos o espacios, ¡no ambos!',
         'username_no_spaces' => "¡El nombre no puede iniciar o finalizar con espacios!",
         'username_not_allowed' => 'Esta elección de nombre de usuario no está permitida.',
         'username_too_short' => 'El nombre de usuario solicitado es muy corto.',

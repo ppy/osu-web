@@ -24,6 +24,11 @@ return [
         'title' => 'รายงานโพสต์​ของ :username? ',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'รายงานผลคะแนน',
         'title' => 'รรายงานผลคะแนนของ :username?',

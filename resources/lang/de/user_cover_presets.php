@@ -10,14 +10,14 @@ return [
 
         'batch_confirm' => [
             '_' => '',
-            'disable' => '',
-            'enable' => '',
+            'disable' => 'Deaktivieren',
+            'enable' => 'Aktivieren',
             'items' => '',
         ],
 
         'create_form' => [
             'files' => '',
-            'submit' => '',
+            'submit' => 'Speichern',
             'title' => '',
         ],
 

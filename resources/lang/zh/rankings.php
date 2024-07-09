@@ -23,6 +23,10 @@ return [
         'used' => '已用的',
     ],
 
+    'performance' => [
+        'insufficient_history' => '该玩家的最近排名历史记录少于 30 天。',
+    ],
+
     'type' => [
         'charts' => '高光',
         'country' => '国家/地区',

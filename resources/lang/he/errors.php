@@ -33,4 +33,7 @@ return [
         'invalid_cursor_exception' => '',
         'operation_timeout_exception' => 'החיפוש עמוס יותר מאשר מבדרך כלל, נסה שוב מאוחר יותר.',
     ],
+    'user_report' => [
+        'recently_reported' => "",
+    ],
 ];

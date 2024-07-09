@@ -201,6 +201,8 @@ return [
             'cover' => [
                 'button' => 'החלף תמונת פרופיל',
                 'defaults_info' => 'אפשרויות תמונה נוספות יהיו זמינות בעתיד',
+                'holdover_remove_confirm' => "",
+
                 'upload' => [
                     'broken_file' => 'עיבוד תמונה נכשל. אמת את התמונה שהעלית ונסה שוב.',
                     'button' => 'העלה תמונה',

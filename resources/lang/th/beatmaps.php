@@ -213,8 +213,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'แมพนี้จะถูก ranked  ใน :date ถ้าไม่พบเจอปัญหาเพิ่มเติม แมพนี้อยู่ที่ #:position ใน :queue',
-            'unresolved_problems' => '',
-            'problems' => '',
+            'unresolved_problems' => 'ขณะนี้แผนที่นี้ถูกบล็อกไม่ให้ออกจากส่วนที่ผ่านการรับรองจนกว่า :problems จะได้รับการแก้ไข',
+            'problems' => 'ปัญหาเหล่านี้',
             'on' => 'เมื่อ :date',
             'queue' => 'คิวการจัดอันดับ',
             'soon' => 'เร็วๆ นี้',
@@ -283,6 +283,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => 'ยังไม่ได้ตั้ง',
     ],
     'status' => [
         'any' => 'ไม่เจาะจง',

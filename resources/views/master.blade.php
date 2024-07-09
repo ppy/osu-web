@@ -38,7 +38,7 @@
         }
     }
 
-    $currentHue = $currentHue ?? section_to_hue_map($currentSection);
+    $currentHue ??= section_to_hue_map($currentSection);
 
     $navLinks ??= nav_links();
     $currentLocaleMeta ??= current_locale_meta();
@@ -56,13 +56,8 @@
             {{ class_with_modifiers('osu-layout', 'body', ['body-lazer' => !$legacyScoreMode]) }}
             {{ $bodyAdditionalClasses ?? '' }}
         "
+        style="--base-hue: {{ $currentHue }};"
     >
-        <style>
-            :root {
-                --base-hue: {{ $currentHue }};
-                --base-hue-deg: {{ $currentHue }}deg;
-            }
-        </style>
         <div id="overlay" class="blackout blackout--overlay" style="display: none;"></div>
         <div class="blackout js-blackout" data-visibility="hidden"></div>
 

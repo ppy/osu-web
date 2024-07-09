@@ -2,13 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as d3 from 'd3';
-import GameMode from 'interfaces/game-mode';
 import Rank from 'interfaces/rank';
+import Ruleset from 'interfaces/ruleset';
 import * as React from 'react';
 
 interface Props {
   accuracy: number;
-  mode: GameMode;
+  mode: Ruleset;
   rank: Rank;
 }
 
@@ -24,7 +24,7 @@ const displayRank: Record<Rank, string> = {
   XH: 'SS',
 };
 
-const refDataMap: Record<GameMode, number[]> = {
+const refDataMap: Record<Ruleset, number[]> = {
   // <rank>: minimum acc => (higher rank acc - current acc)
   // for SS, use minimum accuracy of 0.99 (any less and it's too small)
   // actual array is reversed as it's rendered from D to SS clockwise

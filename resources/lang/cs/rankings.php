@@ -23,8 +23,12 @@ return [
         'used' => 'Použito',
     ],
 
+    'performance' => [
+        'insufficient_history' => 'Tento uživatel má méně než 30 dní nedávné ranking historie. ',
+    ],
+
     'type' => [
-        'charts' => 'výběry',
+        'charts' => 'výběry (staré)',
         'country' => 'stát',
         'kudosu' => 'kudosu',
         'multiplayer' => 'hra pro více hráčů',

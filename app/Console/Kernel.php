@@ -140,6 +140,11 @@ class Kernel extends ConsoleKernel
             ->everyFiveMinutes()
             ->withoutOverlapping()
             ->onOneServer();
+
+        $schedule->command('daily-challenge:create-next')
+            ->cron('5 0 * * *')
+            ->withoutOverlapping()
+            ->onOneServer();
     }
 
     protected function commands()
