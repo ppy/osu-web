@@ -29,9 +29,8 @@ class PaymentCompleted
             function () {
                 $this->sendPaymentCompletedMail();
 
-                \Datadog::increment(
-                    "{$GLOBALS['cfg']['datadog-helper']['prefix_web']}.store.payments.completed",
-                    1,
+                datadog_increment(
+                    'store.payments.completed',
                     ['provider' => $this->payment?->provider ?? 'free'],
                 );
             }

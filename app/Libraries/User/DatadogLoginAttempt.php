@@ -5,15 +5,13 @@
 
 namespace App\Libraries\User;
 
-use Datadog;
-
 class DatadogLoginAttempt
 {
     public static function log($failReasonOrNull)
     {
         $success = $failReasonOrNull === null;
 
-        Datadog::increment($GLOBALS['cfg']['datadog-helper']['prefix_web'].'.login_attempts', 1, [
+        datadog_increment('login_attempts', [
             'success' => (int) $success,
             'reason' => $failReasonOrNull,
         ]);
