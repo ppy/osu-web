@@ -26,7 +26,7 @@ class RefreshTokenGrant extends BaseRefreshTokenGrant
         // Copy previous verification state
         $accessToken = (new \ReflectionProperty($refreshTokenData, 'accessToken'))->getValue($refreshTokenData);
         Token::where('id', $accessToken->getIdentifier())->update([
-            'verified' => Token::select('verified')->find($this->oldRefreshToken['access_token_id'])->verified,
+            'verified' => Token::select('verified')->find($this->oldRefreshToken['access_token_id'])?->verified ?? false,
         ]);
         $this->oldRefreshToken = null;
 
