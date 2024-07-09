@@ -60,6 +60,8 @@ class CleanHTML
 
         $def->addAttribute('a', 'data-user-id', 'Text');
 
+        $def->addAttribute('iframe', 'allowfullscreen', 'Text');
+
         $this->purifier = new HTMLPurifier($config);
     }
 
