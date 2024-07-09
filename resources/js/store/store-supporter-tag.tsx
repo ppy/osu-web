@@ -31,12 +31,6 @@ interface SavedState {
   username: string;
 }
 
-interface SliderUIParams {
-  handle?: JQuery | undefined;
-  value?: number | undefined;
-  values?: number[] | undefined;
-}
-
 const monthPresets = [1, 2, 4, 6, 12, 18, 24] as const;
 
 function durationToPrice(duration: number) {

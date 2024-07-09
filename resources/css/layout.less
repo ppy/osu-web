@@ -94,7 +94,8 @@ body {
   --forum-item-background-color: hsl(var(--hsl-b4));
   --forum-item-background-color-hover: hsl(var(--hsl-b3));
 
-  // the base-hue is defined in blade layout
+  // the referred variables are defined in blade layout
+  --base-hue: var(--base-hue-override, var(--base-hue-default));
   --base-hue-deg: calc(var(--base-hue) * 1deg);
 }
 
