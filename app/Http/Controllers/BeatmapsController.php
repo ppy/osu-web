@@ -381,20 +381,23 @@ class BeatmapsController extends Controller
     public function updateOwner($id)
     {
         $beatmap = Beatmap::findOrFail($id);
-        $currentUser = auth()->user();
+        $currentUser = \Auth::user();
 
         priv_check('BeatmapUpdateOwner', $beatmap->beatmapset)->ensureCan();
 
-        $newUserId = get_int(request('beatmap.user_id'));
+        $newUserIds = get_arr(request('user_ids'), 'get_int');
 
-        $beatmap->getConnection()->transaction(function () use ($beatmap, $currentUser, $newUserId) {
-            $beatmap->setOwner($newUserId);
+        $beatmap->getConnection()->transaction(function () use ($beatmap, $currentUser, $newUserIds) {
+            $beatmap->setOwner($newUserIds);
+            // TODO: use select instead (needs newer laravel)
+            $newUsers = $beatmap->mappers->map(fn ($user) => $user->only('user_id', 'username'))->all();
 
             BeatmapsetEvent::log(BeatmapsetEvent::BEATMAP_OWNER_CHANGE, $currentUser, $beatmap->beatmapset, [
                 'beatmap_id' => $beatmap->getKey(),
                 'beatmap_version' => $beatmap->version,
                 'new_user_id' => $beatmap->user_id,
                 'new_user_username' => $beatmap->user->username,
+                'new_users' => $newUsers,
             ])->saveOrExplode();
         });
 

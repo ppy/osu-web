@@ -4,6 +4,7 @@
 import { Spinner } from 'components/spinner';
 import UserAvatar from 'components/user-avatar';
 import UserLink from 'components/user-link';
+import UsernameInput from 'components/username-input';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import UserJson from 'interfaces/user-json';
@@ -12,7 +13,7 @@ import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 import { observer } from 'mobx-react';
 import { normaliseUsername } from 'models/user';
 import * as React from 'react';
-import { onErrorWithCallback } from 'utils/ajax';
+import { onError } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import { transparentGif } from 'utils/html';
 import { trans } from 'utils/lang';
@@ -20,7 +21,6 @@ import DiscussionsState from './discussions-state';
 
 interface XhrCollection {
   updateOwner: JQuery.jqXHR<BeatmapsetWithDiscussionsJson>;
-  userLookup: JQuery.jqXHR<UserJson>;
 }
 
 interface Props {
@@ -33,14 +33,17 @@ interface Props {
 
 @observer
 export default class BeatmapOwnerEditor extends React.Component<Props> {
-  @observable private checkingUser: string | null = null;
   @observable private editing = false;
   private readonly inputRef = React.createRef<HTMLInputElement>();
-  @observable private inputUsername: string;
+  @observable private inputUsername = '';
   private shouldFocusInputOnNextRender = false;
   @observable private updatingOwner = false;
-  private userLookupTimeout?: number;
+  @observable private validUsers = new Map<number, UserJson>();
   private readonly xhr: Partial<XhrCollection> = {};
+
+  private get canSave() {
+    return this.validUsers.size > 0 && normaliseUsername(this.inputUsername).length === 0;
+  }
 
   @computed
   private get inputUser() {
@@ -63,7 +66,6 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   }
 
   componentWillUnmount() {
-    window.clearTimeout(this.userLookupTimeout);
     Object.values(this.xhr).forEach((xhr) => xhr?.abort());
   }
 
@@ -111,13 +113,13 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     if (!confirm(trans('beatmap_discussions.owner_editor.reset_confirm'))) return;
 
     this.editing = false;
-    this.updateOwner(this.props.beatmapsetUser.id);
+    this.updateOwners([this.props.beatmapsetUser.id]);
   };
 
   private readonly handleSaveClick = () => {
-    if (this.inputUser == null) return;
+    if (!this.canSave) return;
 
-    this.updateOwner(this.inputUser.id);
+    this.updateOwners([...this.validUsers.keys()]);
   };
 
   @action
@@ -127,31 +129,21 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     this.inputUsername = this.props.user.username;
   };
 
-  @action
-  private readonly handleUsernameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.inputUsername = e.currentTarget.value;
-    const inputUsernameNormalised = normaliseUsername(this.inputUsername);
-
-    if (inputUsernameNormalised === this.checkingUser) return;
-
-    window.clearTimeout(this.userLookupTimeout);
-    this.xhr.userLookup?.abort();
-    this.checkingUser = this.inputUser == null && inputUsernameNormalised !== '' ? inputUsernameNormalised : null;
-
-    if (this.checkingUser != null) {
-      this.userLookupTimeout = window.setTimeout(this.userLookup, 500);
-    }
-  };
-
   private readonly handleUsernameInputKeyup = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') this.handleSaveClick();
   };
 
-  private renderAvatar() {
-    if (this.checkingUser != null) {
-      return <Spinner />;
-    }
+  @action
+  private readonly handleUsernameInputValueChanged = (value: string) => {
+    this.inputUsername = value;
+  };
 
+  @action
+  private readonly handleValidUsersChanged = (value: Map<number, UserJson>) => {
+    this.validUsers = value;
+  };
+
+  private renderAvatar() {
     const user = this.editing
       ? (this.inputUser ?? { avatar_url: transparentGif })
       : this.props.user;
@@ -192,7 +184,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
 
     return (
       <>
-        <button className='beatmap-owner-editor__button' disabled={this.inputUser == null} onClick={this.handleSaveClick}>
+        <button className='beatmap-owner-editor__button' disabled={!this.canSave} onClick={this.handleSaveClick}>
           <span className='fas fa-fw fa-check' />
         </button>
 
@@ -216,62 +208,39 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     }
 
     return (
-      <input
-        ref={this.inputRef}
-        className={classWithModifiers('beatmap-owner-editor__input', {
-          error: this.inputUser == null,
-        })}
-        disabled={this.updatingOwner}
-        onChange={this.handleUsernameInput}
-        onKeyUp={this.handleUsernameInputKeyup}
-        value={this.inputUsername}
+      <UsernameInput
+        defaultValue={this.inputUsername}
+        onValidUsersChanged={this.handleValidUsersChanged}
+        onValueChanged={this.handleUsernameInputValueChanged}
       />
     );
   }
 
   @action
-  private readonly updateOwner = (userId: number) => {
+  private updateOwners(userIds: number[]) {
     this.xhr.updateOwner?.abort();
 
-    if (this.props.beatmap.user_id === userId) {
-      this.editing = false;
+    // TODO: handle no change case?
+    // if (this.props.beatmap.user_id === userId) {
+    //   this.editing = false;
 
-      return;
-    }
+    //   return;
+    // }
 
     this.updatingOwner = true;
 
     this.xhr.updateOwner = $.ajax(route('beatmaps.update-owner', { beatmap: this.props.beatmap.id }), {
-      data: { beatmap: { user_id: userId } },
+      data: { user_ids: userIds },
       method: 'PUT',
     });
-    this.xhr.updateOwner.done((beatmapset) => runInAction(() => {
-      this.props.discussionsState.update({ beatmapset });
-      this.editing = false;
-    })).fail(onErrorWithCallback(() => {
-      this.updateOwner(userId);
-    })).always(action(() => {
-      this.updatingOwner = false;
-    }));
-  };
-
-  private readonly userLookup = () => {
-    const currentCheckingUser = this.checkingUser;
-
-    if (currentCheckingUser == null) return;
-
-    this.xhr.userLookup = $.ajax(route('users.check-username-exists'), {
-      data: { username: currentCheckingUser },
-      method: 'POST',
-    });
-    this.xhr.userLookup.done((user) => runInAction(() => {
-      if (user.id > 0) {
-        this.props.userByName.set(currentCheckingUser, user);
-      }
-    })).fail(
-      onErrorWithCallback(this.userLookup),
-    ).always(action(() => {
-      this.checkingUser = null;
-    }));
-  };
+    this.xhr.updateOwner
+      .done((beatmapset) => runInAction(() => {
+        this.props.discussionsState.update({ beatmapset });
+        this.editing = false;
+      }))
+      .fail(onError)
+      .always(action(() => {
+        this.updatingOwner = false;
+      }));
+  }
 }

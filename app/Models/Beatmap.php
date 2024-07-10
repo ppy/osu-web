@@ -46,6 +46,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $playmode
  * @property int $score_version
  * @property int $total_length
+ * @property User $user
  * @property int $user_id
  * @property string $version
  * @property string|null $youtube_preview
