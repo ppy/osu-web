@@ -82,19 +82,10 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
         // TODO: validate props
         const json = JSON.parse(saved) as LocalStorageProps;
 
-        const userIds: (string | number)[] = [];
-        if (json.validUsers.length > 0) {
-          userIds.push(...json.validUsers);
-        }
-
-        if (present(json.users.trim())) {
-          userIds.push(...json.users.split(','));
-        }
-
         this.inputs.description = json.description;
         this.inputs.message = json.message;
         this.inputs.name = json.name;
-        this.inputs.users = userIds.join(',');
+        this.inputs.users = [...json.validUsers, json.users].join(',');
       } catch (error) {
         console.error('invalid json in localStorage');
         localStorage.removeItem(localStorageKey);
