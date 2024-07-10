@@ -86,6 +86,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
               <UsernameInput
                 defaultValue={this.model.allUsers}
                 id='chat-form-users'
+                ignoreCurrentUser
                 name='users'
                 onBlur={this.handleBlur}
                 onValidUsersChanged={this.handleValidUsersChanged}

@@ -16,6 +16,7 @@ import UserCardBrick from './user-card-brick';
 interface Props {
   defaultValue?: string;
   id?: string;
+  ignoreCurrentUser?: boolean;
   name?: string;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onValidUsersChanged?: (value: Map<number, UserJson>) => void;
@@ -93,8 +94,9 @@ export default class UsernameInput extends React.PureComponent<Props> {
 
     this.users = invalidUsers.join(',');
 
-    // current user is implicit, always remove.
-    this.validUsers.delete(core.currentUserOrFail.id);
+    if (this.props.ignoreCurrentUser ?? false) {
+      this.validUsers.delete(core.currentUserOrFail.id);
+    }
 
     this.props.onValueChanged?.(this.users);
     this.props.onValidUsersChanged?.(this.validUsers);
