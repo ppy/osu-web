@@ -19,7 +19,7 @@ class BeatmapLeadersRefresh extends Command
      *
      * @var string
      */
-    protected $signature = 'beatmap-leaders:refresh {--yes}';
+    protected $signature = 'beatmap-leaders:refresh';
 
     /**
      * The console command description.
@@ -35,7 +35,7 @@ class BeatmapLeadersRefresh extends Command
      */
     public function handle()
     {
-        $continue = $this->option('yes') || $this->confirm('This will recalculate beatmap leaders, continue?', true);
+        $continue = $this->option('no-interaction') || $this->confirm('This will recalculate beatmap leaders, continue?', true);
 
         if (!$continue) {
             return $this->error('User aborted!');
