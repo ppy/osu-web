@@ -16,8 +16,8 @@ import Stats from 'profile-page/stats';
 import * as React from 'react';
 import { trans } from 'utils/lang';
 import Controller from './controller';
-import CoverEditor from './cover-editor';
 import Links from './links';
+import ProfileEditButton from './profile-edit-button';
 
 interface Props {
   controller: Controller;
@@ -35,7 +35,7 @@ export default class Detail extends React.Component<Props> {
         <Cover
           coverUrl={this.props.controller.displayCoverUrl}
           currentMode={this.props.controller.currentMode}
-          editor={<CoverEditor controller={this.props.controller} />}
+          editor={<ProfileEditButton controller={this.props.controller} />}
           isUpdatingCover={this.props.controller.isUpdatingCover}
           user={this.user}
         />
