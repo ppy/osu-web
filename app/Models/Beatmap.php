@@ -404,7 +404,9 @@ class Beatmap extends Model implements AfterCommit
     {
         // TODO: deleted users?
         $mappers = $this->owners;
-        $mappers->prepend($this->user);
+        if ($mappers->find($this->user->getKey() === null)) {
+            $mappers->prepend($this->user);
+        }
 
         return $mappers;
     }
