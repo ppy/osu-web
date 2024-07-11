@@ -198,8 +198,14 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
       }
       case 'beatmap_owner_change': {
         const data = this.props.event.comment;
-        params.new_user = <a href={route('users.show', { user: data.new_user_id })}>{data.new_user_username}</a>;
+
         params.beatmap = <a href={route('beatmaps.show', { beatmap: data.beatmap_id })}>{data.beatmap_version}</a>;
+        // TODO: word connectors
+        if (data.new_users != null) {
+          params.new_user = data.new_users.map((item) => <a key={item.user_id} href={route('users.show', { user: item.user_id })}>{item.username}</a>);
+        } else {
+          params.new_user = <a href={route('users.show', { user: data.new_user_id })}>{data.new_user_username}</a>;
+        }
         break;
       }
       case 'nomination_reset_received': {
