@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserListPopup, { createTooltip } from 'components/user-list-popup';
+import { createTooltip } from 'components/user-list-popup';
 import { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import UserJson from 'interfaces/user-json';
@@ -10,7 +10,6 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
 import { onError } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
@@ -29,7 +28,7 @@ interface Props {
 
 @observer
 export default class DiscussionVoteButtons extends React.Component<Props> {
-  private readonly tooltips: Partial<Record<VoteType, JQuery>> = {};
+  private readonly tooltipDisposers: Partial<Record<VoteType, () => void>> = {};
   @observable private voteXhr: JQuery.jqXHR<BeatmapsetWithDiscussionsJson> | null = null;
 
   @computed
@@ -42,14 +41,9 @@ export default class DiscussionVoteButtons extends React.Component<Props> {
     makeObservable(this);
   }
 
-  componentDidUpdate() {
-    for (const type of voteTypes) {
-      this.tooltips[type]?.qtip('api')?.set('content.text', this.getTooltipContent(type));
-    }
-  }
-
   componentWillUnmount() {
     this.voteXhr?.abort();
+    Object.values(this.tooltipDisposers).forEach((disposer) => disposer?.());
   }
 
   render() {
@@ -63,17 +57,6 @@ export default class DiscussionVoteButtons extends React.Component<Props> {
         {this.renderVote(type)}
       </div>
     ));
-  }
-
-  private getTooltipContent(type: VoteType) {
-    const count = this.props.discussion.votes[type];
-    const title = count < 1
-      ? trans(`beatmaps.discussions.votes.none.${type}`)
-      : `${trans(`beatmaps.discussions.votes.latest.${type}`)}:`;
-
-    const users = this.props.discussion.votes.voters[type].map((id) => this.props.users.get(id) ?? { id });
-
-    return renderToStaticMarkup(<UserListPopup count={count} title={title} users={users} />);
   }
 
   @action
@@ -104,7 +87,22 @@ export default class DiscussionVoteButtons extends React.Component<Props> {
     const target = event.currentTarget;
     const type = target.dataset.type as VoteType;
 
-    this.tooltips[type] ??= createTooltip(target, 'top center', this.getTooltipContent(type));
+    this.tooltipDisposers[type] ??= createTooltip(
+      () => target,
+      () => {
+        const count = this.props.discussion.votes[type];
+
+        return {
+          count,
+          title: count < 1
+            ? trans(`beatmaps.discussions.votes.none.${type}`)
+            : `${trans(`beatmaps.discussions.votes.latest.${type}`)}:`,
+          users: this.props.discussion.votes.voters[type].map((id) => this.props.users.get(id) ?? { id }),
+        };
+
+      },
+      'top center',
+    );
   };
 
   private renderVote(type: VoteType) {
