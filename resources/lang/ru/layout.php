@@ -199,6 +199,8 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Режим отображения, который показывает рекорды, поставленные в клиенте lazer с новым алгоритмом подсчёта очков',
             'logout' => 'Выйти',
             'profile' => 'Мой профиль',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
         ],
     ],
 

@@ -26,7 +26,7 @@ return [
         'language_edit' => 'Kieli :old muutettu kieleen :new.',
         'love' => ':user rakastaa',
         'nominate' => 'Ehdollepannut :user.',
-        'nominate_modes' => 'Ehdollepannut :user (:modes).',
+        'nominate_modes' => ':user asetti ehdolle (:modes).',
         'nomination_reset' => 'Uusi ongelma :discussion (:text) aiheutti ehdollepanojen nollauksen.',
         'nomination_reset_received' => ':source_user nollasi käyttäjän :user ehdollepanon (:text)',
         'nomination_reset_received_profile' => ':user nollasi ehdollepanon (:text)',

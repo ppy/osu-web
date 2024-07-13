@@ -28,6 +28,9 @@ return [
     'checkout' => [
         'generic' => 'Jūsu pirkuma pārbaudes sagatavošanas laikā notikusi kļūda.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Nezidevās iegūt rezultātus, mēģiniet vēlreiz vēlāk.',
         'invalid_cursor_exception' => 'Norādīts nepareizs kursora parametrs.',

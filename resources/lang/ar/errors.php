@@ -28,12 +28,15 @@ return [
     'checkout' => [
         'generic' => 'حدث خطأ أثناء اعداد طلبك.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'لم نمتكن من جلب اي نتائج, حاول مجددا لاحقا.',
         'invalid_cursor_exception' => 'معلوم المؤشر المحدد غير صالح.',
         'operation_timeout_exception' => 'حاليا البحث مشغول اكثر من العادة, حاول مجددا لاحقا.',
     ],
     'user_report' => [
-        'recently_reported' => "",
+        'recently_reported' => "لقد سبق لك التبليغ عن هذا مؤخراً.",
     ],
 ];

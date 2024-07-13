@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Nie możesz zamieszczać dyskusji po tym, jak twoje konto zostało uciszone.",
         'message_type_select' => 'Wybierz typ komentarza',
         'reply_notice' => 'Naciśnij Enter, aby odpowiedzieć.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Napisz tutaj swoją odpowiedź',
         'require-login' => 'Zaloguj się, aby odpowiedzieć bądź opublikować uwagę',
         'resolved' => 'Rozwiązane',
         'restore' => 'przywróć',
         'show_deleted' => 'Pokaż usunięte',
         'title' => 'Dyskusje',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Zwiń wszystkie',
@@ -79,13 +81,13 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => 'Opublikuj dyskwalifikację',
-            'hype' => 'Podnieś priorytet',
+            'disqualify' => 'Zdyskwalifikuj',
+            'hype' => 'Nagłośnij',
             'mapper_note' => 'Opublikuj adnotację',
             'nomination_reset' => 'Usuń wszystkie nominacje',
             'praise' => 'Opublikuj pochwałę',
-            'problem' => 'Opublikuj problem',
-            'problem_warning' => 'Opublikuj problem',
+            'problem' => 'Zgłoś problem',
+            'problem_warning' => 'Zgłoś problem',
             'review' => 'Opublikuj recenzję',
             'suggestion' => 'Opublikuj sugestię',
         ],
@@ -213,8 +215,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Ta beatmapa uzyska status rankingowy :date, jeżeli nie zostaną zgłoszone żadne problemy. Obecnie jest ona na :position. miejscu w :queue.',
-            'unresolved_problems' => 'Ta mapa jest obecnie zablokowana przed opuszczeniem sekcji Zakwalifikowanej dopóki :problems nie zostaną rozwiązane.',
-            'problems' => 'te problemy',
+            'unresolved_problems' => ':problems muszą zostać rozwiązane, aby beatmapa mogła uzyskać status rankingowy.',
+            'problems' => 'Określone problemy',
             'on' => ':date',
             'queue' => 'kolejce rankingowej',
             'soon' => 'wkrótce',

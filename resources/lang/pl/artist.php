@@ -47,7 +47,7 @@ return [
 
             'exclusive_only' => [
                 'all' => 'Wszystkie',
-                'exclusive_only' => 'osu! original',
+                'exclusive_only' => 'Ekskluzywne dla osu!',
             ],
 
             'form' => [

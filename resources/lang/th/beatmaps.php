@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "ไม่สามารถโพสต์การสนทนาในขณะที่โดนเงียบ",
         'message_type_select' => 'เลือกประเภทความคิดเห็น',
         'reply_notice' => 'กด Enter เพื่อตอบกลับ',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'พิมพ์คำตอบกลับที่นี่',
         'require-login' => 'กรุณาเข้าสู่ระบบเพื่อโพสต์หรือตอบกลับ',
         'resolved' => 'แก้ไขแล้ว',
         'restore' => 'กู้คืน',
         'show_deleted' => 'แสดงรายการที่ถูกลบ',
         'title' => 'การสนทนา',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'ซ่อนทั้งหมด',

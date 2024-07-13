@@ -25,8 +25,8 @@ return [
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Ilmianna Viesti',
+        'title' => 'Ilmianna pelaajan :username viesti?',
     ],
 
     'scores' => [

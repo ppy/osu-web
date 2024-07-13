@@ -40,8 +40,8 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Probasjonære nominatorer kan ikke nominere flere regler.',
+        'full_nomination_required' => 'Du må være en full nominator for å foreta endelig nominasjon av en regel.',
         'hybrid_requires_modes' => 'Et hybrid beatmap krever at du velger minst en spillmodus å nominere for.',
         'incorrect_mode' => 'Du har ikke tillatelse til å nominere for modus: :mode',
         'invalid_limited_nomination' => '',

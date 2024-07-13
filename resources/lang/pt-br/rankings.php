@@ -24,7 +24,7 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Este usuário tem menos de 30 dias de histórico de classificação recente.',
     ],
 
     'type' => [

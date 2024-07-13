@@ -201,6 +201,7 @@ return [
                 'button' => 'Zmeniť pozadie profilu',
                 'defaults_info' => 'Viac možností pozadia bude dostupných v budúcnosti',
                 'holdover_remove_confirm' => "",
+                'title' => '',
 
                 'upload' => [
                     'broken_file' => 'Spracovanie obrázku zlyhalo. Skontroluj si obrázok a skús to znova.',
@@ -221,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'štandardný herný mód',
                 'set' => 'nastaviť :mode ako predvolený herný mód profilu',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

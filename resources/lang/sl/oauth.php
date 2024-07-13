@@ -7,6 +7,7 @@ return [
     'cancel' => 'Prekliči',
 
     'authorise' => [
+        'app_owner' => '',
         'request' => 'želi dovoljenje za dostop do tvojega računa.',
         'scopes_title' => 'Ta aplikacija bo lahko:',
         'title' => 'Avtorizacijska zahteva',

@@ -25,8 +25,8 @@ return [
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Докладвай съобщение',
+        'title' => 'Да се докладва ли съобщението на :username?',
     ],
 
     'scores' => [

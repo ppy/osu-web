@@ -25,8 +25,8 @@ return [
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Mesajı rapor et',
+        'title' => ':username\'in mesajını rapor etmek istiyor musun?',
     ],
 
     'scores' => [
