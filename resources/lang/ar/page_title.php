@@ -64,11 +64,11 @@ return [
             '_' => 'التعليقات',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'نتائج تحكيم المسابقة',
         ],
         'contests_controller' => [
             '_' => 'المسابقات',
-            'judge' => '',
+            'judge' => 'تحكيم المسابقة',
         ],
         'groups_controller' => [
             'show' => 'المجموعات',
@@ -111,7 +111,7 @@ return [
             '_' => 'البطولات',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'أغلفة المستخدم المعدَّة',
         ],
         'users_controller' => [
             '_' => 'معلومات اللاعب',

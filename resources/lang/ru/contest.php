@@ -50,7 +50,7 @@ return [
         ],
 
         'progress' => [
-            '_' => ':used / :max голосов использовано',
+            '_' => ':used / :max голосов отдано',
         ],
 
         'requirement' => [

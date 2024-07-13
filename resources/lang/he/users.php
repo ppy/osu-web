@@ -202,6 +202,7 @@ return [
                 'button' => 'החלף תמונת פרופיל',
                 'defaults_info' => 'אפשרויות תמונה נוספות יהיו זמינות בעתיד',
                 'holdover_remove_confirm' => "",
+                'title' => '',
 
                 'upload' => [
                     'broken_file' => 'עיבוד תמונה נכשל. אמת את התמונה שהעלית ונסה שוב.',
@@ -222,6 +223,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'מצב משחק ברירת מחדל',
                 'set' => 'הגדר :mode כמצב משחק ברירת מחדל של הפרופיל',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

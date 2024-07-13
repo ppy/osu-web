@@ -201,6 +201,7 @@ return [
                 'button' => 'Palitan ang cover',
                 'defaults_info' => 'Higit pang mga larawang cover ang ilalabas sa hinaharap',
                 'holdover_remove_confirm' => "",
+                'title' => '',
 
                 'upload' => [
                     'broken_file' => 'Hindi matagumpay ang pagproseso ng imahe. Suriin ang inilalathalang imahe at subukang muli.',
@@ -221,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'default na game mode',
                 'set' => 'i-set ang :mode bilang default na game mode',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

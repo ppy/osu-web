@@ -7,6 +7,7 @@ return [
     'cancel' => 'İptal et',
 
     'authorise' => [
+        'app_owner' => '',
         'request' => 'hesabınıza erişmek için izin istiyor.',
         'scopes_title' => 'Bu uygulama şunları yapabilecek:',
         'title' => 'Doğrulama Talebi',

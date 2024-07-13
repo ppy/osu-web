@@ -199,6 +199,8 @@ return [
             'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Log ud',
             'profile' => 'Min Profil',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
         ],
     ],
 

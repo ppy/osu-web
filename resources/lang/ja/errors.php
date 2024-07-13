@@ -28,6 +28,9 @@ return [
     'checkout' => [
         'generic' => '支払い準備中にエラーが発生しました。',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => '結果の取得に失敗しました。もう一度お試しください。',
         'invalid_cursor_exception' => '無効なカーソルパラメータが指定されました。',

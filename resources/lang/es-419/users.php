@@ -200,7 +200,8 @@ return [
             'cover' => [
                 'button' => 'Cambiar portada de perfil',
                 'defaults_info' => 'Más opciones de portadas estarán disponibles en el futuro',
-                'holdover_remove_confirm' => "",
+                'holdover_remove_confirm' => "La portada seleccionada anteriormente ya no está disponible para su selección. No puedes volver a seleccionarla después de cambiar a otra portada. ¿Quieres continuar?",
+                'title' => 'Portada',
 
                 'upload' => [
                     'broken_file' => 'Error al procesar la imagen. Verifica la imagen subida e intenta de nuevo.',
@@ -221,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'modo de juego predeterminado',
                 'set' => 'establecer :mode como el modo de juego predeterminado del perfil',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '¿Restablecer al color predeterminado? Se necesitará una etiqueta de osu!supporter para cambiar el color.',
+                'title' => 'Color',
+
+                'supporter' => [
+                    '_' => 'Los colores personalizados solo están disponibles para :link',
+                    'link' => 'osu!supporters',
+                ],
             ],
         ],
 

@@ -203,6 +203,8 @@ return [
             'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Odjava',
             'profile' => 'Moj profil',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
         ],
     ],
 

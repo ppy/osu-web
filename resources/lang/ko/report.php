@@ -25,7 +25,7 @@ return [
     ],
 
     'message' => [
-        'button' => '',
+        'button' => '메시지 신고하기',
         'title' => '',
     ],
 

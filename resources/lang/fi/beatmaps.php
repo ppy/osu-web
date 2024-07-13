@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Keskusteluun ei voi osallistua mykistettynä.",
         'message_type_select' => 'Valitse kommentin tyyppi',
         'reply_notice' => 'Vastaa painamalla enter-näppäintä.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Kirjoita vastauksesi tähän',
         'require-login' => 'Kirjaudu sisään lähettääksesi viestejä tai vastauksia',
         'resolved' => 'Ratkaistu',
         'restore' => 'palauta',
         'show_deleted' => 'Näytä poistetut',
         'title' => 'Keskustelut',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Sulje kaikki',
@@ -141,7 +143,7 @@ return [
 
         'stats' => [
             'deleted' => 'Poistettu',
-            'mapper_notes' => 'Huomautukset',
+            'mapper_notes' => 'Muistiinpanot',
             'mine' => 'Omat',
             'pending' => 'Vireillä',
             'praises' => 'Kehut',
@@ -187,8 +189,8 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => 'Olet jo pannut ehdolle tämän rytmikartan.',
-        'cannot_nominate' => 'Et voi panna ehdolle tähän pelimuotoon kuuluvia rytmikarttoja.',
+        'already_nominated' => 'Olet jo asettanut ehdolle tämän rytmikartan.',
+        'cannot_nominate' => 'Et voi asettaa ehdolle tähän pelimuotoon kuuluvia rytmikarttoja.',
         'delete' => 'Poista',
         'delete_own_confirm' => 'Oletko varma? Rytmikartta poistetaan ja sinut uudelleenohjataan takaisin profiiliisi.',
         'delete_other_confirm' => 'Oletko varma? Rytmikartta poistetaan ja sinut uudelleenohjataan takaisin käyttäjän profiiliin.',
@@ -202,7 +204,7 @@ return [
         'love_confirm' => 'Rakasta tätä rytmikarttaa?',
         'nominate' => 'Aseta ehdolle',
         'nominate_confirm' => 'Aseta tämä rytmikartta ehdolle?',
-        'nominated_by' => 'ehdollepannut: :users',
+        'nominated_by' => 'ehdollepannut :users',
         'not_enough_hype' => "Hurrausta ei ole riittävästi.",
         'remove_from_loved' => 'Poista rakastetuista rytmikartoista',
         'remove_from_loved_prompt' => 'Rakastetuista rytmikartoista poistamisen syy:',
@@ -283,7 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'ei määritetty',
     ],
     'status' => [
         'any' => 'Kaikki',
@@ -339,7 +341,7 @@ return [
 
     'played' => [
         'any' => 'Kaikki',
-        'played' => 'Pelatut',
+        'played' => 'Pelattu',
         'unplayed' => 'Pelaamaton',
     ],
     'extra' => [

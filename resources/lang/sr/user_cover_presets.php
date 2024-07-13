@@ -24,8 +24,8 @@ return [
         'item' => [
             'click_to_disable' => '',
             'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
+            'enabled' => 'Омогућено',
+            'disabled' => 'Онемогућено',
             'image_store' => '',
             'image_update' => '',
         ],

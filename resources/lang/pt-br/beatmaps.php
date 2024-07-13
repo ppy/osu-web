@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Não é possível postar na discussão enquanto silenciado.",
         'message_type_select' => 'Selecione o Tipo de Comentário',
         'reply_notice' => 'Pressione enter para responder.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Digite sua resposta aqui',
         'require-login' => 'Por favor, conecte-se para postar ou responder',
         'resolved' => 'Resolvido',
         'restore' => 'restaurar',
         'show_deleted' => 'Mostrar excluídos',
         'title' => 'Discussões',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Juntar',
@@ -283,7 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'Não definido',
     ],
     'status' => [
         'any' => 'Todos',

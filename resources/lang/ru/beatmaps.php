@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Запрещено писать посты в обсуждении, пока вы заглушены.",
         'message_type_select' => 'Выбрать тип комментария',
         'reply_notice' => 'Нажмите Enter, чтобы ответить.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Напишите ответ',
         'require-login' => 'Пожалуйста, войдите в аккаунт, чтобы оставить отзыв',
         'resolved' => 'Решено',
         'restore' => 'восстановить',
         'show_deleted' => 'Показать удалённые',
         'title' => 'Обсуждение',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Скрыть всё',

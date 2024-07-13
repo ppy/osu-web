@@ -111,7 +111,7 @@ return [
             '_' => 'Turniere',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'Voreinstellungen für Benutzer-Cover',
         ],
         'users_controller' => [
             '_' => 'Spielerinfo',

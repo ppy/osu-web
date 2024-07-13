@@ -19,7 +19,7 @@ return [
         'nominate' => [
             'exhausted' => 'Olet saavuttanut päivän ehdollepanorajan, yritä uudelleen huomenna.',
             'incorrect_state' => 'Virhe toiminnon suorittamisessa, kokeile päivittää sivu.',
-            'owner' => "Omaa rytmikarttaa ei voi ehdollepanna.",
+            'owner' => "Omaa rytmikarttaa ei voi asettaa ehdolle.",
             'set_metadata' => 'Sinun täytyy määrittää tyylilaji ja kieli ennen ehdolle asettamista.',
         ],
         'resolve' => [
