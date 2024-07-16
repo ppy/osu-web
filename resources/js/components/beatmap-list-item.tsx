@@ -6,12 +6,10 @@ import UserLink from 'components/user-link';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
-import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import StringWithComponent from './string-with-component';
-import { toJS } from 'mobx';
 
 interface BaseProps {
   beatmap: BeatmapJson | BeatmapExtendedJson;
@@ -22,11 +20,9 @@ interface BaseProps {
 
 type MapperProps = {
   beatmapset: BeatmapsetJson;
-  // mappers?: Mapper[] | null;
   showMappers: true;
   showNonGuestMapper: boolean;
 } | {
-  // mappers: null;
   showMappers: false;
 };
 

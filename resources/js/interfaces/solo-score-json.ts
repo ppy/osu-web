@@ -80,7 +80,7 @@ export type SoloScoreJsonForBeatmap = SoloScoreJson & Required<Pick<SoloScoreJso
 export type SoloScoreJsonForShow = SoloScoreJson
 & Required<Pick<SoloScoreJson, 'beatmapset' | 'best_id' | 'rank_global' | 'user'>>
 & {
-  beatmap: BeatmapExtendedJson & Required<Pick<BeatmapJson, 'user'>>;
+  beatmap: BeatmapExtendedJson & Required<Pick<BeatmapJson, 'mappers'>>;
 };
 
 export type SoloScoreJsonForUser = SoloScoreJson & Required<Pick<SoloScoreJson, 'beatmap' | 'beatmapset'>>;

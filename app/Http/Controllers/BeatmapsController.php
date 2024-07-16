@@ -462,7 +462,7 @@ class BeatmapsController extends Controller
             'score' => json_item(
                 $score,
                 new ScoreTransformer(),
-                ['beatmap', ...static::DEFAULT_SCORE_INCLUDES]
+                ['beatmap.mappers', ...static::DEFAULT_SCORE_INCLUDES]
             ),
         ];
     }
