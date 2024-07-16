@@ -11,7 +11,7 @@ import { getArtist, getTitle } from 'utils/beatmapset-helper';
 import { trans } from 'utils/lang';
 
 interface Props {
-  beatmap: BeatmapExtendedJson & Required<Pick<BeatmapJson, 'user'>>;
+  beatmap: BeatmapExtendedJson & Required<Pick<BeatmapJson, 'mappers' | 'user'>>;
   beatmapset: BeatmapsetJson;
 }
 
@@ -38,8 +38,8 @@ export default function BeatmapInfo(props: Props) {
             beatmapUrl={beatmapUrl}
             beatmapset={beatmapset}
             inline
-            mapper={beatmap.user}
             modifiers='score'
+            showMappers
             showNonGuestMapper
           />
         </span>

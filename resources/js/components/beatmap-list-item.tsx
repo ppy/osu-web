@@ -11,6 +11,7 @@ import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import StringWithComponent from './string-with-component';
+import { toJS } from 'mobx';
 
 interface BaseProps {
   beatmap: BeatmapJson | BeatmapExtendedJson;
@@ -21,10 +22,12 @@ interface BaseProps {
 
 type MapperProps = {
   beatmapset: BeatmapsetJson;
-  mapper: Pick<UserJson, 'id' | 'username'>;
+  // mappers?: Mapper[] | null;
+  showMappers: true;
   showNonGuestMapper: boolean;
 } | {
-  mapper: null;
+  // mappers: null;
+  showMappers: false;
 };
 
 type Props = BaseProps & MapperProps;
@@ -51,7 +54,7 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
               : version}
             {' '}
             <span className='beatmap-list-item__mapper'>
-              {this.renderMapper()}
+              {this.renderMappers()}
             </span>
           </div>
         </div>
@@ -59,13 +62,18 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
     );
   }
 
-  private renderMapper() {
-    if (this.props.mapper == null) {
+  private renderMappers() {
+    if (!this.props.showMappers) return null;
+
+    const mappers = this.props.beatmap.mappers;
+    if (mappers == null || mappers.length === 0) {
       return null;
     }
 
-    const isGuestMap = this.props.beatmapset.user_id !== this.props.beatmap.user_id;
+    const isGuestMap = mappers.length > 1
+      || mappers[0].id !== this.props.beatmapset.user_id;
 
+    // TODO:
     if (!isGuestMap && !this.props.showNonGuestMapper) {
       return null;
     }
@@ -75,14 +83,12 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
       : 'mapped_by';
 
     const mapper = isGuestMap
-      ? this.props.mapper
-      : { id: this.props.beatmapset.user_id, username: this.props.beatmapset.creator };
+      ? mappers.map((user) => <UserLink key={user.id} user={user} />)
+      : <UserLink user={{ id: this.props.beatmapset.user_id, username: this.props.beatmapset.creator }} />;
 
     return (
       <StringWithComponent
-        mappings={{
-          mapper: <UserLink user={mapper} />,
-        }}
+        mappings={{ mapper }}
         pattern={trans(`beatmapsets.show.details.${translationKey}`)}
       />
     );

@@ -14,6 +14,7 @@ interface BeatmapJsonAvailableIncludes {
   beatmapset: BeatmapsetJson | null;
   checksum: string | null;
   failtimes: BeatmapFailTimesArray;
+  mappers: Mapper[];
   max_combo: number;
   user: UserJson;
 }
@@ -30,4 +31,6 @@ interface BeatmapJsonDefaultAttributes {
 }
 
 type BeatmapJson = BeatmapJsonDefaultAttributes & Partial<BeatmapJsonAvailableIncludes>;
+type Mapper = Pick<UserJson, 'id' | 'username'>;
+
 export default BeatmapJson;
