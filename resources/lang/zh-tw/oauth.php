@@ -7,6 +7,7 @@ return [
     'cancel' => '取消',
 
     'authorise' => [
+        'app_owner' => '',
         'request' => '正在要求權限以存取你的帳號。',
         'scopes_title' => '此應用程式將可以：',
         'title' => '授權請求',

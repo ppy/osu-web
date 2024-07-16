@@ -24,7 +24,7 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'لهذا المستخدم سِجل ترتيب يقل عن 30 يوماً.',
     ],
 
     'type' => [

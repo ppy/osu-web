@@ -32,7 +32,7 @@ return [
         'nomination_reset_received_profile' => ':user je ponastavil nominacijo (:text)',
         'offset_edit' => 'Online zamik je spremenjen iz :old na :new.',
         'qualify' => 'Ta beatmapa je dosegla zahtevano število nominacij in se uvrstila med kvalificiranimi beatmapami.',
-        'rank' => 'Rankirano.',
+        'rank' => 'Ranked.',
         'remove_from_loved' => ':user je odstranil beatmapo iz Loved. (:text)',
         'tags_edit' => 'Oznake spremenjene iz ":old" v ":new".',
 

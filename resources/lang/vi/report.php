@@ -25,8 +25,8 @@ return [
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Báo cáo tin nhắn',
+        'title' => 'Báo cáo tin nhắn của :username không?',
     ],
 
     'scores' => [

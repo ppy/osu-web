@@ -28,12 +28,15 @@ return [
     'checkout' => [
         'generic' => 'Terjadi kesalahan dalam mempersiapkan proses checkout.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Tidak ada hasil pencarian yang dapat diperoleh. Silakan coba lagi nanti.',
         'invalid_cursor_exception' => 'Parameter kursor yang ditentukan tidak valid.',
         'operation_timeout_exception' => 'Aktivitas pencarian saat ini sedang lebih sibuk dari biasanya. Mohon coba lagi nanti.',
     ],
     'user_report' => [
-        'recently_reported' => "",
+        'recently_reported' => "Kamu telah melaporkan hal ini baru-baru ini.",
     ],
 ];

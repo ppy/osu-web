@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Ваш налог није коришћен дужи период времена.",
             'inactive_different_country' => "Ваш налог није коришћен дужи период времена.",
         ],
     ],
@@ -126,8 +126,8 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description' => 'Мапе :counts',
+        'modding_description_empty' => 'Корисник нема ниједну мапу...',
 
         'description' => [
             '_' => 'Ранг (:ruleset): :global | :country',
@@ -202,6 +202,7 @@ return [
                 'button' => 'Промените позадину профила',
                 'defaults_info' => 'Више опција за позадине ће бити доступне ускоро',
                 'holdover_remove_confirm' => "",
+                'title' => '',
 
                 'upload' => [
                     'broken_file' => 'Процесуирање слике није било успешно. Проверите послату слику и пробајте поново.',
@@ -222,6 +223,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'уобичајени мод игре',
                 'set' => 'наместите :mode као примарни мод',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

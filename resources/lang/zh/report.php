@@ -25,8 +25,8 @@ return [
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => '举报消息',
+        'title' => '举报 :username 的消息？',
     ],
 
     'scores' => [

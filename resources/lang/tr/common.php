@@ -39,7 +39,7 @@ return [
         'pin' => 'sabitle',
         'post' => 'Gönder',
         'read_more' => 'daha fazlası',
-        'refresh' => '',
+        'refresh' => 'Yenile',
         'reply' => 'Cevapla',
         'reply_reopen' => 'Cevapla ve Yeniden Aç',
         'reply_resolve' => 'Yanıtla ve Çözümle',

@@ -26,14 +26,14 @@ return [
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'Sonuçlar değerlendiriliyor',
+        'creator' => 'yapımcı',
+        'score' => 'Skor',
+        'total_score' => 'toplam skor',
     ],
 
     'voting' => [
-        'judge_link' => '',
+        'judge_link' => 'Bu yarışmanın jürisi sensin. Yapımları değerlendir!',
         'judged_notice' => '',
         'login_required' => 'Oylamak için lütfen giriş yapınız.',
         'over' => 'Bu yarışma için oylama sona erdi',

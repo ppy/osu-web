@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Hesabınız uzun bir süredir kullanılmamış.",
             'inactive_different_country' => "Hesabın uzun bir zamandır kullanılmamıştır.",
         ],
     ],
@@ -200,7 +200,8 @@ return [
             'cover' => [
                 'button' => 'Kapak Fotoğrafını Değiştir',
                 'defaults_info' => 'Diğer kapak seçenekleri gelecekte mevcut olacak',
-                'holdover_remove_confirm' => "",
+                'holdover_remove_confirm' => "Önceden seçili olan kapak artık seçileme uygun değil ve farklı bir kapağa değiştirirsen geri seçemezsin. Devam edilsin mi?",
+                'title' => '',
 
                 'upload' => [
                     'broken_file' => 'Resmin işlenmesi başarısız oldu. Yüklediğiniz resmi doğrulayıp tekrar deneyin.',
@@ -221,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'varsayılan oyun modu',
                 'set' => ':mode \'ı varsayılan oyun modu olarak ayarla',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

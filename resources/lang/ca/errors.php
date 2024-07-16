@@ -28,6 +28,9 @@ return [
     'checkout' => [
         'generic' => 'S\'ha produït un error mentre preparàvem la teva compra.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'No s\'ha pogut trobar cap resultat. Torna-ho a provar més tard.',
         'invalid_cursor_exception' => 'El paràmetre de cursor és invàlid.',

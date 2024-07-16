@@ -28,6 +28,9 @@ return [
     'checkout' => [
         'generic' => 'Er is een fout opgetreden tijdens het voorbereiden voor het afrekenen.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Kan geen resultaten krijgen, probeer het later opnieuw.',
         'invalid_cursor_exception' => 'Ongeldige cursorwaarde opgegeven.',

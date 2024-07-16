@@ -20,7 +20,7 @@ return [
             'exhausted' => 'Anda telah mencapai batas nominasi Anda untuk hari ini, silakan coba lagi besok.',
             'incorrect_state' => 'Terjadi kesalahan pada saat melangsungkan tindakan. Silakan muat ulang laman.',
             'owner' => "Tidak dapat menominasikan beatmap buatan sendiri.",
-            'set_metadata' => 'Kamu harus terlebih dahulu menentukan aliran dan bahasa sebelum menominasikan beatmap.',
+            'set_metadata' => 'Kamu harus terlebih dahulu menentukan aliran dan bahasa sebelum memberikan nominasi.',
         ],
         'resolve' => [
             'not_owner' => 'Hanya pemilik topik dan beatmap yang dapat menyelesaikan diskusi.',
@@ -66,7 +66,7 @@ return [
         'friends_only' => 'Pengguna ini memblokir pesan dari pengguna lain yang tidak berada dalam daftar temannya.',
         'moderated' => 'Kanal percakapan ini sedang dimoderasi.',
         'no_access' => 'Kamu tidak memiliki akses ke kanal percakapan ini.',
-        'receive_friends_only' => 'Pengguna ini tidak akan dapat membalas pesanmu karena kamu hanya menerima pesan dari nama-nama yang tertera pada daftar temanmu.',
+        'receive_friends_only' => 'Pengguna ini mungkin tidak akan dapat membalas karena kamu hanya menerima pesan dari pengguna lain yang berada dalam daftar temanmu.',
         'restricted' => 'Kamu tidak dapat mengirim pesan pada saat akunmu sedang di-silence, di-restrict, atau di-ban.',
         'silenced' => 'Kamu tidak dapat mengirim pesan pada saat akunmu sedang di-silence, di-restrict, atau di-ban.',
     ],
@@ -161,7 +161,7 @@ return [
                 'not_owner' => 'Hanya pemilik topik yang dapat menyunting sampul.',
             ],
             'store' => [
-                'forum_not_allowed' => 'Gambar sampul tidak dapat dipasang pada forum ini.',
+                'forum_not_allowed' => 'Forum ini tidak mengizinkan pemasangan sampul topik.',
             ],
         ],
 

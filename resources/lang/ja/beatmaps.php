@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "サイレンス中はディスカッションへ投稿できません。",
         'message_type_select' => 'コメントタイプを選択',
         'reply_notice' => 'Enterキーを押して送信',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'ここに入力してください',
         'require-login' => '返信するにはログインが必要です。',
         'resolved' => '解決済み',
         'restore' => '復元',
         'show_deleted' => '削除済みを表示',
         'title' => 'ディスカッション',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => '全てを折りたたむ',

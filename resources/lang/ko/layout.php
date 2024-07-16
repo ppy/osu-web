@@ -199,6 +199,8 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Lazer 모드는 osu!lazer에서 새로운 점수 알고리즘으로 등록한 점수를 표시합니다',
             'logout' => '로그아웃',
             'profile' => '내 프로필',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
         ],
     ],
 

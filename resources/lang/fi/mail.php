@@ -15,14 +15,14 @@ return [
         'closing' => 'Terveisin',
         'hello' => 'Hei :user,',
         'report' => 'Vastaa tähän sähköpostiin VÄLITTÖMÄSTI, jos et ole pyytänyt tätä muutosta.',
-        'ignore' => 'Jos et pyytänyt tätä, voit turvallisesti jättää tämän sähköpostin huomiotta.',
+        'ignore' => 'Jos et pyytänyt tätä, voit turvallisesti jättää tämän sähköpostin huomioimatta.',
     ],
 
     'donation_thanks' => [
-        'benefit_more' => 'Lisää etuja tukijoille tulee myös tulemaan aikaa myöten!',
+        'benefit_more' => 'Tukijoille on myös luvassa ajan myötä uusia lisäetuja!',
         'feedback' => "Jos sinulla on kysyttävää tai palautetta, älä epäröi vastata tähän sähköpostiin; saat vastauksen mahdollisimman pian!",
         'keep_free' => 'Sinunlaisien henkilöiden ansiosta osu! pystyy pitämään pelin ja yhteisön sujuvasti käynnissä ilman mitään mainoksia tai pakollisia maksuja.',
-        'keep_running' => 'Tukesi ansiosta osu! voi pysyä käynnissä noin :minutes! Se ehkä ei ole paljon, mutta se kasvaa nopeasti :).',
+        'keep_running' => 'Tukesi ansiosta osu! pysyy käynnissä noin :minutes! Se ei ehkä tunnu paljolta, mutta pienistä puroista syntyy suuri joki :).',
         'subject' => 'Kiitos, osu! <3 sinua',
         'translation' => 'Seuraava on yhteisön tuottama käännös tiedostusta varten:',
 
@@ -32,7 +32,7 @@ return [
         ],
 
         'support' => [
-            '_' => 'Kiitos paljon :support osu!\'lle.',
+            '_' => 'Kiitos paljon :support osu!lle.',
             'first' => 'tuestasi',
             'repeat' => 'jatkuvasta tuestasi',
         ],
@@ -67,7 +67,7 @@ return [
         'duration' => 'Kiitos hänen, sinulla on pääsy osu!directiin ja muihin osu!tukijaetuihin seuraavan :duration ajan.',
         'features' => 'Voit saada lisätietoja näistä ominaisuuksista täältä:',
         'gifted' => 'Joku on juuri antanut sinulle osu!tukijamerkin!',
-        'gift_message' => 'Henkilö, joka lahjoitti sinulle tämän merkin, jätti sinulle viestin:',
+        'gift_message' => 'Tämän merkin lahjoittanut henkilö jätti sinulle viestin:',
         'subject' => 'Sinulle on lahjoitettu osu!tukijamerkki!',
     ],
 
@@ -86,7 +86,7 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => 'Tiedoksesi vain, että on tullut uusia päivityksiä kohteisiin, joita seuraat.',
+        'new' => 'Tiedoksesi vain, että seuraamiisi aiheisiin on tullut uusia päivityksiä.',
         'settings' => 'Muuta sähköposti-ilmoitusten asetuksia:',
         'subject' => 'Uusia osu!-ilmoituksia',
     ],
@@ -101,7 +101,7 @@ return [
         'code_hint' => 'Voit syöttää koodin välilyönneillä tai ilman niitä.',
         'link' => 'Vaihtoehtoisesti, voit myös suorittaa vahvistuksen loppuun alla olevasta linkistä:',
         'report' => 'Jos et ole pyytänyt tätä, ole hyvä ja VASTAA HETI, koska tilisi voi olla vaarassa.',
-        'subject' => 'osu! tilin vahvistaminen',
+        'subject' => 'osu!-tilin vahvistaminen',
 
         'action_from' => [
             '_' => 'Tililläsi suoritettu toiminto maasta :country vaatii vahvistuksen.',

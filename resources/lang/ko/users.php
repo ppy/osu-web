@@ -201,6 +201,7 @@ return [
                 'button' => '프로필 표지 변경',
                 'defaults_info' => '이후에 더 많은 표지 설정이 추가됩니다',
                 'holdover_remove_confirm' => "",
+                'title' => '',
 
                 'upload' => [
                     'broken_file' => '이미지 처리 실패. 업로드하려는 이미지를 확인하시고 다시 시도해주세요.',
@@ -221,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => '메인 게임 모드',
                 'set' => ':mode를 메인 게임 모드로 설정',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

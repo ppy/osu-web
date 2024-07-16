@@ -12,7 +12,7 @@ return [
             '_' => '',
             'disable' => '',
             'enable' => '',
-            'items' => '',
+            'items' => ':count_delimited tło|:count_delimited tła|:count_delimited teł',
         ],
 
         'create_form' => [

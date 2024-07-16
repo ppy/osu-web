@@ -200,7 +200,8 @@ return [
             'cover' => [
                 'button' => 'Mudar Capa de Perfil',
                 'defaults_info' => 'Mais opções de capa virão no futuro',
-                'holdover_remove_confirm' => "",
+                'holdover_remove_confirm' => "Esta capa selecionada anteriormente não está disponível para seleção. Você não pode selecionar ela após alterar para outra. Trocar?",
+                'title' => '',
 
                 'upload' => [
                     'broken_file' => 'Falha ao processar imagem. Verifique a imagem enviada e tente novamente.',
@@ -221,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'modo de jogo padrão',
                 'set' => 'definir :mode como modo de jogo padrão',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

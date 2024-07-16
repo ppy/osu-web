@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Не можна коментувати поки ви заглушені.",
         'message_type_select' => 'Вибрати тип коментаря',
         'reply_notice' => 'Натисніть Enter для відповіді.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Введіть відповідь тут',
         'require-login' => 'Будь ласка, ввійдіть що б створювати пости або відповідати на них',
         'resolved' => 'Вирішено',
         'restore' => 'відновити',
         'show_deleted' => 'Показати видалені',
         'title' => 'Обговорення',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Приховати все',

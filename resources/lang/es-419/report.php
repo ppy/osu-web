@@ -25,8 +25,8 @@ return [
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Reportar mensaje',
+        'title' => '¿Reportar el mensaje de :username?',
     ],
 
     'scores' => [

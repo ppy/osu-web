@@ -201,6 +201,7 @@ return [
                 'button' => 'Canvia la portada del perfil',
                 'defaults_info' => 'Més opcions de portada estaran disponibles en el futur',
                 'holdover_remove_confirm' => "",
+                'title' => '',
 
                 'upload' => [
                     'broken_file' => 'Error en processar la imatge. Verifica la imatge pujada i torna-ho a intentar.',
@@ -221,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'mode de joc per defecte',
                 'set' => 'estableix :mode com a mode de joc per defecte del perfil',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

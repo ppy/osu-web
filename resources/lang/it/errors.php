@@ -28,12 +28,15 @@ return [
     'checkout' => [
         'generic' => 'Si è verificato un errore durante la preparazione del tuo checkout.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Impossibile ottenere alcun risultato, riprova più tardi.',
         'invalid_cursor_exception' => 'Parametro del cursore specificato non valido.',
         'operation_timeout_exception' => 'Attualmente la ricerca è più occupata del solito, riprova più tardi.',
     ],
     'user_report' => [
-        'recently_reported' => "",
+        'recently_reported' => "L'hai già segnalato di recente.",
     ],
 ];

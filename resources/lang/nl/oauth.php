@@ -7,6 +7,7 @@ return [
     'cancel' => 'Annuleren',
 
     'authorise' => [
+        'app_owner' => '',
         'request' => 'vraagt om toestemming om toegang tot uw account.',
         'scopes_title' => 'Deze applicatie krijgt toegang tot:',
         'title' => 'Inloggen verplicht',

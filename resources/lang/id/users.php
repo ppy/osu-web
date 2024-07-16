@@ -200,7 +200,8 @@ return [
             'cover' => [
                 'button' => 'Ubah Sampul Profil',
                 'defaults_info' => 'Pilihan sampul lainnya akan tersedia di masa mendatang',
-                'holdover_remove_confirm' => "",
+                'holdover_remove_confirm' => "Gambar sampul yang sebelumnya dipilih kini sudah tidak lagi tersedia untuk dipilih. Kamu tidak akan dapat memilih kembali gambar ini setelah kamu beralih ke gambar sampul lain. Lanjut?",
+                'title' => '',
 
                 'upload' => [
                     'broken_file' => 'Gambar gagal diproses. Periksa keabsahan gambar yang diunggah dan coba lagi.',
@@ -221,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'mode permainan utama',
                 'set' => 'atur :mode sebagai mode permainan utamamu',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

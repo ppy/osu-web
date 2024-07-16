@@ -66,7 +66,7 @@ return [
         'discussion' => 'Diskussion',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Visa omslagsbilden i full storlek',
         ],
 
         'deleted_banner' => [

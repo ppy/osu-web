@@ -28,12 +28,15 @@ return [
     'checkout' => [
         'generic' => 'Ocorreu um erro durante ao preparar o seu pagamento.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Não foi possível obter nenhum resultado, tente novamente mais tarde.',
         'invalid_cursor_exception' => 'Parâmetro do cursor inválido.',
         'operation_timeout_exception' => 'A busca está mais ocupada que o normal, tente novamente mais tarde.',
     ],
     'user_report' => [
-        'recently_reported' => "",
+        'recently_reported' => "Você já informou isso recentemente.",
     ],
 ];

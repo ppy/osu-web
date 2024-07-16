@@ -199,6 +199,8 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Lazer 模式透過使用 Lazer 客戶端中新評分演算法來顯示您的成績。',
             'logout' => '登出',
             'profile' => '我的資料',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
         ],
     ],
 
