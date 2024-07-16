@@ -66,25 +66,25 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
       return null;
     }
 
-    const isGuestMap = mappers.length > 1
-      || mappers[0].id !== this.props.beatmapset.user_id;
+    const userId = this.props.beatmapset.user_id;
+    const visibleMappers = this.props.showNonGuestMapper
+      ? mappers
+      : mappers.filter((mapper) => mapper.id !== userId);
 
-    // TODO:
-    if (!isGuestMap && !this.props.showNonGuestMapper) {
+    if (visibleMappers.length === 0) {
       return null;
     }
 
-    const translationKey = isGuestMap
-      ? 'mapped_by_guest'
-      : 'mapped_by';
+    const translationKey = 'mapped_by';// isGuestMap
+      // ? 'mapped_by_guest'
+      // : 'mapped_by';
 
-    const mapper = isGuestMap
-      ? mappers.map((user) => <UserLink key={user.id} user={user} />)
-      : <UserLink user={{ id: this.props.beatmapset.user_id, username: this.props.beatmapset.creator }} />;
+    // TODO: connectors?
+    const text = visibleMappers.map((user) => <><UserLink key={user.id} user={user} />, </>);
 
     return (
       <StringWithComponent
-        mappings={{ mapper }}
+        mappings={{ mapper: text }}
         pattern={trans(`beatmapsets.show.details.${translationKey}`)}
       />
     );
