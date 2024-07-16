@@ -27,7 +27,7 @@ class EsIndexDocuments extends Command
      *
      * @var string
      */
-    protected $signature = 'es:index-documents {--types=} {--inplace} {--cleanup} {--yes}';
+    protected $signature = 'es:index-documents {--types=} {--inplace} {--cleanup}';
 
     /**
      * The console command description.
@@ -39,7 +39,6 @@ class EsIndexDocuments extends Command
     protected $cleanup;
     protected $inplace;
     protected $groups;
-    protected $yes;
 
     /**
      * Execute the console command.
@@ -136,7 +135,6 @@ class EsIndexDocuments extends Command
     {
         $this->inplace = $this->option('inplace');
         $this->cleanup = $this->option('cleanup');
-        $this->yes = $this->option('yes');
 
         if ($this->option('types')) {
             $types = explode(',', $this->option('types'));
@@ -169,6 +167,6 @@ class EsIndexDocuments extends Command
             $confirmMessage = 'This will create new indices';
         }
 
-        return $this->yes || $this->confirm("{$confirmMessage}, begin indexing?", true);
+        return $this->option('no-interaction') || $this->confirm("{$confirmMessage}, begin indexing?", true);
     }
 }
