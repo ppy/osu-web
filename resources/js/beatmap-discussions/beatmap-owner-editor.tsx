@@ -6,6 +6,7 @@ import UserAvatar from 'components/user-avatar';
 import UserLink from 'components/user-link';
 import UsernameInput from 'components/username-input';
 import BeatmapJson from 'interfaces/beatmap-json';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
@@ -24,11 +25,9 @@ interface XhrCollection {
 }
 
 interface Props {
-  beatmap: BeatmapJson;
-  beatmapsetUser: UserJson;
-  discussionsState: DiscussionsState;
-  user: UserJson;
-  userByName: Map<string, UserJson>;
+  beatmap: BeatmapJson & Required<Pick<BeatmapJson, 'mappers'>>;
+  beatmapset: BeatmapsetExtendedJson;
+  discussionsState: DiscussionsState; // only for updating the state with the response.
 }
 
 @observer
@@ -45,15 +44,12 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     return this.validUsers.size > 0 && normaliseUsername(this.inputUsername).length === 0;
   }
 
-  @computed
-  private get inputUser() {
-    return this.props.userByName.get(normaliseUsername(this.inputUsername));
+  private get mappers() {
+    return this.props.beatmap.mappers;
   }
 
   constructor(props: Props) {
     super(props);
-
-    this.inputUsername = props.user.username;
 
     makeObservable(this);
   }
@@ -89,11 +85,11 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
         </div>
 
         <div className='beatmap-owner-editor__col beatmap-owner-editor__col--avatar'>
-          {this.renderAvatar()}
+          {/* {this.renderAvatar()} */}
         </div>
 
         <div className='beatmap-owner-editor__col'>
-          {this.renderUsername()}
+          {this.renderUsernames()}
         </div>
 
         <div className='beatmap-owner-editor__col beatmap-owner-editor__col--buttons'>
@@ -113,7 +109,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     if (!confirm(trans('beatmap_discussions.owner_editor.reset_confirm'))) return;
 
     this.editing = false;
-    this.updateOwners([this.props.beatmapsetUser.id]);
+    this.updateOwners([this.props.beatmapset.user_id]);
   };
 
   private readonly handleSaveClick = () => {
@@ -126,7 +122,8 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   private readonly handleStartEditingClick = () => {
     this.editing = true;
     this.shouldFocusInputOnNextRender = true;
-    this.inputUsername = this.props.user.username;
+    // TODO: user username or preset without lookup?
+    this.inputUsername = this.mappers.map((mapper) => mapper.id).join(',');
   };
 
   private readonly handleUsernameInputKeyup = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -163,7 +160,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     const reset = (
       <button
         className='beatmap-owner-editor__button'
-        disabled={this.props.beatmap.user_id === this.props.beatmapsetUser.id}
+        disabled={this.props.beatmap.user_id === this.props.beatmapset.user_id}
         onClick={this.handleResetClick}
       >
         <span className='fas fa-fw fa-undo' />
@@ -197,14 +194,15 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     );
   }
 
-  private renderUsername() {
+  private renderUsernames() {
     if (!this.editing) {
-      return (
+      return this.mappers.map((mapper) => (
         <UserLink
+          key={mapper.id}
           className='beatmap-owner-editor__input beatmap-owner-editor__input--static'
-          user={this.props.user}
+          user={mapper}
         />
-      );
+      ));
     }
 
     return (

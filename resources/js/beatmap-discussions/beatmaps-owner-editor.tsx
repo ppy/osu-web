@@ -21,24 +21,7 @@ interface Props {
 
 @observer
 export default class BeatmapsOwnerEditor extends React.Component<Props> {
-  @observable userByName = new Map<string, UserJson>();
-
-  constructor(props: Props) {
-    super(props);
-
-    // this will be outdated on new props but it's fine
-    // as there's separate process handling unknown users
-    for (const user of this.props.users.values()) {
-      if (user != null) {
-        this.userByName.set(normaliseUsername(user.username), user);
-      }
-    }
-
-    makeObservable(this);
-  }
-
   render() {
-    const beatmapsetUser = this.getUser(this.props.beatmapset.user_id);
     const groupedBeatmaps = [...groupBeatmaps((this.props.beatmapset.beatmaps ?? []).filter(
       (beatmap) => beatmap.deleted_at == null,
     ))];
@@ -62,10 +45,9 @@ export default class BeatmapsOwnerEditor extends React.Component<Props> {
               <BeatmapOwnerEditor
                 key={beatmap.id}
                 beatmap={beatmap}
-                beatmapsetUser={beatmapsetUser}
+                beatmapset={this.props.beatmapset}
                 discussionsState={this.props.discussionsState}
                 user={this.getUser(beatmap.user_id)}
-                userByName={this.userByName}
               />
             ))
           ))}
