@@ -140,18 +140,6 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     this.validUsers = value;
   };
 
-  private renderAvatar() {
-    const user = this.editing
-      ? (this.inputUser ?? { avatar_url: transparentGif })
-      : this.props.user;
-
-    const avatar = <UserAvatar modifiers='full-circle' user={user} />;
-
-    return this.editing
-      ? avatar
-      : <UserLink className='beatmap-owner-editor__avatar' user={this.props.user}>{avatar}</UserLink>;
-  }
-
   private renderButtons() {
     if (this.updatingOwner) {
       return <Spinner />;
@@ -201,7 +189,9 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
           key={mapper.id}
           className='beatmap-owner-editor__input beatmap-owner-editor__input--static'
           user={mapper}
-        />
+        >
+          <UserAvatar modifiers='full-circle' user={mapper} />{mapper.username}
+        </UserLink>
       ));
     }
 

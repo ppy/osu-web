@@ -31,6 +31,6 @@ interface BeatmapJsonDefaultAttributes {
 }
 
 type BeatmapJson = BeatmapJsonDefaultAttributes & Partial<BeatmapJsonAvailableIncludes>;
-type Mapper = Pick<UserJson, 'id' | 'username'>;
+type Mapper = Pick<UserJson, 'avatar_url' | 'id' | 'username'>;
 
 export default BeatmapJson;
