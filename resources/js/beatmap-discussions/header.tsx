@@ -27,6 +27,7 @@ import { Nominations } from './nominations';
 import { Subscribe } from './subscribe';
 import TypeFilters from './type-filters';
 import { UserFilter } from './user-filter';
+import UserLinkList from './user-link-list';
 
 interface Props {
   discussionsState: DiscussionsState;
@@ -181,11 +182,12 @@ export class Header extends React.Component<Props> {
             />
             <div className={`${bn}__beatmap-stats`}>
               <div className={`${bn}__guest`}>
+                {/* TODO: better check? */}
                 {this.currentBeatmap.user_id !== this.beatmapset.user_id && (
                   <span>
                     <StringWithComponent
                       mappings={{
-                        user: <UserLink user={this.users.get(this.currentBeatmap.user_id) ?? deletedUserJson} />,
+                        user: <UserLinkList users={this.currentBeatmap.mappers ?? []} />,
                       }}
                       pattern={trans('beatmaps.discussions.guest')}
                     />

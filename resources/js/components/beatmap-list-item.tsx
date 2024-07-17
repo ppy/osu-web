@@ -10,6 +10,7 @@ import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import StringWithComponent from './string-with-component';
+import UserLinkList from 'beatmap-discussions/user-link-list';
 
 interface BaseProps {
   beatmap: BeatmapJson | BeatmapExtendedJson;
@@ -79,12 +80,9 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
       // ? 'mapped_by_guest'
       // : 'mapped_by';
 
-    // TODO: connectors?
-    const text = visibleMappers.map((user) => <><UserLink key={user.id} user={user} />, </>);
-
     return (
       <StringWithComponent
-        mappings={{ mapper: text }}
+        mappings={{ mapper: <UserLinkList users={visibleMappers} /> }}
         pattern={trans(`beatmapsets.show.details.${translationKey}`)}
       />
     );
