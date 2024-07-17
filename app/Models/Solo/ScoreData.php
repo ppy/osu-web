@@ -16,6 +16,7 @@ class ScoreData implements Castable, JsonSerializable
     public ScoreDataStatistics $maximumStatistics;
     public array $mods;
     public ScoreDataStatistics $statistics;
+    public ?int $totalScoreWithoutMods;
 
     public function __construct(array $data)
     {
@@ -39,6 +40,7 @@ class ScoreData implements Castable, JsonSerializable
         $this->maximumStatistics = new ScoreDataStatistics($data['maximum_statistics'] ?? []);
         $this->mods = $mods;
         $this->statistics = new ScoreDataStatistics($data['statistics'] ?? []);
+        $this->totalScoreWithoutMods = $data['total_score_without_mods'] ?? null;
     }
 
     public static function castUsing(array $arguments)
@@ -67,6 +69,7 @@ class ScoreData implements Castable, JsonSerializable
             'maximum_statistics' => $this->maximumStatistics,
             'mods' => $this->mods,
             'statistics' => $this->statistics,
+            'total_score_without_mods' => $this->totalScoreWithoutMods,
         ];
     }
 }
