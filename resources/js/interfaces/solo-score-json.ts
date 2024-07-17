@@ -47,7 +47,7 @@ interface SoloScoreJsonAttributesBase {
   started_at: string | null;
   statistics: Partial<Record<SoloScoreStatisticsAttribute, number>>;
   total_score: number;
-  total_score_without_mods: number | null;
+  total_score_without_mods?: number;
   user_id: number;
 }
 
