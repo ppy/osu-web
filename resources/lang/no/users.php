@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Kontoen din har ikke blitt brukt på lang tid.",
             'inactive_different_country' => "Kontoen din har ikke blitt brukt på lang tid.",
         ],
     ],
@@ -200,6 +200,9 @@ return [
             'cover' => [
                 'button' => 'Endre profilbanner',
                 'defaults_info' => 'Flere banneralternativer vil være tilgjengelige i framtiden',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Kunne ikke prosessere bildet. Verifiser opplastet bilde og prøv igjen.',
                     'button' => 'Last opp bilde',
@@ -219,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'standard spillmodus',
                 'set' => 'angi ::mode som standard spillmodus',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "サイレンス中はディスカッションへ投稿できません。",
         'message_type_select' => 'コメントタイプを選択',
         'reply_notice' => 'Enterキーを押して送信',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'ここに入力してください',
         'require-login' => '返信するにはログインが必要です。',
         'resolved' => '解決済み',
         'restore' => '復元',
         'show_deleted' => '削除済みを表示',
         'title' => 'ディスカッション',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => '全てを折りたたむ',
@@ -187,7 +189,7 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => '',
+        'already_nominated' => '既にこのビートマップをHypeしています。',
         'cannot_nominate' => '',
         'delete' => '削除',
         'delete_own_confirm' => '本当によろしいですか？ビートマップは削除され、プロフィール画面にリダイレクトされます。',
@@ -283,6 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => '全て',

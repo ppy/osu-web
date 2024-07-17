@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Din konto har inte använts på länge.",
             'inactive_different_country' => "Ditt konto har inte använts på länge.",
         ],
     ],
@@ -200,6 +200,9 @@ return [
             'cover' => [
                 'button' => 'Ändra Profilomslag',
                 'defaults_info' => 'Fler omslagsalternativ kommer finnas i framtiden',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Misslyckades med att processa bilden. Verifiera uppladdad bild och försök igen.',
                     'button' => 'Ladda upp bild',
@@ -219,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'standardspelläge',
                 'set' => 'sätt :mode som profilens förvalda spelläge',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

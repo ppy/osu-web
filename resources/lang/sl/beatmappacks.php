@@ -13,10 +13,6 @@ return [
         'blurb' => [
             'important' => 'PREBERITE TO, PREDEN PRENESETE',
             'install_instruction' => 'Namestitev: Ko je paket prenesen, ekstrahiraj vsebino paketa v osu! Songs mapo in osu! bo storil vse ostalo potrebno.',
-            'note' => [
-                '_' => 'Pomnite, da je zelo priporočljivo, da :scary, saj so starejši mapi veliko manj kvalitetni kot najnovejši.',
-                'scary' => 'prenesete najprej najnovejše pakete',
-            ],
         ],
     ],
 

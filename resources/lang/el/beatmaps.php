@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Δεν είναι δυνατή η δημοσίευση συζήτησης ενώ σιγασμένη.",
         'message_type_select' => 'Επιλέξτε Τύπο Σχολίου',
         'reply_notice' => 'Πατήστε enter για να απαντήσετε.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Πληκτρολογήστε την απάντησή σας εδώ',
         'require-login' => 'Παρακαλώ συνδεθείτε για να δημοσιεύσετε ή να απαντήσετε',
         'resolved' => 'Επιλύθηκε',
         'restore' => 'επαναφορά',
         'show_deleted' => 'Εμφάνιση διαγραμμένου',
         'title' => 'Συζητήσεις',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Σύμπτηξη όλων',
@@ -283,6 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Οποιοδήποτε',

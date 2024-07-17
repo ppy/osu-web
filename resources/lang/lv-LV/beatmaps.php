@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Nevar publicēt diskusiju, kamēr apklusināts.",
         'message_type_select' => 'Atlasiet Komentāra Tipu',
         'reply_notice' => 'Nospiediet enter, lai atbildētu.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Raksiet atbildi šeit',
         'require-login' => 'Lūdzu, pierakstieties, lai publicētu vai atbildētu',
         'resolved' => 'Atrisināts',
         'restore' => 'atjaunot',
         'show_deleted' => 'Rādīt dzēstos',
         'title' => 'Diskusijas',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Sakļaut visu',
@@ -283,6 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Viss',

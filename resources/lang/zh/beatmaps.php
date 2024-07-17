@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "禁言时无法发布讨论。",
         'message_type_select' => '选择回复类型',
         'reply_notice' => '按下回车以提交',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => '在此处输入您的回复',
         'require-login' => '登录以继续',
         'resolved' => '已解决',
         'restore' => '已修复',
         'show_deleted' => '显示已删除的消息',
         'title' => '讨论',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => '全部折叠',
@@ -283,6 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '未设置',
     ],
     'status' => [
         'any' => '全部',
@@ -299,7 +302,7 @@ return [
     ],
     'genre' => [
         'any' => '全部',
-        'unspecified' => '不限',
+        'unspecified' => '未指定',
         'video-game' => '电子游戏',
         'anime' => '动漫',
         'rock' => '摇滚',
@@ -328,7 +331,7 @@ return [
         'polish' => '波兰语',
         'instrumental' => '器乐',
         'other' => '其他',
-        'unspecified' => '不限',
+        'unspecified' => '未指定',
     ],
 
     'nsfw' => [

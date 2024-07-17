@@ -23,6 +23,10 @@ return [
         'used' => '使用済み',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'スポットライト',
         'country' => '国別',

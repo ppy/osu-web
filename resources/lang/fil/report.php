@@ -24,6 +24,11 @@ return [
         'title' => 'I-report ang post ni :username?',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'I-report ang score',
         'title' => 'I-report ang score ni :username?',

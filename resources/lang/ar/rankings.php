@@ -23,6 +23,10 @@ return [
         'used' => 'المُنفق',
     ],
 
+    'performance' => [
+        'insufficient_history' => 'لهذا المستخدم سِجل ترتيب يقل عن 30 يوماً.',
+    ],
+
     'type' => [
         'charts' => 'منطقة ألأضواء',
         'country' => 'الدولة',

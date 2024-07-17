@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "نمی توانید در حالتی که ساکت شده اید رای بدهید.",
         'message_type_select' => 'انتخاب حالت نظر',
         'reply_notice' => 'برای پاسخ اینتر بزنید.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'پاسخ خود را اینجا تایپ کنید',
         'require-login' => 'برای پست کردن یا پاسخ دادن وارد شوید',
         'resolved' => 'حل شده',
         'restore' => 'بازگردانی',
         'show_deleted' => 'نمایش پاک شده ها',
         'title' => 'گفتگو ها',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'جمع کردن همه',
@@ -283,6 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => '',

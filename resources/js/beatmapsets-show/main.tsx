@@ -5,7 +5,7 @@ import Comments from 'components/comments';
 import HeaderV4 from 'components/header-v4';
 import NotificationBanner from 'components/notification-banner';
 import PlaymodeTabs from 'components/playmode-tabs';
-import GameMode, { gameModes } from 'interfaces/game-mode';
+import Ruleset, { rulesets } from 'interfaces/ruleset';
 import { action, autorun, computed, IReactionDisposer, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
@@ -32,7 +32,7 @@ export default class Main extends React.Component<Props> {
   private get headerLinksAppend() {
     if (this.controller.state.showingNsfwWarning) return null;
 
-    const entries = gameModes.map((ruleset) => {
+    const entries = rulesets.map((ruleset) => {
       const beatmaps = this.controller.beatmaps.get(ruleset) ?? [];
       const mainCount = beatmaps.filter((b) => !b.convert).length;
 
@@ -86,7 +86,7 @@ export default class Main extends React.Component<Props> {
   }
 
   @action
-  private readonly onClickPlaymode = (e: React.MouseEvent, mode: GameMode) => {
+  private readonly onClickPlaymode = (e: React.MouseEvent, mode: Ruleset) => {
     e.preventDefault();
 
     this.controller.state.playmode = mode;

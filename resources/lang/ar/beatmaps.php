@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "لا يمكن نشر مناقشه عندما تكون صامتاََ.",
         'message_type_select' => 'تحديد نوع التعليق',
         'reply_notice' => 'اضغط على ادخال للرد.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'أدخل ردك هنا',
         'require-login' => 'يرجى تسجيل الدخول للرد او النشر',
         'resolved' => 'تم حله',
         'restore' => 'استعادة',
         'show_deleted' => 'عرض المحذوف',
         'title' => 'مناقشات',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'طوي الكل',
@@ -213,8 +215,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'هذه الخريطة مقدرة بأن تصبح Ranked في :date إذا لم يتم العثور على أي مشاكل. انها#:position في :queue.',
-            'unresolved_problems' => '',
-            'problems' => '',
+            'unresolved_problems' => 'هذه الخريطة ممنوعة من مغادرة قسم الخرائط المؤهّلة حتى حل :problems.',
+            'problems' => 'هذه المشاكل',
             'on' => 'في :date',
             'queue' => 'قائمة انتظار الترتيب',
             'soon' => 'قريبًا',
@@ -272,7 +274,8 @@ return [
     'general' => [
         'converts' => 'ادخال الخرائط المتحولة',
         'featured_artists' => 'الفنانين المميزين',
-        'follows' => 'ألمنشئين المشتركين',
+        'follows' => '
+المنشئين المشتركين',
         'recommended' => 'الصعوبة الموصاة',
         'spotlights' => 'الخرائط التي تم تسليط الضوء عليها',
     ],
@@ -283,6 +286,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => 'لم يتم تعيينه',
     ],
     'status' => [
         'any' => 'الكل',

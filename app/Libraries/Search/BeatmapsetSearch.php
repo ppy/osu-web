@@ -19,9 +19,6 @@ use Ds\Set;
 
 class BeatmapsetSearch extends RecordSearch
 {
-    /**
-     * @param BeatmapsetSearchParams $params
-     */
     public function __construct(?BeatmapsetSearchParams $params = null)
     {
         parent::__construct(

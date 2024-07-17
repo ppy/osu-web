@@ -39,7 +39,7 @@ return [
         'pin' => 'ثبّت',
         'post' => 'نشر',
         'read_more' => 'إقرأ المزيد',
-        'refresh' => '',
+        'refresh' => 'تحديث',
         'reply' => 'رد',
         'reply_reopen' => 'الرد وإعادة فتح',
         'reply_resolve' => 'الرد والاِصلاح',

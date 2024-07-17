@@ -28,9 +28,15 @@ return [
     'checkout' => [
         'generic' => 'Napaka med zaključevanjem tvojega nakupa.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Ni bilo mogoče pridobiti nobenega rezultata, poskusi znova pozneje.',
         'invalid_cursor_exception' => 'Neveljavni določeni parametri kazalnika.',
         'operation_timeout_exception' => 'Iskalnik je trenutno bolj zaseden kot ponavadi, poskusi znova pozneje.',
+    ],
+    'user_report' => [
+        'recently_reported' => "",
     ],
 ];

@@ -16,8 +16,7 @@
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
             <div
-                class="account-edit-entry account-edit-entry--no-label js-account-edit"
-                data-account-edit-auto-submit="1"
+                class="account-edit-entry account-edit-entry--no-label js-account-edit js-account-edit-auto-submit"
                 data-url="{{ route('account.options') }}"
             >
                 <label class="account-edit-entry__checkbox">
@@ -32,14 +31,13 @@
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">
-                        @include('accounts._edit_entry_status')
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                     </div>
                 </label>
             </div>
 
             <div
-                class="account-edit-entry account-edit-entry--no-label js-account-edit"
-                data-account-edit-auto-submit="1"
+                class="account-edit-entry account-edit-entry--no-label js-account-edit js-account-edit-auto-submit"
                 data-url="{{ route('account.notification-options') }}"
             >
                 <label class="account-edit-entry__checkbox">
@@ -58,7 +56,7 @@
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">
-                        @include('accounts._edit_entry_status')
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                     </div>
                 </label>
             </div>
@@ -72,8 +70,7 @@
                             {{ osu_trans("accounts.notifications.$notificationType") }}
                         </div>
                         <form
-                            class="account-edit-entry__checkboxes js-account-edit"
-                            data-account-edit-auto-submit="1"
+                            class="account-edit-entry__checkboxes js-account-edit js-account-edit-auto-submit"
                             data-account-edit-type="array"
                             data-url="{{ route('account.notification-options') }}"
                             data-field="{{ "user_notification_option[{$notificationType}][details][modes]" }}"
@@ -82,7 +79,7 @@
                                 $modes = $notificationOptions[$notificationType]->details['modes'] ?? [];
                             @endphp
                             @foreach (App\Models\Beatmap::MODES as $key => $_value)
-                                <label class="account-edit-entry__checkbox account-edit-entry__checkbox--inline">
+                                <label class="account-edit-entry__checkbox">
                                     @include('objects._switch', ['locals' => [
                                         'checked' => in_array($key, $modes, true),
                                         'value' => $key,
@@ -94,8 +91,8 @@
                                 </label>
                             @endforeach
 
-                            <div class="account-edit-entry__checkboxes-status">
-                                @include('accounts._edit_entry_status')
+                            <div class="account-edit-entry__checkbox-status">
+                                @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                             </div>
                         </form>
                     </div>
@@ -110,8 +107,7 @@
                 </div>
 
                 <form
-                    class="account-edit-entry__delivery-options js-account-edit"
-                    data-account-edit-auto-submit="1"
+                    class="account-edit-entry__delivery-options js-account-edit js-account-edit-auto-submit"
                     data-account-edit-type="multi"
                     data-url="{{ route('account.notification-options') }}"
                 >

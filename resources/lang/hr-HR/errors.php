@@ -28,9 +28,15 @@ return [
     'checkout' => [
         'generic' => 'Došlo je do pogreške pri pripremanju tvoje naplate.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Nije moguće dobiti nikakve rezultate, pokušaj ponovo kasnije.',
         'invalid_cursor_exception' => 'Navedeni su neispravni parametri za pokazivač.',
         'operation_timeout_exception' => 'Pretraga je trenutno zauzetija nego inače, pokušaj ponovo kasnije.',
+    ],
+    'user_report' => [
+        'recently_reported' => "",
     ],
 ];

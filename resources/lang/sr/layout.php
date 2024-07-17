@@ -199,6 +199,8 @@ return [
             'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Одјавите се',
             'profile' => 'Мој профил',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
         ],
     ],
 

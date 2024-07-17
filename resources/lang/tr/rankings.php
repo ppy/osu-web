@@ -23,6 +23,10 @@ return [
         'used' => 'Harcanan',
     ],
 
+    'performance' => [
+        'insufficient_history' => 'Bu kullanıcının son sıralama geçmişi 30 günden azdır.',
+    ],
+
     'type' => [
         'charts' => 'Öne Çıkanlar',
         'country' => 'Ülke',

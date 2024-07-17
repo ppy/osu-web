@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Kan discussie niet plaatsen als je account niet in goede staat is.",
         'message_type_select' => 'Selecteer Commentaartype',
         'reply_notice' => 'Druk op enter om te antwoorden.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Type hier je reactie',
         'require-login' => 'Log in om te posten of te antwoorden',
         'resolved' => 'Opgelost',
         'restore' => 'herstel',
         'show_deleted' => 'Toon verwijderde',
         'title' => 'Discussies',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Alles invouwen',
@@ -283,6 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Alles',

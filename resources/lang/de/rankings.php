@@ -23,6 +23,10 @@ return [
         'used' => 'Ausgegeben',
     ],
 
+    'performance' => [
+        'insufficient_history' => 'Der kürzliche Ranking-Verlauf dieses Benutzers ist kleiner als 30 Tage.',
+    ],
+
     'type' => [
         'charts' => 'Spotlights (alt)',
         'country' => 'Länder',

@@ -23,6 +23,10 @@ return [
         'used' => 'Ξοδεύτηκαν',
     ],
 
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
     'type' => [
         'charts' => 'Spotlights',
         'country' => 'Χώρας',

@@ -9,7 +9,7 @@ return [
     ],
 
     'defaults' => [
-        'page_description' => 'osu! - Rhythm is just a *click* away! Dengan berbagai mode permainan seperti Ouendan/EBA, Taiko, serta level editor yang sepenuhnya fungsional.',
+        'page_description' => 'osu! - Rhythm is just a *click* away! Dengan Ouendan/EBA, Taiko, dan berbagai mode permainan orisinal serta editor level yang sepenuhnya fungsional.',
     ],
 
     'header' => [
@@ -41,7 +41,7 @@ return [
 
         'store' => [
             'cart' => 'keranjang',
-            'orders' => 'riwayat transaksi',
+            'orders' => 'riwayat pemesanan',
             'products' => 'produk',
         ],
 
@@ -121,7 +121,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => 'Parameter yang diminta tidak valid',
+            'error' => 'Parameter permintaan tidak valid',
             'description' => '',
         ],
         '404' => [
@@ -141,7 +141,7 @@ return [
             'description' => "Maaf, namun halaman yang kamu minta tidak ada di sini!",
         ],
         '422' => [
-            'error' => 'Parameter yang diminta tidak valid',
+            'error' => 'Parameter permintaan tidak valid',
             'description' => '',
         ],
         '429' => [
@@ -178,7 +178,7 @@ return [
             'username' => 'nama pengguna',
 
             'error' => [
-                'email' => "Nama pengguna atau alamat email tidak ditemukan",
+                'email' => "Nama pengguna atau alamat email tidak ada",
                 'password' => 'Kata sandi salah',
             ],
         ],
@@ -199,6 +199,8 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Mode lazer menampilkan skor yang diraih dari lazer dengan algoritma perhitungan skor baru',
             'logout' => 'Keluar',
             'profile' => 'Profil Saya',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
         ],
     ],
 

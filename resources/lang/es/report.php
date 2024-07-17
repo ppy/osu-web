@@ -24,6 +24,11 @@ return [
         'title' => '¿Reportar la publicación de :username?',
     ],
 
+    'message' => [
+        'button' => 'Reportar mensaje',
+        'title' => '¿Reportar el mensaje de :username?',
+    ],
+
     'scores' => [
         'button' => 'Reportar puntuación',
         'title' => '¿Reportar la puntuación de :username?',

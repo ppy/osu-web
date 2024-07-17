@@ -24,6 +24,11 @@ return [
         'title' => 'الاِبلاغ عن منشور :username؟',
     ],
 
+    'message' => [
+        'button' => 'تبليغ',
+        'title' => 'هل تريد التبليغ عن رسالة :username؟',
+    ],
+
     'scores' => [
         'button' => 'الاِبلاغ عن النتيجة',
         'title' => 'الاِبلاغ عن نتيجة :username ؟',

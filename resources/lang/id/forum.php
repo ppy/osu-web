@@ -231,7 +231,7 @@ return [
                 'hide_results_info' => 'Apabila diaktifkan, hasil suara baru akan tersedia setelah jajak pendapat berakhir.',
                 'length' => 'Jalankan jajak pendapat selama',
                 'length_days_suffix' => 'hari',
-                'length_info' => 'Kosongkan apabila jajak pendapat ini tidak memiliki tenggat waktu akhir',
+                'length_info' => 'Kosongkan untuk jajak pendapat yang tidak pernah berakhir',
                 'max_options' => 'Pilihan per pengguna',
                 'max_options_info' => 'Jumlah pilihan yang dapat dipilih oleh masing-masing pengguna.',
                 'options' => 'Pilihan',
@@ -348,7 +348,7 @@ return [
 
             'poll' => [
                 'edit' => 'Sunting Jajak Pendapat',
-                'edit_warning' => 'Menyunting jajak pendapat akan menganulir seluruh suara yang telah masuk!',
+                'edit_warning' => 'Menyunting jajak pendapat akan menganulir hasil saat ini!',
                 'vote' => 'Pilih',
 
                 'button' => [

@@ -4,7 +4,7 @@
 import * as d3 from 'd3';
 import { isValid as isBeatmapExtendedJson } from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
-import GameMode, { gameModes } from 'interfaces/game-mode';
+import Ruleset, { rulesets } from 'interfaces/ruleset';
 import * as _ from 'lodash';
 import core from 'osu-core-singleton';
 import { parseJsonNullable } from 'utils/json';
@@ -24,16 +24,16 @@ const difficultyColourSpectrum = d3.scaleLinear<string>()
   .interpolate(d3.interpolateRgb.gamma(2.2));
 
 interface FindDefaultParams<T> {
-  group?: Map<GameMode, T[]>;
+  group?: Map<Ruleset, T[]>;
   items?: T[];
-  mode?: GameMode;
+  mode?: Ruleset;
 }
 
 export function findDefault<T extends BeatmapJson>(params: FindDefaultParams<T>): T | null {
   if (params.items != null) {
     let currentDiffDelta: number | null = null;
     let currentItem: T | null = null;
-    const targetDiff = userRecommendedDifficulty(params.mode ?? gameModes[0]);
+    const targetDiff = userRecommendedDifficulty(params.mode ?? rulesets[0]);
 
     for (const item of params.items) {
       const diffDelta = Math.abs(item.difficulty_rating - targetDiff);
@@ -61,9 +61,9 @@ export function findDefault<T extends BeatmapJson>(params: FindDefaultParams<T>)
 }
 
 interface FindParams<T> {
-  group: Map<GameMode, T[]>;
+  group: Map<Ruleset, T[]>;
   id: number;
-  mode?: GameMode;
+  mode?: Ruleset;
 }
 
 export function find<T extends BeatmapJson>(params: FindParams<T>): T | null {
@@ -84,19 +84,22 @@ export function getDiffColour(rating: number) {
   return difficultyColourSpectrum(rating);
 }
 
-export function group<T extends BeatmapJson>(beatmaps?: T[] | null): Map<GameMode, T[]> {
+export function group<T extends BeatmapJson>(beatmaps?: T[] | null, includeEmpty = true): Map<Ruleset, T[]> {
   // TODO: replace with mapBy
-  const grouped: Partial<Record<GameMode, T[]>> = _.groupBy(beatmaps ?? [], 'mode');
-  const ret = new Map<GameMode, T[]>();
+  const grouped: Partial<Record<Ruleset, T[]>> = _.groupBy(beatmaps ?? [], 'mode');
+  const ret = new Map<Ruleset, T[]>();
 
-  gameModes.forEach((mode) => {
-    ret.set(mode, sort(grouped[mode] ?? []));
+  rulesets.forEach((mode) => {
+    const value = grouped[mode];
+    if (value != null || includeEmpty) {
+      ret.set(mode, sort(value ?? []));
+    }
   });
 
   return ret;
 }
 
-export function rulesetName(id: number): GameMode {
+export function rulesetName(id: number): Ruleset {
   switch (id) {
     case 0:
       return 'osu';
@@ -133,19 +136,19 @@ export function sortWithMode<T extends BeatmapJson>(beatmaps: T[]): T[] {
 
 function userModes() {
   const currentMode = core.currentUser?.playmode;
-  if (currentMode == null || !gameModes.includes(currentMode)) {
-    return gameModes;
+  if (currentMode == null || !rulesets.includes(currentMode)) {
+    return rulesets;
   }
 
-  const ret = _.without(gameModes, currentMode);
+  const ret = _.without(rulesets, currentMode);
   ret.unshift(currentMode);
 
   return ret;
 }
 
-let userRecommendedDifficultyCache: Partial<Record<GameMode, number>> | null = null;
+let userRecommendedDifficultyCache: Partial<Record<Ruleset, number>> | null = null;
 
-function userRecommendedDifficulty(mode: GameMode) {
+function userRecommendedDifficulty(mode: Ruleset) {
   if (userRecommendedDifficultyCache == null) {
     userRecommendedDifficultyCache = parseJsonNullable('json-recommended-star-difficulty-all') ?? {};
     $(document).one('turbolinks:before-cache', () => {

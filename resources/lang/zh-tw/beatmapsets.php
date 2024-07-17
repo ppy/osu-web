@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '提名者可能無法提名多個遊戲模式。',
+        'full_nomination_required' => '你必須完全是一個提名者才能展現一個遊戲模式的最終提名。',
         'hybrid_requires_modes' => '包含多個遊戲模式的圖譜至少需要選擇一種遊戲模式進行提名。',
         'incorrect_mode' => '您沒有權限為 :mode 模式提名',
-        'full_bn_required' => '您必須是正式的提名者才能執行此合格提名。',
+        'invalid_limited_nomination' => '此圖譜有無效的提名而且無法在這個階段被檢驗。',
+        'invalid_ruleset' => '這提名有無效的遊戲模式。',
         'too_many' => '提名需求已達成。',
+        'too_many_non_main_ruleset' => '非主要遊戲模式的提名需求已經被實現了。',
 
         'dialog' => [
             'confirmation' => '您確定要提名這張圖譜嗎？',
             'header' => '提名圖譜',
             'hybrid_warning' => '注意: 您只能提名一次，所以請確保您的提名包含所有您想提名的模式。',
+            'current_main_ruleset' => '目前遊戲模式為: :ruleset',
             'which_modes' => '您想為哪個模式提名？',
         ],
     ],

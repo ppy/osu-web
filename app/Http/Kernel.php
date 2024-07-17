@@ -23,7 +23,7 @@ class Kernel extends HttpKernel
             Middleware\AuthApi::class,
             Middleware\SetLocaleApi::class,
             Middleware\CheckUserBanStatus::class,
-            Middleware\UpdateUserLastvisit::class,
+            Middleware\UpdateUserInfo::class,
             Middleware\VerifyUserAlways::class,
         ],
         'web' => [
@@ -34,7 +34,7 @@ class Kernel extends HttpKernel
             Middleware\VerifyCsrfToken::class,
             Middleware\SetSessionVerification::class,
             Middleware\SetLocale::class,
-            Middleware\UpdateUserLastvisit::class,
+            Middleware\UpdateUserInfo::class,
             Middleware\VerifyUserAlways::class,
             Middleware\CheckUserBanStatus::class,
             Middleware\TurbolinksSupport::class,

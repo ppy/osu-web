@@ -20,8 +20,7 @@
                         {{ osu_trans('accounts.options.beatmapset_download._') }}
                     </div>
                     <form
-                        class="account-edit-entry__checkboxes account-edit-entry__checkboxes--vertical js-account-edit"
-                        data-account-edit-auto-submit="1"
+                        class="account-edit-entry__checkboxes account-edit-entry__checkboxes--vertical js-account-edit js-account-edit-auto-submit"
                         data-account-edit-type="radio"
                         data-url="{{ route('account.options') }}"
                         data-field="user_profile_customization[beatmapset_download]"
@@ -33,9 +32,7 @@
                             @if ($name === 'direct' && !auth()->user()->isSupporter())
                                 @continue
                             @endif
-                            <label
-                                class="account-edit-entry__checkbox account-edit-entry__checkbox--inline"
-                            >
+                            <label class="account-edit-entry__checkbox">
                                 @include('objects._switch', ['locals' => [
                                     'checked' => $customization->beatmapset_download === $name,
                                     'name' => 'user_profile_customization[beatmapset_download]',
@@ -49,7 +46,7 @@
 
                                 @if (!$statusIsRendered)
                                     <div class="account-edit-entry__checkbox-status">
-                                        @include('accounts._edit_entry_status')
+                                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                                     </div>
                                     @php
                                         $statusIsRendered = true;
@@ -64,9 +61,9 @@
 
         <div class="account-edit__input-group">
             <div
-                class="account-edit-entry account-edit-entry--no-label js-account-edit js-user-preferences-update"
-                data-account-edit-auto-submit="1"
+                class="account-edit-entry account-edit-entry--no-label js-account-edit js-account-edit-auto-submit"
                 data-url="{{ route('account.options') }}"
+                data-user-preferences-update="1"
             >
                 <label class="account-edit-entry__checkbox">
                     @include('objects._switch', ['locals' => [
@@ -80,14 +77,19 @@
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">
-                        @include('accounts._edit_entry_status')
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                     </div>
                 </label>
             </div>
         </div>
 
         <div class="account-edit__input-group">
-            <div class="account-edit-entry account-edit-entry--no-label js-account-edit js-user-preferences-update" data-url="{{ route('account.options') }}" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
+            <div
+                class="account-edit-entry account-edit-entry--no-label js-account-edit js-account-edit-auto-submit"
+                data-url="{{ route('account.options') }}"
+                data-skip-ajax-error-popup="1"
+                data-user-preferences-update="1"
+            >
                 <label class="account-edit-entry__checkbox">
                     @include('objects._switch', ['locals' => [
                         'additionalClass'=> 'js-account-edit__input',
@@ -100,7 +102,7 @@
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">
-                        @include('accounts._edit_entry_status')
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                     </div>
                 </label>
             </div>

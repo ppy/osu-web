@@ -3,6 +3,7 @@
 
 import BlockButton from 'components/block-button';
 import FriendButton from 'components/friend-button';
+import Reportable from 'interfaces/reportable';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
@@ -30,6 +31,7 @@ interface Props {
   activated: boolean;
   mode: ViewMode;
   modifiers?: Modifiers;
+  reportable?: Reportable;
   user?: UserJson | null;
 }
 
@@ -304,8 +306,8 @@ export class UserCard extends React.PureComponent<Props, State> {
           className='simple-menu__item'
           icon
           onFormOpen={dismiss}
-          reportableId={this.user.id.toString()}
-          reportableType='user'
+          reportableId={this.props.reportable?.id ?? this.user.id.toString()}
+          reportableType={this.props.reportable?.type ?? 'user'}
           user={this.user}
         />
       </div>

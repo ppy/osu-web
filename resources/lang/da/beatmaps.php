@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Kan ikke skrive diskussion, mens du er tavs.",
         'message_type_select' => 'Vælg kommentar-type',
         'reply_notice' => 'Tryk enter for at svare.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Skriv dit svar her',
         'require-login' => 'Log ind for at lave et opslag eller svare',
         'resolved' => 'Løst',
         'restore' => 'gendan',
         'show_deleted' => 'Vis slettede',
         'title' => 'Diskussioner',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Sammenfold alle',
@@ -284,6 +286,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Vilkårlig',

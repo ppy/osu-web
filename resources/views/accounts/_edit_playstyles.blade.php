@@ -13,8 +13,7 @@
         <div class="account-edit__input-group">
             <div class="account-edit-entry account-edit-entry--no-label">
                 <form
-                    class="account-edit-entry__checkboxes js-account-edit"
-                    data-account-edit-auto-submit="1"
+                    class="account-edit-entry__checkboxes js-account-edit js-account-edit-auto-submit"
                     data-account-edit-type="array"
                     data-url="{{ route('account.options') }}"
                     data-field="user[osu_playstyle]"
@@ -23,7 +22,7 @@
                         $userPlaystyles = new Ds\Set(auth()->user()->osu_playstyle ?? []);
                     @endphp
                     @foreach (App\Models\User::PLAYSTYLES as $key => $_value)
-                        <label class="account-edit-entry__checkbox account-edit-entry__checkbox--inline">
+                        <label class="account-edit-entry__checkbox">
                             @include('objects._switch', ['locals' => [
                                 'checked' => $userPlaystyles->contains($key),
                                 'value' => $key,
@@ -35,8 +34,8 @@
                         </label>
                     @endforeach
 
-                    <div class="account-edit-entry__checkboxes-status">
-                        @include('accounts._edit_entry_status')
+                    <div class="account-edit-entry__checkbox-status">
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                     </div>
                 </form>
             </div>

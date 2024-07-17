@@ -200,6 +200,9 @@ return [
             'cover' => [
                 'button' => 'Αλλάξτε το Εξώφυλλο του Προφίλ σας',
                 'defaults_info' => 'Περισσότερα εξώφυλλα θα είναι διαθέσιμα στο μέλλον',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Αποτυχία επεξεργασίας εικόνας. Ελέγξτε την εικόνα και προσπαθήστε ξανά.',
                     'button' => 'Ανεβάστε εικόνα',
@@ -219,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'προεπιλεγμένο game mode',
                 'set' => 'όρισε το :mode ως το προεπιλεγμένο game mode',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

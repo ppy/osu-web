@@ -5,9 +5,9 @@
 
 return [
     'load_failed' => 'Data gagal dimuat.',
-    'missing_route' => 'URL tidak valid atau metode permintaan URL tidak sesuai prosedur.',
+    'missing_route' => 'URL tidak valid atau metode permintaan tidak tepat.',
     'no_restricted_access' => 'Kamu tidak dapat melakukan tindakan ini ketika akunmu sedang di-restrict.',
-    'supporter_only' => 'Kamu harus menjadi osu!supporter untuk dapat menggunakan fitur ini.',
+    'supporter_only' => 'Kamu harus menjadi osu!supporter untuk menggunakan fitur ini.',
     'unknown' => 'Terdapat masalah yang tidak diketahui.',
 
     'codes' => [
@@ -28,9 +28,15 @@ return [
     'checkout' => [
         'generic' => 'Terjadi kesalahan dalam mempersiapkan proses checkout.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
-        'default' => 'Hasil pencarian tidak dapat ditampilkan pada saat ini. Mohon coba lagi nanti.',
+        'default' => 'Tidak ada hasil pencarian yang dapat diperoleh. Silakan coba lagi nanti.',
         'invalid_cursor_exception' => 'Parameter kursor yang ditentukan tidak valid.',
         'operation_timeout_exception' => 'Aktivitas pencarian saat ini sedang lebih sibuk dari biasanya. Mohon coba lagi nanti.',
+    ],
+    'user_report' => [
+        'recently_reported' => "Kamu telah melaporkan hal ini baru-baru ini.",
     ],
 ];

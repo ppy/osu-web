@@ -24,6 +24,11 @@ return [
         'title' => 'Prijavi :username-ovu poruku?',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Prijavi Postignuće',
         'title' => 'Prijavi :username-ovo postignuće?',

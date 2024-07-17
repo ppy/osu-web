@@ -13,10 +13,6 @@ return [
         'blurb' => [
             'important' => 'LÆS DETTE FØR DU DOWNLOADER',
             'install_instruction' => 'Installation: Når en pakke er blevet downloadet, udtrække indholdet af pakken i din osu! Sange mappe og osu! vil gøre resten.',
-            'note' => [
-                '_' => 'Vær opmærksom på, at det er stærkt anbefalet at :scary, eftersom ældre beatmaps er meget ringere kvalitet i forhold til nyere beatmaps.',
-                'scary' => 'hente pakker fra nyest til ældst',
-            ],
         ],
     ],
 

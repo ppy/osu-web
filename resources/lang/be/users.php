@@ -200,6 +200,9 @@ return [
             'cover' => [
                 'button' => 'Змяніць фон профілю',
                 'defaults_info' => 'Больш параметраў фону будуць доступны ў будучыні',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Не атрымалася апрацаваць выяву. Паспрабуйце яшчэ раз.',
                     'button' => 'Запампаваць выяву',
@@ -219,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'прадвызначаны рэжым гульні',
                 'set' => 'усталяваць :mode як прадвызначаны рэжым гульні',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

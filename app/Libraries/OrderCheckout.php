@@ -9,46 +9,22 @@ use App\Exceptions\InvariantException;
 use App\Libraries\Payments\InvalidOrderStateException;
 use App\Models\Store\Order;
 use DB;
-use Request;
 
 class OrderCheckout
 {
-    /**
-     * @var Order
-     */
-    private $order;
-
-    /**
-     * @var string|null
-     */
-    private $provider;
-
-    /** @var string|null */
-    private $providerReference;
-
-    public function __construct(Order $order, ?string $provider = null, ?string $providerReference = null)
+    public function __construct(private Order $order, private ?string $provider = null, private ?string $providerReference = null)
     {
         if ($provider === Order::PROVIDER_SHOPIFY && $providerReference === null) {
             throw new InvariantException('shopify provider requires a providerReference (checkout id).');
         }
-
-        $this->order = $order;
-        $this->provider = $provider;
-        $this->providerReference = $providerReference;
     }
 
-    /**
-     * @return Order
-     */
-    public function getOrder()
+    public function getOrder(): Order
     {
         return $this->order;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getProvider()
+    public function getProvider(): ?string
     {
         return $this->provider;
     }
@@ -56,7 +32,7 @@ class OrderCheckout
     /**
      * @return string[]
      */
-    public function allowedCheckoutProviders()
+    public function allowedCheckoutProviders(): array
     {
         if ($this->order->isShouldShopify()) {
             return [Order::PROVIDER_SHOPIFY];
@@ -64,9 +40,6 @@ class OrderCheckout
 
         if ($this->order->getTotal() > 0) {
             $allowed = [Order::PROVIDER_PAYPAL];
-            if ($this->allowCentiliPayment()) {
-                $allowed[] = Order::PROVIDER_CENTILLI;
-            }
 
             if ($this->allowXsollaPayment()) {
                 $allowed[] = Order::PROVIDER_XSOLLA;
@@ -78,23 +51,7 @@ class OrderCheckout
         return [Order::PROVIDER_FREE];
     }
 
-    /**
-     * @return string
-     */
-    public function getCentiliPaymentLink()
-    {
-        $params = [
-            'apikey' => $GLOBALS['cfg']['payments']['centili']['api_key'],
-            'country' => 'jp',
-            'countrylock' => 'true',
-            'reference' => $this->order->getOrderNumber(),
-            'price' => $this->order->getTotal() * $GLOBALS['cfg']['payments']['centili']['conversion_rate'],
-        ];
-
-        return $GLOBALS['cfg']['payments']['centili']['widget_url'].'?'.http_build_query($params);
-    }
-
-    public function beginCheckout()
+    public function beginCheckout(): void
     {
         // something that shouldn't happen just happened.
         if (!in_array($this->provider, $this->allowedCheckoutProviders(), true)) {
@@ -117,7 +74,7 @@ class OrderCheckout
         });
     }
 
-    public function completeCheckout()
+    public function completeCheckout(): Order
     {
         return DB::connection('mysql-store')->transaction(function () {
             $order = $this->order->lockSelf();
@@ -140,7 +97,7 @@ class OrderCheckout
         });
     }
 
-    public function failCheckout()
+    public function failCheckout(): Order
     {
         return DB::connection('mysql-store')->transaction(function () {
             $order = $this->order->lockSelf();
@@ -159,10 +116,7 @@ class OrderCheckout
         });
     }
 
-    /**
-     * @return array
-     */
-    public function validate()
+    public function validate(): array
     {
         $shouldShopify = $this->order->isShouldShopify();
         // TODO: nested indexed ValidationError...somehow.
@@ -219,26 +173,12 @@ class OrderCheckout
         return new static(Order::whereOrderNumber($orderNumber)->firstOrFail());
     }
 
-    /**
-     * @return bool
-     */
-    private function allowCentiliPayment()
-    {
-        return $GLOBALS['cfg']['payments']['centili']['enabled']
-            && strcasecmp(request_country(), 'JP') === 0
-            && !$this->order->requiresShipping()
-            && Request::input('intl') !== '1';
-    }
-
-    /**
-     * @return bool
-     */
-    private function allowXsollaPayment()
+    private function allowXsollaPayment(): bool
     {
         return !$this->order->requiresShipping();
     }
 
-    private function newOrderTransactionId()
+    private function newOrderTransactionId(): string
     {
         return $this->provider === Order::PROVIDER_SHOPIFY ? "{$this->provider}-{$this->providerReference}" : $this->provider;
     }

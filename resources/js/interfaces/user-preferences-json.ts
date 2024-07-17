@@ -18,6 +18,7 @@ export const defaultUserPreferencesJson: UserPreferencesJson = {
   forum_posts_show_deleted: true,
   legacy_score_only: false,
   profile_cover_expanded: true,
+  scoring_mode: 'standardised',
   user_list_filter: 'all',
   user_list_sort: 'last_visit',
   user_list_view: 'card',
@@ -36,6 +37,7 @@ export default interface UserPreferencesJson {
   forum_posts_show_deleted: boolean;
   legacy_score_only: boolean;
   profile_cover_expanded: boolean;
+  scoring_mode: 'classic' | 'standardised';
   user_list_filter: Filter;
   user_list_sort: SortMode;
   user_list_view: ViewMode;

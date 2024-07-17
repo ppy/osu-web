@@ -5,26 +5,26 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => '¡Aún no se ha jugado ninguna partida :type_group en osu!(lazer)!',
+        'playlists' => 'en las listas de juego',
+        'realtime' => 'multijugador',
     ],
 
     'room' => [
-        'hosted_by' => '',
-        'invalid_password' => '',
-        'map_count' => '',
-        'player_count' => '',
-        'time_left' => '',
+        'hosted_by' => 'alojado por :user',
+        'invalid_password' => 'Contraseña de la sala no válida',
+        'map_count' => ':count_delimited mapa|:count_delimited mapas',
+        'player_count' => ':count_delimited jugador|:count_delimited jugadores',
+        'time_left' => 'quedan :time',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'La duración es demasiado larga.',
         ],
 
         'status' => [
-            'active' => '',
-            'ended' => '',
-            'soon' => '',
+            'active' => 'activa',
+            'ended' => 'terminada',
+            'soon' => 'termina pronto',
         ],
     ],
 ];

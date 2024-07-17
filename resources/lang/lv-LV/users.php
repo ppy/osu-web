@@ -200,6 +200,9 @@ return [
             'cover' => [
                 'button' => 'Mainīt Profila Pārklāju',
                 'defaults_info' => 'Vairāk pārklāja iestatījumu būs pieejami nākotnē',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Neizdevās apstrādāt bildi. Verificējiet augšupielādēto bildi un mēģiniet vēlreiz.',
                     'button' => 'Augšupielādēt bildi',
@@ -219,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'noklusējuma spēles režīms',
                 'set' => 'uzstādīt :mode kā profila noklusējuma spēles režīmu',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

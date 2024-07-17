@@ -345,8 +345,8 @@ class BBCodeFromDB
     public function parseYoutube(string $text): string
     {
         return strtr($text, [
-            "[youtube:{$this->uid}]" => "<div class='bbcode__video-box'><iframe class='u-embed-wide' src='https://www.youtube.com/embed/",
-            "[/youtube:{$this->uid}]" => "?rel=0' allowfullscreen></iframe></div>",
+            "[youtube:{$this->uid}]" => "<iframe class='u-embed-wide u-embed-wide--bbcode' src='https://www.youtube.com/embed/",
+            "[/youtube:{$this->uid}]" => "?rel=0' allowfullscreen></iframe>",
         ]);
     }
 

@@ -29,24 +29,43 @@ class CountryStatistics extends Model
 
     public static function recalculate($countryAcronym, $modeInt)
     {
-        $stats = UserStatistics\Model::getClass(Beatmap::modeStr($modeInt))
+        $statisticsQuery = UserStatistics\Model::getClass(Beatmap::modeStr($modeInt))
             ::where('country_acronym', $countryAcronym)
             ->where('rank_score', '>', 0)
-            ->whereHas('user', function ($userQuery) {
-                return $userQuery->default();
-            })->select(DB::raw('sum(ranked_score) AS ranked_score, sum(playcount) AS playcount, count(*) AS usercount, sum(rank_score) AS rank_score'))
+            ->whereHas('user', fn ($userQuery) => $userQuery->default());
+
+        $stats = $statisticsQuery
+            ->select(DB::raw('sum(ranked_score) AS ranked_score, sum(playcount) AS playcount, count(*) AS usercount'))
             ->first();
 
+        $conds = [
+            'country_code' => $countryAcronym,
+            'mode' => $modeInt,
+        ];
+
         if ($stats->ranked_score > 0) {
-            self::updateOrCreate([
-                'country_code' => $countryAcronym,
-                'mode' => $modeInt,
-            ], [
+            $userPerformances = $statisticsQuery->clone()
+                ->select('rank_score')
+                ->orderBy('rank_score', 'desc')
+                ->limit($GLOBALS['cfg']['osu']['rankings']['country_performance_user_count'])
+                ->get();
+
+            $totalPerformance = 0;
+            $factor = 1.0;
+
+            foreach ($userPerformances as $userPerformance) {
+                $totalPerformance += $userPerformance->rank_score * $factor;
+                $factor *= $GLOBALS['cfg']['osu']['rankings']['country_performance_weighting_factor'];
+            }
+
+            self::updateOrCreate($conds, [
                 'ranked_score' => $stats->ranked_score,
                 'play_count' => $stats->playcount,
                 'user_count' => $stats->usercount,
-                'performance' => $stats->rank_score,
+                'performance' => $totalPerformance,
             ]);
+        } else {
+            self::where($conds)->delete();
         }
     }
 }

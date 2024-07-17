@@ -10,7 +10,7 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
-import GameMode, { gameModes } from 'interfaces/game-mode';
+import Ruleset, { rulesets } from 'interfaces/ruleset';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { assign, padStart, sortBy } from 'lodash';
@@ -65,8 +65,6 @@ interface PropsFromHrefValue {
   rel: 'nofollow noreferrer';
   target?: '_blank';
 }
-
-export const defaultFilter = 'total';
 
 // parseUrl and makeUrl lookups
 const filterLookup = new Set<unknown>(filters);
@@ -146,12 +144,12 @@ function isNearbyDiscussion<T extends BeatmapsetDiscussionJson>(discussion: T): 
 }
 
 // sync with $defaultRulesets in app/Models/UserGroup.php
-const defaultGroupRulesets: Partial<Record<string, Readonly<GameMode[]>>> = { nat: gameModes };
+const defaultGroupRulesets: Partial<Record<string, Readonly<Ruleset[]>>> = { nat: rulesets };
 
-export function isUserFullNominator(user?: UserJson | null, gameMode?: GameMode) {
+export function isUserFullNominator(user?: UserJson | null, gameMode?: Ruleset) {
   return user != null && user.groups != null && user.groups.some((group) => {
     if (gameMode != null) {
-      let groupRulesets: Readonly<GameMode[]> = group.playmodes ?? [];
+      let groupRulesets: Readonly<Ruleset[]> = group.playmodes ?? [];
       if (groupRulesets.length === 0) {
         groupRulesets = defaultGroupRulesets[group.identifier] ?? [];
       }
@@ -216,7 +214,7 @@ export function makeUrl(options: MakeUrlOptions) {
     mode: mode ?? defaultMode(beatmapId),
   };
 
-  if (filter != null && filter !== 'total' && params.mode !== 'events') {
+  if (filter != null && params.mode !== 'events') {
     params.filter = filter;
   }
 
@@ -283,7 +281,7 @@ export function parseTimestamp(message?: string | null) {
   return (timestamp[2] * 60 + timestamp[3]) * 1000 + timestamp[4];
 }
 
-export function parseUrl(urlString?: string | null, discussions?: BeatmapsetDiscussionJson[] | null) {
+export function parseUrl(urlString?: string | null, discussions?: BeatmapsetDiscussionJson[] | null, defaultFilter: Filter = 'total') {
   const url = new URL(urlString ?? currentUrl().href);
 
   const [, pathBeatmapsets, beatmapsetIdString, pathDiscussions, beatmapIdString, mode, filter] = url.pathname.split(/\/+/);
@@ -298,7 +296,7 @@ export function parseUrl(urlString?: string | null, discussions?: BeatmapsetDisc
   const ret: ParsedUrlParams = {
     beatmapId,
     beatmapsetId,
-    filter: isFilter(filter) ? filter : 'total',
+    filter: isFilter(filter) ? filter : defaultFilter,
     // empty path segments are ''
     mode: isDiscussionPage(mode) ? mode : defaultMode(beatmapId),
     user: getInt(url.searchParams.get('user')),

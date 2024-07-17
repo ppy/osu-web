@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Negali rašyti diskusijose, kol esi užtildytas.",
         'message_type_select' => 'Pasirink Komentaro Tipą',
         'reply_notice' => 'Spausk Enter norint atsakyti.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Rašykite savo atsakymą čia',
         'require-login' => 'Atsakymui reikia prisijungti',
         'resolved' => 'Išspręsta',
         'restore' => 'atkurti',
         'show_deleted' => 'Peržiūrėti ištrintus',
         'title' => 'Diskusijos',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Sutraukti visus',
@@ -283,6 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Bet kokie',

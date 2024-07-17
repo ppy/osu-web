@@ -27,7 +27,7 @@ return [
         '_' => 'бәрі',
         'user' => '',
         'beatmapset' => 'карталар',
-        'forum_topic' => '',
+        'forum_topic' => 'форум',
         'news_post' => 'жаңалықтар',
         'build' => '',
         'channel' => 'чат',
@@ -35,7 +35,7 @@ return [
 
     'item' => [
         'beatmapset' => [
-            '_' => '',
+            '_' => 'Карта',
 
             'beatmap_owner_change' => [
                 '_' => 'Қонақтың қиындығы',
@@ -150,7 +150,7 @@ return [
         ],
 
         'forum_topic' => [
-            '_' => '',
+            '_' => 'Форум тақырыбы',
 
             'forum_topic_reply' => [
                 '_' => '',
@@ -161,10 +161,10 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Жаңа карта',
 
                 'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_compact' => 'Жаңа карта ":title"',
                 'user_beatmapset_new_group' => '',
 
                 'user_beatmapset_revive' => '',

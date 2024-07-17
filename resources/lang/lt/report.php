@@ -24,6 +24,11 @@ return [
         'title' => 'Pranešti :username įrašą?',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Pranešti Rezultatą',
         'title' => 'Pranešti :username rezultatą?',

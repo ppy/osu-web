@@ -28,9 +28,15 @@ return [
     'checkout' => [
         'generic' => '支払い準備中にエラーが発生しました。',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => '結果の取得に失敗しました。もう一度お試しください。',
         'invalid_cursor_exception' => '無効なカーソルパラメータが指定されました。',
         'operation_timeout_exception' => '検索機能が平時より混み合っています。もう一度お試しください。',
+    ],
+    'user_report' => [
+        'recently_reported' => "",
     ],
 ];

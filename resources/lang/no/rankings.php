@@ -23,6 +23,10 @@ return [
         'used' => 'Brukt',
     ],
 
+    'performance' => [
+        'insufficient_history' => 'Denne brukeren har mindre enn 30 dager av nylig rang historie.',
+    ],
+
     'type' => [
         'charts' => 'Rampelyset',
         'country' => 'Land',

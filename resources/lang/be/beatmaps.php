@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Нельга размясціць дыскусію ў адключаным рэжыме.",
         'message_type_select' => 'Выбраць тып каментарыя',
         'reply_notice' => 'Каб адказаць, націсніце «Enter».',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Напішыце свой адказ тут',
         'require-login' => 'Увайдзіце, каб апублікаваць або адказаць',
         'resolved' => 'Вырашана',
         'restore' => 'аднавіць',
         'show_deleted' => 'Паказ выдаленыя',
         'title' => 'Абмеркаванні',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Згарнуць усё',
@@ -283,6 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Усе',

@@ -200,6 +200,9 @@ return [
             'cover' => [
                 'button' => 'Schimbă coperta de profil',
                 'defaults_info' => 'Mai multe opțiuni pentru coperți vor fi disponibile în viitor',
+                'holdover_remove_confirm' => "Coperta selectată anterior nu mai este disponibilă pentru selecție. Nu o veți mai putea selecta înapoi după ce treceți la o copertă diferită. Continuați?",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Imposibil de procesat imaginea. Verifică imaginea încărcată și încearcă din nou.',
                     'button' => 'Încarcă imaginea',
@@ -219,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'mod de joc implicit',
                 'set' => 'setează :mode ca modul de joc implicit al profilului',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

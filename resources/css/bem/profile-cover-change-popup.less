@@ -2,40 +2,22 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .profile-cover-change-popup {
-  .default-border-radius();
-  .default-box-shadow();
-
-  position: absolute;
-  top: 0;
-  right: 100%;
-
-  width: 300px;
-
-  background: @osu-colour-b6;
-  color: #fff;
-  z-index: @z-index--profile-page-cover-selector;
-
   font-size: @font-size--small;
   text-align: center;
+  display: grid;
+  gap: 10px;
+  position: relative;
 
   &__defaults {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 
-    margin: -2px;
-    padding: 10px;
-  }
-
-  &__selection {
-    padding: 2px;
-    width: (100% / 3);
-    display: flex;
+    gap: 4px;
   }
 
   &__selections-info {
-    width: 100%;
-    padding: 0;
     margin: 10px 0 0;
+    grid-column: 1 ~"/" 3;
   }
 
   &__drop-overlay {
@@ -45,7 +27,6 @@
     justify-content: center;
     align-items: center;
 
-    color: #fff;
     font-size: 24px;
     padding: 20px;
 

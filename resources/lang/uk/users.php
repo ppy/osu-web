@@ -200,6 +200,9 @@ return [
             'cover' => [
                 'button' => 'Змінити обкладинку профілю',
                 'defaults_info' => 'Більше варіантів обкладинок буде доступно в майбутньому',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Не вдалося обробити зображення. Спробуйте ще раз.',
                     'button' => 'Завантажити зображення',
@@ -219,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'основний ігровий режим',
                 'set' => 'вибрати :mode як основний ігровий режим',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

@@ -69,7 +69,6 @@ return [
         'rank_per_run' => get_int(env('BEATMAPSET_RANK_PER_RUN')) ?? 2,
         'required_hype' => get_int(env('BEATMAPSET_REQUIRED_HYPE')) ?? 5,
         'required_nominations' => get_int(env('BEATMAPSET_REQUIRED_NOMINATIONS')) ?? 2,
-        'required_nominations_hybrid' => get_int(env('BEATMAPSET_REQUIRED_NOMINATIONS_HYBRID')) ?? 2,
         'upload_allowed' => get_int(env('BEATMAPSET_UPLOAD_ALLOWED')) ?? 4,
         'upload_allowed_supporter' => get_int(env('BEATMAPSET_UPLOAD_ALLOWED_SUPPORTER')) ?? 8,
         'upload_bonus_per_ranked' => get_int(env('BEATMAPSET_UPLOAD_BONUS_PER_RANKED')) ?? 1,
@@ -189,13 +188,6 @@ return [
         'experimental_rank_as_extra' => get_bool(env('SCORES_EXPERIMENTAL_RANK_AS_EXTRA')) ?? false,
         'processing_queue' => presence(env('SCORES_PROCESSING_QUEUE')) ?? 'osu-queue:score-statistics',
         'submission_enabled' => get_bool(env('SCORES_SUBMISSION_ENABLED')) ?? true,
-
-        'rank_cache' => [
-            'local_server' => get_bool(env('SCORES_RANK_CACHE_LOCAL_SERVER')) ?? false,
-            'min_users' => get_int(env('SCORES_RANK_CACHE_MIN_USERS')) ?? 35000,
-            'server_url' => presence(env('SCORES_RANK_CACHE_SERVER_URL')),
-            'timeout' => get_int(env('SCORES_RANK_CACHE_TIMEOUT')) ?? 10,
-        ],
     ],
 
     'seasonal' => [
@@ -312,5 +304,9 @@ return [
         'featured_stream' => intval(env('FEATURED_UPDATE_STREAM', 5)),
         'github_token' => env('CHANGELOG_GITHUB_TOKEN'),
         'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),
+    ],
+    'rankings' => [
+        'country_performance_user_count' => intval(env('COUNTRY_PERFORMANCE_USER_COUNT', 1000)),
+        'country_performance_weighting_factor' => floatval(env('COUNTRY_PERFORMANCE_WEIGHTING_FACTOR', 0.99)),
     ],
 ];

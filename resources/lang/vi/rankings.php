@@ -23,6 +23,10 @@ return [
         'used' => 'Đã dùng',
     ],
 
+    'performance' => [
+        'insufficient_history' => 'Người dùng này có lịch sử xếp hạng ít hơn 30 ngày.',
+    ],
+
     'type' => [
         'charts' => 'tiêu điểm',
         'country' => 'quốc gia',

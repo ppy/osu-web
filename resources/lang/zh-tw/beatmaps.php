@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "帳戶被禁言，無法發佈討論。",
         'message_type_select' => '選擇回覆類型',
         'reply_notice' => '按下 Enter 以回覆',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => '在此處輸入您的回覆',
         'require-login' => '回覆前請先登入。',
         'resolved' => '已解決',
         'restore' => '已修復',
         'show_deleted' => '顯示刪除的項目',
         'title' => '討論區',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => '收回全部',
@@ -283,6 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '未設定',
     ],
     'status' => [
         'any' => '所有',

@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "ไม่สามารถโพสต์การสนทนาในขณะที่โดนเงียบ",
         'message_type_select' => 'เลือกประเภทความคิดเห็น',
         'reply_notice' => 'กด Enter เพื่อตอบกลับ',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'พิมพ์คำตอบกลับที่นี่',
         'require-login' => 'กรุณาเข้าสู่ระบบเพื่อโพสต์หรือตอบกลับ',
         'resolved' => 'แก้ไขแล้ว',
         'restore' => 'กู้คืน',
         'show_deleted' => 'แสดงรายการที่ถูกลบ',
         'title' => 'การสนทนา',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'ซ่อนทั้งหมด',
@@ -213,8 +215,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'แมพนี้จะถูก ranked  ใน :date ถ้าไม่พบเจอปัญหาเพิ่มเติม แมพนี้อยู่ที่ #:position ใน :queue',
-            'unresolved_problems' => '',
-            'problems' => '',
+            'unresolved_problems' => 'ขณะนี้แผนที่นี้ถูกบล็อกไม่ให้ออกจากส่วนที่ผ่านการรับรองจนกว่า :problems จะได้รับการแก้ไข',
+            'problems' => 'ปัญหาเหล่านี้',
             'on' => 'เมื่อ :date',
             'queue' => 'คิวการจัดอันดับ',
             'soon' => 'เร็วๆ นี้',
@@ -283,6 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => 'ยังไม่ได้ตั้ง',
     ],
     'status' => [
         'any' => 'ไม่เจาะจง',

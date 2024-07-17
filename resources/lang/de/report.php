@@ -24,6 +24,11 @@ return [
         'title' => 'Den Beitrag von :username melden?',
     ],
 
+    'message' => [
+        'button' => 'Nachricht melden',
+        'title' => 'Nachricht von :username melden?',
+    ],
+
     'scores' => [
         'button' => 'Score melden',
         'title' => 'Den Score von :username melden?',

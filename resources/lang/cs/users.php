@@ -111,7 +111,7 @@ return [
         'forgot' => 'Zapoměl jsi heslo?',
         'info' => 'Prosím přihlaste se pro pokračování',
         'invalid_captcha' => 'Příliš mnoho neúspěšných pokusů o přihlášení, vyplňte prosím captcha a zkuste to znovu. (Obnovte stránku pokud captcha není vidět)',
-        'locked_ip' => 'vaše IP adresa je uzamčena. Počkejte, prosím, několik minut.',
+        'locked_ip' => 'Vaše IP adresa je uzamčena. Počkejte prosím několik minut.',
         'password' => 'Heslo',
         'register' => "Nemáš osu! účet? Vytvoř si ho",
         'remember' => 'Pamatovat si tento počítač',
@@ -200,6 +200,9 @@ return [
             'cover' => [
                 'button' => 'Změnit záhlaví profilu',
                 'defaults_info' => 'Více možností záhlaví bude k dispozici v budoucnu',
+                'holdover_remove_confirm' => "Toto dříve vybrané záhlaví již není k dispozici k výběru. Nebude možné jej znovu vybrat po přepnutí na jiné záhlaví. Pokračovat?",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Zpracování obrázku selhalo. Ověř si obrázek a zkus to znovu.',
                     'button' => 'Nahrát obrázek',
@@ -219,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'výchozí herní mód',
                 'set' => 'nastavit :mode jako výchozí herní mód profilu',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 
@@ -390,8 +403,8 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Stav účtu',
-                'bad_standing' => "účet uživatele <strong>:username</strong> není v dobré reputaci :(",
-                'remaining_silence' => '<strong>:username</strong> bude znovu moci mluvit za :duration.',
+                'bad_standing' => "účet uživatele :username nemá dobrou reputaci :(",
+                'remaining_silence' => ':username bude moci znovu mluvit za :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Nedávné incidenty',

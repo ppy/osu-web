@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'En hybrid beatmap kräver att du väljer minst ett spelläge att nominera för.',
         'incorrect_mode' => 'Du har inte behörighet att nominera för läge: :mode',
-        'full_bn_required' => 'Du måste vara en fullständig nominerare för att utföra denna kvalificerande nominering.',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Nomineringskravet är redan uppfyllt.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Är du säker på att du vill nominera denna beatmap?',
             'header' => 'Nominera beatmap',
             'hybrid_warning' => 'notera: du kan bara nominera en gång, så se till att du nominerar för alla spellägen som du tänker nominera för',
+            'current_main_ruleset' => '',
             'which_modes' => 'Nominera för vilka spellägen?',
         ],
     ],
@@ -61,7 +66,7 @@ return [
         'discussion' => 'Diskussion',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Visa omslagsbilden i full storlek',
         ],
 
         'deleted_banner' => [

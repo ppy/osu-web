@@ -24,6 +24,11 @@ return [
         'title' => 'Vil du anmelde :username\'s opslag?',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Anmeld Score',
         'title' => 'Vil du anmelde :username\'s score?',

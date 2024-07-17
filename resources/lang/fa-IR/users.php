@@ -200,6 +200,9 @@ return [
             'cover' => [
                 'button' => 'تغییر عکس نمایه',
                 'defaults_info' => 'تنظیمات عکس بیشتری در آینده در دسترس خواهند بود',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'پردازش عکس ناموفق. عکس بارگذاری شده را بررسی کنید و مجدد امتحان کنید.',
                     'button' => 'بارگذاری تصویر',
@@ -219,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'حالت بازی پیشفرض',
                 'set' => 'تعیین :mode بعنوان حالت عادی بازی در پروفایل',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

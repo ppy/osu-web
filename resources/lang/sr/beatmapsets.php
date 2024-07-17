@@ -41,15 +41,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Хибридне мапе захтевају да изаберете најмање један режим играња за номинацију.',
         'incorrect_mode' => 'Немате дозволу да номинујете за mode :mode',
-        'full_bn_required' => 'Морате бити потпуни номинатор да бисте направили ову квалификацијску номинацију.',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => 'Услов за номинацију је већ испуњен.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Да ли сте сигурни да желите да номинујете ову мапу?',
             'header' => 'Номинујте ову мапу',
             'hybrid_warning' => 'напомена: можете номиновати само једном, па вас молимо да се уверите да номинујете за све модове игре које намеравате да играте',
+            'current_main_ruleset' => '',
             'which_modes' => 'Номинирај за које модове?',
         ],
     ],
@@ -142,7 +147,7 @@ return [
             'source' => 'Извор',
             'storyboard' => 'Ова мапа садржи storyboard',
             'success-rate' => 'Стопа Успеха',
-            'tags' => 'Oznake',
+            'tags' => 'Ознаке',
             'video' => 'Ова мапа садржи видео',
         ],
 

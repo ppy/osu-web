@@ -200,6 +200,9 @@ return [
             'cover' => [
                 'button' => 'Đổi Ảnh Bìa Trang Cá Nhân',
                 'defaults_info' => 'Sẽ có thêm lựa chọn ảnh bìa trong tương lai',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Không xử lý được hình ảnh. Kiểm tra hình ảnh đã tải lên và thử lại sau.',
                     'button' => 'Tải ảnh lên',
@@ -219,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'chế độ chơi mặc định',
                 'set' => 'đặt :mode làm chế độ chơi mặc định của trang cá nhân',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

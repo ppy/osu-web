@@ -4,58 +4,59 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'cancel' => '',
+    'cancel' => 'Cancelar',
 
     'authorise' => [
-        'request' => '',
-        'scopes_title' => '',
-        'title' => '',
+        'app_owner' => 'una aplicación de :owner',
+        'request' => 'está solicitando permiso para acceder a tu cuenta.',
+        'scopes_title' => 'Esta aplicación podrá:',
+        'title' => 'Solicitud de autorización',
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => '¿Estás seguro de que quieres revocar los permisos de este cliente?',
+        'scopes_title' => 'Esta aplicación puede:',
+        'owned_by' => 'Propiedad de :user',
+        'none' => 'No hay clientes',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Revocar acceso',
+            'true' => 'Acceso revocado',
         ],
     ],
 
     'client' => [
-        'id' => '',
-        'name' => '',
-        'redirect' => '',
-        'reset' => '',
-        'reset_failed' => '',
-        'secret' => '',
+        'id' => 'ID del cliente',
+        'name' => 'Nombre de la aplicación',
+        'redirect' => 'URL de la llamada de retorno de la aplicación',
+        'reset' => 'Restablecer cliente secreto',
+        'reset_failed' => 'No se pudo restablecer el cliente secreto',
+        'secret' => 'Cliente secreto',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Mostrar cliente secreto',
+            'true' => 'Ocultar cliente secreto',
         ],
     ],
 
     'new_client' => [
-        'header' => '',
-        'register' => '',
+        'header' => 'Registra una nueva aplicación OAuth',
+        'register' => 'Registrar la aplicación',
         'terms_of_use' => [
-            '_' => '',
-            'link' => '',
+            '_' => 'Al usar la API, aceptas los :link.',
+            'link' => 'términos de uso',
         ],
     ],
 
     'own_clients' => [
-        'confirm_delete' => '',
-        'confirm_reset' => '',
-        'new' => '',
-        'none' => '',
+        'confirm_delete' => '¿Estás seguro de que quieres borrar este cliente?',
+        'confirm_reset' => '¿Estás seguro de que quieres restablecer el cliente secreto? Esto revocará todos los tokens existentes.',
+        'new' => 'Nueva aplicación OAuth',
+        'none' => 'No hay clientes',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Eliminar',
+            'true' => 'Eliminado',
         ],
     ],
 ];

@@ -28,9 +28,15 @@ return [
     'checkout' => [
         'generic' => 'Checkout\'unuzu hazırlarken bir hata oluştu.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Hiç bir sonuç bulunamadı, sonra tekrar deneyiniz.',
         'invalid_cursor_exception' => 'Geçersiz imleç parametresi belirtildi.',
         'operation_timeout_exception' => 'Arama, şu an her zamankinden daha yoğun, lütfen sonra tekrar deneyiniz.',
+    ],
+    'user_report' => [
+        'recently_reported' => "Bunu yakın bir zamanda zaten rapor ettin.",
     ],
 ];

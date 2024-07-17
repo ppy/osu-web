@@ -24,6 +24,11 @@ return [
         'title' => 'Пожаловаться на пост :username?',
     ],
 
+    'message' => [
+        'button' => 'Пожаловаться',
+        'title' => 'Пожаловаться на сообщение :username?',
+    ],
+
     'scores' => [
         'button' => 'Пожаловаться',
         'title' => 'Пожаловаться на игру :username?',

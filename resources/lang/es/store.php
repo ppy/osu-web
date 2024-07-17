@@ -14,7 +14,7 @@ return [
         'total' => 'total',
 
         'errors_no_checkout' => [
-            'line_1' => 'Oh, oh, ¡hay problemas con su carrito que están impidiendo el pago!',
+            'line_1' => 'Oh, oh, ¡hay problemas con tu carrito que están impidiendo el pago!',
             'line_2' => 'Elimina o actualiza los elementos de arriba para continuar.',
         ],
 
@@ -54,7 +54,7 @@ return [
     'invoice' => [
         'contact' => 'Contacto:',
         'date' => 'Fecha:',
-        'echeck_delay' => 'Como su pago fue un eCheck, ¡por favor permita hasta 10 días adicionales para que el pago se realice a través de PayPal!',
+        'echeck_delay' => 'Como tu pago fue un eCheck, ¡por favor permite hasta 10 días adicionales para que el pago se realice a través de PayPal!',
         'hide_from_activity' => 'las etiquetas de osu!supporter en esta orden no se muestran en tus actividades recientes.',
         'sent_via' => 'Enviado vía:',
         'shipping_to' => 'Envío a:',
@@ -83,9 +83,9 @@ return [
             ],
             'processing' => [
                 'title' => '¡Aún no se ha confirmado tu pago!',
-                'line_1' => 'Si ya ha pagado, puede que aún estemos esperando la confirmación de su pago. ¡Por favor, actualice esta página en un minuto o dos!',
+                'line_1' => 'Si ya has pagado, puede que aún estemos esperando la confirmación de tu pago. ¡Por favor, actualiza esta página en un minuto o dos!',
                 'line_2' => [
-                    '_' => 'Si ha encontrado un problema durante la compra, :link',
+                    '_' => 'Si has encontrado un problema durante la compra, :link',
                     'link_text' => 'haz clic aquí para reanudar tu pago',
                 ],
             ],
@@ -93,7 +93,7 @@ return [
                 'title' => '¡Tu pedido ha sido enviado!',
                 'tracking_details' => 'Detalles de seguimiento:',
                 'no_tracking_details' => [
-                    '_' => "No tenemos detalles de seguimiento, ya que enviamos tu paquete a través de Air Mail, pero puedes esperar recibirlo en un plazo de 1-3 semanas. Para Europa, a veces las aduanas pueden retrasar el pedido fuera de nuestro control. Si tienes alguna duda, por favor responde al correo electrónico de confirmación del pedido que recibiste :link.",
+                    '_' => "No tenemos detalles de seguimiento, ya que enviamos tu paquete a través de Air Mail, pero puedes esperar recibirlo en un plazo de 1-3 semanas. Para Europa, a veces las aduanas pueden retrasar el pedido fuera de nuestro control. Si tienes alguna duda, por favor responde al correo electrónico de confirmación del pedido que recibiste o :link.",
                     'link_text' => 'envíanos un correo electrónico',
                 ],
             ],
@@ -102,7 +102,7 @@ return [
 
     'order' => [
         'cancel' => 'Cancelar la orden',
-        'cancel_confirm' => 'Esta orden será cancelada y no se aceptará el pago por ella. El proveedor de pagos podría no liberar inmediatamente los fondos reservados. ¿Está seguro?',
+        'cancel_confirm' => 'Esta orden será cancelada y no se aceptará el pago por ella. El proveedor de pagos podría no liberar inmediatamente los fondos reservados. ¿Estás seguro?',
         'cancel_not_allowed' => 'Esta orden no puede ser cancelada en este momento.',
         'invoice' => 'Ver factura',
         'no_orders' => 'No hay órdenes para ver.',
@@ -174,10 +174,10 @@ return [
         'add_to_cart' => 'Agregar al carrito',
         'notify' => '¡Notificarme cuando esté disponible!',
 
-        'notification_success' => 'serás notificado cuando tengamos más existencias. Haz clic :link para cancelar',
+        'notification_success' => 'recibirás una notificación cuando tengamos nuevas unidades. Haz clic :link para cancelar',
         'notification_remove_text' => 'aquí',
 
-        'notification_in_stock' => '¡Este producto ya tiene existencias!',
+        'notification_in_stock' => '¡Este producto ya se encuentra disponible!',
     ],
 
     'supporter_tag' => [
@@ -198,7 +198,7 @@ return [
         'current' => 'Tu nombre de usuario actual es «:username».',
 
         'require_login' => [
-            '_' => '¡Tienes que tener una :link para cambiar tu nombre de usuario!',
+            '_' => '¡Tienes que tener la :link para cambiar tu nombre de usuario!',
             'link_text' => 'sesión iniciada',
         ],
     ],

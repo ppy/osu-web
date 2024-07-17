@@ -8,7 +8,7 @@ return [
         'disabled' => 'Tätä rytmikarttaa ei voi juuri nyt ladata.',
         'parts-removed' => 'Joitain osia tästä beatmapista on poistettu joko sen tekijän tai kolmannen osapuolen oikeuksien omaavan pyynnöstä.',
         'more-info' => 'Klikkaa nähdäksesi lisätietoja.',
-        'rule_violation' => 'Osa tämän beatmapin resursseista on poistettu, koska on katsottu, että niiden käyttö ei sovi osu!un.',
+        'rule_violation' => 'Osa tämän rytmikartan sisältämistä resursseista on poistettu, koska on katsottu, että ne eivät sovi osu!ssa käytettäväksi.',
     ],
 
     'cover' => [
@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => 'Koeajalla olevat ehdollepanijat eivät voi asettaa ehdolle useita pelimuotoja.',
+        'full_nomination_required' => 'Sinun on oltava täysivaltainen ehdollepanija, jotta voit tehdä pelimuodon viimeisen ehdollepanon.',
         'hybrid_requires_modes' => 'Usean pelimuodon rytmikartta edellyttää, että valitset ainakin yhden pelimuodon, jonka panet ehdolle.',
-        'incorrect_mode' => 'Sinulla ei ole lupaa panna ehdolle pelimuotoa: :mode',
-        'full_bn_required' => 'Sinun on oltava täysivaltainen ehdollepanija, jotta voit tehdä tämän kelpuuttavan ehdollepanon.',
+        'incorrect_mode' => 'Sinulla ei ole lupaa asettaa ehdolle pelimuotoa: :mode',
+        'invalid_limited_nomination' => 'Tällä rytmikartalla on virheellisiä ehdollepanoja, eikä sitä voida kelpuuttaa tällä hetkellä.',
+        'invalid_ruleset' => 'Tällä ehdollepanolla on virheellisiä pelimuotoja.',
         'too_many' => 'Ehdollepanovaatimus on jo täyttynyt.',
+        'too_many_non_main_ruleset' => 'Toissijaisen pelimuodon ehdollepanovaatimus on jo täytetty.',
 
         'dialog' => [
-            'confirmation' => 'Oletko varma, että haluat ehdollepanna tämän rytmikartan?',
+            'confirmation' => 'Oletko varma, että haluat asettaa tämän rytmikartan ehdolle?',
             'header' => 'Ehdollepane rytmikartta',
-            'hybrid_warning' => 'huomaa: voit tehdä ehdollepanon vain kerran, joten varmista, että panet ehdolle kaikki tarkoittamasi pelimuodot',
+            'hybrid_warning' => 'huomaa: voit tehdä ehdollepanon vain kerran, joten varmista, että asetat todella ehdolle kaikki tarkoittamasi pelimuodot',
+            'current_main_ruleset' => 'Ensisijainen pelimuoto on tällä hetkellä: :ruleset',
             'which_modes' => 'Mitkä pelimuodot asetetaan ehdolle?',
         ],
     ],
@@ -72,7 +77,7 @@ return [
         'details' => [
             'by_artist' => ':artist',
             'favourite' => 'lisää tämä rytmikartta suosikkeihin',
-            'favourite_login' => 'kirjaudu sisään, niin voit lisätä tämän beatmapin suosikkeihin',
+            'favourite_login' => 'kirjaudu sisään, niin voit lisätä tämän rytmikartan suosikkeihin',
             'logged-out' => 'sinun täytyy kirjautua sisään ennen rytmikarttojen lataamista!',
             'mapped_by' => 'kartoittanut: :mapper',
             'mapped_by_guest' => 'vieraileva vaikeustaso, kartoittanut: :mapper',
@@ -123,7 +128,7 @@ return [
             ],
 
             'report' => [
-                '_' => 'Jos löydät jonkun ongelman tässä rytmikartassa, ilmoita siitä :link hälyttääksesi tiimin paikalle.',
+                '_' => 'Jos löydät jonkun ongelman tässä rytmikartassa, ilmoita siitä tiimille :link.',
                 'button' => 'Ilmoita Ongelma',
                 'link' => 'täällä',
             ],
@@ -146,7 +151,7 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => 'Tämä rytmikartta sisältää sopimatonta, loukkaavaa tai järkyttävää sisältöä. Haluatko kuitenkin tarkastella sitä?',
+            'details' => 'Tämä rytmikartta sisältää sopimatonta, loukkaavaa tai järkyttävää sisältöä. Haluatko kuitenkin nähdä sen?',
             'title' => 'Sopimatonta sisältöä',
 
             'buttons' => [
@@ -193,14 +198,14 @@ return [
             ],
             'supporter_link' => [
                 '_' => 'Napsauta :here, niin näet kaikki hienot ominaisuudet, jotka saat!',
-                'here' => 'täällä',
+                'here' => 'tästä',
             ],
         ],
 
         'stats' => [
             'cs' => 'Ympyräkoko',
             'cs-mania' => 'Näppäinten määrä',
-            'drain' => 'Terveyden pieneneminen',
+            'drain' => 'Terveyden kuluvuus',
             'accuracy' => 'Tarkkuus',
             'ar' => 'Lähestymisnopeus',
             'stars' => 'Tähtiluokitus',

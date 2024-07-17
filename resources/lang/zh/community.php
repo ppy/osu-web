@@ -138,8 +138,8 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => '感谢您一直以来的支持！您已经捐赠了 :dollars 并购买了 :tags 次支持者标签！',
-            'gifted' => "您已经捐赠了 :giftedTags 次支持者标签（花费了 :giftedDollars ），真慷慨啊！",
+            'contribution' => '感谢您一直以来的支持！您已经捐赠了 :tags 张支持者标签，价值 :dollars！',
+            'gifted' => "您已经送出了 :giftedTags 张支持者标签（价值 :giftedDollars），真是慷慨解囊啊！",
             'not_yet' => "您还没有支持者标签 :(",
             'valid_until' => '您的支持者标签将在 :date 到期',
             'was_valid_until' => '您的支持者标签已于 :date 到期',

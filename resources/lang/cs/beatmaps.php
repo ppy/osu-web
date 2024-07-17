@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Nelze odeslat diskuzi když jste ztišeni.",
         'message_type_select' => 'Vybrat typ komentáře',
         'reply_notice' => 'Stiskni enter pro odpověď.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Napiš svou odpověď sem',
         'require-login' => 'Pro psaní odpovědí nebo přidávání příspěvků se prosím přihlas',
         'resolved' => 'Vyřešeno',
         'restore' => 'obnovit',
         'show_deleted' => 'Zobrazit smazané',
         'title' => 'Diskuze',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Skrýt vše',
@@ -60,10 +62,10 @@ return [
         ],
 
         'message_placeholder' => [
-            'general' => 'Piště zde pro odeslání příspěvku do Obecné (:version)',
-            'generalAll' => 'Piště zde pro odeslání příspěvku do Obecné (Všechny obtížnosti)',
-            'review' => 'Piště sem k přidání recenze',
-            'timeline' => 'Piště zde pro zařazení příspěvku do Časové osy (:version)',
+            'general' => 'Pište zde pro odeslání příspěvku do Obecné (:version)',
+            'generalAll' => 'Pište zde pro odeslání příspěvku do Obecné (Všechny obtížnosti)',
+            'review' => 'Pište sem pro přidání recenze',
+            'timeline' => 'Pište zde pro zařazení příspěvku do Časové osy (:version)',
         ],
 
         'message_type' => [
@@ -283,6 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => 'nenastaveno',
     ],
     'status' => [
         'any' => 'Jakákoliv',

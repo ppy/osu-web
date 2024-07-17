@@ -9,10 +9,10 @@ return [
         'batch_enable' => 'Ativar Selecionados',
 
         'batch_confirm' => [
-            '_' => '',
+            '_' => ':action :items?',
             'disable' => 'Desativar',
             'enable' => 'Ativar',
-            'items' => '',
+            'items' => ':count_delimited capa|:count_delimited capas',
         ],
 
         'create_form' => [

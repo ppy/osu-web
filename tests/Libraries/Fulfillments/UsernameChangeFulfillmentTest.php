@@ -6,7 +6,7 @@
 namespace Tests\Libraries\Fulfillments;
 
 use App\Exceptions\ChangeUsernameException;
-use App\Libraries\Fulfillments\FulfillmentException;
+use App\Exceptions\Store\FulfillmentException;
 use App\Libraries\Fulfillments\UsernameChangeFulfillment;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;

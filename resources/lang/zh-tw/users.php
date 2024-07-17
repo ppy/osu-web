@@ -200,6 +200,9 @@ return [
             'cover' => [
                 'button' => '變更個人簡介封面',
                 'defaults_info' => '未來將提供更多的封面選項',
+                'holdover_remove_confirm' => "上一個橫幅已經無法使用。您無法在切換別的橫幅後選回去了。要繼續嗎？",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => '上傳失敗。請檢查上傳的圖片並重試.',
                     'button' => '上傳圖片',
@@ -219,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => '預設遊戲模式',
                 'set' => '設定 :mode 為個人簡介預設的遊戲模式',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

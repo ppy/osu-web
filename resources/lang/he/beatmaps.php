@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "לא ניתן לדון בזמן שמושתק.",
         'message_type_select' => 'בחר סוג תגובה',
         'reply_notice' => 'הקש על Enter כדי להגיב.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'הקלד את תגובתך כאן',
         'require-login' => 'אנא התחבר על מנת לפרסם הודעה או להגיב',
         'resolved' => 'נפתר',
         'restore' => 'שחזר',
         'show_deleted' => 'הצג שנמחק',
         'title' => 'דיונים',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'סגור הכל',
@@ -283,6 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'הכל',

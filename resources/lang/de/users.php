@@ -200,6 +200,9 @@ return [
             'cover' => [
                 'button' => 'Profilbanner ändern',
                 'defaults_info' => 'In der Zukunft wird es mehr Optionen für das Banner geben',
+                'holdover_remove_confirm' => "Das davor ausgewählte Cover ist nicht mehr zur Auswahl verfügbar. Du kannst es nach dem Wechsel zu einem anderen Cover nicht wieder auswählen. Trotzdem fortfahren?",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Verarbeitung des Bildes fehlgeschlagen. Überprüfe das hochgeladene Bild und versuch es erneut.',
                     'button' => 'Bild hochladen',
@@ -219,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'Standard-Spielmodus',
                 'set' => 'Wähle :mode als Standard-Spielmodus',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

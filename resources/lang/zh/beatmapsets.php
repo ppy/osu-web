@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '见习谱面提名成员 (PBN) 无法提名多模式谱面。',
+        'full_nomination_required' => '只有正式谱面审核成员 (Full)，才能作出所属游戏模式的最终提名。',
         'hybrid_requires_modes' => '您需要在多模式谱面中选择至少一个游戏模式并提名。',
         'incorrect_mode' => '您没有提名 :mode 模式的权限。',
-        'full_bn_required' => '您必须成为正式谱面审核成员 (Full BN) 才有资格提名这张谱面。',
+        'invalid_limited_nomination' => '谱面含有无效提名，无法在此状态下过审 (Qualified)。',
+        'invalid_ruleset' => '这个提名含有无效的游戏模式。',
         'too_many' => '提名需求已达标。',
+        'too_many_non_main_ruleset' => '除了主游戏模式之外，其他模式的提名要求已经达成。',
 
         'dialog' => [
             'confirmation' => '您确定要提名这张谱面吗？',
             'header' => '提名谱面',
             'hybrid_warning' => '注意：您只能提名一次，所以请确保提名包含所有您想要提名的游戏模式。',
+            'current_main_ruleset' => '主游戏模式：:ruleset',
             'which_modes' => '您要提名哪种模式？',
         ],
     ],

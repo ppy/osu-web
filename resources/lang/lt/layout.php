@@ -199,6 +199,8 @@ return [
             'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Atsijungti',
             'profile' => 'Mano Profilis',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
         ],
     ],
 

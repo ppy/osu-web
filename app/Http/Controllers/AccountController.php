@@ -155,7 +155,13 @@ class AccountController extends Controller
             'user_twitter:string',
             'user_website:string',
             'user_discord:string',
+            'user_style:int',
         ]);
+
+        // setting it to null (default) is always allowed
+        if (isset($params['user_style']) && !$user->osu_subscriber) {
+            return error_popup(osu_trans('errors.supporter_only'));
+        }
 
         try {
             $user->fill($params)->saveOrExplode();
@@ -262,6 +268,7 @@ class AccountController extends Controller
             'forum_posts_show_deleted:bool',
             'legacy_score_only:bool',
             'profile_cover_expanded:bool',
+            'scoring_mode:string',
             'user_list_filter:string',
             'user_list_sort:string',
             'user_list_view:string',

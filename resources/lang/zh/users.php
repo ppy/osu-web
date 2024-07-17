@@ -200,6 +200,9 @@ return [
             'cover' => [
                 'button' => '更换个人资料封面',
                 'defaults_info' => '在将来会有更多封面可用',
+                'holdover_remove_confirm' => "之前选择的个人资料封面已不再可用。在更换封面后将无法再次选择。继续吗？",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => '上传失败。请检查上传的图片然后重试。',
                     'button' => '上传图片',
@@ -219,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => '默认游戏模式',
                 'set' => '设置 :mode 为个人资料的默认游戏模式',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

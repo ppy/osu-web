@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Не можете постовати на дискусију док сте мутирани.",
         'message_type_select' => 'Изабери врсту коментара',
         'reply_notice' => 'Притисните enter да одговорите.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Овде унесите ваш одговор',
         'require-login' => 'Пријавите се да бисте поставили или одговорили',
         'resolved' => 'Решено',
         'restore' => 'поврати',
         'show_deleted' => 'Покажи обрисане',
         'title' => 'Дискусије',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Обори све',
@@ -283,6 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Било који',

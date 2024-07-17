@@ -201,6 +201,9 @@ return [
             'cover' => [
                 'button' => 'เปลี่ยนรูปภาพปก',
                 'defaults_info' => 'จะมีตัวเลือกรูปภาพปกเพิ่มมากขึ้นในอนาคต',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'ประมวลผลรูปภาพล้มเหลว โปรดตรวจสอบรูปภาพและลองใหม่อีกครั้ง',
                     'button' => 'อัพโหลดรูปภาพ',
@@ -220,6 +223,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'เกมโหมดหลัก',
                 'set' => 'ตั้ง :mode เป็นเกมโหมดหลักของโปรไฟล์',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

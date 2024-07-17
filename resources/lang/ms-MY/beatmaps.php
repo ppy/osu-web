@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "",
         'message_type_select' => '',
         'reply_notice' => '',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => '',
         'require-login' => '',
         'resolved' => '',
         'restore' => '',
         'show_deleted' => '',
         'title' => '',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => '',
@@ -283,6 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => '',

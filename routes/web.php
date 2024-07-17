@@ -371,12 +371,6 @@ Route::group(['middleware' => ['web']], function () {
             Route::post('callback', 'XsollaController@callback')->name('callback');
         });
 
-        Route::group(['as' => 'centili.', 'prefix' => 'centili'], function () {
-            Route::match(['post', 'get'], 'callback', 'CentiliController@callback')->name('callback');
-            Route::get('completed', 'CentiliController@completed')->name('completed');
-            Route::get('failed', 'CentiliController@failed')->name('failed');
-        });
-
         Route::group(['as' => 'shopify.', 'prefix' => 'shopify'], function () {
             Route::post('callback', 'ShopifyController@callback')->name('callback');
         });
@@ -386,10 +380,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/home', 'HomeController@index');
 
     Route::get('/', 'HomeController@index')->name('home');
-
-    if ($GLOBALS['cfg']['osu']['scores']['rank_cache']['local_server']) {
-        Route::get('rankLookup', 'ScoresController@userRankLookup');
-    }
 
     // redirects go here
     route_redirect('forum/p/{post}', 'forum.posts.show');
@@ -541,7 +531,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         Route::get('rankings/kudosu', 'RankingController@kudosu');
         //  GET /api/v2/rankings/:mode/:type
-        Route::get('rankings/{mode}/{type}', 'RankingController@index');
+        Route::get('rankings/{mode}/{type}', 'RankingController@index')->name('rankings');
         Route::resource('spotlights', 'SpotlightsController', ['only' => ['index']]);
 
         Route::get('search', 'HomeController@search');

@@ -12,14 +12,14 @@ import PlaymodeTabs from 'components/playmode-tabs';
 import StringWithComponent from 'components/string-with-component';
 import UserLink from 'components/user-link';
 import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
-import GameMode, { gameModes } from 'interfaces/game-mode';
+import Ruleset, { rulesets } from 'interfaces/ruleset';
 import { route } from 'laroute';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { deletedUserJson } from 'models/user';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmapset-helper';
-import { trans } from 'utils/lang';
+import { trans, transChoice } from 'utils/lang';
 import BeatmapList from './beatmap-list';
 import Chart from './chart';
 import DiscussionsState from './discussions-state';
@@ -69,8 +69,9 @@ export class Header extends React.Component<Props> {
           linksAppend={(
             <PlaymodeTabs
               currentMode={this.currentBeatmap.mode}
-              entries={gameModes.map((mode) => ({
+              entries={rulesets.map((mode) => ({
                 count: this.discussionsState.unresolvedDiscussionCounts.byMode[mode],
+                countTooltip: transChoice('beatmaps.discussions.unresolved_count', this.discussionsState.unresolvedDiscussionCounts.byMode[mode] ?? 0),
                 disabled: (this.discussionsState.groupedBeatmaps.get(mode)?.length ?? 0) === 0,
                 mode,
               }))}
@@ -87,7 +88,7 @@ export class Header extends React.Component<Props> {
   }
 
   @action
-  private readonly onClickMode = (event: React.MouseEvent<HTMLAnchorElement>, mode: GameMode) => {
+  private readonly onClickMode = (event: React.MouseEvent<HTMLAnchorElement>, mode: Ruleset) => {
     event.preventDefault();
     this.discussionsState.changeGameMode(mode);
   };

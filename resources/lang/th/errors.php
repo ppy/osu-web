@@ -28,9 +28,15 @@ return [
     'checkout' => [
         'generic' => 'เกิดข้อผิดพลาดระหว่างการชำระเงินของคุณ',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'ไม่สามารถแสดงผลลัพธ์ใด ๆได้ ลองอีกครั้งในภายหลัง',
         'invalid_cursor_exception' => 'ระบุพารามิเตอร์ของเคอร์เซอร์ไม่ถูกต้อง',
         'operation_timeout_exception' => 'การค้นหายุ่งกว่าปกติ โปรดลองอีกครั้งในภายหลัง',
+    ],
+    'user_report' => [
+        'recently_reported' => "",
     ],
 ];

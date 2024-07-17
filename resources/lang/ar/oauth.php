@@ -7,6 +7,7 @@ return [
     'cancel' => 'إلغاء',
 
     'authorise' => [
+        'app_owner' => '',
         'request' => 'يطلب الإذن بالوصول إلى حسابك.',
         'scopes_title' => 'هذا التطبيق سوف يكون قادر على:',
         'title' => 'طلب الأذن',

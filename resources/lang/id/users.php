@@ -81,10 +81,10 @@ return [
 
         'reasons' => [
             'compromised' => 'Akunmu terindikasi telah disusupi. Akun ini akan dinonaktifkan untuk sementara waktu hingga identitas pengguna akun terkonfirmasi.',
-            'opening' => 'Terdapat sejumlah alasan yang dapat menyebabkan akunmu dinonaktifkan:',
+            'opening' => 'Terdapat beberapa alasan yang dapat menyebabkan akunmu dinonaktifkan:',
 
             'tos' => [
-                '_' => 'Kamu telah melakukan pelanggaran terhadap satu atau lebih poin yang tertera pada :community_rules atau :tos kami.',
+                '_' => 'Kamu telah melanggar satu atau lebih poin yang tertera pada :community_rules atau :tos kami.',
                 'community_rules' => 'peraturan komunitas',
                 'tos' => 'ketentuan layanan',
             ],
@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "Akunmu telah tidak digunakan dalam jangka waktu yang lama.",
+            'inactive' => "Akunmu telah lama tidak digunakan.",
             'inactive_different_country' => "Akunmu telah lama tidak digunakan.",
         ],
     ],
@@ -110,7 +110,7 @@ return [
         'failed' => 'Rincian masuk salah',
         'forgot' => 'Lupa kata sandi?',
         'info' => 'Silakan masuk untuk melanjutkan',
-        'invalid_captcha' => 'Terlalu banyak upaya login yang gagal. Silakan selesaikan captcha yang muncul dan coba lagi. (Muat ulang halaman ini apabila captcha tidak terlihat)',
+        'invalid_captcha' => 'Upaya masuk yang gagal terlalu banyak. Silakan selesaikan captcha dan coba lagi. (Muat ulang halaman ini apabila captcha tidak terlihat)',
         'locked_ip' => 'Alamat IP-mu dikunci. Silakan tunggu beberapa menit.',
         'password' => 'Kata Sandi',
         'register' => "Belum memiliki akun osu!? Buat sekarang",
@@ -119,7 +119,7 @@ return [
         'username' => 'Nama Pengguna',
 
         'beta' => [
-            'main' => 'Akses beta saat ini hanya tersedia bagi para pengguna dengan hak khusus.',
+            'main' => 'Akses beta saat ini terbatas bagi para pengguna dengan hak khusus.',
             'small' => '(para pemilik osu!supporter akan segera masuk)',
         ],
     ],
@@ -148,7 +148,7 @@ return [
     'logout_confirm' => 'Apakah kamu yakin ingin keluar? :(',
     'report' => [
         'button_text' => 'Laporkan',
-        'comments' => 'Komentar Tambahan',
+        'comments' => 'Komentar',
         'placeholder' => 'Mohon berikan informasi apa pun yang kamu yakini dapat bermanfaat.',
         'reason' => 'Alasan',
         'thanks' => 'Terima kasih atas laporanmu!',
@@ -171,7 +171,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Akunmu telah di-restrict!',
-        'message' => 'Selama di-restrict, kamu tidak akan dapat berinteraksi dengan para pengguna lain dan skormu hanya akan dapat dilihat oleh dirimu sendiri. Hal ini biasanya terproses secara otomatis dan akan diangkat dalam 24 jam. :link',
+        'message' => 'Selama di-restrict, kamu tidak akan dapat berinteraksi dengan para pengguna lain dan skormu hanya akan dapat dilihat oleh dirimu sendiri. Hal ini biasanya merupakan hasil dari proses otomatis yang berlangsung dan akan diangkat dalam 24 jam. :link',
         'message_link' => 'Kunjungi halaman ini untuk informasi lebih lanjut.',
     ],
     'show' => [
@@ -200,11 +200,14 @@ return [
             'cover' => [
                 'button' => 'Ubah Sampul Profil',
                 'defaults_info' => 'Pilihan sampul lainnya akan tersedia di masa mendatang',
+                'holdover_remove_confirm' => "Gambar sampul yang sebelumnya dipilih kini sudah tidak lagi tersedia untuk dipilih. Kamu tidak akan dapat memilih kembali gambar ini setelah kamu beralih ke gambar sampul lain. Lanjut?",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Gambar gagal diproses. Periksa keabsahan gambar yang diunggah dan coba lagi.',
                     'button' => 'Unggah gambar',
                     'dropzone' => 'Letakkan di sini untuk mengunggah',
-                    'dropzone_info' => 'Kamu juga dapat meletakkan gambarmu di sini untuk mengunggahnya',
+                    'dropzone_info' => 'Kamu juga dapat meletakkan gambarmu di sini untuk mengunggah',
                     'size_info' => 'Ukuran gambar sampul yang disarankan adalah 2400x640',
                     'too_large' => 'Berkas yang diunggah terlalu besar.',
                     'unsupported_format' => 'Format tidak didukung.',
@@ -219,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'mode permainan utama',
                 'set' => 'atur :mode sebagai mode permainan utamamu',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 
@@ -294,7 +307,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "Pengguna ini belum pernah menerima kudosu! sebelumnya.",
+                    'empty' => "Pengguna ini belum pernah menerima kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -360,7 +373,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Unduh Tayangan Ulang',
-                'not_ranked' => 'Hanya beatmap berstatus Ranked yang dapat memberikan pp.',
+                'not_ranked' => 'Hanya beatmap Ranked yang memberikan pp',
                 'pp_weight' => 'terbobotkan sejumlah :percentage',
                 'view_details' => 'Lihat Rincian',
                 'title' => 'Peringkat',
@@ -373,9 +386,9 @@ return [
                 ],
                 'pin' => [
                     'to_0' => 'Lepas Sematan',
-                    'to_0_done' => 'Sematan skor berhasil dilepas',
+                    'to_0_done' => 'Sematan skor dilepas',
                     'to_1' => 'Sematkan',
-                    'to_1_done' => 'Skor berhasil disematkan',
+                    'to_1_done' => 'Skor disematkan',
                 ],
                 'pinned' => [
                     'title' => 'Skor yang Disematkan',
@@ -452,7 +465,7 @@ return [
         'stats' => [
             'hit_accuracy' => 'Akurasi Hit',
             'level' => 'Level :level',
-            'level_progress' => 'Persentase pencapaian menuju level berikutnya',
+            'level_progress' => 'persentase pencapaian menuju level berikutnya',
             'maximum_combo' => 'Kombo Maksimum',
             'medals' => 'Jumlah Medali',
             'play_count' => 'Jumlah Permainan',
@@ -472,7 +485,7 @@ return [
 
     'silenced_banner' => [
         'title' => 'Kamu sedang di-silence.',
-        'message' => 'Kamu sedang tidak dapat melakukan tindakan tertentu.',
+        'message' => 'Tindakan tertentu mungkin tidak akan tersedia.',
     ],
 
     'status' => [

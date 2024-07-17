@@ -23,6 +23,10 @@ return [
         'used' => '已使用',
     ],
 
+    'performance' => [
+        'insufficient_history' => '這個使用者擁有少於30天的排行紀錄。',
+    ],
+
     'type' => [
         'charts' => '月賽',
         'country' => '國家',

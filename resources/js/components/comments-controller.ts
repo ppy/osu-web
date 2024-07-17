@@ -414,6 +414,12 @@ export default class CommentsController {
     return ret;
   }
 
+  getReplies(comment: Comment) {
+    const ids = this.state.commentIdsByParentId[comment.id];
+
+    return this.getComments(ids);
+  }
+
   getUser(id: number | null | undefined) {
     return id == null ? undefined : this.state.users[id];
   }

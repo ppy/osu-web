@@ -7,7 +7,6 @@ namespace App\Libraries\Elasticsearch;
 
 use App\Exceptions\InvalidCursorException;
 use App\Exceptions\SilencedException;
-use Datadog;
 use Elasticsearch\Client;
 use Elasticsearch\Common\Exceptions\Curl\OperationTimeoutException;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
@@ -166,9 +165,6 @@ abstract class Search extends HasSearch implements Queryable
         $this->client()->indices()->refresh(['index' => $this->index]);
     }
 
-    /**
-     * @return SearchResponse
-     */
     public function response(): SearchResponse
     {
         if (!isset($this->response)) {
@@ -286,11 +282,7 @@ abstract class Search extends HasSearch implements Queryable
             app('sentry')->captureException($e);
         }
 
-        Datadog::increment(
-            $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.search.errors',
-            1,
-            $tags
-        );
+        datadog_increment('search.errors', $tags);
 
         return $e;
     }

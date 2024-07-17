@@ -24,6 +24,11 @@ return [
         'title' => ':username: kullanıcısının gönderisi bildirilsin mi?',
     ],
 
+    'message' => [
+        'button' => 'Mesajı rapor et',
+        'title' => ':username\'in mesajını rapor etmek istiyor musun?',
+    ],
+
     'scores' => [
         'button' => 'Skoru Bildir',
         'title' => ':username kullanıcısının skoru bildirilsin mi?',

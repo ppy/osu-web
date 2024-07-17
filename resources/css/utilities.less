@@ -23,14 +23,12 @@
 }
 
 .u-ellipsis-overflow {
-  white-space: nowrap !important;
-  text-overflow: ellipsis !important;
-  overflow: hidden !important;
+  .ellipsis-overflow() !important;
 }
 
 .u-ellipsis-overflow-desktop {
   @media @desktop {
-    .u-ellipsis-overflow();
+    .ellipsis-overflow() !important;
   }
 }
 
@@ -44,6 +42,10 @@
   display: block;
   aspect-ratio: 16 / 9;
   width: 100%;
+
+  &--bbcode {
+    max-width: 425px;
+  }
 }
 
 .u-fancy-scrollbar {

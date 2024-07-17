@@ -35,7 +35,7 @@ return [
             '_' => 'artistas em destaque',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'votos de discussão do beatmap',
+            '_' => 'posts de discussão sobre o beatmap',
         ],
         'beatmap_discussions_controller' => [
             '_' => 'discussões de beatmaps',
@@ -64,11 +64,11 @@ return [
             '_' => 'comentários',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'resultados do julgamento do concurso',
         ],
         'contests_controller' => [
             '_' => 'concursos',
-            'judge' => '',
+            'judge' => 'julgamento do concurso',
         ],
         'groups_controller' => [
             'show' => 'grupos',
@@ -111,7 +111,7 @@ return [
             '_' => 'torneios',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'predefinições da capa do usuário',
         ],
         'users_controller' => [
             '_' => 'informações do jogador',

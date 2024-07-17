@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Není možné zverejniť diskusiu, keď stlmený.",
         'message_type_select' => 'Vybrať typ komentára',
         'reply_notice' => 'Stlačením Enter odpovedaj.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Sem napíš tvoju odpoveď',
         'require-login' => 'Na písanie príspevkov alebo odpovedanie sa prosím prihlas',
         'resolved' => 'Vyriešený',
         'restore' => 'obnoviť',
         'show_deleted' => 'Zobraziť zmazané',
         'title' => 'Diskusie',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Zbaliť všetko',
@@ -283,6 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Akékoľvek',

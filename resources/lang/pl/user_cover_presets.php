@@ -12,12 +12,12 @@ return [
             '_' => '',
             'disable' => '',
             'enable' => '',
-            'items' => '',
+            'items' => ':count_delimited tło|:count_delimited tła|:count_delimited teł',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
+            'files' => 'Pliki',
+            'submit' => 'Zapisz',
             'title' => '',
         ],
 
@@ -26,7 +26,7 @@ return [
             'click_to_enable' => '',
             'enabled' => '',
             'disabled' => '',
-            'image_store' => '',
+            'image_store' => 'Ustaw Obraz',
             'image_update' => '',
         ],
     ],

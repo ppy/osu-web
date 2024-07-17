@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "لم تستعمل حسابك منذ وقتِِ طويل.",
             'inactive_different_country' => "لم تستعمل حسابك منذ وقتِِ طويل.",
         ],
     ],
@@ -200,6 +200,9 @@ return [
             'cover' => [
                 'button' => 'تغيير صورة الغلاف',
                 'defaults_info' => 'خيارات اغلفة اضافية ستكون متاحة في المستقبل',
+                'holdover_remove_confirm' => "الغلاف المحدد سابقاً لم يعد متوفّراً ولن تستطيع اختياره مجدداً بعد تغييره. هل تريد المتابعة؟",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'فشلت معالجة الصورة. تحقق من الصورة المرفوعة وحاول مرة أخرى.',
                     'button' => 'رفع صورة',
@@ -219,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'الوضع الافتراضي للعبة',
                 'set' => 'عين :mode كالوضع الافتراضي للعبة',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 
@@ -356,7 +369,7 @@ return [
                 'title' => 'الأخيرة',
             ],
             'realtime' => [
-                'title' => 'ألـ ألعاب الجماعية',
+                'title' => 'الألعاب الجماعية',
             ],
             'top_ranks' => [
                 'download_replay' => 'تحميل الـ Replay',

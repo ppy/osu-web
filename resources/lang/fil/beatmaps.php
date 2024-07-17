@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Hindi maaaring magpost ng diskusyon habang pinatahimik.",
         'message_type_select' => 'Piliin ang tipo ng komento',
         'reply_notice' => 'Pindutin ang Enter para magreply.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'I-type ang mensahe dito',
         'require-login' => 'Paki-sign-in upang mag-post o tumugon',
         'resolved' => 'Nalutas',
         'restore' => 'ibalik',
         'show_deleted' => 'Ipakita ang tinanggal',
         'title' => 'Diskusyon',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Icollapse lahat',
@@ -283,6 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => 'Kahit Ano',

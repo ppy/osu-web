@@ -40,15 +40,20 @@ return [
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => 'Những người đề cử tập sự không thể đề cử nhiều ruleset cùng lúc.',
+        'full_nomination_required' => 'Bạn phải là người đề cử chính để thực hiện đề cử cuối cùng của một ruleset.',
         'hybrid_requires_modes' => 'Bạn cần chọn ít nhất một chế độ chơi trong beatmap có nhiều chế độ để đề cử.',
         'incorrect_mode' => 'Bạn không có sự cho phép để đề cử cho chế độ: :mode',
-        'full_bn_required' => 'Bạn phải là người được đề cử đầy đủ để thực hiện đề cử đủ điều kiện này.',
+        'invalid_limited_nomination' => 'Beatmap này có những đề cử không hợp lệ và không thể đủ tư cách trong trạng thái này.',
+        'invalid_ruleset' => 'Đề cử này có các ruleset không hợp lệ.',
         'too_many' => 'Yêu cầu đề cử đã được đáp ứng.',
+        'too_many_non_main_ruleset' => 'Yêu cầu đề cử cho ruleset không chính đã được đáp ứng.',
 
         'dialog' => [
             'confirmation' => 'Bạn có chắc chắn muốn đề cử beatmap này không?',
             'header' => 'Đề cử Beatmap',
             'hybrid_warning' => 'lưu ý: bạn chỉ có thể đề cử một lần, vì vậy hãy đảm bảo rằng bạn đang đề cử cho tất cả các chế độ chơi mà bạn dự định',
+            'current_main_ruleset' => 'Ruleset chính hiện tại là: :ruleset',
             'which_modes' => 'Đề cử cho những chế độ nào?',
         ],
     ],
