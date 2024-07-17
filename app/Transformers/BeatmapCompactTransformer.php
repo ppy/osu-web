@@ -71,7 +71,7 @@ class BeatmapCompactTransformer extends TransformerAbstract
 
     public function includeMappers(Beatmap $beatmap)
     {
-        return $this->primitive($beatmap->mappers->map(fn ($mapper) => $mapper->only(['user_id', 'username'])));
+        return $this->primitive($beatmap->mappers->map(fn ($mapper) => $mapper->only(['id', 'username'])));
     }
 
     public function includeMaxCombo(Beatmap $beatmap)
