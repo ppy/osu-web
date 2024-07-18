@@ -47,13 +47,13 @@ return [
         'invalid_limited_nomination' => 'Cette beatmap ne peut pas être qualifiée en raison de nominations invalides.',
         'invalid_ruleset' => 'Cette nomination contient des modes de jeu non valides.',
         'too_many' => 'L\'exigence de nomination est déjà remplie.',
-        'too_many_non_main_ruleset' => 'Il y a déjà suffisamment de nominations pour le mode de jeu supplémentaire.',
+        'too_many_non_main_ruleset' => 'Il y a déjà suffisamment de nominations pour ce mode de jeu supplémentaire.',
 
         'dialog' => [
             'confirmation' => 'Êtes-vous sûr de vouloir nominer cette beatmap ?',
             'header' => 'Nominer la beatmap',
             'hybrid_warning' => 'remarque : vous ne pouvez nominer qu\'une seule fois, assurez-vous alors que vous nominez la beatmap pour tous les modes de jeu que vous souhaitez',
-            'current_main_ruleset' => 'Le mode de jeu principal est actuellement : :ruleset',
+            'current_main_ruleset' => 'Le ruleset principal est actuellement : :ruleset',
             'which_modes' => 'Nominer pour quels modes ?',
         ],
     ],

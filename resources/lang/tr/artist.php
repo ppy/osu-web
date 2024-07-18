@@ -46,8 +46,8 @@ return [
             '_' => 'parça arama',
 
             'exclusive_only' => [
-                'all' => '',
-                'exclusive_only' => '',
+                'all' => 'Hepsi',
+                'exclusive_only' => 'osu! orijinal',
             ],
 
             'form' => [
@@ -57,7 +57,7 @@ return [
                 'bpm_gte' => 'Minimum BPM',
                 'bpm_lte' => 'Maksimum BPM',
                 'empty' => 'Arama kriterine uyan parça bulunamadı.',
-                'exclusive_only' => '',
+                'exclusive_only' => 'Tip',
                 'genre' => 'Tür',
                 'genre_all' => 'Tümü',
                 'length_gte' => 'Minimum Uzunluk',

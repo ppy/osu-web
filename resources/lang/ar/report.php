@@ -25,8 +25,8 @@ return [
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'تبليغ',
+        'title' => 'هل تريد التبليغ عن رسالة :username؟',
     ],
 
     'scores' => [

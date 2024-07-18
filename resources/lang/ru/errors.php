@@ -28,12 +28,15 @@ return [
     'checkout' => [
         'generic' => 'При обработке заказа произошла ошибка.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Ничего не найдено, попробуйте позже.',
         'invalid_cursor_exception' => 'Задан неверный параметр курсора.',
         'operation_timeout_exception' => 'Поиск сейчас перегружен, попробуйте позже.',
     ],
     'user_report' => [
-        'recently_reported' => "",
+        'recently_reported' => "Вы уже жаловались на этого игрока.",
     ],
 ];

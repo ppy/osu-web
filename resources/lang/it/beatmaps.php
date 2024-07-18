@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Non puoi postare una discussione mentre sei silenziato.",
         'message_type_select' => 'Seleziona il tipo di commento',
         'reply_notice' => 'Premi invio per rispondere.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Scrivi la tua risposta qui',
         'require-login' => 'Effettua il login per poter postare o rispondere',
         'resolved' => 'Risolto',
         'restore' => 'ripristina',
         'show_deleted' => 'Mostra eliminati',
         'title' => 'Discussioni',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Comprimi tutto',
@@ -56,14 +58,14 @@ return [
 
         'message_hint' => [
             'in_general' => 'Questo post andrà nella discussione generale della beatmap. Per moddare questa beatmap, inizia il tuo messaggio con un timestamp (es. 00:12:345).',
-            'in_timeline' => 'Per moddare più timestamp, posta più volte (un post per timestamp).',
+            'in_timeline' => 'Per moddare più timestamp, crea un post per ogni timestamp.',
         ],
 
         'message_placeholder' => [
             'general' => 'Scrivi qui per postare in Generale (:version)',
             'generalAll' => 'Scrivi qui per postare in Generale (Tutte le difficoltà)',
             'review' => 'Scrivi qui per postare una revisione',
-            'timeline' => 'Scrivi qui per postare nella Linea Temporale (:version)',
+            'timeline' => 'Scrivi qui per postare su Cronologia (:version)',
         ],
 
         'message_type' => [
@@ -94,7 +96,7 @@ return [
             'events' => 'Cronologia',
             'general' => 'Generale :scope',
             'reviews' => 'Revisioni',
-            'timeline' => 'Linea Temporale',
+            'timeline' => 'Cronologia',
             'scopes' => [
                 'general' => 'Questa difficoltà',
                 'generalAll' => 'Tutte le difficoltà',
@@ -118,7 +120,7 @@ return [
                 'unsaved' => 'Non salvato',
                 'timestamp' => [
                     'all-diff' => 'I post su "Tutte le difficoltà" non possono avere un timestamp.',
-                    'diff' => 'Se questo :type inizia con un timestamp, sarà mostrato nella Timeline.',
+                    'diff' => 'Se questo post inizia con un timestamp, verrà mostrato sotto Cronologia.',
                 ],
             ],
             'insert-block' => [
@@ -135,7 +137,7 @@ return [
 
         'sort' => [
             'created_at' => 'Data creazione',
-            'timeline' => 'Linea Temporale',
+            'timeline' => 'Cronologia',
             'updated_at' => 'Ultimo aggiornamento',
         ],
 

@@ -28,6 +28,9 @@ return [
     'checkout' => [
         'generic' => 'Napaka med zaključevanjem tvojega nakupa.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Ni bilo mogoče pridobiti nobenega rezultata, poskusi znova pozneje.',
         'invalid_cursor_exception' => 'Neveljavni določeni parametri kazalnika.',

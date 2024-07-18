@@ -13,10 +13,6 @@ return [
         'blurb' => [
             'important' => 'LEES DIT VOORALEER JE PACKS DOWNLOADT',
             'install_instruction' => 'Hoe installeren: Wanneer het downloaden van een pack voltooid is, pak je de inhoud uit naar je osu! Songs-map. osu! doet de rest.',
-            'note' => [
-                '_' => 'Houd er ook rekening mee dat het sterk aanbevolen is om :scary. Oudere beatmaps zijn vaak minder kwaliteitsvol.',
-                'scary' => 'eerst de nieuwste packs te downloaden',
-            ],
         ],
     ],
 

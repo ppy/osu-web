@@ -24,7 +24,7 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Denne brukeren har mindre enn 30 dager av nylig rang historie.',
     ],
 
     'type' => [

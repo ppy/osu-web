@@ -40,20 +40,20 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Os nomeadores probacionários não podem nomear várias regras.',
+        'full_nomination_required' => 'É preciso ser um nomeador completo para fazer a nomeação final de várias regras.',
         'hybrid_requires_modes' => 'Um beatmap híbrido requer que você selecione pelo menos um modo de jogo para nomear.',
         'incorrect_mode' => 'Você não tem permissão para nomear para o modo: :mode',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Este beatmap tem nomeadores inválidos e não pode ser qualificado em este estado.',
+        'invalid_ruleset' => 'Esta nomeação tem regras inválidas.',
         'too_many' => 'Exigência de nomeação já cumprida.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'A exigência de nomeação para regas não-principais já completas.',
 
         'dialog' => [
             'confirmation' => 'Tem certeza que deseja nomear este Beatmap?',
             'header' => 'Nomear Beatmap',
             'hybrid_warning' => 'nota: você pode apenas nomear uma vez, então por favor, certifique-se de que você está nomeando para todos os modos de jogo que você pretende',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'A atual regra principal é: :ruleset',
             'which_modes' => 'Nomear para quais modos?',
         ],
     ],

@@ -24,7 +24,7 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Bu kullanıcının son sıralama geçmişi 30 günden azdır.',
     ],
 
     'type' => [

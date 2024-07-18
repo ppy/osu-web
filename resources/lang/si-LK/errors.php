@@ -28,6 +28,9 @@ return [
     'checkout' => [
         'generic' => '',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => '',
         'invalid_cursor_exception' => '',

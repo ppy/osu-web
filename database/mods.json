@@ -2592,6 +2592,19 @@
         "AlwaysValidForSubmission": false
       },
       {
+        "Acronym": "NR",
+        "Name": "No Release",
+        "Description": "No more timing the end of hold notes.",
+        "Type": "DifficultyReduction",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
+      },
+      {
         "Acronym": "HR",
         "Name": "Hard Rock",
         "Description": "Everything just got a bit harder...",

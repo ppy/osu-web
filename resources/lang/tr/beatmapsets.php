@@ -53,7 +53,7 @@ return [
             'confirmation' => 'Bu beatmapi aday göstermek istediğinize emin misiniz?',
             'header' => 'Beatmap aday gösterin',
             'hybrid_warning' => 'not: sadece bir kez aday gösterebilirsiniz, bu yüzden lütfen istediğiniz tüm oyun modlarını aday gösterdiğinizden emin olun',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'Şu anki kural dizisi: :ruleset',
             'which_modes' => 'Hangi modlar için aday gösterilsin?',
         ],
     ],

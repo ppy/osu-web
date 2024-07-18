@@ -14,6 +14,7 @@ use App\Libraries\User\CountryChange;
 use App\Libraries\User\CountryChangeTarget;
 use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
+use App\Models\Beatmap;
 use App\Models\GithubUser;
 use App\Models\OAuth\Client;
 use App\Models\UserAccountHistory;
@@ -253,6 +254,10 @@ class AccountController extends Controller
             'pm_friends_only:bool',
             'user_notify:bool',
         ]);
+
+        if (isset($userParams['playmode']) && !Beatmap::isModeValid($userParams['playmode'])) {
+            abort(422, 'invalid value specified for user[playmode]');
+        }
 
         $profileParams = get_params($params, 'user_profile_customization', [
             'audio_autoplay:bool',

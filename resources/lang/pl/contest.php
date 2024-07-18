@@ -14,7 +14,7 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => 'schowaj ocenione wpisy',
+        'hide_judged' => 'ukryj ocenione zgłoszenia',
         'nav_title' => 'oceniać',
         'no_current_vote' => 'jeszcze nie zagłosowałeś.',
         'update' => 'aktualizacja',

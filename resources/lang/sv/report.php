@@ -25,8 +25,8 @@ return [
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Anmäl meddelande',
+        'title' => 'Anmäl :username\'s meddelande?',
     ],
 
     'scores' => [

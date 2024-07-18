@@ -28,12 +28,15 @@ return [
     'checkout' => [
         'generic' => 'A apărut o eroare în timpul preparării comenzii tale.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Nu s-au putut obține rezultate, încearcă mai târziu.',
         'invalid_cursor_exception' => 'Parametru cursor specificat nevalid.',
         'operation_timeout_exception' => 'Căutarea este mai ocupată decât de obicei, încearcă mai târziu.',
     ],
     'user_report' => [
-        'recently_reported' => "",
+        'recently_reported' => "Ați raportat deja acest lucru recent.",
     ],
 ];

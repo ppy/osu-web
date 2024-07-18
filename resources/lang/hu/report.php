@@ -25,8 +25,8 @@ return [
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Üzenet jelentése',
+        'title' => 'Jelented :username üzenetét?',
     ],
 
     'scores' => [
