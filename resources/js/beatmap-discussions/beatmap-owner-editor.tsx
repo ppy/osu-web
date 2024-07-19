@@ -84,10 +84,6 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
           </span>
         </div>
 
-        <div className='beatmap-owner-editor__col beatmap-owner-editor__col--avatar'>
-          {/* {this.renderAvatar()} */}
-        </div>
-
         <div className='beatmap-owner-editor__col'>
           {this.renderUsernames()}
         </div>
@@ -183,10 +179,15 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
       return this.mappers.map((mapper) => (
         <UserLink
           key={mapper.id}
-          className='beatmap-owner-editor__input beatmap-owner-editor__input--static'
+          className='beatmap-owner-editor__user'
           user={mapper}
         >
-          <UserAvatar modifiers='full-circle' user={mapper} />{mapper.username}
+          <div className='beatmap-owner-editor__avatar'>
+            <UserAvatar modifiers='full-circle' user={mapper} />
+          </div>
+          <div className='beatmap-owner-editor__username u-ellipsis-overflow'>
+            {mapper.username}
+          </div>
         </UserLink>
       ));
     }

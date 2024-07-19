@@ -5,20 +5,14 @@
   display: contents;
 
   &__avatar {
-    display: flex;
-    width: 100%;
-    height: 100%;
+    width: 20px;
+    height: $width;
   }
 
   &__col {
     display: flex;
     align-items: center;
-
-    &--avatar {
-      position: relative;
-      width: 20px;
-      font-size: $width;
-    }
+    gap: 5px;
 
     &--buttons {
       display: flex;
@@ -37,7 +31,6 @@
   &__button {
     .reset-input();
     .link-default();
-    margin-left: 5px;
 
     &[disabled] {
       opacity: 0.5;
@@ -64,5 +57,11 @@
       padding-left: 0;
       padding-right: 0;
     }
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: 5px;
   }
 }

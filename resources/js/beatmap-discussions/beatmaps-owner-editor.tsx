@@ -32,7 +32,6 @@ export default class BeatmapsOwnerEditor extends React.Component<Props> {
           <strong>
             {trans('beatmap_discussions.owner_editor.version')}
           </strong>
-          <div />
           <strong>
             {trans('beatmap_discussions.owner_editor.user')}
           </strong>
