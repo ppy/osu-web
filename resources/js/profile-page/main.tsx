@@ -205,7 +205,7 @@ export default class Main extends React.Component<Props> {
               <>
                 {
                   /* no sortable on mobile due to vertical scroll */
-                  this.renderExtraTabs('u-visible-mobile')
+                  this.renderExtraTabs('u-hidden-desktop')
                 }
                 {this.renderExtraTabs('hidden-xs', this.tabs)}
               </>

@@ -66,6 +66,12 @@
   display: none !important;
 }
 
+.u-hidden-desktop  {
+  @media @desktop {
+    display: none !important;
+  }
+}
+
 .u-hidden-narrow {
   @media @narrow {
     display: none !important;
@@ -92,10 +98,4 @@
 
 .u-uppercase {
   text-transform: uppercase;
-}
-
-.u-visible-mobile {
-  @media @desktop {
-    display: none !important;
-  }
 }
