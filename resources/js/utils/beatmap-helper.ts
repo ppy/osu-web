@@ -4,6 +4,7 @@
 import * as d3 from 'd3';
 import { isValid as isBeatmapExtendedJson } from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import Ruleset, { rulesets } from 'interfaces/ruleset';
 import * as _ from 'lodash';
 import core from 'osu-core-singleton';
@@ -97,6 +98,10 @@ export function group<T extends BeatmapJson>(beatmaps?: T[] | null, includeEmpty
   });
 
   return ret;
+}
+
+export function hasGuestMapper(beatmap: BeatmapJson, beatmapset: BeatmapsetJson) {
+  return beatmap.mappers?.some((mapper) => mapper.id !== beatmapset.user_id);
 }
 
 export function rulesetName(id: number): Ruleset {

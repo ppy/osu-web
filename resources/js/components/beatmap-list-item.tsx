@@ -1,16 +1,16 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import UserLinkList from 'beatmap-discussions/user-link-list';
 import DifficultyBadge from 'components/difficulty-badge';
-import UserLink from 'components/user-link';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import * as React from 'react';
+import { hasGuestMapper } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import StringWithComponent from './string-with-component';
-import UserLinkList from 'beatmap-discussions/user-link-list';
 
 interface BaseProps {
   beatmap: BeatmapJson | BeatmapExtendedJson;
@@ -76,9 +76,9 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
       return null;
     }
 
-    const translationKey = 'mapped_by';// isGuestMap
-      // ? 'mapped_by_guest'
-      // : 'mapped_by';
+    const translationKey = hasGuestMapper(this.props.beatmap, this.props.beatmapset)
+      ? 'mapped_by_guest'
+      : 'mapped_by';
 
     return (
       <StringWithComponent

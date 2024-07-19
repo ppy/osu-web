@@ -3,9 +3,8 @@
 
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
-import { makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import { deletedUserJson, normaliseUsername } from 'models/user';
+import { deletedUserJson } from 'models/user';
 import * as React from 'react';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
 import { trans } from 'utils/lang';

@@ -10,13 +10,12 @@ import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import { normaliseUsername } from 'models/user';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
-import { transparentGif } from 'utils/html';
 import { trans } from 'utils/lang';
 import DiscussionsState from './discussions-state';
 

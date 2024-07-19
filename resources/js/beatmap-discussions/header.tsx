@@ -10,14 +10,13 @@ import BigButton from 'components/big-button';
 import HeaderV4 from 'components/header-v4';
 import PlaymodeTabs from 'components/playmode-tabs';
 import StringWithComponent from 'components/string-with-component';
-import UserLink from 'components/user-link';
 import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import Ruleset, { rulesets } from 'interfaces/ruleset';
 import { route } from 'laroute';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
-import { deletedUserJson } from 'models/user';
 import * as React from 'react';
+import { hasGuestMapper } from 'utils/beatmap-helper';
 import { getArtist, getTitle } from 'utils/beatmapset-helper';
 import { trans, transChoice } from 'utils/lang';
 import BeatmapList from './beatmap-list';
@@ -182,8 +181,7 @@ export class Header extends React.Component<Props> {
             />
             <div className={`${bn}__beatmap-stats`}>
               <div className={`${bn}__guest`}>
-                {/* TODO: better check? */}
-                {this.currentBeatmap.user_id !== this.beatmapset.user_id && (
+                {hasGuestMapper(this.currentBeatmap, this.beatmapset) && (
                   <span>
                     <StringWithComponent
                       mappings={{
