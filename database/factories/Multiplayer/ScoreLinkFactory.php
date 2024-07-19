@@ -43,11 +43,11 @@ class ScoreLinkFactory extends Factory
 
     public function failed(): static
     {
-        return $this->completed([], ['passed' => false]);
+        return $this->completed(['passed' => false]);
     }
 
     public function passed(): static
     {
-        return $this->completed([], ['passed' => true]);
+        return $this->completed(['passed' => true]);
     }
 }
