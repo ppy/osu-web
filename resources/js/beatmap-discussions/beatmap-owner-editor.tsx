@@ -9,6 +9,7 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import UserJson from 'interfaces/user-json';
+import WithMappers from 'interfaces/with-mappers';
 import { route } from 'laroute';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
@@ -24,7 +25,7 @@ interface XhrCollection {
 }
 
 interface Props {
-  beatmap: BeatmapJson & Required<Pick<BeatmapJson, 'mappers'>>;
+  beatmap: WithMappers<BeatmapJson>;
   beatmapset: BeatmapsetExtendedJson;
   discussionsState: DiscussionsState; // only for updating the state with the response.
 }
