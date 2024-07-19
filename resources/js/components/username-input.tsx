@@ -19,6 +19,7 @@ interface Props {
   ignoreCurrentUser?: boolean;
   name?: string;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onEnterPressed?: () => void;
   onValidUsersChanged?: (value: Map<number, UserJson>) => void;
   onValueChanged?: (value: string) => void;
 }
@@ -63,6 +64,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
           onBlur={this.handleBlur}
           onChange={this.handleUsersInputChange}
           onKeyDown={this.handleUsersInputKeyDown}
+          onKeyUp={this.handleUsersInputKeyUp}
           onPaste={this.handleUsersInputPaste}
           value={this.users}
         />
@@ -128,6 +130,10 @@ export default class UsernameInput extends React.PureComponent<Props> {
         this.props.onValidUsersChanged?.(this.validUsers);
       }
     }
+  };
+
+  private readonly handleUsersInputKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') this.props.onEnterPressed?.();
   };
 
   @action

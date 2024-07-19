@@ -126,10 +126,6 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     this.inputUsername = this.mappers.map((mapper) => mapper.id).join(',');
   };
 
-  private readonly handleUsernameInputKeyup = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') this.handleSaveClick();
-  };
-
   @action
   private readonly handleUsernameInputValueChanged = (value: string) => {
     this.inputUsername = value;
@@ -198,6 +194,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     return (
       <UsernameInput
         defaultValue={this.inputUsername}
+        onEnterPressed={this.handleSaveClick}
         onValidUsersChanged={this.handleValidUsersChanged}
         onValueChanged={this.handleUsernameInputValueChanged}
       />
