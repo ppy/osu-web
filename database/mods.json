@@ -2597,7 +2597,9 @@
         "Description": "No more timing the end of hold notes.",
         "Type": "DifficultyReduction",
         "Settings": [],
-        "IncompatibleMods": [],
+        "IncompatibleMods": [
+          "HO"
+        ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
@@ -2992,6 +2994,7 @@
         "Type": "Conversion",
         "Settings": [],
         "IncompatibleMods": [
+          "NR",
           "IN"
         ],
         "RequiresConfiguration": false,
