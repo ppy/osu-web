@@ -174,6 +174,21 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     );
   }
 
+  private readonly renderMapper = (mapper: typeof this.props.beatmap.mappers[number]) => (
+    <UserLink
+      key={mapper.id}
+      className='beatmap-owner-editor__user'
+      user={mapper}
+    >
+      <div className='beatmap-owner-editor__avatar'>
+        <UserAvatar modifiers='full-circle' user={mapper} />
+      </div>
+      <div className='beatmap-owner-editor__username u-ellipsis-overflow'>
+        {mapper.username}
+      </div>
+    </UserLink>
+  );
+
   private renderUsernames() {
     if (!this.editing) {
       return this.mappers.map((mapper) => (
@@ -198,6 +213,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
         onEnterPressed={this.handleSaveClick}
         onValidUsersChanged={this.handleValidUsersChanged}
         onValueChanged={this.handleUsernameInputValueChanged}
+        renderUser={this.renderMapper}
       />
     );
   }

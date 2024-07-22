@@ -22,6 +22,7 @@ interface Props {
   onEnterPressed?: () => void;
   onValidUsersChanged?: (value: Map<number, UserJson>) => void;
   onValueChanged?: (value: string) => void;
+  renderUser?: (user: UserJson, onRemoveClick: (user: UserJson) => void) => void;
 }
 
 const BusySpinner = ({ busy }: { busy: boolean }) => (
@@ -166,9 +167,11 @@ export default class UsernameInput extends React.PureComponent<Props> {
 
 
   private renderValidUsers() {
-    return [...this.validUsers.values()].map((user) => (
-      <UserCardBrick key={user.id} onRemoveClick={this.handleRemoveUser} user={user} />
-    ));
+    return [...this.validUsers.values()].map((user) =>
+      this.props.renderUser == null
+        ? <UserCardBrick key={user.id} onRemoveClick={this.handleRemoveUser} user={user} />
+        : this.props.renderUser(user, this.handleRemoveUser),
+    );
   }
 
   @action
