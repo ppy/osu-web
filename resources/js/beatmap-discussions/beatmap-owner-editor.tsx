@@ -182,13 +182,9 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   }
 
 
-  private readonly renderMapper = (mapper: Mapper, handleRemoveUser: (user: UserJson) => void) => (
-    <>
-      <UserLink
-        key={mapper.id}
-        className='beatmap-owner-editor__user'
-        user={mapper}
-      >
+  private readonly renderMapper = (mapper: Mapper, handleRemoveUser: (user: Mapper) => void) => (
+    <React.Fragment key={mapper.id}>
+      <UserLink className='beatmap-owner-editor__user' user={mapper}>
         <div className='beatmap-owner-editor__avatar'>
           <UserAvatar modifiers='full-circle' user={mapper} />
         </div>
@@ -201,7 +197,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
           <span className='fas fa-times' />
         </button>
       )}
-    </>
+    </React.Fragment>
   );
 
   private renderUsernames() {
