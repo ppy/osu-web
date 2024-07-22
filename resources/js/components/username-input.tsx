@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserJson from 'interfaces/user-json';
+import UserJson, { UserJsonMinimum } from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
 import { action, makeObservable, observable, runInAction } from 'mobx';
@@ -22,7 +22,7 @@ interface Props {
   onEnterPressed?: () => void;
   onValidUsersChanged?: (value: Map<number, UserJson>) => void;
   onValueChanged?: (value: string) => void;
-  renderUser?: (user: UserJson, onRemoveClick: (user: UserJson) => void) => void;
+  renderUser?: (user: UserJson, onRemoveClick: (user: UserJsonMinimum) => void) => void;
 }
 
 const BusySpinner = ({ busy }: { busy: boolean }) => (
@@ -111,7 +111,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
   };
 
   @action
-  private readonly handleRemoveUser = (user: UserJson) => {
+  private readonly handleRemoveUser = (user: UserJsonMinimum) => {
     this.validUsers.delete(user.id);
     this.props.onValidUsersChanged?.(this.validUsers);
   };

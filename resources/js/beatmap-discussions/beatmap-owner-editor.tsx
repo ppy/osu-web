@@ -31,7 +31,7 @@ interface Props {
   discussionsState: DiscussionsState; // only for updating the state with the response.
 }
 
-function createRemoveMapperHandler(mapper: Mapper, onRemoveClick: (user: UserJson) => void) {
+function createRemoveMapperHandler(mapper: Mapper, onRemoveClick: (user: Mapper) => void) {
   return (_event: React.MouseEvent<HTMLButtonElement>) => {
     onRemoveClick(mapper);
   };
