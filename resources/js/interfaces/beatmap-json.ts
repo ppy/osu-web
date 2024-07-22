@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetJson from './beatmapset-json';
+import Mapper from './mapper';
 import Ruleset from './ruleset';
 import UserJson from './user-json';
 
@@ -31,6 +32,5 @@ interface BeatmapJsonDefaultAttributes {
 }
 
 type BeatmapJson = BeatmapJsonDefaultAttributes & Partial<BeatmapJsonAvailableIncludes>;
-type Mapper = Pick<UserJson, 'avatar_url' | 'id' | 'username'>;
 
 export default BeatmapJson;

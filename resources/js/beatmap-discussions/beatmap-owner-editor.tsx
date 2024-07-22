@@ -8,6 +8,7 @@ import UsernameInput from 'components/username-input';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
+import Mapper from 'interfaces/mapper';
 import UserJson from 'interfaces/user-json';
 import WithMappers from 'interfaces/with-mappers';
 import { route } from 'laroute';
@@ -28,6 +29,12 @@ interface Props {
   beatmap: WithMappers<BeatmapJson>;
   beatmapset: BeatmapsetExtendedJson;
   discussionsState: DiscussionsState; // only for updating the state with the response.
+}
+
+function createRemoveMapperHandler(mapper: Mapper, onRemoveClick: (user: UserJson) => void) {
+  return (_event: React.MouseEvent<HTMLButtonElement>) => {
+    onRemoveClick(mapper);
+  };
 }
 
 @observer
@@ -174,19 +181,27 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     );
   }
 
-  private readonly renderMapper = (mapper: typeof this.props.beatmap.mappers[number]) => (
-    <UserLink
-      key={mapper.id}
-      className='beatmap-owner-editor__user'
-      user={mapper}
-    >
-      <div className='beatmap-owner-editor__avatar'>
-        <UserAvatar modifiers='full-circle' user={mapper} />
-      </div>
-      <div className='beatmap-owner-editor__username u-ellipsis-overflow'>
-        {mapper.username}
-      </div>
-    </UserLink>
+
+  private readonly renderMapper = (mapper: Mapper, handleRemoveUser: (user: UserJson) => void) => (
+    <>
+      <UserLink
+        key={mapper.id}
+        className='beatmap-owner-editor__user'
+        user={mapper}
+      >
+        <div className='beatmap-owner-editor__avatar'>
+          <UserAvatar modifiers='full-circle' user={mapper} />
+        </div>
+        <div className='beatmap-owner-editor__username u-ellipsis-overflow'>
+          {mapper.username}
+        </div>
+      </UserLink>
+      {handleRemoveUser != null && (
+        <button className='user-card-brick__remove' onClick={createRemoveMapperHandler(mapper, handleRemoveUser)}>
+          <span className='fas fa-times' />
+        </button>
+      )}
+    </>
   );
 
   private renderUsernames() {
