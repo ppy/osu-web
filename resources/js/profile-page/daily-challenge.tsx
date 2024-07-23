@@ -167,8 +167,8 @@ export default class DailyChallenge extends React.Component<Props> {
     }, event);
 
     this.disposer = autorun(() => {
-      const $content = $(renderToStaticMarkup(popup(this.props.stats)));
-      $(this.valueRef.current ?? []).qtip('set', { 'content.text': $content });
+      const content = renderToStaticMarkup(popup(this.props.stats));
+      $(this.valueRef.current ?? []).qtip('set', { 'content.text': content });
     });
   };
 }
