@@ -36,7 +36,6 @@ class DailyChallengeUserStats extends Model
     public static function calculate(CarbonImmutable $date): void
     {
         $startTime = $date->startOfDay();
-        $endTime = $startTime->endOfDay();
         $currentWeek = $startTime->startOfWeek(CarbonImmutable::MONDAY);
         $previousWeek = $currentWeek->subWeeks(1);
         // this function assumes one daily challenge per day and one playlist item per daily challenge
