@@ -38,7 +38,7 @@
 
       &::before {
         .full-size();
-        content: ' ';
+        content: '';
         width: 1px;
         right: 100%;
         background-image: linear-gradient(to bottom, hsla(var(--hsl-b1), 0), @osu-colour-b1 50%, hsla(var(--hsl-b1), 0));
@@ -76,7 +76,7 @@
       .thicker-box-shadow();
       &::after {
         .full-size();
-        content: ' ';
+        content: '';
         background: fade(white, 15%);
         pointer-events: none;
         opacity: 0.5;
@@ -170,7 +170,7 @@
     .@{_top}--unread & {
       &::before {
         .full-size();
-        content: ' ';
+        content: '';
         background-color: @blue-darker;
         width: 5px;
       }
