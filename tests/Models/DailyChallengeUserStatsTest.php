@@ -39,7 +39,7 @@ class DailyChallengeUserStatsTest extends TestCase
         $playlistItem = static::preparePlaylistItem($playTime);
 
         $user = User::factory()->create();
-        $scoreLink = ScoreLink::factory()->passed()->create([
+        ScoreLink::factory()->passed()->create([
             'playlist_item_id' => $playlistItem,
             'user_id' => $user,
         ]);
@@ -67,7 +67,7 @@ class DailyChallengeUserStatsTest extends TestCase
         $playlistItem = static::preparePlaylistItem($playTime);
 
         $user = User::factory()->create();
-        $scoreLink = ScoreLink::factory()->passed()->create([
+        ScoreLink::factory()->passed()->create([
             'playlist_item_id' => $playlistItem,
             'user_id' => $user,
         ]);
@@ -126,7 +126,7 @@ class DailyChallengeUserStatsTest extends TestCase
         $playlistItem = static::preparePlaylistItem($playTime);
 
         $user = User::factory()->create();
-        $scoreLink = ScoreLink::factory()->passed()->create([
+        ScoreLink::factory()->passed()->create([
             'playlist_item_id' => $playlistItem,
             'user_id' => $user,
         ]);
