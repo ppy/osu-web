@@ -68,7 +68,7 @@ class MatchesController extends Controller
 
         [$matches, $hasMore] = LegacyMatch
             ::where('private', false)
-            ->cursorSort($cursorHelper, $params['cursor'] ?? null)
+            ->cursorSort($cursorHelper, cursor_from_params($params))
             ->limit($limit)
             ->getWithHasMore();
 

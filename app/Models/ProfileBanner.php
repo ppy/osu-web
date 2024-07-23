@@ -38,7 +38,7 @@ class ProfileBanner extends Model
         return $this->belongsTo(Country::class, 'country_acronym');
     }
 
-    public function macroActive()
+    public function macroActive(): \Closure
     {
         return function ($query) {
             $last = $query->orderBy('banner_id', 'DESC')->first();

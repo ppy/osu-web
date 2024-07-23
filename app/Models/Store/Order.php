@@ -639,7 +639,7 @@ class Order extends Model
             ->first();
     }
 
-    public function macroItemsQuantities()
+    public function macroItemsQuantities(): \Closure
     {
         return function ($query) {
             $query = clone $query;
