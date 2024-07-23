@@ -24,6 +24,7 @@ return new class extends Migration
             $table->unsignedMediumInteger('top_50p_placements')->default(0);
             $table->timestamp('last_weekly_streak')->useCurrent();
             $table->timestamp('last_update')->useCurrent()->useCurrentOnUpdate();
+            $table->index(['last_weekly_streak', 'last_update']);
         });
     }
 
