@@ -11,21 +11,24 @@ import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
 
 function tier(days: number) {
-  return days > 360
-    ? 'lustrous'
-    : days > 240
-      ? 'radiant'
-      : days > 120
-        ? 'rhodium'
-        : days > 60
-          ? 'platinum'
-          : days > 30
-            ? 'gold'
-            : days > 10
-              ? 'silver'
-              : days > 5
-                ? 'bronze'
-                : 'iron';
+  const tiers = [
+    [360, 'lustrous'],
+    [240, 'radiant'],
+    [120, 'rhodium'],
+    [60, 'platinum'],
+    [30, 'gold'],
+    [10, 'silver'],
+    [5, 'bronze'],
+    [Number.NEGATIVE_INFINITY, 'iron'],
+  ] as const;
+  for (const [minDays, value] of tiers) {
+    if (days > minDays) {
+      return value;
+    }
+  }
+
+  // this shouldn't happen
+  throw new Error("couldn't find corresponding tier");
 }
 
 function tierStyle(days: number) {
