@@ -28,7 +28,7 @@ class DailyChallengeUserStatsTest extends TestCase
         return PlaylistItem::factory()->create([
             'room_id' => Room::factory()->create([
                 'category' => 'daily_challenge',
-                'starts_at' => $playTime->startOfDay(),
+                'starts_at' => $playTime,
             ]),
         ]);
     }
