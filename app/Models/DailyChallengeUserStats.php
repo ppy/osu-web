@@ -74,7 +74,7 @@ class DailyChallengeUserStats extends Model
                 'user_id' => $userId,
             ]);
             // ignore processed scores
-            if (($stats->last_update ?? $previousWeek) > $startTime) {
+            if (($stats->last_update ?? $previousWeek) >= $startTime) {
                 continue;
             }
             $highScore = $highScoresByUserId[$userId] ?? null;

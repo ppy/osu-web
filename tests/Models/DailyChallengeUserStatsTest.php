@@ -61,6 +61,25 @@ class DailyChallengeUserStatsTest extends TestCase
         $this->assertTrue($playTime->equalTo($stats->last_update));
     }
 
+    public function testCalculateTwiceADay(): void
+    {
+        $playTime = static::startOfWeek();
+        $playlistItem = static::preparePlaylistItem($playTime);
+
+        $user = User::factory()->create();
+        $scoreLink = ScoreLink::factory()->passed()->create([
+            'playlist_item_id' => $playlistItem,
+            'user_id' => $user,
+        ]);
+        UserScoreAggregate::new($user, $playlistItem->room)->save();
+
+        DailyChallengeUserStats::calculate($playTime);
+        DailyChallengeUserStats::calculate($playTime);
+
+        $stats = DailyChallengeUserStats::find($user->getKey());
+        $this->assertSame(1, $stats->playcount);
+    }
+
     public function testCalculateIncrementAll(): void
     {
         $playTime = static::startOfWeek();
