@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 
 export default function UserLevel({ level }: { level: number }) {
@@ -24,11 +23,10 @@ export default function UserLevel({ level }: { level: number }) {
     tier = 'bronze';
   }
 
-  const blockClass = classWithModifiers('user-level', `tier-${tier}`);
-
   return (
     <div
-      className={blockClass}
+      className='user-level'
+      style={{ '--bg': `var(--level-tier-${tier})` } as React.CSSProperties}
       title={trans('users.show.stats.level', { level })}
     >
       <div className="user-level__icon" />
