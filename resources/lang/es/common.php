@@ -43,7 +43,7 @@ return [
         'reply' => 'Responder',
         'reply_reopen' => 'Responder y reabrir',
         'reply_resolve' => 'Responder y resolver',
-        'reset' => 'Reiniciar',
+        'reset' => 'Restablecer',
         'restore' => 'Restaurar',
         'retry' => 'Volver a intentar',
         'save' => 'Guardar',

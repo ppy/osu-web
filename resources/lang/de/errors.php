@@ -28,12 +28,15 @@ return [
     'checkout' => [
         'generic' => 'Bei der Vorbereitung deiner Bestellung ist ein Fehler aufgetreten.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Keine Ergebnisse gefunden, versuche es später erneut.',
         'invalid_cursor_exception' => 'Ungültiger Cursor-Parameter angegeben.',
         'operation_timeout_exception' => 'Die Suche ist derzeit höher ausgelastet als normal, versuche es später erneut.',
     ],
     'user_report' => [
-        'recently_reported' => "",
+        'recently_reported' => "Du hast dieses vor kurzem bereits gemeldet.",
     ],
 ];

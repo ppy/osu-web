@@ -25,8 +25,8 @@ return [
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Nahlásit Zprávu',
+        'title' => 'Nahlásit zprávu uživatele :username?',
     ],
 
     'scores' => [

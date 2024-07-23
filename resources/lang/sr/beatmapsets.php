@@ -147,7 +147,7 @@ return [
             'source' => 'Извор',
             'storyboard' => 'Ова мапа садржи storyboard',
             'success-rate' => 'Стопа Успеха',
-            'tags' => 'Oznake',
+            'tags' => 'Ознаке',
             'video' => 'Ова мапа садржи видео',
         ],
 

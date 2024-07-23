@@ -200,7 +200,8 @@ return [
             'cover' => [
                 'button' => 'Muuta profiilin kansikuvaa',
                 'defaults_info' => 'Lisää kansikuvavaihtoehtoja tulee olemaan saatavilla tulevaisuudessa',
-                'holdover_remove_confirm' => "",
+                'holdover_remove_confirm' => "Edellinen valitsemasi kansikuva ei ole enää käytettävissä. Et voi valita sitä uudelleen, jos vaihdat toiseen kansikuvaan. Jatketaanko?",
+                'title' => '',
 
                 'upload' => [
                     'broken_file' => 'Kuvan käsittely epäonnistui. Varmista lähetetty kuva ja kokeile uudestaan.',
@@ -221,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'oletuspelimuoto',
                 'set' => 'aseta :mode: profiilin oletetuksi pelimuodoksi',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

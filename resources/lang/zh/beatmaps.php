@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "禁言时无法发布讨论。",
         'message_type_select' => '选择回复类型',
         'reply_notice' => '按下回车以提交',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => '在此处输入您的回复',
         'require-login' => '登录以继续',
         'resolved' => '已解决',
         'restore' => '已修复',
         'show_deleted' => '显示已删除的消息',
         'title' => '讨论',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => '全部折叠',

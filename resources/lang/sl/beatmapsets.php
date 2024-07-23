@@ -221,7 +221,7 @@ return [
         ],
 
         'status' => [
-            'ranked' => 'Rankirano',
+            'ranked' => 'Uvrščeno',
             'approved' => 'Odobreno',
             'loved' => 'Loved',
             'qualified' => 'Kvalificirano',

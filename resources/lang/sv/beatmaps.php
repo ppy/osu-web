@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Kan inte lägga upp diskussionen medan du är tystad.",
         'message_type_select' => 'Välj kommentarstyp',
         'reply_notice' => 'Tryck enter för att svara.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Skriv ditt svar här',
         'require-login' => 'Var vänlig logga in för att skicka inlägg eller svara',
         'resolved' => 'Löst',
         'restore' => 'återställ',
         'show_deleted' => 'Visa borttagna',
         'title' => 'Diskussioner',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Kollapsa allt',
@@ -79,12 +81,12 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
+            'disqualify' => 'Lägg ut diskvalificering',
+            'hype' => 'Lägg ut Hype!',
+            'mapper_note' => 'Lägg ut Anteckning',
             'nomination_reset' => 'Ta bort alla Nomineringar',
-            'praise' => '',
-            'problem' => '',
+            'praise' => 'Lägg ut Beröm',
+            'problem' => 'Lägg ut Problem',
             'problem_warning' => '',
             'review' => '',
             'suggestion' => '',

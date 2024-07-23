@@ -37,7 +37,7 @@ return [
         'username' => 'E-posta adresi veya kullanıcı adı girin',
 
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Hesabın uzun bir süre boyunca kullanılmamış. Hesabının güvenliğini sağlamak adına lütfen parolanı sıfırla.",
         ],
         'support' => [
             '_' => 'Yardıma mı ihtiyacınız var? :button üzerinden bizimle iletişime geçin.',

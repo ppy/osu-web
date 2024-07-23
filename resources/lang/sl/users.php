@@ -201,6 +201,7 @@ return [
                 'button' => 'Spremeni naslovno sliko profila',
                 'defaults_info' => 'Več možnosti za naslovne slike bo na voljo v prihodnosti',
                 'holdover_remove_confirm' => "",
+                'title' => '',
 
                 'upload' => [
                     'broken_file' => 'Neuspešna obdelava slike. Preveri naloženo sliko in poskusi znova.',
@@ -221,6 +222,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'privzeti način igre',
                 'set' => 'izberi :mode kot privzeti način igre na profilu',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

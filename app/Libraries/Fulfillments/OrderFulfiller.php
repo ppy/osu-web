@@ -5,7 +5,6 @@
 
 namespace App\Libraries\Fulfillments;
 
-use App\Events\Fulfillments\FulfillmentValidationFailed;
 use App\Exceptions\Store\FulfillmentException;
 use App\Models\Store\Order;
 use App\Traits\Validatable;
@@ -43,29 +42,22 @@ abstract class OrderFulfiller implements Fulfillable
         return $this->order;
     }
 
-    protected function throwOnFail(bool $valid = false)
+    abstract public function validationErrorsTranslationPrefix(): string;
+
+    protected function assertNoValidationErrors(): void
     {
-        if (!$valid) {
-            $this->throwValidationFailed(new FulfillmentException($this->order, $this->validationErrors()));
+        if ($this->validationErrors()->isAny()) {
+            throw new FulfillmentException($this->order, $this->validationErrors());
         }
     }
 
-    abstract public function validationErrorsTranslationPrefix(): string;
-
-    protected function dispatchValidationFailed()
+    protected function incrementRun(): void
     {
-        event(
-            "store.fulfillments.validation.failed.{$this->taggedName()}",
-            new FulfillmentValidationFailed($this, $this->validationErrors())
-        );
+        datadog_increment('store.fulfillments.run', ['type' => static::TAGGED_NAME]);
     }
 
-    /**
-     * Convenience method that calls dispatchValidationFailed() and then throws the supplied exception.
-     */
-    protected function throwValidationFailed(\Exception $exception): void
+    protected function incrementRevoke(): void
     {
-        $this->dispatchValidationFailed();
-        throw $exception;
+        datadog_increment('store.fulfillments.revoke', ['type' => static::TAGGED_NAME]);
     }
 }

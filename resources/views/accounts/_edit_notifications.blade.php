@@ -31,7 +31,7 @@
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">
-                        @include('accounts._edit_entry_status')
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                     </div>
                 </label>
             </div>
@@ -56,7 +56,7 @@
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">
-                        @include('accounts._edit_entry_status')
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                     </div>
                 </label>
             </div>
@@ -79,7 +79,7 @@
                                 $modes = $notificationOptions[$notificationType]->details['modes'] ?? [];
                             @endphp
                             @foreach (App\Models\Beatmap::MODES as $key => $_value)
-                                <label class="account-edit-entry__checkbox account-edit-entry__checkbox--inline">
+                                <label class="account-edit-entry__checkbox">
                                     @include('objects._switch', ['locals' => [
                                         'checked' => in_array($key, $modes, true),
                                         'value' => $key,
@@ -91,8 +91,8 @@
                                 </label>
                             @endforeach
 
-                            <div class="account-edit-entry__checkboxes-status">
-                                @include('accounts._edit_entry_status')
+                            <div class="account-edit-entry__checkbox-status">
+                                @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                             </div>
                         </form>
                     </div>

@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "No puedes publicar una discusión mientras estás silenciado.",
         'message_type_select' => 'Seleccionar tipo de comentario',
         'reply_notice' => 'Presiona enter para responder.',
+        'reply_resolve_notice' => 'Presiona enter para responder. Presiona ctrl+enter para responder y resolver.',
         'reply_placeholder' => 'Escribe tu respuesta aquí',
         'require-login' => 'Inicia sesión para publicar o responder',
         'resolved' => 'Resuelto',
         'restore' => 'restaurar',
         'show_deleted' => 'Mostrar eliminados',
         'title' => 'Discusiones',
+        'unresolved_count' => ':count_delimited problemas sin resolver',
 
         'collapse' => [
             'all-collapse' => 'Contraer todo',

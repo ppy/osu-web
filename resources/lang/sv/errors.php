@@ -28,6 +28,9 @@ return [
     'checkout' => [
         'generic' => 'Ett fel inträffade när din transaktion förbereddes.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Kunde inte få några resultat, försök igen senare.',
         'invalid_cursor_exception' => 'Ogiltig markörparameter angiven.',

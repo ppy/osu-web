@@ -24,7 +24,7 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Tällä käyttäjällä on alle 30 päivää viimeaikaista rankkaushistoriaa.',
     ],
 
     'type' => [

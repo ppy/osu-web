@@ -13,10 +13,6 @@ return [
         'blurb' => [
             'important' => 'IZLASIET ŠO PIRMS LEJUPIELĀDES',
             'install_instruction' => 'Instalācija: Kad paka ir lejupielādēta, izvelciet tās saturu savā osu! Songs direktorijā, un osu! izdarīs visu pārējo.',
-            'note' => [
-                '_' => 'Ņemiet vērā, ka ir ļoti ieteicams :scary, jo vecākas mapes parasti ir daudz zemākas kvalitātes nekā jaunākas.',
-                'scary' => 'lejupielādēt pakas secībā no jaunākās līdz agrākajai',
-            ],
         ],
     ],
 

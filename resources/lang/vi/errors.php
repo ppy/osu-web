@@ -28,12 +28,15 @@ return [
     'checkout' => [
         'generic' => 'Đã xảy ra lỗi trong quá trình thanh toán cho đơn hàng của bạn.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Không có kết quả, vui lòng thử lại sau.',
         'invalid_cursor_exception' => 'Tham số con trỏ được chỉ định là không hợp lệ.',
         'operation_timeout_exception' => 'Hệ thống tìm kiếm đang quá tải, vui lòng thử lại sau.',
     ],
     'user_report' => [
-        'recently_reported' => "",
+        'recently_reported' => "Bạn đã báo cáo gần đây rồi.",
     ],
 ];

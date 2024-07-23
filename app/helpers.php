@@ -347,6 +347,15 @@ function cursor_from_params($params): ?array
     return null;
 }
 
+function datadog_increment(string $stat, array|string $tags = null, int $value = 1)
+{
+    Datadog::increment(
+        stats: $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.'.$stat,
+        tags: $tags,
+        value: $value
+    );
+}
+
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
     $startTime = microtime(true);
@@ -412,6 +421,28 @@ function get_valid_locale($requestedLocale)
     if (in_array($requestedLocale, $GLOBALS['cfg']['app']['available_locales'], true)) {
         return $requestedLocale;
     }
+}
+
+function hsl_to_hex($h, $s, $l)
+{
+    $c = (1 - abs(2 * $l - 1)) * $s;
+    $x = $c * (1 - abs(fmod($h / 60, 2) - 1));
+    $m = $l - ($c / 2);
+
+    [$r, $g, $b] = match (true) {
+        $h < 60  => [$c, $x, 0],
+        $h < 120 => [$x, $c, 0],
+        $h < 180 => [0, $c, $x],
+        $h < 240 => [0, $x, $c],
+        $h < 300 => [$x, 0, $c],
+        default  => [$c, 0, $x]
+    };
+
+    $r = round(($r + $m) * 255);
+    $g = round(($g + $m) * 255);
+    $b = round(($b + $m) * 255);
+
+    return sprintf('#%02x%02x%02x', $r, $g, $b);
 }
 
 function html_entity_decode_better($string)
@@ -509,7 +540,7 @@ function log_error_sentry(Throwable $exception, ?array $tags = null): ?string
             $contexts = $exception->getContexts();
 
             foreach ($contexts as $name => $value) {
-                $scope->setContext($name, $value);
+                $scope->setContext($name, $value ?? []);
             }
         }
 
@@ -763,11 +794,11 @@ function currency($price, $precision = 2, $zeroShowFree = true)
  * Compares 2 money values from payment processor in a sane manner.
  * i.e. not a float.
  *
- * @param $a money value A
- * @param $b money value B
- * @return 0 if equal, 1 if $a > $b, -1 if $a < $b
+ * @param float $a money value A
+ * @param float $b money value B
+ * @return int 0 if equal, 1 if $a > $b, -1 if $a < $b
  */
-function compare_currency($a, $b)
+function compare_currency(float $a, float $b): int
 {
     return (int) ($a * 100) <=> (int) ($b * 100);
 }

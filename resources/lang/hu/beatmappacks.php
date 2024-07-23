@@ -13,10 +13,6 @@ return [
         'blurb' => [
             'important' => 'OLVASD EL LETÖLTÉS ELŐTT',
             'install_instruction' => 'Telepítés: Miután letöltötte a csomagot, bontsa ki a csomag tartalmát a osu! Songs könyvtárba és osu! a többit megteszi.',
-            'note' => [
-                '_' => 'Valamint vedd figyelembe, hogy erősen javasolt a :scary, mivel a régebbi pályák minősége jóval alacsonyabb az újakéhoz képest.',
-                'scary' => 'legújabb csomagok letöltése',
-            ],
         ],
     ],
 

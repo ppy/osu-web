@@ -3,22 +3,23 @@
 
 import { action, observable, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
-import CoverSelector from 'profile-page/cover-selector';
 import * as React from 'react';
 import { trans } from 'utils/lang';
 import { isModalShowing } from 'utils/modal-helper';
 import { nextVal } from 'utils/seq';
 import Controller from './controller';
+import ProfileEditPopup from './profile-edit-popup';
 
 interface Props {
   controller: Controller;
 }
 
 @observer
-export default class CoverEditor extends React.Component<Props> {
-  private readonly coverSelector = React.createRef<HTMLDivElement>();
+export default class ProfileEditButton extends React.Component<Props> {
+  private clickStartTarget: unknown;
+  private readonly container = React.createRef<HTMLDivElement>();
   private readonly eventId = `users-show-header-${nextVal()}`;
-  @observable private selectingCover = false;
+  @observable private popupOpen = false;
 
   get user() {
     return this.props.controller.state.user;
@@ -31,7 +32,8 @@ export default class CoverEditor extends React.Component<Props> {
   }
 
   componentDidMount() {
-    $.subscribe(`key:esc.${this.eventId}`, this.tryCloseCoverSelector);
+    $.subscribe(`key:esc.${this.eventId}`, this.tryClosePopup);
+    $(document).on(`mousedown.${this.eventId}`, this.onDocumentMouseDown);
     $(document).on(`click.${this.eventId}`, this.onDocumentClick);
   }
 
@@ -39,63 +41,70 @@ export default class CoverEditor extends React.Component<Props> {
     $.unsubscribe(`.${this.eventId}`);
     $(document).off(`.${this.eventId}`);
 
-    this.closeCoverSelector();
+    this.closePopup();
   }
 
   render() {
     if (!this.props.controller.withEdit) return null;
 
     return (
-      <div ref={this.coverSelector} className='profile-page-cover-editor-button'>
+      <div ref={this.container} className='profile-page-cover-editor-button'>
         <button
           className='btn-circle btn-circle--page-toggle'
-          onClick={this.onClickCoverSelectorToggle}
+          onClick={this.onClickPopupToggle}
           title={trans('users.show.edit.cover.button')}
         >
           <span className='fas fa-pencil-alt' />
         </button>
 
-        {this.selectingCover &&
-          <CoverSelector controller={this.props.controller} />
+        {this.popupOpen &&
+          <ProfileEditPopup controller={this.props.controller} />
         }
       </div>
     );
   }
 
   @action
-  private readonly closeCoverSelector = () => {
-    this.selectingCover = false;
-    this.props.controller.setDisplayCoverUrl(null);
+  private readonly closePopup = () => {
+    this.popupOpen = false;
   };
 
-  private readonly onClickCoverSelectorToggle = () => {
-    if (this.selectingCover) {
-      this.closeCoverSelector();
+  private readonly onClickPopupToggle = () => {
+    if (this.popupOpen) {
+      this.closePopup();
     } else {
-      this.openCoverSelector();
+      this.openPopup();
     }
   };
 
   private readonly onDocumentClick = (e: JQuery.ClickEvent) => {
-    if (!this.selectingCover) return;
+    if (!this.popupOpen) return;
 
     if (e.button !== 0) return;
 
-    if ('target' in e && this.coverSelector.current != null && $(e.target).closest(this.coverSelector.current).length) {
+    if (
+      this.clickStartTarget instanceof Element &&
+      this.container.current != null &&
+      $(this.clickStartTarget).closest(this.container.current).length
+    ) {
       return;
     }
 
-    this.tryCloseCoverSelector();
+    this.tryClosePopup();
+  };
+
+  private readonly onDocumentMouseDown = (e: JQuery.ClickEvent) => {
+    this.clickStartTarget = e.target;
   };
 
   @action
-  private readonly openCoverSelector = () => {
-    this.selectingCover = true;
+  private readonly openPopup = () => {
+    this.popupOpen = true;
   };
 
-  private readonly tryCloseCoverSelector = () => {
+  private readonly tryClosePopup = () => {
     if (isModalShowing()) return;
 
-    this.closeCoverSelector();
+    this.closePopup();
   };
 }

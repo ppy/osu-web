@@ -24,7 +24,7 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => 'Ce joueur a moins de 30 jours d\'activité dans le classement.',
+        'insufficient_history' => 'Ce joueur a moins de 30 jours d\'activité dans le classement récemment.',
     ],
 
     'type' => [

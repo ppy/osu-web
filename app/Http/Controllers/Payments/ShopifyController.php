@@ -5,7 +5,6 @@
 
 namespace App\Http\Controllers\Payments;
 
-use App\Exceptions\ModelNotSavedException;
 use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\ShopifySignature;
 use App\Models\Store\Order;
@@ -148,10 +147,6 @@ class ShopifyController extends Controller
             'country_code' => array_get($params, 'billing_address.country_code'),
             'paid_at' => Carbon::parse(array_get($params, 'processed_at')),
         ]);
-
-        if (!$order->payments()->save($payment)) {
-            throw new ModelNotSavedException();
-        }
 
         $order->paid($payment);
     }

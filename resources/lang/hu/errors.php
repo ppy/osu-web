@@ -28,12 +28,15 @@ return [
     'checkout' => [
         'generic' => 'Hiba történt a fizetés előkészítése közben.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Nem sikerült bármi eredményt kapni, kérlek próbáld meg később.',
         'invalid_cursor_exception' => 'Érvénytelen kurzorparaméter van megadva.',
         'operation_timeout_exception' => 'A keresés a szokásosnál jobban leterhelt, kérlek próbáld meg később.',
     ],
     'user_report' => [
-        'recently_reported' => "",
+        'recently_reported' => "Már bejelentetted nem rég.",
     ],
 ];

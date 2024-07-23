@@ -32,7 +32,7 @@ return [
         ],
 
         'support' => [
-            '_' => '感谢您向 osu! 付出的:support！',
+            '_' => '感谢您对 osu! 付出的 :support！',
             'first' => '支持',
             'repeat' => '持续支持',
         ],

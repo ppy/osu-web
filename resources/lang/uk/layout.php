@@ -199,6 +199,8 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Режим відображення, який показує результати, поставлені у клієнті lazer з новим алгоритмом підрахунку очок',
             'logout' => 'Вийти',
             'profile' => 'Мій профіль',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
         ],
     ],
 

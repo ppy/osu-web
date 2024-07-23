@@ -28,6 +28,9 @@ return [
     'checkout' => [
         'generic' => 'Ocorreu um erro ao preparar o teu pagamento.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Não foi possível obter nenhuns resultados, tenta outra vez mais tarde.',
         'invalid_cursor_exception' => 'Parâmetro do cursor inválido.',

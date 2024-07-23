@@ -72,11 +72,13 @@ class Score extends Model implements Traits\ReportableInterface
             'maximum_statistics' => $params['maximum_statistics'] ?? [],
             'mods' => $params['mods'] ?? [],
             'statistics' => $params['statistics'] ?? [],
+            'total_score_without_mods' => $params['total_score_without_mods'] ?? null,
         ];
         unset(
             $params['maximum_statistics'],
             $params['mods'],
             $params['statistics'],
+            $params['total_score_without_mods'],
         );
 
         $score = new static($params);
@@ -106,6 +108,7 @@ class Score extends Model implements Traits\ReportableInterface
             'rank:string',
             'statistics:array',
             'total_score:int',
+            'total_score_without_mods:int',
         ]);
 
         $params['maximum_statistics'] ??= [];
@@ -268,6 +271,14 @@ class Score extends Model implements Traits\ReportableInterface
         // unsigned int (as per the column)
         if ($this->total_score === null || $this->total_score < 0 || $this->total_score > 4294967295) {
             throw new InvariantException('Invalid total_score.');
+        }
+
+        // unsigned int (no data type enforcement as this goes into the json, but just to match total_score)
+        if (
+            $this->data->totalScoreWithoutMods !== null
+            && ($this->data->totalScoreWithoutMods < 0 || $this->data->totalScoreWithoutMods > 4294967295)
+        ) {
+            throw new InvariantException('Invalid total_score_without_mods.');
         }
 
         foreach (['max_combo', 'passed'] as $field) {

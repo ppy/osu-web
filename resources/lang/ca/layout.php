@@ -199,6 +199,8 @@ return [
             'legacy_score_only_toggle_tooltip' => 'El mode lazer mostra les puntuacions enviades des de lazer amb un nou algoritme de puntuació',
             'logout' => 'Tanca la sessió',
             'profile' => 'El meu perfil',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
         ],
     ],
 

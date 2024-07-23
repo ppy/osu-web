@@ -7,6 +7,7 @@ return [
     'cancel' => 'Avbryt',
 
     'authorise' => [
+        'app_owner' => '',
         'request' => 'ber om tilgang til kontoen din.',
         'scopes_title' => 'Dette programmet vil kunne:',
         'title' => 'Forespørsel om godkjenning',
