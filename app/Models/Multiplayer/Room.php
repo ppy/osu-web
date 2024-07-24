@@ -18,6 +18,7 @@ use App\Models\User;
 use App\Traits\Memoizes;
 use App\Transformers\Multiplayer\RoomTransformer;
 use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Ds\Set;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -86,6 +87,9 @@ class Room extends Model
         'ends_at' => 'datetime',
         'password' => PresentString::class,
         'starts_at' => 'datetime',
+    ];
+    protected array $macros = [
+        'dailyChallengeFor',
     ];
     protected $table = 'multiplayer_rooms';
 
@@ -217,6 +221,15 @@ class Room extends Model
     public function currentPlaylistItem()
     {
         return $this->belongsTo(PlaylistItem::class, 'current_playlist_item_id');
+    }
+
+    public function macroDailyChallengeFor(): \Closure
+    {
+        return fn (Builder $query, CarbonImmutable $date): ?static
+            => static::where('category', 'daily_challenge')
+                ->whereBetween('starts_at', [$date->startOfDay(), $date->endOfDay()])
+                ->orderBy('starts_at', 'DESC')
+                ->first();
     }
 
     public function host()

@@ -80,6 +80,7 @@ class Kernel extends ConsoleKernel
         Commands\BeatmapLeadersRefresh::class,
 
         Commands\DailyChallengeCreateNext::class,
+        Commands\DailyChallengeUserStatsCalculate::class,
     ];
 
     /**
@@ -143,6 +144,11 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('daily-challenge:create-next')
             ->cron('5 0 * * *')
+            ->withoutOverlapping()
+            ->onOneServer();
+
+        $schedule->command('daily-challenge:user-stats-calculate')
+            ->cron('10 0 * * *')
             ->withoutOverlapping()
             ->onOneServer();
     }

@@ -20,7 +20,7 @@ class ProfileBanner extends Model
 {
     protected $table = 'osu_profile_banners';
     protected $primaryKey = 'banner_id';
-    protected $macros = ['active'];
+    protected array $macros = ['active'];
     public $timestamps = false;
 
     public function user()
@@ -38,7 +38,7 @@ class ProfileBanner extends Model
         return $this->belongsTo(Country::class, 'country_acronym');
     }
 
-    public function macroActive()
+    public function macroActive(): \Closure
     {
         return function ($query) {
             $last = $query->orderBy('banner_id', 'DESC')->first();

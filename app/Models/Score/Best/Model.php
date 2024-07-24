@@ -22,7 +22,7 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
 {
     use Traits\Reportable, Traits\WithDbCursorHelper, Traits\WithWeightedPp;
 
-    protected $macros = [
+    protected array $macros = [
         'accurateRankCounts',
         'forListing',
         'userBest',
@@ -108,7 +108,7 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         return $this->replayFile()?->get();
     }
 
-    public function macroForListing()
+    public function macroForListing(): \Closure
     {
         return function ($query, $limit) {
             $limit = clamp($limit ?? 50, 1, $GLOBALS['cfg']['osu']['beatmaps']['max_scores']);
@@ -170,7 +170,7 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         ]));
     }
 
-    public function macroUserBest()
+    public function macroUserBest(): \Closure
     {
         return function ($query, $limit, $offset = 0, $includes = []) {
             $baseResult = (clone $query)
@@ -206,7 +206,7 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
      *
      * @return array [user_id => [rank => count]]
      */
-    public function macroAccurateRankCounts()
+    public function macroAccurateRankCounts(): \Closure
     {
         return function ($query) {
             $scores = (clone $query)

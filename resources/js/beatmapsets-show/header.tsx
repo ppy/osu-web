@@ -7,13 +7,12 @@ import BeatmapsetMapping from 'components/beatmapset-mapping';
 import BigButton from 'components/big-button';
 import StringWithComponent from 'components/string-with-component';
 import UserLink from 'components/user-link';
-import UserListPopup, { createTooltip } from 'components/user-list-popup';
+import { createTooltip } from 'components/user-list-popup';
 import { route } from 'laroute';
-import { action, autorun, computed, makeObservable, observable } from 'mobx';
-import { disposeOnUnmount, observer } from 'mobx-react';
+import { action, computed, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
 import { downloadLimited, getArtist, getTitle, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
@@ -40,17 +39,10 @@ interface Props {
 @observer
 export default class Header extends React.Component<Props> {
   private readonly favouriteIconRef = React.createRef<HTMLSpanElement>();
-  @observable private hoveredFavouriteIcon = false;
+  private favouritePopupDisposer?: () => void;
 
   private get controller() {
     return this.props.controller;
-  }
-
-  @computed
-  private get favouritePopup() {
-    return renderToStaticMarkup(
-      <UserListPopup count={this.controller.beatmapset.favourite_count} users={this.filteredFavourites} />,
-    );
   }
 
   @computed
@@ -75,8 +67,8 @@ export default class Header extends React.Component<Props> {
     makeObservable(this);
   }
 
-  componentDidMount() {
-    disposeOnUnmount(this, autorun(this.updateFavouritePopup));
+  componentWillUnmount() {
+    this.favouritePopupDisposer?.();
   }
 
   render() {
@@ -228,7 +220,23 @@ export default class Header extends React.Component<Props> {
 
   @action
   private readonly onEnterFavouriteIcon = () => {
-    this.hoveredFavouriteIcon = true;
+    if (this.filteredFavourites.length < 1) {
+      if (this.favouritePopupDisposer != null) {
+        this.favouritePopupDisposer();
+        $(this.favouriteIconRef.current ?? []).qtip('destroy', true);
+      }
+
+      return;
+    }
+
+    this.favouritePopupDisposer ??= createTooltip(
+      () => this.favouriteIconRef.current,
+      () => ({
+        count: this.controller.beatmapset.favourite_count,
+        users: this.filteredFavourites,
+      }),
+      'right center',
+    );
   };
 
   private renderAvailabilityInfo() {
@@ -368,28 +376,4 @@ export default class Header extends React.Component<Props> {
     }
     return wikiUrl(`Beatmap/Category#${fragment}`);
   }
-
-  private readonly updateFavouritePopup = () => {
-    if (!this.hoveredFavouriteIcon) {
-      return;
-    }
-
-    const target = this.favouriteIconRef.current;
-
-    if (target == null) {
-      throw new Error('favourite icon is missing');
-    }
-
-    if (this.filteredFavourites.length < 1) {
-      if (target._tooltip === '1') {
-        target._tooltip = '';
-        $(target).qtip('destroy', true);
-      }
-
-      return;
-    }
-
-    createTooltip(target, 'right center', '');
-    $(target).qtip('set', { 'content.text': this.favouritePopup });
-  };
 }
