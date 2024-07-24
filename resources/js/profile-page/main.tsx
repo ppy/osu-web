@@ -201,21 +201,15 @@ export default class Main extends React.Component<Props> {
           </div>
 
           <div ref={this.pagesOffsetRef} className='page-extra-tabs'>
-            {this.displayExtraTabs &&
-              <div ref={this.tabs} className='page-mode page-mode--profile-page-extra'>
-                {this.displayedExtraPages.map((m) => (
-                  <a
-                    key={m}
-                    className={`page-mode__item ${this.isSortablePage(m) ? 'js-sortable--tab' : ''}`}
-                    data-page-id={m}
-                    href={`#${m}`}
-                    onClick={this.onTabClick}
-                  >
-                    <ExtraTab controller={this.controller} page={m} />
-                  </a>
-                ))}
-              </div>
-            }
+            {this.displayExtraTabs && (
+              <>
+                {
+                  /* no sortable on mobile due to vertical scroll */
+                  this.renderExtraTabs('u-hidden-desktop')
+                }
+                {this.renderExtraTabs('hidden-xs', this.tabs)}
+              </>
+            )}
           </div>
 
           {/* value needs to be the same instance of an observable on each render */}
@@ -435,6 +429,27 @@ export default class Main extends React.Component<Props> {
 
       this.scrollTo = { scrollBy: 0 };
     });
+  }
+
+  private renderExtraTabs(extraClass: string, ref?: React.RefObject<HTMLDivElement>) {
+    return (
+      <div
+        ref={ref}
+        className={`page-mode page-mode--profile-page-extra ${extraClass}`}
+      >
+        {this.displayedExtraPages.map((m) => (
+          <a
+            key={m}
+            className={`page-mode__item ${ref != null && this.isSortablePage(m) ? 'js-sortable--tab' : ''}`}
+            data-page-id={m}
+            href={`#${m}`}
+            onClick={this.onTabClick}
+          >
+            <ExtraTab controller={this.controller} page={m} />
+          </a>
+        ))}
+      </div>
+    );
   }
 
   private readonly updateOrder = (event: Event) => {
