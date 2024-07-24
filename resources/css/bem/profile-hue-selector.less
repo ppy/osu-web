@@ -26,7 +26,11 @@
       top: 0;
       width: @handle-width;
       height: 100%;
-      background-color: hsl(var(--hue), var(--c-saturation-2), var(--c-lightness-2));
+      background-color: hsl(
+        var(--hue),
+        var(--c-saturation-2),
+        var(--c-lightness-2)
+      );
     }
   }
 
@@ -38,14 +42,15 @@
     --lightness: var(--c-lightness-3);
     // TODO: replace with this simpler alternative once supported by the next Firefox ESR (>127):
     // background: linear-gradient(to right in hsl longer hue, var(--start-colour), var(--end-colour));
-    background: linear-gradient(to right,
+    background: linear-gradient(
+      to right,
       hsl(0, var(--saturation), var(--lightness)) 0%,
       hsl(60, var(--saturation), var(--lightness)) 16.67%,
       hsl(120, var(--saturation), var(--lightness)) 33.33%,
       hsl(180, var(--saturation), var(--lightness)) 50%,
       hsl(240, var(--saturation), var(--lightness)) 66.67%,
       hsl(300, var(--saturation), var(--lightness)) 83.33%,
-      hsl(360, var(--saturation), var(--lightness)) 100%,
+      hsl(360, var(--saturation), var(--lightness)) 100%
     );
   }
 }

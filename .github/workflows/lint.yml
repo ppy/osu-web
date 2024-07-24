@@ -51,6 +51,8 @@ jobs:
 
       - run: 'yarn lint --max-warnings 89 > /dev/null'
 
+      - run: yarn pretty
+
       - run: ./bin/update_licence.sh -nf
 
       - name: Run PHPCS

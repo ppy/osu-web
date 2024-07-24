@@ -92,7 +92,7 @@
 
     .link-hover({
       box-shadow: none;
-    })
+    });
   }
 
   &--page-toggle-detail {
@@ -120,7 +120,8 @@
     }
   }
 
-  &--activated, &.js-activated {
+  &--activated,
+  &.js-activated {
     background-color: @osu-colour-h2;
     color: @osu-colour-b5;
 
@@ -191,7 +192,8 @@
     opacity: var(--normal-opacity);
     transition: var(--transition);
 
-    .@{top}:hover &, .@{top}:active & {
+    .@{top}:hover &,
+    .@{top}:active & {
       opacity: var(--hover-opacity);
     }
 
