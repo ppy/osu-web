@@ -82,7 +82,14 @@ class ScoresController extends BaseController
             )->first();
 
             if ($userHighScoreLink !== null) {
-                $userScoreJson = json_item($userHighScoreLink, $transformer, ScoreTransformer::MULTIPLAYER_BASE_INCLUDES);
+                $userScoreJson = json_item(
+                    $userHighScoreLink,
+                    $transformer,
+                    [
+                        ...ScoreTransformer::MULTIPLAYER_BASE_INCLUDES,
+                        'position',
+                    ]
+                );
             }
         }
 
