@@ -83,6 +83,58 @@ class UserScoreAggregateTest extends TestCase
         $this->assertSame($scoreLink->getKey(), $agg->last_score_id);
     }
 
+    public function testAddingEqualScore(): void
+    {
+        $firstUser = User::factory()->create();
+        $secondUser = User::factory()->create();
+        $playlistItem = $this->createPlaylistItem();
+
+        // first user sets play
+        $firstUserPlay = $this->addPlay($firstUser, $playlistItem, [
+            'accuracy' => 0.5,
+            'passed' => true,
+            'total_score' => 10,
+        ]);
+
+        $firstUserAgg = UserScoreAggregate::new($firstUser, $this->room);
+        $this->assertSame(1, $firstUserAgg->completed);
+        $this->assertSame(0.5, $firstUserAgg->accuracy);
+        $this->assertSame(10, $firstUserAgg->total_score);
+        $this->assertSame(1, $firstUserAgg->userRank());
+        $this->assertSame($firstUserPlay->getKey(), $firstUserAgg->last_score_id);
+
+        // second user sets play with same total, so they get second place due to being late
+        $secondUserPlay = $this->addPlay($secondUser, $playlistItem, [
+            'accuracy' => 0.5,
+            'passed' => true,
+            'total_score' => 10,
+        ]);
+
+        $secondUserAgg = UserScoreAggregate::new($secondUser, $this->room);
+        $this->assertSame(1, $secondUserAgg->completed);
+        $this->assertSame(0.5, $secondUserAgg->accuracy);
+        $this->assertSame(10, $secondUserAgg->total_score);
+        $this->assertSame(2, $secondUserAgg->userRank());
+        $this->assertSame($secondUserPlay->getKey(), $secondUserAgg->last_score_id);
+
+        // first user sets play with same total again, but their rank should not move now
+        $this->addPlay($firstUser, $playlistItem, [
+            'accuracy' => 0.5,
+            'passed' => true,
+            'total_score' => 10,
+        ]);
+
+        $firstUserAgg->refresh();
+        $this->assertSame(1, $firstUserAgg->completed);
+        $this->assertSame(0.5, $firstUserAgg->accuracy);
+        $this->assertSame(10, $firstUserAgg->total_score);
+        $this->assertSame(1, $firstUserAgg->userRank());
+        $this->assertSame($firstUserPlay->getKey(), $firstUserAgg->last_score_id);
+
+        $secondUserAgg->refresh();
+        $this->assertSame(2, $secondUserAgg->userRank());
+    }
+
     public function testAddingMultiplePlaylistItems(): void
     {
         $user = User::factory()->create();
