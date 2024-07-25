@@ -14,9 +14,10 @@ import { Spinner } from './spinner';
 import UserCardBrick from './user-card-brick';
 
 interface Props {
-  defaultValue?: string;
   id?: string;
   ignoreCurrentUser?: boolean;
+  initialUsers?: UserJsonMinimum[];
+  initialValue?: string;
   name?: string;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onEnterPressed?: () => void;
@@ -44,8 +45,14 @@ export default class UsernameInput extends React.PureComponent<Props> {
 
     makeObservable(this);
 
-    if (this.props.defaultValue != null) {
-      this.updateUsers(this.props.defaultValue, true);
+    if (this.props.initialUsers != null) {
+      for (const user of this.props.initialUsers) {
+        this.validUsers.set(user.id, user);
+      }
+    }
+
+    if (this.props.initialValue != null) {
+      this.updateUsers(this.props.initialValue, true);
     }
   }
 

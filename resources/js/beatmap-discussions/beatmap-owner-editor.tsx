@@ -118,8 +118,6 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   private readonly handleStartEditingClick = () => {
     this.editing = true;
     this.shouldFocusInputOnNextRender = true;
-    // TODO: user username or preset without lookup?
-    this.inputUsername = this.mappers.map((mapper) => mapper.id).join(',');
   };
 
   @action
@@ -185,7 +183,8 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
 
     return (
       <UsernameInput
-        defaultValue={this.inputUsername}
+        initialUsers={this.mappers}
+        // initialValue not set for owner editor as value is reset when cancelled.
         onEnterPressed={this.handleSaveClick}
         onValidUsersChanged={this.handleValidUsersChanged}
         onValueChanged={this.handleUsernameInputValueChanged}
