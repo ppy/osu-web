@@ -945,6 +945,7 @@ class UsersController extends Controller
         $userIncludes = [
             ...UserTransformer::PROFILE_HEADER_INCLUDES,
             'account_history',
+            'daily_challenge_user_stats',
             'page',
             'pending_beatmapset_count',
             'rank_highest',

@@ -196,6 +196,22 @@ return [
             'to_0' => 'Hide cover',
             'to_1' => 'Show cover',
         ],
+        'daily_challenge' => [
+            'daily' => 'Daily Streak',
+            'daily_streak_best' => 'Best Daily Streak',
+            'daily_streak_current' => 'Current Daily Streak',
+            'title' => 'Daily\nChallenge',
+            'top_10p_placements' => 'Top 10% Placements',
+            'top_50p_placements' => 'Top 50% Placements',
+            'weekly' => 'Weekly Streak',
+            'weekly_streak_best' => 'Best Weekly Streak',
+            'weekly_streak_current' => 'Current Weekly Streak',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Change Profile Cover',

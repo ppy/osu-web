@@ -2,6 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .qtip {
+  color: hsl(var(--hsl-c1));
+
   &--achievement {
     .default-box-shadow();
     border-radius: 30px;
@@ -13,6 +15,18 @@
     .qtip-content {
       overflow: visible;
       padding: 0;
+    }
+  }
+
+  &--daily-challenge {
+    max-width: none;
+    min-width: 300px;
+    border: none;
+    background: transparent;
+    line-height: normal;
+
+    .qtip-content {
+      padding: 0 0 5px;
     }
   }
 
