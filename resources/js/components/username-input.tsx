@@ -26,7 +26,7 @@ interface Props {
 }
 
 const BusySpinner = ({ busy }: { busy: boolean }) => (
-  <div className='chat-form__spinner'>
+  <div className='username-input__spinner'>
     {busy && <Spinner />}
   </div>
 );
@@ -56,10 +56,10 @@ export default class UsernameInput extends React.PureComponent<Props> {
 
   render() {
     return (
-      <>
+      <div className='username-input'>
         {this.renderValidUsers()}
         <input
-          className='chat-form__input chat-form__input--users'
+          className='username-input__input'
           id={this.props.id}
           name={this.props.name}
           onBlur={this.handleBlur}
@@ -70,7 +70,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
           value={this.users}
         />
         <BusySpinner busy={this.busy} />
-      </>
+      </div>
     );
   }
 
