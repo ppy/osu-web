@@ -6,6 +6,7 @@ import ContestJudgeVoteJson, { ContestJudgeVoteJsonForResults } from './contest-
 interface ContestEntryJsonAvailableIncludes {
   current_user_judge_vote: ContestJudgeVoteJson;
   judge_votes: ContestJudgeVoteJson[];
+  preview: string;
   results: {
     actual_name: string;
     votes: number;
