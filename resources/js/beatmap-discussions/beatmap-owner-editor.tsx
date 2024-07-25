@@ -2,8 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { Spinner } from 'components/spinner';
-import UserAvatar from 'components/user-avatar';
-import UserLink from 'components/user-link';
 import UsernameInput from 'components/username-input';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
@@ -19,6 +17,7 @@ import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
+import BeatmapMapper from './beatmap-mapper';
 import DiscussionsState from './discussions-state';
 
 interface XhrCollection {
@@ -29,12 +28,6 @@ interface Props {
   beatmap: WithMappers<BeatmapJson>;
   beatmapset: BeatmapsetExtendedJson;
   discussionsState: DiscussionsState; // only for updating the state with the response.
-}
-
-function createRemoveMapperHandler(mapper: Mapper, onRemoveClick: (user: Mapper) => void) {
-  return (_event: React.MouseEvent<HTMLButtonElement>) => {
-    onRemoveClick(mapper);
-  };
 }
 
 @observer
@@ -181,41 +174,13 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     );
   }
 
-
   private readonly renderMapper = (mapper: Mapper, handleRemoveUser: (user: Mapper) => void) => (
-    <React.Fragment key={mapper.id}>
-      <UserLink className='beatmap-owner-editor__user' user={mapper}>
-        <div className='beatmap-owner-editor__avatar'>
-          <UserAvatar modifiers='full-circle' user={mapper} />
-        </div>
-        <div className='beatmap-owner-editor__username u-ellipsis-overflow'>
-          {mapper.username}
-        </div>
-      </UserLink>
-      {handleRemoveUser != null && (
-        <button className='user-card-brick__remove' onClick={createRemoveMapperHandler(mapper, handleRemoveUser)}>
-          <span className='fas fa-times' />
-        </button>
-      )}
-    </React.Fragment>
+    <BeatmapMapper key={mapper.id} onRemoveUser={handleRemoveUser} user={mapper} />
   );
 
   private renderUsernames() {
     if (!this.editing) {
-      return this.mappers.map((mapper) => (
-        <UserLink
-          key={mapper.id}
-          className='beatmap-owner-editor__user'
-          user={mapper}
-        >
-          <div className='beatmap-owner-editor__avatar'>
-            <UserAvatar modifiers='full-circle' user={mapper} />
-          </div>
-          <div className='beatmap-owner-editor__username u-ellipsis-overflow'>
-            {mapper.username}
-          </div>
-        </UserLink>
-      ));
+      return this.mappers.map((mapper) => <BeatmapMapper key={mapper.id} user={mapper} />);
     }
 
     return (
