@@ -36,7 +36,7 @@ class DailyChallengeUserStats extends Model
     public static function calculate(CarbonImmutable $date): void
     {
         $startTime = $date->startOfDay();
-        $currentWeek = $startTime->startOfWeek(CarbonImmutable::THURSDAY);
+        $currentWeek = static::startOfWeek($startTime);
         $previousWeek = $currentWeek->subWeeks(1);
         // this function assumes one daily challenge per day and one playlist item per daily challenge
         $playlist = Multiplayer\Room::dailyChallengeFor($startTime)?->playlist[0] ?? null;
@@ -108,6 +108,11 @@ class DailyChallengeUserStats extends Model
 
             $stats->save();
         }
+    }
+
+    public static function startOfWeek(CarbonImmutable $date): CarbonImmutable
+    {
+        return $date->startOfWeek(CarbonImmutable::THURSDAY);
     }
 
     public function user(): BelongsTo
