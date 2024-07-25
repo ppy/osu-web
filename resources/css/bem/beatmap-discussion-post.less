@@ -11,7 +11,7 @@
 
   @_content-gutter-base: 15px;
 
-  transition: background-color .1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
   // margin here instead of padding on __content to make Chrome anchor when images above load in.
   // even 1 px margin is enough to fix the shifting.
   margin: 10px 0;
@@ -49,7 +49,7 @@
 
     &::before {
       .full-size();
-      content: '';
+      content: "";
       background-color: hsl(var(--hsl-blue-3));
       width: 5px;
     }
@@ -185,7 +185,7 @@
 
     .@{_top}--reply & {
       &::after {
-        content: '';
+        content: "";
         height: 1px;
         align-self: center;
         flex: 1;
@@ -223,7 +223,8 @@
       min-height: 3em;
 
       // --reply part to override top modifier
-      &, .@{_top}--reply & {
+      &,
+      .@{_top}--reply & {
         font-size: @font-size--phone-input;
 
         @media @desktop {

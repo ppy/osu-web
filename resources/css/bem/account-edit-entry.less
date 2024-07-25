@@ -37,7 +37,7 @@
     // placeholder to prevent triggering dragleave when entring child element
     &::after {
       .full-size();
-      content: '';
+      content: "";
     }
   }
 
@@ -166,7 +166,7 @@
       padding-left: (@label-width + 10px);
     }
 
-    .@{top}[data-form-error-state=error] & {
+    .@{top}[data-form-error-state="error"] & {
       display: block;
     }
   }
@@ -206,7 +206,7 @@
       border-color: @osu-colour-l1;
     }
 
-    .@{top}[data-form-error-state=error] & {
+    .@{top}[data-form-error-state="error"] & {
       border-color: @red;
     }
 

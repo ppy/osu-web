@@ -8,10 +8,11 @@
   position: relative;
 
   @media @mobile {
-    overflow-y: hidden; // Needed to limit the height of the panel so chat-conversation is scrollable and
-                        // chat-conversation-list doesn't become 0 height on mobile.
-                        // height: 100% alone doesn't work.
-                        // The panel itself should not be scrollable.
+    // Needed to limit the height of the panel so chat-conversation is scrollable and
+    // chat-conversation-list doesn't become 0 height on mobile.
+    // height: 100% alone doesn't work.
+    // The panel itself should not be scrollable.
+    overflow-y: hidden;
   }
 
   &__instructions {
