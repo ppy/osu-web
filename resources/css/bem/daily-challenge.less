@@ -1,0 +1,23 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.daily-challenge {
+  background: hsl(var(--hsl-b4));
+  border-radius: @border-radius-large;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+
+  &__name {
+    font-size: @font-size--normal;
+    padding: 0 5px;
+  }
+
+  &__value {
+    border-radius: @border-radius-large;
+    background: hsl(var(--hsl-b6));
+    padding: 5px 10px;
+    color: hsl(var(--hsl-c2));
+  }
+}

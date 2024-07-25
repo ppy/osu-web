@@ -56,6 +56,7 @@ class UserCompactTransformer extends TransformerAbstract
         'comments_count',
         'country',
         'cover',
+        'daily_challenge_user_stats',
         'favourite_beatmapset_count',
         'follow_user_mapping',
         'follower_count',
@@ -207,6 +208,14 @@ class UserCompactTransformer extends TransformerAbstract
             // cast to string for backward compatibility
             'id' => get_string($user->cover_preset_id),
         ]);
+    }
+
+    public function includeDailyChallengeUserStats(User $user)
+    {
+        return $this->item(
+            $user->dailyChallengeUserStats ?? $user->dailyChallengeUserStats()->make(),
+            new DailyChallengeUserStatsTransformer(),
+        );
     }
 
     public function includeFavouriteBeatmapsetCount(User $user)
