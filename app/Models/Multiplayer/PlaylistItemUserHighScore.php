@@ -114,7 +114,7 @@ class PlaylistItemUserHighScore extends Model
     {
         $score = $scoreLink->score;
 
-        if ($score === null || !$score->passed || $score->total_score < $this->total_score) {
+        if ($score === null || !$score->passed || $score->total_score <= $this->total_score) {
             return false;
         }
 
