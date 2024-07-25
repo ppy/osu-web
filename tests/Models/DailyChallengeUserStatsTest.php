@@ -196,4 +196,39 @@ class DailyChallengeUserStatsTest extends TestCase
         $this->assertSame(3, $stats->weekly_streak_best);
         $this->assertTrue($lastWeeklyStreak->equalTo($stats->last_weekly_streak));
     }
+
+    public function testCalculatePercentile(): void
+    {
+        $playTime = static::startOfWeek();
+        $playlistItem = static::preparePlaylistItem($playTime);
+
+        $totalScores = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+        $scoreLinks = [];
+        foreach ($totalScores as $totalScore) {
+            $scoreLink = $scoreLinks[] = ScoreLink::factory()->completed([
+                'passed' => true,
+                'total_score' => $totalScore,
+            ])->create([
+                'playlist_item_id' => $playlistItem,
+            ]);
+            UserScoreAggregate::new($scoreLink->user, $playlistItem->room)->save();
+        }
+
+        $this->expectCountChange(fn () => DailyChallengeUserStats::count(), 10);
+
+        DailyChallengeUserStats::calculate($playTime);
+
+        foreach ($scoreLinks as $i => $scoreLink) {
+            [$count10p, $count50p] = match (true) {
+                // 100
+                $i === 9 => [1, 0],
+                // 60 - 90
+                $i >= 5 => [0, 1],
+                default => [0, 0],
+            };
+            $stats = DailyChallengeUserStats::find($scoreLink->user_id);
+            $this->assertSame($count10p, $stats->top_10p_placements, "i: {$i}");
+            $this->assertSame($count50p, $stats->top_50p_placements, "i: {$i}");
+        }
+    }
 }
