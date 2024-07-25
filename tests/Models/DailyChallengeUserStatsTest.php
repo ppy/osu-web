@@ -20,7 +20,7 @@ class DailyChallengeUserStatsTest extends TestCase
 {
     private static function startOfWeek(): CarbonImmutable
     {
-        return CarbonImmutable::now()->startOfWeek(CarbonImmutable::MONDAY);
+        return CarbonImmutable::now()->startOfWeek(CarbonImmutable::THURSDAY);
     }
 
     private static function preparePlaylistItem(CarbonImmutable $playTime): PlaylistItem
