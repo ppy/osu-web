@@ -72,7 +72,6 @@
     "photoswipe": "^4.1.1",
     "postcss": "^8.4.31",
     "postcss-loader": "^7.3.3",
-    "prettier": "^3.3.3",
     "qtip2": "https://github.com/notbakaneko/qTip2.git#cd5f038667d2b23a44f4274c46de01834d704ce6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -119,6 +118,7 @@
     "karma-sourcemap-loader": "^0.3.8",
     "karma-typescript": "^5.5.4",
     "karma-webpack": "^5.0.0",
+    "prettier": "^3.3.3",
     "webpack-build-notifier": "^2.3.0"
   },
   "resolutions": {
