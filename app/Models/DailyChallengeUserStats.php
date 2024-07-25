@@ -54,8 +54,8 @@ class DailyChallengeUserStats extends Model
         $count = $highScores->count();
         // these variables are only used if there's anything in the array
         if ($count > 0) {
-            $top50p = $highScores[(int) ($count * 0.5)]->total_score;
-            $top10p = $highScores[(int) ($count * 0.1)]->total_score;
+            $top50p = $highScores[max(0, (int) ($count * 0.5) - 1)]->total_score;
+            $top10p = $highScores[max(0, (int) ($count * 0.1) - 1)]->total_score;
         }
         $highScoresByUserId = [];
         foreach ($highScores as $highScore) {
