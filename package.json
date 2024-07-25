@@ -4,7 +4,7 @@
     "dev": "yarn run development",
     "development": "cross-env NODE_ENV=development webpack",
     "lint": "eslint --cache 'resources/js/**/*.{js,ts,tsx}' 'tests/karma/**/*.{ts,tsx}' '*.js'",
-    "pretty": "prettier --check resources/css/**/*.less",
+    "pretty": "prettier --check .",
     "prod": "yarn run production",
     "production": "cross-env NODE_ENV=production webpack",
     "watch": "yarn run development --watch",
