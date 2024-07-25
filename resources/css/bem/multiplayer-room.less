@@ -4,7 +4,11 @@
 .multiplayer-room {
   --bg: hsla(var(--hsl-b6), 0.75);
   --border-radius: @border-radius--large;
-  --room-bg: linear-gradient(0.25turn, hsl(var(--hsl-b2)), hsla(var(--hsl-b2), 0.8));
+  --room-bg: linear-gradient(
+    0.25turn,
+    hsl(var(--hsl-b2)),
+    hsla(var(--hsl-b2), 0.8)
+  );
 
   .link-hover({
     --room-bg: linear-gradient(0.25turn, hsl(var(--hsl-b4)), hsla(var(--hsl-b4), 0.8));
@@ -79,7 +83,11 @@
   &__difficulty {
     display: flex;
     border-radius: 10000px;
-    background: linear-gradient(0deg, var(--max-difficulty) 50%, var(--min-difficulty) 50%);
+    background: linear-gradient(
+      0deg,
+      var(--max-difficulty) 50%,
+      var(--min-difficulty) 50%
+    );
   }
 
   &__members {

@@ -4,7 +4,9 @@
 // main: compiled.less
 @import "app";
 
-*, ::before, ::after {
+*,
+::before,
+::after {
   box-sizing: border-box;
 }
 
@@ -27,7 +29,9 @@
   --font-content: @font-content;
 
   --navbar-height: @navbar-height;
-  --scroll-padding-top: calc(var(--navbar-height) + 1em + var(--scroll-padding-top-extra, 0px));
+  --scroll-padding-top: calc(
+    var(--navbar-height) + 1em + var(--scroll-padding-top-extra, 0px)
+  );
   --page-gutter: @gutter-v2;
 
   @media @desktop {
@@ -36,7 +40,8 @@
   }
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -99,14 +104,14 @@ body {
   --base-hue-deg: calc(var(--base-hue) * 1deg);
 
   // level tier gradients
-  --level-tier-iron: #BAB3AB, #BAB3AB;
-  --level-tier-bronze: #B88F7A, #855C47;
-  --level-tier-silver: #E0E0EB, #A3A3C2;
-  --level-tier-gold: #F0E4A8, #E0C952;
-  --level-tier-platinum: #A8F0EF, #52E0DF;
-  --level-tier-rhodium: #D9F8D3, #A0CF96;
-  --level-tier-radiant: #97DCFF, #ED82FF;
-  --level-tier-lustrous: #FFE600, #ED82FF;
+  --level-tier-iron: #bab3ab, #bab3ab;
+  --level-tier-bronze: #b88f7a, #855c47;
+  --level-tier-silver: #e0e0eb, #a3a3c2;
+  --level-tier-gold: #f0e4a8, #e0c952;
+  --level-tier-platinum: #a8f0ef, #52e0df;
+  --level-tier-rhodium: #d9f8d3, #a0cf96;
+  --level-tier-radiant: #97dcff, #ed82ff;
+  --level-tier-lustrous: #ffe600, #ed82ff;
 }
 
 #popup-container {

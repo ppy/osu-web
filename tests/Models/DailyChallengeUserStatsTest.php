@@ -18,11 +18,6 @@ use Tests\TestCase;
 
 class DailyChallengeUserStatsTest extends TestCase
 {
-    private static function startOfWeek(): CarbonImmutable
-    {
-        return CarbonImmutable::now()->startOfWeek(CarbonImmutable::THURSDAY);
-    }
-
     private static function preparePlaylistItem(CarbonImmutable $playTime): PlaylistItem
     {
         return PlaylistItem::factory()->create([
@@ -31,6 +26,11 @@ class DailyChallengeUserStatsTest extends TestCase
                 'starts_at' => $playTime,
             ]),
         ]);
+    }
+
+    private static function startOfWeek(): CarbonImmutable
+    {
+        return DailyChallengeUserStats::startOfWeek(CarbonImmutable::now());
     }
 
     public function testCalculateFromStart(): void
