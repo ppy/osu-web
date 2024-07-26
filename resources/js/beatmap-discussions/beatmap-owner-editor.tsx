@@ -180,6 +180,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
       <UsernameInput
         initialUsers={this.props.mappers}
         // initialValue not set for owner editor as value is reset when cancelled.
+        modifiers='beatmap-owner-editor'
         onEnterPressed={this.handleSaveClick}
         onValidUsersChanged={this.handleValidUsersChanged}
         onValueChanged={this.handleUsernameInputValueChanged}

@@ -9,6 +9,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { isJqXHR, onError } from 'utils/ajax';
+import { classWithModifiers, Modifiers } from 'utils/css';
 import { presence } from 'utils/string';
 import { Spinner } from './spinner';
 import UserCardBrick from './user-card-brick';
@@ -18,6 +19,7 @@ interface Props {
   ignoreCurrentUser?: boolean;
   initialUsers?: UserJson[];
   initialValue?: string;
+  modifiers?: Modifiers;
   name?: string;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onEnterPressed?: () => void;
@@ -63,7 +65,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
 
   render() {
     return (
-      <div className='username-input'>
+      <div className={classWithModifiers('username-input', this.props.modifiers)}>
         {this.renderValidUsers()}
         <input
           className='username-input__input'
