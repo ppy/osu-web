@@ -320,7 +320,8 @@ class Beatmap extends Model implements AfterCommit
 
     public function setOwner(array|int|null $newUserIds, User $source): void
     {
-        $newUserIdsSet = new Set((array) $newUserIds);
+        $newUserIds = (array) $newUserIds;
+        $newUserIdsSet = new Set($newUserIds);
 
         if ($newUserIdsSet->isEmpty()) {
             throw new InvariantException('user_id must be specified');
