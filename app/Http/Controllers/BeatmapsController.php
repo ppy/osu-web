@@ -7,14 +7,12 @@ namespace App\Http\Controllers;
 
 use App\Enums\Ruleset;
 use App\Exceptions\InvariantException;
-use App\Jobs\Notifications\BeatmapOwnerChange;
 use App\Libraries\BeatmapDifficultyAttributes;
 use App\Libraries\Score\BeatmapScores;
 use App\Libraries\Score\UserRank;
 use App\Libraries\Search\ScoreSearch;
 use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
-use App\Models\BeatmapsetEvent;
 use App\Models\User;
 use App\Transformers\BeatmapTransformer;
 use App\Transformers\ScoreTransformer;
@@ -381,29 +379,12 @@ class BeatmapsController extends Controller
     public function updateOwner($id)
     {
         $beatmap = Beatmap::findOrFail($id);
-        $currentUser = \Auth::user();
 
         priv_check('BeatmapUpdateOwner', $beatmap->beatmapset)->ensureCan();
 
         $newUserIds = get_arr(request('user_ids'), 'get_int');
 
-        $beatmap->getConnection()->transaction(function () use ($beatmap, $currentUser, $newUserIds) {
-            $beatmap->setOwner($newUserIds);
-            // TODO: use select instead (needs newer laravel)
-            $newUsers = $beatmap->mappers->map(fn ($user) => $user->only('user_id', 'username'))->all();
-
-            BeatmapsetEvent::log(BeatmapsetEvent::BEATMAP_OWNER_CHANGE, $currentUser, $beatmap->beatmapset, [
-                'beatmap_id' => $beatmap->getKey(),
-                'beatmap_version' => $beatmap->version,
-                'new_user_id' => $beatmap->user_id,
-                'new_user_username' => $beatmap->user->username,
-                'new_users' => $newUsers,
-            ])->saveOrExplode();
-        });
-
-        if ($beatmap->user_id !== $currentUser->getKey()) {
-            (new BeatmapOwnerChange($beatmap, $currentUser))->dispatch();
-        }
+        $beatmap->setOwner($newUserIds, \Auth::user());
 
         return $beatmap->beatmapset->defaultDiscussionJson();
     }

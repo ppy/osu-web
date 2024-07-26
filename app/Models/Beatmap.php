@@ -316,7 +316,7 @@ class Beatmap extends Model implements AfterCommit
         return $maxCombo?->value;
     }
 
-    public function setOwner(array|int|null $newUserIds)
+    public function setOwner(array|int|null $newUserIds, User $source)
     {
         $newUserIds = (array) $newUserIds;
 
@@ -328,9 +328,9 @@ class Beatmap extends Model implements AfterCommit
             throw new InvariantException('invalid user_id');
         }
 
-        // TODO: return if no change?
+        // FIXME: return if no change
 
-        $this->getConnection()->transaction(function () use ($newUserIds) {
+        $this->getConnection()->transaction(function () use ($newUserIds, $source) {
             $params = [];
             foreach ($newUserIds as $userId) {
                 $params[] = ['beatmap_id' => $this->getKey(), 'user_id' => $userId];
@@ -340,8 +340,21 @@ class Beatmap extends Model implements AfterCommit
             $this->beatmapOwners()->delete();
             BeatmapOwner::insert($params);
 
+            // TODO: use select instead (needs newer laravel)
+            $newUsers = $this->mappers->map(fn ($user) => $user->only('user_id', 'username'))->all();
+
+            BeatmapsetEvent::log(BeatmapsetEvent::BEATMAP_OWNER_CHANGE, $source, $this->beatmapset, [
+                'beatmap_id' => $this->getKey(),
+                'beatmap_version' => $this->version,
+                'new_user_id' => $this->user_id,
+                'new_user_username' => $this->user->username,
+                'new_users' => $newUsers,
+            ])->saveOrExplode();
+
             $this->beatmapset->update(['eligible_main_rulesets' => null]);
         });
+
+        (new BeatmapOwnerChange($this, $source))->dispatch();
     }
 
     public function status()
