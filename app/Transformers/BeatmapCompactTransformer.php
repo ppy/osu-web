@@ -74,7 +74,7 @@ class BeatmapCompactTransformer extends TransformerAbstract
         return $this->primitive($beatmap->mappers->map(fn ($mapper) => [
             'avatar_url' => $mapper->user_avatar,
             'id' => $mapper->user_id,
-            'username' => $mapper->username
+            'username' => $mapper->username,
         ]));
     }
 
