@@ -330,16 +330,18 @@ class Beatmap extends Model implements AfterCommit
 
         // TODO: return if no change?
 
-        $params = [];
-        foreach ($newUserIds as $userId) {
-            $params[] = ['beatmap_id' => $this->getKey(), 'user_id' => $userId];
-        }
+        $this->getConnection()->transaction(function () use ($newUserIds) {
+            $params = [];
+            foreach ($newUserIds as $userId) {
+                $params[] = ['beatmap_id' => $this->getKey(), 'user_id' => $userId];
+            }
 
-        $this->fill(['user_id' => $newUserIds[0]])->saveOrExplode();
-        $this->beatmapOwners()->delete();
-        BeatmapOwner::insert($params);
+            $this->fill(['user_id' => $newUserIds[0]])->saveOrExplode();
+            $this->beatmapOwners()->delete();
+            BeatmapOwner::insert($params);
 
-        $this->beatmapset->update(['eligible_main_rulesets' => null]);
+            $this->beatmapset->update(['eligible_main_rulesets' => null]);
+        });
     }
 
     public function status()
