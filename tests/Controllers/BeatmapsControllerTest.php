@@ -200,8 +200,8 @@ class BeatmapsControllerTest extends TestCase
         $beatmapsetEventCount = BeatmapsetEvent::count();
 
         $this->actingAsVerified($this->user)
-            ->json('PUT', route('beatmaps.update-owner', $this->beatmap), [
-                'beatmap' => ['user_id' => $otherUser->getKey()],
+            ->json('POST', route('beatmaps.update-owner', $this->beatmap), [
+                'user_ids' => [$otherUser->getKey()],
             ])->assertSuccessful();
 
         $this->assertSame($otherUser->getKey(), $this->beatmap->fresh()->user_id);
@@ -223,8 +223,8 @@ class BeatmapsControllerTest extends TestCase
         $beatmapsetEventCount = BeatmapsetEvent::count();
 
         $this->actingAsVerified($this->user)
-            ->json('PUT', route('beatmaps.update-owner', $this->beatmap), [
-                'beatmap' => ['user_id' => $otherUser->getKey()],
+            ->json('POST', route('beatmaps.update-owner', $this->beatmap), [
+                'user_ids' => [$otherUser->getKey()],
             ])->assertStatus(403);
 
         $this->assertSame($this->user->getKey(), $this->beatmap->fresh()->user_id);
@@ -245,8 +245,8 @@ class BeatmapsControllerTest extends TestCase
         $beatmapsetEventCount = BeatmapsetEvent::count();
 
         $this->actingAsVerified($this->user)
-            ->json('PUT', route('beatmaps.update-owner', $this->beatmap), [
-                'beatmap' => ['user_id' => User::max('user_id') + 1],
+            ->json('POST', route('beatmaps.update-owner', $this->beatmap), [
+                'user_ids' => [User::max('user_id') + 1],
             ])->assertStatus(422);
 
         $this->assertSame($this->user->getKey(), $this->beatmap->fresh()->user_id);
@@ -268,8 +268,8 @@ class BeatmapsControllerTest extends TestCase
         $expectedOwner = $ok ? $this->user->getKey() : $this->beatmap->fresh()->user_id;
 
         $this->actingAsVerified($moderator)
-            ->json('PUT', route('beatmaps.update-owner', $this->beatmap), [
-                'beatmap' => ['user_id' => $this->user->getKey()],
+            ->json('POST', route('beatmaps.update-owner', $this->beatmap), [
+                'user_ids' => [$this->user->getKey()],
             ])->assertStatus($ok ? 200 : 403);
 
         $this->assertSame($expectedOwner, $this->beatmap->fresh()->user_id);
@@ -286,8 +286,8 @@ class BeatmapsControllerTest extends TestCase
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 1);
 
         $this->actingAsVerified($moderator)
-            ->json('PUT', route('beatmaps.update-owner', $this->beatmap), [
-                'beatmap' => ['user_id' => $this->user->getKey()],
+            ->json('POST', route('beatmaps.update-owner', $this->beatmap), [
+                'user_ids' => [$this->user->getKey()],
             ])->assertSuccessful();
 
         $this->assertSame($this->user->getKey(), $this->beatmap->fresh()->user_id);
@@ -305,8 +305,8 @@ class BeatmapsControllerTest extends TestCase
         $beatmapsetEventCount = BeatmapsetEvent::count();
 
         $this->actingAsVerified($otherUser)
-            ->json('PUT', route('beatmaps.update-owner', $this->beatmap), [
-                'beatmap' => ['user_id' => $otherUser->getKey()],
+            ->json('POST', route('beatmaps.update-owner', $this->beatmap), [
+                'user_ids' => [$otherUser->getKey()],
             ])->assertStatus(403);
 
         $this->assertSame($this->user->getKey(), $this->beatmap->fresh()->user_id);
@@ -327,8 +327,8 @@ class BeatmapsControllerTest extends TestCase
         $beatmapsetEventCount = BeatmapsetEvent::count();
 
         $this->actingAsVerified($this->user)
-            ->json('PUT', route('beatmaps.update-owner', $this->beatmap), [
-                'beatmap' => ['user_id' => $this->user->getKey()],
+            ->json('POST', route('beatmaps.update-owner', $this->beatmap), [
+                'beatmap' => ['user_id' => [$this->user->getKey()]],
             ])->assertStatus(422);
 
         $this->assertSame($this->user->getKey(), $this->beatmap->fresh()->user_id);

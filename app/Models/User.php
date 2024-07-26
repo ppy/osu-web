@@ -777,6 +777,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'cover_preset_id',
             'custom_cover_filename',
             'group_id',
+            'laravel_through_key', // added by hasManyThrough relation in Beatmap
             'osu_featurevotes',
             'osu_kudosavailable',
             'osu_kudosdenied',

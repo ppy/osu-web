@@ -7,8 +7,10 @@ namespace App\Models;
 
 use App\Exceptions\InvariantException;
 use App\Jobs\EsDocument;
+use App\Jobs\Notifications\BeatmapOwnerChange;
 use App\Libraries\Transactions\AfterCommit;
 use DB;
+use Ds\Set;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -316,19 +318,22 @@ class Beatmap extends Model implements AfterCommit
         return $maxCombo?->value;
     }
 
-    public function setOwner(array|int|null $newUserIds, User $source)
+    public function setOwner(array|int|null $newUserIds, User $source): void
     {
-        $newUserIds = (array) $newUserIds;
+        $newUserIdsSet = new Set((array) $newUserIds);
 
-        if ($newUserIds === []) {
+        if ($newUserIdsSet->isEmpty()) {
             throw new InvariantException('user_id must be specified');
         }
 
-        if (User::whereIn('user_id', $newUserIds)->count() !== count($newUserIds)) {
+        if (User::whereIn('user_id', $newUserIds)->count() !== $newUserIdsSet->count()) {
             throw new InvariantException('invalid user_id');
         }
 
-        // FIXME: return if no change
+        $currentOwners = new Set($this->mappers->pluck('user_id'));
+        if ($currentOwners->xor($newUserIdsSet)->isEmpty()) {
+            return;
+        }
 
         $this->getConnection()->transaction(function () use ($newUserIds, $source) {
             $params = [];
@@ -339,6 +344,8 @@ class Beatmap extends Model implements AfterCommit
             $this->fill(['user_id' => $newUserIds[0]])->saveOrExplode();
             $this->beatmapOwners()->delete();
             BeatmapOwner::insert($params);
+
+            $this->refresh();
 
             // TODO: use select instead (needs newer laravel)
             $newUsers = $this->mappers->map(fn ($user) => $user->only('user_id', 'username'))->all();

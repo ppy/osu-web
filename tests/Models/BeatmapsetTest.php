@@ -711,8 +711,9 @@ class BeatmapsetTest extends TestCase
         $beatmapset->fresh()->nominate($bngUser1, ['osu']);
 
         // main ruleset should now be osu
-        $beatmapset->beatmaps()->where('playmode', 1)->first()->setOwner($guest->getKey());
-        $beatmapset->beatmaps()->where('playmode', 0)->last()->setOwner($beatmapset->user_id);
+        $owner = $beatmapset->user;
+        $beatmapset->beatmaps()->where('playmode', 1)->first()->setOwner($guest->getKey(), $owner);
+        $beatmapset->beatmaps()->where('playmode', 0)->last()->setOwner($beatmapset->user_id, $owner);
         $beatmapset->refresh();
 
         $this->assertSame('osu', $beatmapset->mainRuleset());
