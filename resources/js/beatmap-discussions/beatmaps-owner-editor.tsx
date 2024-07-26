@@ -4,12 +4,12 @@
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import UserJson, { UserJsonMinimum } from 'interfaces/user-json';
 import { observer } from 'mobx-react';
+import { deletedUserJson } from 'models/user';
 import * as React from 'react';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
 import { trans } from 'utils/lang';
 import BeatmapOwnerEditor from './beatmap-owner-editor';
 import DiscussionsState from './discussions-state';
-import { deletedUserJson } from 'models/user';
 
 interface Props {
   beatmapset: BeatmapsetWithDiscussionsJson;
