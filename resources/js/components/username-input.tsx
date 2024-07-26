@@ -16,14 +16,14 @@ import UserCardBrick from './user-card-brick';
 interface Props {
   id?: string;
   ignoreCurrentUser?: boolean;
-  initialUsers?: UserJsonMinimum[];
+  initialUsers?: UserJson[];
   initialValue?: string;
   name?: string;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onEnterPressed?: () => void;
   onValidUsersChanged?: (value: Map<number, UserJson>) => void;
   onValueChanged?: (value: string) => void;
-  renderUser?: (user: UserJson, onRemoveClick: (user: UserJsonMinimum) => void) => void;
+  renderUser?: (user: UserJson, onRemoveClick: (user: UserJson) => void) => void;
 }
 
 const BusySpinner = ({ busy }: { busy: boolean }) => (

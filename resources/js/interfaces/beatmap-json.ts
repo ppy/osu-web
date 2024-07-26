@@ -2,9 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetJson from './beatmapset-json';
-import Mapper from './mapper';
 import Ruleset from './ruleset';
-import UserJson from './user-json';
+import UserJson, { UserJsonMinimum } from './user-json';
 
 interface BeatmapFailTimesArray {
   exit: number[];
@@ -15,7 +14,7 @@ interface BeatmapJsonAvailableIncludes {
   beatmapset: BeatmapsetJson | null;
   checksum: string | null;
   failtimes: BeatmapFailTimesArray;
-  mappers: Mapper[];
+  mappers: UserJsonMinimum[];
   max_combo: number;
   user: UserJson;
 }

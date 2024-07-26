@@ -6,9 +6,7 @@ import UsernameInput from 'components/username-input';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
-import Mapper from 'interfaces/mapper';
 import UserJson from 'interfaces/user-json';
-import WithMappers from 'interfaces/with-mappers';
 import { route } from 'laroute';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
@@ -25,9 +23,10 @@ interface XhrCollection {
 }
 
 interface Props {
-  beatmap: WithMappers<BeatmapJson>;
+  beatmap: BeatmapJson;
   beatmapset: BeatmapsetExtendedJson;
   discussionsState: DiscussionsState; // only for updating the state with the response.
+  mappers: UserJson[];
 }
 
 @observer
@@ -42,10 +41,6 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
 
   private get canSave() {
     return this.validUsers.size > 0 && normaliseUsername(this.inputUsername).length === 0;
-  }
-
-  private get mappers() {
-    return this.props.beatmap.mappers;
   }
 
   constructor(props: Props) {
@@ -172,18 +167,18 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     );
   }
 
-  private readonly renderMapper = (mapper: Mapper, handleRemoveUser: (user: Mapper) => void) => (
-    <BeatmapMapper key={mapper.id} onRemoveUser={handleRemoveUser} user={mapper} />
+  private readonly renderMapper = (mapper: UserJson, onRemoveClick: (user: UserJson) => void) => (
+    <BeatmapMapper key={mapper.id} onRemoveUser={onRemoveClick} user={mapper} />
   );
 
   private renderUsernames() {
     if (!this.editing) {
-      return this.mappers.map((mapper) => <BeatmapMapper key={mapper.id} user={mapper} />);
+      return this.props.mappers.map((mapper) => <BeatmapMapper key={mapper.id} user={mapper} />);
     }
 
     return (
       <UsernameInput
-        initialUsers={this.mappers}
+        initialUsers={this.props.mappers}
         // initialValue not set for owner editor as value is reset when cancelled.
         onEnterPressed={this.handleSaveClick}
         onValidUsersChanged={this.handleValidUsersChanged}
