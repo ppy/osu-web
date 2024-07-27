@@ -90,7 +90,6 @@ class DailyChallengeUserStats extends Model
                 if (($stats->last_weekly_streak ?? $previousWeek) < $currentWeek) {
                     $stats->weekly_streak_current += 1;
                 }
-                $stats->last_update = $startTime;
                 $stats->last_weekly_streak = $currentWeek;
 
                 foreach (['daily', 'weekly'] as $type) {
@@ -107,6 +106,7 @@ class DailyChallengeUserStats extends Model
                 }
             }
 
+            $stats->last_update = $startTime;
             $stats->save();
         }
     }
