@@ -101,7 +101,8 @@ class DailyChallengeUserStats extends Model
 
                 if ($highScore->total_score >= $top10p) {
                     $stats->top_10p_placements += 1;
-                } elseif ($highScore->total_score >= $top50p) {
+                }
+                if ($highScore->total_score >= $top50p) {
                     $stats->top_50p_placements += 1;
                 }
             }
