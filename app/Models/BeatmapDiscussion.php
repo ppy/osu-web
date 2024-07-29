@@ -274,7 +274,7 @@ class BeatmapDiscussion extends Model
 
         // inb4 timing problem
         $currentVotes = $this->canGrantKudosu() ?
-            (int) $this->beatmapDiscussionVotes()->sum('score') :
+            (int) $this->beatmapDiscussionVotes()->where('score', '>', 0)->sum('score') :
             0;
         // remove kudosu by bots here instead of in canGrantKudosu due to
         // the function is also called by transformer without user preloaded
