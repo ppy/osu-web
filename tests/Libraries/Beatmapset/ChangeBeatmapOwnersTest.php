@@ -7,6 +7,8 @@ declare(strict_types=1);
 
 namespace Tests\Libraries\BeatmapsetDiscussion;
 
+use App\Exceptions\AuthorizationException;
+use App\Exceptions\InvariantException;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
@@ -42,10 +44,7 @@ class ChangeBeatmapOwnersTest extends TestCase
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 1);
 
-        $this->actingAsVerified($this->user)
-            ->json('POST', route('beatmaps.update-owner', $this->beatmap), [
-                'user_ids' => [$otherUser->getKey()],
-            ])->assertSuccessful();
+        $this->beatmap->setOwner([$otherUser->getKey()], $this->user);
 
         $this->assertSame($otherUser->getKey(), $this->beatmap->fresh()->user_id);
     }
@@ -63,11 +62,9 @@ class ChangeBeatmapOwnersTest extends TestCase
         ]);
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 0);
+        $this->expectException(AuthorizationException::class);
 
-        $this->actingAsVerified($this->user)
-            ->json('POST', route('beatmaps.update-owner', $this->beatmap), [
-                'user_ids' => [$otherUser->getKey()],
-            ])->assertStatus(403);
+        $this->beatmap->setOwner([$otherUser->getKey()], $this->user);
 
         $this->assertSame($this->user->getKey(), $this->beatmap->fresh()->user_id);
     }
@@ -84,11 +81,9 @@ class ChangeBeatmapOwnersTest extends TestCase
         ]);
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 0);
+        $this->expectException(InvariantException::class);
 
-        $this->actingAsVerified($this->user)
-            ->json('POST', route('beatmaps.update-owner', $this->beatmap), [
-                'user_ids' => [User::max('user_id') + 1],
-            ])->assertStatus(422);
+        $this->beatmap->setOwner([user::max('user_id') + 1], $this->user);
 
         $this->assertSame($this->user->getKey(), $this->beatmap->fresh()->user_id);
     }
@@ -107,10 +102,11 @@ class ChangeBeatmapOwnersTest extends TestCase
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), $ok ? 1 : 0);
         $expectedOwner = $ok ? $this->user->getKey() : $this->beatmap->fresh()->user_id;
 
-        $this->actingAsVerified($moderator)
-            ->json('POST', route('beatmaps.update-owner', $this->beatmap), [
-                'user_ids' => [$this->user->getKey()],
-            ])->assertStatus($ok ? 200 : 403);
+        if (!$ok) {
+            $this->expectException(AuthorizationException::class);
+        }
+
+        $this->beatmap->setOwner([$this->user->getKey()], $moderator);
 
         $this->assertSame($expectedOwner, $this->beatmap->fresh()->user_id);
     }
@@ -125,10 +121,7 @@ class ChangeBeatmapOwnersTest extends TestCase
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 1);
 
-        $this->actingAsVerified($moderator)
-            ->json('POST', route('beatmaps.update-owner', $this->beatmap), [
-                'user_ids' => [$this->user->getKey()],
-            ])->assertSuccessful();
+        $this->beatmap->setOwner([$this->user->getKey()], $moderator);
 
         $this->assertSame($this->user->getKey(), $this->beatmap->fresh()->user_id);
     }
@@ -143,11 +136,9 @@ class ChangeBeatmapOwnersTest extends TestCase
         ]);
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 0);
+        $this->expectException(AuthorizationException::class);
 
-        $this->actingAsVerified($otherUser)
-            ->json('POST', route('beatmaps.update-owner', $this->beatmap), [
-                'user_ids' => [$otherUser->getKey()],
-            ])->assertStatus(403);
+        $this->beatmap->setOwner([$otherUser->getKey()], $otherUser);
 
         $this->assertSame($this->user->getKey(), $this->beatmap->fresh()->user_id);
     }
@@ -165,10 +156,7 @@ class ChangeBeatmapOwnersTest extends TestCase
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 0);
 
-        $this->actingAsVerified($this->user)
-            ->json('POST', route('beatmaps.update-owner', $this->beatmap), [
-                'beatmap' => ['user_id' => [$this->user->getKey()]],
-            ])->assertStatus(422);
+        $this->beatmap->setOwner([$this->user->getKey()], $this->user);
 
         $this->assertSame($this->user->getKey(), $this->beatmap->fresh()->user_id);
     }

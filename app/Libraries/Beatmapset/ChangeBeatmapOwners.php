@@ -19,11 +19,11 @@ class ChangeBeatmapOwners
 {
     private Set $userIds;
 
-    public function __construct(private Beatmap $beatmap, array|int|null $newUserIds, private User $source)
+    public function __construct(private Beatmap $beatmap, array $newUserIds, private User $source)
     {
         priv_check_user($source, 'BeatmapUpdateOwner', $beatmap->beatmapset)->ensureCan();
 
-        $this->userIds = new Set((array) $newUserIds);
+        $this->userIds = new Set($newUserIds);
 
         if ($this->userIds->isEmpty()) {
             throw new InvariantException('user_ids must be specified');

@@ -319,7 +319,7 @@ class Beatmap extends Model implements AfterCommit
         return $maxCombo?->value;
     }
 
-    public function setOwner(array|int|null $newUserIds, User $source): void
+    public function setOwner(array $newUserIds, User $source): void
     {
         (new ChangeBeatmapOwners($this, $newUserIds, $source))->handle();
     }
