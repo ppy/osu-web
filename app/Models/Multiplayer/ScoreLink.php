@@ -31,7 +31,7 @@ class ScoreLink extends Model
             // multiplayer scores are always preserved.
             $score = Score::createFromJsonOrExplode([...$params, 'preserve' => true]);
 
-            $playlistItem = $token->playlistItem;
+            $playlistItem = $token->playlistItem()->firstOrFail();
             $requiredMods = array_column($playlistItem->required_mods, 'acronym');
             $mods = array_column($score->data->mods, 'acronym');
             $mods = app('mods')->excludeModsAlwaysValidForSubmission($playlistItem->ruleset_id, $mods);
