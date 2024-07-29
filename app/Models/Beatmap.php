@@ -7,11 +7,9 @@ namespace App\Models;
 
 use App\Exceptions\InvariantException;
 use App\Jobs\EsDocument;
-use App\Jobs\Notifications\BeatmapOwnerChange;
 use App\Libraries\Beatmapset\ChangeBeatmapOwners;
 use App\Libraries\Transactions\AfterCommit;
 use DB;
-use Ds\Set;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;

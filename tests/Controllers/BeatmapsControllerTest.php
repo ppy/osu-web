@@ -9,7 +9,6 @@ namespace Tests\Controllers;
 
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
-use App\Models\BeatmapsetEvent;
 use App\Models\User;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
