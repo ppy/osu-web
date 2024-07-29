@@ -6,9 +6,8 @@ import { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussio
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { action, computed, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
@@ -30,11 +29,6 @@ interface Props {
 export default class DiscussionVoteButtons extends React.Component<Props> {
   private readonly tooltipDisposers: Partial<Record<VoteType, () => void>> = {};
   @observable private voteXhr: JQuery.jqXHR<BeatmapsetWithDiscussionsJson> | null = null;
-
-  @computed
-  private get canDownvote() {
-    return core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_moderator || core.currentUser.is_bng);
-  }
 
   constructor(props: Props) {
     super(props);
@@ -109,7 +103,7 @@ export default class DiscussionVoteButtons extends React.Component<Props> {
     const [baseScore, icon] = type === 'up' ? [1, 'thumbs-up'] : [-1, 'thumbs-down'];
     const currentVote = this.props.discussion.current_user_attributes?.vote_score;
     const score = currentVote === baseScore ? 0 : baseScore;
-    const disabled = this.voteXhr != null || this.props.cannotVote || (type === 'down' && !this.canDownvote);
+    const disabled = this.voteXhr != null || this.props.cannotVote;
 
     return (
       <button
