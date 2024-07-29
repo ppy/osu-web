@@ -421,7 +421,14 @@ class Room extends Model
 
         return $this->getConnection()->transaction(function () use ($params, $scoreToken) {
             $scoreLink = ScoreLink::complete($scoreToken, $params);
-            UserScoreAggregate::new($scoreLink->user, $this)->addScoreLink($scoreLink);
+            $user = $scoreLink->user;
+            $agg = UserScoreAggregate::new($user, $this);
+            $agg->addScoreLink($scoreLink);
+            if ($this->category === 'daily_challenge' && $agg->total_score > 0) {
+                $stats = $user->dailyChallengeUserStats()->firstOrNew();
+                $stats->updateStreak(true, $this->starts_at->toImmutable()->startOfDay());
+                $stats->save();
+            }
 
             return $scoreLink;
         });
