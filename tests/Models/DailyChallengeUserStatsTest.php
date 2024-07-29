@@ -56,7 +56,7 @@ class DailyChallengeUserStatsTest extends TestCase
         $this->assertSame(1, $stats->weekly_streak_current);
         $this->assertSame(1, $stats->weekly_streak_best);
         $this->assertSame(1, $stats->top_10p_placements);
-        $this->assertSame(0, $stats->top_50p_placements);
+        $this->assertSame(1, $stats->top_50p_placements);
         $this->assertTrue($playTime->equalTo($stats->last_weekly_streak));
         $this->assertTrue($playTime->equalTo($stats->last_update));
     }
@@ -135,7 +135,7 @@ class DailyChallengeUserStatsTest extends TestCase
         foreach ($scoreLinks as $i => $scoreLink) {
             [$count10p, $count50p] = match (true) {
                 // 100
-                $i === 9 => [1, 0],
+                $i === 9 => [1, 1],
                 // 60 - 90
                 $i >= 5 => [0, 1],
                 default => [0, 0],
@@ -177,7 +177,7 @@ class DailyChallengeUserStatsTest extends TestCase
         $this->assertSame(1, $stats->weekly_streak_current);
         $this->assertSame(1, $stats->weekly_streak_best);
         $this->assertSame(1, $stats->top_10p_placements);
-        $this->assertSame(0, $stats->top_50p_placements);
+        $this->assertSame(1, $stats->top_50p_placements);
         $this->assertTrue($playTime->equalTo($stats->last_weekly_streak));
         $this->assertTrue($playTime->equalTo($stats->last_update));
     }
@@ -238,7 +238,7 @@ class DailyChallengeUserStatsTest extends TestCase
         $this->assertSame(2, $stats->weekly_streak_current);
         $this->assertSame(2, $stats->weekly_streak_best);
         $this->assertSame(2, $stats->top_10p_placements);
-        $this->assertSame(1, $stats->top_50p_placements);
+        $this->assertSame(2, $stats->top_50p_placements);
         $this->assertTrue($playTime->equalTo($stats->last_weekly_streak));
         $this->assertTrue($playTime->equalTo($stats->last_update));
     }

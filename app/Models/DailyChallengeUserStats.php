@@ -84,7 +84,8 @@ class DailyChallengeUserStats extends Model
             if ($highScore !== null && ($stats->last_percentile_calculation ?? $previousWeek) < $startTime) {
                 if ($highScore->total_score >= $top10p) {
                     $stats->top_10p_placements += 1;
-                } elseif ($highScore->total_score >= $top50p) {
+                }
+                if ($highScore->total_score >= $top50p) {
                     $stats->top_50p_placements += 1;
                 }
                 $stats->last_percentile_calculation = $startTime;
