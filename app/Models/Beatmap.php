@@ -8,6 +8,7 @@ namespace App\Models;
 use App\Exceptions\InvariantException;
 use App\Jobs\EsDocument;
 use App\Jobs\Notifications\BeatmapOwnerChange;
+use App\Libraries\Beatmapset\ChangeBeatmapOwners;
 use App\Libraries\Transactions\AfterCommit;
 use DB;
 use Ds\Set;
@@ -320,49 +321,7 @@ class Beatmap extends Model implements AfterCommit
 
     public function setOwner(array|int|null $newUserIds, User $source): void
     {
-        $newUserIds = (array) $newUserIds;
-        $newUserIdsSet = new Set($newUserIds);
-
-        if ($newUserIdsSet->isEmpty()) {
-            throw new InvariantException('user_id must be specified');
-        }
-
-        if (User::whereIn('user_id', $newUserIds)->count() !== $newUserIdsSet->count()) {
-            throw new InvariantException('invalid user_id');
-        }
-
-        $currentOwners = new Set($this->mappers->pluck('user_id'));
-        if ($currentOwners->xor($newUserIdsSet)->isEmpty()) {
-            return;
-        }
-
-        $this->getConnection()->transaction(function () use ($newUserIds, $source) {
-            $params = [];
-            foreach ($newUserIds as $userId) {
-                $params[] = ['beatmap_id' => $this->getKey(), 'user_id' => $userId];
-            }
-
-            $this->fill(['user_id' => $newUserIds[0]])->saveOrExplode();
-            $this->beatmapOwners()->delete();
-            BeatmapOwner::insert($params);
-
-            $this->refresh();
-
-            // TODO: use select instead (needs newer laravel)
-            $newUsers = $this->mappers->map(fn ($user) => $user->only('user_id', 'username'))->all();
-
-            BeatmapsetEvent::log(BeatmapsetEvent::BEATMAP_OWNER_CHANGE, $source, $this->beatmapset, [
-                'beatmap_id' => $this->getKey(),
-                'beatmap_version' => $this->version,
-                'new_user_id' => $this->user_id,
-                'new_user_username' => $this->user->username,
-                'new_users' => $newUsers,
-            ])->saveOrExplode();
-
-            $this->beatmapset->update(['eligible_main_rulesets' => null]);
-        });
-
-        (new BeatmapOwnerChange($this, $source))->dispatch();
+        (new ChangeBeatmapOwners($this, $newUserIds, $source))->handle();
     }
 
     public function status()
