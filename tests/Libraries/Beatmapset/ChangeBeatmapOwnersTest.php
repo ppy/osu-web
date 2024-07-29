@@ -17,9 +17,6 @@ use Tests\TestCase;
 
 class ChangeBeatmapOwnersTest extends TestCase
 {
-    private Beatmap $beatmap;
-    private User $user;
-
     public static function dataProviderForTestUpdateOwnerLoved(): array
     {
         return [
@@ -32,60 +29,53 @@ class ChangeBeatmapOwnersTest extends TestCase
 
     public function testUpdateOwner(): void
     {
-        $otherUser = User::factory()->create();
-        $beatmapset = Beatmapset::factory()->create([
-            'approved' => Beatmapset::STATES['pending'],
-            'user_id' => $this->user,
-        ]);
-        $this->beatmap->update([
-            'beatmapset_id' => $beatmapset->getKey(),
-            'user_id' => $this->user->getKey(),
-        ]);
+        $user = User::factory()->create();
+        $owner = User::factory()->create();
+        $beatmap = Beatmap::factory()
+            ->for(Beatmapset::factory()->pending()->owner($owner))
+            ->owner($owner)
+            ->create();
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 1);
 
-        $this->beatmap->setOwner([$otherUser->getKey()], $this->user);
+        $beatmap->setOwner([$user->getKey()], $owner);
 
-        $this->assertSame($otherUser->getKey(), $this->beatmap->fresh()->user_id);
+        $this->assertSame($user->getKey(), $beatmap->fresh()->user_id);
     }
 
     public function testUpdateOwnerInvalidState(): void
     {
-        $otherUser = User::factory()->create();
-        $beatmapset = Beatmapset::factory()->create([
-            'approved' => Beatmapset::STATES['qualified'],
-            'user_id' => $this->user,
-        ]);
-        $this->beatmap->update([
-            'beatmapset_id' => $beatmapset->getKey(),
-            'user_id' => $this->user->getKey(),
-        ]);
+        $user = User::factory()->create();
+        $owner = User::factory()->create();
+        $beatmap = Beatmap::factory()
+            ->for(Beatmapset::factory()->qualified()->owner($owner))
+            ->owner($owner)
+            ->create();
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 0);
-        $this->expectException(AuthorizationException::class);
+        $this->expectExceptionCallable(
+            fn () => $beatmap->setOwner([$user->getKey()], $owner),
+            AuthorizationException::class
+        );
 
-        $this->beatmap->setOwner([$otherUser->getKey()], $this->user);
-
-        $this->assertSame($this->user->getKey(), $this->beatmap->fresh()->user_id);
+        $this->assertSame($owner->getKey(), $beatmap->fresh()->user_id);
     }
 
     public function testUpdateOwnerInvalidUser(): void
     {
-        $beatmapset = Beatmapset::factory()->create([
-            'approved' => Beatmapset::STATES['pending'],
-            'user_id' => $this->user,
-        ]);
-        $this->beatmap->update([
-            'beatmapset_id' => $beatmapset->getKey(),
-            'user_id' => $this->user->getKey(),
-        ]);
+        $owner = User::factory()->create();
+        $beatmap = Beatmap::factory()
+            ->for(Beatmapset::factory()->pending()->owner($owner))
+            ->owner($owner)
+            ->create();
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 0);
-        $this->expectException(InvariantException::class);
+        $this->expectExceptionCallable(
+            fn () => $beatmap->setOwner([User::max('user_id') + 1], $owner),
+            InvariantException::class
+        );
 
-        $this->beatmap->setOwner([user::max('user_id') + 1], $this->user);
-
-        $this->assertSame($this->user->getKey(), $this->beatmap->fresh()->user_id);
+        $this->assertSame($owner->getKey(), $beatmap->fresh()->user_id);
     }
 
     /**
@@ -94,78 +84,78 @@ class ChangeBeatmapOwnersTest extends TestCase
     public function testUpdateOwnerLoved(int $approved, bool $ok): void
     {
         $moderator = User::factory()->withGroup('loved')->create();
-        $this->beatmap->beatmapset->update([
-            'approved' => $approved,
-            'approved_date' => now(),
-        ]);
+        $user = User::factory()->create();
+        $owner = User::factory()->create();
+        $beatmap = Beatmap::factory()
+            ->for(Beatmapset::factory()->state([
+                'approved' => $approved,
+                'approved_date' => now(),
+            ])->owner($owner))
+            ->owner($owner)
+            ->create();
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), $ok ? 1 : 0);
-        $expectedOwner = $ok ? $this->user->getKey() : $this->beatmap->fresh()->user_id;
 
-        if (!$ok) {
-            $this->expectException(AuthorizationException::class);
-        }
+        $this->expectExceptionCallable(
+            fn () => $beatmap->setOwner([$user->getKey()], $moderator),
+            $ok ? null : AuthorizationException::class,
+        );
 
-        $this->beatmap->setOwner([$this->user->getKey()], $moderator);
-
-        $this->assertSame($expectedOwner, $this->beatmap->fresh()->user_id);
+        $this->assertSame($ok ? $user->getKey() : $owner->getKey(), $beatmap->fresh()->user_id);
     }
 
     public function testUpdateOwnerModerator(): void
     {
         $moderator = User::factory()->withGroup('nat')->create();
-        $this->beatmap->beatmapset->update([
-            'approved' => Beatmapset::STATES['ranked'],
-            'approved_date' => now(),
-        ]);
+        $user = User::factory()->create();
+        $owner = User::factory()->create();
+        $beatmap = Beatmap::factory()
+            ->for(Beatmapset::factory()->state([
+                'approved' => Beatmapset::STATES['ranked'],
+                'approved_date' => now(),
+            ])->owner($owner))
+            ->owner($owner)
+            ->create();
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 1);
 
-        $this->beatmap->setOwner([$this->user->getKey()], $moderator);
+        $beatmap->setOwner([$user->getKey()], $moderator);
 
-        $this->assertSame($this->user->getKey(), $this->beatmap->fresh()->user_id);
+        $this->assertSame($user->getKey(), $beatmap->fresh()->user_id);
     }
 
     public function testUpdateOwnerNotOwner(): void
     {
-        $otherUser = User::factory()->create();
-        $beatmapset = Beatmapset::factory()->create(['user_id' => $this->user]);
-        $this->beatmap->update([
-            'beatmapset_id' => $beatmapset->getKey(),
-            'user_id' => $this->user->getKey(),
-        ]);
+        $user = User::factory()->create();
+        $owner = User::factory()->create();
+        $beatmap = Beatmap::factory()
+            ->for(Beatmapset::factory()->state([
+                'approved' => Beatmapset::STATES['ranked'],
+                'approved_date' => now(),
+            ])->owner($owner))
+            ->owner($owner)
+            ->create();
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 0);
-        $this->expectException(AuthorizationException::class);
+        $this->expectExceptionCallable(
+            fn () => $beatmap->setOwner([$user->getKey()], $user),
+            AuthorizationException::class,
+        );
 
-        $this->beatmap->setOwner([$otherUser->getKey()], $otherUser);
-
-        $this->assertSame($this->user->getKey(), $this->beatmap->fresh()->user_id);
+        $this->assertSame($owner->getKey(), $beatmap->fresh()->user_id);
     }
 
     public function testUpdateOwnerSameOwner(): void
     {
-        $beatmapset = Beatmapset::factory()->create([
-            'approved' => Beatmapset::STATES['pending'],
-            'user_id' => $this->user,
-        ]);
-        $this->beatmap->update([
-            'beatmapset_id' => $beatmapset->getKey(),
-            'user_id' => $this->user->getKey(),
-        ]);
+        $owner = User::factory()->create();
+        $beatmap = Beatmap::factory()
+            ->for(Beatmapset::factory()->pending()->owner($owner))
+            ->owner($owner)
+            ->create();
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 0);
+        $beatmap->setOwner([$owner->getKey()], $owner);
 
-        $this->beatmap->setOwner([$this->user->getKey()], $this->user);
-
-        $this->assertSame($this->user->getKey(), $this->beatmap->fresh()->user_id);
-    }
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->user = User::factory()->create();
-        $this->beatmap = Beatmap::factory()->qualified()->create();
+        $this->assertSame($owner->getKey(), $beatmap->user_id);
     }
 }
