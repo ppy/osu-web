@@ -378,11 +378,9 @@ class BeatmapsController extends Controller
 
     public function updateOwner($id)
     {
-        $beatmap = Beatmap::findOrFail($id);
-
-        priv_check('BeatmapUpdateOwner', $beatmap->beatmapset)->ensureCan();
-
         $newUserIds = get_arr(request('user_ids'), 'get_int');
+
+        $beatmap = Beatmap::findOrFail($id);
 
         $beatmap->setOwner($newUserIds, \Auth::user());
 

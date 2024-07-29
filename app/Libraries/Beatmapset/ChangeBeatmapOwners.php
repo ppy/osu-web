@@ -21,6 +21,8 @@ class ChangeBeatmapOwners
 
     public function __construct(private Beatmap $beatmap, array|int|null $newUserIds, private User $source)
     {
+        priv_check_user($source, 'BeatmapUpdateOwner', $beatmap->beatmapset)->ensureCan();
+
         $this->userIds = new Set((array) $newUserIds);
 
         if ($this->userIds->isEmpty()) {
