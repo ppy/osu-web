@@ -6,10 +6,12 @@
 namespace App\Libraries\Elasticsearch;
 
 use App\Exceptions\InvalidCursorException;
+use App\Exceptions\InvariantException;
 use App\Exceptions\SilencedException;
 use Elasticsearch\Client;
 use Elasticsearch\Common\Exceptions\Curl\OperationTimeoutException;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
+use Elasticsearch\Common\Exceptions\RuntimeException;
 
 abstract class Search extends HasSearch implements Queryable
 {
@@ -269,10 +271,14 @@ abstract class Search extends HasSearch implements Queryable
 
     private function handleError(ElasticsearchException $e, string $operation)
     {
-        $err = json_decode($e->getMessage(), true);
+        if ($e instanceof RuntimeException && $e->getMessage() === 'Failed to JSON encode: Inf and NaN cannot be JSON encoded') {
+            $e = new InvariantException('Invalid search parameter.');
+        } else {
+            $err = json_decode($e->getMessage(), true);
 
-        if (is_array($err) && str_starts_with($err['error']['caused_by']['reason'] ?? '', 'Failed to parse search_after value for field ')) {
-            $e = new InvalidCursorException();
+            if (is_array($err) && str_starts_with($err['error']['caused_by']['reason'] ?? '', 'Failed to parse search_after value for field ')) {
+                $e = new InvalidCursorException();
+            }
         }
 
         $tags = $this->getDatadogTags();
