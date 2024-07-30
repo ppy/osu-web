@@ -5,7 +5,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Libraries\BeatmapsetDiscussion;
+namespace Tests\Libraries\Beatmapset;
 
 use App\Exceptions\AuthorizationException;
 use App\Exceptions\InvariantException;
