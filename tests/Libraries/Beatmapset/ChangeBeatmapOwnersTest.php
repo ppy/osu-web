@@ -9,10 +9,12 @@ namespace Tests\Libraries\BeatmapsetDiscussion;
 
 use App\Exceptions\AuthorizationException;
 use App\Exceptions\InvariantException;
+use App\Jobs\Notifications\BeatmapOwnerChange;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
+use Bus;
 use Tests\TestCase;
 
 class ChangeBeatmapOwnersTest extends TestCase
@@ -43,6 +45,8 @@ class ChangeBeatmapOwnersTest extends TestCase
         $beatmap = $beatmap->fresh();
         $this->assertEqualsCanonicalizing($users->pluck('user_id'), $beatmap->mappers->pluck('user_id'));
         $this->assertSame($users[0]->getKey(), $beatmap->user_id);
+
+        Bus::assertDispatched(BeatmapOwnerChange::class);
     }
 
     public function testUpdateOwnerInvalidState(): void
@@ -63,6 +67,8 @@ class ChangeBeatmapOwnersTest extends TestCase
         $beatmap = $beatmap->fresh();
         $this->assertEqualsCanonicalizing([$owner->getKey()], $beatmap->mappers->pluck('user_id')->toArray());
         $this->assertSame($owner->getKey(), $beatmap->user_id);
+
+        Bus::assertNotDispatched(BeatmapOwnerChange::class);
     }
 
     public function testUpdateOwnerInvalidUser(): void
@@ -82,6 +88,8 @@ class ChangeBeatmapOwnersTest extends TestCase
         $beatmap = $beatmap->fresh();
         $this->assertEqualsCanonicalizing([$owner->getKey()], $beatmap->mappers->pluck('user_id')->toArray());
         $this->assertSame($owner->getKey(), $beatmap->user_id);
+
+        Bus::assertNotDispatched(BeatmapOwnerChange::class);
     }
 
     /**
@@ -111,6 +119,12 @@ class ChangeBeatmapOwnersTest extends TestCase
         $expectedUser = $ok ? $user : $owner;
         $this->assertEqualsCanonicalizing([$expectedUser->getKey()], $beatmap->mappers->pluck('user_id')->toArray());
         $this->assertSame($expectedUser->getKey(), $beatmap->user_id);
+
+        if ($ok) {
+            Bus::assertDispatched(BeatmapOwnerChange::class);
+        } else {
+            Bus::assertNotDispatched(BeatmapOwnerChange::class);
+        }
     }
 
     public function testUpdateOwnerModerator(): void
@@ -156,6 +170,8 @@ class ChangeBeatmapOwnersTest extends TestCase
         $beatmap = $beatmap->fresh();
         $this->assertEqualsCanonicalizing([$owner->getKey()], $beatmap->mappers->pluck('user_id')->toArray());
         $this->assertSame($owner->getKey(), $beatmap->user_id);
+
+        Bus::assertNotDispatched(BeatmapOwnerChange::class);
     }
 
     public function testUpdateOwnerSameOwner(): void
@@ -172,5 +188,14 @@ class ChangeBeatmapOwnersTest extends TestCase
         $beatmap = $beatmap->fresh();
         $this->assertEqualsCanonicalizing([$owner->getKey()], $beatmap->mappers->pluck('user_id')->toArray());
         $this->assertSame($owner->getKey(), $beatmap->user_id);
+
+        Bus::assertNotDispatched(BeatmapOwnerChange::class);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Bus::fake([BeatmapOwnerChange::class]);
     }
 }
