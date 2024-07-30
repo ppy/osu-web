@@ -56,7 +56,9 @@ class ChangeBeatmapOwners
             $this->beatmap->refresh();
 
             // TODO: use select instead (needs newer laravel)
-            $newUsers = $this->beatmap->mappers->map(fn ($user) => $user->only('user_id', 'username'))->all();
+            $newUsers = $this->beatmap->mappers->map(
+                fn ($user) => ['id' => $user->user_id, 'username' => $user->username],
+            )->all();
             $beatmapset = $this->beatmap->beatmapset;
 
             BeatmapsetEvent::log(BeatmapsetEvent::BEATMAP_OWNER_CHANGE, $this->source, $beatmapset, [

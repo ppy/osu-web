@@ -223,7 +223,7 @@ interface BeatmapOwnerChangeEvent extends BaseBeatmapsetEvent {
     new_user_id: number;
     new_user_username: string;
     new_users?: {
-      user_id: number;
+      id: number;
       username: string;
     }[];
   };
