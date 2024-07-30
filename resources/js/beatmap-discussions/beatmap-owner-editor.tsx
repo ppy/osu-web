@@ -18,10 +18,6 @@ import { trans } from 'utils/lang';
 import BeatmapMapper from './beatmap-mapper';
 import DiscussionsState from './discussions-state';
 
-interface XhrCollection {
-  updateOwner: JQuery.jqXHR<BeatmapsetWithDiscussionsJson>;
-}
-
 interface Props {
   beatmap: BeatmapJson;
   beatmapset: BeatmapsetExtendedJson;
@@ -35,9 +31,9 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   private readonly inputRef = React.createRef<HTMLInputElement>();
   @observable private inputUsername = '';
   private shouldFocusInputOnNextRender = false;
+  private updateOwnerXhr?: JQuery.jqXHR<BeatmapsetWithDiscussionsJson>;
   @observable private updatingOwner = false;
   @observable private validUsers = new Map<number, UserJson>();
-  private readonly xhr: Partial<XhrCollection> = {};
 
   private get canSave() {
     return this.validUsers.size > 0 && normaliseUsername(this.inputUsername).length === 0;
@@ -57,7 +53,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   }
 
   componentWillUnmount() {
-    Object.values(this.xhr).forEach((xhr) => xhr?.abort());
+    this.updateOwnerXhr?.abort();
   }
 
   render() {
@@ -191,7 +187,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
 
   @action
   private updateOwners(userIds: number[]) {
-    this.xhr.updateOwner?.abort();
+    this.updateOwnerXhr?.abort();
 
     // TODO: handle no change case?
     // if (this.props.beatmap.user_id === userId) {
@@ -202,11 +198,11 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
 
     this.updatingOwner = true;
 
-    this.xhr.updateOwner = $.ajax(route('beatmaps.update-owner', { beatmap: this.props.beatmap.id }), {
+    this.updateOwnerXhr = $.ajax(route('beatmaps.update-owner', { beatmap: this.props.beatmap.id }), {
       data: { user_ids: userIds },
       method: 'POST',
     });
-    this.xhr.updateOwner
+    this.updateOwnerXhr
       .done((beatmapset) => runInAction(() => {
         this.props.discussionsState.update({ beatmapset });
         this.editing = false;
