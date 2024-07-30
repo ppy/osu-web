@@ -1237,6 +1237,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             static::with([
                 'allBeatmaps.beatmapset',
                 'allBeatmaps.owners',
+                'allBeatmaps.user', // TODO: for compatibility only, should migrate user_id to BeatmapOwner.
                 'beatmapDiscussions.beatmapDiscussionPosts',
                 'beatmapDiscussions.beatmapDiscussionVotes',
                 'beatmapDiscussions.beatmapset',
