@@ -657,10 +657,10 @@ class UsersController extends Controller
      * - support_level
      * - user_achievements
      *
-     * @urlParam user integer required Id or username of the user. Id lookup is prioritised unless `key` parameter is specified. Previous usernames are also checked in some cases. Example: 1
+     * @urlParam user integer required Id or `@`-prefixed username of the user. Previous usernames are also checked in some cases. Example: 1
      * @urlParam mode string [Ruleset](#ruleset). User default mode will be used if not specified. Example: osu
      *
-     * @queryParam key Type of `user` passed in url parameter. Can be either `id` or `username` to limit lookup by their respective type. Passing empty or invalid value will result in id lookup followed by username lookup if not found.
+     * @queryParam key Type of `user` passed in url parameter. Can be either `id` or `username` to limit lookup by their respective type. Passing empty or invalid value will result in id lookup followed by username lookup if not found. This parameter has been deprecated. Prefix `user` parameter with `@` instead to lookup by username.
      *
      * @response "See User object section"
      */
