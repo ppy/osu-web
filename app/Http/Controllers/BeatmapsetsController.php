@@ -399,6 +399,7 @@ class BeatmapsetsController extends Controller
             "{$beatmapRelation}.baseDifficultyRatings",
             "{$beatmapRelation}.baseMaxCombo",
             "{$beatmapRelation}.failtimes",
+            "{$beatmapRelation}.owners",
             'genre',
             'language',
             'user',
@@ -410,6 +411,7 @@ class BeatmapsetsController extends Controller
         return json_item($beatmapset, $transformer, [
             'beatmaps',
             'beatmaps.failtimes',
+            'beatmaps.mappers',
             'beatmaps.max_combo',
             'converts',
             'converts.failtimes',
