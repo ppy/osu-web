@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import InputContainer from 'components/input-container';
 import { Spinner } from 'components/spinner';
 import UsernameInput from 'components/username-input';
 import BeatmapJson from 'interfaces/beatmap-json';
@@ -19,6 +20,12 @@ import { trans } from 'utils/lang';
 import BeatmapMapper from './beatmap-mapper';
 import DiscussionsState from './discussions-state';
 
+interface Model {
+  errors: Record<'username', boolean>;
+  inputs: Record<'username', string>;
+  showError: Record<'username', boolean>;
+}
+
 interface Props {
   beatmap: BeatmapJson;
   beatmapset: BeatmapsetExtendedJson;
@@ -31,6 +38,12 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   @observable private editing = false;
   private readonly inputRef = React.createRef<HTMLInputElement>();
   @observable private inputUsername = '';
+  @observable private readonly model: Model = {
+    errors: { username: false },
+    inputs: { username: '' },
+    showError: { username: false },
+  };
+
   private shouldFocusInputOnNextRender = false;
   private updateOwnerXhr?: JQuery.jqXHR<BeatmapsetWithDiscussionsJson>;
   @observable private updatingOwner = false;
@@ -115,11 +128,15 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   @action
   private readonly handleUsernameInputValueChanged = (value: string) => {
     this.inputUsername = value;
+    this.model.showError.username = true;
+    this.model.errors.username = !this.canSave;
   };
 
   @action
   private readonly handleValidUsersChanged = (value: Map<number, UserJson>) => {
     this.validUsers = value;
+    this.model.showError.username = true;
+    this.model.errors.username = !this.canSave;
   };
 
   private renderButtons() {
@@ -174,15 +191,23 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     }
 
     return (
-      <UsernameInput
-        initialUsers={this.props.mappers}
-        // initialValue not set for owner editor as value is reset when cancelled.
+      <InputContainer
+        for='beatmap-owner-editor-username-input'
+        model={this.model}
         modifiers='beatmap-owner-editor'
-        onEnterPressed={this.handleSaveClick}
-        onValidUsersChanged={this.handleValidUsersChanged}
-        onValueChanged={this.handleUsernameInputValueChanged}
-        renderUser={this.renderMapper}
-      />
+        name='username'
+      >
+        <UsernameInput
+          id='beatmap-owner-editor-username-input'
+          initialUsers={this.props.mappers}
+          // initialValue not set for owner editor as value is reset when cancelled.
+          modifiers='beatmap-owner-editor'
+          onEnterPressed={this.handleSaveClick}
+          onValidUsersChanged={this.handleValidUsersChanged}
+          onValueChanged={this.handleUsernameInputValueChanged}
+          renderUser={this.renderMapper}
+        />
+      </InputContainer>
     );
   }
 
