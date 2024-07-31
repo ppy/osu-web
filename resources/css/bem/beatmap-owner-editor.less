@@ -37,18 +37,12 @@
     }
   }
 
-  &__input {
-    .default-border-radius();
-    .reset-input();
-    background-color: hsl(var(--hsl-b6));
-    color: inherit;
-    padding: 1px 3px;
-    width: auto;
-    border: 2px solid transparent;
+  &__mappers {
+    display: flex;
+    flex-direction: row;
 
-    &--error {
-      border-color: hsl(var(--hsl-red-2));
-    }
+    gap: 2px;
+    border: 2px solid transparent;
   }
 
   &__user {
