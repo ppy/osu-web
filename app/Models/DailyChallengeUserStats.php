@@ -115,7 +115,14 @@ class DailyChallengeUserStats extends Model
         $previousWeek ??= $currentWeek->subWeek(1);
 
         if ($incrementing) {
-            if (($this->last_update ?? $previousWeek) < $startTime) {
+            $lastUpdate = $this->last_update ?? $previousWeek;
+            $previousDay = $startTime->subDays(1);
+
+            if ($lastUpdate < $previousDay) {
+                $this->updateStreak(false, $previousDay);
+            }
+
+            if ($lastUpdate < $startTime) {
                 $this->playcount += 1;
                 $this->daily_streak_current += 1;
                 $this->last_update = $startTime;
