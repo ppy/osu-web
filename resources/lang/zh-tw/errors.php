@@ -29,7 +29,7 @@ return [
         'generic' => '處理您的訂單時發生錯誤。',
     ],
     'scores' => [
-        'invalid_id' => '',
+        'invalid_id' => '無效分數。',
     ],
     'search' => [
         'default' => '無法獲得任何結果，請稍後再試。',

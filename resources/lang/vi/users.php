@@ -196,12 +196,28 @@ return [
             'to_0' => 'Ẩn ảnh bìa',
             'to_1' => 'Hiện ảnh bìa',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Đổi Ảnh Bìa Trang Cá Nhân',
                 'defaults_info' => 'Sẽ có thêm lựa chọn ảnh bìa trong tương lai',
-                'holdover_remove_confirm' => "",
-                'title' => '',
+                'holdover_remove_confirm' => "Ảnh bìa đã chọn trước đó giờ không thể chọn được nữa. Bạn không thể chọn lại sau khi đã đổi sang ảnh bìa khác. Tiếp tục?",
+                'title' => 'Ảnh bìa',
 
                 'upload' => [
                     'broken_file' => 'Không xử lý được hình ảnh. Kiểm tra hình ảnh đã tải lên và thử lại sau.',
@@ -225,12 +241,12 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
-                'title' => '',
+                'reset_no_supporter' => 'Muốn đặt về màu mặc định? Sẽ cần supporter tag để đổi sang màu khác.',
+                'title' => 'Màu sắc',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Tùy chọn màu chủ đề chỉ dành cho :link',
+                    'link' => 'osu!supporter',
                 ],
             ],
         ],

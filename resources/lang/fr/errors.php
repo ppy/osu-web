@@ -29,7 +29,7 @@ return [
         'generic' => 'Une erreur s’est produite lors de votre achat.',
     ],
     'scores' => [
-        'invalid_id' => '',
+        'invalid_id' => 'ID de score invalide.',
     ],
     'search' => [
         'default' => 'Impossible d\'obtenir des résultats, réessayez plus tard.',

@@ -15,9 +15,9 @@ return [
 
     'judge' => [
         'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'nav_title' => 'судија',
+        'no_current_vote' => 'ниси још гласао.',
+        'update' => 'ажурирај',
         'validation' => [
             'missing_score' => '',
             'contest_vote_judged' => '',
@@ -27,9 +27,9 @@ return [
 
     'judge_results' => [
         '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        'creator' => 'аутор',
+        'score' => 'Резултат',
+        'total_score' => 'укупан резултат',
     ],
 
     'voting' => [

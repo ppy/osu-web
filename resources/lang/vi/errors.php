@@ -23,13 +23,13 @@ return [
     ],
     'beatmaps' => [
         'invalid_mode' => 'Chế độ đã chỉ định không hợp lệ.',
-        'standard_converts_only' => 'Chưa có điểm số nào cho chế độ chơi này cho độ khó này của beatmap.',
+        'standard_converts_only' => 'Không có điểm số cho chế độ được yêu cầu trong độ khó của beatmap này.',
     ],
     'checkout' => [
         'generic' => 'Đã xảy ra lỗi trong quá trình thanh toán cho đơn hàng của bạn.',
     ],
     'scores' => [
-        'invalid_id' => '',
+        'invalid_id' => 'Id điểm không hợp lệ.',
     ],
     'search' => [
         'default' => 'Không có kết quả, vui lòng thử lại sau.',

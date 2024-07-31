@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'batch_disable' => 'Désactiver éléments sélectionnés',
+        'batch_disable' => 'Désactiver les éléments sélectionnés',
         'batch_enable' => 'Activer les éléments sélectionnés',
 
         'batch_confirm' => [
