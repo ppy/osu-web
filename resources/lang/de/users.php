@@ -196,12 +196,28 @@ return [
             'to_0' => 'Cover verbergen',
             'to_1' => 'Cover anzeigen',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Profilbanner ändern',
                 'defaults_info' => 'In der Zukunft wird es mehr Optionen für das Banner geben',
                 'holdover_remove_confirm' => "Das davor ausgewählte Cover ist nicht mehr zur Auswahl verfügbar. Du kannst es nach dem Wechsel zu einem anderen Cover nicht wieder auswählen. Trotzdem fortfahren?",
-                'title' => '',
+                'title' => 'Banner',
 
                 'upload' => [
                     'broken_file' => 'Verarbeitung des Bildes fehlgeschlagen. Überprüfe das hochgeladene Bild und versuch es erneut.',
@@ -225,12 +241,12 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
-                'title' => '',
+                'reset_no_supporter' => 'Zur Standardfarbe zurückkehren? Für die Wahl einer anderen Farbe wird ein Supporter-Tag benötigt.',
+                'title' => 'Farbe',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Eigene Farbschemata nur für :link verfügbar',
+                    'link' => 'osu!supporter',
                 ],
             ],
         ],

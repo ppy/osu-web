@@ -76,7 +76,7 @@ return [
         'action' => 'Scarica osu!',
         'action_lazer' => 'Scarica osu!(lazer)',
         'action_lazer_description' => 'il prossimo grande aggiornamento per osu!',
-        'action_lazer_info' => 'guarda questa pagina per i dettagli',
+        'action_lazer_info' => 'visita questa pagina per maggiori dettagli',
         'action_lazer_title' => 'prova osu!(lazer)',
         'action_title' => 'scarica osu!',
         'for_os' => 'per :os',

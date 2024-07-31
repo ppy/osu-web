@@ -34,7 +34,7 @@ return [
 
     'voting' => [
         'judge_link' => 'Bu yarışmanın jürisi sensin. Yapımları değerlendir!',
-        'judged_notice' => '',
+        'judged_notice' => 'Bu yarışma yargı sistemini kullanıyor, yargılar şu anda girişleri işliyor.',
         'login_required' => 'Oylamak için lütfen giriş yapınız.',
         'over' => 'Bu yarışma için oylama sona erdi',
         'show_voted_only' => 'Oy verilenleri göster',

@@ -29,7 +29,7 @@ return [
         'generic' => 'Checkout\'unuzu hazırlarken bir hata oluştu.',
     ],
     'scores' => [
-        'invalid_id' => '',
+        'invalid_id' => 'Geçersiz skor ID\'si.',
     ],
     'search' => [
         'default' => 'Hiç bir sonuç bulunamadı, sonra tekrar deneyiniz.',
