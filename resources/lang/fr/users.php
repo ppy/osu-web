@@ -196,12 +196,28 @@ return [
             'to_0' => 'Cacher la bannière',
             'to_1' => 'Afficher la bannière',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Changer la bannière du profil',
                 'defaults_info' => 'D\'autres options de bannières seront disponibles à l\'avenir',
                 'holdover_remove_confirm' => "La bannière précédemment sélectionnée n'est plus disponible. Vous ne pourrez plus la réutiliser une fois que vous l'aurez changée. Êtes-vous sûr ?",
-                'title' => '',
+                'title' => 'Bannière',
 
                 'upload' => [
                     'broken_file' => 'Impossible de traiter l\'image. Vérifiez l\'image mise en ligne et réessayez.',
@@ -225,12 +241,12 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
-                'title' => '',
+                'reset_no_supporter' => 'Voulez-vous vraiment réinitialiser la couleur de votre profil ? Vous devrez obtenir un tag osu!supporter pour la changer à nouveau.',
+                'title' => 'Couleur',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Les couleurs personnalisées ne sont disponibles que pour les :link',
+                    'link' => 'osu!supporters',
                 ],
             ],
         ],

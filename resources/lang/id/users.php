@@ -196,12 +196,28 @@ return [
             'to_0' => 'Sembunyikan sampul',
             'to_1' => 'Tampilkan sampul',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Ubah Sampul Profil',
                 'defaults_info' => 'Pilihan sampul lainnya akan tersedia di masa mendatang',
                 'holdover_remove_confirm' => "Gambar sampul yang sebelumnya dipilih kini sudah tidak lagi tersedia untuk dipilih. Kamu tidak akan dapat memilih kembali gambar ini setelah kamu beralih ke gambar sampul lain. Lanjut?",
-                'title' => '',
+                'title' => 'Sampul',
 
                 'upload' => [
                     'broken_file' => 'Gambar gagal diproses. Periksa keabsahan gambar yang diunggah dan coba lagi.',
@@ -225,12 +241,12 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
-                'title' => '',
+                'reset_no_supporter' => 'Atur ulang warna ke pengaturan bawaan? Tag supporter akan dibutuhkan untuk mengubah warna ini ke warna yang berbeda.',
+                'title' => 'Warna',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Warna tema khusus hanya tersedia bagi para pemilik :link',
+                    'link' => 'osu!supporter',
                 ],
             ],
         ],

@@ -193,15 +193,31 @@ return [
             'count' => ':count_delimited commento|:count_delimited commenti',
         ],
         'cover' => [
-            'to_0' => 'Nascondi copertina',
+            'to_0' => 'Nascondi immagine di copertina',
             'to_1' => 'Mostra copertina',
+        ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
         ],
         'edit' => [
             'cover' => [
                 'button' => 'Cambia copertina del profilo',
                 'defaults_info' => 'Più opzioni per la copertina saranno disponibili in futuro',
                 'holdover_remove_confirm' => "",
-                'title' => '',
+                'title' => 'Immagine di copertina',
 
                 'upload' => [
                     'broken_file' => 'Elaborazione dell\'immagine non riuscita. Controlla l\'immagine caricata e riprova.',
@@ -225,12 +241,12 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
-                'title' => '',
+                'reset_no_supporter' => 'Ripristinare il colore predefinito? Sarà necessario il tag supporter per cambiarlo in un altro colore.',
+                'title' => 'Colore',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Temi con colore personalizzato disponibili solo per gli :link',
+                    'link' => 'osu!supporter',
                 ],
             ],
         ],

@@ -72,7 +72,7 @@ return [
             'disqualify' => 'Descalificar',
             'hype' => '¡Hype!',
             'mapper_note' => 'Nota',
-            'nomination_reset' => 'Restablecimiento de nominación',
+            'nomination_reset' => 'Restablecer nominación',
             'praise' => 'Elogio',
             'problem' => 'Problema',
             'problem_warning' => 'Informar un problema',

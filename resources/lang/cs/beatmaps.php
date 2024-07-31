@@ -25,14 +25,14 @@ return [
         'message_placeholder_silenced' => "Nelze odeslat diskuzi když jste ztišeni.",
         'message_type_select' => 'Vybrat typ komentáře',
         'reply_notice' => 'Stiskni enter pro odpověď.',
-        'reply_resolve_notice' => '',
+        'reply_resolve_notice' => 'Stiskni enter pro odpověď. Stiskni ctrl+enter pro odpověď a označení jako vyřešené.',
         'reply_placeholder' => 'Napiš svou odpověď sem',
         'require-login' => 'Pro psaní odpovědí nebo přidávání příspěvků se prosím přihlas',
         'resolved' => 'Vyřešeno',
         'restore' => 'obnovit',
         'show_deleted' => 'Zobrazit smazané',
         'title' => 'Diskuze',
-        'unresolved_count' => '',
+        'unresolved_count' => ':count_delimited nevyřešených problémů',
 
         'collapse' => [
             'all-collapse' => 'Skrýt vše',

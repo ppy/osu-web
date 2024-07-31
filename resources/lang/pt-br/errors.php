@@ -29,7 +29,7 @@ return [
         'generic' => 'Ocorreu um erro durante ao preparar o seu pagamento.',
     ],
     'scores' => [
-        'invalid_id' => '',
+        'invalid_id' => 'Pontuação ID inválida.',
     ],
     'search' => [
         'default' => 'Não foi possível obter nenhum resultado, tente novamente mais tarde.',
