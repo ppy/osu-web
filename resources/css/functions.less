@@ -63,6 +63,12 @@
   }
 }
 
+.fancy-text(@colour) {
+  background-image: linear-gradient(@colour);
+  background-clip: text;
+  color: transparent;
+}
+
 .page-width(@extra-margin: 0px) {
   width: calc(100% - (@extra-margin * 2));
   max-width: (@container-sm - @extra-margin * 2);
