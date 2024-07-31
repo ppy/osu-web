@@ -23,12 +23,14 @@ export interface FormWithErrors<T extends string> {
 type Props<T extends string> =
   CommonProps & (
     { maxLength?: number; model: FormWithErrors<T>; name: T }
-    | { model?: never; name?: never }
+    | { hasError?: boolean; model?: never; name?: never; showError?: boolean }
   );
 
 // TODO: look at combining with ValidatingInput
 const InputContainer = observer(<T extends string>(props: React.PropsWithChildren<Props<T>>) => {
-  const error = props.model != null && props.model.errors[props.name] && props.model.showError[props.name];
+  const error = props.model != null
+    ? props.model.errors[props.name] && props.model.showError[props.name]
+    : props.hasError && props.showError;
 
   return (
     <label className={classWithModifiers('input-container', { error }, props.modifiers)} htmlFor={props.for}>
