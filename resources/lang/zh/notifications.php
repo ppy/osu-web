@@ -80,7 +80,7 @@ return [
                 'beatmapset_love' => '谱面 ":title" 已推荐进入社区喜爱 (Loved)',
                 'beatmapset_love_compact' => '谱面已推荐进入社区喜爱 (Loved)',
                 'beatmapset_nominate' => '谱面 ":title" 已提名。',
-                'beatmapset_nominate_compact' => '谱面已提名',
+                'beatmapset_nominate_compact' => '谱面被提名',
                 'beatmapset_qualify' => '谱面 ":title" 已经得到足够数量的提名，并进入上架队列',
                 'beatmapset_qualify_compact' => '谱面已进入上架队列',
                 'beatmapset_rank' => '谱面 ":title" 已上架 (Ranked)。',

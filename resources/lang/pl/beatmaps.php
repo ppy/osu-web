@@ -32,7 +32,7 @@ return [
         'restore' => 'przywróć',
         'show_deleted' => 'Pokaż usunięte',
         'title' => 'Dyskusje',
-        'unresolved_count' => '',
+        'unresolved_count' => ':count_delimited nierozwiązany problem|:count_delimited nierozwiązane problemy|:count_delimited nierozwiązanych problemów',
 
         'collapse' => [
             'all-collapse' => 'Zwiń wszystkie',

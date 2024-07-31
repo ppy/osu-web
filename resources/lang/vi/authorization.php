@@ -173,7 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Không thể ghim điểm này",
-            'failed' => "Không thể ghim điểm cá nhân chưa hoàn thành.",
+            'failed' => "Không thể ghim điểm chưa hoàn thành.",
             'not_owner' => 'Chỉ có người sở hữu có thể ghim điểm.',
             'too_many' => 'Ghim quá nhiều điểm.',
         ],

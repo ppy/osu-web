@@ -25,8 +25,8 @@ return [
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Пријави Поруку',
+        'title' => 'Пријавити поруку од стране корисника :username?',
     ],
 
     'scores' => [
