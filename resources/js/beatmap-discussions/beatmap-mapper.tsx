@@ -12,7 +12,8 @@ interface Props {
 }
 
 function createRemoveMapperHandler(user: UserJsonMinimum, onRemoveClick: NonNullable<Props['onRemoveUser']>) {
-  return (_event: React.MouseEvent<HTMLButtonElement>) => {
+  return (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     onRemoveClick(user);
   };
 }
