@@ -8,6 +8,7 @@ import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
+import { xor } from 'lodash';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import { normaliseUsername } from 'models/user';
@@ -189,12 +190,10 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   private updateOwners(userIds: number[]) {
     this.updateOwnerXhr?.abort();
 
-    // TODO: handle no change case?
-    // if (this.props.beatmap.user_id === userId) {
-    //   this.editing = false;
-
-    //   return;
-    // }
+    if (xor([...this.validUsers.keys()], this.props.mappers.map((mapper) => mapper.id)).length === 0) {
+      this.editing = false;
+      return;
+    }
 
     this.updatingOwner = true;
 
