@@ -142,7 +142,7 @@ function onMouseOver(event: JQuery.TriggeredEvent<Document, unknown, HTMLElement
     if (qtip != null) {
       const tooltipElement = qtip.tooltip;
       if (tooltipElement != null) {
-        const container = tooltipElement.querySelector('.js-react--user-card-tooltip');
+        const container = tooltipElement.find('.js-react--user-card-tooltip')[0];
         if (container != null) {
           unmountComponentAtNode(container);
         }
