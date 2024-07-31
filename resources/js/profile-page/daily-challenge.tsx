@@ -130,11 +130,16 @@ export default class DailyChallenge extends React.Component<Props> {
             <div key={i}>{line}</div>
           ))}
         </div>
-        <div className='daily-challenge__value'>
-          {trans(
-            'users.show.daily_challenge.unit.day',
-            { value: formatNumber(this.props.stats.playcount) },
-          )}
+        <div className='daily-challenge__value-box'>
+          <div
+            className='daily-challenge__value'
+            style={tierStyle(this.props.stats.playcount / 3)}
+          >
+            {trans(
+              'users.show.daily_challenge.unit.day',
+              { value: formatNumber(this.props.stats.playcount) },
+            )}
+          </div>
         </div>
       </div>
     );
