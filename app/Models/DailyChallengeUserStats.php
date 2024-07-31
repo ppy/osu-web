@@ -118,12 +118,13 @@ class DailyChallengeUserStats extends Model
             if (($this->last_update ?? $previousWeek) < $startTime) {
                 $this->playcount += 1;
                 $this->daily_streak_current += 1;
+                $this->last_update = $startTime;
             }
 
             if (($this->last_weekly_streak ?? $previousWeek) < $currentWeek) {
                 $this->weekly_streak_current += 1;
+                $this->last_weekly_streak = $currentWeek;
             }
-            $this->last_weekly_streak = $currentWeek;
 
             foreach (['daily', 'weekly'] as $type) {
                 if ($this["{$type}_streak_best"] < $this["{$type}_streak_current"]) {
@@ -136,7 +137,5 @@ class DailyChallengeUserStats extends Model
                 $this->weekly_streak_current = 0;
             }
         }
-
-        $this->last_update = $startTime;
     }
 }
