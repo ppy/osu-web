@@ -199,8 +199,8 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Chế độ lazer hiển thị các điểm cá nhân từ lazer cùng thuật toán tính điểm mới',
             'logout' => 'Đăng Xuất',
             'profile' => 'Trang Cá Nhân',
-            'scoring_mode_toggle' => '',
-            'scoring_mode_toggle_tooltip' => '',
+            'scoring_mode_toggle' => 'Hệ thống điểm cổ điển',
+            'scoring_mode_toggle_tooltip' => 'Thay đổi giá trị điểm để có cảm giác như hệ thống điểm cổ điển không giới hạn',
         ],
     ],
 

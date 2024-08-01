@@ -46,7 +46,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Стварно обрисати пост?',
         'confirm_restore' => 'Стварно вратити пост?',
-        'edited' => 'Последње измењено од :user :when, измењено :count_delimited пута и укупно.|Последње измењено од :user :when, измењено :count_delimited пута укупно.',
+        'edited' => 'Последње измењено од :user :when, измењено :count_delimited пута укупно.|Последње измењено од :user :when, измењено :count_delimited пута укупно.',
         'posted_at' => 'постовао :when',
         'posted_by_in' => 'поставио :username у :forum',
 

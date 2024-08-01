@@ -550,6 +550,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         // don't perform username change history lookup if we're searching by ID
+        // TODO: remove this parameter and always rely on `@` prefix or digit check.
         if ($type === 'id') {
             return null;
         }
