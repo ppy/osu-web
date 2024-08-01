@@ -2247,7 +2247,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return Beatmapset
             ::where('user_id', '<>', $this->getKey())
             ->whereHas('beatmaps', function (Builder $query) {
-                $query->scoreable()->where('user_id', $this->getKey());
+                $query->scoreable()->whereHas('beatmapOwners', function (Builder $ownerQuery) {
+                    $ownerQuery->where('user_id', $this->getKey());
+                });
             })
             ->with('beatmaps');
     }

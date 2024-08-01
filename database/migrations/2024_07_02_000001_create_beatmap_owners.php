@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedMediumInteger('beatmap_id');
             $table->unsignedInteger('user_id');
             $table->primary(['beatmap_id', 'user_id']);
+            $table->index(['user_id', 'beatmap_id'], 'user_id');
         });
     }
 
