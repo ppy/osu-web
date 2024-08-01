@@ -108,14 +108,6 @@ class PlaylistItem extends Model
         return $this->hasMany(ScoreToken::class);
     }
 
-    public function topScores()
-    {
-        return $this->highScores()
-            ->with('scoreLink.score')
-            ->orderBy('total_score', 'desc')
-            ->orderBy('score_id', 'asc');
-    }
-
     private function assertValidMaxAttempts()
     {
         if ($this->max_attempts === null) {
