@@ -21,6 +21,7 @@ import Localtime from 'core/localtime';
 import MobileToggle from 'core/mobile-toggle';
 import OsuAudio from 'core/osu-audio/main';
 import ReactTurbolinks from 'core/react-turbolinks';
+import Spoilerbox from 'core/spoilerbox';
 import StickyFooter from 'core/sticky-footer';
 import StickyHeader from 'core/sticky-header';
 import SyncHeight from 'core/sync-height';
@@ -72,6 +73,7 @@ export default class OsuCore {
   readonly referenceLinkTooltip;
   readonly scorePins;
   readonly socketWorker;
+  readonly spoilerbox;
   readonly stickyFooter;
   readonly stickyHeader;
   readonly syncHeight;
@@ -120,6 +122,7 @@ export default class OsuCore {
     this.browserTitleWithNotificationCount = new BrowserTitleWithNotificationCount(this);
     this.referenceLinkTooltip = new ReferenceLinkTooltip();
     this.scorePins = new ScorePins();
+    this.spoilerbox = new Spoilerbox();
     this.stickyFooter = new StickyFooter();
     this.stickyHeader = new StickyHeader();
     this.syncHeight = new SyncHeight();
