@@ -10,6 +10,7 @@ use App\Jobs\EsDocument;
 use App\Libraries\Beatmapset\ChangeBeatmapOwners;
 use App\Libraries\Transactions\AfterCommit;
 use DB;
+use Ds\Set;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -382,10 +383,23 @@ class Beatmap extends Model implements AfterCommit
 
     private function getMappers(): Collection
     {
-        // TODO: deleted users?
-        $mappers = $this->owners;
+        $beatmapOwners = $this->beatmapOwners()->pluck('user_id');
+
+        $mappers = User::whereIn('user_id', $beatmapOwners)->get();
+        // compatiblity for anything that isn't writing to beatmap_owners yet.
         if ($mappers->find($this->user_id) === null && $this->user !== null) {
             $mappers->prepend($this->user);
+        }
+
+        // Add deleted/missing users.
+        if ($beatmapOwners->count() !== $mappers->count()) {
+            $beatmapOwnersSet = new Set($beatmapOwners);
+            $mappersSet = new Set($mappers->pluck('user_id')->toArray());
+
+            $missingIds = $beatmapOwnersSet->diff($mappersSet);
+            foreach ($missingIds as $id) {
+                $mappers->push(new DeletedUser(['user_id' => $id]));
+            }
         }
 
         return $mappers;
