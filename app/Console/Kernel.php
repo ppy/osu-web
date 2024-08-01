@@ -31,6 +31,7 @@ class Kernel extends ConsoleKernel
         Commands\ModdingRankCommand::class,
 
         Commands\UserForumStatSyncCommand::class,
+        Commands\BeatmapsMigrateOwners::class,
         Commands\BeatmapsetsHypeSyncCommand::class,
         Commands\BeatmapsetNominationSyncCommand::class,
 
