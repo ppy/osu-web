@@ -25,14 +25,14 @@ return [
         'message_placeholder_silenced' => "Kamu tidak dapat membuka topik diskusi baru ketika akunmu sedang di-silence.",
         'message_type_select' => 'Pilih Jenis Komentar',
         'reply_notice' => 'Tekan enter untuk membalas.',
-        'reply_resolve_notice' => '',
+        'reply_resolve_notice' => 'Tekan enter untuk membalas. Tekan ctrl+enter untuk membalas dan menutup topik diskusi.',
         'reply_placeholder' => 'Ketik balasanmu di sini',
         'require-login' => 'Silakan masuk untuk membuka topik diskusi baru atau membalas',
         'resolved' => 'Terjawab',
         'restore' => 'pulihkan',
         'show_deleted' => 'Tampilkan yang telah dihapus',
         'title' => 'Diskusi',
-        'unresolved_count' => '',
+        'unresolved_count' => ':count_delimited isu yang terbuka',
 
         'collapse' => [
             'all-collapse' => 'Ciutkan semua',

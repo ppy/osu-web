@@ -15,9 +15,13 @@
   }
 
   &__value {
+    .fancy-text(var(--colour));
+    --colour: hsl(var(--hsl-c2));
+  }
+
+  &__value-box {
     border-radius: @border-radius-large;
     background: hsl(var(--hsl-b6));
     padding: 5px 10px;
-    color: hsl(var(--hsl-c2));
   }
 }

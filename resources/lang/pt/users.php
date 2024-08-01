@@ -196,12 +196,28 @@ return [
             'to_0' => 'Ocultar capa',
             'to_1' => 'Mostrar capa',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Mudar a capa do perfil',
                 'defaults_info' => 'Mais opções de capa estarão disponíveis no futuro',
-                'holdover_remove_confirm' => "",
-                'title' => '',
+                'holdover_remove_confirm' => "A capa selecionada anteriormente não está mais disponível para seleção. Não podes selecioná-la após mudar para outra capa. Prosseguir?",
+                'title' => 'Capa',
 
                 'upload' => [
                     'broken_file' => 'Falha ao processar a imagem. Verifica a imagem carregada e tenta outra vez.',
@@ -225,12 +241,12 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
-                'title' => '',
+                'reset_no_supporter' => 'Redefinir cor para padrão? A etiqueta de suporte será preciso para mudar para outra cor.',
+                'title' => 'Cor',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Temas de cores personalizadas disponíveis apenas no :link',
+                    'link' => 'osu!supporters',
                 ],
             ],
         ],

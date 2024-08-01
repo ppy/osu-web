@@ -35,6 +35,9 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2024-07-30
+- `key` parameter for Get User endpoint has been deprecated. Prefix username with `@` to lookup by username instead.
+
 ### 2024-01-23
 - `active_tournament_banner` in [User](#user) has been deprecated, use `active_tournament_banners` instead.
 

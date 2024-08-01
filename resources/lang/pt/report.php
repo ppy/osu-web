@@ -25,8 +25,8 @@ return [
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Relatar mensagem',
+        'title' => 'Relatar mensagem de :username?',
     ],
 
     'scores' => [

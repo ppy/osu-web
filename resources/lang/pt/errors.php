@@ -29,7 +29,7 @@ return [
         'generic' => 'Ocorreu um erro ao preparar o teu pagamento.',
     ],
     'scores' => [
-        'invalid_id' => '',
+        'invalid_id' => 'Pontuação ID inválida.',
     ],
     'search' => [
         'default' => 'Não foi possível obter nenhuns resultados, tenta outra vez mais tarde.',
@@ -37,6 +37,6 @@ return [
         'operation_timeout_exception' => 'De momento, a pesquisa está mais ocupada que o habitual, tenta outra vez mais tarde.',
     ],
     'user_report' => [
-        'recently_reported' => "",
+        'recently_reported' => "Já relataste isto recentemente.",
     ],
 ];

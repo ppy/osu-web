@@ -64,11 +64,11 @@ return [
             '_' => 'yorumlar',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'yarışma yargı sonucu',
         ],
         'contests_controller' => [
             '_' => 'yarışmalar',
-            'judge' => '',
+            'judge' => 'yarışma yargısı',
         ],
         'groups_controller' => [
             'show' => 'gruplar',

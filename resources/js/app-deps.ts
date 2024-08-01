@@ -42,7 +42,7 @@ interface QTip2Api {
   destroy(immediate?: boolean): QTip2Api;
   hide(): QTip2Api;
   set(...args: unknown[]): QTip2Api;
-  tooltip?: HTMLElement;
+  tooltip?: JQuery<HTMLElement>;
 }
 
 declare global {

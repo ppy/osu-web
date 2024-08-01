@@ -25,14 +25,14 @@ return [
         'message_placeholder_silenced' => "Không thể đăng thảo luận khi bị khoá mõm.",
         'message_type_select' => 'Chọn Kiểu Bình Luận',
         'reply_notice' => 'Nhấn enter để trả lời.',
-        'reply_resolve_notice' => '',
+        'reply_resolve_notice' => 'Ấn Enter để phản hồi. Ấn Ctrl+Enter để phản hồi và giải quyết.',
         'reply_placeholder' => 'Nhập câu trả lời của bạn tại đây',
         'require-login' => 'Hãy đăng nhập để đăng hoặc trả lời',
         'resolved' => 'Đã giải quyết',
         'restore' => 'khôi phục',
         'show_deleted' => 'Hiển thị bình luận đã xóa',
         'title' => 'Góc Thảo Luận',
-        'unresolved_count' => '',
+        'unresolved_count' => ':count_delimited vấn đề chưa được giải quyết',
 
         'collapse' => [
             'all-collapse' => 'Thu gọn tất cả',

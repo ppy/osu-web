@@ -29,7 +29,7 @@ return [
         'generic' => '结账时发生了一个错误',
     ],
     'scores' => [
-        'invalid_id' => '',
+        'invalid_id' => '无效分数 ID。',
     ],
     'search' => [
         'default' => '无法获得任何结果，请稍后再试。',
