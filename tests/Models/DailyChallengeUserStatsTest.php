@@ -18,19 +18,32 @@ use Tests\TestCase;
 
 class DailyChallengeUserStatsTest extends TestCase
 {
+    protected static function roomAddPlay(User $user, PlaylistItem $playlistItem, array $scoreParams = []): ScoreLink
+    {
+        $room = $playlistItem->room;
+        $origEndsAt = $room->ends_at;
+        $room->update(['ends_at' => CarbonImmutable::now()->addDays(1)]);
+        try {
+            return parent::roomAddPlay($user, $playlistItem, ['passed' => true, ...$scoreParams]);
+        } finally {
+            $room->update(['ends_at' => $origEndsAt]);
+        }
+    }
+
     private static function preparePlaylistItem(CarbonImmutable $playTime): PlaylistItem
     {
         return PlaylistItem::factory()->create([
             'room_id' => Room::factory()->create([
                 'category' => 'daily_challenge',
-                'starts_at' => $playTime,
+                'starts_at' => $playTime->startOfDay(),
+                'ends_at' => $playTime->endOfDay(),
             ]),
         ]);
     }
 
     private static function startOfWeek(): CarbonImmutable
     {
-        return DailyChallengeUserStats::startOfWeek(CarbonImmutable::now());
+        return DailyChallengeUserStats::startOfWeek(CarbonImmutable::now()->subWeeks(1));
     }
 
     public function testCalculateFromStart(): void
@@ -64,7 +77,7 @@ class DailyChallengeUserStatsTest extends TestCase
     public function testCalculateNoPlaysBreaksDailyStreak(): void
     {
         $playTime = static::startOfWeek();
-        $playlistItem = static::preparePlaylistItem($playTime);
+        static::preparePlaylistItem($playTime);
 
         $user = User::factory()->create();
 
@@ -91,7 +104,7 @@ class DailyChallengeUserStatsTest extends TestCase
     public function testCalculateNoPlaysOverAWeekBreaksWeeklyStreak(): void
     {
         $playTime = static::startOfWeek();
-        static::preparePlaylistItem($playTime);
+        $playlistItem = static::preparePlaylistItem($playTime);
 
         $user = User::factory()->create();
 
@@ -146,6 +159,32 @@ class DailyChallengeUserStatsTest extends TestCase
         }
     }
 
+    public function testFix(): void
+    {
+        $user = User::factory()->create();
+
+        foreach ([14, 13, 12, 11, 10, 9, 7, 6, 5] as $subDay) {
+            $playTime = static::startOfWeek()->subDays($subDay);
+            $playlistItem = static::preparePlaylistItem($playTime);
+            $this->roomAddPlay($user, $playlistItem);
+            DailyChallengeUserStats::calculate($playTime);
+        }
+
+        $stats = DailyChallengeUserStats::find($user->getKey());
+        $expectedAttributes = $stats->getAttributes();
+        $stats->fill([...DailyChallengeUserStats::INITIAL_VALUES])->saveOrExplode();
+        $stats->fresh()->fix();
+
+        $stats->refresh();
+        $this->assertSame(9, $stats->playcount);
+        $this->assertSame(3, $stats->daily_streak_current);
+        $this->assertSame(6, $stats->daily_streak_best);
+        $this->assertSame(2, $stats->weekly_streak_current);
+        $this->assertSame(2, $stats->weekly_streak_best);
+        $this->assertSame(9, $stats->top_10p_placements);
+        $this->assertSame(9, $stats->top_50p_placements);
+    }
+
     public function testFlowFromStart(): void
     {
         $playTime = static::startOfWeek();
@@ -154,7 +193,7 @@ class DailyChallengeUserStatsTest extends TestCase
 
         $this->expectCountChange(fn () => DailyChallengeUserStats::count(), 1);
 
-        $this->roomAddPlay($user, $playlistItem, ['passed' => true]);
+        $this->roomAddPlay($user, $playlistItem);
 
         $stats = DailyChallengeUserStats::find($user->getKey());
         $this->assertSame(1, $stats->playcount);
@@ -188,8 +227,8 @@ class DailyChallengeUserStatsTest extends TestCase
         $playlistItem = static::preparePlaylistItem($playTime);
         $user = User::factory()->create();
 
-        $this->roomAddPlay($user, $playlistItem, ['passed' => true]);
-        $this->roomAddPlay($user, $playlistItem, ['passed' => true]);
+        $this->roomAddPlay($user, $playlistItem);
+        $this->roomAddPlay($user, $playlistItem);
 
         DailyChallengeUserStats::calculate($playTime);
         DailyChallengeUserStats::calculate($playTime);
@@ -219,7 +258,7 @@ class DailyChallengeUserStatsTest extends TestCase
 
         $this->expectCountChange(fn () => DailyChallengeUserStats::count(), 0);
 
-        $this->roomAddPlay($user, $playlistItem, ['passed' => true]);
+        $this->roomAddPlay($user, $playlistItem);
         $stats = DailyChallengeUserStats::find($user->getKey());
         $this->assertSame(2, $stats->daily_streak_current);
         $this->assertSame(2, $stats->daily_streak_best);
@@ -257,7 +296,7 @@ class DailyChallengeUserStatsTest extends TestCase
             'last_update' => $playTime->subDays(1),
         ]);
 
-        $this->roomAddPlay($user, $playlistItem, ['passed' => true]);
+        $this->roomAddPlay($user, $playlistItem);
 
         $stats = DailyChallengeUserStats::find($user->getKey());
         $this->assertSame(2, $stats->weekly_streak_current);
@@ -315,5 +354,12 @@ class DailyChallengeUserStatsTest extends TestCase
 
         DailyChallengeUserStats::calculate($playTime);
         $assertValues();
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        // prevent storing percentile cache
+        config_set('cache.default', 'array');
     }
 }
