@@ -64,5 +64,13 @@ export default class BeatmapsOwnerEditor extends React.Component<Props> {
     );
   }
 
-  private readonly getUser = (user: UserJsonMinimum) => this.props.users.get(user.id) ?? deletedUserJson;
+  private readonly getUser = (json: UserJsonMinimum) => {
+    let user = this.props.users.get(json.id);
+    if (user == null) {
+      user = structuredClone(deletedUserJson);
+      user.id = json.id;
+    }
+
+    return user;
+  };
 }
