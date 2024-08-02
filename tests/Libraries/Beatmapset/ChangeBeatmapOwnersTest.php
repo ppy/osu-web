@@ -11,6 +11,7 @@ use App\Exceptions\AuthorizationException;
 use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\BeatmapOwnerChange;
 use App\Models\Beatmap;
+use App\Models\BeatmapOwner;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
@@ -27,6 +28,30 @@ class ChangeBeatmapOwnersTest extends TestCase
             [Beatmapset::STATES['ranked'], false],
             [Beatmapset::STATES['wip'], false],
         ];
+    }
+
+    public function testMissingUser(): void
+    {
+        $moderator = User::factory()->withGroup('nat')->create();
+        $otherUser = User::factory()->create();
+        $missingUserId = User::max('user_id') + 1;
+        $userIds = [$missingUserId, $otherUser->getKey()];
+
+        $beatmap = Beatmap::factory()
+            ->state(['user_id' => $missingUserId])
+            ->has(BeatmapOwner::factory()->state(['user_id' => $missingUserId]))
+            ->for(Beatmapset::factory()->pending()->state(['user_id' => $missingUserId]))
+            ->create();
+
+        $this->expectCountChange(fn () => BeatmapsetEvent::count(), 1);
+
+        $beatmap->setOwner($userIds, $moderator);
+
+        $beatmap = $beatmap->fresh();
+        $this->assertEqualsCanonicalizing($userIds, $beatmap->mappers->pluck('user_id')->toArray());
+        $this->assertSame($userIds[0], $beatmap->user_id);
+
+        Bus::assertDispatched(BeatmapOwnerChange::class);
     }
 
     public function testUpdateOwner(): void
