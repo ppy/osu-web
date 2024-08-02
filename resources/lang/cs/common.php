@@ -27,7 +27,7 @@ return [
         'cancel' => 'Zrušit',
         'change' => 'změnit',
         'clear' => 'Vymazat',
-        'click_to_copy' => 'klikněte pro zkopírování do schránky',
+        'click_to_copy' => 'klikni pro zkopírování do schránky',
         'click_to_copy_copied' => 'zkopírováno do schránky!',
         'close' => 'Zavřít',
         'collapse' => 'zabalit',

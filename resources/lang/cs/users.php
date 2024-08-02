@@ -196,12 +196,28 @@ return [
             'to_0' => 'Skrýt záhlaví',
             'to_1' => 'Zobrazit záhlaví',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Změnit záhlaví profilu',
                 'defaults_info' => 'Více možností záhlaví bude k dispozici v budoucnu',
                 'holdover_remove_confirm' => "Toto dříve vybrané záhlaví již není k dispozici k výběru. Nebude možné jej znovu vybrat po přepnutí na jiné záhlaví. Pokračovat?",
-                'title' => '',
+                'title' => 'Záhlaví',
 
                 'upload' => [
                     'broken_file' => 'Zpracování obrázku selhalo. Ověř si obrázek a zkus to znovu.',
@@ -214,7 +230,7 @@ return [
 
                     'restriction_info' => [
                         '_' => 'Nahrávání je dostupné pouze pro :link',
-                        'link' => 'osu!supporters',
+                        'link' => 'osu!supportery',
                     ],
                 ],
             ],
@@ -225,12 +241,12 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
-                'title' => '',
+                'reset_no_supporter' => 'Obnovit barvu na výchozí? Pro změnu na jinou barvu bude vyžadován supporter tag.',
+                'title' => 'Barva',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Vlastní barevné motivy dostupné pouze pro :link',
+                    'link' => 'osu!supportery',
                 ],
             ],
         ],

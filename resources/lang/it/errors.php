@@ -29,7 +29,7 @@ return [
         'generic' => 'Si è verificato un errore durante la preparazione del tuo checkout.',
     ],
     'scores' => [
-        'invalid_id' => '',
+        'invalid_id' => 'ID punteggio non valido.',
     ],
     'search' => [
         'default' => 'Impossibile ottenere alcun risultato, riprova più tardi.',

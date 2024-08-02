@@ -29,7 +29,7 @@ return [
         'generic' => 'Terjadi kesalahan dalam mempersiapkan proses checkout.',
     ],
     'scores' => [
-        'invalid_id' => '',
+        'invalid_id' => 'ID skor tidak valid.',
     ],
     'search' => [
         'default' => 'Tidak ada hasil pencarian yang dapat diperoleh. Silakan coba lagi nanti.',
