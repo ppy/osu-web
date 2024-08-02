@@ -92,6 +92,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   @action
   private readonly handleCancelEditingClick = () => {
     this.editing = false;
+    this.showError = false;
   };
 
   @action
