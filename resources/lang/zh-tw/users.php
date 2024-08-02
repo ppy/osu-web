@@ -196,12 +196,28 @@ return [
             'to_0' => '隱藏封面',
             'to_1' => '顯示封面',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => '變更個人簡介封面',
                 'defaults_info' => '未來將提供更多的封面選項',
                 'holdover_remove_confirm' => "上一個橫幅已經無法使用。您無法在切換別的橫幅後選回去了。要繼續嗎？",
-                'title' => '',
+                'title' => '封面',
 
                 'upload' => [
                     'broken_file' => '上傳失敗。請檢查上傳的圖片並重試.',
@@ -225,12 +241,12 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
-                'title' => '',
+                'reset_no_supporter' => '重設顏色？改變顏色將會需要 osu! 贊助者。',
+                'title' => '顏色',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => '自定義色彩主題只對 :link 開放',
+                    'link' => 'osu! 贊助者',
                 ],
             ],
         ],

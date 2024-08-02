@@ -25,14 +25,14 @@ return [
         'message_placeholder_silenced' => "Non puoi postare una discussione mentre sei silenziato.",
         'message_type_select' => 'Seleziona il tipo di commento',
         'reply_notice' => 'Premi invio per rispondere.',
-        'reply_resolve_notice' => '',
+        'reply_resolve_notice' => 'Premi Invio per rispondere. Premi ctrl+invio per rispondere e risolvere.',
         'reply_placeholder' => 'Scrivi la tua risposta qui',
         'require-login' => 'Effettua il login per poter postare o rispondere',
         'resolved' => 'Risolto',
         'restore' => 'ripristina',
         'show_deleted' => 'Mostra eliminati',
         'title' => 'Discussioni',
-        'unresolved_count' => '',
+        'unresolved_count' => ':count_delimited problema irrisolto|:count_delimited problemi irrisolti',
 
         'collapse' => [
             'all-collapse' => 'Comprimi tutto',

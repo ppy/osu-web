@@ -25,14 +25,14 @@ return [
         'message_placeholder_silenced' => "Não é possível publicar uma discussão enquanto estiveres silenciado.",
         'message_type_select' => 'Selecionar tipo de comentário',
         'reply_notice' => 'Prime ENTER para responder.',
-        'reply_resolve_notice' => '',
+        'reply_resolve_notice' => 'Prime enter para responder. Prime ctrl+enter para responder e resolver.',
         'reply_placeholder' => 'Escreve a tua resposta aqui',
         'require-login' => 'Por favor inicia sessão para publicar ou responder',
         'resolved' => 'Resolvida',
         'restore' => 'restaurar',
         'show_deleted' => 'Exibir eliminados',
         'title' => 'Discussões',
-        'unresolved_count' => '',
+        'unresolved_count' => ':count_delimited casos não resolvidos',
 
         'collapse' => [
             'all-collapse' => 'Colapsar tudo',

@@ -199,8 +199,8 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Mode lazer menampilkan skor yang diraih dari lazer dengan algoritma perhitungan skor baru',
             'logout' => 'Keluar',
             'profile' => 'Profil Saya',
-            'scoring_mode_toggle' => '',
-            'scoring_mode_toggle_tooltip' => '',
+            'scoring_mode_toggle' => 'Perhitungan skor klasik',
+            'scoring_mode_toggle_tooltip' => 'Sesuaikan nilai skor untuk lebih menyerupai perhitungan skor klasik yang tidak memiliki batas',
         ],
     ],
 

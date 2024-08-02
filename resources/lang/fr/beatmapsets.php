@@ -53,7 +53,7 @@ return [
             'confirmation' => 'Êtes-vous sûr de vouloir nominer cette beatmap ?',
             'header' => 'Nominer la beatmap',
             'hybrid_warning' => 'remarque : vous ne pouvez nominer qu\'une seule fois, assurez-vous alors que vous nominez la beatmap pour tous les modes de jeu que vous souhaitez',
-            'current_main_ruleset' => 'Le ruleset principal est actuellement : :ruleset',
+            'current_main_ruleset' => 'Le mode de jeu principal est actuellement : :ruleset',
             'which_modes' => 'Nominer pour quels modes ?',
         ],
     ],

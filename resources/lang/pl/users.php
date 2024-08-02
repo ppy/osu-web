@@ -197,12 +197,28 @@ return [
             'to_0' => 'Ukryj tło',
             'to_1' => 'Pokaż tło',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Zmień tło profilu',
                 'defaults_info' => 'Więcej teł pojawi się w przyszłości',
                 'holdover_remove_confirm' => "Aktualnie wybrane tło nie będzie mogło zostać wybrane ponownie. Czy na pewno chcesz je zmienić?",
-                'title' => '',
+                'title' => 'Tło',
 
                 'upload' => [
                     'broken_file' => 'Nie udało się przetworzyć pliku. Zweryfikuj plik i spróbuj ponownie.',
@@ -227,11 +243,11 @@ return [
 
             'hue' => [
                 'reset_no_supporter' => '',
-                'title' => '',
+                'title' => 'Kolor',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Zmiana koloru profilu wymaga aktywnego statusu :link',
+                    'link' => 'donatora osu!',
                 ],
             ],
         ],
