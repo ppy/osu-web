@@ -12,6 +12,7 @@ use App\Jobs\Notifications\BeatmapOwnerChange;
 use App\Models\Beatmap;
 use App\Models\BeatmapOwner;
 use App\Models\BeatmapsetEvent;
+use App\Models\DeletedUser;
 use App\Models\User;
 use Ds\Set;
 
@@ -28,10 +29,6 @@ class ChangeBeatmapOwners
         if ($this->userIds->isEmpty()) {
             throw new InvariantException('user_ids must be specified');
         }
-
-        if (User::whereIn('user_id', $this->userIds->toArray())->count() !== $this->userIds->count()) {
-            throw new InvariantException('invalid user_id');
-        }
     }
 
     public function handle(): void
@@ -39,6 +36,12 @@ class ChangeBeatmapOwners
         $currentOwners = new Set($this->beatmap->mappers->pluck('user_id'));
         if ($currentOwners->xor($this->userIds)->isEmpty()) {
             return;
+        }
+
+        $newUserIds = $this->userIds->diff($currentOwners);
+
+        if (User::whereIn('user_id', $newUserIds->toArray())->count() !== $newUserIds->count()) {
+            throw new InvariantException('invalid user_id');
         }
 
         $this->beatmap->getConnection()->transaction(function () {
@@ -57,7 +60,7 @@ class ChangeBeatmapOwners
 
             // TODO: use select instead (needs newer laravel)
             $newUsers = $this->beatmap->mappers->map(
-                fn ($user) => ['id' => $user->user_id, 'username' => $user->username],
+                fn ($user) => ['id' => $user->user_id, 'username' => ($user ?? new DeletedUser())->username],
             )->all();
             $beatmapset = $this->beatmap->beatmapset;
 
@@ -65,7 +68,7 @@ class ChangeBeatmapOwners
                 'beatmap_id' => $this->beatmap->getKey(),
                 'beatmap_version' => $this->beatmap->version,
                 'new_user_id' => $this->beatmap->user_id,
-                'new_user_username' => $this->beatmap->user->username,
+                'new_user_username' => ($this->beatmap->user ?? new DeletedUser())->username,
                 'new_users' => $newUsers,
             ])->saveOrExplode();
 
