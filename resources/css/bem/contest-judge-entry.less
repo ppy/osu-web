@@ -39,7 +39,7 @@
     .reset-input();
     .default-border-radius();
 
-    flex: 1;
+    resize: vertical;
     background-color: hsl(var(--hsl-b3));
     border: 2px solid transparent;
     color: #fff;
@@ -48,12 +48,6 @@
     &:focus {
       border-color: hsl(var(--hsl-l1));
     }
-  }
-
-  &__textarea-wrapper {
-    display: flex;
-    max-width: @max-width;
-    margin: calc(@margin * 2) 0;
   }
 
   &__value {

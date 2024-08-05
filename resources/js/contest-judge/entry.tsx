@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BigButton from 'components/big-button';
+import InputContainer from 'components/input-container';
 import ContestEntryJson from 'interfaces/contest-entry-json';
 import ContestScoringCategoryJson from 'interfaces/contest-scoring-category-json';
 import { route } from 'laroute';
@@ -91,14 +92,19 @@ export default class Entry extends React.Component<Props> {
           );
         })}
 
-        <div className='contest-judge-entry__textarea-wrapper'>
+        <InputContainer
+          input={this.currentVote.comment}
+          labelKey='comment'
+          maxLength={1000}
+          modifiers='judging'
+        >
           <textarea
             className='contest-judge-entry__textarea'
             onChange={this.handleCommentChange}
             rows={6}
             value={this.currentVote.comment}
           />
-        </div>
+        </InputContainer>
 
         <div className='contest-judge-entry__button'>
           <BigButton
