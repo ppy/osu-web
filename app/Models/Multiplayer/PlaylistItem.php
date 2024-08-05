@@ -108,12 +108,13 @@ class PlaylistItem extends Model
         return $this->hasMany(ScoreToken::class);
     }
 
-    public function topScores()
+    public function save(array $options = [])
     {
-        return $this->highScores()
-            ->with('scoreLink.score')
-            ->orderBy('total_score', 'desc')
-            ->orderBy('score_id', 'asc');
+        $this->assertValidMaxAttempts();
+        $this->validateRuleset();
+        $this->assertValidMods();
+
+        return parent::save($options);
     }
 
     private function assertValidMaxAttempts()
@@ -151,14 +152,5 @@ class PlaylistItem extends Model
         $modsHelper->assertValidForMultiplayer($this->ruleset_id, $allowedModIds, $isRealtimeRoom, false);
         $modsHelper->assertValidForMultiplayer($this->ruleset_id, $requiredModIds, $isRealtimeRoom, true);
         $modsHelper->assertValidExclusivity($this->ruleset_id, $requiredModIds, $allowedModIds);
-    }
-
-    public function save(array $options = [])
-    {
-        $this->assertValidMaxAttempts();
-        $this->validateRuleset();
-        $this->assertValidMods();
-
-        return parent::save($options);
     }
 }
