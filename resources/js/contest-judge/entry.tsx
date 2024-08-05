@@ -3,6 +3,7 @@
 
 import BigButton from 'components/big-button';
 import InputContainer from 'components/input-container';
+import TextareaAutosize from 'components/textarea-autosize';
 import ContestEntryJson from 'interfaces/contest-entry-json';
 import ContestScoringCategoryJson from 'interfaces/contest-scoring-category-json';
 import { route } from 'laroute';
@@ -100,8 +101,9 @@ export default class Entry extends React.Component<Props> {
           maxLength={1000}
           modifiers='judging'
         >
-          <textarea
+          <TextareaAutosize
             className='contest-judge-entry__textarea'
+            maxRows={20}
             onChange={this.handleCommentChange}
             rows={6}
             value={this.currentVote.comment}
