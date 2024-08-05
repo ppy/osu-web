@@ -66,31 +66,33 @@ export default class Entry extends React.Component<Props> {
           {this.props.entry.title}
         </div>
 
-        {this.props.store.scoringCategories.map((category) => {
-          const currentScore = this.currentVote.scores.get(category.id);
+        <div className='contest-judge-entry__sliders'>
+          {this.props.store.scoringCategories.map((category) => {
+            const currentScore = this.currentVote.scores.get(category.id);
 
-          return (
-            <div key={category.id}>
-              <div className='contest-judge-entry__label'>
-                <div className='contest-judge-entry__description-icon' title={category.description}>
-                  <i className='fas fa-question-circle' />
+            return (
+              <div key={category.id}>
+                <div className='contest-judge-entry__label'>
+                  <div className='contest-judge-entry__description-icon' title={category.description}>
+                    <i className='fas fa-question-circle' />
+                  </div>
+
+                  {category.name}
                 </div>
 
-                {category.name}
-              </div>
+                {this.renderRangeInput(category, currentScore?.value ?? 0)}
 
-              {this.renderRangeInput(category, currentScore?.value ?? 0)}
-
-              <div className='contest-judge-entry__value'>
-                {
-                  currentScore != null
-                    ? `${currentScore.value}/${category.max_value}`
-                    : trans('contest.judge.no_current_vote')
-                }
+                <div className='contest-judge-entry__value'>
+                  {
+                    currentScore != null
+                      ? `${currentScore.value}/${category.max_value}`
+                      : trans('contest.judge.no_current_vote')
+                  }
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
 
         <InputContainer
           input={this.currentVote.comment}

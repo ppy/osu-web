@@ -2,14 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 @margin: 10px;
-@max-width: 500px;
 
 .contest-judge-entry {
   margin-bottom: 20px;
+  max-width: 500px;
 
   &__button {
     display: flex;
-    max-width: @max-width;
     justify-content: flex-end;
     text-transform: lowercase;
   }
@@ -17,15 +16,20 @@
   &__description-icon {
     display: flex;
     align-items: center;
-    margin-right: 5px;
     font-size: @font-size--small-2;
   }
 
   &__label {
     display: flex;
+    gap: 5px;
     font-size: @font-size--normal;
-    margin-top: @margin;
     font-weight: bold;
+  }
+
+  &__sliders {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   &__title {
@@ -52,7 +56,6 @@
 
   &__value {
     margin-top: @margin;
-    max-width: @max-width;
     display: flex;
     justify-content: flex-end;
     color: hsl(var(--hsl-c2));
