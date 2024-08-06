@@ -15,7 +15,11 @@ export class CurrentUserJudgeVote {
     return this.comment.length > commentsMaxLength;
   }
 
-  constructor() {
+  constructor(json?: ContestJudgeVoteJson) {
+    if (json != null) {
+      this.updateWithJson(json);
+    }
+
     makeObservable(this);
   }
 

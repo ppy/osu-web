@@ -23,19 +23,17 @@ interface Props {
 
 @observer
 export default class Entry extends React.Component<Props> {
-  @observable private readonly currentVote = new CurrentUserJudgeVote();
-  @observable private readonly initialVote = new CurrentUserJudgeVote();
+  @observable private readonly currentVote;
+  @observable private readonly initialVote;
   @observable private posting = false;
   @observable private xhr?: JQuery.jqXHR;
 
   constructor(props: Props) {
     super(props);
 
-    const voteFromJson = props.entry.current_user_judge_vote;
-    if (voteFromJson != null) {
-      this.currentVote.updateWithJson(voteFromJson);
-      this.initialVote.updateWithJson(voteFromJson);
-    }
+    const json = props.entry.current_user_judge_vote;
+    this.currentVote = new CurrentUserJudgeVote(json);
+    this.initialVote = new CurrentUserJudgeVote(json);
 
     makeObservable(this);
   }
