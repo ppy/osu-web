@@ -66,6 +66,7 @@ _test() {
 }
 
 _test_browser() {
+    export APP_ENV=dusk.local
     _rexec php /app/artisan dusk "$@"
 }
 
