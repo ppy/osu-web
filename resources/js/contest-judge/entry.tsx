@@ -14,7 +14,7 @@ import * as React from 'react';
 import ContestJudgeStore from 'stores/contest-judge-store';
 import { onError } from 'utils/ajax';
 import { trans } from 'utils/lang';
-import { CurrentUserJudgeVote } from './current-user-judge-vote';
+import { commentsMaxLength, CurrentUserJudgeVote } from './current-user-judge-vote';
 
 interface Props {
   entry: ContestEntry;
@@ -96,10 +96,10 @@ export default class Entry extends React.Component<Props> {
         </div>
 
         <InputContainer
-          hasError={this.currentVote.comment.length > 1000}
+          hasError={this.currentVote.hasError}
           input={this.currentVote.comment}
           labelKey='comment'
-          maxLength={1000}
+          maxLength={commentsMaxLength}
           modifiers='judging'
           showError
         >
