@@ -27,7 +27,6 @@ const commentsMaxLength = 1000;
 export default class Entry extends React.Component<Props> {
   @observable private readonly currentVote;
   @observable private readonly initialVote;
-  @observable private posting = false;
   @observable private xhr?: JQuery.jqXHR;
 
   constructor(props: Props) {
@@ -122,7 +121,7 @@ export default class Entry extends React.Component<Props> {
           <BigButton
             disabled={this.disabled}
             icon='fas fa-check'
-            isBusy={this.posting}
+            isBusy={this.xhr != null}
             props={{ onClick: this.submitVote }}
             text={trans('contest.judge.update')}
           />
@@ -163,8 +162,6 @@ export default class Entry extends React.Component<Props> {
   private readonly submitVote = () => {
     if (this.xhr != null) return;
 
-    this.posting = true;
-
     this.xhr = $.ajax(route('contest-entries.judge-vote', { contest_entry: this.props.entry.id }), {
       data: {
         comment: this.currentVote.comment,
@@ -182,7 +179,6 @@ export default class Entry extends React.Component<Props> {
           this.initialVote.updateWithJson(json.current_user_judge_vote);
         }
       })).always(action(() => {
-        this.posting = false;
         this.xhr = undefined;
       }));
   };
