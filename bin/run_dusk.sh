@@ -1,5 +1,9 @@
 #!/bin/sh
 
+pgrep chromedriver || chromedriver &
+# wait for the driver to be ready
+sleep 1
+
 # start the standalone server that the tests use
 php artisan octane:start > /dev/null 2>&1 &
 
