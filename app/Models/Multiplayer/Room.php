@@ -228,8 +228,7 @@ class Room extends Model
         return fn (Builder $query, CarbonImmutable $date): ?static
             => static::where('category', 'daily_challenge')
                 ->whereBetween('starts_at', [$date->startOfDay(), $date->endOfDay()])
-                ->orderBy('starts_at', 'DESC')
-                ->first();
+                ->last();
     }
 
     public function host()
