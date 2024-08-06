@@ -98,7 +98,7 @@ export default class Entry extends React.Component<Props> {
         <InputContainer
           hasError={this.currentVote.hasError}
           input={this.currentVote.comment}
-          labelKey='comment'
+          labelKey='contest.judge.comments'
           maxLength={commentsMaxLength}
           modifiers='judging'
           showError
