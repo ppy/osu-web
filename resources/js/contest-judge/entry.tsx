@@ -14,12 +14,14 @@ import * as React from 'react';
 import ContestJudgeStore from 'stores/contest-judge-store';
 import { onError } from 'utils/ajax';
 import { trans } from 'utils/lang';
-import { commentsMaxLength, CurrentUserJudgeVote } from './current-user-judge-vote';
+import { CurrentUserJudgeVote } from './current-user-judge-vote';
 
 interface Props {
   entry: ContestEntry;
   store: ContestJudgeStore;
 }
+
+const commentsMaxLength = 1000;
 
 @observer
 export default class Entry extends React.Component<Props> {
@@ -40,6 +42,8 @@ export default class Entry extends React.Component<Props> {
 
   @computed
   private get disabled() {
+    if (this.hasError) return true;
+
     const scoresHaveChanged = this.props.store.scoringCategories.some((category) => {
       const initialScore = this.initialVote.scores.get(category.id);
       const score = this.currentVote.scores.get(category.id);
@@ -51,6 +55,10 @@ export default class Entry extends React.Component<Props> {
       this.currentVote.scores.size === this.props.store.scoringCategories.length
         && (scoresHaveChanged || this.currentVote.comment !== this.initialVote.comment)
     );
+  }
+
+  get hasError() {
+    return this.currentVote.comment.length > commentsMaxLength;
   }
 
   render() {
@@ -94,7 +102,7 @@ export default class Entry extends React.Component<Props> {
         </div>
 
         <InputContainer
-          hasError={this.currentVote.hasError}
+          hasError={this.hasError}
           input={this.currentVote.comment}
           labelKey='contest.judge.comments'
           maxLength={commentsMaxLength}
