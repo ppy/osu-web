@@ -73,31 +73,19 @@ export default class Entry extends React.Component<Props> {
         </div>
 
         <div className='contest-judge-entry__sliders'>
-          {this.props.store.scoringCategories.map((category) => {
-            const currentScore = this.currentVote.scores.get(category.id);
-
-            return (
-              <div key={category.id}>
-                <div className='contest-judge-entry__label'>
-                  <div className='contest-judge-entry__description-icon' title={category.description}>
-                    <i className='fas fa-question-circle' />
-                  </div>
-
-                  {category.name}
+          {this.props.store.scoringCategories.map((category) => (
+            <div key={category.id}>
+              <div className='contest-judge-entry__label'>
+                <div className='contest-judge-entry__description-icon' title={category.description}>
+                  <i className='fas fa-question-circle' />
                 </div>
 
-                {this.renderRangeInput(category, currentScore?.value ?? 0)}
-
-                <div className='contest-judge-entry__value'>
-                  {
-                    currentScore != null
-                      ? `${currentScore.value}/${category.max_value}`
-                      : trans('contest.judge.no_current_vote')
-                  }
-                </div>
+                {category.name}
               </div>
-            );
-          })}
+
+              {this.renderRangeInput(category)}
+            </div>
+          )}
         </div>
 
         <InputContainer
@@ -144,17 +132,29 @@ export default class Entry extends React.Component<Props> {
     this.currentVote.scores.set(categoryId, score);
   };
 
-  private renderRangeInput(category: ContestScoringCategoryJson, initialValue: number) {
+  private renderRangeInput(category: ContestScoringCategoryJson) {
+    const currentScore = this.currentVote.scores.get(category.id);
+
     return (
-      <div className='contest-judge-entry-range-input'>
-        <input
-          data-category-id={category.id}
-          max={category.max_value}
-          onChange={this.handleRangeInputChange}
-          type='range'
-          value={initialValue}
-        />
-      </div>
+      <>
+        <div className='contest-judge-entry-range-input'>
+          <input
+            data-category-id={category.id}
+            max={category.max_value}
+            onChange={this.handleRangeInputChange}
+            type='range'
+            value={currentScore?.value ?? 0}
+          />
+        </div>
+
+        <div className='contest-judge-entry__value'>
+          {
+            currentScore != null
+              ? `${currentScore.value}/${category.max_value}`
+              : trans('contest.judge.no_current_vote')
+          }
+        </div>
+      </>
     );
   }
 
