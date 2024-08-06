@@ -96,10 +96,12 @@ export default class Entry extends React.Component<Props> {
         </div>
 
         <InputContainer
+          hasError={this.currentVote.comment.length > 1000}
           input={this.currentVote.comment}
           labelKey='comment'
           maxLength={1000}
           modifiers='judging'
+          showError
         >
           <TextareaAutosize
             className='contest-judge-entry__textarea'
