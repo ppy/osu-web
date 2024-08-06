@@ -14,7 +14,7 @@ import * as React from 'react';
 import ContestJudgeStore from 'stores/contest-judge-store';
 import { onError } from 'utils/ajax';
 import { trans } from 'utils/lang';
-import { CurrentUserJudgeVote } from './current-user-judge-vote';
+import CurrentUserJudgeVote from './current-user-judge-vote';
 
 interface Props {
   entry: ContestEntry;
