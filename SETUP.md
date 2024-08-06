@@ -329,7 +329,6 @@ bin/run_dusk.sh
 or if using Docker:
 
 ```
-# `compose exec` doesn't work here due to port conflict with dev instance
 docker compose run --rm php test browser
 ```
 
