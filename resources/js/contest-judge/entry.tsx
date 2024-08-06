@@ -27,7 +27,7 @@ const commentsMaxLength = 1000;
 export default class Entry extends React.Component<Props> {
   @observable private readonly currentVote;
   @observable private readonly initialVote;
-  @observable private xhr?: JQuery.jqXHR;
+  @observable private xhr?: JQuery.jqXHR<ContestEntryJson>;
 
   constructor(props: Props) {
     super(props);
@@ -39,25 +39,19 @@ export default class Entry extends React.Component<Props> {
     makeObservable(this);
   }
 
-  @computed
-  private get disabled() {
-    if (this.hasError) return true;
-
-    const scoresHaveChanged = this.props.store.scoringCategories.some((category) => {
-      const initialScore = this.initialVote.scores.get(category.id);
-      const score = this.currentVote.scores.get(category.id);
-
-      return initialScore?.value !== score?.value;
-    });
-
-    return !(
-      this.currentVote.scores.size === this.props.store.scoringCategories.length
-        && (scoresHaveChanged || this.currentVote.comment !== this.initialVote.comment)
-    );
+  get commentTooLong() {
+    return this.currentVote.comment.length > commentsMaxLength;
   }
 
-  get hasError() {
-    return this.currentVote.comment.length > commentsMaxLength;
+  @computed
+  private get disabled() {
+    return this.commentTooLong
+      || this.currentVote.scores.size !== this.props.store.scoringCategories.length
+      || (this.currentVote.comment === this.initialVote.comment
+          && this.props.store.scoringCategories.every((category) => (
+            this.initialVote.scores.get(category.id)?.value === this.currentVote.scores.get(category.id)?.value
+          ))
+      );
   }
 
   render() {
@@ -85,11 +79,11 @@ export default class Entry extends React.Component<Props> {
 
               {this.renderRangeInput(category)}
             </div>
-          )}
+          ))}
         </div>
 
         <InputContainer
-          hasError={this.hasError}
+          hasError={this.commentTooLong}
           input={this.currentVote.comment}
           labelKey='contest.judge.comments'
           maxLength={commentsMaxLength}
@@ -120,7 +114,7 @@ export default class Entry extends React.Component<Props> {
 
   @action
   private readonly handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    this.currentVote.updateComment(e.currentTarget.value);
+    this.currentVote.comment = e.currentTarget.value;
   };
 
   @action
@@ -172,7 +166,7 @@ export default class Entry extends React.Component<Props> {
 
     this.xhr
       .fail(onError)
-      .done((json: ContestEntryJson) => runInAction(() => {
+      .done((json) => runInAction(() => {
         this.props.store.updateEntry(json);
 
         if (json.current_user_judge_vote != null) {

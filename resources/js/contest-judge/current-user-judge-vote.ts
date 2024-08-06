@@ -18,11 +18,6 @@ export class CurrentUserJudgeVote {
   }
 
   @action
-  updateComment(content: string) {
-    this.comment = content;
-  }
-
-  @action
   updateWithJson(json: ContestJudgeVoteJson) {
     this.comment = json.comment ?? '';
 
