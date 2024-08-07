@@ -56,7 +56,6 @@ class DailyChallengeUserStats extends Model
         $highScoresByUserId = $playlist
             ->highScores()
             ->where('total_score', '>', 0)
-            ->orderBy('total_score', 'DESC')
             ->get()
             ->keyBy('user_id');
         $statsByUserId = static
