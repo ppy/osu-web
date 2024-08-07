@@ -7,6 +7,7 @@ namespace App\Models\Multiplayer;
 
 use App\Casts\PresentString;
 use App\Exceptions\InvariantException;
+use App\Libraries\DbCursorHelper;
 use App\Models\Beatmap;
 use App\Models\Chat\Channel;
 use App\Models\Model;
@@ -50,6 +51,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Room extends Model
 {
     use Memoizes, SoftDeletes, WithDbCursorHelper;
+
+    const PARTICIPATED_SORT = [
+        'ended' => [
+            ['column' => 'ends_at', 'order' => 'DESC', 'type' => 'time'],
+            ['column' => 'room_id', 'order' => 'DESC', 'type' => 'int'],
+        ],
+    ];
 
     const SORTS = [
         'ended' => [
@@ -153,6 +161,7 @@ class Room extends Model
         ], ['null_missing' => true]);
 
         $maxLimit ??= 250;
+        $mode = $params['mode'];
         $user = $params['user'];
         $seasonId = $params['season_id'];
         $sort = $params['sort'];
@@ -180,7 +189,7 @@ class Room extends Model
             $query->where('category', $category);
         }
 
-        switch ($params['mode']) {
+        switch ($mode) {
             case 'all':
                 break;
             case 'ended':
@@ -188,7 +197,7 @@ class Room extends Model
                 $sort ??= 'ended';
                 break;
             case 'participated':
-                $query->hasParticipated($user);
+                $query->hasParticipatedForListing($user);
                 break;
             case 'owned':
                 $query->startedBy($user);
@@ -197,7 +206,9 @@ class Room extends Model
                 $query->active();
         }
 
-        $cursorHelper = static::makeDbCursorHelper($sort);
+        $cursorHelper = $mode === 'participated'
+            ? new DbCursorHelper(static::PARTICIPATED_SORT, 'ended', 'ended', 'multiplayer_rooms_high.')
+            : static::makeDbCursorHelper($sort);
         $query->cursorSort($cursorHelper, cursor_from_params($rawParams));
 
         $limit = clamp($params['limit'] ?? $maxLimit, 1, $maxLimit);
@@ -275,12 +286,26 @@ class Room extends Model
         return $query->whereIn('category', ['featured_artist', 'spotlight']);
     }
 
-    public function scopeHasParticipated($query, User $user)
+    public function scopeHasParticipated(Builder $query, User $user)
     {
         return $query->whereHas(
             'userHighScores',
             fn ($q) => $q->where('user_id', $user->getKey()),
         );
+    }
+
+    public function scopeHasParticipatedForListing(Builder $query, User $user)
+    {
+        $tempModel = new UserScoreAggregate();
+
+        return $query
+            ->selectRaw("{$this->getTable()}.*, {$tempModel->qualifyColumn('room_id')}")
+            ->join(
+                $tempModel->getTable(),
+                $tempModel->qualifyColumn('room_id'),
+                '=',
+                $this->qualifyColumn('id'),
+            )->where($tempModel->qualifyColumn('user_id'), $user->getKey());
     }
 
     public function scopeStartedBy($query, User $user)
@@ -517,6 +542,15 @@ class Room extends Model
             ->get()
             ->pluck('user')
             ->all();
+    }
+
+    public function save(array $options = [])
+    {
+        if ($this->exists && $this->isDirty('ends_at')) {
+            $this->userHighScores()->update(['ends_at' => $this->ends_at]);
+        }
+
+        return parent::save($options);
     }
 
     public function startGame(User $host, array $rawParams)

@@ -17,6 +17,7 @@ use App\Models\User;
  * @property int $attempts
  * @property int $completed
  * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon|null $ends_at
  * @property int $id
  * @property int|null $last_score_id
  * @property bool $in_room
@@ -61,6 +62,7 @@ class UserScoreAggregate extends Model
         $obj = static::lookupOrDefault($user, $room);
 
         if (!$obj->exists) {
+            $obj->ends_at = $room->ends_at;
             $obj->save(); // force a save now to avoid being trolled later.
             $obj->recalculate();
         }
