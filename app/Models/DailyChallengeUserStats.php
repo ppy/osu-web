@@ -14,18 +14,23 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class DailyChallengeUserStats extends Model
 {
-    public $incrementing = false;
-    public $timestamps = false;
-
-    protected $attributes = [
+    const array INITIAL_VALUES = [
         'daily_streak_best' => 0,
         'daily_streak_current' => 0,
+        'last_percentile_calculation' => '2000-01-01 00:00:00',
+        'last_update' => '2000-01-01 00:00:00',
+        'last_weekly_streak' => '2000-01-01 00:00:00',
         'playcount' => 0,
         'top_10p_placements' => 0,
         'top_50p_placements' => 0,
         'weekly_streak_best' => 0,
         'weekly_streak_current' => 0,
     ];
+
+    public $incrementing = false;
+    public $timestamps = false;
+
+    protected $attributes = self::INITIAL_VALUES;
 
     protected $casts = [
         'last_percentile_calculation' => 'datetime',
@@ -100,7 +105,7 @@ class DailyChallengeUserStats extends Model
         $currentWeek ??= static::startOfWeek($startTime);
         $previousWeek ??= $currentWeek->subWeek(1);
 
-        $lastUpdate = $this->last_update ?? $previousWeek;
+        $lastUpdate = $this->last_update;
         if ($lastUpdate >= $startTime) {
             return;
         }
@@ -116,7 +121,7 @@ class DailyChallengeUserStats extends Model
             $this->daily_streak_current += 1;
             $this->last_update = $startTime;
 
-            if (($this->last_weekly_streak ?? $previousWeek) < $currentWeek) {
+            if ($this->last_weekly_streak < $currentWeek) {
                 $this->weekly_streak_current += 1;
                 $this->last_weekly_streak = $currentWeek;
             }
