@@ -395,34 +395,6 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
-     * @param BeatmapDiscussion $discussion
-     * @return string
-     * @throws AuthorizationCheckException
-     */
-    public function checkBeatmapDiscussionVoteDown(?User $user, BeatmapDiscussion $discussion): string
-    {
-        $prefix = 'beatmap_discussion.vote.';
-
-        if ($discussion->user !== null && $discussion->user->isBot()) {
-            return $prefix.'bot';
-        }
-
-        $this->ensureLoggedIn($user);
-        $this->ensureCleanRecord($user);
-
-        if ($discussion->user_id === $user->user_id) {
-            return $prefix.'owner';
-        }
-
-        if ($user->isBNG() || $user->isModerator()) {
-            return 'ok';
-        }
-
-        return 'unauthorized';
-    }
-
-    /**
-     * @param User|null $user
      * @param BeatmapDiscussionPost $post
      * @return string
      * @throws AuthorizationCheckException
