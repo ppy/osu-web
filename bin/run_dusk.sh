@@ -3,18 +3,18 @@
 if ! pgrep chromedriver > /dev/null; then
     chromedriver_log=storage/logs/chromedriver.log
     chromedriver > "$chromedriver_log" 2>&1 &
-    chrome_pid=$!
+    chromedriver_pid=$!
     # wait for the driver to be ready
     printf "Waiting for chromedriver to start..."
-    tries=0
+    chromedriver_tries=0
     while ! grep -qF "ChromeDriver was started successfully." "$chromedriver_log"; do
         printf .
         sleep 1
-        tries=$(($tries + 1))
-        if [ $tries -gt 10 ]; then
+        chromedriver_tries=$(($chromedriver_tries + 1))
+        if [ $chromedriver_tries -gt 10 ]; then
             echo "aborting: chromedriver is taking too long to start"
             cat "$chromedriver_log"
-            kill "$chrome_pid"
+            kill "$chromedriver_pid"
             exit 1
         fi
     done
@@ -29,6 +29,6 @@ php artisan dusk "$@"
 EXIT_CODE=$?
 
 php artisan octane:stop
-test -n "$chrome_pid" && kill "$chrome_pid"
+test -n "$chromedriver_pid" && kill "$chromedriver_pid"
 
 exit $EXIT_CODE
