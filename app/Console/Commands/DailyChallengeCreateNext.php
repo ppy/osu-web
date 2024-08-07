@@ -53,7 +53,10 @@ class DailyChallengeCreateNext extends Command
                         'allowed_mods' => $nextQueueItem->allowed_mods,
                         'required_mods' => $nextQueueItem->required_mods,
                     ]],
-                ]
+                ],
+                [
+                    'starts_at' => $startTime,
+                ],
             );
             $room->update(['category' => 'daily_challenge']);
 
