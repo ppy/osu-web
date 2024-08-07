@@ -35,9 +35,8 @@ export default class AccountEditAvatar {
         element.classList.remove(savingClass);
       },
       dataType: 'json',
-      done: (_e, data) => {
-        const json = data.result as CurrentUserJson;
-        this.core.setCurrentUser(json);
+      done: (_e: unknown, data: { result: CurrentUserJson }) => {
+        this.core.setCurrentUser(data.result);
       },
       dropZone: $(element),
       fail: fileuploadFailCallback,
@@ -47,6 +46,15 @@ export default class AccountEditAvatar {
       },
       url: route('account.avatar'),
     });
+
+    $('.js-account-edit-avatar--reset')
+      .on('ajax:send', () => {
+        element.classList.add(savingClass);
+      }).on('ajax:complete', () => {
+        element.classList.remove(savingClass);
+      }).on('ajax:success', (_e: unknown, data: CurrentUserJson) => {
+        this.core.setCurrentUser(data);
+      });
   };
 
   private readonly overlayEnd = () => {

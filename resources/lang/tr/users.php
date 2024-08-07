@@ -196,12 +196,28 @@ return [
             'to_0' => 'Kapağı gizle',
             'to_1' => 'Kapağı göster',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Kapak Fotoğrafını Değiştir',
                 'defaults_info' => 'Diğer kapak seçenekleri gelecekte mevcut olacak',
                 'holdover_remove_confirm' => "Önceden seçili olan kapak artık seçileme uygun değil ve farklı bir kapağa değiştirirsen geri seçemezsin. Devam edilsin mi?",
-                'title' => '',
+                'title' => 'Örtü',
 
                 'upload' => [
                     'broken_file' => 'Resmin işlenmesi başarısız oldu. Yüklediğiniz resmi doğrulayıp tekrar deneyin.',
@@ -225,12 +241,12 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
-                'title' => '',
+                'reset_no_supporter' => 'Renk varsayılana döndürülsün mü? Supporter tag başka bir renge değiştirmek için gerekli olacaktır.',
+                'title' => 'Renk',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Özel renk temaları sadece :link\'ten ulaşılabilir.',
+                    'link' => 'osu!supporterlar',
                 ],
             ],
         ],

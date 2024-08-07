@@ -29,7 +29,7 @@ return [
         'generic' => 'Při zpracování vaší objednávky došlo k chybě.',
     ],
     'scores' => [
-        'invalid_id' => '',
+        'invalid_id' => 'Neplatné id skóre.',
     ],
     'search' => [
         'default' => 'Nepodařilo se získat žádné výsledky, zkus to znovu později.',

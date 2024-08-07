@@ -13,18 +13,23 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class DailyChallengeUserStats extends Model
 {
-    public $incrementing = false;
-    public $timestamps = false;
-
-    protected $attributes = [
+    const array INITIAL_VALUES = [
         'daily_streak_best' => 0,
         'daily_streak_current' => 0,
+        'last_percentile_calculation' => '2000-01-01 00:00:00',
+        'last_update' => '2000-01-01 00:00:00',
+        'last_weekly_streak' => '2000-01-01 00:00:00',
         'playcount' => 0,
         'top_10p_placements' => 0,
         'top_50p_placements' => 0,
         'weekly_streak_best' => 0,
         'weekly_streak_current' => 0,
     ];
+
+    public $incrementing = false;
+    public $timestamps = false;
+
+    protected $attributes = self::INITIAL_VALUES;
 
     protected $casts = [
         'last_percentile_calculation' => 'datetime',
@@ -81,7 +86,7 @@ class DailyChallengeUserStats extends Model
                 previousWeek: $previousWeek,
             );
 
-            if ($highScore !== null && ($stats->last_percentile_calculation ?? $previousWeek) < $startTime) {
+            if ($highScore !== null && $stats->last_percentile_calculation < $startTime) {
                 if ($highScore->total_score >= $top10p) {
                     $stats->top_10p_placements += 1;
                 }
@@ -114,16 +119,26 @@ class DailyChallengeUserStats extends Model
         $currentWeek ??= static::startOfWeek($startTime);
         $previousWeek ??= $currentWeek->subWeek(1);
 
+        $lastUpdate = $this->last_update;
+        if ($lastUpdate >= $startTime) {
+            return;
+        }
+
         if ($incrementing) {
-            if (($this->last_update ?? $previousWeek) < $startTime) {
-                $this->playcount += 1;
-                $this->daily_streak_current += 1;
+            $previousDay = $startTime->subDays(1);
+
+            if ($lastUpdate < $previousDay) {
+                $this->updateStreak(false, $previousDay);
             }
 
-            if (($this->last_weekly_streak ?? $previousWeek) < $currentWeek) {
+            $this->playcount += 1;
+            $this->daily_streak_current += 1;
+            $this->last_update = $startTime;
+
+            if ($this->last_weekly_streak < $currentWeek) {
                 $this->weekly_streak_current += 1;
+                $this->last_weekly_streak = $currentWeek;
             }
-            $this->last_weekly_streak = $currentWeek;
 
             foreach (['daily', 'weekly'] as $type) {
                 if ($this["{$type}_streak_best"] < $this["{$type}_streak_current"]) {
@@ -136,7 +151,5 @@ class DailyChallengeUserStats extends Model
                 $this->weekly_streak_current = 0;
             }
         }
-
-        $this->last_update = $startTime;
     }
 }

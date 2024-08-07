@@ -25,14 +25,14 @@ return [
         'message_placeholder_silenced' => "禁言时无法发布讨论。",
         'message_type_select' => '选择回复类型',
         'reply_notice' => '按下回车以提交',
-        'reply_resolve_notice' => '',
+        'reply_resolve_notice' => '按 Enter 键回复。按 Ctrl+Enter 回复并标记为已解决。',
         'reply_placeholder' => '在此处输入您的回复',
         'require-login' => '登录以继续',
         'resolved' => '已解决',
         'restore' => '已修复',
         'show_deleted' => '显示已删除的消息',
         'title' => '讨论',
-        'unresolved_count' => '',
+        'unresolved_count' => ':count_delimited 未解决的问题',
 
         'collapse' => [
             'all-collapse' => '全部折叠',
