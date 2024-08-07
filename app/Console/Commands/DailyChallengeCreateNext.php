@@ -38,7 +38,8 @@ class DailyChallengeCreateNext extends Command
         }
 
         DB::transaction(function () use ($nextQueueItem) {
-            $startTime = today();
+            // matches cron schedule
+            $startTime = today()->addMinutes(5);
             $hostId = $GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id'];
 
             $room = (new Room())->startGame(
