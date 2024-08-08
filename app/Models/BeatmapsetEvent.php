@@ -312,7 +312,7 @@ class BeatmapsetEvent extends Model
 
     public function getCommentAttribute($value)
     {
-        return json_decode($value, true) ?? $value;
+        return json_decode($value ?? '', true) ?? $value;
     }
 
     public function setCommentAttribute($value)
