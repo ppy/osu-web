@@ -70,6 +70,9 @@ return [
             '_' => 'contests',
             'judge' => 'contest judging',
         ],
+        'group_history_controller' => [
+            '_' => 'group history',
+        ],
         'groups_controller' => [
             'show' => 'groups',
         ],
