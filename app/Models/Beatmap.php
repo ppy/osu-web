@@ -42,7 +42,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $max_combo
  * @property mixed $mode
  * @property-read Collection<User> $mappers
- * @property-read Collection<User> $owners
  * @property int $passcount
  * @property int $playcount
  * @property int $playmode
@@ -136,11 +135,6 @@ class Beatmap extends Model implements AfterCommit
     public function difficultyAttribs()
     {
         return $this->hasMany(BeatmapDifficultyAttrib::class);
-    }
-
-    public function owners()
-    {
-        return $this->hasManyThrough(User::class, BeatmapOwner::class, 'beatmap_id', 'user_id', 'beatmap_id', 'user_id');
     }
 
     public function user()
@@ -283,7 +277,6 @@ class Beatmap extends Model implements AfterCommit
             'difficulty',
             'difficultyAttribs',
             'failtimes',
-            'owners',
             'scoresBestFruits',
             'scoresBestMania',
             'scoresBestOsu',
