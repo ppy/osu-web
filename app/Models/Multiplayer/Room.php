@@ -519,7 +519,7 @@ class Room extends Model
             ->all();
     }
 
-    public function startGame(User $host, array $rawParams)
+    public function startGame(User $host, array $rawParams, array $extraParams = [])
     {
         priv_check_user($host, 'MultiplayerRoomCreate')->ensureCan();
 
@@ -546,6 +546,7 @@ class Room extends Model
             'auto_start_duration' => $params['auto_start_duration'],
             'auto_skip' => $params['auto_skip'] ?? false,
             'user_id' => $host->getKey(),
+            ...$extraParams,
         ]);
 
         $this->setRelation('host', $host);
