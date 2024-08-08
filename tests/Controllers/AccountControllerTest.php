@@ -72,13 +72,17 @@ class AccountControllerTest extends TestCase
      *
      * More complete tests are done through CountryChange and CountryChangeTarget.
      */
-    public function testUpdateCountry(string $historyCountry, string $targetCountry, bool $success): void
+    public function testUpdateCountry(?string $historyCountry, ?string $targetCountry, bool $success): void
     {
         $user = $this->user();
         foreach (array_unique([$historyCountry, $targetCountry]) as $country) {
-            Country::factory()->create(['acronym' => $country]);
+            if ($country !== null) {
+                Country::factory()->create(['acronym' => $country]);
+            }
         }
-        UserFactory::createRecentCountryHistory($user, $historyCountry, null);
+        if ($historyCountry !== null) {
+            UserFactory::createRecentCountryHistory($user, $historyCountry, null);
+        }
 
         $resultCountry = $success ? $targetCountry : $user->country_acronym;
 
@@ -236,6 +240,7 @@ class AccountControllerTest extends TestCase
         return [
             ['_A', '_A', true],
             ['_B', '_A', false],
+            [null, null, false],
         ];
     }
 

@@ -8,6 +8,7 @@ namespace Tests\Models;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
+use App\Models\KudosuHistory;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Tests\TestCase;
@@ -182,6 +183,27 @@ class BeatmapDiscussionTest extends TestCase
         $discussion->restore($user);
         $discussion = $discussion->fresh();
         $this->assertFalse($discussion->trashed());
+    }
+
+    public function testRefreshKudosu(): void
+    {
+        $discussion = BeatmapDiscussion::factory()->problem()->create([
+            'beatmapset_id' => Beatmapset::factory()->create(),
+            'timestamp' => null,
+            'user_id' => User::factory()->create(),
+        ]);
+        $discussion->beatmapDiscussionVotes()->create([
+            'score' => 1,
+            'user_id' => User::factory()->create()->getKey(),
+        ]);
+        $discussion->beatmapDiscussionVotes()->create([
+            'score' => -1,
+            'user_id' => User::factory()->create()->getKey(),
+        ]);
+
+        $this->expectCountChange(fn () => KudosuHistory::count(), 1);
+        $this->expectCountChange(fn () => $discussion->user->fresh()->osu_kudostotal, 1);
+        $discussion->fresh()->refreshKudosu('recalculate');
     }
 
     public static function validBeatmapsetStatuses()

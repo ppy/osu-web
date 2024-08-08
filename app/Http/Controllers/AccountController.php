@@ -178,7 +178,7 @@ class AccountController extends Controller
         $newCountry = get_string(Request::input('country_acronym'));
         $user = Auth::user();
 
-        if (CountryChangeTarget::get($user) !== $newCountry) {
+        if ($newCountry === null || CountryChangeTarget::get($user) !== $newCountry) {
             abort(403, 'specified country_acronym is not allowed');
         }
 
