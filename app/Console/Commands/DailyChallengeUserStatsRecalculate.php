@@ -27,6 +27,12 @@ class DailyChallengeUserStatsRecalculate extends Command
             return 1;
         }
 
+        if (count($userIds) === 0 && !$isAll) {
+            $this->error("either user ids or all option is required");
+
+            return 1;
+        }
+
         if ($isAll) {
             DailyChallengeUserStats::chunkById(100, function ($statsArray) {
                 $this->process($statsArray->keyBy('user_id')->all(), true);
