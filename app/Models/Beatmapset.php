@@ -34,6 +34,7 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Ds\Set;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -720,7 +721,19 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             throw new InvariantException('cannot qualify a beatmapset not in a pending state.');
         }
 
-        DB::transaction(function () use ($user) {
+        $this->getConnection()->transaction(function () use ($user) {
+            // If beatmapset was previously disqualified, reset the queue timer
+            // if any of the current nominators are different
+            // from the previous qualified nominations.
+            $disqualifyEvent = $this->events()->where('type', BeatmapsetEvent::DISQUALIFY)->last();
+            if ($disqualifyEvent !== null) {
+                $previousNominators = new Set($this->beatmapsetNominations()->current(false)->where('event_id', '>', $disqualifyEvent->getKey())->pluck('user_id'));
+                $currentNominators = new Set($this->beatmapsetNominations()->current()->pluck('user_id'));
+                if (!$currentNominators->diff($previousNominators)->isEmpty()) {
+                    $this->update(['previous_queue_duration' => 0]);
+                }
+            }
+
             $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
 
             $this->setApproved('qualified', $user);
