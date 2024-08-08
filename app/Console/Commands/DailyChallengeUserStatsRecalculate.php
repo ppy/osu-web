@@ -28,7 +28,7 @@ class DailyChallengeUserStatsRecalculate extends Command
         }
 
         if (count($userIds) === 0 && !$isAll) {
-            $this->error("either user ids or all option is required");
+            $this->error('either user ids or all option is required');
 
             return 1;
         }
