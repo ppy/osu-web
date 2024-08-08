@@ -714,10 +714,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         });
     }
 
-    public function qualify($user)
+    public function qualify(User $user)
     {
         if (!$this->isPending()) {
-            return;
+            throw new InvariantException('cannot qualify a beatmapset not in a pending state.');
         }
 
         DB::transaction(function () use ($user) {
