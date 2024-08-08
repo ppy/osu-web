@@ -228,8 +228,7 @@ class Room extends Model
         return fn (Builder $query, CarbonImmutable $date): ?static
             => static::where('category', 'daily_challenge')
                 ->whereBetween('starts_at', [$date->startOfDay(), $date->endOfDay()])
-                ->orderBy('starts_at', 'DESC')
-                ->first();
+                ->last();
     }
 
     public function host()
@@ -520,7 +519,7 @@ class Room extends Model
             ->all();
     }
 
-    public function startGame(User $host, array $rawParams)
+    public function startGame(User $host, array $rawParams, array $extraParams = [])
     {
         priv_check_user($host, 'MultiplayerRoomCreate')->ensureCan();
 
@@ -547,6 +546,7 @@ class Room extends Model
             'auto_start_duration' => $params['auto_start_duration'],
             'auto_skip' => $params['auto_skip'] ?? false,
             'user_id' => $host->getKey(),
+            ...$extraParams,
         ]);
 
         $this->setRelation('host', $host);

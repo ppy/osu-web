@@ -12,7 +12,6 @@ import Captcha from 'core/captcha';
 import ClickMenu from 'core/click-menu';
 import CurrentUserObserver from 'core/current-user-observer';
 import Enchant from 'core/enchant';
-import FixRelativeLink from 'core/fix-relative-link';
 import ForumPoll from 'core/forum/forum-poll';
 import ForumPostEdit from 'core/forum/forum-post-edit';
 import ForumPostInput from 'core/forum/forum-post-input';
@@ -60,7 +59,6 @@ export default class OsuCore {
   readonly currentUserObserver;
   readonly dataStore;
   readonly enchant;
-  readonly fixRelativeLink;
   readonly forumPoll;
   readonly forumPostEdit;
   readonly forumPostInput;
@@ -112,7 +110,6 @@ export default class OsuCore {
     this.clickMenu = new ClickMenu();
     this.currentUserObserver = new CurrentUserObserver(this);
     this.currentUserModel = new UserModel(this);
-    this.fixRelativeLink = new FixRelativeLink();
     this.forumPoll = new ForumPoll();
     this.forumPostEdit = new ForumPostEdit();
     this.forumPostInput = new ForumPostInput();

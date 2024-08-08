@@ -7,24 +7,30 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use Carbon\CarbonImmutable;
 use Ds\Set;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class DailyChallengeUserStats extends Model
 {
-    public $incrementing = false;
-    public $timestamps = false;
-
-    protected $attributes = [
+    const array INITIAL_VALUES = [
         'daily_streak_best' => 0,
         'daily_streak_current' => 0,
+        'last_percentile_calculation' => '2000-01-01 00:00:00',
+        'last_update' => '2000-01-01 00:00:00',
+        'last_weekly_streak' => '2000-01-01 00:00:00',
         'playcount' => 0,
         'top_10p_placements' => 0,
         'top_50p_placements' => 0,
         'weekly_streak_best' => 0,
         'weekly_streak_current' => 0,
     ];
+
+    public $incrementing = false;
+    public $timestamps = false;
+
+    protected $attributes = self::INITIAL_VALUES;
 
     protected $casts = [
         'last_percentile_calculation' => 'datetime',
@@ -47,27 +53,19 @@ class DailyChallengeUserStats extends Model
             return;
         }
 
-        $highScores = $playlist
+        $highScoresByUserId = $playlist
             ->highScores()
             ->where('total_score', '>', 0)
-            ->orderBy('total_score', 'DESC')
-            ->get();
-        $count = $highScores->count();
-        // these variables are only used if there's anything in the array
-        if ($count > 0) {
-            $top50p = $highScores[max(0, (int) ($count * 0.5) - 1)]->total_score;
-            $top10p = $highScores[max(0, (int) ($count * 0.1) - 1)]->total_score;
-        }
-        $highScoresByUserId = [];
-        foreach ($highScores as $highScore) {
-            $highScoresByUserId[$highScore->user_id] = $highScore;
-        }
-        $statsByUserId = static
-            ::where('last_weekly_streak', '>=', $previousWeek->subDays(1))
-            ->orWhereIn('user_id', array_keys($highScoresByUserId))
             ->get()
             ->keyBy('user_id');
-        $userIds = new Set([...$statsByUserId->keys(), ...array_keys($highScoresByUserId)]);
+        $statsByUserId = static
+            ::where('last_weekly_streak', '>=', $previousWeek->subDays(1))
+            ->orWhereIn('user_id', $highScoresByUserId->keys())
+            ->get()
+            ->keyBy('user_id');
+        $percentile = $playlist->scorePercentile();
+
+        $userIds = new Set([...$statsByUserId->keys(), ...$highScoresByUserId->keys()]);
         foreach ($userIds as $userId) {
             $stats = $statsByUserId[$userId] ?? new static([
                 'user_id' => $userId,
@@ -81,15 +79,7 @@ class DailyChallengeUserStats extends Model
                 previousWeek: $previousWeek,
             );
 
-            if ($highScore !== null && ($stats->last_percentile_calculation ?? $previousWeek) < $startTime) {
-                if ($highScore->total_score >= $top10p) {
-                    $stats->top_10p_placements += 1;
-                }
-                if ($highScore->total_score >= $top50p) {
-                    $stats->top_50p_placements += 1;
-                }
-                $stats->last_percentile_calculation = $startTime;
-            }
+            $stats->updatePercentile($percentile, $highScore, $startTime);
 
             $stats->save();
         }
@@ -114,7 +104,7 @@ class DailyChallengeUserStats extends Model
         $currentWeek ??= static::startOfWeek($startTime);
         $previousWeek ??= $currentWeek->subWeek(1);
 
-        $lastUpdate = $this->last_update ?? $previousWeek;
+        $lastUpdate = $this->last_update;
         if ($lastUpdate >= $startTime) {
             return;
         }
@@ -130,7 +120,7 @@ class DailyChallengeUserStats extends Model
             $this->daily_streak_current += 1;
             $this->last_update = $startTime;
 
-            if (($this->last_weekly_streak ?? $previousWeek) < $currentWeek) {
+            if ($this->last_weekly_streak < $currentWeek) {
                 $this->weekly_streak_current += 1;
                 $this->last_weekly_streak = $currentWeek;
             }
@@ -146,5 +136,22 @@ class DailyChallengeUserStats extends Model
                 $this->weekly_streak_current = 0;
             }
         }
+    }
+
+    private function updatePercentile(
+        array $playlistPercentile,
+        ?PlaylistItemUserHighScore $highScore,
+        CarbonImmutable $startTime
+    ): void {
+        if ($highScore === null || $this->last_percentile_calculation >= $startTime) {
+            return;
+        }
+
+        foreach ($playlistPercentile as $p => $totalScore) {
+            if ($highScore->total_score >= $totalScore) {
+                $this->{"top_{$p}_placements"}++;
+            }
+        }
+        $this->last_percentile_calculation = $startTime;
     }
 }

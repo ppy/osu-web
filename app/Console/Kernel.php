@@ -107,7 +107,6 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('forum:topic-cover-cleanup --no-interaction')
             ->daily()
-            ->withoutOverlapping()
             ->onOneServer();
 
         $schedule->command('rankings:recalculate-country-stats')
@@ -116,7 +115,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('modding:rank')
             ->cron('*/20 * * * *')
-            ->withoutOverlapping()
+            ->withoutOverlapping(120)
             ->onOneServer();
 
         $schedule->command('oauth:delete-expired-tokens')
@@ -125,32 +124,30 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('notifications:send-mail')
             ->hourly()
-            ->withoutOverlapping()
+            ->withoutOverlapping(120)
             ->onOneServer();
 
         $schedule->command('user-notifications:cleanup')
             ->everyThirtyMinutes()
-            ->withoutOverlapping()
+            ->withoutOverlapping(120)
             ->onOneServer();
 
         $schedule->command('notifications:cleanup')
             ->cron('15,45 * * * *')
-            ->withoutOverlapping()
+            ->withoutOverlapping(120)
             ->onOneServer();
 
         $schedule->command('chat:expire-ack')
             ->everyFiveMinutes()
-            ->withoutOverlapping()
+            ->withoutOverlapping(30)
             ->onOneServer();
 
         $schedule->command('daily-challenge:create-next')
             ->cron('5 0 * * *')
-            ->withoutOverlapping()
             ->onOneServer();
 
         $schedule->command('daily-challenge:user-stats-calculate')
             ->cron('10 0 * * *')
-            ->withoutOverlapping()
             ->onOneServer();
     }
 
