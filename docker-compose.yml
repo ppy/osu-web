@@ -47,6 +47,14 @@ services:
     <<: *x-web
     command: ['job']
 
+  jstest:
+    <<: *x-web
+    volumes:
+      - .:/app
+      - .docker/js-build/assets:/app/public/assets
+      - .docker/js-build/builds:/app/resources/builds
+    command: ['true']
+
   schedule:
     <<: *x-web
     command: ['schedule']
