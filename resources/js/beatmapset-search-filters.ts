@@ -91,7 +91,8 @@ export class BeatmapsetSearchFilters {
   constructor(url: string) {
     const filters = filtersFromUrl(url);
     for (const key of keyNames) {
-      this[key] = filters[key] ?? null;
+      const value = filters[key] ?? null;
+      this[key] = value === this.getDefault(key) ? null : value;
     }
 
     makeObservable(this);

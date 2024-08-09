@@ -11,6 +11,7 @@ import core from 'osu-core-singleton';
 import { trans, transArray } from 'utils/lang';
 import { popup } from 'utils/popup';
 import { currentUrl } from 'utils/turbolinks';
+import { updateQueryString } from 'utils/url';
 
 
 const expandFilters: FilterKey[] = ['genre', 'language', 'extra', 'rank', 'played'];
@@ -178,6 +179,10 @@ export class BeatmapsetSearchController {
       this.filtersObserver();
     }
     this.filters = new BeatmapsetSearchFilters(url);
+
+    // normalize url
+    Turbolinks.controller.replaceHistory(updateQueryString(null, { ...this.filters.queryParams }));
+
     this.filtersObserver = observe(this.filters, this.filterChangedHandler);
 
     this.isExpanded = intersection(Object.keys(filtersFromUrl(url)), expandFilters).length > 0;
