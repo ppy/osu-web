@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatārs',
+            'reset' => '',
             'rules' => 'Lūdzu, pārliecinieties, ka jūsu profila attēls atbilst :link.<br/>Tas nozīmē, ka attēlam jābūt <strong>piemērotam visiem vecumiem</strong>, t.i., bez kailuma, rupjībām vai ierosinoša satura.',
             'rules_link' => 'kopienas noteikumi',
         ],

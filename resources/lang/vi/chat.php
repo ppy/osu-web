@@ -7,7 +7,7 @@ return [
     'loading_users' => 'đang chờ người dùng...',
     'talking_in' => 'đang trò chuyện ở :channel',
     'talking_with' => 'đang trò chuyện với :name',
-    'title_compact' => 'chat',
+    'title_compact' => 'tin nhắn',
     'unread_messages' => 'tin nhắn chưa đọc',
 
     'cannot_send' => [

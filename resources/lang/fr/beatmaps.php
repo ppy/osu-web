@@ -32,7 +32,7 @@ return [
         'restore' => 'restaurer',
         'show_deleted' => 'Afficher le contenu supprimé',
         'title' => 'Discussions',
-        'unresolved_count' => ':count_delimited problèmes non résolus',
+        'unresolved_count' => ':count_delimited problème non résolu|:count_delimited problèmes non résolus',
 
         'collapse' => [
             'all-collapse' => 'Tout réduire',

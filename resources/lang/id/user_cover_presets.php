@@ -31,7 +31,7 @@ return [
         ],
     ],
     'store' => [
-        'failed' => 'Terdapat masalah pada saat menghasilkan sampul: :error',
-        'ok' => 'Sampul dihasilkan',
+        'failed' => 'Terdapat masalah pada saat membuat sampul: :error',
+        'ok' => 'Sampul dibuat',
     ],
 ];

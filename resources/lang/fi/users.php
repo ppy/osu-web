@@ -197,19 +197,19 @@ return [
             'to_1' => 'Näytä kansikuva',
         ],
         'daily_challenge' => [
-            'daily' => '',
-            'daily_streak_best' => '',
-            'daily_streak_current' => '',
-            'title' => '',
-            'top_10p_placements' => '',
-            'top_50p_placements' => '',
-            'weekly' => '',
-            'weekly_streak_best' => '',
-            'weekly_streak_current' => '',
+            'daily' => 'Päivittäinen Putki',
+            'daily_streak_best' => 'Paras Päivittäinen Putki',
+            'daily_streak_current' => 'Nykyinen Päivittäinen Putki',
+            'title' => 'Päivittäinen\nHaaste',
+            'top_10p_placements' => 'Top 10% -Sijoitukset',
+            'top_50p_placements' => 'Top 50% -Sijoitukset',
+            'weekly' => 'Viikoittainen putki',
+            'weekly_streak_best' => 'Paras Viikoittainen Putki',
+            'weekly_streak_current' => 'Nykyinen Viikoittainen Putki',
 
             'unit' => [
-                'day' => '',
-                'week' => '',
+                'day' => ':valued',
+                'week' => ':valuew',
             ],
         ],
         'edit' => [
@@ -217,7 +217,7 @@ return [
                 'button' => 'Muuta profiilin kansikuvaa',
                 'defaults_info' => 'Lisää kansikuvavaihtoehtoja tulee olemaan saatavilla tulevaisuudessa',
                 'holdover_remove_confirm' => "Edellinen valitsemasi kansikuva ei ole enää käytettävissä. Et voi valita sitä uudelleen, jos vaihdat toiseen kansikuvaan. Jatketaanko?",
-                'title' => '',
+                'title' => 'Kansi',
 
                 'upload' => [
                     'broken_file' => 'Kuvan käsittely epäonnistui. Varmista lähetetty kuva ja kokeile uudestaan.',
@@ -242,11 +242,11 @@ return [
 
             'hue' => [
                 'reset_no_supporter' => '',
-                'title' => '',
+                'title' => 'Väri',
 
                 'supporter' => [
                     '_' => '',
-                    'link' => '',
+                    'link' => 'osu!tukijat',
                 ],
             ],
         ],

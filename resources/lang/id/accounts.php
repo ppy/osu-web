@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => '',
             'rules' => 'Pastikan avatarmu tunduk pada :link yang berlaku.<br/>Dengan kata lain, avatarmu harus <strong>cocok untuk segala usia</strong> tanpa mengandung unsur apa pun yang tidak dibenarkan seperti cacian, hinaan, atau hal yang bersifat sugestif.',
             'rules_link' => 'peraturan komunitas',
         ],

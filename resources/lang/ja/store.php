@@ -49,7 +49,7 @@ return [
     ],
 
     'discount' => ':percent%の割引',
-    'free' => '',
+    'free' => '無料',
 
     'invoice' => [
         'contact' => '',
