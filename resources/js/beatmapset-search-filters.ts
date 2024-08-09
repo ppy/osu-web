@@ -145,6 +145,6 @@ export class BeatmapsetSearchFilters {
       this.sort = null;
     }
 
-    this[key] = value;
+    this[key] = value === this.getDefault(key) ? null : value;
   }
 }
