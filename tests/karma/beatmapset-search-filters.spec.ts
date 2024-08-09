@@ -2,21 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetSearchFilters } from 'beatmapset-search-filters';
-import core from 'osu-core-singleton';
-import testCurrentUserJson from './test-current-user-json';
 
 describe('BeatmapsetSearchFilters', () => {
   let subject: BeatmapsetSearchFilters;
 
   describe('.query', () => {
-    beforeAll(() => {
-      core.setCurrentUser(testCurrentUserJson);
-    });
-
-    afterAll(() => {
-      core.setCurrentUser({ id: undefined });
-    });
-
     beforeEach(() => {
       subject = new BeatmapsetSearchFilters('https://notarealdomain');
     });
