@@ -151,10 +151,9 @@ export class BeatmapsetSearchController {
     });
   }
 
+  @action
   private readonly filterChangedHandler = (change: IObjectDidChange<BeatmapsetSearchFilters>) => {
     if (change.type === 'update' && change.oldValue === change.newValue) return;
-    // FIXME: sort = null changes ignored because search triggered too early during filter update.
-    if (change.type !== 'remove' && change.name === 'sort' && change.newValue == null) return;
 
     this.searchStatus.state = 'input';
     this.debouncedFilterChangedSearch();
