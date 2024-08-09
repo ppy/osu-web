@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Profilbillede',
+            'reset' => '',
             'rules' => 'Vær sikker på at din avatar overholder :link.<br/>Dette betyder at den skal være <strong>passende for alle aldre</strong>. Det betyder ingen nøgenhed, skælsord eller suggestivt indhold.',
             'rules_link' => 'fællesskabs-reglerne',
         ],

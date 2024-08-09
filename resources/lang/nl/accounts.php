@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => '',
             'rules' => 'Zorg ervoor dat uw avatar voldoet aan :link. <br/> Dit betekent dat deze <strong> geschikt moet zijn voor alle leeftijden </strong>. d.w.z. geen naaktheid, godslastering of suggestieve inhoud.',
             'rules_link' => 'de community regels',
         ],

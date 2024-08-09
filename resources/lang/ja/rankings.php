@@ -40,7 +40,7 @@ return [
     'seasons' => [
         'empty' => '',
         'ongoing' => '',
-        'room_count' => '',
+        'room_count' => 'プレイリスト数',
         'url' => '',
     ],
 

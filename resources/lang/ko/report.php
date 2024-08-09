@@ -26,7 +26,7 @@ return [
 
     'message' => [
         'button' => '메시지 신고하기',
-        'title' => '',
+        'title' => ':username님의 메시지를 신고하겠습니까?',
     ],
 
     'scores' => [

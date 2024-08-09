@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => '',
+            'reset' => '',
             'rules' => '',
             'rules_link' => '',
         ],

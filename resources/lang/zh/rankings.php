@@ -28,7 +28,7 @@ return [
     ],
 
     'type' => [
-        'charts' => '高光',
+        'charts' => '季赛（旧版）',
         'country' => '国家/地区',
         'kudosu' => 'Kudosu',
         'multiplayer' => '多人游戏',

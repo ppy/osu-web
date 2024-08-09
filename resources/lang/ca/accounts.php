@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => '',
             'rules' => 'Si us plau asseguri\'s que el seu avatar s\'adhereix a :link. <br/> Això vol dir que ha de ser <strong>adequat per a totes les edats</strong>. És a dir, sense nuesa, blasfèmia o contingut suggestiu.',
             'rules_link' => 'regles de la comunitat',
         ],
