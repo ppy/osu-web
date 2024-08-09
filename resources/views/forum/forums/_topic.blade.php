@@ -85,7 +85,11 @@
             </div>
         </div>
 
-        <div class="forum-topic-entry__issue-icons">
+        <div class="forum-topic-entry__icons">
+            @if ($topic->legacyIcon() !== null)
+                @include('forum._legacy_icon', ['icon' => $topic->legacyIcon()])
+            @endif
+
             @foreach ($topic->issueTags() as $tag)
                 <div
                     title="{{ $tag }}"

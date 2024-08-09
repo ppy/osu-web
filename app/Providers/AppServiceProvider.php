@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
     const LOCAL_CACHE_SINGLETONS = [
         'chat-filters' => Singletons\ChatFilters::class,
         'countries' => Singletons\Countries::class,
+        'forum-legacy-icons' => Singletons\ForumLegacyIcons::class,
         'groups' => Singletons\Groups::class,
         'layout-cache' => Singletons\LayoutCache::class,
         'medals' => Singletons\Medals::class,
