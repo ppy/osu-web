@@ -8,7 +8,9 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Models\Beatmap;
+use App\Models\BeatmapOwner;
 use App\Models\Beatmapset;
+use App\Models\User;
 
 class BeatmapFactory extends Factory
 {
@@ -60,6 +62,15 @@ class BeatmapFactory extends Factory
         return $this->state([
             'beatmapset_id' => Beatmapset::factory()->state(['active' => false]),
         ]);
+    }
+
+    public function owner(User $user): static
+    {
+        return $this
+            ->state(['user_id' => $user])
+            ->has(BeatmapOwner::factory()->state(fn (array $attr, Beatmap $beatmap) => [
+                'user_id' => $beatmap->user_id,
+            ]));
     }
 
     public function qualified(): static

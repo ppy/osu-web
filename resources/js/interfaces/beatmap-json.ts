@@ -3,7 +3,7 @@
 
 import BeatmapsetJson from './beatmapset-json';
 import Ruleset from './ruleset';
-import UserJson from './user-json';
+import UserJson, { UserJsonMinimum } from './user-json';
 
 interface BeatmapFailTimesArray {
   exit: number[];
@@ -14,6 +14,7 @@ interface BeatmapJsonAvailableIncludes {
   beatmapset: BeatmapsetJson | null;
   checksum: string | null;
   failtimes: BeatmapFailTimesArray;
+  mappers: UserJsonMinimum[];
   max_combo: number;
   user: UserJson;
 }
@@ -30,4 +31,5 @@ interface BeatmapJsonDefaultAttributes {
 }
 
 type BeatmapJson = BeatmapJsonDefaultAttributes & Partial<BeatmapJsonAvailableIncludes>;
+
 export default BeatmapJson;

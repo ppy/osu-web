@@ -13,7 +13,7 @@ interface UnknownErrorJson {
   validation_error?: Record<string, string>[];
 }
 
-const jqXHRProperties = ['status', 'statusText', 'readyState', 'responseText'];
+const jqXHRProperties = ['status', 'statusText', 'readyState'];
 
 export function emitError(element: HTMLElement = document.body) {
   return (xhr: JQuery.jqXHR, status: string, errorThrown: unknown) => $(element).trigger('ajax:error', [xhr, status, errorThrown]);

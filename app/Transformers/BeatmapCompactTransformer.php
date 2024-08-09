@@ -15,6 +15,7 @@ class BeatmapCompactTransformer extends TransformerAbstract
         'beatmapset',
         'checksum',
         'failtimes',
+        'mappers',
         'max_combo',
         'user',
     ];
@@ -66,6 +67,15 @@ class BeatmapCompactTransformer extends TransformerAbstract
         }
 
         return $this->primitive($result);
+    }
+
+    public function includeMappers(Beatmap $beatmap)
+    {
+        return $this->primitive($beatmap->mappers->map(fn ($mapper) => [
+            'avatar_url' => $mapper->user_avatar,
+            'id' => $mapper->user_id,
+            'username' => $mapper->username,
+        ]));
     }
 
     public function includeMaxCombo(Beatmap $beatmap)

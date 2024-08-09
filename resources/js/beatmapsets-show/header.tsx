@@ -1,12 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import UserLinkList from 'beatmap-discussions/user-link-list';
 import BeatmapsetBadge from 'components/beatmapset-badge';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import BeatmapsetMapping from 'components/beatmapset-mapping';
 import BigButton from 'components/big-button';
 import StringWithComponent from 'components/string-with-component';
-import UserLink from 'components/user-link';
 import { createTooltip } from 'components/user-list-popup';
 import { route } from 'laroute';
 import { action, computed, makeObservable } from 'mobx';
@@ -275,16 +275,18 @@ export default class Header extends React.Component<Props> {
 
   private renderBeatmapVersion() {
     const beatmap = this.controller.hoveredBeatmap ?? this.controller.currentBeatmap;
+    const hasGuestMappers = (beatmap.mappers?.length ?? 0) > 1
+      || beatmap.user_id !== this.controller.beatmapset.user_id;
 
     return (
       <span className='beatmapset-header__diff-name'>
         {beatmap.version}
 
-        {beatmap.user_id !== this.controller.beatmapset.user_id && (
+        {hasGuestMappers && (
           <span className='beatmapset-header__diff-extra'>
             <StringWithComponent
               mappings={{
-                mapper: <UserLink user={this.controller.mapper(beatmap)} />,
+                mapper: <UserLinkList users={this.controller.mappers(beatmap)} />,
               }}
               pattern={trans('beatmapsets.show.details.mapped_by')}
             />

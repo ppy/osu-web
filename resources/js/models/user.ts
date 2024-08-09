@@ -85,8 +85,10 @@ export default class User {
 const deletedUser = new User(-1);
 deletedUser.isDeleted = true;
 deletedUser.username = trans('users.deleted');
+Object.freeze(deletedUser);
 
 const deletedUserJson = deletedUser.toJson();
+Object.freeze(deletedUserJson);
 
 export {
   deletedUser,

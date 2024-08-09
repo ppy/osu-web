@@ -695,6 +695,7 @@ class BeatmapsetTest extends TestCase
         $bngUser1 = User::factory()->withGroup('bng', ['osu', 'taiko'])->create();
         $bngUser2 = User::factory()->withGroup('bng', ['osu', 'taiko'])->create();
         $bngLimitedUser = User::factory()->withGroup('bng_limited', ['osu', 'taiko'])->create();
+        $natUser = User::factory()->withGroup('nat')->create();
 
         // make taiko tha main ruleset
         $beatmapset = $this->beatmapsetFactory()
@@ -711,8 +712,8 @@ class BeatmapsetTest extends TestCase
         $beatmapset->fresh()->nominate($bngUser1, ['osu']);
 
         // main ruleset should now be osu
-        $beatmapset->beatmaps()->where('playmode', 1)->first()->setOwner($guest->getKey());
-        $beatmapset->beatmaps()->where('playmode', 0)->last()->setOwner($beatmapset->user_id);
+        $beatmapset->beatmaps()->where('playmode', 1)->first()->setOwner([$guest->getKey()], $natUser);
+        $beatmapset->beatmaps()->where('playmode', 0)->last()->setOwner([$beatmapset->user_id], $natUser);
         $beatmapset->refresh();
 
         $this->assertSame('osu', $beatmapset->mainRuleset());

@@ -1,13 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import UserLinkList from 'beatmap-discussions/user-link-list';
 import DifficultyBadge from 'components/difficulty-badge';
-import UserLink from 'components/user-link';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
-import UserJson from 'interfaces/user-json';
 import * as React from 'react';
+import { hasGuestMapper } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import StringWithComponent from './string-with-component';
@@ -21,10 +21,10 @@ interface BaseProps {
 
 type MapperProps = {
   beatmapset: BeatmapsetJson;
-  mapper: Pick<UserJson, 'id' | 'username'>;
+  showMappers: true;
   showNonGuestMapper: boolean;
 } | {
-  mapper: null;
+  showMappers: false;
 };
 
 type Props = BaseProps & MapperProps;
@@ -51,7 +51,7 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
               : version}
             {' '}
             <span className='beatmap-list-item__mapper'>
-              {this.renderMapper()}
+              {this.renderMappers()}
             </span>
           </div>
         </div>
@@ -59,30 +59,30 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
     );
   }
 
-  private renderMapper() {
-    if (this.props.mapper == null) {
+  private renderMappers() {
+    if (!this.props.showMappers) return null;
+
+    const mappers = this.props.beatmap.mappers;
+    if (mappers == null || mappers.length === 0) {
       return null;
     }
 
-    const isGuestMap = this.props.beatmapset.user_id !== this.props.beatmap.user_id;
+    const userId = this.props.beatmapset.user_id;
+    const visibleMappers = this.props.showNonGuestMapper
+      ? mappers
+      : mappers.filter((mapper) => mapper.id !== userId);
 
-    if (!isGuestMap && !this.props.showNonGuestMapper) {
+    if (visibleMappers.length === 0) {
       return null;
     }
 
-    const translationKey = isGuestMap
+    const translationKey = hasGuestMapper(this.props.beatmap, this.props.beatmapset)
       ? 'mapped_by_guest'
       : 'mapped_by';
 
-    const mapper = isGuestMap
-      ? this.props.mapper
-      : { id: this.props.beatmapset.user_id, username: this.props.beatmapset.creator };
-
     return (
       <StringWithComponent
-        mappings={{
-          mapper: <UserLink user={mapper} />,
-        }}
+        mappings={{ mapper: <UserLinkList users={visibleMappers} /> }}
         pattern={trans(`beatmapsets.show.details.${translationKey}`)}
       />
     );

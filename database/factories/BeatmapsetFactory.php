@@ -137,11 +137,11 @@ class BeatmapsetFactory extends Factory
     {
         return $this
             ->has(Beatmap::factory()
-            ->count($count)
-            ->ruleset($ruleset ?? array_rand(Beatmap::MODES))
-            ->state(fn (array $attr, Beatmapset $set) => [
-                'approved' => $set->approved,
-                'user_id' => $guestMapper?->getKey() ?? $set->user_id,
-            ]));
+                ->count($count)
+                ->ruleset($ruleset ?? array_rand(Beatmap::MODES))
+                ->state(fn (array $attr, Beatmapset $set) => [
+                    'approved' => $set->approved,
+                    'user_id' => $guestMapper?->getKey() ?? $set->user_id,
+                ]));
     }
 }
