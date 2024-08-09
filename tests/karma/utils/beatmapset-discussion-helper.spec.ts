@@ -5,9 +5,10 @@ import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import GameMode from 'interfaces/ruleset';
 import UserGroupJson from 'interfaces/user-group-json';
 import UserJson from 'interfaces/user-json';
-import User from 'models/user';
 import * as moment from 'moment';
+import core from 'osu-core-singleton';
 import { discussionMode, isUserFullNominator, maxLengthTimeline, nearbyDiscussions, validMessageLength } from 'utils/beatmapset-discussion-helper';
+import testCurrentUserJson from '../test-current-user-json';
 
 interface TestCase<T> {
   description: string;
@@ -31,24 +32,6 @@ const template: BeatmapsetDiscussionJson = Object.freeze({
   timestamp: 1,
   updated_at: '',
   user_id: 1,
-});
-
-const currentUser = new User(1);
-currentUser.updateWithJson({
-  avatar_url: '',
-  country_code: '',
-  cover: { custom_url: null, id: null, url: null },
-  default_group: '',
-  id: 1,
-  is_active: true,
-  is_bot: false,
-  is_deleted: false,
-  is_online: true,
-  is_supporter: true,
-  last_visit: null,
-  pm_friends_only: false,
-  profile_colour: null,
-  username: 'foo',
 });
 
 describe('utils/beatmapset-discussion-helper', () => {
@@ -89,7 +72,7 @@ describe('utils/beatmapset-discussion-helper', () => {
   });
 
   describe('.isUserFullNominator', () => {
-    const userTemplate = currentUser.toJson();
+    const userTemplate = structuredClone(testCurrentUserJson);
     const groupsTemplate: UserGroupJson = {
       colour: null,
       has_listing: true,
@@ -184,13 +167,12 @@ describe('utils/beatmapset-discussion-helper', () => {
         },
       ];
 
-      // FIXME: need a better way of setting user in osu-core for tests.
       beforeAll(() => {
-        $.publish('user:update', currentUser);
+        core.setCurrentUser(testCurrentUserJson);
       });
 
       afterAll(() => {
-        $.publish('user:update', {});
+        core.setCurrentUser({ id: undefined });
       });
 
       cases.forEach((test) => {

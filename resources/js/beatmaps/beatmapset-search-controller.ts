@@ -11,6 +11,7 @@ import core from 'osu-core-singleton';
 import { trans, transArray } from 'utils/lang';
 import { popup } from 'utils/popup';
 import { currentUrl } from 'utils/turbolinks';
+import { updateQueryString } from 'utils/url';
 
 
 const expandFilters: FilterKey[] = ['genre', 'language', 'extra', 'rank', 'played'];
@@ -150,10 +151,9 @@ export class BeatmapsetSearchController {
     });
   }
 
+  @action
   private readonly filterChangedHandler = (change: IObjectDidChange<BeatmapsetSearchFilters>) => {
     if (change.type === 'update' && change.oldValue === change.newValue) return;
-    // FIXME: sort = null changes ignored because search triggered too early during filter update.
-    if (change.type !== 'remove' && change.name === 'sort' && change.newValue == null) return;
 
     this.searchStatus.state = 'input';
     this.debouncedFilterChangedSearch();
@@ -178,6 +178,10 @@ export class BeatmapsetSearchController {
       this.filtersObserver();
     }
     this.filters = new BeatmapsetSearchFilters(url);
+
+    // normalize url
+    Turbolinks.controller.replaceHistory(updateQueryString(null, { ...this.filters.queryParams }));
+
     this.filtersObserver = observe(this.filters, this.filterChangedHandler);
 
     this.isExpanded = intersection(Object.keys(filtersFromUrl(url)), expandFilters).length > 0;
