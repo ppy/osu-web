@@ -33,7 +33,7 @@ function tier(days: number) {
 
 function tierStyle(days: number) {
   return {
-    '--colour': `var(--level-tier-${tier(days)}`,
+    '--colour': `var(--level-tier-${tier(days)})`,
   } as React.CSSProperties;
 }
 
