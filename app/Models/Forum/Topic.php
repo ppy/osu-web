@@ -817,7 +817,7 @@ class Topic extends Model implements AfterCommit
     {
         $this->topic_type = static::typeInt($tag === 'confirmed' ? 'sticky' : 'normal');
 
-        if (in_array($tag, static::PLATFORM_ISSUE_TAGS)) {
+        if (in_array($tag, static::PLATFORM_ISSUE_TAGS, true)) {
             $tag = "osu!{$tag}";
         }
 
@@ -832,7 +832,7 @@ class Topic extends Model implements AfterCommit
     {
         $this->topic_type = static::typeInt($tag === 'resolved' ? 'sticky' : 'normal');
 
-        if (in_array($tag, static::PLATFORM_ISSUE_TAGS)) {
+        if (in_array($tag, static::PLATFORM_ISSUE_TAGS, true)) {
             $tag = "osu!{$tag}";
         }
 
@@ -847,7 +847,7 @@ class Topic extends Model implements AfterCommit
 
     public function hasIssueTag($tag)
     {
-        if (in_array($tag, static::PLATFORM_ISSUE_TAGS)) {
+        if (in_array($tag, static::PLATFORM_ISSUE_TAGS, true)) {
             $tag = "osu!{$tag}";
         }
 
