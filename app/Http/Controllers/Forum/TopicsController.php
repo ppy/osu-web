@@ -166,7 +166,11 @@ class TopicsController extends Controller
         $state = get_bool(Request::input('state'));
         $type = 'issue_tag_'.$issueTag;
 
-        if ($issueTag === null || !$topic->isIssue() || !in_array($issueTag, $topic::ISSUE_TAGS, true)) {
+        if (
+            $issueTag === null
+            || !$topic->isIssue()
+            || !in_array($issueTag, array_merge($topic::ISSUE_TAGS, $topic::PLATFORM_ISSUE_TAGS), true)
+        ) {
             abort(422);
         }
 

@@ -1023,12 +1023,18 @@ function issue_icon($issue)
             return 'fas fa-user';
         case 'confirmed':
             return 'fas fa-exclamation-triangle';
-        case 'resolved':
-            return 'far fa-check-circle';
         case 'duplicate':
             return 'fas fa-copy';
         case 'invalid':
             return 'far fa-times-circle';
+        case 'lazer':
+            return 'fas fa-extra-mode-osu';
+        case 'resolved':
+            return 'far fa-check-circle';
+        case 'stable':
+            return 'fas fa-extra-osu';
+        case 'web':
+            return 'fas fa-globe';
     }
 }
 
