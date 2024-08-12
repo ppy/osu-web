@@ -241,9 +241,9 @@ class BeatmapsController extends Controller
      *
      * See [Get Beatmap](#get-beatmap)
      *
-     * @queryParam checksum A beatmap checksum.
-     * @queryParam filename A filename to lookup.
-     * @queryParam id A beatmap ID to lookup.
+     * @queryParam checksum string A beatmap checksum.
+     * @queryParam filename string A filename to lookup.
+     * @queryParam id integer A beatmap ID to lookup.
      *
      * @response "See Beatmap object section"
      */
@@ -343,7 +343,7 @@ class BeatmapsController extends Controller
      *
      * @queryParam legacy_only integer Whether or not to exclude lazer scores. Defaults to 0. Example: 0
      * @queryParam mode The [Ruleset](#ruleset) to get scores for.
-     * @queryParam mods An array of matching Mods, or none // TODO.
+     * @queryParam mods string[] An array of matching Mods, or none // TODO.
      * @queryParam type Beatmap score ranking type // TODO.
      */
     public function scores($id)
@@ -370,7 +370,7 @@ class BeatmapsController extends Controller
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      *
      * @queryParam mode The [Ruleset](#ruleset) to get scores for.
-     * @queryParam mods An array of matching Mods, or none // TODO.
+     * @queryParam mods string[] An array of matching Mods, or none // TODO.
      * @queryParam type Beatmap score ranking type // TODO.
      */
     public function soloScores($id)
