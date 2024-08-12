@@ -63,13 +63,14 @@ class BeatmapDiscussionPostsController extends Controller
      * posts         | [BeatmapsetDiscussionPost](#beatmapsetdiscussionpost)[] | |
      * users         | [User](#user)                                           | |
      *
-     * @queryParam beatmapset_discussion_id `id` of the [BeatmapsetDiscussion](#beatmapsetdiscussion).
-     * @queryParam limit Maximum number of results.
-     * @queryParam page Search result page.
-     * @queryParam sort `id_desc` for newest first; `id_asc` for oldest first. Defaults to `id_desc`.
-     * @queryParam types[] `first`, `reply`, `system` are the valid values. Defaults to `reply`.
-     * @queryParam user The `id` of the [User](#user).
-     * @queryParam with_deleted This param has no effect as api calls do not currently receive group permissions.
+     * @usesCursor
+     * @queryParam beatmapset_discussion_id integer `id` of the [BeatmapsetDiscussion](#beatmapsetdiscussion).
+     * @queryParam limit integer Maximum number of results.
+     * @queryParam page integer Search result page.
+     * @queryParam sort string `id_desc` for newest first; `id_asc` for oldest first. Defaults to `id_desc`.
+     * @queryParam types string[] `first`, `reply`, `system` are the valid values. Defaults to `reply`.
+     * @queryParam user integer The `id` of the [User](#user).
+     * @queryParam with_deleted integer This param has no effect as api calls do not currently receive group permissions.
      */
     public function index()
     {
