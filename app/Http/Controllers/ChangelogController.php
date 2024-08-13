@@ -244,7 +244,7 @@ class ChangelogController extends Controller
      *
      * @urlParam changelog string required Build version, update stream name, or build ID. Example: 20210520.2
      * @queryParam key string Unset to query by build version or stream name, or `id` to query by build ID. No-example
-     * @queryParam message_formats[] string `html`, `markdown`. Default to both.
+     * @queryParam message_formats string[] `html`, `markdown`. Default to both.
      * @response See "Get Changelog Build" response.
      */
     public function show($version)
