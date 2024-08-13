@@ -115,11 +115,7 @@ class Product extends Model
 
     public function getDescriptionAttribute($value)
     {
-        if ($this->masterProduct) {
-            return $this->masterProduct->description;
-        } else {
-            return $value;
-        }
+        return presence($value) ?? $this->masterProduct?->description;
     }
 
     public function isAvailable(): bool
