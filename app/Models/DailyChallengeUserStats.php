@@ -100,6 +100,7 @@ class DailyChallengeUserStats extends Model
         $highScores = PlaylistItemUserHighScore
             ::where('user_id', $this->user_id)
             ->whereRelation('playlistItem.room', 'category', 'daily_challenge')
+            ->where('total_score', '>', 0)
             ->with('playlistItem.room')
             ->orderBy('created_at')
             ->get();
