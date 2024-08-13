@@ -48,7 +48,7 @@ Broadcast to the user when the user joins a chat channel.
 
 ### Payload Format
 
-[ChatChannel](#chat-channel) with `current_user_attributes`, `last_message_id`, `users` additional attributes.
+[ChatChannel](#chatchannel) with `current_user_attributes`, `last_message_id`, `users` additional attributes.
 
 ## chat.channel.part
 
@@ -56,7 +56,7 @@ Broadcast to the user when the user leaves a chat channel.
 
 ### Payload Format
 
-[ChatChannel](#chat-channel) with `current_user_attributes`, `last_message_id`, `users` additional attributes.
+[ChatChannel](#chatchannel) with `current_user_attributes`, `last_message_id`, `users` additional attributes.
 
 ## chat.message.new
 
