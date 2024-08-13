@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => '',
             'rules' => 'Pidäthän huolen, että profiilikuvasi noudattaa :link.<br/>Tämä tarkoittaa sitä, että sen on <strong>sovittava kaikenikäisille</strong>, eli ei alastomuutta tai muita hävyttömyyksiä.',
             'rules_link' => 'yhteisön sääntöjä',
         ],

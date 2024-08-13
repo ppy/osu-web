@@ -29,7 +29,7 @@ return [
         'generic' => 'Ostoksesi valmistelussa tapahtui virhe.',
     ],
     'scores' => [
-        'invalid_id' => '',
+        'invalid_id' => 'Virheellinen tulostunnus.',
     ],
     'search' => [
         'default' => 'Tuloksia ei saatu, yritä myöhemmin uudelleen.',
