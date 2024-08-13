@@ -151,10 +151,10 @@ class RankingController extends Controller
      * @urlParam type string required [RankingType](#rankingtype). Example: performance
      *
      * @queryParam country string Filter ranking by country code. Only available for `type` of `performance`. Example: JP
-     * @queryParam cursor [Cursor](#cursor). No-example
-     * @queryParam filter Either `all` (default) or `friends`. Example: all
-     * @queryParam spotlight The id of the spotlight if `type` is `charts`. Ranking for latest spotlight will be returned if not specified. No-example
-     * @queryParam variant Filter ranking to specified mode variant. For `mode` of `mania`, it's either `4k` or `7k`. Only available for `type` of `performance`. Example: 4k
+     * @queryParam cursor.page integer See [Cursor](#cursor). No-example
+     * @queryParam filter string Either `all` (default) or `friends`. Example: all
+     * @queryParam spotlight integer The id of the spotlight if `type` is `charts`. Ranking for latest spotlight will be returned if not specified. No-example
+     * @queryParam variant string Filter ranking to specified mode variant. For `mode` of `mania`, it's either `4k` or `7k`. Only available for `type` of `performance`. Example: 4k
      */
     public function index($mode, $type)
     {
