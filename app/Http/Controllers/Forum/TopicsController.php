@@ -558,7 +558,7 @@ class TopicsController extends Controller
      * The edited [ForumTopic](#forum-topic).
      *
      * @urlParam topic integer required Id of the topic. Example: 1
-     * @bodyParam forum_topic[topic_title] string New topic title. Example: titled
+     * @bodyParam forum_topic[topic_title] string required New topic title. Example: titled
      */
     public function update($id)
     {
