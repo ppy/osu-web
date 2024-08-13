@@ -181,10 +181,10 @@ class CommentsController extends Controller
      *
      * Returns [CommentBundle](#commentbundle)
      *
-     * @queryParam comment.commentable_id integer required Resource ID the comment thread is attached to
-     * @queryParam comment.commentable_type string required Resource type the comment thread is attached to
+     * @queryParam comment.commentable_id integer required Resource ID the comment thread is attached to. Example: 1
+     * @queryParam comment.commentable_type string required Resource type the comment thread is attached to. Example: beatmapset
      * @queryParam comment.message string required Text of the comment
-     * @queryParam comment.parent_id integer The id of the comment to reply to, null if not a reply
+     * @queryParam comment.parent_id integer The id of the comment to reply to, null if not a reply. No-example
      */
     public function store()
     {

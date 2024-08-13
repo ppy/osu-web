@@ -65,7 +65,7 @@ class ChangelogController extends Controller
      * @queryParam max_id integer Maximum build ID. No-example
      * @queryParam stream string Stream name to return builds from. No-example
      * @queryParam to string Maximum build version. No-example
-     * @queryParam message_formats[] string `html`, `markdown`. Default to both.
+     * @queryParam message_formats[] string `html`, `markdown`. Default to both. No-example
      * @response {
      *   "streams": [
      *     {
