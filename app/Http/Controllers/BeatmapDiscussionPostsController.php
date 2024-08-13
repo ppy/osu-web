@@ -70,7 +70,7 @@ class BeatmapDiscussionPostsController extends Controller
      * @queryParam sort string `id_desc` for newest first; `id_asc` for oldest first. Defaults to `id_desc`.
      * @queryParam types string[] `first`, `reply`, `system` are the valid values. Defaults to `reply`.
      * @queryParam user integer The `id` of the [User](#user).
-     * @queryParam with_deleted integer This param has no effect as api calls do not currently receive group permissions.
+     * @queryParam with_deleted boolean This param has no effect as api calls do not currently receive group permissions.
      */
     public function index()
     {

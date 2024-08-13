@@ -241,9 +241,9 @@ class BeatmapsController extends Controller
      *
      * See [Get Beatmap](#get-beatmap)
      *
-     * @queryParam checksum string A beatmap checksum.
-     * @queryParam filename string A filename to lookup.
-     * @queryParam id integer A beatmap ID to lookup.
+     * @queryParam checksum string A beatmap checksum. No-example
+     * @queryParam filename string A filename to lookup. No-example
+     * @queryParam id integer A beatmap ID to lookup. No-example
      *
      * @response "See Beatmap object section"
      */
@@ -342,9 +342,9 @@ class BeatmapsController extends Controller
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      *
      * @queryParam legacy_only integer Whether or not to exclude lazer scores. Defaults to 0. Example: 0
-     * @queryParam mode The [Ruleset](#ruleset) to get scores for.
-     * @queryParam mods string[] An array of matching Mods, or none // TODO.
-     * @queryParam type Beatmap score ranking type // TODO.
+     * @queryParam mode The [Ruleset](#ruleset) to get scores for. Example: osu
+     * @queryParam mods string[] An array of matching Mods, or none // TODO. No-example
+     * @queryParam type string Beatmap score ranking type // TODO. No-example
      */
     public function scores($id)
     {
@@ -369,9 +369,9 @@ class BeatmapsController extends Controller
      *
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      *
-     * @queryParam mode The [Ruleset](#ruleset) to get scores for.
+     * @queryParam mode string The [Ruleset](#ruleset) to get scores for. Example: osu
      * @queryParam mods string[] An array of matching Mods, or none // TODO.
-     * @queryParam type Beatmap score ranking type // TODO.
+     * @queryParam type string Beatmap score ranking type // TODO. No-example
      */
     public function soloScores($id)
     {
@@ -422,8 +422,8 @@ class BeatmapsController extends Controller
      * @urlParam user integer required Id of the [User](#user).
      *
      * @queryParam legacy_only integer Whether or not to exclude lazer scores. Defaults to 0. Example: 0
-     * @queryParam mode The [Ruleset](#ruleset) to get scores for.
-     * @queryParam mods An array of matching Mods, or none // TODO.
+     * @queryParam mode string The [Ruleset](#ruleset) to get scores for. Example: osu
+     * @queryParam mods string[] An array of matching Mods, or none // TODO. No-example
      */
     public function userScore($beatmapId, $userId)
     {
