@@ -185,6 +185,28 @@ class DailyChallengeUserStatsTest extends TestCase
         $this->assertSame(9, $stats->top_50p_placements);
     }
 
+    public function testFixZeroTotalScore(): void
+    {
+        $user = User::factory()->create();
+
+        foreach ([3 => 100, 2 => 0, 1 => 100] as $subDay => $score) {
+            $playTime = static::startOfWeek()->subDays($subDay);
+            $playlistItem = static::preparePlaylistItem($playTime);
+            $this->roomAddPlay($user, $playlistItem, ['total_score' => $score]);
+        }
+
+        $stats = DailyChallengeUserStats::find($user->getKey());
+        $stats->fill([...DailyChallengeUserStats::INITIAL_VALUES])->saveOrExplode();
+        $stats->fix();
+
+        $stats->refresh();
+        $this->assertSame(2, $stats->playcount);
+        $this->assertSame(1, $stats->daily_streak_current);
+        $this->assertSame(1, $stats->daily_streak_best);
+        $this->assertSame(1, $stats->weekly_streak_current);
+        $this->assertSame(1, $stats->weekly_streak_best);
+    }
+
     public function testFlowFromStart(): void
     {
         $playTime = static::startOfWeek();
