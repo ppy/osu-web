@@ -332,7 +332,7 @@ class UsersController extends Controller
      * ----- | --------------- | -----------
      * users | [User](#user)[] | Includes `country`, `cover`, `groups`, and `statistics_rulesets`.
      *
-     * @queryParam ids[] User id to be returned. Specify once for each user id requested. Up to 50 users can be requested at once. Example: 1
+     * @queryParam ids integer[] `id`s of users to be returned. Specify once for each user id requested. Up to 50 users can be requested at once. Example: [1,2]
      * @queryParam include_variant_statistics boolean Whether to additionally include `statistics_rulesets.variants` (default: `false`). No-example
      *
      * @response {
@@ -503,10 +503,10 @@ class UsersController extends Controller
      * @urlParam type string required Score type. Must be one of these: `best`, `firsts`, `recent`. Example: best
      *
      * @queryParam legacy_only integer Whether or not to exclude lazer scores. Defaults to 0. Example: 0
-     * @queryParam include_fails Only for recent scores, include scores of failed plays. Set to 1 to include them. Defaults to 0. Example: 0
-     * @queryParam mode [Ruleset](#ruleset) of the scores to be returned. Defaults to the specified `user`'s mode. Example: osu
-     * @queryParam limit Maximum number of results.
-     * @queryParam offset Result offset for pagination. Example: 1
+     * @queryParam include_fails integer Only for recent scores, include scores of failed plays. Set to 1 to include them. Defaults to 0. Example: 0
+     * @queryParam mode string [Ruleset](#ruleset) of the scores to be returned. Defaults to the specified `user`'s mode. Example: osu
+     * @queryParam limit integer Maximum number of results.
+     * @queryParam offset integer Result offset for pagination. Example: 1
      *
      * @response [
      *   {
@@ -594,10 +594,6 @@ class UsersController extends Controller
      *
      * This endpoint returns the detail of specified user.
      *
-     * <aside class="notice">
-     * It's highly recommended to pass <code>key</code> parameter to avoid getting unexpected result (mainly when looking up user with numeric username or nonexistent user id).
-     * </aside>
-     *
      * ---
      *
      * ### Response format
@@ -636,7 +632,7 @@ class UsersController extends Controller
      * @urlParam user integer required Id or `@`-prefixed username of the user. Previous usernames are also checked in some cases. Example: 1
      * @urlParam mode string [Ruleset](#ruleset). User default mode will be used if not specified. Example: osu
      *
-     * @queryParam key Type of `user` passed in url parameter. Can be either `id` or `username` to limit lookup by their respective type. Passing empty or invalid value will result in id lookup followed by username lookup if not found. This parameter has been deprecated. Prefix `user` parameter with `@` instead to lookup by username.
+     * @queryParam key string Type of `user` passed in url parameter. Can be either `id` or `username` to limit lookup by their respective type. Passing empty or invalid value will result in id lookup followed by username lookup if not found. This parameter has been deprecated. Prefix `user` parameter with `@` instead to lookup by username. No-example
      *
      * @response "See User object section"
      */
