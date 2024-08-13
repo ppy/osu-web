@@ -56,7 +56,7 @@ class NotificationsController extends Controller
      * unread_count          | total unread notifications
      * notification_endpoint | url to connect to websocket server
      *
-     * @queryParam max_id Maximum `id` fetched. Can be used to load earlier notifications. Defaults to no limit (fetch latest notifications)
+     * @queryParam max_id integer Maximum `id` fetched. Can be used to load earlier notifications. Defaults to no limit (fetch latest notifications). No-example
      *
      * @response {
      *   "has_more": true,
