@@ -50,8 +50,8 @@ export default class UserPreferences {
   setUser(user?: CurrentUserJson) {
     this.user = user;
 
-    if (user != null && !this.updatingOptions) {
-      this.current = user?.user_preferences;
+    if (!this.updatingOptions) {
+      this.current = user?.user_preferences ?? structuredClone(defaultUserPreferencesJson);
     }
   }
 
