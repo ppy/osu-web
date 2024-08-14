@@ -8,9 +8,10 @@ declare(strict_types=1);
 namespace App\Docs\Strategies;
 
 use App\Docs\Attributes\Limit;
+use App\Docs\Attributes\Page;
 use Knuckles\Scribe\Extracting\Strategies\GetParamsFromAttributeStrategy;
 
 class QueryParamLimit extends GetParamsFromAttributeStrategy
 {
-    protected static array $attributeNames = [Limit::class];
+    protected static array $attributeNames = [Limit::class, Page::class];
 }

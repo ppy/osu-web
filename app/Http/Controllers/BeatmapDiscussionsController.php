@@ -6,6 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Docs\Attributes\Limit;
+use App\Docs\Attributes\Page;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\BeatmapsetDiscussion\Review;
 use App\Libraries\BeatmapsetDiscussionsBundle;
@@ -96,12 +97,11 @@ class BeatmapDiscussionsController extends Controller
      * @queryParam beatmapset_status string One of `all`, `ranked`, `qualified`, `disqualified`, `never_qualified`. Defaults to `all`. TODO: better descriptions. No-example
      * @queryParam message_types string[] `suggestion`, `problem`, `mapper_note`, `praise`, `hype`, `review`. Blank defaults to all types. TODO: better descriptions. No-example
      * @queryParam only_unresolved boolean `true` to show only unresolved issues; `false`, otherwise. Defaults to `false`.
-     * @queryParam page integer Search result page.
      * @queryParam sort string `id_desc` for newest first; `id_asc` for oldest first. Defaults to `id_desc`. No-example
      * @queryParam user integer The `id` of the [User](#user).
      * @queryParam with_deleted boolean This param has no effect as api calls do not currently receive group permissions. No-example
      */
-    #[Limit]
+    #[Limit, Page]
     public function index()
     {
         $bundle = new BeatmapsetDiscussionsBundle(request()->all());
