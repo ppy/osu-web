@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Docs\Attributes\SortId;
 use App\Models\Event;
 
 /**
@@ -36,7 +37,6 @@ class EventsController extends Controller
      * events        | [Event](#event)[]
      *
      * @usesCursor
-     * @queryParam sort Sorting option. Valid values are `id_desc` (default) and `id_asc`. No-example
      *
      * @response {
      *   events: [
@@ -52,6 +52,7 @@ class EventsController extends Controller
      *   cursor_string: "eyJldmVudF9pZCI6OH0"
      * }
      */
+    #[SortId]
     public function index()
     {
         $params = request()->all();

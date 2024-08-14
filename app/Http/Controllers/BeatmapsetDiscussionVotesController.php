@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 use App\Docs\Attributes\Limit;
 use App\Docs\Attributes\Page;
+use App\Docs\Attributes\SortId;
 use App\Libraries\BeatmapsetDiscussionVotesBundle;
 
 /**
@@ -45,11 +46,10 @@ class BeatmapsetDiscussionVotesController extends Controller
      * @queryParam beatmapset_discussion_id integer `id` of the [BeatmapsetDiscussion](#beatmapsetdiscussion).
      * @queryParam receiver integer The `id` of the [User](#user) receiving the votes.
      * @queryParam score integer `1` for up vote, `-1` for down vote. Example: 1
-     * @queryParam sort string `id_desc` for newest first; `id_asc` for oldest first. Defaults to `id_desc`. No-example
      * @queryParam user integer The `id` of the [User](#user) giving the votes.
      * @queryParam with_deleted boolean This param has no effect as api calls do not currently receive group permissions. No-example
      */
-    #[Limit, Page]
+    #[Limit, Page, SortId]
     public function index()
     {
         $bundle = new BeatmapsetDiscussionVotesBundle(request()->all());

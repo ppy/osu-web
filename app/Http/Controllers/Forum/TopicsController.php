@@ -6,6 +6,7 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Docs\Attributes\Limit;
+use App\Docs\Attributes\SortId;
 use App\Exceptions\ModelNotSavedException;
 use App\Jobs\Notifications\ForumTopicReply;
 use App\Libraries\NewForumTopic;
@@ -299,7 +300,6 @@ class TopicsController extends Controller
      * @urlParam topic integer required Id of the topic. Example: 1
      *
      * @usesCursor
-     * @queryParam sort Post sorting option. Valid values are `id_asc` (default) and `id_desc`. No-example
      * @queryParam limit Maximum number of posts to be returned (20 default, 50 at most). No-example
      * @queryParam start First post id to be returned with `sort` set to `id_asc`. This parameter is ignored if `cursor_string` is specified. No-example
      * @queryParam end First post id to be returned with `sort` set to `id_desc`. This parameter is ignored if `cursor_string` is specified. No-example
@@ -314,7 +314,7 @@ class TopicsController extends Controller
      *   "sort": "id_asc"
      * }
      */
-    #[Limit(20, 1, 50, 'Maximum number of posts to be returned')]
+    #[Limit(20, 1, 50, 'Maximum number of posts to be returned'), SortId]
     public function show($id)
     {
         $topic = Topic::with(['forum'])->withTrashed()->findOrFail($id);

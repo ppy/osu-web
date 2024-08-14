@@ -6,6 +6,7 @@
 namespace App\Http\Controllers\Multiplayer\Rooms\Playlist;
 
 use App\Docs\Attributes\Limit;
+use App\Docs\Attributes\SortCustom;
 use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
 use App\Libraries\ClientCheck;
@@ -44,9 +45,9 @@ class ScoresController extends BaseController
      * @urlParam playlist integer required Id of the playlist item.
      *
      * @usesCursor
-     * @queryParam sort [MultiplayerScoresSort](#multiplayerscoressort) parameter.
      */
     #[Limit(50, 1, 50)]
+    #[SortCustom('MultiplayerScoresSort')]
     public function index($roomId, $playlistId)
     {
         $playlist = PlaylistItem::where('room_id', $roomId)->findOrFail($playlistId);
