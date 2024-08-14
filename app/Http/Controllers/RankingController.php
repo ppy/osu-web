@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Docs\Attributes\Page;
 use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\CountryStatistics;
@@ -296,9 +297,8 @@ class RankingController extends Controller
      * Field   | Type            | Description
      * ------- | --------------- | -----------
      * ranking | [User](#user)[] | Includes `kudosu`.
-     *
-     * @queryParam page Ranking page. Example: 1
      */
+    #[Page('Ranking page')]
     public function kudosu()
     {
         static $maxResults = 1000;
