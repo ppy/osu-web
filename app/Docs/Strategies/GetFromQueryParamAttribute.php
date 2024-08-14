@@ -8,11 +8,12 @@ declare(strict_types=1);
 namespace App\Docs\Strategies;
 
 use App\Docs\Attributes\Limit;
+use App\Docs\Attributes\Offset;
 use App\Docs\Attributes\Page;
 use Http\Message\Authentication\QueryParam;
 use Knuckles\Scribe\Extracting\Strategies\GetParamsFromAttributeStrategy;
 
 class GetFromQueryParamAttribute extends GetParamsFromAttributeStrategy
 {
-    protected static array $attributeNames = [QueryParam::class, Limit::class, Page::class];
+    protected static array $attributeNames = [QueryParam::class, Limit::class, Offset::class, Page::class];
 }
