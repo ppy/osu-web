@@ -6,6 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Docs\Attributes\Limit;
+use App\Docs\Attributes\SortId;
 use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\User;
 use App\Transformers\LegacyMatch\EventTransformer;
@@ -39,7 +40,6 @@ class MatchesController extends Controller
      * params.sort   | string                        | |
      *
      * @usesCursor
-     * @queryParam sort string `id_desc` for newest first; `id_asc` for oldest first. Defaults to `id_desc`. No-example
      * @response {
      *     "matches": [
      *         {
@@ -60,7 +60,7 @@ class MatchesController extends Controller
      *     "cursor_string": "eyJtYXRjaF9pZCI6MTE0NDI4Njg1fQ"
      * }
      */
-    #[Limit(50, 1, 50)]
+    #[Limit(50, 1, 50), SortId]
     public function index()
     {
         $params = request()->all();

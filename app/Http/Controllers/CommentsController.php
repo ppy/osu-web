@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Docs\Attributes\SortCustom;
 use App\Exceptions\ModelNotSavedException;
 use App\Jobs\Notifications\CommentNew;
 use App\Libraries\CommentBundle;
@@ -75,9 +76,8 @@ class CommentsController extends Controller
      * @queryParam commentable_id integer The id of the resource to get comments for. Example: 1
      * @queryParam cursor Pagination option. See [CommentSort](#commentsort) for detail. The format follows [Cursor](#cursor) except it's not currently included in the response. No-example
      * @queryParam parent_id integer Limit to comments which are reply to the specified id. Specify 0 to get top level comments. Example: 1
-     * @queryParam sort string Sort option as defined in [CommentSort](#commentsort). Defaults to `new` for guests and user-specified default when authenticated. Example: new
      */
-    #[QueryParam('derp', 'integer')]
+    #[SortCustom('CommentSort', 'Defaults to `new` for guests and user-specified default when authenticated.', 'new')]
     public function index()
     {
         $params = request()->all();
