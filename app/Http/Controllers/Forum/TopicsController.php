@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers\Forum;
 
+use App\Docs\Attributes\Limit;
 use App\Exceptions\ModelNotSavedException;
 use App\Jobs\Notifications\ForumTopicReply;
 use App\Libraries\NewForumTopic;
@@ -313,6 +314,7 @@ class TopicsController extends Controller
      *   "sort": "id_asc"
      * }
      */
+    #[Limit(20, 1, 50, 'Maximum number of posts to be returned')]
     public function show($id)
     {
         $topic = Topic::with(['forum'])->withTrashed()->findOrFail($id);

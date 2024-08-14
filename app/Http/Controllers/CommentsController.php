@@ -15,6 +15,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Knuckles\Scribe\Attributes\QueryParam;
 
 /**
  * @group Comments
@@ -76,6 +77,7 @@ class CommentsController extends Controller
      * @queryParam parent_id integer Limit to comments which are reply to the specified id. Specify 0 to get top level comments. Example: 1
      * @queryParam sort string Sort option as defined in [CommentSort](#commentsort). Defaults to `new` for guests and user-specified default when authenticated. Example: new
      */
+    #[QueryParam('derp', 'integer')]
     public function index()
     {
         $params = request()->all();

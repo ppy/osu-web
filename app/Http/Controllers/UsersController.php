@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Docs\Attributes\Limit;
 use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\UserProfilePageLookupException;
 use App\Exceptions\ValidationException;
@@ -295,7 +296,6 @@ class UsersController extends Controller
      * @urlParam user integer required Id of the user. Example: 1
      * @urlParam type string required Beatmap type. Example: favourite
      *
-     * @queryParam limit Maximum number of results.
      * @queryParam offset Result offset for pagination. Example: 1
      *
      * @response [
@@ -309,6 +309,7 @@ class UsersController extends Controller
      *   }
      * ]
      */
+    #[Limit(5, 1, 100)]
     public function beatmapsets($_userId, $type)
     {
         static $mapping = [
@@ -445,7 +446,6 @@ class UsersController extends Controller
      *
      * @urlParam user integer required Id of the user. Example: 1
      *
-     * @queryParam limit Maximum number of results.
      * @queryParam offset Result offset for pagination. Example: 1
      *
      * @response [
@@ -459,6 +459,7 @@ class UsersController extends Controller
      *   }
      * ]
      */
+    #[Limit(5, 1, 100)]
     public function kudosu($_userId)
     {
         return $this->getExtra('recentlyReceivedKudosu', [], $this->perPage, $this->offset);
@@ -477,7 +478,6 @@ class UsersController extends Controller
      *
      * @urlParam user integer required Id of the user. Example: 1
      *
-     * @queryParam limit Maximum number of results.
      * @queryParam offset Result offset for pagination. Example: 1
      *
      * @response [
@@ -491,6 +491,7 @@ class UsersController extends Controller
      *   }
      * ]
      */
+    #[Limit(5, 1, 100)]
     public function recentActivity($_userId)
     {
         return $this->getExtra('recentActivity', [], $this->perPage, $this->offset);
@@ -520,7 +521,6 @@ class UsersController extends Controller
      * @queryParam legacy_only integer Whether or not to exclude lazer scores. Defaults to 0. Example: 0
      * @queryParam include_fails integer Only for recent scores, include scores of failed plays. Set to 1 to include them. Defaults to 0. Example: 0
      * @queryParam mode string [Ruleset](#ruleset) of the scores to be returned. Defaults to the specified `user`'s mode. Example: osu
-     * @queryParam limit integer Maximum number of results.
      * @queryParam offset integer Result offset for pagination. Example: 1
      *
      * @response [
@@ -534,6 +534,7 @@ class UsersController extends Controller
      *   }
      * ]
      */
+    #[Limit(5, 1, 100)]
     public function scores($_userId, $type)
     {
         static $mapping = [
