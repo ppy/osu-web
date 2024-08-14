@@ -116,6 +116,10 @@ class DailyChallengeUserStats extends Model
                 $this->updatePercentile($playlistItem->scorePercentile(), $highScore, $startTime);
             }
         }
+        $streakBreakDay = CarbonImmutable::yesterday();
+        if ($this->last_update < $streakBreakDay) {
+            $this->updateStreak(false, $streakBreakDay);
+        }
 
         $this->saveOrExplode();
     }

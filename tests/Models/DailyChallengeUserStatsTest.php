@@ -169,6 +169,7 @@ class DailyChallengeUserStatsTest extends TestCase
             $this->roomAddPlay($user, $playlistItem);
             DailyChallengeUserStats::calculate($playTime);
         }
+        $this->travelTo($playTime->addDays(1));
 
         $stats = DailyChallengeUserStats::find($user->getKey());
         $expectedAttributes = $stats->getAttributes();
@@ -183,6 +184,15 @@ class DailyChallengeUserStatsTest extends TestCase
         $this->assertSame(2, $stats->weekly_streak_best);
         $this->assertSame(9, $stats->top_10p_placements);
         $this->assertSame(9, $stats->top_50p_placements);
+
+        $this->travelBack();
+
+        $stats->fresh()->fix();
+
+        $stats->refresh();
+        $this->assertSame(9, $stats->playcount);
+        $this->assertSame(0, $stats->daily_streak_current);
+        $this->assertSame(6, $stats->daily_streak_best);
     }
 
     public function testFixZeroTotalScore(): void
@@ -194,6 +204,7 @@ class DailyChallengeUserStatsTest extends TestCase
             $playlistItem = static::preparePlaylistItem($playTime);
             $this->roomAddPlay($user, $playlistItem, ['total_score' => $score]);
         }
+        $this->travelTo($playTime->addDays(1));
 
         $stats = DailyChallengeUserStats::find($user->getKey());
         $stats->fill([...DailyChallengeUserStats::INITIAL_VALUES])->saveOrExplode();
