@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers\Multiplayer;
 
+use App\Docs\Attributes\Limit;
 use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Ranking\DailyChallengeController;
@@ -34,12 +35,12 @@ class RoomsController extends Controller
      *
      * @group Multiplayer
      *
-     * @queryParam limit Maximum number of results. No-example
      * @queryParam mode Filter mode; `active` (default), `all`, `ended`, `participated`, `owned`. No-example
      * @queryParam season_id Season ID to return Rooms from. No-example
      * @queryParam sort Sort order; `ended`, `created`. No-example
      * @queryParam type_group `playlists` (default) or `realtime`. No-example
      */
+    #[Limit(250, 1, 250)]
     public function index()
     {
         $apiVersion = api_version();

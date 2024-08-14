@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Docs\Attributes\Limit;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\BeatmapsetDiscussion\Discussion;
 use App\Libraries\BeatmapsetDiscussion\Reply;
@@ -15,6 +16,7 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetWatch;
 use App\Models\User;
+use Knuckles\Scribe\Attributes\QueryParam;
 
 /**
  * @group Beatmapset Discussions
@@ -65,13 +67,13 @@ class BeatmapDiscussionPostsController extends Controller
      *
      * @usesCursor
      * @queryParam beatmapset_discussion_id integer `id` of the [BeatmapsetDiscussion](#beatmapsetdiscussion).
-     * @queryParam limit integer Maximum number of results.
      * @queryParam page integer Search result page.
      * @queryParam sort string `id_desc` for newest first; `id_asc` for oldest first. Defaults to `id_desc`.
      * @queryParam types string[] `first`, `reply`, `system` are the valid values. Defaults to `reply`.
      * @queryParam user integer The `id` of the [User](#user).
      * @queryParam with_deleted boolean This param has no effect as api calls do not currently receive group permissions.
      */
+    #[Limit]
     public function index()
     {
         $bundle = new BeatmapsetDiscussionPostsBundle(request()->all());
