@@ -309,12 +309,11 @@ INTRO
             Strategies\UrlParameters\GetFromUrlParamTag::class,
         ],
         'queryParameters' => [
-            Strategies\QueryParameters\GetFromQueryParamAttribute::class,
+            App\Docs\Strategies\GetFromQueryParamAttribute::class,
+            App\Docs\Strategies\UsesCursor::class,
             Strategies\QueryParameters\GetFromQueryParamTag::class,
             Strategies\QueryParameters\GetFromFormRequest::class,
             Strategies\QueryParameters\GetFromInlineValidator::class,
-            App\Docs\Strategies\QueryParamLimit::class,
-            App\Docs\Strategies\UsesCursor::class,
         ],
         'headers' => [
             Strategies\Headers\GetFromRouteRules::class,
