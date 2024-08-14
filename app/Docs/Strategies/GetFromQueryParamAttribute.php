@@ -9,9 +9,10 @@ namespace App\Docs\Strategies;
 
 use App\Docs\Attributes\Limit;
 use App\Docs\Attributes\Page;
+use Http\Message\Authentication\QueryParam;
 use Knuckles\Scribe\Extracting\Strategies\GetParamsFromAttributeStrategy;
 
-class QueryParamLimit extends GetParamsFromAttributeStrategy
+class GetFromQueryParamAttribute extends GetParamsFromAttributeStrategy
 {
-    protected static array $attributeNames = [Limit::class, Page::class];
+    protected static array $attributeNames = [QueryParam::class, Limit::class, Page::class];
 }
