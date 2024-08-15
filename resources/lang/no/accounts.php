@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Profilbilde',
+            'reset' => '',
             'rules' => 'Vennligst sørg for at profilbildet ditt følger :link<br/>Dette betyr at det må være <strong>passende for alle aldersgrupper</strong>. d.v.s. ingen nakenhet, upassende språk eller innhold.',
             'rules_link' => 'Samfunns regler',
         ],

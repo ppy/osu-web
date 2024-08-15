@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'non_preserved' => '',
+        'non_preserved' => 'このスコアは削除対象としてマークされているので、まもなく削除されます。',
         'title' => ':title[:version]の:username',
 
         'beatmap' => [
@@ -25,8 +25,8 @@ return [
 
     'status' => [
         'non_best' => '個人のベストスコアのみppを与えます。',
-        'no_pp' => '',
+        'no_pp' => 'このスコアに対してppは授与されていません',
         'processing' => 'このスコアはまだ計算中です。すぐに表示されます。',
-        'no_rank' => '',
+        'no_rank' => 'このスコアはUnranked、または削除対象のマップなのでランクはありません。',
     ],
 ];

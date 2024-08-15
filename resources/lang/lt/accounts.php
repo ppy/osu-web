@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avataras',
+            'reset' => '',
             'rules' => 'Prašome užtikrinti, kad avataras atitinka :link.<br/>Reiškias jis turi būti<strong> tinkamas visiems amžiams </strong>. pvz. nėra nuogybių, nešvankybių ar kito pažeidžiamo tūrinio.',
             'rules_link' => 'bendruomenės taisyklės',
         ],

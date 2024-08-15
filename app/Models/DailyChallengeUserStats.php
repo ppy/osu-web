@@ -100,6 +100,7 @@ class DailyChallengeUserStats extends Model
         $highScores = PlaylistItemUserHighScore
             ::where('user_id', $this->user_id)
             ->whereRelation('playlistItem.room', 'category', 'daily_challenge')
+            ->where('total_score', '>', 0)
             ->with('playlistItem.room')
             ->orderBy('created_at')
             ->get();
@@ -114,6 +115,10 @@ class DailyChallengeUserStats extends Model
             if ($room->hasEnded()) {
                 $this->updatePercentile($playlistItem->scorePercentile(), $highScore, $startTime);
             }
+        }
+        $streakBreakDay = CarbonImmutable::yesterday();
+        if ($this->last_update < $streakBreakDay) {
+            $this->updateStreak(false, $streakBreakDay);
         }
 
         $this->saveOrExplode();
