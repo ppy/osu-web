@@ -208,7 +208,9 @@ class BeatmapsetsController extends Controller
         }
 
         $noVideo = get_bool(Request::input('noVideo', false));
-        $mirror = BeatmapMirror::getRandomForRegion(request_country());
+        $mirror = BeatmapMirror::getRandomForRegion(request_country())
+            ?? BeatmapMirror::getDefault()
+            ?? abort(503, osu_trans('beatmapsets.download.no_mirrors'));
 
         BeatmapDownload::create([
             'user_id' => $userId,
