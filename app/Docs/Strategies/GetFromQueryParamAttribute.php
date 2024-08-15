@@ -10,8 +10,7 @@ namespace App\Docs\Strategies;
 use App\Docs\Attributes\Limit;
 use App\Docs\Attributes\Offset;
 use App\Docs\Attributes\Page;
-use App\Docs\Attributes\SortCustom;
-use App\Docs\Attributes\SortId;
+use App\Docs\Attributes\Sort;
 use Http\Message\Authentication\QueryParam;
 use Knuckles\Scribe\Extracting\Strategies\GetParamsFromAttributeStrategy;
 
@@ -22,7 +21,6 @@ class GetFromQueryParamAttribute extends GetParamsFromAttributeStrategy
         Offset::class,
         Page::class,
         QueryParam::class,
-        SortCustom::class,
-        SortId::class,
+        Sort::class,
     ];
 }

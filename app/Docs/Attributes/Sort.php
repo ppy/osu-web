@@ -11,7 +11,7 @@ use Attribute;
 use Knuckles\Scribe\Attributes\GenericParam;
 
 #[Attribute(Attribute::IS_REPEATABLE | Attribute::TARGET_FUNCTION | Attribute::TARGET_METHOD | Attribute::TARGET_CLASS)]
-class SortCustom extends GenericParam
+class Sort extends GenericParam
 {
     public function __construct(
         array|string $sorts,
