@@ -21,4 +21,3 @@ class SortId extends GenericParam
         parent::__construct('sort', 'string', $description, $required, $example ?? 'No-example');
     }
 }
-

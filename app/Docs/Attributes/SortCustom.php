@@ -32,4 +32,3 @@ class SortCustom extends GenericParam
         parent::__construct('sort', 'string', $description, false, $example ?? 'No-example');
     }
 }
-

@@ -21,4 +21,3 @@ class Offset extends GenericParam
         parent::__construct('offset', 'integer', $description, $required, $example ?? 'No-example');
     }
 }
-

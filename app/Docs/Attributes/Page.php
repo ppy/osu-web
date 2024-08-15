@@ -21,4 +21,3 @@ class Page extends GenericParam
         parent::__construct('page', 'integer', $description, $required, $example ?? 'No-example');
     }
 }
-
