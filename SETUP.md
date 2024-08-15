@@ -352,7 +352,7 @@ yarn karma start --single-run
 or if using Docker:
 
 ```
-docker compose run --rm php test js
+docker compose run --rm testjs
 ```
 
 # Documentation
