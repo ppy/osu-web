@@ -26,4 +26,3 @@ class Limit extends GenericParam
         parent::__construct('limit', 'integer', $description, $required, $example);
     }
 }
-
