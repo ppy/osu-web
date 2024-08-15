@@ -6,7 +6,7 @@
 namespace App\Http\Controllers\Multiplayer;
 
 use App\Docs\Attributes\Limit;
-use App\Docs\Attributes\SortCustom;
+use App\Docs\Attributes\Sort;
 use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Ranking\DailyChallengeController;
@@ -40,7 +40,7 @@ class RoomsController extends Controller
      * @queryParam season_id Season ID to return Rooms from. No-example
      * @queryParam type_group `playlists` (default) or `realtime`. No-example
      */
-    #[Limit(250, 1, 250), SortCustom(['ended', 'created'])]
+    #[Limit(250, 1, 250), Sort(['ended', 'created'])]
     public function index()
     {
         $apiVersion = api_version();

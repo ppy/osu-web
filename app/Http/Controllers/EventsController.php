@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Docs\Attributes\SortId;
+use App\Docs\Attributes\Sort;
 use App\Models\Event;
 
 /**
@@ -52,7 +52,7 @@ class EventsController extends Controller
      *   cursor_string: "eyJldmVudF9pZCI6OH0"
      * }
      */
-    #[SortId]
+    #[Sort('IdSort')]
     public function index()
     {
         $params = request()->all();

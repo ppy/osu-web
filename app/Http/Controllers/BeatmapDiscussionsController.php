@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 
 use App\Docs\Attributes\Limit;
 use App\Docs\Attributes\Page;
-use App\Docs\Attributes\SortId;
+use App\Docs\Attributes\Sort;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\BeatmapsetDiscussion\Review;
 use App\Libraries\BeatmapsetDiscussionsBundle;
@@ -101,7 +101,7 @@ class BeatmapDiscussionsController extends Controller
      * @queryParam user integer The `id` of the [User](#user).
      * @queryParam with_deleted boolean This param has no effect as api calls do not currently receive group permissions. No-example
      */
-    #[Limit, Page, SortId]
+    #[Limit, Page, Sort('IdSort')]
     public function index()
     {
         $bundle = new BeatmapsetDiscussionsBundle(request()->all());
