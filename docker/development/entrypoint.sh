@@ -23,6 +23,7 @@ if [ "$uid" != 0 ]; then
 fi
 
 usermod -d /app/.docker osuweb > /dev/null
+chown -f "${uid}:${gid}" .docker/js-build/assets .docker/js-build/builds
 
 # helper functions
 _rexec() {
