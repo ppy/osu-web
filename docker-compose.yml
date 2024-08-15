@@ -47,13 +47,14 @@ services:
     <<: *x-web
     command: ['job']
 
-  jstest:
+  testjs:
     <<: *x-web
     volumes:
       - .:/app
       - .docker/js-build/assets:/app/public/assets
       - .docker/js-build/builds:/app/resources/builds
-    command: ['true']
+    profiles: ['testjs']
+    command: ['test', 'js']
 
   schedule:
     <<: *x-web
