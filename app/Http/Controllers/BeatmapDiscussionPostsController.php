@@ -71,7 +71,7 @@ class BeatmapDiscussionPostsController extends Controller
      * @queryParam beatmapset_discussion_id integer `id` of the [BeatmapsetDiscussion](#beatmapsetdiscussion).
      * @queryParam types string[] `first`, `reply`, `system` are the valid values. Defaults to `reply`.
      * @queryParam user integer The `id` of the [User](#user).
-     * @queryParam with_deleted boolean This param has no effect as api calls do not currently receive group permissions.
+     * @queryParam with_deleted boolean This param has no effect as api calls do not currently receive group permissions. No-example
      */
     #[Limit, Page, Sort('IdSort')]
     public function index()
