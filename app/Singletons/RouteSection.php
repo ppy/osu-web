@@ -132,6 +132,9 @@ class RouteSection
         'passport' => [
             '_' => 'user',
         ],
+        'ranking' => [
+            '_' => 'rankings',
+        ],
         'store' => [
             '_' => 'store',
         ],
