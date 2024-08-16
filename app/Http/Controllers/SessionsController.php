@@ -92,6 +92,7 @@ class SessionsController extends Controller
             $this->login($user, $remember);
 
             return [
+                'csrf_token' => csrf_token(),
                 'header' => view('layout._header_user')->render(),
                 'header_popup' => view('layout._popup_user')->render(),
                 'user' => json_item($user, new CurrentUserTransformer()),

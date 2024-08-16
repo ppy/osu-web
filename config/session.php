@@ -123,7 +123,7 @@ return [
     |
     */
 
-    'cookie' => 'osu_session',
+    'cookie' => (presence(env('SESSION_PREFIX')) ?? '').'osu_session',
 
     /*
     |--------------------------------------------------------------------------
