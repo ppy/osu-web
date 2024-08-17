@@ -22,7 +22,7 @@ import { Header } from './header';
 import { ModeSwitcher } from './mode-switcher';
 import { NewDiscussion } from './new-discussion';
 
-const checkNewTimeoutDefault = 10000;
+const checkNewTimeoutDefault = 30000;
 const checkNewTimeoutMax = 60000;
 const beatmapsetJsonId = 'json-beatmapset';
 
