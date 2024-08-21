@@ -39,19 +39,19 @@ export default class Entry extends React.Component<Props> {
     makeObservable(this);
   }
 
-  get commentTooLong() {
-    return this.currentVote.comment.length > commentsMaxLength;
-  }
-
   @computed
-  private get disabled() {
-    return this.commentTooLong
-      || this.currentVote.scores.size !== this.props.store.scoringCategories.length
-      || (this.currentVote.comment === this.initialVote.comment
-          && this.props.store.scoringCategories.every((category) => (
-            this.initialVote.scores.get(category.id)?.value === this.currentVote.scores.get(category.id)?.value
+  private get canSubmit() {
+    return !this.commentTooLong
+      && this.currentVote.scores.size === this.props.store.scoringCategories.length
+      && (this.currentVote.comment !== this.initialVote.comment
+          || this.props.store.scoringCategories.some((category) => (
+            this.initialVote.scores.get(category.id)?.value !== this.currentVote.scores.get(category.id)?.value
           ))
       );
+  }
+
+  get commentTooLong() {
+    return this.currentVote.comment.length > commentsMaxLength;
   }
 
   render() {
@@ -89,7 +89,7 @@ export default class Entry extends React.Component<Props> {
 
         <div className='contest-judge-entry__button'>
           <BigButton
-            disabled={this.disabled}
+            disabled={!this.canSubmit}
             icon='fas fa-check'
             isBusy={this.xhr != null}
             props={{ onClick: this.submitVote }}
@@ -149,7 +149,7 @@ export default class Entry extends React.Component<Props> {
 
   @action
   private readonly submitVote = () => {
-    if (this.xhr != null) return;
+    if (this.xhr != null || !this.canSubmit) return;
 
     this.xhr = $.ajax(route('contest-entries.judge-vote', { contest_entry: this.props.entry.id }), {
       data: {
