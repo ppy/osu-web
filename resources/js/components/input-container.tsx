@@ -9,19 +9,19 @@ import MessageLengthCounter from './message-length-counter';
 
 interface CommonProps {
   for?: string;
-  labelKey?: string;
-  maxLength?: number;
-  modifiers?: Modifiers;
-}
-
-interface SimpleInput {
   hasError?: boolean;
-  input?: string;
+  labelKey?: string;
+  modifiers?: Modifiers;
   showError?: boolean;
 }
 
-// extra props when error marking support is used.
-type Props = CommonProps & SimpleInput;
+type Props = CommonProps & ({
+  input: string;
+  maxLength: number;
+} | {
+  input?: string;
+  maxLength?: never;
+});
 
 // TODO: look at combining with ValidatingInput
 // TODO: show error message
@@ -36,7 +36,7 @@ const InputContainer = observer((props: React.PropsWithChildren<Props>) => {
           {props.maxLength != null && (
             <MessageLengthCounter
               maxLength={props.maxLength}
-              message={props.input ?? ''}
+              message={props.input}
             />
           )}
         </div>

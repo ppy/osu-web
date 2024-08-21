@@ -8,7 +8,7 @@ import UserCardBrick from 'components/user-card-brick';
 import UserJson from 'interfaces/user-json';
 import { action, computed, makeObservable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
-import { isInputKey, maxLengths } from 'models/chat/create-announcement';
+import { isInputKey } from 'models/chat/create-announcement';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { trans } from 'utils/lang';
@@ -52,7 +52,6 @@ export default class CreateAnnouncement extends React.Component<Props> {
           <div className='chat-form__title'>{trans('chat.form.title.announcement')}</div>
           <InputContainer
             labelKey='chat.form.labels.name'
-            maxLength={maxLengths.name}
             modifiers='chat'
             {...this.model.inputContainerPropsFor('name')}
           >
@@ -66,7 +65,6 @@ export default class CreateAnnouncement extends React.Component<Props> {
           </InputContainer>
           <InputContainer
             labelKey='chat.form.labels.description'
-            maxLength={maxLengths.description}
             modifiers='chat'
             {...this.model.inputContainerPropsFor('description')}
           >
@@ -102,7 +100,6 @@ export default class CreateAnnouncement extends React.Component<Props> {
           </InputContainer>
           <InputContainer
             labelKey='chat.form.labels.message'
-            maxLength={maxLengths.message}
             modifiers={['chat', 'fill']}
             {...this.model.inputContainerPropsFor('message')}
           >
