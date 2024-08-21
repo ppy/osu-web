@@ -42,7 +42,7 @@
                     </div>
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                    {{ format_percentage($score->averageAccuracy() * 100) }}
+                    {{ format_percentage($score->averageAccuracy()) }}
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                     {{ i18n_number_format($score->attempts) }}
