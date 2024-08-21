@@ -66,20 +66,8 @@ export default class Entry extends React.Component<Props> {
           {this.props.entry.title}
         </div>
 
-        <div className='contest-judge-entry__sliders'>
-          {this.props.store.scoringCategories.map((category) => (
-            <div key={category.id}>
-              <div className='contest-judge-entry__label'>
-                <div className='contest-judge-entry__description-icon' title={category.description}>
-                  <i className='fas fa-question-circle' />
-                </div>
-
-                {category.name}
-              </div>
-
-              {this.renderRangeInput(category)}
-            </div>
-          ))}
+        <div className='contest-judge-entry__categories'>
+          {this.props.store.scoringCategories.map(this.renderCategory)}
         </div>
 
         <InputContainer
@@ -126,20 +114,27 @@ export default class Entry extends React.Component<Props> {
     this.currentVote.scores.set(categoryId, score);
   };
 
-  private renderRangeInput(category: ContestScoringCategoryJson) {
+  private readonly renderCategory = (category: ContestScoringCategoryJson) => {
     const currentScore = this.currentVote.scores.get(category.id);
 
     return (
-      <>
-        <div className='contest-judge-entry__slider'>
-          <input
-            data-category-id={category.id}
-            max={category.max_value}
-            onChange={this.handleRangeInputChange}
-            type='range'
-            value={currentScore?.value ?? 0}
-          />
+      <div key={category.id} className='contest-judge-entry__category'>
+        <div className='contest-judge-entry__label'>
+          <div className='contest-judge-entry__description-icon' title={category.description}>
+            <i className='fas fa-question-circle' />
+          </div>
+
+          {category.name}
         </div>
+
+        <input
+          className='contest-judge-entry__slider'
+          data-category-id={category.id}
+          max={category.max_value}
+          onChange={this.handleRangeInputChange}
+          type='range'
+          value={currentScore?.value ?? 0}
+        />
 
         <div className='contest-judge-entry__value'>
           {
@@ -148,9 +143,9 @@ export default class Entry extends React.Component<Props> {
               : trans('contest.judge.no_current_vote')
           }
         </div>
-      </>
+      </div>
     );
-  }
+  };
 
   @action
   private readonly submitVote = () => {
