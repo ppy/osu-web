@@ -14,12 +14,6 @@ interface CommonProps {
   modifiers?: Modifiers;
 }
 
-export interface FormWithErrors<T extends string> {
-  errors: Record<T, boolean>;
-  inputs: Record<T, string>;
-  showError: Record<T, boolean>;
-}
-
 interface SimpleInput {
   hasError?: boolean;
   input?: string;
@@ -27,17 +21,12 @@ interface SimpleInput {
 }
 
 // extra props when error marking support is used.
-type Props<T extends string> =
-  CommonProps & (
-    { model: FormWithErrors<T>; name: T }
-    | { model?: never; name?: never } & SimpleInput
-  );
+type Props = CommonProps & SimpleInput;
 
 // TODO: look at combining with ValidatingInput
-const InputContainer = observer(<T extends string>(props: React.PropsWithChildren<Props<T>>) => {
-  const error = props.model != null
-    ? props.model.errors[props.name] && props.model.showError[props.name]
-    : props.hasError && props.showError;
+// TODO: show error message
+const InputContainer = observer((props: React.PropsWithChildren<Props>) => {
+  const error = props.hasError && props.showError;
 
   return (
     <label className={classWithModifiers('input-container', { error }, props.modifiers)} htmlFor={props.for}>
@@ -47,7 +36,7 @@ const InputContainer = observer(<T extends string>(props: React.PropsWithChildre
           {props.maxLength != null && (
             <MessageLengthCounter
               maxLength={props.maxLength}
-              message={props.model != null ? props.model.inputs[props.name] : props.input ?? ''}
+              message={props.input ?? ''}
             />
           )}
         </div>

@@ -121,6 +121,14 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
     this.initialized = true;
   }
 
+  inputContainerPropsFor(name: InputKey) {
+    return {
+      hasError: this.errors[name],
+      input: this.inputs[name],
+      showError: this.showError[name],
+    };
+  }
+
   toJson() {
     const { description, message, name } = this.inputs;
 
