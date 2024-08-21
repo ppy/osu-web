@@ -27,10 +27,13 @@ const commentsMaxLength = 1000;
 export default class Entry extends React.Component<Props> {
   @observable private readonly currentVote;
   @observable private readonly initialVote;
+  @observable private readonly store;
   @observable private xhr?: JQuery.jqXHR<ContestEntryJson>;
 
   constructor(props: Props) {
     super(props);
+
+    this.store = this.props.store;
 
     const json = props.entry.current_user_judge_vote;
     this.currentVote = new CurrentUserJudgeVote(json);
@@ -42,9 +45,9 @@ export default class Entry extends React.Component<Props> {
   @computed
   private get canSubmit() {
     return !this.commentTooLong
-      && this.currentVote.scores.size === this.props.store.scoringCategories.length
+      && this.currentVote.scores.size === this.store.scoringCategories.length
       && (this.currentVote.comment !== this.initialVote.comment
-          || this.props.store.scoringCategories.some((category) => (
+          || this.store.scoringCategories.some((category) => (
             this.initialVote.scores.get(category.id)?.value !== this.currentVote.scores.get(category.id)?.value
           ))
       );
@@ -67,7 +70,7 @@ export default class Entry extends React.Component<Props> {
         </div>
 
         <div className='contest-judge-entry__categories'>
-          {this.props.store.scoringCategories.map(this.renderCategory)}
+          {this.store.scoringCategories.map(this.renderCategory)}
         </div>
 
         <InputContainer
@@ -162,7 +165,7 @@ export default class Entry extends React.Component<Props> {
     this.xhr
       .fail(onError)
       .done((json) => runInAction(() => {
-        this.props.store.updateEntry(json);
+        this.store.updateEntry(json);
 
         if (json.current_user_judge_vote != null) {
           this.initialVote.updateWithJson(json.current_user_judge_vote);
