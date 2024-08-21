@@ -50,7 +50,7 @@ export default class Entry extends React.Component<Props> {
       );
   }
 
-  get commentTooLong() {
+  private get commentTooLong() {
     return this.currentVote.comment.length > commentsMaxLength;
   }
 
