@@ -131,7 +131,7 @@ export default class Entry extends React.Component<Props> {
 
     return (
       <>
-        <div className='contest-judge-entry-range-input'>
+        <div className='contest-judge-entry__slider'>
           <input
             data-category-id={category.id}
             max={category.max_value}

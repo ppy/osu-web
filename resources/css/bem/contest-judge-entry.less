@@ -26,6 +26,48 @@
     font-weight: bold;
   }
 
+  &__slider {
+    margin-top: 10px;
+    max-width: 500px;
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      background: transparent;
+      cursor: pointer;
+
+      &::-webkit-slider-runnable-track {
+        background: hsla(var(--hsl-pink-1), 50%);
+        height: 8px;
+        border-radius: @border-radius-base;
+      }
+
+      &::-moz-range-track {
+        background: hsla(var(--hsl-pink-1), 50%);
+        height: 8px;
+        border-radius: @border-radius-base;
+      }
+
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        margin-top: -4px; // initially slightly misaligned
+        background-color: hsl(var(--hsl-pink-1));
+        width: 16px;
+        height: 16px;
+        border-radius: 9999px;
+      }
+
+      &::-moz-range-thumb {
+        border: none;
+        border-radius: 9999px;
+        background-color: hsl(var(--hsl-pink-1));
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+
   &__sliders {
     display: flex;
     flex-direction: column;
