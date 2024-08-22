@@ -8,7 +8,7 @@ import UserCardBrick from 'components/user-card-brick';
 import UserJson from 'interfaces/user-json';
 import { action, computed, makeObservable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
-import { isInputKey, maxLengths } from 'models/chat/create-announcement';
+import { isInputKey } from 'models/chat/create-announcement';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { trans } from 'utils/lang';
@@ -52,10 +52,8 @@ export default class CreateAnnouncement extends React.Component<Props> {
           <div className='chat-form__title'>{trans('chat.form.title.announcement')}</div>
           <InputContainer
             labelKey='chat.form.labels.name'
-            maxLength={maxLengths.name}
-            model={this.model}
             modifiers='chat'
-            name='name'
+            {...this.model.inputContainerPropsFor('name')}
           >
             <input
               className='chat-form__input'
@@ -67,10 +65,8 @@ export default class CreateAnnouncement extends React.Component<Props> {
           </InputContainer>
           <InputContainer
             labelKey='chat.form.labels.description'
-            maxLength={maxLengths.description}
-            model={this.model}
             modifiers='chat'
-            name='description'
+            {...this.model.inputContainerPropsFor('description')}
           >
             <input
               className='chat-form__input'
@@ -83,9 +79,8 @@ export default class CreateAnnouncement extends React.Component<Props> {
           <InputContainer
             for='chat-form-users'
             labelKey='chat.form.labels.users'
-            model={this.model}
             modifiers='chat'
-            name='users'
+            {...this.model.inputContainerPropsFor('users')}
           >
             <div className='chat-form__users'>
               <UserCardBrick user={core.currentUserOrFail} />
@@ -105,10 +100,8 @@ export default class CreateAnnouncement extends React.Component<Props> {
           </InputContainer>
           <InputContainer
             labelKey='chat.form.labels.message'
-            maxLength={maxLengths.message}
-            model={this.model}
             modifiers={['chat', 'fill']}
-            name='message'
+            {...this.model.inputContainerPropsFor('message')}
           >
             <textarea
               autoComplete='off'

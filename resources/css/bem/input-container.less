@@ -36,7 +36,7 @@
   }
 
   &--error {
-    border-color: hsl(var(--hsl-red-2));
+    border-color: hsl(var(--hsl-red-2)) !important;
   }
 
   &--fill {
@@ -47,6 +47,18 @@
   &--genre {
     --label-colour: hsl(var(--hsl-c1));
     background: none;
+  }
+
+  &--judging {
+    --input-bg: hsl(var(--hsl-b3));
+
+    border: 2px solid transparent;
+    padding: 5px;
+    margin: 20px 0;
+
+    &:focus-within {
+      border-color: hsl(var(--hsl-l1));
+    }
   }
 
   &__label {

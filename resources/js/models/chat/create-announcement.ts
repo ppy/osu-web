@@ -1,7 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { FormWithErrors } from 'components/input-container';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
@@ -25,6 +24,7 @@ export const maxLengths = Object.freeze({
   description: 255,
   message: maxMessageLength,
   name: 50,
+  users: undefined,
 });
 
 export function isInputKey(key: string): key is InputKey {
@@ -32,7 +32,7 @@ export function isInputKey(key: string): key is InputKey {
 }
 
 // This class is owned by ChatStateStore
-export default class CreateAnnouncement implements FormWithErrors<InputKey> {
+export default class CreateAnnouncement {
   @observable inputs: Record<InputKey, string>;
   @observable lookingUpUsers = false;
   @observable showError: Record<InputKey, boolean>;
@@ -119,6 +119,15 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
     });
 
     this.initialized = true;
+  }
+
+  inputContainerPropsFor(name: InputKey) {
+    return {
+      hasError: this.errors[name],
+      input: this.inputs[name],
+      maxLength: maxLengths[name],
+      showError: this.showError[name],
+    };
   }
 
   toJson() {

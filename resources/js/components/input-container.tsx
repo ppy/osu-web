@@ -9,34 +9,35 @@ import MessageLengthCounter from './message-length-counter';
 
 interface CommonProps {
   for?: string;
+  hasError?: boolean;
   labelKey?: string;
   modifiers?: Modifiers;
+  showError?: boolean;
 }
 
-export interface FormWithErrors<T extends string> {
-  errors: Record<T, boolean>;
-  inputs: Record<T, string>;
-  showError: Record<T, boolean>;
-}
-
-// extra props when error marking support is used.
-type Props<T extends string> =
-  CommonProps & (
-    { maxLength?: number; model: FormWithErrors<T>; name: T }
-    | { model?: never; name?: never }
-  );
+type Props = CommonProps & ({
+  input: string;
+  maxLength: number;
+} | {
+  input?: string;
+  maxLength?: never;
+});
 
 // TODO: look at combining with ValidatingInput
-const InputContainer = observer(<T extends string>(props: React.PropsWithChildren<Props<T>>) => {
-  const error = props.model != null && props.model.errors[props.name] && props.model.showError[props.name];
+// TODO: show error message
+const InputContainer = observer((props: React.PropsWithChildren<Props>) => {
+  const error = props.hasError && props.showError;
 
   return (
     <label className={classWithModifiers('input-container', { error }, props.modifiers)} htmlFor={props.for}>
       {props.labelKey != null && (
         <div className='input-container__label'>
           {trans(props.labelKey)}
-          {props.model != null && props.maxLength != null && (
-            <MessageLengthCounter maxLength={props.maxLength} message={props.model.inputs[props.name]} />
+          {props.maxLength != null && (
+            <MessageLengthCounter
+              maxLength={props.maxLength}
+              message={props.input}
+            />
           )}
         </div>
       )}
