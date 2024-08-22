@@ -32,7 +32,7 @@ return [
         'restore' => 'obnovit',
         'show_deleted' => 'Zobrazit smazané',
         'title' => 'Diskuze',
-        'unresolved_count' => ':count_delimited nevyřešených problémů',
+        'unresolved_count' => ':count_delimited nevyřešený problém|:count_delimited nevyřešené problémy|:count_delimited nevyřešených problémů',
 
         'collapse' => [
             'all-collapse' => 'Skrýt vše',

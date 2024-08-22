@@ -40,7 +40,7 @@ return [
     'seasons' => [
         'empty' => 'Hiện tại chưa có phòng nào ở mùa này.',
         'ongoing' => 'Mùa đang diễn ra (sẽ có nhiều playlist được thêm vào).',
-        'room_count' => 'Số playlist',
+        'room_count' => 'Số danh sách phát',
         'url' => 'Hiện thêm thông tin về mùa đó.',
     ],
 

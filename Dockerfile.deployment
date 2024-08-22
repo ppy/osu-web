@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM debian:11 as buildenv
+FROM --platform=$BUILDPLATFORM debian:12 as buildenv
 
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-https lsb-release ca-certificates curl gnupg
@@ -43,7 +43,7 @@ COPY package.json yarn.lock ./
 RUN yarn --prod --ignore-optional --frozen-lockfile
 
 
-FROM debian:11 as runenv
+FROM debian:12 as runenv
 
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-https lsb-release ca-certificates curl

@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Daruj štítok podporovateľa',
         'loading' => 'Načitávanie...',
         'send_message' => 'poslať správu',
     ],
@@ -72,19 +72,19 @@ return [
 
     'disabled' => [
         'title' => 'Ups! Vyzerá to tak, že tvoj účet bol zakázaný.',
-        'warning' => "",
+        'warning' => "V tom prípade, že ste porušili pravidlo, vezmite si prosím na vedomie, že všeobecne platí jednomesačné obdobie, počas ktorého nebudeme brať do úvahy žiadne žiadosti o amnestiu. Po tomto období nás môžete kontaktovať, ak to budete považovať za potrebné. Upozorňujeme, že vytváranie nových účtov po tom, čo ste mali jeden deaktivovný, bude mať za následok <strong>predĺženie tohto jednomesačného obmedzenia</strong>. Upozorňujeme tiež, že <strong>každým vytvoreným účtom ďalej porušujete pravidlá</strong>. Dôrazne vám odporúčame, aby ste sa nevydali touto cestou!",
 
         'if_mistake' => [
-            '_' => '',
+            '_' => 'Ak si myslíte, že ide o chybu, kontaktujte nás (prostredníctvom :email alebo kliknutím na „?“ v pravom dolnom rohu tejto stránky). Upozorňujeme, že vždy sme si plne istí našimi krokmi, pretože sú založené na veľmi spoľahlivých údajoch. Vyhradzujeme si právo nebrať do úvahy vašu žiadosť, ak budeme mať pocit, že ste úmyselne nečestní.',
             'email' => 'e-mail',
         ],
 
         'reasons' => [
-            'compromised' => '',
-            'opening' => '',
+            'compromised' => 'Váš účet bol považovaný za napadnutý. Môže byť dočasne deaktivovaný, kým sa potvrdí jeho totožnosť.',
+            'opening' => 'Existuje niekoľko dôvodov, ktoré môžu viesť k deaktivácii vášho účtu:',
 
             'tos' => [
-                '_' => '',
+                '_' => 'Porušili ste jedno alebo viacero našich pravidiel :community_rules alebo :tos.',
                 'community_rules' => 'pravidlá komunity',
                 'tos' => 'zmluvné podmienky',
             ],

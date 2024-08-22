@@ -23,6 +23,7 @@ if [ "$uid" != 0 ]; then
 fi
 
 usermod -d /app/.docker osuweb > /dev/null
+chown -f "${uid}:${gid}" .docker/js-build/assets .docker/js-build/builds || true
 
 # helper functions
 _rexec() {
@@ -66,6 +67,7 @@ _test() {
 }
 
 _test_browser() {
+    export APP_ENV=dusk.local
     _rexec php /app/artisan dusk "$@"
 }
 

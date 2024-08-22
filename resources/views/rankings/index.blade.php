@@ -56,8 +56,6 @@
                 @yield('scores')
             </div>
 
-            @yield('ranking-footer')
-
             @if ($hasPager)
                 @include('objects._pagination_v2', [
                     'object' => $scores
@@ -65,6 +63,8 @@
                         ->fragment('scores')
                 ])
             @endif
+
+            @yield('ranking-footer')
         </div>
     @endif
 @endsection

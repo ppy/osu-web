@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => '',
             'rules' => 'Pakitiyak na ang iyong avatar ay sumusunod sa :link.<br/>Nangangahulugan ito na dapat ay <strong>angkop para sa lahat ng edad</strong>. i.e. walang kahubaran, kabastusan, o nagpapahiwatig na nilalaman.',
             'rules_link' => 'ang patakaran ng komunidad
 	

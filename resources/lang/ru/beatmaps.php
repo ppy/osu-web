@@ -32,7 +32,7 @@ return [
         'restore' => 'восстановить',
         'show_deleted' => 'Показать удалённые',
         'title' => 'Обсуждение',
-        'unresolved_count' => ':count_delimited нерешенных проблем',
+        'unresolved_count' => ':count_delimited нерешённых проблем|:count_delimited нерешённая проблема|:count_delimited нерешённые проблемы',
 
         'collapse' => [
             'all-collapse' => 'Скрыть всё',
@@ -211,7 +211,7 @@ return [
         'required_text' => 'Номинаций: :current/:required',
         'reset_message_deleted' => 'удалено',
         'title' => 'Статус номинации',
-        'unresolved_issues' => 'Ещё остались нерешенные проблемы, которые необходимо решить в первую очередь.',
+        'unresolved_issues' => 'Ещё остались нерешённые проблемы, которые необходимо решить в первую очередь.',
 
         'rank_estimate' => [
             '_' => 'Эта карта станет рейтинговой :date, если не будет найдено проблем. Она #:position в :queue.',

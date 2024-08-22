@@ -117,6 +117,32 @@ class PlaylistItem extends Model
         return parent::save($options);
     }
 
+    public function scorePercentile(): array
+    {
+        $key = "playlist_item_score_percentile:{$this->getKey()}";
+
+        if (!$this->expired && !$this->room->hasEnded()) {
+            $key .= ':ongoing';
+        }
+
+        return \Cache::remember($key, 600, function (): array {
+            $scores = $this->highScores()
+                ->where('total_score', '>', 0)
+                ->orderBy('total_score', 'DESC')
+                ->pluck('total_score');
+            $count = count($scores);
+
+            return $count === 0
+                ? [
+                    '10p' => 0,
+                    '50p' => 0,
+                ] : [
+                    '10p' => $scores[max(0, (int) ($count * 0.1) - 1)],
+                    '50p' => $scores[max(0, (int) ($count * 0.5) - 1)],
+                ];
+        });
+    }
+
     private function assertValidMaxAttempts()
     {
         if ($this->max_attempts === null) {

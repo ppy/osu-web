@@ -152,8 +152,6 @@
 
         @include('layout.footer', ['modifiers' => ['landing'], 'withLinks' => false])
     </footer>
-
-    @include('layout.popup-container')
 @endsection
 
 @section ("script")

@@ -86,10 +86,10 @@ return [
             'mapper_note' => '',
             'nomination_reset' => '',
             'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'problem' => '問題を投稿',
+            'problem_warning' => '問題を投稿',
+            'review' => 'レビューを投稿',
+            'suggestion' => '提案を投稿',
         ],
 
         'mode' => [
@@ -216,8 +216,8 @@ return [
         'rank_estimate' => [
             '_' => 'このマップは、問題が見つからなければ :date にrankedされると推定されます。:queue 内の #:position ',
             'unresolved_problems' => '',
-            'problems' => '',
-            'on' => '',
+            'problems' => 'この問題',
+            'on' => ':date',
             'queue' => 'ランキングキュー',
             'soon' => '間もなく',
         ],
@@ -285,7 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => '未設定',
     ],
     'status' => [
         'any' => '全て',

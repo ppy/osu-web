@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => '아바타',
+            'reset' => '',
             'rules' => '아바타가 :link을 따르고 있는지 확인하세요.<br/>이는 아바타가 <strong>모든 연령에 적합해야 하므로</strong> 과도한 노출, 욕설 혹은 이러한 것을 암시하는 내용이 없어야 한다는 의미입니다.',
             'rules_link' => '커뮤니티 규칙',
         ],
@@ -102,8 +103,8 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '부적절한 내용의 비트맵 경고 숨기기',
-        'beatmapset_title_show_original' => '원본 언어로 비트맵 메타데이터 표시',
+        'beatmapset_show_nsfw' => '부적절한 내용에 대한 비트맵 경고 숨기기',
+        'beatmapset_title_show_original' => '원본 언어로 비트맵 메타데이터 표시하기',
         'title' => '설정',
 
         'beatmapset_download' => [

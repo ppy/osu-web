@@ -5,7 +5,7 @@
 
 namespace App\Models;
 
-use Auth;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property string $base_url
@@ -29,6 +29,7 @@ class BeatmapMirror extends Model
     public $timestamps = false;
 
     protected $hidden = ['secret_key'];
+    protected array $macros = ['getDefault'];
 
     const MIN_VERSION_TO_USE = 2;
 
@@ -65,6 +66,14 @@ class BeatmapMirror extends Model
         return $regionalMirror ?? self::getRandom();
     }
 
+    public function macroGetDefault(): callable
+    {
+        return fn (Builder $query): ?static => $query
+            ->where('version', '>=', static::MIN_VERSION_TO_USE)
+            ->where('is_master', true)
+            ->first();
+    }
+
     public function generateURL(Beatmapset $beatmapset, $skipVideo = false)
     {
         if ($beatmapset->download_disabled) {
@@ -81,7 +90,6 @@ class BeatmapMirror extends Model
         $serveFilename = str_replace(['"', '?'], ['', ''], $serveFilename);
 
         $time = time();
-        $userId = Auth::check() ? Auth::user()->user_id : 0;
         $checksum = md5("{$beatmapset->beatmapset_id}{$diskFilename}{$serveFilename}{$time}{$noVideo}{$this->secret_key}");
 
         $url = "{$this->base_url}d/{$beatmapset->beatmapset_id}?fs=".rawurlencode($serveFilename).'&fd='.rawurlencode($diskFilename)."&ts=$time&cs=$checksum&nv=$noVideo";

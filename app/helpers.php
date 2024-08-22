@@ -1815,11 +1815,11 @@ function suffixed_number_format_tag($number)
 }
 
 // formats a number as a percentage with a fixed number of precision
-// e.g.: 98.3 -> 98.30%
+// e.g.: 0.983 -> 98.30%
 function format_percentage($number, $precision = 2)
 {
     // the formatter assumes decimal number while the function receives percentage number.
-    return i18n_number_format($number / 100, NumberFormatter::PERCENT, null, $precision);
+    return i18n_number_format($number, NumberFormatter::PERCENT, null, $precision);
 }
 
 // shorthand to return the filename of an open stream/handle
