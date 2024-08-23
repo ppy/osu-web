@@ -40,7 +40,7 @@ class OrdersController extends Controller
             $orders->where('status', '<>', 'incart');
         }
 
-        $orders = $orders->paginate(20);
+        $orders = $orders->paginate();
 
         return ext_view('store.orders.index', compact('orders'));
     }

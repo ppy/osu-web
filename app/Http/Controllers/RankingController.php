@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\CountryStatistics;
+use App\Models\Model;
 use App\Models\Spotlight;
 use App\Models\User;
 use App\Models\UserStatistics;
@@ -28,7 +29,7 @@ class RankingController extends Controller
     private $friendsOnly;
 
     const MAX_RESULTS = 10000;
-    const PAGE_SIZE = 50;
+    const PAGE_SIZE = Model::PER_PAGE;
     const RANKING_TYPES = ['performance', 'charts', 'score', 'country'];
     const SPOTLIGHT_TYPES = ['charts'];
     // in display order
