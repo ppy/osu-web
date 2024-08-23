@@ -22,10 +22,12 @@ abstract class Model extends BaseModel
     use HasFactory, Traits\FasterAttributes, Validatable;
 
     const MAX_FIELD_LENGTHS = [];
+    const int PER_PAGE = 50;
 
     protected $connection = 'mysql';
     protected $guarded = [];
     protected array $macros = [];
+    protected $perPage = self::PER_PAGE;
     protected $primaryKeys;
 
     public static function booted()

@@ -137,7 +137,7 @@ class FollowsController extends Controller
 
     private function indexForumTopic()
     {
-        $topics = Topic::watchedByUser($this->user)->paginate(50);
+        $topics = Topic::watchedByUser($this->user)->paginate();
         $topicReadStatus = TopicTrack::readStatus($this->user, $topics);
         $topicWatchStatus = TopicWatch::watchStatus($this->user, $topics);
 
@@ -193,7 +193,7 @@ class FollowsController extends Controller
             ->visible()
             ->orderBy('last_notified', 'DESC')
             ->with('beatmapset')
-            ->paginate(50);
+            ->paginate();
         $totalCount = $watches->total();
         $unreadCount = $this->user->beatmapsetWatches()->visible()->unread()->count();
         $openIssues = BeatmapDiscussion

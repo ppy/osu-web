@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Multiplayer;
 
 use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
+use App\Models\Model;
 use App\Models\Multiplayer\Room;
 use App\Transformers\Multiplayer\RoomTransformer;
 
@@ -114,7 +115,7 @@ class RoomsController extends BaseController
 
     public function leaderboard($roomId)
     {
-        $limit = clamp(get_int(request('limit')) ?? 50, 1, 50);
+        $limit = clamp(get_int(request('limit')) ?? Model::PER_PAGE, 1, 50);
         $room = Room::findOrFail($roomId);
 
         // leaderboard currently requires auth so auth()->check() is not required.
@@ -182,7 +183,7 @@ class RoomsController extends BaseController
         }
         $beatmaps = $playlistItemsQuery->with('beatmap.beatmapset.beatmaps')->get()->pluck('beatmap');
         $beatmapsets = $beatmaps->pluck('beatmapset');
-        $highScores = $room->topScores()->paginate(50);
+        $highScores = $room->topScores()->paginate();
         $spotlightRooms = Room::featured()->orderBy('id', 'DESC')->get();
 
         return ext_view('multiplayer.rooms.show', [
