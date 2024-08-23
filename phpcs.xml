@@ -16,6 +16,7 @@
     <exclude-pattern>resources/docs/source/_tmp/*</exclude-pattern>
     <exclude-pattern>resources/lang/(?!en)[^/]*/.*</exclude-pattern>
 
+    <arg name="basepath" value="."/>
     <arg name="extensions" value="php"/>
     <arg name="report" value="code"/>
     <arg value="npsv"/>
