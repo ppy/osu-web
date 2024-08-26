@@ -7,16 +7,21 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Users;
 
-use App\Http\Controllers\Controller as BaseController;
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Transformers\UserCompactTransformer;
 
-class LookupController extends BaseController
+class LookupController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('throttle:30,1');
+    }
+
     public function lookup()
     {
-        priv_check('ChatAnnounce')->ensureCan();
-
+        // TODO: referer check?
         $params = get_params(request()->all(), null, ['ids:string[]'], ['null_missing' => true]);
         $ids = array_slice($params['ids'], 0, 50);
 
@@ -31,6 +36,7 @@ class LookupController extends BaseController
         }
 
         $users = User::where(fn ($q) => $q->whereIn('user_id', $numericIds)->orWhereIn('username', $stringIds))
+            ->where('group_id', '<>', app('groups')->byIdentifier('no_profile')->getKey())
             ->default()
             ->with(UserCompactTransformer::CARD_INCLUDES_PRELOAD)
             ->get();
