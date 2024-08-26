@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserJson, { UserJsonMinimum } from 'interfaces/user-json';
-import { route } from 'laroute';
 import { debounce } from 'lodash';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
@@ -11,6 +10,7 @@ import * as React from 'react';
 import { isJqXHR, onError } from 'utils/ajax';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { presence } from 'utils/string';
+import { apiLookup } from 'utils/user';
 import { Spinner } from './spinner';
 import UserCardBrick from './user-card-brick';
 
@@ -40,7 +40,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
   @observable validUsers = new Map<number, UserJson>();
   @observable private busy = false;
   private readonly debouncedLookupUsers = debounce(() => this.lookupUsers(), 1000);
-  private xhrLookupUsers?: JQuery.jqXHR<{ users: UserJson[] }>;
+  private xhr?: ReturnType<typeof apiLookup>;
 
   constructor(props: Props) {
     super(props);
@@ -60,7 +60,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
 
   componentWillUnmount() {
     this.debouncedLookupUsers.cancel();
-    this.xhrLookupUsers?.abort();
+    this.xhr?.abort();
   }
 
   render() {
@@ -153,7 +153,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
 
   @action
   private async lookupUsers() {
-    this.xhrLookupUsers?.abort();
+    this.xhr?.abort();
     this.debouncedLookupUsers.cancel();
 
     const userIds = this.users.split(',').map((s) => presence(s.trim())).filter(Boolean);
@@ -163,11 +163,8 @@ export default class UsernameInput extends React.PureComponent<Props> {
     }
 
     try {
-      this.xhrLookupUsers = $.ajax(route('users.lookup-users'), {
-        data: { ids: userIds },
-        method: 'POST',
-      });
-      const response = await this.xhrLookupUsers;
+      this.xhr = apiLookup(userIds);
+      const response = await this.xhr;
       this.extractValidUsers(response.users);
     } catch (error) {
       if (!isJqXHR(error)) throw error;
@@ -195,7 +192,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
 
     // TODO: check if change is only whitespace.
     if (text.trim().length === 0) {
-      this.xhrLookupUsers?.abort();
+      this.xhr?.abort();
       this.busy = false;
 
       return;

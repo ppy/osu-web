@@ -3,7 +3,6 @@
 
 import { UserCard } from 'components/user-card';
 import UserJson from 'interfaces/user-json';
-import { route } from 'laroute';
 import { debounce } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
@@ -16,6 +15,7 @@ import { parseJsonNullable, storeJson } from 'utils/json';
 import { trans, transChoice } from 'utils/lang';
 import { toggleCart } from 'utils/store-cart';
 import { currentUrlParams } from 'utils/turbolinks';
+import { apiLookup } from 'utils/user';
 
 const jsonId = 'json-store-supporter-tag';
 
@@ -61,7 +61,7 @@ export default class StoreSupporterTag extends React.Component<Props> {
   @observable private sliderValue = minValue;
   @observable private user: UserJson | null;
   @observable private username = currentUrlParams().get('target') ?? '';
-  private xhr: JQuery.jqXHR<{ users: UserJson[] }> | null = null;
+  private xhr: ReturnType<typeof apiLookup> | null = null;
 
   @computed
   get cost() {
@@ -229,11 +229,7 @@ export default class StoreSupporterTag extends React.Component<Props> {
 
   @action
   private readonly getUser = (username: string) => {
-    this.xhr = $.ajax(route('users.lookup-users'), {
-      data: { ids: [username] },
-      dataType: 'json',
-      type: 'POST',
-    });
+    this.xhr = apiLookup([username]);
 
     this.xhr
       .done((response) => runInAction(() => {
