@@ -3,8 +3,8 @@
 
 import BigButton from 'components/big-button';
 import InputContainer from 'components/input-container';
-import { Spinner } from 'components/spinner';
 import UserCardBrick from 'components/user-card-brick';
+import UsernameInput from 'components/username-input';
 import UserJson from 'interfaces/user-json';
 import { action, computed, makeObservable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
@@ -14,12 +14,6 @@ import * as React from 'react';
 import { trans } from 'utils/lang';
 
 type Props = Record<string, never>;
-
-const BusySpinner = ({ busy }: { busy: boolean }) => (
-  <div className='chat-form__spinner'>
-    {busy && <Spinner />}
-  </div>
-);
 
 @observer
 export default class CreateAnnouncement extends React.Component<Props> {
@@ -84,18 +78,15 @@ export default class CreateAnnouncement extends React.Component<Props> {
           >
             <div className='chat-form__users'>
               <UserCardBrick user={core.currentUserOrFail} />
-              {this.renderValidUsers()}
-              <input
-                className='chat-form__input chat-form__input--users'
+              <UsernameInput
                 id='chat-form-users'
+                ignoreCurrentUser
+                initialValue={this.model.allUsers}
                 name='users'
                 onBlur={this.handleBlur}
-                onChange={this.handleUsersInputChange}
-                onKeyDown={this.handleUsersInputKeyDown}
-                onPaste={this.handleUsersInputPaste}
-                value={this.model.inputs.users}
+                onValidUsersChanged={this.handleValidUsersChanged}
+                onValueChanged={this.handleUsernameInputValueChanged}
               />
-              <BusySpinner busy={this.model.lookingUpUsers} />
             </div>
           </InputContainer>
           <InputContainer
@@ -152,34 +143,12 @@ export default class CreateAnnouncement extends React.Component<Props> {
   };
 
   @action
-  private readonly handleRemoveUser = (user: UserJson) => {
-    this.model.validUsers.delete(user.id);
+  private readonly handleUsernameInputValueChanged = (value: string) => {
+    this.model.inputs.users = value;
   };
 
   @action
-  private readonly handleUsersInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.model.updateUsers(e.currentTarget.value, false);
+  private readonly handleValidUsersChanged = (value: Map<number, UserJson>) => {
+    this.model.validUsers = value;
   };
-
-  @action
-  private readonly handleUsersInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    const elem = e.currentTarget;
-    if (e.key === 'Backspace' && elem.selectionStart === 0 && elem.selectionEnd === 0) {
-      const last = [...this.model.validUsers.keys()].pop();
-      if (last != null) {
-        this.model.validUsers.delete(last);
-      }
-    }
-  };
-
-  @action
-  private readonly handleUsersInputPaste = (e: React.SyntheticEvent<HTMLInputElement>) => {
-    this.model.updateUsers(e.currentTarget.value, true);
-  };
-
-  private renderValidUsers() {
-    return [...this.model.validUsers.values()].map((user) => (
-      <UserCardBrick key={user.id} onRemoveClick={this.handleRemoveUser} user={user} />
-    ));
-  }
 }
