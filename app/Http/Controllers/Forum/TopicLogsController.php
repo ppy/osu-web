@@ -19,7 +19,7 @@ class TopicLogsController extends Controller
         $logs = $topic->logs()
             ->where('log_type', Log::LOG_FORUM_MOD)
             ->orderByDesc('log_time')
-            ->paginate(30);
+            ->paginate();
 
         return ext_view('forum.topics.logs.index', compact('logs', 'topic'));
     }
