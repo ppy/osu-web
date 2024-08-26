@@ -37,11 +37,6 @@ export default class CreateAnnouncement {
   private readonly uuid = uuid();
 
   @computed
-  get allUsers() {
-    return [...this.validUsers.keys(), this.inputs.users].join(',');
-  }
-
-  @computed
   get errors() {
     return {
       description: !this.isValidLength('description', true),
@@ -55,6 +50,13 @@ export default class CreateAnnouncement {
   @computed
   get isValid() {
     return !Object.values(this.errors).some(Boolean);
+  }
+
+  get propsForUsernameInput() {
+    return {
+      initialUsers: [...this.validUsers.values()],
+      initialValue: this.inputs.users,
+    };
   }
 
   constructor() {
