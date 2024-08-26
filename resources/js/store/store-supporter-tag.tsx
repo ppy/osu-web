@@ -25,7 +25,7 @@ const minValue = 4;
 const userNotFound = new User(-1);
 userNotFound.username = trans('supporter_tag.user_search.not_found');
 
-const userNotFoundJson = userNotFound.toJson();
+const userNotFoundJson = Object.freeze(userNotFound.toJson());
 
 interface Props {
   maxMessageLength: number;
