@@ -77,7 +77,6 @@ class UsersController extends Controller
         $this->middleware('guest', ['only' => ['create', 'store', 'storeWeb']]);
         $this->middleware('auth', ['only' => [
             'checkUsernameAvailability',
-            'checkUsernameExists',
             'report',
             'me',
             'posts',
@@ -157,14 +156,6 @@ class UsersController extends Controller
             'cost' => $cost,
             'costString' => currency($cost),
         ];
-    }
-
-    public function checkUsernameExists()
-    {
-        $username = get_string(request('username'));
-        $user = User::lookup($username, 'username') ?? UserNotFound::instance();
-
-        return json_item($user, 'UserCompact', ['cover', 'country']);
     }
 
     public function extraPages($_id, $page)

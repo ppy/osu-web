@@ -7,6 +7,7 @@ import { route } from 'laroute';
 import { debounce } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
+import User from 'models/user';
 import core from 'osu-core-singleton';
 import React from 'react';
 import { onError } from 'utils/ajax';
@@ -20,6 +21,11 @@ const jsonId = 'json-store-supporter-tag';
 
 const maxValue = 52;
 const minValue = 4;
+
+const userNotFound = new User(-1);
+userNotFound.username = trans('supporter_tag.user_search.not_found');
+
+const userNotFoundJson = userNotFound.toJson();
 
 interface Props {
   maxMessageLength: number;
@@ -55,7 +61,7 @@ export default class StoreSupporterTag extends React.Component<Props> {
   @observable private sliderValue = minValue;
   @observable private user: UserJson | null;
   @observable private username = currentUrlParams().get('target') ?? '';
-  private xhr: JQuery.jqXHR<UserJson> | null = null;
+  private xhr: JQuery.jqXHR<{ users: UserJson[] }> | null = null;
 
   @computed
   get cost() {
@@ -223,16 +229,19 @@ export default class StoreSupporterTag extends React.Component<Props> {
 
   @action
   private readonly getUser = (username: string) => {
-    this.xhr = $.ajax({
-      data: { username },
+    this.xhr = $.ajax(route('users.lookup-users'), {
+      data: { ids: [username] },
       dataType: 'json',
       type: 'POST',
-      url: route('users.check-username-exists'),
     });
 
     this.xhr
-      .done((data) => runInAction(() => {
-        this.user = data;
+      .done((response) => runInAction(() => {
+        if (response.users.length > 0) {
+          this.user = response.users[0];
+        } else {
+          this.user = userNotFoundJson;
+        }
       }))
       .fail(onError)
       .always(() => {
