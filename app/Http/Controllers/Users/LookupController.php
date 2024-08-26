@@ -5,15 +5,15 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Chat;
+namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller as BaseController;
 use App\Models\User;
 use App\Transformers\UserCompactTransformer;
 
-class UsersController extends BaseController
+class LookupController extends BaseController
 {
-    public function index()
+    public function lookup()
     {
         priv_check('ChatAnnounce')->ensureCan();
 

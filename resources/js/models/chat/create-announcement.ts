@@ -207,7 +207,10 @@ export default class CreateAnnouncement {
     }
 
     try {
-      this.xhrLookupUsers = $.getJSON(route('chat.users.index'), { ids: userIds });
+      this.xhrLookupUsers = $.ajax(route('users.lookup-users'), {
+        data: { ids: userIds },
+        method: 'POST',
+      });
       const response = await this.xhrLookupUsers;
       this.extractValidUsers(response.users);
     } catch (error) {
