@@ -216,7 +216,6 @@ export default class UsernameInput extends React.PureComponent<Props> {
     return this.validUsers.has(Number(userIdOrUsername))
       // maybe it's a username
       || [...this.validUsers.values()].some((user) => {
-        console.log(`${user.username} ${userIdOrUsername}`);
         const validUsernameLowercase = user.username.toLowerCase();
         return [validUsernameLowercase, `@${validUsernameLowercase}`].includes(userIdOrUsername.toLowerCase());
       });
