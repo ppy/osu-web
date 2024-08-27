@@ -36,11 +36,12 @@ const BusySpinner = ({ busy }: { busy: boolean }) => (
 
 @observer
 export default class UsernameInput extends React.PureComponent<Props> {
-  @observable input: string = '';
-  @observable validUsers = new Map<number, UserJson>();
   @observable private busy = false;
   private readonly debouncedLookupUsers = debounce(() => this.lookupUsers(), 1000);
+  @observable private input: string = '';
+  @observable private readonly validUsers = new Map<number, UserJson>();
   private xhr?: ReturnType<typeof apiLookup>;
+
 
   constructor(props: Props) {
     super(props);
