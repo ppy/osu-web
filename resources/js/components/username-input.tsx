@@ -210,12 +210,16 @@ export default class UsernameInput extends React.PureComponent<Props> {
     }
   }
 
-  private validUsersContains(userId?: string | null) {
-    if (userId == null) return false;
+  private validUsersContains(userIdOrUsername?: string | null) {
+    if (userIdOrUsername == null) return false;
 
-    return this.validUsers.has(Number(userId))
+    return this.validUsers.has(Number(userIdOrUsername))
       // maybe it's a username
-      || [...this.validUsers.values()].some((user) => user.username.toLowerCase() === userId.toLowerCase());
+      || [...this.validUsers.values()].some((user) => {
+        console.log(`${user.username} ${userIdOrUsername}`);
+        const validUsernameLowercase = user.username.toLowerCase();
+        return [validUsernameLowercase, `@${validUsernameLowercase}`].includes(userIdOrUsername.toLowerCase());
+      });
   }
 }
 
