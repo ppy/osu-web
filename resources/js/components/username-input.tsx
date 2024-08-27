@@ -42,12 +42,14 @@ export default class UsernameInput extends React.PureComponent<Props> {
   @observable private readonly validUsers = new Map<number, UserJson>();
   private xhr?: ReturnType<typeof apiLookup>;
 
-
   constructor(props: Props) {
     super(props);
 
     makeObservable(this);
 
+    // Does not accept input value updates outside of construction.
+    // The component manages its own state so it can handle user and text
+    // conversion without bouncing values back and forth.
     if (this.props.initialUsers != null) {
       for (const user of this.props.initialUsers) {
         this.validUsers.set(user.id, user);

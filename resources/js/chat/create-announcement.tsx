@@ -17,6 +17,12 @@ type Props = Record<string, never>;
 
 @observer
 export default class CreateAnnouncement extends React.Component<Props> {
+  private usernameInputInitialProps: typeof this.model.propsForUsernameInput = {
+    // dummy value so the field isn't nullablel runInAction in contructor doesn't count as initialized.
+    initialUsers: [],
+    initialValue: '',
+  };
+
   @computed
   private get canSend() {
     return core.dataStore.chatState.isReady && !core.dataStore.chatState.isAddingChannel && this.model.isValid;
@@ -34,6 +40,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
 
     runInAction(() => {
       this.model.initialize();
+      this.usernameInputInitialProps = this.model.propsForUsernameInput;
     });
   }
 
@@ -85,7 +92,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
                 onBlur={this.handleBlur}
                 onValidUsersChanged={this.handleValidUsersChanged}
                 onValueChanged={this.handleUsernameInputValueChanged}
-                {...this.model.propsForUsernameInput}
+                {...this.usernameInputInitialProps}
               />
             </div>
           </InputContainer>
