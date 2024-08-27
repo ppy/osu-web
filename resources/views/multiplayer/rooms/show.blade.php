@@ -67,7 +67,7 @@
                     {{ osu_trans('rankings.spotlight.participants') }}
                 </div>
                 <div class="counter-box__count">
-                    {{ i18n_number_format($room->participant_count) }}
+                    {{ i18n_number_format($scores->total()) }}
                 </div>
             </div>
         </div>
