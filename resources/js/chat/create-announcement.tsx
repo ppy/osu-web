@@ -17,11 +17,7 @@ type Props = Record<string, never>;
 
 @observer
 export default class CreateAnnouncement extends React.Component<Props> {
-  private usernameInputInitialProps: typeof this.model.propsForUsernameInput = {
-    // dummy value so the field isn't nullablel runInAction in contructor doesn't count as initialized.
-    initialUsers: [],
-    initialValue: '',
-  };
+  private readonly usernameInputInitialProps;
 
   @computed
   private get canSend() {
@@ -40,8 +36,9 @@ export default class CreateAnnouncement extends React.Component<Props> {
 
     runInAction(() => {
       this.model.initialize();
-      this.usernameInputInitialProps = this.model.propsForUsernameInput;
     });
+
+    this.usernameInputInitialProps = runInAction(() => this.model.propsForUsernameInput);
   }
 
   render() {
