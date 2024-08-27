@@ -36,7 +36,7 @@ const BusySpinner = ({ busy }: { busy: boolean }) => (
 
 @observer
 export default class UsernameInput extends React.PureComponent<Props> {
-  @observable users: string = '';
+  @observable input: string = '';
   @observable validUsers = new Map<number, UserJson>();
   @observable private busy = false;
   private readonly debouncedLookupUsers = debounce(() => this.lookupUsers(), 1000);
@@ -76,7 +76,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
           onKeyDown={this.handleUsersInputKeyDown}
           onKeyUp={this.handleUsersInputKeyUp}
           onPaste={this.handleUsersInputPaste}
-          value={this.users}
+          value={this.input}
         />
         <BusySpinner busy={this.busy} />
       </div>
@@ -88,7 +88,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
    */
   @action
   private extractValidUsers(users: UserJson[]) {
-    const userIds = this.users.split(',');
+    const userIds = this.input.split(',');
 
     for (const user of users) {
       this.validUsers.set(user.id, user);
@@ -104,13 +104,13 @@ export default class UsernameInput extends React.PureComponent<Props> {
       }
     }
 
-    this.users = invalidUsers.join(',');
+    this.input = invalidUsers.join(',');
 
     if (this.props.ignoreCurrentUser ?? false) {
       this.validUsers.delete(core.currentUserOrFail.id);
     }
 
-    this.props.onValueChanged?.(this.users);
+    this.props.onValueChanged?.(this.input);
     this.props.onValidUsersChanged?.(this.validUsers);
   }
 
@@ -156,7 +156,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
     this.xhr?.abort();
     this.debouncedLookupUsers.cancel();
 
-    const userIds = this.users.split(',').map((s) => presence(s.trim())).filter(Boolean);
+    const userIds = this.input.split(',').map((s) => presence(s.trim())).filter(Boolean);
     if (userIds.length === 0) {
       this.busy = false;
       return;
@@ -186,9 +186,9 @@ export default class UsernameInput extends React.PureComponent<Props> {
   @action
   private updateUsers(text: string, immediate: boolean) {
     this.debouncedLookupUsers.cancel();
-    this.users = text;
+    this.input = text;
 
-    this.props.onValueChanged?.(this.users);
+    this.props.onValueChanged?.(this.input);
 
     // TODO: check if change is only whitespace.
     if (text.trim().length === 0) {
