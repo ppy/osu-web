@@ -15,7 +15,7 @@ import { parseJsonNullable, storeJson } from 'utils/json';
 import { trans, transChoice } from 'utils/lang';
 import { toggleCart } from 'utils/store-cart';
 import { currentUrlParams } from 'utils/turbolinks';
-import { apiLookup } from 'utils/user';
+import { apiLookupUsers } from 'utils/user';
 
 const jsonId = 'json-store-supporter-tag';
 
@@ -61,7 +61,7 @@ export default class StoreSupporterTag extends React.Component<Props> {
   @observable private sliderValue = minValue;
   @observable private user: UserJson | null;
   @observable private username = currentUrlParams().get('target') ?? '';
-  private xhr: ReturnType<typeof apiLookup> | null = null;
+  private xhr: ReturnType<typeof apiLookupUsers> | null = null;
 
   @computed
   get cost() {
@@ -229,7 +229,7 @@ export default class StoreSupporterTag extends React.Component<Props> {
 
   @action
   private readonly getUser = (username: string) => {
-    this.xhr = apiLookup([username]);
+    this.xhr = apiLookupUsers([username]);
 
     this.xhr
       .done((response) => runInAction(() => {

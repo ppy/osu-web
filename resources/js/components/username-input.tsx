@@ -10,7 +10,7 @@ import * as React from 'react';
 import { isJqXHR, onError } from 'utils/ajax';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { presence } from 'utils/string';
-import { apiLookup } from 'utils/user';
+import { apiLookupUsers } from 'utils/user';
 import { Spinner } from './spinner';
 import UserCardBrick from './user-card-brick';
 
@@ -40,7 +40,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
   private readonly debouncedLookupUsers = debounce(() => this.lookupUsers(), 1000);
   @observable private input: string = '';
   @observable private readonly validUsers = new Map<number, UserJson>();
-  private xhr?: ReturnType<typeof apiLookup>;
+  private xhr?: ReturnType<typeof apiLookupUsers>;
 
   constructor(props: Props) {
     super(props);
@@ -166,7 +166,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
     }
 
     try {
-      this.xhr = apiLookup(userIds);
+      this.xhr = apiLookupUsers(userIds);
       const response = await this.xhr;
       this.extractValidUsers(response.users);
     } catch (error) {

@@ -16,12 +16,12 @@ import { onErrorWithCallback } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import { transparentGif } from 'utils/html';
 import { trans } from 'utils/lang';
-import { apiLookup } from 'utils/user';
+import { apiLookupUsers } from 'utils/user';
 import DiscussionsState from './discussions-state';
 
 interface XhrCollection {
   updateOwner: JQuery.jqXHR<BeatmapsetWithDiscussionsJson>;
-  userLookup: ReturnType<typeof apiLookup>;
+  userLookup: ReturnType<typeof apiLookupUsers>;
 }
 
 interface Props {
@@ -261,7 +261,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
 
     if (currentCheckingUser == null) return;
 
-    this.xhr.userLookup = apiLookup([currentCheckingUser]);
+    this.xhr.userLookup = apiLookupUsers([currentCheckingUser]);
     this.xhr.userLookup.done((response) => runInAction(() => {
       if (response.users.length > 0) {
         this.props.userByName.set(currentCheckingUser, response.users[0]);
