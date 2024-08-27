@@ -233,11 +233,7 @@ export default class StoreSupporterTag extends React.Component<Props> {
 
     this.xhr
       .done((response) => runInAction(() => {
-        if (response.users.length > 0) {
-          this.user = response.users[0];
-        } else {
-          this.user = userNotFoundJson;
-        }
+        this.user = response.users[0] ?? userNotFoundJson;
       }))
       .fail(onError)
       .always(() => {
