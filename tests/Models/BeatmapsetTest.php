@@ -24,13 +24,13 @@ use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotification;
 use Bus;
+use Carbon\Carbon;
 use Database\Factories\BeatmapsetFactory;
 use Queue;
 use Tests\TestCase;
 
 class BeatmapsetTest extends TestCase
 {
-
     public static function disqualifyOrResetNominationsDataProvider()
     {
         return [
@@ -779,6 +779,27 @@ class BeatmapsetTest extends TestCase
     //endregion
 
     //region disqualification
+
+    public function testDisqualifyAndRequalifyDoesNotResetQueue()
+    {
+        static $dayInSeconds = 86400;
+        $yesterday = Carbon::now()->subSeconds($dayInSeconds);
+        $user = User::factory()->withGroup('bng')->create();
+        $beatmapset = Beatmapset::factory()->qualified($yesterday)->create();
+
+        // sanity
+        $this->assertNull($beatmapset->previous_queue_duration);
+
+        $beatmapset->setApproved('pending', $user);
+        $beatmapset = $beatmapset->fresh();
+        // TODO: possible timing issues?
+        $this->assertSame($dayInSeconds, $beatmapset->previous_queue_duration);
+        $this->assertNull($beatmapset->queued_at);
+
+        $beatmapset->setApproved('qualified', $user);
+        $beatmapset = $beatmapset->fresh();
+        $this->assertEquals($beatmapset->approved_date->toImmutable()->subSeconds($dayInSeconds), $beatmapset->queued_at);
+    }
 
     /**
      * @dataProvider disqualifyOrResetNominationsDataProvider
