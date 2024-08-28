@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Chậm lại, chơi nhiều hơn.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [

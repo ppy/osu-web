@@ -25,14 +25,14 @@ return [
         'message_placeholder_silenced' => "Keskusteluun ei voi osallistua mykistettynä.",
         'message_type_select' => 'Valitse kommentin tyyppi',
         'reply_notice' => 'Vastaa painamalla enter-näppäintä.',
-        'reply_resolve_notice' => '',
+        'reply_resolve_notice' => 'Paina enteriä vastataksesi. Paina ctrl+enteriä vastataksesi ja ratkaistaksesi.',
         'reply_placeholder' => 'Kirjoita vastauksesi tähän',
         'require-login' => 'Kirjaudu sisään lähettääksesi viestejä tai vastauksia',
         'resolved' => 'Ratkaistu',
         'restore' => 'palauta',
         'show_deleted' => 'Näytä poistetut',
         'title' => 'Keskustelut',
-        'unresolved_count' => '',
+        'unresolved_count' => ':count_delimited ratkaisematon ongelma|:count_delimited ratkaisematonta ongelmaa',
 
         'collapse' => [
             'all-collapse' => 'Sulje kaikki',

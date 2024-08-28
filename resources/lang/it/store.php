@@ -174,7 +174,7 @@ return [
         'add_to_cart' => 'Aggiungi al carrello',
         'notify' => 'Avvisami quando è disponibile!',
 
-        'notification_success' => 'sarai avvisato quando sarà disponibile. clicca :link per annullare',
+        'notification_success' => 'verrai avvisato quando sarà disponibile. clicca :link per annullare',
         'notification_remove_text' => 'qui',
 
         'notification_in_stock' => 'Questo prodotto è già disponibile!',

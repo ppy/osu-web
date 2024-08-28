@@ -8,7 +8,7 @@ return [
     'title' => 'Featured Artists',
 
     'admin' => [
-        'hidden' => 'ARTIS SAAT INI TERSEMBUNYI',
+        'hidden' => 'ARTIS INI TERSEMBUNYI',
     ],
 
     'beatmaps' => [
@@ -29,7 +29,7 @@ return [
 
     'songs' => [
         '_' => 'Lagu',
-        'count' => '',
+        'count' => ':count_delimited lagu|:count_delimited lagu',
         'original' => 'osu! original',
         'original_badge' => 'ASLI',
     ],
@@ -38,7 +38,7 @@ return [
         'title' => 'tajuk',
         'length' => 'tempoh',
         'bpm' => 'bpm',
-        'genre' => 'aliran',
+        'genre' => 'genre',
     ],
 
     'tracks' => [
@@ -46,19 +46,19 @@ return [
             '_' => 'carian lagu',
 
             'exclusive_only' => [
-                'all' => '',
-                'exclusive_only' => '',
+                'all' => 'Semua',
+                'exclusive_only' => 'osu! original',
             ],
 
             'form' => [
-                'advanced' => 'Carian Lanjutan',
+                'advanced' => 'Carian Lanjut',
                 'album' => 'Album',
                 'artist' => 'Artis',
                 'bpm_gte' => 'BPM Minimum',
                 'bpm_lte' => 'BPM Maksimum',
                 'empty' => 'Tiada lagu yang sesuai dengan ukur tara pencarian yang ditentukan.',
-                'exclusive_only' => '',
-                'genre' => 'Aliran',
+                'exclusive_only' => 'Jenis',
+                'genre' => 'Genre',
                 'genre_all' => 'Semua',
                 'length_gte' => 'Tempoh Minimum',
                 'length_lte' => 'Tempoh Maksimum',

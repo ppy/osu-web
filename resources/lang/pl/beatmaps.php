@@ -25,7 +25,7 @@ return [
         'message_placeholder_silenced' => "Nie możesz zamieszczać dyskusji po tym, jak twoje konto zostało uciszone.",
         'message_type_select' => 'Wybierz typ komentarza',
         'reply_notice' => 'Naciśnij Enter, aby odpowiedzieć.',
-        'reply_resolve_notice' => '',
+        'reply_resolve_notice' => 'Wciśnij Enter, aby odpowiedzieć. Wciśnij ctrl+enter, aby i rozwiązać.',
         'reply_placeholder' => 'Napisz tutaj swoją odpowiedź',
         'require-login' => 'Zaloguj się, aby odpowiedzieć bądź opublikować uwagę',
         'resolved' => 'Rozwiązane',
@@ -285,7 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'nie ustawiono',
     ],
     'status' => [
         'any' => 'Jakikolwiek',

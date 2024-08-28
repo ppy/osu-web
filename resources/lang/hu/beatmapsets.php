@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Lassíts le, játssz többet.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [

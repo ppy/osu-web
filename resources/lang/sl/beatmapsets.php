@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Upočasni se, igraj več.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [

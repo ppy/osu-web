@@ -19,8 +19,8 @@ return [
     'show' => [
         'download' => '下载',
         'item' => [
-            'cleared' => '玩过',
-            'not_cleared' => '未玩过',
+            'cleared' => '已通过',
+            'not_cleared' => '未通过',
         ],
         'no_diff_reduction' => [
             '_' => '若要解锁成就，则不能使用:link游玩谱面。',

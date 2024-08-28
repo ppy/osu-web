@@ -5,44 +5,44 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'wartaosu!',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'Berita lebih terkini',
+            'older' => 'Berita lebih lapuk',
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'berita',
+            'info' => 'halaman utama',
         ],
     ],
 
     'show' => [
-        'by' => '',
+        'by' => 'oleh :user',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'Berita lebih terkini',
+            'older' => 'Berita lebih lapuk',
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'berita',
+            'info' => 'topik berita',
         ],
     ],
 
     'sidebar' => [
-        'archive' => '',
+        'archive' => 'Pustaka Berita',
     ],
 
     'store' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'Kemaskini',
+        'ok' => 'Senarai telah dikemaskini.',
     ],
 
     'update' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'Kemaskini',
+        'ok' => 'Hantaran dikemaskini.',
     ],
 ];

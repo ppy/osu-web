@@ -27,7 +27,7 @@ return [
             'mode' => 'Mode beatmap',
             'only_unresolved' => 'Hanya tampilkan topik diskusi yang belum terjawab',
             'show_review_embeds' => 'Tampilkan pos ulasan',
-            'types' => 'Tipe pesan',
+            'types' => 'Jenis pesan',
             'username' => 'Nama Pengguna',
 
             'beatmapset_status' => [

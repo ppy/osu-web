@@ -106,7 +106,7 @@ return [
         '_' => 'Masuk',
         'button' => 'Masuk',
         'button_posting' => 'Mencoba masuk...',
-        'email_login_disabled' => 'Alamat email untuk saat ini tidak dapat digunakan untuk masuk. Silakan masuk dengan menggunakan nama pengguna.',
+        'email_login_disabled' => 'Entri masuk dengan email saat ini sedang dinonaktifkan. Silakan masuk dengan menggunakan nama pengguna.',
         'failed' => 'Rincian masuk salah',
         'forgot' => 'Lupa kata sandi?',
         'info' => 'Silakan masuk untuk melanjutkan',
@@ -458,7 +458,7 @@ return [
         ],
         'page' => [
             'button' => 'sunting halaman profil',
-            'description' => '<strong>saya!</strong> merupakan area pada halaman profilmu yang dapat kamu modifikasi sesuka hati.',
+            'description' => '<strong>saya!</strong> merupakan area pribadi pada halaman profilmu yang dapat kamu isi sesuka hati.',
             'edit_big' => 'Sunting saya!',
             'placeholder' => 'Ketik konten halaman di sini',
 

@@ -35,7 +35,7 @@ return [
                 'all' => '所有',
                 'disqualified' => '下架 (DQ)',
                 'never_qualified' => '从未过审 (Qualified)',
-                'qualified' => '合格',
+                'qualified' => '过审 (Qualified)',
                 'ranked' => '上架 (Ranked)',
             ],
 
@@ -84,7 +84,7 @@ return [
             'invalid_document' => '审阅无效',
             'invalid_discussion_type' => '讨论类型无效',
             'minimum_issues' => '审阅时必须指出最少 :count 个问题',
-            'missing_text' => '该版块缺少文本。',
+            'missing_text' => '该版块缺少文本',
             'too_many_blocks' => '审阅只能包含 :count 个段落或问题',
         ],
     ],

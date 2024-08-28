@@ -5,26 +5,26 @@
 
 return [
     'show' => [
-        'fallback_translation' => '',
-        'incomplete_or_outdated' => '',
-        'missing' => '',
-        'missing_title' => '',
-        'missing_translation' => '',
-        'needs_cleanup_or_rewrite' => '',
+        'fallback_translation' => 'Laman yang diminta belum lagi diterjemah kepada bahasa yang dipilih (:language). Tunjuk versi Inggeris.',
+        'incomplete_or_outdated' => 'Kandungan di laman ini tidak lengkap atau ketinggalan zaman. Jika anda boleh membantu, sila pertimbang untuk kemaskini rencana!',
+        'missing' => 'Laman yang diminta ":keyword" tidak dapat dijumpai.',
+        'missing_title' => 'Tidak Jumpa',
+        'missing_translation' => 'Laman yang diminta tidak dapat dijumpai untuk bahasa yang dipilih ketika ini.',
+        'needs_cleanup_or_rewrite' => 'Laman ini tidak mematuhi piawai wiki osu! dan memerlukan pembersihan atau ditulis semula. Jika anda boleh membantu, sila pertimbang untuk kemaskini rencana!',
         'search' => '',
-        'stub' => '',
-        'toc' => '',
+        'stub' => 'Rencana ini tidak habis dan menunggu seseorang untuk mengembangkannya.',
+        'toc' => 'Kandungan',
 
         'edit' => [
-            'link' => '',
-            'refresh' => '',
+            'link' => 'Tunjuk di Github',
+            'refresh' => 'Segar Semula',
         ],
 
         'translation' => [
             'legal' => '',
             'outdated' => '',
 
-            'default' => '',
+            'default' => 'Versi Inggeris',
         ],
     ],
 ];

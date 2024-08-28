@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => '慢一点，打几张图再回来吧。',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [

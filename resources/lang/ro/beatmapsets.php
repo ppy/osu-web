@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Descarcă mai puțin, joacă mai mult.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [

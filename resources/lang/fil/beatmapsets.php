@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Hinay lang, maglaro ka muna.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
