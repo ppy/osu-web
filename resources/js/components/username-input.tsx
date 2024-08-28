@@ -102,7 +102,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
     for (const userId of userIds) {
       const trimmedUserId = presence(userId.trim());
 
-      if (!this.validUsersContains(trimmedUserId)) {
+      if (!this.validUsersContain(trimmedUserId)) {
         invalidUsers.push(userId);
       }
     }
@@ -210,7 +210,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
     }
   }
 
-  private validUsersContains(userIdOrUsername?: string | null) {
+  private validUsersContain(userIdOrUsername?: string | null) {
     if (userIdOrUsername == null) return false;
 
     return this.validUsers.has(Number(userIdOrUsername))
