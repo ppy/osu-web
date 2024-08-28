@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => '欲速則不達。',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [

@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Abranda, joga mais.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [

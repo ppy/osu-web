@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Vá devagar, jogue mais.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [

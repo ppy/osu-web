@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Запавольвайце, гуляйце больш.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [

@@ -241,11 +241,11 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
+                'reset_no_supporter' => 'Palauta oletusväri? Tukijamerkki vaaditaan värin vaihtamiseen.',
                 'title' => 'Väri',
 
                 'supporter' => [
-                    '_' => '',
+                    '_' => 'Muokatut väriteemat saatavilla vain :link',
                     'link' => 'osu!tukijat',
                 ],
             ],

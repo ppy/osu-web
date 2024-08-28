@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'Laman yang diminta belum diterjemahkan ke dalam bahasa yang dipilih (:language). Menampilkan versi Bahasa Inggris.',
+        'fallback_translation' => 'Halaman yang diminta belum diterjemahkan ke dalam bahasa yang dipilih (:language). Menampilkan versi Bahasa Inggris.',
         'incomplete_or_outdated' => 'Informasi yang tertera pada halaman ini tidak lengkap atau telah kedaluwarsa. Apabila kamu berkenan, mohon bantu kami untuk memperbarui artikel ini!',
         'missing' => 'Halaman ":keyword" yang diminta tidak dapat ditemukan.',
         'missing_title' => 'Tidak Ditemukan',

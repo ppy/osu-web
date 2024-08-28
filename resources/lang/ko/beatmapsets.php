@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => '잠시 멈추시고, 좀 더 플레이해보세요.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [

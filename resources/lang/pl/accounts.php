@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Awatar',
-            'reset' => '',
+            'reset' => 'zresetuj',
             'rules' => 'Upewnij się, że twój awatar jest zgodny z :link.<br/>Oznacza to, że musi być <strong>stosowny dla wszystkich grup wiekowych</strong> i nie może ukazywać nagości, wulgarności ani sugestywnej zawartości.',
             'rules_link' => 'zasadami społeczności',
         ],

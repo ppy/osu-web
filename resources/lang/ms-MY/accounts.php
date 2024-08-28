@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'reset' => '',
+            'reset' => 'set semula',
             'rules' => 'Pastikan avatarmu akur pada :link yang berlaku.<br/>Dengan kata lain, avatarmu mestilah <strong>sesuai untuk segala usia</strong> tanpa mengandung unsur apa pun yang tidak dibenarkan seperti cacian, hinaan, atau hal yang tidak senonoh.',
             'rules_link' => 'peraturan komuniti',
         ],
@@ -20,7 +20,7 @@ return [
             'new_confirmation' => 'pengesahan e-mel',
             'title' => 'E-mel',
             'locked' => [
-                '_' => '',
+                '_' => 'Sila hubungi :accounts jika anda mahu emel anda dikemaskini.',
                 'accounts' => '',
             ],
         ],
@@ -65,12 +65,12 @@ return [
 
     'github_user' => [
         'info' => "",
-        'link' => '',
-        'title' => '',
-        'unlink' => '',
+        'link' => 'Pautkan Akaun Github',
+        'title' => 'GitHub',
+        'unlink' => 'Nyahpautkan Akaun Github',
 
         'error' => [
-            'already_linked' => '',
+            'already_linked' => 'Akaun Github ini telah dipautkan dengan pengguna lain.',
             'no_contribution' => '',
             'unverified_email' => '',
         ],
@@ -86,7 +86,7 @@ return [
         'options' => [
             '_' => 'hantarkan pemberitahuan melalui',
             'beatmap_owner_change' => 'kesukaran tamu',
-            'beatmapset:modding' => '',
+            'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'pesanan peribadi',
             'comment_new' => 'ulasan baharu',
             'forum_topic_reply' => 'balasan pada topik',

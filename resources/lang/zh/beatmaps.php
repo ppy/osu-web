@@ -20,7 +20,7 @@ return [
         'edited' => ':editor 最后在 :update_time 编辑。',
         'guest' => ':user 制作的客串难度',
         'kudosu_denied' => 'kudosu 已收回',
-        'message_placeholder_deleted_beatmap' => '该难度已被删除，无法继续讨论',
+        'message_placeholder_deleted_beatmap' => '该难度已被删除，无法继续讨论。',
         'message_placeholder_locked' => '该谱面下的讨论已关闭。',
         'message_placeholder_silenced' => "禁言时无法发布讨论。",
         'message_type_select' => '选择回复类型',
@@ -95,7 +95,7 @@ return [
         'mode' => [
             'events' => '历史',
             'general' => '常规 :scope',
-            'reviews' => '审阅记录',
+            'reviews' => '审阅',
             'timeline' => '时间轴',
             'scopes' => [
                 'general' => '当前难度',
@@ -120,7 +120,7 @@ return [
                 'unsaved' => '尚未保存',
                 'timestamp' => [
                     'all-diff' => '你不能在“所有难度”讨论区中发布时间戳。',
-                    'diff' => '如果此 :type 以时间戳开头，它将显示在时间轴下。',
+                    'diff' => '如果此帖子以时间戳开头，则会显示在时间轴下方。',
                 ],
             ],
             'insert-block' => [

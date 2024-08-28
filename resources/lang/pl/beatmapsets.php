@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Zwolnij, pograj więcej!',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -45,7 +46,7 @@ return [
         'hybrid_requires_modes' => 'Beatmapa hybrydowa wymaga wybrania przynajmniej jednego trybu gry, dla którego chcesz ją nominować.',
         'incorrect_mode' => 'Nie posiadasz uprawnień do nominowania beatmap dla tych trybów (:mode)',
         'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_ruleset' => 'Ta nominacja ma niewłaściwy zestaw zasad.',
         'too_many' => 'Osiągnięto już wystarczającą liczbę nominacji.',
         'too_many_non_main_ruleset' => '',
 

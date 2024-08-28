@@ -208,8 +208,8 @@ return [
             'weekly_streak_current' => '当前每周完成数',
 
             'unit' => [
-                'day' => ':valued 天',
-                'week' => ':valuew 周',
+                'day' => ':value 天',
+                'week' => ':value 周',
             ],
         ],
         'edit' => [
@@ -519,8 +519,8 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '方块检视',
-        'card' => '卡片检视',
-        'list' => '列表检视',
+        'brick' => '方格视图',
+        'card' => '卡片视图',
+        'list' => '列表视图',
     ],
 ];

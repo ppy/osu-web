@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => '',
         'hide_judged' => 'verberg beoordeelde items',
         'nav_title' => 'beoordeel',
         'no_current_vote' => 'je hebt nog niet gestemd.',

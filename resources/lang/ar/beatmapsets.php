@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'تَمهل, ألعب أكثر.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [

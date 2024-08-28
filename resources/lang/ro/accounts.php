@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'reset' => '',
+            'reset' => 'resetează',
             'rules' => 'Te rugăm să te asiguri că avatar-ul tău respectă :link<br/>Asta înseamnă că trebuie să fie <strong>adecvat pentru toate vârstele</strong>. spre ex. fără nuditate, vulgarități sau conținut sugestiv.',
             'rules_link' => 'regulile comunității',
         ],

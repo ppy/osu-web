@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirmation' => '确定？',
+    'confirmation' => '你确定吗？',
     'confirmation_unsaved' => '未保存的更改将丢失。您确定吗？',
     'saved' => '已保存',
 
