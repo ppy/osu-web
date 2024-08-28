@@ -19,10 +19,19 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($scores as $index => $score)
+        @foreach ([$userScore, ...$scores] as $index => $score)
+            @if ($score === null)
+                @continue
+            @endif
+            @php
+                $rank = $loop->first
+                    ? $score->userRank()
+                    // -1 due to userScore being prepended
+                    : $scores->firstItem() + $index - 1;
+            @endphp
             <tr class="ranking-page-table__row{{$score->user->isActive() ? '' : ' ranking-page-table__row--inactive'}}">
                 <td class="ranking-page-table__column ranking-page-table__column--rank">
-                    #{{ $scores->firstItem() + $index }}
+                    #{{ $rank }}
                 </td>
                 <td class="ranking-page-table__column">
                     <div class="ranking-page-table__user-link">
@@ -51,6 +60,11 @@
                     {!! i18n_number_format($score->total_score) !!}
                 </td>
             </tr>
+            @if ($loop->first)
+                <tr>
+                    <td colspan="5">&nbsp;</td>
+                </tr>
+            @endif
         @endforeach
     </tbody>
 </table>

@@ -186,12 +186,17 @@ class RoomsController extends BaseController
         $highScores = $room->topScores()->paginate();
         $spotlightRooms = Room::featured()->orderBy('id', 'DESC')->get();
 
+        $userScore = ($currentUser = \Auth::user()) === null
+            ? null
+            : $room->topScores()->whereBelongsTo($currentUser)->first();
+
         return ext_view('multiplayer.rooms.show', [
             'beatmaps' => $beatmaps,
             'beatmapsets' => $beatmapsets,
             'room' => $room,
             'rooms' => $spotlightRooms,
             'scores' => $highScores,
+            'userScore' => $userScore,
         ]);
     }
 
