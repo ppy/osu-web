@@ -622,9 +622,17 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             $this->previous_queue_duration = ($this->queued_at ?? $this->approved_date)->diffinSeconds();
             $this->queued_at = null;
         } elseif ($this->isPending() && $state === 'qualified') {
-            $maxAdjustment = ($GLOBALS['cfg']['osu']['beatmapset']['minimum_days_for_rank'] - 1) * 24 * 3600;
-            $adjustment = min($this->previous_queue_duration, $maxAdjustment);
-            $this->queued_at = $currentTime->copy()->subSeconds($adjustment);
+            // Check if any beatmaps where added after most recent invalidated nomination.
+            $lastResetNominationTime = $this->beatmapsetNominations()->current(false)->max('reset_at');
+            if ($lastResetNominationTime !== null
+                && $this->beatmaps()->where('last_update', '>', $lastResetNominationTime)->exists()
+            ) {
+                $this->queued_at = $currentTime;
+            } else {
+                $maxAdjustment = ($GLOBALS['cfg']['osu']['beatmapset']['minimum_days_for_rank'] - 1) * 24 * 3600;
+                $adjustment = min($this->previous_queue_duration, $maxAdjustment);
+                $this->queued_at = $currentTime->copy()->subSeconds($adjustment);
+            }
         }
 
         $this->approved = $approvedState;

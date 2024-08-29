@@ -24,7 +24,7 @@ use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotification;
 use Bus;
-use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Database\Factories\BeatmapsetFactory;
 use Queue;
 use Tests\TestCase;
@@ -783,7 +783,7 @@ class BeatmapsetTest extends TestCase
     public function testDisqualifyAndRequalifyDoesNotResetQueue()
     {
         static $dayInSeconds = 86400;
-        $yesterday = Carbon::now()->subSeconds($dayInSeconds);
+        $yesterday = CarbonImmutable::now()->subSeconds($dayInSeconds);
         $user = User::factory()->withGroup('bng')->create();
         $beatmapset = Beatmapset::factory()->qualified($yesterday)->create();
 
@@ -799,6 +799,41 @@ class BeatmapsetTest extends TestCase
         $beatmapset->setApproved('qualified', $user);
         $beatmapset = $beatmapset->fresh();
         $this->assertEquals($beatmapset->approved_date->toImmutable()->subSeconds($dayInSeconds), $beatmapset->queued_at);
+    }
+
+    public function testDisqualifyAndRequalifyNewDifficultyAdded()
+    {
+        static $dayInSeconds = 86400;
+        $qualifiedDate = CarbonImmutable::now()->subSeconds($dayInSeconds * 2)->startOfSecond();
+        $disqualifiedDate = CarbonImmutable::now()->subSeconds($dayInSeconds);
+        $this->travelTo($qualifiedDate);
+
+        $user = User::factory()->withGroup('bng')->create();
+        $beatmapset = Beatmapset::factory()
+            ->has(Beatmap::factory())
+            ->withNominations()
+            ->qualified()
+            ->create();
+
+        $this->assertEquals($qualifiedDate, $beatmapset->approved_date);
+
+        $this->travelTo($disqualifiedDate);
+
+        $discussion = BeatmapDiscussion::factory()->problem()->create(['beatmapset_id' => $beatmapset, 'user_id' => $user]);
+        $beatmapset->disqualifyOrResetNominations($user, $discussion);
+        $beatmapset = $beatmapset->fresh();
+
+        $this->assertSame($dayInSeconds, $beatmapset->previous_queue_duration);
+        $this->assertNull($beatmapset->queued_at);
+
+        $this->travelBack();
+
+        $beatmapset->beatmaps()->save(Beatmap::factory()->make())->save();
+
+        $beatmapset->setApproved('qualified', $user);
+        $beatmapset = $beatmapset->fresh();
+        $this->assertEquals(CarbonImmutable::now()->startOfSecond(), $beatmapset->queued_at);
+        $this->assertEquals($beatmapset->approved_date, $beatmapset->queued_at);
     }
 
     /**
@@ -864,6 +899,8 @@ class BeatmapsetTest extends TestCase
 
         Genre::factory()->create(['genre_id' => Genre::UNSPECIFIED]);
         Language::factory()->create(['language_id' => Language::UNSPECIFIED]);
+
+        config_set('osu.beatmapset.required_nominations', 1);
 
         Bus::fake([CheckBeatmapsetCovers::class]);
     }
