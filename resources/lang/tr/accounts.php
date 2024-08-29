@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'reset' => '',
+            'reset' => 'sıfırla',
             'rules' => 'Lütfen avatarınızın :link uyduğundan emin olun.<br/>Bu, avatarın <strong>her yaş grubuna uygun olması</strong> gerektiği anlamına gelir. Yani çıplaklık, küfür veya müstehcen içerik bulunmamalıdır.',
             'rules_link' => 'topluluk kurallarına',
         ],

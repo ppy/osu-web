@@ -37,6 +37,10 @@ function tierStyle(days: number) {
   } as React.CSSProperties;
 }
 
+function tierStylePlaycount(count: number) {
+  return tierStyle(count / 3);
+}
+
 function tierStyleWeekly(weeks: number) {
   // subtract by one to allow starting from iron.
   return tierStyle((weeks - 1) * 7);
@@ -48,6 +52,12 @@ interface Props {
 
 function popup(stats: DailyChallengeUserStatsJson) {
   const values = [
+    [
+      'playcount',
+      trans('users.show.daily_challenge.unit.day', { value: formatNumber(stats.playcount) }),
+      'fancy',
+      tierStylePlaycount(stats.playcount),
+    ],
     [
       'daily_streak_best',
       trans('users.show.daily_challenge.unit.day', { value: formatNumber(stats.daily_streak_best) }),
@@ -133,7 +143,7 @@ export default class DailyChallenge extends React.Component<Props> {
         <div className='daily-challenge__value-box'>
           <div
             className='daily-challenge__value'
-            style={tierStyle(this.props.stats.playcount / 3)}
+            style={tierStylePlaycount(this.props.stats.playcount)}
           >
             {trans(
               'users.show.daily_challenge.unit.day',

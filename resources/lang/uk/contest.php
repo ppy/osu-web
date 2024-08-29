@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => '',
         'hide_judged' => 'сховати оцінені заявки',
         'nav_title' => 'суддя',
         'no_current_vote' => 'ви ще не голосували.',

@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => '編輯頭像',
-            'reset' => '',
+            'reset' => '重置',
             'rules' => '請確保您的頭像符合 :link.<br/>這意味著必須 <strong>適合所有年齡</strong>. i.e. 沒有裸露，褻瀆或暗示性的內容。',
             'rules_link' => '社群規則',
         ],

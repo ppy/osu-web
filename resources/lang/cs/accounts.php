@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'reset' => '',
+            'reset' => 'resetovat',
             'rules' => 'Ujisti se prosím, že tvůj avatar dodržuje :link.<br/>To znamená, že musí být <strong>vhodný pro všechny věkové kategorie</strong>. Tj. žádná nahota, žádný urážlivý či sugestivní obsah.',
             'rules_link' => 'kritéria vizuálního obsahu',
         ],

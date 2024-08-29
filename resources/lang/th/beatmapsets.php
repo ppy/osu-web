@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'ช้าลงหน่อย เล่นมากขึ้น',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [

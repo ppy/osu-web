@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Hidasta vähän, pelaa enemmän.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [

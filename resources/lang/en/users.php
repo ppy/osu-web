@@ -200,6 +200,7 @@ return [
             'daily' => 'Daily Streak',
             'daily_streak_best' => 'Best Daily Streak',
             'daily_streak_current' => 'Current Daily Streak',
+            'playcount' => 'Total Participation',
             'title' => 'Daily\nChallenge',
             'top_10p_placements' => 'Top 10% Placements',
             'top_50p_placements' => 'Top 50% Placements',

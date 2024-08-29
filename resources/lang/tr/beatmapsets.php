@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Yavaş ol, daha çok oyna.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [

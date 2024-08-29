@@ -24,7 +24,7 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Ten użytkownik ma mniej niż 30 dni najnowszej historii rankingu.',
     ],
 
     'type' => [

@@ -208,8 +208,8 @@ return [
             'weekly_streak_current' => 'Текущая серия в неделях',
 
             'unit' => [
-                'day' => ':valuedд',
-                'week' => ':valuewнед',
+                'day' => ':valueд',
+                'week' => ':valueнед',
             ],
         ],
         'edit' => [

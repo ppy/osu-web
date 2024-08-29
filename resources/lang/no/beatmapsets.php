@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Ro ned, spill mer.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [

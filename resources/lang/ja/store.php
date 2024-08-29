@@ -110,16 +110,16 @@ return [
         'resume' => '支払いを再開',
         'shipping_and_handling' => '',
         'shopify_expired' => 'この注文の決済リンクは期限切れとなりました。',
-        'subtotal' => '',
-        'total' => '',
+        'subtotal' => '小計',
+        'total' => '合計',
 
         'details' => [
             'order_number' => '注文 #',
-            'payment_terms' => '',
+            'payment_terms' => '支払い条件',
             'salesperson' => '',
-            'shipping_method' => '',
-            'shipping_terms' => '',
-            'title' => '',
+            'shipping_method' => '配送方法',
+            'shipping_terms' => '配送条件',
+            'title' => '注文の詳細',
         ],
 
         'item' => [
@@ -151,11 +151,11 @@ return [
             'paid' => '支払い済み',
             'processing' => '承認待ち',
             'shipped' => '発送済み',
-            'title' => '',
+            'title' => '注文ステータス',
         ],
 
         'thanks' => [
-            'title' => '',
+            'title' => 'ご注文ありがとうございました！',
             'line_1' => [
                 '_' => '',
                 'link_text' => '',
@@ -194,8 +194,8 @@ return [
         'check' => '名前を入力して使用可能か確認しましょう！',
         'checking' => ':usernameが使用可能か確認中・・・',
         'placeholder' => '',
-        'label' => '',
-        'current' => '',
+        'label' => '新しいユーザー名',
+        'current' => '現在のあなたのユーザー名は ":username" です。',
 
         'require_login' => [
             '_' => '名前を変えるには:linkが必要です！',
