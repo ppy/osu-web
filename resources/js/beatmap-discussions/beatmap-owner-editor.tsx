@@ -16,11 +16,12 @@ import { onErrorWithCallback } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import { transparentGif } from 'utils/html';
 import { trans } from 'utils/lang';
+import { apiLookupUsers } from 'utils/user';
 import DiscussionsState from './discussions-state';
 
 interface XhrCollection {
   updateOwner: JQuery.jqXHR<BeatmapsetWithDiscussionsJson>;
-  userLookup: JQuery.jqXHR<UserJson>;
+  userLookup: ReturnType<typeof apiLookupUsers>;
 }
 
 interface Props {
@@ -260,13 +261,10 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
 
     if (currentCheckingUser == null) return;
 
-    this.xhr.userLookup = $.ajax(route('users.check-username-exists'), {
-      data: { username: currentCheckingUser },
-      method: 'POST',
-    });
-    this.xhr.userLookup.done((user) => runInAction(() => {
-      if (user.id > 0) {
-        this.props.userByName.set(currentCheckingUser, user);
+    this.xhr.userLookup = apiLookupUsers([currentCheckingUser]);
+    this.xhr.userLookup.done((response) => runInAction(() => {
+      if (response.users.length > 0) {
+        this.props.userByName.set(currentCheckingUser, response.users[0]);
       }
     })).fail(
       onErrorWithCallback(this.userLookup),
