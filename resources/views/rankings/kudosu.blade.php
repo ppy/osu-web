@@ -38,7 +38,7 @@
                     <td class="ranking-page-table__column">
                         <div class="ranking-page-table__user-link">
                             @include('objects._flag_country', [
-                                'countryCode' => $user->country_acronym,
+                                'country' => ['acronym' => $user->country_acronym],
                                 'modifiers' => 'medium',
                             ])
                             {!! link_to_user($user, null, '', ['ranking-page-table__user-link-text']) !!}
