@@ -123,11 +123,15 @@ class BeatmapsetFactory extends Factory
     public function withNominations(?array $modes = null, ?int $count = null)
     {
         $count ??= $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'];
+        $i = 0;
 
         return $this
             ->has(BeatmapsetNomination::factory()
                 ->count($count)
                 ->state([
+                    // Assign a different temporary value to each model as
+                    // BeatmapsetNominationFactory::afterCreating only runs after all the models are created, not after each one.
+                    'event_id' => function () use (&$i) { return $i++; },
                     'modes' => $modes,
                     'user_id' => User::factory()->withGroup('bng', array_keys(Beatmap::MODES)),
                 ]));

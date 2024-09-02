@@ -796,7 +796,7 @@ class BeatmapsetTest extends TestCase
             ->withNominations()
             ->create();
 
-        $nominator = $beatmapset->beatmapsetNominations()->first()->user->markSessionVerified();
+        $nominators = $beatmapset->beatmapsetNominations()->get()->pluck('user');
 
         // sanity
         $this->assertNull($beatmapset->previous_queue_duration);
@@ -812,7 +812,7 @@ class BeatmapsetTest extends TestCase
 
         $this->travelBack();
 
-        $this->resolveDiscussionAndNominate($discussion, $user, $nominator);
+        $this->resolveDiscussionAndNominate($discussion, $user, $nominators);
         $beatmapset = $beatmapset->fresh();
 
         $this->assertTrue($beatmapset->isQualified());
@@ -834,7 +834,10 @@ class BeatmapsetTest extends TestCase
             ->withNominations()
             ->create();
 
-        // TODO: more than 1 nominator
+        $nominators = $beatmapset->beatmapsetNominations()->get()->pluck('user');
+        // replace 1 nominator with a different one.
+        $nominators[0] = $user;
+
         $this->travelTo($disqualifiedDate);
 
         $discussion = $this->disqualifyOrResetNominations($beatmapset, $user);
@@ -844,8 +847,8 @@ class BeatmapsetTest extends TestCase
         $this->assertNull($beatmapset->queued_at);
 
         $this->travelBack();
-        // resolve and requalify
-        $this->resolveDiscussionAndNominate($discussion, $user);
+
+        $this->resolveDiscussionAndNominate($discussion, $user, $nominators);
         $beatmapset = $beatmapset->fresh();
 
         $this->assertTrue($beatmapset->isQualified());
@@ -868,6 +871,8 @@ class BeatmapsetTest extends TestCase
             ->withNominations()
             ->create();
 
+        $nominators = $beatmapset->beatmapsetNominations()->get()->pluck('user');
+
         $this->assertEquals($qualifiedDate, $beatmapset->approved_date);
 
         $this->travelTo($disqualifiedDate);
@@ -882,7 +887,7 @@ class BeatmapsetTest extends TestCase
 
         $beatmapset->beatmaps()->save(Beatmap::factory()->make())->save();
 
-        $this->resolveDiscussionAndNominate($discussion, $user);
+        $this->resolveDiscussionAndNominate($discussion, $user, $nominators);
         $beatmapset = $beatmapset->fresh();
 
         $this->assertTrue($beatmapset->isQualified());
@@ -954,8 +959,6 @@ class BeatmapsetTest extends TestCase
         Genre::factory()->create(['genre_id' => Genre::UNSPECIFIED]);
         Language::factory()->create(['language_id' => Language::UNSPECIFIED]);
 
-        config_set('osu.beatmapset.required_nominations', 1);
-
         Bus::fake([CheckBeatmapsetCovers::class]);
     }
 
@@ -1013,9 +1016,13 @@ class BeatmapsetTest extends TestCase
         return $discussion;
     }
 
-    private function resolveDiscussionAndNominate(BeatmapDiscussion $discussion, User $user, ?User $nominator = null)
+    private function resolveDiscussionAndNominate(BeatmapDiscussion $discussion, User $user, iterable $nominators)
     {
         (new Reply($user, $discussion, 'resolve', true))->handle();
-        $discussion->fresh()->beatmapset->nominate($nominator ?? $user, ['osu']);
+        $beatmapset = $discussion->fresh()->beatmapset;
+
+        foreach ($nominators as $nominator) {
+            $beatmapset->nominate($nominator, ['osu']);
+        }
     }
 }
