@@ -801,6 +801,42 @@ class BeatmapsetTest extends TestCase
         $this->assertEquals($beatmapset->approved_date->toImmutable()->subSeconds($dayInSeconds), $beatmapset->queued_at);
     }
 
+    public function testDisqualifyAndRequalifyDifferentNominator()
+    {
+        static $dayInSeconds = 86400;
+        $disqualifiedDate = CarbonImmutable::now()->subSeconds($dayInSeconds);
+        $qualifiedDate = $disqualifiedDate->subSeconds($dayInSeconds)->startOfSecond();
+        $newNominator = User::factory()->withGroup('bng', ['osu'])->create()->markSessionVerified();
+
+        $this->travelTo($qualifiedDate);
+
+        $beatmapset = $this->beatmapsetFactory()
+            ->qualified()
+            ->withBeatmaps('osu')
+            ->withNominations()
+            ->create();
+
+        // TODO: more than 1 nominator
+        $this->travelTo($disqualifiedDate);
+        // disqualify
+        $discussion = BeatmapDiscussion::factory()->general()->problem()->create(['beatmapset_id' => $beatmapset, 'user_id' => $newNominator]);
+        $beatmapset->disqualifyOrResetNominations($newNominator, $discussion);
+        $beatmapset = $beatmapset->fresh();
+
+        $this->assertSame($dayInSeconds, $beatmapset->previous_queue_duration);
+        $this->assertNull($beatmapset->queued_at);
+
+        $this->travelBack();
+        // resolve and requalify
+        (new Reply($newNominator, $discussion, 'resolve', true))->handle();
+        $beatmapset->nominate($newNominator, ['osu']);
+        $beatmapset = $beatmapset->fresh();
+
+        $this->assertTrue($beatmapset->isQualified());
+        $this->assertEquals(CarbonImmutable::now()->startOfSecond(), $beatmapset->queued_at);
+        $this->assertEquals($beatmapset->approved_date, $beatmapset->queued_at);
+    }
+
     public function testDisqualifyAndRequalifyNewDifficultyAdded()
     {
         static $dayInSeconds = 86400;
