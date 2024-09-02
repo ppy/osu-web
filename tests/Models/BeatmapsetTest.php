@@ -804,9 +804,7 @@ class BeatmapsetTest extends TestCase
 
         $this->travelTo($disqualifiedDate);
 
-        // disqualify
-        $discussion = BeatmapDiscussion::factory()->general()->problem()->create(['beatmapset_id' => $beatmapset, 'user_id' => $user]);
-        $beatmapset->disqualifyOrResetNominations($user, $discussion);
+        $discussion = $this->disqualifyOrResetNominations($beatmapset, $user);
         $beatmapset = $beatmapset->fresh();
         // TODO: timing issues 86401 != 86400
         $this->assertSame($dayInSeconds, $beatmapset->previous_queue_duration);
@@ -814,9 +812,7 @@ class BeatmapsetTest extends TestCase
 
         $this->travelBack();
 
-        // resolve and requalify
-        (new Reply($user, $discussion, 'resolve', true))->handle();
-        $beatmapset->nominate($nominator, ['osu']);
+        $this->resolveDiscussionAndNominate($discussion, $user, $nominator);
         $beatmapset = $beatmapset->fresh();
 
         $this->assertTrue($beatmapset->isQualified());
@@ -840,9 +836,8 @@ class BeatmapsetTest extends TestCase
 
         // TODO: more than 1 nominator
         $this->travelTo($disqualifiedDate);
-        // disqualify
-        $discussion = BeatmapDiscussion::factory()->general()->problem()->create(['beatmapset_id' => $beatmapset, 'user_id' => $user]);
-        $beatmapset->disqualifyOrResetNominations($user, $discussion);
+
+        $discussion = $this->disqualifyOrResetNominations($beatmapset, $user);
         $beatmapset = $beatmapset->fresh();
 
         $this->assertSame($dayInSeconds, $beatmapset->previous_queue_duration);
@@ -850,8 +845,7 @@ class BeatmapsetTest extends TestCase
 
         $this->travelBack();
         // resolve and requalify
-        (new Reply($user, $discussion, 'resolve', true))->handle();
-        $beatmapset->nominate($user, ['osu']);
+        $this->resolveDiscussionAndNominate($discussion, $user);
         $beatmapset = $beatmapset->fresh();
 
         $this->assertTrue($beatmapset->isQualified());
@@ -878,8 +872,7 @@ class BeatmapsetTest extends TestCase
 
         $this->travelTo($disqualifiedDate);
 
-        $discussion = BeatmapDiscussion::factory()->problem()->create(['beatmapset_id' => $beatmapset, 'user_id' => $user]);
-        $beatmapset->disqualifyOrResetNominations($user, $discussion);
+        $discussion = $this->disqualifyOrResetNominations($beatmapset, $user);
         $beatmapset = $beatmapset->fresh();
 
         $this->assertSame($dayInSeconds, $beatmapset->previous_queue_duration);
@@ -889,9 +882,7 @@ class BeatmapsetTest extends TestCase
 
         $beatmapset->beatmaps()->save(Beatmap::factory()->make())->save();
 
-        // resolve and requalify
-        (new Reply($user, $discussion, 'resolve', true))->handle();
-        $beatmapset->nominate($user, ['osu']);
+        $this->resolveDiscussionAndNominate($discussion, $user);
         $beatmapset = $beatmapset->fresh();
 
         $this->assertTrue($beatmapset->isQualified());
@@ -1012,5 +1003,19 @@ class BeatmapsetTest extends TestCase
     {
         $this->expectCountChange(fn () => Notification::count(), $success ? 1 : 0, 'Notification count');
         $this->expectCountChange(fn () => UserNotification::count(), $success ? 1 : 0, 'UserNotification count');
+    }
+
+    private function disqualifyOrResetnominations(Beatmapset $beatmapset, User $user)
+    {
+        $discussion = BeatmapDiscussion::factory()->general()->problem()->create(['beatmapset_id' => $beatmapset, 'user_id' => $user]);
+        $beatmapset->disqualifyOrResetNominations($user, $discussion);
+
+        return $discussion;
+    }
+
+    private function resolveDiscussionAndNominate(BeatmapDiscussion $discussion, User $user, ?User $nominator = null)
+    {
+        (new Reply($user, $discussion, 'resolve', true))->handle();
+        $discussion->fresh()->beatmapset->nominate($nominator ?? $user, ['osu']);
     }
 }
