@@ -32,6 +32,8 @@ use Tests\TestCase;
 
 class BeatmapsetTest extends TestCase
 {
+    private const DISQUALIFIED_INTERVAL = 86400;
+
     public static function disqualifyOrResetNominationsDataProvider()
     {
         return [
@@ -783,9 +785,8 @@ class BeatmapsetTest extends TestCase
 
     public function testDisqualifyAndRequalifyDoesNotResetQueue()
     {
-        static $dayInSeconds = 86400;
         $disqualifiedDate = CarbonImmutable::now()->subDays(1);
-        $qualifiedDate = $disqualifiedDate->subSeconds($dayInSeconds)->startOfSecond();
+        $qualifiedDate = $disqualifiedDate->subSeconds(static::DISQUALIFIED_INTERVAL)->startOfSecond();
         $user = User::factory()->withGroup('bng')->create()->markSessionVerified();
 
         $this->travelTo($qualifiedDate);
@@ -807,7 +808,7 @@ class BeatmapsetTest extends TestCase
         $discussion = $this->disqualifyOrResetNominations($beatmapset, $user);
         $beatmapset = $beatmapset->fresh();
         // TODO: timing issues 86401 != 86400
-        $this->assertSame($dayInSeconds, $beatmapset->previous_queue_duration);
+        $this->assertSame(static::DISQUALIFIED_INTERVAL, $beatmapset->previous_queue_duration);
         $this->assertNull($beatmapset->queued_at);
 
         $this->travelBack();
@@ -816,14 +817,13 @@ class BeatmapsetTest extends TestCase
         $beatmapset = $beatmapset->fresh();
 
         $this->assertTrue($beatmapset->isQualified());
-        $this->assertEquals($beatmapset->approved_date->toImmutable()->subSeconds($dayInSeconds), $beatmapset->queued_at);
+        $this->assertEquals($beatmapset->approved_date->toImmutable()->subSeconds(static::DISQUALIFIED_INTERVAL), $beatmapset->queued_at);
     }
 
     public function testDisqualifyAndRequalifyDifferentNominator()
     {
-        static $dayInSeconds = 86400;
-        $disqualifiedDate = CarbonImmutable::now()->subSeconds($dayInSeconds);
-        $qualifiedDate = $disqualifiedDate->subSeconds($dayInSeconds)->startOfSecond();
+        $disqualifiedDate = CarbonImmutable::now()->subDays(1);
+        $qualifiedDate = $disqualifiedDate->subSeconds(static::DISQUALIFIED_INTERVAL)->startOfSecond();
         $user = User::factory()->withGroup('bng', ['osu'])->create()->markSessionVerified();
 
         $this->travelTo($qualifiedDate);
@@ -855,9 +855,8 @@ class BeatmapsetTest extends TestCase
 
     public function testDisqualifyAndRequalifyNewDifficultyAdded()
     {
-        static $dayInSeconds = 86400;
-        $disqualifiedDate = CarbonImmutable::now()->subSeconds($dayInSeconds);
-        $qualifiedDate = $disqualifiedDate->subSeconds($dayInSeconds)->startOfSecond();
+        $disqualifiedDate = CarbonImmutable::now()->subDays(1);
+        $qualifiedDate = $disqualifiedDate->subSeconds(static::DISQUALIFIED_INTERVAL)->startOfSecond();
         $user = User::factory()->withGroup('bng', ['osu'])->create()->markSessionVerified();
 
         $this->travelTo($qualifiedDate);
