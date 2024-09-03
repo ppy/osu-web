@@ -739,7 +739,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
                 // TODO: from 2nd last disqualify
                 $previousNominators = new Set($this->beatmapsetNominations()->current(false)->pluck('user_id'));
                 $currentNominators = new Set($this->beatmapsetNominations()->current()->pluck('user_id'));
-                if (!$currentNominators->diff($previousNominators)->isEmpty()) {
+                if (!$currentNominators->xor($previousNominators)->isEmpty()) {
                     $this->update(['previous_queue_duration' => 0]);
                 }
             }
