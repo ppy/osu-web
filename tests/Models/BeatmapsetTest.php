@@ -930,6 +930,7 @@ class BeatmapsetTest extends TestCase
         $this->assertTrue($beatmapset->isQualified());
         $this->assertEquals(CarbonImmutable::now()->startOfSecond(), $beatmapset->queued_at);
         $this->assertEquals($beatmapset->approved_date, $beatmapset->queued_at);
+        $previousQueueDuration = $beatmapset->previous_queue_duration;
 
         // second disqualification
         $discussion = $this->disqualifyOrResetNominations($beatmapset, $user);
@@ -943,7 +944,7 @@ class BeatmapsetTest extends TestCase
 
         // queue should not reset.
         $this->assertTrue($beatmapset->isQualified());
-        $this->assertEquals($beatmapset->approved_date->toImmutable()->subSeconds(static::DISQUALIFIED_INTERVAL), $beatmapset->queued_at);
+        $this->assertEquals($previousQueueDuration, CarbonImmutable::now()->getTimestamp() - $beatmapset->queued_at->getTimestamp());
     }
 
     public function testDisqualifyAndRequalifyNewDifficultyAdded()
