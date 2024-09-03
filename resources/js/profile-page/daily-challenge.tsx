@@ -118,6 +118,10 @@ export default class DailyChallenge extends React.Component<Props> {
   }
 
   render() {
+    if (this.props.stats.playcount === 0) {
+      return null;
+    }
+
     return (
       <div
         ref={this.valueRef}
