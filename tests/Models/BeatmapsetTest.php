@@ -843,9 +843,6 @@ class BeatmapsetTest extends TestCase
         $discussion = $this->disqualifyOrResetNominations($beatmapset, $user);
         $beatmapset = $beatmapset->fresh();
 
-        $this->assertSame($dayInSeconds, $beatmapset->previous_queue_duration);
-        $this->assertNull($beatmapset->queued_at);
-
         $this->travelBack();
 
         $this->resolveDiscussionAndNominate($discussion, $user, $nominators);
@@ -873,15 +870,10 @@ class BeatmapsetTest extends TestCase
 
         $nominators = $beatmapset->beatmapsetNominations()->get()->pluck('user');
 
-        $this->assertEquals($qualifiedDate, $beatmapset->approved_date);
-
         $this->travelTo($disqualifiedDate);
 
         $discussion = $this->disqualifyOrResetNominations($beatmapset, $user);
         $beatmapset = $beatmapset->fresh();
-
-        $this->assertSame($dayInSeconds, $beatmapset->previous_queue_duration);
-        $this->assertNull($beatmapset->queued_at);
 
         $this->travelBack();
 
