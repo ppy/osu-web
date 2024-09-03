@@ -885,7 +885,7 @@ class BeatmapsetTest extends TestCase
 
         $this->travelBack();
 
-        $beatmapset->beatmaps()->save(Beatmap::factory()->make())->save();
+        $beatmapset->beatmaps()->save(Beatmap::factory()->ruleset('osu')->make());
 
         $this->resolveDiscussionAndNominate($discussion, $user, $nominators);
         $beatmapset = $beatmapset->fresh();
