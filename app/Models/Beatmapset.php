@@ -624,7 +624,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         } elseif ($this->isPending() && $state === 'qualified') {
             // Check if any beatmaps where added after most recent invalidated nomination.
             $lastResetNominationTime = $this->beatmapsetNominations()->current(false)->max('reset_at');
-            if ($lastResetNominationTime !== null
+            if (
+                $lastResetNominationTime !== null
                 && $this->beatmaps()->where('last_update', '>', $lastResetNominationTime)->exists()
             ) {
                 $this->queued_at = $currentTime;
