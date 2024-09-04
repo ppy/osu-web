@@ -24,20 +24,17 @@ class BeatmapsetRequalifyTest extends TestCase
 {
     private const DISQUALIFIED_INTERVAL = 86400;
 
+    // User for disqualifying and resolving discussion.
+    private User $user;
+
     public function testDoesNotResetQueue()
     {
         $disqualifiedDate = CarbonImmutable::now()->subDays(1);
         $qualifiedDate = $disqualifiedDate->subSeconds(static::DISQUALIFIED_INTERVAL)->startOfSecond();
-        $user = User::factory()->withGroup('bng')->create()->markSessionVerified();
 
         $this->travelTo($qualifiedDate);
 
-        $beatmapset = $this->beatmapsetFactory()
-            ->qualified()
-            ->withBeatmaps('osu')
-            ->withNominations()
-            ->create();
-
+        $beatmapset = $this->beatmapsetFactory()->create();
         $nominators = $beatmapset->beatmapsetNominations()->get()->pluck('user');
 
         // sanity
@@ -46,7 +43,7 @@ class BeatmapsetRequalifyTest extends TestCase
 
         $this->travelTo($disqualifiedDate);
 
-        $discussion = $this->disqualifyOrResetNominations($beatmapset, $user);
+        $discussion = $this->disqualifyOrResetNominations($beatmapset);
         $beatmapset = $beatmapset->fresh();
         // TODO: timing issues 86401 != 86400
         $this->assertSame(static::DISQUALIFIED_INTERVAL, $beatmapset->previous_queue_duration);
@@ -54,7 +51,7 @@ class BeatmapsetRequalifyTest extends TestCase
 
         $this->travelBack();
 
-        $this->resolveDiscussionAndNominate($discussion, $user, $nominators);
+        $this->resolveDiscussionAndNominate($discussion, $nominators);
         $beatmapset = $beatmapset->fresh();
 
         $this->assertTrue($beatmapset->isQualified());
@@ -65,28 +62,22 @@ class BeatmapsetRequalifyTest extends TestCase
     {
         $disqualifiedDate = CarbonImmutable::now()->subDays(1);
         $qualifiedDate = $disqualifiedDate->subSeconds(static::DISQUALIFIED_INTERVAL)->startOfSecond();
-        $user = User::factory()->withGroup('bng', ['osu'])->create()->markSessionVerified();
 
         $this->travelTo($qualifiedDate);
 
-        $beatmapset = $this->beatmapsetFactory()
-            ->qualified()
-            ->withBeatmaps('osu')
-            ->withNominations()
-            ->create();
-
+        $beatmapset = $this->beatmapsetFactory()->create();
         $nominators = $beatmapset->beatmapsetNominations()->get()->pluck('user');
         // replace 1 nominator with a different one.
-        $nominators[0] = $user;
+        $nominators[0] = $this->user;
 
         $this->travelTo($disqualifiedDate);
 
-        $discussion = $this->disqualifyOrResetNominations($beatmapset, $user);
+        $discussion = $this->disqualifyOrResetNominations($beatmapset);
         $beatmapset = $beatmapset->fresh();
 
         $this->travelBack();
 
-        $this->resolveDiscussionAndNominate($discussion, $user, $nominators);
+        $this->resolveDiscussionAndNominate($discussion, $nominators);
         $beatmapset = $beatmapset->fresh();
 
         $this->assertTrue($beatmapset->isQualified());
@@ -99,28 +90,22 @@ class BeatmapsetRequalifyTest extends TestCase
     {
         $disqualifiedDate = CarbonImmutable::now()->subDays(1);
         $qualifiedDate = $disqualifiedDate->subSeconds(static::DISQUALIFIED_INTERVAL)->startOfSecond();
-        $user = User::factory()->withGroup('bng', ['osu'])->create()->markSessionVerified();
 
         $this->travelTo($qualifiedDate);
 
-        $beatmapset = $this->beatmapsetFactory()
-            ->qualified()
-            ->withBeatmaps('osu')
-            ->withNominations()
-            ->create();
-
+        $beatmapset = $this->beatmapsetFactory()->create();
         $nominators = $beatmapset->beatmapsetNominations()->get()->pluck('user');
 
         $this->travelTo($disqualifiedDate);
 
-        $discussion = $this->disqualifyOrResetNominations($beatmapset, $user);
+        $discussion = $this->disqualifyOrResetNominations($beatmapset);
         $beatmapset = $beatmapset->fresh();
 
         // second qualification
         $this->travelTo($disqualifiedDate->addSeconds(60));
 
         $newNominators = User::factory()->withGroup('nat')->count(config('osu.beatmapset.required_nominations'))->create();
-        $this->resolveDiscussionAndNominate($discussion, $user, $newNominators);
+        $this->resolveDiscussionAndNominate($discussion, $newNominators);
         $beatmapset = $beatmapset->fresh();
 
         $this->assertTrue($beatmapset->isQualified());
@@ -128,13 +113,13 @@ class BeatmapsetRequalifyTest extends TestCase
         $this->assertEquals($beatmapset->approved_date, $beatmapset->queued_at);
 
         // second disqualification
-        $discussion = $this->disqualifyOrResetNominations($beatmapset, $user);
+        $discussion = $this->disqualifyOrResetNominations($beatmapset);
         $beatmapset = $beatmapset->fresh();
         $this->assertTrue($beatmapset->isPending());
 
         $this->travelBack();
 
-        $this->resolveDiscussionAndNominate($discussion, $user, $nominators);
+        $this->resolveDiscussionAndNominate($discussion, $nominators);
         $beatmapset = $beatmapset->fresh();
 
         $this->assertTrue($beatmapset->isQualified());
@@ -146,26 +131,21 @@ class BeatmapsetRequalifyTest extends TestCase
     {
         $disqualifiedDate = CarbonImmutable::now()->subDays(1);
         $qualifiedDate = $disqualifiedDate->subSeconds(static::DISQUALIFIED_INTERVAL)->startOfSecond();
-        $user = User::factory()->withGroup('bng', ['osu'])->create()->markSessionVerified();
 
         $this->travelTo($qualifiedDate);
 
-        $beatmapset = $this->beatmapsetFactory()
-            ->qualified()
-            ->withBeatmaps('osu')
-            ->withNominations()
-            ->create();
+        $beatmapset = $this->beatmapsetFactory()->create();
 
         $this->travelTo($disqualifiedDate);
 
-        $discussion = $this->disqualifyOrResetNominations($beatmapset, $user);
+        $discussion = $this->disqualifyOrResetNominations($beatmapset);
         $beatmapset = $beatmapset->fresh();
 
         // second qualification
         $this->travelTo($disqualifiedDate->addSeconds(60));
 
         $newNominators = User::factory()->withGroup('nat')->count(config('osu.beatmapset.required_nominations'))->create();
-        $this->resolveDiscussionAndNominate($discussion, $user, $newNominators);
+        $this->resolveDiscussionAndNominate($discussion, $newNominators);
         $beatmapset = $beatmapset->fresh();
 
         $this->assertTrue($beatmapset->isQualified());
@@ -174,13 +154,13 @@ class BeatmapsetRequalifyTest extends TestCase
         $previousQueueDuration = $beatmapset->previous_queue_duration;
 
         // second disqualification
-        $discussion = $this->disqualifyOrResetNominations($beatmapset, $user);
+        $discussion = $this->disqualifyOrResetNominations($beatmapset);
         $beatmapset = $beatmapset->fresh();
         $this->assertTrue($beatmapset->isPending());
 
         $this->travelBack();
 
-        $this->resolveDiscussionAndNominate($discussion, $user, $newNominators);
+        $this->resolveDiscussionAndNominate($discussion, $newNominators);
         $beatmapset = $beatmapset->fresh();
 
         // queue should not reset.
@@ -192,28 +172,22 @@ class BeatmapsetRequalifyTest extends TestCase
     {
         $disqualifiedDate = CarbonImmutable::now()->subDays(1);
         $qualifiedDate = $disqualifiedDate->subSeconds(static::DISQUALIFIED_INTERVAL)->startOfSecond();
-        $user = User::factory()->withGroup('bng', ['osu'])->create()->markSessionVerified();
 
         $this->travelTo($qualifiedDate);
 
-        $beatmapset = $this->beatmapsetFactory()
-            ->qualified()
-            ->withBeatmaps('osu')
-            ->withNominations()
-            ->create();
-
+        $beatmapset = $this->beatmapsetFactory()->create();
         $nominators = $beatmapset->beatmapsetNominations()->get()->pluck('user');
 
         $this->travelTo($disqualifiedDate);
 
-        $discussion = $this->disqualifyOrResetNominations($beatmapset, $user);
+        $discussion = $this->disqualifyOrResetNominations($beatmapset);
         $beatmapset = $beatmapset->fresh();
 
         $this->travelBack();
 
         $beatmapset->beatmaps()->save(Beatmap::factory()->ruleset('osu')->make());
 
-        $this->resolveDiscussionAndNominate($discussion, $user, $nominators);
+        $this->resolveDiscussionAndNominate($discussion, $nominators);
         $beatmapset = $beatmapset->fresh();
 
         $this->assertTrue($beatmapset->isQualified());
@@ -225,6 +199,8 @@ class BeatmapsetRequalifyTest extends TestCase
     {
         parent::setUp();
 
+        $this->user = User::factory()->withGroup('bng', ['osu'])->create()->markSessionVerified();
+
         Genre::factory()->create(['genre_id' => Genre::UNSPECIFIED]);
         Language::factory()->create(['language_id' => Language::UNSPECIFIED]);
 
@@ -233,21 +209,24 @@ class BeatmapsetRequalifyTest extends TestCase
 
     private function beatmapsetFactory(): BeatmapsetFactory
     {
-        // otherwise they start as null without refresh.
-        return Beatmapset::factory()->owner()->pending()->state(['nominations' => 0]);
+        return Beatmapset::factory()
+            ->owner()
+            ->qualified()
+            ->withBeatmaps('osu')
+            ->withNominations();
     }
 
-    private function disqualifyOrResetnominations(Beatmapset $beatmapset, User $user)
+    private function disqualifyOrResetnominations(Beatmapset $beatmapset)
     {
-        $discussion = BeatmapDiscussion::factory()->general()->problem()->create(['beatmapset_id' => $beatmapset, 'user_id' => $user]);
-        $beatmapset->disqualifyOrResetNominations($user, $discussion);
+        $discussion = BeatmapDiscussion::factory()->general()->problem()->create(['beatmapset_id' => $beatmapset, 'user_id' => $this->user]);
+        $beatmapset->disqualifyOrResetNominations($this->user, $discussion);
 
         return $discussion;
     }
 
-    private function resolveDiscussionAndNominate(BeatmapDiscussion $discussion, User $user, iterable $nominators)
+    private function resolveDiscussionAndNominate(BeatmapDiscussion $discussion, iterable $nominators)
     {
-        (new Reply($user, $discussion, 'resolve', true))->handle();
+        (new Reply($this->user, $discussion, 'resolve', true))->handle();
         $beatmapset = $discussion->fresh()->beatmapset;
 
         foreach ($nominators as $nominator) {
