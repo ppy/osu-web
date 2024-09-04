@@ -719,8 +719,12 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
         $this->getConnection()->transaction(function () use ($discussion, $event, $notificationClass, $user) {
             $nominators = User::whereIn('user_id', $this->beatmapsetNominations()->current()->select('user_id'))->get();
+            $extraData = ['nominator_ids' => $nominators->pluck('user_id')];
+            if ($event === BeatmapsetEvent::DISQUALIFY) {
+                $extraData['beatmap_ids'] = $this->beatmaps()->pluck('beatmap_id');
+            }
 
-            BeatmapsetEvent::log($event, $user, $discussion, ['nominator_ids' => $nominators->pluck('user_id')])->saveOrExplode();
+            BeatmapsetEvent::log($event, $user, $discussion, $extraData)->saveOrExplode();
             foreach ($nominators as $nominator) {
                 BeatmapsetEvent::log(
                     BeatmapsetEvent::NOMINATION_RESET_RECEIVED,
