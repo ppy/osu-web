@@ -41,7 +41,7 @@ class BeatmapsetRequalifyTest extends TestCase
         $nominators = $beatmapset->beatmapsetNominations()->get()->pluck('user');
 
         // sanity
-        $this->assertNull($beatmapset->previous_queue_duration);
+        $this->assertSame(0, $beatmapset->previous_queue_duration);
         $this->assertEquals($qualifiedDate, $beatmapset->approved_date);
 
         $this->travelTo($disqualifiedDate);

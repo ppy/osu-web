@@ -126,6 +126,7 @@ class BeatmapsetFactory extends Factory
         $i = 0;
 
         return $this
+            ->state(['nominations' => $count])
             ->has(BeatmapsetNomination::factory()
                 ->count($count)
                 ->state([

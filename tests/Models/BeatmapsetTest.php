@@ -848,8 +848,7 @@ class BeatmapsetTest extends TestCase
 
     private function beatmapsetFactory(): BeatmapsetFactory
     {
-        // otherwise they start as null without refresh.
-        return Beatmapset::factory()->owner()->pending()->state(['nominations' => 0]);
+        return Beatmapset::factory()->owner()->pending();
     }
 
     private function createHybridBeatmapset(string $mainRuleset = null, array $rulesets = ['osu', 'taiko']): Beatmapset

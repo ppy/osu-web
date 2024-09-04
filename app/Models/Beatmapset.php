@@ -151,6 +151,12 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public $timestamps = false;
 
+    protected $attributes = [
+        'hype' => 0,
+        'nominations' => 0,
+        'previous_queue_duration' => 0,
+    ];
+
     protected $casts = self::CASTS;
     protected $primaryKey = 'beatmapset_id';
     protected $table = 'osu_beatmapsets';
