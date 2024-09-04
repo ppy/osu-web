@@ -24,7 +24,7 @@ class BeatmapsetRequalifyTest extends TestCase
 {
     private const DISQUALIFIED_INTERVAL = 86400;
 
-    public function testDisqualifyAndRequalifyDoesNotResetQueue()
+    public function testDoesNotResetQueue()
     {
         $disqualifiedDate = CarbonImmutable::now()->subDays(1);
         $qualifiedDate = $disqualifiedDate->subSeconds(static::DISQUALIFIED_INTERVAL)->startOfSecond();
@@ -61,7 +61,7 @@ class BeatmapsetRequalifyTest extends TestCase
         $this->assertEquals($beatmapset->approved_date->toImmutable()->subSeconds(static::DISQUALIFIED_INTERVAL), $beatmapset->queued_at);
     }
 
-    public function testDisqualifyAndRequalifyDifferentNominator()
+    public function testDifferentNominatorResetsQueue()
     {
         $disqualifiedDate = CarbonImmutable::now()->subDays(1);
         $qualifiedDate = $disqualifiedDate->subSeconds(static::DISQUALIFIED_INTERVAL)->startOfSecond();
@@ -95,7 +95,7 @@ class BeatmapsetRequalifyTest extends TestCase
     }
 
     // tests nominators from previous qualification are considered as different nominators.
-    public function testDisqualifyAndRequalifyDifferentNominatorEarlierNomination()
+    public function testNominatorFromPriorQualificationResetsQueue()
     {
         $disqualifiedDate = CarbonImmutable::now()->subDays(1);
         $qualifiedDate = $disqualifiedDate->subSeconds(static::DISQUALIFIED_INTERVAL)->startOfSecond();
@@ -142,7 +142,7 @@ class BeatmapsetRequalifyTest extends TestCase
         $this->assertEquals($beatmapset->approved_date, $beatmapset->queued_at);
     }
 
-    public function testDisqualifyAndRequalifyDifferentNominatorEarlierNominationButSameRecent()
+    public function testNominatorFromRecentQualificationDoesNotResetQueue()
     {
         $disqualifiedDate = CarbonImmutable::now()->subDays(1);
         $qualifiedDate = $disqualifiedDate->subSeconds(static::DISQUALIFIED_INTERVAL)->startOfSecond();
@@ -188,7 +188,7 @@ class BeatmapsetRequalifyTest extends TestCase
         $this->assertEquals($previousQueueDuration, CarbonImmutable::now()->getTimestamp() - $beatmapset->queued_at->getTimestamp());
     }
 
-    public function testDisqualifyAndRequalifyNewDifficultyAdded()
+    public function testNewDifficultyAddedResetsQueue()
     {
         $disqualifiedDate = CarbonImmutable::now()->subDays(1);
         $qualifiedDate = $disqualifiedDate->subSeconds(static::DISQUALIFIED_INTERVAL)->startOfSecond();
