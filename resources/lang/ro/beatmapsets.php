@@ -17,7 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Descarcă mai puțin, joacă mai mult.',
-        'no_mirrors' => '',
+        'no_mirrors' => 'Nu există servere de descărcare disponibile.',
     ],
 
     'featured_artist_badge' => [

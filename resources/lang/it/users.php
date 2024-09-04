@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Il tuo account non viene usato da molto tempo.",
             'inactive_different_country' => "Il tuo account non è stato utilizzato per molto tempo.",
         ],
     ],
@@ -200,6 +200,7 @@ return [
             'daily' => 'Serie Giornaliera',
             'daily_streak_best' => 'Migliore Serie Giornaliera',
             'daily_streak_current' => 'Attuale Serie Giornaliera',
+            'playcount' => '',
             'title' => 'Sfida\nGiornaliera',
             'top_10p_placements' => 'Raggiungimenti del primo 10%',
             'top_50p_placements' => 'Raggiungimenti del primo 50%',

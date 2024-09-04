@@ -14,7 +14,7 @@ return [
     ],
 
     'judge' => [
-        'comments' => '',
+        'comments' => 'komentar',
         'hide_judged' => 'sembunyikan entri yang telah dinilai',
         'nav_title' => 'juri',
         'no_current_vote' => 'kamu belum memberikan suaramu.',

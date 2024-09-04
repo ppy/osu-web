@@ -14,7 +14,7 @@ return [
     ],
 
     'judge' => [
-        'comments' => '',
+        'comments' => 'bình luận',
         'hide_judged' => 'ẩn các bài thi đã được đánh giá',
         'nav_title' => 'đánh giá',
         'no_current_vote' => 'bạn vẫn chưa bầu chọn.',

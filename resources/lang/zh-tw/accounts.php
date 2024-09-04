@@ -5,19 +5,19 @@
 
 return [
     'edit' => [
-        'title_compact' => '設定',
+        'title_compact' => '帳號設定',
         'username' => '使用者名稱',
 
         'avatar' => [
             'title' => '編輯頭像',
             'reset' => '重置',
-            'rules' => '請確保您的頭像符合 :link.<br/>這意味著必須 <strong>適合所有年齡</strong>. i.e. 沒有裸露，褻瀆或暗示性的內容。',
+            'rules' => '請確保您的頭像符合 :link.<br/>這意味着必須<strong>適合所有年齡</strong>，即沒有裸露、褻瀆或暗示性的內容。',
             'rules_link' => '社群規則',
         ],
 
         'email' => [
             'new' => '新電子郵件地址',
-            'new_confirmation' => '再次輸入電子郵件地址',
+            'new_confirmation' => '再次輸入電郵地址',
             'title' => '電子郵件',
             'locked' => [
                 '_' => '如欲修改你的電子郵件地址，請聯絡 :accounts。',
@@ -86,8 +86,8 @@ return [
         'options' => [
             '_' => '傳送選項',
             'beatmap_owner_change' => '客串難度',
-            'beatmapset:modding' => '圖譜製作',
-            'channel_message' => '私人訊息',
+            'beatmapset:modding' => '圖譜模圖',
+            'channel_message' => '私訊',
             'comment_new' => '新評論',
             'forum_topic_reply' => '主題回覆',
             'mail' => '郵箱',

@@ -201,6 +201,7 @@ return [
             'daily_streak_best' => '최다 연속 진행일
 ',
             'daily_streak_current' => '현재 연속 진행일',
+            'playcount' => '',
             'title' => '일일미션',
             'top_10p_placements' => '상위 10%',
             'top_50p_placements' => '상위 50%',

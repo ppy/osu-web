@@ -200,6 +200,7 @@ return [
             'daily' => '每日连续完成数',
             'daily_streak_best' => '最佳每日完成数',
             'daily_streak_current' => '当前每日完成数',
+            'playcount' => '',
             'title' => '每日\n挑战',
             'top_10p_placements' => '前 10% 位置',
             'top_50p_placements' => '前 50% 位置',

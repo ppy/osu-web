@@ -293,7 +293,7 @@ return [
         'approved' => 'Aprovados',
         'favourites' => 'Favoritos',
         'graveyard' => 'Cemitério',
-        'leaderboard' => 'Possui uma tabela de classificações',
+        'leaderboard' => 'Tem classificações',
         'loved' => 'Adorados',
         'mine' => 'Os meus mapas',
         'pending' => 'Pendente',
