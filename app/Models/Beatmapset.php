@@ -636,9 +636,21 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             ) {
                 $this->queued_at = $currentTime;
             } else {
+                // amount of queue time to skip.
                 $maxAdjustment = ($GLOBALS['cfg']['osu']['beatmapset']['minimum_days_for_rank'] - 1) * 24 * 3600;
                 $adjustment = min($this->previous_queue_duration, $maxAdjustment);
                 $this->queued_at = $currentTime->copy()->subSeconds($adjustment);
+
+                // additional penalty for disqualification period, 1 day per week disqualified.
+                if ($lastResetNominationTime !== null) {
+                    $interval = $currentTime->diff($lastResetNominationTime)->days;
+                    if ($interval === false || $interval < 0) {
+                        throw new InvariantException('Invalid date interval'); // something is really broken if this happens.
+                    }
+
+                    $penaltyDays = min($interval / 7, $GLOBALS['cfg']['osu']['beatmapset']['maximum_disqualified_rank_penalty_days']);
+                    $this->queued_at = $this->queued_at->addDays($penaltyDays);
+                }
             }
         }
 
