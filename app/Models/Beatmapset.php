@@ -629,10 +629,13 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             $this->queued_at = null;
         } elseif ($this->isPending() && $state === 'qualified') {
             // Check if any beatmaps where added after most recent invalidated nomination.
-            $lastResetNominationTime = $this->beatmapsetNominations()->current(false)->max('reset_at');
+            $disqualifyEvent = $this->events()->where('type', BeatmapsetEvent::DISQUALIFY)->last();
             if (
-                $lastResetNominationTime !== null
-                && $this->beatmaps()->where('last_update', '>', $lastResetNominationTime)->exists()
+                $disqualifyEvent !== null
+                && !(
+                    (new Set($this->beatmaps()->pluck('beatmap_id')))
+                        ->diff(new Set($disqualifyEvent->comment['beatmap_ids'] ?? []))
+                        ->isEmpty())
             ) {
                 $this->queued_at = $currentTime;
             } else {
@@ -642,8 +645,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
                 $this->queued_at = $currentTime->copy()->subSeconds($adjustment);
 
                 // additional penalty for disqualification period, 1 day per week disqualified.
-                if ($lastResetNominationTime !== null) {
-                    $interval = $currentTime->diff($lastResetNominationTime)->days;
+                if ($disqualifyEvent !== null) {
+                    $interval = $currentTime->diff($disqualifyEvent->created_at)->days;
                     if ($interval === false || $interval < 0) {
                         throw new InvariantException('Invalid date interval'); // something is really broken if this happens.
                     }
