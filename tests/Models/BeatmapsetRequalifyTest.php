@@ -195,6 +195,31 @@ class BeatmapsetRequalifyTest extends TestCase
         $this->assertEquals($beatmapset->approved_date, $beatmapset->queued_at);
     }
 
+    public function testTimerIncreasesWhileDisqualified()
+    {
+        $weeksDisqualified = 2;
+        $disqualifiedDate = CarbonImmutable::now()->subWeeks($weeksDisqualified);
+        $qualifiedDate = $disqualifiedDate->subSeconds(static::DISQUALIFIED_INTERVAL)->startOfSecond();
+
+        $this->travelTo($qualifiedDate);
+
+        $beatmapset = $this->beatmapsetFactory()->create();
+        $nominators = $beatmapset->beatmapsetNominations()->get()->pluck('user');
+
+        $this->travelTo($disqualifiedDate);
+
+        $discussion = $this->disqualifyOrResetNominations($beatmapset);
+        $beatmapset = $beatmapset->fresh();
+
+        $this->travelBack();
+
+        $this->resolveDiscussionAndNominate($discussion, $nominators);
+        $beatmapset = $beatmapset->fresh();
+
+        $this->assertTrue($beatmapset->isQualified());
+        $this->assertEquals($beatmapset->approved_date->toImmutable()->addDays($weeksDisqualified)->subSeconds(static::DISQUALIFIED_INTERVAL), $beatmapset->queued_at);
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
