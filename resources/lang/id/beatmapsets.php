@@ -17,7 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Jangan terlalu bernafsu dalam mengunduh. Mainkan beatmap yang telah kamu miliki terlebih dahulu.',
-        'no_mirrors' => '',
+        'no_mirrors' => 'Tidak ada server unduhan yang tersedia.',
     ],
 
     'featured_artist_badge' => [

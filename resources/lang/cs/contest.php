@@ -14,7 +14,7 @@ return [
     ],
 
     'judge' => [
-        'comments' => '',
+        'comments' => 'komentáře',
         'hide_judged' => 'skrýt posuzované položky',
         'nav_title' => 'soudce',
         'no_current_vote' => 'ještě jsi nehlasoval.',

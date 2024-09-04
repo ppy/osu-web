@@ -17,7 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Chậm lại, chơi nhiều hơn.',
-        'no_mirrors' => '',
+        'no_mirrors' => 'Không có sẵn máy chủ tải xuống nào cả.',
     ],
 
     'featured_artist_badge' => [

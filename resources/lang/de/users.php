@@ -200,6 +200,7 @@ return [
             'daily' => 'Tägliche Serie',
             'daily_streak_best' => 'Beste Tagesserie',
             'daily_streak_current' => 'Aktuelle Tagesserie',
+            'playcount' => '',
             'title' => 'Tägliche\nHerausforderung',
             'top_10p_placements' => 'Platzierungen in den Top 10 %',
             'top_50p_placements' => 'Platzierungen in den Top 50 %',
@@ -208,8 +209,8 @@ return [
             'weekly_streak_current' => 'Aktuelle Wochenserie',
 
             'unit' => [
-                'day' => ':valued',
-                'week' => ':valuew',
+                'day' => ':value T',
+                'week' => ':value W',
             ],
         ],
         'edit' => [
