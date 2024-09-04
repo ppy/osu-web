@@ -53,12 +53,6 @@ interface Props {
 function popup(stats: DailyChallengeUserStatsJson) {
   const values = [
     [
-      'playcount',
-      trans('users.show.daily_challenge.unit.day', { value: formatNumber(stats.playcount) }),
-      'fancy',
-      tierStylePlaycount(stats.playcount),
-    ],
-    [
       'daily_streak_best',
       trans('users.show.daily_challenge.unit.day', { value: formatNumber(stats.daily_streak_best) }),
       'fancy',
@@ -77,28 +71,23 @@ function popup(stats: DailyChallengeUserStatsJson) {
   return (
     <div className='daily-challenge-popup'>
       <div className='daily-challenge-popup__content daily-challenge-popup__content--top'>
-        <div className='daily-challenge-popup__top-entry'>
-          <div className='daily-challenge-popup__top-title'>
-            {trans('users.show.daily_challenge.daily_streak_current')}
+        {([
+          ['playcount', tierStylePlaycount, 'day'],
+          ['daily_streak_current', tierStyle, 'day'],
+          ['weekly_streak_current', tierStyleWeekly, 'week'],
+        ] as const).map(([key, tierFn, unit]) => (
+          <div key={key} className='daily-challenge-popup__top-entry'>
+            <div className='daily-challenge-popup__top-title'>
+              {trans(`users.show.daily_challenge.${key}`)}
+            </div>
+            <div
+              className={classWithModifiers('daily-challenge-popup__value', ['fancy', 'top'])}
+              style={tierFn(stats[key])}
+            >
+              {trans(`users.show.daily_challenge.unit.${unit}`, { value: formatNumber(stats[key]) })}
+            </div>
           </div>
-          <div
-            className={classWithModifiers('daily-challenge-popup__value', ['fancy', 'top'])}
-            style={tierStyle(stats.daily_streak_current)}
-          >
-            {trans('users.show.daily_challenge.unit.day', { value: formatNumber(stats.daily_streak_current) })}
-          </div>
-        </div>
-        <div className='daily-challenge-popup__top-entry'>
-          <div className='daily-challenge-popup__top-title'>
-            {trans('users.show.daily_challenge.weekly_streak_current')}
-          </div>
-          <div
-            className={classWithModifiers('daily-challenge-popup__value', ['fancy', 'top'])}
-            style={tierStyleWeekly(stats.weekly_streak_current)}
-          >
-            {trans('users.show.daily_challenge.unit.week', { value: formatNumber(stats.weekly_streak_current) })}
-          </div>
-        </div>
+        ))}
       </div>
       <div className='daily-challenge-popup__content daily-challenge-popup__content--main'>
         {values.map(([transKey, value, valueMods, valueStyle]) => (
