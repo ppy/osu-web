@@ -252,19 +252,30 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicReply', $topic)->ensureCan();
 
-        $post = Post::createNew($topic, auth()->user(), get_string(request('body')));
+        $user = \Auth::user();
+        $post = Post::createNew($topic, $user, get_string(request('body')));
 
-        $post->markRead(Auth::user());
-        (new ForumTopicReply($post, auth()->user()))->dispatch();
+        $post->markRead($user);
+        (new ForumTopicReply($post, $user))->dispatch();
+
+        $watch = $user->user_notify
+            ? TopicWatch::setState($topic, $user, 'watching_mail')
+            : TopicWatch::lookup($topic, $user);
 
         if (is_api_request()) {
             return json_item($post, 'Forum\Post', ['body']);
         } else {
-            return ext_view('forum.topics._posts', [
-                'firstPostPosition' => $topic->postPosition($post->post_id),
-                'posts' => collect([$post]),
-                'topic' => $topic,
-            ]);
+            return [
+                'posts' => view('forum.topics._posts', [
+                    'firstPostPosition' => $topic->postPosition($post->post_id),
+                    'posts' => collect([$post]),
+                    'topic' => $topic,
+                ])->render(),
+                'watch' => view('forum.topics._watch', [
+                    'state' => $watch,
+                    'topic' => $topic,
+                ])->render(),
+            ];
         }
     }
 
