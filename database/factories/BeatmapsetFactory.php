@@ -9,6 +9,7 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
+use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetNomination;
 use App\Models\Forum\Topic;
 use App\Models\Genre;
@@ -123,21 +124,16 @@ class BeatmapsetFactory extends Factory
     public function withNominations(?array $modes = null, ?int $count = null)
     {
         $count ??= $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'];
-        $i = 0;
 
         return $this
             ->state(['nominations' => $count])
-            ->has(BeatmapsetNomination::factory()
+            ->has(BeatmapsetEvent::factory()
                 ->count($count)
                 ->state([
-                    // Assign a different temporary value to each model as
-                    // BeatmapsetNominationFactory::afterCreating only runs after all the models are created, not after each one.
-                    'event_id' => function () use (&$i) {
-                        return $i++;
-                    },
-                    'modes' => $modes,
+                    'comment' => ['modes' => $modes],
+                    'type' => BeatmapsetEvent::NOMINATE,
                     'user_id' => User::factory()->withGroup('bng', array_keys(Beatmap::MODES)),
-                ]));
+                ]), 'events');
     }
 
     public function withBeatmaps(?string $ruleset = null, int $count = 1, ?User $guestMapper = null)
