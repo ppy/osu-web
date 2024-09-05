@@ -646,11 +646,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
                 // additional penalty for disqualification period, 1 day per week disqualified.
                 if ($disqualifyEvent !== null) {
-                    $interval = $currentTime->diff($disqualifyEvent->created_at)->days;
-                    if ($interval === false || $interval < 0) {
-                        throw new InvariantException('Invalid date interval'); // something is really broken if this happens.
-                    }
-
+                    $interval = $currentTime->diffInDays($disqualifyEvent->created_at);
                     $penaltyDays = min($interval / 7, $GLOBALS['cfg']['osu']['beatmapset']['maximum_disqualified_rank_penalty_days']);
                     $this->queued_at = $this->queued_at->addDays($penaltyDays);
                 }
