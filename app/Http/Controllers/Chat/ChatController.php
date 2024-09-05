@@ -272,9 +272,7 @@ class ChatController extends Controller
             $response['messages'] = [];
         }
 
-        $hasAny = array_first($response, fn ($val) => count($val) > 0) !== null;
-
-        return $hasAny ? $response : response()->noContent();
+        return $response;
     }
 
     private function getSilences(?int $lastHistoryId, ?int $since)

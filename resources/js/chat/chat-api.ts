@@ -78,7 +78,7 @@ export function getUpdates(since: number, lastHistoryId?: number | null) {
       includes: ['presence', 'silences'],
       since,
     },
-  ) as JQuery.jqXHR<ChatUpdatesJson | null>;
+  ) as JQuery.jqXHR<ChatUpdatesJson>;
 }
 
 export function joinChannel(channelId: number, userId: number) {
