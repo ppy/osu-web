@@ -629,7 +629,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             $this->queued_at = null;
         } elseif ($this->isPending() && $state === 'qualified') {
             // Check if any beatmaps where added after most recent invalidated nomination.
-            $disqualifyEvent = $this->events()->where('type', BeatmapsetEvent::DISQUALIFY)->last();
+            $disqualifyEvent = $this->disqualificationEvent();
             if (
                 $disqualifyEvent !== null
                 && !(
@@ -754,7 +754,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         $this->getConnection()->transaction(function () use ($user) {
             // If beatmapset was previously disqualified, reset the queue timer
             // if the current nominators are current nominators are different from the previous qualified nominations.
-            $disqualifyEvents = $this->events()->where('type', BeatmapsetEvent::DISQUALIFY)->orderBy('id', 'desc')->limit(2)->get();
+            $disqualifyEvents = $this->events()->disqualifications()->orderBy('id', 'desc')->limit(2)->get();
             if ($disqualifyEvents !== null) {
                 $previousNominations = $this->beatmapsetNominations()->current(false);
                 $previousNominators = new Set($disqualifyEvents->count() === 2
