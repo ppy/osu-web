@@ -13,9 +13,13 @@ export default class UserPreferences {
   private user?: CurrentUserJson;
 
   constructor() {
-    this.current = Object.assign({}, defaultUserPreferencesJson, this.fromStorage());
+    this.current = this.fromStorageWithDefaults();
 
     makeObservable(this);
+
+    window.addEventListener('storage', action(() => {
+      this.current = this.fromStorageWithDefaults();
+    }));
   }
 
   get<T extends keyof UserPreferencesJson>(key: T) {
@@ -27,7 +31,7 @@ export default class UserPreferences {
     if (this.current[key] === value) return;
 
     this.current[key] = value;
-    localStorage.userPreferences = JSON.stringify(this.current);
+    this.updateStorage();
 
     if (this.user == null) return;
 
@@ -51,7 +55,8 @@ export default class UserPreferences {
     this.user = user;
 
     if (!this.updatingOptions) {
-      this.current = user?.user_preferences ?? structuredClone(defaultUserPreferencesJson);
+      this.current = user?.user_preferences ?? defaultUserPreferencesJson();
+      this.updateStorage();
     }
   }
 
@@ -70,5 +75,13 @@ export default class UserPreferences {
     }
 
     return {};
+  }
+
+  private fromStorageWithDefaults() {
+    return Object.assign(defaultUserPreferencesJson(), this.fromStorage());
+  }
+
+  private updateStorage() {
+    localStorage.userPreferences = JSON.stringify(this.current);
   }
 }
