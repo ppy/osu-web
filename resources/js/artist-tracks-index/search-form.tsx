@@ -112,7 +112,7 @@ export default class SearchForm extends React.Component<Props> {
           <div className='artist-track-search-form__advanced'>
             <InputContainer labelKey='artist.tracks.index.form.artist' modifiers='2'>
               <input
-                className='artist-track-search-form__input'
+                className='input-text input-text--artist-track-search'
                 name='artist'
                 onChange={this.handleChangeString}
                 value={this.params.artist ?? ''}
@@ -120,7 +120,7 @@ export default class SearchForm extends React.Component<Props> {
             </InputContainer>
             <InputContainer labelKey='artist.tracks.index.form.album' modifiers='2'>
               <input
-                className='artist-track-search-form__input'
+                className='input-text input-text--artist-track-search'
                 name='album'
                 onChange={this.handleChangeString}
                 value={this.params.album ?? ''}
@@ -129,7 +129,7 @@ export default class SearchForm extends React.Component<Props> {
 
             <InputContainer labelKey='artist.tracks.index.form.bpm_gte'>
               <input
-                className='artist-track-search-form__input'
+                className='input-text input-text--artist-track-search'
                 data-param='bpm'
                 data-range='gte'
                 inputMode='numeric'
@@ -141,7 +141,7 @@ export default class SearchForm extends React.Component<Props> {
 
             <InputContainer labelKey='artist.tracks.index.form.bpm_lte'>
               <input
-                className='artist-track-search-form__input'
+                className='input-text input-text--artist-track-search'
                 data-param='bpm'
                 data-range='lte'
                 inputMode='numeric'
@@ -153,7 +153,7 @@ export default class SearchForm extends React.Component<Props> {
 
             <InputContainer labelKey='artist.tracks.index.form.length_gte'>
               <input
-                className='artist-track-search-form__input'
+                className='input-text input-text--artist-track-search'
                 data-param='length'
                 data-range='gte'
                 onChange={this.handleChangeRangeNatural}
@@ -164,7 +164,7 @@ export default class SearchForm extends React.Component<Props> {
 
             <InputContainer labelKey='artist.tracks.index.form.length_lte'>
               <input
-                className='artist-track-search-form__input'
+                className='input-text input-text--artist-track-search'
                 data-param='length'
                 data-range='lte'
                 onChange={this.handleChangeRangeNatural}

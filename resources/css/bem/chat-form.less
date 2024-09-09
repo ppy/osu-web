@@ -22,27 +22,7 @@
     padding: 20px 20px 10px 20px;
   }
 
-  &__input {
-    .reset-input();
-    color: hsl(var(--hsl-c1));
-    font-size: var(--input-size);
-
-    &--box {
-      flex: 1;
-      resize: none;
-    }
-  }
-
   &__title {
     font-size: @font-size--title;
-  }
-
-  &__users {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2px;
-    justify-content: flex-start;
-    min-width: 0; // so user-card-brick overflows properly.
-    font-size: var(--input-size);
   }
 }
