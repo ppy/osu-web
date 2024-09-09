@@ -7,6 +7,8 @@ import { route } from 'laroute';
 import { action, makeObservable, observable } from 'mobx';
 import { onErrorWithCallback } from 'utils/ajax';
 
+const localStorageKey = 'userPreferences';
+
 export default class UserPreferences {
   @observable private current: UserPreferencesJson;
   private updatingOptions = false;
@@ -17,9 +19,7 @@ export default class UserPreferences {
 
     makeObservable(this);
 
-    window.addEventListener('storage', action(() => {
-      this.current = this.fromStorageWithDefaults();
-    }));
+    window.addEventListener('storage', this.updateFromStorage);
   }
 
   get<T extends keyof UserPreferencesJson>(key: T) {
@@ -81,7 +81,14 @@ export default class UserPreferences {
     return Object.assign(defaultUserPreferencesJson(), this.fromStorage());
   }
 
+  @action
+  private readonly updateFromStorage = (event: StorageEvent) => {
+    if (event.key == null || event.key === localStorageKey) {
+      this.current = this.fromStorageWithDefaults();
+    }
+  };
+
   private updateStorage() {
-    localStorage.userPreferences = JSON.stringify(this.current);
+    localStorage[localStorageKey] = JSON.stringify(this.current);
   }
 }
