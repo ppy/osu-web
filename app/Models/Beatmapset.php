@@ -754,13 +754,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         $this->getConnection()->transaction(function () use ($user) {
             // Reset the queue timer if the beatmapset was previously disqualified,
             // and any of the current nominators were not part of the most recent disqualified nominations.
-            $disqualifyEvents = $this->events()->disqualifications()->orderBy('id', 'desc')->limit(2)->get();
-            if ($disqualifyEvents->count() > 0) {
-                $previousNominations = $this->beatmapsetNominations()->current(false);
-                $previousNominators = new Set($disqualifyEvents->count() === 2
-                    ? $previousNominations->where('event_id', '>', $disqualifyEvents[1]->getKey())->pluck('user_id')
-                    : $previousNominations->pluck('user_id'));
-
+            $disqualifyEvent = $this->events()->disqualifications()->last();
+            if ($disqualifyEvent !== null) {
+                $previousNominators = new Set($disqualifyEvent->comment['nominator_ids']);
                 $currentNominators = new Set($this->beatmapsetNominations()->current()->pluck('user_id'));
 
                 if (!$currentNominators->xor($previousNominators)->isEmpty()) {
