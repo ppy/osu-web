@@ -16,6 +16,7 @@ import { parseJsonNullable, storeJson } from 'utils/json';
 import { Filter, filters } from './current-discussions';
 import DiscussionMode, { discussionModes } from './discussion-mode';
 import DiscussionPage, { isDiscussionPage } from './discussion-page';
+import UserJson from 'interfaces/user-json';
 
 const defaultFilterPraise = new Set<BeatmapsetStatus>(['approved', 'ranked']);
 const jsonId = 'json-discussions-state';
@@ -267,8 +268,41 @@ export default class DiscussionsState {
   }
 
   @computed
+  get nominators() {
+    const nominators: UserJson[] = [];
+    for (let i = this.beatmapset.events.length - 1; i >= 0; i--) {
+      const event = this.beatmapset.events[i];
+      if (event.type === 'disqualify' || event.type === 'nomination_reset') {
+        break;
+      }
+
+      if (event.type === 'nominate' && event.user_id != null) {
+        const user = this.store.users.get(event.user_id);
+        if (user != null) {
+          nominators.unshift(user);
+        }
+      }
+    }
+
+    return nominators;
+  }
+
+  @computed
   get nonDeletedDiscussions() {
     return this.discussionsArray.filter((discussion) => discussion.deleted_at == null);
+  }
+
+  @computed
+  get previousNominatorIds() {
+    // TODO: use findLast in es2023
+    for (let i = this.beatmapset.events.length - 1; i >= 0; i--) {
+      const event = this.beatmapset.events[i];
+      if (event.type === 'disqualify') {
+        return typeof event.comment === 'string' ? [] : event.comment.nominator_ids ?? [];
+      }
+    }
+
+    return null;
   }
 
   @computed

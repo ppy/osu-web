@@ -8,7 +8,7 @@ import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import Ruleset from 'interfaces/ruleset';
 import { route } from 'laroute';
-import { forEachRight, map, uniq } from 'lodash';
+import { forEachRight, map, uniq, xor } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
@@ -112,6 +112,14 @@ export class Nominator extends React.Component<Props> {
     }
 
     return this.beatmapset.current_user_attributes.nomination_modes ?? {};
+  }
+
+  private get nominatorsWillBeDifferent() {
+    return this.props.discussionsState.previousNominatorIds != null
+      && xor(
+        this.props.discussionsState.previousNominatorIds,
+        [core.currentUserOrFail.id, ...this.props.discussionsState.nominators.map((user) => user.id)],
+      ).length > 0;
   }
 
   constructor(props: Props) {
@@ -293,6 +301,11 @@ export class Nominator extends React.Component<Props> {
         <div className={`${bn}__warn`}>
           {trans('beatmapsets.nominate.dialog.hybrid_warning')}
         </div>
+        {this.nominatorsWillBeDifferent && (
+          <div className={`${bn}__warn`}>
+            {trans('beatmapsets.nominate.dialog.different_nominator_warning')}
+          </div>
+        )}
       </>
     );
   }
