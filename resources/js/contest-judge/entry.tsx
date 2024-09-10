@@ -82,7 +82,7 @@ export default class Entry extends React.Component<Props> {
           showError
         >
           <TextareaAutosize
-            className='input-text input-text--contest-judge-entry'
+            className='input-text'
             maxRows={20}
             onChange={this.handleCommentChange}
             rows={6}
