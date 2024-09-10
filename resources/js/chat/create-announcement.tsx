@@ -54,7 +54,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
             {...this.model.inputContainerPropsFor('name')}
           >
             <input
-              className='input-text input-text--chat'
+              className='input-text'
               defaultValue={this.model.inputs.name}
               name='name'
               onBlur={this.handleBlur}
@@ -67,7 +67,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
             {...this.model.inputContainerPropsFor('description')}
           >
             <input
-              className='input-text input-text--chat'
+              className='input-text'
               defaultValue={this.model.inputs.description}
               name='description'
               onBlur={this.handleBlur}
@@ -100,7 +100,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
           >
             <textarea
               autoComplete='off'
-              className='input-text input-text--chat input-text--chat-textarea'
+              className='input-text'
               defaultValue={this.model.inputs.message}
               name='message'
               onBlur={this.handleBlur}
