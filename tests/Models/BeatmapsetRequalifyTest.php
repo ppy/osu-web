@@ -232,11 +232,6 @@ class BeatmapsetRequalifyTest extends TestCase
         Bus::fake([CheckBeatmapsetCovers::class]);
     }
 
-    private function assertEqualsUpToOneSecond(CarbonInterface $expected, CarbonInterface $actual): void
-    {
-        $this->assertTrue($expected->diffInSeconds($actual) < 2);
-    }
-
     private function beatmapsetFactory(): BeatmapsetFactory
     {
         return Beatmapset::factory()
