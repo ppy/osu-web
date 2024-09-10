@@ -5,6 +5,7 @@ import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetStatus } from 'interfaces/beatmapset-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import Ruleset from 'interfaces/ruleset';
+import UserJson from 'interfaces/user-json';
 import { intersectionWith, maxBy, sum } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import moment from 'moment';
@@ -16,7 +17,6 @@ import { parseJsonNullable, storeJson } from 'utils/json';
 import { Filter, filters } from './current-discussions';
 import DiscussionMode, { discussionModes } from './discussion-mode';
 import DiscussionPage, { isDiscussionPage } from './discussion-page';
-import UserJson from 'interfaces/user-json';
 
 const defaultFilterPraise = new Set<BeatmapsetStatus>(['approved', 'ranked']);
 const jsonId = 'json-discussions-state';
