@@ -17,6 +17,7 @@ use App\Models\Language;
 use App\Models\User;
 use Bus;
 use Carbon\CarbonImmutable;
+use Carbon\CarbonInterface;
 use Database\Factories\BeatmapsetFactory;
 use Tests\TestCase;
 
@@ -45,8 +46,7 @@ class BeatmapsetRequalifyTest extends TestCase
 
         $discussion = $this->disqualifyOrResetNominations($beatmapset);
         $beatmapset = $beatmapset->fresh();
-        // TODO: timing issues 86401 != 86400
-        $this->assertSame(static::DISQUALIFIED_INTERVAL, $beatmapset->previous_queue_duration);
+        $this->assertTrue(abs(static::DISQUALIFIED_INTERVAL - $beatmapset->previous_queue_duration) < 2);
         $this->assertNull($beatmapset->queued_at);
 
         $this->travelBack();
@@ -81,7 +81,7 @@ class BeatmapsetRequalifyTest extends TestCase
         $beatmapset = $beatmapset->fresh();
 
         $this->assertTrue($beatmapset->isQualified());
-        $this->assertEquals(CarbonImmutable::now()->startOfSecond(), $beatmapset->queued_at);
+        $this->assertEqualsUpToOneSecond(CarbonImmutable::now(), $beatmapset->queued_at);
         $this->assertEquals($beatmapset->approved_date, $beatmapset->queued_at);
     }
 
@@ -109,7 +109,7 @@ class BeatmapsetRequalifyTest extends TestCase
         $beatmapset = $beatmapset->fresh();
 
         $this->assertTrue($beatmapset->isQualified());
-        $this->assertEquals(CarbonImmutable::now()->startOfSecond(), $beatmapset->queued_at);
+        $this->assertEqualsUpToOneSecond(CarbonImmutable::now(), $beatmapset->queued_at);
         $this->assertEquals($beatmapset->approved_date, $beatmapset->queued_at);
 
         // second disqualification
@@ -123,7 +123,7 @@ class BeatmapsetRequalifyTest extends TestCase
         $beatmapset = $beatmapset->fresh();
 
         $this->assertTrue($beatmapset->isQualified());
-        $this->assertEquals(CarbonImmutable::now()->startOfSecond(), $beatmapset->queued_at);
+        $this->assertEqualsUpToOneSecond(CarbonImmutable::now(), $beatmapset->queued_at);
         $this->assertEquals($beatmapset->approved_date, $beatmapset->queued_at);
     }
 
@@ -149,7 +149,7 @@ class BeatmapsetRequalifyTest extends TestCase
         $beatmapset = $beatmapset->fresh();
 
         $this->assertTrue($beatmapset->isQualified());
-        $this->assertEquals(CarbonImmutable::now()->startOfSecond(), $beatmapset->queued_at);
+        $this->assertEqualsUpToOneSecond(CarbonImmutable::now(), $beatmapset->queued_at);
         $this->assertEquals($beatmapset->approved_date, $beatmapset->queued_at);
         $previousQueueDuration = $beatmapset->previous_queue_duration;
 
@@ -191,7 +191,7 @@ class BeatmapsetRequalifyTest extends TestCase
         $beatmapset = $beatmapset->fresh();
 
         $this->assertTrue($beatmapset->isQualified());
-        $this->assertEquals(CarbonImmutable::now()->startOfSecond(), $beatmapset->queued_at);
+        $this->assertEqualsUpToOneSecond(CarbonImmutable::now(), $beatmapset->queued_at);
         $this->assertEquals($beatmapset->approved_date, $beatmapset->queued_at);
     }
 
@@ -230,6 +230,11 @@ class BeatmapsetRequalifyTest extends TestCase
         Language::factory()->create(['language_id' => Language::UNSPECIFIED]);
 
         Bus::fake([CheckBeatmapsetCovers::class]);
+    }
+
+    private function assertEqualsUpToOneSecond(CarbonInterface $expected, CarbonInterface $actual): void
+    {
+        $this->assertTrue($expected->diffInSeconds($actual) < 2);
     }
 
     private function beatmapsetFactory(): BeatmapsetFactory
