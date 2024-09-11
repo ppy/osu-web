@@ -197,7 +197,7 @@ class BeatmapsController extends Controller
      * -------- | ------------------------------------- | -----------
      * beatmaps | [BeatmapExtended](#beatmapextended)[] | Includes `beatmapset` (with `ratings`), `failtimes`, and `max_combo`.
      *
-     * @queryParam ids[] integer Beatmap IDs to be returned. Specify once for each beatmap ID requested. Up to 50 beatmaps can be requested at once. Example: 1
+     * @queryParam ids integer[] Beatmap IDs to be returned. Specify once for each beatmap ID requested. Up to 50 beatmaps can be requested at once. Example: [1]
      *
      * @response {
      *   "beatmaps": [
