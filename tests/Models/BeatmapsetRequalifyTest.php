@@ -84,6 +84,37 @@ class BeatmapsetRequalifyTest extends TestCase
         $this->assertEquals($beatmapset->approved_date, $beatmapset->queued_at);
     }
 
+    public function testDifferentNominatorBeforeNominationResetDoesNotResetQueue()
+    {
+        $disqualifiedDate = CarbonImmutable::now()->subDays(2);
+        $qualifiedDate = $disqualifiedDate->subSeconds(static::DISQUALIFIED_INTERVAL)->startOfSecond();
+
+        $this->travelTo($qualifiedDate);
+
+        $beatmapset = $this->beatmapsetFactory()->create();
+        $nominators = $beatmapset->beatmapsetNominations()->get()->pluck('user');
+
+        $this->travelTo($disqualifiedDate);
+
+        // disqualify
+        $discussion = $this->disqualifyOrResetNominations($beatmapset);
+        $beatmapset = $beatmapset->fresh();
+
+        // test nomination reset
+        $this->travelTo($disqualifiedDate->addSeconds(60));
+        $this->resolveDiscussionAndNominate($discussion, [$this->user]);
+        $discussion = $this->disqualifyOrResetnominations($beatmapset->fresh());
+        $beatmapset = $beatmapset->fresh();
+
+        $this->travelBack();
+
+        $this->resolveDiscussionAndNominate($discussion, $nominators);
+        $beatmapset = $beatmapset->fresh();
+
+        $this->assertTrue($beatmapset->isQualified());
+        $this->assertEquals($beatmapset->approved_date->toImmutable()->subSeconds(static::DISQUALIFIED_INTERVAL), $beatmapset->queued_at);
+    }
+
     // tests nominators from previous qualification are considered as different nominators.
     public function testNominatorFromPriorQualificationResetsQueue()
     {
