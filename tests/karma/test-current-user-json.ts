@@ -56,7 +56,7 @@ const testCurrentUserJson: CurrentUserJson = {
   title_url: null,
   twitter: null,
   unread_pm_count: 0,
-  user_preferences: defaultUserPreferencesJson,
+  user_preferences: defaultUserPreferencesJson(),
   username: 'foo',
   website: null,
 };
