@@ -46,7 +46,7 @@ class ScoresController extends BaseController
      *
      * @usesCursor
      */
-    #[Limit(50, 1, 50)]
+    #[Limit]
     #[Sort('MultiplayerScoresSort')]
     public function index($roomId, $playlistId)
     {

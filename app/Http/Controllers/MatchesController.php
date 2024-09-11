@@ -60,7 +60,7 @@ class MatchesController extends Controller
      *     "cursor_string": "eyJtYXRjaF9pZCI6MTE0NDI4Njg1fQ"
      * }
      */
-    #[Limit(50, 1, 50), Sort('IdSort')]
+    #[Limit, Sort('IdSort')]
     public function index()
     {
         $params = request()->all();

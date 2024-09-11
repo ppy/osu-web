@@ -101,7 +101,7 @@ class BeatmapDiscussionsController extends Controller
      * @queryParam user integer The `id` of the [User](#user).
      * @queryParam with_deleted boolean This param has no effect as api calls do not currently receive group permissions. No-example
      */
-    #[Limit, Page, Sort('IdSort')]
+    #[Limit(20, 5), Page, Sort('IdSort')]
     public function index()
     {
         $bundle = new BeatmapsetDiscussionsBundle(request()->all());

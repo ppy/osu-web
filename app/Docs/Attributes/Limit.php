@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Docs\Attributes;
 
+use App\Models\Model;
 use Attribute;
 use Knuckles\Scribe\Attributes\GenericParam;
 
@@ -14,8 +15,8 @@ use Knuckles\Scribe\Attributes\GenericParam;
 class Limit extends GenericParam
 {
     public function __construct(
-        int $default = 20, // values are defaults on pagination()
-        int $minimum = 5,
+        int $default = Model::PER_PAGE,
+        int $minimum = 1,
         int $maximum = 50,
         string $description = 'Maximum number of results',
         bool $required = false,

@@ -314,7 +314,7 @@ class TopicsController extends Controller
      *   "sort": "id_asc"
      * }
      */
-    #[Limit(20, 1, 50, 'Maximum number of posts to be returned'), Sort('IdSort')]
+    #[Limit(description: 'Maximum number of posts to be returned'), Sort('IdSort')]
     public function show($id)
     {
         $topic = Topic::with(['forum'])->withTrashed()->findOrFail($id);
