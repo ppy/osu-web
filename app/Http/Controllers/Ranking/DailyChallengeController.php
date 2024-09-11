@@ -44,7 +44,7 @@ class DailyChallengeController extends Controller
             'text' => $dateString,
         ];
         $roomOptions = Room::dailyChallenges()
-            ->orderBy('id')
+            ->orderByDesc('id')
             ->get()
             ->map(static::roomId(...))
             ->map(fn (string $roomName): array => [
