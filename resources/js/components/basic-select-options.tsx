@@ -19,7 +19,6 @@ export default class BasicSelectOptions extends React.PureComponent<Props> {
   render() {
     return (
       <SelectOptions
-        modifiers='basic'
         onChange={this.handleChange}
         options={this.props.items}
         renderOption={this.renderOption}
