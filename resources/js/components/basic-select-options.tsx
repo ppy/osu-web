@@ -6,11 +6,12 @@ import SelectOptionJson from 'interfaces/select-option-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { navigate } from 'utils/turbolinks';
+import { updateQueryString } from 'utils/url';
 
 interface Props {
   currentItem: SelectOptionJson;
   items: SelectOptionJson[];
-  type: 'judge_results' | 'multiplayer' | 'seasons';
+  type: 'judge_results' | 'multiplayer' | 'seasons' | 'spotlight';
 }
 
 export default class BasicSelectOptions extends React.PureComponent<Props> {
@@ -38,6 +39,8 @@ export default class BasicSelectOptions extends React.PureComponent<Props> {
         return route('multiplayer.rooms.show', { room: id ?? 'latest' });
       case 'seasons':
         return route('seasons.show', { season: id ?? 'latest' });
+      case 'spotlight':
+        return updateQueryString(null, { spotlight: id?.toString() });
     }
   }
 
