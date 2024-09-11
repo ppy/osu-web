@@ -14,7 +14,6 @@ import RankingCountryFilter from 'components/ranking-country-filter';
 import RankingUserFilter from 'components/ranking-user-filter';
 import RankingVariantFilter from 'components/ranking-variant-filter';
 import ScoringModeToggle from 'components/scoring-mode-toggle';
-import SpotlightSelectOptions from 'components/spotlight-select-options';
 import { UserCard } from 'components/user-card';
 import { startListening, UserCardTooltip } from 'components/user-card-tooltip';
 import { UserCards } from 'components/user-cards';
@@ -69,10 +68,6 @@ core.reactTurbolinks.register('beatmapset-panel', (container) => {
 
 core.reactTurbolinks.register('basic-select-options', () => (
   <BasicSelectOptions {...parseJson('json-basic-select-options')} />
-));
-
-core.reactTurbolinks.register('spotlight-select-options', () => (
-  <SpotlightSelectOptions {...parseJson('json-spotlight-select-options')} />
 ));
 
 core.reactTurbolinks.register('chat-icon', (container) => (

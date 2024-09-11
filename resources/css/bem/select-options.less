@@ -9,16 +9,12 @@
   --option-padding: 5px 10px;
   --option-select-padding: 15px 10px;
   --selector-display: none;
-  --selector-max-height: auto;
+  --selector-max-height: 400px; // arbitrary
   --selector-overflow-y: auto;
-
-  &--basic {
-    --selector-max-height: 400px; // arbitrary
-    --selector-overflow-y: scroll;
-  }
 
   &--beatmap-discussions-user-filter {
     --decoration-colour: hsl(var(--hsl-c1));
+    --selector-max-height: auto;
 
     @media @desktop {
       width: 200px;
@@ -26,12 +22,11 @@
   }
 
   &--ranking {
-    --selector-max-height: 400px; // arbitrary
-    --selector-overflow-y: scroll;
     --option-select-padding: 5px 10px;
   }
 
   &--report {
+    --selector-max-height: auto;
     width: 100%;
   }
 
