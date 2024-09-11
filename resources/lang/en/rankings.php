@@ -9,6 +9,12 @@ return [
         'title' => 'Country',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Difficulty',
+        'percentile_10' => '10th Percentile Score',
+        'percentile_50' => '50th Percentile Score',
+    ],
+
     'filter' => [
         'title' => 'Show',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'spotlights (old)',
         'country' => 'country',
+        'daily_challenge' => 'daily challenge',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'performance' => 'performance',

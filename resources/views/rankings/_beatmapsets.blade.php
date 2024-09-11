@@ -3,11 +3,13 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 
-<div class="{{ class_with_modifiers('rankings-beatmapsets', ['single' => count($beatmapsets) === 1]) }}">
+<div class="{{ class_with_modifiers('rankings-beatmapsets', $modifiers ?? null, ['single' => count($beatmapsets) === 1]) }}">
     @foreach ($beatmapsets as $beatmapset)
         <div
             class="js-react--beatmapset-panel u-contents"
             data-beatmapset-panel="{{ json_encode(['beatmapset' => json_item($beatmapset, 'Beatmapset', ['beatmaps'])]) }}"
-        ></div>
+        >
+            <div class="beatmapset-panel beatmapset-panel--size-normal"></div>
+        </div>
     @endforeach
 </div>
