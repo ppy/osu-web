@@ -5,12 +5,13 @@ import SelectOptions, { OptionRenderProps } from 'components/select-options';
 import SelectOptionJson from 'interfaces/select-option-json';
 import { route } from 'laroute';
 import * as React from 'react';
+import { fail } from 'utils/fail';
 import { navigate } from 'utils/turbolinks';
 
 interface Props {
   currentItem: SelectOptionJson;
   items: SelectOptionJson[];
-  type: 'judge_results' | 'multiplayer' | 'seasons';
+  type: 'daily_challenge' | 'judge_results' | 'multiplayer' | 'seasons';
 }
 
 export default class BasicSelectOptions extends React.PureComponent<Props> {
@@ -32,6 +33,8 @@ export default class BasicSelectOptions extends React.PureComponent<Props> {
 
   private href(id: number | null) {
     switch (this.props.type) {
+      case 'daily_challenge':
+        return route('daily-challenge.show', { daily_challenge: id ?? fail('missing id parameter') });
       case 'judge_results':
         return route('contest-entries.judge-results', { contest_entry: id ?? 0 });
       case 'multiplayer':
