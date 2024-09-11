@@ -20,7 +20,7 @@ export default class SpotlightSelectOptions extends React.PureComponent<Props> {
   render() {
     return (
       <SelectOptions
-        modifiers='spotlight'
+        modifiers='basic'
         onChange={this.handleChange}
         options={this.props.options}
         renderOption={this.renderOption}
