@@ -82,7 +82,7 @@ class MessagesController extends BaseController
      *   }
      * ]
      */
-    #[Limit(50, 1, 50)]
+    #[Limit]
     public function index($channelId)
     {
         [
