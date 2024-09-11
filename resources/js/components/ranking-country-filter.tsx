@@ -47,7 +47,7 @@ export default class RankingFilter extends React.Component<Props> {
           {trans('rankings.countries.title')}
         </div>
         <SelectOptions
-          modifiers='ranking'
+          modifiers={['basic', 'ranking']}
           onChange={this.onChange}
           options={this.items}
           renderOption={this.handleRenderOption}
