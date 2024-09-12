@@ -240,6 +240,11 @@ export class Nominator extends React.Component<Props> {
         <div className={bn}>
           <div className={`${bn}__header`}>{trans('beatmapsets.nominate.dialog.header')}</div>
           {isHybrid ? this.renderModalContentHybrid() : this.renderModalContentNormal()}
+          {this.nominatorsWillBeDifferent && (
+            <div className={`${bn}__warn`}>
+              {trans('beatmapsets.nominate.dialog.different_nominator_warning')}
+            </div>
+          )}
           <div className={`${bn}__buttons`}>
             <BigButton
               disabled={isHybrid && this.selectedModes.length < 1}
@@ -301,28 +306,13 @@ export class Nominator extends React.Component<Props> {
         <div className={`${bn}__warn`}>
           {trans('beatmapsets.nominate.dialog.hybrid_warning')}
         </div>
-        {this.renderNominatorWarning()}
       </>
     );
   }
 
   private renderModalContentNormal() {
-    return (
-      <>
-        {trans('beatmapsets.nominate.dialog.confirmation')}
-        {this.renderNominatorWarning()}
-      </>
-    );
+    return trans('beatmapsets.nominate.dialog.confirmation')
   }
-
-  private renderNominatorWarning() {
-    return this.nominatorsWillBeDifferent && (
-      <div className={`${bn}__warn`}>
-        {trans('beatmapsets.nominate.dialog.different_nominator_warning')}
-      </div>
-    );
-  }
-
   private requiresFullNomination(mode: Ruleset) {
     let req: number;
     let curr: number;
