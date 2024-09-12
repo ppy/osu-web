@@ -758,7 +758,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             if ($disqualifyEvent !== null) {
                 $previousNominators = new Set($disqualifyEvent->comment['nominator_ids']);
                 $currentNominators = new Set($this->beatmapsetNominations()->current()->pluck('user_id'));
-
+                // Uses xor to make problems during testing stand out, like the number of nominations in the test being wrong.
                 if (!$currentNominators->xor($previousNominators)->isEmpty()) {
                     $this->update(['previous_queue_duration' => 0]);
                 }
