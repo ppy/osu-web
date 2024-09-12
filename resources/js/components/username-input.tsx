@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserJson, { UserJsonMinimum } from 'interfaces/user-json';
-import { route } from 'laroute';
 import { debounce } from 'lodash';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
@@ -11,6 +10,7 @@ import * as React from 'react';
 import { isJqXHR, onError } from 'utils/ajax';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { presence } from 'utils/string';
+import { apiLookupUsers } from 'utils/user';
 import { Spinner } from './spinner';
 import UserCardBrick from './user-card-brick';
 
@@ -36,17 +36,20 @@ const BusySpinner = ({ busy }: { busy: boolean }) => (
 
 @observer
 export default class UsernameInput extends React.PureComponent<Props> {
-  @observable users: string = '';
-  @observable validUsers = new Map<number, UserJson>();
   @observable private busy = false;
   private readonly debouncedLookupUsers = debounce(() => this.lookupUsers(), 1000);
-  private xhrLookupUsers?: JQuery.jqXHR<{ users: UserJson[] }>;
+  @observable private input: string = '';
+  @observable private readonly validUsers = new Map<number, UserJson>();
+  private xhr?: ReturnType<typeof apiLookupUsers>;
 
   constructor(props: Props) {
     super(props);
 
     makeObservable(this);
 
+    // Does not accept input value updates outside of construction.
+    // The component manages its own state so it can handle user and text
+    // conversion without bouncing values back and forth.
     if (this.props.initialUsers != null) {
       for (const user of this.props.initialUsers) {
         this.validUsers.set(user.id, user);
@@ -60,7 +63,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
 
   componentWillUnmount() {
     this.debouncedLookupUsers.cancel();
-    this.xhrLookupUsers?.abort();
+    this.xhr?.abort();
   }
 
   render() {
@@ -76,7 +79,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
           onKeyDown={this.handleUsersInputKeyDown}
           onKeyUp={this.handleUsersInputKeyUp}
           onPaste={this.handleUsersInputPaste}
-          value={this.users}
+          value={this.input}
         />
         <BusySpinner busy={this.busy} />
       </div>
@@ -88,7 +91,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
    */
   @action
   private extractValidUsers(users: UserJson[]) {
-    const userIds = this.users.split(',');
+    const userIds = this.input.split(',');
 
     for (const user of users) {
       this.validUsers.set(user.id, user);
@@ -99,18 +102,18 @@ export default class UsernameInput extends React.PureComponent<Props> {
     for (const userId of userIds) {
       const trimmedUserId = presence(userId.trim());
 
-      if (!this.validUsersContains(trimmedUserId)) {
+      if (!this.validUsersContain(trimmedUserId)) {
         invalidUsers.push(userId);
       }
     }
 
-    this.users = invalidUsers.join(',');
+    this.input = invalidUsers.join(',');
 
     if (this.props.ignoreCurrentUser ?? false) {
       this.validUsers.delete(core.currentUserOrFail.id);
     }
 
-    this.props.onValueChanged?.(this.users);
+    this.props.onValueChanged?.(this.input);
     this.props.onValidUsersChanged?.(this.validUsers);
   }
 
@@ -153,21 +156,18 @@ export default class UsernameInput extends React.PureComponent<Props> {
 
   @action
   private async lookupUsers() {
-    this.xhrLookupUsers?.abort();
+    this.xhr?.abort();
     this.debouncedLookupUsers.cancel();
 
-    const userIds = this.users.split(',').map((s) => presence(s.trim())).filter(Boolean);
+    const userIds = this.input.split(',').map((s) => presence(s.trim())).filter(Boolean);
     if (userIds.length === 0) {
       this.busy = false;
       return;
     }
 
     try {
-      this.xhrLookupUsers = $.ajax(route('users.lookup-users'), {
-        data: { ids: userIds },
-        method: 'POST',
-      });
-      const response = await this.xhrLookupUsers;
+      this.xhr = apiLookupUsers(userIds);
+      const response = await this.xhr;
       this.extractValidUsers(response.users);
     } catch (error) {
       if (!isJqXHR(error)) throw error;
@@ -189,13 +189,13 @@ export default class UsernameInput extends React.PureComponent<Props> {
   @action
   private updateUsers(text: string, immediate: boolean) {
     this.debouncedLookupUsers.cancel();
-    this.users = text;
+    this.input = text;
 
-    this.props.onValueChanged?.(this.users);
+    this.props.onValueChanged?.(this.input);
 
     // TODO: check if change is only whitespace.
     if (text.trim().length === 0) {
-      this.xhrLookupUsers?.abort();
+      this.xhr?.abort();
       this.busy = false;
 
       return;
@@ -210,13 +210,15 @@ export default class UsernameInput extends React.PureComponent<Props> {
     }
   }
 
-  private validUsersContains(userId?: string | null) {
-    if (userId == null) return false;
+  private validUsersContain(userIdOrUsername?: string | null) {
+    if (userIdOrUsername == null) return false;
 
-    return this.validUsers.has(Number(userId))
+    return this.validUsers.has(Number(userIdOrUsername))
       // maybe it's a username
-      || [...this.validUsers.values()].some((user) => user.username.toLowerCase() === userId.toLowerCase());
+      || [...this.validUsers.values()].some((user) => {
+        const validUsernameLowercase = user.username.toLowerCase();
+        return [validUsernameLowercase, `@${validUsernameLowercase}`].includes(userIdOrUsername.toLowerCase());
+      });
   }
 }
-
 

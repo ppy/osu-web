@@ -5,11 +5,12 @@
 
 return [
     'edit' => [
-        'title_compact' => 'configurações de conta',
+        'title_compact' => 'opções da conta',
         'username' => 'nome de usuário',
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => 'reiniciar',
             'rules' => 'Por favor tenha certeza que seu avatar respeite :link.<br/>Isso significa que deve ser <strong>adequado para todas as idades</strong>. ou seja, sem nudez, palavrões ou conteúdo sugestivo.',
             'rules_link' => 'as regras da comunidade',
         ],

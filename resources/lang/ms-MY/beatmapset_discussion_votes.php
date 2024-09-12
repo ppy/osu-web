@@ -9,6 +9,6 @@ return [
     ],
 
     'item' => [
-        'score' => '',
+        'score' => 'Markah',
     ],
 ];

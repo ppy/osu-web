@@ -197,19 +197,20 @@ return [
             'to_1' => '显示封面',
         ],
         'daily_challenge' => [
-            'daily' => '',
-            'daily_streak_best' => '',
-            'daily_streak_current' => '',
-            'title' => '',
-            'top_10p_placements' => '',
-            'top_50p_placements' => '',
-            'weekly' => '',
-            'weekly_streak_best' => '',
-            'weekly_streak_current' => '',
+            'daily' => '每日连续完成数',
+            'daily_streak_best' => '最佳每日完成数',
+            'daily_streak_current' => '当前每日完成数',
+            'playcount' => '',
+            'title' => '每日\n挑战',
+            'top_10p_placements' => '前 10% 位置',
+            'top_50p_placements' => '前 50% 位置',
+            'weekly' => '每周完成数',
+            'weekly_streak_best' => '最佳每周完成数',
+            'weekly_streak_current' => '当前每周完成数',
 
             'unit' => [
-                'day' => '',
-                'week' => '',
+                'day' => ':value 天',
+                'week' => ':value 周',
             ],
         ],
         'edit' => [
@@ -519,8 +520,8 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '方块检视',
-        'card' => '卡片检视',
-        'list' => '列表检视',
+        'brick' => '方格视图',
+        'card' => '卡片视图',
+        'list' => '列表视图',
     ],
 ];

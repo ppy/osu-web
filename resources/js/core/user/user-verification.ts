@@ -23,9 +23,18 @@ interface UserVerificationXhr extends JQuery.jqXHR {
   status: 401;
 }
 
-const isUserVerificationXhr = (arg: JQuery.jqXHR): arg is UserVerificationXhr => (
-  arg.status === 401 && arg.responseJSON?.authentication === 'verify'
-);
+function isUserVerificationJson(arg: unknown): arg is UserVerificationJson {
+  return typeof arg === 'object'
+    && arg != null
+    && 'authentication' in arg
+    && arg.authentication === 'verify'
+    && 'box' in arg
+    && typeof arg.box === 'string';
+}
+
+export function isUserVerificationXhr(arg: JQuery.jqXHR<unknown>): arg is UserVerificationXhr {
+  return arg.status === 401 && isUserVerificationJson(arg.responseJSON);
+}
 
 export default class UserVerification {
   // Used as callback on original action (where verification was required)

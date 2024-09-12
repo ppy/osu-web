@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\CountryStatistics;
+use App\Models\Model;
 use App\Models\Spotlight;
 use App\Models\User;
 use App\Models\UserStatistics;
@@ -28,11 +29,20 @@ class RankingController extends Controller
     private $friendsOnly;
 
     const MAX_RESULTS = 10000;
-    const PAGE_SIZE = 50;
+    const PAGE_SIZE = Model::PER_PAGE;
     const RANKING_TYPES = ['performance', 'charts', 'score', 'country'];
     const SPOTLIGHT_TYPES = ['charts'];
     // in display order
-    const TYPES = ['performance', 'score', 'country', 'multiplayer', 'seasons', 'charts', 'kudosu'];
+    const TYPES = [
+        'performance',
+        'score',
+        'country',
+        'multiplayer',
+        'daily_challenge',
+        'seasons',
+        'charts',
+        'kudosu',
+    ];
 
     public function __construct()
     {
@@ -113,6 +123,7 @@ class RankingController extends Controller
     ): string {
         return match ($type) {
             'country' => route('rankings', ['mode' => $rulesetName, 'type' => $type]),
+            'daily_challenge' => route('daily-challenge.index'),
             'kudosu' => route('rankings.kudosu'),
             'multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
             'seasons' => route('seasons.show', ['season' => 'latest']),
@@ -353,8 +364,9 @@ class RankingController extends Controller
 
         $selectOptionTransformer = new SelectOptionTransformer();
         $selectOptions = [
-            'selected' => json_item($spotlight, $selectOptionTransformer),
-            'options' => json_collection($spotlights, $selectOptionTransformer),
+            'currentItem' => json_item($spotlight, $selectOptionTransformer),
+            'items' => json_collection($spotlights, $selectOptionTransformer),
+            'type' => 'spotlight',
         ];
 
         return ext_view(

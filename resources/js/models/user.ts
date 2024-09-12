@@ -87,8 +87,7 @@ deletedUser.isDeleted = true;
 deletedUser.username = trans('users.deleted');
 Object.freeze(deletedUser);
 
-const deletedUserJson = deletedUser.toJson();
-Object.freeze(deletedUserJson);
+const deletedUserJson = Object.freeze(deletedUser.toJson());
 
 export {
   deletedUser,

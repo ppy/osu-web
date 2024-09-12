@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => '欲速則不達。',
+        'no_mirrors' => '沒有可用的下載伺服器。',
     ],
 
     'featured_artist_badge' => [

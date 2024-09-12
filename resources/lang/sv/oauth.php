@@ -7,7 +7,7 @@ return [
     'cancel' => 'Avbryt',
 
     'authorise' => [
-        'app_owner' => '',
+        'app_owner' => 'en app av :owner',
         'request' => 'begär behörighet att komma åt ditt konto.',
         'scopes_title' => 'Denna applikation kommer att kunna:',
         'title' => 'Auktoriseringsbegäran.',

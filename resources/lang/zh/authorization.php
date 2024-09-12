@@ -32,7 +32,7 @@ return [
 
         'vote' => [
             'bot' => "不能对机器人的讨论投票",
-            'limit_exceeded' => '请稍等后再投票。',
+            'limit_exceeded' => '请稍等后再投票',
             'owner' => "不能为自己的讨论投票！",
             'wrong_beatmapset_state' => '只能给待定 (Pending) 谱面的讨论投票。',
         ],
@@ -42,13 +42,13 @@ return [
         'destroy' => [
             'not_owner' => '你只能删除你自己的帖子。',
             'resolved' => '你不能删除已解决的讨论帖。',
-            'system_generated' => '自动生成的帖子无法删除。',
+            'system_generated' => '无法删除自动生成的帖子。',
         ],
 
         'edit' => [
             'not_owner' => '只有作者可以编辑。',
             'resolved' => '你不能编辑已解决讨论里的帖子。',
-            'system_generated' => '自动生成的帖子无法被编辑。',
+            'system_generated' => '无法编辑自动生成的帖子。',
         ],
     ],
 
@@ -112,7 +112,7 @@ return [
             ],
 
             'store' => [
-                'play_more' => '在发帖之前先玩上两局吧！如果你在游戏时遇到问题，请在 Help 或 中文 版块发帖求助。',
+                'play_more' => '在发帖之前先玩上两局吧！如果你在游戏时遇到问题，请在“Help”或“中文”版块发帖求助。',
                 'too_many_help_posts' => "如果你想发更多的帖子，再多玩几局吧！如果你在游戏时仍遇到问题，请发送邮件至 support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
@@ -146,7 +146,7 @@ return [
                 'user' => [
                     'require_login' => '投票前请先登录。',
                     'restricted' => "账户处于限制模式，无法投票。",
-                    'silenced' => "账户被禁言，无法投票。",
+                    'silenced' => "账户禁言中，无法投票。",
                 ],
             ],
 

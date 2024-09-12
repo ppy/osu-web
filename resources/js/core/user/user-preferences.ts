@@ -7,15 +7,19 @@ import { route } from 'laroute';
 import { action, makeObservable, observable } from 'mobx';
 import { onErrorWithCallback } from 'utils/ajax';
 
+const localStorageKey = 'userPreferences';
+
 export default class UserPreferences {
   @observable private current: UserPreferencesJson;
   private updatingOptions = false;
   private user?: CurrentUserJson;
 
   constructor() {
-    this.current = Object.assign({}, defaultUserPreferencesJson, this.fromStorage());
+    this.current = this.fromStorageWithDefaults();
 
     makeObservable(this);
+
+    window.addEventListener('storage', this.updateFromStorage);
   }
 
   get<T extends keyof UserPreferencesJson>(key: T) {
@@ -27,7 +31,7 @@ export default class UserPreferences {
     if (this.current[key] === value) return;
 
     this.current[key] = value;
-    localStorage.userPreferences = JSON.stringify(this.current);
+    this.updateStorage();
 
     if (this.user == null) return;
 
@@ -50,14 +54,15 @@ export default class UserPreferences {
   setUser(user?: CurrentUserJson) {
     this.user = user;
 
-    if (user != null && !this.updatingOptions) {
-      this.current = user?.user_preferences;
+    if (!this.updatingOptions) {
+      this.current = user?.user_preferences ?? defaultUserPreferencesJson();
+      this.updateStorage();
     }
   }
 
   private fromStorage(): Partial<UserPreferencesJson> {
     try {
-      const data = localStorage.getItem('userPreferences');
+      const data = localStorage.getItem(localStorageKey);
       if (data != null) {
         const preferences = JSON.parse(data) as unknown;
 
@@ -70,5 +75,20 @@ export default class UserPreferences {
     }
 
     return {};
+  }
+
+  private fromStorageWithDefaults() {
+    return Object.assign(defaultUserPreferencesJson(), this.fromStorage());
+  }
+
+  @action
+  private readonly updateFromStorage = (event: StorageEvent) => {
+    if (event.key == null || event.key === localStorageKey) {
+      this.current = this.fromStorageWithDefaults();
+    }
+  };
+
+  private updateStorage() {
+    localStorage[localStorageKey] = JSON.stringify(this.current);
   }
 }

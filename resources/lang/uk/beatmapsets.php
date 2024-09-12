@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Зменш темп, більше грай.',
+        'no_mirrors' => 'Немає доступних серверів для завантаження.',
     ],
 
     'featured_artist_badge' => [

@@ -29,7 +29,7 @@ return [
         'generic' => 'A apărut o eroare în timpul preparării comenzii tale.',
     ],
     'scores' => [
-        'invalid_id' => '',
+        'invalid_id' => 'ID scor invalid.',
     ],
     'search' => [
         'default' => 'Nu s-au putut obține rezultate, încearcă mai târziu.',

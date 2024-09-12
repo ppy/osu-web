@@ -10,7 +10,7 @@ return [
         'header' => '多人游戏',
         'in-progress' => '（游戏进行中）',
         'in_progress_spinner_label' => '游戏进行中',
-        'loading-events' => '加载事件...',
+        'loading-events' => '加载事件中...',
         'winner' => ':team 胜利',
         'winner_by' => ':winner，分差 :difference',
 
@@ -27,7 +27,7 @@ return [
             'player-kicked-no-user' => '有玩家被踢出房间',
             'match-created-no-user' => '创建了房间',
             'match-disbanded-no-user' => '房间关闭',
-            'host-changed-no-user' => '房主已经变更',
+            'host-changed-no-user' => '房主已被更改',
         ],
 
         'score' => [

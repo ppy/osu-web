@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => '慢一点，打几张图再回来吧。',
+        'no_mirrors' => '没有可用的下载服务器。',
     ],
 
     'featured_artist_badge' => [

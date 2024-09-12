@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Niet zo snel, speel meer.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [

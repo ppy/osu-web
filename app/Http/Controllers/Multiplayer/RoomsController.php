@@ -6,11 +6,13 @@
 namespace App\Http\Controllers\Multiplayer;
 
 use App\Exceptions\InvariantException;
-use App\Http\Controllers\Controller as BaseController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\Ranking\DailyChallengeController;
+use App\Models\Model;
 use App\Models\Multiplayer\Room;
 use App\Transformers\Multiplayer\RoomTransformer;
 
-class RoomsController extends BaseController
+class RoomsController extends Controller
 {
     public function __construct()
     {
@@ -114,7 +116,7 @@ class RoomsController extends BaseController
 
     public function leaderboard($roomId)
     {
-        $limit = clamp(get_int(request('limit')) ?? 50, 1, 50);
+        $limit = clamp(get_int(request('limit')) ?? Model::PER_PAGE, 1, 50);
         $room = Room::findOrFail($roomId);
 
         // leaderboard currently requires auth so auth()->check() is not required.
@@ -176,14 +178,22 @@ class RoomsController extends BaseController
             );
         }
 
+        if ($room->category === 'daily_challenge') {
+            return ujs_redirect(route('daily-challenge.show', DailyChallengeController::roomId($room)));
+        }
+
         $playlistItemsQuery = $room->playlist();
         if ($room->isRealtime()) {
             $playlistItemsQuery->whereHas('scoreLinks');
         }
         $beatmaps = $playlistItemsQuery->with('beatmap.beatmapset.beatmaps')->get()->pluck('beatmap');
         $beatmapsets = $beatmaps->pluck('beatmapset');
-        $highScores = $room->topScores()->paginate(50);
+        $highScores = $room->topScores()->paginate();
         $spotlightRooms = Room::featured()->orderBy('id', 'DESC')->get();
+
+        $userScore = ($currentUser = \Auth::user()) === null
+            ? null
+            : $room->topScores()->whereBelongsTo($currentUser)->first();
 
         return ext_view('multiplayer.rooms.show', [
             'beatmaps' => $beatmaps,
@@ -191,6 +201,7 @@ class RoomsController extends BaseController
             'room' => $room,
             'rooms' => $spotlightRooms,
             'scores' => $highScores,
+            'userScore' => $userScore,
         ]);
     }
 

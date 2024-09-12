@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'A poc a poc, juga més.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [

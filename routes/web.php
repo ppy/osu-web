@@ -281,6 +281,7 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::get('rankings/kudosu', 'RankingController@kudosu')->name('rankings.kudosu');
+    Route::resource('rankings/daily-challenge', 'Ranking\DailyChallengeController', ['only' => ['index', 'show']]);
     Route::get('rankings/{mode?}/{type?}', 'RankingController@index')->name('rankings');
 
     Route::resource('reports', 'ReportsController', ['only' => ['store']]);
@@ -295,7 +296,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('user-cover-presets', 'UserCoverPresetsController', ['only' => ['index', 'store', 'update']]);
 
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
-    Route::post('users/check-username-exists', 'UsersController@checkUsernameExists')->name('users.check-username-exists');
     Route::post('users/lookup-users', 'Users\LookupController@lookup')->name('users.lookup-users');
     Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled');
     Route::get('users/create', 'UsersController@create')->name('users.create');

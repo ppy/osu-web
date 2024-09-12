@@ -65,7 +65,7 @@ return [
         'discussion_post_restore' => 'Pemulihan pesan balasan',
         'discussion_restore' => 'Pemulihan topik diskusi',
         'disqualify' => 'Diskualifikasi',
-        'genre_edit' => 'Pengaturan aliran',
+        'genre_edit' => 'Penyuntingan aliran',
         'issue_reopen' => 'Pembukaan ulang topik diskusi',
         'issue_resolve' => 'Penutupan topik diskusi',
         'kudosu_allow' => 'Pemberian izin kudosu',

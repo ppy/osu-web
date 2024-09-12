@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'kommentit',
         'hide_judged' => 'piilota arvioidut tuotokset',
         'nav_title' => 'arvioi',
         'no_current_vote' => 'et äänestänyt vielä.',

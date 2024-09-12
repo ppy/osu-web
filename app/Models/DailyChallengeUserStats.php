@@ -55,7 +55,7 @@ class DailyChallengeUserStats extends Model
 
         $highScoresByUserId = $playlist
             ->highScores()
-            ->where('total_score', '>', 0)
+            ->passing()
             ->get()
             ->keyBy('user_id');
         $statsByUserId = static
@@ -95,6 +95,35 @@ class DailyChallengeUserStats extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function fix(): void
+    {
+        $highScores = PlaylistItemUserHighScore
+            ::where('user_id', $this->user_id)
+            ->whereRelation('playlistItem.room', 'category', 'daily_challenge')
+            ->passing()
+            ->with('playlistItem.room')
+            ->orderBy('created_at')
+            ->get();
+
+        $this->fill(static::INITIAL_VALUES);
+
+        foreach ($highScores as $highScore) {
+            $playlistItem = $highScore->playlistItem;
+            $room = $playlistItem->room;
+            $startTime = $room->starts_at->toImmutable()->startOfDay();
+            $this->updateStreak(true, $startTime);
+            if ($room->hasEnded()) {
+                $this->updatePercentile($playlistItem->scorePercentile(), $highScore, $startTime);
+            }
+        }
+        $streakBreakDay = CarbonImmutable::yesterday();
+        if ($this->last_update < $streakBreakDay) {
+            $this->updateStreak(false, $streakBreakDay);
+        }
+
+        $this->saveOrExplode();
+    }
+
     public function updateStreak(
         bool $incrementing,
         CarbonImmutable $startTime,
@@ -132,7 +161,7 @@ class DailyChallengeUserStats extends Model
             }
         } else {
             $this->daily_streak_current = 0;
-            if ($this->last_weekly_streak === null || $this->last_weekly_streak < $previousWeek) {
+            if ($this->last_weekly_streak < $previousWeek) {
                 $this->weekly_streak_current = 0;
             }
         }

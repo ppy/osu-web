@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Rallenta, gioca di più.',
+        'no_mirrors' => 'Nessun server di download disponibile.',
     ],
 
     'featured_artist_badge' => [

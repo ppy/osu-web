@@ -89,7 +89,7 @@ class ForumsController extends Controller
             ->normal()
             ->showDeleted($showDeleted)
             ->recent(compact('sort', 'withReplies'))
-            ->paginate(30);
+            ->paginate();
 
         $allTopics = array_merge($pinnedTopics->all(), $topics->all());
         $topicReadStatus = TopicTrack::readStatus($user, $allTopics);

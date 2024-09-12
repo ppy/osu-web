@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Zpomal, více hraj.',
+        'no_mirrors' => 'Nejsou dostupné žádné servery pro stahování.',
     ],
 
     'featured_artist_badge' => [

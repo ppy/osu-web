@@ -29,7 +29,7 @@ return [
         'generic' => 'Ett fel inträffade när din transaktion förbereddes.',
     ],
     'scores' => [
-        'invalid_id' => '',
+        'invalid_id' => 'Ogiltigt poäng id.',
     ],
     'search' => [
         'default' => 'Kunde inte få några resultat, försök igen senare.',
@@ -37,6 +37,6 @@ return [
         'operation_timeout_exception' => 'Sökfunktionen är för närvarande mer upptagen än vanligt, försök igen senare.',
     ],
     'user_report' => [
-        'recently_reported' => "",
+        'recently_reported' => "Du har redan rapporterat det här nyligen.",
     ],
 ];

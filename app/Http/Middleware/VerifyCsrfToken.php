@@ -12,6 +12,7 @@ use Illuminate\Session\TokenMismatchException;
 
 class VerifyCsrfToken extends BaseVerifier
 {
+    protected $addHttpCookie = false;
     protected $except = [
         'home/changelog/github',
         'oauth/authorize',

@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => '잠시 멈추시고, 좀 더 플레이해보세요.',
+        'no_mirrors' => '다운로드를 할 서버가 존재하지 않습니다.',
     ],
 
     'featured_artist_badge' => [

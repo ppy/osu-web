@@ -31,7 +31,7 @@ class LookupController extends Controller
             if (ctype_digit($id)) {
                 $numericIds[] = $id;
             } elseif (present($id)) {
-                $stringIds[] = $id;
+                $stringIds[] = $id[0] === '@' ? substr($id, 1) : $id;
             }
         }
 

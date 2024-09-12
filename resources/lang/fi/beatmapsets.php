@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Hidasta vähän, pelaa enemmän.',
+        'no_mirrors' => 'Latauspalvelimia ei saatavilla.',
     ],
 
     'featured_artist_badge' => [

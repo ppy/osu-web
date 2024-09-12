@@ -27,7 +27,7 @@ return [
         'reply_notice' => 'Tekan enter untuk membalas.',
         'reply_resolve_notice' => 'Tekan enter untuk membalas. Tekan ctrl+enter untuk membalas dan menutup topik diskusi.',
         'reply_placeholder' => 'Ketik balasanmu di sini',
-        'require-login' => 'Silakan masuk untuk membuka topik diskusi baru atau membalas',
+        'require-login' => 'Silakan masuk untuk mengirim atau membalas postingan',
         'resolved' => 'Terjawab',
         'restore' => 'pulihkan',
         'show_deleted' => 'Tampilkan yang telah dihapus',
@@ -62,10 +62,10 @@ return [
         ],
 
         'message_placeholder' => [
-            'general' => 'Ketik di sini untuk membuka topik diskusi baru pada Umum (:version)',
-            'generalAll' => 'Ketik di sini untuk membuka topik diskusi baru pada Umum (Seluruh tingkat kesulitan)',
-            'review' => 'Ketik di sini untuk menulis kajian',
-            'timeline' => 'Ketik di sini untuk membuka topik diskusi baru pada Linimasa (:version)',
+            'general' => 'Ketik di sini untuk mengirimkan topik diskusi baru pada Umum (:version)',
+            'generalAll' => 'Ketik di sini untuk mengirimkan topik diskusi baru pada Umum (Seluruh tingkat kesulitan)',
+            'review' => 'Ketik di sini untuk mengirimkan kajian',
+            'timeline' => 'Ketik di sini untuk mengirimkan topik diskusi baru pada Linimasa (:version)',
         ],
 
         'message_type' => [
@@ -174,7 +174,7 @@ return [
     'hype' => [
         'button' => 'Berikan Hype!',
         'button_done' => 'Telah di-Hype!',
-        'confirm' => "Apakah kamu yakin? Dengan ini, kamu akan memberikan 1 hype kepada beatmap ini dari :n hype yang kamu miliki saat ini. Tindakan ini tidak dapat diurungkan.",
+        'confirm' => "Apakah kamu yakin? Dengan ini, kamu akan memberikan 1 hype kepada beatmap ini dari :n hype yang kamu miliki saat ini. Tindakan ini tidak dapat dibatalkan.",
         'explanation' => 'Berikan hype-mu untuk membawa beatmap ini lebih dekat menuju Ranked!',
         'explanation_guest' => 'Masuk dan berikan hype kepada beatmap ini agar beatmap ini dapat segera dinominasikan dan di-rank!',
         'new_time' => "Kamu akan memperoleh lebih banyak hype :new_time.",
@@ -192,8 +192,8 @@ return [
         'already_nominated' => 'Kamu telah menominasikan beatmap ini.',
         'cannot_nominate' => 'Kamu tidak dapat memberikan nominasi untuk mode permainan ini.',
         'delete' => 'Hapus',
-        'delete_own_confirm' => 'Apakah kamu yakin? Beatmap yang dipilih akan dihapus dan kamu akan dialihkan kembali ke halaman profilmu.',
-        'delete_other_confirm' => 'Apakah kamu yakin? Beatmap yang dipilih akan dihapus dan kamu akan dialihkan kembali ke halaman profil pengguna yang bersangkutan.',
+        'delete_own_confirm' => 'Apakah kamu yakin? Beatmap ini akan dihapus dan kamu akan dialihkan kembali ke halaman profilmu.',
+        'delete_other_confirm' => 'Apakah kamu yakin? Beatmap ini akan dihapus dan kamu akan dialihkan kembali ke halaman profil pengguna yang bersangkutan.',
         'disqualification_prompt' => 'Alasan diskualifikasi?',
         'disqualified_at' => 'Didiskualifikasi pada :time_ago (:reason).',
         'disqualified_no_reason' => 'tidak ada alasan yang diberikan',

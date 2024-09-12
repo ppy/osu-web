@@ -82,6 +82,7 @@ class Kernel extends ConsoleKernel
 
         Commands\DailyChallengeCreateNext::class,
         Commands\DailyChallengeUserStatsCalculate::class,
+        Commands\DailyChallengeUserStatsRecalculate::class,
     ];
 
     /**

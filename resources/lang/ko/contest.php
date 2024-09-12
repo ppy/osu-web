@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => '코멘트',
         'hide_judged' => '심사된 항목 숨기기',
         'nav_title' => '심사',
         'no_current_vote' => '아직은 투표할 수 없습니다.',

@@ -200,6 +200,7 @@ return [
             'daily' => '',
             'daily_streak_best' => '',
             'daily_streak_current' => '',
+            'playcount' => '',
             'title' => '',
             'top_10p_placements' => '',
             'top_50p_placements' => '',

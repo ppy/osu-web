@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Neskubėk, pažaisk daugiau.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [

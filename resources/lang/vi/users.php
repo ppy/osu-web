@@ -8,7 +8,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Lịch Sử Modding Của :user",
-        'title_compact' => 'Modding',
+        'title_compact' => 'Sửa đổi',
 
         'discussions' => [
             'title_recent' => 'Cuộc thảo luận gần đây',
@@ -59,8 +59,8 @@ return [
             'password' => 'mật khẩu',
             'password_confirmation' => 'xác nhận mật khẩu',
             'submit' => 'tạo tài khoản',
-            'user_email' => 'email',
-            'user_email_confirmation' => 'xác nhận email',
+            'user_email' => 'thư điện tử',
+            'user_email_confirmation' => 'xác nhận thư điện tử',
             'username' => 'tên người dùng',
 
             'tos_notice' => [
@@ -197,19 +197,20 @@ return [
             'to_1' => 'Hiện ảnh bìa',
         ],
         'daily_challenge' => [
-            'daily' => '',
-            'daily_streak_best' => '',
-            'daily_streak_current' => '',
-            'title' => '',
-            'top_10p_placements' => '',
-            'top_50p_placements' => '',
-            'weekly' => '',
-            'weekly_streak_best' => '',
-            'weekly_streak_current' => '',
+            'daily' => 'Chuỗi chơi hằng ngày',
+            'daily_streak_best' => 'Chuỗi chơi hằng ngày tốt nhất',
+            'daily_streak_current' => 'Chuỗi chơi hằng ngày hiện tại',
+            'playcount' => '',
+            'title' => 'Thử thách\nhằng ngày',
+            'top_10p_placements' => '10% vị trí hàng đầu',
+            'top_50p_placements' => '50% vị trí hàng đầu',
+            'weekly' => 'Chuỗi chơi hàng tuần',
+            'weekly_streak_best' => 'Chuỗi chơi hàng tuần tốt nhất',
+            'weekly_streak_current' => 'Chuỗi chơi hàng tuần hiện tại',
 
             'unit' => [
-                'day' => '',
-                'week' => '',
+                'day' => ':valued',
+                'week' => ':valuew',
             ],
         ],
         'edit' => [
@@ -388,7 +389,7 @@ return [
                 'title' => 'Màn chơi nhiều người chơi',
             ],
             'top_ranks' => [
-                'download_replay' => 'Tải Xuống Replay',
+                'download_replay' => 'Tải Xuống Phần Phát Lại',
                 'not_ranked' => 'Chỉ có beatmap được xếp hạng mới có pp.',
                 'pp_weight' => 'trọng số :percentage',
                 'view_details' => 'Xem chi tiết',

@@ -198,19 +198,20 @@ return [
             'to_1' => 'Pokaż tło',
         ],
         'daily_challenge' => [
-            'daily' => '',
-            'daily_streak_best' => '',
-            'daily_streak_current' => '',
-            'title' => '',
-            'top_10p_placements' => '',
-            'top_50p_placements' => '',
-            'weekly' => '',
-            'weekly_streak_best' => '',
-            'weekly_streak_current' => '',
+            'daily' => 'Dzienna seria',
+            'daily_streak_best' => 'Najlepsza Dzienna seria',
+            'daily_streak_current' => 'Aktualna Dzienna Seria',
+            'playcount' => '',
+            'title' => 'Wyzwanie Dnia',
+            'top_10p_placements' => 'Top 10% Miejsc',
+            'top_50p_placements' => 'Top 50% Miejsc',
+            'weekly' => 'Tygodniowa Seria',
+            'weekly_streak_best' => 'Najlepsza Tygodniowa Seria',
+            'weekly_streak_current' => 'Aktualna tygodniowa seria',
 
             'unit' => [
-                'day' => '',
-                'week' => '',
+                'day' => ':valued',
+                'week' => ':valuew',
             ],
         ],
         'edit' => [
@@ -242,7 +243,7 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
+                'reset_no_supporter' => 'Przywrócić domyślny kolor? Osu!Supporter będzie wymagany, aby go zmienić ponownie.',
                 'title' => 'Kolor',
 
                 'supporter' => [
