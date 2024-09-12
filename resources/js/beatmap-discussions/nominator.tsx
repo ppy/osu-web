@@ -313,6 +313,7 @@ export class Nominator extends React.Component<Props> {
   private renderModalContentNormal() {
     return trans('beatmapsets.nominate.dialog.confirmation');
   }
+
   private requiresFullNomination(mode: Ruleset) {
     let req: number;
     let curr: number;
