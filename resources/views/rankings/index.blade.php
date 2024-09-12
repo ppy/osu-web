@@ -39,6 +39,11 @@
 
         @slot('linksAppend')
             @yield('additionalHeaderLinks')
+            @if($hasMode)
+                <div class="visible-xs">
+                    @include('rankings._mode_selector')
+                </div>
+            @endif
         @endslot
     @endcomponent
 
