@@ -301,17 +301,26 @@ export class Nominator extends React.Component<Props> {
         <div className={`${bn}__warn`}>
           {trans('beatmapsets.nominate.dialog.hybrid_warning')}
         </div>
-        {this.nominatorsWillBeDifferent && (
-          <div className={`${bn}__warn`}>
-            {trans('beatmapsets.nominate.dialog.different_nominator_warning')}
-          </div>
-        )}
+        {this.renderNominatorWarning()}
       </>
     );
   }
 
   private renderModalContentNormal() {
-    return trans('beatmapsets.nominate.dialog.confirmation');
+    return (
+      <>
+        {trans('beatmapsets.nominate.dialog.confirmation')}
+        {this.renderNominatorWarning()}
+      </>
+    );
+  }
+
+  private renderNominatorWarning() {
+    return this.nominatorsWillBeDifferent && (
+      <div className={`${bn}__warn`}>
+        {trans('beatmapsets.nominate.dialog.different_nominator_warning')}
+      </div>
+    );
   }
 
   private requiresFullNomination(mode: Ruleset) {
