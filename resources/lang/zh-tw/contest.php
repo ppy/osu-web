@@ -14,7 +14,7 @@ return [
     ],
 
     'judge' => [
-        'comments' => '',
+        'comments' => '評論',
         'hide_judged' => '隱藏已評分的項目',
         'nav_title' => '評分',
         'no_current_vote' => '您尚未投票',

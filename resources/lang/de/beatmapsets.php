@@ -17,7 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Nur langsam, spiel mehr.',
-        'no_mirrors' => '',
+        'no_mirrors' => 'Keine Download-Server verfügbar.',
     ],
 
     'featured_artist_badge' => [

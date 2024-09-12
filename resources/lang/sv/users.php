@@ -200,6 +200,7 @@ return [
             'daily' => 'Daglig Streak',
             'daily_streak_best' => 'Bästa Dagliga Streak',
             'daily_streak_current' => 'Nuvarande Dagliga Streak',
+            'playcount' => '',
             'title' => '',
             'top_10p_placements' => 'Topp 10% Placeringar',
             'top_50p_placements' => 'Topp 50% Placeringar',

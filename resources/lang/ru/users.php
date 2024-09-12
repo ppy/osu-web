@@ -200,6 +200,7 @@ return [
             'daily' => 'Серия в днях',
             'daily_streak_best' => 'Лучшая серия в днях',
             'daily_streak_current' => 'Текущая серия в днях',
+            'playcount' => '',
             'title' => 'Карта\nдня',
             'top_10p_placements' => 'Попаданий в топ 10%',
             'top_50p_placements' => 'Попаданий в топ 50%',

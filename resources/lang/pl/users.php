@@ -201,6 +201,7 @@ return [
             'daily' => 'Dzienna seria',
             'daily_streak_best' => 'Najlepsza Dzienna seria',
             'daily_streak_current' => 'Aktualna Dzienna Seria',
+            'playcount' => '',
             'title' => 'Wyzwanie Dnia',
             'top_10p_placements' => 'Top 10% Miejsc',
             'top_50p_placements' => 'Top 50% Miejsc',

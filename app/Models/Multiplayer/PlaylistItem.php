@@ -127,7 +127,7 @@ class PlaylistItem extends Model
 
         return \Cache::remember($key, 600, function (): array {
             $scores = $this->highScores()
-                ->where('total_score', '>', 0)
+                ->passing()
                 ->orderBy('total_score', 'DESC')
                 ->pluck('total_score');
             $count = count($scores);

@@ -201,6 +201,7 @@ return [
             'daily' => 'Дневна Серија',
             'daily_streak_best' => 'Најбоља Дневна Серија',
             'daily_streak_current' => 'Тренутна Дневна Серија',
+            'playcount' => '',
             'title' => 'Дневни\nИзазов',
             'top_10p_placements' => '10% Најбољих Места',
             'top_50p_placements' => '50% Најбољих Места',

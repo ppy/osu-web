@@ -31,19 +31,29 @@
         'links' => $links,
         'theme' => 'rankings',
     ]])
-        @slot('linksAppend')
+        @slot('contentAppend')
             @if($hasMode)
                 @include('rankings._mode_selector')
             @endif
+        @endslot
 
+        @slot('linksAppend')
             @yield('additionalHeaderLinks')
+            @if($hasMode)
+                <div class="visible-xs">
+                    @include('rankings._mode_selector')
+                </div>
+            @endif
         @endslot
     @endcomponent
 
     @yield('ranking-header')
 
     @if ($hasScores)
-        <div class="osu-page osu-page--generic" id="scores">
+        <div class="osu-page osu-page--generic">
+            @yield('scores-header')
+
+            <div id="scores"></div>
             @if ($hasPager)
                 @include('objects._pagination_v2', [
                     'object' => $scores

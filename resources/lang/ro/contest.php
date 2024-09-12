@@ -14,7 +14,7 @@ return [
     ],
 
     'judge' => [
-        'comments' => '',
+        'comments' => 'comentarii',
         'hide_judged' => 'ascunde intrările evaluate',
         'nav_title' => 'evaluator',
         'no_current_vote' => 'nu ai votat încă.',

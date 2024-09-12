@@ -226,7 +226,7 @@ class Room extends Model
     public function macroDailyChallengeFor(): \Closure
     {
         return fn (Builder $query, CarbonImmutable $date): ?static
-            => static::where('category', 'daily_challenge')
+            => static::dailyChallenges()
                 ->whereBetween('starts_at', [$date->startOfDay(), $date->endOfDay()])
                 ->last();
     }
@@ -263,6 +263,11 @@ class Room extends Model
             ->where(function ($q) {
                 $q->where('ends_at', '>', Carbon::now())->orWhereNull('ends_at');
             });
+    }
+
+    public function scopeDailyChallenges(Builder $query): Builder
+    {
+        return $query->where('category', 'daily_challenge');
     }
 
     public function scopeEnded($query)
