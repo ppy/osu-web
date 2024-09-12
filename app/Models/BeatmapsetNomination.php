@@ -31,9 +31,9 @@ class BeatmapsetNomination extends Model
         return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
     }
 
-    public function scopeCurrent($query)
+    public function scopeCurrent($query, bool $current = true)
     {
-        return $query->where('reset', false);
+        return $query->where('reset', !$current);
     }
 
     public function resetBy()
