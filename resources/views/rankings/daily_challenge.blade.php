@@ -2,47 +2,44 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@extends('rankings.index')
+@extends('rankings.index', [
+    'hasMode' => false,
+    'hasPager' => true,
+    'type' => 'daily_challenge',
+    'titlePrepend' => osu_trans('rankings.type.daily_challenge').': '.$currentRoomOption['text'],
+])
 
+@php
+    $percentile = $playlist->scorePercentile();
+@endphp
 @section('ranking-header')
     <div class="osu-page osu-page--ranking-info">
         <div class="js-react--basic-select-options">
             <div class="select-options">
                 <div class="select-options__select">
                     <span class="select-options__option">
-                        {{ $spotlight->name }}
+                        {{ $currentRoomOption['text'] }}
                     </span>
                 </div>
             </div>
         </div>
 
         <script id="json-basic-select-options" type="application/json">
-            {!! json_encode($selectOptions) !!}
+            {!! json_encode([
+                'currentItem' => $currentRoomOption,
+                'items' => $roomOptions,
+                'type' => 'daily_challenge',
+            ]) !!}
         </script>
 
         <div class="grid-items grid-items--ranking-info-bar">
             <div class="counter-box counter-box--ranking">
                 <div class="counter-box__title">
-                    {{ osu_trans('rankings.spotlight.start_date') }}
+                    {{ osu_trans('rankings.daily_challenge.beatmap') }}
                 </div>
                 <div class="counter-box__count">
-                    {{ json_date($spotlight->start_date) }}
-                </div>
-            </div>
-            <div class="counter-box counter-box--ranking">
-                <div class="counter-box__title">
-                    {{ osu_trans('rankings.spotlight.end_date') }}
-                </div>
-                <div class="counter-box__count">
-                    {{ json_date($spotlight->end_date) }}
-                </div>
-            </div>
-            <div class="counter-box counter-box--ranking">
-                <div class="counter-box__title">
-                    {{ osu_trans('rankings.spotlight.map_count') }}
-                </div>
-                <div class="counter-box__count">
-                    {{ count($beatmapsets) }}
+                    <span class="fal fa-extra-mode-{{ $playlist->beatmap->mode }}"></span>
+                    {{ $playlist->beatmap->version }}
                 </div>
             </div>
             <div class="counter-box counter-box--ranking">
@@ -50,21 +47,33 @@
                     {{ osu_trans('rankings.spotlight.participants') }}
                 </div>
                 <div class="counter-box__count">
-                    {{ i18n_number_format($scoreCount) }}
+                    {{ i18n_number_format($scores->total()) }}
                 </div>
             </div>
-
-            <div class="grid-items__item grid-items__item--spotlight-user-filter">
-                @include('rankings._user_filter')
+            <div class="counter-box counter-box--ranking">
+                <div class="counter-box__title">
+                    {{ osu_trans('rankings.daily_challenge.percentile_10') }}
+                </div>
+                <div class="counter-box__count">
+                    {{ i18n_number_format($percentile['10p']) }}
+                </div>
+            </div>
+            <div class="counter-box counter-box--ranking">
+                <div class="counter-box__title">
+                    {{ osu_trans('rankings.daily_challenge.percentile_50') }}
+                </div>
+                <div class="counter-box__count">
+                    {{ i18n_number_format($percentile['50p']) }}
+                </div>
             </div>
         </div>
     </div>
 @endsection
 
-@section('scores')
-    @include('rankings._spotlight_rankings_table', compact('scores'))
+@section('scores-header')
+    @include('rankings._beatmapsets', ['beatmapsets' => [$playlist->beatmap->beatmapset], 'modifiers' => 'daily-challenge'])
 @endsection
 
-@section('ranking-footer')
-    @include('rankings._beatmapsets', compact('beatmapsets'))
+@section('scores')
+    @include('multiplayer.rooms._rankings_table')
 @endsection

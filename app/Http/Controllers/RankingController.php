@@ -33,7 +33,16 @@ class RankingController extends Controller
     const RANKING_TYPES = ['performance', 'charts', 'score', 'country'];
     const SPOTLIGHT_TYPES = ['charts'];
     // in display order
-    const TYPES = ['performance', 'score', 'country', 'multiplayer', 'seasons', 'charts', 'kudosu'];
+    const TYPES = [
+        'performance',
+        'score',
+        'country',
+        'multiplayer',
+        'daily_challenge',
+        'seasons',
+        'charts',
+        'kudosu',
+    ];
 
     public function __construct()
     {
@@ -114,6 +123,7 @@ class RankingController extends Controller
     ): string {
         return match ($type) {
             'country' => route('rankings', ['mode' => $rulesetName, 'type' => $type]),
+            'daily_challenge' => route('daily-challenge.index'),
             'kudosu' => route('rankings.kudosu'),
             'multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
             'seasons' => route('seasons.show', ['season' => 'latest']),
@@ -354,8 +364,9 @@ class RankingController extends Controller
 
         $selectOptionTransformer = new SelectOptionTransformer();
         $selectOptions = [
-            'selected' => json_item($spotlight, $selectOptionTransformer),
-            'options' => json_collection($spotlights, $selectOptionTransformer),
+            'currentItem' => json_item($spotlight, $selectOptionTransformer),
+            'items' => json_collection($spotlights, $selectOptionTransformer),
+            'type' => 'spotlight',
         ];
 
         return ext_view(

@@ -6,12 +6,13 @@
 namespace App\Http\Controllers\Multiplayer;
 
 use App\Exceptions\InvariantException;
-use App\Http\Controllers\Controller as BaseController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\Ranking\DailyChallengeController;
 use App\Models\Model;
 use App\Models\Multiplayer\Room;
 use App\Transformers\Multiplayer\RoomTransformer;
 
-class RoomsController extends BaseController
+class RoomsController extends Controller
 {
     public function __construct()
     {
@@ -175,6 +176,10 @@ class RoomsController extends BaseController
                     'recent_participants',
                 ]
             );
+        }
+
+        if ($room->category === 'daily_challenge') {
+            return ujs_redirect(route('daily-challenge.show', DailyChallengeController::roomId($room)));
         }
 
         $playlistItemsQuery = $room->playlist();

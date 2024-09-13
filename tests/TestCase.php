@@ -18,6 +18,7 @@ use App\Models\Multiplayer\ScoreLink;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use Artisan;
+use Carbon\CarbonInterface;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Eloquent\Model;
@@ -213,6 +214,11 @@ class TestCase extends BaseTestCase
         return $this->withHeaders([
             'Authorization' => "Bearer {$encodedToken}",
         ]);
+    }
+
+    protected function assertEqualsUpToOneSecond(CarbonInterface $expected, CarbonInterface $actual): void
+    {
+        $this->assertTrue($expected->diffInSeconds($actual) < 2);
     }
 
     protected function createAllowedScopesDataProvider(array $allowedScopes)

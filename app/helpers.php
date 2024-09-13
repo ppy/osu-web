@@ -917,6 +917,7 @@ function page_title()
         'main.artist_tracks_controller._' => 'main.artists_controller._',
         'main.store_controller._' => 'store._',
         'multiplayer.rooms_controller._' => 'main.ranking_controller._',
+        'ranking.daily_challenge_controller._' => 'main.ranking_controller._',
         default => $controllerKey,
     };
     $namespaceKey = "{$currentRoute['namespace']}._";

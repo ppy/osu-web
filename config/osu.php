@@ -64,6 +64,7 @@ return [
         'favourite_limit' => intval(env('BEATMAPSET_USER_FAVOURITE_LIMIT', 100)),
         'favourite_limit_supporter' => intval(env('BEATMAPSET_USER_FAVOURITE_LIMIT_SUPPORTER', 1000)),
         'guest_advanced_search' => get_bool(env('BEATMAPSET_GUEST_ADVANCED_SEARCH')) ?? false,
+        'maximum_disqualified_rank_penalty_days' => get_int(env('BEATMAPSET_MAXIMUM_DISQUALIFIED_RANK_PENALTY_DAYS')) ?? 7,
         'minimum_days_for_rank' => get_int(env('BEATMAPSET_MINIMUM_DAYS_FOR_RANK')) ?? 7,
         'rank_per_day' => get_int(env('BEATMAPSET_RANK_PER_DAY')) ?? 8,
         'rank_per_run' => get_int(env('BEATMAPSET_RANK_PER_RUN')) ?? 2,
