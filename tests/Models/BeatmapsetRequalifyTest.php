@@ -264,7 +264,7 @@ class BeatmapsetRequalifyTest extends TestCase
 
     private function assertDiffWithinRange(int $expected, int $actual, int $range = 1)
     {
-        return $this->assertTrue(abs($actual - $expected) <= $range);
+        $this->assertTrue(abs($actual - $expected) <= $range);
     }
 
     private function beatmapsetFactory(): BeatmapsetFactory
