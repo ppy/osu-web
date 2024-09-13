@@ -177,7 +177,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   private renderUsernames() {
     if (!this.editing) {
       return (
-        <div className='beatmap-owner-editor__mappers'>
+        <div className='beatmap-owner-editor__owners'>
           {this.props.owners.map((owner) => <BeatmapOwner key={owner.id} user={owner} />)}
         </div>
       );
