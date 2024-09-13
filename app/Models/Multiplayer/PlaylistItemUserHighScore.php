@@ -7,6 +7,7 @@ namespace App\Models\Multiplayer;
 
 use App\Models\Model;
 use App\Models\Traits\WithDbCursorHelper;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -129,5 +130,10 @@ class PlaylistItemUserHighScore extends Model
             'score_id' => $score->getKey(),
             'total_score' => $score->total_score,
         ])->save();
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
