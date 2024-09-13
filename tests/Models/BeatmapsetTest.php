@@ -30,6 +30,114 @@ use Tests\TestCase;
 
 class BeatmapsetTest extends TestCase
 {
+    public static function disqualifyOrResetNominationsDataProvider()
+    {
+        return [
+            ['pending', BeatmapsetResetNominations::class],
+            ['qualified', BeatmapsetDisqualify::class],
+        ];
+    }
+
+    public static function dataProviderForTestRank(): array
+    {
+        return [
+            ['pending', false],
+            ['qualified', true],
+        ];
+    }
+
+    public static function mainRulesetHybridBeatmapsetSameCountDataProvider()
+    {
+        return [
+            [[
+                [['osu', 'taiko'], null],
+                [['taiko'], 'taiko'],
+            ]],
+            [[
+                [['osu', 'taiko'], null],
+                [['taiko', 'fruits'], 'taiko'],
+            ]],
+            [[
+                [['osu', 'taiko'], null],
+                [['fruits', 'mania'], null],
+            ]],
+            [[
+                [['fruits'], 'fruits'],
+                [['osu'], 'fruits'],
+            ]],
+        ];
+    }
+
+    public static function mainRulesetHybridBeatmapsetWithGuestMappersSameCountDataProvider()
+    {
+        return [
+            [[
+                [['osu', 'taiko'], null],
+                [['taiko'], null, 'too_many_non_main_ruleset'],
+            ]],
+            [[
+                [['osu', 'taiko'], null],
+                [['taiko', 'fruits'], null, 'too_many_non_main_ruleset'],
+            ]],
+            [[
+                [['osu', 'taiko'], null],
+                [['fruits', 'mania'], null],
+                [['fruits'], 'fruits'],
+            ]],
+            [[
+                [['fruits'], 'fruits'],
+                [['mania'], 'fruits'],
+            ]],
+        ];
+    }
+
+    public static function nominateDataProvider()
+    {
+        return [
+            'bng nominate same ruleset' => ['bng', ['osu'], 'osu', true],
+            'bng nominate different ruleset' => ['bng', ['osu'], 'taiko', false],
+            'nat defaults to all rulesets' => ['nat', [], 'osu', true],
+            'nat nominate same ruleset' => ['nat', ['osu'], 'osu', true],
+            'nat nominate different ruleset' => ['nat', ['osu'], 'taiko', false],
+        ];
+    }
+
+    public static function qualifyingNominationsDataProvider(): array
+    {
+        // existing nominations, qualifying nomination, expected
+        return [
+            'Nomination requires at least one full nominator' => ['bng_limited', 'bng_limited', false],
+
+            // limited bngs can be the qualifying nomination
+            ['bng', 'bng_limited', true],
+            ['nat', 'bng_limited', true],
+
+            ['bng_limited', 'bng', true],
+            ['bng_limited', 'nat', true],
+        ];
+    }
+
+    public static function qualifyingNominationsHybridDataProvider(): array
+    {
+        // existing nominations, qualifying nomination, expected
+        return [
+            'Nomination requires at least one full nominator' => ['bng_limited', 'bng_limited', false],
+            'Limited BNs cannot nominate the hybrid mode #1' => ['bng', 'bng_limited', false],
+            'Limited BNs cannot nominate the hybrid mode #2' => ['nat', 'bng_limited', false],
+
+            ['bng_limited', 'bng', true],
+            ['bng_limited', 'nat', true],
+        ];
+    }
+
+    public static function rankWithOpenIssueDataProvider()
+    {
+        return [
+            ['problem'],
+            ['suggestion'],
+        ];
+    }
+
     public function testInvalidStatePending()
     {
         $user = User::factory()->withGroup('nat')->create();
@@ -729,114 +837,6 @@ class BeatmapsetTest extends TestCase
         Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
     }
 
-    public static function disqualifyOrResetNominationsDataProvider()
-    {
-        return [
-            ['pending', BeatmapsetResetNominations::class],
-            ['qualified', BeatmapsetDisqualify::class],
-        ];
-    }
-
-    public static function dataProviderForTestRank(): array
-    {
-        return [
-            ['pending', false],
-            ['qualified', true],
-        ];
-    }
-
-    public static function mainRulesetHybridBeatmapsetSameCountDataProvider()
-    {
-        return [
-            [[
-                [['osu', 'taiko'], null],
-                [['taiko'], 'taiko'],
-            ]],
-            [[
-                [['osu', 'taiko'], null],
-                [['taiko', 'fruits'], 'taiko'],
-            ]],
-            [[
-                [['osu', 'taiko'], null],
-                [['fruits', 'mania'], null],
-            ]],
-            [[
-                [['fruits'], 'fruits'],
-                [['osu'], 'fruits'],
-            ]],
-        ];
-    }
-
-    public static function mainRulesetHybridBeatmapsetWithGuestMappersSameCountDataProvider()
-    {
-        return [
-            [[
-                [['osu', 'taiko'], null],
-                [['taiko'], null, 'too_many_non_main_ruleset'],
-            ]],
-            [[
-                [['osu', 'taiko'], null],
-                [['taiko', 'fruits'], null, 'too_many_non_main_ruleset'],
-            ]],
-            [[
-                [['osu', 'taiko'], null],
-                [['fruits', 'mania'], null],
-                [['fruits'], 'fruits'],
-            ]],
-            [[
-                [['fruits'], 'fruits'],
-                [['mania'], 'fruits'],
-            ]],
-        ];
-    }
-
-    public static function nominateDataProvider()
-    {
-        return [
-            'bng nominate same ruleset' => ['bng', ['osu'], 'osu', true],
-            'bng nominate different ruleset' => ['bng', ['osu'], 'taiko', false],
-            'nat defaults to all rulesets' => ['nat', [], 'osu', true],
-            'nat nominate same ruleset' => ['nat', ['osu'], 'osu', true],
-            'nat nominate different ruleset' => ['nat', ['osu'], 'taiko', false],
-        ];
-    }
-
-    public static function qualifyingNominationsDataProvider(): array
-    {
-        // existing nominations, qualifying nomination, expected
-        return [
-            'Nomination requires at least one full nominator' => ['bng_limited', 'bng_limited', false],
-
-            // limited bngs can be the qualifying nomination
-            ['bng', 'bng_limited', true],
-            ['nat', 'bng_limited', true],
-
-            ['bng_limited', 'bng', true],
-            ['bng_limited', 'nat', true],
-        ];
-    }
-
-    public static function qualifyingNominationsHybridDataProvider(): array
-    {
-        // existing nominations, qualifying nomination, expected
-        return [
-            'Nomination requires at least one full nominator' => ['bng_limited', 'bng_limited', false],
-            'Limited BNs cannot nominate the hybrid mode #1' => ['bng', 'bng_limited', false],
-            'Limited BNs cannot nominate the hybrid mode #2' => ['nat', 'bng_limited', false],
-
-            ['bng_limited', 'bng', true],
-            ['bng_limited', 'nat', true],
-        ];
-    }
-
-    public static function rankWithOpenIssueDataProvider()
-    {
-        return [
-            ['problem'],
-            ['suggestion'],
-        ];
-    }
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -849,8 +849,7 @@ class BeatmapsetTest extends TestCase
 
     private function beatmapsetFactory(): BeatmapsetFactory
     {
-        // otherwise they start as null without refresh.
-        return Beatmapset::factory()->owner()->pending()->state(['nominations' => 0]);
+        return Beatmapset::factory()->owner()->pending();
     }
 
     private function createHybridBeatmapset(string $mainRuleset = null, array $rulesets = ['osu', 'taiko']): Beatmapset

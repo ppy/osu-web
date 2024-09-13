@@ -114,6 +114,14 @@ export class Nominator extends React.Component<Props> {
     return this.beatmapset.current_user_attributes.nomination_modes ?? {};
   }
 
+  private get nominatorsWillBeDifferent() {
+    if (this.props.discussionsState.previousNominatorIds == null) return false;
+
+    const previousNominatorIds = new Set(this.props.discussionsState.previousNominatorIds);
+    return [core.currentUserOrFail.id, ...this.props.discussionsState.nominators.map((user) => user.id)]
+      .some((userId) => !previousNominatorIds.has(userId));
+  }
+
   constructor(props: Props) {
     super(props);
 
@@ -232,6 +240,11 @@ export class Nominator extends React.Component<Props> {
         <div className={bn}>
           <div className={`${bn}__header`}>{trans('beatmapsets.nominate.dialog.header')}</div>
           {isHybrid ? this.renderModalContentHybrid() : this.renderModalContentNormal()}
+          {this.nominatorsWillBeDifferent && (
+            <div className={`${bn}__warn`}>
+              {trans('beatmapsets.nominate.dialog.different_nominator_warning')}
+            </div>
+          )}
           <div className={`${bn}__buttons`}>
             <BigButton
               disabled={isHybrid && this.selectedModes.length < 1}
