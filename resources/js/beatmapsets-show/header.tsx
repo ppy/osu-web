@@ -13,6 +13,7 @@ import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { hasGuestOwners } from 'utils/beatmap-helper';
 import { downloadLimited, getArtist, getTitle, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
@@ -22,7 +23,6 @@ import BeatmapPicker from './beatmap-picker';
 import BeatmapsetMenu from './beatmapset-menu';
 import Controller from './controller';
 import Stats from './stats';
-import { hasGuestOwners } from 'utils/beatmap-helper';
 
 const favouritesToShow = 50;
 

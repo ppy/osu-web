@@ -87,8 +87,8 @@ export default class BeatmapList extends React.Component<Props> {
           beatmap={beatmap}
           beatmapUrl={makeUrl({ beatmap, filter: this.props.discussionsState.currentFilter })}
           beatmapset={this.props.discussionsState.beatmapset}
-          showOwners
           showNonGuestOwner={false}
+          showOwners
         />
         {count != null &&
           <div className='beatmap-list__item-count'>

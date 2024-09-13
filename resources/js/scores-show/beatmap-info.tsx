@@ -39,8 +39,8 @@ export default function BeatmapInfo(props: Props) {
             beatmapset={beatmapset}
             inline
             modifiers='score'
-            showOwners
             showNonGuestOwner
+            showOwners
           />
         </span>
       </div>
