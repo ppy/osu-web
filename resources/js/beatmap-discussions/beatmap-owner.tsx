@@ -18,10 +18,10 @@ function createRemoveMapperHandler(user: UserJsonMinimum, onRemoveClick: NonNull
   };
 }
 
-export default class BeatmapMapper extends React.PureComponent<Props> {
+export default class BeatmapOwner extends React.PureComponent<Props> {
   render() {
     return (
-      <div className='beatmap-mapper'>
+      <div className='beatmap-owner'>
         <UserLink className='beatmap-mapper__user' user={this.props.user}>
           <div className='beatmap-mapper__avatar'>
             <UserAvatar modifiers='full-circle' user={this.props.user} />

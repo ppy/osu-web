@@ -18,7 +18,7 @@ import { onError } from 'utils/ajax';
 import { hasGuestMapper } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
-import BeatmapMapper from './beatmap-mapper';
+import BeatmapOwner from './beatmap-owner';
 import DiscussionsState from './discussions-state';
 
 interface Props {
@@ -171,14 +171,14 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   }
 
   private readonly renderMapper = (owner: UserJson, onRemoveClick: (user: UserJson) => void) => (
-    <BeatmapMapper key={owner.id} onRemoveUser={onRemoveClick} user={owner} />
+    <BeatmapOwner key={owner.id} onRemoveUser={onRemoveClick} user={owner} />
   );
 
   private renderUsernames() {
     if (!this.editing) {
       return (
         <div className='beatmap-owner-editor__mappers'>
-          {this.props.owners.map((owner) => <BeatmapMapper key={owner.id} user={owner} />)}
+          {this.props.owners.map((owner) => <BeatmapOwner key={owner.id} user={owner} />)}
         </div>
       );
     }
