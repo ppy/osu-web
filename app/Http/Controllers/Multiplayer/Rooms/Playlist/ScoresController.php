@@ -55,9 +55,7 @@ class ScoresController extends BaseController
 
         $highScoresQuery = $playlist
             ->highScores()
-            ->whereHas('user', function ($userQuery) {
-                $userQuery->default();
-            })
+            ->whereHas('user', fn ($userQuery) => $userQuery->default())
             ->whereHas('scoreLink');
 
         [$highScores, $hasMore] = $highScoresQuery
