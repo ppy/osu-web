@@ -52,7 +52,9 @@ class DailyChallengeController extends Controller
                 'text' => $roomName,
             ]);
 
-        $scores = $room->topScores()->paginate();
+        $scores = $room->topScores()->whereHas('user', function ($userQuery) {
+            $userQuery->default();
+        })->paginate();
 
         $userScore = ($currentUser = \Auth::user()) === null
             ? null
