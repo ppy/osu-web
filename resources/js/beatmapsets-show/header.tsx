@@ -22,6 +22,7 @@ import BeatmapPicker from './beatmap-picker';
 import BeatmapsetMenu from './beatmapset-menu';
 import Controller from './controller';
 import Stats from './stats';
+import { hasGuestOwners } from 'utils/beatmap-helper';
 
 const favouritesToShow = 50;
 
@@ -275,14 +276,12 @@ export default class Header extends React.Component<Props> {
 
   private renderBeatmapVersion() {
     const beatmap = this.controller.hoveredBeatmap ?? this.controller.currentBeatmap;
-    const hasGuestMappers = (beatmap.owners?.length ?? 0) > 1
-      || beatmap.user_id !== this.controller.beatmapset.user_id;
 
     return (
       <span className='beatmapset-header__diff-name'>
         {beatmap.version}
 
-        {hasGuestMappers && (
+        {hasGuestOwners(beatmap, this.controller.beatmapset) && (
           <span className='beatmapset-header__diff-extra'>
             <StringWithComponent
               mappings={{

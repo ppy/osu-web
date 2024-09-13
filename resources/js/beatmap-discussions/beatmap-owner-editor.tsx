@@ -15,7 +15,7 @@ import { observer } from 'mobx-react';
 import { normaliseUsername } from 'models/user';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
-import { hasGuestMapper } from 'utils/beatmap-helper';
+import { hasGuestOwners } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import BeatmapOwner from './beatmap-owner';
@@ -136,7 +136,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     const reset = (
       <button
         className='beatmap-owner-editor__button'
-        disabled={!hasGuestMapper(this.props.beatmap, this.props.beatmapset)}
+        disabled={!hasGuestOwners(this.props.beatmap, this.props.beatmapset)}
         onClick={this.handleResetClick}
       >
         <span className='fas fa-fw fa-undo' />

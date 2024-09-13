@@ -16,7 +16,7 @@ import { route } from 'laroute';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { hasGuestMapper } from 'utils/beatmap-helper';
+import { hasGuestOwners } from 'utils/beatmap-helper';
 import { getArtist, getTitle } from 'utils/beatmapset-helper';
 import { trans, transChoice } from 'utils/lang';
 import BeatmapList from './beatmap-list';
@@ -181,7 +181,7 @@ export class Header extends React.Component<Props> {
             />
             <div className={`${bn}__beatmap-stats`}>
               <div className={`${bn}__guest`}>
-                {hasGuestMapper(this.currentBeatmap, this.beatmapset) && (
+                {hasGuestOwners(this.currentBeatmap, this.beatmapset) && (
                   <span>
                     <StringWithComponent
                       mappings={{

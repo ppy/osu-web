@@ -100,7 +100,7 @@ export function group<T extends BeatmapJson>(beatmaps?: T[] | null, includeEmpty
   return ret;
 }
 
-export function hasGuestMapper(beatmap: BeatmapJson, beatmapset: BeatmapsetJson) {
+export function hasGuestOwners(beatmap: BeatmapJson, beatmapset: BeatmapsetJson) {
   return beatmap.owners?.some((owner) => owner.id !== beatmapset.user_id);
 }
 

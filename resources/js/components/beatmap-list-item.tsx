@@ -7,7 +7,7 @@ import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import * as React from 'react';
-import { hasGuestMapper } from 'utils/beatmap-helper';
+import { hasGuestOwners } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import StringWithComponent from './string-with-component';
@@ -76,7 +76,7 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
       return null;
     }
 
-    const translationKey = hasGuestMapper(this.props.beatmap, this.props.beatmapset)
+    const translationKey = hasGuestOwners(this.props.beatmap, this.props.beatmapset)
       ? 'mapped_by_guest'
       : 'mapped_by';
 
