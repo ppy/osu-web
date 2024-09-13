@@ -71,7 +71,7 @@ class BeatmapCompactTransformer extends TransformerAbstract
 
     public function includeMappers(Beatmap $beatmap)
     {
-        return $this->primitive($beatmap->mappers->map(fn ($mapper) => [
+        return $this->primitive($beatmap->owners->map(fn ($mapper) => [
             'avatar_url' => $mapper->user_avatar,
             'id' => $mapper->user_id,
             'username' => $mapper->username,

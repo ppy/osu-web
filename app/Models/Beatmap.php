@@ -41,7 +41,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon $last_update
  * @property int $max_combo
  * @property mixed $mode
- * @property-read Collection<User> $mappers
+ * @property-read Collection<User> $owners
  * @property int $passcount
  * @property int $playcount
  * @property int $playmode
@@ -266,8 +266,8 @@ class Beatmap extends Model implements AfterCommit
 
             'diff_size' => $this->getDiffSize(),
             'difficultyrating' => $this->getDifficultyrating(),
-            'mappers' => $this->getMappers(),
             'mode' => $this->getMode(),
+            'owners' => $this->getOwners(),
             'version' => $this->getVersion(),
 
             'baseDifficultyRatings',
@@ -374,28 +374,28 @@ class Beatmap extends Model implements AfterCommit
         return $value;
     }
 
-    private function getMappers(): Collection
+    private function getOwners(): Collection
     {
         $beatmapOwners = $this->beatmapOwners()->pluck('user_id');
 
-        $mappers = User::whereIn('user_id', $beatmapOwners)->get();
+        $owners = User::whereIn('user_id', $beatmapOwners)->get();
         // compatiblity for anything that isn't writing to beatmap_owners yet.
-        if ($mappers->find($this->user_id) === null && $this->user !== null) {
-            $mappers->prepend($this->user);
+        if ($owners->find($this->user_id) === null && $this->user !== null) {
+            $owners->prepend($this->user);
         }
 
         // Add deleted/missing users.
-        if ($beatmapOwners->count() !== $mappers->count()) {
+        if ($beatmapOwners->count() !== $owners->count()) {
             $beatmapOwnersSet = new Set($beatmapOwners);
-            $mappersSet = new Set($mappers->pluck('user_id')->toArray());
+            $ownersSet = new Set($owners->pluck('user_id')->toArray());
 
-            $missingIds = $beatmapOwnersSet->diff($mappersSet);
+            $missingIds = $beatmapOwnersSet->diff($ownersSet);
             foreach ($missingIds as $id) {
-                $mappers->push(new DeletedUser(['user_id' => $id]));
+                $owners->push(new DeletedUser(['user_id' => $id]));
             }
         }
 
-        return $mappers;
+        return $owners;
     }
 
     private function getMode()

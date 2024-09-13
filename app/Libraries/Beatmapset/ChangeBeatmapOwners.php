@@ -33,7 +33,7 @@ class ChangeBeatmapOwners
 
     public function handle(): void
     {
-        $currentOwners = new Set($this->beatmap->mappers->pluck('user_id'));
+        $currentOwners = new Set($this->beatmap->owners->pluck('user_id'));
         if ($currentOwners->xor($this->userIds)->isEmpty()) {
             return;
         }
@@ -59,7 +59,7 @@ class ChangeBeatmapOwners
             $this->beatmap->refresh();
 
             // TODO: use select instead (needs newer laravel)
-            $newUsers = $this->beatmap->mappers->map(
+            $newUsers = $this->beatmap->owners->map(
                 fn ($user) => ['id' => $user->user_id, 'username' => ($user ?? new DeletedUser())->username],
             )->all();
             $beatmapset = $this->beatmap->beatmapset;
