@@ -107,6 +107,11 @@ class PlaylistItemUserHighScore extends Model
         return $this->belongsTo(ScoreLink::class, 'score_id');
     }
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function scopePassing(Builder $query): Builder
     {
         return $query->where('total_score', '>', 0);
@@ -130,10 +135,5 @@ class PlaylistItemUserHighScore extends Model
             'score_id' => $score->getKey(),
             'total_score' => $score->total_score,
         ])->save();
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'user_id');
     }
 }
