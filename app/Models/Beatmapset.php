@@ -1246,7 +1246,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             ])->find($this->getKey()),
             'Beatmapset',
             [
-                'beatmaps:with_trashed.mappers',
+                'beatmaps:with_trashed.owners',
                 'current_user_attributes',
                 'discussions',
                 'discussions.current_user_attributes',

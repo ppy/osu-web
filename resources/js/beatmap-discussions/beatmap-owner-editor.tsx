@@ -25,7 +25,7 @@ interface Props {
   beatmap: BeatmapJson;
   beatmapset: BeatmapsetExtendedJson;
   discussionsState: DiscussionsState; // only for updating the state with the response.
-  mappers: UserJson[];
+  owners: UserJson[];
 }
 
 @observer
@@ -170,15 +170,15 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     );
   }
 
-  private readonly renderMapper = (mapper: UserJson, onRemoveClick: (user: UserJson) => void) => (
-    <BeatmapMapper key={mapper.id} onRemoveUser={onRemoveClick} user={mapper} />
+  private readonly renderMapper = (owner: UserJson, onRemoveClick: (user: UserJson) => void) => (
+    <BeatmapMapper key={owner.id} onRemoveUser={onRemoveClick} user={owner} />
   );
 
   private renderUsernames() {
     if (!this.editing) {
       return (
         <div className='beatmap-owner-editor__mappers'>
-          {this.props.mappers.map((mapper) => <BeatmapMapper key={mapper.id} user={mapper} />)}
+          {this.props.owners.map((owner) => <BeatmapMapper key={owner.id} user={owner} />)}
         </div>
       );
     }
@@ -192,7 +192,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
       >
         <UsernameInput
           id='beatmap-owner-editor-username-input'
-          initialUsers={this.props.mappers}
+          initialUsers={this.props.owners}
           // initialValue not set for owner editor as value is reset when cancelled.
           modifiers='beatmap-owner-editor'
           onEnterPressed={this.handleSaveClick}
@@ -208,7 +208,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   private updateOwners(userIds: number[]) {
     this.updateOwnerXhr?.abort();
 
-    if (xor([...this.validUsers.keys()], this.props.mappers.map((mapper) => mapper.id)).length === 0) {
+    if (xor([...this.validUsers.keys()], this.props.owners.map((owner) => owner.id)).length === 0) {
       this.editing = false;
       return;
     }

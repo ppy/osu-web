@@ -107,9 +107,9 @@ export default class Controller {
     $(document).off('turbolinks:before-cache', this.saveState);
   }
 
-  mappers(beatmap: BeatmapJsonForBeatmapsetShow) {
-    if (beatmap.mappers != null) {
-      return beatmap.mappers.map((mapper) => this.usersById[mapper.id] ?? deletedUserJson);
+  owners(beatmap: BeatmapJsonForBeatmapsetShow) {
+    if (beatmap.owners != null) {
+      return beatmap.owners.map((mapper) => this.usersById[mapper.id] ?? deletedUserJson);
     }
 
     return [this.usersById[beatmap.user_id] ?? deletedUserJson];

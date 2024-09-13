@@ -62,7 +62,7 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
   private renderMappers() {
     if (!this.props.showMappers) return null;
 
-    const mappers = this.props.beatmap.mappers;
+    const mappers = this.props.beatmap.owners;
     if (mappers == null || mappers.length === 0) {
       return null;
     }

@@ -415,8 +415,8 @@ class BeatmapsetsController extends Controller
         return json_item($beatmapset, $transformer, [
             'beatmaps',
             'beatmaps.failtimes',
-            'beatmaps.mappers',
             'beatmaps.max_combo',
+            'beatmaps.owners',
             'converts',
             'converts.failtimes',
             'current_nominations',

@@ -185,7 +185,7 @@ export class Header extends React.Component<Props> {
                   <span>
                     <StringWithComponent
                       mappings={{
-                        user: <UserLinkList users={this.currentBeatmap.mappers ?? []} />,
+                        user: <UserLinkList users={this.currentBeatmap.owners ?? []} />,
                       }}
                       pattern={trans('beatmaps.discussions.guest')}
                     />

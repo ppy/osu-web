@@ -3,6 +3,6 @@
 
 import BeatmapJson from './beatmap-json';
 
-type WithMappers<T extends BeatmapJson> = T & Required<Pick<T, 'mappers'>>;
+type WithOwners<T extends BeatmapJson> = T & Required<Pick<T, 'owners'>>;
 
-export default WithMappers;
+export default WithOwners;

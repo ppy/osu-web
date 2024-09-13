@@ -14,8 +14,8 @@ interface BeatmapJsonAvailableIncludes {
   beatmapset: BeatmapsetJson | null;
   checksum: string | null;
   failtimes: BeatmapFailTimesArray;
-  mappers: UserJsonMinimum[];
   max_combo: number;
+  owners: UserJsonMinimum[];
   user: UserJson;
 }
 

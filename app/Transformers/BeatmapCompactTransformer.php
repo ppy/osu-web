@@ -8,6 +8,7 @@ namespace App\Transformers;
 use App\Models\Beatmap;
 use App\Models\BeatmapFailtimes;
 use App\Models\DeletedUser;
+use App\Models\User;
 
 class BeatmapCompactTransformer extends TransformerAbstract
 {
@@ -15,8 +16,8 @@ class BeatmapCompactTransformer extends TransformerAbstract
         'beatmapset',
         'checksum',
         'failtimes',
-        'mappers',
         'max_combo',
+        'owners',
         'user',
     ];
 
@@ -69,18 +70,18 @@ class BeatmapCompactTransformer extends TransformerAbstract
         return $this->primitive($result);
     }
 
-    public function includeMappers(Beatmap $beatmap)
-    {
-        return $this->primitive($beatmap->owners->map(fn ($mapper) => [
-            'avatar_url' => $mapper->user_avatar,
-            'id' => $mapper->user_id,
-            'username' => $mapper->username,
-        ]));
-    }
-
     public function includeMaxCombo(Beatmap $beatmap)
     {
         return $this->primitive($beatmap->maxCombo());
+    }
+
+    public function includeOwners(Beatmap $beatmap)
+    {
+        return $this->primitive($beatmap->owners->map(fn (User $user) => [
+            'avatar_url' => $user->user_avatar,
+            'id' => $user->user_id,
+            'username' => $user->username,
+        ]));
     }
 
     public function includeUser(Beatmap $beatmap)

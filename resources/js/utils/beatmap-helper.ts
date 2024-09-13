@@ -101,7 +101,7 @@ export function group<T extends BeatmapJson>(beatmaps?: T[] | null, includeEmpty
 }
 
 export function hasGuestMapper(beatmap: BeatmapJson, beatmapset: BeatmapsetJson) {
-  return beatmap.mappers?.some((mapper) => mapper.id !== beatmapset.user_id);
+  return beatmap.owners?.some((owner) => owner.id !== beatmapset.user_id);
 }
 
 export function rulesetName(id: number): Ruleset {

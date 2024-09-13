@@ -45,7 +45,7 @@ export default class BeatmapsOwnerEditor extends React.Component<Props> {
                 beatmap={beatmap}
                 beatmapset={this.props.beatmapset}
                 discussionsState={this.props.discussionsState}
-                mappers={beatmap.mappers.map(this.getUser)}
+                owners={beatmap.owners.map(this.getUser)}
               />
             ))
           ))}

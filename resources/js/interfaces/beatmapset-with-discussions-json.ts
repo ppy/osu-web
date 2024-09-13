@@ -4,7 +4,7 @@
 import BeatmapExtendedJson from './beatmap-extended-json';
 import { BeatmapsetDiscussionJsonForShow } from './beatmapset-discussion-json';
 import BeatmapsetExtendedJson from './beatmapset-extended-json';
-import WithMappers from './with-mappers';
+import WithOwners from './with-owners';
 
 type DiscussionsRequiredAttributes = 'current_user_attributes' | 'eligible_main_rulesets' | 'events' | 'nominations' | 'related_users';
 type BeatmapsetWithDiscussionsJson =
@@ -13,7 +13,7 @@ type BeatmapsetWithDiscussionsJson =
   & Required<Pick<BeatmapsetExtendedJson, DiscussionsRequiredAttributes>>;
 
 interface OverrideIncludes {
-  beatmaps: WithMappers<BeatmapExtendedJson>[];
+  beatmaps: WithOwners<BeatmapExtendedJson>[];
   discussions: BeatmapsetDiscussionJsonForShow[];
 }
 

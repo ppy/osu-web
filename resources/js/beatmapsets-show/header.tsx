@@ -275,7 +275,7 @@ export default class Header extends React.Component<Props> {
 
   private renderBeatmapVersion() {
     const beatmap = this.controller.hoveredBeatmap ?? this.controller.currentBeatmap;
-    const hasGuestMappers = (beatmap.mappers?.length ?? 0) > 1
+    const hasGuestMappers = (beatmap.owners?.length ?? 0) > 1
       || beatmap.user_id !== this.controller.beatmapset.user_id;
 
     return (
@@ -286,7 +286,7 @@ export default class Header extends React.Component<Props> {
           <span className='beatmapset-header__diff-extra'>
             <StringWithComponent
               mappings={{
-                mapper: <UserLinkList users={this.controller.mappers(beatmap)} />,
+                mapper: <UserLinkList users={this.controller.owners(beatmap)} />,
               }}
               pattern={trans('beatmapsets.show.details.mapped_by')}
             />

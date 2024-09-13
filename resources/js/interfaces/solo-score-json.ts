@@ -6,7 +6,7 @@ import Rank from './rank';
 import Ruleset from './ruleset';
 import { ScoreJsonAvailableIncludes, ScoreJsonDefaultIncludes } from './score-json';
 import ScoreModJson from './score-mod-json';
-import WithMappers from './with-mappers';
+import WithOwners from './with-owners';
 
 export type SoloScoreStatisticsAttribute =
   | 'good'
@@ -80,7 +80,7 @@ export type SoloScoreJsonForBeatmap = SoloScoreJson & Required<Pick<SoloScoreJso
 export type SoloScoreJsonForShow = SoloScoreJson
 & Required<Pick<SoloScoreJson, 'beatmapset' | 'best_id' | 'rank_global' | 'user'>>
 & {
-  beatmap: WithMappers<BeatmapExtendedJson>;
+  beatmap: WithOwners<BeatmapExtendedJson>;
 };
 
 export type SoloScoreJsonForUser = SoloScoreJson & Required<Pick<SoloScoreJson, 'beatmap' | 'beatmapset'>>;
