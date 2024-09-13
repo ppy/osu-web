@@ -57,7 +57,7 @@ export default class BeatmapList extends React.Component<Props> {
             href={makeUrl({ beatmap: this.props.discussionsState.currentBeatmap })}
             onClick={this.toggleSelector}
           >
-            <BeatmapListItem beatmap={this.props.discussionsState.currentBeatmap} modifiers='large' showMappers={false} />
+            <BeatmapListItem beatmap={this.props.discussionsState.currentBeatmap} modifiers='large' showOwners={false} />
             <div className='beatmap-list__item-selector-button'>
               <span className='fas fa-chevron-down' />
             </div>
@@ -87,8 +87,8 @@ export default class BeatmapList extends React.Component<Props> {
           beatmap={beatmap}
           beatmapUrl={makeUrl({ beatmap, filter: this.props.discussionsState.currentFilter })}
           beatmapset={this.props.discussionsState.beatmapset}
-          showMappers
-          showNonGuestMapper={false}
+          showOwners
+          showNonGuestOwner={false}
         />
         {count != null &&
           <div className='beatmap-list__item-count'>

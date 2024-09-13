@@ -170,7 +170,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     );
   }
 
-  private readonly renderMapper = (owner: UserJson, onRemoveClick: (user: UserJson) => void) => (
+  private readonly renderOwner = (owner: UserJson, onRemoveClick: (user: UserJson) => void) => (
     <BeatmapOwner key={owner.id} onRemoveUser={onRemoveClick} user={owner} />
   );
 
@@ -198,7 +198,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
           onEnterPressed={this.handleSaveClick}
           onValidUsersChanged={this.handleValidUsersChanged}
           onValueChanged={this.handleUsernameInputValueChanged}
-          renderUser={this.renderMapper}
+          renderUser={this.renderOwner}
         />
       </InputContainer>
     );

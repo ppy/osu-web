@@ -21,10 +21,10 @@ interface BaseProps {
 
 type MapperProps = {
   beatmapset: BeatmapsetJson;
-  showMappers: true;
-  showNonGuestMapper: boolean;
+  showNonGuestOwner: boolean;
+  showOwners: true;
 } | {
-  showMappers: false;
+  showOwners: false;
 };
 
 type Props = BaseProps & MapperProps;
@@ -51,7 +51,7 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
               : version}
             {' '}
             <span className='beatmap-list-item__mapper'>
-              {this.renderMappers()}
+              {this.renderOwners()}
             </span>
           </div>
         </div>
@@ -59,20 +59,20 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
     );
   }
 
-  private renderMappers() {
-    if (!this.props.showMappers) return null;
+  private renderOwners() {
+    if (!this.props.showOwners) return null;
 
-    const mappers = this.props.beatmap.owners;
-    if (mappers == null || mappers.length === 0) {
+    const owners = this.props.beatmap.owners;
+    if (owners == null || owners.length === 0) {
       return null;
     }
 
     const userId = this.props.beatmapset.user_id;
-    const visibleMappers = this.props.showNonGuestMapper
-      ? mappers
-      : mappers.filter((mapper) => mapper.id !== userId);
+    const visibleOwners = this.props.showNonGuestOwner
+      ? owners
+      : owners.filter((mapper) => mapper.id !== userId);
 
-    if (visibleMappers.length === 0) {
+    if (visibleOwners.length === 0) {
       return null;
     }
 
@@ -82,7 +82,7 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
 
     return (
       <StringWithComponent
-        mappings={{ mapper: <UserLinkList users={visibleMappers} /> }}
+        mappings={{ mapper: <UserLinkList users={visibleOwners} /> }}
         pattern={trans(`beatmapsets.show.details.${translationKey}`)}
       />
     );
