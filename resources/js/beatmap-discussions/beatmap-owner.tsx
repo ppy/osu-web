@@ -22,8 +22,8 @@ export default class BeatmapOwner extends React.PureComponent<Props> {
   render() {
     return (
       <div className='beatmap-owner'>
-        <UserLink className='beatmap-mapper__user' user={this.props.user}>
-          <div className='beatmap-mapper__avatar'>
+        <UserLink className='beatmap-owner__user' user={this.props.user}>
+          <div className='beatmap-owner__avatar'>
             <UserAvatar modifiers='full-circle' user={this.props.user} />
           </div>
           <div className='u-ellipsis-overflow'>
@@ -31,7 +31,7 @@ export default class BeatmapOwner extends React.PureComponent<Props> {
           </div>
         </UserLink>
         {this.props.onRemoveUser != null && (
-          <button className='beatmap-mapper__remove' onClick={createRemoveMapperHandler(this.props.user, this.props.onRemoveUser)}>
+          <button className='beatmap-owner__remove' onClick={createRemoveMapperHandler(this.props.user, this.props.onRemoveUser)}>
             <span className='fas fa-times' />
           </button>
         )}
