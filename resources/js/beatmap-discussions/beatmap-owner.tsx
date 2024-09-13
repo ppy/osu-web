@@ -11,7 +11,7 @@ interface Props {
   user: UserJsonMinimum;
 }
 
-function createRemoveMapperHandler(user: UserJsonMinimum, onRemoveClick: NonNullable<Props['onRemoveUser']>) {
+function createRemoveOwnerHandler(user: UserJsonMinimum, onRemoveClick: NonNullable<Props['onRemoveUser']>) {
   return (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     onRemoveClick(user);
@@ -31,7 +31,7 @@ export default class BeatmapOwner extends React.PureComponent<Props> {
           </div>
         </UserLink>
         {this.props.onRemoveUser != null && (
-          <button className='beatmap-owner__remove' onClick={createRemoveMapperHandler(this.props.user, this.props.onRemoveUser)}>
+          <button className='beatmap-owner__remove' onClick={createRemoveOwnerHandler(this.props.user, this.props.onRemoveUser)}>
             <span className='fas fa-times' />
           </button>
         )}
