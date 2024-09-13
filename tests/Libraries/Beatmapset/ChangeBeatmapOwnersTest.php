@@ -45,7 +45,7 @@ class ChangeBeatmapOwnersTest extends TestCase
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 1);
 
-        $beatmap->setOwner($userIds, $moderator);
+        $beatmap->setOwners($userIds, $moderator);
 
         $beatmap = $beatmap->fresh();
         $this->assertEqualsCanonicalizing($userIds, $beatmap->owners->pluck('user_id')->toArray());
@@ -65,7 +65,7 @@ class ChangeBeatmapOwnersTest extends TestCase
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 1);
 
-        $beatmap->setOwner($users->pluck('user_id')->toArray(), $owner);
+        $beatmap->setOwners($users->pluck('user_id')->toArray(), $owner);
 
         $beatmap = $beatmap->fresh();
         $this->assertEqualsCanonicalizing($users->pluck('user_id'), $beatmap->owners->pluck('user_id'));
@@ -85,7 +85,7 @@ class ChangeBeatmapOwnersTest extends TestCase
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 0);
         $this->expectExceptionCallable(
-            fn () => $beatmap->setOwner([$user->getKey()], $owner),
+            fn () => $beatmap->setOwners([$user->getKey()], $owner),
             AuthorizationException::class
         );
 
@@ -106,7 +106,7 @@ class ChangeBeatmapOwnersTest extends TestCase
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 0);
         $this->expectExceptionCallable(
-            fn () => $beatmap->setOwner([User::max('user_id') + 1], $owner),
+            fn () => $beatmap->setOwners([User::max('user_id') + 1], $owner),
             InvariantException::class
         );
 
@@ -136,7 +136,7 @@ class ChangeBeatmapOwnersTest extends TestCase
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), $ok ? 1 : 0);
 
         $this->expectExceptionCallable(
-            fn () => $beatmap->setOwner([$user->getKey()], $moderator),
+            fn () => $beatmap->setOwners([$user->getKey()], $moderator),
             $ok ? null : AuthorizationException::class,
         );
 
@@ -167,7 +167,7 @@ class ChangeBeatmapOwnersTest extends TestCase
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 1);
 
-        $beatmap->setOwner([$user->getKey()], $moderator);
+        $beatmap->setOwners([$user->getKey()], $moderator);
 
         $beatmap = $beatmap->fresh();
         $this->assertEqualsCanonicalizing([$user->getKey()], $beatmap->owners->pluck('user_id')->toArray());
@@ -188,7 +188,7 @@ class ChangeBeatmapOwnersTest extends TestCase
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 0);
         $this->expectExceptionCallable(
-            fn () => $beatmap->setOwner([$user->getKey()], $user),
+            fn () => $beatmap->setOwners([$user->getKey()], $user),
             AuthorizationException::class,
         );
 
@@ -208,7 +208,7 @@ class ChangeBeatmapOwnersTest extends TestCase
             ->create();
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 0);
-        $beatmap->setOwner([$owner->getKey()], $owner);
+        $beatmap->setOwners([$owner->getKey()], $owner);
 
         $beatmap = $beatmap->fresh();
         $this->assertEqualsCanonicalizing([$owner->getKey()], $beatmap->owners->pluck('user_id')->toArray());

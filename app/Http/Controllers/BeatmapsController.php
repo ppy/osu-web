@@ -382,7 +382,7 @@ class BeatmapsController extends Controller
 
         $beatmap = Beatmap::findOrFail($id);
 
-        $beatmap->setOwner($newUserIds ?? [], \Auth::user());
+        $beatmap->setOwners($newUserIds ?? [], \Auth::user());
 
         return $beatmap->beatmapset->defaultDiscussionJson();
     }
