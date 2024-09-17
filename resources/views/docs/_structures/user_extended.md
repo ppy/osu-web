@@ -169,7 +169,7 @@ Field            | Type                               | Description
 ---------------- | ---------------------------------- | -----------------------------------------------------------
 cover_url        | string                             | url of profile cover. Deprecated, use cover.url instead.
 discord          | string?                            | |
-has_supported    | boolean                            | whether or not ever being a supporter in the past
+has_supported    | boolean                            | Whether or not the user has a current or past osu!supporter tag.
 interests        | string?                            | |
 join_date        | [Timestamp](#timestamp)            | |
 location         | string?                            | |
