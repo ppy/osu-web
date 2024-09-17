@@ -179,7 +179,7 @@ occupation       | string?                            | |
 playmode         | [Ruleset](#ruleset)                | |
 playstyle        | string[]                           | Device choices of the user.
 post_count       | integer                            | Number of forum posts
-profile_hue      | integer?                           | |
+profile_hue      | integer?                           | The custom `hsl` hue colour value for the user profile.
 profile_order    | [ProfilePage](#user-profilepage)[] | ordered array of sections in user profile page
 title            | string?                            | user-specific title
 title_url        | string?                            | |
