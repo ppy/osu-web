@@ -35,7 +35,7 @@ abstract class Model extends BaseModel
         static::addGlobalScope(new MacroableModelScope());
     }
 
-    public static function pagination($params)
+    protected static function searchQueryAndParams(array $params)
     {
         $limit = clamp(get_int($params['limit'] ?? null) ?? static::PER_PAGE, 5, 50);
         $page = max(get_int($params['page'] ?? null), 1);
@@ -43,7 +43,9 @@ abstract class Model extends BaseModel
         $offset = max_offset($page, $limit);
         $page = 1 + $offset / $limit;
 
-        return compact('limit', 'page', 'offset');
+        $query = static::limit($limit)->offset($offset);
+
+        return [$query, compact('limit', 'page')];
     }
 
     public function getForeignKey()

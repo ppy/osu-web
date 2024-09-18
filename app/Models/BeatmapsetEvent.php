@@ -85,14 +85,8 @@ class BeatmapsetEvent extends Model
 
     public static function search($rawParams = [])
     {
-        $pagination = static::pagination($rawParams);
+        [$query, $params] = static::searchQueryAndParams($rawParams);
 
-        $params = [
-            'limit' => $pagination['limit'],
-            'page' => $pagination['page'],
-        ];
-
-        $query = static::limit($params['limit'])->offset($pagination['offset']);
         $searchByUser = present($rawParams['user'] ?? null);
         $isModerator = $rawParams['is_moderator'] ?? false;
 
