@@ -67,9 +67,6 @@ class ChannelsController extends Controller
      *
      * Returns the joined [ChatChannel](#chatchannel).
      *
-     * @urlParam channel integer required The `channel_id` of the [ChatChannel](#chatchannel) to mark as read.
-     * @urlParam message integer required The `message_id` of the [ChatMessage](#chatmessage) to mark as read up to.
-     *
      * @response {
      *   "channel_id": 5,
      *   "current_user_attributes": {
@@ -116,7 +113,7 @@ class ChannelsController extends Controller
      *   This endpoint will only allow the leaving of public channels initially.
      * </aside>
      *
-     * @urlParam channel integer required `channel_id` of the [ChatChannel](#chatchannel) leave.
+     * @urlParam channel integer required `channel_id` of the [ChatChannel](#chatchannel) to leave.
      * @urlParam user integer required `id` of the [User](#user) to leave the channel.
      *
      * @response 204
