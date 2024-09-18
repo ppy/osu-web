@@ -9,6 +9,7 @@ use App\Http\Controllers\RankingController;
 use App\Libraries\Base64Url;
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
+use App\Models\Model;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Illuminate\Database\Migrations\Migration;
@@ -649,17 +650,6 @@ function osu_url(string $key): ?string
 function pack_str($str)
 {
     return pack('ccH*', 0x0b, strlen($str), bin2hex($str));
-}
-
-function pagination($params, $defaults = null)
-{
-    $limit = clamp(get_int($params['limit'] ?? null) ?? $defaults['limit'] ?? 20, 5, 50);
-    $page = max(get_int($params['page'] ?? null) ?? 1, 1);
-
-    $offset = max_offset($page, $limit);
-    $page = 1 + $offset / $limit;
-
-    return compact('limit', 'page', 'offset');
 }
 
 function product_quantity_options($product, $selected = null)

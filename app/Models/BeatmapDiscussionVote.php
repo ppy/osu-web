@@ -19,6 +19,8 @@ use Carbon\Carbon;
  */
 class BeatmapDiscussionVote extends Model
 {
+    const int PER_PAGE = 20;
+
     protected $touches = ['beatmapDiscussion'];
 
     public static function recentlyReceivedByUser($userId, $timeframeMonths = 3)
@@ -57,7 +59,7 @@ class BeatmapDiscussionVote extends Model
 
     public static function search($rawParams = [])
     {
-        $pagination = pagination(cursor_from_params($rawParams) ?? $rawParams);
+        $pagination = static::pagination(cursor_from_params($rawParams) ?? $rawParams);
 
         $params = [
             'limit' => $pagination['limit'],

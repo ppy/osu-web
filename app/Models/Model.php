@@ -35,6 +35,17 @@ abstract class Model extends BaseModel
         static::addGlobalScope(new MacroableModelScope());
     }
 
+    public static function pagination($params, $defaults = null)
+    {
+        $limit = clamp(get_int($params['limit'] ?? null) ?? $defaults['limit'] ?? static::PER_PAGE, 5, 50);
+        $page = max(get_int($params['page'] ?? null) ?? 1, 1);
+
+        $offset = max_offset($page, $limit);
+        $page = 1 + $offset / $limit;
+
+        return compact('limit', 'page', 'offset');
+    }
+
     public function getForeignKey()
     {
         if ($this->primaryKey === null || $this->primaryKey === 'id') {

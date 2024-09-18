@@ -62,6 +62,8 @@ class BeatmapDiscussion extends Model
         'review' => 5,
     ];
 
+    const int PER_PAGE = 20;
+
     const RESOLVABLE_TYPES = [1, 2];
     const KUDOSUABLE_TYPES = [1, 2];
 
@@ -71,7 +73,7 @@ class BeatmapDiscussion extends Model
     // FIXME: This and other static search functions should be extracted out.
     public static function search($rawParams = [])
     {
-        $pagination = pagination(cursor_from_params($rawParams) ?? $rawParams);
+        $pagination = static::pagination(cursor_from_params($rawParams) ?? $rawParams);
 
         $params = [
             'limit' => $pagination['limit'],
