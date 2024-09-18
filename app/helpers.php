@@ -9,7 +9,6 @@ use App\Http\Controllers\RankingController;
 use App\Libraries\Base64Url;
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
-use App\Models\Model;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Illuminate\Database\Migrations\Migration;
