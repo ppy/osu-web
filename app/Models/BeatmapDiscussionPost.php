@@ -31,6 +31,7 @@ class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
 
     const MESSAGE_LIMIT = 16_000; // column limit for 4 bytes utf8
     const MESSAGE_LIMIT_TIMELINE = 750;
+    const int PER_PAGE = 20;
 
     protected $touches = ['beatmapDiscussion'];
 
@@ -41,7 +42,7 @@ class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
 
     public static function search($rawParams = [])
     {
-        $pagination = pagination(cursor_from_params($rawParams) ?? $rawParams);
+        $pagination = static::pagination(cursor_from_params($rawParams) ?? $rawParams);
 
         $params = [
             'limit' => $pagination['limit'],
