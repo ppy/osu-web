@@ -64,11 +64,11 @@ return [
             '_' => 'ความคิดเห็น',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'ผลการตัดสินการแข่งขัน',
         ],
         'contests_controller' => [
             '_' => 'การแข่งขัน',
-            'judge' => '',
+            'judge' => 'การตัดสินการแข่งขัน',
         ],
         'groups_controller' => [
             'show' => 'กลุ่ม',
@@ -112,7 +112,7 @@ return [
 ทัวร์นาเมนต์',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'พรีเซ็ตปกของผู้ใช้',
         ],
         'users_controller' => [
             '_' => 'ข้อมูลผู้เล่น',

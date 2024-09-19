@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'ปิดการใช้งานตามที่เลือก',
+        'batch_enable' => 'เปิดการใช้งานตามที่เลือก',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':action :items?',
+            'disable' => 'ปิดการใช้งาน',
+            'enable' => 'เปิดการใช้งาน',
+            'items' => ':count_delimited ปก|:count_delimited ปก',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'ไฟล์',
+            'submit' => 'บันทึก',
+            'title' => 'เพิ่มใหม่',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'คลิกเพื่อปิดใช้งาน',
+            'click_to_enable' => 'คลิกเพื่อเปิดใช้งาน',
+            'enabled' => 'เปิดใช้งาน',
+            'disabled' => 'ปิดใช้งาน',
+            'image_store' => 'ตั้งรูปภาพ',
+            'image_update' => 'เปลี่ยนแทนที่รูปภาพ',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'เกิดข้อผิดพลาดขณะสร้างปก: :error',
+        'ok' => 'สร้างปกขึ้นแล้ว',
     ],
 ];

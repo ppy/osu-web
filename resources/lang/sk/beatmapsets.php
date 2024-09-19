@@ -52,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Ste si istí, že chcete nominovať tuto beatmapu?',
+            'different_nominator_warning' => '',
             'header' => 'Nominovať beatmapu',
             'hybrid_warning' => 'poznámka: môžete nominovať len raz, takže sa uistite, že nominujete za všetky herné režimy, ktoré chcete',
             'current_main_ruleset' => '',

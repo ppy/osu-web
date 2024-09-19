@@ -9,6 +9,12 @@ return [
         'title' => 'Країни',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Показати',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'чарти',
         'country' => 'країни',
+        'daily_challenge' => '',
         'kudosu' => 'кудосу',
         'multiplayer' => 'мультиплеєр',
         'performance' => 'продуктивність',

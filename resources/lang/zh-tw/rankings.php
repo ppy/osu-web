@@ -9,6 +9,12 @@ return [
         'title' => '國家',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => '顯示',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => '月賽',
         'country' => '國家',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => '多人遊戲',
         'performance' => '成績',

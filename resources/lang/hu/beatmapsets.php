@@ -52,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Biztosan nominálni szeretnéd ezt a Beatmap-et?',
+            'different_nominator_warning' => '',
             'header' => 'Beatmap Nominálása',
             'hybrid_warning' => 'megjegyzés: csak egyszer nominálhatsz, ezért kérlek győződj meg róla, hogy minden játékmódra nominálsz, amire szeretnél',
             'current_main_ruleset' => 'A fő ruleszet jelenleg: :ruleset',
