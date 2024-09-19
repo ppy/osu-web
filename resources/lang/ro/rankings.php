@@ -9,6 +9,12 @@ return [
         'title' => 'Țară',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Afișează',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'promovări',
         'country' => 'național',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'performance' => 'performanță',

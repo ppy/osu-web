@@ -200,7 +200,7 @@ return [
             'daily' => 'Rantai Permainan Harian',
             'daily_streak_best' => 'Rantai Permainan Harian Terbaik',
             'daily_streak_current' => 'Rantai Permainan Harian Saat Ini',
-            'playcount' => '',
+            'playcount' => 'Kontribusi Total',
             'title' => 'Tantangan\nHarian',
             'top_10p_placements' => 'Penempatan 10% Teratas',
             'top_50p_placements' => 'Penempatan 50% Teratas',

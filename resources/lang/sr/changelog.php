@@ -11,7 +11,7 @@ return [
     ],
 
     'builds' => [
-        'users_online' => ':count_delimited корисник онлајн |:count_delimited корисника онлајн',
+        'users_online' => ':count_delimited корисник доступан|:count_delimited корисника доступно',
     ],
 
     'entry' => [
@@ -32,7 +32,7 @@ return [
     ],
 
     'support' => [
-        'heading' => 'Волите овo aжурирање?',
+        'heading' => 'Задовољни ових промена?',
         'text_1' => 'Подржите даљњи развој osu!-а и :link данас!',
         'text_1_link' => 'постаните osu!supporter',
         'text_2' => 'Не само да ћете подржати убрзање развоја, већ ћете и добити додатне карактеристике и подешавања!',

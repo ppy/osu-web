@@ -52,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Bạn có chắc chắn muốn đề cử beatmap này không?',
+            'different_nominator_warning' => '',
             'header' => 'Đề cử Beatmap',
             'hybrid_warning' => 'lưu ý: bạn chỉ có thể đề cử một lần, vì vậy hãy đảm bảo rằng bạn đang đề cử cho tất cả các chế độ chơi mà bạn dự định',
             'current_main_ruleset' => 'Ruleset chính hiện tại là: :ruleset',

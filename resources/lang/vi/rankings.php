@@ -9,6 +9,12 @@ return [
         'title' => 'Quốc gia',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Hiển thị',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'tiêu điểm',
         'country' => 'quốc gia',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'nhiều người chơi',
         'performance' => 'thành tích',

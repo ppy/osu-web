@@ -52,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Weet je zeker dat je deze Beatmap wilt nomineren?',
+            'different_nominator_warning' => '',
             'header' => 'Nomineer Beatmap',
             'hybrid_warning' => 'opmerking: je mag maar één keer nomineren, dus zorg er alsjeblieft voor dat je nomineert voor alle spelmodi die je van plan bent te nomineren',
             'current_main_ruleset' => '',
