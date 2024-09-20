@@ -11,7 +11,6 @@ use App\Libraries\BeatmapsetDiscussionsBundle;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
 use Auth;
-use Request;
 
 /**
  * @group Beatmapset Discussions
