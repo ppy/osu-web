@@ -7,7 +7,6 @@ namespace App\Console\Commands;
 
 use App\Libraries\Payments\PaypalApiContext;
 use App\Models\Store\Order;
-use App\Models\Store\Product;
 use Illuminate\Console\Command;
 use PayPalCheckoutSdk\Orders\OrdersGetRequest;
 
