@@ -14,9 +14,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::connection('mysql-store')->create('paypal_banneds', function (Blueprint $table) {
-            $table->string('id');
-
-            $table->unique('id');
+            $table->increments('id');
+            $table->string('account_id')->nullable();
+            $table->string('email')->nullable();
+            $table->unique('account_id');
+            $table->unique('email');
         });
     }
 

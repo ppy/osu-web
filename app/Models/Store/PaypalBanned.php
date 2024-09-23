@@ -6,7 +6,9 @@
 namespace App\Models\Store;
 
 /**
- * @property string $id
+ * @property int $id
+ * @property string|null $account_id
+ * @property string|null $email
  */
 class PaypalBanned extends Model
 {

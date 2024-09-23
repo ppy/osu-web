@@ -69,9 +69,13 @@ class PaypalExecutePayment
         $request = new OrdersGetRequest($paypalOrderId);
         $response = $this->client->execute($request);
 
-        $accountId = $response->result->payment_source->paypal->account_id;
+        $paypalSource = $response->result->payment_source->paypal;
 
-        if (PaypalBanned::where('id', $accountId)->exists()) {
+        if (
+            PaypalBanned::where('account_id', $paypalSource->account_id)
+                ->orWhere('email', $paypalSource->email_address)
+                ->exists()
+        ) {
             datadog_increment('store.payments.banned', ['provider' => $this->order->getPaymentProvider()]);
             throw new PaymentRejectedException($this->order);
         }
