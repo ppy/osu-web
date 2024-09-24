@@ -62,7 +62,7 @@ class PaypalController extends Controller
             (new PaypalExecutePayment($order))->run();
         } catch (HttpException $e) {
             return $this->setAndRedirectCheckoutError($order, $this->userErrorMessage($e));
-        } catch (PaymentRejectedException $e) {
+        } catch (PaymentRejectedException) {
             return $this->setAndRedirectCheckoutError($order, osu_trans('paypal/errors.unknown'));
         }
 
