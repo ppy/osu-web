@@ -29,8 +29,8 @@
     <span class="btn-osu-big__content">
         <span class="btn-osu-big__icon-inline btn-osu-big__icon-inline--left">
             @include('objects._flag_country', [
-                'countryCode' => $displayLocaleMeta->flag(),
-                'modifiers' => ['flat'],
+                'country' => $displayLocaleMeta->flag(),
+                'modifiers' => 'flat',
             ])
         </span>
 
@@ -59,8 +59,8 @@
                     <span class="nav2-locale-item nav2-locale-item--no-padding">
                         <span class="nav2-locale-item__flag">
                             @include('objects._flag_country', [
-                                'countryCode' => $localeMeta->flag(),
-                                'modifiers' => ['flat'],
+                                'country' => $localeMeta->flag(),
+                                'modifiers' => 'flat',
                             ])
                         </span>
 
