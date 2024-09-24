@@ -200,7 +200,7 @@ return [
             'daily' => 'Щоденна серія',
             'daily_streak_best' => 'Найкраща щоденна серія',
             'daily_streak_current' => 'Поточна щоденна серія',
-            'playcount' => '',
+            'playcount' => 'Всього участі',
             'title' => 'Щоденний\nВиклик',
             'top_10p_placements' => 'Топ 10% позицій',
             'top_50p_placements' => 'Топ 50% позицій',

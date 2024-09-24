@@ -200,7 +200,7 @@ return [
             'daily' => 'Serie Giornaliera',
             'daily_streak_best' => 'Migliore Serie Giornaliera',
             'daily_streak_current' => 'Attuale Serie Giornaliera',
-            'playcount' => '',
+            'playcount' => 'Partecipazione Totale',
             'title' => 'Sfida\nGiornaliera',
             'top_10p_placements' => 'Raggiungimenti del primo 10%',
             'top_50p_placements' => 'Raggiungimenti del primo 50%',

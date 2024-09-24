@@ -218,7 +218,7 @@ return [
             'cover' => [
                 'button' => '프로필 표지 변경',
                 'defaults_info' => '이후에 더 많은 표지 설정이 추가됩니다',
-                'holdover_remove_confirm' => "",
+                'holdover_remove_confirm' => "이전에 선택한 배경을 이제는 선택할 수 없어 다른 배경으로 바꾸면 다시 되돌릴 수 없습니다. 계속할까요?",
                 'title' => '표지',
 
                 'upload' => [
@@ -243,7 +243,7 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
+                'reset_no_supporter' => '기본 색상으로 초기화할까요? 다른 색상으로 바꾸려면 osu! 서포터가 되어야 합니다.',
                 'title' => '색상',
 
                 'supporter' => [

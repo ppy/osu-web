@@ -9,6 +9,12 @@ return [
         'title' => 'Negara',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Paparkan',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'sorotan (lama)',
         'country' => 'negara',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'pemainan beramai-ramai',
         'performance' => 'pencapaian',

@@ -10,6 +10,12 @@ return [
         'title' => 'Država',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Prikaži
 ',
@@ -32,6 +38,7 @@ return [
     'type' => [
         'charts' => 'istaknuto',
         'country' => 'države',
+        'daily_challenge' => '',
         'kudosu' => '',
         'multiplayer' => 'multiplayer',
         'performance' => 'izvedba',

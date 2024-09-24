@@ -9,6 +9,12 @@ return [
         'title' => '国別',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => '表示',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'スポットライト',
         'country' => '国別',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'マルチプレイ',
         'performance' => 'パフォーマンス',

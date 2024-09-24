@@ -52,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => '정말로 이 비트맵을 노미네이트 하시겠어요?',
+            'different_nominator_warning' => '',
             'header' => '비트맵 노미네이트',
             'hybrid_warning' => '주의: 딱 한 번만 노미네이트 할 수 있으므로 자신이 노미네이트 하려는 모든 게임 모드를 선택했는지 확인해주세요.',
             'current_main_ruleset' => '',
@@ -152,7 +153,7 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => '이 비트맵은 노골적, 폭력적 혹은 혐오감을 들게 하는 내용이 포함되어 있습니다. 그래도 보시겠습니까?',
+            'details' => '이 비트맵은 노골적, 폭력적 혹은 혐오감이 들 수 있는 내용을 포함하고 있습니다. 그래도 보시겠어요?',
             'title' => '부적절한 내용',
 
             'buttons' => [
