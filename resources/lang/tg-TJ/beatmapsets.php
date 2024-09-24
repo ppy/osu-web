@@ -52,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => '',
+            'different_nominator_warning' => '',
             'header' => '',
             'hybrid_warning' => '',
             'current_main_ruleset' => '',

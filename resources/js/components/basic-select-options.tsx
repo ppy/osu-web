@@ -7,18 +7,18 @@ import { route } from 'laroute';
 import * as React from 'react';
 import { fail } from 'utils/fail';
 import { navigate } from 'utils/turbolinks';
+import { updateQueryString } from 'utils/url';
 
 interface Props {
   currentItem: SelectOptionJson;
   items: SelectOptionJson[];
-  type: 'daily_challenge' | 'judge_results' | 'multiplayer' | 'seasons';
+  type: 'daily_challenge' | 'judge_results' | 'multiplayer' | 'seasons' | 'spotlight';
 }
 
 export default class BasicSelectOptions extends React.PureComponent<Props> {
   render() {
     return (
       <SelectOptions
-        modifiers='basic'
         onChange={this.handleChange}
         options={this.props.items}
         renderOption={this.renderOption}
@@ -41,6 +41,8 @@ export default class BasicSelectOptions extends React.PureComponent<Props> {
         return route('multiplayer.rooms.show', { room: id ?? 'latest' });
       case 'seasons':
         return route('seasons.show', { season: id ?? 'latest' });
+      case 'spotlight':
+        return updateQueryString(null, { spotlight: id?.toString() });
     }
   }
 

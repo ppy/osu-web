@@ -200,7 +200,7 @@ return [
             'daily' => 'Serie Zilnică',
             'daily_streak_best' => 'Cea Mai Bună Serie Zilnică',
             'daily_streak_current' => 'Serie Zilnică Actuală',
-            'playcount' => '',
+            'playcount' => 'Participare Totală',
             'title' => 'Provocare\nZilnică',
             'top_10p_placements' => 'Plasamente Top 10%',
             'top_50p_placements' => 'Plasamente Top 50%',

@@ -364,8 +364,9 @@ class RankingController extends Controller
 
         $selectOptionTransformer = new SelectOptionTransformer();
         $selectOptions = [
-            'selected' => json_item($spotlight, $selectOptionTransformer),
-            'options' => json_collection($spotlights, $selectOptionTransformer),
+            'currentItem' => json_item($spotlight, $selectOptionTransformer),
+            'items' => json_collection($spotlights, $selectOptionTransformer),
+            'type' => 'spotlight',
         ];
 
         return ext_view(

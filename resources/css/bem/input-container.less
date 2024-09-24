@@ -11,6 +11,7 @@
   border-radius: 5px;
   text-transform: initial;
   font-weight: initial;
+  font-size: inherit;
 
   margin: 0;
   padding: 5px 10px 10px;
@@ -33,6 +34,7 @@
 
     border: 2px solid transparent;
     padding: 5px;
+    font-size: var(--input-size);
   }
 
   &--error {
@@ -42,6 +44,8 @@
   &--fill {
     flex: 1;
     min-height: 150px;
+    display: grid;
+    grid-template-rows: auto 1fr;
   }
 
   &--genre {

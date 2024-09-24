@@ -9,6 +9,12 @@ return [
         'title' => '',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => '',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'Výbery',
         'country' => 'Krajina',
+        'daily_challenge' => '',
         'kudosu' => '',
         'multiplayer' => '',
         'performance' => 'Výkon',
