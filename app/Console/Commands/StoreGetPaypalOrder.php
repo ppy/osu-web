@@ -23,13 +23,13 @@ class StoreGetPaypalOrder extends Command
         $order = Order::findOrFail(get_int($this->argument('orderId')));
         if ($order->provider !== 'paypal') {
             $this->error('Not a Paypal order');
-            return;
+            return static::INVALID;
         }
 
         $paypalOrderId = $order->reference;
         if ($paypalOrderId === null) {
             $this->error('Missing Paypal order id');
-            return;
+            return static::INVALID;
         }
 
         $this->comment("Getting details for Order {$order->getKey()}, Paypal Id: {$paypalOrderId}");
