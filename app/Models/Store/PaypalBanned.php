@@ -14,4 +14,5 @@ namespace App\Models\Store;
  */
 class PaypalBanned extends Model
 {
+    public $timestamps = false;
 }
