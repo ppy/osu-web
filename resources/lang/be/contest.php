@@ -14,7 +14,7 @@ return [
     ],
 
     'judge' => [
-        'comments' => '',
+        'comments' => 'каментарыі',
         'hide_judged' => '',
         'nav_title' => '',
         'no_current_vote' => 'вы яшчэ не прагаласавалі.',

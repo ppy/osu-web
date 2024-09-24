@@ -65,12 +65,12 @@ return [
 
     'github_user' => [
         'info' => "",
-        'link' => '',
+        'link' => 'Повежи GitHub Налог',
         'title' => 'GitHub',
-        'unlink' => '',
+        'unlink' => 'Отклони везу GitHub Налога',
 
         'error' => [
-            'already_linked' => '',
+            'already_linked' => 'Овај GitHub налог је већ тренутно повезан са другим налогом.',
             'no_contribution' => '',
             'unverified_email' => '',
         ],

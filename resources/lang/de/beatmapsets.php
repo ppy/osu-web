@@ -52,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Bist du sicher, dass du diese Beatmap nominieren möchtest?',
+            'different_nominator_warning' => '',
             'header' => 'Beatmap nominieren',
             'hybrid_warning' => 'Hinweis: du kannst nur einmalig nominieren, also stelle bitte sicher, dass du für alle Spielmodi nominierst, die du beabsichtigst',
             'current_main_ruleset' => 'Der Hauptspielmodus ist derzeit: :ruleset',
@@ -212,8 +213,8 @@ return [
             'stars' => 'Sternebewertung',
             'total_length' => 'Länge (Drain length: :hit_length)',
             'bpm' => 'BPM',
-            'count_circles' => 'Circle-Anzahl',
-            'count_sliders' => 'Slider-Anzahl',
+            'count_circles' => 'Anzahl der Circles',
+            'count_sliders' => 'Anzahl der Slider',
             'offset' => 'Online-Offset: :offset',
             'user-rating' => 'User-Bewertungen',
             'rating-spread' => 'Bewertungsverteilung',

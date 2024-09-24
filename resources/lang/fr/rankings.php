@@ -9,6 +9,12 @@ return [
         'title' => 'Pays',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Afficher',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'spotlights (ancien)',
         'country' => 'pays',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multijoueur',
         'performance' => 'performance',

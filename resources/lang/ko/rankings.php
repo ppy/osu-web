@@ -9,6 +9,12 @@ return [
         'title' => '국가별',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => '보기',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => '스포트라이트',
         'country' => '국가별',
+        'daily_challenge' => '',
         'kudosu' => 'Kudosu',
         'multiplayer' => '멀티플레이어',
         'performance' => '퍼포먼스',
