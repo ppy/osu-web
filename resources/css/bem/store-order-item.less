@@ -14,8 +14,9 @@
   font-size: @font-size--title-small;
 
   @media @narrow-up {
+    grid-column: ~"1 / -1";
     grid-template-areas: "name quantity subtotal delete";
-    grid-template-columns: 1fr 150px 100px 35px;
+    grid-template-columns: subgrid;
     grid-template-rows: auto;
   }
 
