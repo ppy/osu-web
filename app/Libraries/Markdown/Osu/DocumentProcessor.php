@@ -149,7 +149,7 @@ class DocumentProcessor
 
         $title = presence($this->getText($this->node));
         $slug = $this->node->data['attributes']['id']
-            ?? presence(mb_strtolower(str_replace(' ', '-', $title ?? '')))
+            ?? presence(mb_strtolower(strtr($title ?? '', ' ', '-')))
             ?? 'page';
 
         if (array_key_exists($slug, $this->tocSlugs)) {
