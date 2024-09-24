@@ -208,9 +208,9 @@ class LocaleMeta
         $this->data = static::MAPPINGS[$locale];
     }
 
-    public function flag(): array
+    public function flag(): string
     {
-        return ['acronym' => $this->data['flag']];
+        return $this->data['flag'];
     }
 
     public function html(): string

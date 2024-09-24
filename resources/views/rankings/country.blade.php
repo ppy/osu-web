@@ -42,7 +42,7 @@
                                     'country' => $score->country->acronym,
                             ])}}">
                                 @include('objects._flag_country', [
-                                    'country' => ['acronym' => $score->country->acronym],
+                                    'country' => $score->country->acronym,
                                     'modifiers' => 'medium',
                                 ])
                                 <span class="ranking-page-table__country-link-text">

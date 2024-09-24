@@ -15,7 +15,7 @@
     <div class="account-edit-entry__group">
         <p>
             @include('objects._flag_country', [
-                'country' => ['acronym' => $user->country_acronym],
+                'country' => $user->country_acronym,
                 'modifiers' => 'wiki',
             ])
             {{ $user->country->name }}

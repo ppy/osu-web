@@ -32,7 +32,7 @@
                                 <span class="user-session-list-session__ip" title="{{$session['ip']}}">
                                     <span class="user-session-list-session__icon">
                                         @include('objects._flag_country', [
-                                            'country' => ['acronym' => $session['country']['code']],
+                                            'country' => $session['country']['code'],
                                             'modifiers' => 'flat',
                                         ])
                                     </span>
