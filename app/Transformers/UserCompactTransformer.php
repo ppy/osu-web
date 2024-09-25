@@ -22,7 +22,6 @@ class UserCompactTransformer extends TransformerAbstract
     ];
 
     const CARD_INCLUDES_PRELOAD = [
-        'country',
         'userGroups',
     ];
 
@@ -193,9 +192,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeCountry(User $user)
     {
-        return $user->country === null
-            ? $this->primitive(null)
-            : $this->item($user->country, new CountryTransformer());
+        return $this->item(app('countries')->byCode($user->country_acronym), new CountryTransformer());
     }
 
     public function includeCover(User $user)
