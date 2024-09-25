@@ -22,7 +22,7 @@ class LookupController extends Controller
     public function index()
     {
         // TODO: referer check?
-        $ids = array_slice(array_reject_null(get_arr('ids', presence(...)) ?? []), 0, 50);
+        $ids = array_slice(array_reject_null(get_arr(request('ids'), presence(...)) ?? []), 0, 50);
 
         $numericIds = [];
         $stringIds = [];
