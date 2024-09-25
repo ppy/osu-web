@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4b5522bc8101c113235b144f19fe7b12",
+    "content-hash": "809c16eebdcc6254e933f5a511717268",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -7764,6 +7764,80 @@
             "time": "2023-02-06T01:20:37+00:00"
         },
         {
+            "name": "shopify/shopify-api",
+            "version": "v5.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Shopify/shopify-api-php.git",
+                "reference": "fcb281a0021453659c3e4f09320417b264c35ee8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Shopify/shopify-api-php/zipball/fcb281a0021453659c3e4f09320417b264c35ee8",
+                "reference": "fcb281a0021453659c3e4f09320417b264c35ee8",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/inflector": "^2.0",
+                "ext-ctype": "*",
+                "ext-hash": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "firebase/php-jwt": "^5.2 || ^6.2",
+                "guzzlehttp/guzzle": "^7.0",
+                "guzzlehttp/psr7": "^2.0",
+                "php": "^8.1",
+                "psr/http-client": "^1.0",
+                "psr/http-message": "^1.0 || ^2.0",
+                "psr/log": "^1.1 || ^2.0 || ^3.0",
+                "ramsey/uuid": "^4.1"
+            },
+            "require-dev": {
+                "ergebnis/composer-normalize": "^2.30",
+                "ext-apcu": "*",
+                "maglnet/composer-require-checker": "^3.0 || ^4.0",
+                "mikey179/vfsstream": "^1.6",
+                "phpunit/phpunit": "^9",
+                "squizlabs/php_codesniffer": "^3.6"
+            },
+            "suggest": {
+                "ext-apcu": "Log fewer API deprecation warnings"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Shopify\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shopify Inc.",
+                    "email": "dev-tools-education@shopify.com"
+                }
+            ],
+            "description": "Shopify API Library for PHP",
+            "keywords": [
+                "Storefront API",
+                "admin api",
+                "app",
+                "graphql",
+                "jwt",
+                "node",
+                "rest",
+                "shopify",
+                "webhook"
+            ],
+            "support": {
+                "issues": "https://github.com/Shopify/shopify-api-php/issues",
+                "source": "https://github.com/Shopify/shopify-api-php/tree/v5.6.0"
+            },
+            "time": "2024-07-02T17:53:14+00:00"
+        },
+        {
             "name": "spatie/data-transfer-object",
             "version": "3.9.1",
             "source": {
@@ -13952,5 +14026,5 @@
     "platform-overrides": {
         "php": "8.3.0"
     },
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }
