@@ -192,7 +192,11 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeCountry(User $user)
     {
-        return $this->item(app('countries')->byCode($user->country_acronym), new CountryTransformer());
+        $country = app('countries')->byCode($user->country_acronym);
+
+        return $country === null
+            ? $this->primitive(null)
+            : $this->item($country, new CountryTransformer());
     }
 
     public function includeCover(User $user)
