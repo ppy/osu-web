@@ -6,7 +6,6 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Exceptions\UserProfilePageLookupException;
 use App\Exceptions\ValidationException;
 use App\Http\Middleware\RequestCost;
 use App\Libraries\ClientCheck;
@@ -24,7 +23,6 @@ use App\Models\Log;
 use App\Models\Solo\Score as SoloScore;
 use App\Models\User;
 use App\Models\UserAccountHistory;
-use App\Models\UserNotFound;
 use App\Transformers\CurrentUserTransformer;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
@@ -112,17 +110,6 @@ class UsersController extends Controller
             'error' => osu_trans('users.store.from_web'),
             'url' => route('users.create'),
         ], 403);
-    }
-
-    public function card($id)
-    {
-        try {
-            $user = FindForProfilePage::find($id, null, false);
-        } catch (UserProfilePageLookupException $e) {
-            $user = UserNotFound::instance();
-        }
-
-        return json_item($user, 'UserCompact', UserCompactTransformer::CARD_INCLUDES);
     }
 
     public function create()

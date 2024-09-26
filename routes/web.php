@@ -302,7 +302,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('users/store-web', 'UsersController@storeWeb')->name('users.store-web');
 
     Route::group(['as' => 'users.', 'prefix' => 'users/{user}'], function () {
-        Route::get('card', 'UsersController@card')->name('card');
         Route::get('extra-pages/{page}', 'UsersController@extraPages')->name('extra-page');
         Route::put('page', 'UsersController@updatePage')->name('page');
         Route::group(['namespace' => 'Users'], function () {

@@ -3,8 +3,8 @@
 
 import Reportable from 'interfaces/reportable';
 import UserJson from 'interfaces/user-json';
-import { route } from 'laroute';
 import * as _ from 'lodash';
+import { userNotFoundJson } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { unmountComponentAtNode } from 'react-dom';
@@ -12,6 +12,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { activeKeyDidChange as contextActiveKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
 import { TooltipContext } from 'tooltip-context';
 import { presence } from 'utils/string';
+import { apiLookupUsers } from 'utils/user';
 import { UserCard } from './user-card';
 
 interface Props {
@@ -224,19 +225,9 @@ export class UserCardTooltip extends React.PureComponent<Props, State> {
   }
 
   componentDidMount() {
-    this.getUser().then((user) => {
-      this.setState({ user });
+    apiLookupUsers([this.props.lookup]).done((response) => {
+      this.setState({ user: response.users[0] ?? userNotFoundJson });
     });
-  }
-
-  getUser() {
-    const url = route('users.card', { user: this.props.lookup });
-
-    return $.ajax({
-      dataType: 'json',
-      type: 'GET',
-      url,
-    }) as JQuery.jqXHR<UserJson>;
   }
 
   render() {
