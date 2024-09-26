@@ -187,6 +187,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('updates', 'ChatController@updates')->name('updates');
             Route::group(['as' => 'channels.', 'prefix' => 'channels'], function () {
                 Route::apiResource('{channel}/messages', 'Channels\MessagesController', ['only' => ['index', 'store']]);
+                Route::apiResource('{channel}/users', 'Channels\UsersController', ['only' => ['index']]);
                 Route::put('{channel}/users/{user}', 'ChannelsController@join')->name('join');
                 Route::delete('{channel}/users/{user}', 'ChannelsController@part')->name('part');
                 Route::put('{channel}/mark-as-read/{message}', 'ChannelsController@markAsRead')->name('mark-as-read');

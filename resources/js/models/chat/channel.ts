@@ -1,12 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { markAsRead, getChannel, getMessages } from 'chat/chat-api';
+import { markAsRead, getChannel, getChannelUsers, getMessages } from 'chat/chat-api';
 import ChannelJson, { ChannelType, SupportedChannelType, supportedTypeLookup } from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
+import UserJson from 'interfaces/user-json';
 import { sortBy, throttle } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
-import User, { usernameSortAscending } from 'models/user';
+import User from 'models/user';
 import core from 'osu-core-singleton';
 import Message from './message';
 
@@ -38,6 +39,7 @@ export default class Channel {
   @observable lastReadId?: number;
   @observable loadingEarlierMessages = false;
   @observable loadingMessages = false;
+  @observable loadUsersXhr: ReturnType<typeof getChannelUsers> | undefined;
   @observable messageLengthLimit = maxMessageLength;
   @observable name = '';
   needsRefresh = true;
@@ -49,21 +51,12 @@ export default class Channel {
     scrollY: 0,
   };
   @observable userIds: number[] = [];
+  @observable users: null | UserJson[] = null;
+  @observable usersCursor: null | string = '';
 
   private markAsReadLastSent = 0;
   @observable private readonly messagesMap = new Map<number | string, Message>();
   private serverLastMessageId?: number;
-  @observable private usersLoaded = false;
-
-  @computed
-  get announcementUsers() {
-    return this.usersLoaded
-      ? this.userIds
-        .map((userId) => core.dataStore.userStore.get(userId))
-        .filter((u): u is User => u != null)
-        .sort(usernameSortAscending)
-      : null;
-  }
 
   @computed
   get canMessage() {
@@ -204,10 +197,7 @@ export default class Channel {
     // nothing to load
     if (this.newPmChannel) return;
 
-    if (this.type === 'ANNOUNCE' && !this.usersLoaded) {
-      this.loadMetadata();
-    }
-
+    this.loadUsers();
     this.loadRecentMessages();
   }
 
@@ -246,10 +236,24 @@ export default class Channel {
     getChannel(this.channelId).done((json) => {
       runInAction(() => {
         this.updateWithJson(json);
-        this.usersLoaded = true;
       });
     });
   }
+
+  @action
+  readonly loadUsers = () => {
+    if (this.type !== 'ANNOUNCE' || this.usersCursor == null || this.loadUsersXhr != null) {
+      return;
+    }
+
+    this.loadUsersXhr = getChannelUsers(this.channelId, this.usersCursor)
+      .done((json) => runInAction(() => {
+        this.users = [...(this.users ?? []), ...json.users];
+        this.usersCursor = json.cursor_string;
+      })).always(action(() => {
+        this.loadUsersXhr = undefined;
+      }));
+  };
 
   @action
   moveMarkAsReadMarker() {
