@@ -225,9 +225,14 @@ export class UserCardTooltip extends React.PureComponent<Props, State> {
   }
 
   componentDidMount() {
-    apiLookupUsers([this.props.lookup]).done((response) => {
-      this.setState({ user: response.users[0] ?? userNotFoundJson });
-    });
+    const currentUser = core.currentUser;
+    if (currentUser != null && this.props.lookup === currentUser.id.toString()) {
+      this.setState({ user: currentUser });
+    } else {
+      apiLookupUsers([this.props.lookup]).done((response) => {
+        this.setState({ user: response.users[0] ?? userNotFoundJson });
+      });
+    }
   }
 
   render() {
