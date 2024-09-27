@@ -302,7 +302,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('users/store-web', 'UsersController@storeWeb')->name('users.store-web');
 
     Route::group(['as' => 'users.', 'prefix' => 'users/{user}'], function () {
-        Route::get('card', 'UsersController@card')->name('card');
         Route::get('extra-pages/{page}', 'UsersController@extraPages')->name('extra-page');
         Route::put('page', 'UsersController@updatePage')->name('page');
         Route::group(['namespace' => 'Users'], function () {
@@ -361,7 +360,6 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('approved', 'PaypalController@approved')->name('approved');
             Route::get('declined', 'PaypalController@declined')->name('declined');
             Route::post('create', 'PaypalController@create')->name('create');
-            Route::get('completed', 'PaypalController@completed')->name('completed');
             Route::post('ipn', 'PaypalController@ipn')->name('ipn');
         });
 
