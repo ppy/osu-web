@@ -224,9 +224,14 @@ export class UserCardTooltip extends React.PureComponent<Props, State> {
   }
 
   componentDidMount() {
-    this.getUser().then((user) => {
-      this.setState({ user });
-    });
+    const currentUser = core.currentUser;
+    if (currentUser != null && this.props.lookup === currentUser.id.toString()) {
+      this.setState({ user: currentUser });
+    } else {
+      this.getUser().then((user) => {
+        this.setState({ user });
+      });
+    }
   }
 
   getUser() {
