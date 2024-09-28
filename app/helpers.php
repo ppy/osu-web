@@ -1605,9 +1605,13 @@ function get_params($input, $namespace, $keys, $options = [])
 
     $params = [];
 
-    if (Arr::accessible($input)) {
-        $options['null_missing'] = $options['null_missing'] ?? false;
+    $options['null_missing'] ??= false;
 
+    if (!Arr::accessible($input) && $options['null_missing']) {
+        $input = [];
+    }
+
+    if (Arr::accessible($input)) {
         foreach ($keys as $keyAndType) {
             $keyAndType = explode(':', $keyAndType);
 
