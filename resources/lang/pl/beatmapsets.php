@@ -52,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Czy na pewno chcesz nominować tę beatmapę?',
+            'different_nominator_warning' => '',
             'header' => 'Nominuj beatmapę',
             'hybrid_warning' => 'Uwaga: możesz nominować tylko raz, więc upewnij się, że nominujesz ją dla wszystkich pożądanych trybów gry.',
             'current_main_ruleset' => '',

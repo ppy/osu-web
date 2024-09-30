@@ -9,6 +9,12 @@ return [
         'title' => '国家或地区',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => '显示',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => '季赛（旧版）',
         'country' => '国家/地区',
+        'daily_challenge' => '',
         'kudosu' => 'Kudosu',
         'multiplayer' => '多人游戏',
         'performance' => '表现',

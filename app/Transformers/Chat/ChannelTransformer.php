@@ -99,14 +99,7 @@ class ChannelTransformer extends TransformerAbstract
 
     public function includeUsers(Channel $channel)
     {
-        if (
-            $channel->isPM()
-            || $channel->isAnnouncement() && priv_check_user($this->user, 'ChatAnnounce', $channel)->can()
-        ) {
-            return $this->primitive($channel->userIds());
-        }
-
-        return $this->primitive([]);
+        return $this->primitive($channel->isPM() ? $channel->userIds() : []);
     }
 
     public function includeUuid(Channel $channel)

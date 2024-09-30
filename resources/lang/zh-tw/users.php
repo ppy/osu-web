@@ -200,7 +200,7 @@ return [
             'daily' => '每日連續次數',
             'daily_streak_best' => '最佳每日連續次數',
             'daily_streak_current' => '目前每日連續次數',
-            'playcount' => '',
+            'playcount' => '總遊玩次數',
             'title' => '每日挑戰',
             'top_10p_placements' => '前10%名次',
             'top_50p_placements' => '前50%名次',

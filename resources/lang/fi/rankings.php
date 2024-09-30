@@ -9,6 +9,12 @@ return [
         'title' => 'Maa',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Näytä',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'kohdevalot (vanha)',
         'country' => 'maat',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'moninpelit',
         'performance' => 'suorituskyky',

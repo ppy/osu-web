@@ -52,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'このビートマップを本当にノミネートしますか？',
+            'different_nominator_warning' => '',
             'header' => 'ビートマップをノミネート',
             'hybrid_warning' => '注意: 一度しかノミネートできないので、ノミネートするゲームモードの全てにノミネートするようにしてください。',
             'current_main_ruleset' => '現在のメインゲームモードは :ruleset です',

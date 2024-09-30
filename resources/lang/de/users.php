@@ -200,7 +200,7 @@ return [
             'daily' => 'Tägliche Serie',
             'daily_streak_best' => 'Beste Tagesserie',
             'daily_streak_current' => 'Aktuelle Tagesserie',
-            'playcount' => '',
+            'playcount' => 'Gesamtbeteiligung',
             'title' => 'Tägliche\nHerausforderung',
             'top_10p_placements' => 'Platzierungen in den Top 10 %',
             'top_50p_placements' => 'Platzierungen in den Top 50 %',
@@ -420,7 +420,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Accountstatus',
-                'bad_standing' => "Der Account von :username ist zurzeit eingeschränkt :(",
+                'bad_standing' => "Der Account von :username hat zurzeit keinen guten Ruf :(",
                 'remaining_silence' => ':username kann in :duration wieder sprechen.',
 
                 'recent_infringements' => [

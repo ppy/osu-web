@@ -36,6 +36,8 @@ class Kernel extends ConsoleKernel
 
         Commands\StoreCleanupStaleOrders::class,
         Commands\StoreExpireProducts::class,
+        Commands\StoreGetPaypalOrder::class,
+        Commands\StoreGetShopifyCheckout::class,
 
         // builds
         Commands\BuildsCreate::class,

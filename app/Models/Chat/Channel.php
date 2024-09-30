@@ -291,13 +291,9 @@ class Channel extends Model
         });
     }
 
-    public function visibleUsers(?User $user)
+    public function visibleUsers(): Collection
     {
-        if ($this->isPM() || $this->isAnnouncement() && priv_check_user($user, 'ChatAnnounce', $this)->can()) {
-            return $this->users();
-        }
-
-        return new Collection();
+        return $this->isPM() ? $this->users() : new Collection();
     }
 
     public function scopePublic($query)

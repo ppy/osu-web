@@ -9,6 +9,12 @@ return [
         'title' => 'Land',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Vis',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'Baner',
         'country' => 'Land',
+        'daily_challenge' => '',
         'kudosu' => '',
         'multiplayer' => 'multiplayer',
         'performance' => 'Præstation',

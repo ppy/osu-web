@@ -6,4 +6,12 @@
   padding: 0;
   display: grid;
   gap: 5px;
+
+  @media @narrow-up {
+    grid-template-columns: 1fr auto minmax(100px, auto) auto;
+  }
+
+  &__item {
+    display: contents;
+  }
 }

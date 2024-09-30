@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Ваш улікавы запіс даўно не выкарыстоўваўся.",
             'inactive_different_country' => "Ваш акаўнт не выкарыстоўваўся доўгі час.",
         ],
     ],
@@ -126,7 +126,7 @@ return [
 
     'ogp' => [
         'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description_empty' => 'Карыстальнік не мае бітмапаў...',
 
         'description' => [
             '_' => '',
