@@ -7,14 +7,17 @@ namespace App\Models;
 
 use App\Exceptions\InvariantException;
 use App\Jobs\EsDocument;
+use App\Libraries\Beatmapset\ChangeBeatmapOwners;
 use App\Libraries\Transactions\AfterCommit;
 use DB;
+use Ds\Set;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $approved
- * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussions BeatmapDiscussion
+ * @property-read Collection<BeatmapDiscussion> $beatmapDiscussions
  * @property int $beatmap_id
  * @property Beatmapset $beatmapset
  * @property int|null $beatmapset_id
@@ -29,20 +32,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property float $diff_drain
  * @property float $diff_overall
  * @property float $diff_size
- * @property \Illuminate\Database\Eloquent\Collection $difficulty BeatmapDifficulty
- * @property \Illuminate\Database\Eloquent\Collection $difficultyAttribs BeatmapDifficultyAttrib
+ * @property-read Collection<BeatmapDifficulty> $difficulty
+ * @property-read Collection<BeatmapDifficultyAttrib> $difficultyAttribs
  * @property float $difficultyrating
- * @property \Illuminate\Database\Eloquent\Collection $failtimes BeatmapFailtimes
+ * @property-read Collection<BeatmapFailtimes> $failtimes
  * @property string|null $filename
  * @property int $hit_length
  * @property \Carbon\Carbon $last_update
  * @property int $max_combo
  * @property mixed $mode
+ * @property-read Collection<User> $owners
  * @property int $passcount
  * @property int $playcount
  * @property int $playmode
  * @property int $score_version
  * @property int $total_length
+ * @property User $user
  * @property int $user_id
  * @property string $version
  * @property string|null $youtube_preview
@@ -105,6 +110,11 @@ class Beatmap extends Model implements AfterCommit
     public function baseMaxCombo()
     {
         return $this->difficultyAttribs()->noMods()->maxCombo();
+    }
+
+    public function beatmapOwners()
+    {
+        return $this->hasMany(BeatmapOwner::class);
     }
 
     public function beatmapset()
@@ -257,6 +267,7 @@ class Beatmap extends Model implements AfterCommit
             'diff_size' => $this->getDiffSize(),
             'difficultyrating' => $this->getDifficultyrating(),
             'mode' => $this->getMode(),
+            'owners' => $this->getOwners(),
             'version' => $this->getVersion(),
 
             'baseDifficultyRatings',
@@ -300,22 +311,9 @@ class Beatmap extends Model implements AfterCommit
         return $maxCombo?->value;
     }
 
-    public function setOwner($newUserId)
+    public function setOwners(array $newUserIds, User $source): void
     {
-        if ($newUserId === null) {
-            throw new InvariantException('user_id must be specified');
-        }
-
-        if (User::find($newUserId) === null) {
-            throw new InvariantException('invalid user_id');
-        }
-
-        if ($newUserId === $this->user_id) {
-            throw new InvariantException('the specified user_id is already the owner');
-        }
-
-        $this->fill(['user_id' => $newUserId])->saveOrExplode();
-        $this->beatmapset->update(['eligible_main_rulesets' => null]);
+        (new ChangeBeatmapOwners($this, $newUserIds, $source))->handle();
     }
 
     public function status()
@@ -374,6 +372,30 @@ class Beatmap extends Model implements AfterCommit
         }
 
         return $value;
+    }
+
+    private function getOwners(): Collection
+    {
+        $beatmapOwners = $this->beatmapOwners()->pluck('user_id');
+
+        $owners = User::whereIn('user_id', $beatmapOwners)->get();
+        // compatiblity for anything that isn't writing to beatmap_owners yet.
+        if ($owners->find($this->user_id) === null && $this->user !== null) {
+            $owners->prepend($this->user);
+        }
+
+        // Add deleted/missing users.
+        if ($beatmapOwners->count() !== $owners->count()) {
+            $beatmapOwnersSet = new Set($beatmapOwners);
+            $ownersSet = new Set($owners->pluck('user_id')->toArray());
+
+            $missingIds = $beatmapOwnersSet->diff($ownersSet);
+            foreach ($missingIds as $id) {
+                $owners->push(new DeletedUser(['user_id' => $id]));
+            }
+        }
+
+        return $owners;
     }
 
     private function getMode()
