@@ -196,10 +196,30 @@ return [
             'to_0' => 'Lefedés',
             'to_1' => 'Felfedés',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'playcount' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Profil Borító Változtatása',
                 'defaults_info' => 'További borító lehetőségek a jövőben lesznek elérhetőek',
+                'holdover_remove_confirm' => "A korábban kiválasztott borító már nem választható.  Másik borítóra váltás után nem választhatja vissza.  Folytatja?",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Kép feldolgozása sikertelen. Ellenőrizd a feltöltött képet és próbáld meg újra.',
                     'button' => 'Kép feltöltése',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'alapértelmezett játékmód',
                 'set' => ':mode beállítása alapértelmezettnek',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

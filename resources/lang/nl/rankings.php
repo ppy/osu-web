@@ -9,6 +9,12 @@ return [
         'title' => 'Land',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Weergeven',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'in de schijnwerpers',
         'country' => 'landelijk',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'performance' => 'prestatie',

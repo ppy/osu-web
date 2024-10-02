@@ -196,10 +196,30 @@ return [
             'to_0' => 'Cover verbergen',
             'to_1' => 'Cover anzeigen',
         ],
+        'daily_challenge' => [
+            'daily' => 'Tägliche Serie',
+            'daily_streak_best' => 'Beste Tagesserie',
+            'daily_streak_current' => 'Aktuelle Tagesserie',
+            'playcount' => 'Gesamtbeteiligung',
+            'title' => 'Tägliche\nHerausforderung',
+            'top_10p_placements' => 'Platzierungen in den Top 10 %',
+            'top_50p_placements' => 'Platzierungen in den Top 50 %',
+            'weekly' => 'Wöchentliche Serie',
+            'weekly_streak_best' => 'Beste Wochenserie',
+            'weekly_streak_current' => 'Aktuelle Wochenserie',
+
+            'unit' => [
+                'day' => ':value T',
+                'week' => ':value W',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Profilbanner ändern',
                 'defaults_info' => 'In der Zukunft wird es mehr Optionen für das Banner geben',
+                'holdover_remove_confirm' => "Das davor ausgewählte Cover ist nicht mehr zur Auswahl verfügbar. Du kannst es nach dem Wechsel zu einem anderen Cover nicht wieder auswählen. Trotzdem fortfahren?",
+                'title' => 'Banner',
+
                 'upload' => [
                     'broken_file' => 'Verarbeitung des Bildes fehlgeschlagen. Überprüfe das hochgeladene Bild und versuch es erneut.',
                     'button' => 'Bild hochladen',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'Standard-Spielmodus',
                 'set' => 'Wähle :mode als Standard-Spielmodus',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Zur Standardfarbe zurückkehren? Für die Wahl einer anderen Farbe wird ein Supporter-Tag benötigt.',
+                'title' => 'Farbe',
+
+                'supporter' => [
+                    '_' => 'Eigene Farbschemata nur für :link verfügbar',
+                    'link' => 'osu!supporter',
+                ],
             ],
         ],
 
@@ -390,7 +420,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Accountstatus',
-                'bad_standing' => "Der Account von :username ist zurzeit eingeschränkt :(",
+                'bad_standing' => "Der Account von :username hat zurzeit keinen guten Ruf :(",
                 'remaining_silence' => ':username kann in :duration wieder sprechen.',
 
                 'recent_infringements' => [

@@ -79,9 +79,8 @@
                 'country' => $user->country->getKey(),
             ])}}">
                 @include('objects._flag_country', [
-                    'countryCode' => $user->country->getKey(),
-                    'countryName' => $user->country->name,
-                    'modifiers' => ['medium'],
+                    'country' => $user->country,
+                    'modifiers' => 'medium',
                 ])
             </a>
         </div>

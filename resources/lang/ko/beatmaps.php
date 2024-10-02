@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "침묵 상태에서는 토론 게시글을 게시할 수 없습니다.",
         'message_type_select' => '게시할 답글의 형식을 선택하세요',
         'reply_notice' => '답글을 올리려면 엔터를 누르세요.',
+        'reply_resolve_notice' => '엔터를 눌러 답변하세요. ctrl+enter를 눌러 답변하고 종결지을 수 있습니다.',
         'reply_placeholder' => '보내실 답변의 내용을 입력하세요.',
         'require-login' => '글을 올리거나 답변하려면 로그인해 주세요',
         'resolved' => '해결됨',
         'restore' => '복구',
         'show_deleted' => '삭제된 내용 표시',
         'title' => '토론',
+        'unresolved_count' => ':count_delimited개의 미해결 이슈',
 
         'collapse' => [
             'all-collapse' => '모두 축소하기',
@@ -283,7 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => '미지정',
     ],
     'status' => [
         'any' => '모두',

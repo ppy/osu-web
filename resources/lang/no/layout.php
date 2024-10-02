@@ -199,6 +199,8 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Lazer modus viser scorer satt fra lazer med en ny scoringsalgoritme',
             'logout' => 'Logg Ut',
             'profile' => 'Min Profil',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
         ],
     ],
 

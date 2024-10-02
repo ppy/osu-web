@@ -10,6 +10,7 @@ namespace App\Models\Solo;
 use App\Enums\Ruleset;
 use App\Enums\ScoreRank;
 use App\Exceptions\InvariantException;
+use App\Libraries\Score\ScoringMode;
 use App\Libraries\Score\UserRank;
 use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
@@ -71,11 +72,13 @@ class Score extends Model implements Traits\ReportableInterface
             'maximum_statistics' => $params['maximum_statistics'] ?? [],
             'mods' => $params['mods'] ?? [],
             'statistics' => $params['statistics'] ?? [],
+            'total_score_without_mods' => $params['total_score_without_mods'] ?? null,
         ];
         unset(
             $params['maximum_statistics'],
             $params['mods'],
             $params['statistics'],
+            $params['total_score_without_mods'],
         );
 
         $score = new static($params);
@@ -105,6 +108,7 @@ class Score extends Model implements Traits\ReportableInterface
             'rank:string',
             'statistics:array',
             'total_score:int',
+            'total_score_without_mods:int',
         ]);
 
         $params['maximum_statistics'] ??= [];
@@ -269,6 +273,14 @@ class Score extends Model implements Traits\ReportableInterface
             throw new InvariantException('Invalid total_score.');
         }
 
+        // unsigned int (no data type enforcement as this goes into the json, but just to match total_score)
+        if (
+            $this->data->totalScoreWithoutMods !== null
+            && ($this->data->totalScoreWithoutMods < 0 || $this->data->totalScoreWithoutMods > 4294967295)
+        ) {
+            throw new InvariantException('Invalid total_score_without_mods.');
+        }
+
         foreach (['max_combo', 'passed'] as $field) {
             if (!present($this->$field)) {
                 throw new InvariantException("field missing: '{$field}'");
@@ -278,6 +290,15 @@ class Score extends Model implements Traits\ReportableInterface
         if ($this->data->statistics->isEmpty()) {
             throw new InvariantException("field cannot be empty: 'statistics'");
         }
+    }
+
+    public function getClassicTotalScore(): int
+    {
+        return ScoringMode::convertToClassic(
+            Ruleset::from($this->ruleset_id),
+            $this->total_score,
+            $this->maxBasicJudgements(),
+        );
     }
 
     public function getMode(): string
@@ -481,5 +502,33 @@ class Score extends Model implements Traits\ReportableInterface
             'reason' => 'Cheating',
             'user_id' => $this->user_id,
         ];
+    }
+
+    /**
+     * Shortcut for calculating the beatmap's object count using only the score.
+     *
+     * @see https://github.com/ppy/osu/blob/b535f7c51916ed09231b78aa422e6488cf9a2a12/osu.Game/Scoring/Legacy/ScoreInfoExtensions.cs#L28-L32 Client reference
+     * @see https://github.com/ppy/osu/blob/b535f7c51916ed09231b78aa422e6488cf9a2a12/osu.Game/Rulesets/Scoring/HitResult.cs#L228-L243 Client reference (IsBasic)
+     */
+    private function maxBasicJudgements(): int
+    {
+        static $basicHitResults = [
+            'none',
+            'miss',
+            'meh',
+            'ok',
+            'good',
+            'great',
+            'perfect',
+        ];
+
+        $count = 0;
+        $maximumStatistics = $this->data->maximumStatistics;
+
+        foreach ($basicHitResults as $field) {
+            $count += $maximumStatistics->$field;
+        }
+
+        return $count;
     }
 }

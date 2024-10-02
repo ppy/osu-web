@@ -5,9 +5,13 @@
 
 namespace App\Libraries\Payments;
 
+use App\Exceptions\Store\PaymentRejectedException;
 use App\Models\Store\Order;
+use App\Models\Store\PaypalBanned;
 use Log;
+use PayPalCheckoutSdk\Core\PayPalHttpClient;
 use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
+use PayPalCheckoutSdk\Orders\OrdersGetRequest;
 use Throwable;
 
 /**
@@ -19,8 +23,11 @@ use Throwable;
  */
 class PaypalExecutePayment
 {
+    private PayPalHttpClient $client;
+
     public function __construct(private Order $order)
     {
+        $this->client = PaypalApiContext::client();
     }
 
     public function run()
@@ -34,13 +41,16 @@ class PaypalExecutePayment
                 );
             }
 
+            $paypalOrderId = $order->reference;
+
+            $this->assertPaypalOrder($paypalOrderId);
+
             $order->status = Order::STATUS_PAYMENT_APPROVED;
             $order->saveOrExplode();
 
-            $client = PaypalApiContext::client();
-            $request = new OrdersCaptureRequest($order->reference);
+            $request = new OrdersCaptureRequest($paypalOrderId);
 
-            $response = $client->execute($request);
+            $response = $this->client->execute($request);
 
             // This block is just extra information for now, errors here should not cause the transaction to fail.
             try {
@@ -52,5 +62,22 @@ class PaypalExecutePayment
                 app('sentry')->getClient()->captureException($e);
             }
         });
+    }
+
+    private function assertPaypalOrder(string $paypalOrderId): void
+    {
+        $request = new OrdersGetRequest($paypalOrderId);
+        $response = $this->client->execute($request);
+
+        $paypalSource = $response->result->payment_source->paypal;
+
+        if (
+            PaypalBanned::where('account_id', $paypalSource->account_id)
+                ->orWhere('email', $paypalSource->email_address)
+                ->exists()
+        ) {
+            datadog_increment('store.payments.banned', ['provider' => $this->order->getPaymentProvider()]);
+            throw new PaymentRejectedException($this->order);
+        }
     }
 }

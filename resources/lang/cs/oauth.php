@@ -7,6 +7,7 @@ return [
     'cancel' => 'Zrušit',
 
     'authorise' => [
+        'app_owner' => 'aplikace od :owner',
         'request' => 'žádá o přístup k vašemu účtu.',
         'scopes_title' => 'Tato aplikace bude moci:',
         'title' => 'Žádost o autorizaci',

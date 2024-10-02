@@ -196,10 +196,30 @@ return [
             'to_0' => 'Ocultar portada',
             'to_1' => 'MostraR portada',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'playcount' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Canvia la portada del perfil',
                 'defaults_info' => 'Més opcions de portada estaran disponibles en el futur',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Error en processar la imatge. Verifica la imatge pujada i torna-ho a intentar.',
                     'button' => 'Penja una imatge',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'mode de joc per defecte',
                 'set' => 'estableix :mode com a mode de joc per defecte del perfil',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

@@ -105,6 +105,7 @@ export default class Controller {
   readonly hasSavedState: boolean;
   @observable isUpdatingCover = false;
   readonly scoresNotice: string | null;
+  @observable selectedHue: number | null;
   @observable readonly state: State;
   readonly userCoverPresets;
   private xhr: Partial<Record<string, JQuery.jqXHR<unknown>>> = {};
@@ -162,6 +163,7 @@ export default class Controller {
     this.currentMode = initialData.current_mode;
     this.scoresNotice = initialData.scores_notice;
     this.displayCoverUrl = this.state.user.cover.url;
+    this.selectedHue = this.state.user.profile_hue;
     this.userCoverPresets = initialData.user_cover_presets;
 
     makeObservable(this);
@@ -280,6 +282,24 @@ export default class Controller {
     }).done(this.saveState) as JQuery.jqXHR<CurrentUserJson>;
 
     this.xhr.setExtraPageOrder = xhr;
+
+    return xhr;
+  }
+
+  apiSetHue(value: number | null): JQuery.jqXHR<unknown> {
+    this.xhr.setHue?.abort();
+
+    const xhr = $.ajax(route('account.update'), {
+      data: {
+        user: { user_style: value },
+      },
+      method: 'PUT',
+    }).done(action(() => {
+      this.setHue(value);
+      this.saveState();
+    })) as JQuery.jqXHR<unknown>;
+
+    this.xhr.setHue = xhr;
 
     return xhr;
   }
@@ -414,6 +434,22 @@ export default class Controller {
   @action
   setDisplayCoverUrl(url: string | null) {
     this.displayCoverUrl = url ?? this.state.user.cover.url;
+  }
+
+  @action
+  setHue(value: number | null) {
+    this.state.user.profile_hue = value;
+    this.setSelectedHue(value);
+  }
+
+  @action
+  setSelectedHue(value: number | null) {
+    this.selectedHue = value;
+    if (this.selectedHue == null) {
+      window.newBody?.style.removeProperty('--base-hue-override');
+    } else {
+      window.newBody?.style.setProperty('--base-hue-override', this.selectedHue.toString());
+    }
   }
 
   @action

@@ -46,8 +46,8 @@ return [
             '_' => 'пошук трэкаў',
 
             'exclusive_only' => [
-                'all' => '',
-                'exclusive_only' => '',
+                'all' => 'Усе',
+                'exclusive_only' => 'osu! арыгінальны',
             ],
 
             'form' => [
@@ -57,7 +57,7 @@ return [
                 'bpm_gte' => 'BPM Мінімум',
                 'bpm_lte' => 'BPM Максімум',
                 'empty' => 'Не знойдзена трэкаў, супадаючых з гэтымі крытэрыямі пошука.',
-                'exclusive_only' => '',
+                'exclusive_only' => 'Тып',
                 'genre' => 'Жанр',
                 'genre_all' => 'Усё',
                 'length_gte' => 'Мінімальная даўжыня',

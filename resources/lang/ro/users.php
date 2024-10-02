@@ -196,10 +196,30 @@ return [
             'to_0' => 'Ascunde coperta',
             'to_1' => 'Afișează coperta',
         ],
+        'daily_challenge' => [
+            'daily' => 'Serie Zilnică',
+            'daily_streak_best' => 'Cea Mai Bună Serie Zilnică',
+            'daily_streak_current' => 'Serie Zilnică Actuală',
+            'playcount' => 'Participare Totală',
+            'title' => 'Provocare\nZilnică',
+            'top_10p_placements' => 'Plasamente Top 10%',
+            'top_50p_placements' => 'Plasamente Top 50%',
+            'weekly' => 'Serie Săptămânală',
+            'weekly_streak_best' => 'Cea Mai Bună Serie Săptămânală',
+            'weekly_streak_current' => 'Serie Săptămânală Actuală',
+
+            'unit' => [
+                'day' => ':valuez',
+                'week' => ':values',
+            ],
+        ],
         'edit' => [
             'cover' => [
-                'button' => 'Schimbă coperta de profil',
+                'button' => 'Schimbă Coperta de Profil',
                 'defaults_info' => 'Mai multe opțiuni pentru coperți vor fi disponibile în viitor',
+                'holdover_remove_confirm' => "Coperta selectată anterior nu mai este disponibilă pentru selecție. Nu o veți mai putea selecta înapoi după ce treceți la o copertă diferită. Continuați?",
+                'title' => 'Copertă',
+
                 'upload' => [
                     'broken_file' => 'Imposibil de procesat imaginea. Verifică imaginea încărcată și încearcă din nou.',
                     'button' => 'Încarcă imaginea',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'mod de joc implicit',
                 'set' => 'setează :mode ca modul de joc implicit al profilului',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Resetați culoarea la cea implicită? Va fi necesar statusul de suporter pentru a o schimba la o culoare diferită.',
+                'title' => 'Culoare',
+
+                'supporter' => [
+                    '_' => 'Temele de culori personalizate sunt disponibile numai pentru :link',
+                    'link' => 'suporteri osu!',
+                ],
             ],
         ],
 

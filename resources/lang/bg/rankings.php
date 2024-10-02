@@ -9,6 +9,12 @@ return [
         'title' => 'Държава',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Покажи',
 
@@ -24,12 +30,13 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Потребителят има по-малко от 30 дни скорошна история в класирането.',
     ],
 
     'type' => [
         'charts' => 'под прожекторите',
         'country' => 'държава',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'мултиплейър',
         'performance' => 'представяне',

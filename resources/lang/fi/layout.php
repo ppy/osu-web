@@ -199,6 +199,8 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Lazer-tila näyttää uuden pisteytysalgoritmin avulla saadut tulokset',
             'logout' => 'Kirjaudu ulos',
             'profile' => 'Oma profiili',
+            'scoring_mode_toggle' => 'Klassinen pisteytys',
+            'scoring_mode_toggle_tooltip' => '',
         ],
     ],
 

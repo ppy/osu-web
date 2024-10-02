@@ -3,6 +3,7 @@
 
 .user-level {
   .center-content();
+  --bg: hsl(var(--hsl-c1));
   width: 50px;
   height: $width;
   font-size: @font-size--large;
@@ -10,43 +11,13 @@
 
   &__icon {
     .full-size();
-    clip-path: path("m 25,2.7 a 9.3,9.3 0 0 1 4.7,1.2 l 11.3,6.5 a 9.3,9.3 0 0 1 4.6,8.1 v 13.0 a 9.3,9.3 0 0 1 -4.6,8.1 L 29.7,46.1 a 9.3,9.3 0 0 1 -9.3,0 L 9.1,39.6 A 9.3,9.3 0 0 1 4.4,31.5 v -13.0 A 9.3,9.3 0 0 1 9.1,10.4 L 20.4,3.9 A 9.3,9.3 0 0 1 25,2.7 M 25,0.0 A 11.9,11.9 0 0 0 19.0,1.6 L 7.7,8.1 A 12.0,12.0 0 0 0 1.7,18.5 v 13.0 a 12.0,12.0 0 0 0 6.0,10.4 l 11.3,6.5 a 12.0,12.0 0 0 0 12.0,0 l 11.3,-6.5 a 12.0,12.0 0 0 0 6.0,-10.4 v -13.0 A 12.0,12.0 0 0 0 42.3,8.1 L 31.0,1.6 A 11.9,11.9 0 0 0 25.0,0 Z");
+    clip-path: path(
+      "m 25,2.7 a 9.3,9.3 0 0 1 4.7,1.2 l 11.3,6.5 a 9.3,9.3 0 0 1 4.6,8.1 v 13.0 a 9.3,9.3 0 0 1 -4.6,8.1 L 29.7,46.1 a 9.3,9.3 0 0 1 -9.3,0 L 9.1,39.6 A 9.3,9.3 0 0 1 4.4,31.5 v -13.0 A 9.3,9.3 0 0 1 9.1,10.4 L 20.4,3.9 A 9.3,9.3 0 0 1 25,2.7 M 25,0.0 A 11.9,11.9 0 0 0 19.0,1.6 L 7.7,8.1 A 12.0,12.0 0 0 0 1.7,18.5 v 13.0 a 12.0,12.0 0 0 0 6.0,10.4 l 11.3,6.5 a 12.0,12.0 0 0 0 12.0,0 l 11.3,-6.5 a 12.0,12.0 0 0 0 6.0,-10.4 v -13.0 A 12.0,12.0 0 0 0 42.3,8.1 L 31.0,1.6 A 11.9,11.9 0 0 0 25.0,0 Z"
+    );
     background: linear-gradient(var(--bg));
   }
 
   &__level {
     position: absolute;
-  }
-
-  &--tier-iron {
-    --bg: @level-tier-iron;
-  }
-
-  &--tier-bronze {
-    --bg: @level-tier-bronze;
-  }
-
-  &--tier-silver {
-    --bg: @level-tier-silver;
-  }
-
-  &--tier-gold {
-    --bg: @level-tier-gold;
-  }
-
-  &--tier-platinum {
-    --bg: @level-tier-platinum;
-  }
-
-  &--tier-rhodium {
-    --bg: @level-tier-rhodium;
-  }
-
-  &--tier-radiant {
-    --bg: @level-tier-radiant;
-  }
-
-  &--tier-lustrous {
-    --bg: @level-tier-lustrous;
   }
 }

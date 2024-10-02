@@ -196,10 +196,30 @@ return [
             'to_0' => 'Slėpti viršelį',
             'to_1' => 'Rodyti viršelį',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'playcount' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Keisti profilio viršelį',
                 'defaults_info' => 'Daugiau viršelio pasirinkimų pridėsime ateityje',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Nepavyko apdoroti paveiksliuko. Patikrink įkeltą paveiksliuką ir mėgink dar kart.',
                     'button' => 'Įkelti paveiksliuką',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'pagrindinis žaidimo rėžimas',
                 'set' => 'nustatyti :mode kaip pagrindiniu profilio žaidimo rėžimu',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

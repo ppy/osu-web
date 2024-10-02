@@ -10,11 +10,14 @@
   display: flex;
   flex-direction: column;
 
-  transition: filter 200ms ease-in-out, opacity 200ms ease-in-out; // for fading in after &--masked is removed
+  // for fading in after &--masked is removed
+  transition:
+    filter 200ms ease-in-out,
+    opacity 200ms ease-in-out;
 
   &--body {
-    --nav-logo: url('~@images/layout/osu-logo-white.svg');
-    --nav-logo-bg: url('~@images/layout/osu-logo-triangles.svg');
+    --nav-logo: url("~@images/layout/osu-logo-white.svg");
+    --nav-logo-bg: url("~@images/layout/osu-logo-triangles.svg");
 
     background-color: @osu-colour-b6;
   }
@@ -33,14 +36,14 @@
       height: 100%;
       top: 0;
       left: 0;
-      content: " ";
+      content: "";
       z-index: @z-index--body-background;
     }
   }
 
   &--body-lazer {
-    --nav-logo: url('~@images/layout/osu-lazer-logo-white.svg');
-    --nav-logo-bg: url('~@images/layout/osu-lazer-logo-triangles.svg');
+    --nav-logo: url("~@images/layout/osu-lazer-logo-white.svg");
+    --nav-logo-bg: url("~@images/layout/osu-lazer-logo-triangles.svg");
   }
 
   &--full {
@@ -55,7 +58,8 @@
     pointer-events: none;
     backface-visibility: hidden; // prevents flashing in some browers on resize/transition start
 
-    @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+    @media screen and (-ms-high-contrast: active),
+      screen and (-ms-high-contrast: none) {
       /* IE10+ fallback */
       opacity: 0;
     }

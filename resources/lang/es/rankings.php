@@ -9,6 +9,12 @@ return [
         'title' => 'País',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Mostrar',
 
@@ -24,12 +30,13 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Este usuario tiene menos de 30 días en su historial de clasificación reciente.',
     ],
 
     'type' => [
         'charts' => 'destacados',
         'country' => 'país',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multijugador',
         'performance' => 'rendimiento',

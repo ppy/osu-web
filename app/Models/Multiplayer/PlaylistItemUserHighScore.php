@@ -7,6 +7,8 @@ namespace App\Models\Multiplayer;
 
 use App\Models\Model;
 use App\Models\Traits\WithDbCursorHelper;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -86,6 +88,7 @@ class PlaylistItemUserHighScore extends Model
                 'query' => static
                     ::cursorSort($cursorHelper, $placeholder)
                     ->whereHas('scoreLink')
+                    ->whereHas('user', fn ($userQuery) => $userQuery->default())
                     ->where('playlist_item_id', $scoreLink->playlist_item_id)
                     ->where('user_id', '<>', $scoreLink->user_id),
                 'cursorHelper' => $cursorHelper,
@@ -105,6 +108,16 @@ class PlaylistItemUserHighScore extends Model
         return $this->belongsTo(ScoreLink::class, 'score_id');
     }
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function scopePassing(Builder $query): Builder
+    {
+        return $query->where('total_score', '>', 0);
+    }
+
     public function updateUserAttempts()
     {
         $this->incrementInstance('attempts');
@@ -114,7 +127,7 @@ class PlaylistItemUserHighScore extends Model
     {
         $score = $scoreLink->score;
 
-        if ($score === null || !$score->passed || $score->total_score < $this->total_score) {
+        if ($score === null || !$score->passed || $score->total_score <= $this->total_score) {
             return false;
         }
 

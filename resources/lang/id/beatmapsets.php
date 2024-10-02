@@ -17,10 +17,11 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Jangan terlalu bernafsu dalam mengunduh. Mainkan beatmap yang telah kamu miliki terlebih dahulu.',
+        'no_mirrors' => 'Tidak ada server unduhan yang tersedia.',
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Featured artist',
+        'label' => 'Featured Artist',
     ],
 
     'index' => [
@@ -40,20 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Nominator masa percobaan tidak dapat menominasikan lebih dari satu ruleset.',
+        'full_nomination_required' => 'Kamu harus menjadi nominator penuh untuk memberikan nominasi terakhir pada suatu ruleset.',
         'hybrid_requires_modes' => 'Pada beatmap hybrid, kamu harus memilih setidaknya satu mode permainan untuk dinominasikan.',
         'incorrect_mode' => 'Kamu tidak memiliki izin untuk memberikan nominasi pada mode permainan: :mode',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Beatmap ini memiliki nominasi yang tidak valid dan tidak dapat dikualifikasikan dalam kondisi saat ini.',
+        'invalid_ruleset' => 'Nominasi ini memiliki ruleset yang tidak valid.',
         'too_many' => 'Persyaratan nominasi telah terpenuhi.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'Persyaratan nominasi untuk ruleset yang bukan merupakan ruleset utama telah terpenuhi.',
 
         'dialog' => [
             'confirmation' => 'Apakah kamu yakin untuk menominasikan beatmap ini?',
+            'different_nominator_warning' => '',
             'header' => 'Nominasikan Beatmap',
-            'hybrid_warning' => 'catatan: kamu hanya dapat memberikan satu nominasi, sehingga pastikan kamu memberikan nominasi pada mode permainan yang memang kamu kehendaki',
-            'current_main_ruleset' => '',
+            'hybrid_warning' => 'catatan: kamu hanya dapat memberikan nominasi satu kali, sehingga pastikan kamu memberikan nominasi pada mode permainan yang memang kamu kehendaki',
+            'current_main_ruleset' => 'Ruleset utama saat ini: :ruleset',
             'which_modes' => 'Mode permainan mana yang ingin dinominasikan?',
         ],
     ],
@@ -81,7 +83,7 @@ return [
             'logged-out' => 'kamu harus masuk untuk mengunduh beatmap!',
             'mapped_by' => 'dibuat oleh :mapper',
             'mapped_by_guest' => 'guest difficulty oleh :mapper',
-            'unfavourite' => 'hapus beatmap ini dari daftar beatmap favorit',
+            'unfavourite' => 'hapus beatmap ini dari daftar favorit',
             'updated_timeago' => 'terakhir diperbarui :timeago',
 
             'download' => [

@@ -53,7 +53,10 @@ class ScoresController extends BaseController
         $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
         $cursorHelper = PlaylistItemUserHighScore::makeDbCursorHelper($params['sort'] ?? null);
 
-        $highScoresQuery = $playlist->highScores()->whereHas('scoreLink');
+        $highScoresQuery = $playlist
+            ->highScores()
+            ->whereHas('user', fn ($userQuery) => $userQuery->default())
+            ->whereHas('scoreLink');
 
         [$highScores, $hasMore] = $highScoresQuery
             ->clone()
@@ -82,7 +85,14 @@ class ScoresController extends BaseController
             )->first();
 
             if ($userHighScoreLink !== null) {
-                $userScoreJson = json_item($userHighScoreLink, $transformer, ScoreTransformer::MULTIPLAYER_BASE_INCLUDES);
+                $userScoreJson = json_item(
+                    $userHighScoreLink,
+                    $transformer,
+                    [
+                        ...ScoreTransformer::MULTIPLAYER_BASE_INCLUDES,
+                        'position',
+                    ]
+                );
             }
         }
 

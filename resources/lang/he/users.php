@@ -197,10 +197,30 @@ return [
             'to_0' => '',
             'to_1' => '',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'playcount' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'החלף תמונת פרופיל',
                 'defaults_info' => 'אפשרויות תמונה נוספות יהיו זמינות בעתיד',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'עיבוד תמונה נכשל. אמת את התמונה שהעלית ונסה שוב.',
                     'button' => 'העלה תמונה',
@@ -220,6 +240,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'מצב משחק ברירת מחדל',
                 'set' => 'הגדר :mode כמצב משחק ברירת מחדל של הפרופיל',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

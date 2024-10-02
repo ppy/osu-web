@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "あなたのアカウントは長い間使用されていません。",
             'inactive_different_country' => "あなたのアカウントは長期間使用されていません。",
         ],
     ],
@@ -196,10 +196,30 @@ return [
             'to_0' => 'カバー画像を隠す',
             'to_1' => 'カバー画像を表示',
         ],
+        'daily_challenge' => [
+            'daily' => '連続記録',
+            'daily_streak_best' => '最高連続記録',
+            'daily_streak_current' => '現在の連続記録',
+            'playcount' => '',
+            'title' => 'デイリー\nチャレンジ',
+            'top_10p_placements' => '上位10%',
+            'top_50p_placements' => '上位50%',
+            'weekly' => '週間連続記録',
+            'weekly_streak_best' => '最高週間連続記録',
+            'weekly_streak_current' => '現在の週間連続記録',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'カバー画像の変更',
                 'defaults_info' => 'カバー画像の選択肢は増える予定です',
+                'holdover_remove_confirm' => "",
+                'title' => 'カバー画像',
+
                 'upload' => [
                     'broken_file' => '画像の処理に失敗しました。アップロードした画像を確認してもう一度やり直して下さい。',
                     'button' => '画像のアップロード',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'メインのゲームモード',
                 'set' => ':modeをメインのゲームモードに設定する',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => 'カラー',
+
+                'supporter' => [
+                    '_' => 'カラーテーマをカスタムできるのは :link のみです',
+                    'link' => 'osu!サポーター',
+                ],
             ],
         ],
 

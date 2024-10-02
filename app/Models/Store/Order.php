@@ -6,6 +6,7 @@
 namespace App\Models\Store;
 
 use App\Exceptions\InvariantException;
+use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\OrderNotModifiableException;
 use App\Models\Country;
 use App\Models\User;
@@ -88,7 +89,7 @@ class Order extends Model
         'shipping' => 'float',
     ];
 
-    protected $macros = ['itemsQuantities'];
+    protected array $macros = ['itemsQuantities'];
 
     protected static function splitTransactionId($value)
     {
@@ -149,14 +150,14 @@ class Order extends Model
         return $query->whereIn('status', static::STATUS_HAS_INVOICE);
     }
 
-    public function scopeWhereOrderNumber($query, $orderNumber)
+    public function scopeWhereOrderNumber($query, ?string $orderNumber)
     {
         if (
-            !preg_match(static::ORDER_NUMBER_REGEX, $orderNumber, $matches)
+            $orderNumber === null
+            || !preg_match(static::ORDER_NUMBER_REGEX, $orderNumber, $matches)
             || $GLOBALS['cfg']['store']['order']['prefix'] !== $matches['prefix']
         ) {
-            // hope there's no order_id 0 :D
-            return $query->where('order_id', '=', 0);
+            return $query->none();
         }
 
         $userId = (int) $matches['userId'];
@@ -529,12 +530,20 @@ class Order extends Model
         });
     }
 
-    public function paid(Payment $payment = null)
+    public function paid(?Payment $payment)
     {
+        if ($this->tracking_code === Order::PENDING_ECHECK) {
+            $this->tracking_code = Order::ECHECK_CLEARED;
+        }
+
         // TODO: use a no payment object instead?
-        if ($payment) {
+        if ($payment !== null) {
+            if (!$this->payments()->save($payment)) {
+                throw new ModelNotSavedException('failed saving model');
+            }
+
             // Duplicate to existing fields.
-            // TODO: remove/migrate duplicated fields.
+            // Useful for checking store-related issues with a single table.
             $this->transaction_id = $payment->getOrderTransactionId();
             $this->paid_at = $payment->paid_at;
         } else {
@@ -590,7 +599,7 @@ class Order extends Model
     {
         // locking bottleneck
         $this->getConnection()->transaction(function () {
-            [$items, $products] = $this->lockForReserve();
+            $items = $this->lockForReserve();
 
             $items->each->releaseProduct();
         });
@@ -600,7 +609,7 @@ class Order extends Model
     {
         // locking bottleneck
         $this->getConnection()->transaction(function () {
-            [$items, $products] = $this->lockForReserve();
+            $items = $this->lockForReserve();
             $items->each->reserveProduct();
         });
     }
@@ -630,7 +639,7 @@ class Order extends Model
             ->first();
     }
 
-    public function macroItemsQuantities()
+    public function macroItemsQuantities(): \Closure
     {
         return function ($query) {
             $query = clone $query;
@@ -674,9 +683,9 @@ class Order extends Model
 
         $items = $query->get();
         $productIds = array_pluck($items, 'product_id');
-        $products = Product::lockForUpdate()->whereIn('product_id', $productIds)->get();
+        Product::lockForUpdate()->whereIn('product_id', $productIds)->get();
 
-        return [$items, $products];
+        return $items;
     }
 
     private function removeOrderItem(array $params)

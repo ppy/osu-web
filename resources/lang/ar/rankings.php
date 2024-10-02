@@ -9,6 +9,12 @@ return [
         'title' => 'الدولة',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'عرض',
 
@@ -24,12 +30,13 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'لهذا المستخدم سِجل ترتيب يقل عن 30 يوماً.',
     ],
 
     'type' => [
         'charts' => 'منطقة ألأضواء',
         'country' => 'الدولة',
+        'daily_challenge' => '',
         'kudosu' => 'كودوسو',
         'multiplayer' => 'متعدد اللاعبين',
         'performance' => 'الأداء',

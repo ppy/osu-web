@@ -22,6 +22,7 @@ export default class RankingUserFilter extends React.PureComponent<Props> {
         </div>
         <Sort
           currentValue={this.props.current ?? 'all'}
+          modifiers='ranking-header'
           onChange={this.onChange}
           showTitle={false}
           values={filters}

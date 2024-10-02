@@ -8,11 +8,21 @@
 
 @font-grade: Venera, sans-serif;
 @font-content: Inter, sans-serif;
-@font-default: Torus, Inter, 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
-@font-default-vi: Quicksand, Torus, Inter, 'Helvetica Neue', Tahoma, Arial, 'PingFang TC', 'Microsoft JhengHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
-@font-default-th: Torus, Inter, 'Helvetica Neue', 'Prompt', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', "Apple SD Gothic Neo", sans-serif;
-@font-default-zh: Torus, Inter, 'Helvetica Neue', Tahoma, Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
-@font-default-zh-tw: Torus, Inter, 'Helvetica Neue', Tahoma, Arial, 'PingFang TC', 'Microsoft JhengHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
+@font-default: Torus, Inter, "Helvetica Neue", Tahoma, Arial,
+  "Hiragino Kaku Gothic ProN", Meiryo, "Microsoft YaHei", "Apple SD Gothic Neo",
+  sans-serif;
+@font-default-vi: Quicksand, Torus, Inter, "Helvetica Neue", Tahoma, Arial,
+  "PingFang TC", "Microsoft JhengHei", "Apple SD Gothic Neo", system-ui,
+  sans-serif;
+@font-default-th: Torus, Inter, "Helvetica Neue", "Prompt", Tahoma, Arial,
+  "Hiragino Kaku Gothic ProN", Meiryo, "Microsoft YaHei", "Apple SD Gothic Neo",
+  sans-serif;
+@font-default-zh: Torus, Inter, "Helvetica Neue", Tahoma, Arial,
+  "Hiragino Sans GB", "Microsoft YaHei", "Apple SD Gothic Neo", system-ui,
+  sans-serif;
+@font-default-zh-tw: Torus, Inter, "Helvetica Neue", Tahoma, Arial,
+  "PingFang TC", "Microsoft JhengHei", "Apple SD Gothic Neo", system-ui,
+  sans-serif;
 
 @screen-mobile-max: (@screen-sm-min - 1px);
 @desktop: ~"(min-width: @{screen-sm-min})";
@@ -30,12 +40,11 @@
 
 // update app-deps.ts when changing the height of the header.
 @nav2-avatar-height: 60px;
-@nav2-avatar-height--pinned : 40px;
+@nav2-avatar-height--pinned: 40px;
 @nav2-height: 90px;
 @nav2-height--pinned: 50px;
 @nav2-header-height: 360px;
 @nav2-header-image-height: 310px;
-
 
 // mobile nav
 // TODO: un-bootstrap names
@@ -315,13 +324,3 @@
 @user-card-height: 120px;
 
 @user-list-icon-size: 20px;
-
-// level tier gradients
-@level-tier-iron: #BAB3AB, #BAB3AB;
-@level-tier-bronze: #B88F7A, #855C47;
-@level-tier-silver: #E0E0EB, #A3A3C2;
-@level-tier-gold: #F0E4A8, #E0C952;
-@level-tier-platinum: #A8F0EF, #52E0DF;
-@level-tier-rhodium: #D9F8D3, #A0CF96;
-@level-tier-radiant: #97DCFF, #ED82FF;
-@level-tier-lustrous: #FFE600, #ED82FF;

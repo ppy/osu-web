@@ -24,9 +24,9 @@ return [
     ],
 
     'status' => [
-        'non_best' => 'Vain parhaat henkilökohtaiset suoritukset myöntävät pp:tä',
+        'non_best' => 'Vain parhaat henkilökohtaiset tulokset myöntävät pp:tä',
         'no_pp' => 'pp:tä ei myönnetä tälle suoritukselle',
         'processing' => 'Pisteitä lasketaan ja ne näytetään pian',
-        'no_rank' => 'Tällä suorituksella ei ole sijoitusta, koska se ei ole rankattu tai se on merkitty poistettavaksi',
+        'no_rank' => 'Tällä tuloksella ei ole sijoitusta, koska se ei ole rankattu tai on merkitty poistettavaksi',
     ],
 ];

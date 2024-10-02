@@ -9,6 +9,12 @@ return [
         'title' => 'Land',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Vis',
 
@@ -24,12 +30,13 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Denne brukeren har mindre enn 30 dager av nylig rang historie.',
     ],
 
     'type' => [
         'charts' => 'Rampelyset',
         'country' => 'Land',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'flerspiller',
         'performance' => 'Prestasjon',

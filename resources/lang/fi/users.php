@@ -196,10 +196,30 @@ return [
             'to_0' => 'Piilota kansikuva',
             'to_1' => 'Näytä kansikuva',
         ],
+        'daily_challenge' => [
+            'daily' => 'Päivittäinen Putki',
+            'daily_streak_best' => 'Paras Päivittäinen Putki',
+            'daily_streak_current' => 'Nykyinen Päivittäinen Putki',
+            'playcount' => '',
+            'title' => 'Päivittäinen\nHaaste',
+            'top_10p_placements' => 'Top 10% -Sijoitukset',
+            'top_50p_placements' => 'Top 50% -Sijoitukset',
+            'weekly' => 'Viikoittainen putki',
+            'weekly_streak_best' => 'Paras Viikoittainen Putki',
+            'weekly_streak_current' => 'Nykyinen Viikoittainen Putki',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Muuta profiilin kansikuvaa',
                 'defaults_info' => 'Lisää kansikuvavaihtoehtoja tulee olemaan saatavilla tulevaisuudessa',
+                'holdover_remove_confirm' => "Edellinen valitsemasi kansikuva ei ole enää käytettävissä. Et voi valita sitä uudelleen, jos vaihdat toiseen kansikuvaan. Jatketaanko?",
+                'title' => 'Kansi',
+
                 'upload' => [
                     'broken_file' => 'Kuvan käsittely epäonnistui. Varmista lähetetty kuva ja kokeile uudestaan.',
                     'button' => 'Lataa kuva',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'oletuspelimuoto',
                 'set' => 'aseta :mode: profiilin oletetuksi pelimuodoksi',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Palauta oletusväri? Tukijamerkki vaaditaan värin vaihtamiseen.',
+                'title' => 'Väri',
+
+                'supporter' => [
+                    '_' => 'Muokatut väriteemat saatavilla vain :link',
+                    'link' => 'osu!tukijat',
+                ],
             ],
         ],
 

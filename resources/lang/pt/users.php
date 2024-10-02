@@ -196,10 +196,30 @@ return [
             'to_0' => 'Ocultar capa',
             'to_1' => 'Mostrar capa',
         ],
+        'daily_challenge' => [
+            'daily' => 'Série de vitórias diária',
+            'daily_streak_best' => 'Melhor série de vitórias diária',
+            'daily_streak_current' => 'Série de vitórias diária atual',
+            'playcount' => '',
+            'title' => 'Desafio\nDiário',
+            'top_10p_placements' => 'Os melhores 10%',
+            'top_50p_placements' => 'Os melhores 50%',
+            'weekly' => 'Série de vitórias semanal',
+            'weekly_streak_best' => 'Melhor série de vitórias semanal',
+            'weekly_streak_current' => 'Série de vitórias semanal atual',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Mudar a capa do perfil',
                 'defaults_info' => 'Mais opções de capa estarão disponíveis no futuro',
+                'holdover_remove_confirm' => "A capa selecionada anteriormente não está mais disponível para seleção. Não podes selecioná-la após mudar para outra capa. Prosseguir?",
+                'title' => 'Capa',
+
                 'upload' => [
                     'broken_file' => 'Falha ao processar a imagem. Verifica a imagem carregada e tenta outra vez.',
                     'button' => 'Carregar imagem',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'modo de jogo por omissão',
                 'set' => 'definir :mode como perfil de modo de jogo por omissão',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Redefinir cor para padrão? A etiqueta de suporte será preciso para mudar para outra cor.',
+                'title' => 'Cor',
+
+                'supporter' => [
+                    '_' => 'Temas de cores personalizadas disponíveis apenas no :link',
+                    'link' => 'osu!supporters',
+                ],
             ],
         ],
 

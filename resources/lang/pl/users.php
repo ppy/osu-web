@@ -35,7 +35,7 @@ return [
         'banner_text' => 'Ten użytkownik został zablokowany.',
         'comment_text' => 'Ten komentarz został ukryty.',
         'blocked_count' => 'zablokowani użytkownicy (:count)',
-        'hide_profile' => 'ukryj profil',
+        'hide_profile' => 'Ukryj profil',
         'hide_comment' => 'ukryj',
         'forum_post_text' => 'Ten post został ukryty.',
         'not_blocked' => 'Ten użytkownik nie jest zablokowany.',
@@ -43,8 +43,8 @@ return [
         'show_comment' => 'pokaż',
         'too_many' => 'Osiągnięto limit zablokowanych użytkowników.',
         'button' => [
-            'block' => 'zablokuj',
-            'unblock' => 'odblokuj',
+            'block' => 'Zablokuj',
+            'unblock' => 'Odblokuj',
         ],
     ],
 
@@ -197,10 +197,30 @@ return [
             'to_0' => 'Ukryj tło',
             'to_1' => 'Pokaż tło',
         ],
+        'daily_challenge' => [
+            'daily' => 'Dzienna seria',
+            'daily_streak_best' => 'Najlepsza Dzienna seria',
+            'daily_streak_current' => 'Aktualna Dzienna Seria',
+            'playcount' => '',
+            'title' => 'Wyzwanie Dnia',
+            'top_10p_placements' => 'Top 10% Miejsc',
+            'top_50p_placements' => 'Top 50% Miejsc',
+            'weekly' => 'Tygodniowa Seria',
+            'weekly_streak_best' => 'Najlepsza Tygodniowa Seria',
+            'weekly_streak_current' => 'Aktualna tygodniowa seria',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Zmień tło profilu',
                 'defaults_info' => 'Więcej teł pojawi się w przyszłości',
+                'holdover_remove_confirm' => "Aktualnie wybrane tło nie będzie mogło zostać wybrane ponownie. Czy na pewno chcesz je zmienić?",
+                'title' => 'Tło',
+
                 'upload' => [
                     'broken_file' => 'Nie udało się przetworzyć pliku. Zweryfikuj plik i spróbuj ponownie.',
                     'button' => 'Dodaj tło',
@@ -220,6 +240,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'domyślny tryb gry',
                 'set' => 'ustaw :mode jako domyślny tryb gry',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Przywrócić domyślny kolor? Osu!Supporter będzie wymagany, aby go zmienić ponownie.',
+                'title' => 'Kolor',
+
+                'supporter' => [
+                    '_' => 'Zmiana koloru profilu wymaga aktywnego statusu :link',
+                    'link' => 'donatora osu!',
+                ],
             ],
         ],
 

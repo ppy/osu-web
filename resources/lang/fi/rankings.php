@@ -9,6 +9,12 @@ return [
         'title' => 'Maa',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Näytä',
 
@@ -24,12 +30,13 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Tällä käyttäjällä on alle 30 päivää viimeaikaista rankkaushistoriaa.',
     ],
 
     'type' => [
         'charts' => 'kohdevalot (vanha)',
         'country' => 'maat',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'moninpelit',
         'performance' => 'suorituskyky',

@@ -7,7 +7,7 @@ return [
     'deleted' => '[slettet bruger]',
 
     'beatmapset_activities' => [
-        'title' => ":user's Modding Historie",
+        'title' => ":user's Moddinghistorik",
         'title_compact' => 'Modding',
 
         'discussions' => [
@@ -196,12 +196,32 @@ return [
             'to_0' => 'Skjul omslag',
             'to_1' => 'Vis omslag',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'playcount' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Skift Coverbillede',
                 'defaults_info' => 'Flere muligheder for coverbillede kommer snart',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
-                    'broken_file' => 'Kunne ikke uploade billedet. Prøv igen.',
+                    'broken_file' => 'Kunne ikke uploade billedet. Kontroller det uploadede billede og prøv igen.',
                     'button' => 'Upload billede',
                     'dropzone' => 'Smid her for at uploade',
                     'dropzone_info' => 'Du kan også smide dit billede her for at uploade',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'standardspiltilstand',
                 'set' => 'sæt :mode som din default mode',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 
@@ -254,7 +284,7 @@ return [
                     'title' => 'Afventende Beatmaps',
                 ],
                 'ranked' => [
-                    'title' => 'Ranked & Godkendte Beatmaps',
+                    'title' => 'Rangerede & Godkendte Beatmaps',
                 ],
             ],
             'discussions' => [
@@ -288,7 +318,7 @@ return [
                 ],
             ],
             'kudosu' => [
-                'recent_entries' => 'Seneste Kudosu Historie',
+                'recent_entries' => 'Seneste Kudosu Historik',
                 'title' => 'Kudosu!',
                 'total' => 'Total Kudosu Optjent',
 
@@ -298,29 +328,29 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Modtog :amount fra kudosu benægtelsesophævelse af modding opslaget :post',
+                            'give' => 'Modtog :amount fra kudosu benægtelsesophævelse af moddingopslaget :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Benægtet :amount fra modding opslaget :post',
+                            'reset' => 'Benægtet :amount fra moddingopslaget :post',
                         ],
 
                         'delete' => [
-                            'reset' => 'Mistede :amount fra sletning af modding opslag :post',
+                            'reset' => 'Mistede :amount fra sletning af moddingopslag :post',
                         ],
 
                         'restore' => [
-                            'give' => 'Modtog :amount fra modding opslag genetablering af :post',
+                            'give' => 'Modtog :amount fra genetablering af moddingopslaget :post',
                         ],
 
                         'vote' => [
-                            'give' => 'Modtog :amount fra at få stemmer på modding opslaget :post',
-                            'reset' => 'Mistede :amount fra at miste stemmer på modding opslaget :post',
+                            'give' => 'Modtog :amount fra at få stemmer på moddingopslaget :post',
+                            'reset' => 'Mistede :amount fra at miste stemmer på moddingopslaget :post',
                         ],
 
                         'recalculate' => [
-                            'give' => 'Modtog :amount fra genberegning af stemmer i modding opslaget :post',
-                            'reset' => 'Mistede :amount fra genberegning af stemmer i modding opslaget :post',
+                            'give' => 'Modtog :amount fra genberegning af stemmer i moddingopslaget :post',
+                            'reset' => 'Mistede :amount fra genberegning af stemmer i moddingopslaget :post',
                         ],
                     ],
 
@@ -471,7 +501,7 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => 'Du er i øjeblikket gjort tavs.',
+        'title' => 'Du er i øjeblikket muted.',
         'message' => 'Nogle handlinger kan være utilgængelige.',
     ],
 
@@ -490,7 +520,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => 'Klods visning',
+        'brick' => 'Klodsvisning',
         'card' => 'Kortvisning',
         'list' => 'Listevisning',
     ],

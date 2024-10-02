@@ -28,9 +28,15 @@ return [
     'checkout' => [
         'generic' => '결제를 준비하는 중 오류가 발생하였습니다.',
     ],
+    'scores' => [
+        'invalid_id' => '유효하지 점수 ID입니다.',
+    ],
     'search' => [
         'default' => '결과를 불러오지 못했습니다. 나중에 다시 시도해주세요.',
         'invalid_cursor_exception' => '유효하지 않은 커서 매개 변수가 지정되었습니다.',
         'operation_timeout_exception' => '검색 기능의 사용량이 평소보다 많습니다, 잠시 후 다시 시도해 주세요.',
+    ],
+    'user_report' => [
+        'recently_reported' => "이미 최근에 동일한 사용자를 신고했습니다.",
     ],
 ];

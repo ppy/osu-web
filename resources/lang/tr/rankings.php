@@ -9,6 +9,12 @@ return [
         'title' => 'Ülke',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Göster',
 
@@ -24,12 +30,13 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Bu kullanıcının son sıralama geçmişi 30 günden azdır.',
     ],
 
     'type' => [
         'charts' => 'Öne Çıkanlar',
         'country' => 'Ülke',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'çok oyunculu',
         'performance' => 'Performans',

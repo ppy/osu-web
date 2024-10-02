@@ -28,9 +28,15 @@ return [
     'checkout' => [
         'generic' => 'Se produjo un error mientras se preparaba el pago.',
     ],
+    'scores' => [
+        'invalid_id' => 'ID de la puntuación no válido.',
+    ],
     'search' => [
         'default' => 'No se ha podido obtener ningún resultado, inténtalo de nuevo más tarde.',
         'invalid_cursor_exception' => 'Se ha especificado un parámetro para el cursor no válido.',
         'operation_timeout_exception' => 'La búsqueda está más saturada de lo habitual, inténtalo de nuevo más tarde.',
+    ],
+    'user_report' => [
+        'recently_reported' => "Ya has reportado esto recientemente.",
     ],
 ];

@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Models\Multiplayer\DailyChallengeQueueItem;
@@ -36,7 +38,8 @@ class DailyChallengeCreateNext extends Command
         }
 
         DB::transaction(function () use ($nextQueueItem) {
-            $startTime = today();
+            // matches cron schedule
+            $startTime = today()->addMinutes(5);
             $hostId = $GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id'];
 
             $room = (new Room())->startGame(
@@ -51,7 +54,10 @@ class DailyChallengeCreateNext extends Command
                         'allowed_mods' => $nextQueueItem->allowed_mods,
                         'required_mods' => $nextQueueItem->required_mods,
                     ]],
-                ]
+                ],
+                [
+                    'starts_at' => $startTime,
+                ],
             );
             $room->update(['category' => 'daily_challenge']);
 

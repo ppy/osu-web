@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Uspori, igraj više.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Jesi li siguran/na da želiš nominirati ovu beatmapu?',
+            'different_nominator_warning' => '',
             'header' => 'Nominiraj beatmapu',
             'hybrid_warning' => 'napomena: možetš nominirati samo jednom, stoga te molimo da budeš siguran/na da nominiraš za sve načine igre koje namjeravaš',
             'current_main_ruleset' => '',

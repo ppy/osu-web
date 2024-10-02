@@ -28,7 +28,7 @@
   }
 
   &__cover-container {
-    .at2x-simple('~@images/headers/news-show-default.jpg');
+    .at2x-simple("~@images/headers/news-show-default.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: @border-radius-large;
@@ -66,7 +66,9 @@
     font-size: @font-size--normal;
 
     &--author {
-      strong { font-weight: 600; }
+      strong {
+        font-weight: 600;
+      }
     }
 
     &--preview {

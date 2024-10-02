@@ -20,17 +20,19 @@ return [
         'edited' => ':editor 最后在 :update_time 编辑。',
         'guest' => ':user 制作的客串难度',
         'kudosu_denied' => 'kudosu 已收回',
-        'message_placeholder_deleted_beatmap' => '该难度已被删除，无法继续讨论',
+        'message_placeholder_deleted_beatmap' => '该难度已被删除，无法继续讨论。',
         'message_placeholder_locked' => '该谱面下的讨论已关闭。',
         'message_placeholder_silenced' => "禁言时无法发布讨论。",
         'message_type_select' => '选择回复类型',
         'reply_notice' => '按下回车以提交',
+        'reply_resolve_notice' => '按 Enter 键回复。按 Ctrl+Enter 回复并标记为已解决。',
         'reply_placeholder' => '在此处输入您的回复',
         'require-login' => '登录以继续',
         'resolved' => '已解决',
         'restore' => '已修复',
         'show_deleted' => '显示已删除的消息',
         'title' => '讨论',
+        'unresolved_count' => ':count_delimited 未解决的问题',
 
         'collapse' => [
             'all-collapse' => '全部折叠',
@@ -93,7 +95,7 @@ return [
         'mode' => [
             'events' => '历史',
             'general' => '常规 :scope',
-            'reviews' => '审阅记录',
+            'reviews' => '审阅',
             'timeline' => '时间轴',
             'scopes' => [
                 'general' => '当前难度',
@@ -118,7 +120,7 @@ return [
                 'unsaved' => '尚未保存',
                 'timestamp' => [
                     'all-diff' => '你不能在“所有难度”讨论区中发布时间戳。',
-                    'diff' => '如果此 :type 以时间戳开头，它将显示在时间轴下。',
+                    'diff' => '如果此帖子以时间戳开头，则会显示在时间轴下方。',
                 ],
             ],
             'insert-block' => [
@@ -283,7 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => '未设置',
     ],
     'status' => [
         'any' => '全部',
@@ -300,7 +302,7 @@ return [
     ],
     'genre' => [
         'any' => '全部',
-        'unspecified' => '不限',
+        'unspecified' => '未指定',
         'video-game' => '电子游戏',
         'anime' => '动漫',
         'rock' => '摇滚',
@@ -329,7 +331,7 @@ return [
         'polish' => '波兰语',
         'instrumental' => '器乐',
         'other' => '其他',
-        'unspecified' => '不限',
+        'unspecified' => '未指定',
     ],
 
     'nsfw' => [

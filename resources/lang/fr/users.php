@@ -196,10 +196,30 @@ return [
             'to_0' => 'Cacher la bannière',
             'to_1' => 'Afficher la bannière',
         ],
+        'daily_challenge' => [
+            'daily' => 'Série quotidienne',
+            'daily_streak_best' => 'Meilleure série quotidienne',
+            'daily_streak_current' => 'Série quotidienne actuelle',
+            'playcount' => 'Participations totales',
+            'title' => 'Défi\ndu Jour',
+            'top_10p_placements' => 'Placements dans le Top 10%',
+            'top_50p_placements' => 'Placements dans le Top 50%',
+            'weekly' => 'Série hebdomadaire',
+            'weekly_streak_best' => 'Meilleure série hebdomadaire',
+            'weekly_streak_current' => 'Série hebdomadaire actuelle',
+
+            'unit' => [
+                'day' => ':value j',
+                'week' => ':value sem',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Changer la bannière du profil',
                 'defaults_info' => 'D\'autres options de bannières seront disponibles à l\'avenir',
+                'holdover_remove_confirm' => "La bannière précédemment sélectionnée n'est plus disponible. Vous ne pourrez plus la réutiliser une fois que vous l'aurez changée. Êtes-vous sûr ?",
+                'title' => 'Bannière',
+
                 'upload' => [
                     'broken_file' => 'Impossible de traiter l\'image. Vérifiez l\'image mise en ligne et réessayez.',
                     'button' => 'Mettre en ligne une image',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'mode de jeu par défaut',
                 'set' => 'définir :mode comme mode de jeu par défaut',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Voulez-vous vraiment réinitialiser la couleur de votre profil ? Vous devrez obtenir un tag osu!supporter pour la changer à nouveau.',
+                'title' => 'Couleur',
+
+                'supporter' => [
+                    '_' => 'Les couleurs personnalisées ne sont disponibles que pour les :link',
+                    'link' => 'osu!supporters',
+                ],
             ],
         ],
 

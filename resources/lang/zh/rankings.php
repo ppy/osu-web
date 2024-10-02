@@ -9,6 +9,12 @@ return [
         'title' => '国家或地区',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => '显示',
 
@@ -24,12 +30,13 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => '该玩家的最近排名历史记录少于 30 天。',
     ],
 
     'type' => [
-        'charts' => '高光',
+        'charts' => '季赛（旧版）',
         'country' => '国家/地区',
+        'daily_challenge' => '',
         'kudosu' => 'Kudosu',
         'multiplayer' => '多人游戏',
         'performance' => '表现',

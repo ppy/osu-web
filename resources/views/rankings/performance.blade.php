@@ -25,7 +25,7 @@
                         <div class="ranking-filter__title">
                             {{ osu_trans('rankings.filter.variant.title') }}
                         </div>
-                        <div class="sort">
+                        <div class="sort sort--ranking-header">
                             <div class="sort__items">
                                 @foreach ($variants as $v)
                                     <button class="sort__item sort__item--button">
@@ -117,9 +117,8 @@
                                 ]) }}"
                             >
                                 @include('objects._flag_country', [
-                                    'countryName' => $score->user->country->name,
-                                    'countryCode' => $score->user->country->acronym,
-                                    'modifiers' => ['medium'],
+                                    'country' => $score->user->country,
+                                    'modifiers' => 'medium',
                                 ])
                             </a>
                             <a
@@ -133,7 +132,7 @@
                         </div>
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {{ format_percentage($score->accuracy_new) }}
+                        {{ format_percentage($score->accuracy_new / 100) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ i18n_number_format($score->playcount) }}

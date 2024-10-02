@@ -196,10 +196,31 @@ return [
             'to_0' => '커버 숨기기',
             'to_1' => '커버 표시',
         ],
+        'daily_challenge' => [
+            'daily' => '연속 진행일',
+            'daily_streak_best' => '최다 연속 진행일
+',
+            'daily_streak_current' => '현재 연속 진행일',
+            'playcount' => '',
+            'title' => '일일미션',
+            'top_10p_placements' => '상위 10%',
+            'top_50p_placements' => '상위 50%',
+            'weekly' => '연속 진행주',
+            'weekly_streak_best' => '최다 연속 진행주',
+            'weekly_streak_current' => '현재 연속 진행주',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => '프로필 표지 변경',
                 'defaults_info' => '이후에 더 많은 표지 설정이 추가됩니다',
+                'holdover_remove_confirm' => "이전에 선택한 배경을 이제는 선택할 수 없어 다른 배경으로 바꾸면 다시 되돌릴 수 없습니다. 계속할까요?",
+                'title' => '표지',
+
                 'upload' => [
                     'broken_file' => '이미지 처리 실패. 업로드하려는 이미지를 확인하시고 다시 시도해주세요.',
                     'button' => '이미지 업로드',
@@ -219,6 +240,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => '메인 게임 모드',
                 'set' => ':mode를 메인 게임 모드로 설정',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '기본 색상으로 초기화할까요? 다른 색상으로 바꾸려면 osu! 서포터가 되어야 합니다.',
+                'title' => '색상',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => 'osu! 서포터',
+                ],
             ],
         ],
 

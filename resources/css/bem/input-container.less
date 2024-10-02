@@ -11,6 +11,7 @@
   border-radius: 5px;
   text-transform: initial;
   font-weight: initial;
+  font-size: inherit;
 
   margin: 0;
   padding: 5px 10px 10px;
@@ -33,20 +34,35 @@
 
     border: 2px solid transparent;
     padding: 5px;
+    font-size: var(--input-size);
   }
 
   &--error {
-    border-color: hsl(var(--hsl-red-2));
+    border-color: hsl(var(--hsl-red-2)) !important;
   }
 
   &--fill {
     flex: 1;
     min-height: 150px;
+    display: grid;
+    grid-template-rows: auto 1fr;
   }
 
   &--genre {
     --label-colour: hsl(var(--hsl-c1));
     background: none;
+  }
+
+  &--judging {
+    --input-bg: hsl(var(--hsl-b3));
+
+    border: 2px solid transparent;
+    padding: 5px;
+    margin: 20px 0;
+
+    &:focus-within {
+      border-color: hsl(var(--hsl-l1));
+    }
   }
 
   &__label {
@@ -57,4 +73,3 @@
     font-size: @font-size--normal;
   }
 }
-

@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Sæt farten ned, spil mere.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Er du sikker på du vil nominere dette Beatmap?',
+            'different_nominator_warning' => '',
             'header' => 'Nominér Beatmap',
             'hybrid_warning' => 'bemærk: du kan kun nominere én gang, så sørg for at du nominerer til alle spiltilstande, du har til hensigt til',
             'current_main_ruleset' => '',

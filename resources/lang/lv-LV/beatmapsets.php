@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Piebremzējiet, spēlējiet vairāk.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Vai esat pārliecināts, ka vēlaties nominēt šo bītmapi?',
+            'different_nominator_warning' => '',
             'header' => 'Nominēt Bītmapi',
             'hybrid_warning' => 'piezīme: jūs varat nominēt tikai vienu reizi, tāpēc, lūdzu, pārliecinieties, ka nominējat visus plānotos spēles režīmus (modus)',
             'current_main_ruleset' => '',

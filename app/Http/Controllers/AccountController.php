@@ -14,6 +14,7 @@ use App\Libraries\User\CountryChange;
 use App\Libraries\User\CountryChangeTarget;
 use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
+use App\Models\Beatmap;
 use App\Models\GithubUser;
 use App\Models\OAuth\Client;
 use App\Models\UserAccountHistory;
@@ -155,7 +156,13 @@ class AccountController extends Controller
             'user_twitter:string',
             'user_website:string',
             'user_discord:string',
+            'user_style:int',
         ]);
+
+        // setting it to null (default) is always allowed
+        if (isset($params['user_style']) && !$user->osu_subscriber) {
+            return error_popup(osu_trans('errors.supporter_only'));
+        }
 
         try {
             $user->fill($params)->saveOrExplode();
@@ -171,7 +178,7 @@ class AccountController extends Controller
         $newCountry = get_string(Request::input('country_acronym'));
         $user = Auth::user();
 
-        if (CountryChangeTarget::get($user) !== $newCountry) {
+        if ($newCountry === null || CountryChangeTarget::get($user) !== $newCountry) {
             abort(403, 'specified country_acronym is not allowed');
         }
 
@@ -248,6 +255,10 @@ class AccountController extends Controller
             'user_notify:bool',
         ]);
 
+        if (isset($userParams['playmode']) && !Beatmap::isModeValid($userParams['playmode'])) {
+            abort(422, 'invalid value specified for user[playmode]');
+        }
+
         $profileParams = get_params($params, 'user_profile_customization', [
             'audio_autoplay:bool',
             'audio_muted:bool',
@@ -262,6 +273,7 @@ class AccountController extends Controller
             'forum_posts_show_deleted:bool',
             'legacy_score_only:bool',
             'profile_cover_expanded:bool',
+            'scoring_mode:string',
             'user_list_filter:string',
             'user_list_sort:string',
             'user_list_view:string',

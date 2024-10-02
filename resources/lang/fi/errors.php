@@ -28,9 +28,15 @@ return [
     'checkout' => [
         'generic' => 'Ostoksesi valmistelussa tapahtui virhe.',
     ],
+    'scores' => [
+        'invalid_id' => 'Virheellinen tulostunnus.',
+    ],
     'search' => [
         'default' => 'Tuloksia ei saatu, yritä myöhemmin uudelleen.',
         'invalid_cursor_exception' => 'Virheellinen kohdistimen parametri määritetty.',
         'operation_timeout_exception' => 'Haku on tavallista ruuhkaisempi, yritä myöhemmin uudelleen.',
+    ],
+    'user_report' => [
+        'recently_reported' => "Olet jo ilmiantanut tämän äskettäin.",
     ],
 ];

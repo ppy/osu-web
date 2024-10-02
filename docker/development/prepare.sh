@@ -19,11 +19,9 @@ _run_dusk() {
     docker compose run --rm -e APP_ENV=dusk.local php "$@"
 }
 
-genkey=0
 if [ ! -f .env ]; then
     echo "Copying default env file"
     cp .env.example .env
-    genkey=1
 fi
 
 if [ -n "${GITHUB_TOKEN:-}" ]; then
@@ -37,7 +35,7 @@ _run composer install
 
 _run artisan dusk:chrome-driver
 
-if [ "$genkey" = 1 ]; then
+if ! grep -q '^APP_KEY=.' .env; then
     echo "Generating app key"
     _run artisan key:generate
 fi

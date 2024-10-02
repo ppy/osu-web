@@ -108,12 +108,39 @@ class PlaylistItem extends Model
         return $this->hasMany(ScoreToken::class);
     }
 
-    public function topScores()
+    public function save(array $options = [])
     {
-        return $this->highScores()
-            ->with('scoreLink.score')
-            ->orderBy('total_score', 'desc')
-            ->orderBy('score_id', 'asc');
+        $this->assertValidMaxAttempts();
+        $this->validateRuleset();
+        $this->assertValidMods();
+
+        return parent::save($options);
+    }
+
+    public function scorePercentile(): array
+    {
+        $key = "playlist_item_score_percentile:{$this->getKey()}";
+
+        if (!$this->expired && !$this->room->hasEnded()) {
+            $key .= ':ongoing';
+        }
+
+        return \Cache::remember($key, 600, function (): array {
+            $scores = $this->highScores()
+                ->passing()
+                ->orderBy('total_score', 'DESC')
+                ->pluck('total_score');
+            $count = count($scores);
+
+            return $count === 0
+                ? [
+                    '10p' => 0,
+                    '50p' => 0,
+                ] : [
+                    '10p' => $scores[max(0, (int) ($count * 0.1) - 1)],
+                    '50p' => $scores[max(0, (int) ($count * 0.5) - 1)],
+                ];
+        });
     }
 
     private function assertValidMaxAttempts()
@@ -151,14 +178,5 @@ class PlaylistItem extends Model
         $modsHelper->assertValidForMultiplayer($this->ruleset_id, $allowedModIds, $isRealtimeRoom, false);
         $modsHelper->assertValidForMultiplayer($this->ruleset_id, $requiredModIds, $isRealtimeRoom, true);
         $modsHelper->assertValidExclusivity($this->ruleset_id, $requiredModIds, $allowedModIds);
-    }
-
-    public function save(array $options = [])
-    {
-        $this->assertValidMaxAttempts();
-        $this->validateRuleset();
-        $this->assertValidMods();
-
-        return parent::save($options);
     }
 }

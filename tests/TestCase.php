@@ -13,9 +13,12 @@ use App\Libraries\Search\ScoreSearch;
 use App\Libraries\Session\Store as SessionStore;
 use App\Models\Beatmapset;
 use App\Models\Build;
+use App\Models\Multiplayer\PlaylistItem;
+use App\Models\Multiplayer\ScoreLink;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use Artisan;
+use Carbon\CarbonInterface;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Eloquent\Model;
@@ -31,6 +34,32 @@ use ReflectionProperty;
 class TestCase extends BaseTestCase
 {
     use ArraySubsetAsserts, CreatesApplication, DatabaseTransactions;
+
+    protected $connectionsToTransact = [
+        'mysql',
+        'mysql-chat',
+        'mysql-mp',
+        'mysql-store',
+        'mysql-updates',
+    ];
+
+    protected array $expectedCountsCallbacks = [];
+
+    public static function regularOAuthScopesDataProvider()
+    {
+        $data = [];
+
+        foreach (Passport::scopes()->pluck('id') as $scope) {
+            // just skip over any scopes that require special conditions for now.
+            if (in_array($scope, ['chat.read', 'chat.write', 'chat.write_manage', 'delegate'], true)) {
+                continue;
+            }
+
+            $data[] = [$scope];
+        }
+
+        return $data;
+    }
 
     public static function withDbAccess(callable $callback): void
     {
@@ -79,30 +108,22 @@ class TestCase extends BaseTestCase
         }
     }
 
-    protected $connectionsToTransact = [
-        'mysql',
-        'mysql-chat',
-        'mysql-mp',
-        'mysql-store',
-        'mysql-updates',
-    ];
-
-    protected array $expectedCountsCallbacks = [];
-
-    public static function regularOAuthScopesDataProvider()
+    protected static function roomAddPlay(User $user, PlaylistItem $playlistItem, array $scoreParams): ScoreLink
     {
-        $data = [];
-
-        foreach (Passport::scopes()->pluck('id') as $scope) {
-            // just skip over any scopes that require special conditions for now.
-            if (in_array($scope, ['chat.read', 'chat.write', 'chat.write_manage', 'delegate'], true)) {
-                continue;
-            }
-
-            $data[] = [$scope];
-        }
-
-        return $data;
+        return $playlistItem->room->completePlay(
+            $playlistItem->room->startPlay($user, $playlistItem, 0),
+            [
+                'accuracy' => 0.5,
+                'beatmap_id' => $playlistItem->beatmap_id,
+                'ended_at' => json_time(new \DateTime()),
+                'max_combo' => 1,
+                'ruleset_id' => $playlistItem->ruleset_id,
+                'statistics' => ['good' => 1],
+                'total_score' => 10,
+                'user_id' => $user->getKey(),
+                ...$scoreParams,
+            ],
+        );
     }
 
     protected function setUp(): void
@@ -193,6 +214,11 @@ class TestCase extends BaseTestCase
         return $this->withHeaders([
             'Authorization' => "Bearer {$encodedToken}",
         ]);
+    }
+
+    protected function assertEqualsUpToOneSecond(CarbonInterface $expected, CarbonInterface $actual): void
+    {
+        $this->assertTrue($expected->diffInSeconds($actual) < 2);
     }
 
     protected function createAllowedScopesDataProvider(array $allowedScopes)

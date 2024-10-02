@@ -6,7 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Checka ut',
-        'empty_cart' => '',
+        'empty_cart' => 'Ta bort alla artiklar från varukorgen',
         'info' => ':count_delimited föremål i varukorgen ($:subtotal)|:count_delimited föremål i varukorgen ($:subtotal)',
         'more_goodies' => 'Jag vill ta en titt på fler godsaker innan jag fullbordar beställningen',
         'shipping_fees' => 'fraktavgifter',
@@ -65,12 +65,12 @@ return [
             'cancelled' => [
                 'title' => 'Din beställning har avbrutits',
                 'line_1' => [
-                    '_' => "",
+                    '_' => "Om du inte bad om en avbrytning var god kontakta :link med ditt order nummer (#:order_number).",
                     'link_text' => 'osu!store support',
                 ],
             ],
             'delivered' => [
-                'title' => '',
+                'title' => 'Din beställning har levererats! Vi hoppas att du tycker om den!',
                 'line_1' => [
                     '_' => 'Om du har några problem med ditt köp, vänligen kontakta :link.',
                     'link_text' => 'osu!store support',
@@ -79,7 +79,7 @@ return [
             'prepared' => [
                 'title' => 'Din beställning förbereds!',
                 'line_1' => 'Vänligen vänta lite längre på att den ska skickas. Spårningsinformation kommer att visas här när beställningen har behandlats och skickats. Detta kan ta upp till 5 dagar (men oftast mindre!) beroende på hur upptagna vi är.',
-                'line_2' => '',
+                'line_2' => 'Vi skickas alla beställningar från Japan med hjälp av en mängd olika frakttjänster beroende på vikt och värde. Detta fält kommer att uppdateras med detaljer när vi har levererat beställningen.',
             ],
             'processing' => [
                 'title' => 'Din betalning har ännu inte bekräftats!',
@@ -93,7 +93,7 @@ return [
                 'title' => 'Din beställning har skickats!',
                 'tracking_details' => 'Spårningsinformation följer:',
                 'no_tracking_details' => [
-                    '_' => "",
+                    '_' => "Vi har inga spårningsuppgifter eftersom vi skickade paketet via Air Mail, men vi uppskattar att du kommer få det inom 1-3 veckor. I Europa kan tullen förlänga väntetiden, vilket är utom vår kontroll. Om du har några funderingar kan du svara på bekräftelse mejlet du fick av oss (eller :link).",
                     'link_text' => 'skicka oss ett e-post',
                 ],
             ],

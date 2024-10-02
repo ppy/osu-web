@@ -22,10 +22,12 @@ abstract class Model extends BaseModel
     use HasFactory, Traits\FasterAttributes, Validatable;
 
     const MAX_FIELD_LENGTHS = [];
+    const int PER_PAGE = 50;
 
     protected $connection = 'mysql';
     protected $guarded = [];
-    protected $macros;
+    protected array $macros = [];
+    protected $perPage = self::PER_PAGE;
     protected $primaryKeys;
 
     public static function booted()
@@ -47,15 +49,14 @@ abstract class Model extends BaseModel
         return $this->getRawAttribute($this->primaryKey);
     }
 
-    public function getMacros()
+    public function getMacros(): array
     {
-        static $baseMacros = [
+        return [
+            ...$this->macros,
             'getWithHasMore',
             'last',
             'realCount',
         ];
-
-        return array_merge($this->macros ?? [], $baseMacros);
     }
 
     public function getMorphClass()

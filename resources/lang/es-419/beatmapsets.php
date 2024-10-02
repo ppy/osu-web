@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Más despacio, juega un poco.',
+        'no_mirrors' => 'No hay servidores de descarga disponibles.',
     ],
 
     'featured_artist_badge' => [
@@ -40,20 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Los nominadores provisionales no pueden nominar varios modos de juego.',
+        'full_nomination_required' => 'Debes ser un nominador completo para realizar la nominación final de un modo de juego.',
         'hybrid_requires_modes' => 'Un mapa híbrido requiere que selecciones al menos un modo de juego para nominar.',
         'incorrect_mode' => 'No tienes permiso para nominar el modo: :mode',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Este mapa tiene nominaciones no válidas y no puede ser calificado en este estado.',
+        'invalid_ruleset' => 'Esta nominación tiene modos de juego no válidos.',
         'too_many' => 'Requisito de nominación ya cumplido.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'Ya se cumplió el requisito de nominación para el modo juego no principal.',
 
         'dialog' => [
             'confirmation' => '¿Estás seguro de que quieres nominar este mapa?',
+            'different_nominator_warning' => '',
             'header' => 'Nominar mapa',
             'hybrid_warning' => 'nota: solo puedes nominar una vez, así que asegúrate de que estás nominando todos los modos de juego que quieres nominar',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'El modo de juego principal es: :ruleset',
             'which_modes' => '¿Nominar para qué modos?',
         ],
     ],

@@ -13,6 +13,7 @@ import 'jquery.scrollto/jquery.scrollTo.js';
 import 'jquery-ui/ui/data.js';
 import 'jquery-ui/ui/widgets/slider.js';
 import 'jquery-ui/ui/widgets/sortable.js';
+import 'jquery-ui-touch-punch';
 import 'blueimp-file-upload/js/jquery.fileupload.js';
 
 import { patchPluralHandler } from 'lang-overrides';
@@ -41,7 +42,7 @@ interface QTip2Api {
   destroy(immediate?: boolean): QTip2Api;
   hide(): QTip2Api;
   set(...args: unknown[]): QTip2Api;
-  tooltip?: HTMLElement;
+  tooltip?: JQuery<HTMLElement>;
 }
 
 declare global {

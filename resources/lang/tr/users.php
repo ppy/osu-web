@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Hesabınız uzun bir süredir kullanılmamış.",
             'inactive_different_country' => "Hesabın uzun bir zamandır kullanılmamıştır.",
         ],
     ],
@@ -196,10 +196,30 @@ return [
             'to_0' => 'Kapağı gizle',
             'to_1' => 'Kapağı göster',
         ],
+        'daily_challenge' => [
+            'daily' => 'Günlük Seri',
+            'daily_streak_best' => 'En İyi Günlük Seri',
+            'daily_streak_current' => 'Mevcut Günlük Seri',
+            'playcount' => 'Toplam Katılım',
+            'title' => 'Günlük\nMeydan Okuma',
+            'top_10p_placements' => 'İlk %10 Sıralama',
+            'top_50p_placements' => 'İlk %50 Sıralama',
+            'weekly' => 'Haftalık Seri',
+            'weekly_streak_best' => 'En İyi Haftalık Seri',
+            'weekly_streak_current' => 'Mevcut Haftalık Seri',
+
+            'unit' => [
+                'day' => ':value',
+                'week' => ':value',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Kapak Fotoğrafını Değiştir',
                 'defaults_info' => 'Diğer kapak seçenekleri gelecekte mevcut olacak',
+                'holdover_remove_confirm' => "Önceden seçili olan kapak artık seçileme uygun değil ve farklı bir kapağa değiştirirsen geri seçemezsin. Devam edilsin mi?",
+                'title' => 'Örtü',
+
                 'upload' => [
                     'broken_file' => 'Resmin işlenmesi başarısız oldu. Yüklediğiniz resmi doğrulayıp tekrar deneyin.',
                     'button' => 'Resim yükle',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'varsayılan oyun modu',
                 'set' => ':mode \'ı varsayılan oyun modu olarak ayarla',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Renk varsayılana döndürülsün mü? Supporter tag başka bir renge değiştirmek için gerekli olacaktır.',
+                'title' => 'Renk',
+
+                'supporter' => [
+                    '_' => 'Özel renk temaları sadece :link\'ten ulaşılabilir.',
+                    'link' => 'osu!supporterlar',
+                ],
             ],
         ],
 

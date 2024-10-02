@@ -9,6 +9,12 @@ return [
         'title' => 'Țară',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Afișează',
 
@@ -24,12 +30,13 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Acest utilizator are mai puțin de 30 de zile de istoric în clasamente.',
     ],
 
     'type' => [
         'charts' => 'promovări',
         'country' => 'național',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'performance' => 'performanță',

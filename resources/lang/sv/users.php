@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Din konto har inte använts på länge.",
             'inactive_different_country' => "Ditt konto har inte använts på länge.",
         ],
     ],
@@ -196,10 +196,30 @@ return [
             'to_0' => 'Dölj omslagsbild',
             'to_1' => 'Visa omslagsbild',
         ],
+        'daily_challenge' => [
+            'daily' => 'Daglig Streak',
+            'daily_streak_best' => 'Bästa Dagliga Streak',
+            'daily_streak_current' => 'Nuvarande Dagliga Streak',
+            'playcount' => '',
+            'title' => '',
+            'top_10p_placements' => 'Topp 10% Placeringar',
+            'top_50p_placements' => 'Topp 50% Placeringar',
+            'weekly' => 'Vecko Streak',
+            'weekly_streak_best' => 'Bästa Vecko Streak',
+            'weekly_streak_current' => 'Nuvarande Vecko Streak',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Ändra Profilomslag',
                 'defaults_info' => 'Fler omslagsalternativ kommer finnas i framtiden',
+                'holdover_remove_confirm' => "",
+                'title' => 'Omslag',
+
                 'upload' => [
                     'broken_file' => 'Misslyckades med att processa bilden. Verifiera uppladdad bild och försök igen.',
                     'button' => 'Ladda upp bild',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'standardspelläge',
                 'set' => 'sätt :mode som profilens förvalda spelläge',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Återställ färger till standard? En supporter tagg behövs för att byta till en annan färg.',
+                'title' => 'Färg',
+
+                'supporter' => [
+                    '_' => 'Anpassade färgteman endast tillgängliga för :link',
+                    'link' => 'osu!supportrar',
+                ],
             ],
         ],
 

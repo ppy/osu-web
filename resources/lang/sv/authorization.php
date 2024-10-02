@@ -173,7 +173,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Kan inte fästa den här typen av poäng",
-            'failed' => "",
+            'failed' => "Kan inte fästa icke-passerande poäng.",
             'not_owner' => 'Endast resultatägaren kan fästa resultat.',
             'too_many' => 'Fäst för många resultat.',
         ],

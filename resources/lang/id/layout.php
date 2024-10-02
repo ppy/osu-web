@@ -9,7 +9,7 @@ return [
     ],
 
     'defaults' => [
-        'page_description' => 'osu! - Rhythm is just a *click* away! Dengan berbagai mode permainan seperti Ouendan/EBA, Taiko, serta level editor yang sepenuhnya fungsional.',
+        'page_description' => 'osu! - Rhythm is just a *click* away! Dengan Ouendan/EBA, Taiko, dan berbagai mode permainan orisinal serta editor level yang sepenuhnya fungsional.',
     ],
 
     'header' => [
@@ -41,7 +41,7 @@ return [
 
         'store' => [
             'cart' => 'keranjang',
-            'orders' => 'riwayat transaksi',
+            'orders' => 'riwayat pemesanan',
             'products' => 'produk',
         ],
 
@@ -199,6 +199,8 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Mode lazer menampilkan skor yang diraih dari lazer dengan algoritma perhitungan skor baru',
             'logout' => 'Keluar',
             'profile' => 'Profil Saya',
+            'scoring_mode_toggle' => 'Perhitungan skor klasik',
+            'scoring_mode_toggle_tooltip' => 'Sesuaikan nilai skor untuk lebih menyerupai perhitungan skor klasik yang tidak memiliki batas',
         ],
     ],
 

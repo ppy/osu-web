@@ -12,7 +12,7 @@ return [
     'new' => 'Recent',
     'old' => 'Oud',
     'rank' => 'Rank',
-    'top' => 'Terug naar boven',
+    'top' => 'Beste',
     'username' => 'Gebruikersnaam',
 
     'artist_tracks' => [

@@ -10,8 +10,9 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => 'atur ulang',
             'rules' => 'Pastikan avatarmu tunduk pada :link yang berlaku.<br/>Dengan kata lain, avatarmu harus <strong>cocok untuk segala usia</strong> tanpa mengandung unsur apa pun yang tidak dibenarkan seperti cacian, hinaan, atau hal yang bersifat sugestif.',
-            'rules_link' => 'peraturan komunitas',
+            'rules_link' => 'Pertimbangan konten visual',
         ],
 
         'email' => [
@@ -102,7 +103,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'nonaktifkan peringatan untuk beatmap berkonten eksplisit',
+        'beatmapset_show_nsfw' => 'sembunyikan peringatan untuk konten eksplisit pada beatmap',
         'beatmapset_title_show_original' => 'tampilkan metadata beatmap dalam bahasa aslinya',
         'title' => 'Pengaturan',
 
@@ -131,7 +132,7 @@ return [
     'security' => [
         'current_session' => 'saat ini',
         'end_session' => 'Akhiri Sesi',
-        'end_session_confirmation' => 'Tindakan ini akan secara otomatis mengakhiri sesimu pada perangkat yang bersangkutan. Apakah kamu yakin?',
+        'end_session_confirmation' => 'Tindakan ini akan mengakhiri sesimu pada perangkat yang bersangkutan dengan segera. Apakah kamu yakin?',
         'last_active' => 'Terakhir aktif:',
         'title' => 'Keamanan',
         'web_sessions' => 'sesi web',

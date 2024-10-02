@@ -13,10 +13,6 @@ return [
         'blurb' => [
             'important' => '',
             'install_instruction' => '',
-            'note' => [
-                '_' => '',
-                'scary' => '',
-            ],
         ],
     ],
 

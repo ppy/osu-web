@@ -2,30 +2,77 @@
 // See the LICENCE file in the repository root for full licence text.
 
 @margin: 10px;
-@max-width: 500px;
 
 .contest-judge-entry {
   margin-bottom: 20px;
+  max-width: 500px;
 
   &__button {
     display: flex;
-    max-width: @max-width;
     justify-content: flex-end;
     text-transform: lowercase;
+  }
+
+  &__categories {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__category {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   &__description-icon {
     display: flex;
     align-items: center;
-    margin-right: 5px;
     font-size: @font-size--small-2;
   }
 
   &__label {
     display: flex;
+    gap: 5px;
     font-size: @font-size--normal;
-    margin-top: @margin;
     font-weight: bold;
+  }
+
+  &__slider {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+
+    &::-webkit-slider-runnable-track {
+      background: hsla(var(--hsl-pink-1), 50%);
+      height: 8px;
+      border-radius: @border-radius-base;
+    }
+
+    &::-moz-range-track {
+      background: hsla(var(--hsl-pink-1), 50%);
+      height: 8px;
+      border-radius: @border-radius-base;
+    }
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      margin-top: -4px; // initially slightly misaligned
+      background-color: hsl(var(--hsl-pink-1));
+      width: 16px;
+      height: 16px;
+      border-radius: 9999px;
+    }
+
+    &::-moz-range-thumb {
+      border: none;
+      border-radius: 9999px;
+      background-color: hsl(var(--hsl-pink-1));
+      width: 16px;
+      height: 16px;
+    }
   }
 
   &__title {
@@ -35,30 +82,7 @@
     color: hsl(var(--hsl-l1));
   }
 
-  &__textarea {
-    .reset-input();
-    .default-border-radius();
-
-    flex: 1;
-    background-color: hsl(var(--hsl-b3));
-    border: 2px solid transparent;
-    color: #fff;
-    padding: 5px;
-
-    &:focus {
-      border-color: hsl(var(--hsl-l1));
-    }
-  }
-
-  &__textarea-wrapper {
-    display: flex;
-    max-width: @max-width;
-    margin: calc(@margin * 2) 0;
-  }
-
   &__value {
-    margin-top: @margin;
-    max-width: @max-width;
     display: flex;
     justify-content: flex-end;
     color: hsl(var(--hsl-c2));

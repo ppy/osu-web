@@ -24,6 +24,11 @@ return [
         'title' => 'Báo cáo bài đăng của :username?',
     ],
 
+    'message' => [
+        'button' => 'Báo cáo tin nhắn',
+        'title' => 'Báo cáo tin nhắn của :username không?',
+    ],
+
     'scores' => [
         'button' => 'Báo cáo điểm',
         'title' => 'Báo cáo điểm của :username?',

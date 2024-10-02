@@ -192,7 +192,6 @@ Route::group(['middleware' => ['web']], function () {
                 Route::put('{channel}/mark-as-read/{message}', 'ChannelsController@markAsRead')->name('mark-as-read');
             });
             Route::apiResource('channels', 'ChannelsController', ['only' => ['index', 'show', 'store']]);
-            Route::apiResource('users', 'UsersController', ['only' => ['index']]);
         });
         Route::resource('chat', 'ChatController', ['only' => ['index']]);
     });
@@ -282,6 +281,7 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::get('rankings/kudosu', 'RankingController@kudosu')->name('rankings.kudosu');
+    Route::resource('rankings/daily-challenge', 'Ranking\DailyChallengeController', ['only' => ['index', 'show']]);
     Route::get('rankings/{mode?}/{type?}', 'RankingController@index')->name('rankings');
 
     Route::resource('reports', 'ReportsController', ['only' => ['store']]);
@@ -296,13 +296,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('user-cover-presets', 'UserCoverPresetsController', ['only' => ['index', 'store', 'update']]);
 
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
-    Route::post('users/check-username-exists', 'UsersController@checkUsernameExists')->name('users.check-username-exists');
+    Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');
     Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled');
     Route::get('users/create', 'UsersController@create')->name('users.create');
     Route::post('users/store-web', 'UsersController@storeWeb')->name('users.store-web');
 
     Route::group(['as' => 'users.', 'prefix' => 'users/{user}'], function () {
-        Route::get('card', 'UsersController@card')->name('card');
         Route::get('extra-pages/{page}', 'UsersController@extraPages')->name('extra-page');
         Route::put('page', 'UsersController@updatePage')->name('page');
         Route::group(['namespace' => 'Users'], function () {
@@ -361,7 +360,6 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('approved', 'PaypalController@approved')->name('approved');
             Route::get('declined', 'PaypalController@declined')->name('declined');
             Route::post('create', 'PaypalController@create')->name('create');
-            Route::get('completed', 'PaypalController@completed')->name('completed');
             Route::post('ipn', 'PaypalController@ipn')->name('ipn');
         });
 
@@ -380,10 +378,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/home', 'HomeController@index');
 
     Route::get('/', 'HomeController@index')->name('home');
-
-    if ($GLOBALS['cfg']['osu']['scores']['rank_cache']['local_server']) {
-        Route::get('rankLookup', 'ScoresController@userRankLookup');
-    }
 
     // redirects go here
     route_redirect('forum/p/{post}', 'forum.posts.show');
@@ -540,6 +534,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         Route::get('search', 'HomeController@search');
 
+        Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');
         //  GET /api/v2/users/:user_id/kudosu
         Route::get('users/{user}/kudosu', 'UsersController@kudosu');
         //  GET /api/v2/users/:user_id/scores/:type [best, firsts, recent]

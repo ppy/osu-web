@@ -196,10 +196,30 @@ return [
             'to_0' => 'Itago ang cover',
             'to_1' => 'Ipakita ang cover',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'playcount' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Palitan ang cover',
                 'defaults_info' => 'Higit pang mga larawang cover ang ilalabas sa hinaharap',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Hindi matagumpay ang pagproseso ng imahe. Suriin ang inilalathalang imahe at subukang muli.',
                     'button' => 'Mag-upload ng imahe',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'default na game mode',
                 'set' => 'i-set ang :mode bilang default na game mode',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

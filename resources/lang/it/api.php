@@ -7,7 +7,7 @@ return [
     'error' => [
         'chat' => [
             'empty' => 'Non puoi inviare messaggi vuoti.',
-            'limit_exceeded' => 'Stai inviando messaggi troppo velocemente, per favore aspetta un po\' prima di riprovare.',
+            'limit_exceeded' => 'Stai inviando messaggi troppo velocemente, aspetta un po\' prima di riprovare.',
             'too_long' => 'Il messaggio che vuoi inviare è troppo lungo.',
         ],
     ],

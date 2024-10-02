@@ -16,16 +16,16 @@ return [
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Фајлови',
+            'submit' => 'Сачувај',
+            'title' => 'Додај Нови',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
+            'click_to_disable' => 'Кликните да бисте онемогућили',
+            'click_to_enable' => 'Кликните да бисте омогућили',
+            'enabled' => 'Омогућено',
+            'disabled' => 'Онемогућено',
             'image_store' => '',
             'image_update' => '',
         ],

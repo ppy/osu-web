@@ -196,10 +196,30 @@ return [
             'to_0' => 'Ocultar portada',
             'to_1' => 'Mostrar portada',
         ],
+        'daily_challenge' => [
+            'daily' => 'Racha diaria',
+            'daily_streak_best' => 'Mejor racha diaria',
+            'daily_streak_current' => 'Racha diaria actual',
+            'playcount' => 'Participación total',
+            'title' => 'Desafío\ndiario',
+            'top_10p_placements' => 'Puestos en el top 10 %',
+            'top_50p_placements' => 'Puestos en el top 50 %',
+            'weekly' => 'Racha semanal',
+            'weekly_streak_best' => 'Mejor racha semanal',
+            'weekly_streak_current' => 'Racha semanal actual',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Cambiar portada de perfil',
                 'defaults_info' => 'Más opciones de portadas estarán disponibles en el futuro',
+                'holdover_remove_confirm' => "La portada seleccionada anteriormente ya no está disponible para su selección. No puedes volver a seleccionarla después de cambiar a otra portada. ¿Deseas continuar?",
+                'title' => 'Portada',
+
                 'upload' => [
                     'broken_file' => 'Error al procesar la imagen. Verifica la imagen subida e intenta de nuevo.',
                     'button' => 'Subir imagen',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'modo de juego predeterminado',
                 'set' => 'establecer :mode como el modo de juego predeterminado del perfil',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '¿Restablecer al color predeterminado? Se necesitará una etiqueta de osu!supporter para cambiar el color.',
+                'title' => 'Color',
+
+                'supporter' => [
+                    '_' => 'Los colores personalizados solo están disponibles para :link',
+                    'link' => 'osu!supporters',
+                ],
             ],
         ],
 

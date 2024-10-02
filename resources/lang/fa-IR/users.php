@@ -196,10 +196,30 @@ return [
             'to_0' => 'مخفی کردن پوشش',
             'to_1' => 'نمایش دادن پوشش',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'playcount' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'تغییر عکس نمایه',
                 'defaults_info' => 'تنظیمات عکس بیشتری در آینده در دسترس خواهند بود',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'پردازش عکس ناموفق. عکس بارگذاری شده را بررسی کنید و مجدد امتحان کنید.',
                     'button' => 'بارگذاری تصویر',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'حالت بازی پیشفرض',
                 'set' => 'تعیین :mode بعنوان حالت عادی بازی در پروفایل',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

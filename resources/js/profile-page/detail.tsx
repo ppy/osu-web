@@ -16,8 +16,9 @@ import Stats from 'profile-page/stats';
 import * as React from 'react';
 import { trans } from 'utils/lang';
 import Controller from './controller';
-import CoverEditor from './cover-editor';
+import DailyChallenge from './daily-challenge';
 import Links from './links';
+import ProfileEditButton from './profile-edit-button';
 
 interface Props {
   controller: Controller;
@@ -35,7 +36,7 @@ export default class Detail extends React.Component<Props> {
         <Cover
           coverUrl={this.props.controller.displayCoverUrl}
           currentMode={this.props.controller.currentMode}
-          editor={<CoverEditor controller={this.props.controller} />}
+          editor={<ProfileEditButton controller={this.props.controller} />}
           isUpdatingCover={this.props.controller.isUpdatingCover}
           user={this.user}
         />
@@ -62,12 +63,14 @@ export default class Detail extends React.Component<Props> {
       <div className='profile-detail'>
         <div className='profile-detail__stats'>
           <div>
-            <div className='profile-detail__chart-numbers'>
+            <div className='profile-detail__chart-numbers profile-detail__chart-numbers--top'>
               <div className='profile-detail__values'>
                 <Rank highest={this.user.rank_highest} stats={this.user.statistics} type='global' />
                 <Rank stats={this.user.statistics} type='country' />
               </div>
-              {/* TODO: mode switcher */}
+              <div className='profile-detail__values'>
+                <DailyChallenge stats={this.user.daily_challenge_user_stats} />
+              </div>
             </div>
 
             <div className='profile-detail__chart'>

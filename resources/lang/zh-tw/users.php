@@ -196,10 +196,30 @@ return [
             'to_0' => '隱藏封面',
             'to_1' => '顯示封面',
         ],
+        'daily_challenge' => [
+            'daily' => '每日連續次數',
+            'daily_streak_best' => '最佳每日連續次數',
+            'daily_streak_current' => '目前每日連續次數',
+            'playcount' => '總遊玩次數',
+            'title' => '每日挑戰',
+            'top_10p_placements' => '前10%名次',
+            'top_50p_placements' => '前50%名次',
+            'weekly' => '每周連續次數',
+            'weekly_streak_best' => '最佳每周連續次數',
+            'weekly_streak_current' => '目前每周連續次數',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => '變更個人簡介封面',
                 'defaults_info' => '未來將提供更多的封面選項',
+                'holdover_remove_confirm' => "上一個橫幅已經無法使用。您無法在切換別的橫幅後選回去了。要繼續嗎？",
+                'title' => '封面',
+
                 'upload' => [
                     'broken_file' => '上傳失敗。請檢查上傳的圖片並重試.',
                     'button' => '上傳圖片',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => '預設遊戲模式',
                 'set' => '設定 :mode 為個人簡介預設的遊戲模式',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '重設顏色？改變顏色將會需要 osu! 贊助者。',
+                'title' => '顏色',
+
+                'supporter' => [
+                    '_' => '自定義色彩主題只對 :link 開放',
+                    'link' => 'osu! 贊助者',
+                ],
             ],
         ],
 

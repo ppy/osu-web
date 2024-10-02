@@ -9,6 +9,12 @@ return [
         'title' => 'Країни',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Показати',
 
@@ -24,12 +30,13 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Цей користувач має менше 30 днів недавньої історії рейтингу.',
     ],
 
     'type' => [
         'charts' => 'чарти',
         'country' => 'країни',
+        'daily_challenge' => '',
         'kudosu' => 'кудосу',
         'multiplayer' => 'мультиплеєр',
         'performance' => 'продуктивність',

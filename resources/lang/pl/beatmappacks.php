@@ -13,10 +13,6 @@ return [
         'blurb' => [
             'important' => 'WAŻNE',
             'install_instruction' => 'Instalacja: Rozpakuj zawartość pobranej paczki do folderu z beatmapami (Songs), a osu! zajmie się resztą.',
-            'note' => [
-                '_' => ':scary jest wysoko zalecane, ponieważ starsze mapy znacznie odstają jakością od nowszych.',
-                'scary' => 'Pobieranie paczek beatmap od najnowszych do najstarszych',
-            ],
         ],
     ],
 

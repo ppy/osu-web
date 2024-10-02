@@ -12,7 +12,6 @@ import Captcha from 'core/captcha';
 import ClickMenu from 'core/click-menu';
 import CurrentUserObserver from 'core/current-user-observer';
 import Enchant from 'core/enchant';
-import FixRelativeLink from 'core/fix-relative-link';
 import ForumPoll from 'core/forum/forum-poll';
 import ForumPostEdit from 'core/forum/forum-post-edit';
 import ForumPostInput from 'core/forum/forum-post-input';
@@ -21,6 +20,7 @@ import Localtime from 'core/localtime';
 import MobileToggle from 'core/mobile-toggle';
 import OsuAudio from 'core/osu-audio/main';
 import ReactTurbolinks from 'core/react-turbolinks';
+import Spoilerbox from 'core/spoilerbox';
 import StickyFooter from 'core/sticky-footer';
 import StickyHeader from 'core/sticky-header';
 import SyncHeight from 'core/sync-height';
@@ -59,7 +59,6 @@ export default class OsuCore {
   readonly currentUserObserver;
   readonly dataStore;
   readonly enchant;
-  readonly fixRelativeLink;
   readonly forumPoll;
   readonly forumPostEdit;
   readonly forumPostInput;
@@ -72,6 +71,7 @@ export default class OsuCore {
   readonly referenceLinkTooltip;
   readonly scorePins;
   readonly socketWorker;
+  readonly spoilerbox;
   readonly stickyFooter;
   readonly stickyHeader;
   readonly syncHeight;
@@ -110,7 +110,6 @@ export default class OsuCore {
     this.clickMenu = new ClickMenu();
     this.currentUserObserver = new CurrentUserObserver(this);
     this.currentUserModel = new UserModel(this);
-    this.fixRelativeLink = new FixRelativeLink();
     this.forumPoll = new ForumPoll();
     this.forumPostEdit = new ForumPostEdit();
     this.forumPostInput = new ForumPostInput();
@@ -120,6 +119,7 @@ export default class OsuCore {
     this.browserTitleWithNotificationCount = new BrowserTitleWithNotificationCount(this);
     this.referenceLinkTooltip = new ReferenceLinkTooltip();
     this.scorePins = new ScorePins();
+    this.spoilerbox = new Spoilerbox();
     this.stickyFooter = new StickyFooter();
     this.stickyHeader = new StickyHeader();
     this.syncHeight = new SyncHeight();

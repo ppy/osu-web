@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Ваш улікавы запіс даўно не выкарыстоўваўся.",
             'inactive_different_country' => "Ваш акаўнт не выкарыстоўваўся доўгі час.",
         ],
     ],
@@ -126,7 +126,7 @@ return [
 
     'ogp' => [
         'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description_empty' => 'Карыстальнік не мае бітмапаў...',
 
         'description' => [
             '_' => '',
@@ -196,10 +196,30 @@ return [
             'to_0' => 'Схаваць вокладку',
             'to_1' => 'Паказаць вокладку',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'playcount' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Змяніць фон профілю',
                 'defaults_info' => 'Больш параметраў фону будуць доступны ў будучыні',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Не атрымалася апрацаваць выяву. Паспрабуйце яшчэ раз.',
                     'button' => 'Запампаваць выяву',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'прадвызначаны рэжым гульні',
                 'set' => 'усталяваць :mode як прадвызначаны рэжым гульні',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

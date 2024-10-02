@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Rallenta, gioca di più.',
+        'no_mirrors' => 'Nessun server di download disponibile.',
     ],
 
     'featured_artist_badge' => [
@@ -44,16 +45,17 @@ return [
         'full_nomination_required' => '',
         'hybrid_requires_modes' => 'Un beatmapset ibrido richiede che venga selezionata almeno una modalità di gioco per poterla nominare.',
         'incorrect_mode' => 'Non hai il permesso di nominare per la modalità: :mode',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Questa beatmap contiene nomine non valide e non può essere qualificata in questo stato.',
+        'invalid_ruleset' => 'Questa nomina contiene modalità non valide.',
         'too_many' => 'Requisito di nomina già soddisfatto.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'Requisiti di nomina già soddisfatti per le modalità non principali.',
 
         'dialog' => [
             'confirmation' => 'Sei sicuro di voler nominare questa beatmap?',
+            'different_nominator_warning' => '',
             'header' => 'Nomina Beatmap',
             'hybrid_warning' => 'nota: puoi nominare una sola volta, quindi assicurati di nominare per tutte le modalità di gioco che vuoi',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'La modalità principale al momento è: :ruleset',
             'which_modes' => 'Nominare per quali modalità?',
         ],
     ],

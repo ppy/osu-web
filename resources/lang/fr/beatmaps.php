@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Impossible de publier en étant réduit au silence.",
         'message_type_select' => 'Sélectionnez un type de commentaire',
         'reply_notice' => 'Appuyez sur Entrée pour répondre.',
+        'reply_resolve_notice' => 'Appuyez sur Entrée pour répondre. Appuyez sur Ctrl+Entrée pour répondre et résoudre.',
         'reply_placeholder' => 'Écrivez votre réponse ici',
         'require-login' => 'Veuillez vous connecter pour poster ou répondre',
         'resolved' => 'Résolu',
         'restore' => 'restaurer',
         'show_deleted' => 'Afficher le contenu supprimé',
         'title' => 'Discussions',
+        'unresolved_count' => ':count_delimited problème non résolu|:count_delimited problèmes non résolus',
 
         'collapse' => [
             'all-collapse' => 'Tout réduire',
@@ -283,7 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'non défini',
     ],
     'status' => [
         'any' => 'Toutes',

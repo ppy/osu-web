@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => 'reset',
             'rules' => 'Please ensure your avatar adheres to :link.<br/>This means it must be <strong>suitable for all ages</strong>. i.e. no nudity, offensive or suggestive content.',
             'rules_link' => 'the Visual content considerations',
         ],
@@ -80,7 +81,7 @@ return [
         'beatmapset_disqualify' => 'receive notifications for when beatmaps of the following modes are disqualified',
         'comment_reply' => 'receive notifications for replies to your comments',
         'title' => 'Notifications',
-        'topic_auto_subscribe' => 'automatically enable notifications on new forum topics that you create',
+        'topic_auto_subscribe' => 'automatically enable notifications on new forum topics that you create or replied to',
 
         'options' => [
             '_' => 'delivery options',

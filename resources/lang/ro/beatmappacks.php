@@ -13,10 +13,6 @@ return [
         'blurb' => [
             'important' => 'CITEȘTE ASTA ÎNAINTE DE A DESCĂRCA',
             'install_instruction' => 'Instalare: Odată ce un pachet a fost descărcat, extrageți conținutul pachetului în directorul Songs al jocului și osu! va face restul.',
-            'note' => [
-                '_' => 'De asemenea, reține că este foarte recomandat să :scary, din moment ce beatmap-urile vechi sunt mult mai scăzute calitativ decât cele mai noi.',
-                'scary' => 'descarci pachetele de la cele mai noi la cele mai vechi',
-            ],
         ],
     ],
 

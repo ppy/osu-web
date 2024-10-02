@@ -9,6 +9,12 @@ return [
         'title' => 'Страна',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Показать',
 
@@ -24,12 +30,13 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Этот пользователь начал играть рейтинговые карты менее 30 дней назад.',
     ],
 
     'type' => [
         'charts' => 'по чартам (устар.)',
         'country' => 'по странам',
+        'daily_challenge' => '',
         'kudosu' => 'по кудосу',
         'multiplayer' => 'в мультиплеере',
         'performance' => 'по производительности',

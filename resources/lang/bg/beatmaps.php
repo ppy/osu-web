@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Не може да публикувате дискусии, докато сте заглушени.",
         'message_type_select' => 'Избор на вид коментар',
         'reply_notice' => 'Натисни enter за отговор.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Въведете вашия отговор тук',
         'require-login' => 'Моля, влез в профила си, за публикуване или отговор',
         'resolved' => 'Приключен',
         'restore' => 'възстанови',
         'show_deleted' => 'Покажи изтрити',
         'title' => 'Дискусии',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Свий всички',
@@ -283,7 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'не е зададен',
     ],
     'status' => [
         'any' => 'Всяка',

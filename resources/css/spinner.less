@@ -25,7 +25,7 @@
   position: relative;
 
   &::before {
-    content: ' ';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -35,7 +35,7 @@
     border: 0.18em solid currentColor;
     border-bottom-color: transparent;
     border-radius: 100%;
-    animation: ball-clip-rotate .75s linear infinite;
+    animation: ball-clip-rotate 0.75s linear infinite;
 
     .la-ball-clip-rotate--loaded& {
       animation-iteration-count: 1;

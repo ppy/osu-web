@@ -199,6 +199,8 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Le mode lazer permet d\'afficher les scores réalisés sur lazer. Ces scores utilisent un nouvel algorithme de calcul du score.',
             'logout' => 'Se déconnecter',
             'profile' => 'Mon profil',
+            'scoring_mode_toggle' => 'Score classique',
+            'scoring_mode_toggle_tooltip' => 'Le score classique utilise un calcul du score qui n\'a pas de limites fixes, similaire à la version stable d\'osu!.',
         ],
     ],
 

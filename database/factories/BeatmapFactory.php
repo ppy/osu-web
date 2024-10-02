@@ -9,6 +9,7 @@ namespace Database\Factories;
 
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
+use Carbon\Carbon;
 
 class BeatmapFactory extends Factory
 {
@@ -19,6 +20,7 @@ class BeatmapFactory extends Factory
         return [
             'beatmapset_id' => fn () => Beatmapset::factory(),
             'filename' => fn () => $this->faker->sentence(3),
+            'last_update' => Carbon::now(),
             'checksum' => md5((string) rand()),
             'version' => fn () => $this->faker->domainWord(),
             'total_length' => rand(30, 200),

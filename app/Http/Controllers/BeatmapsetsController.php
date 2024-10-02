@@ -197,20 +197,24 @@ class BeatmapsetsController extends Controller
 
         priv_check('BeatmapsetDownload', $beatmapset)->ensureCan();
 
-        $recentlyDownloaded = BeatmapDownload::where('user_id', Auth::user()->user_id)
+        $user = Auth::user();
+        $userId = $user->getKey();
+        $recentlyDownloaded = BeatmapDownload::where('user_id', $userId)
             ->where('timestamp', '>', Carbon::now()->subHours()->getTimestamp())
             ->count();
 
-        if ($recentlyDownloaded > Auth::user()->beatmapsetDownloadAllowance()) {
+        if ($recentlyDownloaded > $user->beatmapsetDownloadAllowance()) {
             abort(429, osu_trans('beatmapsets.download.limit_exceeded'));
         }
 
         $noVideo = get_bool(Request::input('noVideo', false));
-        $mirror = BeatmapMirror::getRandomForRegion(request_country(request()));
+        $mirror = BeatmapMirror::getRandomForRegion(request_country())
+            ?? BeatmapMirror::getDefault()
+            ?? abort(503, osu_trans('beatmapsets.download.no_mirrors'));
 
         BeatmapDownload::create([
-            'user_id' => Auth::user()->user_id,
-            'timestamp' => Carbon::now()->getTimestamp(),
+            'user_id' => $userId,
+            'timestamp' => time(),
             'beatmapset_id' => $beatmapset->beatmapset_id,
             'fulfilled' => 1,
             'mirror_id' => $mirror->mirror_id,

@@ -28,9 +28,15 @@ return [
     'checkout' => [
         'generic' => 'אירעה שגיאה בעת הכנת ההזמנה שלך.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'לא נמצאו תוצאות, נסה שוב מאוחר יותר.',
         'invalid_cursor_exception' => '',
         'operation_timeout_exception' => 'החיפוש עמוס יותר מאשר מבדרך כלל, נסה שוב מאוחר יותר.',
+    ],
+    'user_report' => [
+        'recently_reported' => "",
     ],
 ];

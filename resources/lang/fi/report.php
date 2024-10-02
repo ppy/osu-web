@@ -24,6 +24,11 @@ return [
         'title' => 'Ilmiannetaanko käyttäjän :username viesti?',
     ],
 
+    'message' => [
+        'button' => 'Ilmianna Viesti',
+        'title' => 'Ilmianna pelaajan :username viesti?',
+    ],
+
     'scores' => [
         'button' => 'Ilmianna pisteet',
         'title' => 'Ilmiannetaanko käyttäjän :username pisteet?',

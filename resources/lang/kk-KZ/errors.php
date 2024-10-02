@@ -28,9 +28,15 @@ return [
     'checkout' => [
         'generic' => '',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => '',
         'invalid_cursor_exception' => '',
         'operation_timeout_exception' => '',
+    ],
+    'user_report' => [
+        'recently_reported' => "",
     ],
 ];

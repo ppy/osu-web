@@ -111,7 +111,7 @@ return [
             '_' => 'turnieje',
         ],
         'user_cover_presets_controller' => [
-            '_' => 'profil okładki użytkownika',
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'informacje o użytkowniku',

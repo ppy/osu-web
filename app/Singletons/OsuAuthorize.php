@@ -104,11 +104,6 @@ class OsuAuthorize
         return $auth;
     }
 
-    /**
-     * @param User|null $user
-     * @param Beatmap $beatmap
-     * @return string
-     */
     public function checkBeatmapShow(?User $user, Beatmap $beatmap): string
     {
         if (!$beatmap->trashed()) {
@@ -325,11 +320,6 @@ class OsuAuthorize
         return 'ok';
     }
 
-    /**
-     * @param User|null $user
-     * @param BeatmapDiscussion $discussion
-     * @return string
-     */
     public function checkBeatmapDiscussionShow(?User $user, BeatmapDiscussion $discussion): string
     {
         if ($discussion->deleted_at === null) {
@@ -401,34 +391,6 @@ class OsuAuthorize
         }
 
         return 'ok';
-    }
-
-    /**
-     * @param User|null $user
-     * @param BeatmapDiscussion $discussion
-     * @return string
-     * @throws AuthorizationCheckException
-     */
-    public function checkBeatmapDiscussionVoteDown(?User $user, BeatmapDiscussion $discussion): string
-    {
-        $prefix = 'beatmap_discussion.vote.';
-
-        if ($discussion->user !== null && $discussion->user->isBot()) {
-            return $prefix.'bot';
-        }
-
-        $this->ensureLoggedIn($user);
-        $this->ensureCleanRecord($user);
-
-        if ($discussion->user_id === $user->user_id) {
-            return $prefix.'owner';
-        }
-
-        if ($user->isBNG() || $user->isModerator()) {
-            return 'ok';
-        }
-
-        return 'unauthorized';
     }
 
     /**
@@ -517,11 +479,6 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
-    /**
-     * @param User|null $user
-     * @param BeatmapDiscussionPost $post
-     * @return string
-     */
     public function checkBeatmapDiscussionPostShow(?User $user, BeatmapDiscussionPost $post): string
     {
         if ($post->deleted_at === null) {
@@ -535,10 +492,6 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
-    /**
-     * @param User|null $user
-     * @return string
-     */
     public function checkBeatmapsetAdvancedSearch(?User $user): string
     {
         if (oauth_token() === null && !$GLOBALS['cfg']['osu']['beatmapset']['guest_advanced_search']) {
@@ -681,10 +634,6 @@ class OsuAuthorize
         return 'ok';
     }
 
-    /**
-     * @param User|null $user
-     * @return string
-     */
     public function checkBeatmapsetRemoveFromLoved(?User $user): string
     {
         // admin only (:
@@ -712,11 +661,6 @@ class OsuAuthorize
         return 'ok';
     }
 
-    /**
-     * @param User|null $user
-     * @param Beatmapset $beatmapset
-     * @return string
-     */
     public function checkBeatmapsetShow(?User $user, Beatmapset $beatmapset): string
     {
         if (!$beatmapset->trashed()) {
@@ -1157,11 +1101,6 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
-    /**
-     * @param User|null $user
-     * @param Comment $comment
-     * @return string
-     */
     public function checkCommentRestore(?User $user, Comment $comment): string
     {
         if ($this->doCheckUser($user, 'CommentModerate')->can()) {
@@ -1171,11 +1110,6 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
-    /**
-     * @param User|null $user
-     * @param Comment $comment
-     * @return string
-     */
     public function checkCommentShow(?User $user, Comment $comment): string
     {
         if ($this->doCheckUser($user, 'CommentModerate')->can()) {
@@ -1406,11 +1340,6 @@ class OsuAuthorize
         return 'forum.moderate.no_permission';
     }
 
-    /**
-     * @param User|null $user
-     * @param Forum $forum
-     * @return string
-     */
     public function checkForumView(?User $user, Forum $forum): string
     {
         if ($this->doCheckUser($user, 'ForumModerate', $forum)->can()) {
@@ -1715,11 +1644,6 @@ class OsuAuthorize
         return 'ok';
     }
 
-    /**
-     * @param User|null $user
-     * @param Topic $topic
-     * @return string
-     */
     public function checkForumTopicPollEdit(?User $user, Topic $topic): string
     {
         if ($this->doCheckUser($user, 'ForumModerate', $topic->forum)->can()) {
@@ -1852,20 +1776,12 @@ class OsuAuthorize
         return 'ok';
     }
 
-    /**
-     * @param User|null $user
-     * @return string
-     */
     public function checkNewsIndexUpdate(?User $user): string
     {
         // yet another admin only =D
         return 'unauthorized';
     }
 
-    /**
-     * @param User|null $user
-     * @return string
-     */
     public function checkNewsPostUpdate(?User $user): string
     {
         // yet another admin only =D
@@ -2015,11 +1931,6 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
-    /**
-     * @param User|null $user
-     * @param User $owner
-     * @return string
-     */
     public function checkUserShow(?User $user, User $owner): string
     {
         $prefix = 'user.show.';
@@ -2035,11 +1946,6 @@ class OsuAuthorize
         }
     }
 
-    /**
-     * @param User|null $user
-     * @param User $owner
-     * @return string
-     */
     public function checkUserShowRestrictedStatus(?User $user, User $owner): string
     {
         if ($this->doCheckUser($user, 'IsNotOAuth')->can()) {
@@ -2088,10 +1994,6 @@ class OsuAuthorize
         return null;
     }
 
-    /**
-     * @param User|null $user
-     * @return string
-     */
     public function checkUserSilenceShowExtendedInfo(?User $user): string
     {
         // admin only, i guess =D

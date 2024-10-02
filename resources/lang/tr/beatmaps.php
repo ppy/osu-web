@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Susturulduğunuzda tartışma gönderisi gönderemezsiniz.",
         'message_type_select' => 'Yorum Türünü Seçin',
         'reply_notice' => 'Cevaplamak için Enter tuşuna basın.',
+        'reply_resolve_notice' => 'Cevap vermek için Enter\'a bas. CTRL+Enter ile cevap ver ve çöz.',
         'reply_placeholder' => 'Yanıtınızı buraya yazın',
         'require-login' => 'Lütfen yorum yapmak ya da cevaplamak için giriş yapınız',
         'resolved' => 'Çözüldü',
         'restore' => 'restore et',
         'show_deleted' => 'Silineni göster',
         'title' => 'Tartışmalar',
+        'unresolved_count' => ':count_delimited çözülmemiş sorunlar',
 
         'collapse' => [
             'all-collapse' => 'Tümünü küçült',
@@ -283,7 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'belirsiz',
     ],
     'status' => [
         'any' => 'Hepsi',

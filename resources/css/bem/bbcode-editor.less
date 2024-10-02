@@ -51,18 +51,21 @@
       font-size: @font-size--title-small;
     }
 
-    .@{_top}[data-state=preview] & {
+    .@{_top}[data-state="preview"] & {
       display: none;
     }
 
-    .@{_top}[data-state=loading-preview] & {
+    .@{_top}[data-state="loading-preview"] & {
       opacity: 0.5;
       pointer-events: none;
     }
 
     .@{_top}--beatmapset-description-editor & {
       // approximation of 80vh - 3 lines of button bars and editor padding
-      max-height: calc(80vh - 2 * @editor-padding - 2 * @content-padding - 3 * (1em + 2 * @buttons-margin));
+      max-height: calc(
+        80vh - 2 * @editor-padding - 2 * @content-padding - 3 *
+          (1em + 2 * @buttons-margin)
+      );
     }
   }
 
@@ -72,20 +75,20 @@
     &--deactivate {
       display: none;
 
-      .js-forum-topic-reply[data-state=stick] & {
+      .js-forum-topic-reply[data-state="stick"] & {
         display: block;
       }
     }
 
     &--hide-on-preview {
-      .@{_top}[data-state=loading-preview] &,
-      .@{_top}[data-state=preview] & {
+      .@{_top}[data-state="loading-preview"] &,
+      .@{_top}[data-state="preview"] & {
         display: none;
       }
     }
 
     &--hide-on-write {
-      .@{_top}[data-state=write] & {
+      .@{_top}[data-state="write"] & {
         display: none;
       }
     }
@@ -102,8 +105,8 @@
     }
 
     &--toolbar {
-      .@{_top}[data-state=loading-preview] &,
-      .@{_top}[data-state=preview] & {
+      .@{_top}[data-state="loading-preview"] &,
+      .@{_top}[data-state="preview"] & {
         display: none;
       }
     }
@@ -155,7 +158,7 @@
   &__preview {
     display: none;
 
-    .@{_top}[data-state=preview] & {
+    .@{_top}[data-state="preview"] & {
       display: block;
       min-height: 0;
       overflow-y: auto;

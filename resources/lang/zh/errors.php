@@ -28,9 +28,15 @@ return [
     'checkout' => [
         'generic' => '结账时发生了一个错误',
     ],
+    'scores' => [
+        'invalid_id' => '无效分数 ID。',
+    ],
     'search' => [
         'default' => '无法获得任何结果，请稍后再试。',
         'invalid_cursor_exception' => '指定的光标参数无效。',
         'operation_timeout_exception' => '搜索服务较繁忙，请稍后再试。',
+    ],
+    'user_report' => [
+        'recently_reported' => "你最近已经举报过这个问题。",
     ],
 ];

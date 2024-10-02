@@ -106,7 +106,7 @@ return [
         '_' => 'Masuk',
         'button' => 'Masuk',
         'button_posting' => 'Mencoba masuk...',
-        'email_login_disabled' => 'Alamat email untuk saat ini tidak dapat digunakan untuk masuk. Silakan masuk dengan menggunakan nama pengguna.',
+        'email_login_disabled' => 'Entri masuk dengan email saat ini sedang dinonaktifkan. Silakan masuk dengan menggunakan nama pengguna.',
         'failed' => 'Rincian masuk salah',
         'forgot' => 'Lupa kata sandi?',
         'info' => 'Silakan masuk untuk melanjutkan',
@@ -196,10 +196,30 @@ return [
             'to_0' => 'Sembunyikan sampul',
             'to_1' => 'Tampilkan sampul',
         ],
+        'daily_challenge' => [
+            'daily' => 'Rantai Permainan Harian',
+            'daily_streak_best' => 'Rantai Permainan Harian Terbaik',
+            'daily_streak_current' => 'Rantai Permainan Harian Saat Ini',
+            'playcount' => 'Kontribusi Total',
+            'title' => 'Tantangan\nHarian',
+            'top_10p_placements' => 'Penempatan 10% Teratas',
+            'top_50p_placements' => 'Penempatan 50% Teratas',
+            'weekly' => 'Rantai Permainan Mingguan',
+            'weekly_streak_best' => 'Rantai Permainan Mingguan Terbaik',
+            'weekly_streak_current' => 'Rantai Permainan Mingguan Saat Ini',
+
+            'unit' => [
+                'day' => ':valuehr',
+                'week' => ':valuemg',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Ubah Sampul Profil',
                 'defaults_info' => 'Pilihan sampul lainnya akan tersedia di masa mendatang',
+                'holdover_remove_confirm' => "Gambar sampul yang sebelumnya dipilih kini sudah tidak lagi tersedia untuk dipilih. Kamu tidak akan dapat memilih kembali gambar ini setelah kamu beralih ke gambar sampul lain. Lanjut?",
+                'title' => 'Sampul',
+
                 'upload' => [
                     'broken_file' => 'Gambar gagal diproses. Periksa keabsahan gambar yang diunggah dan coba lagi.',
                     'button' => 'Unggah gambar',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'mode permainan utama',
                 'set' => 'atur :mode sebagai mode permainan utamamu',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Atur ulang warna ke pengaturan bawaan? Tag supporter akan dibutuhkan untuk mengubah warna ini ke warna yang berbeda.',
+                'title' => 'Warna',
+
+                'supporter' => [
+                    '_' => 'Warna tema khusus hanya tersedia bagi para pemilik :link',
+                    'link' => 'osu!supporter',
+                ],
             ],
         ],
 
@@ -429,7 +459,7 @@ return [
         ],
         'page' => [
             'button' => 'sunting halaman profil',
-            'description' => '<strong>saya!</strong> merupakan area pada halaman profilmu yang dapat kamu modifikasi sesuka hati.',
+            'description' => '<strong>saya!</strong> merupakan area pribadi pada halaman profilmu yang dapat kamu isi sesuka hati.',
             'edit_big' => 'Sunting saya!',
             'placeholder' => 'Ketik konten halaman di sini',
 

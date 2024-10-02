@@ -9,6 +9,12 @@ return [
         'title' => 'Stát',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Zobrazit',
 
@@ -24,12 +30,13 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Tento uživatel má méně než 30 dní nedávné ranking historie. ',
     ],
 
     'type' => [
         'charts' => 'výběry (staré)',
         'country' => 'stát',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'hra pro více hráčů',
         'performance' => 'výkon',

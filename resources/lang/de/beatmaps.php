@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Posten in der Diskussion nicht möglich, während du stummgeschaltet bist.",
         'message_type_select' => 'Bemerkungs-Art auswählen',
         'reply_notice' => 'Zum Antworten Enter drücken.',
+        'reply_resolve_notice' => 'Zum Antworten Enter drücken. Zum Antworten und als erledigt markieren Strg+Enter drücken.',
         'reply_placeholder' => 'Antwort hier eingeben',
         'require-login' => 'Zum Posten oder Antworten bitte einloggen',
         'resolved' => 'Erledigt',
         'restore' => 'wiederherstellen',
         'show_deleted' => 'Gelöschte anzeigen',
         'title' => 'Diskussionen',
+        'unresolved_count' => ':count_delimited ungelöstes Problem|:count_delimited ungelöste Probleme',
 
         'collapse' => [
             'all-collapse' => 'Alle verkleinern',
@@ -283,7 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'nicht festgelegt',
     ],
     'status' => [
         'any' => 'Alle',

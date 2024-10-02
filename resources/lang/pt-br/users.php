@@ -196,10 +196,30 @@ return [
             'to_0' => 'Ocultar capa',
             'to_1' => 'Mostrar capa',
         ],
+        'daily_challenge' => [
+            'daily' => 'Sequência diária',
+            'daily_streak_best' => 'Melhor sequência diária',
+            'daily_streak_current' => 'Sequência diária atual',
+            'playcount' => 'Participação total',
+            'title' => 'Desafio\ndiário',
+            'top_10p_placements' => 'Melhores 10% nos colocados',
+            'top_50p_placements' => 'Melhores 50% nos colocados',
+            'weekly' => 'Sequência semanal',
+            'weekly_streak_best' => 'Melhor sequência semanal',
+            'weekly_streak_current' => 'Sequência semanal atual',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Mudar Capa de Perfil',
                 'defaults_info' => 'Mais opções de capa virão no futuro',
+                'holdover_remove_confirm' => "Esta capa selecionada anteriormente não está disponível para seleção. Você não pode selecionar ela após alterar para outra. Trocar?",
+                'title' => 'Capa',
+
                 'upload' => [
                     'broken_file' => 'Falha ao processar imagem. Verifique a imagem enviada e tente novamente.',
                     'button' => 'Enviar imagem',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'modo de jogo padrão',
                 'set' => 'definir :mode como modo de jogo padrão',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Redefinir cor para padrão? A etiqueta de apoiador será necessário para alterar a cor.',
+                'title' => 'Cor',
+
+                'supporter' => [
+                    '_' => 'Temas de cores personalizados disponíveis apenas para :link',
+                    'link' => 'osu!supporters',
+                ],
             ],
         ],
 

@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Ausgewählte deaktivieren',
+        'batch_enable' => 'Aktiviere Ausgewählte',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':items :action?',
+            'disable' => 'Deaktivieren',
+            'enable' => 'Aktivieren',
+            'items' => ':count_delimited Cover|:count_delimited Cover',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Dateien',
+            'submit' => 'Speichern',
+            'title' => 'Neue hinzufügen',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'Zum Deaktivieren klicken',
+            'click_to_enable' => 'Zum Aktivieren klicken',
+            'enabled' => 'Aktiviert',
+            'disabled' => 'Deaktiviert',
+            'image_store' => 'Bild festlegen',
+            'image_update' => 'Bild ersetzen',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'Beim Erstellen des Covers ist ein Fehler aufgetreten: :error',
+        'ok' => 'Covers erstellt',
     ],
 ];

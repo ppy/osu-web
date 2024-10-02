@@ -199,6 +199,8 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Lazer 模式使用来自 Lazer 客户端的新记分算法显示您的分数',
             'logout' => '登出',
             'profile' => '资料',
+            'scoring_mode_toggle' => '经典计分',
+            'scoring_mode_toggle_tooltip' => '调整分数，让它感觉上更像经典的无上限计分分数。',
         ],
     ],
 

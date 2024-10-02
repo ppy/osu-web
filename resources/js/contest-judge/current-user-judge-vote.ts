@@ -5,17 +5,16 @@ import ContestJudgeScoreJson from 'interfaces/contest-judge-score-json';
 import ContestJudgeVoteJson from 'interfaces/contest-judge-vote-json';
 import { action, makeObservable, observable } from 'mobx';
 
-export class CurrentUserJudgeVote {
+export default class CurrentUserJudgeVote {
   @observable comment = '';
   @observable scores = new Map<number, ContestJudgeScoreJson>();
 
-  constructor() {
-    makeObservable(this);
-  }
+  constructor(json?: ContestJudgeVoteJson) {
+    if (json != null) {
+      this.updateWithJson(json);
+    }
 
-  @action
-  updateComment(content: string) {
-    this.comment = content;
+    makeObservable(this);
   }
 
   @action

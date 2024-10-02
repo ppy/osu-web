@@ -7,6 +7,7 @@ return [
     'cancel' => 'Anulează',
 
     'authorise' => [
+        'app_owner' => 'o aplicație realizată de :owner',
         'request' => 'solicită permisiunea de a-ţi accesa contul.',
         'scopes_title' => 'Această aplicaţie va putea să:',
         'title' => 'Cerere de autorizare',

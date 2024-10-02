@@ -25,12 +25,14 @@ return [
         'message_placeholder_silenced' => "Nem hozhatsz létre beszélgetést, amíg némítva vagy.",
         'message_type_select' => 'Komment-típus választása',
         'reply_notice' => 'Nyomj entert a válaszoláshoz.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Ide írd a válaszod',
         'require-login' => 'Kérlek jelentkezz be a hozzászóláshoz illetve válaszoláshoz',
         'resolved' => 'Megoldott',
         'restore' => 'visszaállítás',
         'show_deleted' => 'Töröltek megjelenítése',
         'title' => 'Megbeszélések',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Az összes becsukása',
@@ -283,7 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'nincs beállítva',
     ],
     'status' => [
         'any' => 'Bármelyik',

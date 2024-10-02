@@ -51,7 +51,7 @@
 
     // extends mouse hover area to cover margin-bottom
     &::after {
-      content: '';
+      content: "";
       display: block;
       position: absolute;
       top: 100%;
@@ -113,7 +113,10 @@
 
     .@{_top}--forum-topic-moderation & {
       // hopefully 25px is enough to account for scrollbar (when exists)
-      max-width: calc(100vw - (2 * @forum-topic-nav-item--gutter + 2 * @_padding-vertical + 25px));
+      max-width: calc(
+        100vw -
+          (2 * @forum-topic-nav-item--gutter + 2 * @_padding-vertical + 25px)
+      );
       width: max-content;
       display: grid;
       grid-template-columns: repeat(auto-fit, @btn-circle-diameter);
@@ -137,6 +140,8 @@
 
   &__extra {
     background-color: hsl(var(--hsl-b5));
+    display: flex;
+    flex-direction: column;
     padding: @_padding-vertical @_gutter;
     margin: -@_padding-vertical -@_gutter @_padding-vertical;
   }
@@ -161,7 +166,7 @@
 
     &::before {
       .full-size();
-      content: '';
+      content: "";
       background-color: fade(#000, 50%);
     }
 
@@ -180,7 +185,7 @@
   &__item {
     .highlight-stripe() {
       &::before {
-        content: '';
+        content: "";
         border-radius: 10px;
         position: absolute;
         top: (@_item-padding-vertical + 2px);
@@ -237,7 +242,8 @@
       }
     }
 
-    &[disabled], &--disabled {
+    &[disabled],
+    &--disabled {
       color: #999;
       // disable hover
       pointer-events: none;

@@ -28,9 +28,15 @@ return [
     'checkout' => [
         'generic' => 'Wystąpił błąd podczas przygotowywania twojego zamówienia.',
     ],
+    'scores' => [
+        'invalid_id' => 'Nieprawidłowy Identyfikator Wyniku.',
+    ],
     'search' => [
         'default' => 'Nie udało się niczego znaleźć, spróbuj ponownie później.',
         'invalid_cursor_exception' => 'Określono nieprawidłowy parametr kursora. ',
         'operation_timeout_exception' => 'Wyszukiwanie jest obecnie bardziej obciążone niż zwykle, spróbuj ponownie później.',
+    ],
+    'user_report' => [
+        'recently_reported' => "Już to niedawno zgłosiłeś.",
     ],
 ];

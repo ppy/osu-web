@@ -28,9 +28,15 @@ return [
     'checkout' => [
         'generic' => 'Įvyko klaida apdorojant jūsų apmokėjimą.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Negalėjome rasti rezultatų, prašome bandyti vėliau.',
         'invalid_cursor_exception' => 'Negalimi žymeklio parametrai.',
         'operation_timeout_exception' => 'Paieška labiau užimta, nei įprastai, pabandykite vėliau.',
+    ],
+    'user_report' => [
+        'recently_reported' => "",
     ],
 ];

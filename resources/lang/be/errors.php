@@ -28,9 +28,15 @@ return [
     'checkout' => [
         'generic' => 'Узнікла памылка падчас апрацоўкі пакупкі.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Нічога не знойдзена, паспрабуйце пазней.',
         'invalid_cursor_exception' => 'Зададзены няправільны параметр курсора.',
         'operation_timeout_exception' => 'Пошук зараз перанагружаны, паспрабуйце пазней.',
+    ],
+    'user_report' => [
+        'recently_reported' => "",
     ],
 ];

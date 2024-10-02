@@ -196,10 +196,30 @@ return [
             'to_0' => 'Sakrij naslovnicu',
             'to_1' => 'Prikaži naslovnicu',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'playcount' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Promjeni naslovnicu profila',
                 'defaults_info' => 'Više opcija naslovnice bit će dostupno u budućnosti',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Obrada slike nije uspjela. Provjeri učitanu sliku i pokušaj ponovno.',
                     'button' => 'Postavi sliku',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'zadani način igre',
                 'set' => 'postavi :mode kao zadani način igre na profilu',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 

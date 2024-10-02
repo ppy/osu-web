@@ -199,6 +199,8 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Der Lazer-Modus zeigt Scores aus Lazer mit einem neuen Bewertungsalgorithmus an.',
             'logout' => 'Ausloggen',
             'profile' => 'Mein Profil',
+            'scoring_mode_toggle' => 'Klassisches Punktesystem',
+            'scoring_mode_toggle_tooltip' => 'Punktestände entsprechen dem klassischen, unbegrenzten Punktesystem',
         ],
     ],
 

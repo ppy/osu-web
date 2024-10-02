@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Abranda, joga mais.',
+        'no_mirrors' => 'Nenhum servidor de transferência disponível.',
     ],
 
     'featured_artist_badge' => [
@@ -40,20 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Os nomeadores novatos não podem nomear vários conjuntos de regras.',
+        'full_nomination_required' => 'Precisas de ser um nomeador efetivo para realizar a nomeação final dum conjunto de regras.',
         'hybrid_requires_modes' => 'Um conjunto de beatmaps híbrido necessita que seleciones pelo menos um modo de jogo para nomear.',
         'incorrect_mode' => 'Não tens permissão de nomear para o modo: :mode',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Este beatmap tem nomeações inválidas e não pode ser qualificado neste estado.',
+        'invalid_ruleset' => 'Esta nomeação tem conjuntos de regras inválidos.',
         'too_many' => 'O requisito de nomeação já foi realizado.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'O requisito de nomeação para o conjunto de regras não principal já foi cumprido.',
 
         'dialog' => [
             'confirmation' => 'Tens a certeza que queres nomear este beatmap?',
+            'different_nominator_warning' => '',
             'header' => 'Nomear beatmap',
             'hybrid_warning' => 'nota: poderás apenas nomear uma vez, por isso certifica-te de que estás a nomear para todos os modos de jogo que pretendes',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'O conjunto de regras principal está de momento: :ruleset',
             'which_modes' => 'Nomear para quais modos?',
         ],
     ],

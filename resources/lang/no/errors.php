@@ -28,9 +28,15 @@ return [
     'checkout' => [
         'generic' => 'En feil oppstod under klargjøring av kjøpet ditt.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Kunne ikke hente noen treff. Prøv igjen senere.',
         'invalid_cursor_exception' => 'Ugyldig markørparameter spesifisert.',
         'operation_timeout_exception' => 'Søkefunksjonen ser ikke ut til å fungere akkurat nå. Prøv igjen senere.',
+    ],
+    'user_report' => [
+        'recently_reported' => "",
     ],
 ];

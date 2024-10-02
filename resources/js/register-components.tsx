@@ -14,7 +14,7 @@ import QuickSearchButton from 'components/quick-search-button';
 import RankingCountryFilter from 'components/ranking-country-filter';
 import RankingUserFilter from 'components/ranking-user-filter';
 import RankingVariantFilter from 'components/ranking-variant-filter';
-import SpotlightSelectOptions from 'components/spotlight-select-options';
+import ScoringModeToggle from 'components/scoring-mode-toggle';
 import { UserCard } from 'components/user-card';
 import { startListening, UserCardTooltip } from 'components/user-card-tooltip';
 import { UserCards } from 'components/user-cards';
@@ -71,10 +71,6 @@ core.reactTurbolinks.register('basic-select-options', () => (
   <BasicSelectOptions {...parseJson('json-basic-select-options')} />
 ));
 
-core.reactTurbolinks.register('spotlight-select-options', () => (
-  <SpotlightSelectOptions {...parseJson('json-spotlight-select-options')} />
-));
-
 core.reactTurbolinks.register('chat-icon', (container) => (
   <ChatIcon type={container.dataset.type} />
 ));
@@ -110,6 +106,10 @@ core.reactTurbolinks.register('ranking-user-filter', () => (
 
 core.reactTurbolinks.register('ranking-variant-filter', () => (
   <RankingVariantFilter {...parseJson('json-variant-filter')} />
+));
+
+core.reactTurbolinks.register('scoring-mode-toggle', (container) => (
+  <ScoringModeToggle className={container.dataset.class ?? ''} />
 ));
 
 core.reactTurbolinks.register('store-supporter-tag', (container) => {

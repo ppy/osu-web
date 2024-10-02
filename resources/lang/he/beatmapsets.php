@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => '',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'האם אתה בטוח שאתה רוצה לדרג מפה זאת?',
+            'different_nominator_warning' => '',
             'header' => 'דירוג מפה',
             'hybrid_warning' => 'הערה: אתה רשאי לדרג רק פעם אחת, אנא דרג כל אחד ממצבי המשחק שאתה מתכוון אליהם',
             'current_main_ruleset' => '',

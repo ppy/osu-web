@@ -22,7 +22,6 @@ class UserCompactTransformer extends TransformerAbstract
     ];
 
     const CARD_INCLUDES_PRELOAD = [
-        'country',
         'userGroups',
     ];
 
@@ -56,6 +55,7 @@ class UserCompactTransformer extends TransformerAbstract
         'comments_count',
         'country',
         'cover',
+        'daily_challenge_user_stats',
         'favourite_beatmapset_count',
         'follow_user_mapping',
         'follower_count',
@@ -192,9 +192,14 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeCountry(User $user)
     {
-        return $user->country === null
+        $countryAcronym = $user->country_acronym;
+        $country = $countryAcronym === null
+            ? null
+            : app('countries')->byCode($countryAcronym);
+
+        return $country === null
             ? $this->primitive(null)
-            : $this->item($user->country, new CountryTransformer());
+            : $this->item($country, new CountryTransformer());
     }
 
     public function includeCover(User $user)
@@ -207,6 +212,14 @@ class UserCompactTransformer extends TransformerAbstract
             // cast to string for backward compatibility
             'id' => get_string($user->cover_preset_id),
         ]);
+    }
+
+    public function includeDailyChallengeUserStats(User $user)
+    {
+        return $this->item(
+            $user->dailyChallengeUserStats ?? $user->dailyChallengeUserStats()->make(),
+            new DailyChallengeUserStatsTransformer(),
+        );
     }
 
     public function includeFavouriteBeatmapsetCount(User $user)
@@ -459,6 +472,7 @@ class UserCompactTransformer extends TransformerAbstract
             'forum_posts_show_deleted',
             'legacy_score_only',
             'profile_cover_expanded',
+            'scoring_mode',
             'user_list_filter',
             'user_list_sort',
             'user_list_view',

@@ -6,7 +6,6 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Exceptions\UserProfilePageLookupException;
 use App\Exceptions\ValidationException;
 use App\Http\Middleware\RequestCost;
 use App\Libraries\ClientCheck;
@@ -24,7 +23,6 @@ use App\Models\Log;
 use App\Models\Solo\Score as SoloScore;
 use App\Models\User;
 use App\Models\UserAccountHistory;
-use App\Models\UserNotFound;
 use App\Transformers\CurrentUserTransformer;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
@@ -77,7 +75,6 @@ class UsersController extends Controller
         $this->middleware('guest', ['only' => ['create', 'store', 'storeWeb']]);
         $this->middleware('auth', ['only' => [
             'checkUsernameAvailability',
-            'checkUsernameExists',
             'report',
             'me',
             'posts',
@@ -115,17 +112,6 @@ class UsersController extends Controller
         ], 403);
     }
 
-    public function card($id)
-    {
-        try {
-            $user = FindForProfilePage::find($id, null, false);
-        } catch (UserProfilePageLookupException $e) {
-            $user = UserNotFound::instance();
-        }
-
-        return json_item($user, 'UserCompact', UserCompactTransformer::CARD_INCLUDES);
-    }
-
     public function create()
     {
         if (!$GLOBALS['cfg']['osu']['user']['registration_mode']['web']) {
@@ -157,14 +143,6 @@ class UsersController extends Controller
             'cost' => $cost,
             'costString' => currency($cost),
         ];
-    }
-
-    public function checkUsernameExists()
-    {
-        $username = get_string(request('username'));
-        $user = User::lookup($username, 'username') ?? UserNotFound::instance();
-
-        return json_item($user, 'UserCompact', ['cover', 'country']);
     }
 
     public function extraPages($_id, $page)
@@ -657,10 +635,10 @@ class UsersController extends Controller
      * - support_level
      * - user_achievements
      *
-     * @urlParam user integer required Id or username of the user. Id lookup is prioritised unless `key` parameter is specified. Previous usernames are also checked in some cases. Example: 1
+     * @urlParam user integer required Id or `@`-prefixed username of the user. Previous usernames are also checked in some cases. Example: 1
      * @urlParam mode string [Ruleset](#ruleset). User default mode will be used if not specified. Example: osu
      *
-     * @queryParam key Type of `user` passed in url parameter. Can be either `id` or `username` to limit lookup by their respective type. Passing empty or invalid value will result in id lookup followed by username lookup if not found.
+     * @queryParam key Type of `user` passed in url parameter. Can be either `id` or `username` to limit lookup by their respective type. Passing empty or invalid value will result in id lookup followed by username lookup if not found. This parameter has been deprecated. Prefix `user` parameter with `@` instead to lookup by username.
      *
      * @response "See User object section"
      */
@@ -945,6 +923,7 @@ class UsersController extends Controller
         $userIncludes = [
             ...UserTransformer::PROFILE_HEADER_INCLUDES,
             'account_history',
+            'daily_challenge_user_stats',
             'page',
             'pending_beatmapset_count',
             'rank_highest',

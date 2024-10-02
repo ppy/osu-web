@@ -15,7 +15,12 @@
     padding-top: 20px;
     padding-bottom: 20px;
 
-    > h1, h2, h3, h4, h5, h6 {
+    > h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       color: @osu-colour-c1;
     }
   }
@@ -55,7 +60,10 @@
     padding: 10px;
 
     color: white;
-    &:hover, &:visited, &:link, &:active {
+    &:hover,
+    &:visited,
+    &:link,
+    &:active {
       color: white;
       text-decoration: none;
     }
@@ -64,7 +72,7 @@
   &__section-toggle {
     transition: all 300ms;
     transform: rotateZ(0deg);
-    .@{_top}__group-heading[aria-expanded='true'] & {
+    .@{_top}__group-heading[aria-expanded="true"] & {
       transform: rotateZ(180deg);
     }
   }
@@ -97,7 +105,7 @@
     width: 32px;
     &--art {
       width: inherit;
-      margin-right: 10px
+      margin-right: 10px;
     }
   }
 
@@ -123,7 +131,8 @@
     .center-content();
     color: rgba(1, 1, 1, 0.5);
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       color: rgba(1, 1, 1, 0.75);
       font-size: inherit;
       text-decoration: none;
@@ -143,7 +152,8 @@
     &--selected {
       font-size: inherit;
       color: @contest-selected-colour;
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         color: fade(@contest-selected-colour, 75%);
       }
     }
@@ -151,7 +161,8 @@
     &--selected-art {
       font-size: inherit;
       color: white;
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         color: fade(white, 50%);
       }
     }

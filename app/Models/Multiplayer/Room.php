@@ -18,6 +18,7 @@ use App\Models\User;
 use App\Traits\Memoizes;
 use App\Transformers\Multiplayer\RoomTransformer;
 use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Ds\Set;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -86,6 +87,9 @@ class Room extends Model
         'ends_at' => 'datetime',
         'password' => PresentString::class,
         'starts_at' => 'datetime',
+    ];
+    protected array $macros = [
+        'dailyChallengeFor',
     ];
     protected $table = 'multiplayer_rooms';
 
@@ -219,6 +223,14 @@ class Room extends Model
         return $this->belongsTo(PlaylistItem::class, 'current_playlist_item_id');
     }
 
+    public function macroDailyChallengeFor(): \Closure
+    {
+        return fn (Builder $query, CarbonImmutable $date): ?static
+            => static::dailyChallenges()
+                ->whereBetween('starts_at', [$date->startOfDay(), $date->endOfDay()])
+                ->last();
+    }
+
     public function host()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -251,6 +263,11 @@ class Room extends Model
             ->where(function ($q) {
                 $q->where('ends_at', '>', Carbon::now())->orWhereNull('ends_at');
             });
+    }
+
+    public function scopeDailyChallenges(Builder $query): Builder
+    {
+        return $query->where('category', 'daily_challenge');
     }
 
     public function scopeEnded($query)
@@ -408,7 +425,14 @@ class Room extends Model
 
         return $this->getConnection()->transaction(function () use ($params, $scoreToken) {
             $scoreLink = ScoreLink::complete($scoreToken, $params);
-            UserScoreAggregate::new($scoreLink->user, $this)->addScoreLink($scoreLink);
+            $user = $scoreLink->user;
+            $agg = UserScoreAggregate::new($user, $this);
+            $agg->addScoreLink($scoreLink);
+            if ($this->category === 'daily_challenge' && $agg->total_score > 0) {
+                $stats = $user->dailyChallengeUserStats()->firstOrNew();
+                $stats->updateStreak(true, $this->starts_at->toImmutable()->startOfDay());
+                $stats->save();
+            }
 
             return $scoreLink;
         });
@@ -500,7 +524,7 @@ class Room extends Model
             ->all();
     }
 
-    public function startGame(User $host, array $rawParams)
+    public function startGame(User $host, array $rawParams, array $extraParams = [])
     {
         priv_check_user($host, 'MultiplayerRoomCreate')->ensureCan();
 
@@ -527,6 +551,7 @@ class Room extends Model
             'auto_start_duration' => $params['auto_start_duration'],
             'auto_skip' => $params['auto_skip'] ?? false,
             'user_id' => $host->getKey(),
+            ...$extraParams,
         ]);
 
         $this->setRelation('host', $host);

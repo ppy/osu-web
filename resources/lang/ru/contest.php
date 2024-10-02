@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'комментарии',
         'hide_judged' => 'скрыть оценённые заявки',
         'nav_title' => 'судья',
         'no_current_vote' => 'вы пока ещё не проголосовали.',
@@ -50,7 +51,7 @@ return [
         ],
 
         'progress' => [
-            '_' => ':used / :max голосов использовано',
+            '_' => ':used / :max голосов отдано',
         ],
 
         'requirement' => [

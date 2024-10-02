@@ -24,6 +24,11 @@ return [
         'title' => 'Anmäla inlägg från :username?',
     ],
 
+    'message' => [
+        'button' => 'Anmäl meddelande',
+        'title' => 'Anmäl :username\'s meddelande?',
+    ],
+
     'scores' => [
         'button' => 'Anmäl poäng',
         'title' => 'Anmäl resultat från :username?',

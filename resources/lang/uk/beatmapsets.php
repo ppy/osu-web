@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Зменш темп, більше грай.',
+        'no_mirrors' => 'Немає доступних серверів для завантаження.',
     ],
 
     'featured_artist_badge' => [
@@ -40,20 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Номінатори на випробному терміні не можуть номінувати декілька режимів.',
+        'full_nomination_required' => 'Ви маєте бути повноцінним номінатором щоб виконувати фінальну номінацію цього режиму.',
         'hybrid_requires_modes' => 'Гібридна бітмапа вимагає обрати щонайменше один режим гри, котрий ви номінуватимете.',
         'incorrect_mode' => 'У вас недостатньо прав для номінування в режимі: :mode',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Ця мапа має недійсні номінації і її кваліфікація неможлива в цьому стані.',
+        'invalid_ruleset' => 'Ця номінація має недійсні режими гри. ',
         'too_many' => 'Вимоги щодо номінації вже виконані.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'Номінаційні вимоги для не головного режиму вже виконано.',
 
         'dialog' => [
             'confirmation' => 'Ви впевнені що хочете номінувати цю мапу?',
+            'different_nominator_warning' => '',
             'header' => 'Номінувати мапу',
             'hybrid_warning' => 'примітка: ви можете номінувати лише один раз, так що, переконайтеся в тому, що ви номінуєте всі режими, які  збиралися',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'Головний набір ігрових режимів зараз: :ruleset',
             'which_modes' => 'Номінувати для яких режимів?',
         ],
     ],

@@ -9,6 +9,12 @@ return [
         'title' => 'Quốc gia',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Hiển thị',
 
@@ -24,12 +30,13 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Người dùng này có lịch sử xếp hạng ít hơn 30 ngày.',
     ],
 
     'type' => [
         'charts' => 'tiêu điểm',
         'country' => 'quốc gia',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'nhiều người chơi',
         'performance' => 'thành tích',
@@ -40,7 +47,7 @@ return [
     'seasons' => [
         'empty' => 'Hiện tại chưa có phòng nào ở mùa này.',
         'ongoing' => 'Mùa đang diễn ra (sẽ có nhiều playlist được thêm vào).',
-        'room_count' => 'Số playlist',
+        'room_count' => 'Số danh sách phát',
         'url' => 'Hiện thêm thông tin về mùa đó.',
     ],
 

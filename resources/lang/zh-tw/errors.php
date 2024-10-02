@@ -28,9 +28,15 @@ return [
     'checkout' => [
         'generic' => '處理您的訂單時發生錯誤。',
     ],
+    'scores' => [
+        'invalid_id' => '無效分數。',
+    ],
     'search' => [
         'default' => '無法獲得任何結果，請稍後再試。',
         'invalid_cursor_exception' => '指定的游標參數無效。',
         'operation_timeout_exception' => '搜索目前比平常更繁忙，稍後再試。',
+    ],
+    'user_report' => [
+        'recently_reported' => "你已經舉報過了。",
     ],
 ];

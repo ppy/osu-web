@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Neskubėk, pažaisk daugiau.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Ar tikrai norite nominuoti šį beatmap\'ą?',
+            'different_nominator_warning' => '',
             'header' => 'Nominuoti Beatmap\'ą',
             'hybrid_warning' => 'pastaba: jūs galite nominuoti tik kartą, tai prašom užtikrinti, kad nominuojate visus rėžimus, kuriuos ketinote',
             'current_main_ruleset' => '',

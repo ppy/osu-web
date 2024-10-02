@@ -196,15 +196,35 @@ return [
             'to_0' => '隐藏封面',
             'to_1' => '显示封面',
         ],
+        'daily_challenge' => [
+            'daily' => '每日连续完成数',
+            'daily_streak_best' => '最佳每日完成数',
+            'daily_streak_current' => '当前每日完成数',
+            'playcount' => '参加次数',
+            'title' => '每日\n挑战',
+            'top_10p_placements' => '前 10% 位置',
+            'top_50p_placements' => '前 50% 位置',
+            'weekly' => '每周完成数',
+            'weekly_streak_best' => '最佳每周完成数',
+            'weekly_streak_current' => '当前每周完成数',
+
+            'unit' => [
+                'day' => ':value 天',
+                'week' => ':value 周',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => '更换个人资料封面',
                 'defaults_info' => '在将来会有更多封面可用',
+                'holdover_remove_confirm' => "之前选择的个人资料封面已不再可用。在更换封面后将无法再次选择。继续吗？",
+                'title' => '封面',
+
                 'upload' => [
                     'broken_file' => '上传失败。请检查上传的图片然后重试。',
                     'button' => '上传图片',
                     'dropzone' => '拖拽到此处',
-                    'dropzone_info' => '或者将图片拖到这里上传',
+                    'dropzone_info' => '将图片拖动到这里也可以上传',
                     'size_info' => '图片尺寸最好是 2400x620 像素',
                     'too_large' => '上传的图片过大。',
                     'unsupported_format' => '不支持的格式。',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => '默认游戏模式',
                 'set' => '设置 :mode 为个人资料的默认游戏模式',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '确定重置颜色为默认吗？如果之后想要修改成其他颜色，需要您拥有支持者标签。',
+                'title' => '颜色',
+
+                'supporter' => [
+                    '_' => '自定义色彩主题只有 :link 可用',
+                    'link' => 'osu! 支持者',
+                ],
             ],
         ],
 
@@ -490,8 +520,8 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '方块检视',
-        'card' => '卡片检视',
-        'list' => '列表检视',
+        'brick' => '方格视图',
+        'card' => '卡片视图',
+        'list' => '列表视图',
     ],
 ];

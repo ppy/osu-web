@@ -195,10 +195,12 @@ return [
             'account-edit' => '設定',
             'follows' => 'ウォッチリスト',
             'friends' => 'フレンド',
-            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle' => 'Lazerモード',
             'legacy_score_only_toggle_tooltip' => 'Lazer nodeは、新しいスコアリングアルゴリズムを使用して、Lazerから提出されたスコアを表示します',
             'logout' => 'ログアウト',
             'profile' => 'プロフィール',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
         ],
     ],
 

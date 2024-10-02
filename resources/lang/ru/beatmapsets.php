@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Меньше качай и больше играй.',
+        'no_mirrors' => 'Нет доступных загрузочных серверов.',
     ],
 
     'featured_artist_badge' => [
@@ -40,20 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Номинаторы, находящиеся на испытательном сроке, не могут номинировать несколько режимов игры за раз.',
+        'full_nomination_required' => 'Вы должны быть полноправным номинатором, чтобы внести решающий голос по этому режиму игры.',
         'hybrid_requires_modes' => 'Для гибридных карт требуется, чтобы Вы выбрали по крайней мере один режим игры для номинации.',
         'incorrect_mode' => 'У вас недостаточно прав для номинации по режиму :mode',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Эта карта имеет недопустимые номинации и не может быть квалифицирована.',
+        'invalid_ruleset' => 'Недопустимые режимы игры для этой номинации.',
         'too_many' => 'Требования к номинации уже выполнены.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'Требование номинации основного режима игры уже было выполнено.',
 
         'dialog' => [
             'confirmation' => 'Вы уверены, что хотите номинировать эту карту?',
+            'different_nominator_warning' => '',
             'header' => 'Номинировать карту',
             'hybrid_warning' => 'примечание: Вы можете номинировать лишь один раз, так что убедитесь, что Вы номинируете все необходимые режимы игры',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'Текущий основной режим игры: :ruleset',
             'which_modes' => 'Номинировать для каких режимов?',
         ],
     ],

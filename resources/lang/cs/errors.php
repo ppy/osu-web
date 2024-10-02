@@ -28,9 +28,15 @@ return [
     'checkout' => [
         'generic' => 'Při zpracování vaší objednávky došlo k chybě.',
     ],
+    'scores' => [
+        'invalid_id' => 'Neplatné id skóre.',
+    ],
     'search' => [
         'default' => 'Nepodařilo se získat žádné výsledky, zkus to znovu později.',
         'invalid_cursor_exception' => 'Zadán neplatný parametr kurzoru.',
         'operation_timeout_exception' => 'Hledání je v současné době zaneprázdněnější, než obvykle, opakujte akci později.',
+    ],
+    'user_report' => [
+        'recently_reported' => "Toto jsi již nedávno nahlásil.",
     ],
 ];

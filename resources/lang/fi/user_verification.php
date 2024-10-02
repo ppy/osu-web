@@ -6,7 +6,7 @@
 return [
     'box' => [
         'sent' => 'Osoitteeseen :mail on lähetetty vahvistuskoodi. Syötä koodi.',
-        'title' => 'Tilin Vahvistaminen',
+        'title' => 'Tilin vahvistaminen',
         'verifying' => 'Varmistetaan...',
         'issuing' => 'Annetaan uutta koodia...',
 

@@ -9,6 +9,12 @@ return [
         'title' => 'Land',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Visa',
 
@@ -24,12 +30,13 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Denna spelare har mindre än 30 dagar av nylig rankinghistorik.',
     ],
 
     'type' => [
         'charts' => 'i rampljuset',
         'country' => 'land',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'flerspelarläge',
         'performance' => 'prestation',

@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .supporter-eyecatch {
-  .at2x-simple('~@images/layout/supporter/banner-bg.jpg');
+  .at2x-simple("~@images/layout/supporter/banner-bg.jpg");
   background-size: cover;
   width: auto;
   height: 480px;
@@ -11,15 +11,19 @@
   position: relative;
 
   &::before {
-    content: ' ';
+    content: "";
     .full-size();
-    background: linear-gradient(to bottom, hsla(var(--hsl-b5), 1) 4%, hsla(var(--hsl-b5), 0) 100%);
+    background: linear-gradient(
+      to bottom,
+      hsla(var(--hsl-b5), 1) 4%,
+      hsla(var(--hsl-b5), 0) 100%
+    );
   }
 
   &::after {
-    content: ' ';
+    content: "";
     .full-size();
-    .at2x-simple('~@images/layout/supporter/banner-fg.png');
+    .at2x-simple("~@images/layout/supporter/banner-fg.png");
     background-size: cover;
     background-position: center;
     pointer-events: none;

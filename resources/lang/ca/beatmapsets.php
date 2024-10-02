@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'A poc a poc, juga més.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Esteu segur que voleu nominar aquest beatmap?',
+            'different_nominator_warning' => '',
             'header' => 'Nominar beatmap',
             'hybrid_warning' => 'nota: només pot nominar una vegada, així que assegureu-vos que està nominant per a totes els modes de joc que desitgi',
             'current_main_ruleset' => '',

@@ -199,6 +199,8 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Modo Lazer mostra as pontuações definidas pelo lazer com um novo algoritmo de pontuação',
             'logout' => 'Desconectar',
             'profile' => 'Meu Perfil',
+            'scoring_mode_toggle' => 'Pontuação clássica',
+            'scoring_mode_toggle_tooltip' => 'Ajuste o valor das pontuações para parecerem  uma pontuação ilimitada clássica',
         ],
     ],
 

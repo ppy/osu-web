@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Descarcă mai puțin, joacă mai mult.',
+        'no_mirrors' => 'Nu există servere de descărcare disponibile.',
     ],
 
     'featured_artist_badge' => [
@@ -40,20 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Nominalizatorii temporari nu pot nominaliza ruleset-uri multiple.',
+        'full_nomination_required' => 'Trebuie să fii un nominalizator complet pentru a efectua nominalizarea finală a unui ruleset.',
         'hybrid_requires_modes' => 'Un beatmap hibrid îți cere să selectezi cel puțin un mod de joc pentru care să nominalizezi.',
         'incorrect_mode' => 'Nu ai permisiunea de a nominaliza pentru modul :mode',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Acest beatmap are nominalizari invalide și nu poate fi calificat în această stare.',
+        'invalid_ruleset' => 'Această nominalizare are ruleset-uri invalide.',
         'too_many' => 'Cerința de nominalizare este deja îndeplinită.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'Cerințele de nominalizare pentru ruleset-urile secundare sunt deja îndeplinite.',
 
         'dialog' => [
-            'confirmation' => 'Ești sigur că vrei să nominalizezi acest Beatmap?',
+            'confirmation' => 'Ești sigur că vrei să nominalizezi acest beatmap?',
+            'different_nominator_warning' => '',
             'header' => 'Nominalizează acest Beatmap',
             'hybrid_warning' => 'observație: poți nominaliza o singură dată, așa că te rugăm să te asiguri că nominalizezi pentru toate modurile de joc pentru care intenționezi să nominalizezi',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'Ruleset-ul principal este :ruleset momentan',
             'which_modes' => 'Nominalizare pentru care moduri?',
         ],
     ],

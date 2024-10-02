@@ -28,9 +28,15 @@ return [
     'checkout' => [
         'generic' => 'Der opstod en fejl under forberedelsen af ​​dit køb.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Kunne ikke få resultater, prøv igen senere.',
         'invalid_cursor_exception' => 'Ugyldig markørparameter angivet.',
         'operation_timeout_exception' => 'Søgemaskinen er i øjeblikket travlere end ellers, prøv igen senere.',
+    ],
+    'user_report' => [
+        'recently_reported' => "",
     ],
 ];

@@ -9,6 +9,12 @@ return [
         'title' => 'Ел',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => '',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => '',
         'country' => 'ел',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => '',
         'performance' => 'өнімділік',

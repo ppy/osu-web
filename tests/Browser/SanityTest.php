@@ -5,6 +5,7 @@
 
 namespace Tests\Browser;
 
+use App\Http\Controllers\Ranking\DailyChallengeController;
 use App\Libraries\Session;
 use App\Libraries\SessionVerification;
 use App\Models\Artist;
@@ -36,6 +37,7 @@ use App\Models\Group;
 use App\Models\Language;
 use App\Models\LegacyMatch;
 use App\Models\LoginAttempt;
+use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
 use App\Models\NewsPost;
 use App\Models\Notification;
@@ -269,6 +271,9 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['score'] = Score\Best\Osu::factory()->withReplay()->create();
 
         self::$scaffolding['room'] = Room::factory()->create(['category' => 'spotlight']);
+
+        self::$scaffolding['daily_challenge_room'] = Room::factory()->create(['category' => 'daily_challenge']);
+        PlaylistItem::factory()->create(['room_id' => self::$scaffolding['daily_challenge_room']]);
     }
 
     private static function filterLog(array $log)
@@ -295,6 +300,9 @@ class SanityTest extends DuskTestCase
                 }
             } elseif ($line['message'] === "security - Error with Permissions-Policy header: Unrecognized feature: 'ch-ua-form-factor'.") {
                 // we don't use ch-ua-* crap and this error is thrown by youtube.com as of 2023-05-16
+                continue;
+            } elseif ($line['message'] === "security - Error with Permissions-Policy header: Unrecognized feature: 'ch-ua-form-factors'.") {
+                // same as above but 2024-08-06
                 continue;
             } elseif (str_ends_with($line['message'], ' Third-party cookie will be blocked. Learn more in the Issues tab.')) {
                 // thanks, youtube
@@ -442,6 +450,9 @@ class SanityTest extends DuskTestCase
             'changelog.show' => [
                 'changelog' => self::$scaffolding['build']->version,
             ],
+            'daily-challenge.show' => [
+                'daily_challenge' => DailyChallengeController::roomId(self::$scaffolding['daily_challenge_room']),
+            ],
             'scores.download-legacy' => [
                 'rulesetOrScore' => static::$scaffolding['score']->getMode(),
                 'score' => static::$scaffolding['score']->getKey(),
@@ -508,7 +519,7 @@ class SanityTest extends DuskTestCase
 
     private function checkAdminPermission(Browser $browser, LaravelRoute $route)
     {
-        $adminRestricted = ['chat.users.index', 'forum.topics.logs.index', 'user-cover-presets.index'];
+        $adminRestricted = ['forum.topics.logs.index', 'user-cover-presets.index'];
 
         if (starts_with($route->uri, 'admin') || in_array($route->getName(), $adminRestricted, true)) {
             // TODO: retry and check page as admin? (will affect subsequent tests though, so figure out how to deal with that..)

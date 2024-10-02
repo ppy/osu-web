@@ -53,7 +53,8 @@
     text-align: center;
     white-space: nowrap;
 
-    &:focus, &:active {
+    &:focus,
+    &:active {
       color: hsl(var(--hsl-c1));
     }
 
@@ -71,13 +72,6 @@
     display: grid;
     gap: 5px;
     grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
-  }
-
-  &__input {
-    .reset-input();
-    background: transparent;
-    font-size: @font-size--title-small-3;
-    width: 100%;
   }
 
   &__input-group {

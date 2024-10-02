@@ -46,7 +46,7 @@ return [
             '_' => 'ricerca tracce',
 
             'exclusive_only' => [
-                'all' => '',
+                'all' => 'Qualsiasi',
                 'exclusive_only' => 'osu! original',
             ],
 

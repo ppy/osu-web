@@ -32,9 +32,7 @@
                             @if ($name === 'direct' && !auth()->user()->isSupporter())
                                 @continue
                             @endif
-                            <label
-                                class="account-edit-entry__checkbox account-edit-entry__checkbox--inline"
-                            >
+                            <label class="account-edit-entry__checkbox">
                                 @include('objects._switch', ['locals' => [
                                     'checked' => $customization->beatmapset_download === $name,
                                     'name' => 'user_profile_customization[beatmapset_download]',
@@ -48,7 +46,7 @@
 
                                 @if (!$statusIsRendered)
                                     <div class="account-edit-entry__checkbox-status">
-                                        @include('accounts._edit_entry_status')
+                                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                                     </div>
                                     @php
                                         $statusIsRendered = true;
@@ -79,7 +77,7 @@
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">
-                        @include('accounts._edit_entry_status')
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                     </div>
                 </label>
             </div>
@@ -104,7 +102,7 @@
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">
-                        @include('accounts._edit_entry_status')
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                     </div>
                 </label>
             </div>

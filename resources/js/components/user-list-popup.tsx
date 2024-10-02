@@ -4,7 +4,9 @@
 import UserAvatar from 'components/user-avatar';
 import UserLink from 'components/user-link';
 import UserJson from 'interfaces/user-json';
+import { autorun } from 'mobx';
 import * as React from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { transChoice } from 'utils/lang';
 
 interface Props {
@@ -19,14 +21,10 @@ const atToMy = {
   'top center': 'bottom center',
 };
 
-export function createTooltip(target: HTMLElement, positionAt: PositionAt, content: string | (() => string)) {
-  if (target._tooltip === '1') return;
-
-  target._tooltip = '1';
-
-  return $(target).qtip({
+export function createTooltip(targetFn: () => HTMLElement | null, propsFn: () => Props, positionAt: PositionAt) {
+  $(targetFn() ?? []).qtip({
     content: {
-      text: content,
+      text: '[placeholder]',
     },
     hide: {
       delay: 500,
@@ -53,6 +51,11 @@ export function createTooltip(target: HTMLElement, positionAt: PositionAt, conte
       tip: false,
     },
   }) as JQuery;
+
+  return autorun(() => {
+    const content = renderToStaticMarkup(<UserListPopup {...propsFn()} />);
+    $(targetFn() ?? []).qtip('set', { 'content.text': content });
+  });
 }
 
 export default function UserListPopup(props: Props) {

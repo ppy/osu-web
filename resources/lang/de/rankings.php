@@ -9,6 +9,12 @@ return [
         'title' => 'Land',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Anzeigen',
 
@@ -24,12 +30,13 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Der kürzliche Ranking-Verlauf dieses Benutzers ist kleiner als 30 Tage.',
     ],
 
     'type' => [
         'charts' => 'Spotlights (alt)',
         'country' => 'Länder',
+        'daily_challenge' => '',
         'kudosu' => 'Kudosu',
         'multiplayer' => 'Mehrspieler',
         'performance' => 'Performance',

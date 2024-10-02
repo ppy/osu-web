@@ -7,6 +7,7 @@ return [
     'cancel' => 'Peruuta',
 
     'authorise' => [
+        'app_owner' => 'sovellus käyttäjältä: :owner',
         'request' => 'pyytää lupaa yhdistää tilillesi.',
         'scopes_title' => 'Tämä sovellus voi:',
         'title' => 'Yhdistyspyyntö',

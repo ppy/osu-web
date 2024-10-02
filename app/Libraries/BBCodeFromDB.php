@@ -75,7 +75,7 @@ class BBCodeFromDB
     {
         $linkText = presence($linkText) ?? 'SPOILER';
 
-        return "<div class='js-spoilerbox bbcode-spoilerbox'><a class='js-spoilerbox__link bbcode-spoilerbox__link' href='#'><span class='bbcode-spoilerbox__link-icon'></span>{$linkText}</a><div class='bbcode-spoilerbox__body'>";
+        return "<div class='js-spoilerbox bbcode-spoilerbox'><a class='js-spoilerbox__link bbcode-spoilerbox__link' href='#'><span class='bbcode-spoilerbox__link-icon'></span>{$linkText}</a><div class='js-spoilerbox__body bbcode-spoilerbox__body'>";
     }
 
     public function parseBoxHelperSuffix()
@@ -345,8 +345,8 @@ class BBCodeFromDB
     public function parseYoutube(string $text): string
     {
         return strtr($text, [
-            "[youtube:{$this->uid}]" => "<div class='bbcode__video-box'><iframe class='u-embed-wide' src='https://www.youtube.com/embed/",
-            "[/youtube:{$this->uid}]" => "?rel=0' allowfullscreen></iframe></div>",
+            "[youtube:{$this->uid}]" => "<iframe class='u-embed-wide u-embed-wide--bbcode' src='https://www.youtube.com/embed/",
+            "[/youtube:{$this->uid}]" => "?rel=0' allowfullscreen></iframe>",
         ]);
     }
 

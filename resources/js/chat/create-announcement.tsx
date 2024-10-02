@@ -3,26 +3,22 @@
 
 import BigButton from 'components/big-button';
 import InputContainer from 'components/input-container';
-import { Spinner } from 'components/spinner';
 import UserCardBrick from 'components/user-card-brick';
+import UsernameInput from 'components/username-input';
 import UserJson from 'interfaces/user-json';
 import { action, computed, makeObservable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
-import { isInputKey, maxLengths } from 'models/chat/create-announcement';
+import { isInputKey } from 'models/chat/create-announcement';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { trans } from 'utils/lang';
 
 type Props = Record<string, never>;
 
-const BusySpinner = ({ busy }: { busy: boolean }) => (
-  <div className='chat-form__spinner'>
-    {busy && <Spinner />}
-  </div>
-);
-
 @observer
 export default class CreateAnnouncement extends React.Component<Props> {
+  private readonly usernameInputInitialProps;
+
   @computed
   private get canSend() {
     return core.dataStore.chatState.isReady && !core.dataStore.chatState.isAddingChannel && this.model.isValid;
@@ -41,6 +37,8 @@ export default class CreateAnnouncement extends React.Component<Props> {
     runInAction(() => {
       this.model.initialize();
     });
+
+    this.usernameInputInitialProps = runInAction(() => this.model.propsForUsernameInput);
   }
 
   render() {
@@ -52,13 +50,11 @@ export default class CreateAnnouncement extends React.Component<Props> {
           <div className='chat-form__title'>{trans('chat.form.title.announcement')}</div>
           <InputContainer
             labelKey='chat.form.labels.name'
-            maxLength={maxLengths.name}
-            model={this.model}
             modifiers='chat'
-            name='name'
+            {...this.model.inputContainerPropsFor('name')}
           >
             <input
-              className='chat-form__input'
+              className='input-text'
               defaultValue={this.model.inputs.name}
               name='name'
               onBlur={this.handleBlur}
@@ -67,13 +63,11 @@ export default class CreateAnnouncement extends React.Component<Props> {
           </InputContainer>
           <InputContainer
             labelKey='chat.form.labels.description'
-            maxLength={maxLengths.description}
-            model={this.model}
             modifiers='chat'
-            name='description'
+            {...this.model.inputContainerPropsFor('description')}
           >
             <input
-              className='chat-form__input'
+              className='input-text'
               defaultValue={this.model.inputs.description}
               name='description'
               onBlur={this.handleBlur}
@@ -83,36 +77,30 @@ export default class CreateAnnouncement extends React.Component<Props> {
           <InputContainer
             for='chat-form-users'
             labelKey='chat.form.labels.users'
-            model={this.model}
             modifiers='chat'
-            name='users'
+            {...this.model.inputContainerPropsFor('users')}
           >
-            <div className='chat-form__users'>
+            <div className='chat-form-users'>
               <UserCardBrick user={core.currentUserOrFail} />
-              {this.renderValidUsers()}
-              <input
-                className='chat-form__input chat-form__input--users'
+              <UsernameInput
                 id='chat-form-users'
+                ignoreCurrentUser
                 name='users'
                 onBlur={this.handleBlur}
-                onChange={this.handleUsersInputChange}
-                onKeyDown={this.handleUsersInputKeyDown}
-                onPaste={this.handleUsersInputPaste}
-                value={this.model.inputs.users}
+                onValidUsersChanged={this.handleValidUsersChanged}
+                onValueChanged={this.handleUsernameInputValueChanged}
+                {...this.usernameInputInitialProps}
               />
-              <BusySpinner busy={this.model.lookingUpUsers} />
             </div>
           </InputContainer>
           <InputContainer
             labelKey='chat.form.labels.message'
-            maxLength={maxLengths.message}
-            model={this.model}
             modifiers={['chat', 'fill']}
-            name='message'
+            {...this.model.inputContainerPropsFor('message')}
           >
             <textarea
               autoComplete='off'
-              className='chat-form__input chat-form__input--box'
+              className='input-text'
               defaultValue={this.model.inputs.message}
               name='message'
               onBlur={this.handleBlur}
@@ -159,34 +147,12 @@ export default class CreateAnnouncement extends React.Component<Props> {
   };
 
   @action
-  private readonly handleRemoveUser = (user: UserJson) => {
-    this.model.validUsers.delete(user.id);
+  private readonly handleUsernameInputValueChanged = (value: string) => {
+    this.model.inputs.users = value;
   };
 
   @action
-  private readonly handleUsersInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.model.updateUsers(e.currentTarget.value, false);
+  private readonly handleValidUsersChanged = (value: Map<number, UserJson>) => {
+    this.model.validUsers = value;
   };
-
-  @action
-  private readonly handleUsersInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    const elem = e.currentTarget;
-    if (e.key === 'Backspace' && elem.selectionStart === 0 && elem.selectionEnd === 0) {
-      const last = [...this.model.validUsers.keys()].pop();
-      if (last != null) {
-        this.model.validUsers.delete(last);
-      }
-    }
-  };
-
-  @action
-  private readonly handleUsersInputPaste = (e: React.SyntheticEvent<HTMLInputElement>) => {
-    this.model.updateUsers(e.currentTarget.value, true);
-  };
-
-  private renderValidUsers() {
-    return [...this.model.validUsers.values()].map((user) => (
-      <UserCardBrick key={user.id} onRemoveClick={this.handleRemoveUser} user={user} />
-    ));
-  }
 }

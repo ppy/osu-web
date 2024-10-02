@@ -4,7 +4,9 @@
 // main: compiled.less
 @import "app";
 
-*, ::before, ::after {
+*,
+::before,
+::after {
   box-sizing: border-box;
 }
 
@@ -25,6 +27,47 @@
   --font-default-th: @font-default-th;
   --font-default-zh-tw: @font-default-zh-tw;
   --font-content: @font-content;
+
+  --navbar-height: @navbar-height;
+  --scroll-padding-top: calc(
+    var(--navbar-height) + 1em + var(--scroll-padding-top-extra, 0px)
+  );
+  --page-gutter: @gutter-v2;
+
+  @media @desktop {
+    --navbar-height: @nav2-height--pinned;
+    --page-gutter: @gutter-v2-desktop;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  scroll-padding-top: var(--scroll-padding-top);
+  scroll-padding-bottom: 1em;
+}
+
+body {
+  .default-font();
+  // no overlap between rightmost side and scrollbar
+  -ms-overflow-style: scrollbar;
+  // prevent moving navbar
+  overflow-y: scroll;
+  // fix tooltip positioning on edge when combined with overflow-y scroll above
+  position: static;
+
+  --z-index--nav-bar-mobile: @z-index--nav-bar;
+  &.js-nav2--active {
+    --z-index--nav-bar-mobile: @z-index--nav-bar-mobile-active;
+  }
+
+  --header-pinned-animation-duration: 0ms;
+  &.js-animate-nav {
+    --header-pinned-animation-duration: 300ms;
+  }
 
   --beatmapset-status-colour-default: var(--hsl-b3);
   --beatmapset-graveyard-bg-hsl: 0, 0%, 0%;
@@ -56,47 +99,19 @@
   --forum-item-background-color: hsl(var(--hsl-b4));
   --forum-item-background-color-hover: hsl(var(--hsl-b3));
 
-
-  --navbar-height: @navbar-height;
-  --scroll-padding-top: calc(var(--navbar-height) + 1em + var(--scroll-padding-top-extra, 0px));
-  --page-gutter: @gutter-v2;
-
-  @media @desktop {
-    --navbar-height: @nav2-height--pinned;
-    --page-gutter: @gutter-v2-desktop;
-  }
-
-  // the base-hue is defined in blade layout
+  // the referred variables are defined in blade layout
+  --base-hue: var(--base-hue-override, var(--base-hue-default));
   --base-hue-deg: calc(var(--base-hue) * 1deg);
-}
 
-html, body {
-  height: 100%;
-}
-
-html {
-  scroll-padding-top: var(--scroll-padding-top);
-  scroll-padding-bottom: 1em;
-}
-
-body {
-  .default-font();
-  // no overlap between rightmost side and scrollbar
-  -ms-overflow-style: scrollbar;
-  // prevent moving navbar
-  overflow-y: scroll;
-  // fix tooltip positioning on edge when combined with overflow-y scroll above
-  position: static;
-
-  --z-index--nav-bar-mobile: @z-index--nav-bar;
-  &.js-nav2--active {
-    --z-index--nav-bar-mobile: @z-index--nav-bar-mobile-active;
-  }
-
-  --header-pinned-animation-duration: 0ms;
-  &.js-animate-nav {
-    --header-pinned-animation-duration: 300ms;
-  }
+  // level tier gradients
+  --level-tier-iron: #bab3ab, #bab3ab;
+  --level-tier-bronze: #b88f7a, #855c47;
+  --level-tier-silver: #e0e0eb, #a3a3c2;
+  --level-tier-gold: #f0e4a8, #e0c952;
+  --level-tier-platinum: #a8f0ef, #52e0df;
+  --level-tier-rhodium: #d9f8d3, #a0cf96;
+  --level-tier-radiant: #97dcff, #ed82ff;
+  --level-tier-lustrous: #ffe600, #ed82ff;
 }
 
 #popup-container {

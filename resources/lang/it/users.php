@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Il tuo account non viene usato da molto tempo.",
             'inactive_different_country' => "Il tuo account non è stato utilizzato per molto tempo.",
         ],
     ],
@@ -193,13 +193,33 @@ return [
             'count' => ':count_delimited commento|:count_delimited commenti',
         ],
         'cover' => [
-            'to_0' => 'Nascondi copertina',
+            'to_0' => 'Nascondi immagine di copertina',
             'to_1' => 'Mostra copertina',
+        ],
+        'daily_challenge' => [
+            'daily' => 'Serie Giornaliera',
+            'daily_streak_best' => 'Migliore Serie Giornaliera',
+            'daily_streak_current' => 'Attuale Serie Giornaliera',
+            'playcount' => 'Partecipazione Totale',
+            'title' => 'Sfida\nGiornaliera',
+            'top_10p_placements' => 'Raggiungimenti del primo 10%',
+            'top_50p_placements' => 'Raggiungimenti del primo 50%',
+            'weekly' => 'Serie Settimanale',
+            'weekly_streak_best' => 'Migliore Serie Settimanale',
+            'weekly_streak_current' => 'Attuale Serie Settimanale',
+
+            'unit' => [
+                'day' => ':valueg',
+                'week' => ':values',
+            ],
         ],
         'edit' => [
             'cover' => [
                 'button' => 'Cambia copertina del profilo',
                 'defaults_info' => 'Più opzioni per la copertina saranno disponibili in futuro',
+                'holdover_remove_confirm' => "",
+                'title' => 'Immagine di copertina',
+
                 'upload' => [
                     'broken_file' => 'Elaborazione dell\'immagine non riuscita. Controlla l\'immagine caricata e riprova.',
                     'button' => 'Carica immagine',
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'modalità predefinita',
                 'set' => 'imposta :mode come modalità predefinita',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Ripristinare il colore predefinito? Sarà necessario il tag supporter per cambiarlo in un altro colore.',
+                'title' => 'Colore',
+
+                'supporter' => [
+                    '_' => 'Temi con colore personalizzato disponibili solo per gli :link',
+                    'link' => 'osu!supporter',
+                ],
             ],
         ],
 

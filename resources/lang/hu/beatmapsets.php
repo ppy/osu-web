@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Lassíts le, játssz többet.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -40,20 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'A próbaidős nominálók nem nominálhatnak több ruleszetet.',
+        'full_nomination_required' => 'Teljes nominálónak kell lennie a ruleszet végső nominálásának végrehajtásához.',
         'hybrid_requires_modes' => 'Egy hibrid beatmap szettet legalább egy játékmódra nominálni kell.',
         'incorrect_mode' => 'Nincs jogosultságod :mode módban nominálni',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Ez a beatmap érvénytelen nominálásokkal rendelkezik, és ebben az állapotban nem kvalifikálható.',
+        'invalid_ruleset' => 'Ez a nomináció érvénytelen ruleszeteket tartalmaz.',
         'too_many' => 'A nominálási követelmények már teljesültek.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'Nomináció kötelezettség a nem fő ruleszetre már teljesítve van.',
 
         'dialog' => [
             'confirmation' => 'Biztosan nominálni szeretnéd ezt a Beatmap-et?',
+            'different_nominator_warning' => '',
             'header' => 'Beatmap Nominálása',
             'hybrid_warning' => 'megjegyzés: csak egyszer nominálhatsz, ezért kérlek győződj meg róla, hogy minden játékmódra nominálsz, amire szeretnél',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'A fő ruleszet jelenleg: :ruleset',
             'which_modes' => 'Mely módokra nominálsz?',
         ],
     ],

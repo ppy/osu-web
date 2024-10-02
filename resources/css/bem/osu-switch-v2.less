@@ -49,30 +49,30 @@
       }
     }
 
-    .@{_top}__input[type=checkbox] + & {
+    .@{_top}__input[type="checkbox"] + & {
       border-radius: 0.5em;
 
       &::after {
         .fas();
-        content: '\f00c';
+        content: @fa-var-check;
       }
     }
 
-    .@{_top}__input[type=checkbox][data-indeterminate='true'] + & {
+    .@{_top}__input[type="checkbox"][data-indeterminate="true"] + & {
       color: hsl(var(--hsl-h1));
 
       &::after {
         .fas();
-        content: '\f068';
+        content: @fa-var-minus;
         opacity: 1;
       }
     }
 
-    .@{_top}__input[type=radio] + & {
+    .@{_top}__input[type="radio"] + & {
       border-radius: 50%;
 
       &::after {
-        content: '';
+        content: "";
         background-color: currentColor;
         border-radius: 50%;
         width: calc(100% - 6px);

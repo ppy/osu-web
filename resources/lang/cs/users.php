@@ -196,10 +196,30 @@ return [
             'to_0' => 'Skrýt záhlaví',
             'to_1' => 'Zobrazit záhlaví',
         ],
+        'daily_challenge' => [
+            'daily' => 'Dnů v řadě',
+            'daily_streak_best' => 'Nejvíce dnů v řadě',
+            'daily_streak_current' => 'Aktuálně dnů v řadě',
+            'playcount' => 'Celková účast',
+            'title' => 'Denní\nvýzva',
+            'top_10p_placements' => 'Umístění v Top 10%',
+            'top_50p_placements' => 'Umístění v Top 50%',
+            'weekly' => 'Týdnů v řadě',
+            'weekly_streak_best' => 'Nejvíce týdnů v řadě',
+            'weekly_streak_current' => 'Aktuálně týdnů v řadě',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuet',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Změnit záhlaví profilu',
                 'defaults_info' => 'Více možností záhlaví bude k dispozici v budoucnu',
+                'holdover_remove_confirm' => "Toto dříve vybrané záhlaví již není k dispozici k výběru. Nebude možné jej znovu vybrat po přepnutí na jiné záhlaví. Pokračovat?",
+                'title' => 'Záhlaví',
+
                 'upload' => [
                     'broken_file' => 'Zpracování obrázku selhalo. Ověř si obrázek a zkus to znovu.',
                     'button' => 'Nahrát obrázek',
@@ -211,7 +231,7 @@ return [
 
                     'restriction_info' => [
                         '_' => 'Nahrávání je dostupné pouze pro :link',
-                        'link' => 'osu!supporters',
+                        'link' => 'osu!supportery',
                     ],
                 ],
             ],
@@ -219,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'výchozí herní mód',
                 'set' => 'nastavit :mode jako výchozí herní mód profilu',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Obnovit barvu na výchozí? Pro změnu na jinou barvu bude vyžadován supporter tag.',
+                'title' => 'Barva',
+
+                'supporter' => [
+                    '_' => 'Vlastní barevné motivy dostupné pouze pro :link',
+                    'link' => 'osu!supportery',
+                ],
             ],
         ],
 

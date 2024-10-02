@@ -196,11 +196,29 @@ return [
             'to_0' => 'Hide cover',
             'to_1' => 'Show cover',
         ],
+        'daily_challenge' => [
+            'daily' => 'Daily Streak',
+            'daily_streak_best' => 'Best Daily Streak',
+            'daily_streak_current' => 'Current Daily Streak',
+            'playcount' => 'Total Participation',
+            'title' => 'Daily\nChallenge',
+            'top_10p_placements' => 'Top 10% Placements',
+            'top_50p_placements' => 'Top 50% Placements',
+            'weekly' => 'Weekly Streak',
+            'weekly_streak_best' => 'Best Weekly Streak',
+            'weekly_streak_current' => 'Current Weekly Streak',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Change Profile Cover',
                 'defaults_info' => 'More cover options will be available in the future',
                 'holdover_remove_confirm' => "The previously selected cover is not available for selection anymore. You can't select it back after switching to a different cover. Proceed?",
+                'title' => 'Cover',
 
                 'upload' => [
                     'broken_file' => 'Failed processing image. Verify uploaded image and try again.',
@@ -221,6 +239,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'default game mode',
                 'set' => 'set :mode as profile default game mode',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Reset colour to default? Supporter tag will be required to change it to a different colour.',
+                'title' => 'Colour',
+
+                'supporter' => [
+                    '_' => 'Custom colour themes available for :link only',
+                    'link' => 'osu!supporters',
+                ],
             ],
         ],
 
