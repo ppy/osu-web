@@ -24,10 +24,10 @@ class MenuContent
             $images = self::parse(self::fetch());
             $now = Carbon::now();
 
-            return array_values(array_filter($images, function ($image) use ($now) {
-                return ($image['started_at']?->lessThanOrEqualTo($now) ?? true)
-                    && ($image['ended_at']?->greaterThan($now) ?? true);
-            }));
+            return array_values(array_filter($images, fn ($image) => (
+                ($image['started_at']?->lessThanOrEqualTo($now) ?? true)
+                    && ($image['ended_at']?->greaterThan($now) ?? true)
+            )));
         });
     }
 
