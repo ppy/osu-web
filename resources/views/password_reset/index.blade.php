@@ -4,7 +4,7 @@
 --}}
 @php
     $params = [
-        'username' => null,
+        'username' => presence(get_string(request('username'))),
         'reason' => null,
         ...(Session::get('password_reset_start') ?? []),
     ];
