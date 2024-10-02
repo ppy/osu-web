@@ -24,12 +24,18 @@ interface Props {
 export default class MenuImages extends React.Component<Props> {
   private autoRotateTimerId?: number;
   @observable private index = 0;
-  @observable private maxIndex = this.length - 1;
-  @observable private minIndex = 0;
   @observable private transition = true;
 
   private get length() {
     return this.props.images.length;
+  }
+
+  private get maxIndex() {
+    return Math.max(this.length - 1, this.index);
+  }
+
+  private get minIndex() {
+    return Math.min(0, this.index);
   }
 
   constructor(props: Props) {
@@ -118,10 +124,6 @@ export default class MenuImages extends React.Component<Props> {
     // Reset the index to be within normal bounds, if it went outside. Don't
     // show the transition so that nothing changes visually
     this.setIndex(modulo(this.index, this.length), false);
-
-    // Reset the max and min indices to delete all of the cloned images
-    this.maxIndex = this.length - 1;
-    this.minIndex = 0;
   };
 
   private renderArrows() {
@@ -175,8 +177,6 @@ export default class MenuImages extends React.Component<Props> {
     }
 
     this.index = index;
-    this.maxIndex = Math.max(this.maxIndex, index);
-    this.minIndex = Math.min(this.minIndex, index);
     this.transition = transition;
   }
 }
