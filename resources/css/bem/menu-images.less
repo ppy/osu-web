@@ -7,16 +7,24 @@
   @indicators-margin: 10px;
   @margin: 20px;
 
+  --arrow-opacity: 0;
+
   margin-top: @margin;
   overflow-x: hidden;
   position: relative;
 
+  &:hover {
+    --arrow-opacity: 1;
+  }
+
   &__arrow {
     .reset-input();
+    .fade-element(@hover-transition-duration);
     height: @container-height;
     padding: 10px;
     position: absolute;
     top: 0;
+    opacity: var(--arrow-opacity);
 
     &:hover {
       color: @osu-colour-l1;
