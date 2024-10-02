@@ -57,8 +57,6 @@ class BeatmapsetEvent extends Model
 
     const BEATMAP_OWNER_CHANGE = 'beatmap_owner_change';
 
-    const int PER_PAGE = 20;
-
     public static function log($type, $user, $object, $extraData = [])
     {
         if ($object instanceof BeatmapDiscussionPost) {

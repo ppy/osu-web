@@ -19,8 +19,6 @@ use Carbon\Carbon;
  */
 class BeatmapDiscussionVote extends Model
 {
-    const int PER_PAGE = 20;
-
     protected $touches = ['beatmapDiscussion'];
 
     public static function recentlyReceivedByUser($userId, $timeframeMonths = 3)

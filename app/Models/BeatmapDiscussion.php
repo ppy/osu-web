@@ -62,8 +62,6 @@ class BeatmapDiscussion extends Model
         'review' => 5,
     ];
 
-    const int PER_PAGE = 20;
-
     const RESOLVABLE_TYPES = [1, 2];
     const KUDOSUABLE_TYPES = [1, 2];
 

@@ -31,7 +31,6 @@ class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
 
     const MESSAGE_LIMIT = 16_000; // column limit for 4 bytes utf8
     const MESSAGE_LIMIT_TIMELINE = 750;
-    const int PER_PAGE = 20;
 
     protected $touches = ['beatmapDiscussion'];
 
