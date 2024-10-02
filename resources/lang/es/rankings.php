@@ -9,6 +9,12 @@ return [
         'title' => 'País',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Mostrar',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'destacados',
         'country' => 'país',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multijugador',
         'performance' => 'rendimiento',

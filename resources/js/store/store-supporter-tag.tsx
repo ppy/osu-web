@@ -6,7 +6,7 @@ import UserJson from 'interfaces/user-json';
 import { debounce } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
-import User from 'models/user';
+import { userNotFoundJson } from 'models/user';
 import core from 'osu-core-singleton';
 import React from 'react';
 import { onError } from 'utils/ajax';
@@ -21,11 +21,6 @@ const jsonId = 'json-store-supporter-tag';
 
 const maxValue = 52;
 const minValue = 4;
-
-const userNotFound = new User(-1);
-userNotFound.username = trans('supporter_tag.user_search.not_found');
-
-const userNotFoundJson = Object.freeze(userNotFound.toJson());
 
 interface Props {
   maxMessageLength: number;

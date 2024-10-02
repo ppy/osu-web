@@ -52,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Apakah kamu yakin untuk menominasikan beatmap ini?',
+            'different_nominator_warning' => '',
             'header' => 'Nominasikan Beatmap',
             'hybrid_warning' => 'catatan: kamu hanya dapat memberikan nominasi satu kali, sehingga pastikan kamu memberikan nominasi pada mode permainan yang memang kamu kehendaki',
             'current_main_ruleset' => 'Ruleset utama saat ini: :ruleset',

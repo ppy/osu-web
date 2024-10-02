@@ -52,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Är du säker på att du vill nominera denna beatmap?',
+            'different_nominator_warning' => '',
             'header' => 'Nominera beatmap',
             'hybrid_warning' => 'notera: du kan bara nominera en gång, så se till att du nominerar för alla spellägen som du tänker nominera för',
             'current_main_ruleset' => 'Det huvudsakliga regelsettet är för närvarande :ruleset',

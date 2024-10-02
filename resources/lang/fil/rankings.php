@@ -9,6 +9,12 @@ return [
         'title' => 'Bansa',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Ipakita',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'Mga Spotlight',
         'country' => 'Bansa',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'performance' => 'Performance',

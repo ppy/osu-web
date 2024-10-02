@@ -5,9 +5,8 @@ import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 
 export function apiLookupUsers(idsOrUsernames: (string | null | undefined)[]) {
-  return $.ajax(route('users.lookup-users'), {
+  return $.ajax(route('users.lookup'), {
     data: { ids: idsOrUsernames },
     dataType: 'json',
-    type: 'POST',
   }) as JQuery.jqXHR<{ users: UserJson[] }>;
 }

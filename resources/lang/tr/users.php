@@ -200,7 +200,7 @@ return [
             'daily' => 'Günlük Seri',
             'daily_streak_best' => 'En İyi Günlük Seri',
             'daily_streak_current' => 'Mevcut Günlük Seri',
-            'playcount' => '',
+            'playcount' => 'Toplam Katılım',
             'title' => 'Günlük\nMeydan Okuma',
             'top_10p_placements' => 'İlk %10 Sıralama',
             'top_50p_placements' => 'İlk %50 Sıralama',

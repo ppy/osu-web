@@ -296,13 +296,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('user-cover-presets', 'UserCoverPresetsController', ['only' => ['index', 'store', 'update']]);
 
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
-    Route::post('users/lookup-users', 'Users\LookupController@lookup')->name('users.lookup-users');
+    Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');
     Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled');
     Route::get('users/create', 'UsersController@create')->name('users.create');
     Route::post('users/store-web', 'UsersController@storeWeb')->name('users.store-web');
 
     Route::group(['as' => 'users.', 'prefix' => 'users/{user}'], function () {
-        Route::get('card', 'UsersController@card')->name('card');
         Route::get('extra-pages/{page}', 'UsersController@extraPages')->name('extra-page');
         Route::put('page', 'UsersController@updatePage')->name('page');
         Route::group(['namespace' => 'Users'], function () {
@@ -361,7 +360,6 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('approved', 'PaypalController@approved')->name('approved');
             Route::get('declined', 'PaypalController@declined')->name('declined');
             Route::post('create', 'PaypalController@create')->name('create');
-            Route::get('completed', 'PaypalController@completed')->name('completed');
             Route::post('ipn', 'PaypalController@ipn')->name('ipn');
         });
 
@@ -536,6 +534,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         Route::get('search', 'HomeController@search');
 
+        Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');
         //  GET /api/v2/users/:user_id/kudosu
         Route::get('users/{user}/kudosu', 'UsersController@kudosu');
         //  GET /api/v2/users/:user_id/scores/:type [best, firsts, recent]

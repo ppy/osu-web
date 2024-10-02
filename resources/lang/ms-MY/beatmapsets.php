@@ -52,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Anda pasti mahu mencalonkan beatmap ini?',
+            'different_nominator_warning' => '',
             'header' => 'Calonkan Beatmap',
             'hybrid_warning' => '',
             'current_main_ruleset' => '',
