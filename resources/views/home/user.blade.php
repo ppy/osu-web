@@ -17,13 +17,18 @@
             <div class="user-home__news">
                 <div class="js-react--menu-images">
                     @if (count($menuImages) > 0)
-                        <div
-                            class="{{ class_with_modifiers(
-                                'user-home__menu-images-placeholder',
-                                ['with-indicators' => count($menuImages) > 1],
-                            ) }}"
-                        >
-                            {!! spinner() !!}
+                        <div class="menu-images menu-images--placeholder">
+                            <div class="menu-images__container">
+                                {!! spinner() !!}
+                            </div>
+                            @if (count($menuImages) > 1)
+                                <div class="menu-images__indicators">
+                                    @foreach ($menuImages as $_i)
+                                        <div class="menu-images__indicator">
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
                     @endif
                 </div>

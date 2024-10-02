@@ -2,14 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .menu-images {
-  @container-height: 90px;
-  @indicator-height: 6px;
-  @indicators-margin: 10px;
-  @margin: 20px;
-
   --arrow-opacity: 0;
+  --container-height: 90px;
+  --indicators-opacity: 1;
 
-  margin-top: @margin;
+  margin-top: 20px;
   overflow-x: hidden;
   position: relative;
 
@@ -17,10 +14,14 @@
     --arrow-opacity: 1;
   }
 
+  &--placeholder {
+    --indicators-opacity: 0;
+  }
+
   &__arrow {
     .reset-input();
     .fade-element(@hover-transition-duration);
-    height: @container-height;
+    height: var(--container-height);
     padding: 10px;
     position: absolute;
     top: 0;
@@ -48,7 +49,9 @@
   }
 
   &__container {
-    height: @container-height;
+    .center-content();
+    display: flex;
+    height: var(--container-height);
     transform: translateX(calc(-100% * var(--index, 0)));
 
     &--transition {
@@ -60,26 +63,34 @@
     .reset-input();
     align-items: center;
     display: flex;
-    height: @indicator-height;
+
+    width: 30px;
+    height: 6px;
+
+    --content-height: 2px;
+    --content-opacity: 0.5;
 
     &::before {
+      content: "";
+
       background: @osu-colour-h1;
       border-radius: 10000px;
-      content: '';
-      height: 2px;
-      opacity: 0.5;
+      opacity: var(--content-opacity);
+
       transition: 100ms ease-out;
       transition-property: height, opacity;
-      width: 30px;
+
+      width: 100%;
+      height: var(--content-height);
     }
 
-    &:hover::before {
-      height: @indicator-height;
+    &:hover {
+      --content-height: 100%;
     }
 
-    &--active::before {
-      height: @indicator-height;
-      opacity: 1;
+    &--active {
+      --content-height: 100%;
+      --content-opacity: 1;
     }
   }
 
@@ -89,6 +100,7 @@
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
-    margin-top: @indicators-margin;
+    margin-top: 10px;
+    opacity: var(--indicators-opacity);
   }
 }
