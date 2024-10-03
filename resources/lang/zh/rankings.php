@@ -10,9 +10,9 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'beatmap' => '难度',
+        'percentile_10' => '前 10% 成绩',
+        'percentile_50' => '前 50% 成绩',
     ],
 
     'filter' => [
@@ -36,7 +36,7 @@ return [
     'type' => [
         'charts' => '季赛（旧版）',
         'country' => '国家/地区',
-        'daily_challenge' => '',
+        'daily_challenge' => '每日挑战',
         'kudosu' => 'Kudosu',
         'multiplayer' => '多人游戏',
         'performance' => '表现',

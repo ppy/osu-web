@@ -52,7 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Tem certeza que deseja nomear este Beatmap?',
-            'different_nominator_warning' => '',
+            'different_nominator_warning' => 'Qualificar esse beatmap com nominadores diferentes irá redefinir sua posição na fila de qualificação.',
             'header' => 'Nomear Beatmap',
             'hybrid_warning' => 'nota: você pode apenas nomear uma vez, então por favor, certifique-se de que você está nomeando para todos os modos de jogo que você pretende',
             'current_main_ruleset' => 'A atual regra principal é: :ruleset',

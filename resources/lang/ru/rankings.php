@@ -10,9 +10,9 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'beatmap' => 'Сложность',
+        'percentile_10' => '90-й процентиль очков',
+        'percentile_50' => '50-й процентиль очков',
     ],
 
     'filter' => [
@@ -36,7 +36,7 @@ return [
     'type' => [
         'charts' => 'по чартам (устар.)',
         'country' => 'по странам',
-        'daily_challenge' => '',
+        'daily_challenge' => 'карта дня',
         'kudosu' => 'по кудосу',
         'multiplayer' => 'в мультиплеере',
         'performance' => 'по производительности',

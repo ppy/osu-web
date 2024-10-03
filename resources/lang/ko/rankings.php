@@ -10,9 +10,9 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'beatmap' => '난이도',
+        'percentile_10' => '상위 10% 점수',
+        'percentile_50' => '상위 50% 점수',
     ],
 
     'filter' => [
@@ -30,13 +30,13 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => '해당 유저는 랭킹 이력이 최근 30일 이내입니다.',
     ],
 
     'type' => [
         'charts' => '스포트라이트',
         'country' => '국가별',
-        'daily_challenge' => '',
+        'daily_challenge' => '데일리 챌린지',
         'kudosu' => 'Kudosu',
         'multiplayer' => '멀티플레이어',
         'performance' => '퍼포먼스',

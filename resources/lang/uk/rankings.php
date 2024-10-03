@@ -10,9 +10,9 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'beatmap' => 'Складність',
+        'percentile_10' => '10-ий Відсотковий Рекорд',
+        'percentile_50' => '50-ий Відсотковий Рекорд',
     ],
 
     'filter' => [
@@ -36,7 +36,7 @@ return [
     'type' => [
         'charts' => 'чарти',
         'country' => 'країни',
-        'daily_challenge' => '',
+        'daily_challenge' => 'щоденний виклик',
         'kudosu' => 'кудосу',
         'multiplayer' => 'мультиплеєр',
         'performance' => 'продуктивність',

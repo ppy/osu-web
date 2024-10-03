@@ -52,7 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => '您确定要提名这张谱面吗？',
-            'different_nominator_warning' => '',
+            'different_nominator_warning' => '如果谱面的提名者发生了变更，那么在谱面过审后，它在过审区的队列位置将重置。',
             'header' => '提名谱面',
             'hybrid_warning' => '注意：您只能提名一次，所以请确保提名包含所有您想要提名的游戏模式。',
             'current_main_ruleset' => '主游戏模式：:ruleset',
