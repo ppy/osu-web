@@ -919,6 +919,15 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkChatChannelListUsers(?User $user, Channel $channel): ?string
+    {
+        if ($channel->isAnnouncement() && $this->doCheckUser($user, 'ChatAnnounce', $channel)->can()) {
+            return 'ok';
+        }
+
+        return null;
+    }
+
     /**
      * TODO: always use a channel for this check?
      *

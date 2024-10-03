@@ -30,6 +30,7 @@ function getMinMessageIdFrom(messages: Message[]) {
 export default class Channel {
   private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
 
+  @observable canListUsers: boolean = false;
   @observable canMessageError: string | null = null;
   @observable channelId: number;
   @observable description?: string;
@@ -242,7 +243,13 @@ export default class Channel {
 
   @action
   readonly loadUsers = () => {
-    if (this.type !== 'ANNOUNCE' || this.usersCursor == null || this.loadUsersXhr != null) {
+    if (!this.canListUsers) {
+      this.users = [];
+      this.usersCursor = null;
+      return;
+    }
+
+    if (this.usersCursor == null || this.loadUsersXhr != null) {
       return;
     }
 
@@ -286,6 +293,7 @@ export default class Channel {
     this.serverLastMessageId = json.last_message_id;
 
     if (json.current_user_attributes != null) {
+      this.canListUsers = json.current_user_attributes.can_list_users;
       this.canMessageError = json.current_user_attributes.can_message_error;
       const lastReadId = json.current_user_attributes.last_read_id ?? 0;
       this.setLastReadId(lastReadId);

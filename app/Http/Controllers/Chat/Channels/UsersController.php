@@ -17,7 +17,7 @@ class UsersController extends Controller
     {
         $channel = Channel::findOrFail($channelId);
 
-        if (!$channel->isAnnouncement() || !priv_check('ChatAnnounce', $channel)->can()) {
+        if (!priv_check('ChatChannelListUsers', $channel)->can()) {
             return [
                 'users' => [],
                 ...cursor_for_response(null),
