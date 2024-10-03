@@ -201,7 +201,7 @@ return [
             'daily_streak_best' => '최다 연속 진행일
 ',
             'daily_streak_current' => '현재 연속 진행일',
-            'playcount' => '',
+            'playcount' => '참여 일수',
             'title' => '일일미션',
             'top_10p_placements' => '상위 10%',
             'top_50p_placements' => '상위 50%',
@@ -247,7 +247,7 @@ return [
                 'title' => '색상',
 
                 'supporter' => [
-                    '_' => '',
+                    '_' => '커스텀 색상 테마는 :link만 사용할 수 있습니다.',
                     'link' => 'osu! 서포터',
                 ],
             ],

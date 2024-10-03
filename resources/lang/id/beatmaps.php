@@ -218,7 +218,7 @@ return [
             'unresolved_problems' => 'Beatmap ini sedang diblokir untuk dapat melewati kategori Qualified hingga :problems terselesaikan.',
             'problems' => 'masalah berikut',
             'on' => 'pada tanggal :date',
-            'queue' => 'antrian ranking',
+            'queue' => 'antrean ranking',
             'soon' => 'segera',
         ],
 

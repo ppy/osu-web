@@ -169,7 +169,7 @@ return [
                 '_' => '你必须 :link 才能更改用户名！',
                 'link_text' => '支持 osu!',
             ],
-            'username_is_same' => '这就是你现在的用户名，大笨蛋！',
+            'username_is_same' => '这就是你现在的玩家名，大笨蛋！',
         ],
     ],
 

@@ -12,7 +12,7 @@ return [
             'title' => '头像',
             'reset' => '重置',
             'rules' => '请确保你的头像符合 :link。<br/>这意味着头像内容必须是<strong>全年龄的</strong>，即没有裸露、亵渎或暗示的内容。',
-            'rules_link' => '社区规则',
+            'rules_link' => '视觉内容注意事项',
         ],
 
         'email' => [

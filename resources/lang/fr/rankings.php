@@ -10,9 +10,9 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'beatmap' => 'Difficulté',
+        'percentile_10' => 'Score du 10ᵉ centile',
+        'percentile_50' => 'Score médian',
     ],
 
     'filter' => [
@@ -36,7 +36,7 @@ return [
     'type' => [
         'charts' => 'spotlights (ancien)',
         'country' => 'pays',
-        'daily_challenge' => '',
+        'daily_challenge' => 'défi du jour',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multijoueur',
         'performance' => 'performance',
