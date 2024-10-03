@@ -190,7 +190,7 @@ return [
 
     'nominations' => [
         'already_nominated' => '你已经提名过这张谱面了。',
-        'cannot_nominate' => '您不能提名此谱面游戏模式。',
+        'cannot_nominate' => '您不能提名这个游戏模式的谱面。',
         'delete' => '删除',
         'delete_own_confirm' => '你确定要删除吗？删除后你将回到个人资料页。',
         'delete_other_confirm' => '你确定要删除吗？删除后你将回到他的个人资料页。',

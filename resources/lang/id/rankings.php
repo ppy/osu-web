@@ -10,9 +10,9 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'beatmap' => 'Tingkat Kesulitan',
+        'percentile_10' => 'Skor Persentil Ke-10',
+        'percentile_50' => 'Skor Persentil Ke-50',
     ],
 
     'filter' => [
@@ -36,7 +36,7 @@ return [
     'type' => [
         'charts' => 'spotlights',
         'country' => 'negara',
-        'daily_challenge' => '',
+        'daily_challenge' => 'tantangan harian',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'performance' => 'performa',

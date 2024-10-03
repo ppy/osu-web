@@ -863,7 +863,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        return $prefix.'annnonce_only';
+        return $prefix.'no_announce';
     }
 
     /**

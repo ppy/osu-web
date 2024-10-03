@@ -36,7 +36,7 @@ return [
     'type' => [
         'charts' => 'promovări',
         'country' => 'național',
-        'daily_challenge' => '',
+        'daily_challenge' => 'provocare zilnică',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'performance' => 'performanță',
