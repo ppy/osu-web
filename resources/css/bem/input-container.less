@@ -3,11 +3,11 @@
 
 .input-container {
   --label-colour: hsl(var(--hsl-c2));
-  --input-bg: hsl(var(--hsl-b5));
+  --input-bg: hsl(var(--hsl-b6));
 
   display: flex;
   flex-direction: column;
-  background: var(--input-bg);
+  background-color: var(--input-bg);
   border-radius: @border-radius-large;
   text-transform: initial;
   font-weight: initial;
@@ -30,8 +30,6 @@
   }
 
   &--chat {
-    --input-bg: hsl(var(--hsl-b6));
-
     border: 2px solid transparent;
   }
 
@@ -52,8 +50,6 @@
   }
 
   &--judging {
-    --input-bg: hsl(var(--hsl-b3));
-
     border: 2px solid transparent;
     margin: 20px 0;
 
