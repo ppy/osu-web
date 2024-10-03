@@ -14,7 +14,7 @@ use Carbon\CarbonImmutable;
 
 class State
 {
-    private const KEY_VALID_DURATION = 5 * 3600;
+    private const KEY_VALID_DURATION = 600;
 
     public readonly CarbonImmutable $expiresAt;
     public readonly string $key;
