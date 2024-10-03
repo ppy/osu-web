@@ -81,7 +81,7 @@ return [
         'beatmapset_disqualify' => 'Erhalte Benachrichtigungen, wenn Beatmaps der folgenden Modi disqualifiziert werden',
         'comment_reply' => 'Erhalte Benachrichtigungen für Antworten auf deine Kommentare',
         'title' => 'Benachrichtigungen',
-        'topic_auto_subscribe' => 'Benachrichtigungen zu den von dir erstellten Forenposts immer aktivieren',
+        'topic_auto_subscribe' => 'Benachrichtigungen zu den Forenposts, die du erstellt oder auf die du geantwortet hast, immer aktivieren',
 
         'options' => [
             '_' => 'Zustelloptionen',
