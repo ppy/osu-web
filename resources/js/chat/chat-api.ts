@@ -16,6 +16,11 @@ interface GetChannelResponse {
   users: UserJson[];
 }
 
+interface GetChannelUsersResponse {
+  cursor_string: null | string;
+  users: UserJson[];
+}
+
 interface GetMessagesResponse {
   messages: MessageJson[];
   users: UserJson[];
@@ -54,6 +59,13 @@ export function getChannel(channelId: number) {
 
     return response.channel;
   }));
+}
+
+export function getChannelUsers(channelId: number, cursor: string) {
+  return $.get(route('chat.channels.users.index', {
+    channel: channelId,
+    cursor_string: cursor,
+  })) as JQuery.jqXHR<GetChannelUsersResponse>;
 }
 
 export function getMessages(channelId: number, params?: { until?: number }) {
