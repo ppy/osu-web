@@ -176,27 +176,31 @@ export default class SearchForm extends React.Component<Props> {
             </InputContainer>
 
             <InputContainer labelKey='artist.tracks.index.form.genre' modifiers={['4', 'genre']}>
-              <div className='artist-track-search-form-switches'>
-                {this.renderGenreLink(trans('artist.tracks.index.form.genre_all'), null)}
-                {this.props.availableGenres.map((genre) => this.renderGenreLink(genre, genre))}
+              <div className='input-text'>
+                <div className='artist-track-search-form-switches'>
+                  {this.renderGenreLink(trans('artist.tracks.index.form.genre_all'), null)}
+                  {this.props.availableGenres.map((genre) => this.renderGenreLink(genre, genre))}
+                </div>
               </div>
             </InputContainer>
 
             <InputContainer labelKey='artist.tracks.index.form.exclusive_only' modifiers={['4', 'genre']}>
-              <div className='artist-track-search-form-switches'>
-                {([['all', false], ['exclusive_only', true]] as const).map(([label, value]) => (
-                  <a
-                    key={label}
-                    className={classWithModifiers('artist-track-search-form-switches__link', {
-                      active: this.params.exclusive_only === value,
-                    })}
-                    data-value={value}
-                    href={makeLink({ ...this.params, exclusive_only: value })}
-                    onClick={this.handleExclusiveOnlyLinkClick}
-                  >
-                    {trans(`artist.tracks.index.exclusive_only.${label}`)}
-                  </a>
-                ))}
+              <div className='input-text'>
+                <div className='artist-track-search-form-switches'>
+                  {([['all', false], ['exclusive_only', true]] as const).map(([label, value]) => (
+                    <a
+                      key={label}
+                      className={classWithModifiers('artist-track-search-form-switches__link', {
+                        active: this.params.exclusive_only === value,
+                      })}
+                      data-value={value}
+                      href={makeLink({ ...this.params, exclusive_only: value })}
+                      onClick={this.handleExclusiveOnlyLinkClick}
+                    >
+                      {trans(`artist.tracks.index.exclusive_only.${label}`)}
+                    </a>
+                  ))}
+                </div>
               </div>
             </InputContainer>
           </div>
