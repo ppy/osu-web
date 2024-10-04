@@ -63,7 +63,6 @@ export default class CreateAnnouncement extends React.Component<Props> {
           </InputContainer>
           <InputContainer
             labelKey='chat.form.labels.description'
-            modifiers='chat'
             {...this.model.inputContainerPropsFor('description')}
           >
             <input
@@ -77,7 +76,6 @@ export default class CreateAnnouncement extends React.Component<Props> {
           <InputContainer
             for='chat-form-users'
             labelKey='chat.form.labels.users'
-            modifiers='chat'
             {...this.model.inputContainerPropsFor('users')}
           >
             <div className='chat-form-users'>
@@ -95,7 +93,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
           </InputContainer>
           <InputContainer
             labelKey='chat.form.labels.message'
-            modifiers={['chat', 'fill']}
+            modifiers='fill'
             {...this.model.inputContainerPropsFor('message')}
           >
             <textarea
