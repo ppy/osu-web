@@ -46,10 +46,12 @@ export default class MenuImages extends React.Component<Props> {
 
   componentDidMount() {
     this.setAutoRotateTimer();
+    document.addEventListener('visibilitychange', this.handlePageVisibilityChange);
   }
 
   componentWillUnmount() {
     this.clearAutoRotateTimer();
+    document.removeEventListener('visibilitychange', this.handlePageVisibilityChange);
   }
 
   render() {
@@ -113,6 +115,14 @@ export default class MenuImages extends React.Component<Props> {
         + parseInt(event.currentTarget.dataset.index ?? '', 10)
         - modulo(this.index, this.length),
     );
+  };
+
+  private readonly handlePageVisibilityChange = () => {
+    if (document.hidden) {
+      this.clearAutoRotateTimer();
+    } else {
+      this.setAutoRotateTimer();
+    }
   };
 
   @action
