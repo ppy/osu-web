@@ -15,8 +15,8 @@
     <div class="osu-page">
         <div class="user-home">
             <div class="user-home__news">
-                <div class="js-react--menu-images">
-                    @if (count($menuImages) > 0)
+                @if (count($menuImages) > 0)
+                    <div class="js-react--menu-images">
                         <div class="menu-images menu-images--placeholder">
                             <div class="menu-images__container">
                                 {!! spinner() !!}
@@ -30,8 +30,8 @@
                                 </div>
                             @endif
                         </div>
-                    @endif
-                </div>
+                    </div>
+                @endif
 
                 <h2 class="user-home__news-title">{{ osu_trans('home.user.news.title') }}</h2>
 
