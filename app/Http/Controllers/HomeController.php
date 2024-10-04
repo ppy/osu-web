@@ -15,6 +15,7 @@ use App\Models\Beatmapset;
 use App\Models\Forum\Post;
 use App\Models\NewsPost;
 use App\Models\UserDonation;
+use App\Transformers\MenuImageTransformer;
 use Auth;
 use Jenssegers\Agent\Agent;
 use Request;
@@ -99,7 +100,7 @@ class HomeController extends Controller
         $news = NewsPost::default()->limit($newsLimit)->get();
 
         if (Auth::check()) {
-            $menuImages = json_collection(MenuContent::activeImages(), 'MenuImage');
+            $menuImages = json_collection(MenuContent::activeImages(), new MenuImageTransformer());
             $newBeatmapsets = Beatmapset::latestRanked();
             $popularBeatmapsets = Beatmapset::popular()->get();
 
