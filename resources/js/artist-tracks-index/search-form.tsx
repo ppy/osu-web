@@ -97,13 +97,15 @@ export default class SearchForm extends React.Component<Props> {
       <form className='artist-track-search-form' onSubmit={this.handleSubmit}>
         <input className='u-invisible' type='submit' />
         <div className='artist-track-search-form__content'>
-          <input
-            className='artist-track-search-form__big-input'
-            name='query'
-            onChange={this.handleChangeString}
-            placeholder={trans('beatmaps.listing.search.prompt')}
-            value={this.params.query ?? ''}
-          />
+          <div className='input-container input-container--search-box'>
+            <input
+              className='input-text'
+              name='query'
+              onChange={this.handleChangeString}
+              placeholder={trans('beatmaps.listing.search.prompt')}
+              value={this.params.query ?? ''}
+            />
+          </div>
 
           <h3 className='title title--artist-track-search-advanced'>
             {trans('artist.tracks.index.form.advanced')}
