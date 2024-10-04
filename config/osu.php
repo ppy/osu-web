@@ -226,7 +226,7 @@ return [
         'lazer_dl.windows_x64' => presence(env('OSU_URL_LAZER_WINDOWS_X64')) ?? 'https://github.com/ppy/osu/releases/latest/download/install.exe',
         'lazer_dl_other' => presence(env('OSU_URL_LAZER_OTHER')) ?? 'https://github.com/ppy/osu/#running-osu',
         'lazer_info' => presence(env('OSU_URL_LAZER_INFO')),
-        'menu_content' => 'https://assets.ppy.sh/menu-content.json',
+        'menu_content' => presence(env('OSU_URL_MENU_CONTENT_JSON')) ?? 'https://assets.ppy.sh/menu-content.json',
         'osx' => 'https://osx.ppy.sh',
         'server_status' => 'https://status.ppy.sh',
         'smilies' => '/forum/images/smilies',
