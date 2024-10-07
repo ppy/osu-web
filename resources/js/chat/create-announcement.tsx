@@ -63,7 +63,6 @@ export default class CreateAnnouncement extends React.Component<Props> {
           </InputContainer>
           <InputContainer
             labelKey='chat.form.labels.description'
-            modifiers='chat'
             {...this.model.inputContainerPropsFor('description')}
           >
             <input
@@ -77,25 +76,26 @@ export default class CreateAnnouncement extends React.Component<Props> {
           <InputContainer
             for='chat-form-users'
             labelKey='chat.form.labels.users'
-            modifiers='chat'
             {...this.model.inputContainerPropsFor('users')}
           >
-            <div className='chat-form-users'>
-              <UserCardBrick user={core.currentUserOrFail} />
-              <UsernameInput
-                id='chat-form-users'
-                ignoreCurrentUser
-                name='users'
-                onBlur={this.handleBlur}
-                onValidUsersChanged={this.handleValidUsersChanged}
-                onValueChanged={this.handleUsernameInputValueChanged}
-                {...this.usernameInputInitialProps}
-              />
+            <div className='input-text'>
+              <div className='chat-form-users'>
+                <UserCardBrick user={core.currentUserOrFail} />
+                <UsernameInput
+                  id='chat-form-users'
+                  ignoreCurrentUser
+                  name='users'
+                  onBlur={this.handleBlur}
+                  onValidUsersChanged={this.handleValidUsersChanged}
+                  onValueChanged={this.handleUsernameInputValueChanged}
+                  {...this.usernameInputInitialProps}
+                />
+              </div>
             </div>
           </InputContainer>
           <InputContainer
             labelKey='chat.form.labels.message'
-            modifiers={['chat', 'fill']}
+            modifiers='fill'
             {...this.model.inputContainerPropsFor('message')}
           >
             <textarea
