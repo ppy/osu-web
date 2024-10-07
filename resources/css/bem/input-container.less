@@ -74,6 +74,12 @@
     --input-padding: 15px var(--input-padding-base);
   }
 
+  &--group-history-wide {
+    @media @mobile {
+      grid-column-end: span 2;
+    }
+  }
+
   &__label {
     display: flex;
     justify-content: space-between;
