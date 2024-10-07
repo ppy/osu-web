@@ -651,17 +651,6 @@ function pack_str($str)
     return pack('ccH*', 0x0b, strlen($str), bin2hex($str));
 }
 
-function pagination($params, $defaults = null)
-{
-    $limit = clamp(get_int($params['limit'] ?? null) ?? $defaults['limit'] ?? 20, 5, 50);
-    $page = max(get_int($params['page'] ?? null) ?? 1, 1);
-
-    $offset = max_offset($page, $limit);
-    $page = 1 + $offset / $limit;
-
-    return compact('limit', 'page', 'offset');
-}
-
 function product_quantity_options($product, $selected = null)
 {
     if ($product->stock === null) {
@@ -1605,9 +1594,13 @@ function get_params($input, $namespace, $keys, $options = [])
 
     $params = [];
 
-    if (Arr::accessible($input)) {
-        $options['null_missing'] = $options['null_missing'] ?? false;
+    $options['null_missing'] ??= false;
 
+    if (!Arr::accessible($input) && $options['null_missing']) {
+        $input = [];
+    }
+
+    if (Arr::accessible($input)) {
         foreach ($keys as $keyAndType) {
             $keyAndType = explode(':', $keyAndType);
 

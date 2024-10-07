@@ -10,7 +10,7 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
+        'beatmap' => 'Poziom trudności',
         'percentile_10' => '',
         'percentile_50' => '',
     ],
@@ -36,7 +36,7 @@ return [
     'type' => [
         'charts' => 'Wyróżnionych',
         'country' => 'krajowy',
-        'daily_challenge' => '',
+        'daily_challenge' => 'wyzwanie dnia',
         'kudosu' => 'kudosu',
         'multiplayer' => 'wieloosobowy',
         'performance' => 'globalny',

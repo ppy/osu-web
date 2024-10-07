@@ -10,7 +10,7 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
+        'beatmap' => 'Độ khó',
         'percentile_10' => '',
         'percentile_50' => '',
     ],
@@ -36,7 +36,7 @@ return [
     'type' => [
         'charts' => 'tiêu điểm',
         'country' => 'quốc gia',
-        'daily_challenge' => '',
+        'daily_challenge' => 'thử thách hằng ngày',
         'kudosu' => 'kudosu',
         'multiplayer' => 'nhiều người chơi',
         'performance' => 'thành tích',

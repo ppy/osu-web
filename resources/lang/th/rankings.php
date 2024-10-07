@@ -10,9 +10,9 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'beatmap' => 'ระดับความยาก',
+        'percentile_10' => 'คะแนนเปอร์เซ็นไทล์ที่ 10',
+        'percentile_50' => 'คะแนนเปอร์เซ็นไทล์ที่ 50',
     ],
 
     'filter' => [
@@ -36,7 +36,7 @@ return [
     'type' => [
         'charts' => 'โดดเด่น',
         'country' => 'ประเทศ',
-        'daily_challenge' => '',
+        'daily_challenge' => 'ชาเลนจ์ประจำวัน',
         'kudosu' => 'kudosu',
         'multiplayer' => 'โหมดผู้เล่นหลายคน',
         'performance' => 'ประสิทธิภาพ',

@@ -74,11 +74,11 @@ return [
 
     'download' => [
         'action' => 'Спампаваць osu!',
-        'action_lazer' => 'Скачаць osu!(lazer)',
+        'action_lazer' => 'Спампаваць osu!(lazer)',
         'action_lazer_description' => 'наступнае глабальнае абнаўленне osu!',
         'action_lazer_info' => 'артыкул з падрабязнай інфармацыяй',
         'action_lazer_title' => 'паспрабаваць osu!(lazer)',
-        'action_title' => 'скачаць osu!',
+        'action_title' => 'спампаваць osu!',
         'for_os' => 'для :os',
         'macos-fallback' => 'для macOS',
         'mirror' => 'люстэрка',

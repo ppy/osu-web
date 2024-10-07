@@ -29,7 +29,7 @@
             "App\\Http\\Middleware\\RequireScopes:any",
             "Illuminate\\Auth\\Middleware\\Authenticate",
             "App\\Http\\Middleware\\VerifyUser",
-            "App\\Http\\Middleware\\ThrottleRequests:60,10"
+            "App\\Http\\Middleware\\ThrottleRequests:3,5"
         ],
         "scopes": [
             "any"
