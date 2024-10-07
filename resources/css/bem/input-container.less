@@ -2,26 +2,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .input-container {
+  --label-height: 25px;
   --label-colour: hsl(var(--hsl-c2));
-  --label-padding-base: 5px;
+  --label-pointer-events: auto;
   --input-bg: hsl(var(--hsl-b6));
   --input-border-colour: var(--input-border-base-colour);
   --input-border-base-colour: transparent;
   --input-border-hover-colour: hsl(var(--hsl-l3));
   --input-border-focus-colour: hsl(var(--hsl-l1));
   --input-border-error-colour: hsl(var(--hsl-red-2));
-  --input-padding: var(--label-padding-base) var(--input-padding-base)
-    var(--input-padding-base);
+  --input-padding: var(--label-height) var(--input-padding-right)
+    var(--input-padding-base) var(--input-padding-base);
   --input-padding-base: 10px;
+  --input-padding-right: var(--input-padding-base);
 
-  display: flex;
-  flex-direction: column;
-  background-color: var(--input-bg);
-  border-radius: @border-radius-large;
+  display: grid;
   text-transform: initial;
   font-weight: initial;
   font-size: inherit;
-  box-shadow: inset 0 0 0 2px var(--input-border-colour);
+  position: relative;
 
   margin: 0;
   width: 100%;
@@ -53,8 +52,6 @@
   &--fill {
     flex: 1;
     min-height: 150px;
-    display: grid;
-    grid-template-rows: auto 1fr;
   }
 
   &--genre {
@@ -74,12 +71,33 @@
     --input-padding: 15px var(--input-padding-base);
   }
 
+  &--select {
+    --arrow-width: calc(var(--input-padding-base) * 2 + 1em);
+    --input-padding-right: var(--arrow-width);
+    --label-pointer-events: none;
+
+    &::after {
+      .fas();
+      .center-content();
+      content: @fa-var-chevron-down;
+      width: var(--arrow-width);
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+      pointer-events: none;
+    }
+  }
+
   &__label {
     display: flex;
     justify-content: space-between;
     margin: 0;
     color: var(--label-colour);
     font-size: @font-size--normal;
-    padding: var(--label-padding-base) var(--input-padding-base) 0;
+    padding: 5px var(--input-padding-base) 0;
+    position: absolute;
+    width: 100%;
+    pointer-events: var(--label-pointer-events);
   }
 }
