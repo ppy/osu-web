@@ -60,6 +60,7 @@ class ChannelTransformer extends TransformerAbstract
         $result = $channel->checkCanMessage($this->user);
 
         return $this->primitive([
+            'can_list_users' => priv_check_user($this->user, 'ChatChannelListUsers', $channel)->can(),
             'can_message' => $result->can(),
             'can_message_error' => $result->message(),
             'last_read_id' => $channel->lastReadIdFor($this->user),
