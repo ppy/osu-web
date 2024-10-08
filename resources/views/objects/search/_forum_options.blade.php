@@ -73,11 +73,17 @@
 
                     @foreach (App\Models\Forum\Forum::searchable()->displayList()->get() as $forum)
                         @if (priv_check('ForumView', $forum)->can())
+                            @php
+                                $currentDepth = $forum->currentDepth();
+                            @endphp
+                            @if ($currentDepth === 0)
+                                <hr>
+                            @endif
                             <option
                                 value="{{ $forum->getKey() }}"
                                 {{ $forum->getKey() === get_int($params[$fields['forumId']] ?? null) ? 'selected' : '' }}
                             >
-                                {{ str_repeat('–', $forum->currentDepth()) }}
+                                {{ str_repeat('–', $currentDepth) }}
                                 {{ $forum->forum_name }}
                             </option>
                         @endif

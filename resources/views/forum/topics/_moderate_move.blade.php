@@ -35,11 +35,17 @@
                             <label class="form-select">
                                 <select name="destination_forum_id" class="form-select__input">
                                     @foreach (App\Models\Forum\Forum::displayList()->get() as $dstForum)
+                                        @php
+                                            $currentDepth = $dstForum->currentDepth();
+                                        @endphp
+                                        @if (!$loop->first && $currentDepth === 0)
+                                            <hr>
+                                        @endif
                                         <option value="{{ $dstForum->getKey() }}"
                                             {{ $dstForum->isOpen() ? '' : 'disabled' }}
                                             {{ $dstForum->getKey() === $topic->forum_id ? 'selected' : '' }}
                                         >
-                                            {{ str_repeat('–', $dstForum->currentDepth()) }}
+                                            {{ str_repeat('–', $currentDepth) }}
                                             {{ $dstForum->forum_name }}
                                         </option>
                                     @endforeach
