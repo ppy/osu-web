@@ -2,13 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .menu-images {
-  --arrow-opacity: 0;
+  --arrow-opacity-desktop: 0;
   --indicators-opacity: 1;
 
   position: relative;
 
   &:hover {
-    --arrow-opacity: 1;
+    --arrow-opacity-desktop: 1;
   }
 
   &--placeholder {
@@ -22,7 +22,10 @@
     padding: 10px;
     position: absolute;
     top: 0;
-    opacity: var(--arrow-opacity);
+
+    @media @desktop {
+      opacity: var(--arrow-opacity-desktop);
+    }
 
     &:hover {
       color: @osu-colour-l1;
