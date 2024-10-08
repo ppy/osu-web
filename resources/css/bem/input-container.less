@@ -3,10 +3,12 @@
 
 .input-container {
   --label-font-size: @font-size--normal;
+  --label-line-height: 1.25;
   --label-height: calc(
-    var(--label-font-size) + var(--input-padding-base) + 5px
+    var(--label-font-size) * var(--label-line-height) + var(--label-padding) * 2
   );
   --label-colour: hsl(var(--hsl-c2));
+  --label-padding: 5px;
   --label-pointer-events: auto;
   --input-bg: hsl(var(--hsl-b6));
   --input-border-colour: var(--input-border-base-colour);
@@ -98,10 +100,11 @@
   &__label {
     display: flex;
     justify-content: space-between;
-    margin: 0;
     color: var(--label-colour);
     font-size: var(--label-font-size);
-    padding: 5px var(--input-padding-base) 0;
+    line-height: var(--label-line-height);
+    margin: 0;
+    padding: var(--label-padding) var(--input-padding-base) 0;
     position: absolute;
     width: 100%;
     pointer-events: var(--label-pointer-events);
