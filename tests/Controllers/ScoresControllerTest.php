@@ -95,7 +95,7 @@ class ScoresControllerTest extends TestCase
             ->assertSuccessful();
     }
 
-    public function testDownloadApiZ(): void
+    public function testDownloadApi(): void
     {
         $this->expectCountChange(fn () => static::getLegacyScoreReplayViewCount($this->score), 1);
         $this->expectCountChange(fn () => static::getScoreReplayViewCount($this->soloScore), 1);
