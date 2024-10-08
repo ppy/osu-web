@@ -25,6 +25,10 @@
     data-method="post"
 >
     <span class="btn-circle__content">
-        <i class="{{ issue_icon($issueTag) }}"></i>
+        @if (in_array($issueTag, $topic::ISSUE_TAGS, true))
+            <i class="{{ issue_icon($issueTag) }}"></i>
+        @elseif (in_array($issueTag, $topic::PLATFORM_ISSUE_TAGS, true))
+            {{ platform_issue_text($issueTag) }}
+        @endif
     </span>
 </button>

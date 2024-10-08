@@ -287,11 +287,32 @@ return [
             'to_1_done' => 'Added "invalid" tag',
         ],
 
+        'issue_tag_lazer' => [
+            'to_0' => 'Remove "osu!lazer" tag',
+            'to_0_done' => 'Removed "osu!lazer" tag',
+            'to_1' => 'Add "osu!lazer" tag',
+            'to_1_done' => 'Added "osu!lazer" tag',
+        ],
+
         'issue_tag_resolved' => [
             'to_0' => 'Remove "resolved" tag',
             'to_0_done' => 'Removed "resolved" tag',
             'to_1' => 'Add "resolved" tag',
             'to_1_done' => 'Added "resolved" tag',
+        ],
+
+        'issue_tag_stable' => [
+            'to_0' => 'Remove "osu!stable" tag',
+            'to_0_done' => 'Removed "osu!stable" tag',
+            'to_1' => 'Add "osu!stable" tag',
+            'to_1_done' => 'Added "osu!stable" tag',
+        ],
+
+        'issue_tag_web' => [
+            'to_0' => 'Remove "osu!web" tag',
+            'to_0_done' => 'Removed "osu!web" tag',
+            'to_1' => 'Add "osu!web" tag',
+            'to_1_done' => 'Added "osu!web" tag',
         ],
 
         'lock' => [
