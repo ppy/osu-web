@@ -2,7 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .input-container {
-  --label-height: 25px;
+  --label-font-size: @font-size--normal;
+  --label-height: calc(var(--label-font-size) + var(--input-padding-base) + 5px);
   --label-colour: hsl(var(--hsl-c2));
   --label-pointer-events: auto;
   --input-bg: hsl(var(--hsl-b6));
@@ -89,12 +90,15 @@
     }
   }
 
+  // Floats the label so the input can receive click event on the entire area.
+  // Mainly useful for select input to allow showing the dropdown when the
+  // label is clicked.
   &__label {
     display: flex;
     justify-content: space-between;
     margin: 0;
     color: var(--label-colour);
-    font-size: @font-size--normal;
+    font-size: var(--label-font-size);
     padding: 5px var(--input-padding-base) 0;
     position: absolute;
     width: 100%;
