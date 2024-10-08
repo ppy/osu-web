@@ -4,8 +4,10 @@
 .input-text {
   .reset-input();
   color: hsl(var(--hsl-c1));
-  background: transparent;
+  background: var(--input-bg);
   resize: none;
   width: 100%;
   padding: var(--input-padding);
+  box-shadow: inset 0 0 0 2px var(--input-border-colour);
+  border-radius: @border-radius-large;
 }
