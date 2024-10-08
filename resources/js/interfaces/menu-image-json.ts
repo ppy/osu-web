@@ -1,11 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-.input-text {
-  .reset-input();
-  color: hsl(var(--hsl-c1));
-  background: transparent;
-  resize: none;
-  width: 100%;
-  padding: var(--input-padding);
+export default interface MenuImageJson {
+  ended_at: string | null;
+  image_url: string;
+  started_at: string | null;
+  url: string;
 }
