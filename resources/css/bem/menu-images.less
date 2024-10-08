@@ -3,11 +3,8 @@
 
 .menu-images {
   --arrow-opacity: 0;
-  --container-height: 90px;
   --indicators-opacity: 1;
 
-  margin-top: 20px;
-  overflow-x: hidden;
   position: relative;
 
   &:hover {
@@ -21,7 +18,7 @@
   &__arrow {
     .reset-input();
     .fade-element(@hover-transition-duration);
-    height: var(--container-height);
+    height: 100%;
     padding: 10px;
     position: absolute;
     top: 0;
@@ -33,12 +30,12 @@
 
     &--left {
       --icon: @fa-var-chevron-left;
-      left: 0;
+      left: var(--page-gutter);
     }
 
     &--right {
       --icon: @fa-var-chevron-right;
-      right: 0;
+      right: var(--page-gutter);
     }
 
     &::before {
@@ -48,15 +45,46 @@
     }
   }
 
+  &__blur {
+    transition: all 600ms;
+
+    &::before {
+      .full-size();
+      content: "";
+      background: var(--url);
+      background-position: center;
+      background-size: cover;
+      // background transition only works in some browsers
+      filter: blur(50px);
+    }
+
+    &::after {
+      .full-size();
+      content: "";
+      background-image: linear-gradient(
+        to top,
+        hsla(var(--hsl-b5), 0%),
+        hsl(var(--hsl-b5))
+      );
+    }
+  }
+
   &__container {
     .center-content();
     display: flex;
-    height: var(--container-height);
     transform: translateX(calc(-100% * var(--index, 0)));
+    width: 100%;
+    height: 100%;
 
     &--transition {
       transition: transform 300ms ease-in-out;
     }
+  }
+
+  &__images {
+    height: 120px;
+    overflow: hidden;
+    position: relative;
   }
 
   &__indicator {
@@ -100,7 +128,7 @@
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
-    margin-top: 10px;
+    padding: 0 var(--page-gutter) 5px;
     opacity: var(--indicators-opacity);
   }
 }
