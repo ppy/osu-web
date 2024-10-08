@@ -6,7 +6,7 @@ import { range } from 'lodash';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, urlPresence } from 'utils/css';
 import MenuImage from './menu-image';
 
 function modulo(dividend: number, divisor: number): number {
@@ -62,12 +62,22 @@ export default class MenuImages extends React.Component<Props> {
     if (this.length === 1) {
       return (
         <div className={bn}>
-          <div className={`${bn}__container`}>
-            <MenuImage image={this.props.images[0]} />
+          <div
+            className={`${bn}__blur`}
+            style={{
+              '--url': urlPresence(this.props.images[0].image_url),
+            } as React.CSSProperties}
+          />
+          <div className={`${bn}__images`}>
+            <div className={`${bn}__container`}>
+              <MenuImage image={this.props.images[0]} />
+            </div>
           </div>
         </div>
       );
     }
+
+    const currentIndex = modulo(this.index, this.length);
 
     return (
       <div
@@ -75,25 +85,37 @@ export default class MenuImages extends React.Component<Props> {
         onMouseEnter={this.clearAutoRotateTimer}
         onMouseLeave={this.setAutoRotateTimer}
       >
-        <div
-          className={classWithModifiers(`${bn}__container`, { transition: this.transition })}
-          onTransitionEnd={this.handleTransitionEnd}
-          style={{ '--index': this.index } as React.CSSProperties}
-        >
-          {/*
-            Render the images. If minIndex or maxIndex have been adjusted, this
-            will render duplicate images in a cycling pattern to help create
-            the illusion of an infinitely scrolling container
-          */}
-          {range(this.minIndex, this.maxIndex + 1).map((index) => (
-            <MenuImage
-              key={index}
-              image={this.props.images[modulo(index, this.length)]}
-              index={index}
-            />
-          ))}
+        {this.props.images.map((imageJson, i) => (
+          <div
+            key={imageJson.image_url}
+            className={`${bn}__blur`}
+            style={{
+              '--url': urlPresence(imageJson.image_url),
+              opacity: i === currentIndex ? 1 : 0,
+            } as React.CSSProperties}
+          />
+        ))}
+        <div className={`${bn}__images`}>
+          <div
+            className={classWithModifiers(`${bn}__container`, { transition: this.transition })}
+            onTransitionEnd={this.handleTransitionEnd}
+            style={{ '--index': this.index } as React.CSSProperties}
+          >
+            {/*
+              Render the images. If minIndex or maxIndex have been adjusted, this
+              will render duplicate images in a cycling pattern to help create
+              the illusion of an infinitely scrolling container
+            */}
+            {range(this.minIndex, this.maxIndex + 1).map((index) => (
+              <MenuImage
+                key={index}
+                image={this.props.images[modulo(index, this.length)]}
+                index={index}
+              />
+            ))}
+          </div>
+          {this.renderArrows()}
         </div>
-        {this.renderArrows()}
         {this.renderIndicators()}
       </div>
     );
