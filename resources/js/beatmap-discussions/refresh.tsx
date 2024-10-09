@@ -67,7 +67,7 @@ export class Refresh extends React.PureComponent<Props> {
 
     return (
       <button
-        className={classWithModifiers('back-to-top', { updates })}
+        className={classWithModifiers('floating-toolbar-button', { updates })}
         data-tooltip-float='fixed'
         disabled={!this.canRefresh}
         onClick={this.refresh}
