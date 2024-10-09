@@ -30,7 +30,7 @@ export class Refresh extends React.PureComponent<Props> {
   @observable private lastUpdateResponse: Date | null = null;
   private timeoutCheckNew?: number;
   @observable private xhrCheckNew?: JQuery.jqXHR<CheckUpdatesResponseJson>;
-  private xhrGetUpdates?: JQuery.jqXHR<UpdateResponseJson>;
+  @observable private xhrGetUpdates?: JQuery.jqXHR<UpdateResponseJson>;
 
   private get canRefresh() {
     return this.xhrGetUpdates == null && this.hasUpdates;
@@ -74,7 +74,7 @@ export class Refresh extends React.PureComponent<Props> {
         title={this.title}
       >
         <i className='fas fa-rotate' />
-        {this.xhrCheckNew != null || this.xhrGetUpdates ? (
+        {this.xhrCheckNew != null || this.xhrGetUpdates != null ? (
           <Spinner />
         ) : (
           <span className='fas fa-sync-alt' />
