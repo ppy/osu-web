@@ -6,7 +6,7 @@
 
 @section('content')
     <div
-        class="js-react--news-index osu-layout osu-layout--full"
+        class="js-react--news-index u-contents"
         data-props="{{ json_encode(['data' => $postsJson]) }}"
     ></div>
 

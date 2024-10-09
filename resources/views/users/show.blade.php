@@ -13,7 +13,7 @@
     @include('users._restricted_banner', compact('user'))
 
     <div
-        class="js-react--profile-page osu-layout osu-layout--full"
+        class="js-react--profile-page u-contents"
         data-initial-data="{{ json_encode($initialData) }}"
     ></div>
 @endsection
