@@ -11,7 +11,6 @@ import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import DiscussionPage, { discussionPages } from './discussion-page';
 import DiscussionsState from './discussions-state';
-import { Refresh } from './refresh';
 
 interface Props {
   discussionsState: DiscussionsState;
@@ -53,9 +52,6 @@ export class ModeSwitcher extends React.Component<Props> {
             <ul ref={this.scrollerRef} className='page-mode page-mode--page-extra-tabs'>
               {discussionPages.map(this.renderMode)}
             </ul>
-            <div className='page-mode page-mode--page-extra-tabs'>
-              <Refresh discussionsState={this.props.discussionsState} />
-            </div>
           </div>
         </div>
       </>

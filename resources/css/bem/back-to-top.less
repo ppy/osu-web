@@ -7,14 +7,25 @@
   .circle(50px);
   .default-box-shadow();
 
+  background-color: hsl(var(--hsl-b5));
+  color: #fff;
+
+  font-size: @font-size--title;
+
+  &--updates {
+    text-shadow: 0 0 @font-size--title rgba(255, 255, 255, 0.5);
+  }
+}
+
+.floating-toolbar {
   position: fixed;
   bottom: 40px;
   right: 20px;
 
-  background-color: @osu-colour-b5;
-  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 
-  font-size: @font-size--title;
   z-index: @z-index--back-to-top;
 
   @media @mobile {

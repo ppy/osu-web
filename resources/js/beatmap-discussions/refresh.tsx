@@ -7,6 +7,8 @@ import { route } from 'laroute';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import DiscussionsState from './discussions-state';
 
 interface Props {
@@ -38,6 +40,18 @@ export class Refresh extends React.PureComponent<Props> {
     return this.lastUpdateResponse != null && this.lastUpdateResponse > this.props.discussionsState.lastUpdateDate;
   }
 
+  private get title() {
+    if (this.xhrCheckNew != null) {
+      return trans('beatmap_discussions.refresh.checking');
+    }
+
+    if (this.xhrGetUpdates != null) {
+      return trans('beatmap_discussions.refresh.updating');
+    }
+
+    return this.hasUpdates ? trans('beatmap_discussions.refresh.has_updates') : trans('beatmap_discussions.refresh.no_updates');
+  }
+
   constructor(props: Props) {
     super(props);
     makeObservable(this);
@@ -49,16 +63,23 @@ export class Refresh extends React.PureComponent<Props> {
   }
 
   render() {
+    const updates = this.hasUpdates;
+
     return (
-      <>
-        {this.xhrCheckNew != null && (
-          <>
-            <Spinner /> checking for updates...
-          </>
+      <button
+        className={classWithModifiers('back-to-top', { updates })}
+        data-tooltip-float='fixed'
+        disabled={!this.canRefresh}
+        onClick={this.refresh}
+        title={this.title}
+      >
+        <i className='fas fa-rotate' />
+        {this.xhrCheckNew != null || this.xhrGetUpdates ? (
+          <Spinner />
+        ) : (
+          <span className='fas fa-sync-alt' />
         )}
-        {this.hasUpdates && 'has updates, click to refresh.'}
-        <button disabled={!this.canRefresh} onClick={this.refresh}>Refresh</button>
-      </>
+      </button>
     );
   }
 

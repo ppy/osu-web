@@ -20,6 +20,7 @@ import { Events } from './events';
 import { Header } from './header';
 import { ModeSwitcher } from './mode-switcher';
 import { NewDiscussion } from './new-discussion';
+import { Refresh } from './refresh';
 
 const beatmapsetJsonId = 'json-beatmapset';
 
@@ -123,7 +124,10 @@ export default class Main extends React.Component<Props> {
             />
           </ReviewEditorConfigContext.Provider>
         )}
-        <BackToTop />
+        <div className='floating-toolbar'>
+          <Refresh discussionsState={this.discussionsState} />
+          <BackToTop />
+        </div>
       </>
     );
   }
