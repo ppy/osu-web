@@ -2,19 +2,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .floating-toolbar-button {
+  --circle-size: 50px;
+
   .reset-input();
   .center-content();
-  .circle(50px);
   .default-box-shadow();
+  .circle(var(--circle-size));
 
+  font-size: calc(var(--circle-size) * 0.48);
   background-color: hsl(var(--hsl-b5));
   color: #fff;
 
-  font-size: @font-size--title;
-
   &--updates {
     &::before {
-      .circle(10px);
+      .circle(calc(var(--circle-size) * 0.2));
       content: "";
       position: absolute;
       display: block;
@@ -22,5 +23,9 @@
       right: 0;
       background: hsl(var(--hsl-h1));
     }
+  }
+
+  @media @mobile {
+    --circle-size: 40px;
   }
 }
