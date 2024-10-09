@@ -13,7 +13,15 @@
   font-size: @font-size--title;
 
   &--updates {
-    text-shadow: 0 0 @font-size--title rgba(255, 255, 255, 0.5);
+    &::before {
+      .circle(10px);
+      content: "";
+      position: absolute;
+      display: block;
+      top: 0;
+      right: 0;
+      background: hsl(var(--hsl-h1));
+    }
   }
 }
 
