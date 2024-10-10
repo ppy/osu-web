@@ -5,7 +5,7 @@
 @extends('master')
 
 @section('content')
-    <div class="js-react--notifications-index osu-layout osu-layout--full"></div>
+    <div class="js-react--notifications-index u-contents"></div>
 @endsection
 
 @section("script")

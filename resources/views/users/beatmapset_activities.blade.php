@@ -11,7 +11,7 @@
 @section('content')
     @include('users._restricted_banner', compact('user'))
 
-    <div class="js-react--modding-profile osu-layout osu-layout--full"></div>
+    <div class="js-react--modding-profile u-contents"></div>
 @endsection
 
 @section ("script")

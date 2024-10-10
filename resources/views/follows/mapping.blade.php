@@ -5,7 +5,7 @@
 @extends('master', ['titlePrepend' => osu_trans('follows.mapping.page_title')])
 
 @section('content')
-    <div class="js-react--follows-mapping osu-layout osu-layout--full"></div>
+    <div class="js-react--follows-mapping u-contents"></div>
 
     <script id="json-follows-mapping" type="application/json">
         {!! json_encode($followsJson) !!}
