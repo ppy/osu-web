@@ -129,25 +129,7 @@ class BeatmapsetsController extends Controller
 
     public function discussion($id)
     {
-        $returnJson = Request::input('format') === 'json';
-        $requestLastUpdated = get_int(Request::input('last_updated'));
-
         $beatmapset = Beatmapset::findOrFail($id);
-
-        if ($returnJson) {
-            $lastDiscussionUpdate = $beatmapset->lastDiscussionTime();
-            $lastEventUpdate = $beatmapset->events()->max('updated_at');
-
-            if ($lastEventUpdate !== null) {
-                $lastEventUpdate = Carbon::parse($lastEventUpdate);
-            }
-
-            $latestUpdate = max($lastDiscussionUpdate, $lastEventUpdate);
-
-            if ($latestUpdate === null || $requestLastUpdated >= $latestUpdate->timestamp) {
-                return response([], 304);
-            }
-        }
 
         $initialData = [
             'beatmapset' => $beatmapset->defaultDiscussionJson(),
@@ -156,11 +138,26 @@ class BeatmapsetsController extends Controller
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
 
-        if ($returnJson) {
+        if (is_json_request()) {
             return $initialData;
         } else {
             return ext_view('beatmapsets.discussion', compact('beatmapset', 'initialData'));
         }
+    }
+
+    public function discussionCheckUpdates($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+        $lastDiscussionUpdate = $beatmapset->lastDiscussionTime();
+        $lastEventUpdate = $beatmapset->events()->max('updated_at');
+
+        if ($lastEventUpdate !== null) {
+            $lastEventUpdate = Carbon::parse($lastEventUpdate);
+        }
+
+        $latestUpdate = max($lastDiscussionUpdate, $lastEventUpdate);
+
+        return response(['last_update' => $latestUpdate]);
     }
 
     public function discussionUnlock($id)

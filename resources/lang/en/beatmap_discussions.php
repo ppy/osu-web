@@ -66,6 +66,13 @@ return [
         'version' => 'Difficulty',
     ],
 
+    'refresh' => [
+        'checking' => 'Checking for updates...',
+        'has_updates' => 'The discussion has updates, click to refresh.',
+        'no_updates' => 'No updates.',
+        'updating' => 'Updating...',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Sign in to Respond',

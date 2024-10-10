@@ -95,6 +95,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('beatmapsets/search', 'BeatmapsetsController@search')->name('beatmapsets.search');
     Route::get('beatmapsets/{beatmapset}/discussion/{beatmap?}/{mode?}/{filter?}', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');
     Route::post('beatmapsets/{beatmapset}/discussion/review', 'BeatmapDiscussionsController@review')->name('beatmapsets.discussion.review');
+    Route::get('beatmapsets/{beatmapset}/discussion-check-updates', 'BeatmapsetsController@discussionCheckUpdates')->name('beatmapsets.discussion-check-updates');
     Route::post('beatmapsets/{beatmapset}/discussion-lock', 'BeatmapsetsController@discussionLock')->name('beatmapsets.discussion-lock');
     Route::post('beatmapsets/{beatmapset}/discussion-unlock', 'BeatmapsetsController@discussionUnlock')->name('beatmapsets.discussion-unlock');
     Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download')->name('beatmapsets.download');
