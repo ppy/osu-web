@@ -14,7 +14,12 @@ trait Memoizes
         $this->memoized = [];
     }
 
-    protected function memoize(string $key, callable $function)
+    /**
+     * @template TReturn
+     * @param callable(): TReturn $function
+     * @return TReturn
+     */
+    protected function memoize(string $key, callable $function): mixed
     {
         if (!array_key_exists($key, $this->memoized)) {
             $this->memoized[$key] = $function();
