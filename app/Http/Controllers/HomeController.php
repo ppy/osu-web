@@ -6,6 +6,7 @@
 namespace App\Http\Controllers;
 
 use App;
+use App\Docs\Attributes\Page;
 use App\Libraries\CurrentStats;
 use App\Libraries\MenuContent;
 use App\Libraries\Search\AllSearch;
@@ -177,8 +178,8 @@ class HomeController extends Controller
      *
      * @queryParam mode string Either `all`, `user`, or `wiki_page`. Default is `all`. Example: all
      * @queryParam query Search keyword. Example: hello
-     * @queryParam page Search result page. Ignored for mode `all`. Example: 1
      */
+    #[Page('Search result page. Ignored for mode `all`')]
     public function search()
     {
         $currentUser = Auth::user();

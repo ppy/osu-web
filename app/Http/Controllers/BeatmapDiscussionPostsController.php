@@ -5,6 +5,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Docs\Attributes\Limit;
+use App\Docs\Attributes\Page;
+use App\Docs\Attributes\Sort;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\BeatmapsetDiscussion\Discussion;
 use App\Libraries\BeatmapsetDiscussion\Reply;
@@ -15,6 +18,7 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetWatch;
 use App\Models\User;
+use Knuckles\Scribe\Attributes\QueryParam;
 
 /**
  * @group Beatmapset Discussions
@@ -63,14 +67,13 @@ class BeatmapDiscussionPostsController extends Controller
      * posts         | [BeatmapsetDiscussionPost](#beatmapsetdiscussionpost)[] | |
      * users         | [User](#user)                                           | |
      *
-     * @queryParam beatmapset_discussion_id `id` of the [BeatmapsetDiscussion](#beatmapsetdiscussion).
-     * @queryParam limit Maximum number of results.
-     * @queryParam page Search result page.
-     * @queryParam sort `id_desc` for newest first; `id_asc` for oldest first. Defaults to `id_desc`.
-     * @queryParam types[] `first`, `reply`, `system` are the valid values. Defaults to `reply`.
-     * @queryParam user The `id` of the [User](#user).
-     * @queryParam with_deleted This param has no effect as api calls do not currently receive group permissions.
+     * @usesCursor
+     * @queryParam beatmapset_discussion_id integer `id` of the [BeatmapsetDiscussion](#beatmapsetdiscussion).
+     * @queryParam types string[] `first`, `reply`, `system` are the valid values. Defaults to `reply`.
+     * @queryParam user integer The `id` of the [User](#user).
+     * @queryParam with_deleted boolean This param has no effect as api calls do not currently receive group permissions. No-example
      */
+    #[Limit(BeatmapDiscussionPost::PER_PAGE, 5), Page, Sort('IdSort')]
     public function index()
     {
         $bundle = new BeatmapsetDiscussionPostsBundle(request()->all());

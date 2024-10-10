@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers\Chat\Channels;
 
+use App\Docs\Attributes\Limit;
 use App\Http\Controllers\Chat\Controller as BaseController;
 use App\Libraries\Chat;
 use App\Models\Chat\Channel;
@@ -37,7 +38,6 @@ class MessagesController extends BaseController
      * Returns an array of [ChatMessage](#chatmessage)
      *
      * @urlParam channel integer required The ID of the channel to retrieve messages for
-     * @queryParam limit integer number of messages to return (max of 50)
      * @queryParam since integer messages after the specified message id will be returned
      * @queryParam until integer messages up to but not including the specified message id will be returned
      *
@@ -82,6 +82,7 @@ class MessagesController extends BaseController
      *   }
      * ]
      */
+    #[Limit]
     public function index($channelId)
     {
         [

@@ -5,7 +5,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Docs\Attributes\Limit;
+use App\Docs\Attributes\Page;
+use App\Docs\Attributes\Sort;
 use App\Libraries\BeatmapsetDiscussionVotesBundle;
+use App\Models\BeatmapDiscussionVote;
 
 /**
  * @group Beatmapset Discussions
@@ -39,15 +43,14 @@ class BeatmapsetDiscussionVotesController extends Controller
      * users         | [User](#user)                                           | |
      * votes         | [BeatmapsetDiscussionVote](#beatmapsetdiscussionvote)[] | |
      *
-     * @queryParam beatmapset_discussion_id `id` of the [BeatmapsetDiscussion](#beatmapsetdiscussion).
-     * @queryParam limit Maximum number of results.
-     * @queryParam page Search result page.
-     * @queryParam receiver The `id` of the [User](#user) receiving the votes.
-     * @queryParam score `1` for up vote, `-1` for down vote.
-     * @queryParam sort `id_desc` for newest first; `id_asc` for oldest first. Defaults to `id_desc`.
-     * @queryParam user The `id` of the [User](#user) giving the votes.
-     * @queryParam with_deleted This param has no effect as api calls do not currently receive group permissions.
+     * @usesCursor
+     * @queryParam beatmapset_discussion_id integer `id` of the [BeatmapsetDiscussion](#beatmapsetdiscussion).
+     * @queryParam receiver integer The `id` of the [User](#user) receiving the votes.
+     * @queryParam score integer `1` for up vote, `-1` for down vote. Example: 1
+     * @queryParam user integer The `id` of the [User](#user) giving the votes.
+     * @queryParam with_deleted boolean This param has no effect as api calls do not currently receive group permissions. No-example
      */
+    #[Limit(BeatmapDiscussionVote::PER_PAGE, 5), Page, Sort('IdSort')]
     public function index()
     {
         $bundle = new BeatmapsetDiscussionVotesBundle(request()->all());

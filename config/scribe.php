@@ -300,17 +300,20 @@ INTRO
     'strategies' => [
         'metadata' => [
             Strategies\Metadata\GetFromDocBlocks::class,
+            Strategies\Metadata\GetFromMetadataAttributes::class,
         ],
         'urlParameters' => [
             Strategies\UrlParameters\GetFromLaravelAPI::class,
             Strategies\UrlParameters\GetFromLumenAPI::class,
+            Strategies\UrlParameters\GetFromUrlParamAttribute::class,
             Strategies\UrlParameters\GetFromUrlParamTag::class,
         ],
         'queryParameters' => [
+            App\Docs\Strategies\GetFromQueryParamAttribute::class,
+            App\Docs\Strategies\UsesCursor::class,
             Strategies\QueryParameters\GetFromQueryParamTag::class,
             Strategies\QueryParameters\GetFromFormRequest::class,
             Strategies\QueryParameters\GetFromInlineValidator::class,
-            App\Docs\Strategies\UsesCursor::class,
         ],
         'headers' => [
             Strategies\Headers\GetFromRouteRules::class,
