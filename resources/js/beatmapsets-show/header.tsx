@@ -25,6 +25,19 @@ import Stats from './stats';
 
 const favouritesToShow = 50;
 
+function statusIcon(type: 'storyboard' | 'video') {
+  const iconClass = type === 'video' ? 'fas fa-film' : 'fas fa-image';
+
+  return (
+    <div
+      className='beatmapset-status beatmapset-status--show-icon'
+      title={trans(`beatmapsets.show.info.${type}`)}
+    >
+      <span className={iconClass} />
+    </div>
+  );
+}
+
 interface DownloadButtonOptions {
   bottomTextKey?: string;
   href: string;
@@ -352,14 +365,8 @@ export default class Header extends React.Component<Props> {
   private renderStatusBar() {
     return (
       <div className='beatmapset-header__status'>
-        {this.controller.beatmapset.storyboard &&
-          <div
-            className='beatmapset-status beatmapset-status--show-icon'
-            title={trans('beatmapsets.show.info.storyboard')}
-          >
-            <span className='fas fa-image' />
-          </div>
-        }
+        {this.controller.beatmapset.video && statusIcon('video')}
+        {this.controller.beatmapset.storyboard && statusIcon('storyboard')}
         <a className='beatmapset-status beatmapset-status--show' href={this.statusToWikiLink(this.controller.currentBeatmap.status)}>
           {trans(`beatmapsets.show.status.${this.controller.currentBeatmap.status}`)}
         </a>
