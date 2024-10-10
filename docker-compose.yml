@@ -5,7 +5,6 @@ x-env: &x-env
   DB_CONNECTION_STRING: Server=db;Database=osu;Uid=osuweb;
   DB_HOST: db
   ES_HOST: http://elasticsearch:9200
-  ES_SCORES_HOST: http://elasticsearch:9200
   ES_SOLO_SCORES_HOST: http://elasticsearch:9200
   GITHUB_TOKEN: "${GITHUB_TOKEN}"
   NOTIFICATION_REDIS_HOST: redis
