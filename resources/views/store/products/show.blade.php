@@ -67,18 +67,18 @@
                             <p class="store-text store-text--price-note">excluding shipping fees</p>
                         @endif
 
-                        @if($product->types())
-                            @foreach($product->types() as $type => $values)
-                                @if (count($values) === 1)
-                                    {{-- magic property --}}
-                                    <input type="hidden" name="item[extra_data][{{ $type }}]" value="{{ array_keys($values)[0] }}" />
-                                @else
-                                    <div class="form-group">
-                                        <label class="u-uppercase" for="select-product-{{ $type }}">{{ $type }}</label>
+                        <div class="store-text store-text--options">
+                            @if ($product->types())
+                                @foreach ($product->types() as $type => $values)
+                                    @if (count($values) === 1)
+                                        {{-- magic property --}}
+                                        <input type="hidden" name="item[extra_data][{{ $type }}]" value="{{ array_keys($values)[0] }}" />
+                                    @else
+                                        <label class="input-container input-container--select input-container--store">
+                                            <div class="input-container__label">{{ $type }}</div>
 
-                                        <div class="form-select">
-                                            <select id="select-product-{{ $type }}" class="form-select__input js-url-selector" data-keep-scroll="1">
-                                                @foreach($values as $value => $product_id)
+                                            <select id="select-product-{{ $type }}" class="input-text js-url-selector" data-keep-scroll="1">
+                                                @foreach ($values as $value => $product_id)
                                                     <option
                                                         {{ $product_id === $product->product_id ? 'selected' : '' }}
                                                         value="{{ route('store.products.show', $product_id) }}"
@@ -87,22 +87,21 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
-                        @endif
+                                        </label>
+                                    @endif
+                                @endforeach
+                            @endif
 
-                        @if($product->inStock())
-                            <div class='form-group'>
+                            @if ($product->inStock())
                                 <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
-                                <label for="item[quantity]" class="u-uppercase">
-                                    {{ osu_trans('store.order.item.quantity') }}
-                                </label>
 
-                                <div class="form-select">
+                                <label class="input-container input-container--select input-container--store">
+                                    <div class="input-container__label">
+                                        {{ osu_trans('store.order.item.quantity') }}
+                                    </div>
+
                                     <select
-                                        class="js-store-item-quantity form-select__input"
+                                        class="js-store-item-quantity input-text"
                                         name="item[quantity]"
                                     >
                                         @foreach (product_quantity_options($product) as $option)
@@ -111,13 +110,13 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                </div>
-                            </div>
-                        @elseif ($product->inStock(1, true))
-                            {{ osu_trans('store.product.stock.out_with_alternative') }}
-                        @else
-                            {{ osu_trans('store.product.stock.out') }}
-                        @endif
+                                </label>
+                            @elseif ($product->inStock(1, true))
+                                {{ osu_trans('store.product.stock.out_with_alternative') }}
+                            @else
+                                {{ osu_trans('store.product.stock.out') }}
+                            @endif
+                        </div>
                     </div>
                 </div>
             @endif
