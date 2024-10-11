@@ -3,14 +3,12 @@
 
 import * as d3 from 'd3';
 import Rank from 'interfaces/rank';
-import Ruleset from 'interfaces/ruleset';
 import * as React from 'react';
 
 interface Props {
   accuracy: number;
-  mode: Ruleset;
   rank: Rank;
-  rank_cutoffs: number[];
+  rankCutoffs: number[];
 }
 
 const displayRank: Record<Rank, string> = {
@@ -41,7 +39,7 @@ export default function Dial(props: Props) {
             </linearGradient>
           </defs>
           <g transform='translate(100, 100)'>
-            {pie(props.rank_cutoffs).map((d) => (
+            {pie(props.rankCutoffs).map((d) => (
               <path
                 key={d.index}
                 className={`score-dial__inner score-dial__inner--${d.index}`}
