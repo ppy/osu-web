@@ -15,7 +15,7 @@
 ])
 
 @section('content')
-    <div class="js-react--scores-show osu-layout osu-layout--full"></div>
+    <div class="js-react--scores-show u-contents"></div>
 
     <script id="json-show" type="application/json">
         {!! json_encode($scoreJson) !!}
