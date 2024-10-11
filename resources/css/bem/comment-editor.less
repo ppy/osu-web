@@ -8,11 +8,11 @@
   @_spacing: 10px;
   @_border-radius: @border-radius-large;
 
+  --bg: hsl(var(--hsl-b3));
   border-radius: @_border-radius;
   display: flex;
   flex-direction: column;
-  background-color: @osu-colour-b3;
-  border: 2px solid @osu-colour-b3;
+  background: var(--bg);
   position: relative;
 
   &--fancy {
@@ -62,14 +62,15 @@
     padding: @_spacing;
     font-size: @font-size--phone-input;
     border-radius: @_border-radius @_border-radius 0 0;
-    resize: none;
+    border: 2px solid var(--bg);
+    border-bottom: none;
     background-color: @osu-colour-b5;
+    resize: none;
 
     @media @desktop {
       font-size: inherit;
     }
 
-    color: white;
     &::placeholder {
       color: @osu-colour-f1;
     }
