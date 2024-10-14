@@ -110,7 +110,7 @@ const plugins = [
     patterns: [
       { from: 'resources/builds/locales', to: outputFilename('js/locales/[name]') },
       { from: 'node_modules/moment/locale', to: outputFilename('js/moment-locales/[name]') },
-      { from: 'node_modules/@discordapp/twemoji/dist/svg/?????-?????.svg', to: 'images/flags/[name][ext]' },
+      { from: 'node_modules/@discordapp/twemoji/dist/svg/1f1??-1f1??.svg', to: 'images/flags/[name][ext]' },
     ],
   }),
 ];
