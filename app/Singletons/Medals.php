@@ -70,7 +70,7 @@ class Medals
      */
     public function byNameIncludeDisabled(string $name): ?Achievement
     {
-        return $this->allByNameIncludeDisabled()->get($name);
+        return $this->allByNameIncludeDisabled()->get(strtolower($name));
     }
 
     /**
@@ -85,7 +85,9 @@ class Medals
     {
         return $this->memoize(
             __FUNCTION__,
-            fn () => $this->allIncludeDisabled()->keyBy('name'),
+            fn () => $this
+                ->allIncludeDisabled()
+                ->mapWithKeys(fn ($medal) => [strtolower($medal['name']) => $medal]),
         );
     }
 
