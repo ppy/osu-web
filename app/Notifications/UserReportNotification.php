@@ -40,7 +40,7 @@ class UserReportNotification extends Notification implements ShouldQueue
                     $reportableUrl = $reportable->url();
                 }
 
-                $user = optional($notifiable->user)->username ?? "User {$notifiable->user_id}";
+                $user = $notifiable->user?->username ?? "User {$notifiable->user_id}";
                 $userUrl = route('users.show', ['user' => $notifiable->user_id]);
 
                 $reportedText =
