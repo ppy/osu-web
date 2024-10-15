@@ -7,8 +7,8 @@
     data-click-menu-target="nav2-locale-popup"
 >
     @include('objects._flag_country', [
-        'countryCode' => $currentLocaleMeta->flag(),
-        'modifiers' => ['flat'],
+        'country' => $currentLocaleMeta->flag(),
+        'modifiers' => 'flat',
     ])
 </button>
 
@@ -38,8 +38,8 @@
                     <span class="nav2-locale-item">
                         <span class="nav2-locale-item__flag">
                             @include('objects._flag_country', [
-                                'countryCode' => $localeMeta->flag(),
-                                'modifiers' => ['flat'],
+                                'country' => $localeMeta->flag(),
+                                'modifiers' => 'flat',
                             ])
                         </span>
 

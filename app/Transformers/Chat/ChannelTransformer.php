@@ -60,6 +60,7 @@ class ChannelTransformer extends TransformerAbstract
         $result = $channel->checkCanMessage($this->user);
 
         return $this->primitive([
+            'can_list_users' => priv_check_user($this->user, 'ChatChannelListUsers', $channel)->can(),
             'can_message' => $result->can(),
             'can_message_error' => $result->message(),
             'last_read_id' => $channel->lastReadIdFor($this->user),
@@ -99,14 +100,7 @@ class ChannelTransformer extends TransformerAbstract
 
     public function includeUsers(Channel $channel)
     {
-        if (
-            $channel->isPM()
-            || $channel->isAnnouncement() && priv_check_user($this->user, 'ChatAnnounce', $channel)->can()
-        ) {
-            return $this->primitive($channel->userIds());
-        }
-
-        return $this->primitive([]);
+        return $this->primitive($channel->isPM() ? $channel->userIds() : []);
     }
 
     public function includeUuid(Channel $channel)

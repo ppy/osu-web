@@ -15,15 +15,14 @@ class LookupController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('throttle:30,1');
+        $this->middleware('throttle:1200,1');
+        $this->middleware('require-scopes:public');
     }
 
-    public function lookup()
+    public function index()
     {
         // TODO: referer check?
-        $params = get_params(request()->all(), null, ['ids:string[]'], ['null_missing' => true]);
-        $ids = array_slice($params['ids'], 0, 50);
+        $ids = array_slice(array_reject_null(get_arr(request('ids'), presence(...)) ?? []), 0, 50);
 
         $numericIds = [];
         $stringIds = [];

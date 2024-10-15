@@ -45,7 +45,7 @@ class BeatmapsetRequalifyTest extends TestCase
 
         $discussion = $this->disqualifyOrResetNominations($beatmapset);
         $beatmapset = $beatmapset->fresh();
-        $this->assertTrue(abs(static::DISQUALIFIED_INTERVAL - $beatmapset->previous_queue_duration) < 2);
+        $this->assertDiffUpToOneSecond(static::DISQUALIFIED_INTERVAL, $beatmapset->previous_queue_duration);
         $this->assertNull($beatmapset->queued_at);
 
         $this->travelBack();
@@ -195,7 +195,7 @@ class BeatmapsetRequalifyTest extends TestCase
 
         // queue should not reset.
         $this->assertTrue($beatmapset->isQualified());
-        $this->assertEquals($previousQueueDuration, CarbonImmutable::now()->getTimestamp() - $beatmapset->queued_at->getTimestamp());
+        $this->assertDiffUpToOneSecond($previousQueueDuration, CarbonImmutable::now()->getTimestamp() - $beatmapset->queued_at->getTimestamp());
     }
 
     public function testNewDifficultyAddedResetsQueue()
@@ -260,6 +260,11 @@ class BeatmapsetRequalifyTest extends TestCase
         Language::factory()->create(['language_id' => Language::UNSPECIFIED]);
 
         Bus::fake([CheckBeatmapsetCovers::class]);
+    }
+
+    private function assertDiffUpToOneSecond(int $expected, int $actual)
+    {
+        $this->assertTrue(abs($actual - $expected) < 2);
     }
 
     private function beatmapsetFactory(): BeatmapsetFactory

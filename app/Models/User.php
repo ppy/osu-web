@@ -239,7 +239,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     const MAX_FIELD_LENGTHS = [
         'user_discord' => 37, // max 32char username + # + 4-digit discriminator
-        'user_from' => 30,
+        'user_from' => 25,
         'user_interests' => 30,
         'user_occ' => 30,
         'user_sig' => 3000,

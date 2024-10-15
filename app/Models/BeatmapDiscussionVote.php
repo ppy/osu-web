@@ -57,14 +57,8 @@ class BeatmapDiscussionVote extends Model
 
     public static function search($rawParams = [])
     {
-        $pagination = pagination(cursor_from_params($rawParams) ?? $rawParams);
+        [$query, $params] = static::searchQueryAndParams(cursor_from_params($rawParams) ?? $rawParams);
 
-        $params = [
-            'limit' => $pagination['limit'],
-            'page' => $pagination['page'],
-        ];
-
-        $query = static::limit($params['limit'])->offset($pagination['offset']);
         $isModerator = $rawParams['is_moderator'] ?? false;
 
         if (isset($rawParams['user'])) {

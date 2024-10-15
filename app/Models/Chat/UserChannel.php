@@ -6,6 +6,7 @@
 namespace App\Models\Chat;
 
 use App\Libraries\Notification\BatchIdentities;
+use App\Models\Traits\WithDbCursorHelper;
 use App\Models\User;
 use App\Models\UserNotification;
 use DB;
@@ -20,6 +21,14 @@ use Illuminate\Database\Query\Expression;
  */
 class UserChannel extends Model
 {
+    use WithDbCursorHelper;
+
+    const DEFAULT_SORT = 'user_id_asc';
+
+    const SORTS = [
+        'user_id_asc' => [['column' => 'user_id', 'order' => 'ASC']],
+    ];
+
     public $incrementing = false;
     public $timestamps = false;
 

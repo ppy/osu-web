@@ -81,7 +81,7 @@ return [
         'beatmapset_disqualify' => 'recevoir des notifications lorsque des beatmaps sont disqualifiées dans les modes suivants',
         'comment_reply' => 'recevoir des notifications pour des réponses à vos commentaires',
         'title' => 'Notifications',
-        'topic_auto_subscribe' => 'activer automatiquement les notifications sur les nouveaux sujets que vous créez sur le forum',
+        'topic_auto_subscribe' => 'activer automatiquement les notifications sur les nouveaux sujets que vous créez ou auxquels vous avez répondu sur le forum',
 
         'options' => [
             '_' => 'types d\'alertes',

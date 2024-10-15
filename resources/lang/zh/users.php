@@ -198,15 +198,15 @@ return [
         ],
         'daily_challenge' => [
             'daily' => '每日连续完成数',
-            'daily_streak_best' => '最佳每日完成数',
-            'daily_streak_current' => '当前每日完成数',
-            'playcount' => '',
+            'daily_streak_best' => '最佳连续完成天数',
+            'daily_streak_current' => '当前连续完成天数',
+            'playcount' => '参加次数',
             'title' => '每日\n挑战',
-            'top_10p_placements' => '前 10% 位置',
-            'top_50p_placements' => '前 50% 位置',
+            'top_10p_placements' => '排名达到前 10% 次数',
+            'top_50p_placements' => '排名达到前 50% 次数',
             'weekly' => '每周完成数',
-            'weekly_streak_best' => '最佳每周完成数',
-            'weekly_streak_current' => '当前每周完成数',
+            'weekly_streak_best' => '最佳连续完成周数',
+            'weekly_streak_current' => '当前连续完成周数',
 
             'unit' => [
                 'day' => ':value 天',

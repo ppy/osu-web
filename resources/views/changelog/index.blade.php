@@ -24,7 +24,7 @@
 @extends('master', compact('titlePrepend'))
 
 @section('content')
-    <div class="js-react--changelog-index osu-layout osu-layout--full"></div>
+    <div class="js-react--changelog-index u-contents"></div>
 
     <script id="json-index" type="application/json">
         {!! json_encode($indexJson) !!}

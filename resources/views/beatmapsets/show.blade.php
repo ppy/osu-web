@@ -15,7 +15,7 @@
 ])
 
 @section('content')
-    <div class="js-react--beatmapset-page osu-layout osu-layout--full"></div>
+    <div class="js-react--beatmapset-page u-contents"></div>
     @if (Auth::user()?->isModerator() ?? false)
         <div class="admin-menu">
             <button class="admin-menu__button js-menu" data-menu-target="admin-beatmapset" type="button">

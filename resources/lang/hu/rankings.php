@@ -9,6 +9,12 @@ return [
         'title' => 'Ország',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'percentile_10' => '',
+        'percentile_50' => '',
+    ],
+
     'filter' => [
         'title' => 'Mutat',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'Reflektorfény',
         'country' => 'Ország',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'többjátékos',
         'performance' => 'Teljesítmény',

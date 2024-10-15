@@ -9,6 +9,12 @@ return [
         'title' => 'Stát',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Obtížnost',
+        'percentile_10' => 'Skóre 10. percentilu',
+        'percentile_50' => 'Skóre 50. percentilu',
+    ],
+
     'filter' => [
         'title' => 'Zobrazit',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'výběry (staré)',
         'country' => 'stát',
+        'daily_challenge' => 'denní výzva',
         'kudosu' => 'kudosu',
         'multiplayer' => 'hra pro více hráčů',
         'performance' => 'výkon',

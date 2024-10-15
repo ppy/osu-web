@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\Ruleset;
 use App\Models\Score\Best\Model as ScoreBest;
+use App\Models\ScoreReplayStats;
 use App\Models\Solo\Score as SoloScore;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
@@ -58,6 +59,8 @@ class ScoresController extends Controller
                 ::where('score_id', $id)
                 ->where('replay', true)
                 ->firstOrFail();
+
+            $soloScore = SoloScore::firstWhere('legacy_score_id', $score->getKey());
         }
 
         $file = $score->getReplayFile();
@@ -88,6 +91,12 @@ class ScoresController extends Controller
                     $score->replayViewCount()
                         ->firstOrCreate([], ['play_count' => 0])
                         ->incrementInstance('play_count');
+                }
+
+                if ($soloScore !== null) {
+                    ScoreReplayStats
+                        ::createOrFirst(['score_id' => $soloScore->getKey()], ['user_id' => $soloScore->user_id])
+                        ->incrementInstance('watch_count');
                 }
             }
         }

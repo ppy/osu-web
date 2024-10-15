@@ -214,17 +214,17 @@ return [
         'unresolved_issues' => 'Terdapat satu atau lebih masalah yang belum terjawab dan harus ditangani terlebih dahulu.',
 
         'rank_estimate' => [
-            '_' => 'Map ini akan berstatus Ranked :date apabila tidak terdapat masalah baru yang ditemukan. Map ini berada pada urutan ke-:position dalam :queue yang ada.',
+            '_' => 'Map ini diperkirakan akan berstatus Ranked :date apabila tidak terdapat masalah yang ditemukan. Map ini berada pada urutan ke-:position dalam :queue yang ada.',
             'unresolved_problems' => 'Beatmap ini sedang diblokir untuk dapat melewati kategori Qualified hingga :problems terselesaikan.',
             'problems' => 'masalah berikut',
             'on' => 'pada tanggal :date',
-            'queue' => 'antrian ranking',
+            'queue' => 'antrean ranking',
             'soon' => 'segera',
         ],
 
         'reset_at' => [
-            'nomination_reset' => 'Proses nominasi dianulir :time_ago oleh :user akibat ditemukannya masalah baru :discussion (:message).',
-            'disqualify' => 'Didiskualifikasi :time_ago oleh :user akibat ditemukannya masalah baru :discussion (:message).',
+            'nomination_reset' => 'Proses nominasi dianulir :time_ago oleh :user dengan ditemukannya masalah baru :discussion (:message).',
+            'disqualify' => 'Didiskualifikasi :time_ago oleh :user dengan ditemukannya masalah baru :discussion (:message).',
         ],
 
         'reset_confirm' => [

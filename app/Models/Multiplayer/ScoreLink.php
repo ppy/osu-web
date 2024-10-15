@@ -109,6 +109,7 @@ class ScoreLink extends Model
 
         $query = PlaylistItemUserHighScore
             ::where('playlist_item_id', $this->playlist_item_id)
+            ->whereHas('user', fn ($userQuery) => $userQuery->default())
             ->cursorSort('score_asc', [
                 'total_score' => $score->total_score,
                 'score_id' => $this->getKey(),

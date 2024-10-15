@@ -117,9 +117,8 @@
                                 ]) }}"
                             >
                                 @include('objects._flag_country', [
-                                    'countryName' => $score->user->country->name,
-                                    'countryCode' => $score->user->country->acronym,
-                                    'modifiers' => ['medium'],
+                                    'country' => $score->user->country,
+                                    'modifiers' => 'medium',
                                 ])
                             </a>
                             <a
