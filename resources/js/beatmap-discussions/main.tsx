@@ -20,7 +20,7 @@ import { Events } from './events';
 import { Header } from './header';
 import { ModeSwitcher } from './mode-switcher';
 import { NewDiscussion } from './new-discussion';
-import { Refresh } from './refresh';
+import Refresh from './refresh';
 
 const beatmapsetJsonId = 'json-beatmapset';
 

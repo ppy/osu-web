@@ -26,7 +26,7 @@ interface CheckUpdatesResponseJson {
 const checkNewTimeoutDefault = 10000;
 
 @observer
-export class Refresh extends React.PureComponent<Props> {
+export default class Refresh extends React.PureComponent<Props> {
   @observable private lastUpdateResponse: Date | null = null;
   private timeoutCheckNew?: number;
   @observable private xhrCheckNew?: JQuery.jqXHR<CheckUpdatesResponseJson>;
