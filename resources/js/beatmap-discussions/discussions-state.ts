@@ -8,7 +8,6 @@ import Ruleset from 'interfaces/ruleset';
 import UserJson from 'interfaces/user-json';
 import { intersectionWith, maxBy, sum } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
-import moment from 'moment';
 import core from 'osu-core-singleton';
 import BeatmapsetDiscussionsShowStore from 'stores/beatmapset-discussions-show-store';
 import { findDefault, group, sortWithMode } from 'utils/beatmap-helper';
@@ -235,25 +234,17 @@ export default class DiscussionsState {
   }
 
   @computed
-  get lastUpdate() {
-    return moment(this.lastUpdateRaw).unix();
-  }
-
-  @computed
   get lastUpdateDate() {
-    return new Date(this.lastUpdateRaw);
-  }
-
-  @computed
-  get lastUpdateRaw() {
     const maxDiscussions = maxBy(this.beatmapset.discussions, 'updated_at')?.updated_at;
     const maxEvents = maxBy(this.beatmapset.events, 'created_at')?.created_at;
 
-    return Math.max(
+    const lastUpdateMs = Math.max(
       Date.parse(this.beatmapset.last_updated),
       maxDiscussions != null ? Date.parse(maxDiscussions) : 0,
       maxEvents != null ? Date.parse(maxEvents) : 0,
     );
+
+    return new Date(lastUpdateMs);
   }
 
   get calculatedMainRuleset() {
