@@ -147,17 +147,7 @@ class BeatmapsetsController extends Controller
 
     public function discussionLastUpdate($id)
     {
-        $beatmapset = Beatmapset::findOrFail($id);
-        $lastDiscussionUpdate = $beatmapset->lastDiscussionTime();
-        $lastEventUpdate = $beatmapset->events()->max('updated_at');
-
-        if ($lastEventUpdate !== null) {
-            $lastEventUpdate = Carbon::parse($lastEventUpdate);
-        }
-
-        $latestUpdate = max($lastDiscussionUpdate, $lastEventUpdate);
-
-        return response(['last_update' => $latestUpdate]);
+        return response(['last_update' => Beatmapset::findOrFail($id)->lastDiscussionTime()]);
     }
 
     public function discussionUnlock($id)
