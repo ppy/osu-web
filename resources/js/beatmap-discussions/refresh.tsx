@@ -25,7 +25,7 @@ export default class Refresh extends React.PureComponent<Props> {
       <button
         className={classWithModifiers('floating-toolbar-button', { updates: this.props.worker.hasUpdates })}
         data-tooltip-float='fixed'
-        disabled={!this.props.worker.canRefresh}
+        disabled={!this.props.worker.hasUpdates}
         onClick={this.handleClick}
         title={trans(`beatmap_discussions.refresh.${this.props.worker.state}`)}
       >

@@ -26,10 +26,6 @@ export default class DiscussionsStateWorker {
     return this.xhrCheckNew != null || this.xhrGetUpdates != null;
   }
 
-  get canRefresh() {
-    return this.xhrGetUpdates == null && this.hasUpdates;
-  }
-
   get hasUpdates() {
     return this.lastUpdateResponse != null && this.lastUpdateResponse > this.discussionsState.lastUpdateDate;
   }
