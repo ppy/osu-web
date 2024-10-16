@@ -145,7 +145,7 @@ class BeatmapsetsController extends Controller
         }
     }
 
-    public function discussionCheckUpdates($id)
+    public function discussionLastUpdate($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
         $lastDiscussionUpdate = $beatmapset->lastDiscussionTime();

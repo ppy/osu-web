@@ -89,7 +89,7 @@ export default class Refresh extends React.PureComponent<Props> {
 
     window.clearTimeout(this.timeoutCheckNew);
 
-    this.xhrCheckNew = $.getJSON(route('beatmapsets.discussion-check-updates', { beatmapset: this.props.discussionsState.beatmapset.id }));
+    this.xhrCheckNew = $.getJSON(route('beatmapsets.discussion-last-update', { beatmapset: this.props.discussionsState.beatmapset.id }));
 
     this.xhrCheckNew.done((json) => runInAction(() => {
       this.lastUpdateResponse = json.last_update != null ? new Date(json.last_update) : null;
