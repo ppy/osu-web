@@ -16,6 +16,7 @@ import { nextVal } from 'utils/seq';
 import { currentUrl } from 'utils/turbolinks';
 import { Discussions } from './discussions';
 import DiscussionsState from './discussions-state';
+import DiscussionsStateWorker from './discussions-state-worker';
 import { Events } from './events';
 import { Header } from './header';
 import { ModeSwitcher } from './mode-switcher';
@@ -33,6 +34,7 @@ interface Props {
 @observer
 export default class Main extends React.Component<Props> {
   @observable private readonly discussionsState: DiscussionsState;
+  private readonly discussionsStateWorker: DiscussionsStateWorker;
   private readonly disposers = new Set<((() => void) | undefined)>();
   private readonly eventId = `beatmap-discussions-${nextVal()}`;
   // FIXME: update url handler to recognize this instead
@@ -49,6 +51,7 @@ export default class Main extends React.Component<Props> {
 
     this.store = new BeatmapsetDiscussionsShowStore(beatmapset);
     this.discussionsState = new DiscussionsState(this.store);
+    this.discussionsStateWorker = new DiscussionsStateWorker(this.discussionsState);
 
     makeObservable(this);
   }
@@ -125,7 +128,7 @@ export default class Main extends React.Component<Props> {
           </ReviewEditorConfigContext.Provider>
         )}
         <div className='floating-toolbar'>
-          <Refresh discussionsState={this.discussionsState} />
+          <Refresh worker={this.discussionsStateWorker} />
           <BackToTop />
         </div>
       </>
@@ -138,6 +141,7 @@ export default class Main extends React.Component<Props> {
     document.documentElement.style.removeProperty('--scroll-padding-top-extra');
 
     storeJson(beatmapsetJsonId, toJS(this.store.beatmapset));
+    this.discussionsStateWorker.stop();
     this.discussionsState.saveState();
 
     this.disposers.forEach((disposer) => disposer?.());
