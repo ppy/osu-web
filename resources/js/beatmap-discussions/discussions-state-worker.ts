@@ -61,11 +61,11 @@ export default class DiscussionsStateWorker {
       if (json != null) {
         this.discussionsState.update({ beatmapset: json.beatmapset });
       }
-    }).always(() => {
+    }).always(action(() => {
       this.xhrGetUpdates = undefined;
       // restart update checking.
       this.timeoutCheckNew = window.setTimeout(this.checkNew, checkNewTimeoutDefault);
-    });
+    }));
   }
 
   stop() {
