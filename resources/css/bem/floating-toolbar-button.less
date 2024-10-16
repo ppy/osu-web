@@ -12,6 +12,10 @@
   font-size: calc(var(--circle-size) * 0.48);
   background-color: hsl(var(--hsl-b5));
 
+  @media @mobile {
+    --circle-size: 40px;
+  }
+
   &--updates {
     &::before {
       .circle(calc(var(--circle-size) * 0.2));
@@ -22,9 +26,5 @@
       right: 0;
       background: hsl(var(--hsl-h1));
     }
-  }
-
-  @media @mobile {
-    --circle-size: 40px;
   }
 }
