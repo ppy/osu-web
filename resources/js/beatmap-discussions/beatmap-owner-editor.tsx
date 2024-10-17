@@ -8,6 +8,7 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import UserJson from 'interfaces/user-json';
+import WithOwners from 'interfaces/with-owners';
 import { route } from 'laroute';
 import { xor } from 'lodash';
 import { action, makeObservable, observable, runInAction } from 'mobx';
@@ -22,10 +23,9 @@ import BeatmapOwner from './beatmap-owner';
 import DiscussionsState from './discussions-state';
 
 interface Props {
-  beatmap: BeatmapJson;
+  beatmap: WithOwners<BeatmapJson>;
   beatmapset: BeatmapsetExtendedJson;
   discussionsState: DiscussionsState; // only for updating the state with the response.
-  owners: UserJson[];
 }
 
 @observer
@@ -41,6 +41,10 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
 
   private get canSave() {
     return this.validUsers.size > 0 && normaliseUsername(this.inputUsername).length === 0;
+  }
+
+  private get owners() {
+    return this.props.discussionsState.beatmapOwners(this.props.beatmap);
   }
 
   constructor(props: Props) {
@@ -188,7 +192,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     if (!this.editing) {
       return (
         <div className='beatmap-owner-editor__owners'>
-          {this.props.owners.map((owner) => <BeatmapOwner key={owner.id} user={owner} />)}
+          {this.owners.map((owner) => <BeatmapOwner key={owner.id} user={owner} />)}
         </div>
       );
     }
@@ -202,7 +206,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
       >
         <UsernameInput
           id='beatmap-owner-editor-username-input'
-          initialUsers={this.props.owners}
+          initialUsers={this.owners}
           // initialValue not set for owner editor as value is reset when cancelled.
           modifiers='beatmap-owner-editor'
           onEnterPressed={this.handleSaveClick}
@@ -218,7 +222,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   private updateOwners(userIds: number[]) {
     this.updateOwnerXhr?.abort();
 
-    if (xor([...this.validUsers.keys()], this.props.owners.map((owner) => owner.id)).length === 0) {
+    if (xor([...this.validUsers.keys()], this.owners.map((owner) => owner.id)).length === 0) {
       this.editing = false;
       return;
     }

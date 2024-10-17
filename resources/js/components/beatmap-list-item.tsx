@@ -6,6 +6,7 @@ import DifficultyBadge from 'components/difficulty-badge';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
+import { hasOwners } from 'interfaces/with-owners';
 import * as React from 'react';
 import { hasGuestOwners } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
@@ -76,7 +77,7 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
       return null;
     }
 
-    const translationKey = hasGuestOwners(this.props.beatmap, this.props.beatmapset)
+    const translationKey = hasOwners(this.props.beatmap) && hasGuestOwners(this.props.beatmap, this.props.beatmapset)
       ? 'mapped_by_guest'
       : 'mapped_by';
 

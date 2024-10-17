@@ -4,6 +4,7 @@
 import BeatmapExtendedJson from './beatmap-extended-json';
 import BeatmapsetJson, { Availability } from './beatmapset-json';
 import Ruleset from './ruleset';
+import WithOwners from './with-owners';
 
 interface NominationsSummary {
   current: number;
@@ -42,8 +43,8 @@ type BeatmapsetExtendedJson =
 export default BeatmapsetExtendedJson;
 
 interface BeatmapsetJsonForShowOverrideIncludes {
-  beatmaps: (BeatmapExtendedJson & Required<Pick<BeatmapExtendedJson, 'failtimes' | 'max_combo'>>)[];
-  converts: (BeatmapExtendedJson & Required<Pick<BeatmapExtendedJson, 'failtimes'>>)[];
+  beatmaps: (WithOwners<BeatmapExtendedJson> & Required<Pick<BeatmapExtendedJson, 'failtimes' | 'max_combo'>>)[];
+  converts: (WithOwners<BeatmapExtendedJson> & Required<Pick<BeatmapExtendedJson, 'failtimes'>>)[];
 }
 
 type BeatmapsetJsonForShowIncludes = Required<Pick<BeatmapsetExtendedJson,

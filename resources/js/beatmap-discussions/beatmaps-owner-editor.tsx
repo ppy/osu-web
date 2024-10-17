@@ -2,9 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
-import UserJson, { UserJsonMinimum } from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import { observer } from 'mobx-react';
-import { deletedUserJson } from 'models/user';
 import * as React from 'react';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
 import { trans } from 'utils/lang';
@@ -45,7 +44,6 @@ export default class BeatmapsOwnerEditor extends React.Component<Props> {
                 beatmap={beatmap}
                 beatmapset={this.props.beatmapset}
                 discussionsState={this.props.discussionsState}
-                owners={beatmap.owners.map(this.getUser)}
               />
             ))
           ))}
@@ -63,14 +61,4 @@ export default class BeatmapsOwnerEditor extends React.Component<Props> {
       </div>
     );
   }
-
-  private readonly getUser = (json: UserJsonMinimum) => {
-    let user = this.props.users.get(json.id);
-    if (user == null) {
-      user = structuredClone(deletedUserJson);
-      user.id = json.id;
-    }
-
-    return user;
-  };
 }
