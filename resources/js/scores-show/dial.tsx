@@ -3,13 +3,12 @@
 
 import * as d3 from 'd3';
 import Rank from 'interfaces/rank';
-import Ruleset from 'interfaces/ruleset';
 import * as React from 'react';
 
 interface Props {
   accuracy: number;
-  mode: Ruleset;
   rank: Rank;
+  rankCutoffs: number[];
 }
 
 const displayRank: Record<Rank, string> = {
@@ -24,46 +23,10 @@ const displayRank: Record<Rank, string> = {
   XH: 'SS',
 };
 
-const refDataMap: Record<Ruleset, number[]> = {
-  // <rank>: minimum acc => (higher rank acc - current acc)
-  // for SS, use minimum accuracy of 0.99 (any less and it's too small)
-  // actual array is reversed as it's rendered from D to SS clockwise
-
-  // SS: 0.99 => 0.01
-  // S: 0.9801 => 0.0099
-  // A: 0.9401 => 0.04
-  // B: 0.9001 => 0.04
-  // C: 0.8501 => 0.05
-  // D: 0 => 0.8501
-  fruits: [0.8501, 0.05, 0.04, 0.04, 0.0099, 0.01],
-  // SS: 0.99 => 0.01
-  // S: 0.95 => 0.04
-  // A: 0.9 => 0.05
-  // B: 0.8 => 0.1
-  // C: 0.7 => 0.1
-  // D: 0 => 0.7
-  mania: [0.7, 0.1, 0.1, 0.05, 0.04, 0.01],
-  // SS: 0.99 => 0.01
-  // S: (0.9 * 300 + 0.1 * 100) / 300 = 0.933 => 0.057
-  // A: (0.8 * 300 + 0.2 * 100) / 300 = 0.867 => 0.066
-  // B: (0.7 * 300 + 0.3 * 100) / 300 = 0.8 => 0.067
-  // C: 0.6 => 0.2
-  // D: 0 => 0.6
-  osu: [0.6, 0.2, 0.067, 0.066, 0.057, 0.01],
-  // SS: 0.99 => 0.01
-  // S: (0.9 * 300 + 0.1 * 50) / 300 = 0.917 => 0.073
-  // A: (0.8 * 300 + 0.2 * 50) / 300 = 0.833 => 0.084
-  // B: (0.7 * 300 + 0.3 * 50) / 300 = 0.75 => 0.083
-  // C: 0.6 => 0.15
-  // D: 0 => 0.6
-  taiko: [0.6, 0.15, 0.083, 0.084, 0.073, 0.01],
-};
-
 export default function Dial(props: Props) {
   const arc = d3.arc();
   const pie = d3.pie().sortValues(null);
   const valueData = [props.accuracy, 1 - props.accuracy];
-  const refData = refDataMap[props.mode];
 
   return (
     <div className='score-dial'>
@@ -76,7 +39,7 @@ export default function Dial(props: Props) {
             </linearGradient>
           </defs>
           <g transform='translate(100, 100)'>
-            {pie(refData).map((d) => (
+            {pie(props.rankCutoffs).map((d) => (
               <path
                 key={d.index}
                 className={`score-dial__inner score-dial__inner--${d.index}`}

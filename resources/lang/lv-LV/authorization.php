@@ -61,11 +61,11 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => 'Šis kanāls ir paredzēts tikai paziņojumiem.',
         'blocked' => 'Nevar nosūtīt ziņu lietotājam, kurš nobloķējis jūs vai kuru jūs esat nobloķējis.',
         'friends_only' => 'Lietotājs bloķē ziņas no cilvēkiem, kas nav viņa draugu sarakstā.',
         'moderated' => 'Šis kanāls pašlaik tiek moderēts.',
         'no_access' => 'Jums nav piekļuves tiesības uz šo kanālu.',
+        'no_announce' => '',
         'receive_friends_only' => 'Lietotājs nevarēs atbildēt, jo jūs pieņemat ziņas tikai no cilvēkiem, kas ir jūsu draugu sarakstā.',
         'restricted' => 'Jūs nevarat sūtīt ziņas, kamēr esat klusināts, ierobežots vai bloķēts.',
         'silenced' => 'Jūs nevarat sūtīt ziņas, kamēr esat klusināts, ierobežots vai bloķēts.',

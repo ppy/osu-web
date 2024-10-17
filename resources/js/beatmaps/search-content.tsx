@@ -89,7 +89,7 @@ export class SearchContent extends React.Component<Props> {
           innerRef={this.props.backToTopAnchor}
         />
         <div className='js-sticky-header' />
-        <div className='osu-layout__row osu-layout__row--page-compact'>
+        <div className='osu-page'>
           <div className={listCssClasses}>
             {this.controller.advancedSearch && (
               <div className='beatmapsets__toolbar'>

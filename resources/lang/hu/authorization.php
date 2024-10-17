@@ -61,11 +61,11 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => 'Ez a csatorna csak bejelentéseknek vannak fenntartva.',
         'blocked' => 'Nem küldhetsz üzenetet olyan felhasználónak akiket letiltottál, vagy téged tiltottak le.',
         'friends_only' => 'A felhasználó letiltotta a baráti listáján nem szereplő emberek üzeneteinek fogadását.',
         'moderated' => 'A csatorna jelenleg moderálva van.',
         'no_access' => 'Nincs hozzáférésed a csatornához.',
+        'no_announce' => '',
         'receive_friends_only' => 'user lehet nem fog tudni visszaírni, mert csak a barátlistádon lévő emberektől fogadsz üzeneteket.',
         'restricted' => 'Nem küldhetsz üzeneteket némított, felfüggesztett vagy kitiltott állapotban.',
         'silenced' => 'Némítva, felfüggesztve vagy kitiltva nem küldhetsz üzeneteket.',

@@ -61,11 +61,11 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => 'Tämä kanava on vain tiedotteita varten.',
         'blocked' => 'Et voi lähettää viestejä käyttäjälle, joka on estänyt sinut tai jonka olet estänyt.',
         'friends_only' => 'Käyttäjä on estänyt viestit henkilöiltä, jotka eivät ole hänen kaverilistassaan.',
         'moderated' => 'Tätä kanavaa moderoidaan.',
         'no_access' => 'Sinulla ei ole oikeuksia tälle kanavalle.',
+        'no_announce' => '',
         'receive_friends_only' => 'Käyttäjä ei välttämättä pysty vastaamaan, koska hyväksyt viestejä vain kaverilistallasi olevilta henkilöiltä.',
         'restricted' => 'Et voi lähettää viestejä mykistettynä, rajoitettuna tai bännättynä.',
         'silenced' => 'Et voi lähettää viestejä mykistettynä, rajoitettuna tai bännättynä.',

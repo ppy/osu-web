@@ -61,11 +61,11 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => '本頻道僅供發布公告。',
         'blocked' => '無法向封鎖你或被你封鎖的人發送訊息。',
         'friends_only' => '用戶阻止了來自非好友的訊息。',
         'moderated' => '該頻道目前正在被管制中。',
         'no_access' => '你沒有權限訪問該頻道。',
+        'no_announce' => '',
         'receive_friends_only' => '由於您只接受好友訊息，故使用者可能無法回應。',
         'restricted' => '你不能在帳戶被禁言、限制或封鎖的時候發送訊息。',
         'silenced' => '你不能在帳戶被禁言、限制或封鎖的時候傳送訊息。',
@@ -92,27 +92,27 @@ return [
 
     'forum' => [
         'moderate' => [
-            'no_permission' => '沒有權限編輯該板塊。',
+            'no_permission' => '沒有權限編輯這個論壇。',
         ],
 
         'post' => [
             'delete' => [
-                'only_last_post' => '只有最後的回覆可以被刪除。',
-                'locked' => '無法刪除被鎖定主題的回覆。',
-                'no_forum_access' => '沒有權限進入該板塊。',
-                'not_owner' => '只有作者能刪除此回覆。',
+                'only_last_post' => '只有最後一篇貼文可以刪除。',
+                'locked' => '無法刪除已鎖定主題的貼文。',
+                'no_forum_access' => '沒有權限進入該論壇。',
+                'not_owner' => '只有發文者可以刪除貼文。',
             ],
 
             'edit' => [
-                'deleted' => '無法編輯已刪除的回覆。',
-                'locked' => '此回覆已被鎖定。',
-                'no_forum_access' => '沒有權限進入該板塊。',
-                'not_owner' => '只有作者能編輯此回覆。',
-                'topic_locked' => '無法編輯被鎖定主題的回覆。',
+                'deleted' => '無法編輯已刪除的貼文。',
+                'locked' => '這篇貼文已鎖定，無法編輯。',
+                'no_forum_access' => '需要有存取該論壇的權限。',
+                'not_owner' => '只有發文者可以編輯貼文。',
+                'topic_locked' => '無法編輯已鎖定主題的貼文。',
             ],
 
             'store' => [
-                'play_more' => '在論壇發文之前，請先玩幾場遊戲！如果您在玩遊戲時遇到問題，請在 Help and Support 板塊中發文。',
+                'play_more' => '在論壇發文前，請先嘗試遊玩遊戲！如果您在遊玩過程中遇到問題，請在「說明與支援」論壇發文。',
                 'too_many_help_posts' => "您需要再玩久一點才可以發布更多貼文，如果您仍然在遊戲中遇到問題，請聯繫support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],

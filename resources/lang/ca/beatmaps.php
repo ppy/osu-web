@@ -25,14 +25,14 @@ return [
         'message_placeholder_silenced' => "No podeu publicar una discussió mentre estigui silenciat.",
         'message_type_select' => 'Seleccionar tipus de comentari',
         'reply_notice' => 'Premeu enter per respondre.',
-        'reply_resolve_notice' => '',
+        'reply_resolve_notice' => 'Premeu «Retorn» per a contestar. Premeu Ctrl+Retorn per a contestar i marcar com a resolt.',
         'reply_placeholder' => 'Escriviu la vostra resposta aquí',
         'require-login' => 'Inicia sessió per publicar o respondre',
         'resolved' => 'Resolt',
         'restore' => 'restaurar',
         'show_deleted' => 'Mostrar eliminats',
         'title' => 'Discussions',
-        'unresolved_count' => '',
+        'unresolved_count' => ':count_delimited problema sense resoldre|:count_delimited problemes sense resoldre',
 
         'collapse' => [
             'all-collapse' => 'Replegar-ho tot',
@@ -285,7 +285,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'no establit',
     ],
     'status' => [
         'any' => 'Qualsevol',

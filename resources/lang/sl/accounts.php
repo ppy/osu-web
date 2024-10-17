@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'reset' => '',
+            'reset' => 'ponastavi',
             'rules' => 'Prosimo, da naj se tvoj avatar drži :link.<br/>To pomeni, da mora biti <strong>primerno za vse starosti</strong>. t.j. Nič golote, kletvic ali druge neželene vsebine.',
             'rules_link' => 'pravila skupnosti',
         ],

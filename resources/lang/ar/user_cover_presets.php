@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'التعطيل محدد',
+        'batch_enable' => 'التفعيل محدد',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':action :items؟',
+            'disable' => 'تعطيل',
+            'enable' => 'تفعيل',
+            'items' => ':count_delimited غلاف|:count_delimited اغلفه',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'ملفات',
+            'submit' => 'احفظ',
+            'title' => 'أضف جديد',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'اضغط للإيقاف',
+            'click_to_enable' => 'اضغط للتشغيل',
+            'enabled' => 'مفعل',
+            'disabled' => 'معطّل',
+            'image_store' => 'عين صورة',
+            'image_update' => 'بدل الصورة',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'حدث خطأ عند إنشاء الغلاف: :error',
+        'ok' => 'تم إنشاء الغلافات',
     ],
 ];

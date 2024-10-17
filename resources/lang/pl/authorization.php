@@ -61,11 +61,11 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => 'Ten kanał jest przeznaczony wyłącznie na ogłoszenia.',
         'blocked' => 'Nie możesz wysłać wiadomości do użytkownika, którego blokujesz lub który cię blokuje.',
         'friends_only' => 'Ten użytkownik blokuje wiadomości od osób spoza listy znajomych.',
         'moderated' => 'Ten kanał jest obecnie w trybie tylko dla moderatorów.',
         'no_access' => 'Nie masz dostępu do tego kanału.',
+        'no_announce' => '',
         'receive_friends_only' => 'Ten użytkownik może nie być w stanie odpowiedzieć, ponieważ blokujesz prywatne wiadomości od osób spoza listy znajomych.',
         'restricted' => 'Nie możesz wysyłać wiadomości po tym, jak twoje konto zostało uciszone, ograniczone lub zablokowane.',
         'silenced' => 'Nie możesz wysyłać wiadomości po tym, jak twoje konto zostało uciszone, ograniczone lub zablokowane.',

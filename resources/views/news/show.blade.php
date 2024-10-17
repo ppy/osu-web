@@ -8,7 +8,7 @@
 ])
 
 @section('content')
-    <div class="js-react--news-show osu-layout osu-layout--full"></div>
+    <div class="js-react--news-show u-contents"></div>
 
     <script id="json-show" type="application/json">
         {!! json_encode($postJson) !!}

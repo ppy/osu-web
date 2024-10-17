@@ -61,11 +61,11 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => 'Ang channel na ito ay para sa mga anunsyo lamang.',
         'blocked' => 'Hindi makapag-mensahe sa isang user na humaharang sa iyo o hinarang mo.',
         'friends_only' => 'Hinaharang ng user ang mga mensahe mula sa mga taong wala sa listahan ng kanilang mga kaibigan.',
         'moderated' => 'Ang channel na ito ay kasalukuyang naka-moderate.',
         'no_access' => 'Wala kang access sa channel na iyon.',
+        'no_announce' => '',
         'receive_friends_only' => 'Ang user ay maaaring hindi makatugon dahil tumatanggap ka lang ng mga mensahe mula sa mga tao sa listahan ng iyong mga kaibigan.',
         'restricted' => 'Hindi ka maaaring magpadala ng mga mensahe habang pinatahimik, pinaghihigpitan o pinagbawalan.',
         'silenced' => 'Hindi ka maaaring magpadala ng mga mensahe habang pinatahimik, pinaghihigpitan o pinagbawalan.',

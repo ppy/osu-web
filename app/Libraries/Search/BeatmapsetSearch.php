@@ -311,6 +311,7 @@ class BeatmapsetSearch extends RecordSearch
             'cs' => ['field' => 'beatmaps.diff_size', 'type' => 'range'],
             'difficultyRating' => ['field' => 'beatmaps.difficultyrating', 'type' => 'range'],
             'drain' => ['field' => 'beatmaps.diff_drain', 'type' => 'range'],
+            'favouriteCount' => ['field' => 'favourite_count', 'type' => 'range'],
             'totalLength' => ['field' => 'beatmaps.total_length', 'type' => 'range'],
             'statusRange' => ['field' => 'beatmaps.approved', 'type' => 'range'],
             'updated' => ['field' => 'last_update', 'type' => 'range'],
