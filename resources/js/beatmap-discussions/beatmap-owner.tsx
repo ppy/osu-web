@@ -22,7 +22,7 @@ export default class BeatmapOwner extends React.PureComponent<Props> {
   render() {
     return (
       <div className='beatmap-owner'>
-        <UserLink className='beatmap-owner__user' user={this.props.user}>
+        <UserLink className='beatmap-owner__user' tooltipPosition='top right' user={this.props.user}>
           <div className='beatmap-owner__avatar'>
             <UserAvatar modifiers='full-circle' user={this.props.user} />
           </div>
