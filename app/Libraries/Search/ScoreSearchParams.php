@@ -86,9 +86,7 @@ class ScoreSearchParams extends SearchParams
             return null;
         }
 
-        $profileCustomization = $user !== null
-            ? $user->profileCustomization()
-            : UserProfileCustomization::DEFAULTS;
+        $profileCustomization = UserProfileCustomization::forUser($user);
 
         return $profileCustomization['legacy_score_only']
             ? true

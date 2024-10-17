@@ -69,6 +69,22 @@ class UserProfileCustomization extends Model
     ];
     protected $primaryKey = 'user_id';
 
+    public static function forUser(?User $user): array|static
+    {
+        if ($user === null) {
+            return static::DEFAULTS;
+        }
+
+        $ret = $user->userProfileCustomization;
+
+        if ($ret === null) {
+            $ret = new static(['user_id' => $user->getKey()]);
+            $user->setRelation('userProfileCustomization', $ret);
+        }
+
+        return $ret;
+    }
+
     public static function repairExtrasOrder($value)
     {
         // read from inside out
