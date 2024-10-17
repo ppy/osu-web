@@ -31,7 +31,7 @@ return [
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'Errore nella creazione della copertina: :error',
+        'ok' => 'Copertine create',
     ],
 ];

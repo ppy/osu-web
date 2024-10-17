@@ -61,11 +61,11 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => 'Acest canal este doar pentru anunțuri.',
         'blocked' => 'Nu poți trimite mesaje unui utilizator care te-a blocat sau pe care l-ai blocat.',
         'friends_only' => 'Utilizatorul blochează mesajele de la oameni care nu sunt pe lista lor de prieteni.',
         'moderated' => 'Acest canal este moderat în prezent.',
         'no_access' => 'Nu ai acces la acest canal.',
+        'no_announce' => '',
         'receive_friends_only' => 'Este posibil ca utilizatorul să nu poată răspunde, deoarece acceptați doar mesaje de la persoane adăugate la prieteni.',
         'restricted' => 'Nu poți trimite mesaje cât timp ești mut, restricționat sau interzis.',
         'silenced' => 'Nu poți trimite mesaje cât timp ești mut, restricționat sau interzis.',

@@ -10,9 +10,9 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'beatmap' => 'Zorluk',
+        'percentile_10' => '10. Yüzdelik Dilim Skoru',
+        'percentile_50' => '50. Yüzdelik Dilim Skoru',
     ],
 
     'filter' => [
@@ -36,7 +36,7 @@ return [
     'type' => [
         'charts' => 'Öne Çıkanlar',
         'country' => 'Ülke',
-        'daily_challenge' => '',
+        'daily_challenge' => 'günlük meydan okuma',
         'kudosu' => 'kudosu',
         'multiplayer' => 'çok oyunculu',
         'performance' => 'Performans',
