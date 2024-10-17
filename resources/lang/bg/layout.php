@@ -200,7 +200,7 @@ return [
             'logout' => 'Изход',
             'profile' => 'Моят профил',
             'scoring_mode_toggle' => '',
-            'scoring_mode_toggle_tooltip' => '',
+            'scoring_mode_toggle_tooltip' => 'Коригира стойността на резултатите да се усеща като традиционното неограничено точкуване',
         ],
     ],
 

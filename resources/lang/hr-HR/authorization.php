@@ -61,11 +61,11 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => 'Ovaj kanal je samo za obavijesti.',
         'blocked' => 'Ne možeš poslati poruku korisniku koji te blokira ili kojeg si blokirao/la.',
         'friends_only' => 'Korisnik blokira poruke od ljudi koji nisu na njegovoj/njezinoj listi prijatelja.',
         'moderated' => 'Ovaj kanal je trenutno nadziran.',
         'no_access' => 'Nemaš pristup tom kanalu.',
+        'no_announce' => '',
         'receive_friends_only' => 'Korisnik možda neće moći odgovoriti zato što samo prihvaćaš poruke od ljudi koji su na tvojoj listi prijatelja.',
         'restricted' => 'Ne možeš slati poruke dok si utišan, ograničen ili izbačen/a.',
         'silenced' => 'Ne možeš slati poruke dok si utišan, ograničen ili izbačen/a.',

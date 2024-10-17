@@ -12,8 +12,8 @@ return [
     ],
 
     'beatmaps' => [
-        '_' => 'Beatmaps',
-        'download' => 'Descarrega la plantilla de beatmap',
+        '_' => 'Mapes',
+        'download' => 'descarrega la plantilla de mapa',
         'download-na' => 'La plantilla del beatmap encara no està disponible',
     ],
 
@@ -22,8 +22,8 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => 'Beatmaps d\'osu!',
-        'osu' => 'Perfil d\'osu!',
+        'beatmaps' => 'Mapes de l\'osu!',
+        'osu' => 'Perfil de l\'osu!',
         'site' => 'Lloc web oficial',
     ],
 

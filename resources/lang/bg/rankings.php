@@ -10,7 +10,7 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
+        'beatmap' => 'Трудност',
         'percentile_10' => '',
         'percentile_50' => '',
     ],
@@ -36,7 +36,7 @@ return [
     'type' => [
         'charts' => 'под прожекторите',
         'country' => 'държава',
-        'daily_challenge' => '',
+        'daily_challenge' => 'предизвикателство',
         'kudosu' => 'kudosu',
         'multiplayer' => 'мултиплейър',
         'performance' => 'представяне',
