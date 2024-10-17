@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Docs\Attributes\Limit;
 use App\Libraries\CommentBundle;
 use App\Models\NewsPost;
 
@@ -37,7 +38,6 @@ class NewsController extends Controller
      * </aside>
      *
      * @usesCursor
-     * @queryParam limit integer Maximum number of posts (12 default, 1 minimum, 21 maximum). No-example
      * @queryParam year integer Year to return posts from. No-example
      * @response {
      *   "news_posts": [
@@ -78,6 +78,7 @@ class NewsController extends Controller
      *   "cursor_string": "WyJodHRwczpcL1wvd3d3LnlvdXR1YmUuY29tXC93YXRjaD92PWRRdzR3OVdnWGNRIl0"
      * }
      */
+    #[Limit(12, 1, 21)]
     public function index()
     {
         $params = request()->all();
