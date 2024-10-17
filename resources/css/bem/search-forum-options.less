@@ -2,53 +2,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .search-forum-options {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  gap: 10px;
+  margin-bottom: 10px;
 
-  &__input-group {
-    display: block;
-    margin: 10px auto;
-    width: 100%;
-    padding: 0 10px;
-
-    // reset global label style
-    text-transform: initial;
-    font-weight: initial;
+  &__buttons {
+    display: grid;
+    gap: inherit;
+    grid-template-columns: 1fr 1fr;
 
     @media @desktop {
-      width: 300px;
-      position: relative;
-    }
-
-    &--buttons {
-      display: flex;
-      padding-left: 5px; // remaining 5px is provided by the buttons themselves
-      padding-right: $padding-left;
-
-      @media @desktop {
-        padding-left: 40px;
-        padding-right: 40px;
-      }
+      padding: 0 40px;
     }
   }
 
-  &__label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    white-space: nowrap;
-
-    @media @desktop {
-      position: absolute;
-      display: flex;
-      align-items: center;
-      margin-right: 10px;
-      margin-bottom: 0;
-      top: 0;
-      right: 100%;
-      height: 100%;
-    }
+  &__checkbox {
+    margin: 0;
+    font-weight: normal;
   }
 }
