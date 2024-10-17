@@ -50,6 +50,8 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   }
 
   componentDidUpdate() {
+    document.addEventListener('turbolinks:before-visit', this.handleBeforeVisit);
+
     if (this.shouldFocusInputOnNextRender) {
       this.shouldFocusInputOnNextRender = false;
       this.inputRef.current?.focus();
@@ -58,6 +60,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
 
   componentWillUnmount() {
     this.updateOwnerXhr?.abort();
+    document.removeEventListener('turbolinks:before-visit', this.handleBeforeVisit);
   }
 
   render() {
@@ -89,6 +92,13 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
       </div>
     );
   }
+
+  @action
+  private readonly handleBeforeVisit = (event: Event) => {
+    if (this.editing && !confirm(trans('common.confirmation_unsaved'))) {
+      event.preventDefault();
+    }
+  };
 
   @action
   private readonly handleCancelEditingClick = () => {
