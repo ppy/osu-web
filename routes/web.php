@@ -297,6 +297,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('user-cover-presets/batch-activate', 'UserCoverPresetsController@batchActivate')->name('user-cover-presets.batch-activate');
     Route::resource('user-cover-presets', 'UserCoverPresetsController', ['only' => ['index', 'store', 'update']]);
 
+    Route::resource('teams', 'TeamsController', ['only' => ['show']]);
+
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
     Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');
     Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled');

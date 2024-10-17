@@ -2,17 +2,26 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .profile-info {
+  --avatar: "";
   --avatar-radius-extended-desktop: 40px;
   --avatar-radius-extended: 20px;
   --avatar-radius: 20px;
   --avatar-size-extended-desktop: @profile-avatar-size;
   --avatar-size-extended: var(--content-height);
   --avatar-size: var(--content-height);
+
+  --avatar-height: var(--avatar-size);
+  --avatar-width: var(--avatar-size);
+
+  --bg: "";
+
   --content-height: 65px;
+  --vertical-padding: 10px;
+
   --info-margin-extended-desktop: 20px;
   --info-margin-extended: 10px;
   --info-margin: 10px;
-  --vertical-padding: 10px;
+
   display: flex;
   flex-direction: column;
   flex: none;
@@ -29,6 +38,13 @@
     background-color: hsl(var(--hsl-b4));
   }
 
+  &--team {
+    --avatar-width: calc(var(--avatar-height) * 2);
+    --avatar: url("~@images/headers/generic.jpg");
+    --bg: url("~@images/headers/generic.jpg");
+    background-color: hsl(var(--hsl-b4));
+  }
+
   @media @desktop {
     --avatar-radius-extended: var(--avatar-radius-extended-desktop);
     --avatar-size-extended: var(--avatar-size-extended-desktop);
@@ -38,17 +54,19 @@
   &__avatar {
     .own-layer(); // required by safari for border-radius to be applied correctly
     flex: none;
-    width: var(--avatar-size);
-    height: var(--avatar-size);
+    width: var(--avatar-width);
+    height: var(--avatar-height);
     border-radius: var(--avatar-radius);
     overflow: hidden;
     align-self: flex-end;
     margin-bottom: var(--vertical-padding);
+    background-image: var(--avatar);
     .default-box-shadow();
   }
 
   &__bg {
     position: relative;
+    background-image: var(--bg);
     background-size: cover;
     background-position: center;
     height: 100px;
