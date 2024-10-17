@@ -4,6 +4,7 @@
 import UserLink from 'components/user-link';
 import UserJson from 'interfaces/user-json';
 import React from 'react';
+import { joinComponents } from 'utils/lang';
 
 interface Props {
   users: Pick<UserJson, 'id' | 'username'>[];
@@ -11,13 +12,6 @@ interface Props {
 
 export default class UserLinkList extends React.PureComponent<Props> {
   render() {
-    const endIndex = this.props.users.length - 1;
-
-    return this.props.users.map((user, index) => (
-      <React.Fragment key={index}>
-        <UserLink user={user} />
-        {index < endIndex && ', '}
-      </React.Fragment>
-    ));
+    return joinComponents(this.props.users.map((user) => <UserLink key={user.id} user={user} />));
   }
 }
