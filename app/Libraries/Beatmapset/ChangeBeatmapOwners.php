@@ -26,6 +26,10 @@ class ChangeBeatmapOwners
 
         $this->userIds = new Set($newUserIds);
 
+        if ($this->userIds->count() > $GLOBALS['cfg']['osu']['beatmaps']['owners_max']) {
+            throw new InvariantException('too many guest mappers.');
+        }
+
         if ($this->userIds->isEmpty()) {
             throw new InvariantException('user_ids must be specified');
         }
@@ -59,7 +63,7 @@ class ChangeBeatmapOwners
 
             // TODO: use select instead (needs newer laravel)
             $newUsers = $this->beatmap->owners->map(
-                fn ($user) => ['id' => $user->user_id, 'username' => ($user ?? new DeletedUser())->username],
+                fn (User $user) => ['id' => $user->user_id, 'username' => $user->username],
             )->all();
             $beatmapset = $this->beatmap->beatmapset;
 

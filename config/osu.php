@@ -42,6 +42,7 @@ return [
         'uid' => '1337',
     ],
     'beatmaps' => [
+        'owners_max' => get_int(env('BEATMAPS_OWNERS_MAX')) ?? 10,
         'max' => 50,
         'max_scores' => 100,
 
