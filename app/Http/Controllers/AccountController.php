@@ -283,6 +283,7 @@ class AccountController extends Controller
         ]);
 
         $profileCustomization = $user->userProfileCustomization()->createOrFirst();
+        $user->setRelation('userProfileCustomization', $profileCustomization);
 
         try {
             if (!empty($userParams)) {
