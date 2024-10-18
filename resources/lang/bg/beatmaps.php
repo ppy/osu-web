@@ -25,14 +25,14 @@ return [
         'message_placeholder_silenced' => "Не може да публикувате дискусии, докато сте заглушени.",
         'message_type_select' => 'Избор на вид коментар',
         'reply_notice' => 'Натиснете enter, за да отговорите.',
-        'reply_resolve_notice' => '',
+        'reply_resolve_notice' => 'Натиснете enter за отговор. Натиснете ctrl+enter за отговор и решаване.',
         'reply_placeholder' => 'Въведете вашия отговор тук',
         'require-login' => 'Моля, влезте в профила си, за да публикувате или отговаряте',
-        'resolved' => 'Разрешени',
+        'resolved' => 'Решени',
         'restore' => 'възстанови',
         'show_deleted' => 'Покажи изтрити',
         'title' => 'Дискусии',
-        'unresolved_count' => '',
+        'unresolved_count' => ':count_delimited нерешен проблем|:count_delimited нерешени проблеми',
 
         'collapse' => [
             'all-collapse' => 'Свий всички',
@@ -147,7 +147,7 @@ return [
             'mine' => 'Мои',
             'pending' => 'Чакащи',
             'praises' => 'Похвали',
-            'resolved' => 'Разрешени',
+            'resolved' => 'Решен',
             'total' => 'Всички',
         ],
 
