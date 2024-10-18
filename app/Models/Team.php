@@ -51,6 +51,21 @@ class Team extends Model
         }
     }
 
+    public function setDefaultRulesetIdAttribute(?int $value): void
+    {
+        $this->attributes['default_ruleset_id'] = Beatmap::MODES[Beatmap::modeStr($value) ?? 'osu'];
+    }
+
+    public function setUrlAttribute(?string $value): void
+    {
+        $this->attributes['url'] = $value === null
+            ? null
+            : (is_http($value)
+                ? $value
+                : "https://{$value}"
+            );
+    }
+
     public function descriptionHtml(): string
     {
         $description = presence($this->description);
@@ -68,6 +83,26 @@ class Team extends Model
             'header_file',
             ['image' => ['maxDimensions' => [1000, 250]]],
         );
+    }
+
+    public function isValid(): bool
+    {
+        $this->validationErrors()->reset();
+
+        if ($this->isDirty('url')) {
+            $url = $this->url;
+            if ($url !== null && !is_http($url)) {
+                $this->validationErrors()->add('url', 'url');
+            }
+        }
+
+        if ($this->isDirty('ruleset_id')) {
+            if (Beatmap::modeStr($this->ruleset_id) === null) {
+                $this->validationErrors()->add('ruleset_id', '.unknown_ruleset_id');
+            }
+        }
+
+        return $this->validationErrors()->isEmpty();
     }
 
     public function logo(): Uploader
