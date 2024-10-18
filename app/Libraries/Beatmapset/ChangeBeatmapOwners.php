@@ -45,14 +45,13 @@ class ChangeBeatmapOwners
         }
 
         $this->beatmap->getConnection()->transaction(function () {
-            $userIds = $this->userIds->toArray();
             $params = [];
 
-            foreach ($userIds as $userId) {
+            foreach ($this->userIds as $userId) {
                 $params[] = ['beatmap_id' => $this->beatmap->getKey(), 'user_id' => $userId];
             }
 
-            $this->beatmap->fill(['user_id' => $userIds[0]])->saveOrExplode();
+            $this->beatmap->fill(['user_id' => $this->userIds->first()])->saveOrExplode();
             $this->beatmap->beatmapOwners()->delete();
             BeatmapOwner::insert($params);
 
