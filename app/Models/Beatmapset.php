@@ -1444,7 +1444,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function getDisplayArtist(?User $user)
     {
-        $profileCustomization = $user->userProfileCustomization ?? UserProfileCustomization::DEFAULTS;
+        $profileCustomization = UserProfileCustomization::forUser($user);
 
         return $profileCustomization['beatmapset_title_show_original']
             ? $this->artist_unicode
@@ -1453,7 +1453,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function getDisplayTitle(?User $user)
     {
-        $profileCustomization = $user->userProfileCustomization ?? UserProfileCustomization::DEFAULTS;
+        $profileCustomization = UserProfileCustomization::forUser($user);
 
         return $profileCustomization['beatmapset_title_show_original']
             ? $this->title_unicode
