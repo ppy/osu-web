@@ -77,11 +77,11 @@ class BeatmapCompactTransformer extends TransformerAbstract
 
     public function includeOwners(Beatmap $beatmap)
     {
-        return $this->primitive($beatmap->owners->map(fn (User $user) => [
+        return $this->collection($beatmap->owners, fn (User $user) => [
             'avatar_url' => $user->user_avatar,
             'id' => $user->user_id,
             'username' => $user->username,
-        ]));
+        ]);
     }
 
     public function includeUser(Beatmap $beatmap)
