@@ -218,7 +218,7 @@ return [
     |
     */
 
-    'max_execution_time' => 180,
+    'max_execution_time' => 55,
 
     'state_file' => presence(env('OCTANE_STATE_FILE')) ?? storage_path('logs/octane-server-state.json'),
 ];
