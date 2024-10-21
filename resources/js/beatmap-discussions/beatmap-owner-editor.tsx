@@ -17,7 +17,6 @@ import { normaliseUsername } from 'models/user';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { hasGuestOwners } from 'utils/beatmap-helper';
-import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import BeatmapOwner from './beatmap-owner';
 import DiscussionsState from './discussions-state';
@@ -68,12 +67,8 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   }
 
   render() {
-    const blockClass = classWithModifiers('beatmap-owner-editor', {
-      editing: this.editing,
-    });
-
     return (
-      <div className={blockClass}>
+      <div className='beatmap-owner-editor'>
         <div className='beatmap-owner-editor__col'>
           <span className='beatmap-owner-editor__mode'>
             <span className={`fal fa-fw fa-extra-mode-${this.props.beatmap.mode}`} />
@@ -185,14 +180,14 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   }
 
   private readonly renderOwner = (owner: UserJson, onRemoveClick: (user: UserJson) => void) => (
-    <BeatmapOwner key={owner.id} onRemoveUser={onRemoveClick} user={owner} />
+    <BeatmapOwner key={owner.id} editing={this.editing} onRemoveUser={onRemoveClick} user={owner} />
   );
 
   private renderUsernames() {
     if (!this.editing) {
       return (
         <div className='beatmap-owner-editor__owners'>
-          {this.owners.map((owner) => <BeatmapOwner key={owner.id} user={owner} />)}
+          {this.owners.map((owner) => <BeatmapOwner key={owner.id} editing={this.editing} user={owner} />)}
         </div>
       );
     }

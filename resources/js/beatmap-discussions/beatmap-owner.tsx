@@ -5,16 +5,18 @@ import UserAvatar from 'components/user-avatar';
 import UserLink from 'components/user-link';
 import { UserJsonMinimum } from 'interfaces/user-json';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
+  editing: boolean;
   onRemoveUser?: (user: UserJsonMinimum) => void;
   user: UserJsonMinimum;
 }
 
-function createRemoveOwnerHandler(user: UserJsonMinimum, onRemoveClick: NonNullable<Props['onRemoveUser']>) {
+function createRemoveOwnerHandler(user: UserJsonMinimum, onRemoveClick?: NonNullable<Props['onRemoveUser']>) {
   return (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    onRemoveClick(user);
+    onRemoveClick?.(user);
   };
 }
 
@@ -30,11 +32,14 @@ export default class BeatmapOwner extends React.PureComponent<Props> {
             {this.props.user.username}
           </div>
         </UserLink>
-        {this.props.onRemoveUser != null && (
-          <button className='beatmap-owner__remove' onClick={createRemoveOwnerHandler(this.props.user, this.props.onRemoveUser)}>
-            <span className='fas fa-times' />
-          </button>
-        )}
+
+        <button
+          className={classWithModifiers('beatmap-owner__remove', { editing: this.props.editing })}
+          onClick={createRemoveOwnerHandler(this.props.user, this.props.onRemoveUser)}
+        >
+          <span className='fas fa-times' />
+        </button>
+
       </div>
     );
   }
