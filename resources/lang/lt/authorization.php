@@ -61,11 +61,11 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => 'Šis kanalas tik skelbimams.',
         'blocked' => 'Negalima išsiųsti žinučių vartotojui, kuris yra jūs užblokavęs, ar jūs esat užblokavę.',
         'friends_only' => 'Vartotojas šiuo metu užblokavo žinutės iš žmonių, kurie nėra vartotojo draugų sąraše.',
         'moderated' => 'Šiuo momentu šis kanalas yra prižiūrimas.',
         'no_access' => 'Jūs neturite leidimo įeiti į šį kanalą.',
+        'no_announce' => '',
         'receive_friends_only' => 'Naudotojas gali negalėti atsakyti, nes priėmat žinutes tik iš žmonių jūsų draugų sąraše.',
         'restricted' => 'Būnant užblokuotam, apribotam, užtildytam, jūs negalite siųsti žinučių.',
         'silenced' => 'Būnant užblokuotam, apribotam, užtildytam, jūs negalite siųsti žinučių.',

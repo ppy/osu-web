@@ -174,8 +174,13 @@ class Token extends PassportToken implements SessionVerificationInterface
         }
 
         // no silly scopes.
-        if ($scopes->contains('*') && $scopes->count() > 1) {
-            throw new InvalidScopeException('* is not valid with other scopes');
+        if ($scopes->contains('*')) {
+            if ($scopes->count() > 1) {
+                throw new InvalidScopeException('* is not valid with other scopes');
+            }
+        } elseif ($client->user === null) {
+            // Only "*" scope is allowed for clients with no user
+            throw new InvalidScopeException('The client is missing owner.');
         }
 
         if ($this->isClientCredentials()) {

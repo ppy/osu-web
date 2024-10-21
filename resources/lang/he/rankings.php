@@ -10,7 +10,7 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
+        'beatmap' => 'רמת קושי',
         'percentile_10' => '',
         'percentile_50' => '',
     ],

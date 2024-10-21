@@ -52,7 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Bu beatmapi aday göstermek istediğinize emin misiniz?',
-            'different_nominator_warning' => '',
+            'different_nominator_warning' => 'Bu beatmapi farklı seçmenlerle nitelendirmek, nitelendirme sırası konumunu sıfırlayacaktır.',
             'header' => 'Beatmap aday gösterin',
             'hybrid_warning' => 'not: sadece bir kez aday gösterebilirsiniz, bu yüzden lütfen istediğiniz tüm oyun modlarını aday gösterdiğinizden emin olun',
             'current_main_ruleset' => 'Şu anki kural dizisi: :ruleset',

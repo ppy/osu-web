@@ -2,11 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .osu-layout {
-  ._page {
-    .default-box-shadow();
-    background-color: @osu-colour-b5;
-  }
-
   display: flex;
   flex-direction: column;
 
@@ -65,78 +60,10 @@
     }
   }
 
-  &__col {
-    width: calc(100% - 10px);
-    margin: 5px;
-
-    &--sm-6 {
-      @media @desktop {
-        width: calc((6 / 12 * 100%) - 10px);
-      }
-    }
-
-    &--sm-4 {
-      @media @desktop {
-        width: calc((4 / 12 * 100%) - 10px);
-      }
-    }
-  }
-
-  &__col-container {
-    display: flex;
-    flex-wrap: wrap;
-
-    &--with-gutter {
-      margin: -5px;
-    }
-  }
-
   &__no-scroll {
     overflow: hidden;
     flex: 1 0 auto;
     position: relative;
-  }
-
-  &__row {
-    ._width(@extra-margin: 0px) {
-      width: calc(100% - (@extra-margin * 2));
-      max-width: (@container-sm - @extra-margin * 2);
-    }
-
-    ._width-desktop(@extra-margin: 0px) {
-      width: calc(100% - ((@extra-margin + @grid-gutter-width) * 2));
-      max-width: (@container-sm - @extra-margin * 2);
-    }
-
-    align-self: center;
-    margin-left: auto;
-    margin-right: auto;
-
-    ._width;
-    @media @desktop {
-      ._width-desktop;
-    }
-
-    &--full {
-      display: flex;
-      flex-direction: column;
-      flex: 1 0 auto;
-    }
-
-    &--page {
-      ._page();
-      padding: 20px;
-    }
-
-    &--page-compact {
-      ._page();
-    }
-
-    &--landing-sitemap {
-      max-width: 800px;
-      margin: 35px 0 40px;
-      width: calc(100% - 20px);
-    }
   }
 
   &__section {
