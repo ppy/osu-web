@@ -25,6 +25,7 @@ use App\Models\Forum\TopicWatch;
 use App\Models\OAuth\Client;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
+use App\Transformers\UserCompactTransformer;
 use Cache;
 use Carbon\Carbon;
 use DB;
@@ -2012,13 +2013,12 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             ->where('user_lastvisit', '>', time() - $GLOBALS['cfg']['osu']['user']['online_window']);
     }
 
-    public function scopeEagerloadForListing($query)
+    public function scopeEagerloadForListing($query, string $rulesetName)
     {
         return $query->with([
-            'country',
+            ...UserCompactTransformer::CARD_INCLUDES_PRELOAD,
+            static::statisticsRelationName($rulesetName),
             'supporterTagPurchases',
-            'userGroups',
-            'userProfileCustomization',
         ]);
     }
 

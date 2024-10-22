@@ -25,6 +25,7 @@ class UserCompactTransformer extends TransformerAbstract
         'userGroups',
     ];
 
+    // Use `eagerloadForListing` scope for preloading.
     const LIST_INCLUDES = [
         ...self::CARD_INCLUDES,
         'statistics',

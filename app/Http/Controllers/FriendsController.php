@@ -37,8 +37,7 @@ class FriendsController extends Controller
 
         $friends = $currentUser
             ->friends()
-            ->with('statistics'.studly_case($currentMode))
-            ->eagerloadForListing()
+            ->eagerloadForListing($currentMode)
             ->orderBy('username', 'asc')
             ->get();
 
