@@ -37,7 +37,7 @@ class FriendsController extends Controller
 
         $friends = $currentUser
             ->friends()
-            ->eagerloadForListing($currentMode)
+            ->with(UserCompactTransformer::listIncludesPreload($currentMode))
             ->orderBy('username', 'asc')
             ->get();
 

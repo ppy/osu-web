@@ -16,7 +16,7 @@ class GroupsController extends Controller
 
         $currentMode = default_mode();
         $users = $group->users()
-            ->eagerloadForListing($currentMode)
+            ->with(UserCompactTransformer::listIncludesPreload($currentMode))
             ->default()
             ->orderBy('username', 'asc')
             ->get();

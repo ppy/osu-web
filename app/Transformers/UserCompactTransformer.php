@@ -25,7 +25,7 @@ class UserCompactTransformer extends TransformerAbstract
         'userGroups',
     ];
 
-    // Use `eagerloadForListing` scope for preloading.
+    // Paired with static::listIncludesPreload
     const LIST_INCLUDES = [
         ...self::CARD_INCLUDES,
         'statistics',
@@ -112,6 +112,15 @@ class UserCompactTransformer extends TransformerAbstract
         'is_restricted' => 'UserShowRestrictedStatus',
         'is_silenced' => 'IsNotOAuth',
     ];
+
+    public static function listIncludesPreload(string $rulesetName): array
+    {
+        return [
+            ...static::CARD_INCLUDES_PRELOAD,
+            User::statisticsRelationName($rulesetName),
+            'supporterTagPurchases',
+        ];
+    }
 
     public function transform(User $user)
     {

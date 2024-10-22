@@ -25,7 +25,6 @@ use App\Models\Forum\TopicWatch;
 use App\Models\OAuth\Client;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
-use App\Transformers\UserCompactTransformer;
 use Cache;
 use Carbon\Carbon;
 use DB;
@@ -2011,15 +2010,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $query
             ->where('user_allow_viewonline', true)
             ->where('user_lastvisit', '>', time() - $GLOBALS['cfg']['osu']['user']['online_window']);
-    }
-
-    public function scopeEagerloadForListing($query, string $rulesetName)
-    {
-        return $query->with([
-            ...UserCompactTransformer::CARD_INCLUDES_PRELOAD,
-            static::statisticsRelationName($rulesetName),
-            'supporterTagPurchases',
-        ]);
     }
 
     public function checkPassword($password)
