@@ -184,14 +184,6 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   );
 
   private renderUsernames() {
-    if (!this.editing) {
-      return (
-        <div className='beatmap-owner-editor__owners'>
-          {this.owners.map((owner) => <BeatmapOwner key={owner.id} editing={this.editing} user={owner} />)}
-        </div>
-      );
-    }
-
     return (
       <InputContainer
         for='beatmap-owner-editor-username-input'
@@ -199,16 +191,22 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
         modifiers='beatmap-owner-editor'
         showError={this.showError}
       >
-        <UsernameInput
-          id='beatmap-owner-editor-username-input'
-          initialUsers={this.owners}
-          // initialValue not set for owner editor as value is reset when cancelled.
-          modifiers='beatmap-owner-editor'
-          onEnterPressed={this.handleSaveClick}
-          onValidUsersChanged={this.handleValidUsersChanged}
-          onValueChanged={this.handleUsernameInputValueChanged}
-          renderUser={this.renderOwner}
-        />
+        <div className='beatmap-owner-editor__owners'>
+          {this.editing ? (
+            <UsernameInput
+              id='beatmap-owner-editor-username-input'
+              initialUsers={this.owners}
+              // initialValue not set for owner editor as value is reset when cancelled.
+              modifiers='beatmap-owner-editor'
+              onEnterPressed={this.handleSaveClick}
+              onValidUsersChanged={this.handleValidUsersChanged}
+              onValueChanged={this.handleUsernameInputValueChanged}
+              renderUser={this.renderOwner}
+            />
+          ) : (
+            this.owners.map((owner) => <BeatmapOwner key={owner.id} editing={this.editing} user={owner} />)
+          )}
+        </div>
       </InputContainer>
     );
   }
