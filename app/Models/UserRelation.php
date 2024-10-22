@@ -64,7 +64,7 @@ class UserRelation extends Model
     {
         $selfJoin =
             'COALESCE((
-                SELECT 1
+                SELECT phpbb_zebra.friend
                 FROM phpbb_zebra z
                 WHERE phpbb_zebra.zebra_id = z.user_id
                 AND z.zebra_id = phpbb_zebra.user_id
