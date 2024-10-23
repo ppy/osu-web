@@ -49,7 +49,7 @@ class ChangeBeatmapOwnersTest extends TestCase
         (new ChangeBeatmapOwners($beatmap, $userIds, $moderator))->handle();
 
         $beatmap = $beatmap->fresh();
-        $this->assertEqualsCanonicalizing($userIds, $beatmap->owners->pluck('user_id')->toArray());
+        $this->assertEqualsCanonicalizing($userIds, $beatmap->getOwners()->pluck('user_id')->toArray());
         $this->assertSame($userIds[0], $beatmap->user_id);
 
         Bus::assertDispatched(BeatmapOwnerChange::class);
@@ -69,7 +69,7 @@ class ChangeBeatmapOwnersTest extends TestCase
         (new ChangeBeatmapOwners($beatmap, $users->pluck('user_id')->toArray(), $owner))->handle();
 
         $beatmap = $beatmap->fresh();
-        $this->assertEqualsCanonicalizing($users->pluck('user_id'), $beatmap->owners->pluck('user_id'));
+        $this->assertEqualsCanonicalizing($users->pluck('user_id'), $beatmap->getOwners()->pluck('user_id'));
         $this->assertSame($users[0]->getKey(), $beatmap->user_id);
 
         Bus::assertDispatched(BeatmapOwnerChange::class);
@@ -91,7 +91,7 @@ class ChangeBeatmapOwnersTest extends TestCase
         );
 
         $beatmap = $beatmap->fresh();
-        $this->assertEqualsCanonicalizing([$owner->getKey()], $beatmap->owners->pluck('user_id')->toArray());
+        $this->assertEqualsCanonicalizing([$owner->getKey()], $beatmap->getOwners()->pluck('user_id')->toArray());
         $this->assertSame($owner->getKey(), $beatmap->user_id);
 
         Bus::assertNotDispatched(BeatmapOwnerChange::class);
@@ -112,7 +112,7 @@ class ChangeBeatmapOwnersTest extends TestCase
         );
 
         $beatmap = $beatmap->fresh();
-        $this->assertEqualsCanonicalizing([$owner->getKey()], $beatmap->owners->pluck('user_id')->toArray());
+        $this->assertEqualsCanonicalizing([$owner->getKey()], $beatmap->getOwners()->pluck('user_id')->toArray());
         $this->assertSame($owner->getKey(), $beatmap->user_id);
 
         Bus::assertNotDispatched(BeatmapOwnerChange::class);
@@ -143,7 +143,7 @@ class ChangeBeatmapOwnersTest extends TestCase
 
         $beatmap = $beatmap->fresh();
         $expectedUser = $ok ? $user : $owner;
-        $this->assertEqualsCanonicalizing([$expectedUser->getKey()], $beatmap->owners->pluck('user_id')->toArray());
+        $this->assertEqualsCanonicalizing([$expectedUser->getKey()], $beatmap->getOwners()->pluck('user_id')->toArray());
         $this->assertSame($expectedUser->getKey(), $beatmap->user_id);
 
         if ($ok) {
@@ -171,7 +171,7 @@ class ChangeBeatmapOwnersTest extends TestCase
         (new ChangeBeatmapOwners($beatmap, [$user->getKey()], $moderator))->handle();
 
         $beatmap = $beatmap->fresh();
-        $this->assertEqualsCanonicalizing([$user->getKey()], $beatmap->owners->pluck('user_id')->toArray());
+        $this->assertEqualsCanonicalizing([$user->getKey()], $beatmap->getOwners()->pluck('user_id')->toArray());
         $this->assertSame($user->getKey(), $beatmap->user_id);
     }
 
@@ -194,7 +194,7 @@ class ChangeBeatmapOwnersTest extends TestCase
         );
 
         $beatmap = $beatmap->fresh();
-        $this->assertEqualsCanonicalizing([$owner->getKey()], $beatmap->owners->pluck('user_id')->toArray());
+        $this->assertEqualsCanonicalizing([$owner->getKey()], $beatmap->getOwners()->pluck('user_id')->toArray());
         $this->assertSame($owner->getKey(), $beatmap->user_id);
 
         Bus::assertNotDispatched(BeatmapOwnerChange::class);
@@ -212,7 +212,7 @@ class ChangeBeatmapOwnersTest extends TestCase
         (new ChangeBeatmapOwners($beatmap, [$owner->getKey()], $owner))->handle();
 
         $beatmap = $beatmap->fresh();
-        $this->assertEqualsCanonicalizing([$owner->getKey()], $beatmap->owners->pluck('user_id')->toArray());
+        $this->assertEqualsCanonicalizing([$owner->getKey()], $beatmap->getOwners()->pluck('user_id')->toArray());
         $this->assertSame($owner->getKey(), $beatmap->user_id);
 
         Bus::assertNotDispatched(BeatmapOwnerChange::class);

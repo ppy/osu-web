@@ -266,7 +266,6 @@ class Beatmap extends Model implements AfterCommit
             'diff_size' => $this->getDiffSize(),
             'difficultyrating' => $this->getDifficultyrating(),
             'mode' => $this->getMode(),
-            'owners' => $this->getOwners(),
             'version' => $this->getVersion(),
 
             'baseDifficultyRatings',
@@ -282,6 +281,31 @@ class Beatmap extends Model implements AfterCommit
             'scoresBestTaiko',
             'user' => $this->getRelationValue($key),
         };
+    }
+
+    public function getOwners(): Collection
+    {
+        $beatmapOwners = $this->beatmapOwners()->pluck('user_id');
+
+        $owners = User::whereIn('user_id', $beatmapOwners)->get();
+
+        // Add deleted/missing users.
+        if ($beatmapOwners->count() !== $owners->count()) {
+            $beatmapOwnersSet = new Set($beatmapOwners);
+            $ownersSet = new Set($owners->pluck('user_id')->toArray());
+
+            $missingIds = $beatmapOwnersSet->diff($ownersSet);
+            foreach ($missingIds as $id) {
+                $owners->push(new DeletedUser(['user_id' => $id]));
+            }
+        }
+
+        // compatiblity for anything that isn't writing to beatmap_owners yet.
+        if ($owners->find($this->user_id) === null && $this->user !== null) {
+            $owners->prepend($this->user);
+        }
+
+        return $owners;
     }
 
     public function maxCombo()
@@ -366,31 +390,6 @@ class Beatmap extends Model implements AfterCommit
         }
 
         return $value;
-    }
-
-    private function getOwners(): Collection
-    {
-        $beatmapOwners = $this->beatmapOwners()->pluck('user_id');
-
-        $owners = User::whereIn('user_id', $beatmapOwners)->get();
-
-        // Add deleted/missing users.
-        if ($beatmapOwners->count() !== $owners->count()) {
-            $beatmapOwnersSet = new Set($beatmapOwners);
-            $ownersSet = new Set($owners->pluck('user_id')->toArray());
-
-            $missingIds = $beatmapOwnersSet->diff($ownersSet);
-            foreach ($missingIds as $id) {
-                $owners->push(new DeletedUser(['user_id' => $id]));
-            }
-        }
-
-        // compatiblity for anything that isn't writing to beatmap_owners yet.
-        if ($owners->find($this->user_id) === null && $this->user !== null) {
-            $owners->prepend($this->user);
-        }
-
-        return $owners;
     }
 
     private function getMode()
