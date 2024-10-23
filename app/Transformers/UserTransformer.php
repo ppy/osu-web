@@ -29,7 +29,7 @@ class UserTransformer extends UserCompactTransformer
     {
         $result = parent::transform($user);
 
-        $profileOrder = ($user->userProfileCustomization ?? UserProfileCustomization::DEFAULTS)['extras_order'];
+        $profileOrder = UserProfileCustomization::forUser($user)['extras_order'];
 
         return [
             ...$result,

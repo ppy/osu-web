@@ -10,7 +10,7 @@
         $attributesBag = Request::instance()->attributes;
         $userShowNsfw = $attributesBag->get('user_beatmapset_show_nsfw');
         if ($userShowNsfw === null) {
-            $userShowNsfw = (Auth::user()->userProfileCustomization ?? App\Models\UserProfileCustomization::DEFAULTS)['beatmapset_show_nsfw'];
+            $userShowNsfw = App\Models\UserProfileCustomization::forUser(Auth::user())['beatmapset_show_nsfw'];
             $attributesBag->set('user_beatmapset_show_nsfw', $userShowNsfw);
         }
     }
