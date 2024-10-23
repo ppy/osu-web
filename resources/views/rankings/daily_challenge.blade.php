@@ -52,18 +52,18 @@
             </div>
             <div class="counter-box counter-box--ranking">
                 <div class="counter-box__title">
-                    {{ osu_trans('rankings.daily_challenge.percentile_10') }}
+                    {{ osu_trans('rankings.daily_challenge.top_10p') }}
                 </div>
                 <div class="counter-box__count">
-                    {{ i18n_number_format($percentile['10p']) }}
+                    {{ i18n_number_format($percentile['top_10p']) }}
                 </div>
             </div>
             <div class="counter-box counter-box--ranking">
                 <div class="counter-box__title">
-                    {{ osu_trans('rankings.daily_challenge.percentile_50') }}
+                    {{ osu_trans('rankings.daily_challenge.top_50p') }}
                 </div>
                 <div class="counter-box__count">
-                    {{ i18n_number_format($percentile['50p']) }}
+                    {{ i18n_number_format($percentile['top_50p']) }}
                 </div>
             </div>
         </div>
