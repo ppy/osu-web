@@ -13,6 +13,7 @@ use App\Exceptions\UnsupportedNominationException;
 use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\Notifications\BeatmapsetDisqualify;
 use App\Jobs\Notifications\BeatmapsetResetNominations;
+use App\Libraries\Beatmapset\ChangeBeatmapOwners;
 use App\Libraries\Beatmapset\NominateBeatmapset;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
@@ -820,8 +821,18 @@ class BeatmapsetTest extends TestCase
         $beatmapset->fresh()->nominate($bngUser1, ['osu']);
 
         // main ruleset should now be osu
-        $beatmapset->beatmaps()->where('playmode', 1)->first()->setOwners([$guest->getKey()], $natUser);
-        $beatmapset->beatmaps()->where('playmode', 0)->last()->setOwners([$beatmapset->user_id], $natUser);
+        (new ChangeBeatmapOwners(
+            $beatmapset->beatmaps()->where('playmode', 1)->first(),
+            [$guest->getKey()],
+            $natUser)
+        )->handle();
+
+        (new ChangeBeatmapOwners(
+            $beatmapset->beatmaps()->where('playmode', 0)->last(),
+            [$beatmapset->user_id],
+            $natUser)
+        )->handle();
+
         $beatmapset->refresh();
 
         $this->assertSame('osu', $beatmapset->mainRuleset());

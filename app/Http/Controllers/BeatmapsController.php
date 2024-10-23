@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 use App\Enums\Ruleset;
 use App\Exceptions\InvariantException;
 use App\Libraries\BeatmapDifficultyAttributes;
+use App\Libraries\Beatmapset\ChangeBeatmapOwners;
 use App\Libraries\Score\BeatmapScores;
 use App\Libraries\Score\UserRank;
 use App\Libraries\Search\ScoreSearch;
@@ -378,11 +379,10 @@ class BeatmapsController extends Controller
 
     public function updateOwner($id)
     {
+        $beatmap = Beatmap::findOrFail($id);
         $newUserIds = get_arr(request('user_ids'), 'get_int');
 
-        $beatmap = Beatmap::findOrFail($id);
-
-        $beatmap->setOwners($newUserIds ?? [], \Auth::user());
+        (new ChangeBeatmapOwners($beatmap, $newUserIds ?? [], \Auth::user()))->handle();
 
         return $beatmap->beatmapset->defaultDiscussionJson();
     }
