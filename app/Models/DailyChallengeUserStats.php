@@ -178,7 +178,7 @@ class DailyChallengeUserStats extends Model
 
         foreach ($playlistPercentile as $p => $totalScore) {
             if ($highScore->total_score >= $totalScore) {
-                $this->{"top_{$p}_placements"}++;
+                $this->{"{$p}_placements"}++;
             }
         }
         $this->last_percentile_calculation = $startTime;

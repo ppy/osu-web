@@ -2012,16 +2012,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             ->where('user_lastvisit', '>', time() - $GLOBALS['cfg']['osu']['user']['online_window']);
     }
 
-    public function scopeEagerloadForListing($query)
-    {
-        return $query->with([
-            'country',
-            'supporterTagPurchases',
-            'userGroups',
-            'userProfileCustomization',
-        ]);
-    }
-
     public function checkPassword($password)
     {
         return Hash::check($password, $this->getAuthPassword());
