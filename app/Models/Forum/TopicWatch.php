@@ -92,7 +92,7 @@ class TopicWatch extends Model
                 }
 
                 return $watch;
-            } catch (Exception $e) {
+            } catch (\Throwable $e) {
                 if (is_sql_unique_exception($e) && $tries < 2) {
                     $tries++;
                 } else {
