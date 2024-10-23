@@ -287,7 +287,7 @@ class Beatmap extends Model implements AfterCommit
     {
         $beatmapOwners = $this->beatmapOwners()->pluck('user_id');
 
-        $owners = User::whereIn('user_id', $beatmapOwners)->get();
+        $owners = User::whereIn('user_id', [...$beatmapOwners, $this->user_id])->get();
 
         // Add deleted/missing users.
         if ($beatmapOwners->count() !== $owners->count()) {
@@ -298,11 +298,6 @@ class Beatmap extends Model implements AfterCommit
             foreach ($missingIds as $id) {
                 $owners->push(new DeletedUser(['user_id' => $id]));
             }
-        }
-
-        // compatiblity for anything that isn't writing to beatmap_owners yet.
-        if ($owners->find($this->user_id) === null && $this->user !== null) {
-            $owners->prepend($this->user);
         }
 
         return $owners;

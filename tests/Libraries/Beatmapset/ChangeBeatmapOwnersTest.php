@@ -15,6 +15,7 @@ use App\Models\Beatmap;
 use App\Models\BeatmapOwner;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
+use App\Models\DeletedUser;
 use App\Models\User;
 use Bus;
 use Tests\TestCase;
@@ -71,6 +72,33 @@ class ChangeBeatmapOwnersTest extends TestCase
         $beatmap = $beatmap->fresh();
         $this->assertEqualsCanonicalizing($users->pluck('user_id'), $beatmap->getOwners()->pluck('user_id'));
         $this->assertSame($users[0]->getKey(), $beatmap->user_id);
+
+        Bus::assertDispatched(BeatmapOwnerChange::class);
+    }
+
+    public function testUpdateOwnerExistingDeletedUser(): void
+    {
+        $owner = User::factory()->create();
+        $users = User::factory()->count(2)->create();
+        $users->add($owner);
+        $ownerId = $owner->getKey();
+
+        $beatmap = Beatmap::factory()
+            ->for(Beatmapset::factory()->pending()->owner($owner))
+            ->owner($owner)
+            ->create();
+
+        $owner->delete();
+        $this->assertTrue($beatmap->getOwners()->find($ownerId) instanceof DeletedUser);
+
+        $this->expectCountChange(fn () => BeatmapsetEvent::count(), 1);
+
+        (new ChangeBeatmapOwners($beatmap, $users->pluck('user_id')->toArray(), $owner))->handle();
+
+        $beatmap = $beatmap->fresh();
+        $newOwners = $beatmap->getOwners();
+        $this->assertCount(3, $newOwners);
+        $this->assertEqualsCanonicalizing($users->pluck('user_id'), $newOwners->pluck('user_id'));
 
         Bus::assertDispatched(BeatmapOwnerChange::class);
     }
