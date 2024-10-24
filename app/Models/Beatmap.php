@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @property int $approved
  * @property-read Collection<BeatmapDiscussion> $beatmapDiscussions
+ * @property-read Collection<BeatmapOwner> $beatmapOwners
  * @property int $beatmap_id
  * @property Beatmapset $beatmapset
  * @property int|null $beatmapset_id
@@ -271,6 +272,7 @@ class Beatmap extends Model implements AfterCommit
             'baseDifficultyRatings',
             'baseMaxCombo',
             'beatmapDiscussions',
+            'beatmapOwners',
             'beatmapset',
             'difficulty',
             'difficultyAttribs',
@@ -285,7 +287,7 @@ class Beatmap extends Model implements AfterCommit
 
     public function getOwners(): Collection
     {
-        $beatmapOwners = $this->beatmapOwners()->pluck('user_id');
+        $beatmapOwners = $this->beatmapOwners->pluck('user_id');
 
         $owners = User::whereIn('user_id', [...$beatmapOwners, $this->user_id])->get();
 
