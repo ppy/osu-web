@@ -3,7 +3,6 @@
 
 import UserJson from 'interfaces/user-json';
 import { action, autorun, computed, makeObservable, observable } from 'mobx';
-import { uuid } from 'utils/seq';
 import { present } from 'utils/string';
 import { maxMessageLength } from './channel';
 
@@ -34,7 +33,7 @@ export default class CreateAnnouncement {
   @observable validUsers = new Map<number, UserJson>();
 
   private initialized = false;
-  private readonly uuid = uuid();
+  private readonly uuid = crypto.randomUUID();
 
   @computed
   get errors() {
