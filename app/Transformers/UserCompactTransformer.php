@@ -255,7 +255,7 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeFriends(User $user)
     {
         return $this->collection(
-            $user->relations()->friends()->withMutual()->get(),
+            $user->relationFriends,
             new UserRelationTransformer()
         );
     }

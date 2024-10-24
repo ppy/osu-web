@@ -923,6 +923,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'rankHighests',
             'rankHistories',
             'receivedKudosu',
+            'relationFriends',
             'relations',
             'replaysWatchedCounts',
             'reportedIn',
@@ -1516,6 +1517,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             ->select(['user_id', 'username_last'])
             ->withPresent('username_last')
             ->orderBy('timestamp', 'ASC');
+    }
+
+    public function relationFriends(): HasMany
+    {
+        return $this->relations()->friends()->withMutual();
     }
 
     public function relations()
