@@ -119,7 +119,7 @@ class PlaylistItem extends Model
 
     public function scorePercentile(): array
     {
-        $key = "playlist_item_score_percentile:{$this->getKey()}";
+        $key = "playlist_item_score_percentile:v2:{$this->getKey()}";
 
         if (!$this->expired && !$this->room->hasEnded()) {
             $key .= ':ongoing';
@@ -134,11 +134,11 @@ class PlaylistItem extends Model
 
             return $count === 0
                 ? [
-                    '10p' => 0,
-                    '50p' => 0,
+                    'top_10p' => 0,
+                    'top_50p' => 0,
                 ] : [
-                    '10p' => $scores[max(0, (int) ($count * 0.1) - 1)],
-                    '50p' => $scores[max(0, (int) ($count * 0.5) - 1)],
+                    'top_10p' => $scores[max(0, (int) ($count * 0.1) - 1)],
+                    'top_50p' => $scores[max(0, (int) ($count * 0.5) - 1)],
                 ];
         });
     }
