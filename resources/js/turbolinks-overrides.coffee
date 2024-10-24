@@ -45,7 +45,7 @@ Turbolinks.Controller::advanceHistory = (url) ->
   location = @lastRenderedLocation
   @cache.put location, snapshot.clone()
   @lastRenderedLocation = Turbolinks.Location.wrap(url)
-  @pushHistoryWithLocationAndRestorationIdentifier url, Turbolinks.uuid()
+  @pushHistoryWithLocationAndRestorationIdentifier url, crypto.randomUUID()
 
 
 # @lastRenderedLocation must be updated so the most recent url will be used for @cache
