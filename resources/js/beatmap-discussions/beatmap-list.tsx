@@ -41,7 +41,7 @@ export default class BeatmapList extends React.Component<Props> {
 
   componentDidMount() {
     $(document).on(`click.${this.eventId}`, this.onDocumentClick);
-    $(document).on(`turbolinks:before-cache.${this.eventId}`, this.handleBeforeCache);
+    $(document).on(`turbo:before-cache.${this.eventId}`, this.handleBeforeCache);
   }
 
   componentWillUnmount() {

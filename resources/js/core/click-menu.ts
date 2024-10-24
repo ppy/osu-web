@@ -13,8 +13,8 @@ export default class ClickMenu {
     $(document).on('click', '.js-click-menu[data-click-menu-target]', this.toggle);
     $(document).on('mousedown', this.onDocumentMousedown);
     $(document).on('mouseup', this.onDocumentMouseup);
-    document.addEventListener('turbolinks:load', this.restoreSaved);
-    document.addEventListener('turbolinks:before-cache', this.saveCurrent);
+    document.addEventListener('turbo:load', this.restoreSaved);
+    document.addEventListener('turbo:before-cache', this.saveCurrent);
   }
 
   close = () => {

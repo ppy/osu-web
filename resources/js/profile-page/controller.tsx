@@ -169,7 +169,7 @@ export default class Controller {
     makeObservable(this);
 
     $.subscribe('score:pin', this.onScorePinUpdate);
-    $(document).on('turbolinks:before-cache', this.saveState);
+    $(document).on('turbo:before-cache', this.saveState);
   }
 
   @action
@@ -409,7 +409,7 @@ export default class Controller {
     Object.values(this.xhr).forEach((xhr) => xhr?.abort());
     this.debouncedSetDisplayCoverUrl.cancel();
     $.unsubscribe('score:pin', this.onScorePinUpdate);
-    $(document).off('turbolinks:before-cache', this.saveState);
+    $(document).off('turbo:before-cache', this.saveState);
     this.saveState();
   }
 

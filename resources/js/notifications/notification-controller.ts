@@ -6,7 +6,7 @@ import NotificationType, { getValidName, Name as NotificationTypeName, typeNames
 import { NotificationContextData } from 'notifications-context';
 import NotificationStackStore from 'stores/notification-stack-store';
 import NotificationStore from 'stores/notification-store';
-import { currentUrl, currentUrlParams } from 'utils/turbolinks';
+import { updateHistory, currentUrl, currentUrlParams } from 'utils/turbolinks';
 import { updateQueryString } from 'utils/url';
 
 export default class NotificationController {
@@ -86,7 +86,7 @@ export default class NotificationController {
         href = updateQueryString(null, { type });
       }
 
-      Turbolinks.controller.advanceHistory(href);
+      updateHistory(href, 'advance');
     }
   }
 

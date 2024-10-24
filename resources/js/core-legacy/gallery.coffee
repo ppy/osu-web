@@ -13,7 +13,7 @@ export default class Gallery
     $(document).on 'click', '.js-gallery', @initiateOpen
     $(document).on 'click', '.js-gallery-thumbnail', @switchPreview
 
-    $(document).on 'turbolinks:before-cache', ->
+    $(document).on 'turbo:before-cache', ->
       $('.js-gallery--container').remove()
 
 

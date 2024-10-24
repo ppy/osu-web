@@ -156,7 +156,7 @@ export default class CommentsController {
 
     makeObservable(this);
 
-    document.addEventListener('turbolinks:before-cache', this.destroy);
+    document.addEventListener('turbo:before-cache', this.destroy);
   }
 
   @action
@@ -390,7 +390,7 @@ export default class CommentsController {
   readonly destroy = () => {
     if (this.destroyed) return;
 
-    document.removeEventListener('turbolinks:before-cache', this.destroy);
+    document.removeEventListener('turbo:before-cache', this.destroy);
     abortXhrCollection(this.xhr);
     this.stateStore();
     this.destroyed = true;

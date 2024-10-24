@@ -26,7 +26,7 @@ export default class GalleryContest {
 
     this.eventId = `gallery-contest-${nextVal()}`;
 
-    $(document).on(`turbolinks:before-cache.${this.eventId}`, this.destroy);
+    $(document).on(`turbo:before-cache.${this.eventId}`, this.destroy);
     pswp.listen('destroy', this.destroy);
   }
 

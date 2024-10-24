@@ -151,7 +151,7 @@ let userRecommendedDifficultyCache: Partial<Record<Ruleset, number>> | null = nu
 function userRecommendedDifficulty(mode: Ruleset) {
   if (userRecommendedDifficultyCache == null) {
     userRecommendedDifficultyCache = parseJsonNullable('json-recommended-star-difficulty-all') ?? {};
-    $(document).one('turbolinks:before-cache', () => {
+    $(document).one('turbo:before-cache', () => {
       userRecommendedDifficultyCache = null;
     });
   }

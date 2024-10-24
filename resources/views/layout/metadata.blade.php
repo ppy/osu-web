@@ -23,6 +23,9 @@
 <meta name="keywords" content="osu, peppy, ouendan, elite, beat, agents, ds, windows, game, taiko, tatsujin, simulator, sim, xna, ddr, beatmania, osu!, osume">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<meta name="turbo-cache-control" content="no-preview">
+<meta name="turbo-prefetch" content="false">
+
 <link rel="search" type="application/opensearchdescription+xml" title="osu! search" href="{{ $appUrl }}/opensearch.xml">
 
 <meta property="og:site_name" content="osu!">
@@ -92,20 +95,20 @@
     var experimentalHost = {!! json_encode(osu_url('experimental_host')) !!}
 </script>
 
-<script src="{{ unmix('js/runtime.js') }}" data-turbolinks-track="reload"></script>
-<script src="{{ unmix('js/vendor.js') }}" data-turbolinks-track="reload"></script>
+<script src="{{ unmix('js/runtime.js') }}" data-turbo-eval="false"></script>
+<script src="{{ unmix('js/vendor.js') }}" data-turbo-eval="false"></script>
 
-<script src="{{ unmix("js/locales/{$currentLocale}.js") }}" data-turbolinks-track="reload"></script>
+<script src="{{ unmix("js/locales/{$currentLocale}.js") }}" data-turbo-eval="false"></script>
 @if ($fallbackLocale !== $currentLocale)
-    <script src="{{ unmix("js/locales/{$fallbackLocale}.js") }}" data-turbolinks-track="reload"></script>
+    <script src="{{ unmix("js/locales/{$fallbackLocale}.js") }}" data-turbo-eval="false"></script>
 @endif
 
-<script src="{{ unmix('js/commons.js') }}" data-turbolinks-track="reload"></script>
-<script src="{{ unmix('js/app.js') }}" data-turbolinks-track="reload"></script>
+<script src="{{ unmix('js/commons.js') }}" data-turbo-eval="false"></script>
+<script src="{{ unmix('js/app.js') }}" data-turbo-eval="false"></script>
 
 <script
     src="{{ unmix("js/moment-locales/{$currentLocaleMeta->moment()}.js") }}"
-    data-turbolinks-track="reload"
+    data-turbo-eval="false"
 ></script>
 
 @if (isset($atom))

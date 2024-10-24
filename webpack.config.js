@@ -93,7 +93,6 @@ const plugins = [
     moment: 'moment',
     React: 'react',
     ReactDOM: 'react-dom',
-    Turbolinks: 'turbolinks',
   }),
   new webpack.DefinePlugin({
     'process.env.DOCS_URL': JSON.stringify(process.env.DOCS_URL || 'https://docs.ppy.sh'),

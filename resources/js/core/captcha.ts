@@ -18,7 +18,7 @@ export default class Captcha {
   private sitekey = '';
 
   constructor() {
-    $(document).on('turbolinks:load', this.renderAll);
+    $(document).on('turbo:load', this.renderAll);
     $(document).on('ajax:error', '.js-captcha--reset-on-error', this.resetOnError);
   }
 
@@ -74,7 +74,7 @@ export default class Captcha {
         throw new Error('failed setting up turnstile widget');
       }
       container.dataset.captchaId = id;
-      $(document).one('turbolinks:before-cache', () => this.remove(container));
+      $(document).one('turbo:before-cache', () => this.remove(container));
 
       disableSubmit();
     }

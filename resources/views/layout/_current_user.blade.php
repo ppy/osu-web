@@ -3,12 +3,23 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    $user = auth()->user();
+    $currentUser ??= Auth::user();
 
-    $userJson = $user === null
+    $currentUserJson = $currentUser === null
         ? '{}'
-        : json_encode(json_item($user, new App\Transformers\CurrentUserTransformer()));
+        : json_encode(json_item($currentUser, new App\Transformers\CurrentUserTransformer()));
 @endphp
 <script id="json-current-user" type="application/json">
-    {!! $userJson !!}
+    {!! $currentUserJson !!}
+</script>
+<script>
+    {{--
+        Set current user on first page load. Further updates are done in
+        reactTurbolinks before the new page is rendered.
+        This needs to be fired before everything else (turbo:load etc).
+    --}}
+    if (!osuCore.firstCurrentUserSet) {
+        osuCore.firstCurrentUserSet = true;
+        osuCore.updateCurrentUser();
+    }
 </script>

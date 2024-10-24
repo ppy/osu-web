@@ -7,7 +7,7 @@ export default class NavButton
     @items = document.getElementsByClassName 'js-nav-button--item'
     @main = document.getElementsByClassName 'js-nav-button'
 
-    addEventListener 'turbolinks:load', @load
+    addEventListener 'turbo:load', @load
 
 
   load: =>

@@ -21,7 +21,7 @@ export default class ForumPostInput {
   constructor() {
     $(document)
       .on('input change', '.js-forum-post-input', this.onInput)
-      .on('turbolinks:load', this.handlePageLoad)
+      .on('turbo:load', this.handlePageLoad)
       .on('ajax:success', '.js-forum-post-input--form', this.handlePostSaved);
     $.subscribe('forum-post-input:restore', this.handleRestore);
     $.subscribe('forum-post-input:clear', this.handleClear);

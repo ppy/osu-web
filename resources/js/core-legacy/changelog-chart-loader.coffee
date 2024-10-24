@@ -8,7 +8,7 @@ export default class ChangelogChartLoader
 
   constructor: ->
     $(window).on 'resize', @resize
-    $(document).on 'turbolinks:load', @initialize
+    $(document).on 'turbo:load', @initialize
 
   initialize: =>
     return if !@container[0]?
