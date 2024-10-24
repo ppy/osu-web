@@ -447,6 +447,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             });
         });
 
+        Route::resource('blocks', 'BlocksController', ['only' => ['destroy', 'index', 'store']]);
+
         Route::apiResource('comments', 'CommentsController');
         Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
         Route::delete('comments/{comment}/vote', 'CommentsController@voteDestroy');

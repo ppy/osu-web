@@ -8,8 +8,7 @@ namespace App\Http\Controllers;
 use App\Jobs\UpdateUserFollowerCountCache;
 use App\Models\User;
 use App\Models\UserRelation;
-use Auth;
-use Request;
+use App\Transformers\UserRelationTransformer;
 
 class BlocksController extends Controller
 {
@@ -27,15 +26,23 @@ class BlocksController extends Controller
         parent::__construct();
     }
 
+    public function index()
+    {
+        return json_collection(
+            \Auth::user()->relations()->blocks()->get(),
+            new UserRelationTransformer(),
+        );
+    }
+
     public function store()
     {
-        $currentUser = Auth::user();
+        $currentUser = \Auth::user();
 
         if ($currentUser->blocks()->count() >= $currentUser->maxBlocks()) {
             return error_popup(osu_trans('users.blocks.too_many'));
         }
 
-        $targetId = get_int(Request::input('target'));
+        $targetId = get_int(\Request::input('target'));
         $targetUser = User::lookup($targetId, 'id');
 
         if (!$targetUser) {
@@ -57,7 +64,7 @@ class BlocksController extends Controller
             dispatch(new UpdateUserFollowerCountCache($targetId));
         } else {
             UserRelation::create([
-                'user_id' => $currentUser->user_id,
+                'user_id' => $currentUser->getKey(),
                 'zebra_id' => $targetId,
                 'foe' => true,
             ]);
@@ -65,13 +72,13 @@ class BlocksController extends Controller
 
         return json_collection(
             $currentUser->relations()->visible()->withMutual()->get(),
-            'UserRelation'
+            new UserRelationTransformer(),
         );
     }
 
     public function destroy($id)
     {
-        $user = Auth::user();
+        $user = \Auth::user();
 
         $block = $user->blocks()
             ->where('zebra_id', $id)
@@ -85,7 +92,7 @@ class BlocksController extends Controller
 
         return json_collection(
             $user->relations()->visible()->withMutual()->get(),
-            'UserRelation'
+            new UserRelationTransformer(),
         );
     }
 }
