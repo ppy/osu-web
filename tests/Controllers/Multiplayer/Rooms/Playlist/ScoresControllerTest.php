@@ -139,7 +139,6 @@ class ScoresControllerTest extends TestCase
      */
     public function testAttemptToStartPlayOnInconsistentPlaylistItemFails()
     {
-        $origClientCheckVersion = $GLOBALS['cfg']['osu']['client']['check_version'];
         config_set('osu.client.check_version', true);
         $user = User::factory()->create();
         $beatmap = Beatmap::factory()->create([
@@ -167,8 +166,6 @@ class ScoresControllerTest extends TestCase
             'playlist' => $playlistItem->getKey(),
             'room' => $playlistItem->room_id,
         ]))->assertStatus(422);
-
-        config_set('osu.client.check_version', $origClientCheckVersion);
     }
 
     /**
