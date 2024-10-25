@@ -98,6 +98,32 @@ class ScoreTokensControllerTest extends TestCase
         config_set('osu.client.check_version', $origClientCheckVersion);
     }
 
+    public function testStoreInvalidRulesetConversion(): void
+    {
+        $beatmap = Beatmap::factory()->create([
+            'playmode' => 2,
+        ]);
+
+        $routeParams = [
+            'beatmap' => $beatmap->getKey(),
+            'ruleset_id' => 1,
+        ];
+        $bodyParams = ['beatmap_hash' => $beatmap->checksum];
+        $this->withHeaders(['x-token' => static::createClientToken($this->build)]);
+
+        $this->expectCountChange(fn () => ScoreToken::count(), 0);
+
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json(
+            'POST',
+            route('api.beatmaps.solo.score-tokens.store', $routeParams),
+            $bodyParams
+        )->assertStatus(422)
+        ->assertJson([
+            'error' => 'invalid ruleset_id',
+        ]);
+    }
+
     public static function dataProviderForTestStore(): array
     {
         return [
