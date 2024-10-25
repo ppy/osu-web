@@ -134,7 +134,7 @@ class BeatmapsetRequalifyTest extends TestCase
         // second qualification
         $this->travelTo($disqualifiedDate->addSeconds(60));
 
-        $newNominators = User::factory()->withGroup('nat')->count(config('osu.beatmapset.required_nominations'))->create();
+        $newNominators = User::factory()->withGroup('nat')->count($GLOBALS['cfg']['osu']['beatmapset']['required_nominations'])->create();
         $this->resolveDiscussionAndNominate($discussion, $newNominators);
         $beatmapset = $beatmapset->fresh();
 
@@ -174,7 +174,7 @@ class BeatmapsetRequalifyTest extends TestCase
         // second qualification
         $this->travelTo($disqualifiedDate->addSeconds(60));
 
-        $newNominators = User::factory()->withGroup('nat')->count(config('osu.beatmapset.required_nominations'))->create();
+        $newNominators = User::factory()->withGroup('nat')->count($GLOBALS['cfg']['osu']['beatmapset']['required_nominations'])->create();
         $this->resolveDiscussionAndNominate($discussion, $newNominators);
         $beatmapset = $beatmapset->fresh();
 

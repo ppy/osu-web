@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'reset' => '',
+            'reset' => 'resetovať',
             'rules' => 'Prosím uistite sa, že váš avatar sedí s :link.<br/>To znamená, že musí byť <strong>primeraný pre každý vek</strong>. To je žiadna nudita, vulgarizmy alebo sugestívny obsah.',
             'rules_link' => 'pravidlá komunity',
         ],

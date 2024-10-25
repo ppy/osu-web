@@ -12,11 +12,11 @@ return [
     'beatmapset_update' => '<strong><em>:user</em></strong> оновив мапу "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> опублікував мапу ":beatmapset"',
     'empty' => "Цей користувач не робив нічого значного останнім часом!",
-    'rank' => '<strong><em>:user</em></strong> отримав #:rank місце на мапі <em>:beatmap</em> (:mode)',
+    'rank' => '<strong><em>:user</em></strong> отримав :rank місце на мапі <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> втратив лідерство на мапі <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> вирішив знову підтримати osu! Дякуємо за вашу підтримку!',
     'user_support_first' => '<strong>:user</strong> підтримав osu! - дякуємо за вашу підтримку!',
-    'user_support_gift' => '<strong>:user</strong> отримав тег osu!прихильника в подарунок!',
+    'user_support_gift' => '<strong>:user</strong> отримав osu!supporter в подарунок!',
     'username_change' => '<strong>:previousUsername</strong> змінив своє ім\'я на <strong><em>:user</em></strong>!',
 
     'beatmapset_status' => [
@@ -27,6 +27,6 @@ return [
     ],
 
     'value' => [
-        'rank' => 'ранг #:rank',
+        'rank' => '#:rank',
     ],
 ];

@@ -61,11 +61,11 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => 'Kanal ini hanya dikhususkan untuk pengumuman.',
         'blocked' => 'Kamu tidak dapat mengirim pesan kepada pengguna yang kamu blokir atau memblokir dirimu.',
         'friends_only' => 'Pengguna ini memblokir pesan dari pengguna lain yang tidak berada dalam daftar temannya.',
         'moderated' => 'Kanal percakapan ini sedang dimoderasi.',
         'no_access' => 'Kamu tidak memiliki akses ke kanal percakapan ini.',
+        'no_announce' => '',
         'receive_friends_only' => 'Pengguna ini mungkin tidak akan dapat membalas karena kamu hanya menerima pesan dari pengguna lain yang berada dalam daftar temanmu.',
         'restricted' => 'Kamu tidak dapat mengirim pesan pada saat kamu sedang di-silence, di-restrict, atau di-ban.',
         'silenced' => 'Kamu tidak dapat mengirim pesan pada saat kamu sedang di-silence, di-restrict, atau di-ban.',

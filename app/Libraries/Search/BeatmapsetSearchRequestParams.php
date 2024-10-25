@@ -215,6 +215,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             'cs' => 'cs',
             'difficulty' => 'difficulty',
             'dr' => 'drain',
+            'favourites' => 'favouriteCount',
             'featured_artist' => 'featuredArtist',
             'keys' => 'keys',
             'length' => 'totalLength',

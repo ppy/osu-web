@@ -61,11 +61,11 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => 'Saluran ini hanya untuk pengumuman.',
         'blocked' => 'Tidak boleh mesej pengguna yang telah menyekat anda atau yang anda sekat.',
         'friends_only' => 'Pengguna menyekat pesanan dari orang yang tiada dalam senarai kawan.',
         'moderated' => 'Saluran ini sedang diawas.',
         'no_access' => 'Anda tiada kebenaran untuk mengakses saluran itu.',
+        'no_announce' => '',
         'receive_friends_only' => 'Pengguna ini mungkin tidak boleh membalas kerana anda hanya menerima pesanan dari orang dalam senarai kawan anda.',
         'restricted' => 'Anda tidak boleh menghantar pesanan ketika didiamkan, disekat atau dilarang.',
         'silenced' => 'Anda tidak boleh menghantar pesanan ketika didiamkan, disekat atau dilarang.',

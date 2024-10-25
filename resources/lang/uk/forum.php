@@ -335,9 +335,9 @@ return [
                 'do' => 'Просунути даний запит',
 
                 'info' => [
-                    '_' => 'Це :feature_request. За ідею можна проголосувати тільки з :supporters.',
+                    '_' => 'Це :feature_request. За ідею можна проголосувати тільки :supporters.',
                     'feature_request' => 'запропонована ідея',
-                    'supporters' => 'osu!прихильник',
+                    'supporters' => 'osu!supporter',
                 ],
 
                 'user' => [

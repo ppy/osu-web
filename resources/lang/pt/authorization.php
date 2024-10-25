@@ -61,11 +61,11 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => 'Este canal é apenas para novos comunicados.',
         'blocked' => 'Não é possível enviar uma mensagem a um utilizador que te esteja a bloquear ou que o tenhas bloqueado.',
         'friends_only' => 'O utilizador está a bloquear mensagens de pessoas que não façam parte da sua lista de amigos.',
         'moderated' => 'Este canal está atualmente moderado.',
         'no_access' => 'Tu não tens acesso a esse canal.',
+        'no_announce' => '',
         'receive_friends_only' => 'O utilizador pode não conseguir responder porque só estás a aceitar mensagens de pessoas da tua lista de amigos.',
         'restricted' => 'Não podes enviar mensagens enquanto estiveres silenciado, restrito ou banido.',
         'silenced' => 'Não podes enviar mensagens enquanto estiveres silenciado, restringido ou banido.',

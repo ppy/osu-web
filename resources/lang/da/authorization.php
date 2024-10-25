@@ -61,11 +61,11 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => 'Denne kanal er kun for annonceringer.',
         'blocked' => 'Du kan ikke sende denne besked, enten har brugeren blokeret dig eller du har blokeret brugeren.',
         'friends_only' => 'Brugeren blokerer beskeder fra folk der ikke er på deres venneliste.',
         'moderated' => 'Denne kanal er i øjeblikket modereret.',
         'no_access' => 'Du har ikke adgang til denne kanal.',
+        'no_announce' => '',
         'receive_friends_only' => 'Brugeren kan muligvis ikke svare, fordi du kun accepterer beskeder fra folk på din venneliste.',
         'restricted' => 'Du kan ikke sende beskeder når du er enten muted, begrænset eller banned.',
         'silenced' => 'Du kan ikke sende beskeder når du er enten muted, begrænset eller banned.',

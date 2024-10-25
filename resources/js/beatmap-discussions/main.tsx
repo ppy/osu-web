@@ -5,7 +5,6 @@ import NewReview from 'beatmap-discussions/new-review';
 import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context';
 import BackToTop from 'components/back-to-top';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
-import { route } from 'laroute';
 import { action, makeObservable, observable, reaction, toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
@@ -17,13 +16,13 @@ import { nextVal } from 'utils/seq';
 import { currentUrl } from 'utils/turbolinks';
 import { Discussions } from './discussions';
 import DiscussionsState from './discussions-state';
+import DiscussionsStateWorker from './discussions-state-worker';
 import { Events } from './events';
 import { Header } from './header';
 import { ModeSwitcher } from './mode-switcher';
 import { NewDiscussion } from './new-discussion';
+import Refresh from './refresh';
 
-const checkNewTimeoutDefault = 10000;
-const checkNewTimeoutMax = 60000;
 const beatmapsetJsonId = 'json-beatmapset';
 
 interface Props {
@@ -32,23 +31,17 @@ interface Props {
   };
 }
 
-interface UpdateResponseJson {
-  beatmapset: BeatmapsetWithDiscussionsJson;
-}
-
 @observer
 export default class Main extends React.Component<Props> {
   @observable private readonly discussionsState: DiscussionsState;
+  private readonly discussionsStateWorker: DiscussionsStateWorker;
   private readonly disposers = new Set<((() => void) | undefined)>();
   private readonly eventId = `beatmap-discussions-${nextVal()}`;
   // FIXME: update url handler to recognize this instead
   private readonly focusNewDiscussion = currentUrl().hash === '#new';
   private readonly modeSwitcherRef = React.createRef<HTMLDivElement>();
   private readonly newDiscussionRef = React.createRef<HTMLDivElement>();
-  private nextTimeout = checkNewTimeoutDefault;
   @observable private readonly store;
-  private timeoutCheckNew?: number;
-  private xhrCheckNew?: JQuery.jqXHR<UpdateResponseJson>;
 
   constructor(props: Props) {
     super(props);
@@ -58,6 +51,7 @@ export default class Main extends React.Component<Props> {
 
     this.store = new BeatmapsetDiscussionsShowStore(beatmapset);
     this.discussionsState = new DiscussionsState(this.store);
+    this.discussionsStateWorker = new DiscussionsStateWorker(this.discussionsState);
 
     makeObservable(this);
   }
@@ -83,8 +77,6 @@ export default class Main extends React.Component<Props> {
         }),
       );
     })));
-
-    this.timeoutCheckNew = window.setTimeout(this.checkNew, checkNewTimeoutDefault);
   }
 
   componentWillUnmount() {
@@ -135,46 +127,21 @@ export default class Main extends React.Component<Props> {
             />
           </ReviewEditorConfigContext.Provider>
         )}
-        <BackToTop />
+        <div className='floating-toolbar'>
+          <Refresh worker={this.discussionsStateWorker} />
+          <BackToTop />
+        </div>
       </>
     );
   }
-
-  @action
-  private readonly checkNew = () => {
-    if (this.xhrCheckNew != null) return;
-
-    window.clearTimeout(this.timeoutCheckNew);
-
-    this.xhrCheckNew = $.get(route('beatmapsets.discussion', { beatmapset: this.discussionsState.beatmapset.id }), {
-      format: 'json',
-      last_updated: this.discussionsState.lastUpdate,
-    });
-
-    this.xhrCheckNew.done((data, _textStatus, xhr) => {
-      if (xhr.status === 304) {
-        this.nextTimeout *= 2;
-        return;
-      }
-
-      this.nextTimeout = checkNewTimeoutDefault;
-      this.discussionsState.update({ beatmapset: data.beatmapset });
-    }).always(() => {
-      this.nextTimeout = Math.min(this.nextTimeout, checkNewTimeoutMax);
-
-      this.timeoutCheckNew = window.setTimeout(this.checkNew, this.nextTimeout);
-      this.xhrCheckNew = undefined;
-    });
-  };
 
   private readonly destroy = () => {
     document.removeEventListener('turbolinks:before-cache', this.destroy);
 
     document.documentElement.style.removeProperty('--scroll-padding-top-extra');
-    window.clearTimeout(this.timeoutCheckNew);
-    this.xhrCheckNew?.abort();
 
     storeJson(beatmapsetJsonId, toJS(this.store.beatmapset));
+    this.discussionsStateWorker.stop();
     this.discussionsState.saveState();
 
     this.disposers.forEach((disposer) => disposer?.());

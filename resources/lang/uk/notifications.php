@@ -51,8 +51,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Новий допис на ":title" від :username',
                 'beatmapset_discussion_post_new_compact' => 'Новий допис від :username ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Новий допис від :username',
-                'beatmapset_discussion_review_new' => 'Новий відгук на ":title" від :username, що містить проблеми: :problems, пропозиції: :suggestions, похвали: :praises',
-                'beatmapset_discussion_review_new_compact' => 'Новий відгук від :username, що містить проблеми: :problems, пропозиції: :suggestions, похвали: :praises',
+                'beatmapset_discussion_review_new' => 'Новий відгук на ":title" від :username, що містить :review_counts',
+                'beatmapset_discussion_review_new_compact' => 'Новий відгук від :username, що містить :review_counts',
                 'beatmapset_discussion_unlock' => 'Мапа ":title" розблокована для обговорень',
                 'beatmapset_discussion_unlock_compact' => 'Обговорення відкрито',
 

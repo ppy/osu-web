@@ -55,7 +55,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => 'Жоден з постів не стосується моєї проблеми',
-        'notice' => 'Вже є дискусії біля :timestamp (:existing_timestamps). Перевірте їх перед публікацією.',
+        'notice' => 'Вже є пости біля :timestamp (:existing_timestamps). Перевірте їх перед публікацією.',
         'unsaved' => ':count в цьому відгуку',
     ],
 

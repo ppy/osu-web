@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'not_found' => "Зазначений :model не знайдено.",
+    'not_found' => "Зазначена :model не знайдена.",
 
     'name' => [
-        'App\Models\Beatmap' => 'складність карти',
+        'App\Models\Beatmap' => 'складність мапи',
         'App\Models\Beatmapset' => 'бітмапа',
     ],
 ];

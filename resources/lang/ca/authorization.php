@@ -61,11 +61,11 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => 'Aquest canal només és per a anuncis.',
         'blocked' => 'No es pot enviar un missatge a un usuari que us està bloquejant o que heu bloquejat.',
         'friends_only' => 'L\'usuari està bloquejant missatges de persones que no estan a la seva llista d\'amics.',
         'moderated' => 'Aquest canal està actualment moderat.',
         'no_access' => 'No tens accés a aquest canal.',
+        'no_announce' => '',
         'receive_friends_only' => 'És possible que l\'usuari no pugui respondre perquè només accepta missatges de persones de la llista d\'amics.',
         'restricted' => 'No podeu enviar missatges mentre estigui silenciat, restringit o banejat.',
         'silenced' => 'No podeu enviar missatges mentre estigui silenciat, restringit o banejat.',

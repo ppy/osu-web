@@ -274,11 +274,13 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function lastDiscussionTime()
     {
-        $time = $this->beatmapDiscussions()->max('updated_at');
+        $lastDiscussionUpdate = $this->beatmapDiscussions()->max('updated_at');
+        $lastEventUpdate = $this->events()->max('updated_at');
 
-        if ($time !== null) {
-            return Carbon::parse($time);
-        }
+        $lastDiscussionDate = $lastDiscussionUpdate !== null ? Carbon::parse($lastDiscussionUpdate) : null;
+        $lastEventDate = $lastEventUpdate !== null ? Carbon::parse($lastEventUpdate) : null;
+
+        return max($lastDiscussionDate, $lastEventDate);
     }
 
     public function scopeGraveyard($query)

@@ -10,17 +10,17 @@ return [
 
         'avatar' => [
             'title' => '編輯頭像',
-            'reset' => '重置',
-            'rules' => '請確保您的頭像符合 :link.<br/>這意味着必須<strong>適合所有年齡</strong>，即沒有裸露、褻瀆或暗示性的內容。',
-            'rules_link' => '社群規則',
+            'reset' => '重設',
+            'rules' => '請確保您的頭貼遵守 :link 的規範。<br/>這表示它必須<strong>適合所有年齡層</strong>，也就是說不能包含裸露、冒犯性或暗示性的內容。',
+            'rules_link' => '視覺內容注意事項',
         ],
 
         'email' => [
             'new' => '新電子郵件地址',
-            'new_confirmation' => '再次輸入電郵地址',
+            'new_confirmation' => '再次輸入電子郵件地址',
             'title' => '電子郵件',
             'locked' => [
-                '_' => '如欲修改你的電子郵件地址，請聯絡 :accounts。',
+                '_' => '如果您需要更新您的電子郵件地址，請聯絡 :accounts。',
                 'accounts' => '帳戶支援團隊',
             ],
         ],
@@ -64,15 +64,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "如果你是 osu! 開源倉庫的貢獻者，在這裡連結你的 GitHub 帳戶以便使你的更新日誌條目與這個 osu! 個人資料相連結。如果欲連結的 GitHub 帳戶在 osu! 開源倉庫上沒有歷史記錄，則無法連結。",
+        'info' => "如果您是 osu! 開源儲存庫的貢獻者，在這裡連結您的 GitHub 帳戶將會使您的更新日誌條目與您的 osu! 個人資料產生關聯。沒有 osu! 貢獻紀錄的 GitHub 帳戶無法連結。",
         'link' => '連結 GitHub 帳戶',
         'title' => 'GitHub',
         'unlink' => '取消連結 GitHub 帳戶',
 
         'error' => [
             'already_linked' => '這個 GitHub 帳戶已經連結至另一位玩家的帳戶上。',
-            'no_contribution' => '無法連結在 osu! 開源倉庫中無任何貢獻記錄的 GitHub 帳戶。',
-            'unverified_email' => '請先在 GitHub 上驗證你的首要電子郵件，然後再次嘗試連結帳戶。',
+            'no_contribution' => 'GitHub 帳戶在 osu! 儲存庫中沒有任何貢獻紀錄，無法連結。',
+            'unverified_email' => '請先在 GitHub 上驗證您的主要電子郵件地址，然後再嘗試連結您的帳戶。',
         ],
     ],
 

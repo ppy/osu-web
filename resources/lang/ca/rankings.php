@@ -10,9 +10,9 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'beatmap' => 'Dificultat',
+        'percentile_10' => 'Puntuació del percentil 10',
+        'percentile_50' => 'Puntuació del percentil 50',
     ],
 
     'filter' => [
@@ -30,13 +30,13 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Aquest usuari té menys de 30 dies d\'historial de classificació recent.',
     ],
 
     'type' => [
         'charts' => 'spotlights',
         'country' => 'país',
-        'daily_challenge' => '',
+        'daily_challenge' => 'repte diari',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multijugador',
         'performance' => 'rendiment',

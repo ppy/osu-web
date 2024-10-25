@@ -12,6 +12,7 @@ use App\Models\LoginAttempt;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
 use Sentry\State\Scope;
@@ -816,12 +817,15 @@ function ext_view($view, $data = null, $type = null, $status = null)
     );
 }
 
-function from_app_url()
+function from_app_url(?HttpRequest $request = null)
 {
-    // Add trailing slash so people can't just use https://osu.web.domain.com
-    // to bypass https://osu.web referrer check.
+    $headers = ($request ?? Request::instance())->headers;
+    $appUrl = $GLOBALS['cfg']['app']['url'];
+    // Add trailing slash for referer check to avoid matching
+    // https://osu.web.domain.com.
     // This assumes app.url doesn't contain trailing slash.
-    return starts_with(request()->headers->get('referer'), $GLOBALS['cfg']['app']['url'].'/');
+    return $headers->get('origin') === $appUrl
+        || str_starts_with($headers->get('referer'), "{$appUrl}/");
 }
 
 function forum_user_link(int $id, string $username, string|null $colour, int|null $currentUserId): string

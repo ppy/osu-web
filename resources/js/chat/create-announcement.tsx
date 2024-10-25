@@ -50,7 +50,6 @@ export default class CreateAnnouncement extends React.Component<Props> {
           <div className='chat-form__title'>{trans('chat.form.title.announcement')}</div>
           <InputContainer
             labelKey='chat.form.labels.name'
-            modifiers='chat'
             {...this.model.inputContainerPropsFor('name')}
           >
             <input

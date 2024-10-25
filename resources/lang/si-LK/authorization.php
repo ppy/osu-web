@@ -61,11 +61,11 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => '',
         'blocked' => '',
         'friends_only' => '',
         'moderated' => '',
         'no_access' => '',
+        'no_announce' => '',
         'receive_friends_only' => '',
         'restricted' => '',
         'silenced' => '',

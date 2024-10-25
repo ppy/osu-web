@@ -81,7 +81,7 @@ return [
         'beatmapset_disqualify' => 'terima notifikasi pada saat terdapat beatmap yang terdiskualifikasi pada mode',
         'comment_reply' => 'terima notifikasi pada saat terdapat balasan baru pada komentar yang kamu tulis',
         'title' => 'Notifikasi',
-        'topic_auto_subscribe' => 'aktifkan notifikasi secara otomatis untuk topik forum baru yang kamu buat',
+        'topic_auto_subscribe' => 'aktifkan notifikasi secara otomatis bagi topik forum baru yang kamu buat atau balas',
 
         'options' => [
             '_' => 'kirimkan notifikasi melalui',

@@ -12,7 +12,7 @@ return [
     'wrong_confirmation' => 'Повтори не збігаються.',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Часова відмітка вказана, але мапу не знайдено.',
+        'beatmap_missing' => 'Часова мітка вказана, але мапу не знайдено.',
         'beatmapset_no_hype' => "До мапи не можна застосувати функції хайпу.",
         'hype_requires_null_beatmap' => 'Хайп може бути застосований тільки в Загальній (всі складності) секції.',
         'invalid_beatmap_id' => 'Вказана невірна складність.',
@@ -21,7 +21,7 @@ return [
 
         'attributes' => [
             'message_type' => 'Тип повідомлення',
-            'timestamp' => 'Тимчасова мітка',
+            'timestamp' => 'Мітка часу',
         ],
 
         'hype' => [
@@ -74,7 +74,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Не можна видалити метадані мапи.',
             'beatmapset_post_no_edit' => 'Не можна змінити метадані мапи.',
-            'first_post_no_delete' => 'Неможливо видалити початкову публікацію',
+            'first_post_no_delete' => 'Неможливо видалити першу публікацію.',
             'missing_topic' => 'В публікації відсутня тема',
             'only_quote' => 'Ваш відповідь містить тільки цитату.',
 

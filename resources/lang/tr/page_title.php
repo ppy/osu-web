@@ -111,7 +111,7 @@ return [
             '_' => 'turnuvalar',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'kullanıcı kapak fotoğrafı ön ayarları',
         ],
         'users_controller' => [
             '_' => 'oyuncu bilgisi',

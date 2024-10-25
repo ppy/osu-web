@@ -53,7 +53,9 @@ export class Main extends React.Component<Props> {
           availableFilters={this.props.availableFilters}
           backToTopAnchor={this.backToTopAnchor}
         />
-        <BackToTop ref={this.backToTop} anchor={this.backToTopAnchor} />
+        <div className='floating-toolbar'>
+          <BackToTop ref={this.backToTop} anchor={this.backToTopAnchor} />
+        </div>
       </>
     );
   }
