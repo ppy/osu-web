@@ -149,8 +149,8 @@ class ScoresControllerTest extends TestCase
             'beatmap_id' => $beatmap->getKey(),
         ]);
 
-        // this type of modification is not achievable via the `PlaylistItem` class, because `save()` will rightly prevent it.
-        DB::statement('UPDATE `multiplayer_playlist_items` SET `ruleset_id` = ? WHERE `id` = ?', [3, $playlistItem->getKey()]);
+        // simulate invalid external modification from osu-server-spectator
+        PlaylistItem::whereKey($playlistItem->getKey())->update(['ruleset_id' => 3]);
 
         $build = Build::factory()->create(['allow_ranking' => true]);
 
