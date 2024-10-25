@@ -138,7 +138,6 @@ class ScoresControllerTest extends TestCase
      */
     public function testAttemptToStartPlayOnInconsistentPlaylistItemFails()
     {
-        config_set('osu.client.check_version', true);
         $user = User::factory()->create();
         $beatmap = Beatmap::factory()->create([
             'playmode' => 2,
@@ -150,13 +149,7 @@ class ScoresControllerTest extends TestCase
         // simulate invalid external modification from osu-server-spectator
         PlaylistItem::whereKey($playlistItem->getKey())->update(['ruleset_id' => 3]);
 
-        $build = Build::factory()->create(['allow_ranking' => true]);
-
         $this->actAsScopedUser($user, ['*']);
-
-        $this->withHeaders([
-            'x-token' => static::createClientToken($build),
-        ]);
 
         $this->expectCountChange(fn () => ScoreToken::count(), 0);
 
