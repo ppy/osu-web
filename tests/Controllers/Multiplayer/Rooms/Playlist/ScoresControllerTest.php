@@ -5,12 +5,14 @@
 
 namespace Tests\Controllers\Multiplayer\Rooms\Playlist;
 
+use App\Models\Beatmap;
 use App\Models\Build;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\ScoreLink;
 use App\Models\Multiplayer\UserScoreAggregate;
 use App\Models\ScoreToken;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class ScoresControllerTest extends TestCase
@@ -125,6 +127,46 @@ class ScoresControllerTest extends TestCase
             'playlist' => $playlistItem->getKey(),
             'room' => $playlistItem->room_id,
         ]))->assertStatus($status);
+
+        config_set('osu.client.check_version', $origClientCheckVersion);
+    }
+
+    /**
+     * This scenario is theoretically impossible to occur via osu-web,
+     * but realtime multiplayer rooms have their playlist items modified directly in the database
+     * by osu-server-spectator.
+     * This test case is insurance that invalid updates performed by it do not cause further breakage.
+     */
+    public function testAttemptToStartPlayOnInconsistentPlaylistItemFails()
+    {
+        $origClientCheckVersion = $GLOBALS['cfg']['osu']['client']['check_version'];
+        config_set('osu.client.check_version', true);
+        $user = User::factory()->create();
+        $beatmap = Beatmap::factory()->create([
+            'playmode' => 2,
+        ]);
+        $playlistItem = PlaylistItem::factory()->create([
+            'beatmap_id' => $beatmap->getKey(),
+        ]);
+
+        // this type of modification is not achievable via the `PlaylistItem` class, because `save()` will rightly prevent it.
+        DB::statement('UPDATE `multiplayer_playlist_items` SET `ruleset_id` = ? WHERE `id` = ?', [3, $playlistItem->getKey()]);
+
+        $build = Build::factory()->create(['allow_ranking' => true]);
+
+        $this->actAsScopedUser($user, ['*']);
+
+        $this->withHeaders([
+            'x-token' => static::createClientToken($build),
+        ]);
+
+        $this->expectCountChange(fn () => ScoreToken::count(), 0);
+
+        $this->json('POST', route('api.rooms.playlist.scores.store', [
+            'beatmap_hash' => $playlistItem->beatmap->checksum,
+            'playlist' => $playlistItem->getKey(),
+            'room' => $playlistItem->room_id,
+        ]))->assertStatus(422);
 
         config_set('osu.client.check_version', $origClientCheckVersion);
     }
