@@ -14,8 +14,18 @@ use Tests\TestCase;
 
 class PlaylistItemTest extends TestCase
 {
+    public static function rulesetsProvider()
+    {
+        return [
+            'osu' => [0],
+            'taiko' => [1],
+            'fruits' => [2],
+            'mania' => [3],
+        ];
+    }
+
     /**
-     * @dataProvider modesProvider
+     * @dataProvider rulesetsProvider
      */
     public function testOsuBeatmapPlayableInAnyRuleset(int $rulesetId)
     {
@@ -76,15 +86,5 @@ class PlaylistItemTest extends TestCase
         $this->expectException(InvariantException::class);
         $this->expectExceptionMessageMatches('/^invalid ruleset_id for beatmap \d+$/');
         $playlistItem->save();
-    }
-
-    public static function modesProvider()
-    {
-        return [
-            'osu' => [0],
-            'taiko' => [1],
-            'fruits' => [2],
-            'mania' => [3],
-        ];
     }
 }
