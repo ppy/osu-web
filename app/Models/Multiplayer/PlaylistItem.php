@@ -5,7 +5,6 @@
 
 namespace App\Models\Multiplayer;
 
-use App\Enums\Ruleset;
 use App\Exceptions\InvariantException;
 use App\Models\Beatmap;
 use App\Models\Model;
@@ -110,9 +109,7 @@ class PlaylistItem extends Model
 
     public function save(array $options = [])
     {
-        $this->assertValidMaxAttempts();
-        $this->validateRuleset();
-        $this->assertValidMods();
+        $this->assertValid();
 
         return parent::save($options);
     }
@@ -143,6 +140,13 @@ class PlaylistItem extends Model
         });
     }
 
+    public function assertValid()
+    {
+        $this->assertValidMaxAttempts();
+        $this->assertValidRuleset();
+        $this->assertValidMods();
+    }
+
     private function assertValidMaxAttempts()
     {
         if ($this->max_attempts === null) {
@@ -155,10 +159,10 @@ class PlaylistItem extends Model
         }
     }
 
-    private function validateRuleset()
+    private function assertValidRuleset()
     {
         // osu beatmaps can be played in any mode, but non-osu maps can only be played in their specific modes
-        if ($this->beatmap->playmode !== Ruleset::osu->value && $this->beatmap->playmode !== $this->ruleset_id) {
+        if (!$this->beatmap->canBeConvertedTo($this->ruleset_id)) {
             throw new InvariantException("invalid ruleset_id for beatmap {$this->beatmap->beatmap_id}");
         }
     }
