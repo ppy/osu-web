@@ -1279,7 +1279,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return json_item(
             static::with([
                 'allBeatmaps.beatmapset',
-                'allBeatmaps.beatmapOwners',
+                'allBeatmaps.beatmapOwners.user',
                 'allBeatmaps.user', // TODO: for compatibility only, should migrate user_id to BeatmapOwner.
                 'beatmapDiscussions.beatmapDiscussionPosts',
                 'beatmapDiscussions.beatmapDiscussionVotes',

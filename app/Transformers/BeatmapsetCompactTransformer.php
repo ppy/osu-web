@@ -255,7 +255,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             case 'discussions':
                 $beatmaps = $beatmapset->allBeatmaps;
                 $userIds->add(...$beatmaps->pluck('user_id'));
-                $userIds->add(...$beatmaps->flatMap->getOwners()->pluck('user_id'));
+                $userIds->add(...$beatmaps->flatMap->beatmapOwners->pluck('user_id'));
 
                 foreach ($beatmapset->beatmapDiscussions as $discussion) {
                     if (!priv_check('BeatmapDiscussionShow', $discussion)->can()) {
@@ -289,7 +289,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             case 'show':
                 $beatmaps = $this->beatmaps($beatmapset);
                 $userIds->add(...$beatmaps->pluck('user_id'));
-                $userIds->add(...$beatmaps->flatMap->getOwners()->pluck('user_id'));
+                $userIds->add(...$beatmaps->flatMap->beatmapOwners->pluck('user_id'));
                 $userIds->add(...$beatmapset->beatmapsetNominationsCurrent->pluck('user_id'));
                 break;
         }
