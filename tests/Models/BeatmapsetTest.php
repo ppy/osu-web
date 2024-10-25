@@ -824,14 +824,14 @@ class BeatmapsetTest extends TestCase
         (new ChangeBeatmapOwners(
             $beatmapset->beatmaps()->where('playmode', 1)->first(),
             [$guest->getKey()],
-            $natUser)
-        )->handle();
+            $natUser
+        ))->handle();
 
         (new ChangeBeatmapOwners(
             $beatmapset->beatmaps()->where('playmode', 0)->last(),
             [$beatmapset->user_id],
-            $natUser)
-        )->handle();
+            $natUser
+        ))->handle();
 
         $beatmapset->refresh();
 
