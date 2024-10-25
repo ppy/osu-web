@@ -735,7 +735,9 @@ class Room extends Model
             throw new InvariantException('Cannot play a playlist item that has already been played.');
         }
 
-        $playlistItem->assertValidRuleset();
-        $playlistItem->assertValidMods();
+        // ensure the playlist item itself is in a valid state.
+        // this is a defensive measure to prevent further breakage if the item's state is inconsistent
+        // due to an external modification from osu-server-spectator.
+        $playlistItem->assertValid();
     }
 }

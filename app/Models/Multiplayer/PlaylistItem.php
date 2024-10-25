@@ -109,9 +109,7 @@ class PlaylistItem extends Model
 
     public function save(array $options = [])
     {
-        $this->assertValidMaxAttempts();
-        $this->assertValidRuleset();
-        $this->assertValidMods();
+        $this->assertValid();
 
         return parent::save($options);
     }
@@ -142,6 +140,13 @@ class PlaylistItem extends Model
         });
     }
 
+    public function assertValid()
+    {
+        $this->assertValidMaxAttempts();
+        $this->assertValidRuleset();
+        $this->assertValidMods();
+    }
+
     private function assertValidMaxAttempts()
     {
         if ($this->max_attempts === null) {
@@ -154,7 +159,7 @@ class PlaylistItem extends Model
         }
     }
 
-    public function assertValidRuleset()
+    private function assertValidRuleset()
     {
         // osu beatmaps can be played in any mode, but non-osu maps can only be played in their specific modes
         if (!$this->beatmap->canBeConvertedTo($this->ruleset_id)) {
@@ -162,7 +167,7 @@ class PlaylistItem extends Model
         }
     }
 
-    public function assertValidMods()
+    private function assertValidMods()
     {
         $allowedModIds = array_column($this->allowed_mods, 'acronym');
         $requiredModIds = array_column($this->required_mods, 'acronym');
