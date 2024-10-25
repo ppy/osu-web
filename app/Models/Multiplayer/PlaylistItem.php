@@ -5,7 +5,6 @@
 
 namespace App\Models\Multiplayer;
 
-use App\Enums\Ruleset;
 use App\Exceptions\InvariantException;
 use App\Models\Beatmap;
 use App\Models\Model;
