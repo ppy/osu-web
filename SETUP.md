@@ -208,15 +208,6 @@ p artisan tinker
 
 # Development
 
-## Creating your initial user
-
-In the repository directory:
-
-```php
-php artisan tinker
->>> (new App\Libraries\UserRegistration(["username" => "yourusername", "user_email" => "your@email.com", "password" => "yourpassword"]))->save();
-```
-
 ## Generating assets
 
 ```bash
@@ -233,6 +224,17 @@ php artisan migrate:fresh --seed
 ```
 
 Run the above command to rebuild the database and populate it with sample data. In order for the seeder to seed beatmaps, you must enter a valid osu! API key as the value of the `OSU_API_KEY` property in the `.env` configuration file, as the seeder obtains beatmap data from the osu! API. The key can be obtained from [the "Legacy API" section of your account settings page](https://osu.ppy.sh/home/account/edit#legacy-api).
+
+## Creating your initial user
+
+In the repository directory:
+
+```php
+php artisan tinker
+>>> (new App\Libraries\UserRegistration(["username" => "yourusername", "user_email" => "your@email.com", "password" => "yourpassword"]))->save();
+```
+
+Note that seeding sample data (the step above this) is required for user registration to work, otherwise the command above will fail due to missing user groups or otherwise.
 
 ## Continuous asset generation while developing
 
