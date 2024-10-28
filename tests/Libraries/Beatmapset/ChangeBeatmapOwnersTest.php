@@ -23,7 +23,16 @@ use Tests\TestCase;
 
 class ChangeBeatmapOwnersTest extends TestCase
 {
-    public static function dataProviderForTestUpdateOwnerLoved(): array
+    public static function dataProviderForUpdateOwner(): array
+    {
+        return [
+            'existing restricted user' => [['restricted', 'default'], true],
+            'new restricted user' => [['default', 'restricted'], false],
+            'new user' => [['default', 'default'], true],
+        ];
+    }
+
+    public static function dataProviderForUpdateOwnerLoved(): array
     {
         return [
             [Beatmapset::STATES['graveyard'], true],
@@ -51,30 +60,46 @@ class ChangeBeatmapOwnersTest extends TestCase
         (new ChangeBeatmapOwners($beatmap, $userIds, $moderator))->handle();
 
         $beatmap = $beatmap->fresh();
-        $this->assertEqualsCanonicalizing($userIds, $beatmap->getOwners()->pluck('user_id')->toArray());
+        $newOwners = $beatmap->getOwners();
+        $this->assertEqualsCanonicalizing($userIds, $newOwners->pluck('user_id')->toArray());
+        $this->assertTrue($newOwners->find($missingUserId) instanceof DeletedUser);
         $this->assertSame($userIds[0], $beatmap->user_id);
 
         Bus::assertDispatched(BeatmapOwnerChange::class);
     }
 
-    public function testUpdateOwner(): void
+    /**
+     * @dataProvider dataProviderForUpdateOwner
+     */
+    public function testUpdateOwner(array $states, bool $success): void
     {
-        $users = User::factory()->count(2)->create();
-        $owner = User::factory()->create();
+        $factory = User::factory();
+        $moderator = $factory->withGroup('nat')->create();
+        $users = array_map(fn ($state) => $factory->$state()->create(), $states);
+        $owner = $users[0];
+
         $beatmap = Beatmap::factory()
             ->for(Beatmapset::factory()->pending()->owner($owner))
             ->owner($owner)
             ->create();
 
-        $this->expectCountChange(fn () => BeatmapsetEvent::count(), 1);
+        $this->expectCountChange(fn () => BeatmapsetEvent::count(), $success ? 1 : 0);
 
-        (new ChangeBeatmapOwners($beatmap, $users->pluck('user_id')->toArray(), $owner))->handle();
+        $this->expectExceptionCallable(
+            fn () => (new ChangeBeatmapOwners($beatmap, Arr::pluck($users, 'user_id'), $moderator))->handle(),
+            $success ? null : InvariantException::class,
+        );
 
         $beatmap = $beatmap->fresh();
-        $this->assertEqualsCanonicalizing($users->pluck('user_id'), $beatmap->getOwners()->pluck('user_id'));
-        $this->assertSame($users[0]->getKey(), $beatmap->user_id);
 
-        Bus::assertDispatched(BeatmapOwnerChange::class);
+        if ($success) {
+            $this->assertEqualsCanonicalizing(Arr::pluck($users, 'user_id'), $beatmap->getOwners()->pluck('user_id')->toArray());
+            $this->assertSame($users[0]->getKey(), $beatmap->user_id);
+            Bus::assertDispatched(BeatmapOwnerChange::class);
+        } else {
+            $this->assertEqualsCanonicalizing([$owner->getKey()], $beatmap->getOwners()->pluck('user_id')->toArray());
+            Bus::assertNotDispatched(BeatmapOwnerChange::class);
+        }
     }
 
     public function testUpdateOwnerExistingRestrictedUser(): void
@@ -88,8 +113,6 @@ class ChangeBeatmapOwnersTest extends TestCase
             ->for(Beatmapset::factory()->pending()->owner($owner))
             ->owner($owner)
             ->create();
-
-        $this->assertTrue($owner->is($beatmap->getOwners()->find($ownerId)));
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 1);
 
@@ -147,7 +170,7 @@ class ChangeBeatmapOwnersTest extends TestCase
     }
 
     /**
-     * @dataProvider dataProviderForTestUpdateOwnerLoved
+     * @dataProvider dataProviderForUpdateOwnerLoved
      */
     public function testUpdateOwnerLoved(int $approved, bool $ok): void
     {

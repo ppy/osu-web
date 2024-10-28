@@ -81,6 +81,12 @@ class UserFactory extends Factory
         ];
     }
 
+    // convenience for dataProviders so null checks don't have to be called when creating with named state.
+    public function default()
+    {
+        return $this;
+    }
+
     public function restricted()
     {
         return $this
