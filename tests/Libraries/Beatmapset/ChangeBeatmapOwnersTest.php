@@ -17,6 +17,7 @@ use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\DeletedUser;
 use App\Models\User;
+use Arr;
 use Bus;
 use Tests\TestCase;
 
@@ -78,9 +79,9 @@ class ChangeBeatmapOwnersTest extends TestCase
 
     public function testUpdateOwnerExistingDeletedUser(): void
     {
+        $source = User::factory()->withGroup('gmt')->create();
         $owner = User::factory()->create();
-        $users = User::factory()->count(2)->create();
-        $users->add($owner);
+        $users = [User::factory()->create(), $owner];
         $ownerId = $owner->getKey();
 
         $beatmap = Beatmap::factory()
@@ -93,12 +94,38 @@ class ChangeBeatmapOwnersTest extends TestCase
 
         $this->expectCountChange(fn () => BeatmapsetEvent::count(), 1);
 
-        (new ChangeBeatmapOwners($beatmap, $users->pluck('user_id')->toArray(), $owner))->handle();
+        (new ChangeBeatmapOwners($beatmap, Arr::pluck($users, 'user_id'), $source))->handle();
 
         $beatmap = $beatmap->fresh();
         $newOwners = $beatmap->getOwners();
-        $this->assertCount(3, $newOwners);
-        $this->assertEqualsCanonicalizing($users->pluck('user_id'), $newOwners->pluck('user_id'));
+        $this->assertCount(count($users), $newOwners);
+        $this->assertEqualsCanonicalizing(Arr::pluck($users, 'user_id'), $newOwners->pluck('user_id')->toArray());
+
+        Bus::assertDispatched(BeatmapOwnerChange::class);
+    }
+
+    public function testUpdateOwnerExistingRestrictedUser(): void
+    {
+        $source = User::factory()->withGroup('gmt')->create();
+        $owner = User::factory()->restricted()->create();
+        $users = [User::factory()->create(), $owner];
+        $ownerId = $owner->getKey();
+
+        $beatmap = Beatmap::factory()
+            ->for(Beatmapset::factory()->pending()->owner($owner))
+            ->owner($owner)
+            ->create();
+
+        $this->assertTrue($owner->is($beatmap->getOwners()->find($ownerId)));
+
+        $this->expectCountChange(fn () => BeatmapsetEvent::count(), 1);
+
+        (new ChangeBeatmapOwners($beatmap, Arr::pluck($users, 'user_id'), $source))->handle();
+
+        $beatmap = $beatmap->fresh();
+        $newOwners = $beatmap->getOwners();
+        $this->assertCount(count($users), $newOwners);
+        $this->assertEqualsCanonicalizing(Arr::pluck($users, 'user_id'), $newOwners->pluck('user_id')->toArray());
 
         Bus::assertDispatched(BeatmapOwnerChange::class);
     }
