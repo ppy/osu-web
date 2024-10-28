@@ -27,7 +27,7 @@ class ChangeBeatmapOwners
         $this->userIds = new Set($newUserIds);
 
         if ($this->userIds->count() > $GLOBALS['cfg']['osu']['beatmaps']['owners_max']) {
-            throw new InvariantException('too many guest mappers.');
+            throw new InvariantException(osu_trans('beatmaps.change_owner.too_many'));
         }
 
         if ($this->userIds->isEmpty()) {
