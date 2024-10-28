@@ -44,7 +44,7 @@ class ChangeBeatmapOwners
 
         $newUserIds = $this->userIds->diff($currentOwners);
 
-        if (User::whereIn('user_id', $newUserIds->toArray())->count() !== $newUserIds->count()) {
+        if (User::whereIn('user_id', $newUserIds->toArray())->default()->count() !== $newUserIds->count()) {
             throw new InvariantException('invalid user_id');
         }
 
