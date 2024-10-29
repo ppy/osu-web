@@ -217,9 +217,9 @@ class Beatmap extends Model implements AfterCommit
         return $this->approved > 0;
     }
 
-    public function canBeConverted()
+    public function canBeConvertedTo(int $rulesetId)
     {
-        return $this->playmode === static::MODES['osu'];
+        return $this->playmode === static::MODES['osu'] || $this->playmode === $rulesetId;
     }
 
     public function getAttribute($key)

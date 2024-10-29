@@ -34,24 +34,34 @@ class FriendsController extends Controller
         $currentUser = \Auth::user();
         $currentMode = default_mode();
 
-        $friends = $currentUser
-            ->friends()
-            ->with('statistics'.studly_case($currentMode))
-            ->eagerloadForListing()
-            ->orderBy('username', 'asc')
-            ->get();
+        $relationFriends = $currentUser->relationFriends->sortBy('username');
+        $relationFriends->load(array_map(
+            fn ($userPreload) => "target.{$userPreload}",
+            UserCompactTransformer::listIncludesPreload($currentMode),
+        ));
 
+        $isApi = is_api_request();
+
+        if ($isApi && api_version() >= 20241022) {
+            return json_collection($relationFriends, new UserRelationTransformer(), [
+                "target:ruleset({$currentMode})",
+                ...array_map(
+                    fn ($userInclude) => "target.{$userInclude}",
+                    UserCompactTransformer::LIST_INCLUDES,
+                ),
+            ]);
+        }
+
+        $friends = $relationFriends->pluck('target');
         $usersJson = json_collection(
             $friends,
             (new UserCompactTransformer())->setMode($currentMode),
             UserCompactTransformer::LIST_INCLUDES
         );
 
-        if (is_api_request()) {
-            return $usersJson;
-        }
-
-        return ext_view('friends.index', compact('usersJson'));
+        return $isApi
+            ? $usersJson
+            : ext_view('friends.index', compact('usersJson'));
     }
 
     public function store()

@@ -31,7 +31,6 @@ declare module 'turbolinks' {
     controller: Controller;
     setProgressBarDelay(delayInMilliseconds: number): void;
     supported: boolean;
-    uuid(): string;
     visit(location: string, options?: TurbolinksAction): void;
   }
 }
