@@ -208,15 +208,6 @@ p artisan tinker
 
 # Development
 
-## Generating assets
-
-```bash
-# build assets (should be done automatically if using docker)
-yarn run development
-```
-
-Note that if you use the bundled docker compose setup, yarn/webpack will be already run in watch mode.
-
 ## Reset the database + seeding sample data
 
 ```
@@ -235,6 +226,15 @@ php artisan tinker
 ```
 
 Note that seeding sample data (the step above this) is required for user registration to work, otherwise the command above will fail due to missing user groups or otherwise.
+
+## Generating assets
+
+```bash
+# build assets (should be done automatically if using docker)
+yarn run development
+```
+
+Note that if you use the bundled docker compose setup, yarn/webpack will be already run in watch mode.
 
 ## Continuous asset generation while developing
 
