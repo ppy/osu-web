@@ -1128,6 +1128,17 @@ function proxy_media($url)
     return $GLOBALS['cfg']['osu']['camo']['prefix']."{$secret}/{$hexUrl}";
 }
 
+function proxy_media_original_url(?string $url): ?string
+{
+    if ($url === null) {
+        return null;
+    }
+
+    return str_starts_with($url, $GLOBALS['cfg']['osu']['camo']['prefix'])
+        ? hex2bin(substr($url, strrpos($url, '/') + 1))
+        : $url;
+}
+
 function lazy_load_image($url, $class = '', $alt = '')
 {
     return "<img class='{$class}' src='{$url}' alt='{$alt}' loading='lazy' />";
