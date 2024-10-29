@@ -73,7 +73,6 @@
   }
 
   &__container {
-    .center-content();
     display: flex;
     transform: translateX(calc(-100% * var(--index, 0)));
     width: 100%;
@@ -85,6 +84,8 @@
   }
 
   &__images {
+    .center-content();
+    display: flex;
     height: 120px;
     overflow: hidden;
     position: relative;
