@@ -2,8 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import MenuImageJson from 'interfaces/menu-image-json';
-import { range } from 'lodash';
-import { action, makeObservable, observable } from 'mobx';
+import { range, shuffle } from 'lodash';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers, urlPresence } from 'utils/css';
@@ -27,7 +27,7 @@ export default class MenuImages extends React.Component<Props> {
   @observable private transition = true;
 
   private get length() {
-    return this.props.images.length;
+    return this.images.length;
   }
 
   private get maxIndex() {
@@ -36,6 +36,11 @@ export default class MenuImages extends React.Component<Props> {
 
   private get minIndex() {
     return Math.min(0, this.index);
+  }
+
+  @computed
+  private get images() {
+    return shuffle(this.props.images);
   }
 
   constructor(props: Props) {
@@ -65,12 +70,12 @@ export default class MenuImages extends React.Component<Props> {
           <div
             className={`${bn}__blur`}
             style={{
-              '--url': urlPresence(this.props.images[0].image_url),
+              '--url': urlPresence(this.images[0].image_url),
             } as React.CSSProperties}
           />
           <div className={`${bn}__images`}>
             <div className={`${bn}__container`}>
-              <MenuImage image={this.props.images[0]} />
+              <MenuImage image={this.images[0]} />
             </div>
           </div>
         </div>
@@ -85,7 +90,7 @@ export default class MenuImages extends React.Component<Props> {
         onMouseEnter={this.clearAutoRotateTimer}
         onMouseLeave={this.setAutoRotateTimer}
       >
-        {this.props.images.map((imageJson, i) => (
+        {this.images.map((imageJson, i) => (
           <div
             key={imageJson.image_url}
             className={`${bn}__blur`}
@@ -109,7 +114,7 @@ export default class MenuImages extends React.Component<Props> {
             {range(this.minIndex, this.maxIndex + 1).map((index) => (
               <MenuImage
                 key={index}
-                image={this.props.images[modulo(index, this.length)]}
+                image={this.images[modulo(index, this.length)]}
                 index={index}
               />
             ))}
@@ -178,7 +183,7 @@ export default class MenuImages extends React.Component<Props> {
   private renderIndicators() {
     return (
       <div className={`${bn}__indicators`}>
-        {this.props.images.map((_, index) => (
+        {this.images.map((_, index) => (
           <button
             key={index}
             className={classWithModifiers(
