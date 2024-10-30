@@ -60,7 +60,7 @@ class ScoresController extends Controller
                 ->where('replay', true)
                 ->firstOrFail();
 
-            $soloScore = SoloScore::firstWhere('legacy_score_id', $score->getKey());
+            $soloScore = SoloScore::firstWhere(['legacy_score_id' => $score->getKey(), 'ruleset_id' => $score->ruleset_id]);
         }
 
         $file = $score->getReplayFile();

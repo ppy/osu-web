@@ -80,7 +80,7 @@ core.reactTurbolinks.register('main-notification-icon', (container) => (
 ));
 
 core.reactTurbolinks.register('menu-images', () => (
-  <MenuImages images={parseJson('json-menu-images')} />
+  <MenuImages images={observable(parseJson('json-menu-images'))} />
 ));
 
 core.reactTurbolinks.register('notification-widget', (container) => (

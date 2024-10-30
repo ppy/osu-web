@@ -87,7 +87,7 @@ export default class Beatmapsets extends React.Component<ExtraPageProps> {
               {...state.pagination}
               callback={this.onShowMore}
               data={section.urlType}
-              modifiers='profile-page'
+              modifiers={['profile-page', 'profile-page-beatmapsets']}
             />
           </div>
         )}

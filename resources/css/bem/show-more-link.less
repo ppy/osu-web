@@ -47,6 +47,7 @@
     padding-left: 10px;
     padding-right: $padding-left;
     font-weight: normal;
+    justify-self: start;
   }
 
   &--comments {
@@ -74,6 +75,15 @@
     position: sticky;
     bottom: 5px;
     margin: 5px auto 0;
+  }
+
+  &--profile-page-beatmapsets {
+    // overrides the one in --profile-page
+    margin-top: 0;
+
+    @media @desktop {
+      grid-column: span 2;
+    }
   }
 
   &[data-disabled="1"],

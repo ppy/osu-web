@@ -6,7 +6,7 @@
 namespace App\Libraries\Search;
 
 use App\Models\Beatmapset;
-use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 
 class BeatmapsetQueryParser
 {
@@ -114,43 +114,38 @@ class BeatmapsetQueryParser
         $value = presence(trim($value, '"'));
 
         if (preg_match('#^\d{4}$#', $value) === 1) {
-            $startTime = Carbon::create($value, 1, 1, 0, 0, 0, 'UTC');
-            $endTimeFunction = 'addYears';
+            $startTime = CarbonImmutable::create($value, 1, 1, 0, 0, 0, 'UTC');
+            $endTime = $startTime->addYears(1);
         } elseif (preg_match('#^(?<year>\d{4})[-./]?(?<month>\d{1,2})$#', $value, $m) === 1) {
-            $startTime = Carbon::create($m['year'], $m['month'], 1, 0, 0, 0, 'UTC');
-            $endTimeFunction = 'addMonths';
+            $startTime = CarbonImmutable::create($m['year'], $m['month'], 1, 0, 0, 0, 'UTC');
+            $endTime = $startTime->addMonths(1);
         } elseif (preg_match('#^(?<year>\d{4})[-./]?(?<month>\d{1,2})[-./]?(?<day>\d{1,2})$#', $value, $m) === 1) {
-            $startTime = Carbon::create($m['year'], $m['month'], $m['day'], 0, 0, 0, 'UTC');
-            $endTimeFunction = 'addDays';
+            $startTime = CarbonImmutable::create($m['year'], $m['month'], $m['day'], 0, 0, 0, 'UTC');
+            $endTime = $startTime->addDays(1);
         } else {
-            $startTime = parse_time_to_carbon($value)?->utc();
-            $endTimeFunction = 'addSeconds';
+            $startTime = parse_time_to_carbon($value)?->toImmutable()->utc();
+            $endTime = $startTime?->addSeconds(1);
         }
 
-        if (isset($startTime) && isset($endTimeFunction)) {
-            switch ($operator) {
-                case '=':
-                    return [
-                        'gte' => json_time($startTime),
-                        'lt' => json_time($startTime->$endTimeFunction()),
-                    ];
-                case '<':
-                    return [
-                        'lt' => json_time($startTime),
-                    ];
-                case '<=':
-                    return [
-                        'lt' => json_time($startTime->$endTimeFunction()),
-                    ];
-                case '>':
-                    return [
-                        'gte' => json_time($startTime->$endTimeFunction()),
-                    ];
-                case '>=':
-                    return [
-                        'gte' => json_time($startTime),
-                    ];
-            }
+        if (isset($startTime) && isset($endTime)) {
+            return match ($operator) {
+                '=' => [
+                    'gte' => $startTime->getTimestampMs(),
+                    'lt' => $endTime->getTimestampMs(),
+                ],
+                '<' => [
+                    'lt' => $startTime->getTimestampMs(),
+                ],
+                '<=' => [
+                    'lt' => $endTime->getTimestampMs(),
+                ],
+                '>' => [
+                    'gte' => $endTime->getTimestampMs(),
+                ],
+                '>=' => [
+                    'gte' => $startTime->getTimestampMs(),
+                ],
+            };
         }
 
         return null;

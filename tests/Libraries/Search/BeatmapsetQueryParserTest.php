@@ -7,18 +7,11 @@ namespace Tests\Libraries\Search;
 
 use App\Libraries\Search\BeatmapsetQueryParser;
 use App\Models\Beatmapset;
+use Carbon\CarbonImmutable;
 use Tests\TestCase;
 
 class BeatmapsetQueryParserTest extends TestCase
 {
-    /**
-     * @dataProvider queryDataProvider
-     */
-    public function testParse(?string $query, ?array $expected)
-    {
-        $this->assertSame(json_encode($expected), json_encode(BeatmapsetQueryParser::parse($query)));
-    }
-
     public static function queryDataProvider()
     {
         return [
@@ -43,15 +36,15 @@ class BeatmapsetQueryParserTest extends TestCase
             ['creator=hello', ['keywords' => null, 'options' => ['creator' => 'hello']]],
             ['artist=hello', ['keywords' => null, 'options' => ['artist' => 'hello']]],
             ['artist="hello world"', ['keywords' => null, 'options' => ['artist' => 'hello world']]],
-            ['created=2017', ['keywords' => null, 'options' => ['created' => ['gte' => '2017-01-01T00:00:00+00:00', 'lt' => '2018-01-01T00:00:00+00:00']]]],
-            ['ranked>2018', ['keywords' => null, 'options' => ['ranked' => ['gte' => '2019-01-01T00:00:00+00:00']]]],
-            ['ranked<2018-05', ['keywords' => null, 'options' => ['ranked' => ['lt' => '2018-05-01T00:00:00+00:00']]]],
-            ['ranked<=2018.05', ['keywords' => null, 'options' => ['ranked' => ['lt' => '2018-06-01T00:00:00+00:00']]]],
-            ['ranked=2018/05', ['keywords' => null, 'options' => ['ranked' => ['gte' => '2018-05-01T00:00:00+00:00', 'lt' => '2018-06-01T00:00:00+00:00']]]],
-            ['ranked=2018.05.01', ['keywords' => null, 'options' => ['ranked' => ['gte' => '2018-05-01T00:00:00+00:00', 'lt' => '2018-05-02T00:00:00+00:00']]]],
-            ['ranked>2018/05/01', ['keywords' => null, 'options' => ['ranked' => ['gte' => '2018-05-02T00:00:00+00:00']]]],
-            ['ranked>="2020-07-21 12:30:30 +09:00"', ['keywords' => null, 'options' => ['ranked' => ['gte' => '2020-07-21T03:30:30+00:00']]]],
-            ['ranked="2020-07-21 12:30:30 +09:00"', ['keywords' => null, 'options' => ['ranked' => ['gte' => '2020-07-21T03:30:30+00:00', 'lt' => '2020-07-21T03:30:31+00:00']]]],
+            ['created=2017', ['keywords' => null, 'options' => ['created' => ['gte' => static::parseTime('2017-01-01'), 'lt' => static::parseTime('2018-01-01')]]]],
+            ['ranked>2018', ['keywords' => null, 'options' => ['ranked' => ['gte' => static::parseTime('2019-01-01')]]]],
+            ['ranked<2018-05', ['keywords' => null, 'options' => ['ranked' => ['lt' => static::parseTime('2018-05-01')]]]],
+            ['ranked<=2018.05', ['keywords' => null, 'options' => ['ranked' => ['lt' => static::parseTime('2018-06-01')]]]],
+            ['ranked=2018/05', ['keywords' => null, 'options' => ['ranked' => ['gte' => static::parseTime('2018-05-01'), 'lt' => static::parseTime('2018-06-01')]]]],
+            ['ranked=2018.05.01', ['keywords' => null, 'options' => ['ranked' => ['gte' => static::parseTime('2018-05-01'), 'lt' => static::parseTime('2018-05-02')]]]],
+            ['ranked>2018/05/01', ['keywords' => null, 'options' => ['ranked' => ['gte' => static::parseTime('2018-05-02')]]]],
+            ['ranked>="2020-07-21 12:30:30 +09:00"', ['keywords' => null, 'options' => ['ranked' => ['gte' => static::parseTime('2020-07-21 03:30:30')]]]],
+            ['ranked="2020-07-21 12:30:30 +09:00"', ['keywords' => null, 'options' => ['ranked' => ['gte' => static::parseTime('2020-07-21 03:30:30'), 'lt' => static::parseTime('2020-07-21 03:30:31')]]]],
             ['ranked="invalid date format"', ['keywords' => 'ranked="invalid date format"', 'options' => []]],
 
             // multiple options
@@ -102,5 +95,18 @@ class BeatmapsetQueryParserTest extends TestCase
             ['status=l', ['keywords' => null, 'options' => ['status' => ['gte' => Beatmapset::STATES['loved'], 'lte' => Beatmapset::STATES['loved']]]]],
             ['status=lo', ['keywords' => null, 'options' => ['status' => ['gte' => Beatmapset::STATES['loved'], 'lte' => Beatmapset::STATES['loved']]]]],
         ];
+    }
+
+    private static function parseTime(string $timeString): int
+    {
+        return CarbonImmutable::parse($timeString)->getTimestampMs();
+    }
+
+    /**
+     * @dataProvider queryDataProvider
+     */
+    public function testParse(?string $query, ?array $expected)
+    {
+        $this->assertSame(json_encode($expected), json_encode(BeatmapsetQueryParser::parse($query)));
     }
 }

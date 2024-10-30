@@ -15,7 +15,6 @@
     display: flex;
     flex-direction: row;
 
-    padding: 13px @_gutter;
     font-size: @font-size--wiki-search;
     background-color: hsl(var(--hsl-b6));
     border: @_border-size solid hsl(var(--hsl-b6));
@@ -30,6 +29,7 @@
     .reset-input();
     color: @osu-colour-c1;
     flex: 1;
+    padding: 13px 0 13px @_gutter;
 
     &::placeholder {
       color: @osu-colour-c2;
@@ -41,7 +41,7 @@
     .reset-input();
 
     color: @osu-colour-c1;
-    margin-left: 10px;
+    margin: 0 @_gutter 0 10px;
   }
 
   &__suggestion {

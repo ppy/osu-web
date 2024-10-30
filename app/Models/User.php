@@ -922,6 +922,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'rankHighests',
             'rankHistories',
             'receivedKudosu',
+            'relationFriends',
             'relations',
             'replaysWatchedCounts',
             'reportedIn',
@@ -1517,6 +1518,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             ->orderBy('timestamp', 'ASC');
     }
 
+    public function relationFriends(): HasMany
+    {
+        return $this->relations()->friends()->withMutual();
+    }
+
     public function relations()
     {
         return $this->hasMany(UserRelation::class);
@@ -2009,16 +2015,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $query
             ->where('user_allow_viewonline', true)
             ->where('user_lastvisit', '>', time() - $GLOBALS['cfg']['osu']['user']['online_window']);
-    }
-
-    public function scopeEagerloadForListing($query)
-    {
-        return $query->with([
-            'country',
-            'supporterTagPurchases',
-            'userGroups',
-            'userProfileCustomization',
-        ]);
     }
 
     public function checkPassword($password)
