@@ -8,6 +8,7 @@ namespace App\Libraries\Search;
 use App\Libraries\Elasticsearch\SearchParams;
 use App\Models\Beatmap;
 use App\Models\User;
+use App\Models\UserProfileCustomization;
 
 class BeatmapsetSearchParams extends SearchParams
 {
