@@ -1051,6 +1051,34 @@
         ]
     },
     {
+        "uri": "api/v2/friends",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\FriendsController@store",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate",
+            "App\\Http\\Middleware\\VerifyUser"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/friends/{friend}",
+        "methods": [
+            "DELETE"
+        ],
+        "controller": "App\\Http\\Controllers\\FriendsController@destroy",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate",
+            "App\\Http\\Middleware\\VerifyUser"
+        ],
+        "scopes": []
+    },
+    {
         "uri": "api/v2/me/download-quota-check",
         "methods": [
             "GET",
