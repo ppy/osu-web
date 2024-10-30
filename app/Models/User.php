@@ -29,7 +29,6 @@ use Cache;
 use Carbon\Carbon;
 use DB;
 use Ds\Set;
-use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -2182,24 +2181,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         return $history->pluck('username_last');
-    }
-
-    public function profileCustomization()
-    {
-        return $this->memoize(__FUNCTION__, function () {
-            try {
-                return $this
-                    ->userProfileCustomization()
-                    ->firstOrCreate([]);
-            } catch (Exception $ex) {
-                if (is_sql_unique_exception($ex)) {
-                    // retry on duplicate
-                    return $this->profileCustomization();
-                }
-
-                throw $ex;
-            }
-        });
     }
 
     public function profileBeatmapsetsRanked()
