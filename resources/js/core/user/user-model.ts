@@ -57,12 +57,13 @@ export default class UserModel {
 
   @action
   updateUserRelation(userRelation: UserRelationJson | undefined, relationType: 'blocks' | 'friends', userId: number) {
-    const user = this.core.currentUser ?? fail('trying to update user relation of guest user');
+    const relations = this.core.currentUser?.[relationType]
+      ?? fail('trying to update user relation of guest user');
 
     if (userRelation == null) {
-      user[relationType] = user[relationType].filter((relation) => relation.target_id !== userId);
+      relations.splice(relations.findIndex((relation) => relation.target_id === userId), 1);
     } else {
-      user[relationType].push(userRelation);
+      relations.push(userRelation);
     }
   }
 }
