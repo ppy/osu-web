@@ -22,6 +22,7 @@ class NotificationsBundle
     }
 
     private $category;
+    private array $countByType;
     private $cursorId;
     private $objectId;
     private $objectType;
@@ -61,7 +62,7 @@ class NotificationsBundle
         ];
 
         if ($this->unreadOnly) {
-            $response['unread_count'] = $this->user->userNotifications()->hasPushDelivery()->where('is_read', false)->count();
+            $response['unread_count'] = $this->getTotalNotificationCount();
         }
 
         return $response;
@@ -186,18 +187,29 @@ class NotificationsBundle
 
     private function getTotalNotificationCount(?string $type = null)
     {
-        $query = Notification::whereHas('userNotifications', function ($q) {
-            $q->hasPushDelivery()->where('user_id', $this->user->getKey());
-            if ($this->unreadOnly) {
-                $q->where('is_read', false);
-            }
-        });
+        if (!isset($this->countByType)) {
+            $query = Notification ::whereHas('userNotifications', function ($q) {
+                $q->hasPushDelivery()->where('user_id', $this->user->getKey());
+                if ($this->unreadOnly) {
+                    $q->where('is_read', false);
+                }
+            });
 
-        if ($type !== null) {
-            $query->where('notifiable_type', $type);
+            if ($this->objectType !== null) {
+                $query->where('notifiable_type', $this->objectType);
+            }
+
+            $this->countByType = $query
+                ->groupBy('notifiable_type')
+                ->selectRaw('count(*) type_count, notifiable_type')
+                ->get()
+                ->mapWithKeys(fn ($agg) => [$agg->notifiable_type => $agg->type_count])
+                ->all();
         }
 
-        return $query->count();
+        return $type === null
+            ? array_sum($this->countByType)
+            : $this->countByType[$type] ?? 0;
     }
 
     private function getStackHeads(?string $type = null)
