@@ -76,33 +76,27 @@ class NotificationsBundle
             return;
         }
 
-        $notificationModel = new Notification();
-        $userNotificationModel = new UserNotification();
         $query = $this
             ->user
             ->userNotifications()
-            ->select($userNotificationModel->qualifyColumn('*'))
             ->hasPushDelivery()
-            ->join(
-                $notificationModel->getTable(),
-                $notificationModel->qualifyColumn('id'),
-                '=',
-                $userNotificationModel->qualifyColumn('notification_id')
-            )
-            ->where($notificationModel->qualifyColumn('notifiable_type'), $objectType)
-            ->where($notificationModel->qualifyColumn('notifiable_id'), $objectId)
-            ->whereIn($notificationModel->qualifyColumn('name'), Notification::namesInCategory($category))
-            ->orderByDesc($notificationModel->qualifyColumn('created_at'))
-            ->orderByDesc($notificationModel->qualifyColumn('id'))
+            ->joinRelation('notification', function ($q) use ($category, $objectId, $objectType) {
+                $q
+                    ->where($q->qualifyColumn('notifiable_type'), $objectType)
+                    ->where($q->qualifyColumn('notifiable_id'), $objectId)
+                    ->whereIn($q->qualifyColumn('name'), Notification::namesInCategory($category))
+                    ->orderByDesc($q->qualifyColumn('created_at'))
+                    ->orderByDesc($q->qualifyColumn('id'));
+                if ($this->cursorId !== null) {
+                    $q->where($q->qualifyColumn('id'), '<', $this->cursorId);
+                }
+            })
             ->limit(static::PER_STACK_LIMIT);
 
         if ($this->unreadOnly) {
-            $query->where('is_read', false);
+            $query->where($query->qualifyColumn('is_read'), false);
         }
-
-        if ($this->cursorId !== null) {
-            $query->where($notificationModel->qualifyColumn('id'), '<', $this->cursorId);
-        }
+        $query->select($query->qualifyColumn('*'));
 
         $stack = $query->get();
 

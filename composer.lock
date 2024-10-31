@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "809c16eebdcc6254e933f5a511717268",
+    "content-hash": "d4c8305e46ca483e9b13af443e34c1e3",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -7342,6 +7342,72 @@
             "time": "2023-11-16T16:16:50+00:00"
         },
         {
+            "name": "reedware/laravel-relation-joins",
+            "version": "v6.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tylernathanreed/laravel-relation-joins.git",
+                "reference": "fcac3e9391e36388a5570f9f3dee869cf07bf8e2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tylernathanreed/laravel-relation-joins/zipball/fcac3e9391e36388a5570f9f3dee869cf07bf8e2",
+                "reference": "fcac3e9391e36388a5570f9f3dee869cf07bf8e2",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^10.0|^11.0",
+                "illuminate/database": "^10.0|^11.0",
+                "illuminate/support": "^10.0|^11.0",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "illuminate/container": "^10.0|^11.0",
+                "laravel/pint": "^1.5",
+                "mockery/mockery": "^1.6.6",
+                "php-coveralls/php-coveralls": "^2.4",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^10.5",
+                "symfony/var-dumper": "^6.4.4|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Reedware\\LaravelRelationJoins\\LaravelRelationJoinServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Reedware\\LaravelRelationJoins\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tyler Reed",
+                    "email": "tylernathanreed@gmail.com"
+                }
+            ],
+            "description": "Adds the ability to join on a relationship by name.",
+            "keywords": [
+                "eloquent",
+                "join",
+                "laravel",
+                "query",
+                "relation"
+            ],
+            "support": {
+                "issues": "https://github.com/tylernathanreed/laravel-relation-joins/issues",
+                "source": "https://github.com/tylernathanreed/laravel-relation-joins/tree/v6.0.1"
+            },
+            "time": "2024-03-20T17:04:54+00:00"
+        },
+        {
             "name": "romanzipp/laravel-turnstile",
             "version": "1.3.0",
             "source": {
@@ -14026,5 +14092,5 @@
     "platform-overrides": {
         "php": "8.3.0"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
