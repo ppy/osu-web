@@ -49,11 +49,9 @@ class BlocksController extends Controller
             abort(404);
         }
 
-        $existingRelation = $currentUser
-            ->relations()
-            ->where('zebra_id', $targetId)
-            ->first();
+        $relationQuery = $currentUser->relations()->where('zebra_id', $targetId);
 
+        $existingRelation = $relationQuery->first();
         if ($existingRelation) {
             $existingRelation->update([
                 'foe' => true,
@@ -70,10 +68,12 @@ class BlocksController extends Controller
             ]);
         }
 
-        return json_collection(
-            $currentUser->relations()->visible()->withMutual()->get(),
-            new UserRelationTransformer(),
-        );
+        return [
+            'user_relation' => json_item(
+                $relationQuery->first(),
+                new UserRelationTransformer(),
+            ),
+        ];
     }
 
     public function destroy($id)
@@ -90,9 +90,6 @@ class BlocksController extends Controller
 
         $user->blocks()->detach($block);
 
-        return json_collection(
-            $user->relations()->visible()->withMutual()->get(),
-            new UserRelationTransformer(),
-        );
+        return response(null, 204);
     }
 }
