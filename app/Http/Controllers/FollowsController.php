@@ -70,6 +70,9 @@ class FollowsController extends Controller
 
     public function store()
     {
+        if (\Auth::user()->follows()->count() >= $GLOBALS['cfg']['osu']['user']['max_follows']) {
+            return error_popup(osu_trans('follows.store.too_many'));
+        }
         $params = $this->getParams();
         $follow = new Follow($params);
 
@@ -89,7 +92,7 @@ class FollowsController extends Controller
             dispatch(new UpdateUserMappingFollowerCountCache($params['notifiable_id']));
         }
 
-        return response([], 204);
+        return response(null, 204);
     }
 
     private function getParams()
