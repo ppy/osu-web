@@ -1409,22 +1409,22 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function scoresFirstOsu()
     {
-        return $this->belongsToMany(Score\Best\Osu::class, 'osu_leaders')->default();
+        return $this->hasMany(LegacyScoreFirst\Osu::class)->default();
     }
 
     public function scoresFirstFruits()
     {
-        return $this->belongsToMany(Score\Best\Fruits::class, 'osu_leaders_fruits')->default();
+        return $this->hasMany(LegacyScoreFirst\Fruits::class)->default();
     }
 
     public function scoresFirstMania()
     {
-        return $this->belongsToMany(Score\Best\Mania::class, 'osu_leaders_mania')->default();
+        return $this->hasMany(LegacyScoreFirst\Mania::class)->default();
     }
 
     public function scoresFirstTaiko()
     {
-        return $this->belongsToMany(Score\Best\Taiko::class, 'osu_leaders_taiko')->default();
+        return $this->hasMany(LegacyScoreFirst\Taiko::class)->default();
     }
 
     public function scoresFirst(string $mode, bool $returnQuery = false)
