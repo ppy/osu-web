@@ -639,7 +639,7 @@ class TopicsController extends Controller
         $params['limit'] = clamp($params['limit'] ?? Post::PER_PAGE, 1, 50);
 
         if ($userCanModerate) {
-            $params['with_deleted'] ??= ($currentUser->userProfileCustomization ?? UserProfileCustomization::DEFAULTS)['forum_posts_show_deleted'];
+            $params['with_deleted'] ??= UserProfileCustomization::forUser($currentUser)['forum_posts_show_deleted'];
         } else {
             $params['with_deleted'] = false;
         }

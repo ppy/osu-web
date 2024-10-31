@@ -298,6 +298,48 @@
         "scopes": []
     },
     {
+        "uri": "api/v2/blocks",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\BlocksController@index",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/blocks",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\BlocksController@store",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate",
+            "App\\Http\\Middleware\\VerifyUser"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/blocks/{block}",
+        "methods": [
+            "DELETE"
+        ],
+        "controller": "App\\Http\\Controllers\\BlocksController@destroy",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate",
+            "App\\Http\\Middleware\\VerifyUser"
+        ],
+        "scopes": []
+    },
+    {
         "uri": "api/v2/comments",
         "methods": [
             "GET",
@@ -1049,6 +1091,34 @@
         "scopes": [
             "friends.read"
         ]
+    },
+    {
+        "uri": "api/v2/friends",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\FriendsController@store",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate",
+            "App\\Http\\Middleware\\VerifyUser"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/friends/{friend}",
+        "methods": [
+            "DELETE"
+        ],
+        "controller": "App\\Http\\Controllers\\FriendsController@destroy",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate",
+            "App\\Http\\Middleware\\VerifyUser"
+        ],
+        "scopes": []
     },
     {
         "uri": "api/v2/me/download-quota-check",
