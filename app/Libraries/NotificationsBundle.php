@@ -76,22 +76,32 @@ class NotificationsBundle
             return;
         }
 
-        $query = $this->user->userNotifications()->hasPushDelivery()->whereHas('notification', function ($q) use ($objectId, $objectType, $category) {
-            $names = Notification::namesInCategory($category);
-            $q
-                ->where('notifiable_type', $objectType)
-                ->where('notifiable_id', $objectId)
-                ->whereIn('name', $names);
-        });
+        $notificationModel = new Notification();
+        $userNotificationModel = new UserNotification();
+        $query = $this
+            ->user
+            ->userNotifications()
+            ->select($userNotificationModel->qualifyColumn('*'))
+            ->hasPushDelivery()
+            ->join(
+                $notificationModel->getTable(),
+                $notificationModel->qualifyColumn('id'),
+                '=',
+                $userNotificationModel->qualifyColumn('notification_id')
+            )
+            ->where($notificationModel->qualifyColumn('notifiable_type'), $objectType)
+            ->where($notificationModel->qualifyColumn('notifiable_id'), $objectId)
+            ->whereIn($notificationModel->qualifyColumn('name'), Notification::namesInCategory($category))
+            ->orderByDesc($notificationModel->qualifyColumn('created_at'))
+            ->orderByDesc($notificationModel->qualifyColumn('id'))
+            ->limit(static::PER_STACK_LIMIT);
 
         if ($this->unreadOnly) {
             $query->where('is_read', false);
         }
 
-        $query->orderBy('id', 'desc')->limit(static::PER_STACK_LIMIT);
-
         if ($this->cursorId !== null) {
-            $query->where('notification_id', '<', $this->cursorId);
+            $query->where($notificationModel->qualifyColumn('id'), '<', $this->cursorId);
         }
 
         $stack = $query->get();
