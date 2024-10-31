@@ -8,8 +8,7 @@ namespace App\Http\Controllers;
 use App\Jobs\UpdateUserFollowerCountCache;
 use App\Models\User;
 use App\Models\UserRelation;
-use Auth;
-use Request;
+use App\Transformers\UserRelationTransformer;
 
 class BlocksController extends Controller
 {
@@ -27,26 +26,32 @@ class BlocksController extends Controller
         parent::__construct();
     }
 
+    public function index()
+    {
+        return json_collection(
+            \Auth::user()->relations()->blocks()->get(),
+            new UserRelationTransformer(),
+        );
+    }
+
     public function store()
     {
-        $currentUser = Auth::user();
+        $currentUser = \Auth::user();
 
         if ($currentUser->blocks()->count() >= $currentUser->maxBlocks()) {
             return error_popup(osu_trans('users.blocks.too_many'));
         }
 
-        $targetId = get_int(Request::input('target'));
+        $targetId = get_int(\Request::input('target'));
         $targetUser = User::lookup($targetId, 'id');
 
         if (!$targetUser) {
             abort(404);
         }
 
-        $existingRelation = $currentUser
-            ->relations()
-            ->where('zebra_id', $targetId)
-            ->first();
+        $relationQuery = $currentUser->relations()->where('zebra_id', $targetId);
 
+        $existingRelation = $relationQuery->first();
         if ($existingRelation) {
             $existingRelation->update([
                 'foe' => true,
@@ -57,21 +62,23 @@ class BlocksController extends Controller
             dispatch(new UpdateUserFollowerCountCache($targetId));
         } else {
             UserRelation::create([
-                'user_id' => $currentUser->user_id,
+                'user_id' => $currentUser->getKey(),
                 'zebra_id' => $targetId,
                 'foe' => true,
             ]);
         }
 
-        return json_collection(
-            $currentUser->relations()->visible()->withMutual()->get(),
-            'UserRelation'
-        );
+        return [
+            'user_relation' => json_item(
+                $relationQuery->first(),
+                new UserRelationTransformer(),
+            ),
+        ];
     }
 
     public function destroy($id)
     {
-        $user = Auth::user();
+        $user = \Auth::user();
 
         $block = $user->blocks()
             ->where('zebra_id', $id)
@@ -83,9 +90,6 @@ class BlocksController extends Controller
 
         $user->blocks()->detach($block);
 
-        return json_collection(
-            $user->relations()->visible()->withMutual()->get(),
-            'UserRelation'
-        );
+        return response(null, 204);
     }
 }
