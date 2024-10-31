@@ -56,7 +56,7 @@ class ScoresController extends BaseController
         $highScoresQuery = $playlist
             ->highScores()
             ->whereHas('user', fn ($userQuery) => $userQuery->default())
-            ->whereHas('scoreLink');
+            ->whereHas('scoreLink.score');
 
         [$highScores, $hasMore] = $highScoresQuery
             ->clone()
