@@ -25,6 +25,10 @@ interface Props {
   userId: number;
 }
 
+interface AddFriendResponse {
+  user_relation: UserRelationJson;
+}
+
 @observer
 export default class FriendButton extends React.Component<Props> {
   static readonly defaultProps = {
@@ -32,7 +36,7 @@ export default class FriendButton extends React.Component<Props> {
   };
 
   @observable private followersWithoutSelf: number;
-  @observable private xhr?: JQuery.jqXHR<UserRelationJson[]>;
+  @observable private xhr?: JQuery.jqXHR<AddFriendResponse | null>;
 
   @computed
   private get followers() {
@@ -183,11 +187,8 @@ export default class FriendButton extends React.Component<Props> {
   }
 
   @action
-  private readonly updateFriends = (data: UserRelationJson[]) => {
-    if (core.currentUser == null) return;
-
-    // TODO: move logic to a user object?
-    core.currentUser.friends = data;
+  private readonly updateFriends = (data: AddFriendResponse | null) => {
+    core.currentUserModel.updateUserRelation(data?.user_relation, 'friends', this.props.userId);
     dispatch(new FriendUpdated(this.props.userId));
   };
 }

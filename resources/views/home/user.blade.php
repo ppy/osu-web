@@ -16,7 +16,7 @@
         @if (count($menuImages) > 0)
             <div class="js-react--menu-images u-contents">
                 <div class="menu-images menu-images--placeholder">
-                    <div class="menu-images__container">
+                    <div class="menu-images__images">
                         {!! spinner() !!}
                     </div>
                     @if (count($menuImages) > 1)

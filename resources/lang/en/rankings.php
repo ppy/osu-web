@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Difficulty',
-        'percentile_10' => 'Top 10% Score',
-        'percentile_50' => 'Top 50% Score',
+        'top_10p' => 'Top 10% Score',
+        'top_50p' => 'Top 50% Score',
     ],
 
     'filter' => [

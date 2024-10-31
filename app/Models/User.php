@@ -29,7 +29,6 @@ use Cache;
 use Carbon\Carbon;
 use DB;
 use Ds\Set;
-use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -923,6 +922,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'rankHighests',
             'rankHistories',
             'receivedKudosu',
+            'relationFriends',
             'relations',
             'replaysWatchedCounts',
             'reportedIn',
@@ -1518,6 +1518,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             ->orderBy('timestamp', 'ASC');
     }
 
+    public function relationFriends(): HasMany
+    {
+        return $this->relations()->friends()->withMutual();
+    }
+
     public function relations()
     {
         return $this->hasMany(UserRelation::class);
@@ -2012,16 +2017,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             ->where('user_lastvisit', '>', time() - $GLOBALS['cfg']['osu']['user']['online_window']);
     }
 
-    public function scopeEagerloadForListing($query)
-    {
-        return $query->with([
-            'country',
-            'supporterTagPurchases',
-            'userGroups',
-            'userProfileCustomization',
-        ]);
-    }
-
     public function checkPassword($password)
     {
         return Hash::check($password, $this->getAuthPassword());
@@ -2186,24 +2181,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         return $history->pluck('username_last');
-    }
-
-    public function profileCustomization()
-    {
-        return $this->memoize(__FUNCTION__, function () {
-            try {
-                return $this
-                    ->userProfileCustomization()
-                    ->firstOrCreate([]);
-            } catch (Exception $ex) {
-                if (is_sql_unique_exception($ex)) {
-                    // retry on duplicate
-                    return $this->profileCustomization();
-                }
-
-                throw $ex;
-            }
-        });
     }
 
     public function profileBeatmapsetsRanked()

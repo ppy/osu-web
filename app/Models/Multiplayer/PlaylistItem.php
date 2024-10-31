@@ -5,7 +5,6 @@
 
 namespace App\Models\Multiplayer;
 
-use App\Enums\Ruleset;
 use App\Exceptions\InvariantException;
 use App\Models\Beatmap;
 use App\Models\Model;
@@ -110,16 +109,14 @@ class PlaylistItem extends Model
 
     public function save(array $options = [])
     {
-        $this->assertValidMaxAttempts();
-        $this->validateRuleset();
-        $this->assertValidMods();
+        $this->assertValid();
 
         return parent::save($options);
     }
 
     public function scorePercentile(): array
     {
-        $key = "playlist_item_score_percentile:{$this->getKey()}";
+        $key = "playlist_item_score_percentile:v2:{$this->getKey()}";
 
         if (!$this->expired && !$this->room->hasEnded()) {
             $key .= ':ongoing';
@@ -134,13 +131,20 @@ class PlaylistItem extends Model
 
             return $count === 0
                 ? [
-                    '10p' => 0,
-                    '50p' => 0,
+                    'top_10p' => 0,
+                    'top_50p' => 0,
                 ] : [
-                    '10p' => $scores[max(0, (int) ($count * 0.1) - 1)],
-                    '50p' => $scores[max(0, (int) ($count * 0.5) - 1)],
+                    'top_10p' => $scores[max(0, (int) ($count * 0.1) - 1)],
+                    'top_50p' => $scores[max(0, (int) ($count * 0.5) - 1)],
                 ];
         });
+    }
+
+    public function assertValid()
+    {
+        $this->assertValidMaxAttempts();
+        $this->assertValidRuleset();
+        $this->assertValidMods();
     }
 
     private function assertValidMaxAttempts()
@@ -155,10 +159,10 @@ class PlaylistItem extends Model
         }
     }
 
-    private function validateRuleset()
+    private function assertValidRuleset()
     {
         // osu beatmaps can be played in any mode, but non-osu maps can only be played in their specific modes
-        if ($this->beatmap->playmode !== Ruleset::osu->value && $this->beatmap->playmode !== $this->ruleset_id) {
+        if (!$this->beatmap->canBeConvertedTo($this->ruleset_id)) {
             throw new InvariantException("invalid ruleset_id for beatmap {$this->beatmap->beatmap_id}");
         }
     }
