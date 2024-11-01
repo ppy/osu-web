@@ -87,6 +87,7 @@ class NotificationsBundle
                     ->whereIn($q->qualifyColumn('name'), Notification::namesInCategory($category))
                     ->orderByDesc($q->qualifyColumn('created_at'))
                     ->orderByDesc($q->qualifyColumn('id'));
+
                 if ($this->cursorId !== null) {
                     $q->where($q->qualifyColumn('id'), '<', $this->cursorId);
                 }
