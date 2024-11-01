@@ -19,8 +19,8 @@ export default function ValueDisplay({ description, label, modifiers, value }: P
       <div style={{ width: 'max-content' }}>
         <div className={`${bn}__label`}>{label}</div>
         <div className={`${bn}__value`}>{value}</div>
-        {description != null && <div className={`${bn}__description`}>{description}</div>}
       </div>
+      {description != null && <div className={`${bn}__description`}>{description}</div>}
     </div>
   );
 }
