@@ -41,6 +41,7 @@
     "maennchen/zipstream-php": "^2.1",
     "mariuzzo/laravel-js-localization": "*",
     "paypal/paypal-checkout-sdk": "*",
+    "reedware/laravel-relation-joins": "^6.0",
     "romanzipp/laravel-turnstile": "^1.3",
     "sentry/sentry-laravel": "*",
     "shopify/shopify-api": "^5.6",
