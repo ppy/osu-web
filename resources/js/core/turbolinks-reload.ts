@@ -3,51 +3,50 @@
 
 export default class TurbolinksReload {
   private readonly loaded = new Set<string>();
-  private readonly loading = new Map<string, JQuery.jqXHR<void>>();
+  private readonly loading = new Map<string, [Promise<unknown>, () => void]>();
 
   constructor() {
     $(document).on('turbo:before-cache', this.abortLoading);
   }
 
   abortLoading = () => {
-    for (const xhr of this.loading.values()) {
-      xhr.abort();
+    for (const [, cleanupCallback] of this.loading.values()) {
+      cleanupCallback();
     }
   };
 
   forget = (src: string) => {
     this.loaded.delete(src);
-    this.loading.get(src)?.abort();
+    this.loading.get(src)?.[1]?.();
   };
 
   load(src: string) {
     if (this.loaded.has(src) || this.loading.has(src)) {
-      return this.loading.get(src);
+      return this.loading.get(src)?.[0];
     }
 
-    const xhr = $.ajax(src, { cache: true, dataType: 'script' }) as JQuery.jqXHR<void>;
+    const script = document.createElement('script');
+    const promise = new Promise((resolve, reject) => {
+      script.addEventListener('load', resolve);
+      script.addEventListener('error', reject);
+      script.src = src;
+      document.head.append(script);
+    });
 
-    this.loading.set(src, xhr);
+    const cleanupCallback = () => {
+      script.remove();
+    };
+    this.loading.set(src, [promise, cleanupCallback]);
 
-    void xhr
-      .done(() => this.loaded.add(src))
-      .always(() => this.loading.delete(src));
+    promise
+      .then(() => {
+        this.loaded.add(src);
+      })
+      .finally(() => {
+        this.loading.delete(src);
+        cleanupCallback();
+      });
 
-    return xhr;
-  }
-
-  loadSync(src: string) {
-    if (this.loaded.has(src)) {
-      return;
-    }
-
-    // abort current one to make sure sync loading.
-    if (this.loading.has(src)) {
-      this.forget(src);
-    }
-
-    void $.ajax(src, { async: false, cache: true, dataType: 'script' });
-
-    this.loaded.add(src);
+    return promise;
   }
 }
