@@ -16,7 +16,7 @@ interface Props {
 export default function ValueDisplay({ description, label, modifiers, value }: Props) {
   return (
     <div className={classWithModifiers(bn, modifiers)}>
-      <div style={{ width: `max-content` }}>
+      <div style={{ width: 'max-content' }}>
         <div className={`${bn}__label`}>{label}</div>
         <div className={`${bn}__value`}>{value}</div>
         {description != null && <div className={`${bn}__description`}>{description}</div>}
