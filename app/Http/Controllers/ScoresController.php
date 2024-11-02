@@ -71,7 +71,8 @@ class ScoresController extends Controller
 
         $currentUser = \Auth::user();
         if (
-            !$currentUser->isRestricted()
+            $currentUser !== null
+            && !$currentUser->isRestricted()
             && $currentUser->getKey() !== $score->user_id
             && ($currentUser->token()?->client->password_client ?? false)
         ) {
