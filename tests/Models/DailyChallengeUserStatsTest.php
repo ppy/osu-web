@@ -108,7 +108,7 @@ class DailyChallengeUserStatsTest extends TestCase
 
         $user = User::factory()->create();
 
-        $lastWeeklyStreak = $playTime->subWeeks(1)->subDays(1);
+        $lastWeeklyStreak = $playTime->subWeeks(2);
         DailyChallengeUserStats::create([
             'user_id' => $user->getKey(),
             'weekly_streak_current' => 3,
