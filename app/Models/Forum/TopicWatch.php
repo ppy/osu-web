@@ -83,12 +83,9 @@ class TopicWatch extends Model
 
             try {
                 if ($state === 'not_watching') {
-                    $notify = false;
                     $watch->delete();
                 } else {
-                    $notify = $state === 'watching_mail';
-
-                    $watch->fill(['mail' => $notify])->saveOrExplode();
+                    $watch->fill(['mail' => $state === 'watching_mail'])->saveOrExplode();
                 }
 
                 return $watch;
