@@ -14,7 +14,7 @@ class UserProfileCustomizationTest extends TestCase
 {
     public function testUpdateNullOptions(): void
     {
-        $profileCustomization = User::factory()->create()->profileCustomization();
+        $profileCustomization = User::factory()->create()->userProfileCustomization()->firstOrCreate();
         $profileCustomization->update(['options' => null]);
 
         $audioVolume = $profileCustomization->audio_volume + 1;
@@ -25,7 +25,7 @@ class UserProfileCustomizationTest extends TestCase
 
     public function testUpdateOption(): void
     {
-        $profileCustomization = User::factory()->create()->profileCustomization();
+        $profileCustomization = User::factory()->create()->userProfileCustomization()->firstOrCreate();
 
         $audioVolume = $profileCustomization->audio_volume + 1;
         $profileCustomization->fresh()->update(['audio_volume' => $audioVolume]);
