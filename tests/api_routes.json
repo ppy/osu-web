@@ -1430,6 +1430,7 @@
       "controller": "App\\Http\\Controllers\\BeatmapTagsController@index",
       "middlewares": [
           "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+          "App\\Http\\Middleware\\RequireScopes",
           "App\\Http\\Middleware\\RequireScopes:public"
       ],
       "scopes": [
@@ -1454,7 +1455,7 @@
       "methods": [
           "DELETE"
       ],
-      "controller": "App\\Http\\Controllers\\BeatmapTagsController@store",
+      "controller": "App\\Http\\Controllers\\BeatmapTagsController@destroy",
       "middlewares": [
           "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
           "App\\Http\\Middleware\\RequireScopes",
@@ -1471,6 +1472,7 @@
       "controller": "App\\Http\\Controllers\\BeatmapTagsController@index",
       "middlewares": [
           "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+          "App\\Http\\Middleware\\RequireScopes",
           "App\\Http\\Middleware\\RequireScopes:public"
       ],
       "scopes": [
