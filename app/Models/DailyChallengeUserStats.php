@@ -59,7 +59,7 @@ class DailyChallengeUserStats extends Model
             ->get()
             ->keyBy('user_id');
         $statsByUserId = static
-            ::where('last_weekly_streak', '>=', $previousWeek->subDays(1))
+            ::where('last_weekly_streak', '>=', $previousWeek->subWeeks(1))
             ->orWhereIn('user_id', $highScoresByUserId->keys())
             ->get()
             ->keyBy('user_id');
