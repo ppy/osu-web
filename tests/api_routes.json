@@ -1432,7 +1432,9 @@
           "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
           "App\\Http\\Middleware\\RequireScopes:public"
       ],
-      "scopes": []
+      "scopes": [
+        "public"
+      ]
     },
     {
       "uri": "api/v2/beatmaps/{beatmap}/tags",
