@@ -1694,6 +1694,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(Client::class);
     }
 
+    public function beatmapTags()
+    {
+        return $this->hasMany(BeatmapTag::class);
+    }
+
     public function setPlaymodeAttribute($value)
     {
         $this->osu_playmode = Beatmap::modeInt($value);

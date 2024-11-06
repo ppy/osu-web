@@ -2024,6 +2024,20 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
+     * @param Beatmap $beatmap
+     * @return string
+     * @throws AuthorizationCheckException
+     */
+    public function checkBeatmapTag(?User $user, Beatmap $beatmap): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        return 'ok';
+    }
+
+    /**
+     * @param User|null $user
      * @param string $prefix
      * @throws AuthorizationCheckException
      */
