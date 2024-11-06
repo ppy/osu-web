@@ -1469,7 +1469,7 @@
           "GET",
           "HEAD"
       ],
-      "controller": "App\\Http\\Controllers\\BeatmapTagsController@index",
+      "controller": "App\\Http\\Controllers\\TagsController@index",
       "middlewares": [
           "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
           "App\\Http\\Middleware\\RequireScopes",

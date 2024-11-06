@@ -24,7 +24,7 @@ class BeatmapTagsController extends Controller
             ],
         ]);
 
-        $this->middleware('require-scopes:public');
+        $this->middleware('require-scopes:public', ['only' => 'index']);
     }
 
     public function index(string $id)
