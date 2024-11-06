@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
 use App\Models\BeatmapTag;
+use App\Models\Solo\Score;
 use App\Models\Tag;
 use Exception;
 
@@ -68,6 +69,10 @@ class BeatmapTagsController extends Controller
         abort_if($tag === null, 422, "specified tag couldn't be found");
 
         $user = \Auth::user();
+    
+        $userHasScore = Score::where('user_id', $user->getKey())->where('beatmap_id', $beatmapId)->exists();
+        abort_if(!$userHasScore, 400, "you must set a score on a beatmap to add a tag");
+
         $hasExistingBeatmapTag = $user->beatmapTags()->where('beatmap_id', '=', $beatmapId)->exists();
 
         if (!$hasExistingBeatmapTag) {

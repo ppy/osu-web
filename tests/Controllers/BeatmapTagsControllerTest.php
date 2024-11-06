@@ -7,6 +7,7 @@ namespace Tests\Controllers;
 
 use App\Models\Beatmap;
 use App\Models\BeatmapTag;
+use App\Models\Solo\Score;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Testing\Fluent\AssertableJson;
@@ -35,12 +36,25 @@ class BeatmapTagsControllerTest extends TestCase
 
     public function testStore(): void
     {
+        $user = User::factory()->create();
+        Score::factory()->create(['beatmap_id' => $this->beatmap->getKey(), 'user_id' => $user->getKey()]);
+
         $this->expectCountChange(fn () => BeatmapTag::count(), 1);
+
+        $this->actAsScopedUser($user, ['*']);
+        $this
+            ->post(route('api.beatmaps.tags.store', ['beatmap' => $this->beatmap->getKey()]), ['tag_id' => $this->tag->getKey()])
+            ->assertSuccessful();
+    }
+
+    public function testStoreNoScore(): void
+    {
+        $this->expectCountChange(fn () => BeatmapTag::count(), 0);
 
         $this->actAsScopedUser(User::factory()->create(), ['*']);
         $this
             ->post(route('api.beatmaps.tags.store', ['beatmap' => $this->beatmap->getKey()]), ['tag_id' => $this->tag->getKey()])
-            ->assertSuccessful();
+            ->assertBadRequest();
     }
 
     public function testDestroy(): void
