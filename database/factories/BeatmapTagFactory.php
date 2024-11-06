@@ -11,7 +11,6 @@ use App\Models\Beatmap;
 use App\Models\BeatmapTag;
 use App\Models\Tag;
 use App\Models\User;
-use Carbon\Carbon;
 
 class BeatmapTagFactory extends Factory
 {
