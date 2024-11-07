@@ -429,6 +429,100 @@ class RoomsControllerTest extends TestCase
         $this->assertSame($initialUserChannelCount + 1, UserChannel::count());
     }
 
+    public function testDestroy()
+    {
+        $token = Token::factory()->create(['scopes' => ['*']]);
+        $start = now();
+        $end = $start->addMinutes(60);
+        $room = Room::factory()->create([
+            'user_id' => $token->user,
+            'starts_at' => $start,
+            'ends_at' => $end,
+            'type' => Room::PLAYLIST_TYPE,
+        ]);
+        $end = $room->ends_at; // creation truncates fractional second part, so refetch here
+        $url = route('api.rooms.destroy', ['room' => $room]);
+
+        $this
+            ->actingWithToken($token)
+            ->delete($url)
+            ->assertSuccessful();
+
+        $room->refresh();
+        $this->assertLessThan($end, $room->ends_at);
+    }
+
+    public function testDestroyCannotBeCalledOnRealtimeRoom()
+    {
+        $token = Token::factory()->create(['scopes' => ['*']]);
+        $start = now();
+        $end = $start->addMinutes(60);
+        $room = Room::factory()->create([
+            'user_id' => $token->user,
+            'starts_at' => $start,
+            'ends_at' => $end,
+            'type' => Room::REALTIME_DEFAULT_TYPE,
+        ]);
+        $end = $room->ends_at; // creation truncates fractional second part, so refetch here
+        $url = route('api.rooms.destroy', ['room' => $room]);
+
+        $this
+            ->actingWithToken($token)
+            ->delete($url)
+            ->assertStatus(422);
+
+        $room->refresh();
+        $this->assertEquals($end, $room->ends_at);
+    }
+
+    public function testDestroyCannotBeCalledByAnotherUser()
+    {
+        $owner = User::factory()->create();
+        $token = Token::factory()->create(['scopes' => ['*']]);
+        $start = now();
+        $end = $start->addMinutes(60);
+        $room = Room::factory()->create([
+            'user_id' => $owner->getKey(),
+            'starts_at' => $start,
+            'ends_at' => $end,
+            'type' => Room::PLAYLIST_TYPE,
+        ]);
+        $url = route('api.rooms.destroy', ['room' => $room]);
+        $end = $room->ends_at; // creation truncates fractional second part, so refetch here
+
+        $this
+            ->actingWithToken($token)
+            ->delete($url)
+            ->assertStatus(403);
+
+        $room->refresh();
+        $this->assertEquals($end, $room->ends_at);
+    }
+
+    public function testDestroyCannotBeCalledAfterGracePeriod()
+    {
+        $token = Token::factory()->create(['scopes' => ['*']]);
+        $start = now();
+        $end = $start->addMinutes(60);
+        $room = Room::factory()->create([
+            'user_id' => $token->user,
+            'starts_at' => $start,
+            'ends_at' => $end,
+            'type' => Room::PLAYLIST_TYPE,
+        ]);
+        $url = route('api.rooms.destroy', ['room' => $room]);
+        $end = $room->ends_at; // creation truncates fractional second part, so refetch here
+
+        $this->travelTo($start->addMinutes(6));
+        $this
+            ->actingWithToken($token)
+            ->delete($url)
+            ->assertStatus(422);
+
+        $room->refresh();
+        $this->assertEquals($end, $room->ends_at);
+    }
+
     public static function dataProviderForTestStoreWithInvalidPlayableMods(): array
     {
         $ret = [];

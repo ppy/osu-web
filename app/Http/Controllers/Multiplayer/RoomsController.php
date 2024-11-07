@@ -228,4 +228,17 @@ class RoomsController extends Controller
             return error_popup($e->getMessage(), $e->getStatusCode());
         }
     }
+
+    public function destroy($id)
+    {
+        $room = Room::findOrFail($id);
+
+        try {
+            $room->endGame(auth()->user());
+        } catch (InvariantException $e) {
+            return error_popup($e->getMessage(), $e->getStatusCode());
+        }
+
+        return response([], 204);
+    }
 }
