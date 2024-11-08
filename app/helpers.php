@@ -835,12 +835,12 @@ function forum_user_link(int $id, string $username, string|null $colour, int|nul
         'style' => user_color_style($colour, 'background-color'),
     ]);
 
-    $link = link_to_user($id, $username, null, []);
+    $link = link_to_user($id, blade_safe($icon.e($username)), null, []);
     if ($currentUserId === $id) {
         $link = tag('strong', null, $link);
     }
 
-    return "{$icon} {$link}";
+    return $link;
 }
 
 function is_api_request(): bool
