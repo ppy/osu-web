@@ -87,7 +87,7 @@
         @break
 @endswitch
 
-<link rel="stylesheet" media="all" href="{{ unmix('css/app.css') }}" data-turbolinks-track="reload">
+<link rel="stylesheet" media="all" href="{{ unmix('css/app.css') }}" data-turbo-track="reload">
 
 <script>
     var currentLocale = {!! json_encode($currentLocale) !!};
