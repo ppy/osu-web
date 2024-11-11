@@ -174,7 +174,7 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   @action
-  selectChannel(channelId: ChannelId, mode: 'advance' | 'replace' | null = 'advance') {
+  selectChannel(channelId: ChannelId, mode: 'push' | 'replace' | null = 'push') {
     this.waitAddChannelId = null; // reset any waiting for channel.
     // Mark the channel being switched away from as read.
     // Marking as read is done here to avoid constantly sending mark-as-read requests
@@ -308,7 +308,7 @@ export default class ChatStateStore implements DispatchListener {
     });
   }
 
-  private updateUrl(channel: Channel | AddChannelType, mode: 'advance' | 'replace' | null) {
+  private updateUrl(channel: Channel | AddChannelType, mode: 'push' | 'replace' | null) {
     if (mode == null) return;
 
     let hash = '';
