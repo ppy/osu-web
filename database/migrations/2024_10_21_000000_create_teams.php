@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('short_name')->nullable(false);
             $table->string('logo_file')->nullable(true);
             $table->string('header_file')->nullable(true);
+            $table->string('url')->nullable(true);
             $table->text('description')->nullable(true);
             $table->boolean('is_open')->nullable(false)->default(true);
             $table->smallInteger('default_ruleset_id')->nullable(false)->default(0);
