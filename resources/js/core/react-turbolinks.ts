@@ -128,10 +128,7 @@ export default class ReactTurbolinks {
         if (script instanceof HTMLDivElement) {
           const src = script.dataset.src;
           if (src != null) {
-            const promise = this.turbolinksReload.load(src);
-            if (promise != null) {
-              promises.push(promise);
-            }
+            promises.push(this.turbolinksReload.load(src));
           }
         }
       });

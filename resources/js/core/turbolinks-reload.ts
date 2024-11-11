@@ -22,7 +22,7 @@ export default class TurbolinksReload {
 
   load(src: string) {
     if (this.loaded.has(src) || this.loading.has(src)) {
-      return this.loading.get(src)?.[0];
+      return this.loading.get(src)?.[0] ?? Promise.resolve();
     }
 
     const script = document.createElement('script');
