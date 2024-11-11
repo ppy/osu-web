@@ -1,7 +1,7 @@
 #!/bin/sh
 
-uid=$(stat -c "%u" /app)
-gid=$(stat -c "%g" /app)
+uid=$(stat -c "%u" .)
+gid=$(stat -c "%g" .)
 
 if [ "$uid" != 0 ]; then
     usermod -u "$uid" -o osuweb > /dev/null
@@ -10,4 +10,4 @@ fi
 
 chown -f "${uid}:${gid}" .docker/js-build/assets .docker/js-build/builds
 
-exec gosu osuweb /app/docker/development/run.sh "$@"
+exec gosu osuweb ./docker/development/run.sh "$@"

@@ -11,20 +11,20 @@ fi
 
 # commands
 _job() {
-    exec /app/artisan queue:listen --queue=notification,default,beatmap_high,beatmap_default,store-notifications --tries=3 --timeout=1000
+    exec ./artisan queue:listen --queue=notification,default,beatmap_high,beatmap_default,store-notifications --tries=3 --timeout=1000
 }
 
 _migrate() {
-    /app/artisan db:create
-    exec /app/artisan migrate:fresh-or-run
+    ./artisan db:create
+    exec ./artisan migrate:fresh-or-run
 }
 
 _octane() {
-  exec /app/artisan octane:start --host=0.0.0.0 "$@"
+  exec ./artisan octane:start --host=0.0.0.0 "$@"
 }
 
 _schedule() {
-    exec /app/artisan schedule:work
+    exec ./artisan schedule:work
 }
 
 _test() {
@@ -43,7 +43,7 @@ _test() {
 
 _test_browser() {
     export APP_ENV=dusk.local
-    exec /app/artisan dusk "$@"
+    exec ./artisan dusk "$@"
 }
 
 
@@ -53,7 +53,7 @@ _watch() {
 }
 
 case "$command" in
-    artisan) exec /app/artisan "$@";;
+    artisan) exec ./artisan "$@";;
     job|migrate|octane|schedule|test|watch) "_$command" "$@";;
     *) exec "$command" "$@";;
 esac
