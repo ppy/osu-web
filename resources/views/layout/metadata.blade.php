@@ -52,8 +52,6 @@
 <meta name="csrf-param" content="_token">
 <meta name="csrf-token" content="{{ $currentUser === null ? '' : csrf_token() }}">
 
-<meta name="turbolinks-cache-control" content="no-preview">
-
 @switch($currentLocale)
     @case('vi')
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700&display=swap&subset=vietnamese" rel="stylesheet">
