@@ -109,7 +109,7 @@ export class UserList extends React.PureComponent<Props> {
     const value = (event.currentTarget as HTMLElement).dataset.value;
     const url = updateQueryString(null, { sort: value });
 
-    updateHistory(url, 'advance');
+    updateHistory(url, 'push');
     this.setState({ sortMode: value }, () => {
       core.userPreferences.set('user_list_sort', this.state.sortMode);
     });
@@ -119,7 +119,7 @@ export class UserList extends React.PureComponent<Props> {
     const value = (event.currentTarget as HTMLElement).dataset.value;
     const url = updateQueryString(null, { view: value });
 
-    updateHistory(url, 'advance');
+    updateHistory(url, 'push');
     this.setState({ viewMode: value }, () => {
       core.userPreferences.set('user_list_view', this.state.viewMode);
     });
@@ -130,7 +130,7 @@ export class UserList extends React.PureComponent<Props> {
     const key = (event.currentTarget as HTMLElement).dataset.key;
     const url = updateQueryString(null, { filter: key });
 
-    updateHistory(url, 'advance');
+    updateHistory(url, 'push');
     this.setState({ filter: key }, () => {
       core.userPreferences.set('user_list_filter', this.state.filter);
     });
@@ -140,7 +140,7 @@ export class UserList extends React.PureComponent<Props> {
     const value = (event.currentTarget as HTMLElement).dataset.value;
     const url = updateQueryString(null, { mode: value });
 
-    updateHistory(url, 'advance');
+    updateHistory(url, 'push');
     this.setState({ playMode: value });
   };
 

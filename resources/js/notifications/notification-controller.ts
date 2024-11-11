@@ -86,7 +86,7 @@ export default class NotificationController {
         href = updateQueryString(null, { type });
       }
 
-      updateHistory(href, 'advance');
+      updateHistory(href, 'push');
     }
   }
 

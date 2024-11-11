@@ -165,7 +165,7 @@ export class BeatmapsetSearchController {
 
   private filterChangedSearch() {
     const url = route('beatmapsets.index', this.filters.queryParams);
-    updateHistory(url, 'advance');
+    updateHistory(url, 'push');
 
     this.search();
   }

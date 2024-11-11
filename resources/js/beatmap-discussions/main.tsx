@@ -72,7 +72,7 @@ export default class Main extends React.Component<Props> {
       this.disposers.add(
         reaction(() => this.discussionsState.url, (current, prev) => {
           if (current !== prev) {
-            updateHistory(current, 'advance');
+            updateHistory(current, 'push');
           }
         }),
       );

@@ -43,13 +43,13 @@ export function reloadPage(keepScroll = true) {
   navigate(currentUrl().href, keepScroll, { action: 'replace' });
 }
 
-export function updateHistory(url: string, action: 'advance' | 'replace') {
+export function updateHistory(url: string, action: 'push' | 'replace') {
   const currentLocation = currentUrl();
 
   if (url === currentLocation.href) {
     return;
   }
-  if (action === 'advance') {
+  if (action === 'push') {
     Turbo.session.view.snapshotCache.put(
       currentLocation,
       Turbo.session.view.snapshot.clone(),
@@ -57,10 +57,9 @@ export function updateHistory(url: string, action: 'advance' | 'replace') {
   }
 
   const newLocation = new URL(url, document.baseURI);
-  const methodName = action === 'advance' ? 'push' : 'replace';
 
   const callback = () => {
-    Turbo.session.history[methodName](newLocation, crypto.randomUUID());
+    Turbo.session.history[action](newLocation, crypto.randomUUID());
     Turbo.session.view.lastRenderedLocation = newLocation;
   };
   if (action === 'replace' && window.newUrl == null) {
