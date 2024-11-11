@@ -835,12 +835,12 @@ function forum_user_link(int $id, string $username, string|null $colour, int|nul
         'style' => user_color_style($colour, 'background-color'),
     ]);
 
-    $link = link_to_user($id, $username, null, []);
+    $link = link_to_user($id, blade_safe($icon.e($username)), null, []);
     if ($currentUserId === $id) {
         $link = tag('strong', null, $link);
     }
 
-    return "{$icon} {$link}";
+    return $link;
 }
 
 function is_api_request(): bool
@@ -1123,6 +1123,17 @@ function proxy_media($url)
     $secret = hash_hmac('sha1', $url, $GLOBALS['cfg']['osu']['camo']['key']);
 
     return $GLOBALS['cfg']['osu']['camo']['prefix']."{$secret}/{$hexUrl}";
+}
+
+function proxy_media_original_url(?string $url): ?string
+{
+    if ($url === null) {
+        return null;
+    }
+
+    return str_starts_with($url, $GLOBALS['cfg']['osu']['camo']['prefix'])
+        ? hex2bin(substr($url, strrpos($url, '/') + 1))
+        : $url;
 }
 
 function lazy_load_image($url, $class = '', $alt = '')

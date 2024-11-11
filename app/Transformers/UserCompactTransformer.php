@@ -419,7 +419,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeScoresFirstCount(User $user)
     {
-        return $this->primitive($user->scoresFirst($this->mode, true)->visibleUsers()->count());
+        return $this->primitive($user->scoresFirst($this->mode, true)->count());
     }
 
     public function includeScoresPinnedCount(User $user)

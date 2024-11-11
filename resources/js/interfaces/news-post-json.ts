@@ -6,15 +6,26 @@ interface Navigation {
   older?: NewsPostJson;
 }
 
-export default interface NewsPostJson {
+interface HasFirstImage {
+  first_image: string;
+  'first_image@2x': string;
+}
+
+interface HasNoFirstImage {
+  first_image: null;
+  'first_image@2x': null;
+}
+
+type NewsPostJson = {
   author: string;
   content?: string;
   edit_url: string;
-  first_image?: string;
   id: number;
   navigation?: Navigation;
   preview?: string;
   published_at: string;
   slug: string;
   title: string;
-}
+} & (HasFirstImage | HasNoFirstImage);
+
+export default NewsPostJson;

@@ -14,7 +14,7 @@ class BulkController extends Controller
     public function store()
     {
         // TODO: limited to these for now.
-        static $allowedTypes = ['beatmapset', 'user'];
+        static $allowedTypes = ['beatmapset', 'score', 'user'];
 
         $params = request()->all();
 
@@ -26,7 +26,11 @@ class BulkController extends Controller
             $ids = get_param_value($paramIds, 'int[]');
             $className = MorphMap::getClass($type);
 
-            dispatch(new EsIndexDocumentBulk($className, $ids));
+            if ($type === 'score') {
+                \Artisan::queue('es:index-scores:queue', ['--ids' => $ids]);
+            } else {
+                dispatch(new EsIndexDocumentBulk($className, $ids));
+            }
         }
 
         return response(null, 204);

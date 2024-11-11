@@ -56,7 +56,7 @@ const BeatmapDot = observer(({ beatmap }: { beatmap: BeatmapJson }) => (
 
 const BeatmapDots = observer(({ compact, beatmaps, mode }: { beatmaps: BeatmapJson[]; compact: boolean; mode: Ruleset }) => (
   <div className='beatmapset-panel__extra-item beatmapset-panel__extra-item--dots'>
-    <div className='beatmapset-panel__beatmap-icon'>
+    <div className='beatmapset-panel__beatmap-icon' title={trans(`beatmaps.mode.${mode}`)}>
       <i className={`fal fa-extra-mode-${mode}`} />
     </div>
     {compact ? (

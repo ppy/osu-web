@@ -1,15 +1,16 @@
 ## NewsPost
 
-Field        | Type                    | Description
--------------|-------------------------|------------
-author       | string                  | |
-edit_url     | string                  | Link to the file view on GitHub.
-first_image  | string?                 | Link to the first image in the document.
-id           | integer                 | |
-published_at | [Timestamp](#timestamp) | |
-slug         | string                  | Filename without the extension, used in URLs.
-title        | string                  | |
-updated_at   | [Timestamp](#timestamp) | |
+Field          | Type                    | Description
+-------------- | ----------------------- | -----------
+author         | string                  | |
+edit_url       | string                  | Link to the file view on GitHub.
+first_image    | string?                 | Link to the first image in the document.
+first_image@2x | string?                 | Larger size version of `first_image`.
+id             | integer                 | |
+published_at   | [Timestamp](#timestamp) | |
+slug           | string                  | Filename without the extension, used in URLs.
+title          | string                  | |
+updated_at     | [Timestamp](#timestamp) | |
 
 ### Optional Attributes
 

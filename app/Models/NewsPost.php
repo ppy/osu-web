@@ -266,6 +266,21 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
         return $url;
     }
 
+    public function firstImageWith2x(): array
+    {
+        $url = presence($this->firstImage());
+
+        if ($url !== null) {
+            $origUrl = proxy_media_original_url($url);
+            $url2x = proxy_media(retinaify($origUrl));
+        }
+
+        return [
+            '1x' => $url,
+            '2x' => $url2x ?? null,
+        ];
+    }
+
     public function newer()
     {
         return $this->memoize(__FUNCTION__, function () {
