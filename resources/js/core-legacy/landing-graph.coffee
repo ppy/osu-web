@@ -9,7 +9,7 @@ export default class LandingGraph
 
   constructor: ->
     $(window).on 'resize', @resize
-    $(document).on 'turbolinks:load', @initialize
+    $(document).on 'turbo:load', @initialize
 
 
   initialize: =>

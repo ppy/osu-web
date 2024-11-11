@@ -63,7 +63,7 @@ export default class StickyHeader {
 
   constructor() {
     $(window).on('scroll', this.onScroll);
-    $(document).on('turbolinks:load', this.onScroll);
+    $(document).on('turbo:load', this.onScroll);
     $(window).on('resize', this.stickOrUnstick);
   }
 

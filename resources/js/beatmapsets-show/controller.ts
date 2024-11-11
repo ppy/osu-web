@@ -99,12 +99,12 @@ export default class Controller {
 
     makeObservable(this);
 
-    $(document).on('turbolinks:before-cache', this.saveState);
+    $(document).on('turbo:before-cache', this.saveState);
   }
 
   destroy() {
     this.saveState();
-    $(document).off('turbolinks:before-cache', this.saveState);
+    $(document).off('turbo:before-cache', this.saveState);
   }
 
   mapper(beatmap: BeatmapJsonForBeatmapsetShow) {

@@ -15,7 +15,7 @@ export default class UserCoverPresetBatchActivate {
   constructor() {
     $(document)
       .on('click', '.js-user-cover-preset-batch-enable', this.handleEvent)
-      .on('turbolinks:before-cache', this.cleanup);
+      .on('turbo:before-cache', this.cleanup);
   }
 
   private applySelected(active: boolean) {

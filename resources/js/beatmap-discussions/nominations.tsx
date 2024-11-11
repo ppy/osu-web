@@ -154,7 +154,7 @@ export class Nominations extends React.Component<Props> {
       route('beatmapsets.destroy', { beatmapset: this.beatmapset.id }),
       { method: 'DELETE' },
     )
-      .done(() => Turbolinks.visit(route('users.show', { user: this.beatmapset.user_id })))
+      .done(() => Turbo.visit(route('users.show', { user: this.beatmapset.user_id })))
       .fail(onError)
       .always(action(() => {
         this.xhr.delete = undefined;

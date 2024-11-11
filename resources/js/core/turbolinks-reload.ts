@@ -6,7 +6,7 @@ export default class TurbolinksReload {
   private readonly loading = new Map<string, JQuery.jqXHR<void>>();
 
   constructor() {
-    $(document).on('turbolinks:before-cache', this.abortLoading);
+    $(document).on('turbo:before-cache', this.abortLoading);
   }
 
   abortLoading = () => {

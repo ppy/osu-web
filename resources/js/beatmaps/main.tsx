@@ -35,7 +35,7 @@ export class Main extends React.Component<Props> {
 
   componentDidMount() {
     disposeOnUnmount(this, reaction(() => controller.searchStatus, this.scrollPositionHandler));
-    $(document).on(`turbolinks:before-visit.${this.eventId}`, () => {
+    $(document).on(`turbo:before-visit.${this.eventId}`, () => {
       controller.cancel();
     });
   }
