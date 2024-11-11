@@ -85,17 +85,3 @@ window._styles = {
 mobxConfigure({
   computedRequiresReaction: true,
 });
-
-Turbo.config.drive.progressBarDelay = 0;
-document.addEventListener('turbo:click', (event) => {
-  const url = new URL(event.detail.url);
-
-  if (
-    url.origin === Turbo.session.navigator.rootLocation.origin
-    && url.pathname.match(/^\/(api|osu|p|ss|web)\//) === null
-  ) {
-    return;
-  }
-
-  event.preventDefault();
-});
