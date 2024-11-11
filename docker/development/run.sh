@@ -11,12 +11,12 @@ fi
 
 # commands
 _job() {
-    exec php /app/artisan queue:listen --queue=notification,default,beatmap_high,beatmap_default,store-notifications --tries=3 --timeout=1000
+    exec /app/artisan queue:listen --queue=notification,default,beatmap_high,beatmap_default,store-notifications --tries=3 --timeout=1000
 }
 
 _migrate() {
-    php /app/artisan db:create
-    exec php /app/artisan migrate:fresh-or-run
+    /app/artisan db:create
+    exec /app/artisan migrate:fresh-or-run
 }
 
 _octane() {
@@ -24,7 +24,7 @@ _octane() {
 }
 
 _schedule() {
-    exec php /app/artisan schedule:work
+    exec /app/artisan schedule:work
 }
 
 _test() {
@@ -43,7 +43,7 @@ _test() {
 
 _test_browser() {
     export APP_ENV=dusk.local
-    exec php /app/artisan dusk "$@"
+    exec /app/artisan dusk "$@"
 }
 
 
@@ -53,7 +53,7 @@ _watch() {
 }
 
 case "$command" in
-    artisan) exec php /app/artisan "$@";;
+    artisan) exec /app/artisan "$@";;
     job|migrate|octane|schedule|test|watch) "_$command" "$@";;
     *) exec "$command" "$@";;
 esac
