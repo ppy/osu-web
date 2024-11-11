@@ -24,7 +24,7 @@ document.addEventListener('turbo:click', (event) => {
 
   if (
     url.origin === Turbo.session.navigator.rootLocation.origin
-    && url.pathname.match(/^\/(api|osu|p|ss|web)\//) === null
+    && url.pathname.match(/^\/(?:(?:api|osu|p|ss|web)\/|(?:beatmapsets|scores(?:\/[^\d]+)?)\/\d+\/download(?:\?|$))/) === null
   ) {
     return;
   }
