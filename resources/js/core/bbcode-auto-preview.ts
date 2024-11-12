@@ -28,8 +28,9 @@ export default class BbcodeAutoPreview {
     this.xhr.get(preview)?.abort();
 
     if (body === '') {
-      previewBox?.classList.add('hidden');
+      preview.dataset.raw = '';
       preview.innerHTML = '';
+      previewBox?.classList.add('hidden');
       return;
     }
 
@@ -40,8 +41,8 @@ export default class BbcodeAutoPreview {
 
     const xhr = $.post(route('bbcode-preview'), { text: body }) as JQuery.jqXHR<string>;
     xhr.done((data) => {
-      preview.innerHTML = data;
       preview.dataset.raw = body;
+      preview.innerHTML = data;
       previewBox?.classList.remove('hidden');
     }).always(() => {
       this.xhr.delete(preview);
