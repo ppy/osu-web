@@ -9,7 +9,6 @@ const fs = require('fs');
 const path = require('path');
 
 const Autoprefixer = require('autoprefixer');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const dotenv = require('dotenv');
@@ -130,13 +129,14 @@ if (writeManifest) {
 
 // TODO: should have a different flag for this
 if (!inProduction) {
+  const { CleanWebpackPlugin } = require('clean-webpack-plugin');
   plugins.push(new CleanWebpackPlugin());
-}
 
-const notifierConfigPath = resolvePath('.webpack-build-notifier-config.js');
-if (fs.existsSync(notifierConfigPath)) {
-  const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
-  plugins.push(new WebpackBuildNotifierPlugin(require(notifierConfigPath)));
+  const notifierConfigPath = resolvePath('.webpack-build-notifier-config.js');
+  if (fs.existsSync(notifierConfigPath)) {
+    const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
+    plugins.push(new WebpackBuildNotifierPlugin(require(notifierConfigPath)));
+  }
 }
 
 // #endregion
