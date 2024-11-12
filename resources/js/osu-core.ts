@@ -50,6 +50,7 @@ export default class OsuCore {
   readonly accountEditAvatar;
   readonly accountEditBlocklist;
   readonly animateNav;
+  readonly bbcodeAutoPreview;
   readonly beatmapsetSearchController;
   readonly browserTitleWithNotificationCount;
   readonly captcha;
@@ -69,7 +70,6 @@ export default class OsuCore {
   readonly mobileToggle;
   readonly notificationsWorker;
   readonly osuAudio;
-  readonly postPreview;
   readonly reactTurbolinks;
   readonly referenceLinkTooltip;
   readonly scorePins;
