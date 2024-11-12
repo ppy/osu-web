@@ -205,7 +205,7 @@ const resolve = {
   modules: [
     resolvePath('resources/builds'),
     resolvePath('resources/js'),
-    resolvePath('node_modules'),
+    'node_modules',
   ],
   plugins: [new TsconfigPathsPlugin()],
 };
