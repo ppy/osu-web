@@ -6,7 +6,7 @@ import { debounce } from 'lodash';
 import { fail } from 'utils/fail';
 import { htmlElementOrNull } from 'utils/html';
 
-export default class PostPreview {
+export default class BbcodeAutoPreview {
   private readonly debouncedLoadPreview;
   private readonly xhr = new Map<HTMLElement, JQuery.jqXHR<string>>();
 

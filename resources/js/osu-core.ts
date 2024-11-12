@@ -7,6 +7,7 @@ import AccountEdit from 'core/account-edit';
 import AccountEditAvatar from 'core/account-edit-avatar';
 import AccountEditBlocklist from 'core/account-edit-blocklist';
 import AnimateNav from 'core/animate-nav';
+import BbcodeAutoPreview from 'core/bbcode-auto-preview';
 import BrowserTitleWithNotificationCount from 'core/browser-title-with-notification-count';
 import Captcha from 'core/captcha';
 import ClickMenu from 'core/click-menu';
@@ -19,7 +20,6 @@ import ForumPostReport from 'core/forum/forum-post-report';
 import Localtime from 'core/localtime';
 import MobileToggle from 'core/mobile-toggle';
 import OsuAudio from 'core/osu-audio/main';
-import PostPreview from 'core/post-preview';
 import ReactTurbolinks from 'core/react-turbolinks';
 import Spoilerbox from 'core/spoilerbox';
 import StickyFooter from 'core/sticky-footer';
@@ -104,6 +104,7 @@ export default class OsuCore {
     $.subscribe('user:update', this.onCurrentUserUpdate);
 
     this.animateNav = new AnimateNav();
+    this.bbcodeAutoPreview = new BbcodeAutoPreview();
     this.captcha = new Captcha();
     this.chatWorker = new ChatWorker();
     this.clickMenu = new ClickMenu();
@@ -116,7 +117,6 @@ export default class OsuCore {
     this.localtime = new Localtime();
     this.mobileToggle = new MobileToggle();
     this.browserTitleWithNotificationCount = new BrowserTitleWithNotificationCount(this);
-    this.postPreview = new PostPreview();
     this.referenceLinkTooltip = new ReferenceLinkTooltip();
     this.scorePins = new ScorePins();
     this.spoilerbox = new Spoilerbox();
