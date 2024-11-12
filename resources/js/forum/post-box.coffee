@@ -25,7 +25,7 @@ insert = (event, tagOpen, tagClose = '') ->
     box.selectionStart = startPos
     box.selectionEnd = texts[0].length + texts[1].length + tagClose.length
 
-  box.dispatchEvent(new InputEvent('input', { bubbles: true }))
+  box.dispatchEvent(new InputEvent('input', bubbles: true))
   box.focus()
 
 [
