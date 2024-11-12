@@ -1,39 +1,58 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import { route } from 'laroute'
+import { route } from 'laroute';
+import { debounce } from 'lodash';
+import { fail } from 'utils/fail';
+import { htmlElementOrNull } from 'utils/html';
 
-export default class PostPreview
-  constructor: ->
-    @debouncedLoadPreview = _.debounce @loadPreview, 500
+export default class PostPreview {
+  private readonly debouncedLoadPreview;
+  private readonly xhr = new Map<HTMLElement, JQuery.jqXHR<string>>();
 
-    $(document).on 'input', '.js-post-preview--auto', (e) =>
-      # get the target immediately because event object may change later.
-      @debouncedLoadPreview(e.currentTarget)
+  constructor() {
+    this.debouncedLoadPreview = debounce(this.loadPreview, 500);
+    document.addEventListener('input', this.onInput);
+  }
 
+  private readonly loadPreview = (target: HTMLTextAreaElement) => {
+    const form = target.closest('form') ?? fail('form element is missing');
+    const body = target.value;
+    const preview = htmlElementOrNull(form.querySelector('.js-post-preview--preview'));
+    const previewBox = form.querySelector('.js-post-preview--box');
 
-  loadPreview: (target) =>
-    $form = $(target).closest('form')
-    body = target.value
-    $preview = $form.find('.js-post-preview--preview')
-    preview = $preview[0]
-    $previewBox = $form.find('.js-post-preview--box')
+    if (preview == null) {
+      return;
+    }
 
-    if !preview?
-      return
+    this.xhr.get(preview)?.abort();
 
-    preview._xhr?.abort()
+    if (body === '') {
+      previewBox?.classList.add('hidden');
+      preview.innerHTML = '';
+      return;
+    }
 
-    if body == ''
-      $previewBox.addClass 'hidden'
-      return
+    if (preview.dataset.raw === body) {
+      previewBox?.classList.remove('hidden');
+      return;
+    }
 
-    if $preview.attr('data-raw') == body
-      $previewBox.removeClass 'hidden'
-      return
+    const xhr = $.post(route('bbcode-preview'), { text: body }) as JQuery.jqXHR<string>;
+    xhr.done((data) => {
+      preview.innerHTML = data;
+      preview.dataset.raw = body;
+      previewBox?.classList.remove('hidden');
+    }).always(() => {
+      this.xhr.delete(preview);
+    });
+  };
 
-    preview._xhr = $.post(route('bbcode-preview'), text: body)
-    .done (data) =>
-      $preview.html data
-      $preview.attr 'data-raw', body
-      $previewBox.removeClass 'hidden'
+  private readonly onInput = (e: InputEvent) => {
+    const target = htmlElementOrNull(e.target)?.closest('.js-post-preview--auto');
+
+    if (target instanceof HTMLTextAreaElement) {
+      this.debouncedLoadPreview(target);
+    }
+  };
+}

@@ -25,10 +25,8 @@ insert = (event, tagOpen, tagClose = '') ->
     box.selectionStart = startPos
     box.selectionEnd = texts[0].length + texts[1].length + tagClose.length
 
-  $box
-    .trigger 'bbcode:inserted' # for react
-    .trigger 'input' # ignored by react
-    .focus()
+  box.dispatchEvent(new InputEvent('input', { bubbles: true }))
+  box.focus()
 
 [
   ['bold', '[b]', '[/b]']
