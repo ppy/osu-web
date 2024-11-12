@@ -36,7 +36,6 @@
     "blueimp-file-upload": "^9.11.2",
     "bootstrap": "^3.3.6",
     "chokidar": "^3.5.2",
-    "clean-webpack-plugin": "^3.0.0",
     "clipboard-polyfill": "^2.3.0",
     "coffee-loader": "^0.9.0",
     "coffeescript": "^1.12.6",
@@ -104,6 +103,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.6.0",
     "@typescript-eslint/parser": "^6.6.0",
+    "clean-webpack-plugin": "^4.0.0",
     "eslint": "^7.15.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsdoc": "^30.7.8",
