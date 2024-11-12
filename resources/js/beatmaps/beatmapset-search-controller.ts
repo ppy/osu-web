@@ -10,7 +10,7 @@ import { action, computed, IObjectDidChange, Lambda, makeObservable, observable,
 import core from 'osu-core-singleton';
 import { trans, transArray } from 'utils/lang';
 import { popup } from 'utils/popup';
-import { currentUrl } from 'utils/turbolinks';
+import { updateHistory, currentUrl } from 'utils/turbolinks';
 import { updateQueryString } from 'utils/url';
 
 
@@ -165,7 +165,7 @@ export class BeatmapsetSearchController {
 
   private filterChangedSearch() {
     const url = route('beatmapsets.index', this.filters.queryParams);
-    Turbolinks.controller.advanceHistory(url);
+    updateHistory(url, 'push');
 
     this.search();
   }
@@ -180,7 +180,7 @@ export class BeatmapsetSearchController {
     this.filters = new BeatmapsetSearchFilters(url);
 
     // normalize url
-    Turbolinks.controller.replaceHistory(updateQueryString(null, { ...this.filters.queryParams }));
+    updateHistory(updateQueryString(null, { ...this.filters.queryParams }), 'replace');
 
     this.filtersObserver = observe(this.filters, this.filterChangedHandler);
 

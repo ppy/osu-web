@@ -7,7 +7,7 @@ export default class SyncHeight {
   private readonly targets = document.getElementsByClassName('js-sync-height--target');
 
   constructor() {
-    $(document).on('turbolinks:load', this.sync);
+    $(document).on('turbo:load', this.sync);
     $.subscribe('sync-height:force', this.sync);
     $(window).on('resize', this.sync);
 

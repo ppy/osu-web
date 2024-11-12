@@ -11,7 +11,7 @@ interface CacheEntry {
 let cache: Partial<Record<string, CacheEntry>> = {};
 
 // reset cache on navigation
-document.addEventListener('turbolinks:load', () => {
+document.addEventListener('turbo:load', () => {
   cache = {};
 });
 

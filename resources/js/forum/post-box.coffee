@@ -48,7 +48,7 @@ insert = (event, tagOpen, tagClose = '') ->
     insert e, openTag, closeTag
 
 
-$(document).on 'turbolinks:load', ->
+$(document).on 'turbo:load', ->
   $('.js-bbcode-btn--size').val('')
 
 

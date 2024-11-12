@@ -69,7 +69,7 @@ services:
   beatmap-difficulty-lookup-cache:
     image: pppy/osu-beatmap-difficulty-lookup-cache
     ports:
-      - "${BEATMAPS_DIFFICULTY_CACHE_EXTERNAL_PORT:-127.0.0.1:5001}:80"
+      - "${BEATMAPS_DIFFICULTY_CACHE_EXTERNAL_PORT:-127.0.0.1:5001}:8080"
 
   notification-server:
     image: pppy/osu-notification-server

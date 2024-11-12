@@ -9,7 +9,7 @@ export default class Search
     $(document).on 'input', '.js-search--input', @debouncedSubmitInput
     $(document).on 'keydown', '.js-search--input', @maybeSubmitInput
     $(document).on 'submit', '.js-search', @submitForm
-    addEventListener 'turbolinks:load', @restoreFocus
+    addEventListener 'turbo:load', @restoreFocus
 
 
   forumPostReset: =>
@@ -46,11 +46,11 @@ export default class Search
     @searchingToggle(true)
     params = $('.js-search').serialize()
 
-    $(document).one 'turbolinks:before-cache', =>
+    $(document).one 'turbo:before-cache', =>
       @activeElement = document.activeElement
       @searchingToggle(false)
 
-    Turbolinks.visit("?#{params}")
+    Turbo.visit("?#{params}")
 
 
   searchingToggle: (state) =>
