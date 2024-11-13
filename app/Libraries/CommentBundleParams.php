@@ -53,7 +53,7 @@ class CommentBundleParams
         }
 
         if (array_key_exists('limit', $params)) {
-            $this->limit = clamp(get_int($params['limit']), 1, 100);
+            $this->limit = \Number::clamp(get_int($params['limit']), 1, 100);
         }
 
         if (array_key_exists('page', $params)) {

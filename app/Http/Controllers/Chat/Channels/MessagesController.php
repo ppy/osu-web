@@ -96,7 +96,7 @@ class MessagesController extends BaseController
             'until:int',
         ], ['null_missing' => true]);
 
-        $limit = clamp($limit ?? 50, 1, 50);
+        $limit = \Number::clamp($limit ?? 50, 1, 50);
         $user = auth()->user();
 
         $channel = Channel::findOrFail($channelId);
