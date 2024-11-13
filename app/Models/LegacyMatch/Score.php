@@ -70,9 +70,18 @@ class Score extends Model
         return $this->_getEnabledMods($value | ($this->game->getAttributes()['mods'] ?? 0));
     }
 
+    public function getPassedAttribute(): bool
+    {
+        return $this->pass;
+    }
+
     public function getRankAttribute($value): string
     {
-        return $value === '0' ? 'F' : $value;
+        if ($value === '0') {
+            $this->recalculateRank();
+        }
+
+        return $this->attributes['rank'];
     }
 
     public function getScoringType()
