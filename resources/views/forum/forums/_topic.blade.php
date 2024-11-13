@@ -16,7 +16,7 @@
     "
     data-topic-id="{{ $topic->topic_id }}"
 >
-    <div class="forum-item-stripe"><span class="u-relative fas fa-angle-right"></span></div>
+    <div class="forum-item-stripe"><div class="forum-item-stripe__arrow"></div></div>
 
     <div class="forum-topic-entry__col forum-topic-entry__col--icon">
         @if (isset($topicReplyStatus[$topic->getKey()]))

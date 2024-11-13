@@ -29,6 +29,8 @@ if [ -n "${GITHUB_TOKEN:-}" ]; then
     grep ^GITHUB_TOKEN= .env || echo "GITHUB_TOKEN=${GITHUB_TOKEN}" >> .env
 fi
 
+docker compose build
+
 _run yarn --network-timeout 100000 --frozen-lockfile
 
 _run composer install

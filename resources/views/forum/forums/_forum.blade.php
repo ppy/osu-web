@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 <li class="clickable-row forum-item">
-    <div class="forum-item-stripe"><span class="u-relative fas fa-angle-right"></span></div>
+    <div class="forum-item-stripe"><div class="forum-item-stripe__arrow"></div></div>
 
     <div class="forum-item__details">
         {!! link_to(

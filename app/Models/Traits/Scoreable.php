@@ -74,7 +74,7 @@ trait Scoreable
 
     public function recalculateRank(): void
     {
-        if (!$this->passed) {
+        if (!$this->pass) {
             $this->rank = 'F';
 
             return;
