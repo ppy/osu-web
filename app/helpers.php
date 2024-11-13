@@ -1794,12 +1794,6 @@ function first_paragraph($html, $split_on = "\n")
     return $match_pos === false ? $text : substr($text, 0, $match_pos);
 }
 
-// clamps $number to be between $min and $max
-function clamp($number, $min, $max)
-{
-    return min($max, max($min, $number));
-}
-
 // e.g. 100634983048665 -> 100.63 trillion
 function suffixed_number_format(float|int $number, ?string $locale = null): string
 {
