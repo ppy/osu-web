@@ -79,7 +79,7 @@
                     <a
                         class="mobile-menu-tab js-click-menu js-react--chat-icon"
                         data-click-menu-target="mobile-chat-notification"
-                        data-turbolinks-permanent
+                        data-turbo-permanent
                         data-type='mobile'
                         id="notification-widget-chat-icon-mobile"
                         href="{{ route('chat.index') }}"
@@ -93,7 +93,7 @@
                     <a
                         class="mobile-menu-tab js-click-menu js-react--main-notification-icon"
                         data-click-menu-target="mobile-notification"
-                        data-turbolinks-permanent
+                        data-turbo-permanent
                         data-type='mobile'
                         id="notification-widget-icon-mobile"
                         href="{{ route('notifications.index') }}"
@@ -123,7 +123,7 @@
                     data-click-menu-id="mobile-chat-notification"
                     data-notification-widget="{{ json_encode(['only' => 'channel']) }}"
                     data-visibility="hidden"
-                    data-turbolinks-permanent
+                    data-turbo-permanent
                     id="notification-widget-chat-mobile"
                 ></div>
 
@@ -132,7 +132,7 @@
                     data-click-menu-id="mobile-notification"
                     data-notification-widget="{{ json_encode(['excludes' => ['channel']]) }}"
                     data-visibility="hidden"
-                    data-turbolinks-permanent
+                    data-turbo-permanent
                     id="notification-widget-mobile"
                 ></div>
             @endif

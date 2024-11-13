@@ -6,7 +6,7 @@ export default class ForumAutoClick
     @_triggerDistance = 1200
     @throttledOnScroll = _.throttle @onScroll, 1000
 
-    $(document).on 'turbolinks:load', @onLoad
+    $(document).on 'turbo:load', @onLoad
 
 
   commonClick: (link) ->

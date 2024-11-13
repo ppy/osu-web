@@ -99,7 +99,7 @@
                     <a
                         class="nav-button nav-button--notifications js-click-menu js-react--chat-icon"
                         data-click-menu-target="nav2-chat-notification-widget"
-                        data-turbolinks-permanent
+                        data-turbo-permanent
                         id="notification-widget-chat-icon"
                         href="{{ route('chat.index') }}"
                     >
@@ -113,14 +113,14 @@
                         data-click-menu-id="nav2-chat-notification-widget"
                         data-visibility="hidden"
                         data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup hidden', 'only' => 'channel']) }}"
-                        data-turbolinks-permanent
+                        data-turbo-permanent
                         id="notification-widget-chat"
                     ></div>
 
                     <a
                         class="nav-button nav-button--notifications js-click-menu js-react--main-notification-icon"
                         data-click-menu-target="nav2-notification-widget"
-                        data-turbolinks-permanent
+                        data-turbo-permanent
                         id="notification-widget-icon"
                         href="{{ route('notifications.index') }}"
                     >
@@ -134,7 +134,7 @@
                         data-click-menu-id="nav2-notification-widget"
                         data-visibility="hidden"
                         data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup hidden', 'excludes' => ['channel']]) }}"
-                        data-turbolinks-permanent
+                        data-turbo-permanent
                         id="notification-widget"
                     ></div>
                 </div>

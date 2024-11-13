@@ -46,7 +46,7 @@ export default class UserLogin {
       .on('click', '.js-login-required--click', this.showToContinue)
       .on('ajax:before', '.js-login-required--click', () => core.currentUser != null)
       .on('ajax:error', this.onError)
-      .on('turbolinks:load', this.showOnLoad);
+      .on('turbo:load', this.showOnLoad);
     $.subscribe('nav:popup:hidden', this.reset);
   }
 

@@ -72,7 +72,11 @@ class Score extends Model
 
     public function getRankAttribute($value): string
     {
-        return $value === '0' ? 'F' : $value;
+        if ($value === '0') {
+            $this->recalculateRank();
+        }
+
+        return $this->attributes['rank'];
     }
 
     public function getScoringType()

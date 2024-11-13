@@ -24,12 +24,12 @@
         @endif
 
         <a
-            class="
-                forum-topic-entry__icon
-                {{ $isRead ? '' : 'forum-topic-entry__icon--unread' }}
-                {{ $topic->isLocked() ? 'forum-topic-entry__icon--small' : '' }}
-            "
-            href="{{ route("forum.topics.show", $topic->topic_id) }}"
+            class="{{ class_with_modifiers('forum-topic-entry__icon', [
+                'unread' => !$isRead,
+                'small' => $topic->isLocked(),
+            ]) }}"
+            href="{{ post_url($topic->getKey(), $isRead ? 'latest' : 'unread', false) }}"
+            title="{{ osu_trans($isRead ? 'forum.topic.go_to_latest' : 'forum.topic.go_to_unread') }}"
         >
             <span>
                 <i class="
@@ -151,7 +151,7 @@
 
     <a
         class="forum-topic-entry__col forum-topic-entry__col--last-link"
-        href="{{ post_url($topic->topic_id, "unread", false) }}"
+        href="{{ post_url($topic->getKey(), 'latest', false) }}"
         title="{{ osu_trans("forum.topic.go_to_latest") }}"
     >
         <i class="fas fa-chevron-right"></i>
