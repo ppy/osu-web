@@ -7,10 +7,10 @@ import { blackoutVisible } from 'utils/blackout'
 import { bottomPage, formatNumber, isInputElement } from 'utils/html'
 import { hideLoadingOverlay } from 'utils/loading-overlay'
 import { present } from 'utils/string'
-import { currentUrl } from 'utils/turbolinks'
+import { currentUrl, updateHistory } from 'utils/turbolinks'
 
 replaceUrl = (url) ->
-  Turbolinks.controller.replaceHistory url
+  updateHistory url, 'replace'
 
 # browsers have limit on replaceState calls
 debouncedReplaceUrl = _.debounce replaceUrl, 250
@@ -35,7 +35,7 @@ export default class Forum
 
     @maxPosts = 250
 
-    $(document).on 'turbolinks:load', @throttledBoot
+    $(document).on 'turbo:load', @throttledBoot
 
     $(window).on 'scroll', @refreshCounter
     $(document).on 'click', '.js-forum-posts-show-more', @showMore
@@ -43,7 +43,7 @@ export default class Forum
     $(document).on 'submit', '.js-forum-posts-jump-to', @jumpToSubmit
     $(document).on 'keyup', @keyboardNavigation
     $(document).on 'click', '.js-forum-topic-moderate--toggle-deleted', @toggleDeleted
-    $(document).on 'turbolinks:before-cache', debouncedReplaceUrl.cancel
+    $(document).on 'turbo:before-cache', debouncedReplaceUrl.cancel
 
 
   userCanModerate: ->
@@ -196,7 +196,7 @@ export default class Forum
     if $post.length
       @scrollTo $post.attr('data-post-id')
     else
-      Turbolinks.visit @postUrlN(postN)
+      Turbo.visit @postUrlN(postN)
 
     true
 
@@ -246,7 +246,7 @@ export default class Forum
   toggleDeleted: =>
     xhr = osuCore.userPreferences.set('forum_posts_show_deleted', !@showDeleted())
 
-    callback = => Turbolinks.visit @postUrlN(@currentPostPosition)
+    callback = => Turbo.visit @postUrlN(@currentPostPosition)
 
     if xhr?
       xhr.done callback
@@ -260,7 +260,7 @@ export default class Forum
     return if !topicMeta?
 
     history.scrollRestoration = 'manual'
-    $(document).one 'turbolinks:before-cache', ->
+    $(document).one 'turbo:before-cache', ->
       history.scrollRestoration = 'auto'
 
     shouldScroll = currentUrl().hash == '' && present(topicMeta.postJumpTo)

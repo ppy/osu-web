@@ -10,7 +10,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
-import { currentUrlParams } from 'utils/turbolinks';
+import { currentUrlParams, updateHistory } from 'utils/turbolinks';
 import { updateQueryString } from 'utils/url';
 import { Sort } from './sort';
 import { ViewMode, viewModes } from './user-card';
@@ -109,7 +109,7 @@ export class UserList extends React.PureComponent<Props> {
     const value = (event.currentTarget as HTMLElement).dataset.value;
     const url = updateQueryString(null, { sort: value });
 
-    Turbolinks.controller.advanceHistory(url);
+    updateHistory(url, 'push');
     this.setState({ sortMode: value }, () => {
       core.userPreferences.set('user_list_sort', this.state.sortMode);
     });
@@ -119,7 +119,7 @@ export class UserList extends React.PureComponent<Props> {
     const value = (event.currentTarget as HTMLElement).dataset.value;
     const url = updateQueryString(null, { view: value });
 
-    Turbolinks.controller.advanceHistory(url);
+    updateHistory(url, 'push');
     this.setState({ viewMode: value }, () => {
       core.userPreferences.set('user_list_view', this.state.viewMode);
     });
@@ -130,7 +130,7 @@ export class UserList extends React.PureComponent<Props> {
     const key = (event.currentTarget as HTMLElement).dataset.key;
     const url = updateQueryString(null, { filter: key });
 
-    Turbolinks.controller.advanceHistory(url);
+    updateHistory(url, 'push');
     this.setState({ filter: key }, () => {
       core.userPreferences.set('user_list_filter', this.state.filter);
     });
@@ -140,7 +140,7 @@ export class UserList extends React.PureComponent<Props> {
     const value = (event.currentTarget as HTMLElement).dataset.value;
     const url = updateQueryString(null, { mode: value });
 
-    Turbolinks.controller.advanceHistory(url);
+    updateHistory(url, 'push');
     this.setState({ playMode: value });
   };
 

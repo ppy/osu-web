@@ -122,7 +122,7 @@ export default class StoreSupporterTag extends React.Component<Props> {
     super(props);
 
     this.debouncedGetUser = debounce(this.getUser, 300);
-    document.addEventListener('turbolinks:before-cache', this.handleBeforeCache);
+    document.addEventListener('turbo:before-cache', this.handleBeforeCache);
 
     makeObservable(this);
 
@@ -156,7 +156,7 @@ export default class StoreSupporterTag extends React.Component<Props> {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('turbolinks:before-cache', this.handleBeforeCache);
+    document.removeEventListener('turbo:before-cache', this.handleBeforeCache);
     this.xhr?.abort();
   }
 

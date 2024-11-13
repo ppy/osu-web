@@ -15,7 +15,7 @@ export default class ForumPostsSeek
 
     $(document).on 'click', '.js-forum-posts-seek--jump', @jump
 
-    addEventListener 'turbolinks:before-cache', @reset
+    addEventListener 'turbo:before-cache', @reset
 
 
   hideTooltip: =>

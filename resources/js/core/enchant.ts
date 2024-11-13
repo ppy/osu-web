@@ -13,8 +13,8 @@ const src = '//platform.enchant.com';
 
 export default class Enchant {
   constructor(private readonly turbolinksReload: TurbolinksReload) {
-    $(document).on('turbolinks:load', this.load);
-    $(document).on('turbolinks:before-cache', this.unload);
+    $(document).on('turbo:load', this.load);
+    $(document).on('turbo:before-cache', this.unload);
     $(document).on('click', '.js-enchant--show', this.showMessageWindow);
   }
 

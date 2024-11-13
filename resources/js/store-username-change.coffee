@@ -49,6 +49,6 @@ $(document).on 'input', '.js-username-change-input', (e) ->
     $status.text trans('store.username_change.checking', username: requestedUsername)
     debouncedCheckUsernameValidity()
 
-$(document).on 'turbolinks:load', ->
+$(document).on 'turbo:load', ->
   return if $('.js-username-change-input').length == 0
   preventUsernameSubmission()

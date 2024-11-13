@@ -46,7 +46,7 @@
 
     </nav>
 
-    <div class="js-nav-data" id="nav-data-landing" data-turbolinks-permanent></div>
+    <div class="js-nav-data" id="nav-data-landing" data-turbo-permanent></div>
     @include('layout._popup_login', ['modifiers' => ['landing']])
 
     <div class="osu-page">

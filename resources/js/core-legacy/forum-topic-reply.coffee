@@ -22,7 +22,7 @@ export default class ForumTopicReply
 
     $.subscribe 'stickyFooter', @stickOrUnstick
 
-    $(document).on 'turbolinks:load', @initialize
+    $(document).on 'turbo:load', @initialize
 
 
   marker: -> document.querySelector('.js-sticky-footer[data-sticky-footer-target="forum-topic-reply"]')

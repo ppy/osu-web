@@ -216,9 +216,6 @@ export default class Header extends React.Component<Props> {
         href={href}
         icon={icon}
         modifiers='beatmapset-header'
-        props={{
-          'data-turbolinks': 'false',
-        }}
         text={{
           bottom: bottomTextKey == null ? undefined : trans(`beatmapsets.show.details.download.${bottomTextKey}`),
           top: trans(`beatmapsets.show.details.download.${topTextKey}`),

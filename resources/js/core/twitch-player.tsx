@@ -18,7 +18,7 @@ export default class TwitchPlayer {
   private readonly playerDivs = document.getElementsByClassName('js-twitch-player');
 
   constructor(private readonly turbolinksReload: TurbolinksReload) {
-    document.addEventListener('turbolinks:load', this.startAll);
+    document.addEventListener('turbo:load', this.startAll);
   }
 
   initializeEmbed() {

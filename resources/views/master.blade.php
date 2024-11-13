@@ -115,7 +115,7 @@
             </div>
         </div>
 
-        <div id="main-player" class="audio-player-floating" data-turbolinks-permanent>
+        <div id="main-player" class="audio-player-floating" data-turbo-permanent>
             <div class="js-audio--main"></div>
             <div class="js-sync-height--target" data-sync-height-id="permanent-fixed-footer"></div>
         </div>
@@ -125,7 +125,7 @@
             - less/bem/estimate-min-lines.less (styling)
             - views/master.blade.php (placeholder)
         --}}
-        <div id="estimate-min-lines" class="estimate-min-lines" data-turbolinks-permanent>
+        <div id="estimate-min-lines" class="estimate-min-lines" data-turbo-permanent>
             <div class="estimate-min-lines__content js-estimate-min-lines"></div>
         </div>
         @include("layout._global_variables")

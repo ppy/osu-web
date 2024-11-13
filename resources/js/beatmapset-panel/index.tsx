@@ -564,7 +564,6 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           ) : (
             <a
               className='beatmapset-panel__menu-item'
-              data-turbolinks='false'
               href={this.downloadLink.url}
               title={this.downloadLink.title}
             >
