@@ -49,11 +49,10 @@ class ChangeBeatmapOwners
         }
 
         $this->beatmap->getConnection()->transaction(function () {
-            $params = [];
-
-            foreach ($this->userIds as $userId) {
-                $params[] = ['beatmap_id' => $this->beatmap->getKey(), 'user_id' => $userId];
-            }
+            $params = array_map(
+                fn ($userId) => ['beatmap_id' => $this->beatmap->getKey(), 'user_id' => $userId],
+                $this->userIds->toArray()
+            );
 
             $this->beatmap->fill(['user_id' => $this->userIds->first()])->saveOrExplode();
             $this->beatmap->beatmapOwners()->delete();
