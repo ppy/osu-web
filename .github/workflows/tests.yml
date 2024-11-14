@@ -137,6 +137,12 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
+      - name: Cache ip2asn
+        uses: actions/cache@v4
+        with:
+          path: database/ip2asn/
+          key: ip2asn
+
       - run: ./build.sh
 
       - name: Setup indices
