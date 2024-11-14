@@ -70,7 +70,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     {
         $query = static::published();
 
-        $limit = clamp(get_int($params['limit'] ?? null) ?? 20, 1, 21);
+        $limit = \Number::clamp(get_int($params['limit'] ?? null) ?? 20, 1, 21);
 
         $cursorHelper = static::makeDbCursorHelper();
         $cursor = cursor_from_params($params);

@@ -636,7 +636,7 @@ class TopicsController extends Controller
         ], ['null_missing' => true]);
 
         $params['skip_layout'] = $params['skip_layout'] ?? false;
-        $params['limit'] = clamp($params['limit'] ?? Post::PER_PAGE, 1, 50);
+        $params['limit'] = \Number::clamp($params['limit'] ?? Post::PER_PAGE, 1, 50);
 
         if ($userCanModerate) {
             $params['with_deleted'] ??= UserProfileCustomization::forUser($currentUser)['forum_posts_show_deleted'];

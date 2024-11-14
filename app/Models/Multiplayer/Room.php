@@ -200,7 +200,7 @@ class Room extends Model
         $cursorHelper = static::makeDbCursorHelper($sort);
         $query->cursorSort($cursorHelper, cursor_from_params($rawParams));
 
-        $limit = clamp($params['limit'] ?? $maxLimit, 1, $maxLimit);
+        $limit = \Number::clamp($params['limit'] ?? $maxLimit, 1, $maxLimit);
         $query->limit($limit);
 
         return [

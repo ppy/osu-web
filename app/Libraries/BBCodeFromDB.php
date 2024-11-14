@@ -325,7 +325,7 @@ class BBCodeFromDB
     {
         $text = preg_replace_callback(
             "#\[size=(\d+):{$this->uid}\]#",
-            fn ($m) => '<span style="font-size:'.clamp((int) $m[1], 30, 200).'%;">',
+            fn ($m) => '<span style="font-size:'.\Number::clamp((int) $m[1], 30, 200).'%;">',
             $text,
         );
         $text = strtr($text, ["[/size:{$this->uid}]" => '</span>']);
