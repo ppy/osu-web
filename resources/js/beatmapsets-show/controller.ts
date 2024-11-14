@@ -108,11 +108,7 @@ export default class Controller {
   }
 
   owners(beatmap: BeatmapJsonForBeatmapsetShow) {
-    if (beatmap.owners != null) {
-      return beatmap.owners.map((mapper) => this.usersById[mapper.id] ?? deletedUserJson);
-    }
-
-    return [this.usersById[beatmap.user_id] ?? deletedUserJson];
+    return beatmap.owners.map((mapper) => this.usersById[mapper.id] ?? deletedUserJson);
   }
 
   @action
