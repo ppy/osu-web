@@ -300,6 +300,7 @@ class Beatmap extends Model implements AfterCommit
         return $owners;
     }
 
+    // TODO: don't require loading beatmapOwners.user
     public function isOwner(User $user): bool
     {
         return $this->getOwners()->contains(fn ($owner) => $user->is($owner));
