@@ -2320,11 +2320,12 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         if ($this->isDirty('country_acronym')) {
             if (present($this->country_acronym)) {
-                if (($country = Country::find($this->country_acronym)) !== null) {
+                $country = app('countries')->byCode($this->country_acronym);
+                if ($country === null) {
+                    $this->validationErrors()->add('country', '.invalid_country');
+                } else {
                     // ensure matching case
                     $this->country_acronym = $country->getKey();
-                } else {
-                    $this->validationErrors()->add('country', '.invalid_country');
                 }
             } else {
                 $this->country_acronym = Country::UNKNOWN;
