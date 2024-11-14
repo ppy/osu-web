@@ -63,12 +63,14 @@ class ChangeBeatmapOwners
             // TODO: use select instead (needs newer laravel)
             $newUsers = $this->beatmap->getOwners()->map(fn (User $user) => $user->only('id', 'username'))->all();
             $beatmapset = $this->beatmap->beatmapset;
+            $firstMapper = $newUsers[0];
 
             BeatmapsetEvent::log(BeatmapsetEvent::BEATMAP_OWNER_CHANGE, $this->source, $beatmapset, [
                 'beatmap_id' => $this->beatmap->getKey(),
                 'beatmap_version' => $this->beatmap->version,
-                'new_user_id' => $this->beatmap->user_id,
-                'new_user_username' => ($this->beatmap->user ?? new DeletedUser())->username,
+                // TODO: mainly for compatibility during dev when switching branches, can be removed after deployed.
+                'new_user_id' => $firstMapper['id'],
+                'new_user_username' => $firstMapper['username'],
                 'new_users' => $newUsers,
             ])->saveOrExplode();
 
