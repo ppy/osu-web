@@ -6,6 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Ruleset;
+use App\Exceptions\AuthorizationException;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\ScoreReplayStats;
 use App\Models\Solo\Score as SoloScore;
@@ -43,6 +44,10 @@ class ScoresController extends Controller
 
     public function download($rulesetOrSoloId, $id = null)
     {
+        if(from_app_url() && \Auth::user() === null) {
+            throw new AuthorizationException('User is not logged in.');
+        }
+
         $shouldRedirect = !is_api_request() && !from_app_url();
         if ($id === null) {
             if ($shouldRedirect) {
