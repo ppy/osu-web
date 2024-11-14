@@ -632,10 +632,8 @@ class BeatmapDiscussion extends Model
 
     public function managedBy(User $user): bool
     {
-        $userId = $user->getKey();
-
-        return $this->beatmapset->user_id === $userId
-            || ($this->beatmap !== null && $this->beatmap->getOwners()->contains(fn ($user) => $user->getKey() === $userId));
+        return $this->beatmapset->user_id === $user->getKey()
+            || ($this->beatmap !== null && $this->beatmap->isOwner($user));
     }
 
     public function userRecentVotesCount($user, $increment = false)

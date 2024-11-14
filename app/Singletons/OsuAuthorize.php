@@ -618,7 +618,7 @@ class OsuAuthorize
         }
 
         foreach ($beatmapset->beatmaps as $beatmap) {
-            if ($userId === $beatmap->user_id) {
+            if ($beatmap->isOwner($user)) {
                 return $prefix.'owner';
             }
         }

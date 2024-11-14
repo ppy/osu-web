@@ -300,6 +300,11 @@ class Beatmap extends Model implements AfterCommit
         return $owners;
     }
 
+    public function isOwner(User $user): bool
+    {
+        return $this->getOwners()->contains(fn ($owner) => $user->is($owner));
+    }
+
     public function maxCombo()
     {
         if (!$this->convert) {
