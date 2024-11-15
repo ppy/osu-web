@@ -976,6 +976,7 @@ class OsuAuthorize
     {
         $prefix = 'chat.';
 
+        $this->ensureLoggedIn($user);
         $this->ensureSessionVerified($user);
         $this->ensureCleanRecord($user, $prefix);
         // This check becomes useless when min_plays_allow_verified_bypass is enabled.
@@ -2040,12 +2041,8 @@ class OsuAuthorize
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function ensureCleanRecord(?User $user, string $prefix = ''): string
+    public function ensureCleanRecord(User $user, string $prefix = ''): void
     {
-        if ($user === null) {
-            return 'unauthorized';
-        }
-
         if ($user->isRestricted()) {
             throw new AuthorizationCheckException($prefix.'restricted');
         }
@@ -2053,17 +2050,15 @@ class OsuAuthorize
         if ($user->isSilenced()) {
             throw new AuthorizationCheckException($prefix.'silenced');
         }
-
-        return 'ok';
     }
 
     /**
      * @param User|null $user
      * @throws AuthorizationCheckException
      */
-    public function ensureHasPlayed(?User $user): void
+    public function ensureHasPlayed(User $user): void
     {
-        if ($user === null || $user->isBot()) {
+        if ($user->isBot()) {
             return;
         }
 
@@ -2090,10 +2085,8 @@ class OsuAuthorize
      * @param User|null $user
      * @throws AuthorizationCheckException
      */
-    public function ensureSessionVerified(?User $user)
+    public function ensureSessionVerified(User $user)
     {
-        $this->ensureLoggedIn($user);
-
         if (!$user->isSessionVerified()) {
             throw new AuthorizationCheckException('require_verification');
         }
