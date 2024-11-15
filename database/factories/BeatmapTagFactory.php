@@ -19,9 +19,9 @@ class BeatmapTagFactory extends Factory
     public function definition(): array
     {
         return [
-            'beatmap_id' => fn () => Beatmap::factory(),
-            'tag_id' => fn () => Tag::factory(),
-            'user_id' => fn () => User::factory(),
+            'beatmap_id' => Beatmap::factory(),
+            'tag_id' => Tag::factory(),
+            'user_id' => User::factory(),
         ];
     }
 }
