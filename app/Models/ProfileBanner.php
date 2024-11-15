@@ -6,6 +6,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $banner_id
@@ -20,7 +21,6 @@ class ProfileBanner extends Model
 {
     protected $table = 'osu_profile_banners';
     protected $primaryKey = 'banner_id';
-    protected array $macros = ['active'];
     public $timestamps = false;
 
     public function user()
@@ -33,69 +33,30 @@ class ProfileBanner extends Model
         return $this->belongsTo(Tournament::class, 'tournament_id');
     }
 
+    public function tournamentBanner(): BelongsTo
+    {
+        return $this->belongsTo(TournamentBanner::class, 'tournament_id');
+    }
+
     public function country()
     {
         return $this->belongsTo(Country::class, 'country_acronym');
     }
 
-    public function macroActive(): \Closure
+    public function scopeActive(Builder $query): void
     {
-        return function ($query) {
-            $last = $query->orderBy('banner_id', 'DESC')->first();
-
-            if ($last !== null && $last->isActive()) {
-                return $last;
-            }
-        };
+        $query->whereHas('tournamentBanner', fn ($q) => $q
+            ->where('is_active', true)
+            ->where(fn ($countryQuery) => $countryQuery
+                ->whereNull('winner_country_acronym')
+                ->orWhereColumn(
+                    $countryQuery->qualifyColumn('winner_country_acronym'),
+                    $query->qualifyColumn('country_acronym'),
+                )));
     }
 
-    public function scopeActiveOnly(Builder $query): Builder
+    public function image(): string
     {
-        $currentTournamentId = $GLOBALS['cfg']['osu']['tournament_banner']['current']['id'];
-        if ($currentTournamentId !== null) {
-            $mayHaveTournamentBanner = true;
-            $query->where('tournament_id', $currentTournamentId);
-        }
-        $previousTournamentId = $GLOBALS['cfg']['osu']['tournament_banner']['previous']['id'];
-        if ($previousTournamentId !== null) {
-            $mayHaveTournamentBanner = true;
-            $query->orWhere(fn ($q) => $q->where([
-                'tournament_id' => $previousTournamentId,
-                'country_acronym' => $GLOBALS['cfg']['osu']['tournament_banner']['previous']['winner_id'],
-            ]));
-        }
-
-        return $mayHaveTournamentBanner ?? false
-            ? $query
-            : $query->none();
-    }
-
-    public function image()
-    {
-        $period = $this->period();
-
-        if ($period !== null) {
-            $prefix = $GLOBALS['cfg']['osu']['tournament_banner'][$period]['prefix'];
-
-            return "{$prefix}{$this->country_acronym}.jpg";
-        }
-    }
-
-    public function isActive()
-    {
-        $period = $this->period();
-
-        return $period === 'current' ||
-            ($period === 'previous' && $this->country_acronym === $GLOBALS['cfg']['osu']['tournament_banner']['previous']['winner_id']);
-    }
-
-    public function period()
-    {
-        switch ($this->tournament_id) {
-            case $GLOBALS['cfg']['osu']['tournament_banner']['current']['id']:
-                return 'current';
-            case $GLOBALS['cfg']['osu']['tournament_banner']['previous']['id']:
-                return 'previous';
-        }
+        return "{$this->tournamentBanner->banner_url_prefix}{$this->country_acronym}.jpg";
     }
 }

@@ -12,7 +12,6 @@ import 'forum/post-box.coffee';
 import 'ujs-common.coffee';
 import 'bootstrap-modal.coffee';
 import 'shared.coffee';
-import 'turbolinks-overrides.coffee';
 
 import 'osu-core-singleton';
 import 'main.coffee';

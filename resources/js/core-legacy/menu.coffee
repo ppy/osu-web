@@ -11,7 +11,7 @@ export default class Menu
     $(document).on 'mouseenter', '.js-menu', @onMouseEnter
     $(document).on 'mouseleave', '.js-menu', @onMouseLeave
     $(document).on 'touchstart', @onGlobalTouchstart
-    $(document).on 'turbolinks:load', @onDocumentReady
+    $(document).on 'turbo:load', @onDocumentReady
 
 
   $menuLink: (id) -> $(".js-menu[data-menu-target#{if id then "='#{id}'" else ''}]")

@@ -729,7 +729,7 @@ class UsersController extends Controller
 
     private function sanitizedLimitParam()
     {
-        return clamp(get_int(request('limit')) ?? 5, 1, 100);
+        return \Number::clamp(get_int(request('limit')) ?? 5, 1, 100);
     }
 
     private function getExtra($page, array $options, int $perPage = 10, int $offset = 0)

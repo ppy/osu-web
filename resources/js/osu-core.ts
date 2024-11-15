@@ -59,6 +59,7 @@ export default class OsuCore {
   readonly currentUserObserver;
   readonly dataStore;
   readonly enchant;
+  firstCurrentUserSet = false;
   readonly forumPoll;
   readonly forumPostEdit;
   readonly forumPostInput;
@@ -97,11 +98,7 @@ export default class OsuCore {
   constructor() {
     // Set current user on first page load. Further updates are done in
     // reactTurbolinks before the new page is rendered.
-    // This needs to be fired before everything else (turbolinks:load etc).
-    const isLoading = document.readyState === 'loading';
-    if (isLoading) {
-      document.addEventListener('DOMContentLoaded', this.updateCurrentUser);
-    }
+    // This needs to be fired before everything else (turbo:load etc).
     $.subscribe('user:update', this.onCurrentUserUpdate);
 
     this.animateNav = new AnimateNav();
@@ -150,10 +147,6 @@ export default class OsuCore {
     this.notificationsWorker = new NotificationsWorker(this.socketWorker);
 
     makeObservable(this);
-
-    if (!isLoading) {
-      this.updateCurrentUser();
-    }
   }
 
   @action

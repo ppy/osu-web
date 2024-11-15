@@ -119,7 +119,7 @@ export default class Main {
       .on('click', '.js-audio--toggle-mute', this.toggleMute)
       .on('click', '.js-audio--toggle-autoplay', this.toggleAutoplay)
       .on('click', '.js-audio--nav', this.nav);
-    document.addEventListener('turbolinks:load', this.onDocumentReady);
+    document.addEventListener('turbo:load', this.onDocumentReady);
   }
 
   private readonly checkVolumeSettings = () => {

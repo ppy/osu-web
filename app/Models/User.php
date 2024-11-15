@@ -914,6 +914,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'orders',
             'pivot', // laravel built-in relation when using belongsToMany
             'profileBanners',
+            'profileBannersActive',
             'profileBeatmapsetsGraveyard',
             'profileBeatmapsetsLoved',
             'profileBeatmapsetsPending',
@@ -1308,6 +1309,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function profileBanners()
     {
         return $this->hasMany(ProfileBanner::class);
+    }
+
+    public function profileBannersActive(): HasMany
+    {
+        return $this->profileBanners()->active()->with('tournamentBanner')->orderBy('banner_id');
     }
 
     public function storeAddresses()

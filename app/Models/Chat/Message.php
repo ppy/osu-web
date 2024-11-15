@@ -9,6 +9,7 @@ use App\Models\Traits\Reportable;
 use App\Models\Traits\ReportableInterface;
 use App\Models\User;
 use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Collection;
 
 /**
@@ -92,6 +93,7 @@ class Message extends Model implements ReportableInterface
             ::where('message_id', '<=', $this->getKey())
             ->whereHas('channel', fn ($ch) => $ch->where('type', '<>', Channel::TYPES['pm']))
             ->where('user_id', $this->user_id)
+            ->where('timestamp', '>', CarbonImmutable::now()->subDays(1))
             ->orderBy('timestamp', 'DESC')
             ->with('channel')
             ->limit(5)

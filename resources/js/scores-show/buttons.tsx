@@ -33,7 +33,6 @@ export default function Buttons(props: Props) {
       {hasReplay(props.score) && (
         <a
           className='js-login-required--click btn-osu-big btn-osu-big--rounded'
-          data-turbolinks={false}
           href={scoreDownloadUrl(props.score)}
         >
           {trans('users.show.extra.top_ranks.download_replay')}
