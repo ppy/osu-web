@@ -6,6 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
+use App\Transformers\TagTransformer;
 
 class TagsController extends Controller
 {
@@ -18,8 +19,14 @@ class TagsController extends Controller
 
     public function index()
     {
+        $tags = \Cache::remember(
+            'tags',
+            $GLOBALS['cfg']['osu']['tags']['tags_cache_interval'],
+            fn () => Tag::all(),
+        );
+
         return [
-            'tags' => json_collection(Tag::all(), 'Tag'),
+            'tags' => json_collection($tags, new TagTransformer()),
         ];
     }
 }
