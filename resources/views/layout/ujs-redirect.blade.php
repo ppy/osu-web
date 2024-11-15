@@ -4,5 +4,6 @@
 --}}
 ;(function() {
     $(document).off(".ujsHideLoadingOverlay")
+    Turbo.cache.clear();
     Turbo.visit({!! json_encode($url) !!})
 }).call(this);
