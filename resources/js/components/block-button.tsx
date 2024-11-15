@@ -14,6 +14,10 @@ import { Spinner } from './spinner';
 
 const bn = 'textual-button';
 
+interface BlockUserResponse {
+  user_relation: UserRelationJson;
+}
+
 interface Props {
   modifiers?: Modifiers;
   onClick?: () => void;
@@ -24,7 +28,7 @@ interface Props {
 @observer
 export default class BlockButton extends React.Component<Props> {
   @observable private loading = false;
-  private xhr?: JQuery.jqXHR<UserRelationJson[]>;
+  private xhr?: JQuery.jqXHR<BlockUserResponse | null>;
 
   @computed
   private get block() {
@@ -116,12 +120,8 @@ export default class BlockButton extends React.Component<Props> {
   };
 
   @action
-  private readonly updateBlocks = (data: UserRelationJson[]) => {
-    if (core.currentUser != null) {
-      core.currentUser.blocks = data.filter((d) => d.relation_type === 'block');
-      core.currentUser.friends = data.filter((d) => d.relation_type === 'friend');
-    }
-
+  private readonly updateBlocks = (data: BlockUserResponse | null) => {
+    core.currentUserModel.updateUserRelation(data?.user_relation, 'blocks', this.props.userId);
     this.props.onClick?.();
   };
 }

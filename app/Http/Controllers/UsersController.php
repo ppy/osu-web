@@ -20,7 +20,6 @@ use App\Models\BeatmapDiscussion;
 use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Log;
-use App\Models\Solo\Score as SoloScore;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Transformers\CurrentUserTransformer;
@@ -185,7 +184,7 @@ class UsersController extends Controller
                     ),
                     'firsts' => $this->getExtraSection(
                         'scoresFirsts',
-                        $this->user->scoresFirst($this->mode, true)->visibleUsers()->count()
+                        $this->user->scoresFirst($this->mode, true)->count()
                     ),
                     'pinned' => $this->getExtraSection(
                         'scoresPinned',
@@ -730,7 +729,7 @@ class UsersController extends Controller
 
     private function sanitizedLimitParam()
     {
-        return clamp(get_int(request('limit')) ?? 5, 1, 100);
+        return \Number::clamp(get_int(request('limit')) ?? 5, 1, 100);
     }
 
     private function getExtra($page, array $options, int $perPage = 10, int $offset = 0)
@@ -823,15 +822,16 @@ class UsersController extends Controller
             case 'scoresFirsts':
                 $transformer = new ScoreTransformer();
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                $scoreQuery = $this->user->scoresFirst($this->mode, true)->unorder();
-                $userFirstsQuery = $scoreQuery->select($scoreQuery->qualifyColumn('score_id'));
-                $query = SoloScore
-                    ::whereIn('legacy_score_id', $userFirstsQuery)
-                    ->where('ruleset_id', Beatmap::MODES[$this->mode])
-                    ->default()
-                    ->reorderBy('id', 'desc')
-                    ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
+                $query = $this
+                    ->user
+                    ->scoresFirst($this->mode, true)
+                    ->with(array_map(
+                        fn ($include) => "score.{$include}",
+                        ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD,
+                    ))
+                    ->orderByDesc('score_id');
                 $userRelationColumn = 'user';
+                $collectionFn = fn ($scoreFirst) => $scoreFirst->map->score;
                 break;
             case 'scoresPinned':
                 $transformer = new ScoreTransformer();

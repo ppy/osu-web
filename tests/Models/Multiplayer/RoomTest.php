@@ -92,6 +92,29 @@ class RoomTest extends TestCase
         (new Room())->startGame($user, $params);
     }
 
+    public function testStartGameWithInvalidRuleset()
+    {
+        $beatmap = Beatmap::factory()->create([
+            'playmode' => 2,
+        ]);
+        $user = User::factory()->create();
+
+        $params = [
+            'duration' => 60,
+            'name' => 'test',
+            'playlist' => [
+                [
+                    'beatmap_id' => $beatmap->getKey(),
+                    'ruleset_id' => 0,
+                ],
+            ],
+        ];
+
+        $this->expectException(InvariantException::class);
+        $this->expectExceptionMessageMatches('/^invalid ruleset_id for beatmap \d+$/');
+        (new Room())->startGame($user, $params);
+    }
+
     public function testRoomHasEnded()
     {
         $user = User::factory()->create();

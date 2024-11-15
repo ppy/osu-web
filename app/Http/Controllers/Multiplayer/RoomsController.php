@@ -116,7 +116,7 @@ class RoomsController extends Controller
 
     public function leaderboard($roomId)
     {
-        $limit = clamp(get_int(request('limit')) ?? Model::PER_PAGE, 1, 50);
+        $limit = \Number::clamp(get_int(request('limit')) ?? Model::PER_PAGE, 1, 50);
         $room = Room::findOrFail($roomId);
 
         // leaderboard currently requires auth so auth()->check() is not required.

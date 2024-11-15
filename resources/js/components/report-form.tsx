@@ -123,11 +123,11 @@ export default class ReportForm extends React.Component<Props> {
   }
 
   componentDidMount() {
-    $(document).on('turbolinks:before-cache', this.handleClose);
+    $(document).on('turbo:before-cache', this.handleClose);
   }
 
   componentWillUnmount() {
-    $(document).off('turbolinks:before-cache', this.handleClose);
+    $(document).off('turbo:before-cache', this.handleClose);
     window.clearTimeout(this.timeout);
   }
 

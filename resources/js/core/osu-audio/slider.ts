@@ -35,7 +35,7 @@ export default class Slider {
     $(document).on('mousemove touchmove', this.onMove);
     $(document).on('mouseup touchend', this.end);
     $(window).on('blur', this.end);
-    $(document).on('turbolinks:before-cache', this.end);
+    $(document).on('turbo:before-cache', this.end);
   }
 
   static start(params: Params) {
@@ -58,7 +58,7 @@ export default class Slider {
     $(document).off('mousemove touchmove', this.onMove);
     $(document).off('mouseup touchend', this.end);
     $(window).off('blur', this.end);
-    $(document).off('turbolinks:before-cache', this.end);
+    $(document).off('turbo:before-cache', this.end);
 
     if (this.endCallback != null) {
       this.endCallback(this);

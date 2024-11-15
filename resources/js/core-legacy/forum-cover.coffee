@@ -21,7 +21,7 @@ export default class ForumCover
     $(document).on 'dragenter', '.js-forum-cover--overlay', => @setOverlay('hover')
     $(document).on 'dragleave', '.js-forum-cover--overlay', => @setOverlay('active')
 
-    $(document).on 'turbolinks:load', @refresh
+    $(document).on 'turbo:load', @refresh
 
 
   $uploadButton: => $(@uploadButton[0])

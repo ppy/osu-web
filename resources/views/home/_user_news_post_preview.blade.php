@@ -4,12 +4,16 @@
 --}}
 @php
     $publishedAt = $post->published_at;
+    $firstImage = $post->firstImageWith2x();
 @endphp
 <div class="news-post-preview{{$collapsed ? ' news-post-preview--collapsed' : ''}}">
     <a
         class="news-post-preview__image"
-        href='{{ route('news.show', $post->slug) }}'
-        {!! background_image($post->firstImage()) !!}
+        href="{{ route('news.show', $post->slug) }}"
+        style="
+            --bg: url('{{ $firstImage['1x'] }}');
+            --bg-2x: url('{{ $firstImage['2x'] }}');
+        "
     ></a>
     <div class="news-post-preview__body">
         <div class="news-post-preview__post-date js-tooltip-time" title="{{ json_time($publishedAt) }}">

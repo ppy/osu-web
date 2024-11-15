@@ -11,7 +11,7 @@ import { route } from 'laroute';
 import PostItem from 'news-index/post-item';
 import NewsSidebar from 'news-sidebar/main';
 import * as React from 'react';
-import { classWithModifiers, urlPresence } from 'utils/css';
+import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
 import { trans } from 'utils/lang';
 
 interface Props {
@@ -20,7 +20,7 @@ interface Props {
   sidebarMeta: NewsSidebarMetaJson;
 }
 
-function NavPost({ post, subtitle, modifiers }: { modifiers: string[]; post?: NewsPostJson; subtitle: string }) {
+function NavPost({ post, subtitle, modifiers }: { modifiers: Modifiers; post?: NewsPostJson; subtitle: string }) {
   if (post == null) {
     return null;
   }
@@ -29,7 +29,10 @@ function NavPost({ post, subtitle, modifiers }: { modifiers: string[]; post?: Ne
     <a
       className={classWithModifiers('page-nav-fancy', modifiers)}
       href={route('news.show', { news: post.slug })}
-      style={{ backgroundImage: urlPresence(post.first_image) }}
+      style={{
+        '--bg': urlPresence(post.first_image),
+        '--bg-2x': urlPresence(post['first_image@2x']),
+      } as React.CSSProperties}
     >
       <div className='page-nav-fancy__label'>
         <div className='page-nav-fancy__subtitle'>
@@ -166,8 +169,8 @@ export default class Main extends React.Component<Props> {
 
     return (
       <>
-        <NavPost modifiers={['next']} post={newerPost} subtitle={trans('news.show.nav.newer')} />
-        <NavPost modifiers={['prev']} post={olderPost} subtitle={trans('news.show.nav.older')} />
+        <NavPost modifiers='next' post={newerPost} subtitle={trans('news.show.nav.newer')} />
+        <NavPost modifiers='prev' post={olderPost} subtitle={trans('news.show.nav.older')} />
       </>
     );
   };

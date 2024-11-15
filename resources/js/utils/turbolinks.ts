@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { TurbolinksAction } from 'turbolinks';
+import { VisitOptions } from '@hotwired/turbo';
 
 export function currentUrl() {
   return window.newUrl ?? document.location;
@@ -25,20 +25,46 @@ export function currentUrlRelative() {
 
 function keepScrollOnLoad() {
   const { pageXOffset, pageYOffset } = window;
-  $(document).one('turbolinks:load', () => window.scrollTo(pageXOffset, pageYOffset));
+  $(document).one('turbo:load', () => window.scrollTo(pageXOffset, pageYOffset));
 }
 
-export function navigate(url: string, keepScroll = false, { action }: TurbolinksAction = { action: 'advance' }) {
+export function navigate(url: string, keepScroll = false, options?: VisitOptions) {
   if (keepScroll) {
     keepScrollOnLoad();
   }
 
-  Turbolinks.visit(url, { action });
+  Turbo.visit(url, options);
 }
 
 export function reloadPage(keepScroll = true) {
   $(document).off('.ujsHideLoadingOverlay');
-  Turbolinks.clearCache();
+  Turbo.cache.clear();
 
   navigate(currentUrl().href, keepScroll, { action: 'replace' });
+}
+
+export function updateHistory(url: string, action: 'push' | 'replace') {
+  const currentLocation = currentUrl();
+
+  if (url === currentLocation.href) {
+    return;
+  }
+  if (action === 'push') {
+    Turbo.session.view.snapshotCache.put(
+      currentLocation,
+      Turbo.session.view.snapshot.clone(),
+    );
+  }
+
+  const newLocation = new URL(url, document.baseURI);
+
+  const callback = () => {
+    Turbo.session.history[action](newLocation, crypto.randomUUID());
+    Turbo.session.view.lastRenderedLocation = newLocation;
+  };
+  if (action === 'replace' && window.newUrl == null) {
+    window.setTimeout(callback);
+  } else {
+    callback();
+  }
 }

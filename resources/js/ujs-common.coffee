@@ -19,7 +19,7 @@ $(document).on 'ajax:success', (event, data) ->
   if event.target.getAttribute('data-reload-on-success') == '1'
     resetScroll = event.target.getAttribute('data-reload-reset-scroll') == '1'
 
-    $(document).one 'turbolinks:load', showPopup
+    $(document).one 'turbo:load', showPopup
     reloadPage(!resetScroll)
   else
     showPopup()

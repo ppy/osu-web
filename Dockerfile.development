@@ -42,7 +42,7 @@ COPY chromium /usr/bin/
 
 WORKDIR /app
 
-RUN groupadd osuweb && useradd -g osuweb osuweb
+RUN groupadd osuweb && useradd -g osuweb -d /app/.docker osuweb
 
 ENTRYPOINT ["/app/docker/development/entrypoint.sh"]
 CMD ["octane"]

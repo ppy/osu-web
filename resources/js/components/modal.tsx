@@ -20,7 +20,7 @@ export default class Modal extends React.PureComponent<React.PropsWithChildren<P
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleEsc);
-    $(document).on('turbolinks:before-cache', this.handleBeforeCache);
+    $(document).on('turbo:before-cache', this.handleBeforeCache);
 
     this.open();
   }
@@ -28,7 +28,7 @@ export default class Modal extends React.PureComponent<React.PropsWithChildren<P
   componentWillUnmount() {
     this.close();
     document.removeEventListener('keydown', this.handleEsc);
-    $(document).off('turbolinks:before-cache', this.handleBeforeCache);
+    $(document).off('turbo:before-cache', this.handleBeforeCache);
   }
 
   render() {

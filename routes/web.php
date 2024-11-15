@@ -447,6 +447,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             });
         });
 
+        Route::resource('blocks', 'BlocksController', ['only' => ['destroy', 'index', 'store']]);
+
         Route::apiResource('comments', 'CommentsController');
         Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
         Route::delete('comments/{comment}/vote', 'CommentsController@voteDestroy');
@@ -511,8 +513,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['show']]);
 
         // Friends
-        //  GET /api/v2/friends
-        Route::resource('friends', 'FriendsController', ['only' => ['index']]);
+        Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
 
         //  GET /api/v2/me/download-quota-check
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');

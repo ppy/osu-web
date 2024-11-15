@@ -50,13 +50,13 @@ class ScoresController extends BaseController
     {
         $playlist = PlaylistItem::where('room_id', $roomId)->findOrFail($playlistId);
         $params = request()->all();
-        $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
+        $limit = \Number::clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
         $cursorHelper = PlaylistItemUserHighScore::makeDbCursorHelper($params['sort'] ?? null);
 
         $highScoresQuery = $playlist
             ->highScores()
             ->whereHas('user', fn ($userQuery) => $userQuery->default())
-            ->whereHas('scoreLink');
+            ->whereHas('scoreLink.score');
 
         [$highScores, $hasMore] = $highScoresQuery
             ->clone()

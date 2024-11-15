@@ -159,7 +159,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeActiveTournamentBanner(User $user)
     {
-        $banner = $user->profileBanners()->active();
+        $banner = $user->profileBannersActive->last();
 
         return $banner === null
             ? $this->primitive(null)
@@ -169,7 +169,7 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeActiveTournamentBanners(User $user)
     {
         return $this->collection(
-            $user->profileBanners()->activeOnly()->orderBy('banner_id')->get(),
+            $user->profileBannersActive,
             new ProfileBannerTransformer(),
         );
     }
@@ -419,7 +419,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeScoresFirstCount(User $user)
     {
-        return $this->primitive($user->scoresFirst($this->mode, true)->visibleUsers()->count());
+        return $this->primitive($user->scoresFirst($this->mode, true)->count());
     }
 
     public function includeScoresPinnedCount(User $user)

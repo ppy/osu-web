@@ -29,7 +29,6 @@ use Cache;
 use Carbon\Carbon;
 use DB;
 use Ds\Set;
-use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -916,6 +915,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'orders',
             'pivot', // laravel built-in relation when using belongsToMany
             'profileBanners',
+            'profileBannersActive',
             'profileBeatmapsetsGraveyard',
             'profileBeatmapsetsLoved',
             'profileBeatmapsetsPending',
@@ -1312,6 +1312,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(ProfileBanner::class);
     }
 
+    public function profileBannersActive(): HasMany
+    {
+        return $this->profileBanners()->active()->with('tournamentBanner')->orderBy('banner_id');
+    }
+
     public function storeAddresses()
     {
         return $this->hasMany(Store\Address::class);
@@ -1411,22 +1416,22 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function scoresFirstOsu()
     {
-        return $this->belongsToMany(Score\Best\Osu::class, 'osu_leaders')->default();
+        return $this->hasMany(LegacyScoreFirst\Osu::class)->default();
     }
 
     public function scoresFirstFruits()
     {
-        return $this->belongsToMany(Score\Best\Fruits::class, 'osu_leaders_fruits')->default();
+        return $this->hasMany(LegacyScoreFirst\Fruits::class)->default();
     }
 
     public function scoresFirstMania()
     {
-        return $this->belongsToMany(Score\Best\Mania::class, 'osu_leaders_mania')->default();
+        return $this->hasMany(LegacyScoreFirst\Mania::class)->default();
     }
 
     public function scoresFirstTaiko()
     {
-        return $this->belongsToMany(Score\Best\Taiko::class, 'osu_leaders_taiko')->default();
+        return $this->hasMany(LegacyScoreFirst\Taiko::class)->default();
     }
 
     public function scoresFirst(string $mode, bool $returnQuery = false)
@@ -2183,24 +2188,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         return $history->pluck('username_last');
-    }
-
-    public function profileCustomization()
-    {
-        return $this->memoize(__FUNCTION__, function () {
-            try {
-                return $this
-                    ->userProfileCustomization()
-                    ->firstOrCreate([]);
-            } catch (Exception $ex) {
-                if (is_sql_unique_exception($ex)) {
-                    // retry on duplicate
-                    return $this->profileCustomization();
-                }
-
-                throw $ex;
-            }
-        });
     }
 
     public function profileBeatmapsetsRanked()

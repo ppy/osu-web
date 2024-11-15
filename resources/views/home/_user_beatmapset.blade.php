@@ -15,7 +15,7 @@
     <div class="user-home-beatmapset__meta">
         <div class="user-home-beatmapset__title-container">
             @foreach ($beatmapset->playmodesStr() as $playmode)
-                <div class="user-home-beatmapset__playmode-icon">
+                <div class="user-home-beatmapset__playmode-icon" title="{{ osu_trans("beatmaps.mode.{$playmode}") }}">
                     <span class="fal fa-extra-mode-{{$playmode}}"></span>
                 </div>
             @endforeach

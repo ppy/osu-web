@@ -105,7 +105,9 @@ abstract class BroadcastNotificationBase implements ShouldQueue
                     }
                 }
 
-                $deliverySettings[$userId] = $delivery;
+                if ($delivery !== 0) {
+                    $deliverySettings[$userId] = $delivery;
+                }
             }
         }
 

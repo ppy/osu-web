@@ -50,7 +50,7 @@ export class WikiSearchController {
       return;
     }
 
-    Turbolinks.visit(route('search', {
+    Turbo.visit(route('search', {
       mode: 'wiki_page',
       query,
     }));

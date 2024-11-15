@@ -26,7 +26,7 @@
                     autofocus
                     class="search-header__input js-search--input"
                     data-search-current="{{ $allSearch->getRawQuery() }}"
-                    data-turbolinks-permanent
+                    data-turbo-permanent
                     id="search-input"
                     name="query"
                     placeholder="{{ osu_trans('home.search.placeholder') }}"

@@ -200,7 +200,7 @@ class Room extends Model
         $cursorHelper = static::makeDbCursorHelper($sort);
         $query->cursorSort($cursorHelper, cursor_from_params($rawParams));
 
-        $limit = clamp($params['limit'] ?? $maxLimit, 1, $maxLimit);
+        $limit = \Number::clamp($params['limit'] ?? $maxLimit, 1, $maxLimit);
         $query->limit($limit);
 
         return [
@@ -734,5 +734,10 @@ class Room extends Model
         if ($playlistItem->played_at !== null) {
             throw new InvariantException('Cannot play a playlist item that has already been played.');
         }
+
+        // ensure the playlist item itself is in a valid state.
+        // this is a defensive measure to prevent further breakage if the item's state is inconsistent
+        // due to an external modification from osu-server-spectator.
+        $playlistItem->assertValid();
     }
 }

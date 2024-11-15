@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { TurboBeforeRenderEvent } from '@hotwired/turbo';
 import { removeLeftoverPortalContainers } from 'components/portal';
 import TurbolinksReload from 'core/turbolinks-reload';
 import { runInAction } from 'mobx';
@@ -20,10 +21,10 @@ export default class ReactTurbolinks {
   private timeoutScroll?: number;
 
   constructor(private readonly core: OsuCore, private readonly turbolinksReload: TurbolinksReload) {
-    $(document).on('turbolinks:before-cache', this.handleBeforeCache);
-    $(document).on('turbolinks:before-visit', this.handleBeforeVisit);
-    $(document).on('turbolinks:load', this.handleLoad);
-    $(document).on('turbolinks:before-render', this.handleBeforeRender);
+    $(document).on('turbo:before-cache', this.handleBeforeCache);
+    $(document).on('turbo:before-visit', this.handleBeforeVisit);
+    $(document).on('turbo:load', this.handleLoad);
+    document.addEventListener('turbo:before-render', this.handleBeforeRender);
   }
 
   boot = () => {
@@ -58,10 +59,10 @@ export default class ReactTurbolinks {
     if (document.body === window.newBody) {
       callback();
     } else {
-      $(document).one('turbolinks:load', callback);
+      $(document).one('turbo:load', callback);
 
       return () => {
-        $(document).off('turbolinks:load', callback);
+        $(document).off('turbo:load', callback);
       };
     }
   }
@@ -80,14 +81,18 @@ export default class ReactTurbolinks {
     window.clearTimeout(this.timeoutScroll);
   };
 
-  private readonly handleBeforeRender = (e: JQuery.TriggeredEvent) => {
-    window.newBody = (e.originalEvent as Event & { data: { newBody: HTMLElement } }).data.newBody;
+  private readonly handleBeforeRender = (e: TurboBeforeRenderEvent) => {
+    e.preventDefault();
+
+    window.newBody = e.detail.newBody;
     this.setNewUrl();
     this.pageReady = true;
     removeLeftoverPortalContainers();
     this.core.updateCurrentUser();
-    this.loadScripts(false);
-    this.boot();
+    this.loadScripts().then(() => {
+      this.boot();
+      e.detail.resume();
+    });
   };
 
   private readonly handleBeforeVisit = () => {
@@ -115,19 +120,21 @@ export default class ReactTurbolinks {
     this.scrolled = this.scrolled || window.scrollX !== 0 || window.scrollY !== 0;
   };
 
-  private loadScripts(isAsync = true) {
-    if (window.newBody == null) return;
+  private loadScripts() {
+    const promises: Promise<unknown>[] = [];
 
-    const loadFunc = isAsync ? 'load' : 'loadSync';
-
-    window.newBody.querySelectorAll('.js-react-turbolinks--script').forEach((script) => {
-      if (script instanceof HTMLDivElement) {
-        const src = script.dataset.src;
-        if (src != null) {
-          void this.turbolinksReload[loadFunc](src);
+    if (window.newBody != null) {
+      window.newBody.querySelectorAll('.js-react-turbolinks--script').forEach((script) => {
+        if (script instanceof HTMLDivElement) {
+          const src = script.dataset.src;
+          if (src != null) {
+            promises.push(this.turbolinksReload.load(src));
+          }
         }
-      }
-    });
+      });
+    }
+
+    return Promise.all(promises);
   }
 
   private readonly scrollOnNewVisit = () => {
@@ -145,9 +152,8 @@ export default class ReactTurbolinks {
   };
 
   private setNewUrl() {
-    const visitUrl = Turbolinks.controller.currentVisit?.redirectedToLocation?.absoluteURL
-      ?? Turbolinks.controller.currentVisit?.location.absoluteURL;
-
-    window.newUrl = visitUrl == null ? document.location : new URL(visitUrl);
+    window.newUrl = Turbo.session.navigator.currentVisit?.redirectedToLocation
+      ?? Turbo.session.navigator.currentVisit?.location
+      ?? document.location;
   }
 }

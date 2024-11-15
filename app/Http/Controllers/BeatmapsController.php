@@ -159,7 +159,7 @@ class BeatmapsController extends Controller
             $rulesetId = $beatmap->playmode;
         } else {
             abort_if(
-                $rulesetId !== $beatmap->playmode && !$beatmap->canBeConverted(),
+                !$beatmap->canBeConvertedTo($rulesetId),
                 422,
                 "specified beatmap can't be converted to the specified ruleset"
             );

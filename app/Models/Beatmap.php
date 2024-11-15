@@ -226,9 +226,9 @@ class Beatmap extends Model implements AfterCommit
         return $this->approved > 0;
     }
 
-    public function canBeConverted()
+    public function canBeConvertedTo(int $rulesetId)
     {
-        return $this->playmode === static::MODES['osu'];
+        return $this->playmode === static::MODES['osu'] || $this->playmode === $rulesetId;
     }
 
     public function getAttribute($key)
@@ -374,7 +374,7 @@ class Beatmap extends Model implements AfterCommit
                 } elseif ($percentSliderOrSpinner > 0.6) {
                     return $accuracy > 4 ? 5 : 4;
                 } else {
-                    return clamp($accuracy + 1, 4, 7);
+                    return \Number::clamp($accuracy + 1, 4, 7);
                 }
             } else {
                 return max(1, $roundedValue);

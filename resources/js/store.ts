@@ -23,7 +23,7 @@ export class Store {
     $(document).on('click', '.js-store-checkout', (event: ClickEvent) => void this.beginCheckout(event));
     $(document).on('click', '.js-store-resume-checkout', (event: ClickEvent) => this.resumeCheckout(event));
 
-    $(document).on('turbolinks:load', () => {
+    $(document).on('turbo:load', () => {
       $('.js-store-checkout').prop('disabled', false);
     });
 
@@ -55,7 +55,7 @@ export class Store {
       return;
     }
 
-    Turbolinks.visit(route('store.checkout.show', { checkout: orderId }));
+    Turbo.visit(route('store.checkout.show', { checkout: orderId }));
   }
 
   async beginShopifyCheckout(orderId: string) {
@@ -99,7 +99,7 @@ export class Store {
         // TODO: show error.
       }
     } else {
-      Turbolinks.visit(route('store.invoice.show', { invoice: target.dataset.orderId }));
+      Turbo.visit(route('store.invoice.show', { invoice: target.dataset.orderId }));
     }
   }
 

@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Really restore topic?',
         'deleted' => 'deleted topic',
         'go_to_latest' => 'view latest post',
+        'go_to_unread' => 'view first unread post',
         'has_replied' => 'You have replied to this topic',
         'in_forum' => 'in :forum',
         'latest_post' => ':when by :user',
