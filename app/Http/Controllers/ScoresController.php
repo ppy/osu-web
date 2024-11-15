@@ -44,7 +44,8 @@ class ScoresController extends Controller
 
     public function download($rulesetOrSoloId, $id = null)
     {
-        if(from_app_url() && \Auth::user() === null) {
+        $currentUser = \Auth::user();
+        if(from_app_url() && $currentUser === null) {
             throw new AuthorizationException('User is not logged in.');
         }
 
@@ -74,7 +75,6 @@ class ScoresController extends Controller
             abort(404);
         }
 
-        $currentUser = \Auth::user();
         if (
             $currentUser !== null
             && !$currentUser->isRestricted()
