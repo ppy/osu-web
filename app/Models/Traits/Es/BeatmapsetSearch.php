@@ -81,7 +81,7 @@ trait BeatmapsetSearch
                 $beatmapValues[$field] = $beatmap->$field;
             }
 
-            // TODO: remove user_id when everything writes to it.
+            // TODO: remove adding $beatmap->user_id once everything else also populated beatmap_owners by default.
             // Duplicate user_id in the array should be fine for now since the field isn't scored for querying.
             $beatmapValues['user_id'] = $beatmap->beatmapOwners->pluck('user_id')->add($beatmap->user_id);
             $values[] = $beatmapValues;
