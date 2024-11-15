@@ -5,8 +5,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\User\CountryChange;
 use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\User\ForceReactivation;
+use App\Models\Country;
 use App\Models\User;
 use App\Transformers\CurrentUserTransformer;
 use Auth;
@@ -86,6 +88,16 @@ class SessionsController extends Controller
                 ]);
 
                 return ujs_redirect(route('password-reset'));
+            }
+
+            // try fixing user country if it's currently set to unknown
+            if ($user->country_acronym === Country::UNKNOWN) {
+                try {
+                    CountryChange::handle($user, request_country(), 'automated unknown country fixup on login');
+                } catch (\Throwable $e) {
+                    // report failures but continue anyway
+                    log_error($e);
+                }
             }
 
             DatadogLoginAttempt::log(null);
