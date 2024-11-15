@@ -29,18 +29,24 @@ class BeatmapTagsController extends Controller
 
     public function index(string $id)
     {
-        $topBeatmapTags = BeatmapTag::select(['tag_id', 'tags.name'])
-            ->selectRaw('count(*) as tag_count')
-            ->join('tags', 'beatmap_tags.tag_id', 'tags.id')
-            ->where('beatmap_id', '=', get_int($id))
-            ->whereHas('user', function ($userQuery) {
-                $userQuery->default();
-            })
-            ->groupBy('tag_id')
-            ->orderBy('tag_count', 'desc')
-            ->limit(50)
-            ->get()
-            ->all();
+        $beatmapId = get_int($id);
+
+        $topBeatmapTags = \Cache::remember(
+            "beatmap_tags:{$beatmapId}",
+            $GLOBALS['cfg']['osu']['tags']['beatmap_tags_cache_interval'],
+            fn () => BeatmapTag::select(['tag_id', 'tags.name'])
+                ->selectRaw('count(*) as tag_count')
+                ->join('tags', 'beatmap_tags.tag_id', 'tags.id')
+                ->where('beatmap_id', '=', $beatmapId)
+                ->whereHas('user', function ($userQuery) {
+                    $userQuery->default();
+                })
+                ->groupBy('tag_id')
+                ->orderBy('tag_count', 'desc')
+                ->limit(50)
+                ->get()
+                ->all(),
+        );
 
         return [
             'beatmap_tags' => $topBeatmapTags,

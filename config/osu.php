@@ -314,5 +314,6 @@ return [
     ],
     'tags' => [
         'tags_cache_interval' => 60 * intval(env('TAGS_CACHE_INTERVAL', 60)), // in minutes, converted to seconds
+        'beatmap_tags_cache_interval' => 60 * intval(env('BEATMAP_TAGS_CACHE_INTERVAL', 60)), // in minutes, converted to seconds
     ],
 ];
