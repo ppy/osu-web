@@ -3,6 +3,6 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 ;(function() {
-    $(document).off(".ujsHideLoadingOverlay")
-    Turbo.visit({!! json_encode($url) !!})
+    $(document).off(".ujsHideLoadingOverlay");
+    window.setTimeout(() => Turbo.visit({!! json_encode($url) !!}), 0);
 }).call(this);
