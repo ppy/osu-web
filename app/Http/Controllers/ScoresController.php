@@ -6,15 +6,15 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Ruleset;
-use App\Exceptions\AuthorizationException;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\ScoreReplayStats;
 use App\Models\Solo\Score as SoloScore;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
+use Illuminate\Auth\AuthenticationException;
 
 class ScoresController extends Controller
-{
+{ 
     const REPLAY_DOWNLOAD_COUNT_INTERVAL = 86400; // 1 day
 
     public function __construct()
@@ -46,7 +46,7 @@ class ScoresController extends Controller
     {
         $currentUser = \Auth::user();
         if(from_app_url() && $currentUser === null) {
-            throw new AuthorizationException('User is not logged in.');
+            throw new AuthenticationException('User is not logged in.');
         }
 
         $shouldRedirect = !is_api_request() && !from_app_url();
