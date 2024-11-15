@@ -14,7 +14,7 @@ use App\Transformers\UserCompactTransformer;
 use Illuminate\Auth\AuthenticationException;
 
 class ScoresController extends Controller
-{ 
+{
     const REPLAY_DOWNLOAD_COUNT_INTERVAL = 86400; // 1 day
 
     public function __construct()
@@ -45,7 +45,7 @@ class ScoresController extends Controller
     public function download($rulesetOrSoloId, $id = null)
     {
         $currentUser = \Auth::user();
-        if(!is_api_request() && $currentUser === null) {
+        if (!is_api_request() && $currentUser === null) {
             throw new AuthenticationException('User is not logged in.');
         }
 
