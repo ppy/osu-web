@@ -45,7 +45,7 @@ class ScoresController extends Controller
     public function download($rulesetOrSoloId, $id = null)
     {
         $currentUser = \Auth::user();
-        if(is_api_request() && $currentUser === null) {
+        if(!is_api_request() && $currentUser === null) {
             throw new AuthenticationException('User is not logged in.');
         }
 
