@@ -1,7 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserJson, { UserJsonMinimum } from 'interfaces/user-json';
+import BeatmapOwnerJson from 'interfaces/beatmap-owner-json';
+import UserJson from 'interfaces/user-json';
 import { debounce } from 'lodash';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
@@ -123,7 +124,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
   };
 
   @action
-  private readonly handleRemoveUser = (user: UserJsonMinimum) => {
+  private readonly handleRemoveUser = (user: BeatmapOwnerJson) => {
     this.validUsers.delete(user.id);
     this.props.onValidUsersChanged?.(this.validUsers);
   };
