@@ -419,7 +419,7 @@ class Room extends Model
 
     public function completePlay(ScoreToken $scoreToken, array $params): ScoreLink
     {
-        priv_check_user($scoreToken->user, 'MultiplayerScoreSubmit')->ensureCan();
+        priv_check_user($scoreToken->user, 'MultiplayerScoreSubmit', $this)->ensureCan();
 
         $this->assertValidCompletePlay();
 
@@ -624,7 +624,7 @@ class Room extends Model
 
     public function startPlay(User $user, PlaylistItem $playlistItem, int $buildId)
     {
-        priv_check_user($user, 'MultiplayerScoreSubmit')->ensureCan();
+        priv_check_user($user, 'MultiplayerScoreSubmit', $this)->ensureCan();
 
         $this->assertValidStartPlay($user, $playlistItem);
 
