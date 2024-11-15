@@ -986,7 +986,6 @@
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",
             "App\\Http\\Middleware\\ThrottleRequests:10,1,api-scores-download:",
-            "Illuminate\\Auth\\Middleware\\Authenticate",
             "App\\Http\\Middleware\\RequireScopes:public"
         ],
         "scopes": [
@@ -1004,7 +1003,6 @@
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",
             "App\\Http\\Middleware\\ThrottleRequests:10,1,api-scores-download:",
-            "Illuminate\\Auth\\Middleware\\Authenticate",
             "App\\Http\\Middleware\\RequireScopes:public"
         ],
         "scopes": [
