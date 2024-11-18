@@ -128,14 +128,19 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
 
   @action
   private readonly handleUsernameInputValueChanged = (value: string) => {
+    // field should not be flagged as error on the first lookup.
+    // reset showError if input is cleared.
+    if (value === '') {
+      this.showError = false;
+    }
+
     this.inputUsername = value;
-    this.showError = true;
   };
 
   @action
   private readonly handleValidUsersChanged = (value: Map<number, UserJson>) => {
     this.validUsers = value;
-    this.showError = true;
+    this.showError = this.inputUsername !== '';
   };
 
   private renderButtons() {
