@@ -2026,7 +2026,7 @@ class OsuAuthorize
     /**
      * @throws AuthorizationCheckException
      */
-    private function ensureLoggedIn(?User $user, string $prefix = ''): void
+    public function ensureLoggedIn(?User $user, string $prefix = ''): void
     {
         if ($user === null) {
             throw new AuthorizationCheckException($prefix.'require_login');
