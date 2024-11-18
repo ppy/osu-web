@@ -12,7 +12,6 @@ use App\Jobs\Notifications\BeatmapOwnerChange;
 use App\Models\Beatmap;
 use App\Models\BeatmapOwner;
 use App\Models\BeatmapsetEvent;
-use App\Models\DeletedUser;
 use App\Models\User;
 use Ds\Set;
 
