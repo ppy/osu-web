@@ -20,6 +20,7 @@ import { hasGuestOwners } from 'utils/beatmap-helper';
 import { trans } from 'utils/lang';
 import BeatmapOwner from './beatmap-owner';
 import DiscussionsState from './discussions-state';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   beatmap: WithOwners<BeatmapJson>;
@@ -191,7 +192,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
         modifiers='beatmap-owner-editor'
         showError={this.showError}
       >
-        <div className='beatmap-owner-editor__owners'>
+        <div className={classWithModifiers('beatmap-owner-editor-owners', { editing: this.editing })}>
           {this.editing ? (
             <UsernameInput
               id='beatmap-owner-editor-username-input'
