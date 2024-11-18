@@ -2026,7 +2026,7 @@ class OsuAuthorize
     /**
      * @throws AuthorizationCheckException
      */
-    public function ensureLoggedIn(?User $user, string $prefix = ''): void
+    private function ensureLoggedIn(?User $user, string $prefix = ''): void
     {
         if ($user === null) {
             throw new AuthorizationCheckException($prefix.'require_login');
@@ -2036,7 +2036,7 @@ class OsuAuthorize
     /**
      * @throws AuthorizationCheckException
      */
-    public function ensureCleanRecord(User $user, string $prefix = ''): void
+    private function ensureCleanRecord(User $user, string $prefix = ''): void
     {
         if ($user->isRestricted()) {
             throw new AuthorizationCheckException($prefix.'restricted');
@@ -2050,7 +2050,7 @@ class OsuAuthorize
     /**
      * @throws AuthorizationCheckException
      */
-    public function ensureHasPlayed(User $user): void
+    private function ensureHasPlayed(User $user): void
     {
         if ($user->isBot()) {
             return;
@@ -2078,7 +2078,7 @@ class OsuAuthorize
      *
      * @throws AuthorizationCheckException
      */
-    public function ensureSessionVerified(User $user)
+    private function ensureSessionVerified(User $user)
     {
         if (!$user->isSessionVerified()) {
             throw new AuthorizationCheckException('require_verification');
