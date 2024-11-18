@@ -1840,10 +1840,17 @@ class OsuAuthorize
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function checkMultiplayerScoreSubmit(?User $user): string
+    public function checkMultiplayerScoreSubmit(?User $user, Room $room): string
     {
         $this->ensureLoggedIn($user);
-        $this->ensureCleanRecord($user);
+
+        if ($room->isRealtime()) {
+            $this->ensureCleanRecord($user);
+        } else {
+            if ($user->isRestricted()) {
+                throw new AuthorizationCheckException('restricted');
+            }
+        }
 
         return 'ok';
     }

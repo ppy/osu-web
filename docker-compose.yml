@@ -1,6 +1,6 @@
 x-env: &x-env
   APP_KEY: "${APP_KEY}"
-  BEATMAPS_DIFFICULTY_CACHE_SERVER_URL: http://beatmap-difficulty-lookup-cache
+  BEATMAPS_DIFFICULTY_CACHE_SERVER_URL: http://beatmap-difficulty-lookup-cache:8080
   BROADCAST_DRIVER: redis
   DB_CONNECTION_STRING: Server=db;Database=osu;Uid=osuweb;
   DB_HOST: db

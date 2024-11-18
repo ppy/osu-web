@@ -11,6 +11,7 @@ use App\Models\ScoreReplayStats;
 use App\Models\Solo\Score as SoloScore;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
+use Illuminate\Auth\AuthenticationException;
 
 class ScoresController extends Controller
 {
@@ -22,6 +23,7 @@ class ScoresController extends Controller
 
         $this->middleware('auth', ['except' => [
             'show',
+            'download',
         ]]);
 
         $this->middleware('require-scopes:public');
@@ -42,6 +44,11 @@ class ScoresController extends Controller
 
     public function download($rulesetOrSoloId, $id = null)
     {
+        $currentUser = \Auth::user();
+        if (!is_api_request() && $currentUser === null) {
+            throw new AuthenticationException('User is not logged in.');
+        }
+
         $shouldRedirect = !is_api_request() && !from_app_url();
         if ($id === null) {
             if ($shouldRedirect) {
@@ -68,9 +75,9 @@ class ScoresController extends Controller
             abort(404);
         }
 
-        $currentUser = \Auth::user();
         if (
-            !$currentUser->isRestricted()
+            $currentUser !== null
+            && !$currentUser->isRestricted()
             && $currentUser->getKey() !== $score->user_id
             && ($currentUser->token()?->client->password_client ?? false)
         ) {
