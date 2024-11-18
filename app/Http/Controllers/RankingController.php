@@ -212,7 +212,7 @@ class RankingController extends Controller
 
         $maxResults = $this->maxResults($modeInt, $stats);
         $maxPages = ceil($maxResults / static::PAGE_SIZE);
-        $params = get_params(\Request::all(), null, ['cursor.page:int', 'page']);
+        $params = get_params(\Request::all(), null, ['cursor.page:int', 'page:int']);
         $page = \Number::clamp($params['cursor']['page'] ?? $params['page'] ?? 1, 1, $maxPages);
 
         $stats = $stats->limit(static::PAGE_SIZE)
