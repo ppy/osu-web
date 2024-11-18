@@ -2024,8 +2024,6 @@ class OsuAuthorize
     }
 
     /**
-     * @param User|null $user
-     * @param string $prefix
      * @throws AuthorizationCheckException
      */
     public function ensureLoggedIn(?User $user, string $prefix = ''): void
@@ -2036,9 +2034,6 @@ class OsuAuthorize
     }
 
     /**
-     * @param User|null $user
-     * @param string $prefix
-     * @return string
      * @throws AuthorizationCheckException
      */
     public function ensureCleanRecord(User $user, string $prefix = ''): void
@@ -2053,7 +2048,6 @@ class OsuAuthorize
     }
 
     /**
-     * @param User|null $user
      * @throws AuthorizationCheckException
      */
     public function ensureHasPlayed(User $user): void
@@ -2082,7 +2076,6 @@ class OsuAuthorize
     /**
      * Ensure User is logged in and verified.
      *
-     * @param User|null $user
      * @throws AuthorizationCheckException
      */
     public function ensureSessionVerified(User $user)
