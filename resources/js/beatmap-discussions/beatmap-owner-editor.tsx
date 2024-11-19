@@ -8,7 +8,7 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import UserJson from 'interfaces/user-json';
-import WithOwners from 'interfaces/with-owners';
+import WithBeatmapOwners from 'interfaces/with-beatmap-owners';
 import { route } from 'laroute';
 import { xor } from 'lodash';
 import { action, makeObservable, observable, runInAction } from 'mobx';
@@ -23,7 +23,7 @@ import BeatmapOwner from './beatmap-owner';
 import DiscussionsState from './discussions-state';
 
 interface Props {
-  beatmap: WithOwners<BeatmapJson>;
+  beatmap: WithBeatmapOwners<BeatmapJson>;
   beatmapset: BeatmapsetExtendedJson;
   discussionsState: DiscussionsState; // only for updating the state with the response.
 }

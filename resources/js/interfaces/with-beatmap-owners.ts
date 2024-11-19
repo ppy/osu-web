@@ -3,10 +3,10 @@
 
 import BeatmapJson from './beatmap-json';
 
-type WithOwners<T extends BeatmapJson> = T & Required<Pick<T, 'owners'>>;
+type WithBeatmapOwners<T extends BeatmapJson> = T & Required<Pick<T, 'owners'>>;
 
-export function hasOwners<T extends BeatmapJson>(beatmap: T): beatmap is WithOwners<T> {
+export function hasOwners<T extends BeatmapJson>(beatmap: T): beatmap is WithBeatmapOwners<T> {
   return beatmap.owners != null;
 }
 
-export default WithOwners;
+export default WithBeatmapOwners;

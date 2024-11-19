@@ -7,7 +7,7 @@ import { BeatmapsetStatus } from 'interfaces/beatmapset-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import Ruleset from 'interfaces/ruleset';
 import UserJson from 'interfaces/user-json';
-import WithOwners from 'interfaces/with-owners';
+import WithBeatmapOwners from 'interfaces/with-beatmap-owners';
 import { intersectionWith, maxBy, sum } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { deletedUserJson } from 'models/user';
@@ -427,7 +427,7 @@ export default class DiscussionsState {
     makeObservable(this);
   }
 
-  beatmapOwners(beatmap: WithOwners<BeatmapJson>) {
+  beatmapOwners(beatmap: WithBeatmapOwners<BeatmapJson>) {
     return beatmap.owners.map((user) => this.store.users.get(user.id) ?? deletedUser(user.id));
   }
 
