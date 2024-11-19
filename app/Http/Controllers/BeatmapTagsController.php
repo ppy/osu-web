@@ -9,7 +9,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
 use App\Models\BeatmapTag;
-use App\Models\Solo\Score;
 use App\Models\Tag;
 use Exception;
 
