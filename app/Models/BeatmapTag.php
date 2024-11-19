@@ -8,10 +8,10 @@ declare(strict_types=1);
 namespace App\Models;
 
 /**
- * @property Beatmap $beatmap
+ * @property-read Beatmap $beatmap
  * @property int $beatmap_id
  * @property int $tag_id
- * @property User $user
+ * @property-read User $user
  * @property int $user_id
  */
 class BeatmapTag extends Model

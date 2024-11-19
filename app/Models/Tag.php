@@ -7,12 +7,14 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int $id
  * @property string $name
  * @property string $description
+ * @property-read Collection<BeatmapTag> $beatmapTags
  */
 class Tag extends Model
 {
