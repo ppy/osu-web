@@ -2022,12 +2022,6 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
-    /**
-     * @param User|null $user
-     * @param Beatmap $beatmap
-     * @return string
-     * @throws AuthorizationCheckException
-     */
     public function checkBeatmapTag(?User $user, Beatmap $beatmap): string
     {
         $this->ensureLoggedIn($user);
