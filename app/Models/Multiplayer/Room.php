@@ -634,7 +634,7 @@ class Room extends Model
         }
 
         $gracePeriodMinutes = $GLOBALS['cfg']['osu']['multiplayer']['room_close_grace_period_minutes'];
-        if ($this->starts_at->addMinutes($gracePeriodMinutes) < now()) {
+        if ($this->starts_at->addMinutes($gracePeriodMinutes)->isPast()) {
             throw new InvariantException('The grace period for closing this room has expired.');
         }
 
