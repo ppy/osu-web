@@ -21,9 +21,10 @@ class TagsController extends Controller
 
     public function index()
     {
-        $tags = \Cache::remember(
+        $tags = cache_remember_mutexed(
             'tags',
             $GLOBALS['cfg']['osu']['tags']['tags_cache_interval'],
+            [],
             fn () => Tag::all(),
         );
 

@@ -33,9 +33,10 @@ class BeatmapTagsController extends Controller
     {
         $beatmapId = get_int($id);
 
-        $topBeatmapTags = \Cache::remember(
+        $topBeatmapTags = cache_remember_mutexed(
             "beatmap_tags:{$beatmapId}",
             $GLOBALS['cfg']['osu']['tags']['beatmap_tags_cache_interval'],
+            [],
             fn () => BeatmapTag::select(['tag_id', 'tags.name'])
                 ->selectRaw('count(*) as tag_count')
                 ->join('tags', 'beatmap_tags.tag_id', 'tags.id')
@@ -77,7 +78,7 @@ class BeatmapTagsController extends Controller
         abort_if($tag === null, 422, "specified tag couldn't be found");
 
         $user = \Auth::user();
-    
+
         $userHasScore = Score::where('user_id', $user->getKey())->where('beatmap_id', $beatmapId)->exists();
         abort_if(!$userHasScore, 400, 'you must set a score on a beatmap to add a tag');
 
