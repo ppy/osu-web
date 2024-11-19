@@ -431,11 +431,9 @@ class RoomsControllerTest extends TestCase
 
     public function testDestroy()
     {
-        $token = Token::factory()->create(['scopes' => ['*']]);
         $start = now();
         $end = $start->clone()->addMinutes(60);
         $room = Room::factory()->create([
-            'user_id' => $token->user,
             'starts_at' => $start,
             'ends_at' => $end,
             'type' => Room::PLAYLIST_TYPE,
@@ -443,8 +441,8 @@ class RoomsControllerTest extends TestCase
         $end = $room->ends_at; // assignment truncates fractional second part, so refetch here
         $url = route('api.rooms.destroy', ['room' => $room]);
 
+        $this->actAsScopedUser($room->host);
         $this
-            ->actingWithToken($token)
             ->delete($url)
             ->assertSuccessful();
 
@@ -454,11 +452,9 @@ class RoomsControllerTest extends TestCase
 
     public function testDestroyCannotBeCalledOnRealtimeRoom()
     {
-        $token = Token::factory()->create(['scopes' => ['*']]);
         $start = now();
         $end = $start->clone()->addMinutes(60);
         $room = Room::factory()->create([
-            'user_id' => $token->user,
             'starts_at' => $start,
             'ends_at' => $end,
             'type' => Room::REALTIME_DEFAULT_TYPE,
@@ -466,8 +462,8 @@ class RoomsControllerTest extends TestCase
         $end = $room->ends_at; // assignment truncates fractional second part, so refetch here
         $url = route('api.rooms.destroy', ['room' => $room]);
 
+        $this->actAsScopedUser($room->host);
         $this
-            ->actingWithToken($token)
             ->delete($url)
             ->assertStatus(422);
 
@@ -477,8 +473,8 @@ class RoomsControllerTest extends TestCase
 
     public function testDestroyCannotBeCalledByAnotherUser()
     {
+        $requester = User::factory()->create();
         $owner = User::factory()->create();
-        $token = Token::factory()->create(['scopes' => ['*']]);
         $start = now();
         $end = $start->clone()->addMinutes(60);
         $room = Room::factory()->create([
@@ -490,8 +486,8 @@ class RoomsControllerTest extends TestCase
         $url = route('api.rooms.destroy', ['room' => $room]);
         $end = $room->ends_at; // assignment truncates fractional second part, so refetch here
 
+        $this->actAsScopedUser($requester);
         $this
-            ->actingWithToken($token)
             ->delete($url)
             ->assertStatus(403);
 
@@ -501,11 +497,9 @@ class RoomsControllerTest extends TestCase
 
     public function testDestroyCannotBeCalledAfterGracePeriod()
     {
-        $token = Token::factory()->create(['scopes' => ['*']]);
         $start = now();
         $end = $start->clone()->addMinutes(60);
         $room = Room::factory()->create([
-            'user_id' => $token->user,
             'starts_at' => $start,
             'ends_at' => $end,
             'type' => Room::PLAYLIST_TYPE,
@@ -513,9 +507,9 @@ class RoomsControllerTest extends TestCase
         $url = route('api.rooms.destroy', ['room' => $room]);
         $end = $room->ends_at; // assignment truncates fractional second part, so refetch here
 
+        $this->actAsScopedUser($room->host);
         $this->travelTo($start->addMinutes(6));
         $this
-            ->actingWithToken($token)
             ->delete($url)
             ->assertStatus(422);
 
