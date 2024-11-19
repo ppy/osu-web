@@ -15,7 +15,7 @@ return new class extends Migration
     public function up(): void
     {
         // raw statement used as laravel syntax doesn't support a fixed size BINARY column
-        DB::statement('CREATE TABLE `osu_beatmapset_files` (
+        DB::statement('CREATE TABLE `beatmapset_files` (
             `file_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
             `sha2_hash` BINARY(32) NOT NULL,
             `file_size` INT UNSIGNED NOT NULL,
@@ -23,7 +23,7 @@ return new class extends Migration
             UNIQUE (`sha2_hash`)
         )');
 
-        Schema::create('osu_beatmapset_versions', function (Blueprint $table) {
+        Schema::create('beatmapset_versions', function (Blueprint $table) {
             $table->bigIncrements('version_id');
             $table->mediumInteger('beatmapset_id')->unsigned();
             $table->dateTime('created_at')->default(DB::raw('NOW()'));
@@ -33,7 +33,7 @@ return new class extends Migration
             $table->foreign('previous_version_id')->references('version_id')->on('osu_beatmapset_versions');
         });
 
-        Schema::create('osu_beatmapset_version_files', function (Blueprint $table) {
+        Schema::create('beatmapset_version_files', function (Blueprint $table) {
             $table->bigInteger('file_id')->unsigned();
             $table->bigInteger('version_id')->unsigned();
             $table->string('filename', length: 500);
@@ -49,8 +49,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('osu_beatmapset_version_files');
-        Schema::dropIfExists('osu_beatmapset_versions');
-        Schema::dropIfExists('osu_beatmapset_files');
+        Schema::dropIfExists('beatmapset_version_files');
+        Schema::dropIfExists('beatmapset_versions');
+        Schema::dropIfExists('beatmapset_files');
     }
 };
