@@ -23,7 +23,7 @@ class RoomsController extends Controller
     public function destroy($id)
     {
         $room = Room::findOrFail($id);
-        $room->endGame(\Auth()->user());
+        $room->endGame(\Auth::user());
         return response(null, 204);
     }
 
