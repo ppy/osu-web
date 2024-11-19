@@ -60,7 +60,7 @@ class BeatmapTagsController extends Controller
     {
         BeatmapTag::where('tag_id', get_int(request('tag_id')))
             ->where('beatmap_id', get_int($id))
-            ->where('user_id', \Auth::user()->user_id)
+            ->where('user_id', \Auth::user()->getKey())
             ->delete();
 
         return response()->noContent();
