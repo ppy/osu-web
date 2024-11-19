@@ -433,7 +433,7 @@ class RoomsControllerTest extends TestCase
     {
         $token = Token::factory()->create(['scopes' => ['*']]);
         $start = now();
-        $end = $start->addMinutes(60);
+        $end = $start->clone()->addMinutes(60);
         $room = Room::factory()->create([
             'user_id' => $token->user,
             'starts_at' => $start,
@@ -456,7 +456,7 @@ class RoomsControllerTest extends TestCase
     {
         $token = Token::factory()->create(['scopes' => ['*']]);
         $start = now();
-        $end = $start->addMinutes(60);
+        $end = $start->clone()->addMinutes(60);
         $room = Room::factory()->create([
             'user_id' => $token->user,
             'starts_at' => $start,
@@ -480,7 +480,7 @@ class RoomsControllerTest extends TestCase
         $owner = User::factory()->create();
         $token = Token::factory()->create(['scopes' => ['*']]);
         $start = now();
-        $end = $start->addMinutes(60);
+        $end = $start->clone()->addMinutes(60);
         $room = Room::factory()->create([
             'user_id' => $owner->getKey(),
             'starts_at' => $start,
@@ -503,7 +503,7 @@ class RoomsControllerTest extends TestCase
     {
         $token = Token::factory()->create(['scopes' => ['*']]);
         $start = now();
-        $end = $start->addMinutes(60);
+        $end = $start->clone()->addMinutes(60);
         $room = Room::factory()->create([
             'user_id' => $token->user,
             'starts_at' => $start,
