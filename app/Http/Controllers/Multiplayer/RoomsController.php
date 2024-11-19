@@ -20,6 +20,13 @@ class RoomsController extends Controller
         $this->middleware('require-scopes:public', ['only' => ['index', 'leaderboard', 'show']]);
     }
 
+    public function destroy($id)
+    {
+        $room = Room::findOrFail($id);
+        $room->endGame(\Auth()->user());
+        return response(null, 204);
+    }
+
     /**
      * Get Multiplayer Rooms
      *
@@ -227,18 +234,5 @@ class RoomsController extends Controller
         } catch (InvariantException $e) {
             return error_popup($e->getMessage(), $e->getStatusCode());
         }
-    }
-
-    public function destroy($id)
-    {
-        $room = Room::findOrFail($id);
-
-        try {
-            $room->endGame(auth()->user());
-        } catch (InvariantException $e) {
-            return error_popup($e->getMessage(), $e->getStatusCode());
-        }
-
-        return response([], 204);
     }
 }
