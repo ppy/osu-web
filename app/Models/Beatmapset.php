@@ -31,6 +31,7 @@ use App\Libraries\StorageUrl;
 use App\Libraries\Transactions\AfterCommit;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
+use App\Transformers\BeatmapsetTransformer;
 use Cache;
 use Carbon\Carbon;
 use DB;
@@ -1289,7 +1290,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
                 'beatmapDiscussions.beatmap',
                 'beatmapDiscussions.beatmapDiscussionVotes',
             ])->find($this->getKey()),
-            'Beatmapset',
+            new BeatmapsetTransformer(),
             [
                 'beatmaps:with_trashed.owners',
                 'current_user_attributes',
