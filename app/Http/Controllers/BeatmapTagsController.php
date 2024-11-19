@@ -29,10 +29,8 @@ class BeatmapTagsController extends Controller
         $this->middleware('require-scopes:public', ['only' => 'index']);
     }
 
-    public function index(string $id)
+    public function index($beatmapId)
     {
-        $beatmapId = get_int($id);
-
         $topBeatmapTags = cache_remember_mutexed(
             "beatmap_tags:{$beatmapId}",
             $GLOBALS['cfg']['osu']['tags']['beatmap_tags_cache_interval'],
@@ -56,19 +54,18 @@ class BeatmapTagsController extends Controller
         ];
     }
 
-    public function destroy(string $id)
+    public function destroy($beatmapId)
     {
         BeatmapTag::where('tag_id', get_int(request('tag_id')))
-            ->where('beatmap_id', get_int($id))
+            ->where('beatmap_id', $beatmapId)
             ->where('user_id', \Auth::user()->getKey())
             ->delete();
 
         return response()->noContent();
     }
 
-    public function store(string $id)
+    public function store($beatmapId)
     {
-        $beatmapId = get_int($id);
         $tagId = get_int(request('tag_id'));
 
         $beatmap = Beatmap::find($beatmapId);
