@@ -440,7 +440,7 @@ class RoomsControllerTest extends TestCase
             'ends_at' => $end,
             'type' => Room::PLAYLIST_TYPE,
         ]);
-        $end = $room->ends_at; // creation truncates fractional second part, so refetch here
+        $end = $room->ends_at; // assignment truncates fractional second part, so refetch here
         $url = route('api.rooms.destroy', ['room' => $room]);
 
         $this
@@ -463,7 +463,7 @@ class RoomsControllerTest extends TestCase
             'ends_at' => $end,
             'type' => Room::REALTIME_DEFAULT_TYPE,
         ]);
-        $end = $room->ends_at; // creation truncates fractional second part, so refetch here
+        $end = $room->ends_at; // assignment truncates fractional second part, so refetch here
         $url = route('api.rooms.destroy', ['room' => $room]);
 
         $this
@@ -488,7 +488,7 @@ class RoomsControllerTest extends TestCase
             'type' => Room::PLAYLIST_TYPE,
         ]);
         $url = route('api.rooms.destroy', ['room' => $room]);
-        $end = $room->ends_at; // creation truncates fractional second part, so refetch here
+        $end = $room->ends_at; // assignment truncates fractional second part, so refetch here
 
         $this
             ->actingWithToken($token)
@@ -511,7 +511,7 @@ class RoomsControllerTest extends TestCase
             'type' => Room::PLAYLIST_TYPE,
         ]);
         $url = route('api.rooms.destroy', ['room' => $room]);
-        $end = $room->ends_at; // creation truncates fractional second part, so refetch here
+        $end = $room->ends_at; // assignment truncates fractional second part, so refetch here
 
         $this->travelTo($start->addMinutes(6));
         $this
