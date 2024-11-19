@@ -69,9 +69,7 @@ class BeatmapTagsController extends Controller
         $tagId = get_int(request('tag_id'));
 
         $beatmap = Beatmap::findOrFail($beatmapId);
-
-        $tag = Tag::find($tagId);
-        abort_if($tag === null, 422, "specified tag couldn't be found");
+        $tag = Tag::findOrFail($tagId);
 
         $user = \Auth::user();
 
@@ -84,10 +82,9 @@ class BeatmapTagsController extends Controller
             priv_check('BeatmapTag', $beatmap)->ensureCan();
 
             try {
-                (new BeatmapTag(['tag_id' => $tagId]))
-                    ->user()->associate($user)
-                    ->beatmap()->associate($beatmap)
-                    ->saveOrExplode();
+                $tag
+                    ->beatmapTags()
+                    ->create(['beatmap_id' => $beatmapId, 'user_id' => $user->getKey()]);
             } catch (Exception $ex) {
                 if (!is_sql_unique_exception($ex)) {
                     throw $ex;

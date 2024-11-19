@@ -7,6 +7,8 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 /**
  * @property int $id
  * @property string $name
@@ -15,4 +17,9 @@ namespace App\Models;
 class Tag extends Model
 {
     protected $table = 'tags';
+
+    public function beatmapTags(): HasMany
+    {
+        return $this->hasMany(BeatmapTag::class);
+    }
 }
