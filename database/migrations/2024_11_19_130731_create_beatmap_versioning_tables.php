@@ -29,8 +29,8 @@ return new class extends Migration
             $table->dateTime('created_at')->default(DB::raw('NOW()'));
             $table->bigInteger('previous_version_id')->unsigned()->nullable();
 
-            $table->foreign('beatmapset_id')->references('beatmapset_id')->on('osu_beatmapsets');
-            $table->foreign('previous_version_id')->references('version_id')->on('osu_beatmapset_versions');
+            $table->index('beatmapset_id');
+            $table->index('previous_version_id');
         });
 
         Schema::create('beatmapset_version_files', function (Blueprint $table) {
@@ -39,8 +39,8 @@ return new class extends Migration
             $table->string('filename', length: 500);
 
             $table->primary(['file_id', 'version_id']);
-            $table->foreign('file_id')->references('file_id')->on('osu_beatmapset_files');
-            $table->foreign('version_id')->references('version_id')->on('osu_beatmapset_versions');
+            $table->index('file_id');
+            $table->index('version_id');
         });
     }
 
