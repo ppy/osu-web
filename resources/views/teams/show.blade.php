@@ -67,9 +67,11 @@
                                 @if (present($team->url))
                                     <div class="team-info-entry">
                                         <div class="team-info-entry__title">{{ osu_trans('teams.show.info.website') }}</div>
-                                        <a href="{{ $team->url }}" class="team-info-entry__value">
-                                            {{ $team->url }}
-                                        </a>
+                                        <div class="team-info-entry__value">
+                                            <a href="{{ $team->url }}">
+                                                {{ $team->url }}
+                                            </a>
+                                        </div>
                                     </div>
                                 @endif
                             </div>
