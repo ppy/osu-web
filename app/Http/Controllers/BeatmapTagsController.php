@@ -40,7 +40,7 @@ class BeatmapTagsController extends Controller
             fn () => BeatmapTag::select(['tag_id', 'tags.name'])
                 ->selectRaw('count(*) as tag_count')
                 ->join('tags', 'beatmap_tags.tag_id', 'tags.id')
-                ->where('beatmap_id', '=', $beatmapId)
+                ->where('beatmap_id', $beatmapId)
                 ->whereHas('user', function ($userQuery) {
                     $userQuery->default();
                 })
@@ -58,9 +58,9 @@ class BeatmapTagsController extends Controller
 
     public function destroy(string $id)
     {
-        BeatmapTag::where('tag_id', '=', get_int(request('tag_id')))
-            ->where('beatmap_id', '=', get_int($id))
-            ->where('user_id', '=', \Auth::user()->user_id)
+        BeatmapTag::where('tag_id', get_int(request('tag_id')))
+            ->where('beatmap_id', get_int($id))
+            ->where('user_id', \Auth::user()->user_id)
             ->delete();
 
         return response()->noContent();
