@@ -68,10 +68,9 @@ class BeatmapTagsController extends Controller
     {
         $tagId = get_int(request('tag_id'));
 
-        $beatmap = Beatmap::find($beatmapId);
-        $tag = Tag::find($tagId);
+        $beatmap = Beatmap::findOrFail($beatmapId);
 
-        abort_if($beatmap === null, 422, "specified beatmap couldn't be found");
+        $tag = Tag::find($tagId);
         abort_if($tag === null, 422, "specified tag couldn't be found");
 
         $user = \Auth::user();
