@@ -55,6 +55,25 @@
                     <div class="team-summary">
                         <div>
                             <h2 class="title title--page-extra-small title--page-extra-small-top">
+                                {{ osu_trans('teams.show.sections.info') }}
+                            </h2>
+                            <div class="team-info-entries">
+                                <div class="team-info-entry">
+                                    <div class="team-info-entry__title">{{ osu_trans('teams.show.info.created') }}</div>
+                                    <div class="team-info-entry__value">
+                                        {{ i18n_date($team->created_at, null, 'year_month') }}
+                                    </div>
+                                </div>
+                                @if (present($team->url))
+                                    <div class="team-info-entry">
+                                        <div class="team-info-entry__title">{{ osu_trans('teams.show.info.website') }}</div>
+                                        <a href="{{ $team->url }}" class="team-info-entry__value">
+                                            {{ $team->url }}
+                                        </a>
+                                    </div>
+                                @endif
+                            </div>
+                            <h2 class="title title--page-extra-small title--page-extra-small-top">
                                 {{ osu_trans('teams.show.sections.members') }}
                             </h2>
                             <div class="team-summary__members">
