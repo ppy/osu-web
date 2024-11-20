@@ -25,7 +25,7 @@ return new class extends Migration
         Schema::create('beatmapset_versions', function (Blueprint $table) {
             $table->bigIncrements('version_id');
             $table->mediumInteger('beatmapset_id')->unsigned();
-            $table->dateTime('created_at')->default(DB::raw('NOW()'));
+            $table->timestamp('created_at')->useCurrent();
             $table->bigInteger('previous_version_id')->unsigned()->nullable();
 
             $table->index('beatmapset_id');
