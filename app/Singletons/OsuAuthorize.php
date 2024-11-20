@@ -1837,6 +1837,26 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
+     * @param Room $room
+     * @return string
+     * @throws AuthorizationCheckException
+     */
+    public function checkMultiplayerRoomDestroy(?User $user, Room $room): string
+    {
+        $prefix = 'room.destroy.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($room->user_id !== $user->getKey()) {
+            return $prefix.'not_owner';
+        }
+
+        return 'ok';
+    }
+
+    /**
+     * @param User|null $user
      * @return string
      * @throws AuthorizationCheckException
      */
