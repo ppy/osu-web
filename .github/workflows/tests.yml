@@ -137,11 +137,16 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
+      - name: Get current date
+        id: current-date
+        run: echo "today=$(date '+%Y%m%d')" >> "$GITHUB_OUTPUT"
+
       - name: Cache ip2asn
         uses: actions/cache@v4
         with:
           path: database/ip2asn/
-          key: ip2asn
+          key: ip2asn-${{ steps.current-date.outputs.today }}
+          restore-keys: ip2asn-
 
       - run: ./build.sh
 
