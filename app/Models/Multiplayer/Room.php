@@ -622,6 +622,26 @@ class Room extends Model
         return $this->fresh();
     }
 
+    /**
+     * @throws InvariantException
+     */
+    public function endGame(User $requestingUser)
+    {
+        priv_check_user($requestingUser, 'MultiplayerRoomDestroy', $this)->ensureCan();
+
+        if ($this->isRealtime()) {
+            throw new InvariantException('Realtime rooms cannot be closed.');
+        }
+
+        $gracePeriodMinutes = $GLOBALS['cfg']['osu']['multiplayer']['room_close_grace_period_minutes'];
+        if ($this->starts_at->addMinutes($gracePeriodMinutes)->isPast()) {
+            throw new InvariantException('The grace period for closing this room has expired.');
+        }
+
+        $this->ends_at = now();
+        $this->save();
+    }
+
     public function startPlay(User $user, PlaylistItem $playlistItem, int $buildId)
     {
         priv_check_user($user, 'MultiplayerScoreSubmit', $this)->ensureCan();
