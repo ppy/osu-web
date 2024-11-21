@@ -66,19 +66,9 @@ class BeatmapTagsController extends Controller
         $userHasScore = $user->soloScores()->where('beatmap_id', $beatmapId)->exists();
         abort_if(!$userHasScore, 400, 'you must set a score on a beatmap to add a tag');
 
-        $hasExistingBeatmapTag = $user->beatmapTags()->where('beatmap_id', $beatmapId)->exists();
-
-        if (!$hasExistingBeatmapTag) {
-            try {
-                $tag
-                    ->beatmapTags()
-                    ->create(['beatmap_id' => $beatmapId, 'user_id' => $user->getKey()]);
-            } catch (Exception $ex) {
-                if (!is_sql_unique_exception($ex)) {
-                    throw $ex;
-                }
-            }
-        }
+        $tag
+            ->beatmapTags()
+            ->firstOrCreate(['beatmap_id' => $beatmapId, 'user_id' => $user->getKey()]);
 
         return response()->noContent();
     }
