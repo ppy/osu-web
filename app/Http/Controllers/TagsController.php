@@ -23,7 +23,7 @@ class TagsController extends Controller
     {
         $tags = cache_remember_mutexed(
             'tags',
-            $GLOBALS['cfg']['osu']['tags']['tags_cache_interval'],
+            $GLOBALS['cfg']['osu']['tags']['tags_cache_duration'],
             [],
             fn () => Tag::all(),
         );

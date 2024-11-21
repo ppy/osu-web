@@ -32,7 +32,7 @@ class BeatmapTagsController extends Controller
     {
         $topBeatmapTags = cache_remember_mutexed(
             "beatmap_tags:{$beatmapId}",
-            $GLOBALS['cfg']['osu']['tags']['beatmap_tags_cache_interval'],
+            $GLOBALS['cfg']['osu']['tags']['beatmap_tags_cache_duration'],
             [],
             fn () => Tag::topTags($beatmapId),
         );

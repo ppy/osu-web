@@ -199,6 +199,10 @@ return [
     'store' => [
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE') ?? '')),
     ],
+    'tags' => [
+        'tags_cache_duration' => 60 * (get_int(env('TAGS_CACHE_DURATION')) ?? 60), // in minutes, converted to seconds
+        'beatmap_tags_cache_duration' => 60 * (get_int(env('BEATMAP_TAGS_CACHE_DURATION')) ?? 60), // in minutes, converted to seconds
+    ],
     'twitch_client_id' => presence(env('TWITCH_CLIENT_ID')),
     'twitch_client_secret' => presence(env('TWITCH_CLIENT_SECRET')),
     'tournament_banner' => [
@@ -311,9 +315,5 @@ return [
     'rankings' => [
         'country_performance_user_count' => intval(env('COUNTRY_PERFORMANCE_USER_COUNT', 1000)),
         'country_performance_weighting_factor' => floatval(env('COUNTRY_PERFORMANCE_WEIGHTING_FACTOR', 0.99)),
-    ],
-    'tags' => [
-        'tags_cache_interval' => 60 * intval(env('TAGS_CACHE_INTERVAL', 60)), // in minutes, converted to seconds
-        'beatmap_tags_cache_interval' => 60 * intval(env('BEATMAP_TAGS_CACHE_INTERVAL', 60)), // in minutes, converted to seconds
     ],
 ];
