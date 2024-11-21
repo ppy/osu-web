@@ -14,10 +14,9 @@ use Tests\TestCase;
 
 class TagsControllerTest extends TestCase
 {
-    private Tag $tag;
-
     public function testIndex(): void
     {
+        $tag = Tag::factory()->create();
         $this->actAsScopedUser(User::factory()->create(), ['public']);
 
         $this
@@ -25,14 +24,7 @@ class TagsControllerTest extends TestCase
             ->assertSuccessful()
             ->assertJson(fn (AssertableJson $json) =>
                 $json
-                    ->where('tags.0.id', $this->tag->getKey())
+                    ->where('tags.0.id', $tag->getKey())
                     ->etc());
-    }
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->tag = Tag::factory()->create();
     }
 }
