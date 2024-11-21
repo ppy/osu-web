@@ -13,6 +13,11 @@ class CountryFactory extends Factory
 {
     protected $model = Country::class;
 
+    public function configure(): static
+    {
+        return $this->afterCreating(fn () => app('countries')->resetMemoized());
+    }
+
     public function definition(): array
     {
         return [
