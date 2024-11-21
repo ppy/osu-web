@@ -117,6 +117,11 @@ class Beatmap extends Model implements AfterCommit
         return $this->hasMany(BeatmapDiscussion::class);
     }
 
+    public function beatmapTags()
+    {
+        return $this->hasMany(BeatmapTag::class);
+    }
+
     public function difficulty()
     {
         return $this->hasMany(BeatmapDifficulty::class);
