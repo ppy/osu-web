@@ -20,6 +20,13 @@ class RoomsController extends Controller
         $this->middleware('require-scopes:public', ['only' => ['index', 'leaderboard', 'show']]);
     }
 
+    public function destroy($id)
+    {
+        Room::findOrFail($id)->endGame(\Auth::user());
+
+        return response(null, 204);
+    }
+
     /**
      * Get Multiplayer Rooms
      *

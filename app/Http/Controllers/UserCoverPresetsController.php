@@ -82,6 +82,6 @@ class UserCoverPresetsController extends Controller
             $item->update(['active' => $params['active']]);
         }
 
-        return ujs_redirect(route('user-cover-presets.index').'#cover-'.$item->getKey());
+        return response(null, 204);
     }
 }

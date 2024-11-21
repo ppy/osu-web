@@ -976,6 +976,7 @@ class OsuAuthorize
     {
         $prefix = 'chat.';
 
+        $this->ensureLoggedIn($user);
         $this->ensureSessionVerified($user);
         $this->ensureCleanRecord($user, $prefix);
         // This check becomes useless when min_plays_allow_verified_bypass is enabled.
@@ -1836,13 +1837,40 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
+     * @param Room $room
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function checkMultiplayerScoreSubmit(?User $user): string
+    public function checkMultiplayerRoomDestroy(?User $user, Room $room): string
     {
+        $prefix = 'room.destroy.';
+
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+
+        if ($room->user_id !== $user->getKey()) {
+            return $prefix.'not_owner';
+        }
+
+        return 'ok';
+    }
+
+    /**
+     * @param User|null $user
+     * @return string
+     * @throws AuthorizationCheckException
+     */
+    public function checkMultiplayerScoreSubmit(?User $user, Room $room): string
+    {
+        $this->ensureLoggedIn($user);
+
+        if ($room->isRealtime()) {
+            $this->ensureCleanRecord($user);
+        } else {
+            if ($user->isRestricted()) {
+                throw new AuthorizationCheckException('restricted');
+            }
+        }
 
         return 'ok';
     }
@@ -2023,8 +2051,6 @@ class OsuAuthorize
     }
 
     /**
-     * @param User|null $user
-     * @param string $prefix
      * @throws AuthorizationCheckException
      */
     public function ensureLoggedIn(?User $user, string $prefix = ''): void
@@ -2035,17 +2061,10 @@ class OsuAuthorize
     }
 
     /**
-     * @param User|null $user
-     * @param string $prefix
-     * @return string
      * @throws AuthorizationCheckException
      */
-    public function ensureCleanRecord(?User $user, string $prefix = ''): string
+    private function ensureCleanRecord(User $user, string $prefix = ''): void
     {
-        if ($user === null) {
-            return 'unauthorized';
-        }
-
         if ($user->isRestricted()) {
             throw new AuthorizationCheckException($prefix.'restricted');
         }
@@ -2053,17 +2072,14 @@ class OsuAuthorize
         if ($user->isSilenced()) {
             throw new AuthorizationCheckException($prefix.'silenced');
         }
-
-        return 'ok';
     }
 
     /**
-     * @param User|null $user
      * @throws AuthorizationCheckException
      */
-    public function ensureHasPlayed(?User $user): void
+    private function ensureHasPlayed(User $user): void
     {
-        if ($user === null || $user->isBot()) {
+        if ($user->isBot()) {
             return;
         }
 
@@ -2087,13 +2103,10 @@ class OsuAuthorize
     /**
      * Ensure User is logged in and verified.
      *
-     * @param User|null $user
      * @throws AuthorizationCheckException
      */
-    public function ensureSessionVerified(?User $user)
+    private function ensureSessionVerified(User $user)
     {
-        $this->ensureLoggedIn($user);
-
         if (!$user->isSessionVerified()) {
             throw new AuthorizationCheckException('require_verification');
         }
