@@ -76,8 +76,8 @@ class BeatmapTagsControllerTest extends TestCase
         $this->tag = Tag::factory()->create();
         $this->beatmap = Beatmap::factory()->create();
         $this->beatmapTag = BeatmapTag::factory()->create([
-            'tag_id' => $this->tag->getKey(),
-            'beatmap_id' => $this->beatmap->getKey(),
+            'tag_id' => $this->tag,
+            'beatmap_id' => $this->beatmap,
         ]);
     }
 }
