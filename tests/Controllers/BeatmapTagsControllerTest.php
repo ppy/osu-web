@@ -30,9 +30,9 @@ class BeatmapTagsControllerTest extends TestCase
             ->assertSuccessful()
             ->assertJson(fn (AssertableJson $json) =>
                 $json
-                    ->where('beatmap_tags.0.tag_id', $this->tag->getKey())
+                    ->where('beatmap_tags.0.id', $this->tag->getKey())
                     ->where('beatmap_tags.0.name', $this->tag->name)
-                    ->where('beatmap_tags.0.tag_count', 1)
+                    ->where('beatmap_tags.0.count', 1)
                     ->etc());
     }
 
