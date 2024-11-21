@@ -38,8 +38,9 @@ class BeatmapTagsControllerTest extends TestCase
 
     public function testStore(): void
     {
-        $user = User::factory()->create();
-        Score::factory()->create(['beatmap_id' => $this->beatmap->getKey(), 'user_id' => $user->getKey()]);
+        $user = User::factory()
+            ->has(Score::factory()->state(['beatmap_id' => $this->beatmap]), 'soloScores')
+            ->create();
 
         $this->expectCountChange(fn () => BeatmapTag::count(), 1);
 
