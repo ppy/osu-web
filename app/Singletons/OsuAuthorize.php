@@ -2022,7 +2022,7 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
-    public function checkBeatmapTag(?User $user, Beatmap $beatmap): string
+    public function checkBeatmapTagStore(?User $user, Beatmap $beatmap): string
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
