@@ -56,7 +56,7 @@ class BeatmapTagsControllerTest extends TestCase
         $this->actAsScopedUser(User::factory()->create(), ['*']);
         $this
             ->post(route('api.beatmaps.tags.store', ['beatmap' => $this->beatmap->getKey()]), ['tag_id' => $this->tag->getKey()])
-            ->assertBadRequest();
+            ->assertForbidden();
     }
 
     public function testDestroy(): void

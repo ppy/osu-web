@@ -2024,8 +2024,14 @@ class OsuAuthorize
 
     public function checkBeatmapTagStore(?User $user, Beatmap $beatmap): string
     {
+        $prefix = "beatmap_tag.store.";
+
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+
+        if (!$user->soloScores()->where('beatmap_id', $beatmap->getKey())->exists()) {
+            return $prefix.'no_score';
+        }
 
         return 'ok';
     }

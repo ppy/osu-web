@@ -60,6 +60,10 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'no_score' => 'You must set a score on a beatmap to add a tag.',
+    ],
+
     'chat' => [
         'blocked' => 'Cannot message a user that is blocking you or that you have blocked.',
         'friends_only' => 'User is blocking messages from people not on their friends list.',
