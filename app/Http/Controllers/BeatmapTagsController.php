@@ -56,7 +56,9 @@ class BeatmapTagsController extends Controller
     {
         $tagId = get_int(request('tag_id'));
 
-        $beatmap = Beatmap::findOrFail($beatmapId);
+        $beatmap = Beatmap::findOrFail($beatmapId);        
+        priv_check('BeatmapTagStore', $beatmap)->ensureCan();
+
         $tag = Tag::findOrFail($tagId);
 
         $user = \Auth::user();
@@ -67,8 +69,6 @@ class BeatmapTagsController extends Controller
         $hasExistingBeatmapTag = $user->beatmapTags()->where('beatmap_id', $beatmapId)->exists();
 
         if (!$hasExistingBeatmapTag) {
-            priv_check('BeatmapTagStore', $beatmap)->ensureCan();
-
             try {
                 $tag
                     ->beatmapTags()
