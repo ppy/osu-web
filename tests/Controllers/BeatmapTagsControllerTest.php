@@ -43,7 +43,7 @@ class BeatmapTagsControllerTest extends TestCase
 
         $this->expectCountChange(fn () => BeatmapTag::count(), 1);
 
-        $this->actAsScopedUser($user, ['*']);
+        $this->actAsScopedUser($user);
         $this
             ->post(route('api.beatmaps.tags.store', ['beatmap' => $this->beatmap->getKey()]), ['tag_id' => $this->tag->getKey()])
             ->assertSuccessful();
@@ -53,7 +53,7 @@ class BeatmapTagsControllerTest extends TestCase
     {
         $this->expectCountChange(fn () => BeatmapTag::count(), 0);
 
-        $this->actAsScopedUser(User::factory()->create(), ['*']);
+        $this->actAsScopedUser(User::factory()->create());
         $this
             ->post(route('api.beatmaps.tags.store', ['beatmap' => $this->beatmap->getKey()]), ['tag_id' => $this->tag->getKey()])
             ->assertForbidden();
@@ -63,7 +63,7 @@ class BeatmapTagsControllerTest extends TestCase
     {
         $this->expectCountChange(fn () => BeatmapTag::count(), -1);
 
-        $this->actAsScopedUser($this->beatmapTag->user, ['*']);
+        $this->actAsScopedUser($this->beatmapTag->user);
         $this
             ->delete(route('api.beatmaps.tags.destroy', ['beatmap' => $this->beatmap->getKey(), 'tag' => $this->tag->getKey()]))
             ->assertSuccessful();
