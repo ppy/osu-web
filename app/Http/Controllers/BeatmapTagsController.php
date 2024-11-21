@@ -42,9 +42,9 @@ class BeatmapTagsController extends Controller
         ];
     }
 
-    public function destroy($beatmapId)
+    public function destroy($beatmapId, $tagId)
     {
-        BeatmapTag::where('tag_id', get_int(request('tag_id')))
+        BeatmapTag::where('tag_id', $tagId)
             ->where('beatmap_id', $beatmapId)
             ->where('user_id', \Auth::user()->getKey())
             ->delete();

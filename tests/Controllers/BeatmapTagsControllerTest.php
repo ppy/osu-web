@@ -65,7 +65,7 @@ class BeatmapTagsControllerTest extends TestCase
 
         $this->actAsScopedUser($this->beatmapTag->user, ['*']);
         $this
-            ->delete(route('api.beatmaps.tags.destroy', ['beatmap' => $this->beatmap->getKey()]), ['tag_id' => $this->tag->getKey()])
+            ->delete(route('api.beatmaps.tags.destroy', ['beatmap' => $this->beatmap->getKey(), 'tag' => $this->tag->getKey()]))
             ->assertSuccessful();
     }
 
