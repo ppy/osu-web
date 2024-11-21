@@ -18,8 +18,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Tag extends Model
 {
-    protected $table = 'tags';
-
     public function beatmapTags(): HasMany
     {
         return $this->hasMany(BeatmapTag::class);

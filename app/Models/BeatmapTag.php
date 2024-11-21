@@ -16,8 +16,6 @@ namespace App\Models;
  */
 class BeatmapTag extends Model
 {
-    protected $table = 'beatmap_tags';
-
     protected $primaryKey = ':composite';
     protected $primaryKeys = ['beatmap_id', 'tag_id', 'user_id'];
 
