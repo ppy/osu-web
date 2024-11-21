@@ -2024,7 +2024,7 @@ class OsuAuthorize
 
     public function checkBeatmapTagStore(?User $user, Beatmap $beatmap): string
     {
-        $prefix = "beatmap_tag.store.";
+        $prefix = 'beatmap_tag.store.';
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);

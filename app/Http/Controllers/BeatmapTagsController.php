@@ -10,7 +10,6 @@ namespace App\Http\Controllers;
 use App\Models\Beatmap;
 use App\Models\BeatmapTag;
 use App\Models\Tag;
-use Exception;
 
 class BeatmapTagsController extends Controller
 {
@@ -56,7 +55,7 @@ class BeatmapTagsController extends Controller
     {
         $tagId = get_int(request('tag_id'));
 
-        $beatmap = Beatmap::findOrFail($beatmapId);        
+        $beatmap = Beatmap::findOrFail($beatmapId);
         priv_check('BeatmapTagStore', $beatmap)->ensureCan();
 
         $tag = Tag::findOrFail($tagId);
