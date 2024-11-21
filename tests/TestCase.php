@@ -205,10 +205,8 @@ class TestCase extends BaseTestCase
 
     protected function actingWithToken($token): static
     {
-        $encodedToken = EncodeToken::encodeAccessToken($token);
-
         return $this->actAsUserWithToken($token)
-            ->withHeaders(['Authorization' => "Bearer {$encodedToken}"]);
+            ->withToken(EncodeToken::encodeAccessToken($token));
     }
 
     protected function assertEqualsUpToOneSecond(CarbonInterface $expected, CarbonInterface $actual): void
