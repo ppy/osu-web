@@ -34,10 +34,6 @@
 
   &:focus-within {
     --input-border-colour: var(--input-border-focus-colour);
-
-    .@{top}--error& {
-      --input-border-colour: var(--input-border-error-colour);
-    }
   }
 
   &:hover {
@@ -58,6 +54,7 @@
 
   &--error {
     --input-border-colour: var(--input-border-error-colour);
+    --input-border-focus-colour: var(--input-border-error-colour);
   }
 
   &--fill {
