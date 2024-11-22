@@ -848,6 +848,12 @@ function is_api_request(): bool
     return str_starts_with(rawurldecode(Request::getPathInfo()), '/api/');
 }
 
+function is_http(string $url): bool
+{
+    return str_starts_with($url, 'http://')
+        || str_starts_with($url, 'https://');
+}
+
 function is_json_request(): bool
 {
     return is_api_request() || Request::expectsJson();
