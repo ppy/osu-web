@@ -152,24 +152,22 @@ class TestCase extends BaseTestCase
     /**
      * Act as a User with OAuth scope permissions.
      */
-    protected function actAsScopedUser(?User $user, ?array $scopes = ['*'], ?Client $client = null): void
+    protected function actAsScopedUser(?User $user, ?array $scopes = ['*'], ?Client $client = null): static
     {
-        $this->actingWithToken($this->createToken(
+        return $this->actingWithToken($this->createToken(
             $user,
             $scopes,
             $client ?? Client::factory()->create(),
         ));
     }
 
-    protected function actAsUser(?User $user, bool $verified = false, $driver = null)
+    protected function actAsUser(?User $user, bool $verified = false, $driver = null): static
     {
-        if ($user === null) {
-            return;
+        if ($user !== null) {
+            $this->be($user, $driver)->withSession(['verified' => $verified]);
         }
 
-        $this->be($user, $driver);
-
-        $this->withSession(['verified' => $verified]);
+        return $this;
     }
 
     /**
@@ -179,7 +177,7 @@ class TestCase extends BaseTestCase
      * @param string $driver Auth driver to use.
      * @return void
      */
-    protected function actAsUserWithToken(Token $token, $driver = null)
+    protected function actAsUserWithToken(Token $token, $driver = null): static
     {
         $guard = app('auth')->guard($driver);
         $user = $token->getResourceOwner();
@@ -197,24 +195,19 @@ class TestCase extends BaseTestCase
         request()->attributes->set(AuthApi::REQUEST_OAUTH_TOKEN_KEY, $token);
 
         app('auth')->shouldUse($driver);
-    }
-
-    protected function actingAsVerified($user)
-    {
-        $this->actAsUser($user, true);
 
         return $this;
     }
 
-    protected function actingWithToken($token)
+    protected function actingAsVerified($user): static
     {
-        $this->actAsUserWithToken($token);
+        return $this->actAsUser($user, true);
+    }
 
-        $encodedToken = EncodeToken::encodeAccessToken($token);
-
-        return $this->withHeaders([
-            'Authorization' => "Bearer {$encodedToken}",
-        ]);
+    protected function actingWithToken($token): static
+    {
+        return $this->actAsUserWithToken($token)
+            ->withToken(EncodeToken::encodeAccessToken($token));
     }
 
     protected function assertEqualsUpToOneSecond(CarbonInterface $expected, CarbonInterface $actual): void
