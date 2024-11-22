@@ -2318,10 +2318,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             $this->isValidEmail();
         }
 
-        if (!present($this->country_acronym)) {
+        $countryAcronym = $this->country_acronym;
+        if ($countryAcronym === null) {
             $this->country_acronym = Country::UNKNOWN;
-        } elseif ($this->isDirty('country_acronym')) {
-            $country = app('countries')->byCode($this->country_acronym);
+        } elseif ($this->isDirty('country_acronym') && $countryAcronym !== Country::UNKNOWN) {
+            $country = app('countries')->byCode($countryAcronym);
             if ($country === null) {
                 $this->validationErrors()->add('country', '.invalid_country');
             } else {
