@@ -110,7 +110,6 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     ports:
       - "${MYSQL_EXTERNAL_PORT:-127.0.0.1:3306}:3306"
-    command: --default-authentication-plugin=mysql_native_password
     healthcheck:
       # important to use 127.0.0.1 instead of localhost as mysql starts twice.
       # the first time it listens on sockets but isn't actually ready
