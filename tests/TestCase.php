@@ -182,8 +182,9 @@ class TestCase extends BaseTestCase
         $guard = app('auth')->guard($driver);
         $user = $token->getResourceOwner();
 
-        if ($user !== null) {
-            // guard doesn't accept null user.
+        if ($user === null) {
+            $guard->logout();
+        } else {
             $guard->setUser($user);
             $user->withAccessToken($token);
         }
