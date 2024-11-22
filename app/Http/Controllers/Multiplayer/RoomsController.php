@@ -118,7 +118,7 @@ class RoomsController extends Controller
 
         $room->join(auth()->user());
 
-        return response([], 204);
+        return $this->createJoinedRoomResponse($room);
     }
 
     public function leaderboard($roomId)
@@ -168,21 +168,7 @@ class RoomsController extends Controller
         }
 
         if (is_api_request()) {
-            return json_item(
-                $room
-                    ->load('host.country')
-                    ->load('playlist.beatmap.beatmapset')
-                    ->load('playlist.beatmap.baseMaxCombo'),
-                'Multiplayer\Room',
-                [
-                    'current_user_score.playlist_item_attempts',
-                    'host.country',
-                    'playlist.beatmap.beatmapset',
-                    'playlist.beatmap.checksum',
-                    'playlist.beatmap.max_combo',
-                    'recent_participants',
-                ]
-            );
+            return $this->createJoinedRoomResponse($room);
         }
 
         if ($room->category === 'daily_challenge') {
@@ -217,22 +203,28 @@ class RoomsController extends Controller
         try {
             $room = (new Room())->startGame(auth()->user(), request()->all());
 
-            return json_item(
-                $room
-                    ->load('host.country')
-                    ->load('playlist.beatmap.beatmapset')
-                    ->load('playlist.beatmap.baseMaxCombo'),
-                'Multiplayer\Room',
-                [
-                    'host.country',
-                    'playlist.beatmap.beatmapset',
-                    'playlist.beatmap.checksum',
-                    'playlist.beatmap.max_combo',
-                    'recent_participants',
-                ]
-            );
+            return $this->createJoinedRoomResponse($room);
         } catch (InvariantException $e) {
             return error_popup($e->getMessage(), $e->getStatusCode());
         }
+    }
+
+    private function createJoinedRoomResponse($room)
+    {
+        return json_item(
+            $room
+                ->load('host.country')
+                ->load('playlist.beatmap.beatmapset')
+                ->load('playlist.beatmap.baseMaxCombo'),
+            'Multiplayer\Room',
+            [
+                'current_user_score.playlist_item_attempts',
+                'host.country',
+                'playlist.beatmap.beatmapset',
+                'playlist.beatmap.checksum',
+                'playlist.beatmap.max_combo',
+                'recent_participants',
+            ]
+        );
     }
 }
