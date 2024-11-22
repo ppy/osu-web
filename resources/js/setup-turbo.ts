@@ -3,6 +3,7 @@
 
 import '@hotwired/turbo';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
+import { reloadPage } from 'utils/turbolinks';
 
 Turbo.config.drive.progressBarDelay = 0;
 
@@ -17,6 +18,11 @@ document.addEventListener('turbo:submit-start', (e) => {
   }
 });
 document.addEventListener('turbo:submit-end', hideLoadingOverlay);
+document.addEventListener('turbo:submit-end', (e) => {
+  if (e.detail.success && e.detail.formSubmission.formElement.dataset.reloadOnSuccess === '1') {
+    reloadPage();
+  }
+});
 
 // disable turbo navigation for old webs
 document.addEventListener('turbo:click', (event) => {

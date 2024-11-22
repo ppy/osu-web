@@ -22,7 +22,6 @@
         <form
             action="{{ route('password-reset') }}"
             class="password-reset js-form-error"
-            data-reload-on-success="1"
             data-remote
             data-skip-ajax-error-popup="1"
             method="POST"
