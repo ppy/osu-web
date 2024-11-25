@@ -1107,7 +1107,7 @@ function proxy_media($url)
         return $url;
     }
 
-    $isProxied = starts_with($url, $GLOBALS['cfg']['osu']['camo']['prefix']);
+    $isProxied = str_starts_with($url, $GLOBALS['cfg']['osu']['camo']['prefix']);
 
     if ($isProxied) {
         return $url;
