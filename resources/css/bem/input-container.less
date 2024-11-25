@@ -2,6 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .input-container {
+  @top: input-container;
+
   --label-font-size: @font-size--normal;
   --label-line-height: 1.25;
   --label-height: calc(
@@ -16,6 +18,7 @@
   --input-border-hover-colour: hsl(var(--hsl-l3));
   --input-border-focus-colour: hsl(var(--hsl-l1));
   --input-border-error-colour: hsl(var(--hsl-red-2));
+  --input-border-error-focus-colour: hsl(var(--hsl-red-3));
   --input-padding: var(--label-height) var(--input-padding-right)
     var(--input-padding-base) var(--input-padding-base);
   --input-padding-base: 10px;
@@ -57,6 +60,8 @@
 
   &--error {
     --input-border-colour: var(--input-border-error-colour);
+    --input-border-focus-colour: var(--input-border-error-focus-colour);
+    --input-border-hover-colour: var(--input-border-error-focus-colour);
   }
 
   &--fill {

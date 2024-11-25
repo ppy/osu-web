@@ -1,6 +1,6 @@
 x-env: &x-env
   APP_KEY: "${APP_KEY}"
-  BEATMAPS_DIFFICULTY_CACHE_SERVER_URL: http://beatmap-difficulty-lookup-cache
+  BEATMAPS_DIFFICULTY_CACHE_SERVER_URL: http://beatmap-difficulty-lookup-cache:8080
   BROADCAST_DRIVER: redis
   DB_CONNECTION_STRING: Server=db;Database=osu;Uid=osuweb;
   DB_HOST: db
@@ -110,7 +110,6 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     ports:
       - "${MYSQL_EXTERNAL_PORT:-127.0.0.1:3306}:3306"
-    command: --default-authentication-plugin=mysql_native_password
     healthcheck:
       # important to use 127.0.0.1 instead of localhost as mysql starts twice.
       # the first time it listens on sockets but isn't actually ready
