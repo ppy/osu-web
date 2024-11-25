@@ -942,7 +942,7 @@ function page_title()
 function ujs_redirect($url, $status = 200)
 {
     $request = Request::instance();
-    if ($request->ajax() && !$request->isMethod('get')) {
+    if ($request->headers->get('x-turbo-request-id') !== null || ($request->ajax() && !$request->isMethod('get'))) {
         return ext_view('layout.ujs-redirect', compact('url'), 'js', $status);
     } else {
         // because non-3xx redirects make no sense.
