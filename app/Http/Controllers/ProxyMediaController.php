@@ -17,7 +17,7 @@ class ProxyMediaController extends Controller
             return response('Missing url parameter', 422);
         }
 
-        // Tell browser not to request url for a while.
-        return redirect(proxy_media($url))->header('Cache-Control', 'max-age=600');
+        // Tell browser to cache redirect url for a while.
+        return redirect(proxy_media($url))->header('Cache-Control', 'max-age=86400');
     }
 }
