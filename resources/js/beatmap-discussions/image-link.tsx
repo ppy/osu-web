@@ -24,7 +24,7 @@ export default class ImageLink extends React.Component<Props> {
   render() {
     if (this.props.src == null) return null;
 
-    const src = route('beatmapsets.discussions.media-url', { url: this.props.src });
+    const src = route('media-url', { url: this.props.src });
     const content = (
       <>
         {!this.loaded && this.renderSpinner()}
