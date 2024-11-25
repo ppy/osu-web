@@ -117,18 +117,6 @@ class BeatmapDiscussionsController extends Controller
         return ext_view('beatmap_discussions.index', compact('json', 'search', 'paginator'));
     }
 
-    public function mediaUrl()
-    {
-        $url = presence(get_string(request('url')));
-
-        if (!isset($url)) {
-            return response('Missing url parameter', 422);
-        }
-
-        // Tell browser not to request url for a while.
-        return redirect(proxy_media($url))->header('Cache-Control', 'max-age=600');
-    }
-
     public function restore($id)
     {
         $discussion = BeatmapDiscussion::whereNotNull('deleted_at')->findOrFail($id);
