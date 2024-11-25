@@ -1103,8 +1103,6 @@ function proxy_media($url)
         return '';
     }
 
-    $url = html_entity_decode_better($url);
-
     if ($GLOBALS['cfg']['osu']['camo']['key'] === null) {
         return $url;
     }
