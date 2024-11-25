@@ -11,7 +11,11 @@ class ProxyMediaController extends Controller
 {
     public function __invoke()
     {
-        $url = presence(get_string(request('url')));
+        if (!from_app_url()) {
+            return response('Forbidden', 403);
+        }
+
+        $url = presence(get_string(\Request::input('url')));
 
         if (!isset($url)) {
             return response('Missing url parameter', 422);
