@@ -942,6 +942,8 @@ function page_title()
 function ujs_redirect($url, $status = 200)
 {
     $request = Request::instance();
+    // This is done mainly to work around fetch ignoring/removing anchor from page redirect.
+    // Reference: https://github.com/hotwired/turbo/issues/211
     if ($request->headers->get('x-turbo-request-id') !== null) {
         if ($status === 200 && $request->getMethod() !== 'GET') {
             // Turbo doesn't like 200 response on non-GET requests.
