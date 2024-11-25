@@ -42,9 +42,9 @@ return [
         'uid' => '1337',
     ],
     'beatmaps' => [
-        'owners_max' => get_int(env('BEATMAPS_OWNERS_MAX')) ?? 10,
         'max' => 50,
         'max_scores' => 100,
+        'owners_max' => get_int(env('BEATMAPS_OWNERS_MAX')) ?? 10,
 
         'difficulty_cache' => [
             'server_url' => presence(env('BEATMAPS_DIFFICULTY_CACHE_SERVER_URL')) ?? 'http://localhost:5001',
