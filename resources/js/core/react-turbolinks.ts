@@ -110,9 +110,10 @@ export default class ReactTurbolinks {
     // Delayed to wait until cacheSnapshot finishes. The delay matches Turbolinks' defer.
     window.setTimeout(() => {
       this.destroy();
-      this.loadScripts();
-      this.boot();
-      this.timeoutScroll = window.setTimeout(this.scrollOnNewVisit, 100);
+      this.loadScripts().then(() => {
+        this.boot();
+        this.timeoutScroll = window.setTimeout(this.scrollOnNewVisit, 100);
+      });
     }, 1);
   };
 
