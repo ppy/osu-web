@@ -29,6 +29,7 @@ class RoomTransformer extends TransformerAbstract
             'id' => $room->id,
             'name' => $room->name,
             'category' => $room->category,
+            'status' => $room->status,
             'type' => $room->type,
             'user_id' => $room->user_id,
             'starts_at' => json_time($room->starts_at),

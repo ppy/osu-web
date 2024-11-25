@@ -707,7 +707,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         // FIXME: this can probably be removed after old site is deactivated
         //        as there's same check in getter function.
-        if (present($value) && !starts_with($value, ['http://', 'https://'])) {
+        if (present($value) && !is_http($value)) {
             $value = "https://{$value}";
         }
 
@@ -2468,14 +2468,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         $value = presence(trim($this->getRawAttribute('user_website')));
 
-        if ($value === null) {
-            return null;
-        }
-
-        if (starts_with($value, ['http://', 'https://'])) {
-            return $value;
-        }
-
-        return "https://{$value}";
+        return $value === null
+            ? null
+            : (is_http($value)
+                ? $value
+                : "https://{$value}"
+            );
     }
 }
