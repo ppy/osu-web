@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { VisitOptions } from '@hotwired/turbo';
+import { v4 as uuidv4 } from 'uuid';
 
 export function currentUrl() {
   return window.newUrl ?? document.location;
@@ -59,7 +60,7 @@ export function updateHistory(url: string, action: 'push' | 'replace') {
   const newLocation = new URL(url, document.baseURI);
 
   const callback = () => {
-    Turbo.session.history[action](newLocation, crypto.randomUUID());
+    Turbo.session.history[action](newLocation, uuidv4());
     Turbo.session.view.lastRenderedLocation = newLocation;
   };
   if (action === 'replace' && window.newUrl == null) {
