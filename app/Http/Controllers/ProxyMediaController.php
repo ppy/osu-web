@@ -9,9 +9,18 @@ namespace App\Http\Controllers;
 
 class ProxyMediaController extends Controller
 {
+    private static function fromNonBrowser(): bool
+    {
+        $headers = \Request::instance()->headers;
+
+        return $headers->get('origin') === null
+            && $headers->get('referer') === null
+            && $headers->get('sec-fetch-site') === null;
+    }
+
     public function __invoke()
     {
-        if (!from_app_url()) {
+        if (!static::fromNonBrowser() && !from_app_url()) {
             return response('Forbidden', 403);
         }
 
