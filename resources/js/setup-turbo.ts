@@ -25,7 +25,7 @@ document.addEventListener('turbo:submit-end', (e) => {
 });
 
 document.addEventListener('turbo:before-fetch-response', (e) => {
-  if (!e.detail.fetchResponse.contentType.match(/^text\/osu-turbo-redirect[ ;]*/)) {
+  if (!e.detail.fetchResponse.contentType?.match(/^text\/osu-turbo-redirect[ ;]*/)) {
     return;
   }
 
