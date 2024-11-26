@@ -942,7 +942,17 @@ function page_title()
 function ujs_redirect($url, $status = 200)
 {
     $request = Request::instance();
-    if ($request->headers->get('x-turbo-request-id') !== null || ($request->ajax() && !$request->isMethod('get'))) {
+    // This is done mainly to work around fetch ignoring/removing anchor from page redirect.
+    // Reference: https://github.com/hotwired/turbo/issues/211
+    if ($request->headers->get('x-turbo-request-id') !== null) {
+        if ($status === 200 && $request->getMethod() !== 'GET') {
+            // Turbo doesn't like 200 response on non-GET requests.
+            // Reference: https://github.com/hotwired/turbo/issues/22
+            $status = 201;
+        }
+
+        return response($url, $status, ['content-type' => 'text/osu-turbo-redirect']);
+    } elseif ($request->ajax() && $request->getMethod() !== 'GET') {
         return ext_view('layout.ujs-redirect', compact('url'), 'js', $status);
     } else {
         // because non-3xx redirects make no sense.
