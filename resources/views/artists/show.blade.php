@@ -107,7 +107,7 @@
                 @if (count($json['albums']) > 0)
                     <div class="artist__links-area artist__links-area--albums">
                         @foreach ($json['albums'] as $album)
-                            <a class="artist-sidebar-album{{$album['is_new'] ? ' artist-sidebar-album--new' : ''}}" href="#album-{{$album['id']}}" data-turbolinks="false">
+                            <a class="artist-sidebar-album{{$album['is_new'] ? ' artist-sidebar-album--new' : ''}}" href="#album-{{$album['id']}}">
                                 <div class="artist-sidebar-album__cover-wrapper">
                                     <div class="artist-sidebar-album__glow" style="background-image: url('{{ $album['cover_url'] }}');"></div>
                                     <img class="artist-sidebar-album__cover" src="{{$album['cover_url']}}">

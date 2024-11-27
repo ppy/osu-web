@@ -6,13 +6,14 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import User from 'models/user';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
+import { v4 as uuidv4 } from 'uuid';
 
 export default class Message {
   @observable channelId = -1;
   @observable content = '';
   @observable errored = false;
   @observable isAction = false;
-  @observable messageId: number | string = crypto.randomUUID();
+  @observable messageId: number | string = uuidv4();
   @observable persisted = false;
   @observable senderId = -1;
   @observable timestamp: string = moment().toISOString();

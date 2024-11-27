@@ -186,6 +186,7 @@ docker compose run --rm php mysql
 Docker images need to be occasionally updated to make sure they're running latest version of the packages.
 
 ```
+docker compose pull
 docker compose build --no-cache
 ```
 

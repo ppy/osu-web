@@ -15,7 +15,7 @@ export class StoreXsolla
 
 
   @fetchScript: ->
-    core.turbolinksReload.load('https://static.xsolla.com/embed/paystation/1.0.7/widget.min.js') ? Promise.resolve()
+    core.turbolinksReload.load('https://static.xsolla.com/embed/paystation/1.0.7/widget.min.js')
 
 
   @fetchToken: (orderNumber) ->

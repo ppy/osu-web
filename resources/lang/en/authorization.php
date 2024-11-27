@@ -176,6 +176,12 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Only room owner can close it.',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Can't pin this type of score",

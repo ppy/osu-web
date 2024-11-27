@@ -16,8 +16,8 @@ export default class AccountEditAvatar {
   private overlayLeaveTimeout?: number;
 
   constructor(private readonly core: OsuCore) {
-    $(document).on('turbolinks:load', this.initialize);
-    $(document).on('turbolinks:before-cache', this.rollback);
+    $(document).on('turbo:load', this.initialize);
+    $(document).on('turbo:before-cache', this.rollback);
 
     $.subscribe('dragenterGlobal', this.overlayStart);
     $.subscribe('dragendGlobal', this.overlayEnd);

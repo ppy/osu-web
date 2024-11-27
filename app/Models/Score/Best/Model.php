@@ -111,7 +111,7 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
     public function macroForListing(): \Closure
     {
         return function ($query, $limit) {
-            $limit = clamp($limit ?? 50, 1, $GLOBALS['cfg']['osu']['beatmaps']['max_scores']);
+            $limit = \Number::clamp($limit ?? 50, 1, $GLOBALS['cfg']['osu']['beatmaps']['max_scores']);
             $newQuery = (clone $query)->with('user')->limit($limit + 100);
 
             $result = [];

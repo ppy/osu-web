@@ -28,11 +28,7 @@ import PostPreview from 'core-legacy/post-preview'
 import Search from 'core-legacy/search'
 import { StoreCheckout } from 'core-legacy/store-checkout'
 import TooltipDefault from 'core-legacy/tooltip-default'
-import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { navigate } from 'utils/turbolinks'
-
-Turbolinks.start()
-Turbolinks.setProgressBarDelay(0)
 
 moment.relativeTimeThreshold('ss', 44)
 moment.relativeTimeThreshold('s', 120)
@@ -43,15 +39,7 @@ moment.relativeTimeThreshold('M', 24)
 jQuery.timeago.inWords = (distanceMillis) ->
   moment.duration(-1 * distanceMillis).humanize(true)
 
-# loading animation overlay
-# fired from turbolinks
-$(document).on 'turbolinks:request-start', showLoadingOverlay
-$(document).on 'turbolinks:request-end', hideLoadingOverlay
-# form submission is not covered by turbolinks
-$(document).on 'submit', 'form', (e) ->
-  showLoadingOverlay() if e.currentTarget.dataset.loadingOverlay != '0'
-
-$(document).on 'turbolinks:load', ->
+$(document).on 'turbo:load', ->
   BeatmapPack.initialize()
   StoreCheckout.initialize()
 

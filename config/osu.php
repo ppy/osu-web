@@ -152,6 +152,7 @@ return [
     ],
     'multiplayer' => [
         'max_attempts_limit' => get_int(env('MULTIPLAYER_MAX_ATTEMPTS_LIMIT')) ?? 128,
+        'room_close_grace_period_minutes' => get_int(env('MULTIPLAYER_ROOM_CLOSE_GRACE_PERIOD_MINUTES')) ?? 5,
     ],
     'notification' => [
         'endpoint' => presence(env('NOTIFICATION_ENDPOINT'), '/home/notifications/feed'),
@@ -205,17 +206,6 @@ return [
     ],
     'twitch_client_id' => presence(env('TWITCH_CLIENT_ID')),
     'twitch_client_secret' => presence(env('TWITCH_CLIENT_SECRET')),
-    'tournament_banner' => [
-        'current' => [
-            'id' => get_int(env('TOURNAMENT_BANNER_CURRENT_ID')),
-            'prefix' => env('TOURNAMENT_BANNER_CURRENT_PREFIX'),
-        ],
-        'previous' => [
-            'id' => get_int(env('TOURNAMENT_BANNER_PREVIOUS_ID')),
-            'prefix' => env('TOURNAMENT_BANNER_PREVIOUS_PREFIX'),
-            'winner_id' => env('TOURNAMENT_BANNER_PREVIOUS_WINNER_ID'),
-        ],
-    ],
     'urls' => [
         'base' => 'https://osu.ppy.sh',
         'bounty-form' => env('OS_BOUNTY_URL'),

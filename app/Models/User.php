@@ -707,7 +707,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         // FIXME: this can probably be removed after old site is deactivated
         //        as there's same check in getter function.
-        if (present($value) && !starts_with($value, ['http://', 'https://'])) {
+        if (present($value) && !is_http($value)) {
             $value = "https://{$value}";
         }
 
@@ -914,6 +914,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'orders',
             'pivot', // laravel built-in relation when using belongsToMany
             'profileBanners',
+            'profileBannersActive',
             'profileBeatmapsetsGraveyard',
             'profileBeatmapsetsLoved',
             'profileBeatmapsetsPending',
@@ -1308,6 +1309,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function profileBanners()
     {
         return $this->hasMany(ProfileBanner::class);
+    }
+
+    public function profileBannersActive(): HasMany
+    {
+        return $this->profileBanners()->active()->with('tournamentBanner')->orderBy('banner_id');
     }
 
     public function storeAddresses()
@@ -2312,16 +2318,12 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             $this->isValidEmail();
         }
 
-        if ($this->isDirty('country_acronym')) {
-            if (present($this->country_acronym)) {
-                if (($country = Country::find($this->country_acronym)) !== null) {
-                    // ensure matching case
-                    $this->country_acronym = $country->getKey();
-                } else {
-                    $this->validationErrors()->add('country', '.invalid_country');
-                }
-            } else {
-                $this->country_acronym = Country::UNKNOWN;
+        $countryAcronym = $this->country_acronym;
+        if ($countryAcronym === null) {
+            $this->country_acronym = Country::UNKNOWN;
+        } elseif ($this->isDirty('country_acronym') && $countryAcronym !== Country::UNKNOWN) {
+            if (app('countries')->byCode($countryAcronym) === null) {
+                $this->validationErrors()->add('country', '.invalid_country');
             }
         }
 
@@ -2466,14 +2468,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         $value = presence(trim($this->getRawAttribute('user_website')));
 
-        if ($value === null) {
-            return null;
-        }
-
-        if (starts_with($value, ['http://', 'https://'])) {
-            return $value;
-        }
-
-        return "https://{$value}";
+        return $value === null
+            ? null
+            : (is_http($value)
+                ? $value
+                : "https://{$value}"
+            );
     }
 }

@@ -3,24 +3,17 @@
 
 import CurrentUserJson from 'interfaces/current-user-json';
 
+import 'setup-turbo';
+
 // import jquery + plugins
-import * as $ from 'jquery';
+import 'setup-jquery';
+// imported separately as it requires window jquery (setup by the import above)
 import 'jquery-ujs';
-import 'bootstrap';
-import 'timeago/jquery.timeago.js';
-import 'qtip2/dist/jquery.qtip.js';
-import 'jquery.scrollto/jquery.scrollTo.js';
-import 'jquery-ui/ui/data.js';
-import 'jquery-ui/ui/widgets/slider.js';
-import 'jquery-ui/ui/widgets/sortable.js';
-import 'jquery-ui-touch-punch';
-import 'blueimp-file-upload/js/jquery.fileupload.js';
 
 import { patchPluralHandler } from 'lang-overrides';
 import Lang from 'lang.js';
 import { configure as mobxConfigure } from 'mobx';
 import * as moment from 'moment';
-import Turbolinks from 'turbolinks';
 import { popup } from 'utils/popup';
 import { reloadPage } from 'utils/turbolinks';
 
@@ -67,12 +60,9 @@ declare global {
     moment: any;
     popup: typeof popup;
     reloadPage: typeof reloadPage;
-    Turbolinks: Turbolinks;
   }
 }
 
-window.$ = $;
-window.jQuery = $;
 window.LangMessages ??= {};
 window.Lang = patchPluralHandler(new Lang({
   fallback: window.fallbackLocale,
@@ -82,7 +72,6 @@ window.Lang = patchPluralHandler(new Lang({
 window.moment = moment;
 window.popup = popup;
 window.reloadPage = reloadPage;
-window.Turbolinks = Turbolinks;
 
 // refer to variables.less
 window._styles = {

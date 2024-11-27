@@ -205,7 +205,7 @@ export function startListening() {
   $(document).on('mouseover', '.js-usercard', onMouseOver);
   $(document).on('mouseenter', '.js-react--user-card-tooltip', onMouseEnter);
   $(document).on('mouseleave', '.js-react--user-card-tooltip', onMouseLeave);
-  $(document).on('turbolinks:before-cache', onBeforeCache);
+  $(document).on('turbo:before-cache', onBeforeCache);
   $.subscribe('user-card:remove.tooltip', onRemoveUserCard);
 }
 

@@ -835,17 +835,23 @@ function forum_user_link(int $id, string $username, string|null $colour, int|nul
         'style' => user_color_style($colour, 'background-color'),
     ]);
 
-    $link = link_to_user($id, $username, null, []);
+    $link = link_to_user($id, blade_safe($icon.e($username)), null, []);
     if ($currentUserId === $id) {
         $link = tag('strong', null, $link);
     }
 
-    return "{$icon} {$link}";
+    return $link;
 }
 
 function is_api_request(): bool
 {
     return str_starts_with(rawurldecode(Request::getPathInfo()), '/api/');
+}
+
+function is_http(string $url): bool
+{
+    return str_starts_with($url, 'http://')
+        || str_starts_with($url, 'https://');
 }
 
 function is_json_request(): bool
@@ -935,13 +941,20 @@ function page_title()
 
 function ujs_redirect($url, $status = 200)
 {
-    if (Request::ajax() && !Request::isMethod('get')) {
-        return ext_view('layout.ujs-redirect', compact('url'), 'js', $status);
-    } else {
-        if (Request::header('Turbolinks-Referrer')) {
-            Request::session()->put('_turbolinks_location', $url);
+    $request = Request::instance();
+    // This is done mainly to work around fetch ignoring/removing anchor from page redirect.
+    // Reference: https://github.com/hotwired/turbo/issues/211
+    if ($request->headers->get('x-turbo-request-id') !== null) {
+        if ($status === 200 && $request->getMethod() !== 'GET') {
+            // Turbo doesn't like 200 response on non-GET requests.
+            // Reference: https://github.com/hotwired/turbo/issues/22
+            $status = 201;
         }
 
+        return response($url, $status, ['content-type' => 'text/osu-turbo-redirect']);
+    } elseif ($request->ajax() && $request->getMethod() !== 'GET') {
+        return ext_view('layout.ujs-redirect', compact('url'), 'js', $status);
+    } else {
         // because non-3xx redirects make no sense.
         if ($status < 300 || $status > 399) {
             $status = 302;
@@ -1100,20 +1113,18 @@ function proxy_media($url)
         return '';
     }
 
-    $url = html_entity_decode_better($url);
-
     if ($GLOBALS['cfg']['osu']['camo']['key'] === null) {
         return $url;
     }
 
-    $isProxied = starts_with($url, $GLOBALS['cfg']['osu']['camo']['prefix']);
+    $isProxied = str_starts_with($url, $GLOBALS['cfg']['osu']['camo']['prefix']);
 
     if ($isProxied) {
         return $url;
     }
 
     // turn relative urls into absolute urls
-    if (!preg_match('/^https?\:\/\//', $url)) {
+    if (!is_http($url)) {
         // ensure url is relative to the site root
         if ($url[0] !== '/') {
             $url = "/{$url}";
@@ -1795,12 +1806,6 @@ function first_paragraph($html, $split_on = "\n")
     $match_pos = strpos($text, $split_on);
 
     return $match_pos === false ? $text : substr($text, 0, $match_pos);
-}
-
-// clamps $number to be between $min and $max
-function clamp($number, $min, $max)
-{
-    return min($max, max($min, $number));
 }
 
 // e.g. 100634983048665 -> 100.63 trillion
