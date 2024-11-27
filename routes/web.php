@@ -425,6 +425,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
                         Route::put('scores/{token}', 'ScoresController@store')->name('scores.store');
                     });
                 });
+
+                Route::apiResource('tags', 'BeatmapTagsController', ['only' => ['index', 'store', 'destroy']]);
             });
         });
 
@@ -551,6 +553,9 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::resource('users', 'UsersController', ['only' => ['index']]);
 
         Route::get('wiki/{locale}/{path}', 'WikiController@show')->name('wiki.show')->where('path', '.+');
+
+        // Tags
+        Route::apiResource('tags', 'TagsController', ['only' => ['index']]);
     });
 });
 
