@@ -22,7 +22,7 @@ function tier(days: number) {
     [Number.NEGATIVE_INFINITY, 'iron'],
   ] as const;
   for (const [minDays, value] of tiers) {
-    if (days > minDays) {
+    if (days >= minDays) {
       return value;
     }
   }
@@ -38,7 +38,7 @@ function tierStyle(days: number) {
 }
 
 function tierStylePlaycount(count: number) {
-  return tierStyle(count / 3);
+  return tierStyle(Math.floor(count / 3));
 }
 
 function tierStyleWeekly(weeks: number) {
