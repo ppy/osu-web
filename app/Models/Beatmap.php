@@ -290,8 +290,6 @@ class Beatmap extends Model implements AfterCommit
     public function getOwners(): Collection
     {
         $owners = $this->beatmapOwners->loadMissing('user')->map(
-            // This is for embeded includes to handle missing/deleted users;
-            // sideloaded data can just do a lookup from the user_id and handle accordingly client-side.
             fn ($beatmapOwner) => $beatmapOwner->user ?? new DeletedUser(['user_id' => $beatmapOwner->user_id])
         );
 
