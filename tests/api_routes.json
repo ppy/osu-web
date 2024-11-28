@@ -174,6 +174,48 @@
         "scopes": []
     },
     {
+        "uri": "api/v2/beatmaps/{beatmap}/tags",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\BeatmapTagsController@index",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/beatmaps/{beatmap}/tags",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\BeatmapTagsController@store",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/beatmaps/{beatmap}/tags/{tag}",
+        "methods": [
+            "DELETE"
+        ],
+        "controller": "App\\Http\\Controllers\\BeatmapTagsController@destroy",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate"
+        ],
+        "scopes": []
+    },
+    {
         "uri": "api/v2/beatmaps",
         "methods": [
             "GET",
@@ -1419,6 +1461,22 @@
             "App\\Http\\Middleware\\RequireScopes"
         ],
         "scopes": []
+    },
+    {
+        "uri": "api/v2/tags",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\TagsController@index",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/beatmapsets/{beatmapset}/download",

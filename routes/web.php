@@ -6,7 +6,7 @@
 use App\Http\Middleware\ThrottleRequests;
 
 Route::get('wiki/images/{path}', 'WikiController@image')->name('wiki.image')->where('path', '.+');
-Route::get('beatmapsets/discussions/media-url', 'BeatmapDiscussionsController@mediaUrl')->name('beatmapsets.discussions.media-url');
+Route::get('media-url', 'ProxyMediaController')->name('media-url');
 
 Route::group(['middleware' => ['web']], function () {
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
@@ -425,6 +425,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
                         Route::put('scores/{token}', 'ScoresController@store')->name('scores.store');
                     });
                 });
+
+                Route::apiResource('tags', 'BeatmapTagsController', ['only' => ['index', 'store', 'destroy']]);
             });
         });
 
@@ -551,6 +553,9 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::resource('users', 'UsersController', ['only' => ['index']]);
 
         Route::get('wiki/{locale}/{path}', 'WikiController@show')->name('wiki.show')->where('path', '.+');
+
+        // Tags
+        Route::apiResource('tags', 'TagsController', ['only' => ['index']]);
     });
 });
 
