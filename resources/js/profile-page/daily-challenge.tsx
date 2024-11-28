@@ -22,7 +22,7 @@ function tier(days: number) {
     [Number.NEGATIVE_INFINITY, 'iron'],
   ] as const;
   for (const [minDays, value] of tiers) {
-    if (days > minDays) {
+    if (days >= minDays) {
       return value;
     }
   }
