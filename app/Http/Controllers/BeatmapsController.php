@@ -24,7 +24,7 @@ use App\Transformers\ScoreTransformer;
 class BeatmapsController extends Controller
 {
     const DEFAULT_API_INCLUDES = ['beatmapset.ratings', 'failtimes', 'max_combo'];
-    const DEFAULT_SCORE_INCLUDES = ['user', 'user.country', 'user.cover', 'beatmap.owners'];
+    const DEFAULT_SCORE_INCLUDES = ['user', 'user.country', 'user.cover'];
 
     public function __construct()
     {
