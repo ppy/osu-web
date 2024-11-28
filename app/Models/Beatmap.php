@@ -284,6 +284,9 @@ class Beatmap extends Model implements AfterCommit
         };
     }
 
+    /**
+     * @return Collection<User>
+     */
     public function getOwners(): Collection
     {
         $owners = $this->beatmapOwners->loadMissing('user')->map(
@@ -300,10 +303,15 @@ class Beatmap extends Model implements AfterCommit
         return $owners;
     }
 
-    // TODO: don't require loading beatmapOwners.user
     public function isOwner(User $user): bool
     {
-        return $this->getOwners()->contains(fn ($owner) => $user->is($owner));
+        if ($this->user_id === $user->getKey()) {
+            return true;
+        }
+
+        return $this->relationLoaded('beatmapOwners')
+            ? $this->beatmapOwners->contains('user_id', $user->getKey())
+            : $this->beatmapOwners()->where('user_id', $user->getKey())->exists();
     }
 
     public function maxCombo()
