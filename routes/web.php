@@ -6,7 +6,7 @@
 use App\Http\Middleware\ThrottleRequests;
 
 Route::get('wiki/images/{path}', 'WikiController@image')->name('wiki.image')->where('path', '.+');
-Route::get('beatmapsets/discussions/media-url', 'BeatmapDiscussionsController@mediaUrl')->name('beatmapsets.discussions.media-url');
+Route::get('media-url', 'ProxyMediaController')->name('media-url');
 
 Route::group(['middleware' => ['web']], function () {
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
