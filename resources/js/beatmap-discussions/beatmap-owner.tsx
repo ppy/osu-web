@@ -3,17 +3,17 @@
 
 import UserAvatar from 'components/user-avatar';
 import UserLink from 'components/user-link';
-import BeatmapOwnerJson from 'interfaces/beatmap-owner-json';
+import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
   editing: boolean;
-  onRemoveUser?: (user: BeatmapOwnerJson) => void;
-  user: BeatmapOwnerJson;
+  onRemoveUser?: (user: UserJson) => void;
+  user: UserJson;
 }
 
-function createRemoveOwnerHandler(user: BeatmapOwnerJson, onRemoveClick?: NonNullable<Props['onRemoveUser']>) {
+function createRemoveOwnerHandler(user: UserJson, onRemoveClick?: NonNullable<Props['onRemoveUser']>) {
   return (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     onRemoveClick?.(user);

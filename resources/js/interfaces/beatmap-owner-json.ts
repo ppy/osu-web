@@ -3,6 +3,6 @@
 
 import UserJson from './user-json';
 
-type BeatmapOwnerJson = Pick<UserJson, 'avatar_url' | 'id' | 'username'>;
+type BeatmapOwnerJson = Pick<UserJson, 'id' | 'username'>;
 
 export default BeatmapOwnerJson;
