@@ -38,7 +38,7 @@ function tierStyle(days: number) {
 }
 
 function tierStylePlaycount(count: number) {
-  return tierStyle(count / 3);
+  return tierStyle(Math.floor(count / 3));
 }
 
 function tierStyleWeekly(weeks: number) {
