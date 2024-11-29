@@ -7,6 +7,7 @@ namespace App\Models\Traits\Es;
 
 use App\Models\Beatmap;
 use Carbon\Carbon;
+use Ds\Set;
 
 trait BeatmapsetSearch
 {
@@ -57,6 +58,7 @@ trait BeatmapsetSearch
 
             $value = match ($field) {
                 'id' => $this->getKey(),
+                'tags' => $this->esTags(),
                 default => $this->$field,
             };
 
@@ -126,5 +128,18 @@ trait BeatmapsetSearch
         }
 
         return $values;
+    }
+
+    private function esTags()
+    {
+        $tags = app('tags');
+        $tagSet = new Set([$this->tags]);
+        $beatmapTagNames = $this->beatmaps
+            ->flatMap(fn (Beatmap $beatmap) => $beatmap->topTagIds())
+            ->map(fn ($tagId) => $tags->get($tagId['tag_id'])?->name);
+
+        $tagSet->add(...$beatmapTagNames);
+
+        return $tagSet->toArray();
     }
 }
