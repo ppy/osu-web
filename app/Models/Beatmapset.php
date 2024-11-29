@@ -40,6 +40,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
+use Request;
 
 /**
  * @property bool $active
@@ -1279,17 +1280,19 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function defaultDiscussionJson()
     {
+        $this->loadMissing([
+            'allBeatmaps.beatmapset',
+            'allBeatmaps.beatmapOwners.user',
+            'allBeatmaps.user', // TODO: for compatibility only, should migrate user_id to BeatmapOwner.
+            'beatmapDiscussions.beatmapDiscussionPosts',
+            'beatmapDiscussions.beatmapDiscussionVotes',
+            'beatmapDiscussions.beatmapset',
+            'beatmapDiscussions.beatmap',
+            'beatmapDiscussions.beatmapDiscussionVotes',
+        ]);
+
         return json_item(
-            static::with([
-                'allBeatmaps.beatmapset',
-                'allBeatmaps.beatmapOwners.user',
-                'allBeatmaps.user', // TODO: for compatibility only, should migrate user_id to BeatmapOwner.
-                'beatmapDiscussions.beatmapDiscussionPosts',
-                'beatmapDiscussions.beatmapDiscussionVotes',
-                'beatmapDiscussions.beatmapset',
-                'beatmapDiscussions.beatmap',
-                'beatmapDiscussions.beatmapDiscussionVotes',
-            ])->find($this->getKey()),
+            $this,
             new BeatmapsetTransformer(),
             [
                 'beatmaps:with_trashed.owners',
