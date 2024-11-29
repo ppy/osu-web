@@ -1291,11 +1291,15 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             $beatmap->setRelation('beatmapset', $this);
         }
 
+        $beatmapsByKey = $this->allBeatmaps->keyBy('beatmap_id');
+
         foreach ($this->beatmapDiscussions as $discussion) {
             // set relations for priv checks.
             $discussion->setRelation('beatmapset', $this);
-            $beatmap = $this->allBeatmaps->find($discussion->beatmap_id);
-            $discussion->setRelation('beatmap', $beatmap);
+
+            if ($discussion->beatmap_id !== null) {
+                $discussion->setRelation('beatmap', $beatmapsByKey[$discussion->beatmap_id]);
+            }
         }
 
         return json_item(
