@@ -1281,15 +1281,23 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public function defaultDiscussionJson()
     {
         $this->loadMissing([
-            'allBeatmaps.beatmapset',
+            'allBeatmaps',
             'allBeatmaps.beatmapOwners.user',
             'allBeatmaps.user', // TODO: for compatibility only, should migrate user_id to BeatmapOwner.
             'beatmapDiscussions.beatmapDiscussionPosts',
             'beatmapDiscussions.beatmapDiscussionVotes',
-            'beatmapDiscussions.beatmapset',
-            'beatmapDiscussions.beatmap',
-            'beatmapDiscussions.beatmapDiscussionVotes',
         ]);
+
+        foreach ($this->allBeatmaps as $beatmap) {
+            $beatmap->setRelation('beatmapset', $this);
+        }
+
+        foreach ($this->beatmapDiscussions as $discussion) {
+            // set relations for priv checks.
+            $discussion->setRelation('beatmapset', $this);
+            $beatmap = $this->allBeatmaps->find($discussion->beatmap_id);
+            $discussion->setRelation('beatmap', $beatmap);
+        }
 
         return json_item(
             $this,
