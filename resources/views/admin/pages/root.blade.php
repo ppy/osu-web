@@ -27,5 +27,14 @@
                 </a>
             </li>
         </ul>
+
+        <h2 class="title">{{ osu_trans('admin.pages.root.sections.users.header') }}</h2>
+        <ul>
+            <li>
+                <a href="{{ route('user-cover-presets.store') }}">
+                    {{ osu_trans('admin.pages.root.sections.users.cover_presets') }}
+                </a>
+            </li>
+        </ul>
     </div>
 @endsection
