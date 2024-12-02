@@ -96,13 +96,11 @@ class Spotlight extends Model
         // These models will not have the correct table name set on them
         // as they get overriden when Laravel hydrates them.
         return $this->userStats($mode)
-            ->with(['user', 'user.country'])
-            ->whereHas('user', function ($userQuery) {
-                $model = new User();
+            ->with(['user.team'])
+            ->whereHas('user', fn ($userQuery) =>
                 $userQuery
-                    ->from($model->tableName(true))
-                    ->default();
-            })
+                    ->from($userQuery->getModel()->tableName(true))
+                    ->default())
             ->orderBy('ranked_score', 'desc')
             ->limit(static::SPOTLIGHT_MAX_RESULTS);
     }

@@ -393,9 +393,9 @@ class TopicsController extends Controller
 
         $posts->load([
             'lastEditor',
-            'user.country',
             'user.rank',
             'user.supporterTagPurchases',
+            'user.team',
             'user.userGroups',
         ]);
 
