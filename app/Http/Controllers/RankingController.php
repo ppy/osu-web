@@ -174,7 +174,7 @@ class RankingController extends Controller
             $table = (new $class())->getTable();
             $ppColumn = $class::ppColumn();
             $stats = $class
-                ::with(['user', 'user.country'])
+                ::with(['user', 'user.country', 'user.team'])
                 ->where($ppColumn, '>', 0)
                 ->whereHas('user', function ($userQuery) {
                     $userQuery->default();
@@ -307,6 +307,7 @@ class RankingController extends Controller
         $page = min(get_int(request('page')) ?? 1, $maxPage);
 
         $scores = User::default()
+            ->with('team')
             ->orderBy('osu_kudostotal', 'desc')
             ->paginate(static::PAGE_SIZE, ['*'], 'page', $page, $maxResults);
 

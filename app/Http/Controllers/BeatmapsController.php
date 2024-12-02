@@ -24,7 +24,7 @@ use App\Transformers\ScoreTransformer;
 class BeatmapsController extends Controller
 {
     const DEFAULT_API_INCLUDES = ['beatmapset.ratings', 'failtimes', 'max_combo'];
-    const DEFAULT_SCORE_INCLUDES = ['user', 'user.country', 'user.cover'];
+    const DEFAULT_SCORE_INCLUDES = ['user', 'user.country', 'user.cover', 'user.team'];
 
     public function __construct()
     {
@@ -74,7 +74,7 @@ class BeatmapsController extends Controller
             'type' => $type,
             'user' => $currentUser,
         ]);
-        $scores = $esFetch->all()->loadMissing(['beatmap', 'user.country', 'processHistory']);
+        $scores = $esFetch->all()->loadMissing(['beatmap', 'user.country', 'user.team', 'processHistory']);
         $userScore = $esFetch->userBest();
         $scoreTransformer = new ScoreTransformer($scoreTransformerType);
 
