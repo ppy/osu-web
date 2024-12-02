@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Tikrai gražinti temą?',
         'deleted' => 'ištrintos temos',
         'go_to_latest' => 'peržiūrėti naujausius įrašus',
+        'go_to_unread' => '',
         'has_replied' => 'Jūs atsakėte į šią temą',
         'in_forum' => 'tarp :forum',
         'latest_post' => ':when iš :user',

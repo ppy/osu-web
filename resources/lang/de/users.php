@@ -298,7 +298,7 @@ return [
                 'show_more' => 'mehr Events anzeigen',
             ],
             'historical' => [
-                'title' => 'Historisch',
+                'title' => 'Historie',
 
                 'monthly_playcounts' => [
                     'title' => 'Spielverlauf',
@@ -393,7 +393,7 @@ return [
                 'not_ranked' => 'Nur Ranked Beatmaps geben PP.',
                 'pp_weight' => ':percentage gewichtet',
                 'view_details' => 'Details anzeigen',
-                'title' => 'Ränge',
+                'title' => 'Scores',
 
                 'best' => [
                     'title' => 'Beste Performance',
@@ -474,9 +474,9 @@ return [
         ],
         'rank' => [
             'country' => 'Länderrang im Modus :mode',
-            'country_simple' => 'Landesrangliste',
+            'country_simple' => 'Nationaler Rang',
             'global' => 'Globaler Rang im Modus :mode',
-            'global_simple' => 'Globale Rangliste',
+            'global_simple' => 'Globaler Rang',
             'highest' => 'Höchster Rang: :rank am :date',
         ],
         'stats' => [

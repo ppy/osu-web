@@ -67,6 +67,13 @@ return [
         'version' => 'Độ khó',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Hãy đăng nhập để trả lời',

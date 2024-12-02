@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => 'discussion de la beatmap',
     ],
+
+    'store' => [
+        'too_many' => '',
+    ],
 ];

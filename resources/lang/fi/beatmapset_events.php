@@ -5,7 +5,7 @@
 
 return [
     'event' => [
-        'approve' => 'Vahvistettu.',
+        'approve' => 'Hyväksytty.',
         'beatmap_owner_change' => 'Vaikeustason :beatmap omistaja vaihtui käyttäjäksi :new_user.',
         'discussion_delete' => 'Moderaattori poisti keskustelun :discussion.',
         'discussion_lock' => 'Tämän rytmikartan keskustelu on poistettu käytöstä. (:text)',
@@ -25,8 +25,8 @@ return [
         'kudosu_recalculate' => 'Keskustelun :discussion kudosu on uudelleenlaskettu.',
         'language_edit' => 'Kieli :old muutettu kieleen :new.',
         'love' => ':user rakastaa',
-        'nominate' => 'Ehdollepannut :user.',
-        'nominate_modes' => ':user asetti ehdolle (:modes).',
+        'nominate' => 'Käyttäjän :user suosittelema.',
+        'nominate_modes' => 'Käyttäjän :user suosittelema (:modes).',
         'nomination_reset' => 'Uusi ongelma :discussion (:text) aiheutti ehdollepanojen nollauksen.',
         'nomination_reset_received' => ':source_user nollasi käyttäjän :user ehdollepanon (:text)',
         'nomination_reset_received_profile' => ':user nollasi ehdollepanon (:text)',
@@ -38,7 +38,7 @@ return [
 
         'nsfw_toggle' => [
             'to_0' => 'Poistettiin sopimattoman sisällön merkki',
-            'to_1' => 'Merkittiin sopimattomaksi sisällöksi',
+            'to_1' => 'Merkitty sopimattomaksi sisällöksi',
         ],
     ],
 

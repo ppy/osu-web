@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Складність',
-        'percentile_10' => '90-ий Відсотковий Рекорд',
-        'percentile_50' => '50-ий Відсотковий Рекорд',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [

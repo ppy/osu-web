@@ -66,6 +66,13 @@ return [
         'version' => 'Tingkat Kesulitan',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Masuk untuk Menanggapi',
@@ -85,7 +92,7 @@ return [
             'invalid_discussion_type' => 'tipe diskusi tidak valid',
             'minimum_issues' => 'kajian harus mengandung setidaknya :count isu|kajian harus mengandung setidaknya :count isu',
             'missing_text' => 'blok tidak mengandung teks',
-            'too_many_blocks' => 'kajian hanya dapat mengandung maksimal :count paragraf/isu|kajian hanya dapat mengandung maksimal :count paragraf/isu',
+            'too_many_blocks' => 'kajian hanya dapat mengandung :count paragraf/isu|kajian hanya dapat mengandung hingga :count paragraf/isu',
         ],
     ],
 

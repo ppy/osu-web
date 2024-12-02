@@ -64,7 +64,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => ':count_delimited пост|:count_delimited постів',
+            'post_count' => ':count_delimited пост|:count_delimited пости|:count_delimited постів',
             'topic_starter' => 'Автор теми',
         ],
     ],
@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Дійсно відновити тему',
         'deleted' => 'видалена тема',
         'go_to_latest' => 'показати останню відповідь',
+        'go_to_unread' => '',
         'has_replied' => 'Ви відповідали на цю тему',
         'in_forum' => 'в :forum',
         'latest_post' => ':when від :user',
@@ -341,7 +342,7 @@ return [
                 ],
 
                 'user' => [
-                    'count' => '{0} немає голосів|{1} :count_delimited голос|[2,*] :count_delimited голоси',
+                    'count' => '{0} немає голосів|{1} :count_delimited голос|[2,4] :count_delimited голоси|[5,*] :count_delimited голосів',
                     'current' => 'У вас залишилося :votes голосів.',
                     'not_enough' => "У вас більше немає голосів",
                 ],

@@ -66,6 +66,13 @@ return [
         'version' => 'Obtížnost',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Pro přidání odpovědi se musíš přihlásit',

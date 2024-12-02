@@ -29,7 +29,7 @@ return [
         'generic' => 'Hiba történt a fizetés előkészítése közben.',
     ],
     'scores' => [
-        'invalid_id' => '',
+        'invalid_id' => 'Érvénytelen eredmény azonosító.',
     ],
     'search' => [
         'default' => 'Nem sikerült bármi eredményt kapni, kérlek próbáld meg később.',

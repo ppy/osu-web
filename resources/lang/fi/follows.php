@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => 'rytmikartan keskustelut',
     ],
+
+    'store' => [
+        'too_many' => '',
+    ],
 ];

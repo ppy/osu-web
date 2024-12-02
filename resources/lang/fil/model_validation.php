@@ -176,7 +176,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Hindi pwede i-report ang mga Ranked beatmaps',
         'not_in_channel' => 'Wala ka sa channel na ito.',
-        'reason_not_valid' => 'Ang rason na:reason ay hindi akma sa ganitong uri ng report.',
+        'reason_not_valid' => 'Ang rason na :reason ay hindi akma sa ganitong uri ng report.',
         'self' => "Hindi mo maaaring i-report ang sarili mo!",
     ],
 

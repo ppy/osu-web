@@ -66,6 +66,13 @@ return [
         'version' => 'Difficulty',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Mag-sign in upang maka-sagot',

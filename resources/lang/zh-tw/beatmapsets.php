@@ -7,7 +7,7 @@ return [
     'availability' => [
         'disabled' => '該圖譜現在無法下載。',
         'parts-removed' => '因作者或第三方版權擁有者的要求，故該圖譜已經下架。',
-        'more-info' => '點擊這裡查看更多資訊。',
+        'more-info' => '按這裡查看更多資訊。',
         'rule_violation' => '已移除此圖譜中部份被評斷為不合適於 osu! 的內容。',
     ],
 
@@ -25,7 +25,7 @@ return [
     ],
 
     'index' => [
-        'title' => '圖譜列表',
+        'title' => '圖譜清單',
         'guest_title' => '圖譜',
     ],
 
@@ -41,18 +41,18 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '提名者可能無法提名多個遊戲模式。',
+        'bng_limited_too_many_rulesets' => '見習提名者無法提名多個規則集的圖譜。',
         'full_nomination_required' => '你必須完全是一個提名者才能展現一個遊戲模式的最終提名。',
         'hybrid_requires_modes' => '包含多個遊戲模式的圖譜至少需要選擇一種遊戲模式進行提名。',
         'incorrect_mode' => '您沒有權限為 :mode 模式提名',
-        'invalid_limited_nomination' => '此圖譜有無效的提名而且無法在這個階段被檢驗。',
-        'invalid_ruleset' => '這提名有無效的遊戲模式。',
+        'invalid_limited_nomination' => '這張圖譜有無效的提名而且無法在這個階段被檢驗。',
+        'invalid_ruleset' => '這個提名含有無效的遊戲模式。',
         'too_many' => '提名需求已達成。',
         'too_many_non_main_ruleset' => '非主要遊戲模式的提名需求已經被實現了。',
 
         'dialog' => [
             'confirmation' => '您確定要提名這張圖譜嗎？',
-            'different_nominator_warning' => '以其他提名者的身分提名此圖譜會重設提名順序。',
+            'different_nominator_warning' => '以其他提名者的身分提名這張圖譜會重設提名順序。',
             'header' => '提名圖譜',
             'hybrid_warning' => '注意: 您只能提名一次，所以請確保您的提名包含所有您想提名的模式。',
             'current_main_ruleset' => '目前遊戲模式為: :ruleset',
@@ -100,7 +100,7 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '於:timeago批准',
+            'approved' => '於 :timeago 核准',
             'loved' => 'loved :timeago',
             'qualified' => '已提名 :timeago',
             'ranked' => '於:timeago進榜',
@@ -168,7 +168,7 @@ return [
             'country' => '國內排行榜',
             'error' => '無法載入排行榜',
             'friend' => '好友排名',
-            'global' => '世界排名',
+            'global' => '全球排名',
             'supporter-link' => '點擊 <a href=":link">這裡</a> 來查看你可以得到的精彩功能！',
             'supporter-only' => '你需要成為贊助者才能查看國內與好友排名！',
             'title' => '排行榜',
@@ -224,7 +224,7 @@ return [
 
         'status' => [
             'ranked' => '已進榜',
-            'approved' => '已批准',
+            'approved' => '已核准',
             'loved' => 'Loved',
             'qualified' => '已提名',
             'wip' => '製作中',

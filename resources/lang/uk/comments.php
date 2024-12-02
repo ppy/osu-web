@@ -7,13 +7,13 @@ return [
     'deleted' => 'видалено',
     'deleted_by' => 'видалено :user :timeago',
     'deleted_by_system' => 'система',
-    'deleted_count' => ':count_delimited коментар видалено|:count_delimited коментарів видалено',
+    'deleted_count' => ':count_delimited коментар видалено|:count_delimited коментаря видалено|:count_delimited коментарів видалено',
     'edited' => ':user відредагував :timeago',
     'pinned' => 'закріплено',
     'empty' => 'Ще немає коментарів.',
     'empty_other' => 'Поки немає жодних коментарів.',
     'load_replies' => 'завантажити відповіді',
-    'replies_count' => ':count_delimited відповідь|:count_delimited відповідей',
+    'replies_count' => ':count_delimited відповідь|:count_delimited відповіді|:count_delimited відповідей',
     'title' => 'Коментарі',
 
     'commentable_name' => [

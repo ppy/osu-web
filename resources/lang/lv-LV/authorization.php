@@ -60,6 +60,12 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'Nevar nosūtīt ziņu lietotājam, kurš nobloķējis jūs vai kuru jūs esat nobloķējis.',
         'friends_only' => 'Lietotājs bloķē ziņas no cilvēkiem, kas nav viņa draugu sarakstā.',
@@ -167,6 +173,12 @@ return [
 
         'view' => [
             'admin_only' => 'Tikai administrators var skatīt šo forumu.',
+        ],
+    ],
+
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
         ],
     ],
 
