@@ -13,8 +13,8 @@ return [
     'room' => [
         'hosted_by' => 'власник: :user',
         'invalid_password' => 'Невірний пароль кімнати',
-        'map_count' => ':count_delimited мапа|:count_delimited мап',
-        'player_count' => ':count_delimited гравець|:count_delimited гравців',
+        'map_count' => ':count_delimited мапа|:count_delimited мапи|:count_delimited мап',
+        'player_count' => ':count_delimited гравець|:count_delimited гравця|:count_delimited гравців',
         'time_left' => ':time залишилось',
 
         'errors' => [

@@ -36,4 +36,8 @@ return [
     'modding' => [
         'title' => 'обговорення мап',
     ],
+
+    'store' => [
+        'too_many' => '',
+    ],
 ];

@@ -60,6 +60,12 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'Negalima išsiųsti žinučių vartotojui, kuris yra jūs užblokavęs, ar jūs esat užblokavę.',
         'friends_only' => 'Vartotojas šiuo metu užblokavo žinutės iš žmonių, kurie nėra vartotojo draugų sąraše.',
@@ -167,6 +173,12 @@ return [
 
         'view' => [
             'admin_only' => 'Šį forumą gali skaityti tik administratoriai.',
+        ],
+    ],
+
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
         ],
     ],
 

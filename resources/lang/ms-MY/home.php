@@ -5,100 +5,100 @@
 
 return [
     'landing' => [
-        'download' => '',
-        'online' => '',
-        'peak' => '',
-        'players' => '',
-        'title' => '',
-        'see_more_news' => '',
+        'download' => 'Muat turun sekarang',
+        'online' => '<strong>:players</strong> sedang dalam talian di <strong>:games</strong> permainan',
+        'peak' => 'Puncak, :count pengguna dalam talian',
+        'players' => '<strong>:count</strong> pemain yang telah mendaftar',
+        'title' => 'selamat datang',
+        'see_more_news' => 'lihat lebih banyak berita',
 
         'slogan' => [
-            'main' => '',
-            'sub' => '',
+            'main' => 'permainan irama percuma yang terbaik',
+            'sub' => 'irama hanya satu klik sahaja',
         ],
     ],
 
     'search' => [
-        'advanced_link' => '',
-        'button' => '',
-        'empty_result' => '',
-        'keyword_required' => '',
-        'placeholder' => '',
-        'title' => '',
+        'advanced_link' => 'Carian lanjutan',
+        'button' => 'Cari',
+        'empty_result' => 'Tiada apa-apa dijumpai!',
+        'keyword_required' => 'Kata kunci pencarian diperlukan',
+        'placeholder' => 'taip untuk mencari',
+        'title' => 'cari',
 
         'beatmapset' => [
-            'login_required' => '',
-            'more' => '',
-            'more_simple' => '',
-            'title' => '',
+            'login_required' => 'Log masuk untuk mencari beatmap',
+            'more' => ':count lagi hasil carian beatmap',
+            'more_simple' => 'Lihat lebih banyak hasil carian beatmap',
+            'title' => 'Beatmap',
         ],
 
         'forum_post' => [
-            'all' => '',
-            'link' => '',
-            'login_required' => '',
-            'more_simple' => '',
-            'title' => '',
+            'all' => 'Semua forum',
+            'link' => 'Cari di forum',
+            'login_required' => 'Log masuk untuk cari di forum',
+            'more_simple' => 'Lihat lebih banyak hasil carian forum',
+            'title' => 'Forum',
 
             'label' => [
-                'forum' => '',
-                'forum_children' => '',
-                'include_deleted' => '',
-                'topic_id' => '',
-                'username' => '',
+                'forum' => 'cari dalam forum',
+                'forum_children' => 'sertakan subforum',
+                'include_deleted' => 'sertakan hantaran yang telah dipadamkan',
+                'topic_id' => 'topik #',
+                'username' => 'pengarang',
             ],
         ],
 
         'mode' => [
-            'all' => '',
-            'beatmapset' => '',
-            'forum_post' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'all' => 'semua',
+            'beatmapset' => 'beatmap',
+            'forum_post' => 'forum',
+            'user' => 'pemain',
+            'wiki_page' => 'wiki',
         ],
 
         'user' => [
-            'login_required' => '',
-            'more' => '',
-            'more_simple' => '',
-            'more_hidden' => '',
-            'title' => '',
+            'login_required' => 'Log masuk untuk cari pengguna',
+            'more' => ':count lagi hasil carian pemain',
+            'more_simple' => 'Lihat lebih banyak hasil carian pemain',
+            'more_hidden' => 'Carian pemain dihadkan kepada :max pemain. Cuba memperhalusikan kata kunci carian.',
+            'title' => 'Pemain-pemain',
         ],
 
         'wiki_page' => [
-            'link' => '',
-            'more_simple' => '',
-            'title' => '',
+            'link' => 'Cari di wiki',
+            'more_simple' => 'Lihat lebih banyak hasil carian wiki',
+            'title' => 'Wiki',
         ],
     ],
 
     'download' => [
-        'action' => '',
+        'action' => 'Muat turun osu!',
         'action_lazer' => '',
         'action_lazer_description' => '',
-        'action_lazer_info' => '',
+        'action_lazer_info' => 'semak halaman ini untuk maklumat lanjut ',
         'action_lazer_title' => '',
-        'action_title' => '',
-        'for_os' => '',
-        'macos-fallback' => '',
-        'mirror' => '',
-        'or' => '',
+        'action_title' => 'muat turun osu!',
+        'for_os' => 'untuk :os',
+        'macos-fallback' => 'pengguna macOS',
+        'mirror' => 'cermin',
+        'or' => 'atau',
         'os_version_or_later' => '',
         'other_os' => '',
         'quick_start_guide' => '',
         'tagline' => "",
-        'video-guide' => '',
+        'video-guide' => 'panduan video',
 
         'help' => [
             '_' => '',
             'help_forum_link' => '',
-            'support_button' => '',
+            'support_button' => 'hubungi sokongan khidmat',
         ],
 
         'os' => [
-            'windows' => '',
-            'macos' => '',
-            'linux' => '',
+            'windows' => 'untuk Windows',
+            'macos' => 'untuk macOS',
+            'linux' => 'untuk Linux',
         ],
         'steps' => [
             'register' => [
@@ -106,7 +106,7 @@ return [
                 'description' => '',
             ],
             'download' => [
-                'title' => '',
+                'title' => 'pasangkan permainan',
                 'description' => '',
             ],
             'beatmaps' => [
@@ -122,14 +122,14 @@ return [
     'user' => [
         'title' => '',
         'news' => [
-            'title' => '',
+            'title' => 'Berita',
             'error' => '',
         ],
         'header' => [
             'stats' => [
-                'friends' => '',
-                'games' => '',
-                'online' => '',
+                'friends' => 'Kawan Dalam Talian',
+                'games' => 'Permainan',
+                'online' => 'Pengguna Dalam Talian',
             ],
         ],
         'beatmaps' => [
@@ -138,8 +138,8 @@ return [
             'by_user' => '',
         ],
         'buttons' => [
-            'download' => '',
-            'support' => '',
+            'download' => 'Muat turun osu!',
+            'support' => 'Sokong osu!',
             'store' => '',
         ],
     ],

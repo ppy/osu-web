@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'ระดับความยาก',
-        'percentile_10' => 'คะแนนเปอร์เซ็นไทล์ที่ 10',
-        'percentile_50' => 'คะแนนเปอร์เซ็นไทล์ที่ 50',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [

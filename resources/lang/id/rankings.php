@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Tingkat Kesulitan',
-        'percentile_10' => 'Skor Persentil Ke-10',
-        'percentile_50' => 'Skor Persentil Ke-50',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [

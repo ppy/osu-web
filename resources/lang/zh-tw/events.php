@@ -17,10 +17,10 @@ return [
     'user_support_again' => '<strong>:user</strong> 又一次支持了 osu! - 感謝您的慷慨捐贈！',
     'user_support_first' => '<strong>:user</strong> 成為了 osu! 贊助者 - 感謝您的慷慨捐贈！',
     'user_support_gift' => '<strong>:user</strong> 成為了 osu! 贊助者 - 來自匿名玩家的贈禮！',
-    'username_change' => '<strong>:previousUsername</strong> 將名字改為 <strong><em>:user</strong></em>！',
+    'username_change' => '<strong>:previousUsername</strong> 將使用者名稱改為 <strong><em>:user</em></strong>！',
 
     'beatmapset_status' => [
-        'approved' => '已批准',
+        'approved' => '已核准',
         'loved' => 'loved',
         'qualified' => '已核可',
         'ranked' => '已進榜',

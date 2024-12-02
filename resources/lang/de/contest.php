@@ -14,7 +14,7 @@ return [
     ],
 
     'judge' => [
-        'comments' => '',
+        'comments' => 'Kommentare',
         'hide_judged' => 'bewertete Einträge ausblenden',
         'nav_title' => 'Bewerten',
         'no_current_vote' => 'Du hast noch nicht abgestimmt.',

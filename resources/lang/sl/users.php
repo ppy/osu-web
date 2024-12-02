@@ -396,7 +396,7 @@ return [
                 'title' => 'Uvrstitve',
 
                 'best' => [
-                    'title' => 'Najboljša izvedba',
+                    'title' => 'Najboljši rezultati',
                 ],
                 'first' => [
                     'title' => 'Uvrstitve na prvo mesto',

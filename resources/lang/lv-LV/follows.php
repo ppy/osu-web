@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => 'bītmapes diskusija',
     ],
+
+    'store' => [
+        'too_many' => '',
+    ],
 ];

@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Talagang ibalik ang post na ito?',
         'deleted' => 'buradong mga paksa',
         'go_to_latest' => 'tingnan ang mga pinakabagong post',
+        'go_to_unread' => '',
         'has_replied' => 'Sumagot ka sa pag-uusap na ito',
         'in_forum' => 'sa :forum',
         'latest_post' => ':when ni :user',

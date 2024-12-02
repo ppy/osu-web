@@ -66,6 +66,13 @@ return [
         'version' => 'Трудност',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Влез в профила си, за отговор',

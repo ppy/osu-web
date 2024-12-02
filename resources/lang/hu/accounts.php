@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatár',
-            'reset' => '',
+            'reset' => 'alaphelyzet',
             'rules' => 'Kérjük, ellenőrizze, hogy az avatár illeszkedik-e ehhez :link.<br/>Ez azt jelenti, hogy <strong>minden korosztály számára alkalmasnak kell lennie</strong>. Vagyis nincs meztelenség, mások számára elfogadhatatlan vagy szuggesztív tartalom.',
             'rules_link' => 'a közösségi szabályok',
         ],

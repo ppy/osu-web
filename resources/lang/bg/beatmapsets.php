@@ -17,7 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Забави малко, играй повече.',
-        'no_mirrors' => '',
+        'no_mirrors' => 'Не е наличен сървър за изтегляне.',
     ],
 
     'featured_artist_badge' => [
@@ -52,7 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Сигурни ли сте, че искате да номинирате този бийтмап?',
-            'different_nominator_warning' => '',
+            'different_nominator_warning' => 'Квалифицирането на бийтмап с различни номинатори ще рестартира позицията му в опашката.',
             'header' => 'Номиниране на бийтмап',
             'hybrid_warning' => 'бележка: може да се номинира само веднъж, затова се уверете че сте избрали всеки желан вид',
             'current_main_ruleset' => 'Основният вид игра в момента е: :ruleset',

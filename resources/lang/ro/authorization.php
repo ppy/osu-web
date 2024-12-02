@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'Nu poți trimite mesaje unui utilizator care te-a blocat sau pe care l-ai blocat.',
         'friends_only' => 'Utilizatorul blochează mesajele de la oameni care nu sunt pe lista lor de prieteni.',
         'moderated' => 'Acest canal este moderat în prezent.',
         'no_access' => 'Nu ai acces la acest canal.',
-        'no_announce' => '',
+        'no_announce' => 'Nu aveți permisiunea de a posta anunțuri.',
         'receive_friends_only' => 'Este posibil ca utilizatorul să nu poată răspunde, deoarece acceptați doar mesaje de la persoane adăugate la prieteni.',
         'restricted' => 'Nu poți trimite mesaje cât timp ești mut, restricționat sau interzis.',
         'silenced' => 'Nu poți trimite mesaje cât timp ești mut, restricționat sau interzis.',
@@ -167,6 +173,12 @@ return [
 
         'view' => [
             'admin_only' => 'Numai administratorul poate vizualiza acest forum.',
+        ],
+    ],
+
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
         ],
     ],
 

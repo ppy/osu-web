@@ -25,8 +25,8 @@ return [
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'メッセージを報告',
+        'title' => ':username のメッセージを報告しますか？',
     ],
 
     'scores' => [

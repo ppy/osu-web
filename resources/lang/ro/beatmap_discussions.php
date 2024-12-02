@@ -66,6 +66,13 @@ return [
         'version' => 'Dificultate',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Autentifică-te pentru a răspunde',

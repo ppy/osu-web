@@ -66,6 +66,13 @@ return [
         'version' => 'Svårighetsgrad',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Logga in för att svara',

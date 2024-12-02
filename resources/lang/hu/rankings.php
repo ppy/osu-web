@@ -10,9 +10,9 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'beatmap' => 'Nehézség',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [
@@ -36,7 +36,7 @@ return [
     'type' => [
         'charts' => 'Reflektorfény',
         'country' => 'Ország',
-        'daily_challenge' => '',
+        'daily_challenge' => 'napi kihívás',
         'kudosu' => 'kudosu',
         'multiplayer' => 'többjátékos',
         'performance' => 'Teljesítmény',
