@@ -67,6 +67,13 @@ return [
         'version' => 'Sunkumas',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Atsakymui reikia prisijungti',

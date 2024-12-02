@@ -20,8 +20,8 @@ return [
             'new_confirmation' => 'pengesahan e-mel',
             'title' => 'E-mel',
             'locked' => [
-                '_' => 'Sila hubungi :accounts jika anda mahu emel anda dikemaskini.',
-                'accounts' => '',
+                '_' => 'Sila hubungi akaun jika anda mahu emel anda dikemaskini.',
+                'accounts' => 'akaun sokongan khidmat',
             ],
         ],
 
@@ -32,7 +32,7 @@ return [
         ],
 
         'password' => [
-            'current' => 'kata laluan terkini',
+            'current' => 'Kata laluan semasa',
             'new' => 'kata laluan baharu',
             'new_confirmation' => 'pengesahan kata laluan',
             'title' => 'Kata laluan',
@@ -64,15 +64,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
+        'info' => "Jika anda kontributor kepada osu! repositori sumber terbuka, menghubungkan akaun Github anda disini akan mengaitkan entri log perubahan dengan osu! profil anda. Akaun Github tanpa sejarah kontribusi kepada osu! tidak boleh dihubungkan.",
         'link' => 'Pautkan Akaun Github',
         'title' => 'GitHub',
         'unlink' => 'Nyahpautkan Akaun Github',
 
         'error' => [
             'already_linked' => 'Akaun Github ini telah dipautkan dengan pengguna lain.',
-            'no_contribution' => '',
-            'unverified_email' => '',
+            'no_contribution' => 'Tidak boleh menghubungkan akaun Github tanpa sebarang sejarah kontribusi dalam repositori osu!.',
+            'unverified_email' => 'Sila sahkan e-mel utama anda di Github, seterusnya pautkan akaun anda sekali lagi.',
         ],
     ],
 
@@ -80,7 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'terima notifikasi untuk masalah baru pada beatmap berkelayakan pada mod tersebut ',
         'beatmapset_disqualify' => 'terima notifikasi apabila beatmap bagi mod tersebut telah didisqualifikasi ',
         'comment_reply' => 'terima notifikasi untuk balasan pada komen anda',
-        'title' => 'Notifikasi',
+        'title' => 'Notifications',
         'topic_auto_subscribe' => 'hidupkan notifikasi secara automatik pada topik forum baru yang anda cipta',
 
         'options' => [

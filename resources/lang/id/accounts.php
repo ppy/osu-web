@@ -71,7 +71,7 @@ return [
 
         'error' => [
             'already_linked' => 'Akun GitHub ini telah terhubung ke pengguna lain.',
-            'no_contribution' => 'Akun GitHub yang tidak memiliki riwayat kontribusi terhadap repositori osu! tidak dapat ditautkan.',
+            'no_contribution' => 'Tidak dapat menautkan akun GitHub yang tidak memiliki kontribusi terhadap proyek osu!',
             'unverified_email' => 'Silakan verifikasi email utama kamu pada GitHub, lalu cobalah untuk menghubungkan akunmu kembali.',
         ],
     ],
@@ -79,26 +79,26 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'terima notifikasi pada saat terdapat masalah baru pada beatmap yang berstatus Qualified pada mode',
         'beatmapset_disqualify' => 'terima notifikasi pada saat terdapat beatmap yang terdiskualifikasi pada mode',
-        'comment_reply' => 'terima notifikasi pada saat terdapat balasan baru pada komentar yang kamu tulis',
+        'comment_reply' => 'terima notifikasi untuk balasan baru pada komentar yang kamu tulis',
         'title' => 'Notifikasi',
         'topic_auto_subscribe' => 'aktifkan notifikasi secara otomatis bagi topik forum baru yang kamu buat atau balas',
 
         'options' => [
             '_' => 'kirimkan notifikasi melalui',
             'beatmap_owner_change' => 'guest difficulty',
-            'beatmapset:modding' => 'modding beatmap',
+            'beatmapset:modding' => 'modding',
             'channel_message' => 'pesan pribadi',
             'comment_new' => 'komentar baru',
             'forum_topic_reply' => 'balasan pada topik',
             'mail' => 'email',
-            'mapping' => 'pembuat beatmap',
-            'push' => 'web',
+            'mapping' => 'mapper',
+            'push' => 'push (web)',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => 'klien yang terizin',
-        'own_clients' => 'klien yang dimiliki',
+        'authorized_clients' => 'klien diizinkan',
+        'own_clients' => 'klien dimiliki',
         'title' => 'OAuth',
     ],
 
@@ -108,7 +108,7 @@ return [
         'title' => 'Pengaturan',
 
         'beatmapset_download' => [
-            '_' => 'tipe pengunduhan beatmap default',
+            '_' => 'tipe pengunduhan beatmap bawaan',
             'all' => 'dengan video (apabila tersedia)',
             'direct' => 'buka melalui osu!direct',
             'no_video' => 'tanpa video',
@@ -126,7 +126,7 @@ return [
     'privacy' => [
         'friends_only' => 'blokir pesan pribadi dari pengguna yang tidak berada dalam daftar temanmu',
         'hide_online' => 'sembunyikan status onlinemu',
-        'title' => 'Kebijakan Privasi',
+        'title' => 'Privasi',
     ],
 
     'security' => [

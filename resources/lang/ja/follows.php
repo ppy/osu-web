@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => 'ビートマップディスカッション',
     ],
+
+    'store' => [
+        'too_many' => '',
+    ],
 ];

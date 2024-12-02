@@ -14,8 +14,8 @@ return [
     ],
 
     'judge' => [
-        'comments' => '',
-        'hide_judged' => '',
+        'comments' => 'коментари',
+        'hide_judged' => 'сакриј оцењене пријаве',
         'nav_title' => 'судија',
         'no_current_vote' => 'ниси још гласао.',
         'update' => 'ажурирај',

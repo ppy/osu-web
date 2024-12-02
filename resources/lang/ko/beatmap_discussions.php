@@ -66,6 +66,13 @@ return [
         'version' => '난이도',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => '답글을 달려면 로그인하세요',

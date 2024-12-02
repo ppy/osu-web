@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => 'бітмап-дыскусіі',
     ],
+
+    'store' => [
+        'too_many' => '',
+    ],
 ];
