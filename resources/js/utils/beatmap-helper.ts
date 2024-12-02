@@ -105,6 +105,10 @@ export function hasGuestOwners(beatmap: WithBeatmapOwners<BeatmapJson>, beatmaps
   return beatmap.owners.some((owner) => owner.id !== beatmapset.user_id);
 }
 
+export function isOwner(userId: number, beatmap: WithBeatmapOwners<BeatmapJson>) {
+  return beatmap.owners.some((owner) => owner.id === userId);
+}
+
 export function rulesetName(id: number): Ruleset {
   switch (id) {
     case 0:
