@@ -30,7 +30,7 @@ interface Props {
 
 @observer
 export default class BeatmapOwnerEditor extends React.Component<Props> {
-  @observable private editing = false;
+  @observable editing = false;
   private readonly inputRef = React.createRef<HTMLInputElement>();
   @observable private inputUsername = '';
   private shouldFocusInputOnNextRender = false;
@@ -53,10 +53,6 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     makeObservable(this);
   }
 
-  componentDidMount() {
-    document.addEventListener('turbo:before-visit', this.handleBeforeVisit);
-  }
-
   componentDidUpdate() {
     if (this.shouldFocusInputOnNextRender) {
       this.shouldFocusInputOnNextRender = false;
@@ -66,7 +62,6 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
 
   componentWillUnmount() {
     this.updateOwnerXhr?.abort();
-    document.removeEventListener('turbo:before-visit', this.handleBeforeVisit);
   }
 
   render() {
@@ -94,13 +89,6 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
       </div>
     );
   }
-
-  @action
-  private readonly handleBeforeVisit = (event: Event) => {
-    if (this.editing && !confirm(trans('common.confirmation_unsaved'))) {
-      event.preventDefault();
-    }
-  };
 
   @action
   private readonly handleCancelEditingClick = () => {
