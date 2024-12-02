@@ -37,6 +37,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\QueryException;
 use Laravel\Passport\HasApiTokens;
 use League\OAuth2\Server\Exception\OAuthServerException;
@@ -295,6 +296,18 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function userCountryHistory(): HasMany
     {
         return $this->hasMany(UserCountryHistory::class);
+    }
+
+    public function team(): HasOneThrough
+    {
+        return $this->hasOneThrough(
+            Team::class,
+            TeamMember::class,
+            'user_id',
+            'id',
+            'user_id',
+            'team_id',
+        );
     }
 
     public function teamMembership(): HasOne
@@ -958,6 +971,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'storeAddresses',
             'supporterTagPurchases',
             'supporterTags',
+            'team',
             'teamMembership',
             'tokens',
             'topicWatches',

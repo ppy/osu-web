@@ -396,6 +396,7 @@ class TopicsController extends Controller
             'user.country',
             'user.rank',
             'user.supporterTagPurchases',
+            'user.team',
             'user.userGroups',
         ]);
 

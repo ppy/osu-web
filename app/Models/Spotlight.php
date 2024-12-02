@@ -96,7 +96,7 @@ class Spotlight extends Model
         // These models will not have the correct table name set on them
         // as they get overriden when Laravel hydrates them.
         return $this->userStats($mode)
-            ->with(['user', 'user.country'])
+            ->with(['user', 'user.country', 'user.team'])
             ->whereHas('user', function ($userQuery) {
                 $model = new User();
                 $userQuery
