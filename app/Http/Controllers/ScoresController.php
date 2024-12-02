@@ -6,6 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Ruleset;
+use App\Models\Beatmap;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\ScoreReplayStats;
 use App\Models\Solo\Score as SoloScore;
@@ -22,8 +23,9 @@ class ScoresController extends Controller
         parent::__construct();
 
         $this->middleware('auth', ['except' => [
-            'show',
             'download',
+            'index',
+            'show',
         ]]);
 
         $this->middleware('require-scopes:public');
@@ -115,6 +117,76 @@ class ScoresController extends Controller
         return response()->streamDownload(function () use ($file) {
             echo $file;
         }, $this->makeReplayFilename($score), $responseHeaders);
+    }
+
+    /**
+     * Get Scores
+     *
+     * Returns the latest submitted scores.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field         | Type                          | Notes
+     * ------------- | ----------------------------- | -----
+     * scores        | [Score](#score)[]             | |
+     * cursor_string | [CursorString](#cursorstring) | Same value as the request will be returned if there's no new scores
+     *
+     * @group Scores
+     *
+     * @queryParam ruleset The [Ruleset](#ruleset) to get scores for.
+     * @queryParam cursor_string Next set of scores
+     */
+    public function index()
+    {
+        $params = \Request::all();
+        $cursor = cursor_from_params($params);
+        $cacheTime = 10;
+        if (isset($cursor['id']) && ($idFromCursor = get_int($cursor['id'])) !== null) {
+            $currentMaxId = SoloScore::max('id');
+            $idDistance = $currentMaxId - $idFromCursor;
+            if ($idDistance > $GLOBALS['cfg']['osu']['scores']['index_max_id_distance']) {
+                abort(422, 'cursor is too old');
+            }
+            if ($idDistance > 10_000) {
+                $cacheTime = 600;
+            }
+        }
+
+        $rulesetId = null;
+        if (isset($params['ruleset'])) {
+            $rulesetId = Beatmap::modeInt(get_string($params['ruleset']));
+
+            if ($rulesetId === null) {
+                abort(422, 'invalid ruleset parameter');
+            }
+        }
+
+        return \Cache::remember(
+            'score_index:'.($rulesetId ?? '').':'.json_encode($cursor),
+            $cacheTime,
+            function () use ($cursor, $rulesetId) {
+                $cursorHelper = SoloScore::makeDbCursorHelper('old');
+                $scoresQuery = SoloScore::with('processHistory')->limit(1_000);
+                if ($rulesetId !== null) {
+                    $scoresQuery->where('ruleset_id', $rulesetId);
+                }
+                if ($cursor === null || $cursorHelper->prepare($cursor) === null) {
+                    // fetch the latest scores when no or invalid cursor is specified
+                    // and reverse result to match the other query (latest score last)
+                    $scores = array_reverse($scoresQuery->orderByDesc('id')->get()->all());
+                } else {
+                    $scores = $scoresQuery->cursorSort($cursorHelper, $cursor)->get()->all();
+                }
+
+                return [
+                    'scores' => json_collection($scores, new ScoreTransformer(ScoreTransformer::TYPE_SOLO)),
+                    // return previous cursor if no result, assuming there's no new scores yet
+                    ...cursor_for_response($cursorHelper->next($scores) ?? $cursor),
+                ];
+            },
+        );
     }
 
     public function show($rulesetOrSoloId, $legacyId = null)

@@ -52,7 +52,13 @@ use LaravelRedis;
  */
 class Score extends Model implements Traits\ReportableInterface
 {
-    use Traits\Reportable, Traits\WithWeightedPp;
+    use Traits\Reportable, Traits\WithDbCursorHelper, Traits\WithWeightedPp;
+
+    const DEFAULT_SORT = 'old';
+
+    const SORTS = [
+        'old' => [['column' => 'id', 'order' => 'ASC']],
+    ];
 
     public $timestamps = false;
 
