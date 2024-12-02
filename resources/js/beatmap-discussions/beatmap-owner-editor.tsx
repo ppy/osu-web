@@ -180,11 +180,8 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   );
 
   private renderUsernames() {
-    const usernameInputId = `beatmap-owner-editor-username-input-${this.props.beatmap.id}`;
-
     return (
       <InputContainer
-        for={usernameInputId}
         hasError={!this.canSave}
         modifiers='beatmap-owner-editor'
         showError={this.showError}
@@ -192,7 +189,6 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
         <div className={classWithModifiers('beatmap-owner-editor-owners', { editing: this.editing })}>
           {this.editing ? (
             <UsernameInput
-              id={usernameInputId}
               initialUsers={this.owners}
               // initialValue not set for owner editor as value is reset when cancelled.
               modifiers='beatmap-owner-editor'
