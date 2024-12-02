@@ -53,9 +53,11 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     makeObservable(this);
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
     document.addEventListener('turbo:before-visit', this.handleBeforeVisit);
+  }
 
+  componentDidUpdate() {
     if (this.shouldFocusInputOnNextRender) {
       this.shouldFocusInputOnNextRender = false;
       this.inputRef.current?.focus();
