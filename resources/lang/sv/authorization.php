@@ -60,6 +60,12 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'Kan inte skicka meddelanden till en användare som blockerar dig eller som du har blockerat.',
         'friends_only' => 'Användaren blockerar meddelanden från personer som inte finns på sin vänlista.',
@@ -167,6 +173,12 @@ return [
 
         'view' => [
             'admin_only' => 'Endast administratörer kan se detta forum.',
+        ],
+    ],
+
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
         ],
     ],
 

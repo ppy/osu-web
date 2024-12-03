@@ -52,7 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Bist du sicher, dass du diese Beatmap nominieren möchtest?',
-            'different_nominator_warning' => '',
+            'different_nominator_warning' => 'Das Qualifizieren dieser Beatmap mit anderen Nominatoren wird dessen Position in der Qualifikationswarteschlange zurücksetzen.',
             'header' => 'Beatmap nominieren',
             'hybrid_warning' => 'Hinweis: du kannst nur einmalig nominieren, also stelle bitte sicher, dass du für alle Spielmodi nominierst, die du beabsichtigst',
             'current_main_ruleset' => 'Der Hauptspielmodus ist derzeit: :ruleset',

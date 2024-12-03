@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Vil du virkelig gjenopprette emnet?',
         'deleted' => 'slettet emne',
         'go_to_latest' => 'vis nyeste innlegg',
+        'go_to_unread' => '',
         'has_replied' => 'Du har svart på dette emnet',
         'in_forum' => 'i :forum',
         'latest_post' => ':when av :user',

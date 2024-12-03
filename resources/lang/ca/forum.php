@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Realment voleu restaurar el tema?',
         'deleted' => 'tema eliminat',
         'go_to_latest' => 'veure l\'última publicació',
+        'go_to_unread' => '',
         'has_replied' => 'Has respost a aquest tema',
         'in_forum' => 'en :forum',
         'latest_post' => ':when per :user',

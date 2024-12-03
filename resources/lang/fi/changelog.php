@@ -34,7 +34,7 @@ return [
     'support' => [
         'heading' => 'Piditkö tästä päivityksestä?',
         'text_1' => 'Tue osu!:n kehittämistä ja :link jo tänään!',
-        'text_1_link' => 'ryhdy osu!n tukijaksi',
+        'text_1_link' => 'ryhdy osu!:n tukijaksi',
         'text_2' => 'Tukesi ei ainoastaan nopeuta pelin kehittämistä, vaan saat myös lisätoimintoja sekä enemmän muokkausvapautta!',
     ],
 ];

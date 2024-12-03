@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Queres mesmo restaurar o tópico?',
         'deleted' => 'tópico eliminado',
         'go_to_latest' => 'ver ultima publicação',
+        'go_to_unread' => '',
         'has_replied' => 'Respondeste a este tópico',
         'in_forum' => 'em :forum',
         'latest_post' => ':when por :user',

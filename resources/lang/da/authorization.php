@@ -60,6 +60,12 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'Du kan ikke sende denne besked, enten har brugeren blokeret dig eller du har blokeret brugeren.',
         'friends_only' => 'Brugeren blokerer beskeder fra folk der ikke er på deres venneliste.',
@@ -167,6 +173,12 @@ return [
 
         'view' => [
             'admin_only' => 'Kun administratorer kan se dette forum.',
+        ],
+    ],
+
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
         ],
     ],
 

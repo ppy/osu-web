@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Сложность',
-        'percentile_10' => '90-й процентиль очков',
-        'percentile_50' => '50-й процентиль очков',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [

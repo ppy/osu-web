@@ -126,7 +126,7 @@ return [
 
     'ogp' => [
         'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description_empty' => 'Brugeren har ingen beatmaps...',
 
         'description' => [
             '_' => '',
@@ -171,7 +171,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Du konto er blevet begrænset!',
-        'message' => 'Når du er begrænset, kan du ikke interagere med andre spillere, og dine scores vil kun være synlige for dig. Dette er som regel en automatisk proces, og begrænsningen vil blive fjernet indenfor 24 timer. :link',
+        'message' => 'Når du er begrænset, kan du ikke interagere med andre spillere, og dine scores vil kun være synlige for dig. Dette er som regel en automatisk proces, og begrænsningen fjernes normalt indenfor 24 timer. :link',
         'message_link' => 'Tjek denne side for at lære mere.',
     ],
     'show' => [
@@ -202,8 +202,8 @@ return [
             'daily_streak_current' => '',
             'playcount' => '',
             'title' => '',
-            'top_10p_placements' => '',
-            'top_50p_placements' => '',
+            'top_10p_placements' => 'Top 10%-placeringer',
+            'top_50p_placements' => 'Top 50%-placeringer',
             'weekly' => '',
             'weekly_streak_best' => '',
             'weekly_streak_current' => '',
@@ -243,7 +243,7 @@ return [
 
             'hue' => [
                 'reset_no_supporter' => '',
-                'title' => '',
+                'title' => 'Farve',
 
                 'supporter' => [
                     '_' => '',
@@ -278,7 +278,7 @@ return [
                     'title' => 'Elskede beatmaps',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Nominerede Rangerede Beatmaps',
                 ],
                 'pending' => [
                     'title' => 'Afventende Beatmaps',
@@ -419,22 +419,22 @@ return [
                 'vote_count' => ':count_delimited stemme|:count_delimited stemmer',
             ],
             'account_standing' => [
-                'title' => 'Account Status',
-                'bad_standing' => "<strong>:username's</strong> account er ikke i en god position :(",
-                'remaining_silence' => '<strong>:username</strong> kan tale igen om :duration.',
+                'title' => 'Kontostatus',
+                'bad_standing' => ":username's konto er ikke i en god position :(",
+                'remaining_silence' => ':username kan tale igen :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Seneste Overtrædelser',
                     'date' => 'dato',
                     'action' => 'handling',
                     'length' => 'længde',
-                    'length_indefinite' => '',
+                    'length_indefinite' => 'Tidsubegrænset',
                     'description' => 'beskrivelse',
                     'actor' => 'af :username',
 
                     'actions' => [
                         'restriction' => 'Ban',
-                        'silence' => 'Mute',
+                        'silence' => 'Silence',
                         'tournament_ban' => 'Turneringsforbud',
                         'note' => 'Noter',
                     ],
@@ -501,7 +501,7 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => 'Du er i øjeblikket muted.',
+        'title' => 'Du er silenced i øjeblikket.',
         'message' => 'Nogle handlinger kan være utilgængelige.',
     ],
 
@@ -512,7 +512,7 @@ return [
     ],
     'store' => [
         'from_client' => '',
-        'from_web' => '',
+        'from_web' => 'fuldfør venligst registrationen via osu!s website',
         'saved' => 'Bruger Oprettet',
     ],
     'verify' => [

@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => 'discusiones de mapas',
     ],
+
+    'store' => [
+        'too_many' => '',
+    ],
 ];

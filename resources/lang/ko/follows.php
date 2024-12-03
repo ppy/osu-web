@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => '비트맵 토론',
     ],
+
+    'store' => [
+        'too_many' => '',
+    ],
 ];

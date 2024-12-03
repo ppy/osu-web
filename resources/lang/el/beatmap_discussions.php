@@ -66,6 +66,13 @@ return [
         'version' => 'Δυσκολία',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Συνδεθείτε για να Aπαντήσετε',

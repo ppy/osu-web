@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Difficulté',
-        'percentile_10' => 'Score du 10ᵉ centile',
-        'percentile_50' => 'Score médian',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [

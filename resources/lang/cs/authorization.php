@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'Nemůžete napsat uživateli, kterého máte buď zablokovaného nebo vás má v zablokovaných.',
         'friends_only' => 'Uživatel blokuje zprávy od lidí, kteří nejsou v jeho listu přátel.',
         'moderated' => 'Tento kanál je právě moderován.',
         'no_access' => 'Nemáte přístup k tomu kanálu.',
-        'no_announce' => '',
+        'no_announce' => 'Nemáte oprávnění postnout oznámení.',
         'receive_friends_only' => 'Tento uživatel nemusí být schopen odpovědět, protože přijímáte zprávy pouze od lidí ve vašem seznamu přátel.',
         'restricted' => 'Nemůžete posílat zprávy, když jste umlčen, omezen nebo zabanován.',
         'silenced' => 'Nemůžete posílat zprávy, když jste umlčen, omezen nebo zabanován.',
@@ -167,6 +173,12 @@ return [
 
         'view' => [
             'admin_only' => 'Pouze admin může zobrazit toto fórum.',
+        ],
+    ],
+
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
         ],
     ],
 

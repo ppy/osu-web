@@ -25,7 +25,7 @@ return [
 
     'filters' => [
         '_' => '全部',
-        'user' => '個人簡介',
+        'user' => '個人檔案',
         'beatmapset' => '圖譜',
         'forum_topic' => '討論區',
         'news_post' => '最新消息',

@@ -12,7 +12,7 @@ return [
     'beatmapset_update' => '<strong><em>:user</em></strong> је ажурирао/ла мапу "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> је направио/ла нову мапу ":beatmapset"',
     'empty' => "Овај корисник није урадио/ла ништа значајно скоро!",
-    'rank' => '<strong><em>:user</em></strong> је достигао/ла #:rank место на <em>:beatmap</em> (:mode)',
+    'rank' => ':user је достигао/ла :rank на :beatmap (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> је изгубио/ла прво место на <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> је поново одлучио/ла да подржи osu! - хвала вам на вашој великодушности!',
     'user_support_first' => '<strong>:user</strong> је подржао/ла osu! - хвала вам на вашој великодушности!',

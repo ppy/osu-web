@@ -66,6 +66,13 @@ return [
         'version' => 'Grūtība',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Pierakstieties, lai atbildētu',

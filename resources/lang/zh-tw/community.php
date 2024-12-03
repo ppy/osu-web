@@ -105,8 +105,8 @@ return [
             ],
 
             'skinnables' => [
-                'title' => '更多的定製',
-                'description' => '自定義更多的遊戲界面元素，例如主畫面的背景。',
+                'title' => '更多的訂製外觀元素',
+                'description' => '可自訂更多外觀元素，例如主選單背景。',
             ],
 
             'feature_votes' => [

@@ -66,6 +66,13 @@ return [
         'version' => 'Obtiažnosť ',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Prosím, prihláste sa, aby ste mohli odpovedať',

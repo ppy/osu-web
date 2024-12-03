@@ -5,37 +5,37 @@
 
 return [
     'beatmapset' => [
-        'button' => 'Laporkan',
-        'title' => '',
+        'button' => 'Lapor',
+        'title' => 'Laporkan beatmap :username?',
     ],
 
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Lapor',
+        'title' => 'Laporkan hantaran :username?',
     ],
 
     'comment' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Lapor',
+        'title' => 'Laporkan komen :username?',
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Lapor',
+        'title' => 'Laporkan hantaran :username?',
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Laporkan Mesej',
+        'title' => 'Laporkan mesej :username?',
     ],
 
     'scores' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Laporkan Markah',
+        'title' => 'Laporkan markah :username?',
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Lapor',
+        'title' => 'Laporkan :username?',
     ],
 ];

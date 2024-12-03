@@ -70,7 +70,7 @@ return [
         'download' => '下載 .osz 檔案',
 
         'wrong_type' => [
-            'art' => '只接受 .jpg 和 .png 格式的文件.',
+            'art' => '只接受 .jpg 和 .png 格式的檔案。',
             'beatmap' => '只接受 .osu 格式的文件.',
             'music' => '只接受 .mp3 格式的文件.',
         ],

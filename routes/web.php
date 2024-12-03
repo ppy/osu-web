@@ -41,7 +41,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
 
         Route::group(['as' => 'beatmaps.', 'prefix' => '{beatmap}'], function () {
-            Route::get('scores/users/{user}', 'BeatmapsController@userScore');
             Route::get('scores', 'BeatmapsController@scores')->name('scores');
             Route::get('solo-scores', 'BeatmapsController@soloScores')->name('solo-scores');
             Route::put('update-owner', 'BeatmapsController@updateOwner')->name('update-owner');

@@ -32,7 +32,7 @@ return [
         'restore' => 'відновити',
         'show_deleted' => 'Показати видалені',
         'title' => 'Обговорення',
-        'unresolved_count' => ':count_delimited невирішена проблема|:count_delimited невирішених проблем',
+        'unresolved_count' => ':count_delimited невирішена проблема|:count_delimited невирішеної проблеми|:count_delimited невирішених проблем',
 
         'collapse' => [
             'all-collapse' => 'Приховати все',
@@ -70,10 +70,10 @@ return [
 
         'message_type' => [
             'disqualify' => 'Дискваліфікувати',
-            'hype' => 'Хайпнути!',
+            'hype' => 'Хайп!',
             'mapper_note' => 'Замітка',
             'nomination_reset' => 'Зняти номінацію',
-            'praise' => 'Подяка',
+            'praise' => 'Похвала',
             'problem' => 'Проблема',
             'problem_warning' => 'Повідомити про проблему',
             'review' => 'Відгук',
@@ -81,15 +81,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => 'Дискваліфікаційне повідомлення',
-            'hype' => 'Хайпанути!',
-            'mapper_note' => 'Повідомлення-нотатка',
+            'disqualify' => 'Розмістити дискваліфікацію',
+            'hype' => 'Хайпнути!',
+            'mapper_note' => 'Розмістити замітку',
             'nomination_reset' => 'Видалити всі Номінації',
-            'praise' => 'Повідомлення-подяка',
-            'problem' => 'Повідомлення-проблема',
-            'problem_warning' => 'Повідомлення-проблема',
-            'review' => 'Повідомлення-відгук',
-            'suggestion' => 'Повідомлення-пропозиція',
+            'praise' => 'Розмістити похвалу',
+            'problem' => 'Розмістити проблему',
+            'problem_warning' => 'Розмістити проблему',
+            'review' => 'Розмістити відгук',
+            'suggestion' => 'Розмістити пропозицію',
         ],
 
         'mode' => [
@@ -276,7 +276,7 @@ return [
         'featured_artists' => 'Обрані виконавці',
         'follows' => 'Маппери на яких ви підписані',
         'recommended' => 'Рекомендована складність',
-        'spotlights' => 'Популярні мапи',
+        'spotlights' => 'Відібрані мапи',
     ],
     'mode' => [
         'all' => 'Всі',

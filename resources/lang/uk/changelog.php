@@ -11,7 +11,7 @@ return [
     ],
 
     'builds' => [
-        'users_online' => ':count_delimited гравець онлайн|:count_delimited гравці|:count_delimited гравців онлайн',
+        'users_online' => ':count_delimited гравець онлайн|:count_delimited гравці онлайн|:count_delimited гравців онлайн',
     ],
 
     'entry' => [
