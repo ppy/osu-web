@@ -51,12 +51,13 @@ class CleanHTML
 
         $def->addAttribute('img', 'loading', 'Text');
         $def->addAttribute('img', 'src', 'Text');
+        $def->addAttribute('img', 'style', 'Text');
 
-        $def->addAttribute('span', 'data-src', 'Text');
-        $def->addAttribute('span', 'data-height', 'Text');
-        $def->addAttribute('span', 'data-width', 'Text');
-        $def->addAttribute('span', 'data-index', 'Text');
-        $def->addAttribute('span', 'data-gallery-id', 'Text');
+        $def->addAttribute('img', 'data-src', 'Text');
+        $def->addAttribute('img', 'data-height', 'Text');
+        $def->addAttribute('img', 'data-width', 'Text');
+        $def->addAttribute('img', 'data-index', 'Text');
+        $def->addAttribute('img', 'data-gallery-id', 'Text');
 
         $def->addAttribute('a', 'data-user-id', 'Text');
 
