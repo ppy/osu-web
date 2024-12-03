@@ -229,7 +229,6 @@ class BBCodeFromDB
             }
 
             $replacements[$i[0]] = tag('img', $attributes);
-
         }
 
         return strtr($text, $replacements);
