@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [
@@ -35,13 +35,13 @@ return [
 
     'type' => [
         'charts' => 'Mga Spotlight',
-        'country' => 'Bansa',
+        'country' => 'bansa',
         'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
-        'performance' => 'Performance',
-        'score' => 'Iskor',
-        'seasons' => 'Mga panahon',
+        'performance' => 'performance',
+        'score' => 'iskor',
+        'seasons' => 'mga panahon',
     ],
 
     'seasons' => [
@@ -60,7 +60,7 @@ return [
 
     'stat' => [
         'accuracy' => 'Accuracy',
-        'active_users' => 'Mga Aktib na User',
+        'active_users' => 'Mga Aktibong User',
         'country' => 'Bansa',
         'play_count' => 'Bilang ng Beses na Naglaro',
         'performance' => 'Performance',

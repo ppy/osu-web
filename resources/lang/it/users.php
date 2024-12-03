@@ -8,7 +8,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Cronologia Modding di :user",
-        'title_compact' => 'Moderazione',
+        'title_compact' => 'Modding',
 
         'discussions' => [
             'title_recent' => 'Discussioni aperte di recente',

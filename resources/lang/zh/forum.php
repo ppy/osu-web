@@ -80,6 +80,7 @@ return [
         'confirm_restore' => '恢复此主题？',
         'deleted' => '已删除的主题',
         'go_to_latest' => '查看最新的帖子',
+        'go_to_unread' => '',
         'has_replied' => '你已回复过此主题',
         'in_forum' => '在 :forum',
         'latest_post' => ':when :user',
@@ -368,7 +369,7 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching' => '未订阅',
+            'to_not_watching' => '不订阅',
             'to_watching' => '订阅',
             'to_watching_mail' => '订阅并启用邮件通知',
             'tooltip_mail_disable' => '通知已启用。点击禁用',

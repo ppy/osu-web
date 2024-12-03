@@ -80,6 +80,7 @@ return [
         'confirm_restore' => '',
         'deleted' => 'odstranená téma',
         'go_to_latest' => 'zobraziť najnovší príspevok',
+        'go_to_unread' => '',
         'has_replied' => '',
         'in_forum' => 'v :forum',
         'latest_post' => ':when použivateľom :user',

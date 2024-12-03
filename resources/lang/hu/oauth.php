@@ -7,7 +7,7 @@ return [
     'cancel' => 'Mégse',
 
     'authorise' => [
-        'app_owner' => '',
+        'app_owner' => 'egy alkalmazás :owner által',
         'request' => 'engedélyt kér a fiókodhoz.',
         'scopes_title' => 'Ez az alkalmazás képes lesz a:',
         'title' => 'Hitelesítési Kérelem',

@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Gendan opslag?',
         'deleted' => 'slettede emne',
         'go_to_latest' => 'vis det seneste opslag',
+        'go_to_unread' => '',
         'has_replied' => 'Du har besvaret dette emne',
         'in_forum' => 'i :forum',
         'latest_post' => ':when af :user',

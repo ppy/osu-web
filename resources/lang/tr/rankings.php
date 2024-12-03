@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Zorluk',
-        'percentile_10' => '10. Yüzdelik Dilim Skoru',
-        'percentile_50' => '50. Yüzdelik Dilim Skoru',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [

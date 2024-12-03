@@ -53,6 +53,11 @@ return [
                 'beatmapsets' => 'Beatmaps',
                 'forum' => 'Forum',
                 'general' => 'General',
+
+                'users' => [
+                    'header' => 'User',
+                    'cover_presets' => 'Profile Cover Presets',
+                ],
             ],
         ],
     ],

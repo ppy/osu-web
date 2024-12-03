@@ -66,6 +66,13 @@ return [
         'version' => 'Dificultad',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Inicia sesión para responder',

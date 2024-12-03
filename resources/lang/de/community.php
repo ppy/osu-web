@@ -116,7 +116,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Sortieroptionen',
-                'description' => 'Länder-, Freundes- und modspezifische Ranglisten im Spiel einsehen!',
+                'description' => 'Sieh dir Ranglisten basierend auf Ländern, deiner Freundesliste oder spezifischer Modkombinationen im Spiel an!',
             ],
 
             'more_favourites' => [

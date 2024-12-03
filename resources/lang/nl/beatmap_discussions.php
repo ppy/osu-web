@@ -66,6 +66,13 @@ return [
         'version' => 'Moeilijkheidsgraad',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Log in om te Antwoorden',

@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Действительно восстановить тему?',
         'deleted' => 'удалённая тема',
         'go_to_latest' => 'перейти к последнему ответу',
+        'go_to_unread' => '',
         'has_replied' => 'Вы отвечали на эту тему',
         'in_forum' => 'в :forum',
         'latest_post' => ':when от :user',

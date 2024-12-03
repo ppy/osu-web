@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'deleted' => 'telah dihapus',
+    'deleted' => 'dihapus',
     'deleted_by' => 'dihapus :timeago oleh :user',
     'deleted_by_system' => 'sistem',
     'deleted_count' => ':count_delimited komentar yang dihapus|:count_delimited komentar yang dihapus',
@@ -25,10 +25,10 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Tekan enter untuk mengirimkan :action. Gunakan shift+enter untuk memulai baris baru.',
-            'edit' => 'simpan',
-            'new' => 'komentar',
-            'reply' => 'balasan',
+            '_' => 'Tekan enter untuk :action. Gunakan shift+enter untuk memulai baris baru.',
+            'edit' => 'menyimpan suntingan',
+            'new' => 'mengirimkan komentar',
+            'reply' => 'membalas',
         ],
     ],
 

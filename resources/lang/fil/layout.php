@@ -199,8 +199,8 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Ang Lazer mode ay nagpapakita ng mga iskor na itinakda mula sa lazer na may bagong algorithm sa pag-iskor',
             'logout' => 'Mag-sign Out',
             'profile' => 'Aking Profile',
-            'scoring_mode_toggle' => '',
-            'scoring_mode_toggle_tooltip' => '',
+            'scoring_mode_toggle' => 'Klasikong pang-iskor',
+            'scoring_mode_toggle_tooltip' => 'Iakma ang mga iskor para tumugma sa klasikong pang-iskor',
         ],
     ],
 

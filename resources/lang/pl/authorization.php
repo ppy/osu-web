@@ -60,6 +60,12 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'Nie możesz wysłać wiadomości do użytkownika, którego blokujesz lub który cię blokuje.',
         'friends_only' => 'Ten użytkownik blokuje wiadomości od osób spoza listy znajomych.',
@@ -167,6 +173,12 @@ return [
 
         'view' => [
             'admin_only' => 'Tylko administrator ma dostęp do tego forum.',
+        ],
+    ],
+
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
         ],
     ],
 

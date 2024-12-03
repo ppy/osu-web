@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'استعادة الموضوع حقاً؟',
         'deleted' => 'موضوع محذوف',
         'go_to_latest' => 'عرض اخر منشور',
+        'go_to_unread' => '',
         'has_replied' => 'لقد قمت بالرد على هذا الموضوع',
         'in_forum' => 'في :forum',
         'latest_post' => ':when بواسطة :user',

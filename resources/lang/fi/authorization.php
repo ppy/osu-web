@@ -40,13 +40,13 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => 'Voit poistaa vaan omia viestejä.',
+            'not_owner' => 'Voit poistaa vaan omia postauksiasi.',
             'resolved' => 'Et voi poistaa ratkaistun keskustelun viestiä.',
             'system_generated' => 'Automaattisesti luotua viestiä ei voi poistaa.',
         ],
 
         'edit' => [
-            'not_owner' => 'Vain lähettäjä voi muokata viestiä.',
+            'not_owner' => 'Vain lähettäjä voi muokata postausta.',
             'resolved' => 'Et voi muokata ratkaistun keskustelun viestiä.',
             'system_generated' => 'Automaattisesti luotua viestiä ei voi muokata.',
         ],
@@ -56,19 +56,25 @@ return [
         'discussion_locked' => 'Tämän rytmikartan keskustelu on lukittu.',
 
         'metadata' => [
-            'nominated' => 'Et voi muuttaa ehdolle asetetun kartan kuvailutietoja. Ota yhteyttä BN- tai NAT-jäseneen, jos luulet sen olevan virheellinen.',
+            'nominated' => 'Et voi muuttaa ehdolle asetetun kartan metatietoja. Ota yhteyttä BN- tai NAT-jäseneen, jos ajattelet niiden olevan virheellisiä.',
+        ],
+    ],
+
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
         ],
     ],
 
     'chat' => [
         'blocked' => 'Et voi lähettää viestejä käyttäjälle, joka on estänyt sinut tai jonka olet estänyt.',
-        'friends_only' => 'Käyttäjä on estänyt viestit henkilöiltä, jotka eivät ole hänen kaverilistassaan.',
+        'friends_only' => 'Käyttäjä on estänyt viestit henkilöiltä, jotka eivät ole heidän kaverilistallaan.',
         'moderated' => 'Tätä kanavaa moderoidaan.',
         'no_access' => 'Sinulla ei ole oikeuksia tälle kanavalle.',
-        'no_announce' => '',
+        'no_announce' => 'Sinulla ei ole oikeutta ilmoitusten postaamiseen.',
         'receive_friends_only' => 'Käyttäjä ei välttämättä pysty vastaamaan, koska hyväksyt viestejä vain kaverilistallasi olevilta henkilöiltä.',
-        'restricted' => 'Et voi lähettää viestejä mykistettynä, rajoitettuna tai bännättynä.',
-        'silenced' => 'Et voi lähettää viestejä mykistettynä, rajoitettuna tai bännättynä.',
+        'restricted' => 'Et voi lähettää viestejä mykistettynä, rajoitettuna tai estettynä.',
+        'silenced' => 'Et voi lähettää viestejä mykistettynä, rajoitettuna tai estettynä.',
     ],
 
     'comment' => [
@@ -76,17 +82,17 @@ return [
             'disabled' => 'Kommentit ovat poistettu käytöstä',
         ],
         'update' => [
-            'deleted' => "Poistettuja viestejä ei voi mukata.",
+            'deleted' => "Poistettuja postauksia ei voi muokata.",
         ],
     ],
 
     'contest' => [
-        'judging_not_active' => 'Tuomarointi tälle kilpailulle ei ole avoinna.',
+        'judging_not_active' => 'Tuomarointi tälle kilpailulle ei ole aktiivinen.',
         'voting_over' => 'Et voi muuttaa ääntäsi tälle kilpailulle äänestysajan loppumisen jälkeen.',
 
         'entry' => [
             'limit_reached' => 'Olet saavuttanut kilpailuun lähetettävien töiden rajan',
-            'over' => 'Kiitos lähettämistänne töistä! Kilpailuun ei oteta enää ehdokkaita ja äänestys avataan pian.',
+            'over' => 'Kiitos lähettämistänne töistä! Töiden lähettäminen on suljettu ja äänestys avataan pian.',
         ],
     ],
 
@@ -100,26 +106,26 @@ return [
                 'only_last_post' => 'Vain viimeisin viesti voidaan poistaa.',
                 'locked' => 'Lukitun aiheen viestejä ei voi poistaa.',
                 'no_forum_access' => 'Tarvitset pääsyn tälle foorumille.',
-                'not_owner' => 'Vain lähettäjä voi poistaa viestin.',
+                'not_owner' => 'Vain lähettäjä voi poistaa postauksen.',
             ],
 
             'edit' => [
-                'deleted' => 'Poistettuja viestejä ei voi muokata.',
+                'deleted' => 'Poistettua postausta ei voi muokata.',
                 'locked' => 'Viestin muokkaaminen on estetty.',
                 'no_forum_access' => 'Tarvitset pääsyn tälle foorumille.',
-                'not_owner' => 'Vain lähettäjä voi muokata viestiä.',
+                'not_owner' => 'Vain lähettäjä voi muokata postausta.',
                 'topic_locked' => 'Lukitun aiheen viestiä ei voi muokata.',
             ],
 
             'store' => [
                 'play_more' => 'Pyydämme, että kokeilet peliä ennen viestin lähettämistä foorumeille! Jos kohtaat ongelmia pelatessasi, lähetä viesti foorumin apu- ja tukialueelle.',
-                'too_many_help_posts' => "Sinun on pelattava peliä enemmän, ennen kuin voit luoda useampia viestejä. Jos sinulla on edelleen ongelmia pelin kanssa, lähetä sähköpostia osoitteeseen support@ppy.sh", // FIXME: unhardcode email address.
+                'too_many_help_posts' => "Sinun on pelattava peliä enemmän, ennen kuin voit luoda enemmän postauksia. Jos sinulla on edelleen ongelmia pelin pelaamisen kanssa, lähetä sähköpostia osoitteeseen support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Muokkaa edellistä viestiä uuden lähettämisen sijaan.',
+                'double_post' => 'Muokkaa edellistä postaustasi uuden lähettämisen sijaan.',
                 'locked' => 'Et voi vastata lukittuun aiheeseen.',
                 'no_forum_access' => 'Pääsy kyseiselle foorumille vaaditaan.',
                 'no_permission' => 'Ei vastausoikeutta.',
@@ -167,6 +173,12 @@ return [
 
         'view' => [
             'admin_only' => 'Vain ylläpitäjä voi nähdä tämän foorumin.',
+        ],
+    ],
+
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
         ],
     ],
 

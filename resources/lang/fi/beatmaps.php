@@ -314,7 +314,7 @@ return [
         'metal' => 'Metalli',
         'classical' => 'Klassinen',
         'folk' => 'Kansanmusiikki',
-        'jazz' => 'Jazz',
+        'jazz' => 'Jatsi',
     ],
     'language' => [
         'any' => 'Kaikki',
@@ -331,7 +331,7 @@ return [
         'polish' => 'puola',
         'instrumental' => 'Instrumentaalinen',
         'other' => 'Muu',
-        'unspecified' => 'Täsmentämätön',
+        'unspecified' => 'Määrittelemätön',
     ],
 
     'nsfw' => [
@@ -360,8 +360,8 @@ return [
         'D' => '',
     ],
     'panel' => [
-        'playcount' => 'Pelikertoja: :count',
-        'favourites' => 'Suosikkeja: :count',
+        'playcount' => ':count Pelikertaa',
+        'favourites' => ':count Suosikkia',
     ],
     'variant' => [
         'mania' => [

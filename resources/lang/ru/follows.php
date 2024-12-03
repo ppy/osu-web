@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => 'обсуждения карт',
     ],
+
+    'store' => [
+        'too_many' => '',
+    ],
 ];

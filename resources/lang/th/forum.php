@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'ต้องการกู้คืนโพสต์จริงหรอ?',
         'deleted' => 'ลบกระทู้',
         'go_to_latest' => 'ดูโพสต์ล่าสุด',
+        'go_to_unread' => '',
         'has_replied' => 'คุณได้ตอบกลับการสนทนานี้',
         'in_forum' => 'ใน :forum',
         'latest_post' => ':when โดย :user',
