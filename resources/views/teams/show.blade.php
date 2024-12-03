@@ -68,9 +68,9 @@
                                     <div class="team-info-entry">
                                         <div class="team-info-entry__title">{{ osu_trans('teams.show.info.website') }}</div>
                                         <div class="team-info-entry__value">
-                                            <a href="{{ $team->url }}" class="u-ellipsis-overflow">
-                                                {{ $team->url }}
-                                            </a>
+                                            <span class="u-ellipsis-overflow">
+                                                <a href="{{ $team->url }}">{{ $team->url }}</a>
+                                            </span>
                                         </div>
                                     </div>
                                 @endif
