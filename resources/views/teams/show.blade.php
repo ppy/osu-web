@@ -51,9 +51,9 @@
                 </div>
             </div>
             <div class="user-profile-pages user-profile-pages--no-tabs">
-                <div class="page-extra">
+                <div class="page-extra u-fancy-scrollbar">
                     <div class="team-summary">
-                        <div>
+                        <div class="team-summary__sidebar">
                             <h2 class="title title--page-extra-small title--page-extra-small-top">
                                 {{ osu_trans('teams.show.sections.info') }}
                             </h2>
@@ -108,7 +108,7 @@
                             </div>
                         </div>
 
-                        <div class="team-summary__separator"></div>
+                        <div class="team-summary__sidebar team-summary__sidebar--separator"></div>
 
                         <div>
                             {!! $team->descriptionHtml() !!}
