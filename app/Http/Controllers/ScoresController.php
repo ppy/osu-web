@@ -142,16 +142,14 @@ class ScoresController extends Controller
     {
         $params = \Request::all();
         $cursor = cursor_from_params($params);
-        $cacheTime = 10;
+        $isOldScores = false;
         if (isset($cursor['id']) && ($idFromCursor = get_int($cursor['id'])) !== null) {
             $currentMaxId = SoloScore::max('id');
             $idDistance = $currentMaxId - $idFromCursor;
             if ($idDistance > $GLOBALS['cfg']['osu']['scores']['index_max_id_distance']) {
                 abort(422, 'cursor is too old');
             }
-            if ($idDistance > 10_000) {
-                $cacheTime = 600;
-            }
+            $isOldScores = $idDistance > 10_000;
         }
 
         $rulesetId = null;
@@ -165,10 +163,10 @@ class ScoresController extends Controller
 
         return \Cache::remember(
             'score_index:'.($rulesetId ?? '').':'.json_encode($cursor),
-            $cacheTime,
-            function () use ($cursor, $rulesetId) {
+            $isOldScores ? 600 : 10,
+            function () use ($cursor, $isOldScores, $rulesetId) {
                 $cursorHelper = SoloScore::makeDbCursorHelper('old');
-                $scoresQuery = SoloScore::with('processHistory')->limit(1_000);
+                $scoresQuery = SoloScore::forListing()->limit(1_000);
                 if ($rulesetId !== null) {
                     $scoresQuery->where('ruleset_id', $rulesetId);
                 }
@@ -180,8 +178,21 @@ class ScoresController extends Controller
                     $scores = $scoresQuery->cursorSort($cursorHelper, $cursor)->get()->all();
                 }
 
+                if ($isOldScores) {
+                    $filteredScores = $scores;
+                } else {
+                    $filteredScores = [];
+                    foreach ($scores as $score) {
+                        if ($score->isProcessed()) {
+                            $filteredScores[] = $score;
+                        } else {
+                            break;
+                        }
+                    }
+                }
+
                 return [
-                    'scores' => json_collection($scores, new ScoreTransformer(ScoreTransformer::TYPE_SOLO)),
+                    'scores' => json_collection($filteredScores, new ScoreTransformer(ScoreTransformer::TYPE_SOLO)),
                     // return previous cursor if no result, assuming there's no new scores yet
                     ...cursor_for_response($cursorHelper->next($scores) ?? $cursor),
                 ];

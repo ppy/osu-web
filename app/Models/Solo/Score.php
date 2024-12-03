@@ -169,6 +169,13 @@ class Score extends Model implements Traits\ReportableInterface
         return $query->whereHas('beatmap.beatmapset');
     }
 
+    public function scopeForListing(Builder $query): Builder
+    {
+        return $query->where('ranked', true)
+            ->leftJoinRelation('processHistory')
+            ->select([$query->qualifyColumn('*'), 'processed_version']);
+    }
+
     public function scopeForRuleset(Builder $query, string $ruleset): Builder
     {
         return $query->where('ruleset_id', Beatmap::MODES[$ruleset]);
@@ -368,6 +375,19 @@ class Score extends Model implements Traits\ReportableInterface
         }
 
         return null;
+    }
+
+    public function isProcessed(): bool
+    {
+        if ($this->legacy_score_id !== null) {
+            return true;
+        }
+
+        if (array_key_exists('processed_version', $this->attributes)) {
+            return $this->attributes['processed_version'] !== null;
+        }
+
+        return $this->processHistory !== null;
     }
 
     public function legacyScore(): ?LegacyScore\Best\Model
