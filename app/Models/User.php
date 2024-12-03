@@ -127,6 +127,7 @@ use Request;
  * @property-read Collection<Store\Address> $storeAddresses
  * @property-read Collection<UserDonation> $supporterTagPurchases
  * @property-read Collection<UserDonation> $supporterTags
+ * @property-read TeamMember|null $teamMembership
  * @property-read Collection<OAuth\Token> $tokens
  * @property-read Collection<Forum\TopicWatch> $topicWatches
  * @property-read Collection<UserAchievement> $userAchievements
@@ -294,6 +295,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function userCountryHistory(): HasMany
     {
         return $this->hasMany(UserCountryHistory::class);
+    }
+
+    public function teamMembership(): HasOne
+    {
+        return $this->hasOne(TeamMember::class, 'user_id');
     }
 
     public function getAuthPassword()
@@ -952,6 +958,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'storeAddresses',
             'supporterTagPurchases',
             'supporterTags',
+            'teamMembership',
             'tokens',
             'topicWatches',
             'userAchievements',
@@ -2323,17 +2330,12 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             $this->isValidEmail();
         }
 
-        if ($this->isDirty('country_acronym')) {
-            if (present($this->country_acronym)) {
-                $country = app('countries')->byCode($this->country_acronym);
-                if ($country === null) {
-                    $this->validationErrors()->add('country', '.invalid_country');
-                } else {
-                    // ensure matching case
-                    $this->country_acronym = $country->getKey();
-                }
-            } else {
-                $this->country_acronym = Country::UNKNOWN;
+        $countryAcronym = $this->country_acronym;
+        if ($countryAcronym === null) {
+            $this->country_acronym = Country::UNKNOWN;
+        } elseif ($this->isDirty('country_acronym') && $countryAcronym !== Country::UNKNOWN) {
+            if (app('countries')->byCode($countryAcronym) === null) {
+                $this->validationErrors()->add('country', '.invalid_country');
             }
         }
 

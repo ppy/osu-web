@@ -190,7 +190,7 @@ return [
 
         'comments_count' => [
             '_' => 'Опубліковано :link',
-            'count' => ':count_delimited коментар|:count_delimited коментарі|:count_delimited коментарів',
+            'count' => ':count_delimited коментар|:count_delimited коментаря|:count_delimited коментарів',
         ],
         'cover' => [
             'to_0' => 'Згорнути обкладинку профілю',
@@ -278,7 +278,7 @@ return [
                     'title' => 'Улюблені бітмапи',
                 ],
                 'nominated' => [
-                    'title' => 'Номіновні рейтингові бітмапи',
+                    'title' => 'Номіновані рейтингові бітмапи',
                 ],
                 'pending' => [
                     'title' => 'На розгляді',
@@ -390,7 +390,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Завантажити повтор',
-                'not_ranked' => 'Очки продуктивності видаються тільки за рейтингові карти',
+                'not_ranked' => 'Тільки рейтингові мапи надають pp',
                 'pp_weight' => 'зважено: :percentage',
                 'view_details' => 'Детальніше',
                 'title' => 'Рейтинги',

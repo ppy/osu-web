@@ -5,37 +5,37 @@
 
 return [
     'beatmapset' => [
-        'button' => 'I-report',
-        'title' => 'I-report ang beatmap ni :username?',
+        'button' => 'Isumbong',
+        'title' => 'Isumbong ang beatmap ni :username?',
     ],
 
     'beatmapset_discussion_post' => [
-        'button' => 'I-report',
-        'title' => 'I-report ang post ni :username?',
+        'button' => 'Isumbong',
+        'title' => 'Isumbong ang post ni :username?',
     ],
 
     'comment' => [
-        'button' => 'I-report',
-        'title' => 'I-report ang komento ni :username?',
+        'button' => 'Isumbong',
+        'title' => 'Isumbong ang komento ni :username?',
     ],
 
     'forum_post' => [
-        'button' => 'I-report',
-        'title' => 'I-report ang post ni :username?',
+        'button' => 'Isumbong',
+        'title' => 'Isumbong ang post ni :username?',
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Isumbong ang Mensahe',
+        'title' => 'Isumbong ang mensahe ni :username?',
     ],
 
     'scores' => [
-        'button' => 'I-report ang score',
-        'title' => 'I-report ang score ni :username?',
+        'button' => 'Isumbong ang iskor',
+        'title' => 'Isumbong ang iskor ni :username?',
     ],
 
     'user' => [
-        'button' => 'I-Sumbong',
-        'title' => 'I-report :username?',
+        'button' => 'Isumbong',
+        'title' => 'Isumbong si :username?',
     ],
 ];

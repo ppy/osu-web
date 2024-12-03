@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Obtížnost',
-        'percentile_10' => 'Skóre 10. percentilu',
-        'percentile_50' => 'Skóre 50. percentilu',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [

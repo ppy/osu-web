@@ -13,8 +13,8 @@ return [
 
     'beatmaps' => [
         '_' => 'Mga beatmap',
-        'download' => 'I-download ang Template ng Beatmap',
-        'download-na' => 'Ang Template ng Beatmap ay hindi pa available',
+        'download' => 'i-download ang template ng beatmap',
+        'download-na' => 'ang template ng beatmap ay hindi pa nakahanda',
     ],
 
     'index' => [
@@ -46,8 +46,8 @@ return [
             '_' => 'paghahanap ng mga track',
 
             'exclusive_only' => [
-                'all' => '',
-                'exclusive_only' => '',
+                'all' => 'Lahat',
+                'exclusive_only' => 'osu! orihinal',
             ],
 
             'form' => [
@@ -55,9 +55,9 @@ return [
                 'album' => 'Album',
                 'artist' => 'Artista',
                 'bpm_gte' => 'Pinakamababang BPM',
-                'bpm_lte' => 'Pinakamataasang PM',
+                'bpm_lte' => 'Pinakamataas na BPM',
                 'empty' => 'Walang mga track na nakitang tumutugma sa pamantayan sa paghahanap.',
-                'exclusive_only' => '',
+                'exclusive_only' => 'Uri',
                 'genre' => 'Dyanra',
                 'genre_all' => 'Lahat',
                 'length_gte' => 'Pinakamababang Haba',

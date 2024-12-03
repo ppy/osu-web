@@ -60,6 +60,12 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'Ne možeš poslati poruku korisniku koji te blokira ili kojeg si blokirao/la.',
         'friends_only' => 'Korisnik blokira poruke od ljudi koji nisu na njegovoj/njezinoj listi prijatelja.',
@@ -167,6 +173,12 @@ return [
 
         'view' => [
             'admin_only' => 'Samo administrator može vidjeti ovaj forum.',
+        ],
+    ],
+
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
         ],
     ],
 

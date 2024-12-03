@@ -12,7 +12,7 @@ return [
             '_' => ':action :items?',
             'disable' => 'Вимкнути',
             'enable' => 'Увімкнути',
-            'items' => ':count_delimited обкладинка |:count_delimited обкладинок',
+            'items' => ':count_delimited обкладинка |:count_delimited обкладинки|:count_delimited обкладинок',
         ],
 
         'create_form' => [

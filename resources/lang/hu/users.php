@@ -197,20 +197,20 @@ return [
             'to_1' => 'Felfedés',
         ],
         'daily_challenge' => [
-            'daily' => '',
-            'daily_streak_best' => '',
-            'daily_streak_current' => '',
-            'playcount' => '',
-            'title' => '',
-            'top_10p_placements' => '',
-            'top_50p_placements' => '',
-            'weekly' => '',
-            'weekly_streak_best' => '',
-            'weekly_streak_current' => '',
+            'daily' => 'Napi Streak',
+            'daily_streak_best' => 'Legjobb Napi Streak',
+            'daily_streak_current' => 'Jelenlegi Napi Streak',
+            'playcount' => 'Összes Részvétel',
+            'title' => 'Napi\nKihívás',
+            'top_10p_placements' => 'Top 10% Helyek',
+            'top_50p_placements' => 'Top 50% Helyek',
+            'weekly' => 'Heti Streak',
+            'weekly_streak_best' => 'Legjobb Heti Streak',
+            'weekly_streak_current' => 'Jelenlegi Heti Streak',
 
             'unit' => [
-                'day' => '',
-                'week' => '',
+                'day' => ':valued',
+                'week' => ':valuew',
             ],
         ],
         'edit' => [
@@ -218,7 +218,7 @@ return [
                 'button' => 'Profil Borító Változtatása',
                 'defaults_info' => 'További borító lehetőségek a jövőben lesznek elérhetőek',
                 'holdover_remove_confirm' => "A korábban kiválasztott borító már nem választható.  Másik borítóra váltás után nem választhatja vissza.  Folytatja?",
-                'title' => '',
+                'title' => 'Borító',
 
                 'upload' => [
                     'broken_file' => 'Kép feldolgozása sikertelen. Ellenőrizd a feltöltött képet és próbáld meg újra.',
@@ -242,12 +242,12 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
-                'title' => '',
+                'reset_no_supporter' => 'Alaphelyzetbe állítod a színt? Csak támogatói címmel tudod majd megváltoztatni más színre.',
+                'title' => 'Szín',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Egyéni színtémák csak :link számára érhetőek el',
+                    'link' => 'osu!támogatók',
                 ],
             ],
         ],

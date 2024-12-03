@@ -4,6 +4,7 @@
 import UserJson from 'interfaces/user-json';
 import { action, autorun, computed, makeObservable, observable } from 'mobx';
 import { present } from 'utils/string';
+import { v4 as uuidv4 } from 'uuid';
 import { maxMessageLength } from './channel';
 
 interface LocalStorageProps extends Record<InputKey, string> {
@@ -33,7 +34,7 @@ export default class CreateAnnouncement {
   @observable validUsers = new Map<number, UserJson>();
 
   private initialized = false;
-  private readonly uuid = crypto.randomUUID();
+  private readonly uuid = uuidv4();
 
   @computed
   get errors() {

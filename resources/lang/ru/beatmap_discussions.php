@@ -66,6 +66,13 @@ return [
         'version' => 'Сложность',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Войдите в аккаунт, чтобы ответить',

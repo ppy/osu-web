@@ -6,7 +6,7 @@
 use App\Http\Middleware\ThrottleRequests;
 
 Route::get('wiki/images/{path}', 'WikiController@image')->name('wiki.image')->where('path', '.+');
-Route::get('beatmapsets/discussions/media-url', 'BeatmapDiscussionsController@mediaUrl')->name('beatmapsets.discussions.media-url');
+Route::get('media-url', 'ProxyMediaController')->name('media-url');
 
 Route::group(['middleware' => ['web']], function () {
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
@@ -41,7 +41,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
 
         Route::group(['as' => 'beatmaps.', 'prefix' => '{beatmap}'], function () {
-            Route::get('scores/users/{user}', 'BeatmapsController@userScore');
             Route::get('scores', 'BeatmapsController@scores')->name('scores');
             Route::get('solo-scores', 'BeatmapsController@soloScores')->name('solo-scores');
             Route::post('update-owner', 'BeatmapsController@updateOwner')->name('update-owner');
@@ -297,6 +296,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('user-cover-presets/batch-activate', 'UserCoverPresetsController@batchActivate')->name('user-cover-presets.batch-activate');
     Route::resource('user-cover-presets', 'UserCoverPresetsController', ['only' => ['index', 'store', 'update']]);
 
+    Route::resource('teams', 'TeamsController', ['only' => ['show']]);
+
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
     Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');
     Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled');
@@ -425,6 +426,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
                         Route::put('scores/{token}', 'ScoresController@store')->name('scores.store');
                     });
                 });
+
+                Route::apiResource('tags', 'BeatmapTagsController', ['only' => ['index', 'store', 'destroy']]);
             });
         });
 
@@ -551,6 +554,9 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::resource('users', 'UsersController', ['only' => ['index']]);
 
         Route::get('wiki/{locale}/{path}', 'WikiController@show')->name('wiki.show')->where('path', '.+');
+
+        // Tags
+        Route::apiResource('tags', 'TagsController', ['only' => ['index']]);
     });
 });
 

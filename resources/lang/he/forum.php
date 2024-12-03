@@ -80,6 +80,7 @@ return [
         'confirm_restore' => '',
         'deleted' => 'נושא שנמחק',
         'go_to_latest' => 'הצג את הפוסט האחרון',
+        'go_to_unread' => '',
         'has_replied' => 'הגבת בנושא זה',
         'in_forum' => 'ב :forum ',
         'latest_post' => ':when על-ידי :user',

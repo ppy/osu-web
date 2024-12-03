@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => 'diskuze beatmap',
     ],
+
+    'store' => [
+        'too_many' => '',
+    ],
 ];

@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Betul nak kembalikan topik?',
         'deleted' => 'topik yang dipadam',
         'go_to_latest' => 'kunjungi hantaran terkini',
+        'go_to_unread' => '',
         'has_replied' => 'Anda telah hantar balasan ke topik ini',
         'in_forum' => 'di forum :forum',
         'latest_post' => ':when oleh :user',

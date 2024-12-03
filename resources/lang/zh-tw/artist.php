@@ -8,7 +8,7 @@ return [
     'title' => '精選藝術家',
 
     'admin' => [
-        'hidden' => '此藝術家已被隱藏',
+        'hidden' => '這個藝術家已被隱藏',
     ],
 
     'beatmaps' => [
@@ -18,18 +18,18 @@ return [
     ],
 
     'index' => [
-        'description' => '為了給 osu! 帶來新的原創歌曲，我們正在和一些藝術家合作。他們的部分專輯被 osu! 團隊選中作為制譜的絕佳素材。有的藝術家還為 osu! 提供了高質量的新專輯。<br><br>這些專輯均提供了預先準備的 .osz 文件，並且已經獲得了官方授權(在 osu! 及其周邊內容中使用)',
+        'description' => '精選藝術家是我們正在合作的藝術家，目的是為 osu! 帶來全新原創的音樂。這些藝術家和他們的一些曲目，都是經由 osu! 團隊精心挑選，品質優良且適合用於圖譜製作。部分精選藝術家也創作了專門用於 osu! 的全新曲目。<br><br>此區所有曲目均以預先計時的 .osz 檔案格式提供，並已獲得官方授權，可在 osu! 及 osu! 相關內容中使用。',
     ],
 
     'links' => [
         'beatmaps' => 'osu! 圖譜',
-        'osu' => 'osu! 個人簡介',
+        'osu' => 'osu! 個人檔案',
         'site' => '官方網站',
     ],
 
     'songs' => [
         '_' => '樂曲',
-        'count' => ':count_delimited 首音樂|:count_delimited 首音樂',
+        'count' => ':count_delimited 首歌曲|:count_delimited 首歌曲',
         'original' => 'osu! 原創',
         'original_badge' => '原創曲',
     ],

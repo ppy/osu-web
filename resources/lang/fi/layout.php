@@ -200,7 +200,7 @@ return [
             'logout' => 'Kirjaudu ulos',
             'profile' => 'Oma profiili',
             'scoring_mode_toggle' => 'Klassinen pisteytys',
-            'scoring_mode_toggle_tooltip' => '',
+            'scoring_mode_toggle_tooltip' => 'Säädä pistemäärät tuntumaan enemmän klassiselta rajoittamattomalta pisteytykseltä',
         ],
     ],
 
