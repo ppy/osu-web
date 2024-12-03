@@ -163,7 +163,7 @@ class ScoresController extends Controller
 
         return \Cache::remember(
             'score_index:'.($rulesetId ?? '').':'.json_encode($cursor),
-            $isOldScores ? 600 : 10,
+            $isOldScores ? 600 : 5,
             function () use ($cursor, $isOldScores, $rulesetId) {
                 $cursorHelper = SoloScore::makeDbCursorHelper('old');
                 $scoresQuery = SoloScore::forListing()->limit(1_000);
