@@ -155,8 +155,10 @@
                             >{{ $team->description }}</textarea>
                         </label>
 
-                        <div class="team-settings__description-preview">
-                            <div class="js-post-preview--preview">{!! $team->descriptionHtml() !!}</div>
+                        <div class="team-settings__description-preview u-fancy-scrollbar">
+                            <div class="team-settings-description-preview js-post-preview--preview">
+                                {!! $team->descriptionHtml() !!}
+                            </div>
                         </div>
                     </div>
                 </div>
