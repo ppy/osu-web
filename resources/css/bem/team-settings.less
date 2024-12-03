@@ -4,15 +4,6 @@
 .team-settings {
   display: grid;
   gap: 5px;
-  grid-template-columns: 2fr 1fr;
-
-  &--buttons {
-    grid-template-columns: 1fr auto;
-  }
-
-  &--description {
-    grid-template-columns: 1fr 1fr;
-  }
 
   &__description-preview {
     padding: 10px;
@@ -34,9 +25,16 @@
 
   &__item {
     display: grid;
-    grid-template-columns: subgrid;
-    grid-column: span 2;
+    grid-template-columns: 2fr 1fr;
     gap: 15px;
+
+    &--buttons {
+      grid-template-columns: 1fr auto;
+    }
+
+    &--description {
+      grid-template-columns: 1fr 1fr;
+    }
 
     &--image {
       grid-template-columns: 1fr;

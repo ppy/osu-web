@@ -143,8 +143,8 @@
                     {{ osu_trans('teams.edit.description.title') }}
                 </h2>
 
-                <div class="team-settings team-settings--description">
-                    <div class="team-settings__item">
+                <div class="team-settings">
+                    <div class="team-settings__item team-settings__item--description">
                         <label class="input-container">
                             <span class="input-container__label">
                                 {{ osu_trans('teams.edit.description.label') }}
@@ -164,20 +164,22 @@
 
             <div class="page-extra-container">
                 <div class="page-extra">
-                    <div class="team-settings team-settings--buttons">
-                        <div>
-                            <a
-                                class="btn-osu-big btn-osu-big--rounded-thin"
-                                href="{{ route('teams.show', ['team' => $team]) }}"
-                            >
-                                {{ osu_trans('common.buttons.cancel') }}
-                            </a>
-                        </div>
+                    <div class="team-settings">
+                        <div class="team-settings__item team-settings__item--buttons">
+                            <div>
+                                <a
+                                    class="btn-osu-big btn-osu-big--rounded-thin"
+                                    href="{{ route('teams.show', ['team' => $team]) }}"
+                                >
+                                    {{ osu_trans('common.buttons.cancel') }}
+                                </a>
+                            </div>
 
-                        <div>
-                            <button class="btn-osu-big btn-osu-big--rounded-thin">
-                                {{ osu_trans('common.buttons.save') }}
-                            </button>
+                            <div>
+                                <button class="btn-osu-big btn-osu-big--rounded-thin">
+                                    {{ osu_trans('common.buttons.save') }}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
