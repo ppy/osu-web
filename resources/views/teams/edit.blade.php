@@ -103,17 +103,17 @@
                     {{ osu_trans('teams.edit.header.title') }}
                 </h2>
                 <div class="team-settings">
-                    <div class="team-settings__item">
+                    <div class="team-settings__item team-settings__item--image">
+                        <img
+                            class="team-settings__image"
+                            src="{{ $team->header()->url() }}"
+                        >
                         <label class="input-container">
                             <span class="input-container__label">
                                 {{ osu_trans('teams.edit.header.label') }}
                             </span>
                             <input class="input-text" type="file" name="team[header]">
                         </label>
-                        <img
-                            class="team-settings__image"
-                            src="{{ $team->header()->url() }}"
-                        >
                     </div>
                 </div>
             </div>
@@ -123,17 +123,17 @@
                     {{ osu_trans('teams.edit.logo.title') }}
                 </h2>
                 <div class="team-settings">
-                    <div class="team-settings__item">
+                    <div class="team-settings__item team-settings__item--image">
+                        <img
+                            class="team-settings__image"
+                            src="{{ $team->logo()->url() }}"
+                        >
                         <label class="input-container">
                             <span class="input-container__label">
                                 {{ osu_trans('teams.edit.logo.label') }}
                             </span>
                             <input class="input-text" type="file" name="team[logo]">
                         </label>
-                        <img
-                            class="team-settings__image"
-                            src="{{ $team->logo()->url() }}"
-                        >
                     </div>
                 </div>
             </div>
