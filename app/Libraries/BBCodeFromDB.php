@@ -196,37 +196,43 @@ class BBCodeFromDB
         preg_match_all("#\[img:{$this->uid}\](?<url>[^[]+)\[/img:{$this->uid}\]#", $text, $images, PREG_SET_ORDER);
 
         $index = 0;
+        $replacements = [];
 
         foreach ($images as $i) {
             $proxiedSrc = proxy_media(html_entity_decode_better($i['url']));
 
-            $imageTag = $galleryAttributes = '';
+            $attributes = [
+                'alt' => '',
+                'src' => $proxiedSrc,
+                'loading' => 'lazy',
+            ];
+
             $imageSize = fast_imagesize($proxiedSrc);
+            if ($imageSize !== null && $imageSize[1] !== 0) {
+                $aspectRatio = round($imageSize[0] / $imageSize[1], 4);
 
-            if ($imageSize !== null && $imageSize[0] !== 0) {
-                $heightPercentage = $imageSize[1] / $imageSize[0] * 100;
+                $attributes['style'] = "aspect-ratio: {$aspectRatio}; width: {$imageSize[0]}px;";
 
-                $topClass = 'proportional-container';
                 if ($this->options['withGallery']) {
-                    $topClass .= ' js-gallery';
-                    $galleryAttributes = " data-width='{$imageSize[0]}' data-height='{$imageSize[1]}' data-index='{$index}' data-gallery-id='{$this->refId}' data-src='{$proxiedSrc}'";
+                    $attributes = [
+                        ...$attributes,
+                        'class' => 'js-gallery',
+                        'data-width' => $imageSize[0],
+                        'data-height' => $imageSize[1],
+                        'data-index' => $index,
+                        'data-gallery-id' => $this->refId,
+                        'data-src' => $proxiedSrc,
+                    ];
                 }
 
-                $imageTag .= "<span class='{$topClass}' style='width: {$imageSize[0]}px;'$galleryAttributes>";
-                $imageTag .= "<span class='proportional-container__height' style='padding-bottom: {$heightPercentage}%;'>";
-                $imageTag .= lazy_load_image($proxiedSrc, 'proportional-container__content');
-                $imageTag .= '</span>';
-                $imageTag .= '</span>';
-
                 $index += 1;
-            } else {
-                $imageTag .= lazy_load_image($proxiedSrc);
             }
 
-            $text = str_replace($i[0], $imageTag, $text);
+            $replacements[$i[0]] = tag('img', $attributes);
+
         }
 
-        return $text;
+        return strtr($text, $replacements);
     }
 
     public function parseInlineCode(string $text): string
