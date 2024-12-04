@@ -299,8 +299,8 @@ class Beatmap extends Model implements AfterCommit
         );
 
         // TODO: remove when everything writes to beatmap_owners.
-        if (!$owners->contains(fn ($beatmapOwner) => $beatmapOwner->user_id === $this->user_id) && $this->user !== null) {
-            $owners->prepend($this->user);
+        if (!$owners->contains(fn ($beatmapOwner) => $beatmapOwner->user_id === $this->user_id)) {
+            $owners->prepend($this->user ?? new DeletedUser(['user_id' => $this->user_id]));
         }
 
         return $owners;
