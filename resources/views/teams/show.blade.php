@@ -61,7 +61,7 @@
                                 <div class="team-info-entry">
                                     <div class="team-info-entry__title">{{ osu_trans('teams.show.info.created') }}</div>
                                     <div class="team-info-entry__value">
-                                        {{ i18n_date($team->created_at, null, 'year_month') }}
+                                        {{ i18n_date($team->created_at, pattern: 'year_month') }}
                                     </div>
                                 </div>
                                 @if (present($team->url))
