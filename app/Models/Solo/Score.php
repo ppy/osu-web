@@ -268,15 +268,15 @@ class Score extends Model implements Traits\ReportableInterface
             throw new InvariantException('Invalid accuracy.');
         }
 
-        // unsigned int (as per the column)
-        if ($this->total_score === null || $this->total_score < 0 || $this->total_score > 4294967295) {
+        // int (as per es schema)
+        if ($this->total_score === null || $this->total_score < 0 || $this->total_score > 2147483647) {
             throw new InvariantException('Invalid total_score.');
         }
 
-        // unsigned int (no data type enforcement as this goes into the json, but just to match total_score)
+        // int (no data type enforcement as this goes into the json, but just to match total_score)
         if (
             $this->data->totalScoreWithoutMods !== null
-            && ($this->data->totalScoreWithoutMods < 0 || $this->data->totalScoreWithoutMods > 4294967295)
+            && ($this->data->totalScoreWithoutMods < 0 || $this->data->totalScoreWithoutMods > 2147483647)
         ) {
             throw new InvariantException('Invalid total_score_without_mods.');
         }
