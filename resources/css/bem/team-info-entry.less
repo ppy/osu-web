@@ -1,16 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-.supporter-perk-list {
-  padding: 20px;
+.team-info-entry {
+  display: grid;
 
-  @media @mobile {
-    padding: 15px;
-  }
-
-  &__list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  &__value {
+    color: hsl(var(--hsl-c2));
+    display: grid;
+    min-width: 0;
   }
 }
