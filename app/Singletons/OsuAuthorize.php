@@ -617,8 +617,10 @@ class OsuAuthorize
             return $prefix.'owner';
         }
 
+        $beatmapset->loadMissing('beatmaps.beatmapOwners');
+
         foreach ($beatmapset->beatmaps as $beatmap) {
-            if ($userId === $beatmap->user_id) {
+            if ($beatmap->isOwner($user)) {
                 return $prefix.'owner';
             }
         }
