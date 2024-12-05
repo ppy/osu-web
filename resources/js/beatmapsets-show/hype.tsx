@@ -81,10 +81,10 @@ export default class Hype extends React.Component<Props> {
             </p>
           ) : (
             <p
-              className={`${bn}__description-row ${bn}__description-row--action`}
               dangerouslySetInnerHTML={{
                 __html: trans('beatmapsets.show.hype.action'),
               }}
+              className={`${bn}__description-row ${bn}__description-row--action`}
             />
           )}
         </div>

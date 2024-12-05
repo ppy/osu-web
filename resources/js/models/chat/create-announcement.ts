@@ -24,7 +24,7 @@ export const maxLengths = Object.freeze({
 });
 
 export function isInputKey(key: string): key is InputKey {
-  return (inputKeys as Readonly<string[]>).includes(key);
+  return (inputKeys as readonly string[]).includes(key);
 }
 
 // This class is owned by ChatStateStore
@@ -88,7 +88,7 @@ export default class CreateAnnouncement {
         this.inputs.message = json.message;
         this.inputs.name = json.name;
         this.inputs.users = [...json.validUsers, json.users].join(',');
-      } catch (error) {
+      } catch (_error) {
         console.error('invalid json in localStorage');
         localStorage.removeItem(localStorageKey);
       }
