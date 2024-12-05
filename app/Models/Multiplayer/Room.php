@@ -603,6 +603,10 @@ class Room extends Model
             throw new InvariantException('room must have at least one playlist item');
         }
 
+        if (mb_strlen($this->name) > 100) {
+            throw new InvariantException(osu_trans('multiplayer.room.errors.name_too_long'));
+        }
+
         PlaylistItem::assertBeatmapsExist($playlistItems);
 
         $this->getConnection()->transaction(function () use ($host, $playlistItems) {
