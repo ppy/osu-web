@@ -78,9 +78,7 @@
                 'type' => 'performance',
                 'country' => $user->country->getKey(),
             ])}}">
-                @include('objects._flag_country', [
-                    'country' => $user->country,
-                ])
+                @include('objects._flag_country', ['country' => $user->country])
             </a>
         </div>
     @endif
