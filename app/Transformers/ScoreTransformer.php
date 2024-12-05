@@ -105,7 +105,7 @@ class ScoreTransformer extends TransformerAbstract
         if ($score instanceof SoloScore) {
             $extraAttributes['classic_total_score'] = $score->getClassicTotalScore();
             $extraAttributes['preserve'] = $score->preserve;
-            $extraAttributes['processed'] = $score->legacy_score_id !== null || $score->processHistory !== null;
+            $extraAttributes['processed'] = $score->isProcessed();
             $extraAttributes['ranked'] = $score->ranked;
         }
 

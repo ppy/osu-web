@@ -1081,6 +1081,22 @@
         ]
     },
     {
+        "uri": "api/v2/scores",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\ScoresController@index",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
         "uri": "api/v2/beatmapsets/search",
         "methods": [
             "GET",
