@@ -298,9 +298,10 @@ class Beatmap extends Model implements AfterCommit
             fn ($beatmapOwner) => $beatmapOwner->user ?? new DeletedUser(['user_id' => $beatmapOwner->user_id])
         );
 
+        // Fallback if unpopulated
         // TODO: remove when everything writes to beatmap_owners.
-        if (!$owners->contains(fn ($beatmapOwner) => $beatmapOwner->user_id === $this->user_id)) {
-            $owners->prepend($this->user ?? new DeletedUser(['user_id' => $this->user_id]));
+        if ($owners->isEmpty()) {
+            $owners->add($this->user ?? new DeletedUser(['user_id' => $this->user_id]));
         }
 
         return $owners;
