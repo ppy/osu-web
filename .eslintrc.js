@@ -120,8 +120,6 @@ module.exports = {
         'dot-notation': 'off',
         'no-invalid-this': 'off',
         'no-shadow': 'off',
-        'object-curly-spacing': 'off',
-        quotes: 'off',
         'react-hooks/exhaustive-deps': 'error',
         'react/jsx-boolean-value': 'error',
         'react/jsx-curly-spacing': 'error',
