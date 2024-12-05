@@ -127,6 +127,7 @@ use Request;
  * @property-read Collection<Store\Address> $storeAddresses
  * @property-read Collection<UserDonation> $supporterTagPurchases
  * @property-read Collection<UserDonation> $supporterTags
+ * @property-read TeamMember|null $teamMembership
  * @property-read Collection<OAuth\Token> $tokens
  * @property-read Collection<Forum\TopicWatch> $topicWatches
  * @property-read Collection<UserAchievement> $userAchievements
@@ -294,6 +295,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function userCountryHistory(): HasMany
     {
         return $this->hasMany(UserCountryHistory::class);
+    }
+
+    public function teamMembership(): HasOne
+    {
+        return $this->hasOne(TeamMember::class, 'user_id');
     }
 
     public function getAuthPassword()
@@ -777,6 +783,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'cover_preset_id',
             'custom_cover_filename',
             'group_id',
+            'laravel_through_key', // added by hasManyThrough relation in Beatmap
             'osu_featurevotes',
             'osu_kudosavailable',
             'osu_kudosdenied',
@@ -951,6 +958,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'storeAddresses',
             'supporterTagPurchases',
             'supporterTags',
+            'teamMembership',
             'tokens',
             'topicWatches',
             'userAchievements',
@@ -2229,9 +2237,13 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         return Beatmapset
             ::where('user_id', '<>', $this->getKey())
-            ->whereHas('beatmaps', function (Builder $query) {
-                $query->scoreable()->where('user_id', $this->getKey());
-            })
+            ->whereHas(
+                'beatmaps',
+                fn (Builder $query) => $query->scoreable()->whereHas(
+                    'beatmapOwners',
+                    fn (Builder $ownerQuery) => $ownerQuery->where('user_id', $this->getKey())
+                )
+            )
             ->with('beatmaps');
     }
 

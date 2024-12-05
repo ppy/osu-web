@@ -31,6 +31,7 @@ use App\Libraries\StorageUrl;
 use App\Libraries\Transactions\AfterCommit;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
+use App\Transformers\BeatmapsetTransformer;
 use Cache;
 use Carbon\Carbon;
 use DB;
@@ -1278,18 +1279,34 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function defaultDiscussionJson()
     {
+        $this->loadMissing([
+            'allBeatmaps',
+            'allBeatmaps.beatmapOwners.user',
+            'allBeatmaps.user', // TODO: for compatibility only, should migrate user_id to BeatmapOwner.
+            'beatmapDiscussions.beatmapDiscussionPosts',
+            'beatmapDiscussions.beatmapDiscussionVotes',
+        ]);
+
+        foreach ($this->allBeatmaps as $beatmap) {
+            $beatmap->setRelation('beatmapset', $this);
+        }
+
+        $beatmapsByKey = $this->allBeatmaps->keyBy('beatmap_id');
+
+        foreach ($this->beatmapDiscussions as $discussion) {
+            // set relations for priv checks.
+            $discussion->setRelation('beatmapset', $this);
+
+            if ($discussion->beatmap_id !== null) {
+                $discussion->setRelation('beatmap', $beatmapsByKey[$discussion->beatmap_id]);
+            }
+        }
+
         return json_item(
-            static::with([
-                'allBeatmaps.beatmapset',
-                'beatmapDiscussions.beatmapDiscussionPosts',
-                'beatmapDiscussions.beatmapDiscussionVotes',
-                'beatmapDiscussions.beatmapset',
-                'beatmapDiscussions.beatmap',
-                'beatmapDiscussions.beatmapDiscussionVotes',
-            ])->find($this->getKey()),
-            'Beatmapset',
+            $this,
+            new BeatmapsetTransformer(),
             [
-                'beatmaps:with_trashed',
+                'beatmaps:with_trashed.owners',
                 'current_user_attributes',
                 'discussions',
                 'discussions.current_user_attributes',

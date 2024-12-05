@@ -104,4 +104,3 @@ export default UserJson;
 
 // FIXME: Using Partial isn't quite correct as the keys are there but the values are null.
 export type UserJsonDeleted = Partial<UserJson> & { username: string };
-export type UserJsonMinimum = Pick<UserJson, 'avatar_url' | 'id' | 'username'>;
