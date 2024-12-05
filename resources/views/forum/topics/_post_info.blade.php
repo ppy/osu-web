@@ -80,7 +80,6 @@
             ])}}">
                 @include('objects._flag_country', [
                     'country' => $user->country,
-                    'modifiers' => 'medium',
                 ])
             </a>
         </div>
