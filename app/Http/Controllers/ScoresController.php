@@ -122,7 +122,11 @@ class ScoresController extends Controller
     /**
      * Get Scores
      *
-     * Returns the latest submitted scores.
+     * Returns submitted scores. Up to 1000 scores will be returned in order of oldest to latest.
+     * Most recent scores will be returned if `cursor_string` parameter is not specified.
+     *
+     * Obtaining new scores that arrived after the last request can be done by passing `cursor_string`
+     * parameter from the previous request.
      *
      * ---
      *
@@ -183,6 +187,7 @@ class ScoresController extends Controller
                 } else {
                     $filteredScores = [];
                     foreach ($scores as $score) {
+                        // only return up to but not including the earliest unprocessed scores
                         if ($score->isProcessed()) {
                             $filteredScores[] = $score;
                         } else {
