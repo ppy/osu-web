@@ -9,13 +9,19 @@
   flex-direction: column;
 
   &__achieved {
-    margin: 2px 0;
+    margin-bottom: 2px; // more balanced margin
     font-size: @font-size--small;
   }
 
   &__avatar {
     flex: none;
     margin: 0px 10px;
+  }
+
+  &__flags {
+    display: flex;
+    gap: 5px;
+    font-size: @flag-size-medium; // icon size
   }
 
   &__link-container {
@@ -130,6 +136,8 @@
 
   &__user-box {
     flex: none;
+    display: grid;
+    gap: 4px;
 
     @media @desktop {
       margin-right: 10px;
@@ -139,7 +147,6 @@
   &__username {
     font-size: 18px;
     font-weight: 700;
-    margin-bottom: 2px;
     display: block;
     .link-inverted();
   }
