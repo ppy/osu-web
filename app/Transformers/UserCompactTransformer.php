@@ -19,10 +19,12 @@ class UserCompactTransformer extends TransformerAbstract
         'country',
         'cover',
         'groups',
+        'team',
     ];
 
     const CARD_INCLUDES_PRELOAD = [
         'userGroups',
+        'team',
     ];
 
     // Paired with static::listIncludesPreload
@@ -92,6 +94,7 @@ class UserCompactTransformer extends TransformerAbstract
         'statistics',
         'statistics_rulesets',
         'support_level',
+        'team',
         'unread_pm_count',
         'user_achievements',
         'user_preferences',
@@ -452,6 +455,15 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeSupportLevel(User $user)
     {
         return $this->primitive($user->supportLevel());
+    }
+
+    public function includeTeam(User $user)
+    {
+        $team = $user->team;
+
+        return $team === null
+            ? $this->null()
+            : $this->item($team, new TeamTransformer());
     }
 
     public function includeUnreadPmCount(User $user)

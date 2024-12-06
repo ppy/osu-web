@@ -42,6 +42,9 @@
             </tr>
         </thead>
         <tbody>
+            @php
+                $countries = app('countries');
+            @endphp
             @foreach ($scores as $index => $score)
                 <tr class="ranking-page-table__row{{$score->user->isActive() ? '' : ' ranking-page-table__row--inactive'}}">
                     <td class="ranking-page-table__column ranking-page-table__column--rank">
@@ -49,12 +52,18 @@
                     </td>
                     <td class="ranking-page-table__column">
                         <div class="ranking-page-table__user-link">
-                            <a href="{{route('rankings', ['mode' => $mode, 'type' => 'performance', 'country' => $score->user->country->acronym])}}">
-                                @include('objects._flag_country', [
-                                    'country' => $score->user->country,
-                                    'modifiers' => 'medium',
-                                ])
-                            </a>
+                            <span class="ranking-page-table__flags">
+                                <a href="{{route('rankings', ['mode' => $mode, 'type' => 'performance', 'country' => $score->user->country_acronym])}}">
+                                    @include('objects._flag_country', [
+                                        'country' => $countries->byCode($score->user->country_acronym),
+                                    ])
+                                </a>
+                                @if (($team = $score->user->team) !== null)
+                                    <a class="u-hover" href="{{ route('teams.show', $team) }}">
+                                        @include('objects._flag_team', compact('team'))
+                                    </a>
+                                @endif
+                            </span>
                             <a
                                 href="{{ route('users.show', ['user' => $score->user_id, 'mode' => $mode]) }}"
                                 class="ranking-page-table__user-link-text js-usercard"
