@@ -1264,7 +1264,7 @@ function display_regdate($user)
 
     $tooltipDate = i18n_date($user->user_regdate);
 
-    $formattedDate = i18n_date($user->user_regdate, null, 'year_month');
+    $formattedDate = i18n_date($user->user_regdate, pattern: 'year_month');
 
     if ($user->user_regdate < Carbon\Carbon::createFromDate(2008, 1, 1)) {
         return '<div title="'.$tooltipDate.'">'.osu_trans('users.show.first_members').'</div>';
@@ -1275,7 +1275,7 @@ function display_regdate($user)
     ]);
 }
 
-function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null)
+function i18n_date($datetime, int $format = IntlDateFormatter::LONG, $pattern = null)
 {
     $formatter = IntlDateFormatter::create(
         App::getLocale(),
