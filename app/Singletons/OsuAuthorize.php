@@ -29,6 +29,7 @@ use App\Models\Multiplayer\Room;
 use App\Models\OAuth\Client;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Solo;
+use App\Models\Team;
 use App\Models\Traits\ReportableInterface;
 use App\Models\User;
 use App\Models\UserContestEntry;
@@ -1905,6 +1906,13 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    public function checkTeamUpdate(?User $user, Team $team): ?string
+    {
+        $this->ensureLoggedIn($user);
+
+        return $team->leader_id === $user->getKey() ? 'ok' : null;
     }
 
     public function checkUserGroupEventShowActor(?User $user, UserGroupEvent $event): string
