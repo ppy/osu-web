@@ -16,6 +16,7 @@ import { disposeOnUnmount, observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
+import { isOwner } from 'utils/beatmap-helper';
 import { canModeratePosts, formatTimestamp, makeUrl, NearbyDiscussion, nearbyDiscussions, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { downloadLimited } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
@@ -286,7 +287,7 @@ export class NewDiscussion extends React.Component<Props> {
 
     const canPostNote = core.currentUser != null
         && (core.currentUser.id === this.beatmapset.user_id
-          || (core.currentUser.id === this.currentBeatmap.user_id && ['general', 'timeline'].includes(this.currentMode))
+          || (isOwner(core.currentUser.id, this.currentBeatmap) && ['general', 'timeline'].includes(this.currentMode))
           || core.currentUser.is_bng
           || canModeratePosts());
 

@@ -1,13 +1,16 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetStatus } from 'interfaces/beatmapset-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import Ruleset from 'interfaces/ruleset';
 import UserJson from 'interfaces/user-json';
+import WithBeatmapOwners from 'interfaces/with-beatmap-owners';
 import { intersectionWith, maxBy, sum } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
+import { deletedUserJson } from 'models/user';
 import core from 'osu-core-singleton';
 import BeatmapsetDiscussionsShowStore from 'stores/beatmapset-discussions-show-store';
 import { findDefault, group, sortWithMode } from 'utils/beatmap-helper';
@@ -19,6 +22,13 @@ import DiscussionPage, { isDiscussionPage } from './discussion-page';
 
 const defaultFilterPraise = new Set<BeatmapsetStatus>(['approved', 'ranked']);
 const jsonId = 'json-discussions-state';
+
+function deletedUser(userId: number) {
+  const user: UserJson = structuredClone(deletedUserJson) as UserJson; // structuredClone copies the Readonly type but is actually mutable.
+  user.id = userId;
+
+  return user;
+}
 
 export interface UpdateOptions {
   beatmap_discussion_post_ids: number[];
@@ -415,6 +425,10 @@ export default class DiscussionsState {
     }
 
     makeObservable(this);
+  }
+
+  beatmapOwners(beatmap: WithBeatmapOwners<BeatmapJson>) {
+    return beatmap.owners.map((user) => this.store.users.get(user.id) ?? deletedUser(user.id));
   }
 
   @action

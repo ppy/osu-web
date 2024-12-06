@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserJson, { UserJsonMinimum } from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import { debounce } from 'lodash';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
@@ -69,7 +69,6 @@ export default class UsernameInput extends React.PureComponent<Props> {
   render() {
     return (
       <div className={classWithModifiers('username-input', this.props.modifiers)}>
-        {this.renderValidUsers()}
         <input
           className='username-input__input'
           id={this.props.id}
@@ -81,6 +80,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
           onPaste={this.handleUsersInputPaste}
           value={this.input}
         />
+        {this.renderValidUsers()}
         <BusySpinner busy={this.busy} />
       </div>
     );
@@ -123,7 +123,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
   };
 
   @action
-  private readonly handleRemoveUser = (user: UserJsonMinimum) => {
+  private readonly handleRemoveUser = (user: UserJson) => {
     this.validUsers.delete(user.id);
     this.props.onValidUsersChanged?.(this.validUsers);
   };

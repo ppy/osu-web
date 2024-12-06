@@ -12,17 +12,19 @@ import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import Ruleset, { rulesets } from 'interfaces/ruleset';
 import UserJson from 'interfaces/user-json';
+import WithBeatmapOwners from 'interfaces/with-beatmap-owners';
 import { route } from 'laroute';
 import { assign, padStart, sortBy } from 'lodash';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import { currentUrl } from 'utils/turbolinks';
 import { linkHtml, openBeatmapEditor } from 'utils/url';
+import { isOwner } from './beatmap-helper';
 import { getInt } from './math';
 
 interface BadgeGroupParams {
   beatmapset?: BeatmapsetJson;
-  currentBeatmap?: BeatmapJson | null;
+  currentBeatmap?: WithBeatmapOwners<BeatmapJson> | null;
   discussion: BeatmapsetDiscussionJson;
   user?: UserJson;
 }
@@ -91,7 +93,7 @@ export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: Bad
     return mapperGroup;
   }
 
-  if (currentBeatmap != null && discussion.beatmap_id === currentBeatmap.id && user.id === currentBeatmap.user_id) {
+  if (currentBeatmap != null && discussion.beatmap_id === currentBeatmap.id && isOwner(user.id, currentBeatmap)) {
     return guestGroup;
   }
 

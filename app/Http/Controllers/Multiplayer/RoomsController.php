@@ -212,10 +212,11 @@ class RoomsController extends Controller
     private function createJoinedRoomResponse($room)
     {
         return json_item(
-            $room
-                ->load('host.country')
-                ->load('playlist.beatmap.beatmapset')
-                ->load('playlist.beatmap.baseMaxCombo'),
+            $room->loadMissing([
+                'host',
+                'playlist.beatmap.beatmapset',
+                'playlist.beatmap.baseMaxCombo',
+            ]),
             'Multiplayer\Room',
             [
                 'current_user_score.playlist_item_attempts',

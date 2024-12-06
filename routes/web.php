@@ -43,7 +43,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::group(['as' => 'beatmaps.', 'prefix' => '{beatmap}'], function () {
             Route::get('scores', 'BeatmapsController@scores')->name('scores');
             Route::get('solo-scores', 'BeatmapsController@soloScores')->name('solo-scores');
-            Route::put('update-owner', 'BeatmapsController@updateOwner')->name('update-owner');
+            Route::post('update-owner', 'BeatmapsController@updateOwner')->name('update-owner');
         });
     });
 
@@ -505,6 +505,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download-legacy');
 
             Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
+
+            Route::get('/', 'ScoresController@index');
         });
 
         // Beatmapsets

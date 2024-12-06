@@ -52,7 +52,13 @@ use LaravelRedis;
  */
 class Score extends Model implements Traits\ReportableInterface
 {
-    use Traits\Reportable, Traits\WithWeightedPp;
+    use Traits\Reportable, Traits\WithDbCursorHelper, Traits\WithWeightedPp;
+
+    const DEFAULT_SORT = 'old';
+
+    const SORTS = [
+        'old' => [['column' => 'id', 'order' => 'ASC']],
+    ];
 
     public $timestamps = false;
 
@@ -163,6 +169,13 @@ class Score extends Model implements Traits\ReportableInterface
         return $query->whereHas('beatmap.beatmapset');
     }
 
+    public function scopeForListing(Builder $query): Builder
+    {
+        return $query->where('ranked', true)
+            ->leftJoinRelation('processHistory')
+            ->select([$query->qualifyColumn('*'), 'processed_version']);
+    }
+
     public function scopeForRuleset(Builder $query, string $ruleset): Builder
     {
         return $query->where('ruleset_id', Beatmap::MODES[$ruleset]);
@@ -268,15 +281,15 @@ class Score extends Model implements Traits\ReportableInterface
             throw new InvariantException('Invalid accuracy.');
         }
 
-        // unsigned int (as per the column)
-        if ($this->total_score === null || $this->total_score < 0 || $this->total_score > 4294967295) {
+        // int (as per es schema)
+        if ($this->total_score === null || $this->total_score < 0 || $this->total_score > 2147483647) {
             throw new InvariantException('Invalid total_score.');
         }
 
-        // unsigned int (no data type enforcement as this goes into the json, but just to match total_score)
+        // int (no data type enforcement as this goes into the json, but just to match total_score)
         if (
             $this->data->totalScoreWithoutMods !== null
-            && ($this->data->totalScoreWithoutMods < 0 || $this->data->totalScoreWithoutMods > 4294967295)
+            && ($this->data->totalScoreWithoutMods < 0 || $this->data->totalScoreWithoutMods > 2147483647)
         ) {
             throw new InvariantException('Invalid total_score_without_mods.');
         }
@@ -362,6 +375,19 @@ class Score extends Model implements Traits\ReportableInterface
         }
 
         return null;
+    }
+
+    public function isProcessed(): bool
+    {
+        if ($this->legacy_score_id !== null) {
+            return true;
+        }
+
+        if (array_key_exists('processed_version', $this->attributes)) {
+            return $this->attributes['processed_version'] !== null;
+        }
+
+        return $this->processHistory !== null;
     }
 
     public function legacyScore(): ?LegacyScore\Best\Model
