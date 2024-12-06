@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Docs\Attributes\Sort;
 use App\Exceptions\ModelNotSavedException;
 use App\Jobs\Notifications\CommentNew;
 use App\Libraries\CommentBundle;
@@ -15,6 +16,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Knuckles\Scribe\Attributes\QueryParam;
 
 /**
  * @group Comments
@@ -38,6 +40,8 @@ class CommentsController extends Controller
      * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
+     *
+     * @urlParam comment integer required The `id` of the [Comment](#comment)
      */
     public function destroy($id)
     {
@@ -67,13 +71,13 @@ class CommentsController extends Controller
      *
      * `pinned_comments` is only included when `commentable_type` and `commentable_id` are specified.
      *
-     * @queryParam after Return comments which come after the specified comment id as per sort option. No-example
-     * @queryParam commentable_type The type of resource to get comments for. Example: beatmapset
-     * @queryParam commentable_id The id of the resource to get comments for. Example: 1
+     * @queryParam after integer Return comments which come after the specified comment id as per sort option. No-example
+     * @queryParam commentable_type string The type of resource to get comments for. Example: beatmapset
+     * @queryParam commentable_id integer The id of the resource to get comments for. Example: 1
      * @queryParam cursor Pagination option. See [CommentSort](#commentsort) for detail. The format follows [Cursor](#cursor) except it's not currently included in the response. No-example
-     * @queryParam parent_id Limit to comments which are reply to the specified id. Specify 0 to get top level comments. Example: 1
-     * @queryParam sort Sort option as defined in [CommentSort](#commentsort). Defaults to `new` for guests and user-specified default when authenticated. Example: new
+     * @queryParam parent_id integer Limit to comments which are reply to the specified id. Specify 0 to get top level comments. Example: 1
      */
+    #[Sort('CommentSort', 'Defaults to `new` for guests and user-specified default when authenticated.', 'new')]
     public function index()
     {
         $params = request()->all();
@@ -150,6 +154,8 @@ class CommentsController extends Controller
      * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
+     *
+     * @urlParam comment integer required The `id` of the [Comment](#comment)
      */
     public function show($id)
     {
@@ -177,10 +183,10 @@ class CommentsController extends Controller
      *
      * Returns [CommentBundle](#commentbundle)
      *
-     * @queryParam comment.commentable_id Resource ID the comment thread is attached to
-     * @queryParam comment.commentable_type Resource type the comment thread is attached to
-     * @queryParam comment.message Text of the comment
-     * @queryParam comment.parent_id The id of the comment to reply to, null if not a reply
+     * @queryParam comment.commentable_id integer required Resource ID the comment thread is attached to. Example: 1
+     * @queryParam comment.commentable_type string required Resource type the comment thread is attached to. Example: beatmapset
+     * @queryParam comment.message string required Text of the comment
+     * @queryParam comment.parent_id integer The id of the comment to reply to, null if not a reply. No-example
      */
     public function store()
     {
@@ -225,7 +231,8 @@ class CommentsController extends Controller
      *
      * Returns [CommentBundle](#commentbundle)
      *
-     * @queryParam comment.message New text of the comment
+     * @urlParam comment integer required The `id` of the [Comment](#comment)
+     * @queryParam comment.message string required New text of the comment
      */
     public function update($id)
     {
@@ -277,6 +284,8 @@ class CommentsController extends Controller
      * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
+     *
+     * @urlParam comment integer required The `id` of the [Comment](#comment)
      */
     public function voteDestroy($id)
     {
@@ -303,6 +312,8 @@ class CommentsController extends Controller
      * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
+     *
+     * @urlParam comment integer required The `id` of the [Comment](#comment)
      */
     public function voteStore($id)
     {
