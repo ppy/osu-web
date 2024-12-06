@@ -13,13 +13,12 @@
 
   &__basic-stats {
     grid-area: stats;
-    padding: 10px 10px 0 0;
+    padding: 10px 10px 0;
   }
 
   &__beatmap-stats {
     position: relative;
     display: grid;
-    gap: 5px;
     grid-template-areas: "guests stats" "chart chart";
     grid-template-columns: auto min-content;
     background-color: hsl(var(--hsl-b4));
@@ -90,7 +89,7 @@
   &__guests {
     grid-area: guests;
     font-size: @font-size--title-small;
-    padding: 10px 0 0 10px;
+    padding: 10px 10px 0;
   }
 
   &__stats {
