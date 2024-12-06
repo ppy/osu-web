@@ -7,6 +7,7 @@ import AccountEdit from 'core/account-edit';
 import AccountEditAvatar from 'core/account-edit-avatar';
 import AccountEditBlocklist from 'core/account-edit-blocklist';
 import AnimateNav from 'core/animate-nav';
+import BbcodeAutoPreview from 'core/bbcode-auto-preview';
 import BrowserTitleWithNotificationCount from 'core/browser-title-with-notification-count';
 import Captcha from 'core/captcha';
 import ClickMenu from 'core/click-menu';
@@ -49,6 +50,7 @@ export default class OsuCore {
   readonly accountEditAvatar;
   readonly accountEditBlocklist;
   readonly animateNav;
+  readonly bbcodeAutoPreview;
   readonly beatmapsetSearchController;
   readonly browserTitleWithNotificationCount;
   readonly captcha;
@@ -102,6 +104,7 @@ export default class OsuCore {
     $.subscribe('user:update', this.onCurrentUserUpdate);
 
     this.animateNav = new AnimateNav();
+    this.bbcodeAutoPreview = new BbcodeAutoPreview();
     this.captcha = new Captcha();
     this.chatWorker = new ChatWorker();
     this.clickMenu = new ClickMenu();
