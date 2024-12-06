@@ -175,7 +175,7 @@ export class Header extends React.Component<Props> {
             </div>
           </div>
           <div className={`${bn}__beatmap-stats`}>
-            <div className={`${bn}__guests`}>
+            <div className={`${bn}__owners`}>
               {hasGuestOwners(this.currentBeatmap, this.beatmapset) && (
                 <span>
                   <StringWithComponent
