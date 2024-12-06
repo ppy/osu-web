@@ -174,25 +174,27 @@ export class Header extends React.Component<Props> {
               </div>
             </div>
           </div>
-          <div className='u-relative'>
-            <Chart
-              discussions={this.timelineDiscussions}
-              duration={this.currentBeatmap.total_length * 1000}
-            />
-            <div className={`${bn}__beatmap-stats`}>
-              <div className={`${bn}__guest`}>
-                {hasGuestOwners(this.currentBeatmap, this.beatmapset) && (
-                  <span>
-                    <StringWithComponent
-                      mappings={{
-                        user: <UserLinkList users={this.currentBeatmap.owners ?? []} />,
-                      }}
-                      pattern={trans('beatmaps.discussions.guest')}
-                    />
-                  </span>
-                )}
-              </div>
+          <div className={`${bn}__beatmap-stats`}>
+            <div className={`${bn}__owners`}>
+              {hasGuestOwners(this.currentBeatmap, this.beatmapset) && (
+                <span>
+                  <StringWithComponent
+                    mappings={{
+                      user: <UserLinkList users={this.currentBeatmap.owners ?? []} />,
+                    }}
+                    pattern={trans('beatmaps.discussions.guest')}
+                  />
+                </span>
+              )}
+            </div>
+            <div className={`${bn}__basic-stats`}>
               <BeatmapBasicStats beatmap={this.currentBeatmap} beatmapset={this.beatmapset} />
+            </div>
+            <div className={`${bn}__chart`}>
+              <Chart
+                discussions={this.timelineDiscussions}
+                duration={this.currentBeatmap.total_length * 1000}
+              />
             </div>
           </div>
         </div>
