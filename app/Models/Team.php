@@ -9,6 +9,7 @@ namespace App\Models;
 
 use App\Libraries\BBCodeForDB;
 use App\Libraries\Uploader;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Team extends Model
