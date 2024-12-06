@@ -1031,12 +1031,12 @@ function issue_icon($issue)
             return 'fas fa-user';
         case 'confirmed':
             return 'fas fa-exclamation-triangle';
-        case 'resolved':
-            return 'far fa-check-circle';
         case 'duplicate':
             return 'fas fa-copy';
         case 'invalid':
             return 'far fa-times-circle';
+        case 'resolved':
+            return 'far fa-check-circle';
     }
 }
 
@@ -1106,6 +1106,15 @@ function bbcode_for_editor($text, $uid = null)
 function concat_path($paths)
 {
     return implode('/', array_filter($paths, 'present'));
+}
+
+function platform_issue_text($issue)
+{
+    return match ($issue) {
+        'lazer' => 'laz',
+        'stable' => 'stb',
+        'web' => 'web',
+    };
 }
 
 function proxy_media($url)
