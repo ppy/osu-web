@@ -11,20 +11,25 @@
     --gutter: @gutter-beatmapset-desktop;
   }
 
+  &__basic-stats {
+    grid-area: stats;
+    padding: 10px 10px 0 0;
+  }
+
   &__beatmap-stats {
-    position: absolute;
+    position: relative;
+    display: grid;
+    grid-template-areas: "guests stats" "chart chart";
+    grid-template-columns: auto min-content;
+    background-color: hsl(var(--hsl-b4));
 
-    right: 0;
-    top: 0;
-    width: 100%;
-    padding: 10px 10px 0;
-    flex-direction: column;
-    display: flex;
-
-    @media @narrow-up {
-      flex-direction: row;
-      justify-content: space-between;
+    @media @narrow {
+      grid-template-areas: "stats" "guests" "chart";
     }
+  }
+
+  &__chart {
+    grid-area: chart;
   }
 
   &__content {
@@ -81,10 +86,10 @@
     }
   }
 
-  &__guest {
+  &__guests {
+    grid-area: guests;
     font-size: @font-size--title-small;
-    display: flex;
-    align-items: center;
+    padding: 10px 0 0 10px;
   }
 
   &__stats {
