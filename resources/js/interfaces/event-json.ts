@@ -5,23 +5,20 @@ import AchievementJson from './achievement-json';
 import Rank from './rank';
 import Ruleset from './ruleset';
 
-const eventTypes = [
-  'achievement',
-  'beatmapPlaycount',
-  'beatmapsetApprove',
-  'beatmapsetDelete',
-  'beatmapsetRevive',
-  'beatmapsetUpdate',
-  'beatmapsetUpload',
-  'rank',
-  'rankLost',
-  'usernameChange',
-  'userSupportAgain',
-  'userSupportFirst',
-  'userSupportGift',
-] as const;
-
-type EventType = (typeof eventTypes)[number];
+type EventType =
+  | 'achievement'
+  | 'beatmapPlaycount'
+  | 'beatmapsetApprove'
+  | 'beatmapsetDelete'
+  | 'beatmapsetRevive'
+  | 'beatmapsetUpdate'
+  | 'beatmapsetUpload'
+  | 'rank'
+  | 'rankLost'
+  | 'usernameChange'
+  | 'userSupportAgain'
+  | 'userSupportFirst'
+  | 'userSupportGift';
 
 interface EventBase {
   created_at: string;
@@ -126,7 +123,7 @@ interface UserSupportGiftEvent extends EventBase {
 }
 
 type EventJson =
-  AchievementEvent
+  | AchievementEvent
   | BeatmapPlaycountEvent
   | BeatmapsetApproveEvent
   | BeatmapsetDeleteEvent

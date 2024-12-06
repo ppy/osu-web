@@ -32,5 +32,5 @@ export type PersistedBeatmapReviewBlock = DocumentParagraph | PersistedDocumentI
 export type PersistedBeatmapDiscussionReview = PersistedBeatmapReviewBlock[];
 
 export function isBeatmapReviewDiscussionType(type: string): type is BeatmapReviewDiscussionType {
-  return (beatmapReviewDiscussionTypes as Readonly<string[]>).includes(type);
+  return (beatmapReviewDiscussionTypes as readonly string[]).includes(type);
 }

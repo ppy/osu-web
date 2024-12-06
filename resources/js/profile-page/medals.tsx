@@ -28,7 +28,7 @@ export default class Medals extends React.Component<ExtraPageProps> {
     // group by .grouping and then further group by .ordering
     const ret = new Map<string, Map<number, UserAchievementData[]>>();
 
-    for (const achievement of [...this.props.controller.achievements.values()]) {
+    for (const achievement of this.props.controller.achievements.values()) {
       const userAchievement = this.userAchievements[achievement.id.toString()];
       const visible = this.currentModeFilter(achievement) && (isCurrentUser || userAchievement != null);
 

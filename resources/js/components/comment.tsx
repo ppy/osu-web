@@ -130,7 +130,7 @@ export default class Comment extends React.Component<Props> {
 
     const replies = this.replies;
 
-    return replies.length > 0 && replies.some((reply) => reply.isVisible);
+    return replies.some((reply) => reply.isVisible);
   }
 
   @computed
@@ -510,10 +510,10 @@ export default class Comment extends React.Component<Props> {
               : this.shouldRenderContent &&
               <>
                 <div
-                  className='comment__message'
                   dangerouslySetInnerHTML={{
                     __html: this.props.comment.messageHtml ?? '',
                   }}
+                  className='comment__message'
                 />
                 {this.isLongContent && this.renderToggleClipButton()}
               </>

@@ -8,7 +8,7 @@ const channelEvents = ['chat.channel.join', 'chat.channel.part'] as const;
 type ChannelEvent = (typeof channelEvents)[number];
 
 export function isChannelEvent(arg: SocketEventData): arg is ChannelEventJson {
-  return arg.event != null && (channelEvents as Readonly<string[]>).includes(arg.event);
+  return arg.event != null && (channelEvents as readonly string[]).includes(arg.event);
 }
 
 export default interface ChannelEventJson {

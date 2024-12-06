@@ -37,15 +37,15 @@ export default function AchievementBadgePopup({ achievedAt, achievement }: Props
             {achievement.name}
           </div>
           <div
-            className='tooltip-achievement__description'
             dangerouslySetInnerHTML={{ __html: achievement.description }}
+            className='tooltip-achievement__description'
           />
         </div>
         {achievement.instructions != null && (
           <div className='tooltip-achievement__detail tooltip-achievement__detail--hover'>
             <div
-              className='tooltip-achievement__instructions'
               dangerouslySetInnerHTML={{ __html: achievement.instructions }}
+              className='tooltip-achievement__instructions'
             />
           </div>
         )}

@@ -54,7 +54,7 @@ export function xhrErrorMessage(xhr?: JQuery.jqXHR) {
 
   const json = xhr.responseJSON as UnknownErrorJson;
   if (json.validation_error != null) {
-    return `${Object.values(json.validation_error).flat().join(', ')}.`;
+    return `${json.validation_error.flatMap((err) => Object.values(err)).join(', ')}.`;
   }
 
   let message = json.error ?? json.message ?? '';

@@ -13,7 +13,7 @@ interface Props {
   showTitle?: boolean;
   title?: string;
   transPrefix: string;
-  values: Readonly<string[]>;
+  values: readonly string[];
 }
 
 export class Sort extends React.PureComponent<Props> {

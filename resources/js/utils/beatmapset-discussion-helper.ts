@@ -146,12 +146,12 @@ function isNearbyDiscussion<T extends BeatmapsetDiscussionJson>(discussion: T): 
 }
 
 // sync with $defaultRulesets in app/Models/UserGroup.php
-const defaultGroupRulesets: Partial<Record<string, Readonly<Ruleset[]>>> = { nat: rulesets };
+const defaultGroupRulesets: Partial<Record<string, readonly Ruleset[]>> = { nat: rulesets };
 
 export function isUserFullNominator(user?: UserJson | null, gameMode?: Ruleset) {
   return user != null && user.groups != null && user.groups.some((group) => {
     if (gameMode != null) {
-      let groupRulesets: Readonly<Ruleset[]> = group.playmodes ?? [];
+      let groupRulesets: readonly Ruleset[] = group.playmodes ?? [];
       if (groupRulesets.length === 0) {
         groupRulesets = defaultGroupRulesets[group.identifier] ?? [];
       }
@@ -350,7 +350,7 @@ export function propsFromHref(href = '') {
     // Either accept that as fact of life or a better regexp is needed which is
     // probably rather difficult especially if we're going to support parsing IDN.
     targetUrl = new URL(href);
-  } catch (e: unknown) {
+  } catch (_error) {
     // ignore error
   }
 

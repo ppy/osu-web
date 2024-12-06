@@ -170,7 +170,7 @@ export default class Main {
     this.setState('loading');
     const promise = this.audio.play();
     // old api returns undefined
-    promise?.catch((error: { name: string }) => {
+    promise?.catch((error: DOMException) => {
       if (Main.ignoredErrors.includes(error.name)) {
         console.error('playback failed:', error.name);
         this.stop();
@@ -213,7 +213,7 @@ export default class Main {
             if (node.classList.contains('js-audio--player')) {
               newPlayers.push(node);
             } else {
-              for (const player of [...node.querySelectorAll('.js-audio--player')]) {
+              for (const player of node.querySelectorAll('.js-audio--player')) {
                 if (player instanceof HTMLElement) {
                   newPlayers.push(player);
                 }

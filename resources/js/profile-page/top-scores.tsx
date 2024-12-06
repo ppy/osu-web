@@ -26,8 +26,8 @@ export default class TopScores extends React.Component<ExtraPageProps> {
             <span className='fas fa-exclamation-circle' />
             {' '}
             <div
-              className='wiki-notice__markdown-inline-content'
               dangerouslySetInnerHTML={{ __html: this.props.controller.scoresNotice }}
+              className='wiki-notice__markdown-inline-content'
             />
           </div>
         )}

@@ -52,14 +52,10 @@ export default BeatmapsetDiscussionJson;
 
 // bundle versions; beatmap is only on modding history events version
 export type BeatmapsetDiscussionJsonForBundle =
-Omit<BeatmapsetDiscussionJson, 'posts'> // bundle explicitly does not include posts; need this for type discrimination.
-& Required<Pick<BeatmapsetDiscussionJson,
-'starting_post'
->>;
+  Omit<BeatmapsetDiscussionJson, 'posts'> // bundle explicitly does not include posts; need this for type discrimination.
+& Required<Pick<BeatmapsetDiscussionJson, 'starting_post'>>;
 
 // discussions page version
 export type BeatmapsetDiscussionJsonForShow =
-BeatmapsetDiscussionJson & Required<Pick<BeatmapsetDiscussionJson,
-'posts'
-| 'votes'
->>;
+  BeatmapsetDiscussionJson
+& Required<Pick<BeatmapsetDiscussionJson, 'posts' | 'votes'>>;

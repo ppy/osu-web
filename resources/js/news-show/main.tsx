@@ -81,7 +81,7 @@ export default class Main extends React.Component<Props> {
                   </p>
                 </div>
 
-                <div className='js-audio--group' dangerouslySetInnerHTML={{ __html: content }} />
+                <div dangerouslySetInnerHTML={{ __html: content }} className='js-audio--group' />
 
                 <div className='news-show__nav'>
                   {this.renderNav()}
