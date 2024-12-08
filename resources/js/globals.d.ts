@@ -35,18 +35,6 @@ interface Window {
 }
 // #endregion
 
-// #region interfaces for using process.env
-interface Process {
-  env: ProcessEnv;
-}
-
-interface ProcessEnv {
-  [key: string]: string | undefined;
-}
-
-declare const process: Process;
-// #endregion
-
 // our helpers
 declare const tooltipDefault: import('legacy-modules').TooltipDefault;
 
