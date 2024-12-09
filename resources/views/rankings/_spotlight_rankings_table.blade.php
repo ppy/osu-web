@@ -31,6 +31,9 @@
         </tr>
     </thead>
     <tbody>
+        @php
+            $countries = app('countries');
+        @endphp
         @foreach ($scores as $index => $score)
             <tr class="ranking-page-table__row{{$score->user->isActive() ? '' : ' ranking-page-table__row--inactive'}}">
                 <td class="ranking-page-table__column ranking-page-table__column--rank">
@@ -38,10 +41,19 @@
                 </td>
                 <td class="ranking-page-table__column">
                     <div class="ranking-page-table__user-link">
-                        @include('objects._flag_country', [
-                            'country' => $score->user->country,
-                            'modifiers' => 'medium',
-                        ])
+                        <span class="ranking-page-table__flags">
+                            @include('objects._flag_country', [
+                                'country' => $countries->byCode($score->user->country_acronym),
+                            ])
+                            @if (($team = $score->user->team) !== null)
+                                <a
+                                    class="flag-team"
+                                    href="{{ route('teams.show', $team) }}"
+                                    {!! background_image($team->logo()->url(), false) !!}
+                                >
+                                </a>
+                            @endif
+                        </span>
                         <a
                             href="{{ route('users.show', ['user' => $score->user_id, 'mode' => $mode]) }}"
                             class="ranking-page-table__user-link-text js-usercard"

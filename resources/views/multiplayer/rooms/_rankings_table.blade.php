@@ -39,6 +39,16 @@
                             'country' => $score->user->country,
                             'modifiers' => 'medium',
                         ])
+                        @if (($team = $score->user->team) !== null)
+                            <span class="ranking-page-table__flag-team">
+                                <a
+                                    class="flag-team"
+                                    href="{{ route('teams.show', $team) }}"
+                                    {!! background_image($team->logo()->url(), false) !!}
+                                >
+                                </a>
+                            </span>
+                        @endif
                         <a
                             href="{{ route('users.show', ['user' => $score->user_id, 'mode' => $mode ?? null]) }}"
                             class="ranking-page-table__user-link-text js-usercard"

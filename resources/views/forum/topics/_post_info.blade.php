@@ -71,14 +71,25 @@
         </div>
     @endif
 
-    @if ($user->country !== null)
+    @if (($team = $user->team) !== null)
+        <div class="forum-post-info__row forum-post-info__row--flag">
+            <a
+                class="flag-team"
+                href="{{ route('teams.show', $team) }}"
+                {!! background_image($team->logo()->url(), false) !!}
+            >
+            </a>
+        </div>
+    @endif
+
+    @if (($countryAcronym = $user->country_acronym) !== null)
         <div class="forum-post-info__row forum-post-info__row--flag">
             <a href="{{route('rankings', [
                 'mode' => default_mode(),
                 'type' => 'performance',
-                'country' => $user->country->getKey(),
+                'country' => $countryAcronym,
             ])}}">
-                @include('objects._flag_country', ['country' => $user->country])
+                @include('objects._flag_country', ['country' => app('countries')->byCode($countryAcronym)])
             </a>
         </div>
     @endif
