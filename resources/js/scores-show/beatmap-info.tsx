@@ -3,15 +3,15 @@
 
 import BeatmapListItem from 'components/beatmap-list-item';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
+import WithBeatmapOwners from 'interfaces/with-beatmap-owners';
 import { route } from 'laroute';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmapset-helper';
 import { trans } from 'utils/lang';
 
 interface Props {
-  beatmap: BeatmapExtendedJson & Required<Pick<BeatmapJson, 'user'>>;
+  beatmap: WithBeatmapOwners<BeatmapExtendedJson>;
   beatmapset: BeatmapsetJson;
 }
 
@@ -38,9 +38,9 @@ export default function BeatmapInfo(props: Props) {
             beatmapUrl={beatmapUrl}
             beatmapset={beatmapset}
             inline
-            mapper={beatmap.user}
             modifiers='score'
-            showNonGuestMapper
+            showNonGuestOwner
+            showOwners
           />
         </span>
       </div>

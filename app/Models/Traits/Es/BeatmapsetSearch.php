@@ -22,6 +22,7 @@ trait BeatmapsetSearch
         return static::withoutGlobalScopes()
             ->active()
             ->with('beatmaps') // note that the with query will run with the default scopes.
+            ->with('beatmaps.beatmapOwners')
             ->with('beatmaps.baseDifficultyRatings');
     }
 
@@ -80,6 +81,9 @@ trait BeatmapsetSearch
                 $beatmapValues[$field] = $beatmap->$field;
             }
 
+            // TODO: remove adding $beatmap->user_id once everything else also populated beatmap_owners by default.
+            // Duplicate user_id in the array should be fine for now since the field isn't scored for querying.
+            $beatmapValues['user_id'] = $beatmap->beatmapOwners->pluck('user_id')->add($beatmap->user_id);
             $values[] = $beatmapValues;
 
             if ($beatmap->playmode === Beatmap::MODES['osu']) {
@@ -96,6 +100,7 @@ trait BeatmapsetSearch
                         $convertValues[$field] = $convert->$field;
                     }
 
+                    $convertValues['user_id'] = $beatmapValues['user_id']; // just add a copy for converts too.
                     $values[] = $convertValues;
                 }
             }

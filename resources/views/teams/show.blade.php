@@ -3,16 +3,16 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    use App\Models\DeletedUser;
     use App\Transformers\UserCompactTransformer;
 
     $userTransformer = new UserCompactTransformer();
-    $teamMembers = array_map(
-        fn ($users) => json_collection($users, $userTransformer, UserCompactTransformer::CARD_INCLUDES),
-        $team->members->mapToGroups(fn ($member) => [
-            $member->user_id === $team->leader_id ? 'leader' : 'member' => $member->user,
-        ])->all(),
-    );
+    $toJson = fn ($users) => json_collection($users, $userTransformer, UserCompactTransformer::CARD_INCLUDES);
+    $teamMembers = array_map($toJson, $team->members->mapToGroups(fn ($member) => [
+        $member->user_id === $team->leader_id ? 'leader' : 'member' => $member->user,
+    ])->all());
     $teamMembers['member'] ??= [];
+    $teamMembers['leader'] ??= $toJson([$team->leader ?? new DeletedUser(['user_id' => $team->leader_id])]);
     $headerUrl = $team->header()->url();
 @endphp
 
@@ -32,7 +32,18 @@
                 <div
                     class="profile-info__bg profile-info__bg--team"
                     {!! background_image($headerUrl) !!}
-                ></div>
+                >
+                    @if (priv_check('TeamUpdate', $team)->can())
+                        <div class="profile-page-cover-editor-button">
+                            <a
+                                class="btn-circle btn-circle--page-toggle"
+                                href="{{ route('teams.edit', $team) }}"
+                            >
+                                <span class="fa fa-wrench"></span>
+                            </a>
+                        </div>
+                    @endif
+                </div>
                 <div class="profile-info__details">
                     <div
                         class="profile-info__avatar"
@@ -61,7 +72,7 @@
                                 <div class="team-info-entry">
                                     <div class="team-info-entry__title">{{ osu_trans('teams.show.info.created') }}</div>
                                     <div class="team-info-entry__value">
-                                        {{ i18n_date($team->created_at, null, 'year_month') }}
+                                        {{ i18n_date($team->created_at, pattern: 'year_month') }}
                                     </div>
                                 </div>
                                 @if (present($team->url))

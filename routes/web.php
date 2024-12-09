@@ -43,7 +43,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::group(['as' => 'beatmaps.', 'prefix' => '{beatmap}'], function () {
             Route::get('scores', 'BeatmapsController@scores')->name('scores');
             Route::get('solo-scores', 'BeatmapsController@soloScores')->name('solo-scores');
-            Route::put('update-owner', 'BeatmapsController@updateOwner')->name('update-owner');
+            Route::post('update-owner', 'BeatmapsController@updateOwner')->name('update-owner');
         });
     });
 
@@ -296,7 +296,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('user-cover-presets/batch-activate', 'UserCoverPresetsController@batchActivate')->name('user-cover-presets.batch-activate');
     Route::resource('user-cover-presets', 'UserCoverPresetsController', ['only' => ['index', 'store', 'update']]);
 
-    Route::resource('teams', 'TeamsController', ['only' => ['show']]);
+    Route::resource('teams', 'TeamsController', ['only' => ['edit', 'show', 'update']]);
 
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
     Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');
@@ -505,6 +505,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download-legacy');
 
             Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
+
+            Route::get('/', 'ScoresController@index');
         });
 
         // Beatmapsets

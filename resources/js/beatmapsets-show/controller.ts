@@ -5,7 +5,7 @@ import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
 import { keyBy } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
-import { deletedUser } from 'models/user';
+import { deletedUserJson } from 'models/user';
 import core from 'osu-core-singleton';
 import { find, findDefault, group } from 'utils/beatmap-helper';
 import { parse } from 'utils/beatmapset-page-hash';
@@ -107,8 +107,8 @@ export default class Controller {
     $(document).off('turbo:before-cache', this.saveState);
   }
 
-  mapper(beatmap: BeatmapJsonForBeatmapsetShow) {
-    return this.usersById[beatmap.user_id] ?? deletedUser;
+  owners(beatmap: BeatmapJsonForBeatmapsetShow) {
+    return beatmap.owners.map((mapper) => this.usersById[mapper.id] ?? deletedUserJson);
   }
 
   @action

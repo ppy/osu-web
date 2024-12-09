@@ -1,0 +1,44 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmap-owner {
+  display: flex;
+  gap: 2px;
+
+  // same colour as the modal.
+  background-color: hsla(var(--hsl-b5), 0.8);
+  border-radius: @border-radius-large;
+
+  &__avatar {
+    width: 20px;
+    height: $width;
+  }
+
+  &__remove {
+    .reset-input();
+
+    opacity: 0.7;
+    margin: 2px;
+    padding: 0 0.3em;
+    visibility: hidden;
+
+    border-radius: 50%;
+    display: flex;
+    place-items: center;
+
+    .link-hover({
+      opacity: 1;
+      background-color: hsl(var(--hsl-b1));
+    });
+
+    &--editing {
+      visibility: visible;
+    }
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+}
