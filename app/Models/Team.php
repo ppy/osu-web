@@ -112,7 +112,7 @@ class Team extends Model
             'teams/logo',
             $this,
             'logo_file',
-            ['image' => ['maxDimensions' => [256, 128]]],
+            ['image' => ['maxDimensions' => [512, 256]]],
         );
     }
 }
