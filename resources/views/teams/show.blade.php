@@ -3,6 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    use App\Models\DeletedUser;
     use App\Transformers\UserCompactTransformer;
 
     $userTransformer = new UserCompactTransformer();
