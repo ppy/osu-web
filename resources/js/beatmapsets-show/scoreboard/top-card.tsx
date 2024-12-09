@@ -80,19 +80,21 @@ export default class TopCard extends React.PureComponent<Props> {
                 />
               </div>
 
-              <a
-                className='u-hover'
-                href={route('rankings', {
-                  country: this.props.score.user.country_code,
-                  mode: ruleset,
-                  type: 'performance',
-                })}
-              >
-                <FlagCountry
-                  country={this.props.score.user.country}
-                  modifiers='flat'
-                />
-              </a>
+              <div className='beatmap-score-top__flags'>
+                <a
+                  className='u-hover'
+                  href={route('rankings', {
+                    country: this.props.score.user.country_code,
+                    mode: ruleset,
+                    type: 'performance',
+                  })}
+                >
+                  <FlagCountry
+                    country={this.props.score.user.country}
+                    modifiers='flat'
+                  />
+                </a>
+              </div>
             </div>
           </div>
 
