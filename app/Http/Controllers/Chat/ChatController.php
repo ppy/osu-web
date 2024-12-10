@@ -89,21 +89,19 @@ class ChatController extends Controller
      * @bodyParam uuid string client-side message identifier which will be sent back in response and websocket json. Example: some-uuid-string
      *
      * @response {
-     *   "channel": [
-     *     {
-     *       "channel_id": 1234,
-     *       "current_user_attributes": {
-     *         "can_message": true,
-     *         "can_message_error": null,
-     *         "last_read_id": 9150005005
-     *       },
-     *       "name": "peppy",
-     *       "description": "",
-     *       "type": "PM",
-     *       "last_read_id": 9150005005,
-     *       "last_message_id": 9150005005
-     *     }
-     *   ],
+     *   "channel": {
+     *     "channel_id": 1234,
+     *     "current_user_attributes": {
+     *       "can_message": true,
+     *       "can_message_error": null,
+     *       "last_read_id": 9150005005
+     *     },
+     *     "name": "peppy",
+     *     "description": "",
+     *     "type": "PM",
+     *     "last_read_id": 9150005005,
+     *     "last_message_id": 9150005005
+     *   },
      *   "message": {
      *     "message_id": 9150005005,
      *     "sender_id": 102,
