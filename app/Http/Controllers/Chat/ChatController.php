@@ -91,35 +91,42 @@ class ChatController extends Controller
      * @response {
      *   "channel": {
      *     "channel_id": 1234,
-     *     "current_user_attributes": {
-     *       "can_message": true,
-     *       "can_message_error": null,
-     *       "last_read_id": 9150005005
-     *     },
-     *     "name": "peppy",
      *     "description": "",
+     *     "icon": "https://a.ppy.sh/102?1500537068"
+     *     "message_length_limit": 450,
+     *     "moderated": false,
+     *     "name": "peppy",
      *     "type": "PM",
-     *     "last_read_id": 9150005005,
-     *     "last_message_id": 9150005005
+     *     "uuid": null,
+     *     "last_message_id": 9150005005,
+     *     "users": [
+     *       101,
+     *       102
+     *     ]
      *   },
      *   "message": {
-     *     "message_id": 9150005005,
-     *     "sender_id": 102,
      *     "channel_id": 1234,
-     *     "timestamp": "2018-07-06T06:33:42+00:00",
      *     "content": "i can haz featured artist plz?",
      *     "is_action": false,
+     *     "message_id": 9150005005,
+     *     "sender_id": 102,
+     *     "timestamp": "2024-12-23T01:23:45+00:00",
+     *     "type": "plain",
      *     "uuid": "some-uuid-string",
      *     "sender": {
-     *       "id": 102,
-     *       "username": "nekodex",
-     *       "profile_colour": "#333333",
      *       "avatar_url": "https://a.ppy.sh/102?1500537068",
      *       "country_code": "AU",
+     *       "default_group": "default",
+     *       "id": 102,
      *       "is_active": true,
      *       "is_bot": false,
+     *       "is_deleted": false,
      *       "is_online": true,
      *       "is_supporter": true
+     *       "last_visit": "2024-12-23T01:23:45+00:00",
+     *       "pm_friends_only": false,
+     *       "profile_colour": "#333333",
+     *       "username": "nekodex",
      *     }
      *   },
      *   "new_channel_id": 1234,
