@@ -113,6 +113,9 @@ class ChannelsController extends Controller
      *   This endpoint will only allow the leaving of public channels initially.
      * </aside>
      *
+     * @urlParam channel integer required `channel_id` of the [ChatChannel](#chatchannel) to leave.
+     * @urlParam user integer required `id` of the [User](#user) to leave the channel.
+     *
      * @response 204
      */
     public function part($channelId, $userId)
@@ -145,6 +148,8 @@ class ChannelsController extends Controller
      * ------- | --------------------------- | -----------
      * channel | [ChatChannel](#chatchannel) | |
      * users   | [User](#user)               | Users are only visible for PM channels.
+     *
+     * @urlParam channel integer required `channel_id` of the [ChatChannel](#chatchannel) to get.
      *
      * @response {
      *   "channel": {
@@ -191,6 +196,7 @@ class ChannelsController extends Controller
      *     }
      *   ]
      * }
+     *
      */
     public function show($channelId)
     {
@@ -314,8 +320,8 @@ class ChannelsController extends Controller
      *   Note that the read marker cannot be moved backwards - i.e. if a channel has been marked as read up to <code>message_id = 12</code>, you cannot then set it backwards to <code>message_id = 10</code>. It will be rejected.
      * </aside>
      *
-     * @queryParam channel_id required The `channel_id` of the channel to mark as read
-     * @queryParam message_id required The `message_id` of the message to mark as read up to
+     * @urlParam channel integer required The `channel_id` of the [ChatChannel](#chatchannel) to mark as read.
+     * @urlParam message integer required The `message_id` of the [ChatMessage](#chatmessage) to mark as read up to.
      *
      * @response 204
      */
