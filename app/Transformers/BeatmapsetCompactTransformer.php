@@ -41,6 +41,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         'recent_favourites',
         'related_users',
         'user',
+        'user_tags',
     ];
 
     // TODO: switch to enum after php 8.1
@@ -297,6 +298,13 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         $users = User::with('userGroups')->whereIn('user_id', $userIds->toArray())->get();
 
         return $this->collection($users, new UserCompactTransformer());
+    }
+
+    public function includeUserTags(Beatmapset $beatmapset)
+    {
+        $beatmaps = $this->beatmaps($beatmapset);
+
+        return $this->collection($beatmaps->flatMap->topTags(), new TagTransformer());
     }
 
     private function beatmaps(Beatmapset $beatmapset, ?Fractal\ParamBag $params = null): EloquentCollection

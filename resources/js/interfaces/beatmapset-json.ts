@@ -9,6 +9,7 @@ import BeatmapsetNominationJson from './beatmapset-nomination-json';
 import GenreJson from './genre-json';
 import LanguageJson from './language-json';
 import Ruleset from './ruleset';
+import TagJson from './tag-json';
 import UserJson, { UserJsonDeleted } from './user-json';
 
 export interface Availability {
@@ -94,6 +95,7 @@ interface BeatmapsetJsonAvailableIncludes {
   recent_favourites: UserJson[];
   related_users: UserJson[];
   user: UserJson | UserJsonDeleted;
+  user_tags: TagJson[];
 }
 
 interface HypeData {

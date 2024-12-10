@@ -65,6 +65,15 @@ export default class Info extends React.Component<Props> {
     return ret;
   }
 
+  private get tags() {
+    return [
+      ...this.controller.beatmapset.user_tags.map((tag) => tag.name),
+      ...this.controller.beatmapset.tags
+        .split(' ')
+        .filter(present),
+    ];
+  }
+
   private get withEditDescription() {
     return this.controller.beatmapset.description.bbcode != null;
   }
@@ -84,10 +93,6 @@ export default class Info extends React.Component<Props> {
   }
 
   render() {
-    const tags = this.controller.beatmapset.tags
-      .split(' ')
-      .filter(present);
-
     return (
       <div className='beatmapset-info u-fancy-scrollbar'>
         {this.isEditingDescription &&
@@ -191,14 +196,14 @@ export default class Info extends React.Component<Props> {
             </div>
           </div>
 
-          {tags.length > 0 &&
+          {this.tags.length > 0 &&
             <div className='beatmapset-info__row beatmapset-info__row--value-overflow'>
               <h3 className='beatmapset-info__header'>
                 {trans('beatmapsets.show.info.tags')}
               </h3>
               <div className='beatmapset-info__value-overflow'>
-                {tags.map((tag, i) => (
-                  <React.Fragment key={`${tag}-${i}`}>
+                {this.tags.map((tag) => (
+                  <React.Fragment key={`${tag}`}>
                     <a
                       className='beatmapset-info__link'
                       href={route('beatmapsets.index', { q: tag })}
