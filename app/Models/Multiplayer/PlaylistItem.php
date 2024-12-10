@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property json|null $allowed_mods
  * @property Beatmap $beatmap
  * @property int $beatmap_id
+ * @property int|null $beatmapset_id
  * @property \Carbon\Carbon|null $created_at
  * @property int $id
  * @property int $owner_id
@@ -64,6 +65,7 @@ class PlaylistItem extends Model
             $obj->$field = $value;
         }
 
+        $obj->beatmapset_id = get_int($json['beatmapset_id'] ?? null);
         $obj->max_attempts = get_int($json['max_attempts'] ?? null);
 
         $modsHelper = app('mods');

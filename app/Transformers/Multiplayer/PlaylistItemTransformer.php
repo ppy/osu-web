@@ -21,6 +21,7 @@ class PlaylistItemTransformer extends TransformerAbstract
             'id' => $item->id,
             'room_id' => $item->room_id,
             'beatmap_id' => $item->beatmap_id,
+            'beatmapset_id' => $item->beatmapset_id,
             'ruleset_id' => $item->ruleset_id,
             'allowed_mods' => $item->allowed_mods,
             'required_mods' => $item->required_mods,
