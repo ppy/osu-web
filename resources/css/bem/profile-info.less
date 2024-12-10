@@ -108,41 +108,34 @@
     .link-plain();
     .link-white();
     display: flex;
+    gap: 4px;
     align-items: center;
   }
 
-  &__flag-flag {
-    font-size: var(--icon-height); // icon size
-  }
-
   &__flag-text {
+    font-size: @font-size--title-small;
     display: none;
 
     @media @desktop {
       display: block;
-      padding-left: 4px;
-      font-size: @font-size--title-small;
     }
   }
 
   &__flags {
-    --icon-font-size: @font-size--small;
-    --icon-height-desktop: 20px;
-    --icon-height: 15px;
-
     display: flex;
     gap: 5px;
     margin-top: 10px;
+    font-size: 15px; // icon size
 
     @media @desktop {
-      --icon-height: var(--icon-height-desktop);
+      font-size: @flag-size-medium; // icon size
       margin-top: 5px;
     }
   }
 
   &__icon {
-    font-size: var(--icon-font-size); // icon size
-    height: var(--icon-height);
+    font-size: 0.75em; // icon size
+    height: (1em * 1em / $font-size); // revert sizing from font-size
     color: @osu-colour-c1;
     display: flex;
     text-shadow: none;
@@ -158,19 +151,21 @@
   }
 
   &__icons {
-    align-items: baseline;
-    gap: 2px;
-    margin-left: 5px;
-
     &--flag-inline {
       display: contents;
+
       @media @desktop {
         display: none;
       }
     }
 
     &--name-inline {
+      align-items: baseline;
+      gap: 2px;
+      margin-left: 5px;
+      font-size: 15px; // icon size
       display: none;
+
       @media @desktop {
         display: flex;
       }
@@ -191,9 +186,6 @@
   }
 
   &__name {
-    --icon-height: 15px;
-    --icon-font-size: @font-size--small;
-
     padding: 0;
     margin: -5px 0 0;
     font-weight: normal;

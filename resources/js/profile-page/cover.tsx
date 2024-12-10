@@ -87,9 +87,7 @@ export default class Cover extends React.Component<Props> {
                   className='profile-info__flag'
                   href={route('rankings', { country: this.props.user.country.code, mode: this.props.currentMode, type: 'performance' })}
                 >
-                  <span className='profile-info__flag-flag'>
-                    <FlagCountry country={this.props.user.country} />
-                  </span>
+                  <FlagCountry country={this.props.user.country} />
                   <span className='profile-info__flag-text'>{this.props.user.country.name}</span>
                 </a>
               }
