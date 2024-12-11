@@ -77,6 +77,7 @@ class Room extends Model
     const PLAYLIST_QUEUE_MODE = 'host_only';
     const REALTIME_DEFAULT_QUEUE_MODE = 'host_only';
     const REALTIME_QUEUE_MODES = [ 'host_only', 'all_players', 'all_players_round_robin' ];
+    const REALTIME_STATUSES = ['idle', 'playing'];
 
     public ?array $preloadedRecentParticipants = null;
 
@@ -149,6 +150,7 @@ class Room extends Model
             'mode',
             'season_id:int',
             'sort',
+            'status',
             'type_group',
             'user:any',
         ], ['null_missing' => true]);
@@ -157,6 +159,7 @@ class Room extends Model
         $user = $params['user'];
         $seasonId = $params['season_id'];
         $sort = $params['sort'];
+        $status = $params['status'];
         $category = $params['category'];
         $typeGroup = $params['type_group'];
 
@@ -172,6 +175,14 @@ class Room extends Model
         }
 
         $query = static::whereIn('type', static::TYPE_GROUPS[$typeGroup]);
+
+        if (!in_array($status, static::REALTIME_STATUSES, true)) {
+            $status = null;
+        }
+
+        if (isset($status)) {
+            $query->where('status', $status);
+        }
 
         if (isset($seasonId)) {
             $query->whereRelation('seasons', 'seasons.id', $seasonId);
