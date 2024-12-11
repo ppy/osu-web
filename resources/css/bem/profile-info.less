@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .profile-info {
-  --avatar: none;
   --avatar-radius-extended-desktop: 40px;
   --avatar-radius-extended: 20px;
   --avatar-radius: 20px;
@@ -40,7 +39,6 @@
 
   &--team {
     --avatar-width: calc(var(--avatar-height) * 2);
-    --avatar: url("~@images/headers/generic.jpg");
     --bg: url("~@images/headers/generic.jpg");
     background-color: hsl(var(--hsl-b4));
   }
@@ -60,8 +58,6 @@
     overflow: hidden;
     align-self: flex-end;
     margin-bottom: var(--vertical-padding);
-    background-image: var(--avatar);
-    background-size: contain;
     .default-box-shadow();
   }
 

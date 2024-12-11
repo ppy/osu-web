@@ -3,12 +3,13 @@
 
 import TeamJson from 'interfaces/team-json';
 import * as React from 'react';
+import { urlPresence } from 'utils/css';
 
 export default function FlagTeam({ team }: { team: TeamJson }) {
   return (
     <span
       className='flag-team'
-      style={{ backgroundImage: `url('${team.logo}')` }}
+      style={{ backgroundImage: urlPresence(team.logo) }}
       title={team.name}
     />
   );
