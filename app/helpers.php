@@ -594,11 +594,6 @@ function max_offset($page, $limit)
     return max(0, min($offset, $GLOBALS['cfg']['osu']['pagination']['max_count'] - $limit));
 }
 
-function mysql_escape_like($string)
-{
-    return addcslashes($string, '%_\\');
-}
-
 function oauth_token(): ?App\Models\OAuth\Token
 {
     return Request::instance()->attributes->get(App\Http\Middleware\AuthApi::REQUEST_OAUTH_TOKEN_KEY);
