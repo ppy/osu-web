@@ -931,6 +931,7 @@ class UsersController extends Controller
             'statistics.country_rank',
             'statistics.rank',
             'statistics.variants',
+            'team',
             'user_achievements',
         ];
 

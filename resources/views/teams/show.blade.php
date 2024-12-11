@@ -45,10 +45,9 @@
                     @endif
                 </div>
                 <div class="profile-info__details">
-                    <div
-                        class="profile-info__avatar"
-                        {!! background_image($team->logo()->url()) !!}
-                    ></div>
+                    <div class="profile-info__avatar">
+                        @include('objects._flag_team', ['modifiers' => 'full', 'team' => $team])
+                    </div>
                     <div class="profile-info__info">
                         <h1 class="profile-info__name">
                             {{ $team->name }}
