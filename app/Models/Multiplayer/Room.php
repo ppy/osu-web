@@ -176,7 +176,7 @@ class Room extends Model
 
         $query = static::whereIn('type', static::TYPE_GROUPS[$typeGroup]);
 
-        if (!in_array($status, static::REALTIME_STATUSES)) {
+        if (!in_array($status, static::REALTIME_STATUSES, true)) {
             $status = null;
         }
 
