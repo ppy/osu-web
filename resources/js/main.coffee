@@ -24,7 +24,6 @@ import LandingGraph from 'core-legacy/landing-graph'
 import Menu from 'core-legacy/menu'
 import NavButton from 'core-legacy/nav-button'
 import Nav2 from 'core-legacy/nav2'
-import PostPreview from 'core-legacy/post-preview'
 import Search from 'core-legacy/search'
 import { StoreCheckout } from 'core-legacy/store-checkout'
 import TooltipDefault from 'core-legacy/tooltip-default'
@@ -60,7 +59,6 @@ window.globalDrag ?= new GlobalDrag
 window.landingGraph ?= new LandingGraph
 window.menu ?= new Menu
 window.navButton ?= new NavButton
-window.postPreview ?= new PostPreview
 window.search ?= new Search
 window.tooltipDefault ?= new TooltipDefault
 
