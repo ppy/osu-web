@@ -37,7 +37,18 @@
                         <div class="profile-page-cover-editor-button">
                             <a
                                 class="btn-circle btn-circle--page-toggle"
+                                data-tooltip-position="left center"
+                                href="{{ route('teams.members.index', $team) }}"
+                                title="{{ osu_trans('teams.members.index.title') }}"
+                            >
+                                <span class="fa fa-users"></span>
+                            </a>
+
+                            <a
+                                class="btn-circle btn-circle--page-toggle"
+                                data-tooltip-position="left center"
                                 href="{{ route('teams.edit', $team) }}"
+                                title="{{ osu_trans('teams.edit.title') }}"
                             >
                                 <span class="fa fa-wrench"></span>
                             </a>
