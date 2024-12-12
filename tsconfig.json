@@ -3,18 +3,17 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./resources/js",
     "experimentalDecorators": true,
+    "isolatedModules": true,
     "jsx": "react",
     "lib": ["dom", "dom.iterable", "es2020"],
     "module": "es2020",
     "moduleResolution": "node",
+    "noEmit": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,
-    "resolveJsonModule": true,
-    "sourceMap": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "target": "es2015",
-    "useDefineForClassFields": true
+    "target": "es2015"
   },
   "include": [
     "resources/js",
