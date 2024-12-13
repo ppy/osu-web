@@ -66,16 +66,17 @@ export default class Info extends React.Component<Props> {
   }
 
   private get tags() {
-    const sortedTags = Object.values(this.controller.tags).sort((a, b) => {
+    const tags = this.controller.tags;
+
+    const sortedUserTags = Object.values(tags.userTags).sort((a, b) => {
+      if (a == null || b == null) return 0; // for typing only, doesn't contain nulls.
       const diff = b.count - a.count;
       return diff !== 0 ? diff : a.id - b.id;
     });
 
     return [
-      ...sortedTags.map((tag) => tag.name),
-      ...this.controller.beatmapset.tags // TODO: something about duplicate mapper tags
-        .split(' ')
-        .filter(present),
+      ...sortedUserTags.map((tag) => tag?.name),
+      ...tags.mapperTags,
     ];
   }
 

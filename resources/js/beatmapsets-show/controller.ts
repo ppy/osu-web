@@ -5,12 +5,13 @@ import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import { TagJsonWithCount } from 'interfaces/tag-json';
 import UserJson from 'interfaces/user-json';
 import { keyBy } from 'lodash';
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction, toJS } from 'mobx';
 import { deletedUserJson } from 'models/user';
 import core from 'osu-core-singleton';
 import { find, findDefault, group } from 'utils/beatmap-helper';
 import { parse } from 'utils/beatmapset-page-hash';
 import { parseJson } from 'utils/json';
+import { present } from 'utils/string';
 import { currentUrl } from 'utils/turbolinks';
 
 export type ScoreLoadingState = null | 'error' | 'loading' | 'supporter_only' | 'unranked';
@@ -73,21 +74,33 @@ export default class Controller {
 
   @computed
   get tags() {
-    const summedTags: Partial<Record<number, TagJsonWithCount>> = {};
+    const mapperTagSet = new Set(this.beatmapset.tags.split(' ').filter(present));
+
+    const userTags: Partial<Record<number, TagJsonWithCount>> = {};
     for (const beatmap of this.beatmapset.beatmaps) {
       if (beatmap.tags == null) continue;
 
       for (const tag of beatmap.tags) {
-        const summedTag = summedTags[tag.id];
-        if (summedTag != null) {
+        let summedTag = userTags[tag.id];
+        if (summedTag == null) {
+          summedTag = toJS(tag); // don't modify original
+          userTags[tag.id] = summedTag;
+        } else {
           summedTag.count += tag.count;
         }
 
-        summedTags[tag.id] = summedTag;
+        // TODO: case insensitivity
+        if (mapperTagSet.has(tag.name)) {
+          summedTag.count++;
+          mapperTagSet.delete(tag.name);
+        }
       }
     }
 
-    return summedTags;
+    return {
+      mapperTags: [...mapperTagSet.values()],
+      userTags,
+    };
   }
 
   @computed
