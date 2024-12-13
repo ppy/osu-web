@@ -39,14 +39,14 @@ class ForumsController extends Controller
      * last_topics | [ForumTopic](#forum-topic)[] |
      *
      * @response {
-     *     "forums": [
-     *          { "forum_id": 1, "...": "..." },
-     *          { "forum_id": 2, "...": "..." }
-     *      ],
-     *      "last_topics": [
-     *          { "id": 1, "...": "..." },
-     *          { "id": 2, "...": "..." }
-     *      ]
+     *   "forums": [
+     *     { "forum_id": 1, "...": "..." },
+     *     { "forum_id": 2, "...": "..." }
+     *   ],
+     *   "last_topics": [
+     *     { "id": 1, "...": "..." },
+     *     { "id": 2, "...": "..." }
+     *   ]
      * }
      */
     public function index()
@@ -109,19 +109,19 @@ class ForumsController extends Controller
      * @urlParam forum integer required Id of the forum. Example: 1
      *
      * @response {
-     *     "forum": { "id": 1, "...": "..." },
-     *     "topics": [
-     *         { "id": 1, "...": "..." },
-     *         { "id": 2, "...": "..." },
-     *     ],
-     *     "last_topics": [
-     *         { "id": 1, "...": "..." },
-     *         { "id": 2, "...": "..." },
-     *     ],
-     *     "pinned_topics": [
-     *         { "id": 1, "...": "..." },
-     *         { "id": 2, "...": "..." },
-     *     ]
+     *   "forum": { "id": 1, "...": "..." },
+     *   "topics": [
+     *     { "id": 1, "...": "..." },
+     *     { "id": 2, "...": "..." },
+     *   ],
+     *   "last_topics": [
+     *     { "id": 1, "...": "..." },
+     *     { "id": 2, "...": "..." },
+     *   ],
+     *   "pinned_topics": [
+     *     { "id": 1, "...": "..." },
+     *     { "id": 2, "...": "..." },
+     *   ]
      * }
      */
     public function show($id)

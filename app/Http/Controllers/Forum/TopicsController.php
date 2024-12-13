@@ -299,11 +299,11 @@ class TopicsController extends Controller
      * @queryParam limit Maximum number of topics to be returned (50 at most and by default). No-example
      *
      * @response {
-     *     "topics": [
-     *         { "id": 1, "...": "..." },
-     *         { "id": 2, "...": "..." }
-     *     ],
-     *     "cursor_string": "eyJoZWxsbyI6IndvcmxkIn0"
+     *   "topics": [
+     *     { "id": 1, "...": "..." },
+     *     { "id": 2, "...": "..." }
+     *   ],
+     *   "cursor_string": "eyJoZWxsbyI6IndvcmxkIn0"
      * }
      */
     public function index()
@@ -353,13 +353,13 @@ class TopicsController extends Controller
      * @queryParam end First post id to be returned with `sort` set to `id_desc`. This parameter is ignored if `cursor_string` is specified. No-example
      *
      * @response {
-     *     "topic": { "id": 1, "...": "..." },
-     *     "posts": [
-     *         { "id": 1, "...": "..." },
-     *         { "id": 2, "...": "..." }
-     *     ],
-     *     "cursor_string": "eyJoZWxsbyI6IndvcmxkIn0",
-     *     "sort": "id_asc"
+     *   "topic": { "id": 1, "...": "..." },
+     *   "posts": [
+     *     { "id": 1, "...": "..." },
+     *     { "id": 2, "...": "..." }
+     *   ],
+     *   "cursor_string": "eyJoZWxsbyI6IndvcmxkIn0",
+     *   "sort": "id_asc"
      * }
      */
     public function show($id)
