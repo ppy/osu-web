@@ -76,15 +76,15 @@ export default class Controller {
   get tags() {
     const mapperTagSet = new Set(this.beatmapset.tags.split(' ').filter(present));
 
-    const userTags: Partial<Record<number, TagJsonWithCount>> = {};
+    const tags: Partial<Record<number, TagJsonWithCount>> = {};
     for (const beatmap of this.beatmapset.beatmaps) {
       if (beatmap.tags == null) continue;
 
       for (const tag of beatmap.tags) {
-        let summedTag = userTags[tag.id];
+        let summedTag = tags[tag.id];
         if (summedTag == null) {
           summedTag = toJS(tag); // don't modify original
-          userTags[tag.id] = summedTag;
+          tags[tag.id] = summedTag;
         } else {
           summedTag.count += tag.count;
         }
@@ -99,7 +99,11 @@ export default class Controller {
 
     return {
       mapperTags: [...mapperTagSet.values()],
-      userTags,
+      userTags: Object.values(tags).sort((a, b) => {
+        if (a == null || b == null) return 0; // for typing only, doesn't contain nulls.
+        const diff = b.count - a.count;
+        return diff !== 0 ? diff : a.id - b.id;
+      }),
     };
   }
 

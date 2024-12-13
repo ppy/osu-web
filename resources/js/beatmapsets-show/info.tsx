@@ -68,14 +68,8 @@ export default class Info extends React.Component<Props> {
   private get tags() {
     const tags = this.controller.tags;
 
-    const sortedUserTags = Object.values(tags.userTags).sort((a, b) => {
-      if (a == null || b == null) return 0; // for typing only, doesn't contain nulls.
-      const diff = b.count - a.count;
-      return diff !== 0 ? diff : a.id - b.id;
-    });
-
     return [
-      ...sortedUserTags.map((tag) => tag?.name),
+      ...tags.userTags.map((tag) => tag?.name),
       ...tags.mapperTags,
     ];
   }
