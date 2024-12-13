@@ -404,6 +404,7 @@ class BeatmapsetsController extends Controller
             'beatmaps.failtimes',
             'beatmaps.max_combo',
             'beatmaps.owners',
+            'beatmaps.tags',
             'converts',
             'converts.failtimes',
             'converts.owners',
@@ -417,7 +418,6 @@ class BeatmapsetsController extends Controller
             'recent_favourites',
             'related_users',
             'user',
-            'user_tags',
         ]);
     }
 }

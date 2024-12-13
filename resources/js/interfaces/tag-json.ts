@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 export default interface TagJson {
+  count?: number;
   description: string;
   id: number;
   name: string;

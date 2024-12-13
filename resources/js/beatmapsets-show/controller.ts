@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapJson from 'interfaces/beatmap-json';
 import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
 import { keyBy } from 'lodash';
@@ -68,6 +69,23 @@ export default class Controller {
   @computed
   get currentBeatmaps() {
     return this.beatmaps.get(this.currentBeatmap.mode) ?? [];
+  }
+
+  @computed
+  get tags() {
+    const summedTags: Partial<Record<number, BeatmapJson['tags']>> = {};
+    for (const beatmap of this.beatmapset.beatmaps) {
+      if (beatmap.tags == null) continue;
+      for (const tag of beatmap.tags) {
+        if (summedTags[tag.id] != null) {
+          summedTags[tag.id].count += tag.count;
+        } else {
+          summedTags[tag.id] = tag;
+        }
+      }
+    }
+
+    return summedTags;
   }
 
   @computed

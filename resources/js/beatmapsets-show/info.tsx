@@ -66,9 +66,14 @@ export default class Info extends React.Component<Props> {
   }
 
   private get tags() {
+    const sortedTags = Object.values(this.controller.tags).sort((a, b) => {
+      const diff = b.count - a.count;
+      return diff !== 0 ? diff : a.id - b.id;
+    });
+
     return [
-      ...this.controller.beatmapset.user_tags.map((tag) => tag.name),
-      ...this.controller.beatmapset.tags
+      ...sortedTags.map((tag) => tag.name),
+      ...this.controller.beatmapset.tags // TODO: something about duplicate mapper tags
         .split(' ')
         .filter(present),
     ];
