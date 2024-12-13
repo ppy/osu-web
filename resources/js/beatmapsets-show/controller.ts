@@ -1,8 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import BeatmapJson from 'interfaces/beatmap-json';
 import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
+import { TagJsonWithCount } from 'interfaces/tag-json';
 import UserJson from 'interfaces/user-json';
 import { keyBy } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
@@ -73,15 +73,17 @@ export default class Controller {
 
   @computed
   get tags() {
-    const summedTags: Partial<Record<number, BeatmapJson['tags']>> = {};
+    const summedTags: Partial<Record<number, TagJsonWithCount>> = {};
     for (const beatmap of this.beatmapset.beatmaps) {
       if (beatmap.tags == null) continue;
+
       for (const tag of beatmap.tags) {
-        if (summedTags[tag.id] != null) {
-          summedTags[tag.id].count += tag.count;
-        } else {
-          summedTags[tag.id] = tag;
+        const summedTag = summedTags[tag.id];
+        if (summedTag != null) {
+          summedTag.count += tag.count;
         }
+
+        summedTags[tag.id] = summedTag;
       }
     }
 

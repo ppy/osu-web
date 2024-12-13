@@ -7,3 +7,5 @@ export default interface TagJson {
   id: number;
   name: string;
 }
+
+export type TagJsonWithCount = TagJson & Required<Pick<TagJson, 'count'>>;

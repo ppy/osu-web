@@ -4,7 +4,7 @@
 import BeatmapOwnerJson from './beatmap-owner-json';
 import BeatmapsetJson from './beatmapset-json';
 import Ruleset from './ruleset';
-import TagJson from './tag-json';
+import { TagJsonWithCount } from './tag-json';
 import UserJson from './user-json';
 
 interface BeatmapFailTimesArray {
@@ -18,7 +18,7 @@ interface BeatmapJsonAvailableIncludes {
   failtimes: BeatmapFailTimesArray;
   max_combo: number;
   owners: BeatmapOwnerJson[];
-  tags: (TagJson & Required<Pick<TagJson, 'count'>>)[];
+  tags: TagJsonWithCount[];
   user: UserJson;
 }
 
