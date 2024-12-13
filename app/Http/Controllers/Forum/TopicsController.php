@@ -50,7 +50,7 @@ class TopicsController extends Controller
             'store',
         ]]);
 
-        $this->middleware('require-scopes:public', ['only' => ['show']]);
+        $this->middleware('require-scopes:public', ['only' => ['index', 'show']]);
         $this->middleware('require-scopes:forum.write', ['only' => ['reply', 'store', 'update']]);
     }
 
@@ -280,6 +280,55 @@ class TopicsController extends Controller
     }
 
     /**
+     * Get Topic Listing
+     *
+     * Get a sorted list of topics, optionally from a specific forum
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field         | Type                          | Notes
+     * ------------- | ----------------------------- | -----
+     * topics        | [ForumTopic](#forum-topic)[]  | |
+     * cursor_string | [CursorString](#cursorstring) | |
+     *
+     * @usesCursor
+     * @queryParam forum_id Id of a specific forum to get topics from. No-example
+     * @queryParam sort Topic sorting option. Valid values are `new` (default) and `old`. Both sort by the topic's last post time. No-example
+     * @queryParam limit Maximum number of topics to be returned (50 at most and by default). No-example
+     *
+     * @response {
+     *     "topics": [
+     *         { "id": 1, "...": "..." },
+     *         { "id": 2, "...": "..." }
+     *     ],
+     *     "cursor_string": "eyJoZWxsbyI6IndvcmxkIn0"
+     * }
+     */
+    public function index()
+    {
+        $params = request()->all();
+        $limit = \Number::clamp(get_int($params['limit'] ?? null) ?? Topic::PER_PAGE, 1, Topic::PER_PAGE);
+        $cursorHelper = Topic::makeDbCursorHelper($params['sort'] ?? null);
+
+        $topics = Topic::cursorSort($cursorHelper, cursor_from_params($params))
+            ->limit($limit);
+
+        $forum_id = get_int($params['forum_id'] ?? null) ?? null;
+        if ($forum_id !== null) {
+            $topics->where('forum_id', $forum_id);
+        }
+
+        [$topics, $hasMore] = $topics->getWithHasMore();
+
+        return [
+            'topics' => json_collection($topics, 'Forum/Topic'),
+            ...cursor_for_response($cursorHelper->next($topics, $hasMore)),
+        ];
+    }
+
+    /**
      * Get Topic and Posts
      *
      * Get topic and its posts.
@@ -304,13 +353,13 @@ class TopicsController extends Controller
      * @queryParam end First post id to be returned with `sort` set to `id_desc`. This parameter is ignored if `cursor_string` is specified. No-example
      *
      * @response {
-     *   "topic": { "id": 1, "...": "..." },
-     *   "posts": [
-     *     { "id": 1, "...": "..." },
-     *     { "id": 2, "...": "..." }
-     *   ],
-     *   "cursor_string": "eyJoZWxsbyI6IndvcmxkIn0",
-     *   "sort": "id_asc"
+     *     "topic": { "id": 1, "...": "..." },
+     *     "posts": [
+     *         { "id": 1, "...": "..." },
+     *         { "id": 2, "...": "..." }
+     *     ],
+     *     "cursor_string": "eyJoZWxsbyI6IndvcmxkIn0",
+     *     "sort": "id_asc"
      * }
      */
     public function show($id)

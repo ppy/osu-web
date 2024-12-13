@@ -13,6 +13,7 @@ use App\Libraries\Transactions\AfterCommit;
 use App\Models\Beatmapset;
 use App\Models\Log;
 use App\Models\Notification;
+use App\Models\Traits\WithDbCursorHelper;
 use App\Models\User;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
@@ -78,8 +79,20 @@ class Topic extends Model implements AfterCommit
     use SoftDeletes {
         restore as private origRestore;
     }
+    use WithDbCursorHelper;
 
     const DEFAULT_SORT = 'new';
+    const SORTS = [
+        'new' => [
+            // type 'timestamp' because the values are stored as integer in the database
+            ['column' => 'topic_last_post_time', 'order' => 'DESC', 'type' => 'timestamp'],
+            ['column' => 'topic_last_post_id', 'order' => 'DESC']
+        ],
+        'old' => [
+            ['column' => 'topic_last_post_time', 'order' => 'ASC', 'type' => 'timestamp'],
+            ['column' => 'topic_last_post_id', 'order' => 'ASC']
+        ]
+    ];
 
     const STATUS_LOCKED = 1;
     const STATUS_UNLOCKED = 0;
