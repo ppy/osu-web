@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Πραγματικά επαναφορά θέματος;',
         'deleted' => 'διαγραμμένο θέμα',
         'go_to_latest' => 'δείτε την πιο πρόσφατη δημοσίευση',
+        'go_to_unread' => '',
         'has_replied' => 'Έχετε απαντήσει σε αυτό το θέμα',
         'in_forum' => 'στο :forum',
         'latest_post' => ':when από τον :user',

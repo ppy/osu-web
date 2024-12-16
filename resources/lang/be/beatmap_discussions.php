@@ -66,6 +66,13 @@ return [
         'version' => 'Цяжкасть',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Каб адказаць, увайдзіце',

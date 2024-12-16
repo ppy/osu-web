@@ -6,6 +6,7 @@ import DailyChallengeUserStatsJson from './daily-challenge-user-stats-json';
 import ProfileBannerJson from './profile-banner';
 import RankHighestJson from './rank-highest-json';
 import RankHistoryJson from './rank-history-json';
+import TeamJson from './team-json';
 import UserAccountHistoryJson from './user-account-history-json';
 import UserAchievementJson from './user-achievement-json';
 import UserBadgeJson from './user-badge-json';
@@ -66,6 +67,7 @@ interface UserJsonAvailableIncludes {
   statistics: UserStatisticsJson;
   statistics_rulesets: UserStatisticsRulesetsJson;
   support_level: number;
+  team: TeamJson;
   unread_pm_count: number;
   user_achievements: UserAchievementJson[];
   user_preferences: UserPreferencesJson;
@@ -104,4 +106,3 @@ export default UserJson;
 
 // FIXME: Using Partial isn't quite correct as the keys are there but the values are null.
 export type UserJsonDeleted = Partial<UserJson> & { username: string };
-export type UserJsonMinimum = Pick<UserJson, 'avatar_url' | 'id' | 'username'>;

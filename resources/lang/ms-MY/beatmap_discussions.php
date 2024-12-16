@@ -66,6 +66,13 @@ return [
         'version' => 'Kesukaran',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Daftar masuk untuk Maklum balas',

@@ -191,11 +191,11 @@ return [
                 'country' => '您所在的国家/地区中还没有玩家上传过成绩！',
                 'friend' => '还没有好友上传成绩！',
                 'global' => '还没有玩家上传过成绩，来玩一把？',
-                'loading' => '加载分数中...',
+                'loading' => '加载成绩中...',
                 'unranked' => '未上架 (Unranked) 谱面',
             ],
             'score' => [
-                'first' => '领衔者',
+                'first' => '领先',
                 'own' => '个人最佳成绩',
             ],
             'supporter_link' => [
@@ -223,13 +223,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => 'Ranked',
-            'approved' => 'Approved',
-            'loved' => 'Loved',
-            'qualified' => 'Qualified',
-            'wip' => 'WIP',
-            'pending' => 'Pending',
-            'graveyard' => 'Graveyard',
+            'ranked' => '上架',
+            'approved' => '达标',
+            'loved' => '社区喜爱',
+            'qualified' => '过审',
+            'wip' => '制作中',
+            'pending' => '待定',
+            'graveyard' => '坟场',
         ],
     ],
 

@@ -2,10 +2,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import FlagCountry from 'components/flag-country';
+import FlagTeam from 'components/flag-team';
 import Mod from 'components/mod';
 import { PlayDetailMenu } from 'components/play-detail-menu';
 import ScoreValue from 'components/score-value';
 import ScoreboardTime from 'components/scoreboard-time';
+import UserLink from 'components/user-link';
 import BeatmapJson from 'interfaces/beatmap-json';
 import { SoloScoreJsonForBeatmap } from 'interfaces/solo-score-json';
 import { route } from 'laroute';
@@ -113,14 +115,18 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           </TdLink>
         ) : (
           <td className={`${bn}__cell u-relative`}>
-            <a
-              className={`${bn}__cell-content ${bn}__cell-content--user-link js-usercard`}
-              data-user-id={score.user.id}
-              href={route('users.show', { mode: this.props.beatmap.mode, user: score.user.id })}
-            >
-              {score.user.username}
-            </a>
-
+            <span className={`${classWithModifiers(`${bn}__cell-content`, 'user-link')}`}>
+              {score.user.team != null &&
+                <a className='u-contents' href={route('teams.show', { id: score.user.team.id })}>
+                  <FlagTeam team={score.user.team} />
+                </a>
+              }
+              <UserLink
+                className={`${bn}__user-link`}
+                mode={this.props.beatmap.mode}
+                user={score.user}
+              />
+            </span>
             <a className={`${bn}__cell-content`} href={this.scoreUrl} />
           </td>
         )}

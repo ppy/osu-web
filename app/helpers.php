@@ -594,11 +594,6 @@ function max_offset($page, $limit)
     return max(0, min($offset, $GLOBALS['cfg']['osu']['pagination']['max_count'] - $limit));
 }
 
-function mysql_escape_like($string)
-{
-    return addcslashes($string, '%_\\');
-}
-
 function oauth_token(): ?App\Models\OAuth\Token
 {
     return Request::instance()->attributes->get(App\Http\Middleware\AuthApi::REQUEST_OAUTH_TOKEN_KEY);
@@ -848,6 +843,12 @@ function is_api_request(): bool
     return str_starts_with(rawurldecode(Request::getPathInfo()), '/api/');
 }
 
+function is_http(string $url): bool
+{
+    return str_starts_with($url, 'http://')
+        || str_starts_with($url, 'https://');
+}
+
 function is_json_request(): bool
 {
     return is_api_request() || Request::expectsJson();
@@ -916,6 +917,7 @@ function page_title()
     $namespaceKey = "{$currentRoute['namespace']}._";
     $namespaceKey = match ($namespaceKey) {
         'admin_forum._' => 'admin._',
+        'teams._' => 'main.teams_controller._',
         default => $namespaceKey,
     };
     $keys = [
@@ -936,7 +938,17 @@ function page_title()
 function ujs_redirect($url, $status = 200)
 {
     $request = Request::instance();
-    if ($request->ajax() && !$request->isMethod('get')) {
+    // This is done mainly to work around fetch ignoring/removing anchor from page redirect.
+    // Reference: https://github.com/hotwired/turbo/issues/211
+    if ($request->headers->get('x-turbo-request-id') !== null) {
+        if ($status === 200 && $request->getMethod() !== 'GET') {
+            // Turbo doesn't like 200 response on non-GET requests.
+            // Reference: https://github.com/hotwired/turbo/issues/22
+            $status = 201;
+        }
+
+        return response($url, $status, ['content-type' => 'text/osu-turbo-redirect']);
+    } elseif ($request->ajax() && $request->getMethod() !== 'GET') {
         return ext_view('layout.ujs-redirect', compact('url'), 'js', $status);
     } else {
         // because non-3xx redirects make no sense.
@@ -1076,7 +1088,7 @@ function wiki_url($path = null, $locale = null, $api = null, $fullUrl = true)
     return rtrim(str_replace($params['path'], $path, route($route, $params, $fullUrl)), '/');
 }
 
-function bbcode($text, $uid, $options = [])
+function bbcode($text, $uid = null, $options = [])
 {
     return (new App\Libraries\BBCodeFromDB($text, $uid, $options))->toHTML();
 }
@@ -1097,20 +1109,18 @@ function proxy_media($url)
         return '';
     }
 
-    $url = html_entity_decode_better($url);
-
     if ($GLOBALS['cfg']['osu']['camo']['key'] === null) {
         return $url;
     }
 
-    $isProxied = starts_with($url, $GLOBALS['cfg']['osu']['camo']['prefix']);
+    $isProxied = str_starts_with($url, $GLOBALS['cfg']['osu']['camo']['prefix']);
 
     if ($isProxied) {
         return $url;
     }
 
     // turn relative urls into absolute urls
-    if (!preg_match('/^https?\:\/\//', $url)) {
+    if (!is_http($url)) {
         // ensure url is relative to the site root
         if ($url[0] !== '/') {
             $url = "/{$url}";
@@ -1249,7 +1259,7 @@ function display_regdate($user)
 
     $tooltipDate = i18n_date($user->user_regdate);
 
-    $formattedDate = i18n_date($user->user_regdate, null, 'year_month');
+    $formattedDate = i18n_date($user->user_regdate, pattern: 'year_month');
 
     if ($user->user_regdate < Carbon\Carbon::createFromDate(2008, 1, 1)) {
         return '<div title="'.$tooltipDate.'">'.osu_trans('users.show.first_members').'</div>';
@@ -1260,7 +1270,7 @@ function display_regdate($user)
     ]);
 }
 
-function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null)
+function i18n_date($datetime, int $format = IntlDateFormatter::LONG, $pattern = null)
 {
     $formatter = IntlDateFormatter::create(
         App::getLocale(),
@@ -1754,16 +1764,18 @@ function priv_check_user($user, $ability, $object = null)
 }
 
 // Used to generate x,y pairs for fancy-chart.coffee
-function array_to_graph_json(array &$array, $property_to_use)
+function array_to_graph_json(array $array, string $fieldName): array
 {
-    $index = 0;
+    $ret = [];
 
-    return array_map(function ($e) use (&$index, $property_to_use) {
-        return [
-            'x' => $index++,
-            'y' => $e[$property_to_use],
+    foreach ($array as $index => $item) {
+        $ret[] = [
+            'x' => $index,
+            'y' => $item[$fieldName],
         ];
-    }, $array);
+    }
+
+    return $ret;
 }
 
 // Fisher-Yates
@@ -1792,12 +1804,6 @@ function first_paragraph($html, $split_on = "\n")
     $match_pos = strpos($text, $split_on);
 
     return $match_pos === false ? $text : substr($text, 0, $match_pos);
-}
-
-// clamps $number to be between $min and $max
-function clamp($number, $min, $max)
-{
-    return min($max, max($min, $number));
 }
 
 // e.g. 100634983048665 -> 100.63 trillion

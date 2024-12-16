@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => 'dyskusje',
     ],
+
+    'store' => [
+        'too_many' => '',
+    ],
 ];

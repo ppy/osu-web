@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import PlainTextPreview from 'beatmap-discussions/plain-text-preview';
+import UserLinkList from 'beatmap-discussions/user-link-list';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
@@ -198,8 +199,10 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
       }
       case 'beatmap_owner_change': {
         const data = this.props.event.comment;
-        params.new_user = <a href={route('users.show', { user: data.new_user_id })}>{data.new_user_username}</a>;
+        const users = data.new_users ?? [{ id: data.new_user_id, username: data.new_user_username }];
+
         params.beatmap = <a href={route('beatmaps.show', { beatmap: data.beatmap_id })}>{data.beatmap_version}</a>;
+        params.new_user = <UserLinkList users={users} />;
         break;
       }
       case 'nomination_reset_received': {

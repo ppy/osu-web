@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => 'rasprava o beatmapama',
     ],
+
+    'store' => [
+        'too_many' => '',
+    ],
 ];

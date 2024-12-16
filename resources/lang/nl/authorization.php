@@ -60,6 +60,12 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'Kan geen bericht versturen naar een gebruiker die jou blokkeert of die jij geblokkeerd hebt.',
         'friends_only' => 'Gebruiker blokkeert berichten van mensen die niet op de vriendenlijst staan.',
@@ -167,6 +173,12 @@ return [
 
         'view' => [
             'admin_only' => 'Alleen admins kunnen dit forum zien.',
+        ],
+    ],
+
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
         ],
     ],
 

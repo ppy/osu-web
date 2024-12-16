@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property string $category
+ * @property string $status
  * @property Channel $channel
  * @property int|null $channel_id
  * @property \Carbon\Carbon|null $created_at
@@ -76,6 +77,7 @@ class Room extends Model
     const PLAYLIST_QUEUE_MODE = 'host_only';
     const REALTIME_DEFAULT_QUEUE_MODE = 'host_only';
     const REALTIME_QUEUE_MODES = [ 'host_only', 'all_players', 'all_players_round_robin' ];
+    const REALTIME_STATUSES = ['idle', 'playing'];
 
     public ?array $preloadedRecentParticipants = null;
 
@@ -148,6 +150,7 @@ class Room extends Model
             'mode',
             'season_id:int',
             'sort',
+            'status',
             'type_group',
             'user:any',
         ], ['null_missing' => true]);
@@ -156,6 +159,7 @@ class Room extends Model
         $user = $params['user'];
         $seasonId = $params['season_id'];
         $sort = $params['sort'];
+        $status = $params['status'];
         $category = $params['category'];
         $typeGroup = $params['type_group'];
 
@@ -171,6 +175,14 @@ class Room extends Model
         }
 
         $query = static::whereIn('type', static::TYPE_GROUPS[$typeGroup]);
+
+        if (!in_array($status, static::REALTIME_STATUSES, true)) {
+            $status = null;
+        }
+
+        if (isset($status)) {
+            $query->where('status', $status);
+        }
 
         if (isset($seasonId)) {
             $query->whereRelation('seasons', 'seasons.id', $seasonId);
@@ -200,7 +212,7 @@ class Room extends Model
         $cursorHelper = static::makeDbCursorHelper($sort);
         $query->cursorSort($cursorHelper, cursor_from_params($rawParams));
 
-        $limit = clamp($params['limit'] ?? $maxLimit, 1, $maxLimit);
+        $limit = \Number::clamp($params['limit'] ?? $maxLimit, 1, $maxLimit);
         $query->limit($limit);
 
         return [
@@ -419,7 +431,7 @@ class Room extends Model
 
     public function completePlay(ScoreToken $scoreToken, array $params): ScoreLink
     {
-        priv_check_user($scoreToken->user, 'MultiplayerScoreSubmit')->ensureCan();
+        priv_check_user($scoreToken->user, 'MultiplayerScoreSubmit', $this)->ensureCan();
 
         $this->assertValidCompletePlay();
 
@@ -602,6 +614,10 @@ class Room extends Model
             throw new InvariantException('room must have at least one playlist item');
         }
 
+        if (mb_strlen($this->name) > 100) {
+            throw new InvariantException(osu_trans('multiplayer.room.errors.name_too_long'));
+        }
+
         PlaylistItem::assertBeatmapsExist($playlistItems);
 
         $this->getConnection()->transaction(function () use ($host, $playlistItems) {
@@ -622,9 +638,29 @@ class Room extends Model
         return $this->fresh();
     }
 
+    /**
+     * @throws InvariantException
+     */
+    public function endGame(User $requestingUser)
+    {
+        priv_check_user($requestingUser, 'MultiplayerRoomDestroy', $this)->ensureCan();
+
+        if ($this->isRealtime()) {
+            throw new InvariantException('Realtime rooms cannot be closed.');
+        }
+
+        $gracePeriodMinutes = $GLOBALS['cfg']['osu']['multiplayer']['room_close_grace_period_minutes'];
+        if ($this->starts_at->addMinutes($gracePeriodMinutes)->isPast()) {
+            throw new InvariantException('The grace period for closing this room has expired.');
+        }
+
+        $this->ends_at = now();
+        $this->save();
+    }
+
     public function startPlay(User $user, PlaylistItem $playlistItem, int $buildId)
     {
-        priv_check_user($user, 'MultiplayerScoreSubmit')->ensureCan();
+        priv_check_user($user, 'MultiplayerScoreSubmit', $this)->ensureCan();
 
         $this->assertValidStartPlay($user, $playlistItem);
 
@@ -651,7 +687,7 @@ class Room extends Model
 
     public function topScores()
     {
-        return $this->userHighScores()->forRanking()->with('user.country');
+        return $this->userHighScores()->forRanking()->with(['user.country', 'user.team']);
     }
 
     private function assertHostRoomAllowance()

@@ -17,7 +17,6 @@ use App\Libraries\User\FindForProfilePage;
 use App\Libraries\UserRegistration;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
-use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Log;
 use App\Models\User;
@@ -729,7 +728,7 @@ class UsersController extends Controller
 
     private function sanitizedLimitParam()
     {
-        return clamp(get_int(request('limit')) ?? 5, 1, 100);
+        return \Number::clamp(get_int(request('limit')) ?? 5, 1, 100);
     }
 
     private function getExtra($page, array $options, int $perPage = 10, int $offset = 0)
@@ -932,6 +931,7 @@ class UsersController extends Controller
             'statistics.country_rank',
             'statistics.rank',
             'statistics.variants',
+            'team',
             'user_achievements',
         ];
 
@@ -983,9 +983,8 @@ class UsersController extends Controller
             'username',
         ], ['null_missing' => true]);
         $countryCode = request_country();
-        $country = Country::find($countryCode);
         $params['user_ip'] = $ip;
-        $params['country_acronym'] = $country === null ? '' : $country->getKey();
+        $params['country_acronym'] = $countryCode;
         $params['user_lang'] = \App::getLocale();
 
         $registration = new UserRegistration($params);
@@ -1009,7 +1008,11 @@ class UsersController extends Controller
             $user = $registration->user();
 
             // report unknown country code but ignore non-country from cloudflare
-            if ($countryCode !== null && $country === null && $countryCode !== 'T1') {
+            if (
+                $countryCode !== null
+                && $countryCode !== 'T1'
+                && app('countries')->byCode($countryCode) === null
+            ) {
                 app('sentry')->getClient()->captureMessage(
                     'User registered from unknown country',
                     null,

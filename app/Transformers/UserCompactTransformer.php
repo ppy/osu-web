@@ -19,9 +19,11 @@ class UserCompactTransformer extends TransformerAbstract
         'country',
         'cover',
         'groups',
+        'team',
     ];
 
     const CARD_INCLUDES_PRELOAD = [
+        'team',
         'userGroups',
     ];
 
@@ -92,6 +94,7 @@ class UserCompactTransformer extends TransformerAbstract
         'statistics',
         'statistics_rulesets',
         'support_level',
+        'team',
         'unread_pm_count',
         'user_achievements',
         'user_preferences',
@@ -159,7 +162,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeActiveTournamentBanner(User $user)
     {
-        $banner = $user->profileBanners()->active();
+        $banner = $user->profileBannersActive->last();
 
         return $banner === null
             ? $this->primitive(null)
@@ -169,7 +172,7 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeActiveTournamentBanners(User $user)
     {
         return $this->collection(
-            $user->profileBanners()->activeOnly()->orderBy('banner_id')->get(),
+            $user->profileBannersActive,
             new ProfileBannerTransformer(),
         );
     }
@@ -452,6 +455,13 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeSupportLevel(User $user)
     {
         return $this->primitive($user->supportLevel());
+    }
+
+    public function includeTeam(User $user)
+    {
+        return ($team = $user->team) === null
+            ? $this->null()
+            : $this->item($team, new TeamTransformer());
     }
 
     public function includeUnreadPmCount(User $user)

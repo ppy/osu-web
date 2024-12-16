@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => 'דיוני מפה',
     ],
+
+    'store' => [
+        'too_many' => '',
+    ],
 ];

@@ -80,6 +80,7 @@ return [
         'confirm_restore' => '',
         'deleted' => 'жойылған тақырып',
         'go_to_latest' => 'соңғы жазбаны қарау',
+        'go_to_unread' => '',
         'has_replied' => 'Сіз осы тақырыпқа жауап бердіңіз',
         'in_forum' => ':forum-да',
         'latest_post' => '',

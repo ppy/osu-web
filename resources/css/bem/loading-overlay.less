@@ -3,7 +3,7 @@
 
 @circle-size: 64px;
 @animation-length: 1.6s;
-@animation-delay: @animation-length / 4;
+@animation-delay: (@animation-length / 4);
 
 .loading-overlay {
   @_top: loading-overlay;
@@ -144,7 +144,7 @@
     animation-fill-mode: forwards;
     will-change: opacity;
 
-    @animation-delay-start: @animation-delay*1 / 8;
+    @animation-delay-start: (@animation-delay / 8);
 
     .@{_top}--visible & {
       animation-name: loading-overlay--follow-point;

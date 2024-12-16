@@ -80,6 +80,7 @@ return [
         'confirm_restore' => '確定要復原這個主題嗎？',
         'deleted' => '已刪除的主題',
         'go_to_latest' => '查看最後的貼文',
+        'go_to_unread' => '',
         'has_replied' => '您已回覆此主題',
         'in_forum' => '目前看板[ :forum ]',
         'latest_post' => ':when :user',

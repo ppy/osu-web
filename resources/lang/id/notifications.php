@@ -24,7 +24,7 @@ return [
     ],
 
     'filters' => [
-        '_' => 'semua notifikasi',
+        '_' => 'semua',
         'user' => 'profil',
         'beatmapset' => 'beatmap',
         'forum_topic' => 'forum',

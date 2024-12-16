@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => '难度',
-        'percentile_10' => '前 10% 成绩',
-        'percentile_50' => '前 50% 成绩',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [
@@ -65,7 +65,7 @@ return [
         'play_count' => '游戏次数',
         'performance' => '表现',
         'total_score' => '总分',
-        'ranked_score' => '进榜总分',
+        'ranked_score' => '计分成绩总分',
         'average_score' => '平均得分',
         'average_performance' => '平均表现',
         'ss' => '',

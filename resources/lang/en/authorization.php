@@ -60,6 +60,12 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'You must set a score on a beatmap to add a tag.',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'Cannot message a user that is blocking you or that you have blocked.',
         'friends_only' => 'User is blocking messages from people not on their friends list.',
@@ -167,6 +173,12 @@ return [
 
         'view' => [
             'admin_only' => 'Only admin can view this forum.',
+        ],
+    ],
+
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Only room owner can close it.',
         ],
     ],
 

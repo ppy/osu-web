@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Topic echt herstellen?',
         'deleted' => 'topic verwijderd',
         'go_to_latest' => 'bekijk nieuwste post',
+        'go_to_unread' => '',
         'has_replied' => 'Je hebt gereageerd op dit onderwerp',
         'in_forum' => 'in :forum ',
         'latest_post' => ':when door :user',

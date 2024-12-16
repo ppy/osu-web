@@ -37,6 +37,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\QueryException;
 use Laravel\Passport\HasApiTokens;
 use League\OAuth2\Server\Exception\OAuthServerException;
@@ -127,6 +128,7 @@ use Request;
  * @property-read Collection<Store\Address> $storeAddresses
  * @property-read Collection<UserDonation> $supporterTagPurchases
  * @property-read Collection<UserDonation> $supporterTags
+ * @property-read Team|null $team
  * @property-read Collection<OAuth\Token> $tokens
  * @property-read Collection<Forum\TopicWatch> $topicWatches
  * @property-read Collection<UserAchievement> $userAchievements
@@ -294,6 +296,18 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function userCountryHistory(): HasMany
     {
         return $this->hasMany(UserCountryHistory::class);
+    }
+
+    public function team(): HasOneThrough
+    {
+        return $this->hasOneThrough(
+            Team::class,
+            TeamMember::class,
+            'user_id',
+            'id',
+            'user_id',
+            'team_id',
+        );
     }
 
     public function getAuthPassword()
@@ -707,7 +721,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         // FIXME: this can probably be removed after old site is deactivated
         //        as there's same check in getter function.
-        if (present($value) && !starts_with($value, ['http://', 'https://'])) {
+        if (present($value) && !is_http($value)) {
             $value = "https://{$value}";
         }
 
@@ -777,6 +791,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'cover_preset_id',
             'custom_cover_filename',
             'group_id',
+            'laravel_through_key', // added by hasManyThrough relation in Beatmap
             'osu_featurevotes',
             'osu_kudosavailable',
             'osu_kudosdenied',
@@ -914,6 +929,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'orders',
             'pivot', // laravel built-in relation when using belongsToMany
             'profileBanners',
+            'profileBannersActive',
             'profileBeatmapsetsGraveyard',
             'profileBeatmapsetsLoved',
             'profileBeatmapsetsPending',
@@ -950,6 +966,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'storeAddresses',
             'supporterTagPurchases',
             'supporterTags',
+            'team',
             'tokens',
             'topicWatches',
             'userAchievements',
@@ -1308,6 +1325,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function profileBanners()
     {
         return $this->hasMany(ProfileBanner::class);
+    }
+
+    public function profileBannersActive(): HasMany
+    {
+        return $this->profileBanners()->active()->with('tournamentBanner')->orderBy('banner_id');
     }
 
     public function storeAddresses()
@@ -2223,9 +2245,13 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         return Beatmapset
             ::where('user_id', '<>', $this->getKey())
-            ->whereHas('beatmaps', function (Builder $query) {
-                $query->scoreable()->where('user_id', $this->getKey());
-            })
+            ->whereHas(
+                'beatmaps',
+                fn (Builder $query) => $query->scoreable()->whereHas(
+                    'beatmapOwners',
+                    fn (Builder $ownerQuery) => $ownerQuery->where('user_id', $this->getKey())
+                )
+            )
             ->with('beatmaps');
     }
 
@@ -2312,16 +2338,12 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             $this->isValidEmail();
         }
 
-        if ($this->isDirty('country_acronym')) {
-            if (present($this->country_acronym)) {
-                if (($country = Country::find($this->country_acronym)) !== null) {
-                    // ensure matching case
-                    $this->country_acronym = $country->getKey();
-                } else {
-                    $this->validationErrors()->add('country', '.invalid_country');
-                }
-            } else {
-                $this->country_acronym = Country::UNKNOWN;
+        $countryAcronym = $this->country_acronym;
+        if ($countryAcronym === null) {
+            $this->country_acronym = Country::UNKNOWN;
+        } elseif ($this->isDirty('country_acronym') && $countryAcronym !== Country::UNKNOWN) {
+            if (app('countries')->byCode($countryAcronym) === null) {
+                $this->validationErrors()->add('country', '.invalid_country');
             }
         }
 
@@ -2466,14 +2488,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         $value = presence(trim($this->getRawAttribute('user_website')));
 
-        if ($value === null) {
-            return null;
-        }
-
-        if (starts_with($value, ['http://', 'https://'])) {
-            return $value;
-        }
-
-        return "https://{$value}";
+        return $value === null
+            ? null
+            : (is_http($value)
+                ? $value
+                : "https://{$value}"
+            );
     }
 }

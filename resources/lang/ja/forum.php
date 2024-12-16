@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'トピックを本当に復元しますか？',
         'deleted' => '削除されたトピック',
         'go_to_latest' => '最新の投稿を見る',
+        'go_to_unread' => '',
         'has_replied' => 'このトピックに返信しました',
         'in_forum' => ':forum',
         'latest_post' => ':when by :user',

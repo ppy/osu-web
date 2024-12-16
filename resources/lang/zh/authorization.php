@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
         'blocked' => '无法向你已拉黑的用户发消息，或者你已经被对方拉黑了。',
         'friends_only' => '用户拒收了来自陌生人的消息。',
         'moderated' => '该频道现在正在被管制中。',
         'no_access' => '你没有权限访问该频道。',
-        'no_announce' => '',
+        'no_announce' => '您没有发布公告的权限。',
         'receive_friends_only' => '此用户可能无法回复你，因为你设置了只接受来自好友的消息。',
         'restricted' => '账户被禁言、受限或封禁期间不能发消息。',
         'silenced' => '账户被禁言、受限或封禁期间不能发消息。',
@@ -167,6 +173,12 @@ return [
 
         'view' => [
             'admin_only' => '该板块仅限管理员查看。',
+        ],
+    ],
+
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
         ],
     ],
 

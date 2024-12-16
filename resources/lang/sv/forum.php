@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Vill du verkligen återställa ämnet?',
         'deleted' => 'raderat ämne',
         'go_to_latest' => 'visa senaste inlägg',
+        'go_to_unread' => '',
         'has_replied' => 'Du har svarat på detta ämne',
         'in_forum' => 'i :forum',
         'latest_post' => ':when av :user',

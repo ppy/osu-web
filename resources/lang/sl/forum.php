@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Res želiš povrniti temo?',
         'deleted' => 'odstranjena tema',
         'go_to_latest' => 'ogled zadnje objave',
+        'go_to_unread' => '',
         'has_replied' => 'Odgovoril si na to temo',
         'in_forum' => 'v :forum',
         'latest_post' => ':when od :user',

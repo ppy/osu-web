@@ -66,6 +66,13 @@ return [
         'version' => 'Zorluk',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Yanıtlamak için Giriş yapın',

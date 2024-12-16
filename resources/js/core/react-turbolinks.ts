@@ -82,13 +82,17 @@ export default class ReactTurbolinks {
   };
 
   private readonly handleBeforeRender = (e: TurboBeforeRenderEvent) => {
+    e.preventDefault();
+
     window.newBody = e.detail.newBody;
     this.setNewUrl();
     this.pageReady = true;
     removeLeftoverPortalContainers();
     this.core.updateCurrentUser();
-    this.loadScripts(false);
-    this.boot();
+    this.loadScripts().then(() => {
+      this.boot();
+      e.detail.resume();
+    });
   };
 
   private readonly handleBeforeVisit = () => {
@@ -106,9 +110,10 @@ export default class ReactTurbolinks {
     // Delayed to wait until cacheSnapshot finishes. The delay matches Turbolinks' defer.
     window.setTimeout(() => {
       this.destroy();
-      this.loadScripts();
-      this.boot();
-      this.timeoutScroll = window.setTimeout(this.scrollOnNewVisit, 100);
+      this.loadScripts().then(() => {
+        this.boot();
+        this.timeoutScroll = window.setTimeout(this.scrollOnNewVisit, 100);
+      });
     }, 1);
   };
 
@@ -116,19 +121,21 @@ export default class ReactTurbolinks {
     this.scrolled = this.scrolled || window.scrollX !== 0 || window.scrollY !== 0;
   };
 
-  private loadScripts(isAsync = true) {
-    if (window.newBody == null) return;
+  private loadScripts() {
+    const promises: Promise<unknown>[] = [];
 
-    const loadFunc = isAsync ? 'load' : 'loadSync';
-
-    window.newBody.querySelectorAll('.js-react-turbolinks--script').forEach((script) => {
-      if (script instanceof HTMLDivElement) {
-        const src = script.dataset.src;
-        if (src != null) {
-          void this.turbolinksReload[loadFunc](src);
+    if (window.newBody != null) {
+      window.newBody.querySelectorAll('.js-react-turbolinks--script').forEach((script) => {
+        if (script instanceof HTMLDivElement) {
+          const src = script.dataset.src;
+          if (src != null) {
+            promises.push(this.turbolinksReload.load(src));
+          }
         }
-      }
-    });
+      });
+    }
+
+    return Promise.all(promises);
   }
 
   private readonly scrollOnNewVisit = () => {

@@ -396,6 +396,7 @@ class TopicsController extends Controller
             'user.country',
             'user.rank',
             'user.supporterTagPurchases',
+            'user.team',
             'user.userGroups',
         ]);
 
@@ -624,7 +625,7 @@ class TopicsController extends Controller
     {
         $rawParams = request()->all();
         $params = get_params($rawParams, null, [
-            'start', // either number or "unread"
+            'start', // either number or "unread" or "latest"
             'end:int',
             'n:int',
 
@@ -636,7 +637,7 @@ class TopicsController extends Controller
         ], ['null_missing' => true]);
 
         $params['skip_layout'] = $params['skip_layout'] ?? false;
-        $params['limit'] = clamp($params['limit'] ?? Post::PER_PAGE, 1, 50);
+        $params['limit'] = \Number::clamp($params['limit'] ?? Post::PER_PAGE, 1, 50);
 
         if ($userCanModerate) {
             $params['with_deleted'] ??= UserProfileCustomization::forUser($currentUser)['forum_posts_show_deleted'];
@@ -647,11 +648,11 @@ class TopicsController extends Controller
         $params['cursor'] = cursor_from_params($rawParams);
 
         if (!is_array($params['cursor'])) {
-            if ($params['start'] === 'unread') {
-                $params['start'] = Post::lastUnreadByUser($topic, $currentUser);
-            } else {
-                $params['start'] = get_int($params['start']);
-            }
+            $params['start'] = match ($params['start']) {
+                'latest' => $topic->topic_last_post_id,
+                'unread' => Post::lastUnreadByUser($topic, $currentUser),
+                default => get_int($params['start']),
+            };
 
             if ($params['n'] !== null && $params['n'] > 0) {
                 $post = $topic->nthPost($params['n']) ?? $topic->posts()->last();

@@ -90,6 +90,7 @@
             <div class="dialog-form__row dialog-form__row--buttons">
                 <form
                     action="{{ route('oauth.authorizations.authorize') }}"
+                    data-turbo="false"
                     method="POST"
                 >
                     @csrf
@@ -100,6 +101,7 @@
 
                 <form
                     action="{{ route('oauth.authorizations.authorize') }}"
+                    data-turbo="false"
                     method="POST"
                 >
                     @csrf

@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Konu gerçekten geri yüklensin mi?',
         'deleted' => 'silinmiş konu',
         'go_to_latest' => 'son gönderiyi görüntüle',
+        'go_to_unread' => '',
         'has_replied' => 'Bu konuyu yanıtladınız',
         'in_forum' => ':forum forumunda',
         'latest_post' => ':user tarafından :when',

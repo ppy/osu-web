@@ -201,6 +201,7 @@ return [
             'profile' => 'My Profile',
             'scoring_mode_toggle' => 'Classic scoring',
             'scoring_mode_toggle_tooltip' => 'Adjust score values to feel more like classic uncapped scoring',
+            'team' => 'My Team',
         ],
     ],
 

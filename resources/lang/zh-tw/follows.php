@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => '圖譜討論',
     ],
+
+    'store' => [
+        'too_many' => '',
+    ],
 ];

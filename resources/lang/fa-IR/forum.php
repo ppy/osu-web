@@ -80,6 +80,7 @@ return [
         'confirm_restore' => '',
         'deleted' => '',
         'go_to_latest' => '',
+        'go_to_unread' => '',
         'has_replied' => '',
         'in_forum' => '',
         'latest_post' => '',

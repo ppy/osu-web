@@ -44,6 +44,7 @@ return [
     'beatmaps' => [
         'max' => 50,
         'max_scores' => 100,
+        'owners_max' => get_int(env('BEATMAPS_OWNERS_MAX')) ?? 10,
 
         'difficulty_cache' => [
             'server_url' => presence(env('BEATMAPS_DIFFICULTY_CACHE_SERVER_URL')) ?? 'http://localhost:5001',
@@ -152,6 +153,7 @@ return [
     ],
     'multiplayer' => [
         'max_attempts_limit' => get_int(env('MULTIPLAYER_MAX_ATTEMPTS_LIMIT')) ?? 128,
+        'room_close_grace_period_minutes' => get_int(env('MULTIPLAYER_ROOM_CLOSE_GRACE_PERIOD_MINUTES')) ?? 5,
     ],
     'notification' => [
         'endpoint' => presence(env('NOTIFICATION_ENDPOINT'), '/home/notifications/feed'),
@@ -187,6 +189,7 @@ return [
         'es_cache_duration' => 60 * (get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5), // in minutes, converted to seconds
         'experimental_rank_as_default' => get_bool(env('SCORES_EXPERIMENTAL_RANK_AS_DEFAULT')) ?? false,
         'experimental_rank_as_extra' => get_bool(env('SCORES_EXPERIMENTAL_RANK_AS_EXTRA')) ?? false,
+        'index_max_id_distance' => get_int(env('SCORE_INDEX_MAX_ID_DISTANCE')) ?? 10_000_000,
         'processing_queue' => presence(env('SCORES_PROCESSING_QUEUE')) ?? 'osu-queue:score-statistics',
         'submission_enabled' => get_bool(env('SCORES_SUBMISSION_ENABLED')) ?? true,
     ],
@@ -199,19 +202,12 @@ return [
     'store' => [
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE') ?? '')),
     ],
+    'tags' => [
+        'tags_cache_duration' => 60 * (get_int(env('TAGS_CACHE_DURATION')) ?? 60), // in minutes, converted to seconds
+        'beatmap_tags_cache_duration' => 60 * (get_int(env('BEATMAP_TAGS_CACHE_DURATION')) ?? 60), // in minutes, converted to seconds
+    ],
     'twitch_client_id' => presence(env('TWITCH_CLIENT_ID')),
     'twitch_client_secret' => presence(env('TWITCH_CLIENT_SECRET')),
-    'tournament_banner' => [
-        'current' => [
-            'id' => get_int(env('TOURNAMENT_BANNER_CURRENT_ID')),
-            'prefix' => env('TOURNAMENT_BANNER_CURRENT_PREFIX'),
-        ],
-        'previous' => [
-            'id' => get_int(env('TOURNAMENT_BANNER_PREVIOUS_ID')),
-            'prefix' => env('TOURNAMENT_BANNER_PREVIOUS_PREFIX'),
-            'winner_id' => env('TOURNAMENT_BANNER_PREVIOUS_WINNER_ID'),
-        ],
-    ],
     'urls' => [
         'base' => 'https://osu.ppy.sh',
         'bounty-form' => env('OS_BOUNTY_URL'),

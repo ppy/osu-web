@@ -15,7 +15,6 @@ class BeatmapOwnerChange extends BroadcastNotificationBase
 
     protected $beatmap;
     protected $beatmapset;
-    protected $user;
 
     public static function getMailLink(Notification $notification): string
     {
@@ -32,7 +31,6 @@ class BeatmapOwnerChange extends BroadcastNotificationBase
 
         $this->beatmap = $beatmap;
         $this->beatmapset = $beatmap->beatmapset;
-        $this->user = $beatmap->user;
     }
 
     public function getDetails(): array
@@ -48,7 +46,7 @@ class BeatmapOwnerChange extends BroadcastNotificationBase
 
     public function getListeningUserIds(): array
     {
-        return [$this->user->getKey()];
+        return $this->beatmap->beatmapOwners()->pluck('user_id')->all();
     }
 
     public function getNotifiable()

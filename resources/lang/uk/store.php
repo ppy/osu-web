@@ -7,7 +7,7 @@ return [
     'cart' => [
         'checkout' => 'Оплатити',
         'empty_cart' => 'Видалити всі товари з кошику',
-        'info' => ':count_delimited товар в кошику ($:subtotal)|:count_delimited товару в кошику ($:subtotal)|:count_delimited товарів в кошику ($:subtotal)',
+        'info' => ':count_delimited товар в кошику ($:subtotal)|:count_delimited товари в кошику ($:subtotal)|:count_delimited товарів в кошику ($:subtotal)',
         'more_goodies' => 'Я хочу подивитися на інші товари перед завершенням замовлення',
         'shipping_fees' => 'вартість доставки',
         'title' => 'Кошик',

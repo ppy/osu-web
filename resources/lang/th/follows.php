@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => 'การสนทนาบีทแมพ',
     ],
+
+    'store' => [
+        'too_many' => '',
+    ],
 ];

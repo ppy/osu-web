@@ -57,9 +57,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'Обговорення відкрито',
 
                 'review_count' => [
-                    'praises' => ':count_delimited похвал|:count_delimited похвали',
-                    'problems' => ':count_delimited проблем|:count_delimited проблеми',
-                    'suggestions' => ':count_delimited пропозиція|:count_delimited пропозицій',
+                    'praises' => ':count_delimited похвалу|:count_delimited похвали|:count_delimited похвал',
+                    'problems' => ':count_delimited проблему|:count_delimited проблеми|:count_delimited проблем',
+                    'suggestions' => ':count_delimited пропозицію|:count_delimited пропозиції|:count_delimited пропозицій',
                 ],
             ],
 
@@ -81,8 +81,8 @@ return [
                 'beatmapset_nominate_compact' => 'Карту було номіновано',
                 'beatmapset_qualify' => 'Карта ":title" отримала достатньо номінацій, і очікує отримання рейтингу',
                 'beatmapset_qualify_compact' => 'Карта увійшла до черги рейтингу',
-                'beatmapset_rank' => '":title" стала ранговою',
-                'beatmapset_rank_compact' => 'Мапа стала ранговою',
+                'beatmapset_rank' => '":title" стала рейтинговою',
+                'beatmapset_rank_compact' => 'Мапа стала рейтинговою',
                 'beatmapset_remove_from_loved' => '":title" вилучена з Улюблених',
                 'beatmapset_remove_from_loved_compact' => 'Бітмапа була вилучена з Улюблених',
                 'beatmapset_reset_nominations' => 'Номінацію для мапи ":title" було скинуто через проблему від :username',
@@ -205,7 +205,7 @@ return [
                 'beatmapset_love' => '":title" підвищено до коханого',
                 'beatmapset_nominate' => '":title" було номіновано',
                 'beatmapset_qualify' => '":title" отримав достатню кількість номінацій і увійшов до черги рейтингу',
-                'beatmapset_rank' => '":title" було оцінено',
+                'beatmapset_rank' => '":title" стала рейтинговою',
                 'beatmapset_remove_from_loved' => '":title" була вилучена з Улюблених',
                 'beatmapset_reset_nominations' => 'Номінація ":title" була скинута',
             ],

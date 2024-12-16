@@ -8,11 +8,19 @@
   --avatar-size-extended-desktop: @profile-avatar-size;
   --avatar-size-extended: var(--content-height);
   --avatar-size: var(--content-height);
+
+  --avatar-height: var(--avatar-size);
+  --avatar-width: var(--avatar-size);
+
+  --bg: none;
+
   --content-height: 65px;
+  --vertical-padding: 10px;
+
   --info-margin-extended-desktop: 20px;
   --info-margin-extended: 10px;
   --info-margin: 10px;
-  --vertical-padding: 10px;
+
   display: flex;
   flex-direction: column;
   flex: none;
@@ -29,6 +37,12 @@
     background-color: hsl(var(--hsl-b4));
   }
 
+  &--team {
+    --avatar-width: calc(var(--avatar-height) * 2);
+    --bg: url("~@images/headers/generic.jpg");
+    background-color: hsl(var(--hsl-b4));
+  }
+
   @media @desktop {
     --avatar-radius-extended: var(--avatar-radius-extended-desktop);
     --avatar-size-extended: var(--avatar-size-extended-desktop);
@@ -38,8 +52,8 @@
   &__avatar {
     .own-layer(); // required by safari for border-radius to be applied correctly
     flex: none;
-    width: var(--avatar-size);
-    height: var(--avatar-size);
+    width: var(--avatar-width);
+    height: var(--avatar-height);
     border-radius: var(--avatar-radius);
     overflow: hidden;
     align-self: flex-end;
@@ -49,6 +63,7 @@
 
   &__bg {
     position: relative;
+    background-image: var(--bg);
     background-size: cover;
     background-position: center;
     height: 100px;
@@ -89,41 +104,34 @@
     .link-plain();
     .link-white();
     display: flex;
+    gap: 4px;
     align-items: center;
   }
 
-  &__flag-flag {
-    font-size: var(--icon-height); // icon size
-  }
-
   &__flag-text {
+    font-size: @font-size--title-small;
     display: none;
 
     @media @desktop {
       display: block;
-      padding-left: 4px;
-      font-size: @font-size--title-small;
     }
   }
 
   &__flags {
-    --icon-font-size: @font-size--small;
-    --icon-height-desktop: 20px;
-    --icon-height: 15px;
-
     display: flex;
-    gap: 5px;
+    gap: 10px;
     margin-top: 10px;
+    font-size: 15px; // icon size
 
     @media @desktop {
-      --icon-height: var(--icon-height-desktop);
+      font-size: @flag-size-medium; // icon size
       margin-top: 5px;
     }
   }
 
   &__icon {
-    font-size: var(--icon-font-size); // icon size
-    height: var(--icon-height);
+    font-size: 0.75em; // icon size
+    height: (1em * 1em / $font-size); // revert sizing from font-size
     color: @osu-colour-c1;
     display: flex;
     text-shadow: none;
@@ -139,19 +147,21 @@
   }
 
   &__icons {
-    align-items: baseline;
-    gap: 2px;
-    margin-left: 5px;
-
     &--flag-inline {
       display: contents;
+
       @media @desktop {
         display: none;
       }
     }
 
     &--name-inline {
+      align-items: baseline;
+      gap: 2px;
+      margin-left: 5px;
+      font-size: 15px; // icon size
       display: none;
+
       @media @desktop {
         display: flex;
       }
@@ -172,9 +182,6 @@
   }
 
   &__name {
-    --icon-height: 15px;
-    --icon-font-size: @font-size--small;
-
     padding: 0;
     margin: -5px 0 0;
     font-weight: normal;

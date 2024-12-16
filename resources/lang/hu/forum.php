@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Biztosan visszaállítod a témát?',
         'deleted' => 'törölt téma',
         'go_to_latest' => 'utolsó hozzászólás megtekintése',
+        'go_to_unread' => '',
         'has_replied' => 'Feliratkoztál erre a témára',
         'in_forum' => 'ide :forum',
         'latest_post' => ':when :user által',

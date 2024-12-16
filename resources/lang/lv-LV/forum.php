@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Vai tiešām atjaunot tēmu?',
         'deleted' => 'izdzēstā tēma',
         'go_to_latest' => 'skatīt beidzamo rakstu',
+        'go_to_unread' => '',
         'has_replied' => 'Jūs atbildējāt uz šo tēmu',
         'in_forum' => 'iekš :forum',
         'latest_post' => ':when no :user',
