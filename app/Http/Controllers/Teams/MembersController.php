@@ -46,6 +46,8 @@ class MembersController extends Controller
 
         priv_check('TeamUpdate', $team)->ensureCan();
 
+        $team->load('members.user');
+
         return ext_view('teams.members.index', compact('team'));
     }
 }
