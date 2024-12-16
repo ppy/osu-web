@@ -6,7 +6,6 @@
 namespace App\Http\Controllers\InterOp;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Request;
 use App\Jobs\BeatmapsetDelete;
 use App\Jobs\Notifications\UserBeatmapsetNew;
 use App\Jobs\Notifications\UserBeatmapsetRevive;
@@ -24,8 +23,9 @@ class BeatmapsetsController extends Controller
 
         (new UserBeatmapsetNew($beatmapset))->dispatch();
 
-        if (api_version() >= 20241213)
+        if (request()->boolean('create_event')) {
             Event::generate('beatmapsetUpload', ['beatmapset' => $beatmapset]);
+        }
 
         return response(null, 204);
     }
@@ -36,8 +36,9 @@ class BeatmapsetsController extends Controller
 
         (new UserBeatmapsetRevive($beatmapset))->dispatch();
 
-        if (api_version() >= 20241213)
+        if (request()->boolean('create_event')) {
             Event::generate('beatmapsetRevive', ['beatmapset' => $beatmapset]);
+        }
 
         return response(null, 204);
     }
