@@ -6,6 +6,7 @@
 return [
     'edit' => [
         'saved' => 'Settings saved successfully',
+        'title' => 'Team Settings',
 
         'description' => [
             'label' => 'Description',
@@ -37,6 +38,27 @@ return [
         ],
     ],
 
+    'members' => [
+        'destroy' => [
+            'success' => 'Team member removed',
+        ],
+
+        'index' => [
+            'title' => 'Manage Members',
+
+            'table' => [
+                'status' => 'Status',
+                'joined_at' => 'Join Date',
+                'remove' => 'Remove',
+                'title' => 'Current Members',
+            ],
+
+            'status' => [
+                'status_0' => 'Inactive',
+                'status_1' => 'Active',
+            ],
+        ],
+    ],
     'show' => [
         'bar' => [
             'settings' => 'Settings',
