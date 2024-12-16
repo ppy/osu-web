@@ -12,7 +12,7 @@ import { NotificationResolver } from 'notifications/notification-resolver';
 import { NotificationContextData } from 'notifications-context';
 
 // List is in the order they appear on the notification filter.
-export const typeNames = [null, 'user', 'beatmapset', 'forum_topic', 'news_post', 'build', 'channel'] as const;
+export const typeNames = [null, 'user', 'team', 'beatmapset', 'forum_topic', 'news_post', 'build', 'channel'] as const;
 export type Name = (typeof typeNames)[number];
 
 export function getValidName(value: unknown) {

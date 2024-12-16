@@ -30,6 +30,7 @@ use App\Models\OAuth\Client;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Solo;
 use App\Models\Team;
+use App\Models\TeamApplication;
 use App\Models\Traits\ReportableInterface;
 use App\Models\User;
 use App\Models\UserContestEntry;
@@ -1900,6 +1901,46 @@ class OsuAuthorize
 
         if ($pinned >= $user->maxScorePins()) {
             return $prefix.'too_many';
+        }
+
+        return 'ok';
+    }
+
+    public function checkTeamApplicationAccept(?User $user, TeamApplication $application): ?string
+    {
+        $this->ensureLoggedIn($user);
+
+        $team = $application->team;
+
+        if ($team->leader_id !== $user->getKey()) {
+            return null;
+        }
+        if ($team->emptySlots() < 1) {
+            return 'team.member.store.full';
+        }
+
+        return 'ok';
+    }
+
+    public function checkTeamApplicationStore(?User $user, Team $team): ?string
+    {
+        $prefix = 'team.application.store.';
+
+        $this->ensureLoggedIn($user);
+
+        if ($user->team !== null) {
+            return $user->team->getKey() === $team->getKey()
+                ? $prefix.'already_member'
+                : $prefix.'already_other_member';
+        }
+        if ($user->teamApplication()->exists()) {
+            return $prefix.'currently_applying';
+        }
+        if (!$team->is_open) {
+            return $prefix.'team_closed';
+        }
+        if ($team->emptySlots() < 1) {
+            return $prefix.'team_full';
         }
 
         return 'ok';
