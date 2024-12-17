@@ -430,7 +430,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
                     });
                 });
 
-                Route::apiResource('tags', 'BeatmapTagsController', ['only' => ['index', 'store', 'destroy']]);
+                Route::apiResource('tags', 'BeatmapTagsController', ['only' => ['store', 'destroy']]);
             });
         });
 

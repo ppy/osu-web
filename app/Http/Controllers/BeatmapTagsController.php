@@ -23,15 +23,6 @@ class BeatmapTagsController extends Controller
                 'destroy',
             ],
         ]);
-
-        $this->middleware('require-scopes:public', ['only' => 'index']);
-    }
-
-    public function index($beatmapId)
-    {
-        return [
-            'beatmap_tags' => Beatmap::findOrFail($beatmapId)->topTagsJson(),
-        ];
     }
 
     public function destroy($beatmapId, $tagId)
