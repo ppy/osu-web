@@ -69,7 +69,7 @@ export default class Info extends React.Component<Props> {
     const tags = this.controller.tags;
 
     return [
-      ...tags.userTags.map((tag) => tag?.name),
+      ...tags.userTags.map((tag) => tag.name),
       ...tags.mapperTags,
     ];
   }
