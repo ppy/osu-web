@@ -7,9 +7,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Models\Tag;
-use App\Transformers\TagTransformer;
-
 class TagsController extends Controller
 {
     public function __construct()
