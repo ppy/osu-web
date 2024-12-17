@@ -40,8 +40,8 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         'ratings',
         'recent_favourites',
         'related_users',
+        'related_tags',
         'user',
-        'user_tags',
     ];
 
     // TODO: switch to enum after php 8.1
@@ -300,11 +300,22 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         return $this->collection($users, new UserCompactTransformer());
     }
 
-    public function includeUserTags(Beatmapset $beatmapset)
+    public function includeRelatedTags(Beatmapset $beatmapset)
     {
         $beatmaps = $this->beatmaps($beatmapset);
+        $tagIdSet = new Set($beatmaps->flatMap->topTagIds()->pluck('id'));
 
-        return $this->collection($beatmaps->flatMap->topTags(), new TagTransformer());
+        $cachedTags = app('tags');
+        $json = [];
+
+        foreach ($tagIdSet as $tagId) {
+            $tag = $cachedTags->get($tagId);
+            if ($tag !== null) {
+                $json[] = $tag;
+            }
+        }
+
+        return $this->primitive($json);
     }
 
     private function beatmaps(Beatmapset $beatmapset, ?Fractal\ParamBag $params = null): EloquentCollection

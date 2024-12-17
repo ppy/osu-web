@@ -5,7 +5,7 @@ import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import { TagJsonWithCount } from 'interfaces/tag-json';
 import UserJson from 'interfaces/user-json';
 import { keyBy } from 'lodash';
-import { action, computed, makeObservable, observable, runInAction, toJS } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { deletedUserJson } from 'models/user';
 import core from 'osu-core-singleton';
 import { find, findDefault, group } from 'utils/beatmap-helper';
@@ -72,26 +72,38 @@ export default class Controller {
     return this.beatmaps.get(this.currentBeatmap.mode) ?? [];
   }
 
+  get relatedTags() {
+    const map = new Map();
+
+    for (const tag of this.beatmapset.related_tags) {
+      map.set(tag.id, tag);
+    }
+
+    return map;
+  }
+
   @computed
   get tags() {
     const mapperTagSet = new Set(this.beatmapset.tags.split(' ').filter(present));
+    const tagMap = new Map<number, TagJsonWithCount>();
 
-    const tags: Partial<Record<number, TagJsonWithCount>> = {};
+    for (const tag of this.beatmapset.related_tags) {
+      tag.count = 0; // assign 0 and cast
+      tagMap.set(tag.id, tag as TagJsonWithCount);
+    }
+
     for (const beatmap of this.beatmapset.beatmaps) {
-      if (beatmap.tags == null) continue;
+      if (beatmap.top_tag_ids == null) continue;
 
-      for (const tag of beatmap.tags) {
-        let summedTag = tags[tag.id];
-        if (summedTag == null) {
-          summedTag = toJS(tag); // don't modify original
-          tags[tag.id] = summedTag;
-        } else {
-          summedTag.count += tag.count;
-        }
+      for (const tagId of beatmap.top_tag_ids) {
+        const tag = tagMap.get(tagId.id);
+        if (tag == null) continue;
+
+        tag.count += tagId.count;
 
         // TODO: case insensitivity
         if (mapperTagSet.has(tag.name)) {
-          summedTag.count++;
+          tag.count++;
           mapperTagSet.delete(tag.name);
         }
       }
@@ -99,8 +111,7 @@ export default class Controller {
 
     return {
       mapperTags: [...mapperTagSet.values()],
-      userTags: Object.values(tags).sort((a, b) => {
-        if (a == null || b == null) return 0; // for typing only, doesn't contain nulls.
+      userTags: [...tagMap.values()].sort((a, b) => {
         const diff = b.count - a.count;
         return diff !== 0 ? diff : a.id - b.id;
       }),

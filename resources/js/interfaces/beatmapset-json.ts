@@ -93,6 +93,7 @@ interface BeatmapsetJsonAvailableIncludes {
   nominations: BeatmapsetNominationsInterface;
   ratings: number[];
   recent_favourites: UserJson[];
+  related_tags: TagJson[];
   related_users: UserJson[];
   user: UserJson | UserJsonDeleted;
   user_tags: TagJson[];

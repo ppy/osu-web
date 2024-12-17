@@ -18,7 +18,7 @@ class BeatmapCompactTransformer extends TransformerAbstract
         'failtimes',
         'max_combo',
         'owners',
-        'tags',
+        'top_tag_ids',
         'user',
     ];
 
@@ -84,9 +84,9 @@ class BeatmapCompactTransformer extends TransformerAbstract
         ]);
     }
 
-    public function includeTags(Beatmap $beatmap)
+    public function includeTopTagIds(Beatmap $beatmap)
     {
-        return $this->primitive($beatmap->topTagsJson());
+        return $this->primitive($beatmap->topTagIds());
     }
 
     public function includeUser(Beatmap $beatmap)
