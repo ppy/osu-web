@@ -24,23 +24,26 @@
                         <span>{{ osu_trans('teams.members.index.table.joined_at') }}</span>
                         <span></span>
                     @foreach ($team->members as $member)
+                        @php
+                            $user = $member->userOrDeleted();
+                        @endphp
                         <li class="team-members-manage__item">
                             <span class="team-members-manage__avatar">
                                 <span
                                     class="avatar avatar--full avatar--guest"
-                                    {!! background_image($member->user->user_avatar) !!}
+                                    {!! background_image($user->user_avatar) !!}
                                 ></span>
                             </span>
                             <span>
-                                {!! link_to_user($member->user, null, '', []) !!}
+                                {!! link_to_user($user, null, '', []) !!}
                             </span>
                             <span>
-                                {{ osu_trans('teams.members.index.status.status_'.(int) $member->user->isActive()) }}
-                                @if ($member->user->isOnline())
+                                {{ osu_trans('teams.members.index.status.status_'.(int) $user->isActive()) }}
+                                @if ($user->isOnline())
                                     <small>
                                         ({!! osu_trans('users.show.lastvisit_online') !!})
                                     </small>
-                                @elseif (($lastvisit = $member->user->displayed_last_visit) !== null)
+                                @elseif (($lastvisit = $user->displayed_last_visit) !== null)
                                     <small>
                                         ({!! osu_trans('users.show.lastvisit', ['date' => timeago($lastvisit)]) !!})
                                     </small>
