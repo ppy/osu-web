@@ -8,17 +8,40 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\Team;
+use App\Models\TeamMember;
 use App\Transformers\UserCompactTransformer;
 use Symfony\Component\HttpFoundation\Response;
 
 class TeamsController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('auth', ['only' => ['part']]);
+    }
+
     public function edit(string $id): Response
     {
         $team = Team::findOrFail($id);
         priv_check('TeamUpdate', $team)->ensureCan();
 
         return ext_view('teams.edit', compact('team'));
+    }
+
+    public function part(): Response
+    {
+        $member = TeamMember::findOrFail(\Auth::user()->getKey());
+
+        if ($member === null) {
+            \Session::flash('popup', osu_trans('teams.part.no_team'));
+
+            return ujs_redirect(route('home'));
+        }
+
+        $member->delete();
+        \Session::flash('popup', osu_trans('teams.part.ok'));
+
+        return ujs_redirect(route('teams.show', ['team' => $member->team_id]));
     }
 
     public function show(string $id): Response
