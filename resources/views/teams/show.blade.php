@@ -3,16 +3,15 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    use App\Models\DeletedUser;
     use App\Transformers\UserCompactTransformer;
 
     $userTransformer = new UserCompactTransformer();
     $toJson = fn ($users) => json_collection($users, $userTransformer, UserCompactTransformer::CARD_INCLUDES);
     $teamMembers = array_map($toJson, $team->members->mapToGroups(fn ($member) => [
-        $member->user_id === $team->leader_id ? 'leader' : 'member' => $member->user,
+        $member->user_id === $team->leader_id ? 'leader' : 'member' => $member->userOrDeleted(),
     ])->all());
     $teamMembers['member'] ??= [];
-    $teamMembers['leader'] ??= $toJson([$team->leader ?? new DeletedUser(['user_id' => $team->leader_id])]);
+    $teamMembers['leader'] ??= $toJson([$team->members()->make(['user_id' => $team->leader_id])->userOrDeleted()]);
     $headerUrl = $team->header()->url();
 @endphp
 
