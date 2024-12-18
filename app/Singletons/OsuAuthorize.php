@@ -1908,6 +1908,15 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkTeamPart(?User $user, Team $team): ?string
+    {
+        $this->ensureLoggedIn($user);
+
+        return $team->leader_id !== $user->getKey() && $user->team?->getKey() === $team->getKey()
+            ? 'ok'
+            : null;
+    }
+
     public function checkTeamUpdate(?User $user, Team $team): ?string
     {
         $this->ensureLoggedIn($user);

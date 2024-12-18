@@ -299,6 +299,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::group(['as' => 'teams.', 'prefix' => 'teams/{team}', 'namespace' => 'Teams'], function () {
         Route::resource('members', 'MembersController', ['only' => ['destroy', 'index']]);
     });
+    Route::post('teams/part', 'TeamsController@part')->name('teams.part');
     Route::resource('teams', 'TeamsController', ['only' => ['edit', 'show', 'update']]);
 
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
