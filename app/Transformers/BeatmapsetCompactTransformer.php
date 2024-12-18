@@ -303,7 +303,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     public function includeRelatedTags(Beatmapset $beatmapset)
     {
         $beatmaps = $this->beatmaps($beatmapset);
-        $tagIdSet = new Set($beatmaps->flatMap->topTagIds()->pluck('id'));
+        $tagIdSet = new Set($beatmaps->flatMap->topTagIds()->pluck('tag_id'));
 
         $cachedTags = app('tags');
         $json = [];

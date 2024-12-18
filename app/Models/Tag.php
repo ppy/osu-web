@@ -22,20 +22,4 @@ class Tag extends Model
     {
         return $this->hasMany(BeatmapTag::class);
     }
-
-    public static function topTagIds(int $beatmapId, int $limit = 50)
-    {
-        return static
-            ::joinRelation(
-                'beatmapTags',
-                fn ($q) => $q->where('beatmap_id', $beatmapId)->whereHas('user', fn ($userQuery) => $userQuery->default())
-            )
-            ->groupBy('id')
-            ->select('id')
-            ->selectRaw('COUNT(*) as count')
-            ->orderBy('count', 'desc')
-            ->orderBy('id', 'desc')
-            ->limit($limit)
-            ->get();
-    }
 }

@@ -17,7 +17,7 @@ interface BeatmapJsonAvailableIncludes {
   failtimes: BeatmapFailTimesArray;
   max_combo: number;
   owners: BeatmapOwnerJson[];
-  top_tag_ids: { count: number; id: number }[];
+  top_tag_ids: { count: number; tag_id: number }[];
   user: UserJson;
 }
 

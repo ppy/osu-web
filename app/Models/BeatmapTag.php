@@ -19,6 +19,18 @@ class BeatmapTag extends Model
     protected $primaryKey = ':composite';
     protected $primaryKeys = ['beatmap_id', 'tag_id', 'user_id'];
 
+    public static function topTagIdsQuery(int $beatmapId, int $limit = 50)
+    {
+        return static::where('beatmap_id', $beatmapId)
+            ->whereHas('user', fn ($userQuery) => $userQuery->default())
+            ->groupBy('tag_id')
+            ->select('tag_id')
+            ->selectRaw('COUNT(*) as count')
+            ->orderBy('count', 'desc')
+            ->orderBy('tag_id', 'asc')
+            ->limit($limit);
+    }
+
     public function beatmap()
     {
         return $this->belongsTo(Beatmap::class, 'beatmap_id');

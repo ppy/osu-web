@@ -96,7 +96,7 @@ export default class Controller {
       if (beatmap.top_tag_ids == null) continue;
 
       for (const tagId of beatmap.top_tag_ids) {
-        const tag = tagMap.get(tagId.id);
+        const tag = tagMap.get(tagId.tag_id);
         if (tag == null) continue;
 
         tag.count += tagId.count;
