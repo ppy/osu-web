@@ -8,6 +8,7 @@ namespace App\Models;
 use App\Exceptions\InvariantException;
 use App\Jobs\EsDocument;
 use App\Libraries\Transactions\AfterCommit;
+use App\Traits\Memoizes;
 use DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -53,7 +54,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Beatmap extends Model implements AfterCommit
 {
-    use SoftDeletes;
+    use Memoizes, SoftDeletes;
 
     public $convert = false;
 
@@ -350,11 +351,15 @@ class Beatmap extends Model implements AfterCommit
 
     public function topTagIds()
     {
-        return cache_remember_mutexed(
-            "beatmap_top_tag_ids:{$this->getKey()}",
-            $GLOBALS['cfg']['osu']['tags']['beatmap_tags_cache_duration'],
-            [],
-            fn () => BeatmapTag::topTagIdsQuery($this->getKey())->get()->toArray(),
+        // TODO: Add option to multi query when beatmapset requests all tags for beatmaps?
+        return $this->memoize(
+            __FUNCTION__,
+            fn () => cache_remember_mutexed(
+                "beatmap_top_tag_ids:{$this->getKey()}",
+                $GLOBALS['cfg']['osu']['tags']['beatmap_tags_cache_duration'],
+                [],
+                fn () => BeatmapTag::topTagIdsQuery($this->getKey())->get()->toArray(),
+            ),
         );
     }
 
