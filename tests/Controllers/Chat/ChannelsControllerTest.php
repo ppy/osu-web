@@ -205,7 +205,7 @@ class ChannelsControllerTest extends TestCase
             'user' => $this->user->getKey(),
         ]));
 
-        $request->assertStatus(200)->assertJsonFragment(['channel_id' => $scoreLink->playlistItem->room->channel_id, 'type' => Channel::TYPES['multiplayer']]);
+        $request->assertStatus(403);
     }
 
     //endregion
