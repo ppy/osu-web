@@ -378,6 +378,18 @@ class Post extends Model implements AfterCommit, Indexable, Traits\ReportableInt
         }
     }
 
+    public function legacyIcon(): ?LegacyIcon
+    {
+        // TODO: $this->icon_id shouldn't be null, but there are some cases
+        // where we make a new Post model and don't refresh it with the default
+        // attributes from database
+        if ($this->icon_id === null) {
+            return null;
+        }
+
+        return app('forum-legacy-icons')->byId($this->icon_id);
+    }
+
     public function validationErrorsTranslationPrefix(): string
     {
         return 'forum.post';
