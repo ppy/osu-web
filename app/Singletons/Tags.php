@@ -10,16 +10,25 @@ namespace App\Singletons;
 use App\Models\Tag;
 use App\Traits\Memoizes;
 use App\Transformers\TagTransformer;
+use Illuminate\Support\Collection;
 
 class Tags
 {
     use Memoizes;
 
+    /**
+     * @return Collection<Tag>
+     */
+    public function all(): Collection
+    {
+        return $this->memoize(__FUNCTION__, fn () => Tag::all());
+    }
+
     public function get(int $id): ?Tag
     {
         $allById = $this->memoize(
             'allById',
-            fn () => Tag::all()->keyBy('id'),
+            fn () => $this->all()->keyBy('id'),
         );
 
         return $allById[$id] ?? null;
@@ -29,7 +38,7 @@ class Tags
     {
         return $this->memoize(
             __FUNCTION__,
-            fn () => json_collection(Tag::all(), new TagTransformer()),
+            fn () => json_collection($this->all(), new TagTransformer()),
         );
     }
 }
