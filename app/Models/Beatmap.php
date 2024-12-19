@@ -6,7 +6,7 @@
 namespace App\Models;
 
 use App\Exceptions\InvariantException;
-use App\Jobs\EsDocument;
+use App\Jobs\EsDocumentUnique;
 use App\Libraries\Transactions\AfterCommit;
 use App\Traits\Memoizes;
 use DB;
@@ -251,7 +251,7 @@ class Beatmap extends Model implements AfterCommit
         $beatmapset = $this->beatmapset;
 
         if ($beatmapset !== null) {
-            dispatch(new EsDocument($beatmapset));
+            dispatch(new EsDocumentUnique($beatmapset));
         }
     }
 
