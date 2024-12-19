@@ -80,7 +80,7 @@ return [
         'confirm_restore' => 'Opravdu checeš obnovit téma?',
         'deleted' => 'odstraněné téma',
         'go_to_latest' => 'zobrazit nejnovější příspěvek',
-        'go_to_unread' => '',
+        'go_to_unread' => 'zobrazit první nepřečtený příspěvek',
         'has_replied' => 'Odpověděl jsi na toto téma',
         'in_forum' => 'v :forum',
         'latest_post' => ':when uživatelem :user',

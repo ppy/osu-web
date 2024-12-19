@@ -29,7 +29,7 @@ return [
         'generic' => 'Jūsu pirkuma pārbaudes sagatavošanas laikā notikusi kļūda.',
     ],
     'scores' => [
-        'invalid_id' => '',
+        'invalid_id' => 'Nepareizs rezultāta id.',
     ],
     'search' => [
         'default' => 'Nezidevās iegūt rezultātus, mēģiniet vēlreiz vēlāk.',
@@ -37,6 +37,6 @@ return [
         'operation_timeout_exception' => 'Meklēšana pašlaik ir aizņemtāka nekā parasti, mēģiniet vēlreiz vēlāk.',
     ],
     'user_report' => [
-        'recently_reported' => "",
+        'recently_reported' => "Tu jau esi par šo ziņojis nesen.",
     ],
 ];

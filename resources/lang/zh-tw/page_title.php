@@ -51,7 +51,7 @@ return [
         ],
         'beatmapsets_controller' => [
             'discussion' => '圖譜討論',
-            'index' => '圖譜列表',
+            'index' => '圖譜清單',
             'show' => '圖譜資訊',
         ],
         'changelog_controller' => [
@@ -106,6 +106,10 @@ return [
         ],
         'seasons_controller' => [
             '_' => '排行榜',
+        ],
+        'teams_controller' => [
+            '_' => '',
+            'show' => '',
         ],
         'tournaments_controller' => [
             '_' => '官方比賽',

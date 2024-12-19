@@ -107,6 +107,10 @@ return [
         'seasons_controller' => [
             '_' => 'sıralamalar',
         ],
+        'teams_controller' => [
+            '_' => '',
+            'show' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'turnuvalar',
         ],

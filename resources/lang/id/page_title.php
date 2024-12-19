@@ -107,6 +107,10 @@ return [
         'seasons_controller' => [
             '_' => 'peringkat',
         ],
+        'teams_controller' => [
+            '_' => '',
+            'show' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'turnamen',
         ],

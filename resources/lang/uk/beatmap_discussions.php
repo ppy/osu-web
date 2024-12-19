@@ -67,10 +67,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
-        'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'checking' => 'Перевіряємо, чи є нові дописи...',
+        'has_updates' => 'Нові дописи в обговоренні, натисніть для оновлення.',
+        'no_updates' => 'Немає нових дописів.',
+        'updating' => 'Оновлення...',
     ],
 
     'reply' => [

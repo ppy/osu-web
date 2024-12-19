@@ -28,7 +28,7 @@ return [
         'legacy_api' => [
             'api' => 'api',
             'irc' => 'irc',
-            'title' => 'API lawas',
+            'title' => 'API Lawas',
         ],
 
         'password' => [
@@ -43,7 +43,7 @@ return [
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "Sepertinya negara yang tertera pada akunmu tidak sesuai dengan negara tempat kamu tinggal. :update_link.",
+                '_' => "Sepertinya negara akunmu tidak sesuai dengan negara tempat kamu tinggal. :update_link.",
                 'update_link' => 'Perbarui ke :country',
             ],
 

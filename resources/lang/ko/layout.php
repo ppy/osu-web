@@ -201,6 +201,7 @@ return [
             'profile' => '내 프로필',
             'scoring_mode_toggle' => '클래식 점수',
             'scoring_mode_toggle_tooltip' => '점숫값을 한계치가 없는 예전 클래식 점수처럼 느껴지도록 조정합니다.',
+            'team' => '',
         ],
     ],
 

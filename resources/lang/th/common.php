@@ -22,6 +22,7 @@ return [
         'admin' => 'ผู้ดูแล',
         'authorise' => 'อนุญาต',
         'authorising' => 'กำลังอนุญาต...',
+        'back' => '',
         'back_to_previous' => 'กลับไปยังตำแหน่งก่อนหน้านี้',
         'back_to_top' => 'กลับไปด้านบน',
         'cancel' => 'ยกเลิก',

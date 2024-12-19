@@ -19,6 +19,7 @@ return [
 
         'errors' => [
             'duration_too_long' => 'Tijdsduur te lang.',
+            'name_too_long' => '',
         ],
 
         'status' => [

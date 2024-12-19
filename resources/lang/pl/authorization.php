@@ -71,7 +71,7 @@ return [
         'friends_only' => 'Ten użytkownik blokuje wiadomości od osób spoza listy znajomych.',
         'moderated' => 'Ten kanał jest obecnie w trybie tylko dla moderatorów.',
         'no_access' => 'Nie masz dostępu do tego kanału.',
-        'no_announce' => '',
+        'no_announce' => 'Nie posiadasz uprawnień do publikowania ogłoszeń.',
         'receive_friends_only' => 'Ten użytkownik może nie być w stanie odpowiedzieć, ponieważ blokujesz prywatne wiadomości od osób spoza listy znajomych.',
         'restricted' => 'Nie możesz wysyłać wiadomości po tym, jak twoje konto zostało uciszone, ograniczone lub zablokowane.',
         'silenced' => 'Nie możesz wysyłać wiadomości po tym, jak twoje konto zostało uciszone, ograniczone lub zablokowane.',
@@ -185,7 +185,7 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "Nie możesz przypiąć tego typu wyników",
-            'failed' => "Nie można przypiąć nieprzekazanego wyniku.",
+            'failed' => "Nie można przypiąć niezaliczonego wyniku.",
             'not_owner' => 'Nie możesz przypiąć czyjegoś wyniku.',
             'too_many' => 'Przypięto zbyt wiele wyników.',
         ],

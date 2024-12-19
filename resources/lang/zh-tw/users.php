@@ -151,7 +151,7 @@ return [
         'comments' => '補充評論',
         'placeholder' => '請提供任何您覺得有用的資訊。',
         'reason' => '原因',
-        'thanks' => '感謝您的舉報！',
+        'thanks' => '感謝您的檢舉！',
         'title' => '檢舉 :username?',
 
         'actions' => [
@@ -224,7 +224,7 @@ return [
                     'broken_file' => '上傳失敗。請檢查上傳的圖片並重試.',
                     'button' => '上傳圖片',
                     'dropzone' => '拖動到此處以上傳',
-                    'dropzone_info' => '您也可以將圖片拉到此處上傳',
+                    'dropzone_info' => '您也可以將圖片拖曳至此以上傳',
                     'size_info' => '圖片尺寸應為2400x620',
                     'too_large' => '上傳的圖片檔案過大.',
                     'unsupported_format' => '不支援的檔案格式.',

@@ -22,6 +22,7 @@ return [
         'admin' => 'Admin',
         'authorise' => 'Autoriser',
         'authorising' => 'Autoriserer...',
+        'back' => '',
         'back_to_previous' => 'Returner til forrige posisjon',
         'back_to_top' => 'Tilbake til toppen',
         'cancel' => 'Avbryt',
