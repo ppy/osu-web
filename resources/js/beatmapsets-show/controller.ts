@@ -82,16 +82,6 @@ export default class Controller {
     return this.beatmaps.get(this.currentBeatmap.mode) ?? [];
   }
 
-  get relatedTags() {
-    const map = new Map();
-
-    for (const tag of this.beatmapset.related_tags) {
-      map.set(tag.id, tag);
-    }
-
-    return map;
-  }
-
   @computed
   get tags() {
     const mapperTagSet = new Set(this.beatmapset.tags.split(' ').filter(present));

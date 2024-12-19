@@ -96,7 +96,6 @@ interface BeatmapsetJsonAvailableIncludes {
   related_tags: TagJson[];
   related_users: UserJson[];
   user: UserJson | UserJsonDeleted;
-  user_tags: TagJson[];
 }
 
 interface HypeData {
