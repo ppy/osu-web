@@ -37,6 +37,6 @@ return [
     ],
 
     'store' => [
-        'too_many' => '',
+        'too_many' => 'Đã đạt giới hạn theo dõi.',
     ],
 ];

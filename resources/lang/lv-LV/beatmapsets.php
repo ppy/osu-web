@@ -17,7 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Piebremzējiet, spēlējiet vairāk.',
-        'no_mirrors' => '',
+        'no_mirrors' => 'Nav pieejami lejupielādes serveri.',
     ],
 
     'featured_artist_badge' => [
@@ -68,7 +68,7 @@ return [
         'discussion' => 'Diskusija',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Skatīt pilna izmēra bildes pārvalku',
         ],
 
         'deleted_banner' => [

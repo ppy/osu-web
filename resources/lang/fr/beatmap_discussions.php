@@ -67,10 +67,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
-        'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'checking' => 'Vérification des mises à jour...',
+        'has_updates' => 'La discussion a des mises à jour, cliquez pour rafraîchir.',
+        'no_updates' => 'Aucune mise à jour.',
+        'updating' => 'Mise à jour...',
     ],
 
     'reply' => [

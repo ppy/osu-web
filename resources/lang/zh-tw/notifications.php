@@ -79,7 +79,7 @@ return [
                 'beatmapset_love_compact' => '圖譜被提升為 loved',
                 'beatmapset_nominate' => '「:title」已被提名',
                 'beatmapset_nominate_compact' => '圖譜已被提名',
-                'beatmapset_qualify' => '「:title」已獲得足夠提名并因此進入了上架列隊',
+                'beatmapset_qualify' => '「:title」已獲得足夠的提名，因此進入了上架隊列',
                 'beatmapset_qualify_compact' => '圖譜已進入上架列隊',
                 'beatmapset_rank' => '「:title」已進榜',
                 'beatmapset_rank_compact' => '圖譜已進榜',

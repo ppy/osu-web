@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => '难度',
-        'top_10p' => '',
-        'top_50p' => '',
+        'top_10p' => '前 10% 成绩',
+        'top_50p' => '前 50% 成绩',
     ],
 
     'filter' => [

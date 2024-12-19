@@ -67,10 +67,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
-        'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'checking' => '업데이트 확인 중...',
+        'has_updates' => '토론에 새 업데이트가 있습니다, 클릭하여 새로 고치세요.',
+        'no_updates' => '업데이트가 없습니다.',
+        'updating' => '업데이트 중...',
     ],
 
     'reply' => [

@@ -4,6 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Не удалось проголосовать',
@@ -41,7 +45,7 @@ return [
 
         'empty' => [
             'empty' => 'Нет отзывов!',
-            'hidden' => 'Ни один отзыв не соответствует указанному фильтру.',
+            'hidden' => 'Нет отзывов.',
         ],
 
         'lock' => [

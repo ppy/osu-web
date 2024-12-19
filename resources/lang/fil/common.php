@@ -22,6 +22,7 @@ return [
         'admin' => 'Admin',
         'authorise' => 'Pahintulutan',
         'authorising' => 'Pinapahintulutan...',
+        'back' => '',
         'back_to_previous' => 'Bumalik sa nakaraang posisyon',
         'back_to_top' => 'Balik sa itaas',
         'cancel' => 'Kansel',

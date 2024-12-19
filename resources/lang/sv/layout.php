@@ -201,6 +201,7 @@ return [
             'profile' => 'Min profil',
             'scoring_mode_toggle' => 'Klassiskt resultat',
             'scoring_mode_toggle_tooltip' => 'Justera poängvärden för att kännas mer som klassisk poängsättning utan tak',
+            'team' => '',
         ],
     ],
 

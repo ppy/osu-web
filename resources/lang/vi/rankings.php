@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Độ khó',
-        'top_10p' => '',
-        'top_50p' => '',
+        'top_10p' => 'Điểm thuộc top 10%',
+        'top_50p' => 'Điểm thuộc top 50%',
     ],
 
     'filter' => [

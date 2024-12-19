@@ -19,6 +19,7 @@ return [
 
         'errors' => [
             'duration_too_long' => 'Masyadong matagal.',
+            'name_too_long' => '',
         ],
 
         'status' => [

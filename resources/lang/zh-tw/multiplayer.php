@@ -7,7 +7,7 @@ return [
     'empty' => [
         '_' => '尚未遊玩 osu!(lazer) :type_group 遊戲！',
         'playlists' => '歌單',
-        'realtime' => '多人',
+        'realtime' => '多人遊戲',
     ],
 
     'room' => [
@@ -19,6 +19,7 @@ return [
 
         'errors' => [
             'duration_too_long' => '持續時間過長。',
+            'name_too_long' => '',
         ],
 
         'status' => [

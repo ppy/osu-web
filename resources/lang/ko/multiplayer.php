@@ -19,6 +19,7 @@ return [
 
         'errors' => [
             'duration_too_long' => '기간이 너무 깁니다.',
+            'name_too_long' => '',
         ],
 
         'status' => [

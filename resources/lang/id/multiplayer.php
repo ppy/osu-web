@@ -19,6 +19,7 @@ return [
 
         'errors' => [
             'duration_too_long' => 'Durasi pertandingan terlalu lama.',
+            'name_too_long' => '',
         ],
 
         'status' => [

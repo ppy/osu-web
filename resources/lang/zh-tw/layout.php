@@ -97,7 +97,7 @@ return [
             '_' => '網站地圖',
             'home' => '首頁',
             'changelog-index' => '更新日誌',
-            'beatmaps' => '圖譜列表',
+            'beatmaps' => '圖譜清單',
             'download' => '下載 osu!',
         ],
         'help' => [
@@ -201,6 +201,7 @@ return [
             'profile' => '我的資料',
             'scoring_mode_toggle' => 'Classic 計分',
             'scoring_mode_toggle_tooltip' => '將分數調整至像是 classic 不封頂的的計分',
+            'team' => '',
         ],
     ],
 
