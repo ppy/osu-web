@@ -145,10 +145,7 @@ if (!inProduction) {
 const rules = [
   {
     exclude: /node_modules/,
-    loader: 'ts-loader',
-    options: {
-      transpileOnly: true,
-    },
+    loader: 'swc-loader',
     test: /\.tsx?$/,
   },
   {
@@ -255,6 +252,7 @@ const optimization = {
 if (inProduction) {
   optimization.minimizer = [
     new TerserPlugin({
+      minify: TerserPlugin.swcMinify,
       terserOptions: {
         safari10: true,
         sourceMap: true,
