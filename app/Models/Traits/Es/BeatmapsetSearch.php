@@ -138,7 +138,7 @@ trait BeatmapsetSearch
             ->flatMap(fn (Beatmap $beatmap) => $beatmap->topTagIds())
             ->map(fn ($tagId) => $tags->get($tagId['tag_id'])?->name);
 
-        $tagSet->add(...$beatmapTagNames);
+        $tagSet->add(...$beatmapTagNames->filter());
 
         return $tagSet->toArray();
     }
