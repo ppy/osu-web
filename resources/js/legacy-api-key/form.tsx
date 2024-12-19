@@ -72,7 +72,7 @@ export default class Form extends React.Component<Props> {
           <div>
             <StringWithComponent
               mappings={{ link: (
-                <a href={`${process.env.DOCS_URL}#terms-of-use`}>
+                <a href={`${docsUrl}#terms-of-use`}>
                   {trans('oauth.new_client.terms_of_use.link')}
                 </a>
               ) }}
