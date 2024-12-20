@@ -1027,7 +1027,7 @@ class OsuAuthorize
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function checkChatChannelJoin(?User $user, Channel $channel): string
+    public function checkChatChannelJoin(?User $user, Channel $channel): ?string
     {
         $prefix = 'chat.';
 
@@ -1039,13 +1039,9 @@ class OsuAuthorize
 
         $this->ensureCleanRecord($user, $prefix);
 
-        // This check is only for when joining the channel directly; joining via the Room
-        // will always add the user to the channel.
+        // joining multiplayer room is done through room endpoint
         if ($channel->isMultiplayer()) {
-            $room = Room::hasParticipated($user)->find($channel->room_id);
-            if ($room !== null) {
-                return 'ok';
-            }
+            return null;
         }
 
         // allow joining of 'tournament' matches (for lazer/tournament client)
