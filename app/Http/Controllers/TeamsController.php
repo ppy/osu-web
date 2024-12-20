@@ -19,6 +19,17 @@ class TeamsController extends Controller
         $this->middleware('auth', ['only' => ['part']]);
     }
 
+    public function destroy(string $id): Response
+    {
+        $team = Team::findOrFail($id);
+        priv_check('TeamUpdate', $team)->ensureCan();
+
+        $team->delete();
+        \Session::flash('popup', osu_trans('teams.destroy.ok'));
+
+        return ujs_redirect(route('home'));
+    }
+
     public function edit(string $id): Response
     {
         $team = Team::findOrFail($id);

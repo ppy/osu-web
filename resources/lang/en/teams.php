@@ -4,6 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'destroy' => [
+        'ok' => 'Team removed',
+    ],
+
     'edit' => [
         'saved' => 'Settings saved successfully',
         'title' => 'Team Settings',
@@ -66,6 +70,7 @@ return [
 
     'show' => [
         'bar' => [
+            'destroy' => 'Disband Team',
             'part' => 'Leave Team',
         ],
 

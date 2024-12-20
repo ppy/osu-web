@@ -76,6 +76,19 @@ class Team extends Model
             : bbcode((new BBCodeForDB($description))->generate());
     }
 
+    public function delete()
+    {
+        $ret = parent::delete();
+
+        if ($ret) {
+            $this->header()->delete();
+            $this->logo()->delete();
+            $this->members()->delete();
+        }
+
+        return $ret;
+    }
+
     public function header(): Uploader
     {
         return $this->header ??= new Uploader(

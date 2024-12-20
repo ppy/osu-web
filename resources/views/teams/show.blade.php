@@ -18,6 +18,9 @@
     if (priv_check('TeamPart', $team)->can()) {
         $buttons->add('part');
     }
+    if (priv_check('TeamUpdate', $team)->can()) {
+        $buttons->add('destroy');
+    }
 @endphp
 
 @extends('master', [
@@ -76,6 +79,18 @@
         </div>
         @if (!$buttons->isEmpty())
             <div class="profile-detail-bar profile-detail-bar--team">
+                @if ($buttons->contains('destroy'))
+                    <form
+                        action="{{ route('teams.destroy', $team) }}"
+                        data-turbo-confirm="{{ osu_trans('common.confirmation') }}"
+                        method="POST"
+                    >
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="team-action-button team-action-button--part">
+                            {{ osu_trans('teams.show.bar.destroy') }}
+                        </button>
+                    </form>
+                @endif
                 @if ($buttons->contains('part'))
                     <form
                         action="{{ route('teams.part', ['team' => $team]) }}"
