@@ -112,7 +112,7 @@ export default class Controller {
       mapperTags: [...mapperTagSet.values()],
       userTags: [...tagMap.values()].sort((a, b) => {
         const diff = b.count - a.count;
-        return diff !== 0 ? diff : a.id - b.id;
+        return diff !== 0 ? diff : a.name.localeCompare(b.name);
       }),
     };
   }
