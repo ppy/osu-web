@@ -61,7 +61,6 @@ return [
     ],
 
     'part' => [
-        'no_team' => 'Not part of any team',
         'ok' => 'Left the team ;_;',
     ],
 
