@@ -80,7 +80,7 @@ return [
         'confirm_restore' => 'Bạn có muốn phục hồi bài viết này?',
         'deleted' => 'chủ đề đã xóa',
         'go_to_latest' => 'xem bài viết gần đây nhất',
-        'go_to_unread' => '',
+        'go_to_unread' => 'xem bài viết chưa đọc đầu tiên',
         'has_replied' => 'Bạn đã trả lời topic này',
         'in_forum' => 'trong :forum',
         'latest_post' => ':when bởi :user',

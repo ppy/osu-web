@@ -16,6 +16,7 @@ class CurrentUserTransformer extends UserTransformer
             'friends',
             'groups',
             'is_admin',
+            'team',
             'unread_pm_count',
             'user_preferences',
         ];

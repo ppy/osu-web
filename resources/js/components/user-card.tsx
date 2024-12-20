@@ -14,6 +14,7 @@ import { trans } from 'utils/lang';
 import { present } from 'utils/string';
 import { giftSupporterTagUrl } from 'utils/url';
 import FlagCountry from './flag-country';
+import FlagTeam from './flag-team';
 import FollowUserMappingButton from './follow-user-mapping-button';
 import { PopupMenuPersistent } from './popup-menu-persistent';
 import { ReportReportable } from './report-reportable';
@@ -225,6 +226,15 @@ export class UserCard extends React.PureComponent<Props, State> {
         >
           <FlagCountry country={this.user.country} />
         </a>
+
+        {this.user.team != null && (
+          <a
+            className='user-card__icon user-card__icon--flag'
+            href={route('teams.show', { team: this.user.team.id })}
+          >
+            <FlagTeam team={this.user.team} />
+          </a>
+        )}
 
         {this.props.mode === 'card' && (
           <>

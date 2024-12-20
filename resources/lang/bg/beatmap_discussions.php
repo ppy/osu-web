@@ -67,10 +67,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
-        'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'checking' => 'Проверка за обновления...',
+        'has_updates' => 'Дискусията има актуализации, натисни за презареждане.',
+        'no_updates' => 'Няма актуализации.',
+        'updating' => 'Обновяване...',
     ],
 
     'reply' => [

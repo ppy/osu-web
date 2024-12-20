@@ -71,6 +71,17 @@
         </div>
     @endif
 
+    @if (($team = $user->team) !== null)
+        <div class="forum-post-info__row forum-post-info__row--flag">
+            <a
+                class="flag-team"
+                href="{{ route('teams.show', $team) }}"
+                {!! background_image($team->logo()->url(), false) !!}
+            >
+            </a>
+        </div>
+    @endif
+
     @if ($user->country !== null)
         <div class="forum-post-info__row forum-post-info__row--flag">
             <a href="{{route('rankings', [

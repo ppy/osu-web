@@ -594,11 +594,6 @@ function max_offset($page, $limit)
     return max(0, min($offset, $GLOBALS['cfg']['osu']['pagination']['max_count'] - $limit));
 }
 
-function mysql_escape_like($string)
-{
-    return addcslashes($string, '%_\\');
-}
-
 function oauth_token(): ?App\Models\OAuth\Token
 {
     return Request::instance()->attributes->get(App\Http\Middleware\AuthApi::REQUEST_OAUTH_TOKEN_KEY);
@@ -1687,27 +1682,6 @@ function model_pluck($builder, $key, $class = null)
     }
 
     return $result;
-}
-
-/*
- * Returns null if $timestamp is null or 0.
- * Used for table which has not null constraints but accepts "empty" value (0).
- */
-function get_time_or_null($timestamp)
-{
-    if ($timestamp !== 0) {
-        return parse_time_to_carbon($timestamp);
-    }
-}
-
-/*
- * Get unix timestamp of a DateTime (or Carbon\Carbon).
- * Returns 0 if $time is null so mysql doesn't explode because of not null
- * constraints.
- */
-function get_timestamp_or_zero(DateTime $time = null): int
-{
-    return $time === null ? 0 : $time->getTimestamp();
 }
 
 function null_if_false($value)

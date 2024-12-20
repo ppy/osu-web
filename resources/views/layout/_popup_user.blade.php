@@ -31,6 +31,12 @@
         {{ osu_trans('layout.popup_user.links.profile') }}
     </a>
 
+    @if (($team = $currentUser->team) !== null)
+        <a class="simple-menu__item" href="{{ route('teams.show', $team) }}">
+            {{ osu_trans('layout.popup_user.links.team') }}
+        </a>
+    @endif
+
     <a class="simple-menu__item" href="{{ route('friends.index') }}">
         {{ osu_trans('layout.popup_user.links.friends') }}
     </a>

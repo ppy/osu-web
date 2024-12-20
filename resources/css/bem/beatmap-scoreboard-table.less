@@ -184,12 +184,9 @@
     }
 
     &--user-link {
-      .link-inverted();
-      .link-hover({
-        text-decoration: underline;
-      });
-
       position: absolute;
+      display: flex;
+      gap: 5px;
     }
 
     &--zero {
@@ -220,5 +217,12 @@
     .@{passive-row}:hover & {
       opacity: 1;
     }
+  }
+
+  &__user-link {
+    .link-inverted();
+    .link-hover({
+      text-decoration: underline;
+    });
   }
 }

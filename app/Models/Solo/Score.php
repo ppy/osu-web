@@ -169,9 +169,14 @@ class Score extends Model implements Traits\ReportableInterface
         return $query->whereHas('beatmap.beatmapset');
     }
 
+    /**
+     * This should only be sorted by primary key(s)
+     */
     public function scopeForListing(Builder $query): Builder
     {
         return $query->where('ranked', true)
+            ->whereHas('user', fn ($q) => $q->default())
+            ->from(\DB::raw("{$this->getTable()} FORCE INDEX (PRIMARY)"))
             ->leftJoinRelation('processHistory')
             ->select([$query->qualifyColumn('*'), 'processed_version']);
     }

@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'not_found' => "",
+    'not_found' => "Specificētais :model netika atrasts.",
 
     'name' => [
-        'App\Models\Beatmap' => '',
-        'App\Models\Beatmapset' => '',
+        'App\Models\Beatmap' => 'ritma-mapes grūtība',
+        'App\Models\Beatmapset' => 'ritma-mape',
     ],
 ];

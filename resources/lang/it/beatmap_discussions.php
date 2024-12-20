@@ -70,7 +70,7 @@ return [
         'checking' => '',
         'has_updates' => '',
         'no_updates' => '',
-        'updating' => '',
+        'updating' => 'Aggiornamento...',
     ],
 
     'reply' => [

@@ -107,6 +107,10 @@ return [
         'seasons_controller' => [
             '_' => '순위',
         ],
+        'teams_controller' => [
+            '_' => '',
+            'show' => '',
+        ],
         'tournaments_controller' => [
             '_' => '토너먼트',
         ],

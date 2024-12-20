@@ -201,6 +201,7 @@ return [
             'profile' => 'Profilom',
             'scoring_mode_toggle' => 'Klasszikus pontozás',
             'scoring_mode_toggle_tooltip' => 'Módosítja a pontszámértékeket úgy, hogy közelebb álljon a klasszikus korlátlan pontozáshoz',
+            'team' => '',
         ],
     ],
 

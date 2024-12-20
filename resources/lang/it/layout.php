@@ -201,6 +201,7 @@ return [
             'profile' => 'Profilo',
             'scoring_mode_toggle' => 'Punteggio classico',
             'scoring_mode_toggle_tooltip' => 'Regola i valori del punteggio per farli sembrare come il punteggio classico illimitato',
+            'team' => '',
         ],
     ],
 

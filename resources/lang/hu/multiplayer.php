@@ -19,6 +19,7 @@ return [
 
         'errors' => [
             'duration_too_long' => 'Az időtartam túl hosszú.',
+            'name_too_long' => '',
         ],
 
         'status' => [

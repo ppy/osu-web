@@ -9,10 +9,10 @@ return [
     'required' => '需要 :attribute 。',
     'too_long' => ':attribute 超出最大長度——最多允許 :limit 個字符。',
     'url' => '請輸入一個正確無誤的網址。',
-    'wrong_confirmation' => '確認信息不匹配。',
+    'wrong_confirmation' => '確認資訊不符。',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => '指定了時間戳但是譜面不存在。',
+        'beatmap_missing' => '指定了時間戳記但是譜面不存在。',
         'beatmapset_no_hype' => "無法推薦譜面。",
         'hype_requires_null_beatmap' => '只能在 常規（全難度） 中推薦。',
         'invalid_beatmap_id' => '指定的難度無效。',
@@ -21,26 +21,26 @@ return [
 
         'attributes' => [
             'message_type' => '訊息類型',
-            'timestamp' => '時間戳',
+            'timestamp' => '時間戳記',
         ],
 
         'hype' => [
             'discussion_locked' => "該圖譜目前為鎖定討論狀態，無法被推薦",
-            'guest' => '登錄後才能推薦',
+            'guest' => '必須登入後才能推薦',
             'hyped' => '你已經推薦了這張譜面',
-            'limit_exceeded' => '你已經用光了推薦次數',
+            'limit_exceeded' => '你已經用完推薦次數',
             'not_hypeable' => '這張譜面無法推薦',
             'owner' => '不能推薦你自己的譜面',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => '指定的時間戳不在譜面範圍內。',
-            'negative' => "無法定位時間戳。",
+            'exceeds_beatmapset_length' => '指定的時間戳記不在譜面範圍內。',
+            'negative' => "無法定位時間戳記。",
         ],
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => '討論被鎖定。',
+        'discussion_locked' => '討論已被鎖定。',
         'first_post' => '無法刪除第一個討論。',
 
         'attributes' => [
@@ -164,7 +164,7 @@ return [
         ],
 
         'change_username' => [
-            'restricted' => '帳戶處於限制模式時無法更變使用者名稱。',
+            'restricted' => '帳戶處於限制模式時無法變更使用者名稱。',
             'supporter_required' => [
                 '_' => '你必須 :link 才能更改用戶名！',
                 'link_text' => '支持 osu!',

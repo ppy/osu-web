@@ -80,7 +80,7 @@ return [
         'confirm_restore' => '恢复此主题？',
         'deleted' => '已删除的主题',
         'go_to_latest' => '查看最新的帖子',
-        'go_to_unread' => '',
+        'go_to_unread' => '查看第一条未读贴',
         'has_replied' => '你已回复过此主题',
         'in_forum' => '在 :forum',
         'latest_post' => ':when :user',

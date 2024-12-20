@@ -67,10 +67,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
-        'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'checking' => 'Memeriksa pembaruan...',
+        'has_updates' => 'Halaman diskusi ini memiliki pembaruan. Klik untuk memuat ulang halaman.',
+        'no_updates' => 'Tidak ada pembaruan.',
+        'updating' => 'Memperbarui...',
     ],
 
     'reply' => [
