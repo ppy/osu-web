@@ -10,7 +10,9 @@ namespace App\Models;
 /**
  * @property-read Beatmap $beatmap
  * @property int $beatmap_id
+ * @property \Carbon\Carbon $created_at
  * @property int $tag_id
+ * @property \Carbon\Carbon $updated_at
  * @property-read User $user
  * @property int $user_id
  */
