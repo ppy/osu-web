@@ -125,10 +125,10 @@ class Event extends Model
                 $beatmapsetParams = static::beatmapsetParams($beatmapset);
                 $userParams = static::userParams($beatmapset->user);
 
-                $textClean = "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title']}] has been revived from eternal slumber by [{$userParams['url_clean']} {$userParams['username']}]";
+                $textClean = "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title']}] has been revived from eternal slumber by [{$userParams['url_clean']} {$userParams['username']}].";
 
                 $params = [
-                    'text' => "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a> has been revived from eternal slumber by <b><a href='{$userParams['url']}'>{$userParams['username']}</a></b>",
+                    'text' => "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a> has been revived from eternal slumber by <b><a href='{$userParams['url']}'>{$userParams['username']}</a></b>.",
                     'text_clean' => $textClean,
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $beatmapset->user->getKey(),
@@ -167,7 +167,7 @@ class Event extends Model
                 $textClean = "[{$userParams['url_clean']} {$userParams['username']}] has submitted a new beatmap [{$beatmapsetParams['url_clean']} {$beatmapsetParams['title']}]";
 
                 $params = [
-                    'text' => "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b> has submitted a new beatmap \"<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}\"</a>",
+                    'text' => "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b> has submitted a new beatmap \"<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a>\"",
                     'text_clean' => $textClean,
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $beatmapset->user->getKey(),
