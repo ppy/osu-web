@@ -32,6 +32,10 @@ class TeamsController extends Controller
     {
         $member = TeamMember::findOrFail(\Auth::user()->getKey());
 
+        if ($member->team->leader_id === $member->user_id) {
+            return error_popup(osu_trans('teams.part.is_leader'));
+        }
+
         $member->delete();
         \Session::flash('popup', osu_trans('teams.part.ok'));
 
