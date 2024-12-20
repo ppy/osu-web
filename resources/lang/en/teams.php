@@ -61,7 +61,6 @@ return [
     ],
 
     'part' => [
-        'is_leader' => "Team leader can't leave the team",
         'ok' => 'Left the team ;_;',
     ],
 
