@@ -92,11 +92,10 @@ class Event extends Model
                 $userParams = static::userParams($options['beatmapset']->user);
                 $approval = e($beatmapset->status());
 
-                $textClean = "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title']}] by [{$userParams['url_clean']} {$userParams['username']}] has just been {$approval}!";
-
+                $template = '%s by %s has just been %s!';
                 $params = [
-                    'text' => "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a> by <b><a href='{$userParams['url']}'>{$userParams['username']}</a></b> has just been {$approval}!",
-                    'text_clean' => $textClean,
+                    'text' => sprintf($template, "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a>", "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b>", $approval),
+                    'text_clean' => sprintf($template, "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title']}]", "[{$userParams['url_clean']} {$userParams['username']}]", $approval),
                     'beatmap_id' => 0,
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $beatmapset->user->getKey(),
@@ -125,11 +124,10 @@ class Event extends Model
                 $beatmapsetParams = static::beatmapsetParams($beatmapset);
                 $userParams = static::userParams($beatmapset->user);
 
-                $textClean = "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title']}] has been revived from eternal slumber by [{$userParams['url_clean']} {$userParams['username']}].";
-
+                $template = '%s has been revived from eternal slumber by %s.';
                 $params = [
-                    'text' => "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a> has been revived from eternal slumber by <b><a href='{$userParams['url']}'>{$userParams['username']}</a></b>.",
-                    'text_clean' => $textClean,
+                    'text' => sprintf($template, "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a>", "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b>"),
+                    'text_clean' => sprintf($template, "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title']}]", "[{$userParams['url_clean']} {$userParams['username']}]"),
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $beatmapset->user->getKey(),
                     'private' => false,
@@ -146,11 +144,10 @@ class Event extends Model
                 $user = $options['user'];
                 $userParams = static::userParams($user);
 
-                $textClean = "[{$userParams['url_clean']} {$userParams['username']}] has updated the beatmap [{$beatmapsetParams['url_clean']} {$beatmapsetParams['title']}]";
-
+                $template = '%s has updated the beatmap "%s"';
                 $params = [
-                    'text' => "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b> has updated the beatmap \"<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a>\"",
-                    'text_clean' => $textClean,
+                    'text' => sprintf($template, "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b>", "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a>"),
+                    'text_clean' => sprintf($template, "[{$userParams['url_clean']} {$userParams['username']}]", "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title']}]"),
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $user->getKey(),
                     'private' => false,
@@ -164,11 +161,10 @@ class Event extends Model
                 $beatmapsetParams = static::beatmapsetParams($beatmapset);
                 $userParams = static::userParams($beatmapset->user);
 
-                $textClean = "[{$userParams['url_clean']} {$userParams['username']}] has submitted a new beatmap [{$beatmapsetParams['url_clean']} {$beatmapsetParams['title']}]";
-
+                $template = '%s has submitted a new beatmap "%s"';
                 $params = [
-                    'text' => "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b> has submitted a new beatmap \"<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a>\"",
-                    'text_clean' => $textClean,
+                    'text' => sprintf($template, "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b>", "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a>"),
+                    'text_clean' => sprintf($template, "[{$userParams['url_clean']} {$userParams['username']}]", "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title']}]"),
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $beatmapset->user->getKey(),
                     'private' => false,
