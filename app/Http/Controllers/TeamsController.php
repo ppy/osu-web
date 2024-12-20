@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\Team;
-use App\Models\TeamMember;
 use App\Transformers\UserCompactTransformer;
 use Symfony\Component\HttpFoundation\Response;
 

@@ -194,7 +194,7 @@ return [
     'team' => [
         'part' => [
             'is_leader' => "Team leader can't leave the team.",
-            'not_member' => 'Not a member of the team.'
+            'not_member' => 'Not a member of the team.',
         ],
     ],
 
