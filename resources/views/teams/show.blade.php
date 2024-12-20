@@ -13,6 +13,11 @@
     $teamMembers['member'] ??= [];
     $teamMembers['leader'] ??= $toJson([$team->members()->make(['user_id' => $team->leader_id])->userOrDeleted()]);
     $headerUrl = $team->header()->url();
+
+    $buttons = new Ds\Set();
+    if (priv_check('TeamPart', $team)->can()) {
+        $buttons->add('part');
+    }
 @endphp
 
 @extends('master', [
@@ -69,6 +74,21 @@
                 </div>
             </div>
         </div>
+        @if (!$buttons->isEmpty())
+            <div class="profile-detail-bar profile-detail-bar--team">
+                @if ($buttons->contains('part'))
+                    <form
+                        action="{{ route('teams.part', ['team' => $team]) }}"
+                        data-turbo-confirm="{{ osu_trans('common.confirmation') }}"
+                        method="POST"
+                    >
+                        <button class="team-action-button team-action-button--part">
+                            {{ osu_trans('teams.show.bar.part') }}
+                        </button>
+                    </form>
+                @endif
+            </div>
+        @endif
         <div class="user-profile-pages user-profile-pages--no-tabs">
             <div class="page-extra u-fancy-scrollbar">
                 <div class="team-summary">
