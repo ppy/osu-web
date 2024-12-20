@@ -13,12 +13,29 @@ use Symfony\Component\HttpFoundation\Response;
 
 class TeamsController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('auth', ['only' => ['part']]);
+    }
+
     public function edit(string $id): Response
     {
         $team = Team::findOrFail($id);
         priv_check('TeamUpdate', $team)->ensureCan();
 
         return ext_view('teams.edit', compact('team'));
+    }
+
+    public function part(string $id): Response
+    {
+        $team = Team::findOrFail($id);
+        priv_check('TeamPart', $team)->ensureCan();
+
+        $team->members()->findOrFail(\Auth::user()->getKey())->delete();
+        \Session::flash('popup', osu_trans('teams.part.ok'));
+
+        return ujs_redirect(route('teams.show', ['team' => $team]));
     }
 
     public function show(string $id): Response

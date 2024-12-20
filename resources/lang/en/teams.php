@@ -59,9 +59,14 @@ return [
             ],
         ],
     ],
+
+    'part' => [
+        'ok' => 'Left the team ;_;',
+    ],
+
     'show' => [
         'bar' => [
-            'settings' => 'Settings',
+            'part' => 'Leave Team',
         ],
 
         'info' => [
