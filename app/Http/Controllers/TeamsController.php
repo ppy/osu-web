@@ -32,12 +32,6 @@ class TeamsController extends Controller
     {
         $member = TeamMember::findOrFail(\Auth::user()->getKey());
 
-        if ($member === null) {
-            \Session::flash('popup', osu_trans('teams.part.no_team'));
-
-            return ujs_redirect(route('home'));
-        }
-
         $member->delete();
         \Session::flash('popup', osu_trans('teams.part.ok'));
 
