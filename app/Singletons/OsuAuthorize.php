@@ -48,9 +48,10 @@ class OsuAuthorize
 
         $set ??= new Ds\Set([
             'ContestJudge',
-            'IsOwnClient',
             'IsNotOAuth',
+            'IsOwnClient',
             'IsSpecialScope',
+            'TeamPart',
             'UserUpdateEmail',
         ]);
 
@@ -1903,6 +1904,22 @@ class OsuAuthorize
 
         if ($pinned >= $user->maxScorePins()) {
             return $prefix.'too_many';
+        }
+
+        return 'ok';
+    }
+
+    public function checkTeamPart(?User $user, Team $team): ?string
+    {
+        $this->ensureLoggedIn($user);
+
+        $prefix = 'team.part.';
+
+        if ($team->leader_id === $user->getKey()) {
+            return $prefix.'is_leader';
+        }
+        if ($team->getKey() !== $user?->team?->getKey()) {
+            return $prefix.'not_member';
         }
 
         return 'ok';

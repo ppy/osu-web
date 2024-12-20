@@ -14,9 +14,8 @@
     $teamMembers['leader'] ??= $toJson([$team->members()->make(['user_id' => $team->leader_id])->userOrDeleted()]);
     $headerUrl = $team->header()->url();
 
-    $currentUser = Auth::user();
     $buttons = new Ds\Set();
-    if ($currentUser !== null && $currentUser->team?->getKey() === $team->getKey() && $currentUser->getKey() !== $team->leader_id) {
+    if (priv_check('TeamPart', $team)->can()) {
         $buttons->add('part');
     }
 @endphp
@@ -79,7 +78,7 @@
             <div class="profile-detail-bar profile-detail-bar--team">
                 @if ($buttons->contains('part'))
                     <form
-                        action="{{ route('teams.part') }}"
+                        action="{{ route('teams.part', ['team' => $team]) }}"
                         data-turbo-confirm="{{ osu_trans('common.confirmation') }}"
                         method="POST"
                     >

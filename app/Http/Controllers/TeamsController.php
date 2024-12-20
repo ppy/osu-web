@@ -28,18 +28,15 @@ class TeamsController extends Controller
         return ext_view('teams.edit', compact('team'));
     }
 
-    public function part(): Response
+    public function part(string $id): Response
     {
-        $member = TeamMember::findOrFail(\Auth::user()->getKey());
+        $team = Team::findOrFail($id);
+        priv_check('TeamPart', $team)->ensureCan();
 
-        if ($member->team->leader_id === $member->user_id) {
-            return error_popup(osu_trans('teams.part.is_leader'));
-        }
-
-        $member->delete();
+        $team->members()->findOrFail(\Auth::user()->getKey())->delete();
         \Session::flash('popup', osu_trans('teams.part.ok'));
 
-        return ujs_redirect(route('teams.show', ['team' => $member->team_id]));
+        return ujs_redirect(route('teams.show', ['team' => $team]));
     }
 
     public function show(string $id): Response
