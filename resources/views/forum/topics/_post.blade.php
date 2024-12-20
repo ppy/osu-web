@@ -62,6 +62,12 @@
                             {!! timeago($post->post_time) !!}
                         </a>
                     </div>
+
+                    @if ($post->legacyIcon() !== null)
+                        <div class="forum-post__header-content-item">
+                            @include('forum._legacy_icon', ['icon' => $post->legacyIcon()])
+                        </div>
+                    @endif
                 </div>
 
                 @if (count($buttons) > 0)
