@@ -84,7 +84,7 @@
                         method="POST"
                     >
                         <button class="team-action-button team-action-button--part">
-                                {{ osu_trans('teams.show.bar.part') }}
+                            {{ osu_trans('teams.show.bar.part') }}
                         </button>
                     </form>
                 @endif
