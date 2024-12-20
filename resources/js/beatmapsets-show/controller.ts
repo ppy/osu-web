@@ -84,7 +84,6 @@ export default class Controller {
 
   @computed
   get tags() {
-    const mapperTagSet = new Set(this.beatmapset.tags.split(' ').filter(present));
     const tagMap = new Map<number, TagJsonWithCount>();
 
     for (const tag of this.beatmapset.related_tags) {
@@ -99,17 +98,11 @@ export default class Controller {
         if (tag == null) continue;
 
         tag.count += tagId.count;
-
-        // TODO: case insensitivity
-        if (mapperTagSet.has(tag.name)) {
-          tag.count++;
-          mapperTagSet.delete(tag.name);
-        }
       }
     }
 
     return {
-      mapperTags: [...mapperTagSet.values()],
+      mapperTags: this.beatmapset.tags.split(' ').filter(present),
       userTags: [...tagMap.values()].sort((a, b) => {
         const diff = b.count - a.count;
         return diff !== 0 ? diff : a.name.localeCompare(b.name);
