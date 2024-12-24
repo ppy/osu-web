@@ -83,27 +83,34 @@ export default class Controller {
   }
 
   @computed
-  get tags() {
-    const tagMap = new Map<number, TagJsonWithCount>();
+  get relatedTags() {
+    const map = new Map<number, TagJson>();
 
     for (const tag of this.beatmapset.related_tags) {
-      tagMap.set(tag.id, asTagJsonWithCount(tag));
+      map.set(tag.id, tag);
     }
 
-    for (const beatmap of this.beatmapset.beatmaps) {
-      if (beatmap.top_tag_ids == null) continue;
+    return map;
+  }
 
-      for (const tagId of beatmap.top_tag_ids) {
-        const tag = tagMap.get(tagId.tag_id);
-        if (tag == null) continue;
+  @computed
+  get tags() {
+    const userTags: TagJsonWithCount[] = [];
 
-        tag.count += tagId.count;
+    if (this.currentBeatmap.top_tag_ids != null) {
+      for (const tagId of this.currentBeatmap.top_tag_ids) {
+        const maybeTag = this.relatedTags.get(tagId.tag_id);
+        if (maybeTag == null) continue;
+
+        const tag = asTagJsonWithCount(maybeTag);
+        tag.count = tagId.count;
+        userTags.push(asTagJsonWithCount(tag));
       }
     }
 
     return {
       mapperTags: this.beatmapset.tags.split(' ').filter(present),
-      userTags: [...tagMap.values()].sort((a, b) => {
+      userTags: userTags.sort((a, b) => {
         const diff = b.count - a.count;
         return diff !== 0 ? diff : a.name.localeCompare(b.name);
       }),
