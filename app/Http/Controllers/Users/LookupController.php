@@ -35,8 +35,7 @@ class LookupController extends Controller
         }
 
         $users = User::where(fn ($q) => $q->whereIn('user_id', $numericIds)->orWhereIn('username', $stringIds))
-            ->where('group_id', '<>', app('groups')->byIdentifier('no_profile')->getKey())
-            ->default()
+            ->defaultForLookup()
             ->with(UserCompactTransformer::CARD_INCLUDES_PRELOAD)
             ->get();
 
