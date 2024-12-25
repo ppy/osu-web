@@ -60,6 +60,12 @@ class BeatmapsetSearch extends RecordSearch
                     ->should(['term' => ['_id' => ['value' => $this->params->queryString, 'boost' => 100]]])
                     ->should(QueryHelper::queryString($this->params->queryString, $partialMatchFields, 'or', 1 / count($terms)))
                     ->should(QueryHelper::queryString($this->params->queryString, [], 'and'))
+                    ->should([
+                        'nested' => [
+                            'path' => 'beatmaps',
+                            'query' => QueryHelper::queryString($this->params->queryString, ['beatmaps.top_tags'], 'or', 0.5 / count($terms)),
+                        ]
+                    ])
             );
         }
 
