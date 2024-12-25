@@ -7,7 +7,6 @@ namespace App\Models\Traits\Es;
 
 use App\Models\Beatmap;
 use Carbon\Carbon;
-use Ds\Set;
 
 trait BeatmapsetSearch
 {
@@ -58,7 +57,6 @@ trait BeatmapsetSearch
 
             $value = match ($field) {
                 'id' => $this->getKey(),
-                'tags' => $this->esTags(),
                 default => $this->$field,
             };
 
@@ -80,12 +78,17 @@ trait BeatmapsetSearch
         foreach ($this->beatmaps as $beatmap) {
             $beatmapValues = [];
             foreach ($mappings as $field => $mapping) {
-                $beatmapValues[$field] = $beatmap->$field;
+                $value = match ($field) {
+                    'top_tags' => $this->esBeatmapTags($beatmap),
+                    // TODO: remove adding $beatmap->user_id once everything else also populated beatmap_owners by default.
+                    // Duplicate user_id in the array should be fine for now since the field isn't scored for querying.
+                    'user_id' => $beatmap->beatmapOwners->pluck('user_id')->add($beatmap->user_id),
+                    default => $beatmap->$field,
+                };
+
+                $beatmapValues[$field] = $value;
             }
 
-            // TODO: remove adding $beatmap->user_id once everything else also populated beatmap_owners by default.
-            // Duplicate user_id in the array should be fine for now since the field isn't scored for querying.
-            $beatmapValues['user_id'] = $beatmap->beatmapOwners->pluck('user_id')->add($beatmap->user_id);
             $values[] = $beatmapValues;
 
             if ($beatmap->playmode === Beatmap::MODES['osu']) {
@@ -94,21 +97,28 @@ trait BeatmapsetSearch
                         continue;
                     }
 
-                    $convert = clone $beatmap;
-                    $convert->playmode = $modeInt;
-                    $convert->convert = true;
-                    $convertValues = [];
-                    foreach ($mappings as $field => $mapping) {
-                        $convertValues[$field] = $convert->$field;
-                    }
+                    $convertValues = $beatmapValues;
+                    $convertValues['playmode'] = $modeInt;
+                    $convertValues['convert'] = true;
 
-                    $convertValues['user_id'] = $beatmapValues['user_id']; // just add a copy for converts too.
                     $values[] = $convertValues;
                 }
             }
         }
 
         return $values;
+    }
+
+    private function esBeatmapTags(Beatmap $beatmap): array
+    {
+        $tags = app('tags');
+
+        return array_filter(
+            array_map(
+                fn ($tagId) => $tags->get($tagId['tag_id'])?->name,
+                $beatmap->topTagIds()
+            )
+        );
     }
 
     private function esDifficultiesValues()
@@ -128,18 +138,5 @@ trait BeatmapsetSearch
         }
 
         return $values;
-    }
-
-    private function esTags()
-    {
-        $tags = app('tags');
-        $tagSet = new Set([$this->tags]);
-        $beatmapTagNames = $this->beatmaps
-            ->flatMap(fn (Beatmap $beatmap) => $beatmap->topTagIds())
-            ->map(fn ($tagId) => $tags->get($tagId['tag_id'])?->name);
-
-        $tagSet->add(...$beatmapTagNames->filter());
-
-        return $tagSet->toArray();
     }
 }
