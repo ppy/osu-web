@@ -64,7 +64,7 @@ class BeatmapsetSearch extends RecordSearch
                         'nested' => [
                             'path' => 'beatmaps',
                             'query' => QueryHelper::queryString($this->params->queryString, ['beatmaps.top_tags'], 'or', 0.5 / count($terms)),
-                        ]
+                        ],
                     ])
             );
         }
