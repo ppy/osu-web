@@ -448,7 +448,7 @@ class Room extends Model
             }
 
             // spotlight playlists should always be linked to one season exactly
-            if ($this->category === 'spotlight' && $this->seasons()->count() === 1 && $agg->total_score > 0) {
+            if ($this->category === 'spotlight' && $agg->total_score > 0 && $this->seasons()->count() === 1) {
                 $seasonId = $this->seasons()->first()->getKey();
 
                 $seasonScore = $user->seasonScores()
