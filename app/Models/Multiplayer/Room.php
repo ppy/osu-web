@@ -37,6 +37,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property int|null $max_attempts
  * @property string $name
+ * @property int|null $parent_id
  * @property int $participant_count
  * @property \Illuminate\Database\Eloquent\Collection $playlist PlaylistItem
  * @property \Illuminate\Database\Eloquent\Collection $scoreLinks ScoreLink
@@ -444,6 +445,19 @@ class Room extends Model
                 $stats = $user->dailyChallengeUserStats()->firstOrNew();
                 $stats->updateStreak(true, $this->starts_at->toImmutable()->startOfDay());
                 $stats->save();
+            }
+
+            // spotlight playlists should always be linked to one season exactly
+            if ($this->category === 'spotlight' && $this->seasons()->count() === 1 && $agg->total_score > 0) {
+                $seasonId = $this->seasons()->first()->getKey();
+
+                $seasonScore = $user->seasonScores()
+                    ->where('season_id', $seasonId)
+                    ->firstOrNew();
+
+                $seasonScore->season_id = $seasonId;
+                $seasonScore->calculate();
+                $seasonScore->save();
             }
 
             return $scoreLink;

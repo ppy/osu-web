@@ -10,6 +10,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property bool $finalised
@@ -22,6 +23,11 @@ class Season extends Model
     protected $casts = [
         'finalised' => 'boolean',
     ];
+
+    public function scopeActive($query)
+    {
+        return $query->where('finalised', false);
+    }
 
     public static function latestOrId($id)
     {
@@ -43,6 +49,27 @@ class Season extends Model
         return $this->finalised
             ? $this->rooms->max('ends_at')
             : null;
+    }
+
+    public function scoreFactors(): HasMany
+    {
+        return $this->hasMany(SeasonScoreFactor::class);
+    }
+
+    public function scoreFactorsOrderedForCalculation(): array
+    {
+        return cache_remember_mutexed(
+            "score_factors:{$this->id}",
+            $GLOBALS['cfg']['osu']['seasons']['factors_cache_duration'],
+            [],
+            function () {
+                return $this->scoreFactors()
+                    ->orderByDesc('factor')
+                    ->get()
+                    ->pluck('factor')
+                    ->toArray();
+            }
+        );
     }
 
     public function startDate(): ?Carbon
