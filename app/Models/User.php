@@ -1359,7 +1359,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->belongsTo(Country::class, 'country_acronym');
     }
 
-    public function seasonScores()
+    public function seasonScores(): HasMany
     {
         return $this->hasMany(UserSeasonScore::class);
     }
