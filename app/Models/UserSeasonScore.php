@@ -44,7 +44,7 @@ class UserSeasonScore extends Model
                 ->first()
                 ?->total_score;
 
-            if ($totalScore === null && $totalScoreChild == null) {
+            if ($totalScore === null && $totalScoreChild === null) {
                 continue;
             }
 
