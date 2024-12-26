@@ -30,7 +30,8 @@ class UserSeasonScoresRecalculate extends Command
         }
     }
 
-    protected function recalculate(Season $season) {
+    protected function recalculate(Season $season)
+    {
         $scoreUserIds = UserScoreAggregate::whereIn('room_id', $season->rooms->pluck('id'))
             ->select('user_id')
             ->get()
