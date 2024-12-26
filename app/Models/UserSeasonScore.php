@@ -8,7 +8,6 @@ namespace App\Models;
 use App\Exceptions\InvariantException;
 use App\Models\Multiplayer\UserScoreAggregate;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\DB;
 
 /**
  * @property int $season_id
@@ -22,7 +21,6 @@ class UserSeasonScore extends Model
 
     protected $primaryKey = ':composite';
     protected $primaryKeys = ['user_id', 'season_id'];
-
 
     public function calculate(): void
     {
