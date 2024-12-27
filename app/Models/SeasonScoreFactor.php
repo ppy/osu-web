@@ -5,6 +5,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 /**
  * @property int $id
  * @property float $factor
@@ -12,5 +14,7 @@ namespace App\Models;
  */
 class SeasonScoreFactor extends Model
 {
+    use HasFactory;
+
     public $timestamps = false;
 }
