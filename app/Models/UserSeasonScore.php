@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $season_id
- * @property int $total_score
+ * @property float $total_score
  * @property int $user_id
  */
 class UserSeasonScore extends Model

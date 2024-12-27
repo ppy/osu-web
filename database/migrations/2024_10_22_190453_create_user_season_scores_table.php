@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('user_season_scores', function (Blueprint $table) {
             $table->bigInteger('user_id')->unsigned();
             $table->integer('season_id')->unsigned();
-            $table->integer('total_score');
+            $table->float('total_score');
 
             $table->primary(['user_id', 'season_id']);
             $table->index('total_score');
