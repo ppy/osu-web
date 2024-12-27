@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Models\Multiplayer\UserScoreAggregate;
@@ -15,7 +17,7 @@ class UserSeasonScoresRecalculate extends Command
     protected $signature = 'user-season-scores:recalculate {--season-id=}';
     protected $description = 'Recalculate user scores for all active seasons or a specified season.';
 
-    public function handle()
+    public function handle(): void
     {
         $seasonId = $this->option('season-id');
 
@@ -30,7 +32,7 @@ class UserSeasonScoresRecalculate extends Command
         }
     }
 
-    protected function recalculate(Season $season)
+    protected function recalculate(Season $season): void
     {
         $scoreUserIds = UserScoreAggregate::whereIn('room_id', $season->rooms->pluck('id'))
             ->select('user_id')
