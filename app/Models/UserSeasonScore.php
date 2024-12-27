@@ -28,9 +28,16 @@ class UserSeasonScore extends Model
             ->where('user_id', $this->user_id)
             ->get();
 
+        $factors = $this->season->scoreFactorsOrderedForCalculation();
+        $parentRooms = $this->season->rooms->where('parent_id', null);
+
+        if ($parentRooms->count() > count($factors)) {
+            throw new InvariantException(osu_trans('rankings.seasons.validation.not_enough_factors'));
+        }
+
         $scores = [];
 
-        foreach ($this->season->rooms->where('parent_id', null) as $room) {
+        foreach ($parentRooms as $room) {
             $totalScore = $userScores->where('room_id', $room->getKey())
                 ->first()
                 ?->total_score;
@@ -53,13 +60,7 @@ class UserSeasonScore extends Model
 
         rsort($scores);
 
-        $factors = $this->season->scoreFactorsOrderedForCalculation();
         $scoreCount = count($scores);
-
-        if ($scoreCount > count($factors)) {
-            throw new InvariantException(osu_trans('rankings.seasons.validation.not_enough_factors'));
-        }
-
         $total = 0;
 
         for ($i = 0; $i < $scoreCount; $i++) {
