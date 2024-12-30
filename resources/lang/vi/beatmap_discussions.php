@@ -68,10 +68,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
-        'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'checking' => 'Đang kiểm tra cập nhật...',
+        'has_updates' => 'Cuộc thảo luận có cập nhật, nhấn để làm mới.',
+        'no_updates' => 'Không có cập nhật mới.',
+        'updating' => 'Đang cập nhật...',
     ],
 
     'reply' => [

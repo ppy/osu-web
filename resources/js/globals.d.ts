@@ -35,16 +35,8 @@ interface Window {
 }
 // #endregion
 
-// #region interfaces for using process.env
-interface Process {
-  env: ProcessEnv;
-}
-
-interface ProcessEnv {
-  [key: string]: string | undefined;
-}
-
-declare const process: Process;
+// #region defined through webpack DefinePlugin
+declare const docsUrl: string;
 // #endregion
 
 // our helpers

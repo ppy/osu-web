@@ -201,6 +201,7 @@ return [
             'profile' => 'Мој профил',
             'scoring_mode_toggle' => 'Класичан изглед резултата',
             'scoring_mode_toggle_tooltip' => '',
+            'team' => '',
         ],
     ],
 

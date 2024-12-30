@@ -4,6 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Nabigong i-update ang boto',
@@ -16,7 +20,7 @@ return [
         'delete' => 'tanggalin',
         'deleted' => 'Tinanggal ni :editor :delete_time.',
         'deny_kudosu' => 'itanggi ang kudosu',
-        'edit' => 'I-edit',
+        'edit' => 'baguhin',
         'edited' => 'Huling na-edit ni :editor :update_time.',
         'guest' => 'Guest difficulty ni :user',
         'kudosu_denied' => 'Natanggi sa pagtamo ng kudosu.',

@@ -201,6 +201,7 @@ return [
             'profile' => 'Profil Saya',
             'scoring_mode_toggle' => 'Perhitungan skor klasik',
             'scoring_mode_toggle_tooltip' => 'Sesuaikan nilai skor untuk lebih menyerupai perhitungan skor klasik yang tidak memiliki batas',
+            'team' => '',
         ],
     ],
 

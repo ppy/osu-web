@@ -62,7 +62,7 @@ return [
 
     'beatmap_tag' => [
         'store' => [
-            'no_score' => '',
+            'no_score' => 'Du musst einen Score auf einer Beatmap erreichen, um einen Tag hinzuzufügen.',
         ],
     ],
 
@@ -178,7 +178,7 @@ return [
 
     'room' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'Nur der Raumeigentümer kann den Raum schließen.',
         ],
     ],
 

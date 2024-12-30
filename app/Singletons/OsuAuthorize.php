@@ -29,6 +29,7 @@ use App\Models\Multiplayer\Room;
 use App\Models\OAuth\Client;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Solo;
+use App\Models\Team;
 use App\Models\Traits\ReportableInterface;
 use App\Models\User;
 use App\Models\UserContestEntry;
@@ -47,9 +48,10 @@ class OsuAuthorize
 
         $set ??= new Ds\Set([
             'ContestJudge',
-            'IsOwnClient',
             'IsNotOAuth',
+            'IsOwnClient',
             'IsSpecialScope',
+            'TeamPart',
             'UserUpdateEmail',
         ]);
 
@@ -617,8 +619,10 @@ class OsuAuthorize
             return $prefix.'owner';
         }
 
+        $beatmapset->loadMissing('beatmaps.beatmapOwners');
+
         foreach ($beatmapset->beatmaps as $beatmap) {
-            if ($userId === $beatmap->user_id) {
+            if ($beatmap->isOwner($user)) {
                 return $prefix.'owner';
             }
         }
@@ -1024,7 +1028,7 @@ class OsuAuthorize
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function checkChatChannelJoin(?User $user, Channel $channel): string
+    public function checkChatChannelJoin(?User $user, Channel $channel): ?string
     {
         $prefix = 'chat.';
 
@@ -1036,13 +1040,9 @@ class OsuAuthorize
 
         $this->ensureCleanRecord($user, $prefix);
 
-        // This check is only for when joining the channel directly; joining via the Room
-        // will always add the user to the channel.
+        // joining multiplayer room is done through room endpoint
         if ($channel->isMultiplayer()) {
-            $room = Room::hasParticipated($user)->find($channel->room_id);
-            if ($room !== null) {
-                return 'ok';
-            }
+            return null;
         }
 
         // allow joining of 'tournament' matches (for lazer/tournament client)
@@ -1903,6 +1903,29 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    public function checkTeamPart(?User $user, Team $team): ?string
+    {
+        $this->ensureLoggedIn($user);
+
+        $prefix = 'team.part.';
+
+        if ($team->leader_id === $user->getKey()) {
+            return $prefix.'is_leader';
+        }
+        if ($team->getKey() !== $user?->team?->getKey()) {
+            return $prefix.'not_member';
+        }
+
+        return 'ok';
+    }
+
+    public function checkTeamUpdate(?User $user, Team $team): ?string
+    {
+        $this->ensureLoggedIn($user);
+
+        return $team->leader_id === $user->getKey() ? 'ok' : null;
     }
 
     public function checkUserGroupEventShowActor(?User $user, UserGroupEvent $event): string

@@ -94,7 +94,7 @@ const plugins = [
     ReactDOM: 'react-dom',
   }),
   new webpack.DefinePlugin({
-    'process.env.DOCS_URL': JSON.stringify(process.env.DOCS_URL || 'https://docs.ppy.sh'),
+    docsUrl: JSON.stringify(process.env.DOCS_URL ?? 'https://docs.ppy.sh'),
   }),
   new webpack.IgnorePlugin({
     // don't add moment locales to bundle.

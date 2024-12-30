@@ -5,7 +5,7 @@
 
 return [
     'confirmation' => '確定？',
-    'confirmation_unsaved' => '未被修改的將不會保存。你確定嗎？',
+    'confirmation_unsaved' => '未儲存的變更將會遺失。您確定嗎？',
     'saved' => '已儲存',
 
     'array_and' => [
@@ -22,6 +22,7 @@ return [
         'admin' => '管理員',
         'authorise' => '授權',
         'authorising' => '授權中',
+        'back' => '',
         'back_to_previous' => '返回到上一個位置',
         'back_to_top' => '返回頂部',
         'cancel' => '取消',
@@ -39,9 +40,9 @@ return [
         'pin' => '置頂',
         'post' => '發表',
         'read_more' => '查看詳情',
-        'refresh' => '刷新',
+        'refresh' => '重新整理',
         'reply' => '回覆',
-        'reply_reopen' => '回覆並重新打開',
+        'reply_reopen' => '回覆並重新開啟',
         'reply_resolve' => '回覆並標記為已解決',
         'reset' => '重設',
         'restore' => '復原',
@@ -110,7 +111,7 @@ return [
     ],
 
     'dropzone' => [
-        'target' => '拉到此處以上傳',
+        'target' => '拖曳至此以上傳',
     ],
 
     'input' => [
@@ -158,7 +159,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => '您已以 :user 的身分登入。 :logout_link',
-        'logout_link' => '點擊此處以不同帳號登入。',
+        '_' => '您已登入為 :user。:logout_link。',
+        'logout_link' => '按這裡以不同帳號登入。',
     ],
 ];

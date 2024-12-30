@@ -19,6 +19,7 @@ return [
 
         'errors' => [
             'duration_too_long' => 'Per ilga trūkmė.',
+            'name_too_long' => '',
         ],
 
         'status' => [

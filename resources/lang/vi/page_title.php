@@ -108,6 +108,10 @@ return [
         'seasons_controller' => [
             '_' => 'xếp hạng',
         ],
+        'teams_controller' => [
+            '_' => '',
+            'show' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'giải đấu',
         ],

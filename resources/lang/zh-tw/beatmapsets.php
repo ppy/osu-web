@@ -158,7 +158,7 @@ return [
 
             'buttons' => [
                 'disable' => '關閉警告',
-                'listing' => '圖譜列表',
+                'listing' => '圖譜清單',
                 'show' => '顯示',
             ],
         ],
@@ -191,7 +191,7 @@ return [
                 'country' => '您的所在地玩家尚未上傳成績！',
                 'friend' => '您的好友尚未上傳成績！',
                 'global' => '沒有任何玩家上傳過成績，來挑戰嗎？',
-                'loading' => '加載分數中...',
+                'loading' => '正在載入分數...',
                 'unranked' => 'Unranked 譜面',
             ],
             'score' => [
@@ -205,7 +205,7 @@ return [
         ],
 
         'stats' => [
-            'cs' => '縮圈大小',
+            'cs' => '圓圈大小',
             'cs-mania' => '鍵位數量',
             'drain' => '扣血速度',
             'accuracy' => '準確率',
@@ -219,7 +219,7 @@ return [
             'user-rating' => '玩家評價',
             'rating-spread' => '評分情況',
             'nominations' => '提名',
-            'playcount' => '遊玩次数',
+            'playcount' => '遊玩次數',
         ],
 
         'status' => [

@@ -67,10 +67,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
-        'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'checking' => 'Проверка...',
+        'has_updates' => 'Появились новые ответы. Нажмите для обновления.',
+        'no_updates' => 'Нет новых ответов.',
+        'updating' => 'Обновление...',
     ],
 
     'reply' => [

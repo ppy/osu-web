@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import FlagCountry from 'components/flag-country';
+import FlagTeam from 'components/flag-team';
 import Mod from 'components/mod';
 import ScorePin from 'components/score-pin';
 import ScoreValue from 'components/score-value';
@@ -80,19 +81,30 @@ export default class TopCard extends React.PureComponent<Props> {
                 />
               </div>
 
-              <a
-                className='u-hover'
-                href={route('rankings', {
-                  country: this.props.score.user.country_code,
-                  mode: ruleset,
-                  type: 'performance',
-                })}
-              >
-                <FlagCountry
-                  country={this.props.score.user.country}
-                  modifiers='flat'
-                />
-              </a>
+              <div className='beatmap-score-top__flags'>
+                <a
+                  className='u-hover'
+                  href={route('rankings', {
+                    country: this.props.score.user.country_code,
+                    mode: ruleset,
+                    type: 'performance',
+                  })}
+                >
+                  <FlagCountry
+                    country={this.props.score.user.country}
+                    modifiers='flat'
+                  />
+                </a>
+
+                {this.props.score.user.team != null &&
+                  <a
+                    className='u-hover'
+                    href={route('teams.show', { team: this.props.score.user.team.id })}
+                  >
+                    <FlagTeam team={this.props.score.user.team} />
+                  </a>
+                }
+              </div>
             </div>
           </div>
 

@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => '',
-        'top_10p' => '',
-        'top_50p' => '',
+        'top_10p' => 'Topp 10% resultat',
+        'top_50p' => 'Topp 50% resultat',
     ],
 
     'filter' => [
@@ -36,7 +36,7 @@ return [
     'type' => [
         'charts' => 'i rampljuset',
         'country' => 'land',
-        'daily_challenge' => '',
+        'daily_challenge' => 'daglig utmaning',
         'kudosu' => 'kudosu',
         'multiplayer' => 'flerspelarläge',
         'performance' => 'prestation',

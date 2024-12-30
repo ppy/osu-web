@@ -11,7 +11,7 @@ return [
     ],
 
     'builds' => [
-        'users_online' => ':count_delimited 名用戶上線',
+        'users_online' => ':count_delimited 位使用者在線上|:count_delimited 位使用者在線上',
     ],
 
     'entry' => [

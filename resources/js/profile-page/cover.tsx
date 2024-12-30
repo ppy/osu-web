@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import FlagCountry from 'components/flag-country';
+import FlagTeam from 'components/flag-team';
 import { Spinner } from 'components/spinner';
 import UserAvatar from 'components/user-avatar';
 import UserGroupBadges from 'components/user-group-badges';
@@ -87,10 +88,17 @@ export default class Cover extends React.Component<Props> {
                   className='profile-info__flag'
                   href={route('rankings', { country: this.props.user.country.code, mode: this.props.currentMode, type: 'performance' })}
                 >
-                  <span className='profile-info__flag-flag'>
-                    <FlagCountry country={this.props.user.country} />
-                  </span>
+                  <FlagCountry country={this.props.user.country} />
                   <span className='profile-info__flag-text'>{this.props.user.country.name}</span>
+                </a>
+              }
+              {this.props.user.team != null &&
+                <a
+                  className='profile-info__flag'
+                  href={route('teams.show', { team: this.props.user.team.id })}
+                >
+                  <FlagTeam team={this.props.user.team} />
+                  <span className='profile-info__flag-text'>{this.props.user.team.name}</span>
                 </a>
               }
               <div className='profile-info__icons profile-info__icons--flag-inline'>

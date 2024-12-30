@@ -41,7 +41,7 @@ const ItemRow = observer(({ beatmap }: { beatmap: BeatmapJson }) => (
     className='beatmaps-popup-item'
     href={route('beatmaps.show', { beatmap: beatmap.id })}
   >
-    <BeatmapListItem beatmap={beatmap} mapper={null} />
+    <BeatmapListItem beatmap={beatmap} showOwners={false} />
   </a>
 ));
 
