@@ -18,8 +18,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class UserSeasonScore extends Model
 {
-    public $timestamps = false;
     public $incrementing = false;
+    public $timestamps = false;
 
     protected $primaryKey = ':composite';
     protected $primaryKeys = ['user_id', 'season_id'];
