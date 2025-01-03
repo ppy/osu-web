@@ -17,7 +17,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('multiplayer_rooms', function (Blueprint $table) {
-            $table->bigInteger('parent_id')->nullable()->unique();
+            $table->bigInteger('parent_id')
+                ->unsigned()
+                ->nullable()
+                ->unique();
         });
     }
 
