@@ -78,15 +78,18 @@ class Team extends Model
 
     public function delete()
     {
-        $ret = parent::delete();
+        $this->header()->delete();
+        $this->logo()->delete();
 
-        if ($ret) {
-            $this->header()->delete();
-            $this->logo()->delete();
-            $this->members()->delete();
-        }
+        return $this->getConnection()->transaction(function () {
+            $ret = parent::delete();
 
-        return $ret;
+            if ($ret) {
+                $this->members()->delete();
+            }
+
+            return $ret;
+        });
     }
 
     public function header(): Uploader
