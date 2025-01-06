@@ -23,14 +23,14 @@ return new class extends Migration
             $table->string('ip', 100)->default('');
             $table->timestamp('date')->useCurrent();
 
-            $table->index('user_id');
-            $table->index('date');
-            $table->index('ip');
+            $table->index('user_id', 'user_id');
+            $table->index('date', 'date');
+            $table->index('ip', 'ip');
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('teams');
+        Schema::dropIfExists('osu_logins');
     }
 };
