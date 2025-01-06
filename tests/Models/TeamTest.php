@@ -23,7 +23,10 @@ class TeamTest extends TestCase
 
         $this->expectCountChange(fn () => Team::count(), -1);
         $this->expectCountChange(fn () => TeamMember::count(), -2);
+        $this->expectCountChange(fn () => $otherTeam->members()->count(), 0);
 
         $team->fresh()->delete();
+
+        $this->assertNotNull($otherTeam->fresh());
     }
 }
