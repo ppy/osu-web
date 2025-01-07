@@ -10,11 +10,18 @@ export default class ChangelogChartLoader
     $(window).on 'resize', @resize
     $(document).on 'turbo:load', @initialize
 
-  initialize: =>
-    return if !@container[0]?
 
-    @container[0]._chart = new ChangelogChart @container[0]
-    @container[0]._chart.loadData()
+  initialize: =>
+    container = @container[0]
+
+    return unless container?
+
+    # reset existing chart
+    container.innerHTML = ''
+
+    container._chart = new ChangelogChart container
+    container._chart.loadData()
+
 
   resize: =>
     @container[0]?._chart.resize()
