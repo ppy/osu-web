@@ -4,24 +4,22 @@
 import ChangelogChart from 'charts/changelog-chart'
 
 export default class ChangelogChartLoader
-  container: document.getElementsByClassName('js-changelog-chart')
-
   constructor: ->
     $(window).on 'resize', @resize
     $(document).on 'turbo:load', @initialize
 
 
   initialize: =>
-    container = @container[0]
+    @container = document.querySelector('.js-changelog-chart')
 
-    return unless container?
+    return unless @container?
 
     # reset existing chart
-    container.innerHTML = ''
+    @container.innerHTML = ''
 
-    container._chart = new ChangelogChart container
-    container._chart.loadData()
+    @container._chart = new ChangelogChart @container
+    @container._chart.loadData()
 
 
   resize: =>
-    @container[0]?._chart.resize()
+    @container?._chart.resize()
