@@ -42,7 +42,9 @@ COPY chromium /usr/bin/
 
 WORKDIR /app
 
-RUN groupadd osuweb && useradd -g osuweb -d /app/.docker osuweb
-
-ENTRYPOINT ["/app/docker/development/entrypoint.sh"]
-CMD ["octane"]
+COPY entrypoint.sh /entrypoint
+ARG GOSU_VERSION=1.17
+ARG SETPRIV_VERSION=2.40.1
+ARG UTIL_LINUX_VERSION=2.39.3
+RUN chmod +x /entrypoint && /entrypoint --setup
+ENTRYPOINT ["/entrypoint", "--"]
