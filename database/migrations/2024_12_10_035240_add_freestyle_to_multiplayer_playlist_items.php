@@ -19,7 +19,6 @@ return new class extends Migration
         Schema::table('multiplayer_playlist_items', function (Blueprint $table) {
             $table->boolean('freestyle')->after('required_mods')->default(false);
         });
-
     }
 
     /**
