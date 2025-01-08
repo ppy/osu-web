@@ -2,7 +2,7 @@
 # Source: https://github.com/AJGranowski/docker-user-mirror
 # License: MIT
 set -eC;
-VERSION='0.0.19-072e903';
+VERSION='0.0.20-7d4d3c6';
 
 # Create container(s) and return the container ID(s).
 container_create() {

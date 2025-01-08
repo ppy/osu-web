@@ -3,8 +3,9 @@
 # License: MIT
 set -eC;
 
-VERSION='0.0.19-072e903';
+VERSION='0.0.20-7d4d3c6';
 exec 3>/dev/null;
+exec 4>/dev/null;
 
 check_gosu() {
     command -v gosu && \
@@ -124,16 +125,15 @@ version_to_release_tag() {
 # Parse options.
 while [ $# -gt 0 ]; do
     case $1 in
-        --debug)
-            exec 3>&1;
-            exec 4>&2;
-            ;;
         --setup)
-            exec 3>&1;
             o_setup=true;
             ;;
         --update)
             o_update=true;
+            ;;
+        --verbose)
+            exec 3>&1;
+            exec 4>&2;
             ;;
         --version)
             echo "Version: ${VERSION}";
@@ -286,7 +286,7 @@ else
 
     # Set the ownership of a set of items to the user.
     if [ -n "$CHOWN_LIST" ]; then
-        echo "$CHOWN_LIST" | xargs chown -c "$HOST_MAPPED_UID:$HOST_MAPPED_GID" >&3 2>&4 | true;
+        echo "$CHOWN_LIST" | xargs chown -c "$HOST_MAPPED_UID:$HOST_MAPPED_GID" >&3 2>&4 || true;
     fi
 
     # Execute using $HOST_MAPPED_UID.
