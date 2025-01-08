@@ -182,9 +182,10 @@ class ScoresController extends BaseController
         $user = \Auth::user();
         $request = \Request::instance();
 
-        $buildId = ClientCheck::parseToken($request)['buildId'];
-
-        $scoreToken = $room->startPlay($user, $playlistItem, $buildId, $request->all());
+        $scoreToken = $room->startPlay($user, $playlistItem, [
+            ...$request->all(),
+            'build_id' => ClientCheck::parseToken($request)['buildId'],
+        ]);
 
         return json_item($scoreToken, new ScoreTokenTransformer());
     }

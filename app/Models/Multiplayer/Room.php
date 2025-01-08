@@ -658,13 +658,13 @@ class Room extends Model
         $this->save();
     }
 
-    public function startPlay(User $user, PlaylistItem $playlistItem, int $buildId, array $rawParams): ScoreToken
+    public function startPlay(User $user, PlaylistItem $playlistItem, array $rawParams): ScoreToken
     {
         priv_check_user($user, 'MultiplayerScoreSubmit', $this)->ensureCan();
 
         $this->assertValidStartPlay($user, $playlistItem);
 
-        return $this->getConnection()->transaction(function () use ($buildId, $playlistItem, $rawParams, $user) {
+        return $this->getConnection()->transaction(function () use ($playlistItem, $rawParams, $user) {
             $agg = UserScoreAggregate::new($user, $this);
             if ($agg->wasRecentlyCreated) {
                 $this->incrementInstance('participant_count');
@@ -678,7 +678,7 @@ class Room extends Model
             return ScoreToken::create([
                 'beatmap_hash' => get_string($rawParams['beatmap_hash'] ?? null),
                 'beatmap_id' => $playlistItem->beatmap_id,
-                'build_id' => $buildId,
+                'build_id' => $rawParams['build_id'],
                 'playlist_item_id' => $playlistItem->getKey(),
                 'ruleset_id' => $playlistItem->ruleset_id,
                 'user_id' => $user->getKey(),

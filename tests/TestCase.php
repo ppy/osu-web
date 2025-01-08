@@ -129,12 +129,10 @@ class TestCase extends BaseTestCase
 
     protected static function roomStartPlay(User $user, PlaylistItem $playlistItem): ScoreToken
     {
-        return $playlistItem->room->startPlay(
-            $user,
-            $playlistItem,
-            0,
-            ['beatmap_hash' => $playlistItem->beatmap->checksum]
-        );
+        return $playlistItem->room->startPlay($user, $playlistItem, [
+            'beatmap_hash' => $playlistItem->beatmap->checksum,
+            'build_id' => 0,
+        ]);
     }
 
     protected function setUp(): void

@@ -30,11 +30,9 @@ class ScoreTokensController extends BaseController
         $user = auth()->user();
         $request = \Request::instance();
 
-        $buildId = ClientCheck::parseToken($request)['buildId'];
-
         $scoreToken = new ScoreToken([
             'beatmap_id' => $beatmap->getKey(),
-            'build_id' => $buildId,
+            'build_id' => ClientCheck::parseToken($request)['buildId'],
             'user_id' => $user->getKey(),
             ...get_params($request->all(), null, [
                 'beatmap_hash',
