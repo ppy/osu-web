@@ -126,6 +126,7 @@ while [ $# -gt 0 ]; do
     case $1 in
         --debug)
             exec 3>&1;
+            exec 4>&2;
             ;;
         --setup)
             exec 3>&1;
@@ -285,7 +286,7 @@ else
 
     # Set the ownership of a set of items to the user.
     if [ -n "$CHOWN_LIST" ]; then
-        echo "$CHOWN_LIST" | xargs chown -c "$HOST_MAPPED_UID:$HOST_MAPPED_GID" >&3 | true;
+        echo "$CHOWN_LIST" | xargs chown -c "$HOST_MAPPED_UID:$HOST_MAPPED_GID" >&3 2>&4 | true;
     fi
 
     # Execute using $HOST_MAPPED_UID.
