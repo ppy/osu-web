@@ -61,6 +61,7 @@ fi
 
 if [ ! -f storage/oauth-public.key ]; then
     echo "Generating passport key pair"
+    touch storage/oauth-public.key
     _run artisan passport:keys
 fi
 
