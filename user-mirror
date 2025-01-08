@@ -1,0 +1,372 @@
+#!/bin/sh
+# Source: https://github.com/AJGranowski/docker-user-mirror
+# License: MIT
+set -eC;
+VERSION='0.0.18-73f6d42';
+
+# Create container(s) and return the container ID(s).
+container_create() {
+    if [ -n "$REPLACED_COMMAND" ]; then
+        "$@";
+    elif [ -n "$COMPOSE_FILES" ]; then
+        $COMPOSE_ENGINE --progress quiet --file "$COMPOSE_FILES" create >/dev/null 2>&1;
+        $COMPOSE_ENGINE --progress quiet --file "$COMPOSE_FILES" ps -a --status created --format '{{.ID}}';
+    else
+        $COMPOSE_ENGINE --progress quiet create >/dev/null 2>&1;
+        $COMPOSE_ENGINE --progress quiet ps -a --status created --format '{{.ID}}';
+    fi
+}
+
+# Download a release file.
+# Args: release filename, output filename, release tag (defaults to latest release it not provided)
+download_file() {
+    if [ $# -eq 3 ]; then
+        curl --fail -Ls -o "$2" "https://github.com/AJGranowski/docker-user-mirror/releases/download/$3/$1";
+    elif [ $# -eq 2 ]; then
+        curl --fail -Ls -o "$2" "https://github.com/AJGranowski/docker-user-mirror/releases/latest/download/$1";
+    else
+        echo 'Expected at least two arguments.' >&2;
+        return 1;
+    fi
+}
+
+# Query GitHub for the latest release tag.
+get_latest_release_tag() {
+    response="$(curl -Ls -w '%{http_code}' 'https://api.github.com/repos/AJGranowski/docker-user-mirror/releases/latest')";
+    case "$(echo "$response" | tail -1)" in
+        2*)
+            echo "$response" | \
+            grep -E '^\s*"tag_name":' | \
+            sed -E 's/.*"tag_name": "([^"]+)".*/\1/g'
+        ;;
+        *) false;;
+    esac
+}
+
+# Get the version ID of a release.
+# Args: release tag (defaults to latest release it not provided)
+get_release_version() {
+    if [ $# -eq 0 ]; then
+        response="$(curl -Ls -w '\n%{http_code}' 'https://github.com/AJGranowski/docker-user-mirror/releases/latest/download/version')";
+    else
+        response="$(curl -Ls -w '\n%{http_code}' "https://github.com/AJGranowski/docker-user-mirror/releases/download/$1/version")";
+    fi
+
+    case "$(echo "$response" | tail -1)" in
+        2*)
+            echo "$response" | head -1
+            ;;
+        *) false;;
+    esac
+}
+
+# Create host items and populate chown list
+# Args: container ID (retrieved from container_create)
+prepare_environment() {
+    # Create a list of all read/write mount destinations so they can be chown'd in the container at runtime.
+    if [ -z "$CHOWN_LIST" ]; then
+        CHOWN_LIST="$($CONTAINER_ENGINE inspect --format '{{range .Mounts}}{{if .RW}}"{{print .Destination}}" {{end}}{{end}}' "$1")";
+    else
+        CHOWN_LIST="$CHOWN_LIST $($CONTAINER_ENGINE inspect --format '{{range .Mounts}}{{if .RW}}"{{print .Destination}}" {{end}}{{end}}' "$1")";
+    fi
+
+    # Loop through bind mounts that have a non-empty mode (`create_host_path: true` sets this), and mkdir those source paths on the host.
+    while read create_path; do
+        if [ -z "$create_path" ]; then
+            break;
+        fi
+
+        mkdir -p "$create_path" >/dev/null 2>&1 || true;
+    done <<EOF
+$($CONTAINER_ENGINE inspect --format '{{range .Mounts}}{{if and (eq .Type "bind") .Mode}}{{println .Source}}{{end}}{{end}}' "$1")
+EOF
+    # Loop though every pair of bind mounts and all mounts to create nested directories and files on the host.
+    #   (for example, a volume mount within a bind mount will need to be created on the host relative to the bind mount)
+    while read edge_source; do
+        if [ -z "$edge_source" ]; then
+            break;
+        fi
+
+        read edge_destination;
+
+        while read node_source; do
+            if [ -z "$node_source" ]; then
+                break;
+            fi
+
+            read node_destination;
+
+            # Find replace
+            resolved_node_destination="$(echo "$node_destination" | sed -e "s|^${edge_destination}/|${edge_source}/|g")";
+
+            if [ "$resolved_node_destination" = "$node_destination" ]; then
+                # Skip this pair if no resolution was made.
+                continue;
+            fi
+
+            if [ -f "$node_source" ]; then
+                mkdir -p "$(dirname "$resolved_node_destination")" >/dev/null 2>&1 || true;
+                touch "$resolved_node_destination";
+            else
+                mkdir -p "$resolved_node_destination" >/dev/null 2>&1 || true;
+            fi
+        done <<EOF
+$($CONTAINER_ENGINE inspect --format '{{range .Mounts}}{{println .Source}}{{println .Destination}}{{end}}' "$1")
+EOF
+
+    done <<EOF
+$($CONTAINER_ENGINE inspect --format '{{range .Mounts}}{{if eq .Type "bind"}}{{println .Source}}{{println .Destination}}{{end}}{{end}}' "$1")
+EOF
+}
+
+# Query GitHub to check if a release tag exists.
+release_tag_exists() {
+    case "$(curl -Ls -o /dev/null -w '%{http_code}' "https://api.github.com/repos/AJGranowski/docker-user-mirror/releases/tags/$1")" in
+        2*) true;;
+        *) false;;
+    esac
+}
+
+# Check for updates, and download the latest version.
+update() {
+    if ! latest_version="$(get_release_version)"; then
+        echo 'Unable to fetch the latest version. Try again in a few minutes.' >&2;
+        return 1;
+    fi
+
+    if [ "$VERSION" = "$latest_version" ]; then
+        echo 'Up to date.';
+    else
+        if ! release_tag_exists "$(version_to_release_tag)"; then
+            echo 'Critical update required!';
+            echo '    This version has been deleted, signaling either a critical bug or vulnerability. Update immediately.'
+        else
+            echo 'New update available.'
+        fi
+    fi
+
+    echo "    Current version: $VERSION";
+    echo "    Latest version:  $latest_version";
+
+    if [ "$VERSION" = "$latest_version" ]; then
+        return 0;
+    fi
+
+    if [ "$o_yes" != true ]; then
+        echo '\nInstall the update? (y/n)';
+        read yn;
+        case $yn in
+            y*) ;;
+            n*) return 0;;
+        esac
+    fi
+
+    echo "Installing update...";
+    download_file "$(basename "$0")" "${0}.tmp";
+    mv "${0}.tmp" "$0" && echo "${latest_version} installed!"; exit 0;
+}
+
+# Convert "$VERSION" to "release-**" format.
+version_to_release_tag() {
+    if [ $# -eq 0 ]; then
+        echo "$VERSION" | sed -E 's/([^-]*).*/release-\1/g'
+    else
+        echo "$1" | sed -E 's/([^-]*).*/release-\1/g'
+    fi
+}
+
+# Parse options.
+while [ $# -gt 0 ]; do
+    case $1 in
+        --docker)
+            COMPOSE_ENGINE='docker compose';
+            CONTAINER_ENGINE='docker';
+            ;;
+        --docker-compose)
+            COMPOSE_ENGINE='docker-compose';
+            CONTAINER_ENGINE='docker';
+            ;;
+        --podman)
+            COMPOSE_ENGINE='podman compose';
+            CONTAINER_ENGINE='podman';
+            ;;
+        --podman-compose)
+            COMPOSE_ENGINE='podman-compose';
+            CONTAINER_ENGINE='podman';
+            ;;
+        --update)
+            o_update=true;
+            ;;
+        --version)
+            echo "Version: ${VERSION}";
+            exit 0;
+            ;;
+        -y|--yes)
+            o_yes=true;
+            ;;
+        --)
+            shift;
+            break;
+            ;;
+        -*)
+            printf 'Unknown option %s\n' $1 >&2;
+            exit 1;
+            ;;
+        *)
+            break;
+            ;;
+    esac
+    shift;
+done
+
+if [ "$o_update" = true ]; then
+    if update; then
+        exit 0;
+    else
+        exit 1;
+    fi
+fi
+
+# Parse the command if no engine declared.
+if [ -z "$COMPOSE_ENGINE" ] || [ -z "$CONTAINER_ENGINE" ]; then
+    case $1 in
+        docker-compose)
+            COMPOSE_ENGINE='docker-compose';
+            CONTAINER_ENGINE='docker';
+            ;;
+        podman)
+            COMPOSE_ENGINE='podman compose';
+            CONTAINER_ENGINE='podman';
+            ;;
+        podman-compose)
+            COMPOSE_ENGINE='podman-compose';
+            CONTAINER_ENGINE='podman';
+            ;;
+        *)
+            COMPOSE_ENGINE='docker compose';
+            CONTAINER_ENGINE='docker';
+            ;;
+    esac
+fi
+
+# To get the arguments from a non-compose invocation, we'll change "exec" and "run" to "create", and then use that new
+#   command string to create (but not start) a container for parsing. This is a workaround for POSIX shell only having
+#   one array object (the argument list).
+COMPOSE_FILES="";
+first_iteration=true;
+search_for_replace=4;
+for arg do
+    if [ "$first_iteration" = true ]; then
+        unset first_iteration;
+        shift $#;
+    fi
+
+    if [ $search_for_replace -gt 0 ]; then
+        case $arg in
+            compose)
+                set -- "$@" "$arg";
+                search_for_replace=0;
+                ;;
+            run)
+                REPLACED_COMMAND="$arg";
+                set -- "$@" "create";
+                search_for_replace=0;
+                ;;
+            *)
+                set -- "$@" "$arg";
+                ;;
+        esac
+
+        # Decrement for non-option arguments.
+        case $arg in
+            -*)
+                ;;
+            *)
+                search_for_replace=$(($search_for_replace - 1));
+                ;;
+        esac
+    else
+        case $arg in
+            -f|--file)
+                COMPOSE_FILES="$1";
+                ;;
+        esac
+        set -- "$@" "$arg";
+    fi
+done
+
+# If Docker and not rootless, then we have some work to do.
+if [ "$CONTAINER_ENGINE" = "docker" ] && ! docker info -f '{{println .SecurityOptions}}' | grep 'rootless' 1>/dev/null; then
+    HOST_MAPPED_GROUP="$(id -gn)";
+    HOST_MAPPED_GID="$(id -g)";
+    HOST_MAPPED_USER="$(id -un)";
+    HOST_MAPPED_UID="$(id -u)";
+
+    # Loop through the containers created by this command.
+    while read temp_container_id; do
+        prepare_environment "$temp_container_id"
+
+        # Cleanup.
+        $CONTAINER_ENGINE container rm "$temp_container_id" >/dev/null 2>&1;
+    done <<EOF
+$(container_create "$@")
+EOF
+else
+    HOST_MAPPED_GROUP='root';
+    HOST_MAPPED_GID=0;
+    HOST_MAPPED_USER='root';
+    HOST_MAPPED_UID=0;
+fi
+
+# Restore the args list we may have mangled before, and insert runtime arguments.
+first_iteration=true;
+search_for_insert=4;
+for arg do
+    if [ "$first_iteration" = true ]; then
+        unset first_iteration;
+        shift $#;
+    fi
+
+    if [ $search_for_insert -gt 0 ]; then
+        case $arg in
+            create|exec|run)
+                if [ -n "$REPLACED_COMMAND" ]; then
+                    set -- "$@" "$REPLACED_COMMAND";
+                else
+                    set -- "$@" "$arg";
+                fi
+
+                set -- "$@" '-e' "HOST_MAPPED_GID=$HOST_MAPPED_GID" '-e' "HOST_MAPPED_GROUP=$HOST_MAPPED_GROUP" '-e' "HOST_MAPPED_UID=$HOST_MAPPED_UID" '-e' "HOST_MAPPED_USER=$HOST_MAPPED_USER";
+                if [ -n "$CHOWN_LIST" ]; then
+                    set -- "$@" '-e' "CHOWN_LIST=$CHOWN_LIST";
+                fi
+
+                search_for_insert=0;
+                ;;
+            *)
+                set -- "$@" "$arg";
+                ;;
+        esac
+
+        # Decrement for non-option arguments.
+        case $arg in
+            -*)
+                ;;
+            *)
+                search_for_insert=$(($search_for_insert - 1));
+                ;;
+        esac
+    else
+        set -- "$@" "$arg";
+    fi
+done
+
+export HOST_MAPPED_GROUP;
+export HOST_MAPPED_GID;
+export HOST_MAPPED_USER;
+export HOST_MAPPED_UID;
+if [ -n "$CHOWN_LIST" ]; then
+    export CHOWN_LIST;
+fi
+
+"$@";
