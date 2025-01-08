@@ -2,7 +2,7 @@
 # Source: https://github.com/AJGranowski/docker-user-mirror
 # License: MIT
 set -eC;
-VERSION='0.0.18-73f6d42';
+VERSION='0.0.19-072e903';
 
 # Create container(s) and return the container ID(s).
 container_create() {
@@ -161,8 +161,8 @@ update() {
         esac
     fi
 
-    echo "Installing update...";
-    download_file "$(basename "$0")" "${0}.tmp";
+    echo 'Installing update...';
+    download_file 'user-mirror' "${0}.tmp";
     mv "${0}.tmp" "$0" && echo "${latest_version} installed!"; exit 0;
 }
 
