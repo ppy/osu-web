@@ -21,7 +21,7 @@ x-web: &x-web
   build:
     context: ./docker/development
     dockerfile: ../../Dockerfile.development
-  entrypoint: [/entrypoint, --, osuweb, ./docker/development/run.sh]
+  entrypoint: [/entrypoint, --debug, --, osuweb, ./docker/development/run.sh]
   command: [octane]
   init: true
   volumes:
