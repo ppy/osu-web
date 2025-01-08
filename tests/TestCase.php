@@ -16,6 +16,7 @@ use App\Models\Build;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\ScoreLink;
 use App\Models\OAuth\Client;
+use App\Models\ScoreToken;
 use App\Models\User;
 use Artisan;
 use Carbon\CarbonInterface;
@@ -111,7 +112,7 @@ class TestCase extends BaseTestCase
     protected static function roomAddPlay(User $user, PlaylistItem $playlistItem, array $scoreParams): ScoreLink
     {
         return $playlistItem->room->completePlay(
-            $playlistItem->room->startPlay($user, $playlistItem, 0),
+            static::roomStartPlay($user, $playlistItem),
             [
                 'accuracy' => 0.5,
                 'beatmap_id' => $playlistItem->beatmap_id,
@@ -123,6 +124,16 @@ class TestCase extends BaseTestCase
                 'user_id' => $user->getKey(),
                 ...$scoreParams,
             ],
+        );
+    }
+
+    protected static function roomStartPlay(User $user, PlaylistItem $playlistItem): ScoreToken
+    {
+        return $playlistItem->room->startPlay(
+            $user,
+            $playlistItem,
+            0,
+            ['beatmap_hash' => $playlistItem->beatmap->checksum]
         );
     }
 

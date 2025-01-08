@@ -169,7 +169,7 @@ class ScoresControllerTest extends TestCase
         $playlistItem = PlaylistItem::factory()->create();
         $room = $playlistItem->room;
         $build = Build::factory()->create(['allow_ranking' => true]);
-        $scoreToken = $room->startPlay($user, $playlistItem, 0);
+        $scoreToken = static::roomStartPlay($user, $playlistItem);
 
         $this->withHeaders(['x-token' => static::createClientToken($build)]);
 
