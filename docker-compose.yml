@@ -2,11 +2,17 @@ x-env: &x-env
   APP_KEY: "${APP_KEY}"
   BEATMAPS_DIFFICULTY_CACHE_SERVER_URL: http://beatmap-difficulty-lookup-cache:8080
   BROADCAST_DRIVER: redis
+  CAPABILITIES: # setpriv --bounding-set options. Must be a subset of cap_add. See https://www.man7.org/linux/man-pages/man1/setpriv.1.html#OPTIONS
+  CHOWN_LIST: # Set by Docker User Mirror
   DB_CONNECTION_STRING: Server=db;Database=osu;Uid=osuweb;
   DB_HOST: db
   ES_HOST: http://elasticsearch:9200
   ES_SOLO_SCORES_HOST: http://elasticsearch:9200
   GITHUB_TOKEN: "${GITHUB_TOKEN}"
+  HOST_MAPPED_GROUP: # Set by Docker User Mirror
+  HOST_MAPPED_GID: # Set by Docker User Mirror
+  HOST_MAPPED_USER: # Set by Docker User Mirror
+  HOST_MAPPED_UID: # Set by Docker User Mirror
   NOTIFICATION_REDIS_HOST: redis
   PASSPORT_PUBLIC_KEY: "${PASSPORT_PUBLIC_KEY:-}"
   REDIS_HOST: redis
@@ -20,6 +26,13 @@ x-web: &x-web
   init: true
   volumes:
     - .:/app
+  cap_add:
+    # Minimum permissions for Docker User Mirror entrypoint:
+    - CAP_SETGID # Needed to switch from root to another user.
+    - CAP_SETUID # Needed to switch from root to another user.
+    - CAP_SETPCAP # Needed to change permissions when switching users.
+    - CAP_CHOWN # Needed to write changes to /etc/gshadow and /etc/shadow.
+    - CAP_DAC_OVERRIDE # Needed for Podman.
   environment:
     <<: *x-env
 

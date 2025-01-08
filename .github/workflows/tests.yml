@@ -103,7 +103,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Services
-        run: 'docker compose up --quiet-pull --wait
+        run: './user-mirror docker compose up --quiet-pull --wait
           beatmap-difficulty-lookup-cache
           db
           elasticsearch
