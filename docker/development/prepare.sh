@@ -12,11 +12,11 @@ if [ ! -f artisan ]; then
 fi
 
 _run() {
-    docker compose run --rm php "$@"
+    ./user-mirror docker compose run --rm php "$@"
 }
 
 _run_dusk() {
-    docker compose run --rm -e APP_ENV=dusk.local php "$@"
+    ./user-mirror docker compose run --rm -e APP_ENV=dusk.local php "$@"
 }
 
 if [ ! -f .env ]; then
@@ -73,4 +73,4 @@ if [ ! -f database/ip2asn/v6.tsv ]; then
     _run artisan ip2asn:update
 fi
 
-echo "Preparation completed. Adjust .env file if needed and run 'docker compose up' followed by running migration."
+echo "Preparation completed. Adjust .env file if needed and run './user-mirror docker compose up' followed by running migration."
