@@ -15,7 +15,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     chromium-driver \
     default-mysql-client \
     git \
-    gosu \
     jhead \
     nodejs \
     php8.3 \
@@ -47,4 +46,5 @@ ARG GOSU_VERSION=1.17
 ARG SETPRIV_VERSION=2.40.1
 ARG UTIL_LINUX_VERSION=2.39.3
 RUN chmod +x /entrypoint && /entrypoint --debug --setup
-ENTRYPOINT ["/entrypoint", "--"]
+ENTRYPOINT ["/entrypoint", "--", "/app/docker/development/entrypoint.sh"]
+CMD ["octane"]

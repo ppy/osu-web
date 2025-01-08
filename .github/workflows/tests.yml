@@ -103,13 +103,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Services
-        run: './user-mirror docker compose up --wait
+        run: './user-mirror docker compose up --quiet-pull --wait
           beatmap-difficulty-lookup-cache
           db
           elasticsearch
           notification-server
           redis
-          score-indexer'
+          score-indexer
+          '
 
       - name: Setup node.js
         uses: actions/setup-node@v4
