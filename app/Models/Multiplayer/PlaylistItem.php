@@ -16,12 +16,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property json|null $allowed_mods
  * @property Beatmap $beatmap
  * @property int $beatmap_id
- * @property int|null $beatmapset_id
  * @property \Carbon\Carbon|null $created_at
  * @property int $id
  * @property int $owner_id
  * @property int|null $playlist_order
  * @property json|null $required_mods
+ * @property bool $freestyle
  * @property Room $room
  * @property int $room_id
  * @property int|null $ruleset_id
@@ -65,7 +65,7 @@ class PlaylistItem extends Model
             $obj->$field = $value;
         }
 
-        $obj->beatmapset_id = get_int($json['beatmapset_id'] ?? null);
+        $obj->freestyle = get_bool($json['freestyle'] ?? false);
         $obj->max_attempts = get_int($json['max_attempts'] ?? null);
 
         $modsHelper = app('mods');

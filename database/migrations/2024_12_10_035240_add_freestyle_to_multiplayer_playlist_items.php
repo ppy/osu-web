@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('multiplayer_playlist_items', function (Blueprint $table) {
-            $table->unsignedMediumInteger('beatmapset_id')->nullable()->after('beatmap_id');
+            $table->boolean('freestyle')->after('required_mods')->default(false);
         });
 
     }
@@ -23,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('multiplayer_playlist_items', function (Blueprint $table) {
-            $table->dropColumn('beatmapset_id');
+            $table->dropColumn('freestyle');
         });
     }
 };

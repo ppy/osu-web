@@ -185,15 +185,16 @@ class ScoresController extends BaseController
         $request = \Request::instance();
         $params = $request->all();
 
-        if ($playlistItem->beatmapset_id === null) {
+        if ($playlistItem->freestyle) {
+            // Todo: Ensure beatmap_hash matches any beatmap from the playlist item's beatmap set.
+            // Todo: Ensure ruleset_id is valid (converts only allowed for id=0 otherwise must match beatmap playmode, and value within 0..3).
+            // Todo: Modifying the playlist item looks dodgy to me :)!
+            $playlistItem->beatmap_id = Beatmap::firstWhere('checksum', get_string($params['beatmap_hash'] ?? null))->beatmap_id;
+            $playlistItem->ruleset_id = get_int($params['ruleset_id'] ?? null);
+        } else {
             if (get_string($params['beatmap_hash'] ?? null) !== $playlistItem->beatmap->checksum) {
                 throw new InvariantException(osu_trans('score_tokens.create.beatmap_hash_invalid'));
             }
-        } else {
-            // Todo: Validate beatmap_hash param matches any checksum from the playlist item's beatmap set.
-            // Todo: Modifying the playlist item looks dodgy to me and is likely failing some internal validations.
-            $playlistItem->beatmap_id = Beatmap::firstWhere('checksum', get_string($params['beatmap_hash'] ?? null))->beatmap_id;
-            $playlistItem->ruleset_id = get_int($params['ruleset_id'] ?? null);
         }
 
         $buildId = ClientCheck::parseToken($request)['buildId'];
