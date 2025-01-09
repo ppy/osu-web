@@ -89,4 +89,6 @@ if [ ! -f database/ip2asn/v6.tsv ]; then
     _run artisan ip2asn:update
 fi
 
+./user-mirror docker compose run --rm dev
+
 echo "Preparation completed. Adjust .env file if needed and run './user-mirror docker compose up' followed by running migration."

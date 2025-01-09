@@ -38,9 +38,6 @@ services:
   php:
     <<: *x-web
     command: ['octane', '--watch']
-    depends_on:
-      assets:
-        condition: service_healthy
     deploy:
       restart_policy:
         condition: on-failure
@@ -54,14 +51,16 @@ services:
       APP_ENV: dusk.local
       OCTANE_STATE_FILE: /tmp/octane-state.json
 
+  dev:
+    <<: *x-web
+    command: ['yarn', 'dev']
+
   assets:
     <<: *x-web
     command: ['watch']
-    healthcheck:
-      test: ["CMD", "sh", "-c", "[ $(find public/assets -maxdepth 1 -mindepth 1 | wc -l) -ge 5 ]"]
-      timeout: 3s
-      start_interval: 1s
-      start_period: 20s
+    depends_on:
+      dev:
+        condition: service_completed_successfully
 
   job:
     <<: *x-web
