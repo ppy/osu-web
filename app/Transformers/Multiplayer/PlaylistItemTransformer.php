@@ -24,6 +24,7 @@ class PlaylistItemTransformer extends TransformerAbstract
             'ruleset_id' => $item->ruleset_id,
             'allowed_mods' => $item->allowed_mods,
             'required_mods' => $item->required_mods,
+            'freestyle' => $item->freestyle,
             'expired' => $item->expired,
             'owner_id' => $item->owner_id,
             'playlist_order' => $item->playlist_order,

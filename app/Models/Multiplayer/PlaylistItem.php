@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $owner_id
  * @property int|null $playlist_order
  * @property json|null $required_mods
+ * @property bool $freestyle
  * @property Room $room
  * @property int $room_id
  * @property int|null $ruleset_id
@@ -64,6 +65,7 @@ class PlaylistItem extends Model
             $obj->$field = $value;
         }
 
+        $obj->freestyle = get_bool($json['freestyle'] ?? false);
         $obj->max_attempts = get_int($json['max_attempts'] ?? null);
 
         $modsHelper = app('mods');
