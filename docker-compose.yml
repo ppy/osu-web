@@ -56,6 +56,11 @@ services:
     <<: *x-web
     command: ['job']
 
+  composer-install:
+    <<: *x-web
+    profiles: ['composer']
+    command: ['composer', 'install']
+
   testjs:
     <<: *x-web
     volumes:

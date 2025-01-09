@@ -19,21 +19,25 @@ _run_dusk() {
     docker compose run --rm -e APP_ENV=dusk.local php "$@"
 }
 
+_run_composer_install() {
+    docker compose run --rm composer-install
+}
+
 if [ ! -f .env ]; then
     echo "Copying default env file"
     cp .env.example .env
 fi
+
+docker compose build
+
+_run_composer_install
 
 if [ -n "${GITHUB_TOKEN:-}" ]; then
     _run composer config -g github-oauth.github.com "${GITHUB_TOKEN}"
     grep ^GITHUB_TOKEN= .env || echo "GITHUB_TOKEN=${GITHUB_TOKEN}" >> .env
 fi
 
-docker compose build
-
 _run yarn --network-timeout 100000 --frozen-lockfile
-
-_run composer install
 
 _run artisan dusk:chrome-driver
 
