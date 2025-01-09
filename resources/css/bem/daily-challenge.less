@@ -5,9 +5,29 @@
   background: hsl(var(--hsl-b4));
   border-radius: @border-radius-large;
   min-width: 0;
-  display: flex;
-  align-items: center;
-  padding: 3px;
+  position: relative;
+
+  &--played-today {
+    border: 2px solid @osu-colour-lime-1;
+
+    &::before {
+      .fas();
+      background-color: @osu-colour-b6;
+      border-radius: 50%;
+      color: @osu-colour-lime-1;
+      content: @fa-var-check-circle;
+      font-size: 16px;
+      position: absolute;
+      right: -8px;
+      top: -8px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    padding: 3px;
+  }
 
   &__name {
     font-size: @font-size--normal;
