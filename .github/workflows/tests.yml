@@ -106,7 +106,8 @@ jobs:
         run: |
           ./user-mirror docker compose up --wait --wait-timeout 600; \
           sleep 10 && \
-          [ $(docker compose ps --status exited --format '{{if ne .ExitCode 0}}{{.Name}}\t{{.ExitCode}}{{end}}' | awk NF | wc -l) -eq 0 ] && docker compose down
+          [ $(docker compose ps --status exited --format '{{if ne .ExitCode 0}}{{.Name}}\t{{.ExitCode}}{{end}}' | awk NF | wc -l) -eq 0 ] && \
+          docker compose down
 
   tests:
     strategy:
