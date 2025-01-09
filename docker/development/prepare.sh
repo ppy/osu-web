@@ -19,6 +19,11 @@ _run_dusk() {
     ./user-mirror docker compose run --rm -e APP_ENV=dusk.local php "$@"
 }
 
+if [ -d .env ]; then
+    echo ".env is a directory. Removing it"
+    rmdir .env
+fi
+
 if [ ! -f .env ]; then
     echo "Copying default env file"
     cp .env.example .env
@@ -42,9 +47,19 @@ if ! grep -q '^APP_KEY=.' .env; then
     _run artisan key:generate
 fi
 
+if [ -d .env.testing ]; then
+    echo ".env.testing is a directory. Removing it"
+    rmdir .env.testing
+fi
+
 if [ ! -f .env.testing ]; then
     echo "Copying default test env file"
     cp .env.testing.example .env.testing
+fi
+
+if [ -d .env.dusk.local ]; then
+    echo ".env.dusk.local is a directory. Removing it"
+    rmdir .env.dusk.local
 fi
 
 if [ ! -f .env.dusk.local ]; then
@@ -61,6 +76,7 @@ fi
 
 if [ ! -f storage/oauth-public.key ]; then
     echo "Generating passport key pair"
+    touch storage/oauth-public.key
     _run artisan passport:keys --force
 fi
 
