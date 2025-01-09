@@ -4,6 +4,7 @@
 import DailyChallengeUserStatsJson from 'interfaces/daily-challenge-user-stats-json';
 import { autorun } from 'mobx';
 import { observer } from 'mobx-react';
+import * as moment from 'moment';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { classWithModifiers, Modifiers } from 'utils/css';
@@ -122,10 +123,12 @@ export default class DailyChallenge extends React.Component<Props> {
       return null;
     }
 
+    const playedToday = this.props.stats.last_update != null && moment.utc(this.props.stats.last_update).isSame(Date.now(), 'day');
+
     return (
       <div
         ref={this.valueRef}
-        className='daily-challenge'
+        className={classWithModifiers('daily-challenge', { 'played-today': playedToday })}
         onMouseOver={this.onMouseOver}
       >
         <div className='daily-challenge__name'>
