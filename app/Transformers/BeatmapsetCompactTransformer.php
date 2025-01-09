@@ -40,6 +40,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         'ratings',
         'recent_favourites',
         'related_users',
+        'related_tags',
         'user',
     ];
 
@@ -297,6 +298,24 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         $users = User::with('userGroups')->whereIn('user_id', $userIds->toArray())->get();
 
         return $this->collection($users, new UserCompactTransformer());
+    }
+
+    public function includeRelatedTags(Beatmapset $beatmapset)
+    {
+        $beatmaps = $this->beatmaps($beatmapset);
+        $tagIdSet = new Set($beatmaps->flatMap->topTagIds()->pluck('tag_id'));
+
+        $cachedTags = app('tags');
+        $json = [];
+
+        foreach ($tagIdSet as $tagId) {
+            $tag = $cachedTags->get($tagId);
+            if ($tag !== null) {
+                $json[] = $tag;
+            }
+        }
+
+        return $this->primitive($json);
     }
 
     private function beatmaps(Beatmapset $beatmapset, ?Fractal\ParamBag $params = null): EloquentCollection
