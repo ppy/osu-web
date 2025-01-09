@@ -3,6 +3,7 @@
 
 import UserAvatar from 'components/user-avatar';
 import UserGroupBadge from 'components/user-group-badge';
+import UserLink from 'components/user-link';
 import UserGroupJson from 'interfaces/user-group-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
@@ -32,12 +33,12 @@ export class UserCard extends React.PureComponent<Props> {
               <UserAvatar modifiers='full-rounded' user={this.props.user} />
             </span>
           ) : (
-            <a
+            <UserLink
               className={`${bn}__user-link`}
-              href={route('users.show', { user: this.props.user.id })}
+              user={this.props.user}
             >
               <UserAvatar modifiers='full-rounded' user={this.props.user} />
-            </a>
+            </UserLink>
           )}
         </div>
 
@@ -49,12 +50,12 @@ export class UserCard extends React.PureComponent<Props> {
               </span>
 
             ) : (
-              <a
+              <UserLink
                 className={`${bn}__user-link`}
-                href={route('users.show', { user: this.props.user.id })}
+                user={this.props.user}
               >
                 {this.renderUsername()}
-              </a>
+              </UserLink>
             )}
             {!this.props.user.is_bot && !this.props.user.is_deleted && (
               <a
