@@ -92,23 +92,6 @@ env:
   SLACK_ENDPOINT: https://myconan.net/null/
 
 jobs:
-  docker-dev-test:
-    name: Docker Dev Test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      
-      - name: Run prepare.sh
-        run: ./docker/development/prepare.sh
-      
-      - name: Run docker compose up
-        run: |
-          ./user-mirror docker compose up --wait --wait-timeout 600; \
-          sleep 10 && \
-          [ $(docker compose ps --status exited --format '{{if ne .ExitCode 0}}{{.Name}}\t{{.ExitCode}}{{end}}' | awk NF | wc -l) -eq 0 ] && \
-          docker compose down
-
   tests:
     strategy:
       matrix:

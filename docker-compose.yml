@@ -51,16 +51,9 @@ services:
       APP_ENV: dusk.local
       OCTANE_STATE_FILE: /tmp/octane-state.json
 
-  dev:
-    <<: *x-web
-    command: ['yarn', 'dev']
-
   assets:
     <<: *x-web
     command: ['watch']
-    depends_on:
-      dev:
-        condition: service_completed_successfully
 
   job:
     <<: *x-web
