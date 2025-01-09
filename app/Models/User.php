@@ -2032,6 +2032,15 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         ]);
     }
 
+    public function scopeDefaultForLookup(Builder $query): Builder
+    {
+        $groups = app('groups');
+
+        return $query
+            ->whereNotIn('group_id', [$groups->byIdentifier('no_profile')->getKey(), $groups->byIdentifier('bot')->getKey()])
+            ->default();
+    }
+
     public function scopeOnline($query)
     {
         return $query
