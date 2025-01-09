@@ -46,6 +46,11 @@ services:
     <<: *x-web
     command: ['job']
 
+  dev:
+    <<: *x-web
+    profiles: ['dev']
+    command: ['yarn', 'dev']
+
   testjs:
     <<: *x-web
     volumes:
