@@ -131,22 +131,20 @@ export default class DailyChallenge extends React.Component<Props> {
         className={classWithModifiers('daily-challenge', { 'played-today': playedToday })}
         onMouseOver={this.onMouseOver}
       >
-        <div className='daily-challenge__content'>
-          <div className='daily-challenge__name'>
-            {trans('users.show.daily_challenge.title').split('\\n').map((line, i) => (
-              <div key={i}>{line}</div>
-            ))}
-          </div>
-          <div className='daily-challenge__value-box'>
-            <div
-              className='daily-challenge__value'
-              style={tierStylePlaycount(this.props.stats.playcount)}
-            >
-              {trans(
-                'users.show.daily_challenge.unit.day',
-                { value: formatNumber(this.props.stats.playcount) },
-              )}
-            </div>
+        <div className='daily-challenge__name'>
+          {trans('users.show.daily_challenge.title').split('\\n').map((line, i) => (
+            <div key={i}>{line}</div>
+          ))}
+        </div>
+        <div className='daily-challenge__value-box'>
+          <div
+            className='daily-challenge__value'
+            style={tierStylePlaycount(this.props.stats.playcount)}
+          >
+            {trans(
+              'users.show.daily_challenge.unit.day',
+              { value: formatNumber(this.props.stats.playcount) },
+            )}
           </div>
         </div>
       </div>

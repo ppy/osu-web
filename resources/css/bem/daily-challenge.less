@@ -6,6 +6,9 @@
   border-radius: @border-radius-large;
   min-width: 0;
   position: relative;
+  display: flex;
+  align-items: center;
+  padding: 3px;
 
   &--played-today {
     border: 2px solid @osu-colour-lime-1;
@@ -21,12 +24,6 @@
       right: -8px;
       top: -8px;
     }
-  }
-
-  &__content {
-    display: flex;
-    align-items: center;
-    padding: 3px;
   }
 
   &__name {
