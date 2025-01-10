@@ -15,18 +15,24 @@ _run() {
     docker compose run --rm php "$@"
 }
 
-_run_dusk() {
-    docker compose run --rm -e APP_ENV=dusk.local php "$@"
-}
-
-if [ ! -f .env ]; then
-    echo "Copying default env file"
-    cp .env.example .env
-fi
+for envfile in .env .env.testing .env.dusk.local; do
+    if [ ! -f "${envfile}" ]; then
+        echo "Copying env file '${envfile}'"
+        cp "${envfile}.example" "${envfile}"
+    fi
+    if [ "${envfile}" != .env.testing ] && ! grep -q '^APP_KEY=.' "${envfile}"; then
+        echo "Generating app key for env file '${envfile}'"
+        sed -i -e '/^APP_KEY=.*/d' "${envfile}"
+        : "${APP_KEY="base64:$(head -c 32 /dev/urandom | base64)"}"
+        echo "APP_KEY=${APP_KEY}" >> "${envfile}"
+    fi
+done
 
 if [ -n "${GITHUB_TOKEN:-}" ]; then
     _run composer config -g github-oauth.github.com "${GITHUB_TOKEN}"
-    grep ^GITHUB_TOKEN= .env || echo "GITHUB_TOKEN=${GITHUB_TOKEN}" >> .env
+    for envfile in .env .env.dusk.local; do
+        grep -q '^GITHUB_TOKEN=' "${envfile}" || echo "GITHUB_TOKEN=${GITHUB_TOKEN}" >> "${envfile}"
+    done
 fi
 
 docker compose build
@@ -36,23 +42,6 @@ _run yarn --network-timeout 100000 --frozen-lockfile
 _run composer install
 
 _run artisan dusk:chrome-driver
-
-if ! grep -q '^APP_KEY=.' .env; then
-    echo "Generating app key"
-    _run artisan key:generate
-fi
-
-if [ ! -f .env.testing ]; then
-    echo "Copying default test env file"
-    cp .env.testing.example .env.testing
-fi
-
-if [ ! -f .env.dusk.local ]; then
-    echo "Copying default dusk env file"
-    cp .env.dusk.local.example .env.dusk.local
-    echo "Generating app key for dusk"
-    _run_dusk artisan key:generate
-fi
 
 if [ -d storage/oauth-public.key ]; then
     echo "oauth-public.key is a directory. Removing it"
