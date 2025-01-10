@@ -365,11 +365,20 @@ class TestCase extends BaseTestCase
         $this->invokeSetProperty(app('queue'), 'jobs', []);
     }
 
-    protected function withInterOpHeader($url)
+    protected function withInterOpHeader($url, ?callable $callback = null)
     {
-        return $this->withHeaders([
-            'X-LIO-Signature' => hash_hmac('sha1', $url, $GLOBALS['cfg']['osu']['legacy']['shared_interop_secret']),
+        if ($callback === null) {
+            $timestampedUrl = $url;
+        } else {
+            $connector = strpos($url, '?') === false ? '?' : '&';
+            $timestampedUrl = $url.$connector.'timestamp='.time();
+        }
+
+        $this->withHeaders([
+            'X-LIO-Signature' => hash_hmac('sha1', $timestampedUrl, $GLOBALS['cfg']['osu']['legacy']['shared_interop_secret']),
         ]);
+
+        return $callback === null ? $this : $callback($timestampedUrl);
     }
 
     protected function withPersistentSession(SessionStore $session): static
