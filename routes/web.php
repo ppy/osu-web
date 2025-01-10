@@ -602,6 +602,11 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
             Route::apiResource('bulk', 'Indexing\BulkController', ['only' => ['store']]);
         });
 
+        Route::group(['as' => 'multiplayer.', 'namespace' => 'Multiplayer', 'prefix' => 'multiplayer'], function () {
+            Route::put('rooms/{room}/users/{user}', 'RoomsController@join')->name('rooms.join');
+            Route::apiResource('rooms', 'RoomsController', ['only' => ['store']]);
+        });
+
         Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'UsersController@achievement')->name('users.achievement');
 
         Route::group(['as' => 'user-group.'], function () {
