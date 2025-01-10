@@ -23,7 +23,7 @@ for envfile in .env .env.testing .env.dusk.local; do
     if [ "${envfile}" != .env.testing ] && ! grep -q '^APP_KEY=.' "${envfile}"; then
         echo "Generating app key for env file '${envfile}'"
         sed -i -e '/^APP_KEY=.*/d' "${envfile}"
-        : "${APP_KEY="base64:$(head -c 32 /dev/urandom | base64)"}"
+        : ${APP_KEY="base64:$(head -c 32 /dev/urandom | base64)"}
         echo "APP_KEY=${APP_KEY}" >> "${envfile}"
     fi
 done
