@@ -24,7 +24,7 @@ class UserSeasonScoreAggregate extends Model
     protected $primaryKey = ':composite';
     protected $primaryKeys = ['user_id', 'season_id'];
 
-    public function calculate(): void
+    public function calculate(bool $muteExceptions = true): void
     {
         $rooms = $this->season->rooms()
             ->withPivot('group_indicator')
@@ -38,7 +38,12 @@ class UserSeasonScoreAggregate extends Model
         $roomsGrouped = $rooms->groupBy('pivot.group_indicator');
 
         if ($roomsGrouped->count() > count($factors)) {
-            throw new InvariantException(osu_trans('rankings.seasons.validation.not_enough_factors'));
+            // don't interrupt Room::completePlay() and throw exception only for recalculation command
+            if ($muteExceptions) {
+                return;
+            } else {
+                throw new InvariantException(osu_trans('rankings.seasons.validation.not_enough_factors'));
+            }
         }
 
         foreach ($roomsGrouped as $rooms) {

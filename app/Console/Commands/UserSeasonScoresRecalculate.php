@@ -50,7 +50,7 @@ class UserSeasonScoresRecalculate extends Command
                         ->firstOrNew();
 
                     $seasonScore->season_id = $season->getKey();
-                    $seasonScore->calculate();
+                    $seasonScore->calculate(false);
                     $seasonScore->save();
 
                     $bar->advance();
