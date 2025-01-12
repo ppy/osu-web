@@ -10,18 +10,19 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property bool $finalised
  * @property string $name
  * @property-read Collection<Multiplayer\Room> $rooms
+ * @property float[]|null $score_factors
  * @property string|null $url
  */
 class Season extends Model
 {
     protected $casts = [
         'finalised' => 'boolean',
+        'score_factors' => 'array',
     ];
 
     public function scopeActive($query)
@@ -51,25 +52,12 @@ class Season extends Model
             : null;
     }
 
-    public function scoreFactors(): HasMany
-    {
-        return $this->hasMany(SeasonScoreFactor::class);
-    }
-
     public function scoreFactorsOrderedForCalculation(): array
     {
-        return cache_remember_mutexed(
-            "score_factors:{$this->id}",
-            $GLOBALS['cfg']['osu']['seasons']['factors_cache_duration'],
-            [],
-            function () {
-                return $this->scoreFactors()
-                    ->orderByDesc('factor')
-                    ->get()
-                    ->pluck('factor')
-                    ->toArray();
-            }
-        );
+        $factors = $this->score_factors ?? [];
+        rsort($factors);
+
+        return $factors;
     }
 
     public function startDate(): ?Carbon

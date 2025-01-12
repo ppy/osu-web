@@ -3,8 +3,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-declare(strict_types=1);
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,10 +14,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('season_score_factors', function (Blueprint $table) {
-            $table->id();
-            $table->integer('season_id');
-            $table->float('factor');
+        Schema::table('seasons', function (Blueprint $table) {
+            $table->json('score_factors')->nullable();
         });
     }
 
@@ -28,6 +24,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('season_score_factors');
+        Schema::table('seasons', function (Blueprint $table) {
+            $table->dropColumn('score_factors');
+        });
     }
 };

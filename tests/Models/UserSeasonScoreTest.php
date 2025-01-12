@@ -11,7 +11,6 @@ use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
 use App\Models\Season;
 use App\Models\SeasonRoom;
-use App\Models\SeasonScoreFactor;
 use App\Models\User;
 use App\Models\UserSeasonScore;
 use Tests\TestCase;
@@ -23,13 +22,6 @@ class UserSeasonScoreTest extends TestCase
 
     public function testAddMultipleScores(): void
     {
-        foreach ([1, 0.75, 0.5] as $factor) {
-            SeasonScoreFactor::factory()->create([
-                'factor' => $factor,
-                'season_id' => $this->season,
-            ]);
-        }
-
         $this->createRoomWithPlay(10);
 
         $userScore = UserSeasonScore::where('user_id', $this->user->getKey())
@@ -51,13 +43,6 @@ class UserSeasonScoreTest extends TestCase
 
     public function testAddMultipleScoresWithChildrenRooms(): void
     {
-        foreach ([1, 0.75, 0.5] as $factor) {
-            SeasonScoreFactor::factory()->create([
-                'factor' => $factor,
-                'season_id' => $this->season,
-            ]);
-        }
-
         $firstRoom = $this->createRoomWithPlay(10);
 
         $userScore = UserSeasonScore::where('user_id', $this->user->getKey())
@@ -94,8 +79,6 @@ class UserSeasonScoreTest extends TestCase
 
     public function testAddHigherScoreInChildRoom(): void
     {
-        SeasonScoreFactor::factory()->create(['season_id' => $this->season]);
-
         $room = $this->createRoomWithPlay(10);
 
         $userScore = UserSeasonScore::where('user_id', $this->user->getKey())
@@ -112,8 +95,6 @@ class UserSeasonScoreTest extends TestCase
 
     public function testAddHigherScoreInParentRoom(): void
     {
-        SeasonScoreFactor::factory()->create(['season_id' => $this->season]);
-
         $room = $this->createRoomWithPlay(15);
 
         $userScore = UserSeasonScore::where('user_id', $this->user->getKey())
@@ -130,8 +111,6 @@ class UserSeasonScoreTest extends TestCase
 
     public function testAddSameScoreInChildAndParentRoom(): void
     {
-        SeasonScoreFactor::factory()->create(['season_id' => $this->season]);
-
         $room = $this->createRoomWithPlay(10);
 
         $userScore = UserSeasonScore::where('user_id', $this->user->getKey())
@@ -148,8 +127,6 @@ class UserSeasonScoreTest extends TestCase
 
     public function testAddScoreInChildRoomOnly(): void
     {
-        SeasonScoreFactor::factory()->create(['season_id' => $this->season]);
-
         $room = $this->createRoom();
         $this->createRoomWithPlay(10, $room->getKey());
 
@@ -164,7 +141,9 @@ class UserSeasonScoreTest extends TestCase
     {
         parent::setUp();
 
-        $this->season = Season::factory()->create();
+        $this->season = Season::factory()->create([
+            'score_factors' => [1, 0.75, 0.5],
+        ]);
         $this->user = User::factory()->create();
     }
 
