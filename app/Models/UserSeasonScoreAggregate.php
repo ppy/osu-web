@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property float $total_score
  * @property int $user_id
  */
-class UserSeasonScore extends Model
+class UserSeasonScoreAggregate extends Model
 {
     public $incrementing = false;
     public $timestamps = false;

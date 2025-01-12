@@ -12,10 +12,10 @@ use App\Models\Multiplayer\Room;
 use App\Models\Season;
 use App\Models\SeasonRoom;
 use App\Models\User;
-use App\Models\UserSeasonScore;
+use App\Models\UserSeasonScoreAggregate;
 use Tests\TestCase;
 
-class UserSeasonScoreTest extends TestCase
+class UserSeasonScoreAggregateTest extends TestCase
 {
     private Season $season;
     private User $user;
@@ -24,7 +24,7 @@ class UserSeasonScoreTest extends TestCase
     {
         $this->createRoomWithPlay(10, 'A');
 
-        $userScore = UserSeasonScore::where('user_id', $this->user->getKey())
+        $userScore = UserSeasonScoreAggregate::where('user_id', $this->user->getKey())
             ->where('season_id', $this->season->getKey())
             ->first();
 
@@ -45,7 +45,7 @@ class UserSeasonScoreTest extends TestCase
     {
         $this->createRoomWithPlay(10, 'A');
 
-        $userScore = UserSeasonScore::where('user_id', $this->user->getKey())
+        $userScore = UserSeasonScoreAggregate::where('user_id', $this->user->getKey())
             ->where('season_id', $this->season->getKey())
             ->first();
 
@@ -81,7 +81,7 @@ class UserSeasonScoreTest extends TestCase
     {
         $this->createRoomWithPlay(10, 'A');
 
-        $userScore = UserSeasonScore::where('user_id', $this->user->getKey())
+        $userScore = UserSeasonScoreAggregate::where('user_id', $this->user->getKey())
             ->where('season_id', $this->season->getKey())
             ->first();
 
@@ -97,7 +97,7 @@ class UserSeasonScoreTest extends TestCase
     {
         $this->createRoomWithPlay(15, 'A');
 
-        $userScore = UserSeasonScore::where('user_id', $this->user->getKey())
+        $userScore = UserSeasonScoreAggregate::where('user_id', $this->user->getKey())
             ->where('season_id', $this->season->getKey())
             ->first();
 
@@ -113,7 +113,7 @@ class UserSeasonScoreTest extends TestCase
     {
         $this->createRoomWithPlay(10, 'A');
 
-        $userScore = UserSeasonScore::where('user_id', $this->user->getKey())
+        $userScore = UserSeasonScoreAggregate::where('user_id', $this->user->getKey())
             ->where('season_id', $this->season->getKey())
             ->first();
 
@@ -130,7 +130,7 @@ class UserSeasonScoreTest extends TestCase
         $this->createRoom('A');
         $this->createRoomWithPlay(10, 'A');
 
-        $userScore = UserSeasonScore::where('user_id', $this->user->getKey())
+        $userScore = UserSeasonScoreAggregate::where('user_id', $this->user->getKey())
             ->where('season_id', $this->season->getKey())
             ->first();
 
@@ -142,7 +142,7 @@ class UserSeasonScoreTest extends TestCase
         $this->createRoom('A');
         $this->createRoomWithPlay(10, 'B');
 
-        $userScore = UserSeasonScore::where('user_id', $this->user->getKey())
+        $userScore = UserSeasonScoreAggregate::where('user_id', $this->user->getKey())
             ->where('season_id', $this->season->getKey())
             ->first();
 

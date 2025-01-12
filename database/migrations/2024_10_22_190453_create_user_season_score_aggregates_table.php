@@ -16,7 +16,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_season_scores', function (Blueprint $table) {
+        Schema::create('user_season_score_aggregates', function (Blueprint $table) {
             $table->bigInteger('user_id')->unsigned();
             $table->integer('season_id')->unsigned();
             $table->float('total_score');

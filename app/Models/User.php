@@ -1361,7 +1361,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function seasonScores(): HasMany
     {
-        return $this->hasMany(UserSeasonScore::class);
+        return $this->hasMany(UserSeasonScoreAggregate::class);
     }
 
     public function statisticsOsu()
