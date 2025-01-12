@@ -22,7 +22,7 @@ class UserSeasonScoreTest extends TestCase
 
     public function testAddMultipleScores(): void
     {
-        $this->createRoomWithPlay(10);
+        $this->createRoomWithPlay(10, 'A');
 
         $userScore = UserSeasonScore::where('user_id', $this->user->getKey())
             ->where('season_id', $this->season->getKey())
@@ -30,12 +30,12 @@ class UserSeasonScoreTest extends TestCase
 
         $this->assertSame($userScore->total_score, (float) 10); // 10*1
 
-        $this->createRoomWithPlay(15);
+        $this->createRoomWithPlay(15, 'B');
 
         $userScore->refresh();
         $this->assertSame($userScore->total_score, 22.5); // 15*1 + 10*0.75
 
-        $this->createRoomWithPlay(25);
+        $this->createRoomWithPlay(25, 'C');
 
         $userScore->refresh();
         $this->assertSame($userScore->total_score, 41.25); // 25*1 + 15*0.75 + 10*0.5
@@ -43,7 +43,7 @@ class UserSeasonScoreTest extends TestCase
 
     public function testAddMultipleScoresWithChildrenRooms(): void
     {
-        $firstRoom = $this->createRoomWithPlay(10);
+        $this->createRoomWithPlay(10, 'A');
 
         $userScore = UserSeasonScore::where('user_id', $this->user->getKey())
             ->where('season_id', $this->season->getKey())
@@ -51,27 +51,27 @@ class UserSeasonScoreTest extends TestCase
 
         $this->assertSame($userScore->total_score, (float) 10); // 10*1
 
-        $this->createRoomWithPlay(15, $firstRoom->getKey());
+        $this->createRoomWithPlay(15, 'A');
 
         $userScore->refresh();
         $this->assertSame($userScore->total_score, (float) 15); // 15*1
 
-        $secondRoom = $this->createRoomWithPlay(20);
+        $this->createRoomWithPlay(20, 'B');
 
         $userScore->refresh();
         $this->assertSame($userScore->total_score, 31.25); // 20*1 + 15*0.75
 
-        $this->createRoomWithPlay(20, $secondRoom->getKey());
+        $this->createRoomWithPlay(20, 'B');
 
         $userScore->refresh();
         $this->assertSame($userScore->total_score, 31.25); // 20*1 + 15*0.75
 
-        $thirdRoom = $this->createRoomWithPlay(10);
+        $this->createRoomWithPlay(10, 'C');
 
         $userScore->refresh();
         $this->assertSame($userScore->total_score, 36.25); // 20*1 + 15*0.75 + 10*0.5
 
-        $this->createRoomWithPlay(30, $thirdRoom->getKey());
+        $this->createRoomWithPlay(30, 'C');
 
         $userScore->refresh();
         $this->assertSame($userScore->total_score, 52.5); // 30*1 + 20*0.75 + 15*0.5
@@ -79,7 +79,7 @@ class UserSeasonScoreTest extends TestCase
 
     public function testAddHigherScoreInChildRoom(): void
     {
-        $room = $this->createRoomWithPlay(10);
+        $this->createRoomWithPlay(10, 'A');
 
         $userScore = UserSeasonScore::where('user_id', $this->user->getKey())
             ->where('season_id', $this->season->getKey())
@@ -87,7 +87,7 @@ class UserSeasonScoreTest extends TestCase
 
         $this->assertSame($userScore->total_score, (float) 10);
 
-        $this->createRoomWithPlay(15, $room->getKey());
+        $this->createRoomWithPlay(15, 'A');
 
         $userScore->refresh();
         $this->assertSame($userScore->total_score, (float) 15);
@@ -95,7 +95,7 @@ class UserSeasonScoreTest extends TestCase
 
     public function testAddHigherScoreInParentRoom(): void
     {
-        $room = $this->createRoomWithPlay(15);
+        $this->createRoomWithPlay(15, 'A');
 
         $userScore = UserSeasonScore::where('user_id', $this->user->getKey())
             ->where('season_id', $this->season->getKey())
@@ -103,7 +103,7 @@ class UserSeasonScoreTest extends TestCase
 
         $this->assertSame($userScore->total_score, (float) 15);
 
-        $this->createRoomWithPlay(10, $room->getKey());
+        $this->createRoomWithPlay(10, 'A');
 
         $userScore->refresh();
         $this->assertSame($userScore->total_score, (float) 15);
@@ -111,7 +111,7 @@ class UserSeasonScoreTest extends TestCase
 
     public function testAddSameScoreInChildAndParentRoom(): void
     {
-        $room = $this->createRoomWithPlay(10);
+        $this->createRoomWithPlay(10, 'A');
 
         $userScore = UserSeasonScore::where('user_id', $this->user->getKey())
             ->where('season_id', $this->season->getKey())
@@ -119,7 +119,7 @@ class UserSeasonScoreTest extends TestCase
 
         $this->assertSame($userScore->total_score, (float) 10);
 
-        $this->createRoomWithPlay(10, $room->getKey());
+        $this->createRoomWithPlay(10, 'A');
 
         $userScore->refresh();
         $this->assertSame($userScore->total_score, (float) 10);
@@ -127,8 +127,20 @@ class UserSeasonScoreTest extends TestCase
 
     public function testAddScoreInChildRoomOnly(): void
     {
-        $room = $this->createRoom();
-        $this->createRoomWithPlay(10, $room->getKey());
+        $this->createRoom('A');
+        $this->createRoomWithPlay(10, 'A');
+
+        $userScore = UserSeasonScore::where('user_id', $this->user->getKey())
+            ->where('season_id', $this->season->getKey())
+            ->first();
+
+        $this->assertSame($userScore->total_score, (float) 10);
+    }
+
+    public function testAddScoreInSecondRoomOnly(): void
+    {
+        $this->createRoom('A');
+        $this->createRoomWithPlay(10, 'B');
 
         $userScore = UserSeasonScore::where('user_id', $this->user->getKey())
             ->where('season_id', $this->season->getKey())
@@ -147,14 +159,14 @@ class UserSeasonScoreTest extends TestCase
         $this->user = User::factory()->create();
     }
 
-    private function createRoom(?int $parentId = null): Room
+    private function createRoom(string $groupIndicator): Room
     {
         $room = Room::factory()->create([
             'category' => 'spotlight',
-            'parent_id' => $parentId,
         ]);
 
         SeasonRoom::factory()->create([
+            'group_indicator' => $groupIndicator,
             'room_id' => $room,
             'season_id' => $this->season,
         ]);
@@ -162,9 +174,9 @@ class UserSeasonScoreTest extends TestCase
         return $room;
     }
 
-    private function createRoomWithPlay(float $totalScore, ?int $parentId = null): Room
+    private function createRoomWithPlay(float $totalScore, string $groupIndicator): Room
     {
-        $room = $this->createRoom($parentId);
+        $room = $this->createRoom($groupIndicator);
 
         $playlistItem = PlaylistItem::factory()->create([
             'owner_id' => $room->host,

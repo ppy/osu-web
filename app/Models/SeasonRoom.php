@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * @property string|null $group_indicator
  * @property int $id
  * @property int $room_id
  * @property int $season_id

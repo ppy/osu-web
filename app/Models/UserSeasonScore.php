@@ -26,38 +26,31 @@ class UserSeasonScore extends Model
 
     public function calculate(): void
     {
-        $userScores = UserScoreAggregate::whereIn('room_id', $this->season->rooms->pluck('id'))
+        $rooms = $this->season->rooms()
+            ->withPivot('group_indicator')
+            ->get();
+
+        $userScores = UserScoreAggregate::whereIn('room_id', $rooms->pluck('id'))
             ->where('user_id', $this->user_id)
             ->get();
 
         $factors = $this->season->scoreFactorsOrderedForCalculation();
-        $parentRooms = $this->season->rooms->where('parent_id', null);
+        $roomsGrouped = $rooms->groupBy('pivot.group_indicator');
 
-        if ($parentRooms->count() > count($factors)) {
+        if ($roomsGrouped->count() > count($factors)) {
             throw new InvariantException(osu_trans('rankings.seasons.validation.not_enough_factors'));
         }
 
-        $scores = [];
+        foreach ($roomsGrouped as $rooms) {
+            $groupUserScores = $userScores
+                ->whereIn('room_id', $rooms->pluck('id'))
+                ->pluck('total_score');
 
-        foreach ($parentRooms as $room) {
-            $totalScore = $userScores->where('room_id', $room->getKey())
-                ->first()
-                ?->total_score;
-
-            $childRoomId = $this->season->rooms
-                ->where('parent_id', $room->getKey())
-                ->first()
-                ?->getKey();
-
-            $totalScoreChild = $userScores->where('room_id', $childRoomId)
-                ->first()
-                ?->total_score;
-
-            if ($totalScore === null && $totalScoreChild === null) {
+            if ($groupUserScores === null) {
                 continue;
             }
 
-            $scores[] = max([$totalScore, $totalScoreChild]);
+            $scores[] = $groupUserScores->max();
         }
 
         rsort($scores);
