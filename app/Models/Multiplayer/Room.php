@@ -37,7 +37,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property int|null $max_attempts
  * @property string $name
- * @property int|null $parent_id
  * @property int $participant_count
  * @property \Illuminate\Database\Eloquent\Collection $playlist PlaylistItem
  * @property \Illuminate\Database\Eloquent\Collection $scoreLinks ScoreLink
