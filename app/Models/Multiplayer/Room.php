@@ -446,6 +446,19 @@ class Room extends Model
                 $stats->save();
             }
 
+            // spotlight playlists should always be linked to one season exactly
+            if ($this->category === 'spotlight' && $agg->total_score > 0 && $this->seasons()->count() === 1) {
+                $seasonId = $this->seasons()->first()->getKey();
+
+                $seasonScore = $user->seasonScores()
+                    ->where('season_id', $seasonId)
+                    ->firstOrNew();
+
+                $seasonScore->season_id = $seasonId;
+                $seasonScore->calculate();
+                $seasonScore->save();
+            }
+
             return $scoreLink;
         });
     }
