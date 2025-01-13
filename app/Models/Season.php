@@ -52,14 +52,6 @@ class Season extends Model
             : null;
     }
 
-    public function scoreFactorsOrderedForCalculation(): array
-    {
-        $factors = $this->score_factors ?? [];
-        rsort($factors);
-
-        return $factors;
-    }
-
     public function startDate(): ?Carbon
     {
         return $this->rooms->min('starts_at');

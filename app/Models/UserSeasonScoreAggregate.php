@@ -35,7 +35,7 @@ class UserSeasonScoreAggregate extends Model
             ->where('user_id', $this->user_id)
             ->get();
 
-        $factors = $this->season->scoreFactorsOrderedForCalculation();
+        $factors = $this->season->score_factors;
         $roomsGrouped = $rooms->groupBy('pivot.group_indicator');
 
         if ($roomsGrouped->count() > count($factors)) {
@@ -59,6 +59,7 @@ class UserSeasonScoreAggregate extends Model
             $scores[] = $groupUserScores->max();
         }
 
+        rsort($factors);
         rsort($scores);
 
         $scoreCount = count($scores);
