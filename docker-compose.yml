@@ -25,9 +25,6 @@ services:
   php:
     <<: *x-web
     command: ['octane', '--watch']
-    depends_on:
-      assets:
-        condition: service_healthy
     deploy:
       restart_policy:
         condition: on-failure
@@ -36,9 +33,6 @@ services:
   php-dusk:
     <<: *x-web
     command: ['octane', '--watch']
-    depends_on:
-      assets:
-        condition: service_healthy
     environment:
       <<: *x-env
       APP_ENV: dusk.local
@@ -47,19 +41,10 @@ services:
   assets:
     <<: *x-web
     command: ['watch']
-    healthcheck:
-      start_interval: 1s
-      start_period: 60s
-      test: ["CMD", "sh", "-c", "[ -f /app/public/assets/manifest.json ]"]
 
   job:
     <<: *x-web
     command: ['job']
-
-  composer-install:
-    <<: *x-web
-    profiles: ['composer']
-    command: ['composer', 'install']
 
   testjs:
     <<: *x-web

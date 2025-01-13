@@ -12,14 +12,24 @@ use Illuminate\Support\HtmlString;
 
 class AssetsManifest
 {
+    private const MANIFEST_TIMEOUT_INTERVAL_SECONDS = 3; // Interval at which to check for the manifest file if it's missing.
+    private const MANIFEST_TIMEOUT_SECONDS = 60; // Time limit to wait for a missing manifest file before throwing.
+
     private $manifest;
 
     public function __construct()
     {
         $manifestPath = public_path('assets/manifest.json');
 
-        if (!file_exists($manifestPath)) {
-            throw new Exception('The manifest does not exist.');
+        $startTimeSeconds = microtime(true);
+        $elapsedTimeSeconds = 0;
+
+        while (!file_exists($manifestPath)) {
+            sleep(self::MANIFEST_TIMEOUT_INTERVAL_SECONDS);
+            $elapsedTimeSeconds = microtime(true) - $startTimeSeconds;
+            if ($elapsedTimeSeconds >= self::MANIFEST_TIMEOUT_SECONDS) {
+                throw new Exception('The manifest does not exist.');
+            }
         }
 
         $this->manifest = json_decode(file_get_contents($manifestPath), true);
