@@ -20,16 +20,15 @@ class AssetsManifest
     public function __construct()
     {
         $manifestPath = public_path('assets/manifest.json');
-
         $startTimeSeconds = microtime(true);
-        $elapsedTimeSeconds = 0;
 
         while (!file_exists($manifestPath)) {
-            sleep(self::MANIFEST_TIMEOUT_INTERVAL_SECONDS);
             $elapsedTimeSeconds = microtime(true) - $startTimeSeconds;
             if ($elapsedTimeSeconds >= self::MANIFEST_TIMEOUT_SECONDS) {
                 throw new Exception('The manifest does not exist.');
             }
+
+            sleep(self::MANIFEST_TIMEOUT_INTERVAL_SECONDS);
         }
 
         $this->manifest = json_decode(file_get_contents($manifestPath), true);
