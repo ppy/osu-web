@@ -1,7 +1,6 @@
 <?php
 
 use App\Listeners\OctaneResetLocalCache;
-use App\Providers\AppServiceProvider;
 use Laravel\Octane\Contracts\OperationTerminated;
 use Laravel\Octane\Events\RequestHandled;
 use Laravel\Octane\Events\RequestReceived;
@@ -121,7 +120,6 @@ return [
 
     'warm' => [
         ...Octane::defaultServicesToWarm(),
-        ...array_keys(AppServiceProvider::SINGLETONS),
     ],
 
     'flush' => [
