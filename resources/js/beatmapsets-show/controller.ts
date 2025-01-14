@@ -104,7 +104,7 @@ export default class Controller {
 
         const tag = asTagJsonWithCount(maybeTag);
         tag.count = tagId.count;
-        userTags.push(asTagJsonWithCount(tag));
+        userTags.push(tag);
       }
     }
 
