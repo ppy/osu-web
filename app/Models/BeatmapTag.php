@@ -7,6 +7,8 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
+
 /**
  * @property-read Beatmap $beatmap
  * @property int $beatmap_id
@@ -23,16 +25,14 @@ class BeatmapTag extends Model
     protected $primaryKey = ':composite';
     protected $primaryKeys = ['beatmap_id', 'tag_id', 'user_id'];
 
-    public static function topTagIdsQuery(int $beatmapId, int $limit = 50)
+    public function scopeTopTagIds(Builder $query)
     {
-        return static::where('beatmap_id', $beatmapId)
-            ->whereHas('user', fn ($userQuery) => $userQuery->default())
+        return $query->whereHas('user', fn ($userQuery) => $userQuery->default())
             ->groupBy('tag_id')
             ->select('tag_id')
             ->selectRaw('COUNT(*) as count')
             ->orderBy('count', 'desc')
-            ->orderBy('tag_id', 'asc')
-            ->limit($limit);
+            ->orderBy('tag_id', 'asc');
     }
 
     public function beatmap()

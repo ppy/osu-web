@@ -358,7 +358,7 @@ class Beatmap extends Model implements AfterCommit
                 "beatmap_top_tag_ids:{$this->getKey()}",
                 $GLOBALS['cfg']['osu']['tags']['beatmap_tags_cache_duration'],
                 [],
-                fn () => BeatmapTag::topTagIdsQuery($this->getKey())->get()->toArray(),
+                fn () => $this->beatmapTags()->topTagIds()->limit(50)->get()->toArray(),
             ),
         );
     }
