@@ -5,6 +5,7 @@
 
 namespace App\Models\Forum;
 
+use App\Casts\TimestampOrZero;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -26,7 +27,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string $forum_image
  * @property int $forum_last_post_id
  * @property string $forum_last_post_subject
- * @property int $forum_last_post_time
+ * @property \Carbon\Carbon|null $forum_last_post_time
  * @property string $forum_last_poster_colour
  * @property int $forum_last_poster_id
  * @property string $forum_last_poster_name
@@ -67,10 +68,9 @@ class Forum extends Model
         'allow_topic_covers' => 'boolean',
         'enable_indexing' => 'boolean',
         'enable_sigs' => 'boolean',
-        'forum_last_post_time' => 'datetime',
+        'forum_last_post_time' => TimestampOrZero::class,
         'moderator_groups' => 'array',
     ];
-    protected $dateFormat = 'U';
     protected $primaryKey = 'forum_id';
     protected $table = 'phpbb_forums';
 
@@ -240,16 +240,6 @@ class Forum extends Model
     {
         // also functions for casting null to string
         $this->attributes['forum_last_poster_colour'] = ltrim($value, '#');
-    }
-
-    public function getForumLastPostTimeAttribute($value)
-    {
-        return get_time_or_null($value);
-    }
-
-    public function setForumLastPostTimeAttribute($value)
-    {
-        $this->attributes['forum_last_post_time'] = get_timestamp_or_zero($value);
     }
 
     // feature forum shall have extra features like sorting and voting

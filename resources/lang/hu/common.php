@@ -22,6 +22,7 @@ return [
         'admin' => 'Admin',
         'authorise' => 'Engedélyezés',
         'authorising' => 'Engedélyezés...',
+        'back' => '',
         'back_to_previous' => 'Vissza az előző pozícióra',
         'back_to_top' => 'Vissza a lap tetejére',
         'cancel' => 'Mégse',

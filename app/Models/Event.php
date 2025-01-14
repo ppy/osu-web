@@ -88,20 +88,14 @@ class Event extends Model
 
             case 'beatmapsetApprove':
                 $beatmapset = $options['beatmapset'];
-
-                $beatmapsetUrl = e(route('beatmapsets.show', $beatmapset, false));
-                $beatmapsetTitle = e($beatmapset->artist.' - '.$beatmapset->title);
-                $userName = e($beatmapset->user->username);
-                $userUrl = e(route('users.show', $beatmapset->user, false));
+                $beatmapsetParams = static::beatmapsetParams($beatmapset);
+                $userParams = static::userParams($options['beatmapset']->user);
                 $approval = e($beatmapset->status());
 
-                $textCleanBeatmapsetUrl = $GLOBALS['cfg']['app']['url'].$beatmapsetUrl;
-                $textCleanUserUrl = $GLOBALS['cfg']['app']['url'].$userUrl;
-                $textClean = "[{$textCleanBeatmapsetUrl} {$beatmapsetTitle}] by [{$textCleanUserUrl} {$userName}] has just been {$approval}!";
-
+                $template = '%s by %s has just been %s!';
                 $params = [
-                    'text' => "<a href='{$beatmapsetUrl}'>{$beatmapsetTitle}</a> by <b><a href='{$userUrl}'>{$userName}</a></b> has just been {$approval}!",
-                    'text_clean' => $textClean,
+                    'text' => sprintf($template, "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a>", "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b>", $approval),
+                    'text_clean' => sprintf($template, "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title']}]", "[{$userParams['url_clean']} {$userParams['username']}]", $approval),
                     'beatmap_id' => 0,
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $beatmapset->user->getKey(),
@@ -113,15 +107,68 @@ class Event extends Model
 
             case 'beatmapsetDelete':
                 $beatmapset = $options['beatmapset'];
-                $beatmapsetUrl = e(route('beatmapsets.show', $beatmapset, false));
-                $beatmapsetTitle = e($beatmapset->artist.' - '.$beatmapset->title);
+                $beatmapsetParams = static::beatmapsetParams($beatmapset);
 
                 $params = [
-                    'text' => "<a href='{$beatmapsetUrl}'>{$beatmapsetTitle}</a> has been deleted.",
+                    'text' => "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a> has been deleted.",
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $options['user']->getKey(),
                     'private' => false,
                     'epicfactor' => 1,
+                ];
+
+                break;
+
+            case 'beatmapsetRevive':
+                $beatmapset = $options['beatmapset'];
+                $beatmapsetParams = static::beatmapsetParams($beatmapset);
+                $userParams = static::userParams($beatmapset->user);
+
+                $template = '%s has been revived from eternal slumber by %s.';
+                $params = [
+                    'text' => sprintf($template, "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a>", "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b>"),
+                    'text_clean' => sprintf($template, "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title']}]", "[{$userParams['url_clean']} {$userParams['username']}]"),
+                    'beatmapset_id' => $beatmapset->getKey(),
+                    'user_id' => $beatmapset->user->getKey(),
+                    'private' => false,
+                    'epicfactor' => 5,
+                ];
+
+                break;
+
+            case 'beatmapsetUpdate':
+                $beatmapset = $options['beatmapset'];
+                $beatmapsetParams = static::beatmapsetParams($beatmapset);
+                // retrieved separately from options because it doesn't necessarily need to be the same user
+                // as $beatmapset->user in some cases (see: direct guest difficulty update)
+                $user = $options['user'];
+                $userParams = static::userParams($user);
+
+                $template = '%s has updated the beatmap "%s"';
+                $params = [
+                    'text' => sprintf($template, "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b>", "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a>"),
+                    'text_clean' => sprintf($template, "[{$userParams['url_clean']} {$userParams['username']}]", "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title']}]"),
+                    'beatmapset_id' => $beatmapset->getKey(),
+                    'user_id' => $user->getKey(),
+                    'private' => false,
+                    'epicfactor' => 2,
+                ];
+
+                break;
+
+            case 'beatmapsetUpload':
+                $beatmapset = $options['beatmapset'];
+                $beatmapsetParams = static::beatmapsetParams($beatmapset);
+                $userParams = static::userParams($beatmapset->user);
+
+                $template = '%s has submitted a new beatmap "%s"';
+                $params = [
+                    'text' => sprintf($template, "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b>", "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a>"),
+                    'text_clean' => sprintf($template, "[{$userParams['url_clean']} {$userParams['username']}]", "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title']}]"),
+                    'beatmapset_id' => $beatmapset->getKey(),
+                    'user_id' => $beatmapset->user->getKey(),
+                    'private' => false,
+                    'epicfactor' => 4,
                 ];
 
                 break;
@@ -430,10 +477,22 @@ class Event extends Model
 
     private static function userParams($user)
     {
+        $url = e(route('users.show', $user, false));
         return [
             'id' => $user->getKey(),
             'username' => e($user->username),
-            'url' => e(route('users.show', $user, false)),
+            'url' => $url,
+            'url_clean' => $GLOBALS['cfg']['app']['url'].$url,
+        ];
+    }
+
+    private static function beatmapsetParams($beatmapset)
+    {
+        $url = e(route('beatmapsets.show', $beatmapset, false));
+        return [
+            'title' => e($beatmapset->artist.' - '.$beatmapset->title),
+            'url' => $url,
+            'url_clean' => $GLOBALS['cfg']['app']['url'].$url,
         ];
     }
 }

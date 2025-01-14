@@ -19,6 +19,7 @@ return [
 
         'errors' => [
             'duration_too_long' => 'Thời lượng quá dài. ',
+            'name_too_long' => '',
         ],
 
         'status' => [

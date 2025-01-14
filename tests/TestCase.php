@@ -135,6 +135,11 @@ class TestCase extends BaseTestCase
         // change config setting because we need more than 1 for the tests.
         config_set('osu.oauth.max_user_clients', 100);
 
+        // Disable caching for the BeatmapTagsController and TagsController tests
+        // because otherwise multiple run of the tests may use stale cache data.
+        config_set('osu.tags.beatmap_tags_cache_duration', 0);
+        config_set('osu.tags.tags_cache_duration', 0);
+
         // Force connections to reset even if transactional tests were not used.
         // Should fix tests going wonky when different queue drivers are used, or anything that
         // breaks assumptions of object destructor timing.

@@ -201,6 +201,7 @@ return [
             'profile' => 'Aking Profile',
             'scoring_mode_toggle' => 'Klasikong pang-iskor',
             'scoring_mode_toggle_tooltip' => 'Iakma ang mga iskor para tumugma sa klasikong pang-iskor',
+            'team' => '',
         ],
     ],
 

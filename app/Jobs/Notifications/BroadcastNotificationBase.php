@@ -185,7 +185,7 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
         $pushReceiverIds = [];
         $notification->getConnection()->transaction(function () use ($deliverySettings, $notification, &$pushReceiverIds) {
-            $timestamp = (string) $this->getTimestamp();
+            $timestamp = $this->getTimestamp()->format('Y-m-d H:i:s');
             $notificationId = $notification->getKey();
             $tempUserNotification = new UserNotification();
 

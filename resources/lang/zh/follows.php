@@ -37,6 +37,6 @@ return [
     ],
 
     'store' => [
-        'too_many' => '',
+        'too_many' => '关注数量达到最大限制。',
     ],
 ];

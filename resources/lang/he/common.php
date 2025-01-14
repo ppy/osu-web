@@ -22,6 +22,7 @@ return [
         'admin' => 'מנהל',
         'authorise' => 'אשר',
         'authorising' => 'מאשר...',
+        'back' => '',
         'back_to_previous' => 'חזור למיקום הקודם',
         'back_to_top' => 'חזרה למעלה',
         'cancel' => 'בטל',

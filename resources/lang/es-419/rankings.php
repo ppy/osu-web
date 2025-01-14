@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Dificultad',
-        'top_10p' => '',
-        'top_50p' => '',
+        'top_10p' => 'Puntuación del top 10 %',
+        'top_50p' => 'Puntuación del top 50 %',
     ],
 
     'filter' => [

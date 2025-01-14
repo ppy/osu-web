@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatārs',
-            'reset' => '',
+            'reset' => 'atiestatīt',
             'rules' => 'Lūdzu, pārliecinieties, ka jūsu profila attēls atbilst :link.<br/>Tas nozīmē, ka attēlam jābūt <strong>piemērotam visiem vecumiem</strong>, t.i., bez kailuma, rupjībām vai ierosinoša satura.',
             'rules_link' => 'kopienas noteikumi',
         ],
@@ -77,8 +77,8 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'saņemt paziņojumus par jaunām problēmām, kas saistītas ar kvalificētām šādu režīmu sitkartēm',
-        'beatmapset_disqualify' => 'saņemt paziņojumus, kad tiek diskvalificētas šādu režīmu sitkartes',
+        'beatmapset_discussion_qualified_problem' => 'saņemt paziņojumus par jaunām problēmām, kas saistītas ar kvalificētām šādu spēles veida ritma-kartēm',
+        'beatmapset_disqualify' => 'saņemt paziņojumus, kad tiek diskvalificētas šāda spēles veida  ritma-kartes',
         'comment_reply' => 'saņemt paziņojumus par atbildēm uz saviem komentāriem',
         'title' => 'Paziņojumi',
         'topic_auto_subscribe' => 'automātiski ieslēgt paziņojumus foruma tematiem, kurus esiet izveidojis',
@@ -86,13 +86,13 @@ return [
         'options' => [
             '_' => 'piegādes opcijas',
             'beatmap_owner_change' => 'viesa grūtības līmenis',
-            'beatmapset:modding' => 'bītmapju modifikācijas',
+            'beatmapset:modding' => 'ritma-karšu modifikācijas',
             'channel_message' => 'privātās čata ziņas',
             'comment_new' => 'jauni komentāri',
             'forum_topic_reply' => 'tēmas atbilde',
             'mail' => 'pasts',
-            'mapping' => 'bītmapes kartētājs',
-            'push' => 'push',
+            'mapping' => 'ritma-kartes izveidotājs',
+            'push' => 'piespiestu',
         ],
     ],
 
@@ -103,12 +103,12 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'slēpt brīdinājumus par nepiemērotu saturu bītmapēs',
-        'beatmapset_title_show_original' => 'rādīt bītmapes metadatus oriģinālvalodā',
+        'beatmapset_show_nsfw' => 'slēpt brīdinājumus par nepiemērotu saturu ritma-mapēs',
+        'beatmapset_title_show_original' => 'rādīt ritma-mapes metadatus oriģinālvalodā',
         'title' => 'Opcijas',
 
         'beatmapset_download' => [
-            '_' => 'noklusējuma bītmapes lejupielādes tips',
+            '_' => 'noklusējuma ritma-mapes lejupielādes tips',
             'all' => 'ar video, ja pieejams',
             'direct' => 'atvērt osu!direct',
             'no_video' => 'bez video',

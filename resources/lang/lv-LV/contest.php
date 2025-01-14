@@ -14,7 +14,7 @@ return [
     ],
 
     'judge' => [
-        'comments' => '',
+        'comments' => 'komentāri',
         'hide_judged' => 'paslēpt vērtētos ierakstus',
         'nav_title' => 'tiesāt',
         'no_current_vote' => 'tu vēl nebalsoji.',

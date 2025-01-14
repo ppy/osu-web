@@ -14,6 +14,13 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "target": "es2015",
+    "types": [
+      "cloudflare-turnstile",
+      "jquery.fileupload",
+      "jquery.scrollto",
+      "jqueryui",
+      "timeago"
+    ],
     "useDefineForClassFields": true
   },
   "include": [

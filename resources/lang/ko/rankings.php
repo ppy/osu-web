@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => '난이도',
-        'top_10p' => '',
-        'top_50p' => '',
+        'top_10p' => '상위 10% 점수',
+        'top_50p' => '상위 50% 점수',
     ],
 
     'filter' => [

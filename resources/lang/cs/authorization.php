@@ -62,7 +62,7 @@ return [
 
     'beatmap_tag' => [
         'store' => [
-            'no_score' => '',
+            'no_score' => 'Pro přidání tagu musíš na beatmapě zahrát skóre.',
         ],
     ],
 
@@ -178,7 +178,7 @@ return [
 
     'room' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'Pouze vlastník místnosti ji může zavřít.',
         ],
     ],
 

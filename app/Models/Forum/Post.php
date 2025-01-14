@@ -5,6 +5,7 @@
 
 namespace App\Models\Forum;
 
+use App\Casts\TimestampOrZero;
 use App\Exceptions\ModelNotSavedException;
 use App\Jobs\EsDocument;
 use App\Jobs\MarkNotificationsRead;
@@ -48,7 +49,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $post_reported
  * @property string $post_subject
  * @property mixed $post_text
- * @property int $post_time
+ * @property \Carbon\Carbon|null $post_time
  * @property string $post_username
  * @property int $poster_id
  * @property string $poster_ip
@@ -81,8 +82,10 @@ class Post extends Model implements AfterCommit, Indexable, Traits\ReportableInt
     public $timestamps = false;
 
     protected $casts = [
-        'post_edit_locked' => 'boolean',
         'post_approved' => 'boolean',
+        'post_edit_locked' => 'boolean',
+        'post_edit_time' => TimestampOrZero::class,
+        'post_time' => TimestampOrZero::class,
     ];
 
     private $normalizedUsers = [];
@@ -154,26 +157,6 @@ class Post extends Model implements AfterCommit, Indexable, Traits\ReportableInt
         if ($value !== 0) {
             return $value;
         }
-    }
-
-    public function setPostTimeAttribute($value)
-    {
-        $this->attributes['post_time'] = get_timestamp_or_zero($value);
-    }
-
-    public function getPostTimeAttribute($value)
-    {
-        return get_time_or_null($value);
-    }
-
-    public function setPostEditTimeAttribute($value)
-    {
-        $this->attributes['post_edit_time'] = get_timestamp_or_zero($value);
-    }
-
-    public function getPostEditTimeAttribute($value)
-    {
-        return get_time_or_null($value);
     }
 
     /**

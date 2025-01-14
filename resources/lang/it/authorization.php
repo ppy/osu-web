@@ -178,7 +178,7 @@ return [
 
     'room' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'Solo il proprietario della stanza può chiuderla.',
         ],
     ],
 

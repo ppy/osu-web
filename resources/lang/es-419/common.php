@@ -22,6 +22,7 @@ return [
         'admin' => 'Administrador',
         'authorise' => 'Autorizar',
         'authorising' => 'Autorizando...',
+        'back' => '',
         'back_to_previous' => 'Volver a la posición anterior',
         'back_to_top' => 'Volver al principio',
         'cancel' => 'Cancelar',

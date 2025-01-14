@@ -2128,8 +2128,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public static function findForLogin($username, $allowEmail = false)
     {
-        if (!present($username)) {
-            return;
+        $username = trim($username ?? '');
+
+        if ($username === null) {
+            return null;
         }
 
         $query = static::where('username', $username);

@@ -80,7 +80,7 @@ return [
         'confirm_restore' => 'Дійсно відновити тему',
         'deleted' => 'видалена тема',
         'go_to_latest' => 'показати останню відповідь',
-        'go_to_unread' => '',
+        'go_to_unread' => 'переглянути перший непрочитаний допис',
         'has_replied' => 'Ви відповідали на цю тему',
         'in_forum' => 'в :forum',
         'latest_post' => ':when від :user',

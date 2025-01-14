@@ -67,10 +67,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
-        'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'checking' => 'Se caută actualizări...',
+        'has_updates' => 'Discuția are actualizări, apasă pentru a reîmprospăta.',
+        'no_updates' => 'Nu există actualizări.',
+        'updating' => 'Se actualizează...',
     ],
 
     'reply' => [

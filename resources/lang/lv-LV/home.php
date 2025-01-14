@@ -5,15 +5,16 @@
 
 return [
     'landing' => [
-        'download' => '',
-        'online' => '',
-        'peak' => '',
-        'players' => '',
-        'title' => '',
-        'see_more_news' => '',
+        'download' => 'Lejupielādēt tagad',
+        'online' => '<strong>:players</strong> pašlaik tiešsaistē
+<strong>:games</strong> spēles',
+        'peak' => 'Visvairāk, :count lietotāji tiešsaistē',
+        'players' => '<strong>:count</strong> reģistrētie spēlētāji',
+        'title' => 'esi sveicināts',
+        'see_more_news' => 'skatīt vairāk jaunumus',
 
         'slogan' => [
-            'main' => '',
+            'main' => 'vislabākā brīvā ritma spēle',
             'sub' => 'ritms ir tikai klikšķa attālumā',
         ],
     ],
@@ -22,14 +23,14 @@ return [
         'advanced_link' => 'Izvērstā meklēšana',
         'button' => 'Meklēt',
         'empty_result' => 'Nekas nav atrasts!',
-        'keyword_required' => '',
+        'keyword_required' => 'Meklēšanas atslēgvārds ir nepieciešams',
         'placeholder' => 'rakstiet, lai meklētu',
         'title' => 'meklēt',
 
         'beatmapset' => [
             'login_required' => 'Ielogojieties, lai meklētu bītmapes',
-            'more' => '',
-            'more_simple' => '',
+            'more' => ':count vairāk ritma-mapju meklēšanas rezultāti',
+            'more_simple' => 'Redzēt vairāk ritma-mapju meklēšanas rezultātus',
             'title' => 'Bītmapes',
         ],
 
@@ -37,14 +38,14 @@ return [
             'all' => 'Visi forumi',
             'link' => 'Meklēt forumā',
             'login_required' => 'Ieiet, lai meklētu forumā',
-            'more_simple' => '',
+            'more_simple' => 'Redzēt vairāk foruma meklēšanas rezultātus',
             'title' => 'Forums',
 
             'label' => [
                 'forum' => 'meklēšana Forumos',
                 'forum_children' => 'iekļaut apakšforumus',
                 'include_deleted' => 'iekļaut dzēstos rakstus',
-                'topic_id' => '',
+                'topic_id' => 'temats #',
                 'username' => 'autors',
             ],
         ],
@@ -61,12 +62,12 @@ return [
             'login_required' => 'Ieiet, lai meklētu',
             'more' => ':count vairāki spēlētāji meklēšanas rezultātā',
             'more_simple' => 'Rādīt vairāk spēlētāju meklēšanas rezultātus',
-            'more_hidden' => '',
+            'more_hidden' => 'Spēlētāju meklētājs ir limitēts līdz :max spēlētājiem. Pamēģini precizēt meklējamo. ',
             'title' => 'Spēlētāji',
         ],
 
         'wiki_page' => [
-            'link' => '',
+            'link' => 'Meklēt vikipēdijā',
             'more_simple' => 'Rādīt vairāk wiki meklēšanas rezultātus',
             'title' => 'Wiki',
         ],
@@ -74,25 +75,25 @@ return [
 
     'download' => [
         'action' => 'Lejupielādēt osu!',
-        'action_lazer' => '',
-        'action_lazer_description' => '',
-        'action_lazer_info' => '',
-        'action_lazer_title' => '',
-        'action_title' => '',
-        'for_os' => '',
+        'action_lazer' => 'Ielādēt osu!(lazer)',
+        'action_lazer_description' => 'nākamais lielais atjauninājums osu!',
+        'action_lazer_info' => 'apskatīt šo lapu priekš vairāk informācijas',
+        'action_lazer_title' => 'pamēģini osu!(lazer)',
+        'action_title' => 'ielādēt osu!',
+        'for_os' => 'priekš :os',
         'macos-fallback' => 'macOS lietotāji',
         'mirror' => 'instalācija',
-        'or' => '',
-        'os_version_or_later' => '',
-        'other_os' => '',
-        'quick_start_guide' => '',
+        'or' => 'vai',
+        'os_version_or_later' => ':os_version vai jaunāku ',
+        'other_os' => 'citas platformas',
+        'quick_start_guide' => 'ātra sākuma pamācība',
         'tagline' => "sagatavosim <br> tevi!",
         'video-guide' => 'video pamācība',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
-            'support_button' => '',
+            '_' => 'ja tev ir problēma ar spēles uzsākšanu vai konta reģistrēšanu, :help_forum_link vai :support_button.',
+            'help_forum_link' => 'apskatīt palīdzības forumu',
+            'support_button' => 'kontaktēt atbalstu',
         ],
 
         'os' => [

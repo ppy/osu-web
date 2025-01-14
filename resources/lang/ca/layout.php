@@ -201,6 +201,7 @@ return [
             'profile' => 'El meu perfil',
             'scoring_mode_toggle' => 'Puntuació clàssica',
             'scoring_mode_toggle_tooltip' => 'Ajusta els valors de la puntuació per a simular la puntuació clàssic sense límits.',
+            'team' => '',
         ],
     ],
 
