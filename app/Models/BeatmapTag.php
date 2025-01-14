@@ -18,9 +18,10 @@ namespace App\Models;
  */
 class BeatmapTag extends Model
 {
+    public $incrementing = false;
+
     protected $primaryKey = ':composite';
     protected $primaryKeys = ['beatmap_id', 'tag_id', 'user_id'];
-    public $incrementing = false;
 
     public static function topTagIdsQuery(int $beatmapId, int $limit = 50)
     {
