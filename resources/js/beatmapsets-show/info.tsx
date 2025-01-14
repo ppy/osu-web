@@ -202,8 +202,8 @@ export default class Info extends React.Component<Props> {
                 {trans('beatmapsets.show.info.tags')}
               </h3>
               <div className='beatmapset-info__value-overflow'>
-                {this.tags.map((tag) => (
-                  <React.Fragment key={`${tag}`}>
+                {this.tags.map((tag, i) => (
+                  <React.Fragment key={`${tag}-${i}`}>
                     <a
                       className='beatmapset-info__link'
                       href={route('beatmapsets.index', { q: tag })}
