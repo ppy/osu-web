@@ -27,14 +27,6 @@ interface State {
 
 type TagJsonWithCount = TagJson & { count: number };
 
-function asTagJsonWithCount(tag: TagJson) {
-  return {
-    count: 0,
-    ...tag,
-  };
-}
-
-
 export default class Controller {
   @observable hoveredBeatmap: null | BeatmapJsonForBeatmapsetShow = null;
   @observable state: State;
@@ -102,9 +94,7 @@ export default class Controller {
         const maybeTag = this.relatedTags.get(tagId.tag_id);
         if (maybeTag == null) continue;
 
-        const tag = asTagJsonWithCount(maybeTag);
-        tag.count = tagId.count;
-        userTags.push(tag);
+        userTags.push({ ...maybeTag, count: tagId.count } );
       }
     }
 
