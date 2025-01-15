@@ -7,7 +7,6 @@ namespace App\Http\Controllers\Multiplayer\Rooms\Playlist;
 
 use App\Http\Controllers\Controller as BaseController;
 use App\Libraries\ClientCheck;
-use App\Models\Beatmap;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\Room;
