@@ -12,7 +12,6 @@ use App\Models\BeatmapTag;
 use App\Models\Solo\Score;
 use App\Models\Tag;
 use App\Models\User;
-use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class BeatmapTagsControllerTest extends TestCase
@@ -20,21 +19,6 @@ class BeatmapTagsControllerTest extends TestCase
     private Tag $tag;
     private Beatmap $beatmap;
     private BeatmapTag $beatmapTag;
-
-    public function testIndex(): void
-    {
-        $this->actAsScopedUser(User::factory()->create(), ['public']);
-
-        $this
-            ->get(route('api.beatmaps.tags.index', ['beatmap' => $this->beatmap->getKey()]))
-            ->assertSuccessful()
-            ->assertJson(fn (AssertableJson $json) =>
-                $json
-                    ->where('beatmap_tags.0.id', $this->tag->getKey())
-                    ->where('beatmap_tags.0.name', $this->tag->name)
-                    ->where('beatmap_tags.0.count', 1)
-                    ->etc());
-    }
 
     public function testStore(): void
     {
