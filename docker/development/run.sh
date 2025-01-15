@@ -20,7 +20,19 @@ _migrate() {
 }
 
 _octane() {
-  exec ./artisan octane:start --host=0.0.0.0 "$@"
+    echo_counter=0
+    manifest_path='./public/assets/manifest.json'
+    while [ ! -f "$manifest_path" ]; do
+        if [ "$echo_counter" -le 0 ]; then
+            echo_counter=5
+            echo "waiting to start octane: ${manifest_path##*/} not found" >&2
+        fi
+
+        : $(( echo_counter -= 1 ))
+        sleep 1
+    done
+
+    exec ./artisan octane:start --host=0.0.0.0 "$@"
 }
 
 _schedule() {
