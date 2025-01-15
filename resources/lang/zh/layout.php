@@ -201,6 +201,7 @@ return [
             'profile' => '资料',
             'scoring_mode_toggle' => '经典计分',
             'scoring_mode_toggle_tooltip' => '调整分数，让它感觉上更像经典的无上限计分分数。',
+            'team' => '',
         ],
     ],
 

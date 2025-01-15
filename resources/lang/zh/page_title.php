@@ -107,6 +107,10 @@ return [
         'seasons_controller' => [
             '_' => '排名',
         ],
+        'teams_controller' => [
+            '_' => '',
+            'show' => '',
+        ],
         'tournaments_controller' => [
             '_' => '比赛',
         ],

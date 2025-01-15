@@ -22,6 +22,7 @@ return [
         'admin' => 'Administrátor',
         'authorise' => 'Autorizovať',
         'authorising' => 'Autorizovanie...',
+        'back' => '',
         'back_to_previous' => 'Návrat do predchádzajúceho stavu',
         'back_to_top' => 'Naspäť hore',
         'cancel' => 'Zrušiť',

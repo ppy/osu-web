@@ -4,6 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => '投票更新失敗',
@@ -17,7 +21,7 @@ return [
         'deleted' => '被 :editor 於 :delete_time 刪除。',
         'deny_kudosu' => '收回 kudosu',
         'edit' => '編輯',
-        'edited' => '最後由 :editor 編輯於 :update_time 。',
+        'edited' => '最後由 :editor 在 :update_time 編輯。',
         'guest' => '由 :user 製作的客串難度',
         'kudosu_denied' => 'kudosu 被收回',
         'message_placeholder_deleted_beatmap' => '該難度已被刪除，無法繼續討論',
@@ -96,7 +100,7 @@ return [
             'events' => '歷史',
             'general' => '整體:scope',
             'reviews' => '評論',
-            'timeline' => '時間線',
+            'timeline' => '時間軸',
             'scopes' => [
                 'general' => '目前難度',
                 'generalAll' => '所有難度',
@@ -174,8 +178,8 @@ return [
     'hype' => [
         'button' => '推薦圖譜！',
         'button_done' => '已經推薦！',
-        'confirm' => "你確定嗎？這將會使用你剩下的 :n 次推薦次數並且無法撤銷。",
-        'explanation' => '推薦這張圖譜讓它更容易被提名和進榜 ！',
+        'confirm' => "你確定嗎？這將會使用你剩下的 :n 次推薦次數並且無法取消。",
+        'explanation' => '推薦這張圖譜讓它更容易被提名和進榜！',
         'explanation_guest' => '登入並推薦這張圖譜，讓它更容易被提名並進榜！',
         'new_time' => "你將在 :new_time 後獲得新的推薦次數。",
         'remaining' => '你還可以推薦 :remaining 次。',
@@ -211,7 +215,7 @@ return [
         'required_text' => '提名數：:current/:required',
         'reset_message_deleted' => '已刪除',
         'title' => '提名狀態',
-        'unresolved_issues' => '仍然有需解決的問題 。',
+        'unresolved_issues' => '請先處理圖譜中待解決的問題。',
 
         'rank_estimate' => [
             '_' => '如果沒有發現問題，這張圖譜預計會在 :date 進榜。它在 :queue 中排名第 #:position。',
@@ -297,7 +301,7 @@ return [
         'mine' => '我的圖譜',
         'pending' => '待處理',
         'wip' => '尚未完工 (WIP)',
-        'qualified' => 'Qualified',
+        'qualified' => '提名',
         'ranked' => '已進榜',
     ],
     'genre' => [
@@ -319,10 +323,10 @@ return [
     'language' => [
         'any' => '所有',
         'english' => '英文',
-        'chinese' => '中文',
+        'chinese' => '漢語',
         'french' => '法文',
         'german' => '德文',
-        'italian' => '意大利文',
+        'italian' => '義大利文',
         'japanese' => '日文',
         'korean' => '韓文',
         'spanish' => '西班牙文',

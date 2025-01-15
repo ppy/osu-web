@@ -25,8 +25,8 @@ return [
     ],
 
     'message' => [
-        'button' => '舉報訊息',
-        'title' => '舉報 :username 的訊息？',
+        'button' => '檢舉訊息',
+        'title' => '要檢舉 :username 的訊息嗎？',
     ],
 
     'scores' => [

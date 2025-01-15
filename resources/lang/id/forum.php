@@ -80,7 +80,7 @@ return [
         'confirm_restore' => 'Apakah kamu yakin untuk memulihkan topik ini?',
         'deleted' => 'topik yang dihapus',
         'go_to_latest' => 'lihat postingan terbaru',
-        'go_to_unread' => '',
+        'go_to_unread' => 'lihat pos pertama yang belum dibaca',
         'has_replied' => 'Kamu telah mengirimkan balasan pada topik ini',
         'in_forum' => 'pada forum :forum',
         'latest_post' => ':when oleh :user',
@@ -229,7 +229,7 @@ return [
 
             'poll' => [
                 'hide_results' => 'Rahasiakan hasil pada saat pemungutan suara sedang berlangsung.',
-                'hide_results_info' => 'Apabila diaktifkan, hasil suara baru akan tersedia setelah jajak pendapat berakhir.',
+                'hide_results_info' => 'Apabila diaktifkan, hasil ini hanya akan ditampilkan setelah jajak pendapat berakhir.',
                 'length' => 'Jalankan jajak pendapat selama',
                 'length_days_suffix' => 'hari',
                 'length_info' => 'Kosongkan untuk jajak pendapat yang tidak pernah berakhir',

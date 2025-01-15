@@ -7,7 +7,7 @@ return [
     'play_more' => '不如馬上玩點 osu! 吧？',
     'require_login' => '登入以繼續。',
     'require_verification' => '驗證以繼續。',
-    'restricted' => "帳戶處於限制模式，無法進行該操作。",
+    'restricted' => "帳號處於限制模式，無法進行該操作。",
     'silenced' => "帳號被禁言，無法進行該操作。",
     'unauthorized' => '沒有權限。',
 
@@ -56,13 +56,13 @@ return [
         'discussion_locked' => '這個圖譜被鎖定討論。',
 
         'metadata' => [
-            'nominated' => '你不能修改已提名的圖譜資訊。如果你認為有誤，請聯繫 BN 或 NAT 成員。',
+            'nominated' => '你不能修改已提名的圖譜資訊。如果你認為有誤，請聯絡 BN 或 NAT 成員。',
         ],
     ],
 
     'beatmap_tag' => [
         'store' => [
-            'no_score' => '',
+            'no_score' => '您必須先在一個圖譜取得分數才能新增標籤。',
         ],
     ],
 
@@ -178,7 +178,7 @@ return [
 
     'room' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => '只有房間主人才能關閉。',
         ],
     ],
 

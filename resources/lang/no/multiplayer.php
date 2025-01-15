@@ -19,6 +19,7 @@ return [
 
         'errors' => [
             'duration_too_long' => 'Lengden er for lang.',
+            'name_too_long' => '',
         ],
 
         'status' => [

@@ -149,10 +149,13 @@
                             <span class="input-container__label">
                                 {{ osu_trans('teams.edit.description.label') }}
                             </span>
-                            <textarea
-                                name="team[description]"
-                                class="input-text js-post-preview--auto"
-                            >{{ $team->description }}</textarea>
+                            <div class="input-text input-text--bbcode">
+                                <textarea
+                                    name="team[description]"
+                                    class="input-text__bbcode-textarea js-post-preview--auto js-bbcode-body"
+                                >{{ $team->description }}</textarea>
+                                @include('forum._post_toolbar')
+                            </div>
                         </label>
 
                         <div class="team-settings__description-preview u-fancy-scrollbar">

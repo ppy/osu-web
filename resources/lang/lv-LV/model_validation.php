@@ -4,11 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => 'Nepareizs :attribute specificēts.',
     'not_negative' => ':attribute nevar būt negatīvs.',
     'required' => ':attribute ir nepieciešams.',
     'too_long' => ':attribute pārsniedza maksimālo garumu - drīkst būt tikai līdz :limit zīmēm.',
-    'url' => '',
+    'url' => 'Lūdzu ievadi pareizu URL.',
     'wrong_confirmation' => 'Apstiprinājums nesakrīt.',
 
     'beatmapset_discussion' => [
@@ -25,7 +25,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "Šī ritma-mape ir pašlaik aizvērta diskusijām, un to nevar ",
             'guest' => 'Ir jāielogojas, lai publicizētu.',
             'hyped' => 'Tu jau esi publicizējis šo bītmapi.',
             'limit_exceeded' => 'Tu esi izmantojis visus savus publicizējumus.',

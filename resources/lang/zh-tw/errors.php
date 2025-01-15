@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'load_failed' => '無法載入數據。',
+    'load_failed' => '無法載入資料。',
     'missing_route' => '網址或請求方法錯誤。',
     'no_restricted_access' => '由於您的帳號已受限，故無法執行該操作。',
-    'supporter_only' => '您需要成為 osu!贊助者才能使用此功能 。',
+    'supporter_only' => '您需要成為 osu! 贊助者才能使用此功能。',
     'unknown' => '發生了未知的錯誤。',
 
     'codes' => [
@@ -34,9 +34,9 @@ return [
     'search' => [
         'default' => '無法獲得任何結果，請稍後再試。',
         'invalid_cursor_exception' => '指定的游標參數無效。',
-        'operation_timeout_exception' => '搜索目前比平常更繁忙，稍後再試。',
+        'operation_timeout_exception' => '搜尋功能目前使用量較大，請稍後再試。',
     ],
     'user_report' => [
-        'recently_reported' => "你已經舉報過了。",
+        'recently_reported' => "你已經檢舉過了。",
     ],
 ];

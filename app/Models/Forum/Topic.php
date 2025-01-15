@@ -5,6 +5,7 @@
 
 namespace App\Models\Forum;
 
+use App\Casts\TimestampOrZero;
 use App\Jobs\EsDocument;
 use App\Jobs\UpdateUserForumCache;
 use App\Jobs\UpdateUserForumTopicFollows;
@@ -112,8 +113,13 @@ class Topic extends Model implements AfterCommit
 
     protected $casts = [
         'poll_hide_results' => 'boolean',
+        'poll_last_vote' => TimestampOrZero::class,
+        'poll_start' => TimestampOrZero::class,
         'poll_vote_change' => 'boolean',
         'topic_approved' => 'boolean',
+        'topic_last_post_time' => TimestampOrZero::class,
+        'topic_last_view_time' => TimestampOrZero::class,
+        'topic_time' => TimestampOrZero::class,
     ];
 
     public static function createNew($forum, $params, $poll = null)
@@ -225,59 +231,9 @@ class Topic extends Model implements AfterCommit
         return $this->hasMany(TopicWatch::class);
     }
 
-    public function getPollLastVoteAttribute($value)
-    {
-        return get_time_or_null($value);
-    }
-
-    public function setPollLastVoteAttribute($value)
-    {
-        $this->attributes['poll_last_vote'] = get_timestamp_or_zero($value);
-    }
-
     public function getPollLengthDaysAttribute()
     {
         return $this->attributes['poll_length'] / 86400;
-    }
-
-    public function getPollStartAttribute($value)
-    {
-        return get_time_or_null($value);
-    }
-
-    public function setPollStartAttribute($value)
-    {
-        $this->attributes['poll_start'] = get_timestamp_or_zero($value);
-    }
-
-    public function getTopicLastPostTimeAttribute($value)
-    {
-        return get_time_or_null($value);
-    }
-
-    public function setTopicLastPostTimeAttribute($value)
-    {
-        $this->attributes['topic_last_post_time'] = get_timestamp_or_zero($value);
-    }
-
-    public function getTopicLastViewTimeAttribute($value)
-    {
-        return get_time_or_null($value);
-    }
-
-    public function setTopicLastViewTimeAttribute($value)
-    {
-        $this->attributes['topic_last_view_time'] = get_timestamp_or_zero($value);
-    }
-
-    public function getTopicTimeAttribute($value)
-    {
-        return get_time_or_null($value);
-    }
-
-    public function setTopicTimeAttribute($value)
-    {
-        $this->attributes['topic_time'] = get_timestamp_or_zero($value);
     }
 
     public function getTopicFirstPosterColourAttribute($value)

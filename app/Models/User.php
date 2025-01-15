@@ -37,6 +37,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\QueryException;
 use Laravel\Passport\HasApiTokens;
 use League\OAuth2\Server\Exception\OAuthServerException;
@@ -127,7 +128,7 @@ use Request;
  * @property-read Collection<Store\Address> $storeAddresses
  * @property-read Collection<UserDonation> $supporterTagPurchases
  * @property-read Collection<UserDonation> $supporterTags
- * @property-read TeamMember|null $teamMembership
+ * @property-read Team|null $team
  * @property-read Collection<OAuth\Token> $tokens
  * @property-read Collection<Forum\TopicWatch> $topicWatches
  * @property-read Collection<UserAchievement> $userAchievements
@@ -297,9 +298,16 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(UserCountryHistory::class);
     }
 
-    public function teamMembership(): HasOne
+    public function team(): HasOneThrough
     {
-        return $this->hasOne(TeamMember::class, 'user_id');
+        return $this->hasOneThrough(
+            Team::class,
+            TeamMember::class,
+            'user_id',
+            'id',
+            'user_id',
+            'team_id',
+        );
     }
 
     public function getAuthPassword()
@@ -958,7 +966,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'storeAddresses',
             'supporterTagPurchases',
             'supporterTags',
-            'teamMembership',
+            'team',
             'tokens',
             'topicWatches',
             'userAchievements',
@@ -2120,8 +2128,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public static function findForLogin($username, $allowEmail = false)
     {
-        if (!present($username)) {
-            return;
+        $username = trim($username ?? '');
+
+        if ($username === null) {
+            return null;
         }
 
         $query = static::where('username', $username);

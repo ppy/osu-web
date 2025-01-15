@@ -48,9 +48,10 @@ class OsuAuthorize
 
         $set ??= new Ds\Set([
             'ContestJudge',
-            'IsOwnClient',
             'IsNotOAuth',
+            'IsOwnClient',
             'IsSpecialScope',
+            'TeamPart',
             'UserUpdateEmail',
         ]);
 
@@ -1027,7 +1028,7 @@ class OsuAuthorize
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function checkChatChannelJoin(?User $user, Channel $channel): string
+    public function checkChatChannelJoin(?User $user, Channel $channel): ?string
     {
         $prefix = 'chat.';
 
@@ -1039,13 +1040,9 @@ class OsuAuthorize
 
         $this->ensureCleanRecord($user, $prefix);
 
-        // This check is only for when joining the channel directly; joining via the Room
-        // will always add the user to the channel.
+        // joining multiplayer room is done through room endpoint
         if ($channel->isMultiplayer()) {
-            $room = Room::hasParticipated($user)->find($channel->room_id);
-            if ($room !== null) {
-                return 'ok';
-            }
+            return null;
         }
 
         // allow joining of 'tournament' matches (for lazer/tournament client)
@@ -1903,6 +1900,22 @@ class OsuAuthorize
 
         if ($pinned >= $user->maxScorePins()) {
             return $prefix.'too_many';
+        }
+
+        return 'ok';
+    }
+
+    public function checkTeamPart(?User $user, Team $team): ?string
+    {
+        $this->ensureLoggedIn($user);
+
+        $prefix = 'team.part.';
+
+        if ($team->leader_id === $user->getKey()) {
+            return $prefix.'is_leader';
+        }
+        if ($team->getKey() !== $user?->team?->getKey()) {
+            return $prefix.'not_member';
         }
 
         return 'ok';

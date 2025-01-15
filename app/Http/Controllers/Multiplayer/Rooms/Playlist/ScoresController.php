@@ -5,7 +5,6 @@
 
 namespace App\Http\Controllers\Multiplayer\Rooms\Playlist;
 
-use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
 use App\Libraries\ClientCheck;
 use App\Models\Beatmap;
@@ -183,23 +182,11 @@ class ScoresController extends BaseController
         $playlistItem = $room->playlist()->findOrFail($playlistId);
         $user = \Auth::user();
         $request = \Request::instance();
-        $params = $request->all();
 
-        if ($playlistItem->freestyle) {
-            // Todo: Ensure beatmap_hash matches any beatmap from the playlist item's beatmap set.
-            // Todo: Ensure ruleset_id is valid (converts only allowed for id=0 otherwise must match beatmap playmode, and value within 0..3).
-            // Todo: Modifying the playlist item looks dodgy to me :)!
-            $playlistItem->beatmap_id = Beatmap::firstWhere('checksum', get_string($params['beatmap_hash'] ?? null))->beatmap_id;
-            $playlistItem->ruleset_id = get_int($params['ruleset_id'] ?? null);
-        } else {
-            if (get_string($params['beatmap_hash'] ?? null) !== $playlistItem->beatmap->checksum) {
-                throw new InvariantException(osu_trans('score_tokens.create.beatmap_hash_invalid'));
-            }
-        }
-
-        $buildId = ClientCheck::parseToken($request)['buildId'];
-
-        $scoreToken = $room->startPlay($user, $playlistItem, $buildId);
+        $scoreToken = $room->startPlay($user, $playlistItem, [
+            ...$request->all(),
+            'build_id' => ClientCheck::parseToken($request)['buildId'],
+        ]);
 
         return json_item($scoreToken, new ScoreTokenTransformer());
     }

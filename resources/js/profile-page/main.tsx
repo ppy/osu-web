@@ -120,37 +120,39 @@ export default class Main extends React.Component<Props> {
     // pageScan does not need to run at 144 fps...
     $(window).on(scrollEventId, throttle(() => this.pageScan(), 20));
 
-    if (this.pages.current != null) {
-      $(this.pages.current).sortable({
-        cursor: 'move',
-        handle: '.js-profile-page-extra--sortable-handle',
-        items: '.js-sortable--page',
-        revert: 150,
-        scrollSpeed: 10,
-        update: this.updateOrder,
-      });
-    }
+    this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => {
+      if (this.pages.current != null) {
+        $(this.pages.current).sortable({
+          cursor: 'move',
+          handle: '.js-profile-page-extra--sortable-handle',
+          items: '.js-sortable--page',
+          revert: 150,
+          scrollSpeed: 10,
+          update: this.updateOrder,
+        });
+      }
 
-    if (this.tabs.current != null) {
-      $(this.tabs.current).sortable({
-        axis: 'x',
-        cursor: 'move',
-        disabled: !this.controller.withEdit,
-        items: '.js-sortable--tab',
-        revert: 150,
-        scrollSpeed: 0,
-        start: () => {
-          // Somehow click event still goes through when dragging.
-          // This prevents triggering onTabClick.
-          window.clearTimeout(this.timeouts.draggingTab);
-          this.draggingTab = true;
-        },
-        stop: () => {
-          this.timeouts.draggingTab = window.setTimeout(() => this.draggingTab = false, 500);
-        },
-        update: this.updateOrder,
-      });
-    }
+      if (this.tabs.current != null) {
+        $(this.tabs.current).sortable({
+          axis: 'x',
+          cursor: 'move',
+          disabled: !this.controller.withEdit,
+          items: '.js-sortable--tab',
+          revert: 150,
+          scrollSpeed: 0,
+          start: () => {
+            // Somehow click event still goes through when dragging.
+            // This prevents triggering onTabClick.
+            window.clearTimeout(this.timeouts.draggingTab);
+            this.draggingTab = true;
+          },
+          stop: () => {
+            this.timeouts.draggingTab = window.setTimeout(() => this.draggingTab = false, 500);
+          },
+          update: this.updateOrder,
+        });
+      }
+    }));
 
     // preserve scroll if existing saved state but force position to reset
     // on refresh to avoid browser setting scroll position at the bottom on reload.

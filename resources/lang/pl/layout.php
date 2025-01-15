@@ -201,6 +201,7 @@ return [
             'profile' => 'Mój profil',
             'scoring_mode_toggle' => 'Klasyczny wynik',
             'scoring_mode_toggle_tooltip' => '',
+            'team' => '',
         ],
     ],
 

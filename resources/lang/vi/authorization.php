@@ -62,7 +62,7 @@ return [
 
     'beatmap_tag' => [
         'store' => [
-            'no_score' => '',
+            'no_score' => 'Bạn phải đạt điểm trên một beatmap để thêm thẻ.',
         ],
     ],
 
@@ -178,7 +178,7 @@ return [
 
     'room' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'Chỉ chủ phòng mới có thể đóng phòng.',
         ],
     ],
 

@@ -10,4 +10,16 @@
   padding: var(--input-padding);
   box-shadow: inset 0 0 0 2px var(--input-border-colour);
   border-radius: @border-radius-large;
+
+  &--bbcode {
+    .fancy-scrollbar();
+    display: grid;
+    grid-template-rows: 1fr auto;
+    gap: 5px;
+  }
+
+  &__bbcode-textarea {
+    .reset-input();
+    resize: none;
+  }
 }
