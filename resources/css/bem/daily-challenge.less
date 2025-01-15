@@ -8,10 +8,11 @@
   position: relative;
   display: flex;
   align-items: center;
-  padding: 3px;
+  padding: 1px;
+  border: 2px solid transparent;
 
   &--played-today {
-    border: 2px solid @osu-colour-lime-1;
+    border-color: @osu-colour-lime-1;
 
     &::before {
       .fas();
@@ -19,10 +20,11 @@
       border-radius: 50%;
       color: @osu-colour-lime-1;
       content: @fa-var-check-circle;
-      font-size: 16px;
+      font-size: 16px; // icon size
       position: absolute;
-      right: -8px;
-      top: -8px;
+      right: 0;
+      top: 0;
+      transform: translate(50%, -50%);
     }
   }
 
