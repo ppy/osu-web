@@ -10,6 +10,7 @@ namespace Tests\Models;
 use App\Models\BeatmapDifficulty;
 use App\Models\BeatmapDifficultyAttrib;
 use App\Models\BeatmapFailtimes;
+use App\Models\BeatmapTag;
 use App\Models\Chat;
 use App\Models\FavouriteBeatmapset;
 use App\Models\Forum;
@@ -111,6 +112,16 @@ class ModelCompositePrimaryKeysTest extends TestCase
                 ],
                 ['type' => 'exit'],
                 ['p1', [0, 10], 11],
+            ],
+            [
+                BeatmapTag::class,
+                [
+                    'beatmap_id' => 0,
+                    'tag_id' => 0,
+                    'user_id' => 0,
+                ],
+                ['tag_id' => 1],
+                ['updated_at', [Carbon::now()->subDays(5), Carbon::now()->subDays(1)], Carbon::now()],
             ],
             [
                 Chat\UserChannel::class,
