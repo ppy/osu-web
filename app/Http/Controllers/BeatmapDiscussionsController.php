@@ -5,6 +5,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Docs\Attributes\Limit;
+use App\Docs\Attributes\Page;
+use App\Docs\Attributes\Sort;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\BeatmapsetDiscussion\Review;
 use App\Libraries\BeatmapsetDiscussionsBundle;
@@ -90,17 +93,15 @@ class BeatmapDiscussionsController extends Controller
      * users                     | [User](#user)[]                                 | List of users associated with the discussions returned.
      *
      * @usesCursor
-     * @queryParam beatmap_id `id` of the [Beatmap](#beatmap).
-     * @queryParam beatmapset_id `id` of the [Beatmapset](#beatmapset).
-     * @queryParam beatmapset_status One of `all`, `ranked`, `qualified`, `disqualified`, `never_qualified`. Defaults to `all`. TODO: better descriptions.
-     * @queryParam limit Maximum number of results.
-     * @queryParam message_types[] `suggestion`, `problem`, `mapper_note`, `praise`, `hype`, `review`. Blank defaults to all types. TODO: better descriptions.
-     * @queryParam only_unresolved `true` to show only unresolved issues; `false`, otherwise. Defaults to `false`.
-     * @queryParam page Search result page.
-     * @queryParam sort `id_desc` for newest first; `id_asc` for oldest first. Defaults to `id_desc`.
-     * @queryParam user The `id` of the [User](#user).
-     * @queryParam with_deleted This param has no effect as api calls do not currently receive group permissions.
+     * @queryParam beatmap_id integer `id` of the [Beatmap](#beatmap).
+     * @queryParam beatmapset_id integer `id` of the [Beatmapset](#beatmapset).
+     * @queryParam beatmapset_status string One of `all`, `ranked`, `qualified`, `disqualified`, `never_qualified`. Defaults to `all`. TODO: better descriptions. No-example
+     * @queryParam message_types string[] `suggestion`, `problem`, `mapper_note`, `praise`, `hype`, `review`. Blank defaults to all types. TODO: better descriptions. No-example
+     * @queryParam only_unresolved boolean `true` to show only unresolved issues; `false`, otherwise. Defaults to `false`.
+     * @queryParam user integer The `id` of the [User](#user).
+     * @queryParam with_deleted boolean This param has no effect as api calls do not currently receive group permissions. No-example
      */
+    #[Limit(BeatmapDiscussion::PER_PAGE, 5), Page, Sort('IdSort')]
     public function index()
     {
         $bundle = new BeatmapsetDiscussionsBundle(request()->all());

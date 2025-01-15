@@ -5,6 +5,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Docs\Attributes\Limit;
+use App\Docs\Attributes\Sort;
 use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\User;
 use App\Transformers\LegacyMatch\EventTransformer;
@@ -38,8 +40,6 @@ class MatchesController extends Controller
      * params.sort   | string                        | |
      *
      * @usesCursor
-     * @queryParam limit integer Maximum number of matches (50 default, 1 minimum, 50 maximum). No-example
-     * @queryParam sort string `id_desc` for newest first; `id_asc` for oldest first. Defaults to `id_desc`. No-example
      * @response {
      *     "matches": [
      *         {
@@ -60,6 +60,7 @@ class MatchesController extends Controller
      *     "cursor_string": "eyJtYXRjaF9pZCI6MTE0NDI4Njg1fQ"
      * }
      */
+    #[Limit, Sort('IdSort')]
     public function index()
     {
         $params = request()->all();
@@ -99,7 +100,6 @@ class MatchesController extends Controller
      * @urlParam match integer required Match ID. No-example
      * @queryParam before integer Filter for match events before the specified [MatchEvent.id](#matchevent). No-example
      * @queryParam after integer Filter for match events after the specified [MatchEvent.id](#matchevent). No-example
-     * @queryParam limit integer Maximum number of match events (100 default, 1 minimum, 101 maximum). No-example
      * @response {
      *     "match": {
      *         "id": 16155689,
@@ -124,6 +124,7 @@ class MatchesController extends Controller
      *     "current_game_id": null
      * }
      */
+    #[Limit(100, 1, 101)]
     public function show($id)
     {
         $match = LegacyMatch::findOrFail($id);
