@@ -36,6 +36,7 @@ class PlaylistItem extends Model
     protected $casts = [
         'allowed_mods' => 'object',
         'expired' => 'boolean',
+        'freestyle' => 'boolean',
         'required_mods' => 'object',
     ];
 
