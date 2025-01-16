@@ -2039,6 +2039,16 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             ->where('user_lastvisit', '>', time() - $GLOBALS['cfg']['osu']['user']['online_window']);
     }
 
+    public function scopeWithoutBots(Builder $query): Builder
+    {
+        return $query->whereNot('group_id', app('groups')->byIdentifier('bot')->getKey());
+    }
+
+    public function scopeWithoutNoProfile(Builder $query): Builder
+    {
+        return $query->whereNot('group_id', app('groups')->byIdentifier('no_profile')->getKey());
+    }
+
     public function checkPassword($password)
     {
         return Hash::check($password, $this->getAuthPassword());
