@@ -300,7 +300,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('part', 'TeamsController@part')->name('part');
         Route::resource('members', 'Teams\MembersController', ['only' => ['destroy', 'index']]);
     });
-    Route::resource('teams', 'TeamsController', ['only' => ['edit', 'show', 'update']]);
+    Route::resource('teams', 'TeamsController', ['only' => ['destroy', 'edit', 'show', 'update']]);
 
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
     Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');
@@ -431,7 +431,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
                     });
                 });
 
-                Route::apiResource('tags', 'BeatmapTagsController', ['only' => ['index', 'store', 'destroy']]);
+                Route::apiResource('tags', 'BeatmapTagsController', ['only' => ['store', 'destroy']]);
             });
         });
 
