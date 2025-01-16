@@ -22,7 +22,7 @@ class LookupController extends Controller
     public function index()
     {
         // TODO: referer check?
-        $params = get_params(request()->all(), null, [
+        $params = get_params(\Request::all(), null, [
             'exclude_bots:bool',
             'ids:string[]',
         ]);
