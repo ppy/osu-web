@@ -41,6 +41,7 @@ class LookupController extends Controller
 
         $users = User::where(fn ($q) => $q->whereIn('user_id', $numericIds)->orWhereIn('username', $stringIds))
             ->default()
+            ->withoutNoProfile()
             ->with(UserCompactTransformer::CARD_INCLUDES_PRELOAD);
 
         if ($params['exclude_bots'] ?? false) {

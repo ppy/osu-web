@@ -2032,21 +2032,21 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         ]);
     }
 
-    public function scopeWithoutBots(Builder $query): Builder
-    {
-        $groups = app('groups');
-
-        return $query->whereNotIn(
-            'group_id',
-            [$groups->byIdentifier('no_profile')->getKey(), $groups->byIdentifier('bot')->getKey()],
-        );
-    }
-
     public function scopeOnline($query)
     {
         return $query
             ->where('user_allow_viewonline', true)
             ->where('user_lastvisit', '>', time() - $GLOBALS['cfg']['osu']['user']['online_window']);
+    }
+
+    public function scopeWithoutBots(Builder $query): Builder
+    {
+        return $query->whereNot('group_id', app('groups')->byIdentifier('bot')->getKey());
+    }
+
+    public function scopeWithoutNoProfile(Builder $query): Builder
+    {
+        return $query->whereNot('group_id', app('groups')->byIdentifier('no_profile')->getKey());
     }
 
     public function checkPassword($password)
