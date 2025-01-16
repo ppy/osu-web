@@ -5,6 +5,7 @@ import DailyChallengeUserStatsJson from 'interfaces/daily-challenge-user-stats-j
 import { autorun } from 'mobx';
 import { observer } from 'mobx-react';
 import * as moment from 'moment';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { classWithModifiers, Modifiers } from 'utils/css';
@@ -123,12 +124,13 @@ export default class DailyChallenge extends React.Component<Props> {
       return null;
     }
 
-    const playedToday = this.props.stats.last_update != null && moment.utc(this.props.stats.last_update).isSame(Date.now(), 'day');
+    const playedToday = this.props.stats.last_update !== null && moment.utc(this.props.stats.last_update).isSame(Date.now(), 'day');
+    const userIsOnOwnProfile = this.props.stats.user_id === core.currentUser?.id;
 
     return (
       <div
         ref={this.valueRef}
-        className={classWithModifiers('daily-challenge', { 'played-today': playedToday })}
+        className={classWithModifiers('daily-challenge', { 'played-today': playedToday && userIsOnOwnProfile })}
         onMouseOver={this.onMouseOver}
       >
         <div className='daily-challenge__name'>
