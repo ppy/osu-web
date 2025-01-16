@@ -763,7 +763,7 @@ class Room extends Model
 
         if ($playlistItem->freestyle) {
             // assert the beatmap_id is part of playlist item's beatmapset
-            if ($playlistItem->beatmap->beatmapset_id !== Beatmap::find($params['beatmap_id'])?->getKey()) {
+            if ($playlistItem->beatmap->beatmapset_id !== Beatmap::find($params['beatmap_id'])?->beatmapset_id) {
                 throw new InvariantException('Specified beatmap_id is not allowed');
             }
         }
