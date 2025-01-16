@@ -8,6 +8,7 @@ namespace App\Models;
 use App\Exceptions\InvariantException;
 use App\Jobs\EsDocument;
 use App\Libraries\Transactions\AfterCommit;
+use App\Traits\Memoizes;
 use DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -53,7 +54,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Beatmap extends Model implements AfterCommit
 {
-    use SoftDeletes;
+    use Memoizes, SoftDeletes;
 
     public $convert = false;
 
@@ -346,6 +347,20 @@ class Beatmap extends Model implements AfterCommit
     public function status()
     {
         return array_search($this->approved, Beatmapset::STATES, true);
+    }
+
+    public function topTagIds()
+    {
+        // TODO: Add option to multi query when beatmapset requests all tags for beatmaps?
+        return $this->memoize(
+            __FUNCTION__,
+            fn () => cache_remember_mutexed(
+                "beatmap_top_tag_ids:{$this->getKey()}",
+                $GLOBALS['cfg']['osu']['tags']['beatmap_tags_cache_duration'],
+                [],
+                fn () => $this->beatmapTags()->topTagIds()->limit(50)->get()->toArray(),
+            ),
+        );
     }
 
     private function getDifficultyrating()
