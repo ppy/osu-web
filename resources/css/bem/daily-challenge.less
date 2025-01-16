@@ -15,16 +15,19 @@
     border-color: @osu-colour-lime-1;
 
     &::before {
+      .center-content();
       .fas();
-      background-color: @osu-colour-b6;
+      background-color: @osu-colour-lime-1;
       border-radius: 50%;
-      color: @osu-colour-lime-1;
-      content: @fa-var-check-circle;
-      font-size: 16px; // icon size
+      color: @osu-colour-b6;
+      content: @fa-var-check;
+      font-size: 8px; // icon size
+      height: 16px;
       position: absolute;
       right: 0;
       top: 0;
       transform: translate(50%, -50%);
+      width: 16px;
     }
   }
 
