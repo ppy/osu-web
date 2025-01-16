@@ -189,6 +189,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
         <div className={classWithModifiers('beatmap-owner-editor-owners', { editing: this.editing })}>
           {this.editing ? (
             <UsernameInput
+              excludeBots
               initialUsers={this.owners}
               // initialValue not set for owner editor as value is reset when cancelled.
               modifiers='beatmap-owner-editor'
