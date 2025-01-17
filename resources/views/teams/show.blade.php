@@ -13,14 +13,6 @@
     $teamMembers['member'] ??= [];
     $teamMembers['leader'] ??= $toJson([$team->members()->make(['user_id' => $team->leader_id])->userOrDeleted()]);
     $headerUrl = $team->header()->url();
-
-    $buttons = new Ds\Set();
-    if (priv_check('TeamPart', $team)->can()) {
-        $buttons->add('part');
-    }
-    if (priv_check('TeamUpdate', $team)->can()) {
-        $buttons->add('destroy');
-    }
 @endphp
 
 @extends('master', [
@@ -77,31 +69,27 @@
                 </div>
             </div>
         </div>
-        @if (!$buttons->isEmpty())
+        @if (Auth::user()?->team?->getKey() === $team->getKey())
             <div class="profile-detail-bar profile-detail-bar--team">
-                @if ($buttons->contains('destroy'))
-                    <form
-                        action="{{ route('teams.destroy', $team) }}"
-                        data-turbo-confirm="{{ osu_trans('common.confirmation') }}"
-                        method="POST"
+                @php
+                    $partPriv = priv_check('TeamPart', $team);
+                    $canPart = $partPriv->can();
+                @endphp
+                <form
+                    action="{{ route('teams.part', ['team' => $team]) }}"
+                    data-turbo-confirm="{{ osu_trans('common.confirmation') }}"
+                    title="{{ $partPriv->message() }}"
+                    method="POST"
+                >
+                    <button
+                        class="{{ class_with_modifiers('team-action-button', 'part', ['disabled' => !$canPart]) }}"
+                        @if (!$canPart)
+                            disabled
+                        @endif
                     >
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button class="team-action-button team-action-button--part">
-                            {{ osu_trans('teams.show.bar.destroy') }}
-                        </button>
-                    </form>
-                @endif
-                @if ($buttons->contains('part'))
-                    <form
-                        action="{{ route('teams.part', ['team' => $team]) }}"
-                        data-turbo-confirm="{{ osu_trans('common.confirmation') }}"
-                        method="POST"
-                    >
-                        <button class="team-action-button team-action-button--part">
-                            {{ osu_trans('teams.show.bar.part') }}
-                        </button>
-                    </form>
-                @endif
+                        {{ osu_trans('teams.show.bar.part') }}
+                    </button>
+                </form>
             </div>
         @endif
         <div class="user-profile-pages user-profile-pages--no-tabs">
