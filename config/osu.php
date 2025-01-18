@@ -18,6 +18,7 @@ return [
     'achievement' => [
         'icon_prefix' => env('USER_ACHIEVEMENT_ICON_PREFIX', 'https://assets.ppy.sh/user-achievements/'),
     ],
+
     'api' => [
         // changing the throttle rate doesn't reset any existing timers,
         // changing the prefix key is the only way to invalidate them.
@@ -26,6 +27,7 @@ return [
             'scores_download' => env('API_THROTTLE_SCORES_DOWNLOAD', '10,1,api-scores-download'),
         ],
     ],
+
     'avatar' => [
         'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
         'cache_purge_method' => env('AVATAR_CACHE_PURGE_METHOD'),
@@ -33,6 +35,7 @@ return [
         'default' => env('DEFAULT_AVATAR', env('APP_URL', 'http://localhost').'/images/layout/avatar-guest@2x.png'),
         'storage' => env('AVATAR_STORAGE', 'local-avatar'),
     ],
+
     'bbcode' => [
         // this should be random or a config variable.
         // ...who am I kidding, this shouldn't even exist at all.
@@ -190,13 +193,12 @@ return [
         'processing_queue' => presence(env('SCORES_PROCESSING_QUEUE')) ?? 'osu-queue:score-statistics',
         'submission_enabled' => get_bool(env('SCORES_SUBMISSION_ENABLED')) ?? true,
     ],
+
     'seasonal' => [
         'contest_id' => get_int(env('SEASONAL_CONTEST_ID')),
         'ends_at' => env('SEASONAL_ENDS_AT'),
     ],
-    'seasons' => [
-        'factors_cache_duration' => 60 * (get_float(env('SEASONS_FACTORS_CACHE_DURATION')) ?? 60), // in minutes, converted to seconds
-    ],
+
     'store' => [
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE') ?? '')),
     ],
