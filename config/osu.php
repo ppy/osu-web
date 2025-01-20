@@ -195,7 +195,7 @@ return [
         'ends_at' => env('SEASONAL_ENDS_AT'),
     ],
     'seasons' => [
-        'divisions_cache_duration' => 60 * (get_float(env('DIVISIONS_CACHE_DURATION')) ?? 60), // in minutes, converted to seconds
+        'divisions_cache_duration' => 60 * (get_float(env('SEASONS_DIVISIONS_CACHE_DURATION')) ?? 60), // in minutes, converted to seconds
     ],
     'store' => [
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE') ?? '')),
