@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -51,7 +52,7 @@ class Season extends Model
         return $this->hasMany(Division::class);
     }
 
-    public function divisionsOrdered(): array
+    public function divisionsOrdered(): Collection
     {
         return cache_remember_mutexed(
             "divisions:{$this->id}",
