@@ -177,14 +177,12 @@ export class Header extends React.Component<Props> {
           <div className={`${bn}__beatmap-stats`}>
             <div className={`${bn}__owners`}>
               {hasGuestOwners(this.currentBeatmap, this.beatmapset) && (
-                <>
-                  <StringWithComponent
-                    mappings={{
-                      user: <UserLinkList users={this.currentBeatmap.owners ?? []} />,
-                    }}
-                    pattern={trans('beatmaps.discussions.guest')}
-                  />
-                </>
+                <StringWithComponent
+                  mappings={{
+                    user: <UserLinkList users={this.currentBeatmap.owners ?? []} />,
+                  }}
+                  pattern={trans('beatmaps.discussions.guest')}
+                />
               )}
             </div>
             <div className={`${bn}__basic-stats`}>
