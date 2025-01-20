@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
+ * @property-read Collection<Division> $divisions
  * @property bool $finalised
  * @property string $name
  * @property-read Collection<Multiplayer\Room> $rooms

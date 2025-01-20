@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property-read Season $season
  * @property int $season_id
  * @property float $total_score
+ * @property-read User $user
  * @property int $user_id
  */
 class UserSeasonScoreAggregate extends Model
