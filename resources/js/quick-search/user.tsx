@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import FlagCountry from 'components/flag-country';
+import FlagTeam from 'components/flag-team';
 import FriendButton from 'components/friend-button';
 import SupporterIcon from 'components/supporter-icon';
 import UserGroupBadges from 'components/user-group-badges';
@@ -25,6 +26,12 @@ export default function User({ user, modifiers = [] }: { modifiers?: string[]; u
           <div className='user-search-card__col user-search-card__col--flag'>
             <FlagCountry country={user.country} />
           </div>
+
+          {user.team != null &&
+            <div className='user-search-card__col user-search-card__col--flag'>
+              <FlagTeam team={user.team} />
+            </div>
+          }
 
           <a className='user-search-card__col user-search-card__col--username' href={url}>
             {user.username}
