@@ -10,6 +10,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property bool $finalised
@@ -45,6 +46,36 @@ class Season extends Model
         return $season;
     }
 
+    public function divisions(): HasMany
+    {
+        return $this->hasMany(Division::class);
+    }
+
+    public function divisionsOrdered(): array
+    {
+        return cache_remember_mutexed(
+            "divisions:{$this->id}",
+            $GLOBALS['cfg']['osu']['seasons']['divisions_cache_duration'],
+            [],
+            fn () => $this->divisions()->orderBy('threshold')->get(),
+        );
+    }
+
+    public function divisionsWithAbsoluteThresholds(): array
+    {
+        $divisions = [];
+        $userCount = $this->userScores()->count();
+
+        foreach ($this->divisionsOrdered() as $division) {
+            $divisions[] = [
+                'division' => $division,
+                'absolute_threshold' => $division->threshold * $userCount,
+            ];
+        }
+
+        return $divisions;
+    }
+
     public function endDate(): ?Carbon
     {
         return $this->finalised
@@ -57,8 +88,18 @@ class Season extends Model
         return $this->rooms->min('starts_at');
     }
 
+    public function topScores(): HasMany
+    {
+        return $this->userScores()->forRanking()->with(['user.country', 'user.team']);
+    }
+
     public function rooms(): BelongsToMany
     {
         return $this->belongsToMany(Multiplayer\Room::class, SeasonRoom::class);
+    }
+
+    public function userScores(): HasMany
+    {
+        return $this->hasMany(UserSeasonScoreAggregate::class);
     }
 }
