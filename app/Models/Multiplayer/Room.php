@@ -265,7 +265,7 @@ class Room extends Model
         return $this->hasOneThrough(
             Season::class,
             SeasonRoom::class,
-            'id',
+            'room_id',
             'id',
             'id',
             'season_id',
