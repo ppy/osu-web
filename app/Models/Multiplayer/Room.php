@@ -23,6 +23,7 @@ use Ds\Set;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -40,7 +41,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $participant_count
  * @property \Illuminate\Database\Eloquent\Collection $playlist PlaylistItem
  * @property \Illuminate\Database\Eloquent\Collection $scoreLinks ScoreLink
- * @property-read Collection<\App\Models\Season> $seasons
+ * @property-read Season $season
  * @property \Carbon\Carbon $starts_at
  * @property \Carbon\Carbon|null $updated_at
  * @property int $user_id
@@ -185,7 +186,7 @@ class Room extends Model
         }
 
         if (isset($seasonId)) {
-            $query->whereRelation('seasons', 'seasons.id', $seasonId);
+            $query->whereRelation('season', 'season_id', $seasonId);
         }
 
         if (in_array($category, static::CATEGORIES, true)) {
@@ -258,9 +259,16 @@ class Room extends Model
         return $this->hasMany(ScoreLink::class);
     }
 
-    public function seasons()
+    public function season(): HasOneThrough
     {
-        return $this->belongsToMany(Season::class, SeasonRoom::class);
+        return $this->hasOneThrough(
+            Season::class,
+            SeasonRoom::class,
+            'id',
+            'id',
+            'id',
+            'season_id',
+        );
     }
 
     public function userHighScores()
@@ -446,15 +454,12 @@ class Room extends Model
                 $stats->save();
             }
 
-            // spotlight playlists should always be linked to one season exactly
-            if ($this->category === 'spotlight' && $agg->total_score > 0 && $this->seasons()->count() === 1) {
-                $seasonId = $this->seasons()->first()->getKey();
-
+            if ($this->category === 'spotlight' && $agg->total_score > 0 && $this->season !== null) {
                 $seasonScore = $user->seasonScores()
-                    ->where('season_id', $seasonId)
+                    ->where('season_id', $this->season->getKey())
                     ->firstOrNew();
 
-                $seasonScore->season_id = $seasonId;
+                $seasonScore->season()->associate($this->season);
                 $seasonScore->calculate();
                 $seasonScore->save();
             }
