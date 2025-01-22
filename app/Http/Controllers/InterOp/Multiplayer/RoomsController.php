@@ -20,7 +20,7 @@ class RoomsController extends Controller
         $room->assertCorrectPassword(get_string(request('password')));
         $room->join($user);
 
-        return RoomTransformer::createShowResponse($room);
+        return $room->getKey();
     }
 
     public function store()
@@ -30,6 +30,6 @@ class RoomsController extends Controller
 
         $room = (new Room())->startGame($user, $params);
 
-        return RoomTransformer::createShowResponse($room);
+        return $room->getKey();
     }
 }
