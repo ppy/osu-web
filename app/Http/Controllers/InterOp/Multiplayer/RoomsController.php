@@ -23,6 +23,14 @@ class RoomsController extends Controller
         return $room->getKey();
     }
 
+    public function part(string $id, string $userId)
+    {
+        $user = User::findOrFail($userId);
+        $room = Room::findOrFail($id);
+
+        return $room->part($user);
+    }
+
     public function store()
     {
         $params = \Request::all();
