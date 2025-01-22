@@ -46,6 +46,28 @@ class UserTest extends TestCase
         ];
     }
 
+    public static function dataProviderForUsernameChangeCostType()
+    {
+        return [
+            ['admin', 0],
+            ['inactive', 0],
+            ['paid', 8],
+            ['revert', 0],
+            ['support', 8],
+        ];
+    }
+
+    public static function dataProviderForUsernameChangeCostTypeLastChange()
+    {
+        return [
+            ['admin', 8],
+            ['inactive', 8],
+            ['paid', 32],
+            ['revert', 8],
+            ['support', 32],
+        ];
+    }
+
     /**
      * @dataProvider dataProviderForAttributeTwitter
      */
@@ -80,6 +102,38 @@ class UserTest extends TestCase
             ->create();
 
         $this->travelBack();
+
+        $this->assertSame($user->usernameChangeCost(), $cost);
+    }
+
+    /**
+     * @dataProvider dataProviderForUsernameChangeCostType
+     */
+    public function testUsernameChangeCostType(string $type, int $cost)
+    {
+        $user = User::factory()
+            ->has(UsernameChangeHistory::factory()->state(['type' => $type]))
+            ->create();
+
+        $this->assertSame($user->usernameChangeCost(), $cost);
+    }
+
+    /**
+     * This tests the correct last UsernameChangeHistory is used when applying the cost changes.
+     *
+     * @dataProvider dataProviderForUsernameChangeCostTypeLastChange
+     */
+    public function testUsernameChangeCostTypeLastChange(string $type, int $cost)
+    {
+        $this->travelTo(CarbonImmutable::now()->subYears(1));
+
+        $user = User::factory()
+            ->has(UsernameChangeHistory::factory()->count(2))
+            ->create();
+
+        $this->travelBack();
+
+        UsernameChangeHistory::factory()->state(['type' => $type, 'user_id' => $user])->create();
 
         $this->assertSame($user->usernameChangeCost(), $cost);
     }
