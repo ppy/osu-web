@@ -27,18 +27,15 @@ class UserSeasonScoreAggregate extends Model
 
     public function calculate(bool $muteExceptions = true): void
     {
-        $rooms = $this->season->rooms()
-            ->withPivot('group_indicator')
-            ->get();
-
-        $userScores = UserScoreAggregate::whereIn('room_id', $rooms->pluck('id'))
+        $seasonRooms = SeasonRoom::where('season_id', $this->season->getKey())->get();
+        $userScores = UserScoreAggregate::whereIn('room_id', $seasonRooms->pluck('room_id'))
             ->where('user_id', $this->user_id)
             ->get();
 
         $factors = $this->season->score_factors;
-        $roomsGrouped = $rooms->groupBy('pivot.group_indicator');
+        $roomGroupCount = $seasonRooms->groupBy('group_indicator')->count();
 
-        if ($roomsGrouped->count() > count($factors)) {
+        if ($roomGroupCount > count($factors)) {
             // don't interrupt Room::completePlay() and throw exception only for recalculation command
             if ($muteExceptions) {
                 return;
@@ -47,26 +44,19 @@ class UserSeasonScoreAggregate extends Model
             }
         }
 
-        foreach ($roomsGrouped as $rooms) {
-            $groupUserScores = $userScores
-                ->whereIn('room_id', $rooms->pluck('id'))
-                ->pluck('total_score');
-
-            if ($groupUserScores === null) {
-                continue;
-            }
-
-            $scores[] = $groupUserScores->max();
+        $roomsById = $seasonRooms->keyBy('room_id');
+        $scores = [];
+        foreach ($userScores as $score) {
+            $group = $roomsById[$score->room_id]->group_indicator;
+            $scores[$group] = max($scores[$group] ?? 0, $score->total_score);
         }
 
         rsort($factors);
         rsort($scores);
 
-        $scoreCount = count($scores);
         $total = 0;
-
-        for ($i = 0; $i < $scoreCount; $i++) {
-            $total += $scores[$i] * $factors[$i];
+        foreach ($scores as $index => $score) {
+            $total += $score * $factors[$index];
         }
 
         $this->total_score = $total;
