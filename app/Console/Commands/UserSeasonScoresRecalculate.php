@@ -35,10 +35,8 @@ class UserSeasonScoresRecalculate extends Command
     protected function recalculate(Season $season): void
     {
         $scoreUserIds = UserScoreAggregate::whereIn('room_id', $season->rooms->pluck('id'))
-            ->select('user_id')
-            ->get()
-            ->pluck('user_id')
-            ->unique();
+            ->distinct('user_id')
+            ->pluck('user_id');
 
         $bar = $this->output->createProgressBar($scoreUserIds->count());
 
