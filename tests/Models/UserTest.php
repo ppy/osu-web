@@ -11,6 +11,7 @@ use App\Libraries\Session\Store;
 use App\Models\OAuth\Token;
 use App\Models\User;
 use App\Models\UsernameChangeHistory;
+use Carbon\CarbonImmutable;
 use Database\Factories\OAuth\RefreshTokenFactory;
 use Tests\TestCase;
 
@@ -30,6 +31,21 @@ class UserTest extends TestCase
         ];
     }
 
+    public static function dataProviderForUsernameChangeCostLastChange()
+    {
+        // assume there are 6 changes (max tier + 1)
+        return [
+            [0, 100],
+            [1, 64],
+            [2, 32],
+            [3, 16],
+            [4, 8],
+            [5, 8],
+            [6, 8],
+            [10, 8],
+        ];
+    }
+
     /**
      * @dataProvider dataProviderForAttributeTwitter
      */
@@ -43,11 +59,27 @@ class UserTest extends TestCase
     /**
      * @dataProvider dataProviderForUsernameChangeCost
      */
-    public function testChangeUsernameChangeCost(int $changes, int $cost)
+    public function testUsernameChangeCost(int $changes, int $cost)
     {
         $user = User::factory()
-            ->has(UsernameChangeHistory::factory()->count($changes)->state(['type' => 'paid']))
+            ->has(UsernameChangeHistory::factory()->count($changes))
             ->create();
+
+        $this->assertSame($user->usernameChangeCost(), $cost);
+    }
+
+    /**
+     * @dataProvider dataProviderForUsernameChangeCostLastChange
+     */
+    public function testUsernameChangeCostLastChange(int $years, int $cost)
+    {
+        $this->travelTo(CarbonImmutable::now()->subYears($years));
+
+        $user = User::factory()
+            ->has(UsernameChangeHistory::factory()->count(6)) // 6 = max tier + 1
+            ->create();
+
+        $this->travelBack();
 
         $this->assertSame($user->usernameChangeCost(), $cost);
     }
