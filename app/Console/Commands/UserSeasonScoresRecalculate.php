@@ -47,7 +47,7 @@ class UserSeasonScoresRecalculate extends Command
                         ->where('season_id', $season->getKey())
                         ->firstOrNew();
 
-                    $seasonScore->season_id = $season->getKey();
+                    $seasonScore->season()->associate($season);
                     $seasonScore->calculate(false);
                     $seasonScore->save();
 
