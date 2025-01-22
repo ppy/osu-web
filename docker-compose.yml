@@ -50,8 +50,8 @@ services:
     <<: *x-web
     volumes:
       - .:/app
-      - .docker/js-build/assets:/app/public/assets
-      - .docker/js-build/builds:/app/resources/builds
+      - ./storage/testjs-assets:/app/public/assets
+      - ./storage/testjs-builds:/app/resources/builds
     profiles: ['testjs']
     command: ['test', 'js']
 
