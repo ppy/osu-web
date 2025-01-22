@@ -7,6 +7,8 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\Multiplayer\Room;
+use App\Models\Season;
 use App\Models\SeasonRoom;
 
 class SeasonRoomFactory extends Factory
@@ -15,7 +17,9 @@ class SeasonRoomFactory extends Factory
 
     public function definition(): array
     {
-        // pivot table...
-        return [];
+        return [
+            'room_id' => Room::factory(),
+            'season_id' => Season::factory(),
+        ];
     }
 }
