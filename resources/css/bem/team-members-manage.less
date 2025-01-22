@@ -8,7 +8,7 @@
   font-size: @font-size--title-small;
   display: grid;
   gap: 2px 10px;
-  grid-template-columns: auto 1fr auto auto auto;
+  grid-template-columns: 1fr auto auto auto;
 
   &__avatar {
     .default-border-radius();
@@ -37,5 +37,12 @@
       --bg-hover: var(--bg);
       font-weight: 600;
     }
+  }
+
+  &__username {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    gap: 10px;
   }
 }

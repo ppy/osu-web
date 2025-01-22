@@ -19,7 +19,6 @@
                 <ul class="team-members-manage">
                     <li class="team-members-manage__item team-members-manage__item--header">
                         <span></span>
-                        <span></span>
                         <span>{{ osu_trans('teams.members.index.table.status') }}</span>
                         <span>{{ osu_trans('teams.members.index.table.joined_at') }}</span>
                         <span></span>
@@ -28,15 +27,20 @@
                             $user = $member->userOrDeleted();
                         @endphp
                         <li class="team-members-manage__item">
-                            <span class="team-members-manage__avatar">
-                                <span
-                                    class="avatar avatar--full avatar--guest"
-                                    {!! background_image($user->user_avatar) !!}
-                                ></span>
-                            </span>
-                            <span>
-                                {!! link_to_user($user, null, '', []) !!}
-                            </span>
+                            <a
+                                class="team-members-manage__username js-usercard"
+                                data-user-id="{{ $user->getKey() }}"
+                                href="{{ route('users.show', $user->getKey()) }}"
+                            >
+                                <span class="team-members-manage__avatar">
+                                    <span
+                                        class="avatar avatar--full avatar--guest"
+                                        {!! background_image($user->user_avatar) !!}
+                                    ></span>
+                                </span>
+
+                                {{ $user->username }}
+                            </a>
                             <span>
                                 {{ osu_trans('teams.members.index.status.status_'.(int) $user->isActive()) }}
                                 @if ($user->isOnline())

@@ -224,7 +224,7 @@ export default class StoreSupporterTag extends React.Component<Props> {
 
   @action
   private readonly getUser = (username: string) => {
-    this.xhr = apiLookupUsers([`@${username}`]);
+    this.xhr = apiLookupUsers([`@${username}`], true);
 
     this.xhr
       .done((response) => runInAction(() => {

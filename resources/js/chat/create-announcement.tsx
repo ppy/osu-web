@@ -81,6 +81,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
               <div className='chat-form-users'>
                 <UserCardBrick user={core.currentUserOrFail} />
                 <UsernameInput
+                  excludeBots
                   id='chat-form-users'
                   ignoreCurrentUser
                   name='users'

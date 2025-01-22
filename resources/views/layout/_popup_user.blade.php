@@ -14,7 +14,7 @@
     <a
         href="{{ $currentUserUrl  }}"
         class="simple-menu__header simple-menu__header--link js-current-user-cover"
-        {!! background_image($currentUser->cover()->url(), false) !!}
+        {!! background_image($currentUser->cover()->url()) !!}
     >
         <img class="simple-menu__header-icon" src="/images/icons/profile.svg" alt="">
         <div class="u-relative">{{ $currentUser->username }}</div>
