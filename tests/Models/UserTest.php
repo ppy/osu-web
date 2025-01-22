@@ -10,11 +10,26 @@ namespace Tests\Models;
 use App\Libraries\Session\Store;
 use App\Models\OAuth\Token;
 use App\Models\User;
+use App\Models\UsernameChangeHistory;
 use Database\Factories\OAuth\RefreshTokenFactory;
 use Tests\TestCase;
 
 class UserTest extends TestCase
 {
+    public static function dataProviderForUsernameChangeCost()
+    {
+        return [
+            [0, 0],
+            [1, 8],
+            [2, 16],
+            [3, 32],
+            [4, 64],
+            [5, 100],
+            [6, 100],
+            [10, 100],
+        ];
+    }
+
     /**
      * @dataProvider dataProviderForAttributeTwitter
      */
@@ -23,6 +38,18 @@ class UserTest extends TestCase
         $user = new User(['user_twitter' => $setValue]);
 
         $this->assertSame($getValue, $user->user_twitter);
+    }
+
+    /**
+     * @dataProvider dataProviderForUsernameChangeCost
+     */
+    public function testChangeUsernameChangeCost(int $changes, int $cost)
+    {
+        $user = User::factory()
+            ->has(UsernameChangeHistory::factory()->count($changes)->state(['type' => 'paid']))
+            ->create();
+
+        $this->assertSame($user->usernameChangeCost(), $cost);
     }
 
     public function testEmailLoginDisabled()
