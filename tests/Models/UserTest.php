@@ -182,7 +182,7 @@ class UserTest extends TestCase
             ->has(UsernameChangeHistory::factory()->count($changes))
             ->create();
 
-        $this->assertSame($user->usernameChangeCost(), $cost);
+        $this->assertSame($cost, $user->usernameChangeCost());
     }
 
     /**
@@ -198,7 +198,7 @@ class UserTest extends TestCase
 
         $this->travelBack();
 
-        $this->assertSame($user->usernameChangeCost(), $cost);
+        $this->assertSame($cost, $user->usernameChangeCost());
     }
 
     /**
@@ -210,7 +210,7 @@ class UserTest extends TestCase
             ->has(UsernameChangeHistory::factory()->state(['type' => $type]))
             ->create();
 
-        $this->assertSame($user->usernameChangeCost(), $cost);
+        $this->assertSame($cost, $user->usernameChangeCost());
     }
 
     /**
@@ -230,7 +230,7 @@ class UserTest extends TestCase
 
         UsernameChangeHistory::factory()->state(['type' => $type, 'user_id' => $user])->create();
 
-        $this->assertSame($user->usernameChangeCost(), $cost);
+        $this->assertSame($cost, $user->usernameChangeCost());
     }
 
     /**
