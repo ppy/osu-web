@@ -183,7 +183,7 @@ class UserSeasonScoreAggregateTest extends TestCase
             'room_id' => $room,
         ]);
 
-        $this->roomAddPlay($this->user, $playlistItem, [
+        static::roomAddPlay($this->user, $playlistItem, [
             'passed' => true,
             'total_score' => $totalScore,
         ]);
