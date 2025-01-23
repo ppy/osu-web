@@ -80,7 +80,7 @@ return [
         'confirm_restore' => 'Sigur dorești să restaurezi subiectul?',
         'deleted' => 'subiect șters',
         'go_to_latest' => 'vezi cea mai recentă postare',
-        'go_to_unread' => '',
+        'go_to_unread' => 'vizualizează prima postare necitită',
         'has_replied' => 'Ai răspuns în acest subiect',
         'in_forum' => 'in :forum',
         'latest_post' => ':when de :user',

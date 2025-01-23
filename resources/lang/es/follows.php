@@ -37,6 +37,6 @@ return [
     ],
 
     'store' => [
-        'too_many' => '',
+        'too_many' => 'Has alcanzado el límite de personas a las que puedes seguir.',
     ],
 ];

@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => '難度',
-        'top_10p' => '',
-        'top_50p' => '',
+        'top_10p' => '前 10%的分數',
+        'top_50p' => '前 50%的分數',
     ],
 
     'filter' => [

@@ -108,19 +108,27 @@
                     @endif
                     <td class="ranking-page-table__column">
                         <div class="ranking-page-table__user-link">
-                            <a
-                                href="{{ route('rankings', [
-                                    'mode' => $mode,
-                                    'type' => 'performance',
-                                    'country' => $score->user->country->acronym,
-                                    'variant' => $variant,
-                                ]) }}"
-                            >
-                                @include('objects._flag_country', [
-                                    'country' => $score->user->country,
-                                    'modifiers' => 'medium',
-                                ])
-                            </a>
+                            <span class="ranking-page-table__flags">
+                                <a
+                                    class="u-contents"
+                                    href="{{ route('rankings', [
+                                        'mode' => $mode,
+                                        'type' => 'performance',
+                                        'country' => $score->user->country->acronym,
+                                        'variant' => $variant,
+                                    ]) }}"
+                                >
+                                    @include('objects._flag_country', [
+                                        'country' => $score->user->country,
+                                    ])
+                                </a>
+
+                                @if (($team = $score->user->team) !== null)
+                                    <a class="u-contents" href="{{ route('teams.show', $team) }}">
+                                        @include('objects._flag_team', compact('team'))
+                                    </a>
+                                @endif
+                            </span>
                             <a
                                 href="{{ route('users.show', ['user' => $score->user_id, 'mode' => $mode]) }}"
                                 class="ranking-page-table__user-link-text js-usercard"

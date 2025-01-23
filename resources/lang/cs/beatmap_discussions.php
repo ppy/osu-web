@@ -67,10 +67,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
-        'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'checking' => 'Hledání aktualizací...',
+        'has_updates' => 'Diskuze byla aktualizována, klikni pro obnovení.',
+        'no_updates' => 'Žádné aktualizace.',
+        'updating' => 'Aktualizování...',
     ],
 
     'reply' => [

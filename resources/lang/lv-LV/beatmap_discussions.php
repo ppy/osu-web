@@ -67,10 +67,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
-        'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'checking' => 'Pārbauda atjauninājumus...',
+        'has_updates' => 'Šai diskusijai ir atjauninājumi, uzspiest lai atsvaidzinātu.',
+        'no_updates' => 'Nav atjauninājumu.',
+        'updating' => 'Atjauninās...',
     ],
 
     'reply' => [

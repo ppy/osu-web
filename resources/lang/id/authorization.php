@@ -62,7 +62,7 @@ return [
 
     'beatmap_tag' => [
         'store' => [
-            'no_score' => '',
+            'no_score' => 'Kamu harus mencetak skor pada beatmap ini untuk menambahkan tag.',
         ],
     ],
 
@@ -178,7 +178,7 @@ return [
 
     'room' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'Hanya pemilik ruangan yang dapat menutup ruang permainan.',
         ],
     ],
 

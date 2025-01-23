@@ -11,20 +11,25 @@
     --gutter: @gutter-beatmapset-desktop;
   }
 
-  &__beatmap-stats {
-    position: absolute;
-
-    right: 0;
-    top: 0;
-    width: 100%;
+  &__basic-stats {
+    grid-area: stats;
     padding: 10px 10px 0;
-    flex-direction: column;
-    display: flex;
+  }
 
-    @media @narrow-up {
-      flex-direction: row;
-      justify-content: space-between;
+  &__beatmap-stats {
+    position: relative;
+    display: grid;
+    grid-template-areas: "owners stats" "chart chart";
+    grid-template-columns: 1fr auto;
+    background-color: hsl(var(--hsl-b4));
+
+    @media @narrow {
+      grid-template-areas: "stats" "owners" "chart";
     }
+  }
+
+  &__chart {
+    grid-area: chart;
   }
 
   &__content {
@@ -81,10 +86,11 @@
     }
   }
 
-  &__guest {
+  &__owners {
+    grid-area: owners;
     font-size: @font-size--title-small;
-    display: flex;
-    align-items: center;
+    padding: 10px 10px 0;
+    overflow-wrap: anywhere;
   }
 
   &__stats {

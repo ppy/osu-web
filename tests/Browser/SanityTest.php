@@ -276,7 +276,7 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['daily_challenge_room'] = Room::factory()->create(['category' => 'daily_challenge']);
         PlaylistItem::factory()->create(['room_id' => self::$scaffolding['daily_challenge_room']]);
 
-        self::$scaffolding['team'] = Team::factory()->create();
+        self::$scaffolding['team'] = Team::factory()->create(['leader_id' => self::$scaffolding['user']]);
     }
 
     private static function filterLog(array $log)

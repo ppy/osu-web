@@ -22,6 +22,7 @@ return [
         'admin' => 'Administratorius',
         'authorise' => 'Leisti',
         'authorising' => 'Leidžiama...',
+        'back' => '',
         'back_to_previous' => 'Grįžti į ankstesnę poziciją',
         'back_to_top' => 'Grįžti į viršų',
         'cancel' => 'Atšaukti',

@@ -37,6 +37,6 @@ return [
     ],
 
     'store' => [
-        'too_many' => '',
+        'too_many' => 'Limite raggiunto di follow.',
     ],
 ];

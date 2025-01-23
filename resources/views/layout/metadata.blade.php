@@ -96,9 +96,9 @@
 <script src="{{ unmix('js/runtime.js') }}" data-turbo-eval="false"></script>
 <script src="{{ unmix('js/vendor.js') }}" data-turbo-eval="false"></script>
 
-<script src="{{ unmix("js/locales/{$currentLocale}.js") }}" data-turbo-eval="false"></script>
+<script src="{{ unmix("js/locales/{$currentLocale}.js") }}" data-turbo-track="reload"></script>
 @if ($fallbackLocale !== $currentLocale)
-    <script src="{{ unmix("js/locales/{$fallbackLocale}.js") }}" data-turbo-eval="false"></script>
+    <script src="{{ unmix("js/locales/{$fallbackLocale}.js") }}" data-turbo-track="reload"></script>
 @endif
 
 <script src="{{ unmix('js/commons.js') }}" data-turbo-eval="false"></script>

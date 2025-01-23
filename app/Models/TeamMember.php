@@ -24,4 +24,13 @@ class TeamMember extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function userOrDeleted(): User
+    {
+        $user = $this->user;
+
+        return $user === null || $user->isRestricted()
+            ? new DeletedUser(['user_id' => $this->user_id])
+            : $user;
+    }
 }

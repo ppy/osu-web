@@ -37,6 +37,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\QueryException;
 use Laravel\Passport\HasApiTokens;
 use League\OAuth2\Server\Exception\OAuthServerException;
@@ -127,7 +128,7 @@ use Request;
  * @property-read Collection<Store\Address> $storeAddresses
  * @property-read Collection<UserDonation> $supporterTagPurchases
  * @property-read Collection<UserDonation> $supporterTags
- * @property-read TeamMember|null $teamMembership
+ * @property-read Team|null $team
  * @property-read Collection<OAuth\Token> $tokens
  * @property-read Collection<Forum\TopicWatch> $topicWatches
  * @property-read Collection<UserAchievement> $userAchievements
@@ -297,9 +298,16 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(UserCountryHistory::class);
     }
 
-    public function teamMembership(): HasOne
+    public function team(): HasOneThrough
     {
-        return $this->hasOne(TeamMember::class, 'user_id');
+        return $this->hasOneThrough(
+            Team::class,
+            TeamMember::class,
+            'user_id',
+            'id',
+            'user_id',
+            'team_id',
+        );
     }
 
     public function getAuthPassword()
@@ -309,24 +317,23 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function usernameChangeCost()
     {
-        $changesToDate = $this->usernameChangeHistory()
-            ->whereIn('type', ['support', 'paid'])
-            ->count();
+        $tier = min($this->usernameChangeHistory()->paid()->count(), 5);
 
-        switch ($changesToDate) {
-            case 0:
-                return 0;
-            case 1:
-                return 8;
-            case 2:
-                return 16;
-            case 3:
-                return 32;
-            case 4:
-                return 64;
-            default:
-                return 100;
+        if ($tier > 1) {
+            $lastChange = $this->usernameChangeHistory()->paid()->last()?->timestamp;
+            if ($lastChange !== null) {
+                $tier = max($tier - $lastChange->diffInYears(Carbon::now(), false), 1);
+            }
         }
+
+        return match ($tier) {
+            0 => 0,
+            1 => 8,
+            2 => 16,
+            3 => 32,
+            4 => 64,
+            default => 100,
+        };
     }
 
     public function revertUsername($type = 'revert'): UsernameChangeHistory
@@ -958,7 +965,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'storeAddresses',
             'supporterTagPurchases',
             'supporterTags',
-            'teamMembership',
+            'team',
             'tokens',
             'topicWatches',
             'userAchievements',
@@ -2031,6 +2038,16 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             ->where('user_lastvisit', '>', time() - $GLOBALS['cfg']['osu']['user']['online_window']);
     }
 
+    public function scopeWithoutBots(Builder $query): Builder
+    {
+        return $query->whereNot('group_id', app('groups')->byIdentifier('bot')->getKey());
+    }
+
+    public function scopeWithoutNoProfile(Builder $query): Builder
+    {
+        return $query->whereNot('group_id', app('groups')->byIdentifier('no_profile')->getKey());
+    }
+
     public function checkPassword($password)
     {
         return Hash::check($password, $this->getAuthPassword());
@@ -2120,8 +2137,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public static function findForLogin($username, $allowEmail = false)
     {
-        if (!present($username)) {
-            return;
+        $username = trim($username ?? '');
+
+        if ($username === null) {
+            return null;
         }
 
         $query = static::where('username', $username);

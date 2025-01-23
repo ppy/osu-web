@@ -39,9 +39,9 @@ class ChangelogEntry extends Model
 
     public static function convertLegacy($changelog)
     {
-        $message = $changelog->message;
-        $splitMessage = static::splitMessage($message);
-        $title = $splitMessage[0];
+        $splitMessage = static::splitMessage($changelog->message);
+        $title = presence($splitMessage[0]);
+        $message = $splitMessage[1];
 
         if ($title === null) {
             $title = $splitMessage[1];
@@ -63,6 +63,13 @@ class ChangelogEntry extends Model
             ]),
             'repository' => null,
         ]);
+    }
+
+    public static function getDisplayMessage(?string $origMessage): string
+    {
+        $split = static::splitMessage($origMessage);
+
+        return $split[1] === null ? '' : $split[0];
     }
 
     public static function guessCategory($data)
@@ -125,7 +132,7 @@ class ChangelogEntry extends Model
             'category' => static::guessCategory($data),
             'created_at' => Carbon::parse($data['pull_request']['merged_at']),
             'github_pull_request_id' => $data['pull_request']['number'],
-            'message' => $data['pull_request']['body'],
+            'message' => static::getDisplayMessage($data['pull_request']['body']),
             'private' => static::isPrivate($data),
             'title' => $data['pull_request']['title'],
             'type' => static::guessType($data),
@@ -180,21 +187,30 @@ class ChangelogEntry extends Model
         ]);
     }
 
-    public static function splitMessage($message)
+    /**
+     * Returns array of message split by thematic break (`---`)
+     *
+     * The array length is always two.
+     * If the message is empty, both values will be null.
+     * If there's no thematic break, the second value will be null.
+     */
+    public static function splitMessage($message): array
     {
         if (!present($message)) {
             return [null, null];
         }
 
         static $separator = "\n\n---\n";
-        // prepended with \n\n just in case the message starts with ---\n (blank first part).
-        $message = "\n\n".trim(str_replace("\r\n", "\n", $message));
-        $splitPos = null_if_false(strpos($message, $separator)) ?? strlen($message);
+        // Surround with newlines to handle separator at the start/end.
+        $message = "\n\n".trim(strtr($message, ["\r\n" => "\n"]))."\n";
+        $splitPos = strpos($message, $separator);
 
-        return [
-            presence(trim(substr($message, 0, $splitPos))),
-            presence(trim(substr($message, $splitPos + strlen($separator)))),
-        ];
+        return $splitPos === false
+            ? [trim($message), null]
+            : [
+                trim(substr($message, 0, $splitPos)),
+                trim(substr($message, $splitPos + strlen($separator))),
+            ];
     }
 
     public function builds()
@@ -253,21 +269,12 @@ class ChangelogEntry extends Model
         }
     }
 
-    public function publicMessageHtml()
+    public function messageHtml(): ?string
     {
         return $this->memoize(__FUNCTION__, function () {
-            $message = $this->publicMessage();
+            $message = $this->message;
 
-            if ($message !== null) {
-                return markdown($message, 'changelog_entry');
-            }
-        });
-    }
-
-    public function publicMessage()
-    {
-        return $this->memoize(__FUNCTION__, function () {
-            return static::splitMessage($this->message)[1];
+            return present($message) ? markdown($message, 'changelog_entry') : null;
         });
     }
 }

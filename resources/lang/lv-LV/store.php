@@ -5,9 +5,9 @@
 
 return [
     'cart' => [
-        'checkout' => 'Pirkuma noformēšana',
-        'empty_cart' => '',
-        'info' => '',
+        'checkout' => 'Pirkuma norēķināšanās ',
+        'empty_cart' => 'Noņemt visas preces no groza',
+        'info' => ':count_delimited prece grozā ($:subtotal)|:count_delimited prece grozā ($:subtotal)',
         'more_goodies' => '',
         'shipping_fees' => 'piegādes maksas',
         'title' => 'Iepirkumu grozs',
@@ -21,21 +21,21 @@ return [
         'empty' => [
             'text' => 'Jūsu grozs ir tukšs.',
             'return_link' => [
-                '_' => '',
+                '_' => 'Atgriezties uz :link lai atrastu dažus labumiņus!',
                 'link_text' => '',
             ],
         ],
     ],
 
     'checkout' => [
-        'cart_problems' => '',
+        'cart_problems' => 'Ak nē, ir izveidojušās problēmas ar tavu grozu!',
         'cart_problems_edit' => '',
         'declined' => '',
         'delayed_shipping' => '',
         'hide_from_activity' => 'Slēpt visus osu!supporter tagus šajā pasūtījumā no manas aktivitātes',
         'old_cart' => '',
-        'pay' => '',
-        'title_compact' => '',
+        'pay' => 'Norēķināties ar PayPal',
+        'title_compact' => 'norēķināšanās',
 
         'has_pending' => [
             '_' => '',
@@ -49,24 +49,24 @@ return [
     ],
 
     'discount' => 'atlaide :percent %',
-    'free' => '',
+    'free' => 'par brīvu!',
 
     'invoice' => [
-        'contact' => '',
-        'date' => '',
-        'echeck_delay' => '',
+        'contact' => 'Sazinies:',
+        'date' => 'Datums:',
+        'echeck_delay' => 'Tā kā jūsu samakasa bija e-samaksa, lūdzu pagaidīt līdz 10 papildus dienām, lai samaksa izietu cauri PayPal!',
         'hide_from_activity' => 'osu!supporter tagi šajā pasūtījumā netiek rādīti jūsu nesenajās aktivitātēs.',
-        'sent_via' => '',
-        'shipping_to' => '',
-        'title' => '',
-        'title_compact' => '',
+        'sent_via' => 'Aizsūtīt Caur:',
+        'shipping_to' => 'Aizsūtīt Uz:',
+        'title' => 'Rēķins',
+        'title_compact' => 'rēķins',
 
         'status' => [
             'cancelled' => [
-                'title' => '',
+                'title' => 'Jūsu pasūtījums ir atcelts ',
                 'line_1' => [
                     '_' => "",
-                    'link_text' => '',
+                    'link_text' => 'osu!veikala atbalsts',
                 ],
             ],
             'delivered' => [
@@ -85,31 +85,31 @@ return [
                 'title' => '',
                 'line_1' => '',
                 'line_2' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => 'Ja tu sastapies ar problēmu, kamēr norēķinājies, :link',
+                    'link_text' => 'uzspiest šeit lai turpinātu norēķināšanos',
                 ],
             ],
             'shipped' => [
-                'title' => '',
-                'tracking_details' => '',
+                'title' => 'Tavs pasūtījums ir piegādāts!',
+                'tracking_details' => 'Izsekošanas saturs seko:',
                 'no_tracking_details' => [
                     '_' => "",
-                    'link_text' => '',
+                    'link_text' => 'atsūti mums e-pastu',
                 ],
             ],
         ],
     ],
 
     'order' => [
-        'cancel' => '',
-        'cancel_confirm' => '',
-        'cancel_not_allowed' => '',
-        'invoice' => '',
-        'no_orders' => '',
-        'paid_on' => '',
-        'resume' => '',
-        'shipping_and_handling' => '',
-        'shopify_expired' => '',
+        'cancel' => 'Atcelt Pasūtījumu',
+        'cancel_confirm' => 'Šo pasūtījumu atcels un samaksa netiks pieņemta par to. Samaksas apgādātājs iespējams neatgriezīs naudu uzreiz. Vai tu esi drošs?',
+        'cancel_not_allowed' => 'Šo pasūtījumu pašlaik nevar atcelt.',
+        'invoice' => 'Apskatīt Čeku',
+        'no_orders' => 'Nav redzamu pasūtījumu.',
+        'paid_on' => 'Pasūtījums apstiprināts :date',
+        'resume' => 'Turpināt Norēķināšanos',
+        'shipping_and_handling' => 'Transportēšana & Apstrāde',
+        'shopify_expired' => 'Šī pasūtījuma norēķināšanās saitei ir beidzies derīguma termiņš.',
         'subtotal' => '',
         'total' => '',
 
@@ -186,12 +186,12 @@ return [
 
         'require_login' => [
             '_' => 'Jums ir nepiciešams būt :link, lai iegūtu osu!supporter!',
-            'link_text' => '',
+            'link_text' => 'pierakstījies',
         ],
     ],
 
     'username_change' => [
-        'check' => '',
+        'check' => 'Ievadi lietotājvārdu lai redzētu tā pieejamību!',
         'checking' => '',
         'placeholder' => '',
         'label' => '',
@@ -199,7 +199,7 @@ return [
 
         'require_login' => [
             '_' => '',
-            'link_text' => '',
+            'link_text' => 'pierakstījies',
         ],
     ],
 

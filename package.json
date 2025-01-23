@@ -59,7 +59,7 @@
     "jquery-ujs": "^1.2.3",
     "jquery.scrollto": "^2.1.2",
     "lang.js": "^1.1.14",
-    "less": "^3.9.0",
+    "less": "^4.2.1",
     "less-loader": "^11.1.3",
     "lodash": "^4.17.19",
     "mdast-util-gfm-autolink-literal": "^1.0.3",

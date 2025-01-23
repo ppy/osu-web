@@ -80,7 +80,7 @@ return [
         'confirm_restore' => '정말 이 주제를 복원할까요?',
         'deleted' => '삭제된 주제',
         'go_to_latest' => '최근에 올라온 글 보기',
-        'go_to_unread' => '',
+        'go_to_unread' => '읽지 않은 첫번째 게시글 보기',
         'has_replied' => '이 주제에 답글을 달았습니다.',
         'in_forum' => ':forum에서',
         'latest_post' => ':when by :user',

@@ -22,6 +22,7 @@ return [
         'admin' => 'المشرف',
         'authorise' => 'استأِذان',
         'authorising' => 'استأِذان...',
+        'back' => '',
         'back_to_previous' => 'العودة إلى الحالة السابقة',
         'back_to_top' => 'العودة إلى الأعلى',
         'cancel' => 'إلغاء',

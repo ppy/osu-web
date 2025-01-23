@@ -5,7 +5,7 @@
 
 return [
     'create' => [
-        'beatmap_hash_invalid' => '',
-        'submission_disabled' => '',
+        'beatmap_hash_invalid' => 'nepareiza vai trūkstoša dziesma_hash',
+        'submission_disabled' => 'rezultātu iesūtīšana ir izslēgta',
     ],
 ];

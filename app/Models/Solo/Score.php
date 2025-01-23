@@ -52,7 +52,13 @@ use LaravelRedis;
  */
 class Score extends Model implements Traits\ReportableInterface
 {
-    use Traits\Reportable, Traits\WithWeightedPp;
+    use Traits\Reportable, Traits\WithDbCursorHelper, Traits\WithWeightedPp;
+
+    const DEFAULT_SORT = 'old';
+
+    const SORTS = [
+        'old' => [['column' => 'id', 'order' => 'ASC']],
+    ];
 
     public $timestamps = false;
 
@@ -161,6 +167,18 @@ class Score extends Model implements Traits\ReportableInterface
     public function scopeDefault(Builder $query): Builder
     {
         return $query->whereHas('beatmap.beatmapset');
+    }
+
+    /**
+     * This should only be sorted by primary key(s)
+     */
+    public function scopeForListing(Builder $query): Builder
+    {
+        return $query->where('ranked', true)
+            ->whereHas('user', fn ($q) => $q->default())
+            ->from(\DB::raw("{$this->getTable()} FORCE INDEX (PRIMARY)"))
+            ->leftJoinRelation('processHistory')
+            ->select([$query->qualifyColumn('*'), 'processed_version']);
     }
 
     public function scopeForRuleset(Builder $query, string $ruleset): Builder
@@ -362,6 +380,19 @@ class Score extends Model implements Traits\ReportableInterface
         }
 
         return null;
+    }
+
+    public function isProcessed(): bool
+    {
+        if ($this->legacy_score_id !== null) {
+            return true;
+        }
+
+        if (array_key_exists('processed_version', $this->attributes)) {
+            return $this->attributes['processed_version'] !== null;
+        }
+
+        return $this->processHistory !== null;
     }
 
     public function legacyScore(): ?LegacyScore\Best\Model
