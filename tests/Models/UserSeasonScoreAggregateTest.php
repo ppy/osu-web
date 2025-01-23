@@ -28,17 +28,17 @@ class UserSeasonScoreAggregateTest extends TestCase
             ->where('season_id', $this->season->getKey())
             ->first();
 
-        $this->assertSame($userScore->total_score, (float) 10); // 10*1
+        $this->assertSame(10.0,  $userScore->total_score); // 10*1
 
         $this->createRoomWithPlay(15, 'B');
 
         $userScore->refresh();
-        $this->assertSame($userScore->total_score, 22.5); // 15*1 + 10*0.75
+        $this->assertSame(22.5, $userScore->total_score); // 15*1 + 10*0.75
 
         $this->createRoomWithPlay(25, 'C');
 
         $userScore->refresh();
-        $this->assertSame($userScore->total_score, 41.25); // 25*1 + 15*0.75 + 10*0.5
+        $this->assertSame(41.25, $userScore->total_score); // 25*1 + 15*0.75 + 10*0.5
     }
 
     public function testAddMultipleScoresWithChildrenRooms(): void
@@ -49,32 +49,32 @@ class UserSeasonScoreAggregateTest extends TestCase
             ->where('season_id', $this->season->getKey())
             ->first();
 
-        $this->assertSame($userScore->total_score, (float) 10); // 10*1
+        $this->assertSame(10.0, $userScore->total_score); // 10*1
 
         $this->createRoomWithPlay(15, 'A');
 
         $userScore->refresh();
-        $this->assertSame($userScore->total_score, (float) 15); // 15*1
+        $this->assertSame(15.0, $userScore->total_score); // 15*1
 
         $this->createRoomWithPlay(20, 'B');
 
         $userScore->refresh();
-        $this->assertSame($userScore->total_score, 31.25); // 20*1 + 15*0.75
+        $this->assertSame(31.25, $userScore->total_score); // 20*1 + 15*0.75
 
         $this->createRoomWithPlay(20, 'B');
 
         $userScore->refresh();
-        $this->assertSame($userScore->total_score, 31.25); // 20*1 + 15*0.75
+        $this->assertSame(31.25, $userScore->total_score); // 20*1 + 15*0.75
 
         $this->createRoomWithPlay(10, 'C');
 
         $userScore->refresh();
-        $this->assertSame($userScore->total_score, 36.25); // 20*1 + 15*0.75 + 10*0.5
+        $this->assertSame(36.25, $userScore->total_score); // 20*1 + 15*0.75 + 10*0.5
 
         $this->createRoomWithPlay(30, 'C');
 
         $userScore->refresh();
-        $this->assertSame($userScore->total_score, 52.5); // 30*1 + 20*0.75 + 15*0.5
+        $this->assertSame(52.5, $userScore->total_score); // 30*1 + 20*0.75 + 15*0.5
     }
 
     public function testAddHigherScoreInChildRoom(): void
@@ -85,12 +85,12 @@ class UserSeasonScoreAggregateTest extends TestCase
             ->where('season_id', $this->season->getKey())
             ->first();
 
-        $this->assertSame($userScore->total_score, (float) 10);
+        $this->assertSame(10.0, $userScore->total_score);
 
         $this->createRoomWithPlay(15, 'A');
 
         $userScore->refresh();
-        $this->assertSame($userScore->total_score, (float) 15);
+        $this->assertSame(15.0, $userScore->total_score);
     }
 
     public function testAddHigherScoreInParentRoom(): void
@@ -101,12 +101,12 @@ class UserSeasonScoreAggregateTest extends TestCase
             ->where('season_id', $this->season->getKey())
             ->first();
 
-        $this->assertSame($userScore->total_score, (float) 15);
+        $this->assertSame(15.0, $userScore->total_score);
 
         $this->createRoomWithPlay(10, 'A');
 
         $userScore->refresh();
-        $this->assertSame($userScore->total_score, (float) 15);
+        $this->assertSame(15.0, $userScore->total_score);
     }
 
     public function testAddSameScoreInChildAndParentRoom(): void
@@ -117,12 +117,12 @@ class UserSeasonScoreAggregateTest extends TestCase
             ->where('season_id', $this->season->getKey())
             ->first();
 
-        $this->assertSame($userScore->total_score, (float) 10);
+        $this->assertSame(10.0, $userScore->total_score);
 
         $this->createRoomWithPlay(10, 'A');
 
         $userScore->refresh();
-        $this->assertSame($userScore->total_score, (float) 10);
+        $this->assertSame(10.0, $userScore->total_score);
     }
 
     public function testAddScoreInChildRoomOnly(): void
@@ -134,7 +134,7 @@ class UserSeasonScoreAggregateTest extends TestCase
             ->where('season_id', $this->season->getKey())
             ->first();
 
-        $this->assertSame($userScore->total_score, (float) 10);
+        $this->assertSame(10.0, $userScore->total_score);
     }
 
     public function testAddScoreInSecondRoomOnly(): void
@@ -146,7 +146,7 @@ class UserSeasonScoreAggregateTest extends TestCase
             ->where('season_id', $this->season->getKey())
             ->first();
 
-        $this->assertSame($userScore->total_score, (float) 10);
+        $this->assertSame(10.0, $userScore->total_score);
     }
 
     protected function setUp(): void
