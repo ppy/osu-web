@@ -501,7 +501,7 @@ export class NewDiscussion extends React.Component<Props> {
   private readonly updateStickToHeight = () => this.stickToHeight = this.props.stickTo?.current?.getBoundingClientRect().height;
 
   private validPost(type: string): type is DiscussionType {
-    if (!(discussionTypes as Readonly<string[]>).includes(type)) return false;
+    if (!(discussionTypes as readonly string[]).includes(type)) return false;
     if (!validMessageLength(this.message, this.isTimeline)) return false;
     if (!this.isTimeline) return true;
 

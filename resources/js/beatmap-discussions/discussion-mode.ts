@@ -4,6 +4,6 @@
 import DiscussionPage from './discussion-page';
 
 type DiscussionMode = Exclude<DiscussionPage, 'events'>;
-export const discussionModes: Readonly<DiscussionMode[]> = ['reviews', 'generalAll', 'general', 'timeline'] as const;
+export const discussionModes: readonly DiscussionMode[] = ['reviews', 'generalAll', 'general', 'timeline'] as const;
 
 export default DiscussionMode;

@@ -2,8 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { dispatch } from 'app-dispatcher';
-import { Main } from 'notifications-index/main';
 import { NotificationEventMoreLoaded } from 'notifications/notification-events';
+import { Main } from 'notifications-index/main';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { parseJson } from 'utils/json';
