@@ -28,7 +28,7 @@ class UserSeasonScoreAggregateTest extends TestCase
             ->where('season_id', $this->season->getKey())
             ->first();
 
-        $this->assertSame(10.0,  $userScore->total_score); // 10*1
+        $this->assertSame(10.0, $userScore->total_score); // 10*1
 
         $this->createRoomWithPlay('B', 15);
 
