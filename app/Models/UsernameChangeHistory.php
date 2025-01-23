@@ -21,6 +21,11 @@ class UsernameChangeHistory extends Model
     protected $table = 'osu_username_change_history';
     protected $primaryKey = 'change_id';
 
+    public function scopePaid($query)
+    {
+        $query->whereIn('type', ['support', 'paid']); // changed by support counts as paid.
+    }
+
     public function scopeVisible($query)
     {
         $query->whereIn('type', ['support', 'paid', 'admin']);
