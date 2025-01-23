@@ -8,7 +8,6 @@ namespace App\Http\Controllers\InterOp\Multiplayer;
 use App\Http\Controllers\Controller;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
-use App\Transformers\Multiplayer\RoomTransformer;
 
 class RoomsController extends Controller
 {
