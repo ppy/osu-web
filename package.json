@@ -14,6 +14,7 @@
     "@discordapp/twemoji": "^14.0.2",
     "@fortawesome/fontawesome-free": "^5.6.3",
     "@hotwired/turbo": "^8.0.12",
+    "@shopify/storefront-api-client": "^1.0.3",
     "@types/autosize": "^4.0.1",
     "@types/bootstrap": "^3.3.0",
     "@types/cloudflare-turnstile": "^0.1.5",
