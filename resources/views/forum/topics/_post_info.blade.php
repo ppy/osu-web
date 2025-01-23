@@ -76,7 +76,7 @@
             <a
                 class="flag-team"
                 href="{{ route('teams.show', $team) }}"
-                {!! background_image($team->logo()->url(), false) !!}
+                {!! background_image($team->logo()->url()) !!}
             >
             </a>
         </div>

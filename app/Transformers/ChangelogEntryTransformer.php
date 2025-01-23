@@ -39,11 +39,11 @@ class ChangelogEntryTransformer extends TransformerAbstract
 
     public function includeMessage(ChangelogEntry $entry)
     {
-        return $this->primitive($entry->publicMessage());
+        return $this->primitive($entry->message);
     }
 
     public function includeMessageHtml(ChangelogEntry $entry)
     {
-        return $this->primitive($entry->publicMessageHtml());
+        return $this->primitive($entry->messageHtml());
     }
 }

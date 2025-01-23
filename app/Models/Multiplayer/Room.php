@@ -6,6 +6,7 @@
 namespace App\Models\Multiplayer;
 
 use App\Casts\PresentString;
+use App\Exceptions\AuthorizationException;
 use App\Exceptions\InvariantException;
 use App\Models\Beatmap;
 use App\Models\Chat\Channel;
@@ -330,6 +331,17 @@ class Room extends Model
                 LIMIT {$limit}
             ) recent_participants
         ", 'recent_participant_ids');
+    }
+
+    public function assertCorrectPassword(?string $password): void
+    {
+        if ($this->password === null) {
+            return;
+        }
+
+        if ($password === null || !hash_equals(hash('sha256', $this->password), hash('sha256', $password))) {
+            throw new AuthorizationException(osu_trans('multiplayer.room.invalid_password'));
+        }
     }
 
     public function difficultyRange()
