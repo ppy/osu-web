@@ -8,7 +8,7 @@ import { createClickCallback } from 'utils/html';
 import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { popup } from 'utils/popup';
-import client from './shopify-client';
+import storefrontClient from './shopify-client';
 
 declare global {
   interface Window {
@@ -62,28 +62,59 @@ export class Store {
     showLoadingOverlay();
     showLoadingOverlay.flush();
 
-    let checkout: any;
-    try {
-      // create shopify checkout.
-      // error returned will be a JSON string in error.message
-      checkout = await client().checkout.create({
-        customAttributes: [{ key: 'orderId', value: orderId }],
-        lineItems: this.collectShopifyItems(),
-      });
-    } catch (_error) {
+    const operation = `
+      mutation CreateCart($cartInput: CartInput) {
+        cartCreate(input: $cartInput) {
+          cart {
+            id
+            checkoutUrl
+            lines(first: 10) {
+              edges {
+                node {
+                  id
+                  merchandise {
+                    ... on ProductVariant {
+                      id
+                      title
+                    }
+                  }
+                }
+              }
+            }
+            cost {
+              totalAmount {
+                amount
+                currencyCode
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    // create shopify checkout.
+    // error returned will be a JSON string in error.message
+    const { data, errors } = await storefrontClient().request(operation, { variables: this.shopifyCartInput(orderId) });
+
+    console.log(data);
+    console.log(data.cartCreate.cart.id);
+    console.log(errors);
+
+    if (errors != null) {
       hideLoadingOverlay();
       popup(trans('errors.checkout.generic'), 'danger');
       return;
     }
 
+
     const params = {
       orderId,
       provider: 'shopify',
-      shopifyCheckoutId: checkout.id,
+      shopifyCheckoutId: data.cartCreate.cart.id,
     };
 
     await $.post(route('store.checkout.store'), params);
-    window.location.href = checkout.webUrl;
+    window.location.href = data.cartCreate.cart.checkoutUrl;
   }
 
   resumeCheckout(event: ClickEvent) {
@@ -106,23 +137,57 @@ export class Store {
     }
   }
 
-  async resumeShopifyCheckout(checkoutId: string) {
+  async resumeShopifyCheckout(cartId: string) {
     showLoadingOverlay();
     showLoadingOverlay.flush();
 
-    const checkout = await client().checkout.fetch(checkoutId);
-    if (checkout != null) {
-      window.location.href = checkout.webUrl;
-    } else {
+    console.log(cartId);
+    const operation = `
+      query ($cartId: ID!) {
+        cart(id: $cartId) {
+          id
+          checkoutUrl
+          attributes {
+            key
+            value
+          }
+        }
+      }
+    `;
+
+    const variables = { variables: { cartId } };
+    const { data, errors } = await storefrontClient().request(operation, variables);
+
+    console.log(data);
+    console.log(errors?.graphQLErrors);
+
+    if (errors != null) {
+      hideLoadingOverlay();
+      popup(trans('errors.checkout.generic'), 'danger');
+      return;
+    }
+
+    if (data.cart == null) {
       popup(trans('store.order.shopify_expired'), 'info');
       hideLoadingOverlay();
+    } else {
+      window.location.href = data.cart.checkoutUrl;
     }
   }
 
-  private collectShopifyItems() {
+  private collectShopifyCartLines() {
     return $('.js-store-order-item').map((_, element) => ({
+      merchandiseId: toShopifyVariantGid(element.dataset.shopifyId),
       quantity: Number(element.dataset.quantity),
-      variantId: toShopifyVariantGid(element.dataset.shopifyId),
     })).get();
+  }
+
+  private shopifyCartInput(orderId: string) {
+    return {
+      cartInput: {
+        attributes: [{ key: 'orderId', value: orderId }],
+        lines: this.collectShopifyCartLines(),
+      },
+    };
   }
 }
