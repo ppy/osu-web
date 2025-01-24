@@ -12,6 +12,14 @@
         ]) !!}
     </script>
 
+    <script id="json-shopify-storefront-options" type="application/json">
+        {!! json_encode([
+            'storeDomain' => $GLOBALS['cfg']['store']['shopify']['domain'],
+            'apiVersion' => '2024-04',
+            'publicAccessToken' => $GLOBALS['cfg']['store']['shopify']['storefront_token'],
+        ]) !!}
+    </script>
+
     @parent
     @include('layout._extra_js', ['src' => 'js/store-bootstrap.js'])
 @endsection
