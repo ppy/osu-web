@@ -32,7 +32,7 @@ class UserSeasonScoreAggregate extends Model
             ->where('user_id', $this->user_id)
             ->get();
 
-        $factors = $this->season->score_factors;
+        $factors = $this->season->score_factors ?? [];
         $roomGroupCount = $seasonRooms->groupBy('group_indicator')->count();
 
         if ($roomGroupCount > count($factors)) {
