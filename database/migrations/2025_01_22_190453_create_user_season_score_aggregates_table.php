@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_season_scores');
+        Schema::dropIfExists('user_season_score_aggregates');
     }
 };
