@@ -59,11 +59,18 @@ return [
 
     'header_links' => [
         'edit' => 'settings',
+        'leaderboard' => 'leaderboard',
         'show' => 'info',
 
         'members' => [
             'index' => 'manage members',
         ],
+    ],
+
+    'leaderboard' => [
+        'global_rank' => 'Global Rank',
+        'performance' => 'Performance',
+        'total_score' => 'Total Score',
     ],
 
     'members' => [
@@ -118,8 +125,8 @@ return [
         ],
 
         'sections' => [
-            'members' => 'Members',
             'info' => 'Info',
+            'members' => 'Members',
         ],
     ],
 ];

@@ -1,0 +1,52 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.team-members-leaderboard-item {
+  --gutter: 10px;
+  align-items: center;
+  background: hsl(var(--hsl-b3));
+  border-radius: @border-radius--large;
+  display: grid;
+  font-size: @font-size--title-small;
+  gap: 10px;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  padding: 4px var(--gutter);
+
+  &:hover {
+    background: hsl(var(--hsl-b2));
+  }
+
+  @media @desktop {
+    --gutter: 20px;
+  }
+
+  &__avatar {
+    .default-border-radius();
+    align-items: center;
+    display: flex;
+    overflow: hidden;
+    width: 40px;
+  }
+
+  &__number {
+    font-size: @font-size--title-small-3;
+    padding: 0 var(--gutter);
+  }
+
+  &__number-title {
+    color: hsl(var(--hsl-c2));
+    font-size: @font-size--normal;
+  }
+
+  &__rank {
+    text-align: end;
+  }
+
+  &__username {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    gap: 10px;
+  }
+}

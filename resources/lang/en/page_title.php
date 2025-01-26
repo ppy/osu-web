@@ -110,6 +110,7 @@ return [
         'teams_controller' => [
             '_' => 'teams',
             'edit' => 'team settings',
+            'leaderboard' => 'team leaderboard',
             'show' => 'team info',
         ],
         'tournaments_controller' => [
