@@ -1601,6 +1601,8 @@ function get_param_value($input, $type)
             return get_arr($input, 'get_int');
         case 'time':
             return parse_time_to_carbon($input);
+        case 'timestamp':
+            return parse_time_to_timestamp($input);
         default:
             return presence(get_string($input));
     }
@@ -1719,6 +1721,15 @@ function parse_time_to_carbon($value)
 
     if ($value instanceof Carbon\CarbonImmutable) {
         return $value->toMutable();
+    }
+}
+
+function parse_time_to_timestamp($value)
+{
+    $time = parse_time_to_carbon($value);
+
+    if ($time instanceof Carbon\Carbon) {
+        return $time->timestamp;
     }
 }
 
