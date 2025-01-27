@@ -47,7 +47,7 @@ export default class ClickMenu {
     }
   };
 
-  show = (target?: string | null | undefined) => {
+  show = (target?: string | null) => {
     const previousTree = this.tree();
 
     this.current = target;

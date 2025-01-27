@@ -8,7 +8,6 @@ namespace App\Http\Controllers\InterOp\Multiplayer;
 use App\Http\Controllers\Controller;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
-use App\Transformers\Multiplayer\RoomTransformer;
 
 class RoomsController extends Controller
 {
@@ -20,7 +19,17 @@ class RoomsController extends Controller
         $room->assertCorrectPassword(get_string(request('password')));
         $room->join($user);
 
-        return RoomTransformer::createShowResponse($room);
+        return response(null, 204);
+    }
+
+    public function part(string $id, string $userId)
+    {
+        $user = User::findOrFail($userId);
+        $room = Room::findOrFail($id);
+
+        $room->part($user);
+
+        return response(null, 204);
     }
 
     public function store()
@@ -30,6 +39,6 @@ class RoomsController extends Controller
 
         $room = (new Room())->startGame($user, $params);
 
-        return RoomTransformer::createShowResponse($room);
+        return $room->getKey();
     }
 }
