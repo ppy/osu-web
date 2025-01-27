@@ -49,12 +49,15 @@ class UserSeasonScoresRecalculate extends Command
 
                     $seasonScore->season()->associate($season);
                     $seasonScore->calculate(false);
-                    $seasonScore->save();
+                    if ($seasonScore->total_score > 0) {
+                        $seasonScore->save();
+                    }
 
                     $bar->advance();
                 }
             });
 
         $bar->finish();
+        $this->newLine();
     }
 }
