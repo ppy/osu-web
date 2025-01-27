@@ -317,14 +317,15 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function usernameChangeCost()
     {
-        $tier = min($this->usernameChangeHistory()->paid()->count(), 5);
+        $minTier = $this->usernameChangeHistory()->paid()->exists() ? 1 : 0;
 
-        if ($tier > 1) {
-            $lastChange = $this->usernameChangeHistory()->paid()->last()?->timestamp;
-            if ($lastChange !== null) {
-                $tier = max($tier - $lastChange->diffInYears(Carbon::now(), false), 1);
-            }
-        }
+        $tier = max(
+            $this->usernameChangeHistory()
+                ->paid()
+                ->where('timestamp', '>', Carbon::now()->subYears(3))
+                ->count(),
+            $minTier,
+        );
 
         return match ($tier) {
             0 => 0,
