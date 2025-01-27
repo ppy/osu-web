@@ -172,6 +172,52 @@ class UserTest extends TestCase
         $this->assertSame($cost, $user->usernameChangeCost());
     }
 
+    public function testUsernameChangeCostMultiple()
+    {
+        $user = User::factory()->create();
+
+        $this->assertSame(0, $user->usernameChangeCost());
+
+        $user->usernameChangeHistory()->create([
+            'timestamp' => CarbonImmutable::now(),
+            'type' => 'paid',
+            'username' => 'marty',
+        ]);
+
+        // 1 change in last 3 years
+        $this->travelTo(CarbonImmutable::now()->addYears(3));
+        $this->assertSame(8, $user->usernameChangeCost());
+
+        // 0 changes in last 3 years
+        $this->travelTo(CarbonImmutable::now()->addYears(1));
+        $this->assertSame(8, $user->usernameChangeCost());
+
+        $user->usernameChangeHistory()->create([
+            'timestamp' => CarbonImmutable::now(),
+            'type' => 'paid',
+            'username' => 'mcfly',
+        ]);
+
+        // 1 change in last 3 years
+        $this->assertSame(8, $user->usernameChangeCost());
+
+        $user->usernameChangeHistory()->create([
+            'timestamp' => CarbonImmutable::now(),
+            'type' => 'paid',
+            'username' => 'futuremarty',
+        ]);
+
+        // 2 changes in last 3 years
+        $this->assertSame(16, $user->usernameChangeCost());
+
+        // 1 changes in last 3 years
+        $this->travelTo(CarbonImmutable::now()->addYears(3));
+        $this->assertSame(8, $user->usernameChangeCost());
+        // 0 changes in last 3 years
+        $this->travelTo(CarbonImmutable::now()->addYears(1));
+        $this->assertSame(8, $user->usernameChangeCost());
+    }
+
     /**
      * @dataProvider dataProviderForUsernameChangeCostType
      */
