@@ -4,11 +4,9 @@
 import UserJson from 'interfaces/user-json';
 import PlaylistItemJson from './playlist-item-json';
 
-const roomCategories = ['normal', 'spotlight'] as const;
-export type RoomCategory = (typeof roomCategories)[number];
+export type RoomCategory = 'normal' | 'spotlight';
 
-const roomTypes = ['playlists', 'head_to_head', 'team_versus'] as const;
-export type RoomType = (typeof roomTypes)[number];
+export type RoomType = 'playlists' | 'head_to_head' | 'team_versus';
 
 interface RoomJsonAvailableIncludes {
   current_playlist_item: PlaylistItemJson | null;

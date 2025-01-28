@@ -318,24 +318,24 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function usernameChangeCost()
     {
-        $changesToDate = $this->usernameChangeHistory()
-            ->whereIn('type', ['support', 'paid'])
-            ->count();
+        $minTier = $this->usernameChangeHistory()->paid()->exists() ? 1 : 0;
 
-        switch ($changesToDate) {
-            case 0:
-                return 0;
-            case 1:
-                return 8;
-            case 2:
-                return 16;
-            case 3:
-                return 32;
-            case 4:
-                return 64;
-            default:
-                return 100;
-        }
+        $tier = max(
+            $this->usernameChangeHistory()
+                ->paid()
+                ->where('timestamp', '>', Carbon::now()->subYears(3))
+                ->count(),
+            $minTier,
+        );
+
+        return match ($tier) {
+            0 => 0,
+            1 => 8,
+            2 => 16,
+            3 => 32,
+            4 => 64,
+            default => 100,
+        };
     }
 
     public function revertUsername($type = 'revert'): UsernameChangeHistory

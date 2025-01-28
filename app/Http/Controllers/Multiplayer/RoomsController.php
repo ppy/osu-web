@@ -138,12 +138,14 @@ class RoomsController extends Controller
 
     public function part($roomId, $userId)
     {
+        $currentUser = \Auth::user();
         // this allows admins/host/whoever to remove users from games in the future
-        if (get_int($userId) !== auth()->user()->user_id) {
+        if (get_int($userId) !== $currentUser->getKey()) {
             abort(403);
         }
 
-        Room::findOrFail($roomId)->channel->removeUser(auth()->user());
+        $room = Room::findOrFail($roomId);
+        $room->part($currentUser);
 
         return response([], 204);
     }

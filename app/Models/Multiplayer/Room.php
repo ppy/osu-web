@@ -525,6 +525,11 @@ class Room extends Model
         $this->channel->addUser($user);
     }
 
+    public function part(User $user)
+    {
+        $this->channel->removeUser($user);
+    }
+
     public function participants(): HasMany
     {
         $query = $this->userHighScores();
