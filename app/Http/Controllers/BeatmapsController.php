@@ -23,7 +23,7 @@ use App\Transformers\ScoreTransformer;
  */
 class BeatmapsController extends Controller
 {
-    const DEFAULT_API_INCLUDES = ['beatmapset.ratings', 'failtimes', 'max_combo'];
+    const DEFAULT_API_INCLUDES = ['beatmapset.ratings', 'failtimes', 'max_combo', 'owners'];
     const DEFAULT_SCORE_INCLUDES = ['user', 'user.country', 'user.cover', 'user.team'];
 
     public function __construct()
@@ -216,6 +216,7 @@ class BeatmapsController extends Controller
                 ::whereIn('beatmap_id', $ids)
                 ->whereHas('beatmapset')
                 ->with([
+                    'beatmapOwners',
                     'beatmapset',
                     'beatmapset.userRatings' => fn ($q) => $q->select('beatmapset_id', 'rating'),
                     'failtimes',
