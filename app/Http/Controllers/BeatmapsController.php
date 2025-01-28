@@ -216,7 +216,7 @@ class BeatmapsController extends Controller
                 ::whereIn('beatmap_id', $ids)
                 ->whereHas('beatmapset')
                 ->with([
-                    'beatmapOwners',
+                    'beatmapOwners.user',
                     'beatmapset',
                     'beatmapset.userRatings' => fn ($q) => $q->select('beatmapset_id', 'rating'),
                     'failtimes',
