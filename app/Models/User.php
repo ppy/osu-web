@@ -119,6 +119,7 @@ use Request;
  * @property-read Collection<Score\Mania> $scoresMania
  * @property-read Collection<Score\Osu> $scoresOsu
  * @property-read Collection<Score\Taiko> $scoresTaiko
+ * @property-read Collection<UserSeasonScoreAggregate> $seasonScores
  * @property-read UserStatistics\Fruits|null $statisticsFruits
  * @property-read UserStatistics\Mania|null $statisticsMania
  * @property-read UserStatistics\Mania4k|null $statisticsMania4k
@@ -1357,6 +1358,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function country()
     {
         return $this->belongsTo(Country::class, 'country_acronym');
+    }
+
+    public function seasonScores(): HasMany
+    {
+        return $this->hasMany(UserSeasonScoreAggregate::class);
     }
 
     public function statisticsOsu()
