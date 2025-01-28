@@ -302,14 +302,24 @@ class Contest extends Model
                 // Only return contest entries that a user has actually played
                 return $entries
                     ->whereIn('entry_url', function ($query) use ($user) {
+                        $options = $this->getExtraOptions()['best_of'];
+                        $ruleset = $options['mode'] ?? 'osu';
                         $query->select('beatmapset_id')
                             ->from('osu_beatmaps')
-                            ->where('osu_beatmaps.playmode', Beatmap::MODES[$this->getExtraOptions()['best_of']['mode'] ?? 'osu'])
+                            ->where('osu_beatmaps.playmode', Beatmap::MODES[$ruleset])
                             ->whereIn('beatmap_id', function ($query) use ($user) {
                                 $query->select('beatmap_id')
                                     ->from('osu_user_beatmap_playcount')
                                     ->where('user_id', '=', $user->user_id);
                             });
+
+                        if ($ruleset === 'mania' && isset($options['variant'])) {
+                            $keys = match ($options['variant']) {
+                                '4k' => 4,
+                                '7k' => 7,
+                            };
+                            $query->where('osu_beatmaps.diff_size', $keys);
+                        }
                     })->get();
             }
         }
