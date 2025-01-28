@@ -41,6 +41,12 @@ class BeatmapsetQueryParser
                 case 'bpm':
                     $option = static::makeFloatRangeOption($op, $m['value'], 0.01 / 2);
                     break;
+                case 'circles':
+                    $option = static::makeIntRangeOption($op, $m['value']);
+                    break;
+                case 'sliders':
+                    $option = static::makeIntRangeOption($op, $m['value']);
+                    break;
                 case 'length':
                     $parsed = get_length_seconds($m['value']);
                     if ($parsed !== null) {
