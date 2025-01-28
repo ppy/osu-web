@@ -4,15 +4,15 @@
 --}}
 
 <ul class="game-mode">
-    @foreach (App\Models\Beatmap::MODES as $tab => $_int)
+    @foreach (App\Models\Beatmap::MODES as $ruleset => $_rulesetId)
         <li>
             <a
-                class="{{ class_with_modifiers('game-mode-link', ['active' => $mode === $tab ]) }}"
-                href="{{ $rankingUrl($type, $tab) }}"
+                class="{{ class_with_modifiers('game-mode-link', ['active' => $ruleset === $currentRuleset]) }}"
+                href="{{ $urlFn($ruleset) }}"
             >
                 <span
-                    class="fal fa-extra-mode-{{ $tab }}"
-                    title="{{ osu_trans("beatmaps.mode.{$tab}") }}"
+                    class="fal fa-extra-mode-{{ $ruleset }}"
+                    title="{{ osu_trans("beatmaps.mode.{$ruleset}") }}"
                 ></span>
             </a>
         </li>
