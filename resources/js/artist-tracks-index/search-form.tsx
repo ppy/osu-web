@@ -39,8 +39,7 @@ export type ArtistTrackSort = `${ArtistTrackSortField}_${ArtistTrackSortOrder}`;
 export const artistTrackSearchRelevanceParams = ['album', 'artist', 'query'] as const;
 type ArtistTrackSearchRelevanceParam = typeof artistTrackSearchRelevanceParams[number];
 
-const artistTrackSearchNumberRangeParams = ['bpm', 'length'] as const;
-type ArtistTrackSearchNumberRangeParam = typeof artistTrackSearchNumberRangeParams[number];
+type ArtistTrackSearchNumberRangeParam = 'bpm' | 'length';
 
 export type ArtistTrackSearch = {
   exclusive_only: boolean;

@@ -5,7 +5,6 @@
 
 namespace App\Http\Controllers\Multiplayer;
 
-use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Ranking\DailyChallengeController;
 use App\Models\Model;
@@ -101,24 +100,18 @@ class RoomsController extends Controller
 
     public function join($roomId, $userId)
     {
+        $currentUser = \Auth::user();
         // this allows admins/whatever to add users to games in the future
-        if (get_int($userId) !== auth()->user()->user_id) {
+        if (get_int($userId) !== $currentUser->getKey()) {
             abort(403);
         }
 
         $room = Room::findOrFail($roomId);
+        $room->assertCorrectPassword(get_string(request('password')));
 
-        if ($room->password !== null) {
-            $password = get_param_value(request('password'), null);
+        $room->join($currentUser);
 
-            if ($password === null || !hash_equals(hash('sha256', $room->password), hash('sha256', $password))) {
-                abort(403, osu_trans('multiplayer.room.invalid_password'));
-            }
-        }
-
-        $room->join(auth()->user());
-
-        return $this->createJoinedRoomResponse($room);
+        return RoomTransformer::createShowResponse($room);
     }
 
     public function leaderboard($roomId)
@@ -145,12 +138,14 @@ class RoomsController extends Controller
 
     public function part($roomId, $userId)
     {
+        $currentUser = \Auth::user();
         // this allows admins/host/whoever to remove users from games in the future
-        if (get_int($userId) !== auth()->user()->user_id) {
+        if (get_int($userId) !== $currentUser->getKey()) {
             abort(403);
         }
 
-        Room::findOrFail($roomId)->channel->removeUser(auth()->user());
+        $room = Room::findOrFail($roomId);
+        $room->part($currentUser);
 
         return response([], 204);
     }
@@ -168,7 +163,7 @@ class RoomsController extends Controller
         }
 
         if (is_api_request()) {
-            return $this->createJoinedRoomResponse($room);
+            return RoomTransformer::createShowResponse($room);
         }
 
         if ($room->category === 'daily_challenge') {
@@ -200,32 +195,8 @@ class RoomsController extends Controller
 
     public function store()
     {
-        try {
-            $room = (new Room())->startGame(auth()->user(), request()->all());
+        $room = (new Room())->startGame(\Auth::user(), \Request::all());
 
-            return $this->createJoinedRoomResponse($room);
-        } catch (InvariantException $e) {
-            return error_popup($e->getMessage(), $e->getStatusCode());
-        }
-    }
-
-    private function createJoinedRoomResponse($room)
-    {
-        return json_item(
-            $room->loadMissing([
-                'host',
-                'playlist.beatmap.beatmapset',
-                'playlist.beatmap.baseMaxCombo',
-            ]),
-            'Multiplayer\Room',
-            [
-                'current_user_score.playlist_item_attempts',
-                'host.country',
-                'playlist.beatmap.beatmapset',
-                'playlist.beatmap.checksum',
-                'playlist.beatmap.max_combo',
-                'recent_participants',
-            ]
-        );
+        return RoomTransformer::createShowResponse($room);
     }
 }

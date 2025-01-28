@@ -173,14 +173,22 @@
                         <div class="team-settings__item team-settings__item--buttons">
                             <div>
                                 <a
+                                    class="btn-osu-big btn-osu-big--danger btn-osu-big--rounded-thin"
+                                    data-turbo-confirm="{{ osu_trans('common.confirmation') }}"
+                                    data-turbo-method="DELETE"
+                                    href="{{ route('teams.destroy', $team) }}"
+                                >
+                                    {{ osu_trans('teams.show.bar.destroy') }}
+                                </a>
+                            </div>
+
+                            <div class="team-settings__buttons">
+                                <a
                                     class="btn-osu-big btn-osu-big--rounded-thin"
                                     href="{{ route('teams.show', ['team' => $team]) }}"
                                 >
                                     {{ osu_trans('common.buttons.cancel') }}
                                 </a>
-                            </div>
-
-                            <div>
                                 <button class="btn-osu-big btn-osu-big--rounded-thin">
                                     {{ osu_trans('common.buttons.save') }}
                                 </button>

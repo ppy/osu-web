@@ -88,8 +88,8 @@ export default class UserPage extends React.Component<ExtraPageProps> {
         </p>
 
         <p
-          className='profile-extra-user-page__new-content'
           dangerouslySetInnerHTML={{ __html: trans('users.show.page.description') }}
+          className='profile-extra-user-page__new-content'
         />
 
         {!this.props.controller.state.user.has_supported && (
@@ -117,8 +117,8 @@ export default class UserPage extends React.Component<ExtraPageProps> {
   private renderPageShow() {
     return (
       <div
-        className='js-audio--group'
         dangerouslySetInnerHTML={{ __html: this.props.controller.state.user.page.html }}
+        className='js-audio--group'
       />
     );
   }

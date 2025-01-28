@@ -85,7 +85,7 @@ class UserProfileCustomization extends Model
         return $ret;
     }
 
-    public static function repairExtrasOrder($value)
+    public static function repairExtrasOrder(array $value): array
     {
         // read from inside out
         return array_values(
@@ -316,7 +316,10 @@ class UserProfileCustomization extends Model
     public function setExtrasOrderAttribute($value)
     {
         $this->attributes['extras_order'] = null;
-        $this->setOption('extras_order', static::repairExtrasOrder($value));
+        $this->setOption(
+            'extras_order',
+            $value === null ? null : static::repairExtrasOrder($value),
+        );
     }
 
     public function getProfileCoverExpandedAttribute()

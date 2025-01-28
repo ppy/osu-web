@@ -16,6 +16,7 @@ use App\Models\Build;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\ScoreLink;
 use App\Models\OAuth\Client;
+use App\Models\ScoreToken;
 use App\Models\User;
 use Artisan;
 use Carbon\CarbonInterface;
@@ -111,7 +112,7 @@ class TestCase extends BaseTestCase
     protected static function roomAddPlay(User $user, PlaylistItem $playlistItem, array $scoreParams): ScoreLink
     {
         return $playlistItem->room->completePlay(
-            $playlistItem->room->startPlay($user, $playlistItem, 0),
+            static::roomStartPlay($user, $playlistItem),
             [
                 'accuracy' => 0.5,
                 'beatmap_id' => $playlistItem->beatmap_id,
@@ -124,6 +125,14 @@ class TestCase extends BaseTestCase
                 ...$scoreParams,
             ],
         );
+    }
+
+    protected static function roomStartPlay(User $user, PlaylistItem $playlistItem): ScoreToken
+    {
+        return $playlistItem->room->startPlay($user, $playlistItem, [
+            'beatmap_hash' => $playlistItem->beatmap->checksum,
+            'build_id' => 0,
+        ]);
     }
 
     protected function setUp(): void
@@ -365,11 +374,20 @@ class TestCase extends BaseTestCase
         $this->invokeSetProperty(app('queue'), 'jobs', []);
     }
 
-    protected function withInterOpHeader($url)
+    protected function withInterOpHeader($url, ?callable $callback = null)
     {
-        return $this->withHeaders([
-            'X-LIO-Signature' => hash_hmac('sha1', $url, $GLOBALS['cfg']['osu']['legacy']['shared_interop_secret']),
+        if ($callback === null) {
+            $timestampedUrl = $url;
+        } else {
+            $connector = strpos($url, '?') === false ? '?' : '&';
+            $timestampedUrl = $url.$connector.'timestamp='.time();
+        }
+
+        $this->withHeaders([
+            'X-LIO-Signature' => hash_hmac('sha1', $timestampedUrl, $GLOBALS['cfg']['osu']['legacy']['shared_interop_secret']),
         ]);
+
+        return $callback === null ? $this : $callback($timestampedUrl);
     }
 
     protected function withPersistentSession(SessionStore $session): static
