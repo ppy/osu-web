@@ -4,7 +4,7 @@
 export const rulesets = ['osu', 'taiko', 'fruits', 'mania'] as const;
 
 export function ensureRuleset(maybeRuleset: string): Ruleset | undefined {
-  if ((rulesets as Readonly<string[]>).includes(maybeRuleset)) {
+  if ((rulesets as readonly string[]).includes(maybeRuleset)) {
     return maybeRuleset as Ruleset;
   }
 }

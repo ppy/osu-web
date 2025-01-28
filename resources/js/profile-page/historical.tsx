@@ -16,8 +16,7 @@ import ExtraHeader from './extra-header';
 import ExtraPageProps, { HistoricalSection } from './extra-page-props';
 import PlayDetailList from './play-detail-list';
 
-const chartSections = ['monthly_playcounts', 'replays_watched_counts'] as const;
-type ChartSection = typeof chartSections[number];
+type ChartSection = 'monthly_playcounts' | 'replays_watched_counts';
 
 // conveniently both charts share same interface
 interface RawChartData {

@@ -35,10 +35,8 @@ class UserSeasonScoresRecalculate extends Command
     protected function recalculate(Season $season): void
     {
         $scoreUserIds = UserScoreAggregate::whereIn('room_id', $season->rooms->pluck('id'))
-            ->select('user_id')
-            ->get()
-            ->pluck('user_id')
-            ->unique();
+            ->distinct('user_id')
+            ->pluck('user_id');
 
         $bar = $this->output->createProgressBar($scoreUserIds->count());
 
@@ -49,14 +47,17 @@ class UserSeasonScoresRecalculate extends Command
                         ->where('season_id', $season->getKey())
                         ->firstOrNew();
 
-                    $seasonScore->season_id = $season->getKey();
+                    $seasonScore->season()->associate($season);
                     $seasonScore->calculate(false);
-                    $seasonScore->save();
+                    if ($seasonScore->total_score > 0) {
+                        $seasonScore->save();
+                    }
 
                     $bar->advance();
                 }
             });
 
         $bar->finish();
+        $this->newLine();
     }
 }

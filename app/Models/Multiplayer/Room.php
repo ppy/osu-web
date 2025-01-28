@@ -6,6 +6,7 @@
 namespace App\Models\Multiplayer;
 
 use App\Casts\PresentString;
+use App\Exceptions\AuthorizationException;
 use App\Exceptions\InvariantException;
 use App\Models\Beatmap;
 use App\Models\Chat\Channel;
@@ -23,6 +24,7 @@ use Ds\Set;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -40,7 +42,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $participant_count
  * @property \Illuminate\Database\Eloquent\Collection $playlist PlaylistItem
  * @property \Illuminate\Database\Eloquent\Collection $scoreLinks ScoreLink
- * @property-read Collection<\App\Models\Season> $seasons
+ * @property-read Season $season
  * @property \Carbon\Carbon $starts_at
  * @property \Carbon\Carbon|null $updated_at
  * @property int $user_id
@@ -185,7 +187,7 @@ class Room extends Model
         }
 
         if (isset($seasonId)) {
-            $query->whereRelation('seasons', 'seasons.id', $seasonId);
+            $query->whereRelation('season', 'season_id', $seasonId);
         }
 
         if (in_array($category, static::CATEGORIES, true)) {
@@ -258,9 +260,16 @@ class Room extends Model
         return $this->hasMany(ScoreLink::class);
     }
 
-    public function seasons()
+    public function season(): HasOneThrough
     {
-        return $this->belongsToMany(Season::class, SeasonRoom::class);
+        return $this->hasOneThrough(
+            Season::class,
+            SeasonRoom::class,
+            'room_id',
+            'id',
+            'id',
+            'season_id',
+        );
     }
 
     public function userHighScores()
@@ -330,6 +339,17 @@ class Room extends Model
                 LIMIT {$limit}
             ) recent_participants
         ", 'recent_participant_ids');
+    }
+
+    public function assertCorrectPassword(?string $password): void
+    {
+        if ($this->password === null) {
+            return;
+        }
+
+        if ($password === null || !hash_equals(hash('sha256', $this->password), hash('sha256', $password))) {
+            throw new AuthorizationException(osu_trans('multiplayer.room.invalid_password'));
+        }
     }
 
     public function difficultyRange()
@@ -446,15 +466,12 @@ class Room extends Model
                 $stats->save();
             }
 
-            // spotlight playlists should always be linked to one season exactly
-            if ($this->category === 'spotlight' && $agg->total_score > 0 && $this->seasons()->count() === 1) {
-                $seasonId = $this->seasons()->first()->getKey();
-
+            if ($this->category === 'spotlight' && $agg->total_score > 0 && $this->season !== null) {
                 $seasonScore = $user->seasonScores()
-                    ->where('season_id', $seasonId)
+                    ->where('season_id', $this->season->getKey())
                     ->firstOrNew();
 
-                $seasonScore->season_id = $seasonId;
+                $seasonScore->season()->associate($this->season);
                 $seasonScore->calculate();
                 $seasonScore->save();
             }
@@ -506,6 +523,11 @@ class Room extends Model
     public function join(User $user)
     {
         $this->channel->addUser($user);
+    }
+
+    public function part(User $user)
+    {
+        $this->channel->removeUser($user);
     }
 
     public function participants(): HasMany
@@ -671,13 +693,25 @@ class Room extends Model
         $this->save();
     }
 
-    public function startPlay(User $user, PlaylistItem $playlistItem, int $buildId)
+    public function startPlay(User $user, PlaylistItem $playlistItem, array $rawParams): ScoreToken
     {
         priv_check_user($user, 'MultiplayerScoreSubmit', $this)->ensureCan();
 
-        $this->assertValidStartPlay($user, $playlistItem);
+        $params = get_params($rawParams, null, [
+            'beatmap_hash',
+            'beatmap_id:int',
+            'build_id',
+            'ruleset_id:int',
+        ], ['null_missing' => true]);
 
-        return $this->getConnection()->transaction(function () use ($buildId, $user, $playlistItem) {
+        if (!$playlistItem->freestyle) {
+            $params['beatmap_id'] = $playlistItem->beatmap_id;
+            $params['ruleset_id'] = $playlistItem->ruleset_id;
+        }
+
+        $this->assertValidStartPlay($user, $playlistItem, $params);
+
+        return $this->getConnection()->transaction(function () use ($params, $playlistItem, $user) {
             $agg = UserScoreAggregate::new($user, $this);
             if ($agg->wasRecentlyCreated) {
                 $this->incrementInstance('participant_count');
@@ -689,10 +723,11 @@ class Room extends Model
             $playlistItemAgg->updateUserAttempts();
 
             return ScoreToken::create([
-                'beatmap_id' => $playlistItem->beatmap_id,
-                'build_id' => $buildId,
+                'beatmap_hash' => $params['beatmap_hash'],
+                'beatmap_id' => $params['beatmap_id'],
+                'build_id' => $params['build_id'],
                 'playlist_item_id' => $playlistItem->getKey(),
-                'ruleset_id' => $playlistItem->ruleset_id,
+                'ruleset_id' => $params['ruleset_id'],
                 'user_id' => $user->getKey(),
             ]);
         });
@@ -753,12 +788,19 @@ class Room extends Model
         }
     }
 
-    private function assertValidStartPlay(User $user, PlaylistItem $playlistItem)
+    private function assertValidStartPlay(User $user, PlaylistItem $playlistItem, array $params): void
     {
         // todo: check against room's end time (to see if player has enough time to play this beatmap) and is under the room's max attempts limit
 
         if ($this->hasEnded()) {
             throw new InvariantException('Room has already ended.');
+        }
+
+        if ($playlistItem->freestyle) {
+            // assert the beatmap_id is part of playlist item's beatmapset
+            if ($playlistItem->beatmap->beatmapset_id !== Beatmap::find($params['beatmap_id'])?->beatmapset_id) {
+                throw new InvariantException('Specified beatmap_id is not allowed');
+            }
         }
 
         $userId = $user->getKey();

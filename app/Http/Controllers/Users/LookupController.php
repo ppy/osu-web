@@ -22,7 +22,12 @@ class LookupController extends Controller
     public function index()
     {
         // TODO: referer check?
-        $ids = array_slice(array_reject_null(get_arr(request('ids'), presence(...)) ?? []), 0, 50);
+        $params = get_params(\Request::all(), null, [
+            'exclude_bots:bool',
+            'ids:string[]',
+        ]);
+
+        $ids = array_slice(array_reject_null(get_arr($params['ids'] ?? [], presence(...))), 0, 50);
 
         $numericIds = [];
         $stringIds = [];
@@ -35,13 +40,16 @@ class LookupController extends Controller
         }
 
         $users = User::where(fn ($q) => $q->whereIn('user_id', $numericIds)->orWhereIn('username', $stringIds))
-            ->where('group_id', '<>', app('groups')->byIdentifier('no_profile')->getKey())
             ->default()
-            ->with(UserCompactTransformer::CARD_INCLUDES_PRELOAD)
-            ->get();
+            ->withoutNoProfile()
+            ->with(UserCompactTransformer::CARD_INCLUDES_PRELOAD);
+
+        if ($params['exclude_bots'] ?? false) {
+            $users = $users->withoutBots();
+        }
 
         return [
-            'users' => json_collection($users, new UserCompactTransformer(), UserCompactTransformer::CARD_INCLUDES),
+            'users' => json_collection($users->get(), new UserCompactTransformer(), UserCompactTransformer::CARD_INCLUDES),
         ];
     }
 }

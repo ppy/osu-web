@@ -8,6 +8,6 @@ if [ "$uid" != 0 ]; then
     groupmod -g "$gid" -o osuweb > /dev/null
 fi
 
-chown -f "${uid}:${gid}" .docker/js-build/assets .docker/js-build/builds
+chown -f "${uid}:${gid}" ./storage/testjs-*
 
 exec gosu osuweb ./docker/development/run.sh "$@"

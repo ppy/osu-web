@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
+import TagJson from 'interfaces/tag-json';
 import UserJson from 'interfaces/user-json';
 import { keyBy } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
@@ -10,6 +11,7 @@ import core from 'osu-core-singleton';
 import { find, findDefault, group } from 'utils/beatmap-helper';
 import { parse } from 'utils/beatmapset-page-hash';
 import { parseJson } from 'utils/json';
+import { present } from 'utils/string';
 import { currentUrl } from 'utils/turbolinks';
 
 export type ScoreLoadingState = null | 'error' | 'loading' | 'supporter_only' | 'unranked';
@@ -22,6 +24,8 @@ interface State {
   playmode?: BeatmapJsonForBeatmapsetShow['mode'];
   showingNsfwWarning: boolean;
 }
+
+type TagJsonWithCount = TagJson & { count: number };
 
 export default class Controller {
   @observable hoveredBeatmap: null | BeatmapJsonForBeatmapsetShow = null;
@@ -68,6 +72,39 @@ export default class Controller {
   @computed
   get currentBeatmaps() {
     return this.beatmaps.get(this.currentBeatmap.mode) ?? [];
+  }
+
+  @computed
+  get relatedTags() {
+    const map = new Map<number, TagJson>();
+
+    for (const tag of this.beatmapset.related_tags) {
+      map.set(tag.id, tag);
+    }
+
+    return map;
+  }
+
+  @computed
+  get tags() {
+    const userTags: TagJsonWithCount[] = [];
+
+    if (this.currentBeatmap.top_tag_ids != null) {
+      for (const tagId of this.currentBeatmap.top_tag_ids) {
+        const maybeTag = this.relatedTags.get(tagId.tag_id);
+        if (maybeTag == null) continue;
+
+        userTags.push({ ...maybeTag, count: tagId.count } );
+      }
+    }
+
+    return {
+      mapperTags: this.beatmapset.tags.split(' ').filter(present),
+      userTags: userTags.sort((a, b) => {
+        const diff = b.count - a.count;
+        return diff !== 0 ? diff : a.name.localeCompare(b.name);
+      }),
+    };
   }
 
   @computed

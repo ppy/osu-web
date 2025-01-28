@@ -111,7 +111,7 @@ export function updateQueryString(url: string | null, params: Record<string, str
   return urlObj.href;
 }
 
-export function wikiUrl(path: string, locale?: string | null | undefined) {
+export function wikiUrl(path: string, locale?: string | null) {
   return route('wiki.show', { locale: locale ?? currentLocale, path: 'WIKI_PATH' })
     .replace('WIKI_PATH', encodeURI(path));
 }

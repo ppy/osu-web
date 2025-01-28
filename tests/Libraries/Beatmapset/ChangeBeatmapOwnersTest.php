@@ -23,6 +23,14 @@ use Tests\TestCase;
 
 class ChangeBeatmapOwnersTest extends TestCase
 {
+    public static function dataProviderForInvalidUser(): array
+    {
+        return [
+            ['bot'],
+            ['no_profile'],
+        ];
+    }
+
     public static function dataProviderForUpdateOwner(): array
     {
         return [
@@ -66,6 +74,33 @@ class ChangeBeatmapOwnersTest extends TestCase
         $this->assertSame($userIds[0], $beatmap->user_id);
 
         Bus::assertDispatched(BeatmapOwnerChange::class);
+    }
+
+    /**
+     * @dataProvider dataProviderForInvalidUser
+     */
+    public function testInvalidUser(string $group): void
+    {
+        $moderator = User::factory()->withGroup('nat')->create();
+        $owner = User::factory()->create();
+        $invalidUser = User::factory()->withGroup($group)->create();
+
+        $beatmap = Beatmap::factory()
+            ->for(Beatmapset::factory()->pending()->owner($owner))
+            ->owner($owner)
+            ->create();
+
+        $this->expectCountChange(fn () => BeatmapsetEvent::count(), 0);
+
+        $this->expectExceptionCallable(
+            fn () => (new ChangeBeatmapOwners($beatmap, [$invalidUser->getKey()], $moderator))->handle(),
+            InvariantException::class,
+        );
+
+        $beatmap = $beatmap->fresh();
+        $this->assertEqualsCanonicalizing([$owner->getKey()], $beatmap->getOwners()->pluck('user_id')->toArray());
+
+        Bus::assertNotDispatched(BeatmapOwnerChange::class);
     }
 
     /**
