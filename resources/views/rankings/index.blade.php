@@ -26,22 +26,31 @@
 
 @extends('master', ['titlePrepend' => $titlePrepend ?? osu_trans("rankings.type.{$type}")])
 
+@if ($hasMode)
+    @section('rulesetSelector')
+        @include('objects._ruleset_selector', [
+            'currentRuleset' => $mode,
+            'urlFn' => fn ($r) => $rankingUrl($type, $r),
+        ])
+    @endsection
+@endif
+
 @section('content')
     @component('layout._page_header_v4', ['params' => [
         'links' => $links,
         'theme' => 'rankings',
     ]])
         @slot('contentAppend')
-            @if($hasMode)
-                @include('rankings._mode_selector')
+            @if ($hasMode)
+                @yield('rulesetSelector')
             @endif
         @endslot
 
         @slot('linksAppend')
             @yield('additionalHeaderLinks')
-            @if($hasMode)
+            @if ($hasMode)
                 <div class="visible-xs">
-                    @include('rankings._mode_selector')
+                    @yield('rulesetSelector')
                 </div>
             @endif
         @endslot
