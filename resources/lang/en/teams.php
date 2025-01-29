@@ -19,6 +19,23 @@ return [
         ],
     ],
 
+    'create' => [
+        'submit' => 'Create Team',
+
+        'form' => [
+            'name' => 'Team Name',
+            'name_help' => 'Your team name. No changey',
+            'short_name' => 'Short Name',
+            'short_name_help' => 'What',
+            'title' => "Let's set up a new team",
+        ],
+
+        'intro' => [
+            'description' => "Play together with friends; existing or new. You're not currently in a team. Join an existing team by visiting their team page or create your own team from this page.",
+            'title' => 'Team!',
+        ],
+    ],
+
     'destroy' => [
         'ok' => 'Team removed',
     ],

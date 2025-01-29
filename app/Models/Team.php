@@ -9,6 +9,7 @@ namespace App\Models;
 
 use App\Libraries\BBCodeForDB;
 use App\Libraries\Uploader;
+use App\Libraries\UsernameValidation;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -114,6 +115,20 @@ class Team extends Model
     {
         $this->validationErrors()->reset();
 
+        $wordFilters = app('chat-filters');
+        foreach (['name', 'short_name'] as $field) {
+            $value = presence($this->$field);
+            if ($value === null) {
+                $this->validationErrors()->add($field, 'required');
+            } elseif ($this->isDirty($field)) {
+                if (!$wordFilters->isClean($value) || !UsernameValidation::allowedName($value)) {
+                    $this->validationErrors()->add($field, '.word_not_allowed');
+                } elseif (static::whereNot('id', $this->getKey())->where($field, $value)->exists()) {
+                    $this->validationErrors()->add($field, '.used');
+                }
+            }
+        }
+
         if ($this->isDirty('url')) {
             $url = $this->url;
             if ($url !== null && !is_http($url)) {
@@ -145,5 +160,19 @@ class Team extends Model
         $this->loadMissing('members.user');
 
         return 8 + (4 * $this->members->filter(fn ($member) => $member->user?->osu_subscriber ?? false)->count());
+    }
+
+    public function save(array $options = [])
+    {
+        if (!$this->isValid()) {
+            return false;
+        }
+
+        return parent::save($options);
+    }
+
+    public function validationErrorsTranslationPrefix(): string
+    {
+        return 'team';
     }
 }

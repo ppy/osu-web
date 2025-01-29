@@ -1963,6 +1963,23 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkTeamStore(?User $user): ?string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+        $this->ensureHasPlayed($user);
+
+        if ($user->team !== null) {
+            return 'team.store.in_team';
+        }
+
+        if ($user->teamApplication !== null) {
+            return 'team.store.applying';
+        }
+
+        return 'ok';
+    }
+
     public function checkTeamUpdate(?User $user, Team $team): ?string
     {
         $this->ensureLoggedIn($user);

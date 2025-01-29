@@ -14,6 +14,14 @@ use Tests\TestCase;
 
 class TeamTest extends TestCase
 {
+    public static function dataProviderForTestUniquenessValidation(): array
+    {
+        return [
+            ['name'],
+            ['short_name'],
+        ];
+    }
+
     public function testDelete(): void
     {
         $team = Team::factory()->create();
@@ -28,5 +36,19 @@ class TeamTest extends TestCase
         $team->fresh()->delete();
 
         $this->assertNotNull($otherTeam->fresh());
+    }
+
+    /**
+     * @dataProvider dataProviderForTestUniquenessValidation
+     */
+    public function testUniquenessValidation(string $field): void
+    {
+        $existingTeam = Team::factory()->create();
+
+        $this->expectCountChange(fn () => Team::count(), 0);
+
+        $team = Team::factory()->make([$field => $existingTeam->$field]);
+        $team->save();
+        $this->assertFalse($team->validationErrors()->isEmpty());
     }
 }
