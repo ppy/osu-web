@@ -307,6 +307,8 @@ class BeatmapsetSearch extends RecordSearch
             'accuracy' => ['field' => 'beatmaps.diff_overall', 'type' => 'range'],
             'ar' => ['field' => 'beatmaps.diff_approach', 'type' => 'range'],
             'bpm' => ['field' => 'bpm', 'type' => 'range'],
+            'countNormal' => ['field' => 'beatmaps.countNormal', 'type' => 'range'],
+            'countSlider' => ['field' => 'beatmaps.countSlider', 'type' => 'range'],
             'created' => ['field' => 'submit_date', 'type' => 'range'],
             'cs' => ['field' => 'beatmaps.diff_size', 'type' => 'range'],
             'difficultyRating' => ['field' => 'beatmaps.difficultyrating', 'type' => 'range'],

@@ -45,7 +45,7 @@ class ScoreTokensControllerTest extends TestCase
     /**
      * @dataProvider dataProviderForTestStoreInvalidParameter
      */
-    public function testStoreInvalidParameter(string $paramKey, ?string $paramValue, int $status): void
+    public function testStoreInvalidParameter(string $paramKey, ?string $paramValue, int $status, string $errorMessage): void
     {
         $origClientCheckVersion = $GLOBALS['cfg']['osu']['client']['check_version'];
         config_set('osu.client.check_version', true);
@@ -77,14 +77,6 @@ class ScoreTokensControllerTest extends TestCase
         ];
 
         $this->expectCountChange(fn () => ScoreToken::count(), 0);
-
-        $errorMessage = $paramValue === null ? 'missing' : 'invalid';
-        $errorMessage .= ' ';
-        $errorMessage .= $paramKey === 'client_token'
-            ? ($paramValue === null
-                ? 'token header'
-                : 'client hash'
-            ) : $paramKey;
 
         $this->json(
             'POST',
@@ -161,14 +153,14 @@ class ScoreTokensControllerTest extends TestCase
     public static function dataProviderForTestStoreInvalidParameter(): array
     {
         return [
-            'invalid client token' => ['client_token', md5('invalid_'), 422],
-            'missing client token' => ['client_token', null, 422],
+            'invalid client token' => ['client_token', md5('invalid_'), 422, 'invalid client hash'],
+            'missing client token' => ['client_token', null, 422, 'missing token header'],
 
-            'invalid ruleset id' => ['ruleset_id', '5', 422],
-            'missing ruleset id' => ['ruleset_id', null, 422],
+            'invalid ruleset id' => ['ruleset_id', '5', 422, 'invalid ruleset_id'],
+            'missing ruleset id' => ['ruleset_id', null, 422, 'missing ruleset_id'],
 
-            'invalid beatmap hash' => ['beatmap_hash', 'xxx', 422],
-            'missing beatmap hash' => ['beatmap_hash', null, 422],
+            'invalid beatmap hash' => ['beatmap_hash', 'xxx', 422, 'invalid or missing beatmap_hash'],
+            'missing beatmap hash' => ['beatmap_hash', null, 422, 'invalid or missing beatmap_hash'],
         ];
     }
 

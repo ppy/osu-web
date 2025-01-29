@@ -55,15 +55,11 @@ function atom_id(string $namespace, $id = null): string
     return 'tag:'.request()->getHttpHost().',2019:'.$namespace.($id === null ? '' : "/{$id}");
 }
 
-function background_image($url, $proxy = true)
+function background_image($url): string
 {
-    if (!present($url)) {
-        return '';
-    }
-
-    $url = $proxy ? proxy_media($url) : $url;
-
-    return sprintf(' style="background-image:url(\'%s\');" ', e($url));
+    return present($url)
+        ? sprintf(' style="background-image:url(\'%s\');" ', e($url))
+        : '';
 }
 
 function beatmap_timestamp_format($ms)
@@ -840,7 +836,9 @@ function forum_user_link(int $id, string $username, string|null $colour, int|nul
 
 function is_api_request(): bool
 {
-    return str_starts_with(rawurldecode(Request::getPathInfo()), '/api/');
+    $url = rawurldecode(Request::getPathInfo());
+    return str_starts_with($url, '/api/')
+        || str_starts_with($url, '/_lio/');
 }
 
 function is_http(string $url): bool
@@ -1717,6 +1715,10 @@ function parse_time_to_carbon($value)
 
     if ($value instanceof DateTime) {
         return Carbon\Carbon::instance($value);
+    }
+
+    if ($value instanceof Carbon\CarbonImmutable) {
+        return $value->toMutable();
     }
 }
 

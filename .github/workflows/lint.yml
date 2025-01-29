@@ -49,7 +49,7 @@ jobs:
       - name: Install js dependencies
         run: yarn --frozen-lockfile
 
-      - run: 'yarn lint --max-warnings 87 > /dev/null'
+      - run: 'yarn lint --max-warnings 82 > /dev/null'
 
       - run: yarn pretty
 

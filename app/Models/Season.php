@@ -15,13 +15,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property bool $finalised
  * @property string $name
  * @property-read Collection<Multiplayer\Room> $rooms
+ * @property float[]|null $score_factors
  * @property string|null $url
  */
 class Season extends Model
 {
     protected $casts = [
         'finalised' => 'boolean',
+        'score_factors' => 'array',
     ];
+
+    public function scopeActive($query)
+    {
+        return $query->where('finalised', false);
+    }
 
     public static function latestOrId($id)
     {

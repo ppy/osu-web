@@ -65,6 +65,15 @@ export default class Info extends React.Component<Props> {
     return ret;
   }
 
+  private get tags() {
+    const tags = this.controller.tags;
+
+    return [
+      ...tags.userTags.map((tag) => tag.name),
+      ...tags.mapperTags,
+    ];
+  }
+
   private get withEditDescription() {
     return this.controller.beatmapset.description.bbcode != null;
   }
@@ -84,10 +93,6 @@ export default class Info extends React.Component<Props> {
   }
 
   render() {
-    const tags = this.controller.beatmapset.tags
-      .split(' ')
-      .filter(present);
-
     return (
       <div className='beatmapset-info u-fancy-scrollbar'>
         {this.isEditingDescription &&
@@ -121,10 +126,10 @@ export default class Info extends React.Component<Props> {
             </h3>
 
             <div
-              className='beatmapset-info__value-overflow'
               dangerouslySetInnerHTML={{
                 __html: this.controller.beatmapset.description.description ?? '',
               }}
+              className='beatmapset-info__value-overflow'
             />
           </div>
         </div>
@@ -191,13 +196,13 @@ export default class Info extends React.Component<Props> {
             </div>
           </div>
 
-          {tags.length > 0 &&
+          {this.tags.length > 0 &&
             <div className='beatmapset-info__row beatmapset-info__row--value-overflow'>
               <h3 className='beatmapset-info__header'>
                 {trans('beatmapsets.show.info.tags')}
               </h3>
               <div className='beatmapset-info__value-overflow'>
-                {tags.map((tag, i) => (
+                {this.tags.map((tag, i) => (
                   <React.Fragment key={`${tag}-${i}`}>
                     <a
                       className='beatmapset-info__link'
