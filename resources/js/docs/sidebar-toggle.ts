@@ -19,7 +19,8 @@ export default class SidebarToggle {
     this.navButton.addEventListener('click', this.onClickNavButton);
   }
 
-  private readonly onClickNavButton = () => {
+  private readonly onClickNavButton = (e: MouseEvent) => {
+    e.preventDefault();
     this.menuWrapper.classList.toggle('open');
     this.navButton.classList.toggle('open');
   };
