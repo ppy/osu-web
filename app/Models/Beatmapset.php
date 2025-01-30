@@ -29,6 +29,7 @@ use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageUrl;
 use App\Libraries\Transactions\AfterCommit;
+use App\Models\Forum\Post;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use App\Transformers\BeatmapsetTransformer;
@@ -1406,27 +1407,40 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function updateDescription($bbcode, $user)
     {
-        $post = $this->descriptionPost;
-        if ($post === null) {
-            return;
-        }
+        return DB::transaction(function () use ($bbcode, $user) {
+            $post = $this->descriptionPost;
 
-        $split = preg_split('/-{15}/', $post->post_text, 2);
+            if ($post === null) {
+                $forum = Forum\Forum::findOrFail($GLOBALS['cfg']['osu']['forum']['beatmap_description_forum_id']);
+                $title = $this->artist.' - '.$this->title;
 
-        $options = [
-            'withGallery' => true,
-            'ignoreLineHeight' => true,
-        ];
+                $topic = Forum\Topic::createNew($forum, [
+                    'title' => $title,
+                    'user' => $user,
+                    'body' => '---------------',
+                ]);
+                $topic->lock();
+                $this->update(['thread_id' => $topic->getKey()]);
+                $post = $topic->firstPost;
+            }
 
-        $header = new BBCodeFromDB($split[0], $post->bbcode_uid, $options);
-        $newBody = $header->toEditor()."---------------\n".ltrim($bbcode);
+            $split = preg_split('/-{15}/', $post->post_text, 2);
 
-        return $post
-            ->skipBeatmapPostRestrictions()
-            ->update([
-                'post_text' => $newBody,
-                'post_edit_user' => $user === null ? null : $user->getKey(),
-            ]);
+            $options = [
+                'withGallery' => true,
+                'ignoreLineHeight' => true,
+            ];
+
+            $header = new BBCodeFromDB($split[0], $post->bbcode_uid, $options);
+            $newBody = $header->toEditor()."---------------\n".ltrim($bbcode);
+
+            return $post
+                ->skipBeatmapPostRestrictions()
+                ->update([
+                    'post_text' => $newBody,
+                    'post_edit_user' => $user === null ? null : $user->getKey(),
+                ]);
+        });
     }
 
     private function extractDescription($post)
@@ -1443,12 +1457,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     private function getBBCode()
     {
-        $post = $this->descriptionPost;
-
-        if ($post === null) {
-            return;
-        }
-
+        $post = $this->descriptionPost ?? new Post();
         $description = $this->extractDescription($post);
 
         $options = [
