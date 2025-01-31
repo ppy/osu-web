@@ -63,6 +63,20 @@ class ForumSeeder extends Seeder
                 'forum_id' => $GLOBALS['cfg']['osu']['forum']['admin_forum_id'],
                 'forum_name' => 'Management',
             ]);
+        Forum::factory()
+            ->closed()
+            ->has(
+                Forum::factory()->state([
+                    'forum_desc' => '',
+                    'forum_id' => $GLOBALS['cfg']['osu']['forum']['beatmap_description_forum_id'],
+                    'forum_name' => 'Beatmap Threads',
+                ]),
+                'subforums',
+            )
+            ->create([
+                'forum_desc' => '',
+                'forum_name' => 'Beatmaps',
+            ]);
 
         // Other forums
         Forum::factory()
@@ -81,7 +95,10 @@ class ForumSeeder extends Seeder
 
         // Forums to be populated, i.e. all open forums except "User Pages"
         $forums = Forum::where('forum_type', 1)
-            ->where('forum_id', '<>', $GLOBALS['cfg']['osu']['user']['user_page_forum_id'])
+            ->where([
+                ['forum_id', '<>', $GLOBALS['cfg']['osu']['user']['user_page_forum_id']],
+                ['forum_id', '<>', $GLOBALS['cfg']['osu']['forum']['beatmap_description_forum_id']],
+            ])
             ->get();
 
         // Topics and posts
