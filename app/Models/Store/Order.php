@@ -266,6 +266,11 @@ class Order extends Model
         return static::splitTransactionId($this->transaction_id)[1] ?? null;
     }
 
+    public function setShopifyOrderNumber(string|int $value)
+    {
+        $this->attributes['transaction_id'] = static::PROVIDER_SHOPIFY."-{$value}";
+    }
+
     public function getSubtotal()
     {
         $total = 0;
