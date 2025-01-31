@@ -70,9 +70,10 @@ class ShopifyController extends Controller
                 // TODO?
                 // admin_graphql_api_id (gid://shopify/Order/xxxxx)
                 // order_status_url
-                $orderNumber = $this->getOrderNumber();
+                [$orderNumber, $gid] = $this->getShopifyParams();
                 if ($orderNumber !== null) {
                     $order->setShopifyOrderNumber($orderNumber);
+                    $order->reference = $gid;
                     $order->save();
                 }
 
@@ -111,9 +112,21 @@ class ShopifyController extends Controller
         }
     }
 
-    private function getOrderNumber()
+    private function getShopifyParams()
     {
-        $orderNumber = $this->getParams()['order_number'] ?? null;
+        $params = $this->getParams();
+
+        $gid = $params['admin_graphql_api_id'] ?? null;
+        $orderNumber = $params['order_number'] ?? null;
+
+        if ($gid === null) {
+            app('sentry')->getClient()->captureMessage(
+                'Missing admin_graphql_api_id in Shopify webhook.',
+                new Severity(Severity::WARNING),
+                (new Scope())->setExtra('order_id', $this->getOrderId())
+            );
+        }
+
         if ($orderNumber === null) {
             app('sentry')->getClient()->captureMessage(
                 'Missing order_number in Shopify webhook.',
@@ -122,7 +135,7 @@ class ShopifyController extends Controller
             );
         }
 
-        return $orderNumber;
+        return [$orderNumber, $gid];
     }
 
     private function getParams()
