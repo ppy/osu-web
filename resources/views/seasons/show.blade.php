@@ -6,8 +6,8 @@
     'country' => null,
     'hasFilter' => false,
     'hasMode' => false,
-    'hasPager' => false,
-    'hasScores' => false,
+    'hasPager' => true,
+    'hasScores' => true,
     'spotlight' => null,
     'titlePrepend' => osu_trans('rankings.type.seasons').': '.$season->name,
     'type' => 'seasons',
@@ -33,6 +33,12 @@
 @section('ranking-header')
     <div class="js-react--seasons-show"></div>
 @endsection
+
+@if (!empty($divisions))
+    @section('scores')
+        @include('seasons._rankings_table', [$divisions, $scores])
+    @endsection
+@endif
 
 @section ("script")
     @parent
