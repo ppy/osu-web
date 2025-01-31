@@ -19,6 +19,7 @@ export function categoryFromName(name: string) {
   return nameToCategory[name] ?? name;
 }
 
+// sync with app/Models/Notification.php
 export const nameToCategory: Partial<Record<string, string>> = {
   beatmap_owner_change: 'beatmap_owner_change',
   beatmapset_discussion_lock: 'beatmapset_discussion',
@@ -38,6 +39,8 @@ export const nameToCategory: Partial<Record<string, string>> = {
   comment_new: 'comment',
   comment_reply: 'comment',
   forum_topic_reply: 'forum_topic_reply',
+  team_application_accept: 'team_application',
+  team_application_reject: 'team_application',
   user_achievement_unlock: 'user_achievement_unlock',
   user_beatmapset_new: 'user_beatmapset_new',
   user_beatmapset_revive: 'user_beatmapset_new',

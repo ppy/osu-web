@@ -297,6 +297,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('user-cover-presets', 'UserCoverPresetsController', ['only' => ['index', 'store', 'update']]);
 
     Route::group(['as' => 'teams.', 'prefix' => 'teams/{team}'], function () {
+        Route::resource('applications', 'Teams\ApplicationsController', ['only' => ['destroy', 'store']]);
+        Route::post('applications/{application}/accept', 'Teams\ApplicationsController@accept')->name('applications.accept');
+        Route::post('applications/{application}/reject', 'Teams\ApplicationsController@reject')->name('applications.reject');
         Route::post('part', 'TeamsController@part')->name('part');
         Route::resource('members', 'Teams\MembersController', ['only' => ['destroy', 'index']]);
     });

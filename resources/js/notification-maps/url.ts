@@ -35,6 +35,8 @@ export function urlGroup(item: Notification) {
         : route('chat.index', { sendto: item.sourceUserId });
     case 'forum_topic':
       return route('forum.topics.show', { start: 'unread', topic: item.objectId });
+    case 'team':
+      return route('teams.show', { team: item.objectId });
   }
 }
 
@@ -73,6 +75,9 @@ export function urlSingular(item: Notification) {
       return route('comments.show', { comment: item.details.commentId });
     case 'forum_topic_reply':
       return route('forum.posts.show', { post: item.details.postId });
+    case 'team_application_accept':
+    case 'team_application_reject':
+      return route('teams.show', { team: item.objectId });
     case 'user_achievement_unlock':
       return userAchievementUrl(item);
     case 'user_beatmapset_new':

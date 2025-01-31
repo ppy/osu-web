@@ -92,6 +92,14 @@ class Team extends Model
         });
     }
 
+    public function emptySlots(): int
+    {
+        $max = $this->maxMembers();
+        $current = $this->members->count();
+
+        return max(0, $max - $current);
+    }
+
     public function header(): Uploader
     {
         return $this->header ??= new Uploader(
@@ -130,5 +138,12 @@ class Team extends Model
             'logo_file',
             ['image' => ['maxDimensions' => [512, 256]]],
         );
+    }
+
+    public function maxMembers(): int
+    {
+        $this->loadMissing('members.user');
+
+        return 8 + (4 * $this->members->filter(fn ($member) => $member->user?->osu_subscriber ?? false)->count());
     }
 }
