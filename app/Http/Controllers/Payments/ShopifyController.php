@@ -11,6 +11,7 @@ use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use Carbon\Carbon;
 use Log;
+use Sentry\Severity;
 use Sentry\State\Scope;
 
 class ShopifyController extends Controller
@@ -65,6 +66,16 @@ class ShopifyController extends Controller
                 }
 
                 (new OrderCheckout($order))->completeCheckout();
+
+                // TODO?
+                // admin_graphql_api_id (gid://shopify/Order/xxxxx)
+                // order_status_url
+                $orderNumber = $this->getOrderNumber();
+                if ($orderNumber !== null) {
+                    $order->setShopifyOrderNumber($orderNumber);
+                    $order->save();
+                }
+
                 break;
             case 'orders/paid':
                 $this->updateOrderPayment($order);
@@ -98,6 +109,20 @@ class ShopifyController extends Controller
                 return get_int($attribute['value']);
             }
         }
+    }
+
+    private function getOrderNumber()
+    {
+        $orderNumber = $this->getParams()['order_number'] ?? null;
+        if ($orderNumber === null) {
+            app('sentry')->getClient()->captureMessage(
+                'Missing order_number in Shopify webhook.',
+                new Severity(Severity::WARNING),
+                (new Scope())->setExtra('order_id', $this->getOrderId())
+            );
+        }
+
+        return $orderNumber;
     }
 
     private function getParams()
