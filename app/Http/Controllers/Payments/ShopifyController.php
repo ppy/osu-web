@@ -58,6 +58,7 @@ class ShopifyController extends Controller
                 });
                 break;
             case 'orders/fulfilled':
+                $this->updateWithShopifyParams($order);
                 $order->update(['status' => Order::STATUS_SHIPPED, 'shipped_at' => now()]);
                 break;
             case 'orders/create':
@@ -67,18 +68,11 @@ class ShopifyController extends Controller
 
                 (new OrderCheckout($order))->completeCheckout();
 
-                // TODO?
-                // admin_graphql_api_id (gid://shopify/Order/xxxxx)
-                // order_status_url
-                [$orderNumber, $gid] = $this->getShopifyParams();
-                if ($orderNumber !== null) {
-                    $order->setShopifyOrderNumber($orderNumber);
-                    $order->reference = $gid;
-                    $order->save();
-                }
+                $this->updateWithShopifyParams($order);
 
                 break;
             case 'orders/paid':
+                $this->updateWithShopifyParams($order);
                 $this->updateOrderPayment($order);
                 break;
             default:
@@ -187,5 +181,20 @@ class ShopifyController extends Controller
         ]);
 
         $order->paid($payment);
+    }
+
+    private function updateWithShopifyParams(Order $order)
+    {
+        [$orderNumber, $gid] = $this->getShopifyParams();
+                //
+        if ($orderNumber !== null) {
+            $order->setShopifyOrderNumber($orderNumber);
+        }
+
+        if ($gid !== null) {
+            $order->reference = $gid;
+        }
+
+        $order->save();
     }
 }
