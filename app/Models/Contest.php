@@ -314,11 +314,15 @@ class Contest extends Model
                             });
 
                         if ($ruleset === 'mania' && isset($options['variant'])) {
-                            $keys = match ($options['variant']) {
-                                '4k' => 4,
-                                '7k' => 7,
-                            };
-                            $query->where('osu_beatmaps.diff_size', $keys);
+                            if ($options['variant'] === 'nk') {
+                                $query->whereNotIn('osu_beatmaps.diff_size', [4, 7]);
+                            } else {
+                                $keys = match ($options['variant']) {
+                                    '4k' => 4,
+                                    '7k' => 7,
+                                };
+                                $query->where('osu_beatmaps.diff_size', $keys);
+                            }
                         }
                     })->get();
             }
