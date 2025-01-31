@@ -42,6 +42,10 @@ return [
         ],
     ],
 
+    'header_links' => [
+        'show' => 'info',
+    ],
+
     'members' => [
         'destroy' => [
             'success' => 'Team member removed',
@@ -79,14 +83,20 @@ return [
             'website' => 'Website',
         ],
 
+        'leaderboard' => [
+            'performance' => 'Performance',
+            'global_rank' => 'Global Rank',
+        ],
+
         'members' => [
             'members' => 'Team Members',
             'owner' => 'Team Leader',
         ],
 
         'sections' => [
-            'members' => 'Members',
             'info' => 'Info',
+            'leaderboard' => 'Members Leaderboard',
+            'members' => 'Members',
         ],
     ],
 ];

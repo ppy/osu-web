@@ -7,7 +7,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\InvariantException;
+use App\Models\Beatmap;
 use App\Models\Team;
+use App\Models\User;
 use App\Transformers\UserCompactTransformer;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -49,7 +52,7 @@ class TeamsController extends Controller
         return ujs_redirect(route('teams.show', ['team' => $team]));
     }
 
-    public function show(string $id): Response
+    public function show(string $id, ?string $ruleset = null): Response
     {
         $team = Team
             ::with(array_map(
@@ -57,7 +60,23 @@ class TeamsController extends Controller
                 UserCompactTransformer::CARD_INCLUDES_PRELOAD,
             ))->findOrFail($id);
 
-        return ext_view('teams.show', compact('team'));
+        $ruleset ??= Beatmap::modeStr($team->default_ruleset_id);
+        $statisticsRelationName = User::statisticsRelationName($ruleset);
+        if ($statisticsRelationName === null) {
+            throw new InvariantException(osu_trans('beatmaps.invalid_ruleset'));
+        }
+        $leaderboard = $team
+            ->members
+            ->loadMissing("user.{$statisticsRelationName}")
+            ->map(fn ($member) =>
+                (
+                    $member->user->$statisticsRelationName
+                    ?? $member->user->$statisticsRelationName()->make()
+                )->setRelation('user', $member->user))
+            ->sortByDesc(fn ($s) => $s->rank_score)
+            ->values();
+
+        return ext_view('teams.show', compact('leaderboard', 'ruleset', 'team'));
     }
 
     public function update(string $id): Response

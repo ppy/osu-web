@@ -20,10 +20,22 @@
 ])
 
 @section('content')
-    @include('layout._page_header_v4', ['params' => [
+    @component('layout._page_header_v4', ['params' => [
+        'links' => [[
+            'active' => true,
+            'title' => osu_trans('teams.header_links.show'),
+            'url' => route('teams.show', ['team' => $team->getKey(), 'ruleset' => $ruleset]),
+        ]],
         'theme' => 'team',
         'backgroundImage' => $headerUrl,
     ]])
+        @slot('linksAppend')
+            @include('objects._ruleset_selector', [
+                'currentRuleset' => $ruleset,
+                'urlFn' => fn ($r) => route('teams.show', ['team' => $team->getKey(), 'ruleset' => $r]),
+            ])
+        @endslot
+    @endcomponent
 
     <div class="osu-page osu-page--generic-compact">
         <div class="profile-info profile-info--cover profile-info--team">
@@ -156,6 +168,13 @@
                         {!! $team->descriptionHtml() !!}
                     </div>
                 </div>
+            </div>
+
+            <div class="page-extra u-fancy-scrollbar">
+                <h2 class="title title--page-extra-small title--page-extra-small-top">
+                    {{ osu_trans('teams.show.sections.leaderboard') }}
+                </h2>
+                @include('teams._members_leaderboard')
             </div>
         </div>
     </div>
