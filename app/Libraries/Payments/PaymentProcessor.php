@@ -227,6 +227,9 @@ abstract class PaymentProcessor implements \ArrayAccess
         $this->signature->assertValid();
 
         $order = $this->getOrder();
+        if (($this->params['payment_type']) === 'echeck') {
+            $order->update(['tracking_code' => Order::ECHECK_DENIED]);
+        }
 
         datadog_increment('store.payments.rejected', ['provider' => $this->getPaymentProvider()]);
     }
