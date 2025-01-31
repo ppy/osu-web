@@ -2,6 +2,16 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    use App\Models\Store\Order;
+
+    $echeckStatus = match ($order->tracking_code) {
+        Order::ECHECK_DENIED => 'echeck_denied',
+        Order::PENDING_ECHECK => 'echeck_delay',
+        default => null,
+    };
+@endphp
+
 <div class="store-page">
     <h3 class="store-text store-text--title">{{ osu_trans('store.order.status.title') }}</h3>
 
@@ -56,9 +66,9 @@
             </p>
         @endif
 
-        @if ($order->isPendingEcheck())
+        @if ($echeckStatus !== null)
             <p>
-                {{ osu_trans('store.invoice.echeck_delay') }}
+                {{ osu_trans("store.invoice.{$echeckStatus}") }}
             </p>
         @endif
     @endif

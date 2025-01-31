@@ -92,6 +92,16 @@ class PaypalPaymentProcessor extends PaymentProcessor
         return $this['payment_status'] ?? $this['txn_type'];
     }
 
+    public function rejected()
+    {
+        parent::rejected();
+
+        $order = $this->getOrder();
+        if ($this->params['payment_type'] === 'echeck') {
+            $order->update(['tracking_code' => Order::ECHECK_DENIED]);
+        }
+    }
+
     public function validateTransaction(): bool
     {
         $this->signature->assertValid();

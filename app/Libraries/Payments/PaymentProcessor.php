@@ -226,8 +226,6 @@ abstract class PaymentProcessor implements \ArrayAccess
         //  the whole transaction doesn't make it explode.
         $this->signature->assertValid();
 
-        $order = $this->getOrder();
-
         datadog_increment('store.payments.rejected', ['provider' => $this->getPaymentProvider()]);
     }
 
