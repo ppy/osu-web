@@ -437,11 +437,6 @@ class Order extends Model
         return in_array($this->status, [static::STATUS_PAID, static::STATUS_DELIVERED], true);
     }
 
-    public function isPendingEcheck(): bool
-    {
-        return $this->tracking_code === static::PENDING_ECHECK;
-    }
-
     public function isShipped(): bool
     {
         return $this->status === static::STATUS_SHIPPED;
