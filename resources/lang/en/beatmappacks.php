@@ -17,6 +17,7 @@ return [
     ],
 
     'show' => [
+        'created_by' => 'by',
         'download' => 'Download',
         'item' => [
             'cleared' => 'cleared',
