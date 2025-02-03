@@ -5,47 +5,6 @@
 
 namespace App\Jobs\Notifications;
 
-use App\Models\Notification;
-use App\Models\Team;
-use App\Models\TeamApplication;
-use App\Models\User;
-
-class TeamApplicationReject extends BroadcastNotificationBase
+class TeamApplicationReject extends TeamApplicationBase
 {
-    const DELIVERY_MODE_DEFAULTS = ['mail' => true, 'push' => true];
-
-    private Team $team;
-    private int $userId;
-
-    public static function getMailLink(Notification $notification): string
-    {
-        return route('teams.show', ['team' => $notification->notifiable_id]);
-    }
-
-    public function __construct(TeamApplication $application, User $source)
-    {
-        $this->team = $application->team;
-        $this->userId = $application->user_id;
-
-        parent::__construct($source);
-    }
-
-    public function getDetails(): array
-    {
-        return [
-            'cover_url' => $this->team->logo()->url(),
-            'team_id' => $this->team->getKey(),
-            'title' => $this->team->name,
-        ];
-    }
-
-    public function getListeningUserIds(): array
-    {
-        return [$this->userId];
-    }
-
-    public function getNotifiable()
-    {
-        return $this->team;
-    }
 }

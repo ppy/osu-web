@@ -25,18 +25,17 @@ class ApplicationsController extends Controller
 
     public function accept(string $teamId, string $id): Response
     {
-        $member = \DB::transaction(function () use ($id, $teamId) {
-            $team = Team::findOrFail($teamId);
-            $application = $team->applications()->findOrFail($id);
+        $team = Team::findOrFail($teamId);
+        $application = $team->applications()->findOrFail($id);
 
-            priv_check('TeamApplicationAccept', $application)->ensureCan();
+        priv_check('TeamApplicationAccept', $application)->ensureCan();
 
+        \DB::transaction(function () use ($application, $team) {
             $application->delete();
-
-            return $team->members()->create(['user_id' => $application->user_id]);
+            $team->members()->create(['user_id' => $application->getKey()]);
         });
-        (new TeamApplicationAccept($member, \Auth::user()))->dispatch();
 
+        (new TeamApplicationAccept($application, \Auth::user()))->dispatch();
         \Session::flash('popup', osu_trans('teams.applications.accept.ok'));
 
         return response(null, 204);
@@ -46,6 +45,7 @@ class ApplicationsController extends Controller
     {
         $currentUser = \Auth::user();
         TeamApplication::where('team_id', $teamId)->findOrFail($currentUser->getKey())->delete();
+
         \Session::flash('popup', osu_trans('teams.applications.destroy.ok'));
 
         return response(null, 204);
@@ -53,10 +53,14 @@ class ApplicationsController extends Controller
 
     public function reject(string $teamId, string $id): Response
     {
-        $application = TeamApplication::where('team_id', $teamId)->findOrFail($id);
+        $team = Team::findOrFail($teamId);
+        $application = $team->applications()->findOrFail($id);
+        priv_check('TeamUpdate', $team)->ensureCan();
+
         $application->delete();
-        \Session::flash('popup', osu_trans('teams.applications.reject.ok'));
+
         (new TeamApplicationReject($application, \Auth::user()))->dispatch();
+        \Session::flash('popup', osu_trans('teams.applications.reject.ok'));
 
         return response(null, 204);
     }
