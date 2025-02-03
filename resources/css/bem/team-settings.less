@@ -34,15 +34,18 @@
   }
 
   &__item {
+    --grid-rows: none;
+    --grid-rows-desktop: none;
     --grid-columns: 1fr;
     --grid-columns-desktop: 2fr 1fr;
-    align-items: start;
     display: grid;
     gap: 5px 15px;
     grid-template-columns: var(--grid-columns);
+    grid-template-rows: var(--grid-rows);
 
     @media @desktop {
       --grid-columns: var(--grid-columns-desktop);
+      --grid-rows: var(--grid-rows-desktop);
     }
 
     &--buttons {
@@ -51,6 +54,7 @@
 
     &--description {
       --grid-columns-desktop: 1fr 1fr;
+      --grid-rows: calc(var(--vh, 1vh) * 70) auto;
     }
 
     &--image {
