@@ -57,6 +57,15 @@ return [
         ],
     ],
 
+    'header_links' => [
+        'edit' => 'settings',
+        'show' => 'info',
+
+        'members' => [
+            'index' => 'manage members',
+        ],
+    ],
+
     'members' => [
         'destroy' => [
             'success' => 'Team member removed',

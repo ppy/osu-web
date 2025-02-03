@@ -19,6 +19,34 @@ class TeamsController extends Controller
         $this->middleware('auth', ['only' => ['part']]);
     }
 
+    public static function pageLinks(string $current, Team $team): array
+    {
+        $ret = [
+            [
+                'active' => $current === 'show',
+                'title' => osu_trans('teams.header_links.show'),
+                'url' => route('teams.show', ['team' => $team->getKey()]),
+            ],
+        ];
+
+        if (priv_check('TeamUpdate', $team)->can()) {
+            $applicationCount = $team->applications()->count();
+            $ret[] = [
+                'active' => $current === 'edit',
+                'title' => osu_trans('teams.header_links.edit'),
+                'url' => route('teams.edit', ['team' => $team->getKey()]),
+            ];
+            $ret[] = [
+                'active' => $current === 'members.index',
+                'count' => $applicationCount === 0 ? null : $applicationCount,
+                'title' => osu_trans('teams.header_links.members.index'),
+                'url' => route('teams.members.index', ['team' => $team->getKey()]),
+            ];
+        }
+
+        return $ret;
+    }
+
     public function destroy(string $id): Response
     {
         $team = Team::findOrFail($id);
