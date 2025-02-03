@@ -101,7 +101,7 @@
                 >
                     <input type="hidden" name="_method" value="DELETE" />
                     <button
-                        class="team-action-button team-action-button--join"
+                        class="team-action-button team-action-button--join-cancel"
                     >
                         {{ osu_trans('teams.show.bar.join_cancel') }}
                     </button>
