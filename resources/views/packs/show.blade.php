@@ -14,7 +14,7 @@
                     <div class="beatmap-pack__name">{{ $pack->name }}</div>
                     <div class="beatmap-pack__details">
                         <span class="beatmap-pack__date">{{ json_date($pack->date) }}</span>
-                        <span>{!! osu_trans('beatmappacks.show.created_by', ['author' => "<strong>{$pack->author}</strong>"]) !!}</span>
+                        <span>{!! osu_trans('beatmappacks.show.created_by', ['author' => "<strong>{make_blade_safe($pack->author)}</strong>"]) !!}</span>
                     </div>
                 </a>
 
