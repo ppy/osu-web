@@ -23,14 +23,23 @@ interface UserVerificationXhr extends JQuery.jqXHR {
   status: 401;
 }
 
-const isUserVerificationXhr = (arg: JQuery.jqXHR): arg is UserVerificationXhr => (
-  arg.status === 401 && arg.responseJSON?.authentication === 'verify'
-);
+function isUserVerificationJson(arg: unknown): arg is UserVerificationJson {
+  return typeof arg === 'object'
+    && arg != null
+    && 'authentication' in arg
+    && arg.authentication === 'verify'
+    && 'box' in arg
+    && typeof arg.box === 'string';
+}
+
+export function isUserVerificationXhr(arg: JQuery.jqXHR<unknown>): arg is UserVerificationXhr {
+  return arg.status === 401 && isUserVerificationJson(arg.responseJSON);
+}
 
 export default class UserVerification {
   // Used as callback on original action (where verification was required)
   private callback?: () => void;
-  // set to true on turbolinks:visit so the box will be rendered on navigation
+  // set to true on turbo:visit so the box will be rendered on navigation
   private delayShow = false;
   // actual function to "store" the parameter original used for delayed show call
   private delayShowCallback?: () => void;
@@ -61,9 +70,9 @@ export default class UserVerification {
   constructor() {
     $(document)
       .on('ajax:error', this.onError)
-      .on('turbolinks:load', this.setModal)
-      .on('turbolinks:load', this.showOnLoad)
-      .on('turbolinks:visit', this.setDelayShow)
+      .on('turbo:load', this.setModal)
+      .on('turbo:load', this.showOnLoad)
+      .on('turbo:visit', this.setDelayShow)
       .on('input', '.js-user-verification--input', this.autoSubmit)
       .on('click', '.js-user-verification--reissue', this.reissue);
     $.subscribe('user-verification:success', this.success);

@@ -38,11 +38,16 @@
                 </td>
                 <td class="ranking-page-table__column">
                     <div class="ranking-page-table__user-link">
-                        @include('objects._flag_country', [
-                            'countryName' => $score->user->country->name,
-                            'countryCode' => $score->user->country->acronym,
-                            'modifiers' => ['medium'],
-                        ])
+                        <span class="ranking-page-table__flags">
+                            @include('objects._flag_country', [
+                                'country' => $score->user->country,
+                            ])
+                            @if (($team = $score->user->team) !== null)
+                                <a class="u-contents" href="{{ route('teams.show', $team) }}">
+                                    @include('objects._flag_team', compact('team'))
+                                </a>
+                            @endif
+                        </span>
                         <a
                             href="{{ route('users.show', ['user' => $score->user_id, 'mode' => $mode]) }}"
                             class="ranking-page-table__user-link-text js-usercard"
@@ -54,7 +59,7 @@
                     </div>
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                    {{ format_percentage($score->hit_accuracy) }}
+                    {{ format_percentage($score->hit_accuracy / 100) }}
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                     {{ i18n_number_format($score->playcount) }}

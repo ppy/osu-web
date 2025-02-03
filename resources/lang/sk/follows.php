@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => '',
     ],
+
+    'store' => [
+        'too_many' => '',
+    ],
 ];

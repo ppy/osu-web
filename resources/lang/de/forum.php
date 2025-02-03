@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Thread wirklich wiederherstellen?',
         'deleted' => 'gelöschter Thread',
         'go_to_latest' => 'letzte Antwort anschauen',
+        'go_to_unread' => 'Zeige ersten ungelesenen Beitrag',
         'has_replied' => 'Du hast auf diesen Thread geantwortet',
         'in_forum' => 'in :forum',
         'latest_post' => ':when von :user',

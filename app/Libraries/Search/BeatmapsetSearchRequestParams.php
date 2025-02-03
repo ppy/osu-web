@@ -13,6 +13,7 @@ use App\Models\Beatmapset;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\User;
+use App\Models\UserProfileCustomization;
 
 class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 {
@@ -108,8 +109,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $this->showSpotlights = in_array('spotlights', $generals, true);
 
             $this->includeNsfw = $params['nsfw']
-                ?? $user->userProfileCustomization->beatmapset_show_nsfw
-                ?? $this->includeNsfw;
+                ?? UserProfileCustomization::forUser($user)['beatmapset_show_nsfw'];
         } else {
             $sort = null;
         }
@@ -210,16 +210,19 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             'ar' => 'ar',
             'artist' => 'artist',
             'bpm' => 'bpm',
+            'circles' => 'countNormal',
             'created' => 'created',
             'creator' => 'creator',
             'cs' => 'cs',
             'difficulty' => 'difficulty',
             'dr' => 'drain',
+            'favourites' => 'favouriteCount',
             'featured_artist' => 'featuredArtist',
             'keys' => 'keys',
             'length' => 'totalLength',
             'od' => 'accuracy',
             'ranked' => 'ranked',
+            'sliders' => 'countSlider',
             'source' => 'source',
             'stars' => 'difficultyRating',
             'status' => 'statusRange',

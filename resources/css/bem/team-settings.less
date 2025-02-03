@@ -1,0 +1,49 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.team-settings {
+  display: grid;
+  gap: 5px;
+
+  &__buttons {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__description-preview {
+    --padding: 10px;
+    padding: var(--padding) 0;
+    background-color: hsl(var(--hsl-b3));
+    border-radius: @border-radius-large;
+  }
+
+  &__help {
+    color: hsl(var(--hsl-c2));
+    font-size: @font-size--normal;
+  }
+
+  &__image {
+    min-width: 0;
+    max-width: 100%;
+    border-radius: @border-radius-large;
+    object-fit: contain;
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 15px;
+
+    &--buttons {
+      grid-template-columns: 1fr auto;
+    }
+
+    &--description {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    &--image {
+      grid-template-columns: 1fr;
+    }
+  }
+}

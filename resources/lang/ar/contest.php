@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => '',
         'hide_judged' => 'إخفاء المُدخلات المحكوم عليها',
         'nav_title' => 'تحكيم',
         'no_current_vote' => 'لم تصوت بعد.',

@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Czy na pewno chcesz przywrócić wątek?',
         'deleted' => 'usunięty wątek',
         'go_to_latest' => 'pokaż najnowszy post',
+        'go_to_unread' => 'zobacz pierwszy nieprzeczytany post',
         'has_replied' => 'Twoja odpowiedź znajduje się w tym wątku',
         'in_forum' => 'forum: :forum',
         'latest_post' => ':when przez :user',

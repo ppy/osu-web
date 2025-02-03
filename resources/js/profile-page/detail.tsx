@@ -68,11 +68,9 @@ export default class Detail extends React.Component<Props> {
                 <Rank highest={this.user.rank_highest} stats={this.user.statistics} type='global' />
                 <Rank stats={this.user.statistics} type='country' />
               </div>
-              {this.props.controller.currentMode === 'osu' && (
-                <div className='profile-detail__values'>
-                  <DailyChallenge stats={this.user.daily_challenge_user_stats} />
-                </div>
-              )}
+              <div className='profile-detail__values'>
+                <DailyChallenge stats={this.user.daily_challenge_user_stats} />
+              </div>
             </div>
 
             <div className='profile-detail__chart'>

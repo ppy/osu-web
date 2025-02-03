@@ -9,6 +9,12 @@ return [
         'title' => 'Land',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'top_10p' => 'Topp 10% resultat',
+        'top_50p' => 'Topp 50% resultat',
+    ],
+
     'filter' => [
         'title' => 'Visa',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'i rampljuset',
         'country' => 'land',
+        'daily_challenge' => 'daglig utmaning',
         'kudosu' => 'kudosu',
         'multiplayer' => 'flerspelarläge',
         'performance' => 'prestation',

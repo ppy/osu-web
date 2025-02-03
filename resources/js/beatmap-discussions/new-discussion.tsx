@@ -16,6 +16,7 @@ import { disposeOnUnmount, observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
+import { isOwner } from 'utils/beatmap-helper';
 import { canModeratePosts, formatTimestamp, makeUrl, NearbyDiscussion, nearbyDiscussions, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { downloadLimited } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
@@ -286,7 +287,7 @@ export class NewDiscussion extends React.Component<Props> {
 
     const canPostNote = core.currentUser != null
         && (core.currentUser.id === this.beatmapset.user_id
-          || (core.currentUser.id === this.currentBeatmap.user_id && ['general', 'timeline'].includes(this.currentMode))
+          || (isOwner(core.currentUser.id, this.currentBeatmap) && ['general', 'timeline'].includes(this.currentMode))
           || core.currentUser.is_bng
           || canModeratePosts());
 
@@ -500,7 +501,7 @@ export class NewDiscussion extends React.Component<Props> {
   private readonly updateStickToHeight = () => this.stickToHeight = this.props.stickTo?.current?.getBoundingClientRect().height;
 
   private validPost(type: string): type is DiscussionType {
-    if (!(discussionTypes as Readonly<string[]>).includes(type)) return false;
+    if (!(discussionTypes as readonly string[]).includes(type)) return false;
     if (!validMessageLength(this.message, this.isTimeline)) return false;
     if (!this.isTimeline) return true;
 

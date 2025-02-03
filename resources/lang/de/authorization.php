@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Du musst einen Score auf einer Beatmap erreichen, um einen Tag hinzuzufügen.',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Dieser Kanal ist nur für Ankündigungen.',
         'blocked' => 'Du kannst keine Nachrichten an einen Benutzer senden, der dich oder den du blockiert hast.',
         'friends_only' => 'Der Benutzer blockiert alle Nachrichten von Personen, die nicht auf seiner Freundesliste sind.',
         'moderated' => 'Dieser Kanal wird derzeit moderiert.',
         'no_access' => 'Du hast keinen Zugriff auf diesen Kanal.',
+        'no_announce' => 'Dir fehlt die Berechtigung, Ankündigungen zu veröffentlichen.',
         'receive_friends_only' => 'Der Benutzer kann möglicherweise nicht antworten, da du nur Nachrichten von Personen auf deiner Freundesliste akzeptierst.',
         'restricted' => 'Du kannst keine Nachrichten senden, während du stummgeschaltet oder gesperrt bist.',
         'silenced' => 'Du kannst keine Nachrichten senden, während du stummgeschaltet oder gesperrt bist.',
@@ -167,6 +173,12 @@ return [
 
         'view' => [
             'admin_only' => 'Nur Administratoren können dieses Forum sehen.',
+        ],
+    ],
+
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Nur der Raumeigentümer kann den Raum schließen.',
         ],
     ],
 

@@ -1,11 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { fail } from 'utils/fail';
 import { htmlElementOrNull } from 'utils/html';
-
-function fail(message: string): never {
-  throw new Error(message);
-}
 
 function expand(e: JQuery.ClickEvent) {
   e.stopPropagation();

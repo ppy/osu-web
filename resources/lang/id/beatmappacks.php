@@ -19,8 +19,8 @@ return [
     'show' => [
         'download' => 'Unduh',
         'item' => [
-            'cleared' => 'telah dimainkan',
-            'not_cleared' => 'belum dimainkan',
+            'cleared' => 'telah dituntaskan',
+            'not_cleared' => 'belum dituntaskan',
         ],
         'no_diff_reduction' => [
             '_' => ':link tidak dapat digunakan untuk menuntaskan paket ini.',

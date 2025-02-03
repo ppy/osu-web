@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Slow down, play more.',
+        'no_mirrors' => 'No download servers available.',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Are you sure you want to nominate this beatmap?',
+            'different_nominator_warning' => 'Qualifying this beatmap with different nominators will reset its qualification queue position.',
             'header' => 'Nominate Beatmap',
             'hybrid_warning' => 'note: you may only nominate once, so please ensure that you are nominating for all game modes you intend to',
             'current_main_ruleset' => 'The main ruleset is currently: :ruleset',

@@ -199,8 +199,9 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Lazer läget visar resultat som är satta i lazer med den nya poängalgoritmen',
             'logout' => 'Logga ut',
             'profile' => 'Min profil',
-            'scoring_mode_toggle' => '',
-            'scoring_mode_toggle_tooltip' => '',
+            'scoring_mode_toggle' => 'Klassiskt resultat',
+            'scoring_mode_toggle_tooltip' => 'Justera poängvärden för att kännas mer som klassisk poängsättning utan tak',
+            'team' => '',
         ],
     ],
 

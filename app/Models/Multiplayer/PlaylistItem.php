@@ -5,7 +5,6 @@
 
 namespace App\Models\Multiplayer;
 
-use App\Enums\Ruleset;
 use App\Exceptions\InvariantException;
 use App\Models\Beatmap;
 use App\Models\Model;
@@ -22,6 +21,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $owner_id
  * @property int|null $playlist_order
  * @property json|null $required_mods
+ * @property bool $freestyle
  * @property Room $room
  * @property int $room_id
  * @property int|null $ruleset_id
@@ -36,6 +36,7 @@ class PlaylistItem extends Model
     protected $casts = [
         'allowed_mods' => 'object',
         'expired' => 'boolean',
+        'freestyle' => 'boolean',
         'required_mods' => 'object',
     ];
 
@@ -65,6 +66,7 @@ class PlaylistItem extends Model
             $obj->$field = $value;
         }
 
+        $obj->freestyle = get_bool($json['freestyle'] ?? false);
         $obj->max_attempts = get_int($json['max_attempts'] ?? null);
 
         $modsHelper = app('mods');
@@ -110,16 +112,14 @@ class PlaylistItem extends Model
 
     public function save(array $options = [])
     {
-        $this->assertValidMaxAttempts();
-        $this->validateRuleset();
-        $this->assertValidMods();
+        $this->assertValid();
 
         return parent::save($options);
     }
 
     public function scorePercentile(): array
     {
-        $key = "playlist_item_score_percentile:{$this->getKey()}";
+        $key = "playlist_item_score_percentile:v2:{$this->getKey()}";
 
         if (!$this->expired && !$this->room->hasEnded()) {
             $key .= ':ongoing';
@@ -127,20 +127,27 @@ class PlaylistItem extends Model
 
         return \Cache::remember($key, 600, function (): array {
             $scores = $this->highScores()
-                ->where('total_score', '>', 0)
+                ->passing()
                 ->orderBy('total_score', 'DESC')
                 ->pluck('total_score');
             $count = count($scores);
 
             return $count === 0
                 ? [
-                    '10p' => 0,
-                    '50p' => 0,
+                    'top_10p' => 0,
+                    'top_50p' => 0,
                 ] : [
-                    '10p' => $scores[max(0, (int) ($count * 0.1) - 1)],
-                    '50p' => $scores[max(0, (int) ($count * 0.5) - 1)],
+                    'top_10p' => $scores[max(0, (int) ($count * 0.1) - 1)],
+                    'top_50p' => $scores[max(0, (int) ($count * 0.5) - 1)],
                 ];
         });
+    }
+
+    public function assertValid()
+    {
+        $this->assertValidMaxAttempts();
+        $this->assertValidRuleset();
+        $this->assertValidMods();
     }
 
     private function assertValidMaxAttempts()
@@ -155,16 +162,23 @@ class PlaylistItem extends Model
         }
     }
 
-    private function validateRuleset()
+    private function assertValidRuleset()
     {
         // osu beatmaps can be played in any mode, but non-osu maps can only be played in their specific modes
-        if ($this->beatmap->playmode !== Ruleset::osu->value && $this->beatmap->playmode !== $this->ruleset_id) {
+        if (!$this->beatmap->canBeConvertedTo($this->ruleset_id)) {
             throw new InvariantException("invalid ruleset_id for beatmap {$this->beatmap->beatmap_id}");
         }
     }
 
     private function assertValidMods()
     {
+        if ($this->freestyle) {
+            if (count($this->allowed_mods) !== 0 || count($this->required_mods) !== 0) {
+                throw new InvariantException("mod isn't allowed in freestyle");
+            }
+            return;
+        }
+
         $allowedModIds = array_column($this->allowed_mods, 'acronym');
         $requiredModIds = array_column($this->required_mods, 'acronym');
 

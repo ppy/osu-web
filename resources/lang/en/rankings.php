@@ -9,6 +9,12 @@ return [
         'title' => 'Country',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Difficulty',
+        'top_10p' => 'Top 10% Score',
+        'top_50p' => 'Top 50% Score',
+    ],
+
     'filter' => [
         'title' => 'Show',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'spotlights (old)',
         'country' => 'country',
+        'daily_challenge' => 'daily challenge',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'performance' => 'performance',
@@ -42,6 +49,9 @@ return [
         'ongoing' => 'This season is still ongoing (there will be more playlists added).',
         'room_count' => 'Playlist count',
         'url' => 'Display more informations on that season.',
+        'validation' => [
+            'not_enough_factors' => 'there is not enough score factors for proper calculation',
+        ],
     ],
 
     'spotlight' => [

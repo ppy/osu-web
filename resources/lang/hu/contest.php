@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'hozzászolások',
         'hide_judged' => 'elrejteni az elbírált bejegyzéseket',
         'nav_title' => 'bíró',
         'no_current_vote' => 'még nem szavaztál.',

@@ -23,12 +23,33 @@ class RoomTransformer extends TransformerAbstract
         'recent_participants',
     ];
 
+    public static function createShowResponse(Room $room): array
+    {
+        return json_item(
+            $room->loadMissing([
+                'host',
+                'playlist.beatmap.baseMaxCombo',
+                'playlist.beatmap.beatmapset',
+            ]),
+            new static(),
+            [
+                'current_user_score.playlist_item_attempts',
+                'host.country',
+                'playlist.beatmap.beatmapset',
+                'playlist.beatmap.checksum',
+                'playlist.beatmap.max_combo',
+                'recent_participants',
+            ],
+        );
+    }
+
     public function transform(Room $room)
     {
         return [
             'id' => $room->id,
             'name' => $room->name,
             'category' => $room->category,
+            'status' => $room->status,
             'type' => $room->type,
             'user_id' => $room->user_id,
             'starts_at' => json_time($room->starts_at),

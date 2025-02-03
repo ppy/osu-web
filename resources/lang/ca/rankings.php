@@ -9,6 +9,12 @@ return [
         'title' => 'País',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Dificultat',
+        'top_10p' => '',
+        'top_50p' => '',
+    ],
+
     'filter' => [
         'title' => 'Mostra',
 
@@ -24,12 +30,13 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Aquest usuari té menys de 30 dies d\'historial de classificació recent.',
     ],
 
     'type' => [
         'charts' => 'spotlights',
         'country' => 'país',
+        'daily_challenge' => 'repte diari',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multijugador',
         'performance' => 'rendiment',

@@ -29,7 +29,7 @@ return [
         'generic' => 'Wystąpił błąd podczas przygotowywania twojego zamówienia.',
     ],
     'scores' => [
-        'invalid_id' => '',
+        'invalid_id' => 'Nieprawidłowy Identyfikator Wyniku.',
     ],
     'search' => [
         'default' => 'Nie udało się niczego znaleźć, spróbuj ponownie później.',
@@ -37,6 +37,6 @@ return [
         'operation_timeout_exception' => 'Wyszukiwanie jest obecnie bardziej obciążone niż zwykle, spróbuj ponownie później.',
     ],
     'user_report' => [
-        'recently_reported' => "",
+        'recently_reported' => "Już to niedawno zgłosiłeś.",
     ],
 ];

@@ -2,8 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .chat-conversation {
-  @top: chat-conversation;
-
   padding: 10px 20px;
   background: @osu-colour-b4;
   flex-direction: column;
@@ -66,6 +64,12 @@
     margin-top: 10px;
   }
 
+  &__more-users {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
   &__unread-marker {
     border-bottom: 1px solid @osu-colour-h1;
     color: @osu-colour-h1;
@@ -106,10 +110,18 @@
     gap: 2px;
     align-content: center;
     justify-content: center;
-    margin: 10px;
 
     &--loading {
       gap: 5px;
     }
+  }
+
+  &__users-container {
+    .default-border-radius();
+    background-color: hsl(var(--hsl-b5));
+    padding: 5px;
+    display: grid;
+    gap: 5px;
+    margin: 10px;
   }
 }

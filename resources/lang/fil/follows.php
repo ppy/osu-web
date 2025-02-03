@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => 'talakayan ng beatmap',
     ],
+
+    'store' => [
+        'too_many' => '',
+    ],
 ];

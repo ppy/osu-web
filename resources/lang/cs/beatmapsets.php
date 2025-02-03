@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Zpomal, více hraj.',
+        'no_mirrors' => 'Nejsou dostupné žádné servery pro stahování.',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Jste si jisti, že chcete nominovat tuto beatmapu?',
+            'different_nominator_warning' => 'Kvalifikace této beatmapy s jinými nominátory vyresetuje její pozici ve frontě kvalifikací.',
             'header' => 'Nominovat beatmapu',
             'hybrid_warning' => 'poznámka: můžete nominovat pouze jednou, takže se ujistěte, že nominujete za všechny herní režimy, které chcete',
             'current_main_ruleset' => 'Hlavní ruleset je aktuálně: :ruleset',

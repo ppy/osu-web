@@ -9,7 +9,6 @@ namespace App\Libraries\User;
 
 use App\Exceptions\InvariantException;
 use App\Models\Beatmap;
-use App\Models\Country;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 
@@ -18,7 +17,7 @@ class CountryChange
     public static function handle(User $user, string $newCountry, string $reason): void
     {
         // Assert valid country acronym
-        $country = Country::find($newCountry);
+        $country = app('countries')->byCode($newCountry);
         if ($country === null) {
             throw new InvariantException('invalid country specified');
         }

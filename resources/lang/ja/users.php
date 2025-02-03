@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "あなたのアカウントは長い間使用されていません。",
             'inactive_different_country' => "あなたのアカウントは長期間使用されていません。",
         ],
     ],
@@ -197,15 +197,16 @@ return [
             'to_1' => 'カバー画像を表示',
         ],
         'daily_challenge' => [
-            'daily' => '',
-            'daily_streak_best' => '',
-            'daily_streak_current' => '',
-            'title' => '',
-            'top_10p_placements' => '',
-            'top_50p_placements' => '',
-            'weekly' => '',
-            'weekly_streak_best' => '',
-            'weekly_streak_current' => '',
+            'daily' => '連続記録',
+            'daily_streak_best' => '最高連続記録',
+            'daily_streak_current' => '現在の連続記録',
+            'playcount' => '',
+            'title' => 'デイリー\nチャレンジ',
+            'top_10p_placements' => '上位10%',
+            'top_50p_placements' => '上位50%',
+            'weekly' => '週間連続記録',
+            'weekly_streak_best' => '最高週間連続記録',
+            'weekly_streak_current' => '現在の週間連続記録',
 
             'unit' => [
                 'day' => '',
@@ -217,7 +218,7 @@ return [
                 'button' => 'カバー画像の変更',
                 'defaults_info' => 'カバー画像の選択肢は増える予定です',
                 'holdover_remove_confirm' => "",
-                'title' => '',
+                'title' => 'カバー画像',
 
                 'upload' => [
                     'broken_file' => '画像の処理に失敗しました。アップロードした画像を確認してもう一度やり直して下さい。',
@@ -242,11 +243,11 @@ return [
 
             'hue' => [
                 'reset_no_supporter' => '',
-                'title' => '',
+                'title' => 'カラー',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'カラーテーマをカスタムできるのは :link のみです',
+                    'link' => 'osu!サポーター',
                 ],
             ],
         ],

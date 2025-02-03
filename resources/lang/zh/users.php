@@ -171,7 +171,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => '账户进入限制模式！',
-        'message' => '处于被限制状态时，你将不能与其他玩家互动，分数只有你自己可见。限制通常是系统自动给予，通常会在 24 小时内解除。:link',
+        'message' => '处于被限制状态时，你将不能与其他玩家互动，成绩只有你自己可见。限制通常是系统自动给予，通常会在 24 小时内解除。:link',
         'message_link' => '点击此页了解更多。',
     ],
     'show' => [
@@ -198,18 +198,19 @@ return [
         ],
         'daily_challenge' => [
             'daily' => '每日连续完成数',
-            'daily_streak_best' => '最佳每日完成数',
-            'daily_streak_current' => '当前每日完成数',
+            'daily_streak_best' => '最佳连续完成天数',
+            'daily_streak_current' => '当前连续完成天数',
+            'playcount' => '总参加天数',
             'title' => '每日\n挑战',
-            'top_10p_placements' => '前 10% 位置',
-            'top_50p_placements' => '前 50% 位置',
+            'top_10p_placements' => '排名达到前 10% 次数',
+            'top_50p_placements' => '排名达到前 50% 次数',
             'weekly' => '每周完成数',
-            'weekly_streak_best' => '最佳每周完成数',
-            'weekly_streak_current' => '当前每周完成数',
+            'weekly_streak_best' => '最佳连续完成周数',
+            'weekly_streak_current' => '当前连续完成周数',
 
             'unit' => [
-                'day' => ':valued 天',
-                'week' => ':valuew 周',
+                'day' => ':value 天',
+                'week' => ':value 周',
             ],
         ],
         'edit' => [
@@ -486,7 +487,7 @@ return [
             'medals' => '奖章',
             'play_count' => '游戏次数',
             'play_time' => '游戏时间',
-            'ranked_score' => '进榜总分',
+            'ranked_score' => '计分成绩总分',
             'replays_watched_by_others' => '回放被观看次数',
             'score_ranks' => '得分等级',
             'total_hits' => '总命中次数',
@@ -519,8 +520,8 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '方块检视',
-        'card' => '卡片检视',
-        'list' => '列表检视',
+        'brick' => '方格视图',
+        'card' => '卡片视图',
+        'list' => '列表视图',
     ],
 ];

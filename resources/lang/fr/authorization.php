@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Vous devez soumettre un score sur une beatmap pour ajouter un tag.',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Ce canal est uniquement pour les annonces.',
         'blocked' => 'Vous ne pouvez pas envoyer un message à un utilisateur qui vous a bloqué ou que vous avez bloqué.',
         'friends_only' => 'Cet utilisateur bloque les messages des utilisateurs qui ne sont pas dans sa liste d’amis.',
         'moderated' => 'Ce canal est actuellement restreint par un modérateur.',
         'no_access' => 'Vous n’avez pas accès à ce canal.',
+        'no_announce' => 'Vous n\'avez pas la permission de publier une annonce.',
         'receive_friends_only' => 'L\'utilisateur n\'est peut-être pas en mesure de répondre parce que vous n\'acceptez que les messages des utilisateurs de votre liste d\'amis.',
         'restricted' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
         'silenced' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
@@ -167,6 +173,12 @@ return [
 
         'view' => [
             'admin_only' => 'Ce forum n\'est accessible qu\'aux administrateurs.',
+        ],
+    ],
+
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Seul le propriétaire de la salle peut la fermer.',
         ],
     ],
 

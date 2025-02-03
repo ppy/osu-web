@@ -4,6 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Дошло је до грешке са ажурирањем гласа',
@@ -25,14 +29,14 @@ return [
         'message_placeholder_silenced' => "Не можете постовати на дискусију док сте мутирани.",
         'message_type_select' => 'Изабери врсту коментара',
         'reply_notice' => 'Притисните enter да одговорите.',
-        'reply_resolve_notice' => '',
+        'reply_resolve_notice' => 'Притисните enter да одговорите. Притисните ctrl+enter да одговорите и решите.',
         'reply_placeholder' => 'Овде унесите ваш одговор',
         'require-login' => 'Пријавите се да бисте поставили или одговорили',
         'resolved' => 'Решено',
         'restore' => 'поврати',
         'show_deleted' => 'Покажи обрисане',
         'title' => 'Дискусије',
-        'unresolved_count' => '',
+        'unresolved_count' => ':count_delimited недовршен проблем|:count_delimited недовршени проблеми',
 
         'collapse' => [
             'all-collapse' => 'Обори све',
@@ -84,7 +88,7 @@ return [
             'disqualify' => '',
             'hype' => '',
             'mapper_note' => '',
-            'nomination_reset' => '',
+            'nomination_reset' => 'Уклони све Номинације',
             'praise' => '',
             'problem' => '',
             'problem_warning' => '',
@@ -216,7 +220,7 @@ return [
         'rank_estimate' => [
             '_' => 'Процењује се да ће мапа бити померена у рангирану секцију :date ако се не пронађу проблеми. Мапа је тренутно #:position у :queue.',
             'unresolved_problems' => '',
-            'problems' => '',
+            'problems' => 'ови проблеми',
             'on' => ':date',
             'queue' => 'ред за рангинг секцију',
             'soon' => 'ускоро',

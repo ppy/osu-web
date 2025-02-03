@@ -71,14 +71,8 @@ class BeatmapDiscussion extends Model
     // FIXME: This and other static search functions should be extracted out.
     public static function search($rawParams = [])
     {
-        $pagination = pagination(cursor_from_params($rawParams) ?? $rawParams);
+        [$query, $params] = static::searchQueryAndParams(cursor_from_params($rawParams) ?? $rawParams);
 
-        $params = [
-            'limit' => $pagination['limit'],
-            'page' => $pagination['page'],
-        ];
-
-        $query = static::limit($params['limit'])->offset($pagination['offset']);
         $isModerator = $rawParams['is_moderator'] ?? false;
 
         if (present($rawParams['user'] ?? null)) {
@@ -638,10 +632,8 @@ class BeatmapDiscussion extends Model
 
     public function managedBy(User $user): bool
     {
-        $id = $user->getKey();
-
-        return $this->beatmapset->user_id === $id
-            || ($this->beatmap !== null && $this->beatmap->user_id === $id);
+        return $this->beatmapset->user_id === $user->getKey()
+            || ($this->beatmap !== null && $this->beatmap->isOwner($user));
     }
 
     public function userRecentVotesCount($user, $increment = false)

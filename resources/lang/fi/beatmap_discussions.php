@@ -66,6 +66,13 @@ return [
         'version' => 'Vaikeustaso',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Kirjaudu sisään vastataksesi',
@@ -75,7 +82,7 @@ return [
 
     'review' => [
         'block_count' => ':used / :max lohkoa käytetty',
-        'go_to_parent' => 'Näytä arvosteluviesti',
+        'go_to_parent' => 'Näytä arvostelupostaus',
         'go_to_child' => 'Näytä keskustelu',
         'validation' => [
             'block_too_large' => 'jokainen lohko voi sisältää enintään :limit merkkiä',
@@ -83,9 +90,9 @@ return [
             'invalid_block_type' => 'virheellinen lohkotyyppi',
             'invalid_document' => 'virheellinen arvostelu',
             'invalid_discussion_type' => 'virheellinen keskustelutyyppi',
-            'minimum_issues' => 'arvostelun täytyy sisältää vähintään :count ongelma|arvostelun täytyy sisältää vähintään :count ongelmaa',
+            'minimum_issues' => 'arvostelun täytyy sisältää vähintään :count ongelmaa|arvostelun täytyy sisältää vähintään :count ongelmaa',
             'missing_text' => 'lohkosta puuttuu teksti',
-            'too_many_blocks' => 'arvostelut saavat sisältää vain :count kappale/ongelma|arvostelut saavat sisältää vain :count kappaletta/ongelmaa',
+            'too_many_blocks' => 'arvostelut saavat sisältää vain :count kappale/ongelmaa|arvostelut saavat sisältää vain :count kappaletta/ongelmaa',
         ],
     ],
 

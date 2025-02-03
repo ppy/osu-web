@@ -8,7 +8,7 @@
             <div class="ranking-filter__title">
                 {{ osu_trans('rankings.filter.title') }}
             </div>
-            <div class="sort">
+            <div class="sort sort--ranking-header">
                 <div class="sort__items">
                     <button class="sort__item sort__item--button">{{ osu_trans('sort.all') }}</button>
                     <button class="sort__item sort__item--button">{{ osu_trans('sort.friends')}}</button>

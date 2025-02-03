@@ -279,7 +279,7 @@ class ChannelTest extends TestCase
         $channel = Channel::factory()->type('public', [$user])->create();
 
         $this->assertSame(1, $channel->users()->count());
-        $this->assertEmpty($channel->visibleUsers($user));
+        $this->assertEmpty($channel->visibleUsers());
     }
 
     // test add/removeUser resets any memoized values

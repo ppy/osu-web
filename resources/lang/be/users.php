@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Ваш улікавы запіс даўно не выкарыстоўваўся.",
             'inactive_different_country' => "Ваш акаўнт не выкарыстоўваўся доўгі час.",
         ],
     ],
@@ -126,7 +126,7 @@ return [
 
     'ogp' => [
         'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description_empty' => 'Карыстальнік не мае бітмапаў...',
 
         'description' => [
             '_' => '',
@@ -200,6 +200,7 @@ return [
             'daily' => '',
             'daily_streak_best' => '',
             'daily_streak_current' => '',
+            'playcount' => '',
             'title' => '',
             'top_10p_placements' => '',
             'top_50p_placements' => '',

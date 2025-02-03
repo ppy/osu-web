@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "บัญชีของคุณไม่ได้ใช้งานมานาน",
             'inactive_different_country' => "บัญชีของคุณไม่ได้ใช้งานมานาน",
         ],
     ],
@@ -198,27 +198,28 @@ return [
             'to_1' => 'แสดงปก',
         ],
         'daily_challenge' => [
-            'daily' => '',
-            'daily_streak_best' => '',
-            'daily_streak_current' => '',
-            'title' => '',
-            'top_10p_placements' => '',
-            'top_50p_placements' => '',
-            'weekly' => '',
-            'weekly_streak_best' => '',
-            'weekly_streak_current' => '',
+            'daily' => 'สตรีคประจำวัน',
+            'daily_streak_best' => 'สตรีคประจำวันที่ดีที่สุด',
+            'daily_streak_current' => 'สตรีคประจำวันปัจจุบัน',
+            'playcount' => 'เข้าร่วมทั้งหมด',
+            'title' => 'ชาเลนจ์\nประจำวัน',
+            'top_10p_placements' => 'ท็อป 10% แรก',
+            'top_50p_placements' => 'ท็อป 50% แรก',
+            'weekly' => 'สตรีคประจำสัปดาห์',
+            'weekly_streak_best' => 'สตรีคประจำสัปดาห์ที่ดีที่สุด',
+            'weekly_streak_current' => 'สตรีคประจำสัปดาห์ปัจจุบัน',
 
             'unit' => [
-                'day' => '',
-                'week' => '',
+                'day' => ':value วัน',
+                'week' => ':value สัปดาห์',
             ],
         ],
         'edit' => [
             'cover' => [
                 'button' => 'เปลี่ยนรูปภาพปก',
                 'defaults_info' => 'จะมีตัวเลือกรูปภาพปกเพิ่มมากขึ้นในอนาคต',
-                'holdover_remove_confirm' => "",
-                'title' => '',
+                'holdover_remove_confirm' => "ปกที่เลือกไว้ก่อนหน้านี้ไม่สามารถเลือกได้อีกต่อไป คุณไม่สามารถเลือกกลับมาได้หลังจากสลับไปใช้ปกอื่น ดำเนินการต่อ?",
+                'title' => 'ปก',
 
                 'upload' => [
                     'broken_file' => 'ประมวลผลรูปภาพล้มเหลว โปรดตรวจสอบรูปภาพและลองใหม่อีกครั้ง',
@@ -242,12 +243,12 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
-                'title' => '',
+                'reset_no_supporter' => 'รีเซ็ตสีเป็นค่าเริ่มต้นหรือไม่? จะต้องใช้แท็กผู้สนับสนุนเพื่อเปลี่ยนเป็นสีอื่น',
+                'title' => 'สี',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'ธีมสีที่กำหนดเองมีให้เฉพาะสำหรับ :link เท่านั้น',
+                    'link' => 'ผู้สนับสนุน osu!',
                 ],
             ],
         ],

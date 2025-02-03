@@ -9,6 +9,12 @@ return [
         'title' => 'מדינה',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'רמת קושי',
+        'top_10p' => '',
+        'top_50p' => '',
+    ],
+
     'filter' => [
         'title' => 'הצג',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'זרקורים',
         'country' => 'מדינה',
+        'daily_challenge' => '',
         'kudosu' => '',
         'multiplayer' => 'רב משתתפים',
         'performance' => 'ביצועים',

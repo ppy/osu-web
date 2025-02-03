@@ -5,7 +5,7 @@
 
 return [
     'confirmation' => 'Apakah kamu yakin?',
-    'confirmation_unsaved' => 'Segala perubahan yang tidak disimpan akan hilang. Apakah kamu yakin?',
+    'confirmation_unsaved' => 'Seluruh perubahan yang belum disimpan akan hilang. Apakah kamu yakin?',
     'saved' => 'Tersimpan',
 
     'array_and' => [
@@ -22,6 +22,7 @@ return [
         'admin' => 'Admin',
         'authorise' => 'Izinkan',
         'authorising' => 'Mengotorisir...',
+        'back' => '',
         'back_to_previous' => 'Kembali ke posisi sebelumnya',
         'back_to_top' => 'Kembali ke atas',
         'cancel' => 'Batal',

@@ -9,6 +9,12 @@ return [
         'title' => 'País',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Dificultad',
+        'top_10p' => 'Puntuación del top 10 %',
+        'top_50p' => 'Puntuación del top 50 %',
+    ],
+
     'filter' => [
         'title' => 'Mostrar',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'destacados',
         'country' => 'país',
+        'daily_challenge' => 'desafío diario',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multijugador',
         'performance' => 'rendimiento',

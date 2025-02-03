@@ -14,7 +14,7 @@
 ])
 
 @section('content')
-    <nav class="osu-layout__row">
+    <nav class="osu-page">
         <!-- Mobile Navigation -->
         @include('layout._header_mobile')
 
@@ -46,7 +46,7 @@
 
     </nav>
 
-    <div class="js-nav-data" id="nav-data-landing" data-turbolinks-permanent></div>
+    <div class="js-nav-data" id="nav-data-landing" data-turbo-permanent></div>
     @include('layout._popup_login', ['modifiers' => ['landing']])
 
     <div class="osu-page">
@@ -126,7 +126,7 @@
     </div>
 
     <footer class="osu-layout__section osu-layout__section--landing-footer">
-        <div class="osu-layout__row osu-layout__row--landing-sitemap">
+        <div class="osu-page">
             <div class="landing-sitemap">
                 @foreach (footer_landing_links() as $section => $links)
                     <ul class="landing-sitemap__list">

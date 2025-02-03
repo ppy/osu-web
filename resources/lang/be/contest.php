@@ -14,9 +14,10 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'каментарыі',
         'hide_judged' => '',
         'nav_title' => '',
-        'no_current_vote' => '',
+        'no_current_vote' => 'вы яшчэ не прагаласавалі.',
         'update' => 'абнавіць',
         'validation' => [
             'missing_score' => 'адсутны вынік',
@@ -27,7 +28,7 @@ return [
 
     'judge_results' => [
         '_' => '',
-        'creator' => '',
+        'creator' => 'аўтар',
         'score' => 'Вынік',
         'total_score' => '',
     ],

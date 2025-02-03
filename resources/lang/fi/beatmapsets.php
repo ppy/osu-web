@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Hidasta vähän, pelaa enemmän.',
+        'no_mirrors' => 'Latauspalvelimia ei saatavilla.',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Oletko varma, että haluat asettaa tämän rytmikartan ehdolle?',
+            'different_nominator_warning' => 'Tämän rytmikartan kelpuuttaminen eri nimittäjillä nollaa sen kelpuuttamisjonon sijainnin.',
             'header' => 'Ehdollepane rytmikartta',
             'hybrid_warning' => 'huomaa: voit tehdä ehdollepanon vain kerran, joten varmista, että asetat todella ehdolle kaikki tarkoittamasi pelimuodot',
             'current_main_ruleset' => 'Ensisijainen pelimuoto on tällä hetkellä: :ruleset',
@@ -136,7 +138,7 @@ return [
 
         'info' => [
             'description' => 'Kuvaus',
-            'genre' => 'Tyylilaji',
+            'genre' => 'Genre',
             'language' => 'Kieli',
             'no_scores' => 'Dataa lasketaan...',
             'nominators' => 'Ehdollepanijat',

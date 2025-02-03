@@ -44,6 +44,7 @@ return [
     'beatmaps' => [
         'max' => 50,
         'max_scores' => 100,
+        'owners_max' => get_int(env('BEATMAPS_OWNERS_MAX')) ?? 10,
 
         'difficulty_cache' => [
             'server_url' => presence(env('BEATMAPS_DIFFICULTY_CACHE_SERVER_URL')) ?? 'http://localhost:5001',
@@ -64,6 +65,7 @@ return [
         'favourite_limit' => intval(env('BEATMAPSET_USER_FAVOURITE_LIMIT', 100)),
         'favourite_limit_supporter' => intval(env('BEATMAPSET_USER_FAVOURITE_LIMIT_SUPPORTER', 1000)),
         'guest_advanced_search' => get_bool(env('BEATMAPSET_GUEST_ADVANCED_SEARCH')) ?? false,
+        'maximum_disqualified_rank_penalty_days' => get_int(env('BEATMAPSET_MAXIMUM_DISQUALIFIED_RANK_PENALTY_DAYS')) ?? 7,
         'minimum_days_for_rank' => get_int(env('BEATMAPSET_MINIMUM_DAYS_FOR_RANK')) ?? 7,
         'rank_per_day' => get_int(env('BEATMAPSET_RANK_PER_DAY')) ?? 8,
         'rank_per_run' => get_int(env('BEATMAPSET_RANK_PER_RUN')) ?? 2,
@@ -125,6 +127,7 @@ return [
         'issue_forum_ids' => array_map('intval', explode(' ', env('ISSUE_FORUM_IDS', '4 5 29 30 101'))),
         'max_post_length' => get_int(env('FORUM_POST_MAX_LENGTH')) ?? 60000,
         'minimum_plays' => get_int(env('FORUM_POST_MINIMUM_PLAYS')) ?? 200,
+        'beatmap_description_forum_id' => get_int(env('BEATMAP_DESCRIPTION_FORUM_ID')) ?? 6,
         'necropost_months' => 6,
         'old_months' => 1,
         'poll_edit_hours' => get_int(env('FORUM_POLL_EDIT_HOURS')) ?? 1,
@@ -151,6 +154,7 @@ return [
     ],
     'multiplayer' => [
         'max_attempts_limit' => get_int(env('MULTIPLAYER_MAX_ATTEMPTS_LIMIT')) ?? 128,
+        'room_close_grace_period_minutes' => get_int(env('MULTIPLAYER_ROOM_CLOSE_GRACE_PERIOD_MINUTES')) ?? 5,
     ],
     'notification' => [
         'endpoint' => presence(env('NOTIFICATION_ENDPOINT'), '/home/notifications/feed'),
@@ -186,6 +190,7 @@ return [
         'es_cache_duration' => 60 * (get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5), // in minutes, converted to seconds
         'experimental_rank_as_default' => get_bool(env('SCORES_EXPERIMENTAL_RANK_AS_DEFAULT')) ?? false,
         'experimental_rank_as_extra' => get_bool(env('SCORES_EXPERIMENTAL_RANK_AS_EXTRA')) ?? false,
+        'index_max_id_distance' => get_int(env('SCORE_INDEX_MAX_ID_DISTANCE')) ?? 10_000_000,
         'processing_queue' => presence(env('SCORES_PROCESSING_QUEUE')) ?? 'osu-queue:score-statistics',
         'submission_enabled' => get_bool(env('SCORES_SUBMISSION_ENABLED')) ?? true,
     ],
@@ -198,19 +203,12 @@ return [
     'store' => [
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE') ?? '')),
     ],
+    'tags' => [
+        'tags_cache_duration' => 60 * (get_int(env('TAGS_CACHE_DURATION')) ?? 60), // in minutes, converted to seconds
+        'beatmap_tags_cache_duration' => 60 * (get_int(env('BEATMAP_TAGS_CACHE_DURATION')) ?? 60), // in minutes, converted to seconds
+    ],
     'twitch_client_id' => presence(env('TWITCH_CLIENT_ID')),
     'twitch_client_secret' => presence(env('TWITCH_CLIENT_SECRET')),
-    'tournament_banner' => [
-        'current' => [
-            'id' => get_int(env('TOURNAMENT_BANNER_CURRENT_ID')),
-            'prefix' => env('TOURNAMENT_BANNER_CURRENT_PREFIX'),
-        ],
-        'previous' => [
-            'id' => get_int(env('TOURNAMENT_BANNER_PREVIOUS_ID')),
-            'prefix' => env('TOURNAMENT_BANNER_PREVIOUS_PREFIX'),
-            'winner_id' => env('TOURNAMENT_BANNER_PREVIOUS_WINNER_ID'),
-        ],
-    ],
     'urls' => [
         'base' => 'https://osu.ppy.sh',
         'bounty-form' => env('OS_BOUNTY_URL'),
@@ -225,6 +223,7 @@ return [
         'lazer_dl.windows_x64' => presence(env('OSU_URL_LAZER_WINDOWS_X64')) ?? 'https://github.com/ppy/osu/releases/latest/download/install.exe',
         'lazer_dl_other' => presence(env('OSU_URL_LAZER_OTHER')) ?? 'https://github.com/ppy/osu/#running-osu',
         'lazer_info' => presence(env('OSU_URL_LAZER_INFO')),
+        'menu_content' => presence(env('OSU_URL_MENU_CONTENT_JSON')) ?? 'https://assets.ppy.sh/menu-content.json',
         'osx' => 'https://osx.ppy.sh',
         'server_status' => 'https://status.ppy.sh',
         'smilies' => '/forum/images/smilies',
@@ -251,6 +250,7 @@ return [
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),
         'verification_key_length_hex' => 8,
         'verification_key_tries_limit' => 8,
+        'max_follows' => get_int(env('USER_MAX_FOLLOWS')) ?? 5000,
         'max_friends' => get_int(env('USER_MAX_FRIENDS')) ?? 250,
         'max_friends_supporter' => get_int(env('USER_MAX_FRIENDS_SUPPORTER')) ?? 500,
         'max_login_attempts' => get_int(env('USER_MAX_LOGIN_ATTEMPTS')) ?? 10,

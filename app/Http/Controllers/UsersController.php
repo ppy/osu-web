@@ -6,7 +6,6 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Exceptions\UserProfilePageLookupException;
 use App\Exceptions\ValidationException;
 use App\Http\Middleware\RequestCost;
 use App\Libraries\ClientCheck;
@@ -18,13 +17,10 @@ use App\Libraries\User\FindForProfilePage;
 use App\Libraries\UserRegistration;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
-use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Log;
-use App\Models\Solo\Score as SoloScore;
 use App\Models\User;
 use App\Models\UserAccountHistory;
-use App\Models\UserNotFound;
 use App\Transformers\CurrentUserTransformer;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
@@ -77,7 +73,6 @@ class UsersController extends Controller
         $this->middleware('guest', ['only' => ['create', 'store', 'storeWeb']]);
         $this->middleware('auth', ['only' => [
             'checkUsernameAvailability',
-            'checkUsernameExists',
             'report',
             'me',
             'posts',
@@ -115,17 +110,6 @@ class UsersController extends Controller
         ], 403);
     }
 
-    public function card($id)
-    {
-        try {
-            $user = FindForProfilePage::find($id, null, false);
-        } catch (UserProfilePageLookupException $e) {
-            $user = UserNotFound::instance();
-        }
-
-        return json_item($user, 'UserCompact', UserCompactTransformer::CARD_INCLUDES);
-    }
-
     public function create()
     {
         if (!$GLOBALS['cfg']['osu']['user']['registration_mode']['web']) {
@@ -157,14 +141,6 @@ class UsersController extends Controller
             'cost' => $cost,
             'costString' => currency($cost),
         ];
-    }
-
-    public function checkUsernameExists()
-    {
-        $username = get_string(request('username'));
-        $user = User::lookup($username, 'username') ?? UserNotFound::instance();
-
-        return json_item($user, 'UserCompact', ['cover', 'country']);
     }
 
     public function extraPages($_id, $page)
@@ -207,7 +183,7 @@ class UsersController extends Controller
                     ),
                     'firsts' => $this->getExtraSection(
                         'scoresFirsts',
-                        $this->user->scoresFirst($this->mode, true)->visibleUsers()->count()
+                        $this->user->scoresFirst($this->mode, true)->count()
                     ),
                     'pinned' => $this->getExtraSection(
                         'scoresPinned',
@@ -752,7 +728,7 @@ class UsersController extends Controller
 
     private function sanitizedLimitParam()
     {
-        return clamp(get_int(request('limit')) ?? 5, 1, 100);
+        return \Number::clamp(get_int(request('limit')) ?? 5, 1, 100);
     }
 
     private function getExtra($page, array $options, int $perPage = 10, int $offset = 0)
@@ -845,15 +821,16 @@ class UsersController extends Controller
             case 'scoresFirsts':
                 $transformer = new ScoreTransformer();
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                $scoreQuery = $this->user->scoresFirst($this->mode, true)->unorder();
-                $userFirstsQuery = $scoreQuery->select($scoreQuery->qualifyColumn('score_id'));
-                $query = SoloScore
-                    ::whereIn('legacy_score_id', $userFirstsQuery)
-                    ->where('ruleset_id', Beatmap::MODES[$this->mode])
-                    ->default()
-                    ->reorderBy('id', 'desc')
-                    ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
+                $query = $this
+                    ->user
+                    ->scoresFirst($this->mode, true)
+                    ->with(array_map(
+                        fn ($include) => "score.{$include}",
+                        ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD,
+                    ))
+                    ->orderByDesc('score_id');
                 $userRelationColumn = 'user';
+                $collectionFn = fn ($scoreFirst) => $scoreFirst->map->score;
                 break;
             case 'scoresPinned':
                 $transformer = new ScoreTransformer();
@@ -954,6 +931,7 @@ class UsersController extends Controller
             'statistics.country_rank',
             'statistics.rank',
             'statistics.variants',
+            'team',
             'user_achievements',
         ];
 
@@ -1005,9 +983,8 @@ class UsersController extends Controller
             'username',
         ], ['null_missing' => true]);
         $countryCode = request_country();
-        $country = Country::find($countryCode);
         $params['user_ip'] = $ip;
-        $params['country_acronym'] = $country === null ? '' : $country->getKey();
+        $params['country_acronym'] = $countryCode;
         $params['user_lang'] = \App::getLocale();
 
         $registration = new UserRegistration($params);
@@ -1031,7 +1008,11 @@ class UsersController extends Controller
             $user = $registration->user();
 
             // report unknown country code but ignore non-country from cloudflare
-            if ($countryCode !== null && $country === null && $countryCode !== 'T1') {
+            if (
+                $countryCode !== null
+                && $countryCode !== 'T1'
+                && app('countries')->byCode($countryCode) === null
+            ) {
                 app('sentry')->getClient()->captureMessage(
                     'User registered from unknown country',
                     null,

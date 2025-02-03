@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => '评论',
         'hide_judged' => '隐藏已打分的项目',
         'nav_title' => '打分',
         'no_current_vote' => '你尚未投票。',

@@ -5,6 +5,7 @@
 
 namespace Tests\Controllers\Multiplayer\Rooms\Playlist;
 
+use App\Models\Beatmap;
 use App\Models\Build;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\ScoreLink;
@@ -130,6 +131,36 @@ class ScoresControllerTest extends TestCase
     }
 
     /**
+     * This scenario is theoretically impossible to occur via osu-web,
+     * but realtime multiplayer rooms have their playlist items modified directly in the database
+     * by osu-server-spectator.
+     * This test case is insurance that invalid updates performed by it do not cause further breakage.
+     */
+    public function testAttemptToStartPlayOnInconsistentPlaylistItemFails()
+    {
+        $user = User::factory()->create();
+        $beatmap = Beatmap::factory()->create([
+            'playmode' => 2,
+        ]);
+        $playlistItem = PlaylistItem::factory()->create([
+            'beatmap_id' => $beatmap->getKey(),
+        ]);
+
+        // simulate invalid external modification from osu-server-spectator
+        PlaylistItem::whereKey($playlistItem->getKey())->update(['ruleset_id' => 3]);
+
+        $this->actAsScopedUser($user, ['*']);
+
+        $this->expectCountChange(fn () => ScoreToken::count(), 0);
+
+        $this->json('POST', route('api.rooms.playlist.scores.store', [
+            'beatmap_hash' => $playlistItem->beatmap->checksum,
+            'playlist' => $playlistItem->getKey(),
+            'room' => $playlistItem->room_id,
+        ]))->assertStatus(422);
+    }
+
+    /**
      * @dataProvider dataProviderForTestUpdate
      */
     public function testUpdate($bodyParams, $status)
@@ -138,7 +169,7 @@ class ScoresControllerTest extends TestCase
         $playlistItem = PlaylistItem::factory()->create();
         $room = $playlistItem->room;
         $build = Build::factory()->create(['allow_ranking' => true]);
-        $scoreToken = $room->startPlay($user, $playlistItem, 0);
+        $scoreToken = static::roomStartPlay($user, $playlistItem);
 
         $this->withHeaders(['x-token' => static::createClientToken($build)]);
 

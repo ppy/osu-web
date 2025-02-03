@@ -17,40 +17,40 @@ return [
     ],
 
     'index' => [
-        'deleted_beatmap' => '',
+        'deleted_beatmap' => 'dipadam',
         'none_found' => '',
-        'title' => '',
+        'title' => 'Perbincangan Beatmap',
 
         'form' => [
-            '_' => '',
+            '_' => 'Cari',
             'deleted' => '',
-            'mode' => '',
+            'mode' => 'Mod beatmap',
             'only_unresolved' => '',
             'show_review_embeds' => '',
-            'types' => '',
-            'username' => '',
+            'types' => 'Jenis mesej',
+            'username' => 'Nama penggua',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                '_' => 'Status Beatmap',
+                'all' => 'Semua',
+                'disqualified' => 'Tersingkar',
+                'never_qualified' => 'Tidak Pernah Layak',
+                'qualified' => 'Layak',
+                'ranked' => 'Berkedudukan',
             ],
 
             'user' => [
-                'label' => '',
-                'overview' => '',
+                'label' => 'Pengguna',
+                'overview' => 'Aktiviti keseluruhan',
             ],
         ],
     ],
 
     'item' => [
-        'created_at' => '',
-        'deleted_at' => '',
-        'message_type' => '',
-        'permalink' => '',
+        'created_at' => 'Tarikh hantaran',
+        'deleted_at' => 'Tarikh dipadam',
+        'message_type' => 'Jenis',
+        'permalink' => 'Pautan Kekal',
     ],
 
     'nearby_posts' => [
@@ -62,21 +62,28 @@ return [
     'owner_editor' => [
         'button' => '',
         'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'user' => 'Pemilik',
+        'version' => 'Kesukaran',
+    ],
+
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
     ],
 
     'reply' => [
         'open' => [
-            'guest' => '',
-            'user' => '',
+            'guest' => 'Daftar masuk untuk Maklum balas',
+            'user' => 'Maklum balas',
         ],
     ],
 
     'review' => [
         'block_count' => '',
         'go_to_parent' => '',
-        'go_to_child' => '',
+        'go_to_child' => 'Lihat Perbincangan',
         'validation' => [
             'block_too_large' => '',
             'external_references' => '',
@@ -97,12 +104,12 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'umum',
+        'general_all' => 'umum (semua)',
     ],
 
     'user_filter' => [
-        'everyone' => '',
-        'label' => '',
+        'everyone' => 'Semua orang',
+        'label' => 'Tapis mengikut pengguna',
     ],
 ];

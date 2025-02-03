@@ -7,7 +7,7 @@ return [
     'deleted' => '[обрисан корисник]',
 
     'beatmapset_activities' => [
-        'title' => ":user's Историја Измена",
+        'title' => "Историјске Измене од :user",
         'title_compact' => 'Измене',
 
         'discussions' => [
@@ -120,8 +120,7 @@ return [
 
         'beta' => [
             'main' => 'Приступ beta верзији је тренутно дозвољено само привилегованим корисницима.',
-            'small' => '(osu!supporters ће ускоро добити приступ)
-',
+            'small' => '(osu!supporters ће ускоро добити приступ)',
         ],
     ],
 
@@ -198,19 +197,20 @@ return [
             'to_1' => 'Прикажи позадину',
         ],
         'daily_challenge' => [
-            'daily' => '',
-            'daily_streak_best' => '',
-            'daily_streak_current' => '',
-            'title' => '',
-            'top_10p_placements' => '',
-            'top_50p_placements' => '',
-            'weekly' => '',
-            'weekly_streak_best' => '',
-            'weekly_streak_current' => '',
+            'daily' => 'Дневна Серија',
+            'daily_streak_best' => 'Најбоља Дневна Серија',
+            'daily_streak_current' => 'Тренутна Дневна Серија',
+            'playcount' => 'Укупно Учесника',
+            'title' => 'Дневни\nИзазов',
+            'top_10p_placements' => '10% Најбољих Места',
+            'top_50p_placements' => '50% Најбољих Места',
+            'weekly' => 'Недељна Серија',
+            'weekly_streak_best' => 'Најбоља Недељна Серија',
+            'weekly_streak_current' => 'Тренутна Недељна Серија',
 
             'unit' => [
-                'day' => '',
-                'week' => '',
+                'day' => ':valueд',
+                'week' => ':valueн',
             ],
         ],
         'edit' => [
@@ -370,7 +370,7 @@ return [
                 'title' => 'о мени!',
             ],
             'medals' => [
-                'empty' => "Овај корисник није добио ниједно још увек. ;_;",
+                'empty' => "Овај корисник још увек нема медаље. ;_;",
                 'recent' => 'Најновије',
                 'title' => 'Медаље',
             ],

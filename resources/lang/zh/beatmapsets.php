@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => '慢一点，打几张图再回来吧。',
+        'no_mirrors' => '没有可用的下载服务器。',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => '您确定要提名这张谱面吗？',
+            'different_nominator_warning' => '如果谱面的提名者发生了变更，那么在谱面过审后，它在过审区的队列位置将重置。',
             'header' => '提名谱面',
             'hybrid_warning' => '注意：您只能提名一次，所以请确保提名包含所有您想要提名的游戏模式。',
             'current_main_ruleset' => '主游戏模式：:ruleset',
@@ -189,11 +191,11 @@ return [
                 'country' => '您所在的国家/地区中还没有玩家上传过成绩！',
                 'friend' => '还没有好友上传成绩！',
                 'global' => '还没有玩家上传过成绩，来玩一把？',
-                'loading' => '加载分数中...',
+                'loading' => '加载成绩中...',
                 'unranked' => '未上架 (Unranked) 谱面',
             ],
             'score' => [
-                'first' => '领衔者',
+                'first' => '领先',
                 'own' => '个人最佳成绩',
             ],
             'supporter_link' => [
@@ -221,13 +223,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => 'Ranked',
-            'approved' => 'Approved',
-            'loved' => 'Loved',
-            'qualified' => 'Qualified',
-            'wip' => 'WIP',
-            'pending' => 'Pending',
-            'graveyard' => 'Graveyard',
+            'ranked' => '上架',
+            'approved' => '达标',
+            'loved' => '社区喜爱',
+            'qualified' => '过审',
+            'wip' => '制作中',
+            'pending' => '待定',
+            'graveyard' => '坟场',
         ],
     ],
 

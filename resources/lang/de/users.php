@@ -200,6 +200,7 @@ return [
             'daily' => 'Tägliche Serie',
             'daily_streak_best' => 'Beste Tagesserie',
             'daily_streak_current' => 'Aktuelle Tagesserie',
+            'playcount' => 'Gesamtbeteiligung',
             'title' => 'Tägliche\nHerausforderung',
             'top_10p_placements' => 'Platzierungen in den Top 10 %',
             'top_50p_placements' => 'Platzierungen in den Top 50 %',
@@ -208,8 +209,8 @@ return [
             'weekly_streak_current' => 'Aktuelle Wochenserie',
 
             'unit' => [
-                'day' => ':valued',
-                'week' => ':valuew',
+                'day' => ':value T',
+                'week' => ':value W',
             ],
         ],
         'edit' => [
@@ -297,7 +298,7 @@ return [
                 'show_more' => 'mehr Events anzeigen',
             ],
             'historical' => [
-                'title' => 'Historisch',
+                'title' => 'Historie',
 
                 'monthly_playcounts' => [
                     'title' => 'Spielverlauf',
@@ -392,7 +393,7 @@ return [
                 'not_ranked' => 'Nur Ranked Beatmaps geben PP.',
                 'pp_weight' => ':percentage gewichtet',
                 'view_details' => 'Details anzeigen',
-                'title' => 'Ränge',
+                'title' => 'Scores',
 
                 'best' => [
                     'title' => 'Beste Performance',
@@ -419,7 +420,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Accountstatus',
-                'bad_standing' => "Der Account von :username ist zurzeit eingeschränkt :(",
+                'bad_standing' => "Der Account von :username hat zurzeit keinen guten Ruf :(",
                 'remaining_silence' => ':username kann in :duration wieder sprechen.',
 
                 'recent_infringements' => [
@@ -473,9 +474,9 @@ return [
         ],
         'rank' => [
             'country' => 'Länderrang im Modus :mode',
-            'country_simple' => 'Landesrangliste',
+            'country_simple' => 'Nationaler Rang',
             'global' => 'Globaler Rang im Modus :mode',
-            'global_simple' => 'Globale Rangliste',
+            'global_simple' => 'Globaler Rang',
             'highest' => 'Höchster Rang: :rank am :date',
         ],
         'stats' => [

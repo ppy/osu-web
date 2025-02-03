@@ -5,19 +5,19 @@
 
 return [
     'deleted' => 'обрисано',
-    'deleted_by' => 'обрисано :timeago од стране :user',
+    'deleted_by' => 'обрисано пре :timeago од стране :user',
     'deleted_by_system' => 'систем',
-    'deleted_count' => ':count_delimited обрисан коментар|:count_delimited обрисани коментари',
-    'edited' => 'измењено :timeago од стране :user',
+    'deleted_count' => ':count_delimited обрисан коментар|:count_delimited обрисаних коментара',
+    'edited' => 'измењено пре :timeago од стране :user',
     'pinned' => 'закачено',
     'empty' => 'Нема коментара.',
     'empty_other' => 'Још нема других коментара.',
     'load_replies' => 'учитајте одговоре',
-    'replies_count' => ':count_delimited одговор|:count_delimited одговори',
+    'replies_count' => ':count_delimited одговор|:count_delimited одговора',
     'title' => 'Коментари',
 
     'commentable_name' => [
-        'beatmapset' => 'Мапе',
+        'beatmapset' => 'Мапа',
         'build' => 'Списак измена',
         'news_post' => 'Новости',
         '_deleted' => 'Избрисана ставка',
@@ -44,7 +44,7 @@ return [
     ],
 
     'ogp' => [
-        'title' => '',
+        'title' => 'коментар поставио :user',
     ],
 
     'placeholder' => [

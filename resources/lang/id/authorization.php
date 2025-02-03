@@ -27,7 +27,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Hanya pembuat beatmap atau anggota BN/NAT yang dapat membubuhkan catatan pada halaman diskusi beatmap.',
+            'mapper_note_wrong_user' => 'Hanya pemilik beatmap atau anggota BN/NAT yang dapat mengirim catatan.',
         ],
 
         'vote' => [
@@ -60,15 +60,21 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Kamu harus mencetak skor pada beatmap ini untuk menambahkan tag.',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Kanal ini hanya dikhususkan untuk pengumuman.',
-        'blocked' => 'Pesan tidak dapat dikirim kepada pengguna yang kamu blokir atau memblokir dirimu.',
+        'blocked' => 'Kamu tidak dapat mengirim pesan kepada pengguna yang kamu blokir atau memblokir dirimu.',
         'friends_only' => 'Pengguna ini memblokir pesan dari pengguna lain yang tidak berada dalam daftar temannya.',
         'moderated' => 'Kanal percakapan ini sedang dimoderasi.',
         'no_access' => 'Kamu tidak memiliki akses ke kanal percakapan ini.',
+        'no_announce' => 'Kamu tidak memiliki izin untuk membuat pengumuman.',
         'receive_friends_only' => 'Pengguna ini mungkin tidak akan dapat membalas karena kamu hanya menerima pesan dari pengguna lain yang berada dalam daftar temanmu.',
-        'restricted' => 'Kamu tidak dapat mengirim pesan pada saat akunmu sedang di-silence, di-restrict, atau di-ban.',
-        'silenced' => 'Kamu tidak dapat mengirim pesan pada saat akunmu sedang di-silence, di-restrict, atau di-ban.',
+        'restricted' => 'Kamu tidak dapat mengirim pesan pada saat kamu sedang di-silence, di-restrict, atau di-ban.',
+        'silenced' => 'Kamu tidak dapat mengirim pesan pada saat kamu sedang di-silence, di-restrict, atau di-ban.',
     ],
 
     'comment' => [
@@ -105,15 +111,15 @@ return [
 
             'edit' => [
                 'deleted' => 'Postingan yang telah dihapus tidak dapat disunting.',
-                'locked' => 'Penyuntingan pada postingan ini telah dikunci.',
+                'locked' => 'Postingan ini telah dikunci dari penyuntingan lebih lanjut.',
                 'no_forum_access' => 'Kamu tidak memiliki akses ke forum yang dituju.',
                 'not_owner' => 'Postingan ini hanya dapat disunting oleh pengirimnya.',
                 'topic_locked' => 'Postingan pada topik yang telah dikunci tidak dapat disunting.',
             ],
 
             'store' => [
-                'play_more' => 'Kamu harus terlebih dahulu bermain sebelum kamu dapat membuat postingan pada forum! Apabila kamu mengalami masalah saat bermain, silakan kunjungi forum Help & Support.',
-                'too_many_help_posts' => "Kamu perlu untuk bermain lebih banyak sebelum kamu dapat membuat postingan tambahan. Apabila kamu masih menemui masalah dalam bermain, silakan kirim email ke support@ppy.sh", // FIXME: unhardcode email address.
+                'play_more' => 'Bermainlah terlebih dahulu sebelum membuat postingan pada forum! Apabila kamu mengalami masalah saat bermain, silakan kunjungi forum Help & Support.',
+                'too_many_help_posts' => "Kamu perlu untuk bermain lebih banyak sebelum kamu dapat membuat postingan tambahan. Apabila kamu masih menemui masalah saat bermain, silakan kirim email ke support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -167,6 +173,12 @@ return [
 
         'view' => [
             'admin_only' => 'Hanya admin yang dapat melihat forum ini.',
+        ],
+    ],
+
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Hanya pemilik ruangan yang dapat menutup ruang permainan.',
         ],
     ],
 

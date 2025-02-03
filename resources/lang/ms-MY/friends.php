@@ -4,12 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'title_compact' => '',
-    'too_many' => '',
+    'title_compact' => 'kawan',
+    'too_many' => 'Had kawan dicapai',
 
     'buttons' => [
-        'add' => '',
-        'disabled' => '',
-        'remove' => '',
+        'add' => 'tambah kawan',
+        'disabled' => 'pengikut',
+        'remove' => 'keluarkan kawan',
     ],
 ];

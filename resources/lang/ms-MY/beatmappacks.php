@@ -6,8 +6,8 @@
 return [
     'index' => [
         'description' => '',
-        'empty' => '',
-        'nav_title' => '',
+        'empty' => 'Akan datang!',
+        'nav_title' => 'senarai-senarai',
         'title' => '',
 
         'blurb' => [
@@ -17,7 +17,7 @@ return [
     ],
 
     'show' => [
-        'download' => '',
+        'download' => 'Muat turun',
         'item' => [
             'cleared' => '',
             'not_cleared' => '',
@@ -29,13 +29,13 @@ return [
     ],
 
     'mode' => [
-        'artist' => '',
+        'artist' => 'Artis/Album',
         'chart' => '',
-        'featured' => '',
-        'loved' => '',
-        'standard' => '',
-        'theme' => '',
-        'tournament' => '',
+        'featured' => 'Artis Terpilih',
+        'loved' => 'Projek Dicinta',
+        'standard' => 'Biasa',
+        'theme' => 'Tema',
+        'tournament' => 'Kejohanan',
     ],
 
     'require_login' => [

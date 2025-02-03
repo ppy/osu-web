@@ -17,7 +17,7 @@
 
         <span class="navbar-mobile-item__locale-flag">
             @include('objects._flag_country', [
-                'countryCode' => $currentLocaleMeta->flag(),
+                'country' => $currentLocaleMeta->flag(),
                 'modifiers' => ['small', 'flat'],
             ])
         </span>
@@ -39,7 +39,7 @@
                 >
                     <span class="navbar-mobile-item__locale-flag">
                         @include('objects._flag_country', [
-                            'countryCode' => $localeMeta->flag(),
+                            'country' => $localeMeta->flag(),
                             'modifiers' => ['small', 'flat'],
                         ])
                     </span>

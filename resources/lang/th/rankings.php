@@ -9,6 +9,12 @@ return [
         'title' => 'ประเทศ',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'ระดับความยาก',
+        'top_10p' => '',
+        'top_50p' => '',
+    ],
+
     'filter' => [
         'title' => 'แสดง',
 
@@ -24,12 +30,13 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'ผู้ใช้คนนี้มีประวัติการจัดอันดับล่าสุดน้อยกว่า 30 วัน',
     ],
 
     'type' => [
         'charts' => 'โดดเด่น',
         'country' => 'ประเทศ',
+        'daily_challenge' => 'ชาเลนจ์ประจำวัน',
         'kudosu' => 'kudosu',
         'multiplayer' => 'โหมดผู้เล่นหลายคน',
         'performance' => 'ประสิทธิภาพ',

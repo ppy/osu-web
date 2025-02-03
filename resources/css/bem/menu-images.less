@@ -1,0 +1,139 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.menu-images {
+  --arrow-opacity-desktop: 0;
+  --indicators-opacity: 1;
+
+  position: relative;
+
+  &:hover {
+    --arrow-opacity-desktop: 1;
+  }
+
+  &--placeholder {
+    --indicators-opacity: 0;
+  }
+
+  &__arrow {
+    .reset-input();
+    .fade-element(@hover-transition-duration);
+    height: 100%;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+
+    @media @desktop {
+      opacity: var(--arrow-opacity-desktop);
+    }
+
+    &:hover {
+      color: @osu-colour-l1;
+    }
+
+    &--left {
+      --icon: @fa-var-chevron-left;
+      left: var(--page-gutter);
+    }
+
+    &--right {
+      --icon: @fa-var-chevron-right;
+      right: var(--page-gutter);
+    }
+
+    &::before {
+      .fas();
+      .default-text-shadow();
+      content: var(--icon);
+    }
+  }
+
+  &__blur {
+    transition: opacity 600ms;
+    will-change: opacity;
+
+    &::before {
+      .full-size();
+      content: "";
+      background: var(--url);
+      background-position: center;
+      background-size: cover;
+      filter: blur(50px);
+    }
+
+    &::after {
+      .full-size();
+      content: "";
+      background-image: linear-gradient(
+        to top,
+        hsla(var(--hsl-b5), 0%),
+        hsl(var(--hsl-b5))
+      );
+    }
+  }
+
+  &__container {
+    display: flex;
+    transform: translateX(calc(-100% * var(--index, 0)));
+    width: 100%;
+    height: 100%;
+
+    &--transition {
+      transition: transform 300ms ease-in-out;
+    }
+  }
+
+  &__images {
+    .center-content();
+    display: flex;
+    height: 120px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  &__indicator {
+    .reset-input();
+    align-items: center;
+    display: flex;
+
+    width: 40px;
+    height: 11px;
+    padding: 0 5px 5px;
+
+    --content-height: 2px;
+    --content-opacity: 0.5;
+
+    &::before {
+      content: "";
+
+      background: @osu-colour-h1;
+      border-radius: 10000px;
+      opacity: var(--content-opacity);
+
+      transition: 100ms ease-out;
+      transition-property: height, opacity;
+
+      width: 100%;
+      height: var(--content-height);
+    }
+
+    &:hover {
+      --content-height: 100%;
+    }
+
+    &--active {
+      --content-height: 100%;
+      --content-opacity: 1;
+    }
+  }
+
+  &__indicators {
+    position: relative;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 var(--page-gutter);
+    opacity: var(--indicators-opacity);
+  }
+}

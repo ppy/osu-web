@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => '',
         'blocked' => '',
         'friends_only' => '',
         'moderated' => '',
         'no_access' => '',
+        'no_announce' => '',
         'receive_friends_only' => '',
         'restricted' => '',
         'silenced' => '',
@@ -167,6 +173,12 @@ return [
 
         'view' => [
             'admin_only' => '',
+        ],
+    ],
+
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
         ],
     ],
 

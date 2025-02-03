@@ -1,0 +1,25 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.input-text {
+  .reset-input();
+  color: hsl(var(--hsl-c1));
+  background: var(--input-bg);
+  resize: none;
+  width: 100%;
+  padding: var(--input-padding);
+  box-shadow: inset 0 0 0 2px var(--input-border-colour);
+  border-radius: @border-radius-large;
+
+  &--bbcode {
+    .fancy-scrollbar();
+    display: grid;
+    grid-template-rows: 1fr auto;
+    gap: 5px;
+  }
+
+  &__bbcode-textarea {
+    .reset-input();
+    resize: none;
+  }
+}

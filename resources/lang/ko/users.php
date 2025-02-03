@@ -201,6 +201,7 @@ return [
             'daily_streak_best' => '최다 연속 진행일
 ',
             'daily_streak_current' => '현재 연속 진행일',
+            'playcount' => '참여 일수',
             'title' => '일일미션',
             'top_10p_placements' => '상위 10%',
             'top_50p_placements' => '상위 50%',
@@ -217,7 +218,7 @@ return [
             'cover' => [
                 'button' => '프로필 표지 변경',
                 'defaults_info' => '이후에 더 많은 표지 설정이 추가됩니다',
-                'holdover_remove_confirm' => "",
+                'holdover_remove_confirm' => "이전에 선택한 배경을 이제는 선택할 수 없어 다른 배경으로 바꾸면 다시 되돌릴 수 없습니다. 계속할까요?",
                 'title' => '표지',
 
                 'upload' => [
@@ -242,11 +243,11 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
+                'reset_no_supporter' => '기본 색상으로 초기화할까요? 다른 색상으로 바꾸려면 osu! 서포터가 되어야 합니다.',
                 'title' => '색상',
 
                 'supporter' => [
-                    '_' => '',
+                    '_' => '커스텀 색상 테마는 :link만 사용할 수 있습니다.',
                     'link' => 'osu! 서포터',
                 ],
             ],

@@ -9,6 +9,12 @@ return [
         'title' => 'Kraj',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Poziom trudności',
+        'top_10p' => '',
+        'top_50p' => '',
+    ],
+
     'filter' => [
         'title' => 'Pokaż',
 
@@ -24,12 +30,13 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Ten użytkownik ma mniej niż 30 dni najnowszej historii rankingu.',
     ],
 
     'type' => [
         'charts' => 'Wyróżnionych',
         'country' => 'krajowy',
+        'daily_challenge' => 'wyzwanie dnia',
         'kudosu' => 'kudosu',
         'multiplayer' => 'wieloosobowy',
         'performance' => 'globalny',

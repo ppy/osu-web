@@ -36,11 +36,11 @@ class UserReportNotification extends Notification implements ShouldQueue
             ->attachment(function ($attachment) use ($notifiable) {
                 $reportable = $notifiable->reportable;
                 $reportableUrl = null;
-                if (method_exists($reportable, 'url')) {
+                if ($reportable !== null && method_exists($reportable, 'url')) {
                     $reportableUrl = $reportable->url();
                 }
 
-                $user = optional($notifiable->user)->username ?? "User {$notifiable->user_id}";
+                $user = $notifiable->user?->username ?? "User {$notifiable->user_id}";
                 $userUrl = route('users.show', ['user' => $notifiable->user_id]);
 
                 $reportedText =
@@ -55,7 +55,7 @@ class UserReportNotification extends Notification implements ShouldQueue
                     'Reason' => $notifiable->reason,
                 ];
 
-                $additionalInfo = $reportable->reportableAdditionalInfo();
+                $additionalInfo = $reportable?->reportableAdditionalInfo();
                 if ($additionalInfo !== null) {
                     $fields['Additional Info'] = $additionalInfo;
                 }

@@ -29,7 +29,7 @@ return [
             ],
             'ads' => [
                 'title' => 'Membantu osu! Tetap Mandiri',
-                'description' => 'Kontribusimu membantu osu! untuk tetap mandiri dan sepenuhnya terbebas dari iklan maupun sponsor.',
+                'description' => 'Kontribusimu membantu menjaga permainan ini untuk tetap mandiri dan sepenuhnya terbebas dari iklan maupun sponsor.',
             ],
             'tournaments' => [
                 'title' => 'Pendanaan Turnamen Resmi',

@@ -78,21 +78,16 @@ export default class Beatmapsets extends React.Component<ExtraPageProps> {
         />
 
         {state.items.length > 0 && (
-          <div className='osu-layout__col-container osu-layout__col-container--with-gutter js-audio--group'>
+          <div className='page-extra__beatmapsets js-audio--group'>
             {state.items.map((beatmapset) => (
-              <div
-                key={beatmapset.id}
-                className='osu-layout__col osu-layout__col--sm-6'
-              >
-                <BeatmapsetPanel beatmapset={beatmapset} />
-              </div>
+              <BeatmapsetPanel key={beatmapset.id} beatmapset={beatmapset} />
             ))}
 
             <ShowMoreLink
               {...state.pagination}
               callback={this.onShowMore}
               data={section.urlType}
-              modifiers='profile-page'
+              modifiers={['profile-page', 'profile-page-beatmapsets']}
             />
           </div>
         )}

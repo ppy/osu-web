@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Chậm lại, chơi nhiều hơn.',
+        'no_mirrors' => 'Không có sẵn máy chủ tải xuống nào cả.',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Bạn có chắc chắn muốn đề cử beatmap này không?',
+            'different_nominator_warning' => 'Việc đủ điều kiện cho beatmap này với các người đề cử khác sẽ làm reset vị trí trong hàng đợi đủ điều kiện của nó.',
             'header' => 'Đề cử Beatmap',
             'hybrid_warning' => 'lưu ý: bạn chỉ có thể đề cử một lần, vì vậy hãy đảm bảo rằng bạn đang đề cử cho tất cả các chế độ chơi mà bạn dự định',
             'current_main_ruleset' => 'Ruleset chính hiện tại là: :ruleset',

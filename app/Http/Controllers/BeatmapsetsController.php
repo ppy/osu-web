@@ -129,25 +129,7 @@ class BeatmapsetsController extends Controller
 
     public function discussion($id)
     {
-        $returnJson = Request::input('format') === 'json';
-        $requestLastUpdated = get_int(Request::input('last_updated'));
-
         $beatmapset = Beatmapset::findOrFail($id);
-
-        if ($returnJson) {
-            $lastDiscussionUpdate = $beatmapset->lastDiscussionTime();
-            $lastEventUpdate = $beatmapset->events()->max('updated_at');
-
-            if ($lastEventUpdate !== null) {
-                $lastEventUpdate = Carbon::parse($lastEventUpdate);
-            }
-
-            $latestUpdate = max($lastDiscussionUpdate, $lastEventUpdate);
-
-            if ($latestUpdate === null || $requestLastUpdated >= $latestUpdate->timestamp) {
-                return response([], 304);
-            }
-        }
 
         $initialData = [
             'beatmapset' => $beatmapset->defaultDiscussionJson(),
@@ -156,11 +138,16 @@ class BeatmapsetsController extends Controller
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
 
-        if ($returnJson) {
+        if (is_json_request()) {
             return $initialData;
         } else {
             return ext_view('beatmapsets.discussion', compact('beatmapset', 'initialData'));
         }
+    }
+
+    public function discussionLastUpdate($id)
+    {
+        return response(['last_update' => Beatmapset::findOrFail($id)->lastDiscussionTime()]);
     }
 
     public function discussionUnlock($id)
@@ -197,20 +184,24 @@ class BeatmapsetsController extends Controller
 
         priv_check('BeatmapsetDownload', $beatmapset)->ensureCan();
 
-        $recentlyDownloaded = BeatmapDownload::where('user_id', Auth::user()->user_id)
+        $user = Auth::user();
+        $userId = $user->getKey();
+        $recentlyDownloaded = BeatmapDownload::where('user_id', $userId)
             ->where('timestamp', '>', Carbon::now()->subHours()->getTimestamp())
             ->count();
 
-        if ($recentlyDownloaded > Auth::user()->beatmapsetDownloadAllowance()) {
+        if ($recentlyDownloaded > $user->beatmapsetDownloadAllowance()) {
             abort(429, osu_trans('beatmapsets.download.limit_exceeded'));
         }
 
         $noVideo = get_bool(Request::input('noVideo', false));
-        $mirror = BeatmapMirror::getRandomForRegion(request_country(request()));
+        $mirror = BeatmapMirror::getRandomForRegion(request_country())
+            ?? BeatmapMirror::getDefault()
+            ?? abort(503, osu_trans('beatmapsets.download.no_mirrors'));
 
         BeatmapDownload::create([
-            'user_id' => Auth::user()->user_id,
-            'timestamp' => Carbon::now()->getTimestamp(),
+            'user_id' => $userId,
+            'timestamp' => time(),
             'beatmapset_id' => $beatmapset->beatmapset_id,
             'fulfilled' => 1,
             'mirror_id' => $mirror->mirror_id,
@@ -399,6 +390,7 @@ class BeatmapsetsController extends Controller
             "{$beatmapRelation}.baseDifficultyRatings",
             "{$beatmapRelation}.baseMaxCombo",
             "{$beatmapRelation}.failtimes",
+            "{$beatmapRelation}.beatmapOwners.user",
             'genre',
             'language',
             'user',
@@ -411,8 +403,11 @@ class BeatmapsetsController extends Controller
             'beatmaps',
             'beatmaps.failtimes',
             'beatmaps.max_combo',
+            'beatmaps.owners',
+            'beatmaps.top_tag_ids',
             'converts',
             'converts.failtimes',
+            'converts.owners',
             'current_nominations',
             'current_user_attributes',
             'description',
@@ -421,6 +416,7 @@ class BeatmapsetsController extends Controller
             'pack_tags',
             'ratings',
             'recent_favourites',
+            'related_tags',
             'related_users',
             'user',
         ]);

@@ -26,15 +26,15 @@
 
 <div id="search-forum-options" class="search-forum-options">
     @if ($fields['user'] !== null)
-        <label class="search-forum-options__input-group">
-            <div class="search-forum-options__label">
+        <label class="input-container">
+            <div class="input-container__label">
                 {{ osu_trans('home.search.forum_post.label.username') }}
             </div>
 
             <input
                 name="{{ $fields['user'] }}"
                 value="{{ $params[$fields['user']] ?? null }}"
-                class="form-text"
+                class="input-text"
             >
         </label>
     @endif
@@ -45,48 +45,52 @@
 
     {{-- FIXME: remove querystring check? --}}
     @if ($fields['topicId'] !== null && present($params[$fields['topicId']] ?? null))
-        <label class="search-forum-options__input-group">
-            <div class="search-forum-options__label">
+        <label class="input-container">
+            <div class="input-container__label">
                 {{ osu_trans('home.search.forum_post.label.topic_id') }}
             </div>
 
             <input
                 name="{{ $fields['topicId'] }}"
                 value="{{ $params[$fields['topicId']] }}"
-                class="form-text"
+                class="input-text"
             >
         </label>
     @elseif ($fields['forumId'] !== null)
-        <label class="search-forum-options__input-group">
-            <div class="search-forum-options__label">
+        <label class="input-container input-container--select">
+            <div class="input-container__label">
                 {{ osu_trans('home.search.forum_post.label.forum') }}
             </div>
 
-            <div class="form-select">
-                <select
-                    name="{{ $fields['forumId'] }}"
-                    class="form-select__input"
-                >
-                    <option value="">
-                        {{ osu_trans('home.search.forum_post.all') }}
-                    </option>
+            <select
+                name="{{ $fields['forumId'] }}"
+                class="input-text"
+            >
+                <option value="">
+                    {{ osu_trans('home.search.forum_post.all') }}
+                </option>
 
-                    @foreach (App\Models\Forum\Forum::searchable()->displayList()->get() as $forum)
-                        @if (priv_check('ForumView', $forum)->can())
-                            <option
-                                value="{{ $forum->getKey() }}"
-                                {{ $forum->getKey() === get_int($params[$fields['forumId']] ?? null) ? 'selected' : '' }}
-                            >
-                                {{ str_repeat('–', $forum->currentDepth()) }}
-                                {{ $forum->forum_name }}
-                            </option>
+                @foreach (App\Models\Forum\Forum::searchable()->displayList()->get() as $forum)
+                    @if (priv_check('ForumView', $forum)->can())
+                        @php
+                            $currentDepth = $forum->currentDepth();
+                        @endphp
+                        @if ($currentDepth === 0)
+                            <hr>
                         @endif
-                    @endforeach
-                </select>
-            </div>
+                        <option
+                            value="{{ $forum->getKey() }}"
+                            {{ $forum->getKey() === get_int($params[$fields['forumId']] ?? null) ? 'selected' : '' }}
+                        >
+                            {{ str_repeat('–', $currentDepth) }}
+                            {{ $forum->forum_name }}
+                        </option>
+                    @endif
+                @endforeach
+            </select>
         </label>
 
-        <label class="search-forum-options__input-group">
+        <label class="search-forum-options__checkbox">
             @include('objects._switch', ['locals' => [
                 'checked' => $params[$fields['includeSubforums']] ?? null,
                 'name' => $fields['includeSubforums'],
@@ -97,7 +101,7 @@
     @endif
 
     @if ($fields['includeDeleted'] !== null)
-        <label class="search-forum-options__input-group">
+        <label class="search-forum-options__checkbox">
             @include('objects._switch', ['locals' => [
                 'checked' => $params[$fields['includeDeleted']] ?? null,
                 'name' => $fields['includeDeleted'],
@@ -107,8 +111,8 @@
         </label>
     @endif
 
-    <div class="search-forum-options__input-group search-forum-options__input-group--buttons">
-        <button class="btn-osu-big btn-osu-big--search-advanced">
+    <div class="search-forum-options__buttons">
+        <button class="btn-osu-big btn-osu-big--rounded-thin">
             <div class="btn-osu-big__content">
                 <div class="btn-osu-big__left">
                     {{ osu_trans('home.search.button') }}
@@ -120,7 +124,7 @@
             </div>
         </button>
 
-        <button type="button" class="btn-osu-big btn-osu-big--search-advanced js-search--forum-options-reset">
+        <button type="button" class="btn-osu-big btn-osu-big--rounded-thin js-search--forum-options-reset">
             <div class="btn-osu-big__content">
                 <div class="btn-osu-big__left">
                     {{ osu_trans('common.buttons.reset') }}

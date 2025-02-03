@@ -200,6 +200,7 @@ return [
             'daily' => 'Dnů v řadě',
             'daily_streak_best' => 'Nejvíce dnů v řadě',
             'daily_streak_current' => 'Aktuálně dnů v řadě',
+            'playcount' => 'Celková účast',
             'title' => 'Denní\nvýzva',
             'top_10p_placements' => 'Umístění v Top 10%',
             'top_50p_placements' => 'Umístění v Top 50%',

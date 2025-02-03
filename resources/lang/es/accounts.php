@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'reset' => '',
+            'reset' => 'restablecer',
             'rules' => 'Por favor, asegúrate de que tu avatar se adhiera a :link.<br/>Esto significa que debe ser <strong>adecuado para todas las edades</strong>. Es decir, sin desnudez, contenido ofensivo o sugerente.',
             'rules_link' => 'las consideraciones de contenido visual',
         ],

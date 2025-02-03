@@ -37,10 +37,17 @@
                     </td>
                     <td class="ranking-page-table__column">
                         <div class="ranking-page-table__user-link">
-                            @include('objects._flag_country', [
-                                'countryCode' => $user->country_acronym,
-                                'modifiers' => 'medium',
-                            ])
+                            <span class="ranking-page-table__flags">
+                                @include('objects._flag_country', [
+                                    'country' => $user->country_acronym,
+                                ])
+
+                                @if (($team = $user->team) !== null)
+                                    <a class="u-contents" href="{{ route('teams.show', $team) }}">
+                                        @include('objects._flag_team', compact('team'))
+                                    </a>
+                                @endif
+                            </span>
                             {!! link_to_user($user, null, '', ['ranking-page-table__user-link-text']) !!}
                         </div>
                     </td>

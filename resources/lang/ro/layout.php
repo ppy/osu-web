@@ -199,8 +199,9 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Modul lazer afișează scoruri obținute din lazer folosind un algoritm nou de scor',
             'logout' => 'Deconectare',
             'profile' => 'Profilul Meu',
-            'scoring_mode_toggle' => '',
-            'scoring_mode_toggle_tooltip' => '',
+            'scoring_mode_toggle' => 'Mod scor clasic',
+            'scoring_mode_toggle_tooltip' => 'Ajustează valorile pentru o experiența mai apropiată de modul clasic de scor fără standardizare',
+            'team' => '',
         ],
     ],
 

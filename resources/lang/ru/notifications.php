@@ -39,8 +39,8 @@ return [
 
             'beatmap_owner_change' => [
                 '_' => 'Гостевая сложность',
-                'beatmap_owner_change' => 'Вы назначены владельцем сложности ":beatmap" в карте ":title"',
-                'beatmap_owner_change_compact' => 'Вы назначены владельцем сложности ":beatmap" ',
+                'beatmap_owner_change' => 'Вас назначили владельцем сложности ":beatmap" на карте ":title"',
+                'beatmap_owner_change_compact' => 'Вас назначили владельцем сложности ":beatmap"',
             ],
 
             'beatmapset_discussion' => [

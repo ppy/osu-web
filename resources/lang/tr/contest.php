@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'yorumlar',
         'hide_judged' => 'değerlendirilen girişleri gizle',
         'nav_title' => 'yargıç',
         'no_current_vote' => 'henüz oy vermedin.',

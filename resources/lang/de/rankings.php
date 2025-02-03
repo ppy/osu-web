@@ -9,6 +9,12 @@ return [
         'title' => 'Land',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Level',
+        'top_10p' => '90%-Perzentil',
+        'top_50p' => 'Median',
+    ],
+
     'filter' => [
         'title' => 'Anzeigen',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'Spotlights (alt)',
         'country' => 'Länder',
+        'daily_challenge' => 'Tägliche Herausforderung',
         'kudosu' => 'Kudosu',
         'multiplayer' => 'Mehrspieler',
         'performance' => 'Performance',

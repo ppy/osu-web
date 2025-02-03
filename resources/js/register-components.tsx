@@ -9,12 +9,12 @@ import ChatIcon from 'components/chat-icon';
 import CountdownTimer from 'components/countdown-timer';
 import { LandingNews } from 'components/landing-news';
 import MainNotificationIcon from 'components/main-notification-icon';
+import MenuImages from 'components/menu-images';
 import QuickSearchButton from 'components/quick-search-button';
 import RankingCountryFilter from 'components/ranking-country-filter';
 import RankingUserFilter from 'components/ranking-user-filter';
 import RankingVariantFilter from 'components/ranking-variant-filter';
 import ScoringModeToggle from 'components/scoring-mode-toggle';
-import SpotlightSelectOptions from 'components/spotlight-select-options';
 import { UserCard } from 'components/user-card';
 import { startListening, UserCardTooltip } from 'components/user-card-tooltip';
 import { UserCards } from 'components/user-cards';
@@ -71,16 +71,16 @@ core.reactTurbolinks.register('basic-select-options', () => (
   <BasicSelectOptions {...parseJson('json-basic-select-options')} />
 ));
 
-core.reactTurbolinks.register('spotlight-select-options', () => (
-  <SpotlightSelectOptions {...parseJson('json-spotlight-select-options')} />
-));
-
 core.reactTurbolinks.register('chat-icon', (container) => (
   <ChatIcon type={container.dataset.type} />
 ));
 
 core.reactTurbolinks.register('main-notification-icon', (container) => (
   <MainNotificationIcon type={container.dataset.type} />
+));
+
+core.reactTurbolinks.register('menu-images', () => (
+  <MenuImages images={observable(parseJson('json-menu-images'))} />
 ));
 
 core.reactTurbolinks.register('notification-widget', (container) => (

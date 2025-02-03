@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Libraries\CurrentStats;
+use App\Libraries\MenuContent;
 use App\Libraries\Search\AllSearch;
 use App\Libraries\Search\QuickSearch;
 use App\Models\BeatmapDownload;
@@ -14,6 +15,8 @@ use App\Models\Beatmapset;
 use App\Models\Forum\Post;
 use App\Models\NewsPost;
 use App\Models\UserDonation;
+use App\Transformers\MenuImageTransformer;
+use App\Transformers\UserCompactTransformer;
 use Auth;
 use Jenssegers\Agent\Agent;
 use Request;
@@ -98,10 +101,12 @@ class HomeController extends Controller
         $news = NewsPost::default()->limit($newsLimit)->get();
 
         if (Auth::check()) {
+            $menuImages = json_collection(MenuContent::activeImages(), new MenuImageTransformer());
             $newBeatmapsets = Beatmapset::latestRanked();
             $popularBeatmapsets = Beatmapset::popular()->get();
 
             return ext_view('home.user', compact(
+                'menuImages',
                 'newBeatmapsets',
                 'news',
                 'popularBeatmapsets'
@@ -138,12 +143,11 @@ class HomeController extends Controller
                 $result[$mode]['total'] = $search->count();
             }
 
-            $result['user']['users'] = json_collection($searches['user']->data(), 'UserCompact', [
-                'country',
-                'cover',
-                'groups',
-                'support_level',
-            ]);
+            $result['user']['users'] = json_collection(
+                $searches['user']->data(),
+                new UserCompactTransformer(),
+                [...UserCompactTransformer::CARD_INCLUDES, 'support_level'],
+            );
             $result['beatmapset']['beatmapsets'] = json_collection($searches['beatmapset']->data(), 'Beatmapset', ['beatmaps']);
         }
 
@@ -206,7 +210,7 @@ class HomeController extends Controller
             ]);
         }
 
-        return ext_view('layout.ujs-reload', [], 'js')
+        return ext_view('layout.ujs_full_reload', [], 'js')
             ->withCookie(cookie()->forever('locale', $newLocale));
     }
 

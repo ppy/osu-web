@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'pinned_topics' => '',
-    'slogan' => "",
-    'subforums' => '',
-    'title' => '',
+    'pinned_topics' => 'Topik Disemat',
+    'slogan' => "bahaya kalau main sendiri.",
+    'subforums' => 'Subforum',
+    'title' => 'Forum',
 
     'covers' => [
         'edit' => '',
@@ -25,80 +25,81 @@ return [
     ],
 
     'forums' => [
-        'forums' => '',
-        'latest_post' => '',
+        'forums' => 'Forum',
+        'latest_post' => 'Hantaran Terkini',
 
         'index' => [
-            'title' => '',
+            'title' => 'Indeks Forum',
         ],
 
         'topics' => [
-            'empty' => '',
+            'empty' => 'Tiada topik!',
         ],
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => 'Tanda forum sebagai sudah baca',
+        'forums' => 'Tanda forum sebagai sudah baca',
+        'busy' => 'Menanda sebagai sudah baca...',
     ],
 
     'post' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Betul nak padam hantaran?',
+        'confirm_restore' => 'Betul nak kembalikan hantaran?',
         'edited' => '',
-        'posted_at' => '',
-        'posted_by_in' => '',
+        'posted_at' => 'dihantar :when',
+        'posted_by_in' => 'dihantar oleh :username di :forum',
 
         'actions' => [
-            'destroy' => '',
-            'edit' => '',
-            'report' => '',
-            'restore' => '',
+            'destroy' => 'Padam hantaran',
+            'edit' => 'Sunting hantaran',
+            'report' => 'Laporkan hantaran',
+            'restore' => 'Pulihkan hantaran',
         ],
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Balasan baru',
             ],
         ],
 
         'info' => [
             'post_count' => '',
-            'topic_starter' => '',
+            'topic_starter' => 'Topik Permulaan',
         ],
     ],
 
     'search' => [
-        'go_to_post' => '',
-        'post_number_input' => '',
-        'total_posts' => '',
+        'go_to_post' => 'Pergi ke hantaran',
+        'post_number_input' => 'masukkan nombor hantaran',
+        'total_posts' => ':posts_count jumlah hantaran',
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
-        'deleted' => '',
-        'go_to_latest' => '',
-        'has_replied' => '',
-        'in_forum' => '',
-        'latest_post' => '',
-        'latest_reply_by' => '',
-        'new_topic' => '',
-        'new_topic_login' => '',
-        'post_reply' => '',
-        'reply_box_placeholder' => '',
+        'confirm_destroy' => 'Betul nak padam topik?',
+        'confirm_restore' => 'Betul nak kembalikan topik?',
+        'deleted' => 'topik yang dipadam',
+        'go_to_latest' => 'kunjungi hantaran terkini',
+        'go_to_unread' => '',
+        'has_replied' => 'Anda telah hantar balasan ke topik ini',
+        'in_forum' => 'di forum :forum',
+        'latest_post' => ':when oleh :user',
+        'latest_reply_by' => 'balasan terakhir oleh :user',
+        'new_topic' => 'Topik baharu',
+        'new_topic_login' => 'Daftar masuk untuk hantar topik baru',
+        'post_reply' => 'Hantar',
+        'reply_box_placeholder' => 'Tulis sini untuk balas',
         'reply_title_prefix' => '',
-        'started_by' => '',
-        'started_by_verbose' => '',
+        'started_by' => 'oleh :user',
+        'started_by_verbose' => 'dimulai oleh :user',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => 'Padam topik',
+            'restore' => 'Pulihkan topik',
         ],
 
         'create' => [
-            'close' => '',
+            'close' => 'Tutup',
             'preview' => '',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply

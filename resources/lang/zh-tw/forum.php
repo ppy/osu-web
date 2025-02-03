@@ -15,7 +15,7 @@ return [
         'create' => [
             '_' => '新增封面',
             'button' => '上傳圖片',
-            'info' => '圖片尺寸應為 :dimensions。你也可以將圖片拉到此處來上傳。',
+            'info' => '封面大小應為 :dimensions。您也可以將圖片拖曳至此以上傳。',
         ],
 
         'destroy' => [
@@ -29,7 +29,7 @@ return [
         'latest_post' => '最新貼文',
 
         'index' => [
-            'title' => '論壇主頁',
+            'title' => '論壇索引',
         ],
 
         'topics' => [
@@ -45,7 +45,7 @@ return [
 
     'post' => [
         'confirm_destroy' => '刪除此回覆？',
-        'confirm_restore' => '恢復此回覆？',
+        'confirm_restore' => '確定要恢復這篇貼文嗎？',
         'edited' => '最後由 :user 於 :when 編輯，總共編輯了 :count 次。',
         'posted_at' => '發表於 :when',
         'posted_by_in' => ':username 在 ":forum" 中發布了貼文',
@@ -80,6 +80,9 @@ return [
         'confirm_restore' => '確定要復原這個主題嗎？',
         'deleted' => '已刪除的主題',
         'go_to_latest' => '查看最後的貼文',
+        'go_to_unread' => '查看第一篇未讀帖子
+
+',
         'has_replied' => '您已回覆此主題',
         'in_forum' => '目前看板[ :forum ]',
         'latest_post' => ':when :user',
@@ -89,7 +92,7 @@ return [
         'post_reply' => '發表',
         'reply_box_placeholder' => '輸入回覆',
         'reply_title_prefix' => 'Re',
-        'started_by' => '發表人： :user',
+        'started_by' => '發文者：:user',
         'started_by_verbose' => '由 :user 發起',
 
         'actions' => [
@@ -116,12 +119,12 @@ return [
 
             'placeholder' => [
                 'body' => '在這裡輸入內文',
-                'title' => '點擊這裡編輯標題',
+                'title' => '按這裡編輯標題',
             ],
         ],
 
         'jump' => [
-            'enter' => '點擊這裡跳轉到指定的回覆',
+            'enter' => '按這裡跳至指定的貼文編號',
             'first' => '返回頂部',
             'last' => '跳至最後',
             'next' => '往後 10 篇',
@@ -165,7 +168,7 @@ return [
                 'pin' => '已置頂主題',
                 'post_edited' => '已編輯貼文',
                 'restore_post' => '已回復貼文',
-                'restore_topic' => '已回復主題',
+                'restore_topic' => '已恢復主題',
                 'split_destination' => '已移動分割的貼文',
                 'split_source' => '已分割貼文',
                 'topic_type' => '已設定主題類型',

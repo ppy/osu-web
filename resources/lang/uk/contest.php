@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'коментарі',
         'hide_judged' => 'сховати оцінені заявки',
         'nav_title' => 'суддя',
         'no_current_vote' => 'ви ще не голосували.',
@@ -84,8 +85,8 @@ return [
 
     'vote' => [
         'list' => 'голосів',
-        'count' => ':count_delimited голос|:count_delimited голосів',
-        'points' => ':count_delimited очок|:count_delimited очків',
+        'count' => ':count_delimited голос|:count_delimited голоси|:count_delimited голосів',
+        'points' => ':count_delimited очко|:count_delimited очка|:count_delimited очків',
     ],
 
     'dates' => [

@@ -89,27 +89,31 @@
 
                     <div>
                         <p>
-                            <button
-                                class="btn-osu-big btn-osu-big--rounded-small"
-                                data-url="{{ route('user-cover-presets.update', [
+                            <form
+                                action="{{ route('user-cover-presets.update', [
                                     'user_cover_preset' => $item->getKey(),
                                     'active' => $item->active ? '0' : '1',
                                 ]) }}"
-                                data-method="PUT"
+                                class="u-contents"
                                 data-reload-on-success="1"
-                                data-remote="1"
-                                title="{{ osu_trans('user_cover_presets.index.item.'.(
-                                    $isActive ? 'click_to_disable' : 'click_to_enable'
-                                )) }}"
+                                method="POST"
                             >
-                                @if ($isActive)
-                                    <span class="fas fa-circle"></span>
-                                    {{ osu_trans('user_cover_presets.index.item.enabled') }}
-                                @else
-                                    <span class="far fa-circle"></span>
-                                    {{ osu_trans('user_cover_presets.index.item.disabled') }}
-                                @endif
-                            </button>
+                                <input type="hidden" name="_method" value="PUT" />
+                                <button
+                                    class="btn-osu-big btn-osu-big--rounded-small"
+                                    title="{{ osu_trans('user_cover_presets.index.item.'.(
+                                        $isActive ? 'click_to_disable' : 'click_to_enable'
+                                    )) }}"
+                                >
+                                    @if ($isActive)
+                                        <span class="fas fa-circle"></span>
+                                        {{ osu_trans('user_cover_presets.index.item.enabled') }}
+                                    @else
+                                        <span class="far fa-circle"></span>
+                                        {{ osu_trans('user_cover_presets.index.item.disabled') }}
+                                    @endif
+                                </button>
+                            </form>
                         </p>
                         <p>
                             <form
@@ -117,6 +121,7 @@
                                 enctype="multipart/form-data"
                                 method="POST"
                                 class="user-cover-preset-replace"
+                                data-reload-on-success="1"
                             >
                                 @csrf
                                 <input type="hidden" name="_method" value="PUT" />

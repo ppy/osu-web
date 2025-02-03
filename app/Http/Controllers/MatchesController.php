@@ -63,7 +63,7 @@ class MatchesController extends Controller
     public function index()
     {
         $params = request()->all();
-        $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
+        $limit = \Number::clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
         $cursorHelper = LegacyMatch::makeDbCursorHelper($params['sort'] ?? null);
 
         [$matches, $hasMore] = LegacyMatch
@@ -147,7 +147,7 @@ class MatchesController extends Controller
         $match = $params['match'];
         $after = $params['after'] ?? null;
         $before = $params['before'] ?? null;
-        $limit = clamp($params['limit'] ?? 100, 1, 101);
+        $limit = \Number::clamp($params['limit'] ?? 100, 1, 101);
 
         $events = $match->events()
             ->with([

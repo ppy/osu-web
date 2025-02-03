@@ -3,7 +3,7 @@
 
 export default class FormToggle
   constructor: ->
-    addEventListener 'turbolinks:load', @sync
+    addEventListener 'turbo:load', @sync
     $(document).on 'change', '.js-form-toggle--input', @onChange
 
 

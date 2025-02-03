@@ -66,6 +66,13 @@ return [
         'version' => 'ระดับความยาก',
     ],
 
+    'refresh' => [
+        'checking' => 'กำลังตรวจสอบการอัปเดต…',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => 'กำลังอัปเดต',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'เข้าสู่ระบบเพื่อตอบกลับ',

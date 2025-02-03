@@ -57,9 +57,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'Дискусија је откључана',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited похвала|:count_delimited похвале',
+                    'problems' => ':count_delimited проблем|:count_delimited проблема',
+                    'suggestions' => ':count_delimited сугестија|:count_delimited сугестије',
                 ],
             ],
 

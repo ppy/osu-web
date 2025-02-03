@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Ro ned, spill mer.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Er du sikker på at du vil nominere dette beatmappet?',
+            'different_nominator_warning' => '',
             'header' => 'Nominer Beatmap',
             'hybrid_warning' => 'merk: du kan kun nominere èn gang. Vær så snill å forsikre deg om at du nominerer for alle spill-modusene du har tenkt å nominere på',
             'current_main_ruleset' => '',

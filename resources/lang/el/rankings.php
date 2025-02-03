@@ -9,6 +9,12 @@ return [
         'title' => 'Χώρα',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'top_10p' => '',
+        'top_50p' => '',
+    ],
+
     'filter' => [
         'title' => 'Εμφάνιση',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'Spotlights',
         'country' => 'Χώρας',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'performance' => 'Επίδοσης',

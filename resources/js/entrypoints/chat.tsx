@@ -80,14 +80,14 @@ core.reactTurbolinks.register('chat', action(() => {
   const channelId = currentUrl().hash.slice(1);
 
   if (channelId === 'create' || channelId === 'join') {
-    core.dataStore.chatState.selectChannel(channelId, 'replaceHistory');
+    core.dataStore.chatState.selectChannel(channelId, 'replace');
   } else {
     const channel = getInitialChannel(initial?.send_to);
 
     if (channel === undefined) {
       core.dataStore.chatState.selectFirst();
     } else {
-      core.dataStore.chatState.selectChannel(channel?.channelId ?? null, 'replaceHistory');
+      core.dataStore.chatState.selectChannel(channel?.channelId ?? null, 'replace');
     }
   }
 

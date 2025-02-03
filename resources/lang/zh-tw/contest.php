@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => '評論',
         'hide_judged' => '隱藏已評分的項目',
         'nav_title' => '評分',
         'no_current_vote' => '您尚未投票',
@@ -33,7 +34,7 @@ return [
     ],
 
     'voting' => [
-        'judge_link' => '您是此競賽的評委。請在此處評分。',
+        'judge_link' => '您是此競賽的評委。請在這裡評分。',
         'judged_notice' => '本競賽使用評分系統，評委正在進行評分。',
         'login_required' => '請登入後再投票。',
         'over' => '這場評選的投票已經結束',
@@ -63,19 +64,19 @@ return [
     'entry' => [
         '_' => '參加',
         'login_required' => '請登入後再參加評選。',
-        'silenced_or_restricted' => '帳戶受限時無法參加評選。',
+        'silenced_or_restricted' => '帳號受限時無法參加評選。',
         'preparation' => '我們正在準備這場評選，請耐心等待！',
-        'drop_here' => '將您的參賽文件拖到此處',
+        'drop_here' => '將您的參賽檔案拖曳至此',
         'download' => '下載 .osz 檔案',
 
         'wrong_type' => [
-            'art' => '只接受 .jpg 和 .png 格式的文件.',
-            'beatmap' => '只接受 .osu 格式的文件.',
-            'music' => '只接受 .mp3 格式的文件.',
+            'art' => '只接受 .jpg 和 .png 格式的檔案。',
+            'beatmap' => '只接受 .osu 格式的檔案。',
+            'music' => '只接受 .mp3 格式的檔案。',
         ],
 
         'wrong_dimensions' => '參加競賽的數量必須達到 :widthx:height',
-        'too_big' => '參賽文件的大小不能超過 :limit.',
+        'too_big' => '參賽檔案的大小不能超過 :limit。',
     ],
 
     'beatmaps' => [

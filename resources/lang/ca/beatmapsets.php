@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'A poc a poc, juga més.',
+        'no_mirrors' => 'No hi ha servidors disponibles.',
     ],
 
     'featured_artist_badge' => [
@@ -40,20 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Els nominadors provisionals no poden nominar diferents modes de joc.',
+        'full_nomination_required' => 'Heu de ser nominador complet per a establir la nominació final d\'un mode de joc.',
         'hybrid_requires_modes' => 'Un beatmap híbrid requereix que seleccioneu almenys un mode de joc per nominar.',
         'incorrect_mode' => 'No tens permís per nominar per al mode: :mode',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Aquest mapa té nominacions no vàlides i, en aquest estat, no es pot nominar.',
+        'invalid_ruleset' => 'Aquesta nominació té regles no vàlides.',
         'too_many' => 'Requisit de nominació ja complert.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'El requisit de nominació per a regles no bàsiques ja s\'ha complit.',
 
         'dialog' => [
             'confirmation' => 'Esteu segur que voleu nominar aquest beatmap?',
+            'different_nominator_warning' => 'Si es qualifica aquest mapa amb nominadors diferents farà que es restableixi la seva posició a la cua de qualificacions.',
             'header' => 'Nominar beatmap',
             'hybrid_warning' => 'nota: només pot nominar una vegada, així que assegureu-vos que està nominant per a totes els modes de joc que desitgi',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'Les regles principals actuals són :ruleset.',
             'which_modes' => 'Nominar per a quins modes?',
         ],
     ],

@@ -33,14 +33,14 @@ return [
 
     'blocks' => [
         'banner_text' => 'Jūs esiet nobloķējis šo lietotāju.',
-        'comment_text' => '',
+        'comment_text' => 'Šis komentārs ir paslēpts.',
         'blocked_count' => 'bloķētie lietotāji (:count)',
         'hide_profile' => 'Slēpt profilu',
-        'hide_comment' => '',
-        'forum_post_text' => '',
+        'hide_comment' => 'paslēpt',
+        'forum_post_text' => 'Šis raksts ir paslēpts.',
         'not_blocked' => 'Šis lietotājs nav bloķēts.',
         'show_profile' => 'Rādīt profilu',
-        'show_comment' => '',
+        'show_comment' => 'rādīt',
         'too_many' => 'Ir sasniegts bloķēsanas limits.',
         'button' => [
             'block' => 'Bloķēt',
@@ -49,29 +49,29 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Uzdāvināt supporter statusu.',
         'loading' => 'Notiek ielāde...',
         'send_message' => 'nosūtīt ziņu',
     ],
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'parole',
+            'password_confirmation' => 'paroles apstiprināšana',
+            'submit' => 'izveidot kontu',
+            'user_email' => 'e-pasts',
+            'user_email_confirmation' => 'e-pasta apstiprināšana',
+            'username' => 'lietotājvārds',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'izveidojot kontu, tu piekrīti :link',
+                'link' => 'pakalpojumu sniegšanas noteikumi',
             ],
         ],
     ],
 
     'disabled' => [
-        'title' => '',
+        'title' => 'Ak nē! Izskatās ka tavs konts ir atslēgts.',
         'warning' => "",
 
         'if_mistake' => [
@@ -84,21 +84,21 @@ return [
             'opening' => '',
 
             'tos' => [
-                '_' => '',
+                '_' => 'Tu esi pārkāpis vienu vai vairākus no mūsu :community_rules vai :tos.',
                 'community_rules' => '',
-                'tos' => '',
+                'tos' => 'lietošanas noteikumi',
             ],
         ],
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Lietotāji spēles veidā',
     ],
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
-            'inactive_different_country' => "",
+            'inactive' => "Tavs konts nav ilgi ticis izmantots.",
+            'inactive_different_country' => "Tavs konts nav ilgi ticis izmantots.",
         ],
     ],
 
@@ -106,11 +106,11 @@ return [
         '_' => 'Ienākt',
         'button' => 'Ienākt',
         'button_posting' => 'Savienojas...',
-        'email_login_disabled' => '',
+        'email_login_disabled' => 'Pierakstīšanās ar e-pastu pašlaik nav iespējama. Lūdzu izmanto lietotājvārdu tā vietā.',
         'failed' => 'Nepareizi dati',
         'forgot' => 'Aizmirsāt paroli?',
-        'info' => '',
-        'invalid_captcha' => '',
+        'info' => 'Lūdzu pieraksties lai turpinātu',
+        'invalid_captcha' => 'Pārāk daudz neizdevušos pierakstīšanās mēģinājumu, lūdzu izpildi captcha un mēģini vēlreiz. (Atsvaidzini lapu ja captcha nav redzama)',
         'locked_ip' => 'jūsu IP adrese ir bloķēta. Lūdzu uzgaidiet pāris minūtes',
         'password' => 'Parole',
         'register' => "Nav osu! profila? Izveido jaunu",
@@ -125,13 +125,13 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description' => 'Ritma-mapes :counts',
+        'modding_description_empty' => 'Lietotājam nav ritma-mapes...',
 
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'Vieta (:ruleset): :global | :country',
+            'country' => 'Valsts :rank',
+            'global' => 'Globāli :rank',
         ],
     ],
 
@@ -161,7 +161,7 @@ return [
 
         'options' => [
             'cheating' => 'Netīra spēle / Krāpšanās',
-            'multiple_accounts' => '',
+            'multiple_accounts' => 'Izmanto vairākus kontus',
             'insults' => 'Mani / citus apvainoja',
             'spam' => 'Spams',
             'unwanted_content' => 'Pievieno neatbilstošu saturu',
@@ -172,7 +172,7 @@ return [
     'restricted_banner' => [
         'title' => 'Jūsu konts tika ierobežots!',
         'message' => 'Kamēr esiet ierobežots, jūs nevarēsiet sazināties ar citiem spēlētājiem un jūsu rezultāts būs pieejams tikai jums. Šis parasti mēdz būt rezultāts pateicoties automātiskam procesam un kas visticamāk tiks nolaists 24 stundu laikā. Ja vēlaties iesniegt apelāciju par jūsu ierobežojumu, lūgums <a href="mailto:accounts@ppy.sh">sazināties ar atbalsta komandu</a>.',
-        'message_link' => '',
+        'message_link' => 'Apskati šo lapu lai uzzinātu vairāk.',
     ],
     'show' => [
         'age' => ':age gadus vecs',
@@ -190,26 +190,27 @@ return [
 
         'comments_count' => [
             '_' => '',
-            'count' => '',
+            'count' => ':count_delimited komentārs|:count_delimited komentāri',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Paslēpt pārvalku',
+            'to_1' => 'Rādīt pārvalku',
         ],
         'daily_challenge' => [
             'daily' => '',
             'daily_streak_best' => '',
             'daily_streak_current' => '',
-            'title' => '',
-            'top_10p_placements' => '',
-            'top_50p_placements' => '',
+            'playcount' => 'Kopējais piedalīšanās skaits',
+            'title' => 'Ikdienas\nIzaicinājums',
+            'top_10p_placements' => 'Top 10% Novietojums',
+            'top_50p_placements' => 'Top 50% Novietojums',
             'weekly' => '',
             'weekly_streak_best' => '',
             'weekly_streak_current' => '',
 
             'unit' => [
-                'day' => '',
-                'week' => '',
+                'day' => ':valued',
+                'week' => ':valuew',
             ],
         ],
         'edit' => [
@@ -450,21 +451,21 @@ return [
             'website' => 'Mājaslapa',
         ],
         'not_found' => [
-            'reason_1' => 'Viņi iespējams nomainīja savu lietotājvārdu.',
-            'reason_2' => 'Konts var nebūt pieejams sakarā ar drošības vai ļaunprātīgas izmantošanas saistībām.',
-            'reason_3' => 'Iespējams, ka esi ielaidis rakstveida kļūdu!',
-            'reason_header' => 'Šim ir pāris iespējami iemesli:',
+            'reason_1' => 'Meklējamais cilvēks, iespējams nomainīja savu lietotājvārdu.',
+            'reason_2' => 'Konts var nebūt uz kādu laiku pieejams, drošību vai ļaunprātīgu iemeslu dēļ.',
+            'reason_3' => 'Iespējams, ka esi izdarījis rakstveida kļūdu!',
+            'reason_header' => 'Šim ir pāris iespējamu iemeslu:',
             'title' => 'Lietotājs nav atrasts! ;_;',
         ],
         'page' => [
-            'button' => 'Rediģēt profila lapu',
+            'button' => 'rediģēt profila lapu',
             'description' => '<strong>es!</strong> ir personiski rediģējams lauks tavā profila lapā.',
             'edit_big' => 'Rediģēt es!',
             'placeholder' => 'Ievadi lapas saturu šeit',
 
             'restriction_info' => [
                 '_' => 'Tev jābūt :link, lai atvērtu šo iespēju.',
-                'link' => 'osu!atbalstītājs',
+                'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
@@ -473,9 +474,9 @@ return [
         ],
         'rank' => [
             'country' => 'Valsts ranks pēc :mode',
-            'country_simple' => 'Valsts Rankējums',
+            'country_simple' => 'Valsts Pozīcijas',
             'global' => 'Globālais ranks pēc :mode',
-            'global_simple' => 'Globālais Rankējums',
+            'global_simple' => 'Globālās Pozīcijas',
             'highest' => '',
         ],
         'stats' => [
@@ -493,7 +494,7 @@ return [
             'total_score' => '',
             // modding stats
             'graveyard_beatmapset_count' => '',
-            'loved_beatmapset_count' => 'Loved Bītmapes',
+            'loved_beatmapset_count' => 'Iemīlētās Ritma-Mapes',
             'pending_beatmapset_count' => '',
             'ranked_beatmapset_count' => '',
         ],

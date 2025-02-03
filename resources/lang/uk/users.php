@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => 'Подарувати osu!прихильник',
+        'gift_supporter' => 'Подарувати osu!supporter',
         'loading' => 'Завантаження...',
         'send_message' => 'Надіслати повідомлення',
     ],
@@ -97,8 +97,8 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "Ваш обліковий запис вже давно не використовується.",
-            'inactive_different_country' => "Ваш обліковий запис вже давно не використовується.",
+            'inactive' => "Ваш обліковий запис вже давно не використовувався.",
+            'inactive_different_country' => "Ваш обліковий запис вже давно не використовувався.",
         ],
     ],
 
@@ -120,7 +120,7 @@ return [
 
         'beta' => [
             'main' => 'На даний час доступ до бета-версії обмежена привілейованими користувачами.',
-            'small' => '(гравці з osu!прихильником отримають доступ раніше)',
+            'small' => '(гравці з osu!supporter отримають доступ раніше)',
         ],
     ],
 
@@ -179,7 +179,7 @@ return [
         'change_avatar' => 'змінити аватар!',
         'first_members' => 'Тут з часів заснування',
         'is_developer' => 'osu!розробник',
-        'is_supporter' => 'osu!прихильник',
+        'is_supporter' => 'osu!supporter',
         'joined_at' => 'Дата реєстрації: :date',
         'lastvisit' => 'Останній візит :date',
         'lastvisit_online' => 'Зараз в мережі',
@@ -190,7 +190,7 @@ return [
 
         'comments_count' => [
             '_' => 'Опубліковано :link',
-            'count' => ':count_delimited коментар|:count_delimited коментарі|:count_delimited коментарів',
+            'count' => ':count_delimited коментар|:count_delimited коментаря|:count_delimited коментарів',
         ],
         'cover' => [
             'to_0' => 'Згорнути обкладинку профілю',
@@ -200,6 +200,7 @@ return [
             'daily' => 'Щоденна серія',
             'daily_streak_best' => 'Найкраща щоденна серія',
             'daily_streak_current' => 'Поточна щоденна серія',
+            'playcount' => 'Всього участі',
             'title' => 'Щоденний\nВиклик',
             'top_10p_placements' => 'Топ 10% позицій',
             'top_50p_placements' => 'Топ 50% позицій',
@@ -230,7 +231,7 @@ return [
 
                     'restriction_info' => [
                         '_' => 'Завантаження доступно лише для :link',
-                        'link' => 'власників osu!прихильника',
+                        'link' => 'власників osu!supporter',
                     ],
                 ],
             ],
@@ -241,12 +242,12 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => 'Відновити колір за замовчуванням? Тег прихильника буде необхідним для зміни його на інший колір.',
+                'reset_no_supporter' => 'Відновити колір за замовчуванням? Для зміни його на інший колір буде необхідний тег osu!supporter.',
                 'title' => 'Колір',
 
                 'supporter' => [
                     '_' => 'Користувацькі кольорові теми доступні лише для :link',
-                    'link' => 'osu!прихильників',
+                    'link' => 'власників osu!supporter',
                 ],
             ],
         ],
@@ -277,7 +278,7 @@ return [
                     'title' => 'Улюблені бітмапи',
                 ],
                 'nominated' => [
-                    'title' => 'Номіновні рейтингові бітмапи',
+                    'title' => 'Номіновані рейтингові бітмапи',
                 ],
                 'pending' => [
                     'title' => 'На розгляді',
@@ -389,7 +390,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Завантажити повтор',
-                'not_ranked' => 'Очки продуктивності видаються тільки за рейтингові карти',
+                'not_ranked' => 'Тільки рейтингові мапи надають pp',
                 'pp_weight' => 'зважено: :percentage',
                 'view_details' => 'Детальніше',
                 'title' => 'Рейтинги',
@@ -464,7 +465,7 @@ return [
 
             'restriction_info' => [
                 '_' => 'Щоб використовувати цю функцію, потрібен :link.',
-                'link' => 'osu!прихильник',
+                'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
@@ -473,7 +474,7 @@ return [
         ],
         'rank' => [
             'country' => 'Рейтинг країни для :mode',
-            'country_simple' => 'Рейтинг країни',
+            'country_simple' => 'Рейтинг в країні',
             'global' => 'Глобальний рейтинг для :mode',
             'global_simple' => 'Рейтинг в світі',
             'highest' => 'Найвищий ранг :rank було досягнуто :date ',

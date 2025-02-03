@@ -25,6 +25,8 @@ module.exports = {
         'typescript-sort-keys',
       ],
       rules: {
+        '@stylistic/member-delimiter-style': 'error',
+        '@stylistic/type-annotation-spacing': 'error',
         '@typescript-eslint/array-type': [
           'error',
           {
@@ -41,20 +43,6 @@ module.exports = {
           },
         ],
         '@typescript-eslint/explicit-module-boundary-types': 'off',
-        '@typescript-eslint/indent': [
-          'error',
-          2,
-          {
-            FunctionDeclaration: {
-              parameters: 'first',
-            },
-            FunctionExpression: {
-              parameters: 'first',
-            },
-            SwitchCase: 1,
-          },
-        ],
-        '@typescript-eslint/member-delimiter-style': 'error',
         '@typescript-eslint/member-ordering': [
           'error',
           {
@@ -101,17 +89,17 @@ module.exports = {
         '@typescript-eslint/no-unsafe-member-access': 'warn',
         '@typescript-eslint/no-unsafe-return': 'warn',
         '@typescript-eslint/no-unused-expressions': 'error',
-        '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', ignoreRestSiblings: true }],
+        '@typescript-eslint/no-unused-vars': [
+          'error', {
+            argsIgnorePattern: '^_',
+            caughtErrorsIgnorePattern: '^_',
+            ignoreRestSiblings: true,
+          },
+        ],
         '@typescript-eslint/no-use-before-define': 'off',
-        '@typescript-eslint/object-curly-spacing': ['error', 'always'],
         '@typescript-eslint/prefer-for-of': 'error',
         '@typescript-eslint/prefer-function-type': 'error',
         '@typescript-eslint/prefer-readonly': 'error',
-        '@typescript-eslint/quotes': [
-          'error',
-          'single',
-          { avoidEscape: true },
-        ],
         '@typescript-eslint/restrict-template-expressions': [
           'error',
           {
@@ -121,7 +109,6 @@ module.exports = {
             allowNumber: true,
           },
         ],
-        '@typescript-eslint/semi': ['error', 'always'],
         // TODO: make more strict.
         '@typescript-eslint/strict-boolean-expressions': [
           'error',
@@ -129,13 +116,10 @@ module.exports = {
             allowNullableBoolean: true,
           },
         ],
-        '@typescript-eslint/type-annotation-spacing': 'error',
         '@typescript-eslint/unified-signatures': 'error',
         'dot-notation': 'off',
         'no-invalid-this': 'off',
         'no-shadow': 'off',
-        'object-curly-spacing': 'off',
-        quotes: 'off',
         'react-hooks/exhaustive-deps': 'error',
         'react/jsx-boolean-value': 'error',
         'react/jsx-curly-spacing': 'error',
@@ -190,22 +174,57 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
+    '@stylistic',
     'eslint-plugin-jsdoc',
     'eslint-plugin-import',
   ],
   rules: {
+    '@stylistic/arrow-parens': 'error',
+    '@stylistic/arrow-spacing': 'error',
+    '@stylistic/brace-style': 'error',
+    '@stylistic/comma-dangle': ['error', 'always-multiline'],
+    '@stylistic/eol-last': 'error',
+    '@stylistic/indent': [
+      'error',
+      2,
+      {
+        FunctionDeclaration: {
+          parameters: 'first',
+        },
+        FunctionExpression: {
+          parameters: 'first',
+        },
+        SwitchCase: 1,
+      },
+    ],
+    '@stylistic/max-len': 'off',
+    '@stylistic/new-parens': 'error',
+    '@stylistic/no-multiple-empty-lines': 'error',
+    '@stylistic/no-trailing-spaces': 'error',
+    '@stylistic/object-curly-spacing': ['error', 'always'],
+    '@stylistic/quote-props': ['error', 'as-needed'],
+    '@stylistic/quotes': [
+      'error',
+      'single',
+      { avoidEscape: true },
+    ],
+    '@stylistic/semi': ['error', 'always'],
+    '@stylistic/space-before-function-paren': [
+      'error',
+      {
+        anonymous: 'never',
+        asyncArrow: 'always',
+        named: 'never',
+      },
+    ],
+    '@stylistic/spaced-comment': 'error',
     'arrow-body-style': 'error',
-    'arrow-parens': 'error',
-    'arrow-spacing': 'error',
-    'brace-style': 'error',
-    'comma-dangle': ['error', 'always-multiline'],
     complexity: 'off',
     curly: ['error', 'multi-line'],
     'dot-notation': 'error',
-    'eol-last': 'error',
     eqeqeq: ['error', 'smart'],
     'guard-for-in': 'error',
-    'id-blacklist': [
+    'id-denylist': [
       'error',
       'any',
       'Number',
@@ -221,43 +240,22 @@ module.exports = {
     'import/order': ['error', { alphabetize: { order: 'asc' } }],
     'jsdoc/check-alignment': 'error',
     'jsdoc/check-indentation': 'error',
-    'jsdoc/newline-after-description': 'error',
+    'jsdoc/tag-lines': ['error', 'never', { startLines: 1 }],
     'max-classes-per-file': 'error',
-    'max-len': 'off',
-    'new-parens': 'error',
     'no-bitwise': 'error',
     'no-caller': 'error',
     'no-console': ['error', { allow: ['error', 'warn'] }],
     'no-empty-function': 'error',
     'no-eval': 'error',
     'no-invalid-this': 'error',
-    'no-multiple-empty-lines': 'error',
     'no-new-wrappers': 'error',
     'no-shadow': ['error', { hoist: 'all' }],
     'no-throw-literal': 'error',
-    'no-trailing-spaces': 'error',
     'no-undef-init': 'error',
     'no-unsafe-finally': 'error',
-    'object-curly-spacing': ['error', 'always'],
     'object-shorthand': 'error',
     'one-var': ['error', 'never'],
-    'quote-props': ['error', 'as-needed'],
-    quotes: [
-      'error',
-      'single',
-      { avoidEscape: true },
-    ],
     radix: 'error',
-    semi: ['error', 'always'],
     'sort-keys': ['error', 'asc', { caseSensitive: false }],
-    'space-before-function-paren': [
-      'error',
-      {
-        anonymous: 'never',
-        asyncArrow: 'always',
-        named: 'never',
-      },
-    ],
-    'spaced-comment': 'error',
   },
 };

@@ -2,12 +2,12 @@
 
 if ! pgrep chromedriver > /dev/null; then
     chromedriver_log=storage/logs/chromedriver.log
-    chromedriver > "$chromedriver_log" 2>&1 &
+    chromedriver --port=9515 > "$chromedriver_log" 2>&1 &
     chromedriver_pid=$!
     # wait for the driver to be ready
     printf "Waiting for chromedriver to start..."
     chromedriver_tries=0
-    while ! grep -qF "ChromeDriver was started successfully." "$chromedriver_log"; do
+    while ! grep -qF "ChromeDriver was started successfully on port 9515." "$chromedriver_log"; do
         printf .
         sleep 1
         chromedriver_tries=$(($chromedriver_tries + 1))

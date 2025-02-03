@@ -197,19 +197,20 @@ return [
             'to_1' => 'показване на корицата',
         ],
         'daily_challenge' => [
-            'daily' => '',
-            'daily_streak_best' => '',
-            'daily_streak_current' => '',
-            'title' => '',
-            'top_10p_placements' => '',
-            'top_50p_placements' => '',
-            'weekly' => '',
-            'weekly_streak_best' => '',
-            'weekly_streak_current' => '',
+            'daily' => 'Ежедневна серия',
+            'daily_streak_best' => 'Най-добра ежедневна серия ',
+            'daily_streak_current' => 'Сегашна ежедневна серия ',
+            'playcount' => 'Общо участия',
+            'title' => 'Дневно\nПредизвикателство',
+            'top_10p_placements' => 'Топ 10% резултати ',
+            'top_50p_placements' => 'Топ 50% резултати',
+            'weekly' => 'Седмична поредица',
+            'weekly_streak_best' => 'Най-добра седмична поредица',
+            'weekly_streak_current' => 'Текуща седмична поредица',
 
             'unit' => [
-                'day' => '',
-                'week' => '',
+                'day' => ':valueд',
+                'week' => ':valueседм',
             ],
         ],
         'edit' => [
@@ -217,7 +218,7 @@ return [
                 'button' => 'Промяна на профилната корица',
                 'defaults_info' => 'Повече опции за корици ще бъдат налични в бъдеще',
                 'holdover_remove_confirm' => "Предишно избраната корица не е достъпна вече. Не може да бъде върната обратно след като я промените. Да продължим ли?",
-                'title' => '',
+                'title' => 'Корица',
 
                 'upload' => [
                     'broken_file' => 'Неуспешна обработка на изображението. Проверете каченото изображение и опитайте отново.',
@@ -241,12 +242,12 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
-                'title' => '',
+                'reset_no_supporter' => 'Възстановяване на оригиналния цвят? Ще е нужен Supporter етикет за промяна в различен цвят.',
+                'title' => 'Цвят',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Цветните теми са налични само за :link',
+                    'link' => 'osu!supporters',
                 ],
             ],
         ],

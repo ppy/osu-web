@@ -64,7 +64,7 @@ export default class Main extends React.Component<Props> {
 
   componentDidMount() {
     this.setHashDisposer = autorun(this.setHash);
-    $(document).one('turbolinks:before-cache', () => this.setHashDisposer?.());
+    $(document).one('turbo:before-cache', () => this.setHashDisposer?.());
   }
 
   componentWillUnmount() {

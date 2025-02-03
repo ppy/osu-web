@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'スピードを落として、もっと遊ぼう。',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -40,8 +41,8 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => '試用期間のノミネーターは複数のゲームモードをノミネートすることはできません。',
+        'full_nomination_required' => 'このゲームモードの最後のノミネートを行うには、フルノミネーターである必要があります。',
         'hybrid_requires_modes' => 'ハイブリッドビートマップセットでは、少なくとも1つのモードを選択してノミネートする必要があります。',
         'incorrect_mode' => 'モード:modeでノミネートする権限がありません。',
         'invalid_limited_nomination' => '',
@@ -51,9 +52,10 @@ return [
 
         'dialog' => [
             'confirmation' => 'このビートマップを本当にノミネートしますか？',
+            'different_nominator_warning' => '',
             'header' => 'ビートマップをノミネート',
             'hybrid_warning' => '注意: 一度しかノミネートできないので、ノミネートするゲームモードの全てにノミネートするようにしてください。',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => '現在のメインゲームモードは :ruleset です',
             'which_modes' => 'どのモードをノミネートしますか？',
         ],
     ],
@@ -66,7 +68,7 @@ return [
         'discussion' => 'ディスカッション',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'フルサイズのカバー画像を表示',
         ],
 
         'deleted_banner' => [

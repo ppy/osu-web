@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'title' => '圖譜討論文',
+        'title' => '圖譜討論貼文',
     ],
 
     'item' => [

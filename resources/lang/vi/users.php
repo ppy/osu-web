@@ -200,6 +200,7 @@ return [
             'daily' => 'Chuỗi chơi hằng ngày',
             'daily_streak_best' => 'Chuỗi chơi hằng ngày tốt nhất',
             'daily_streak_current' => 'Chuỗi chơi hằng ngày hiện tại',
+            'playcount' => 'Tổng Số Lần Tham Gia',
             'title' => 'Thử thách\nhằng ngày',
             'top_10p_placements' => '10% vị trí hàng đầu',
             'top_50p_placements' => '50% vị trí hàng đầu',

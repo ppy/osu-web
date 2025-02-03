@@ -20,9 +20,6 @@ return [
         'default' => array_merge($defaults, [
             'hosts' => $parseHosts('ES_HOST'),
         ]),
-        'scores' => array_merge($defaults, [
-            'hosts' => $parseHosts('ES_SCORES_HOST'),
-        ]),
         'solo_scores' => array_merge($defaults, [
             'hosts' => $parseHosts('ES_SOLO_SCORES_HOST'),
         ]),

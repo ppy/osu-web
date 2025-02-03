@@ -9,7 +9,7 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
-use App\Models\BeatmapsetNomination;
+use App\Models\BeatmapsetEvent;
 use App\Models\Forum\Topic;
 use App\Models\Genre;
 use App\Models\Language;
@@ -125,23 +125,25 @@ class BeatmapsetFactory extends Factory
         $count ??= $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'];
 
         return $this
-            ->has(BeatmapsetNomination::factory()
+            ->state(['nominations' => $count])
+            ->has(BeatmapsetEvent::factory()
                 ->count($count)
                 ->state([
-                    'modes' => $modes,
+                    'comment' => ['modes' => $modes],
+                    'type' => BeatmapsetEvent::NOMINATE,
                     'user_id' => User::factory()->withGroup('bng', array_keys(Beatmap::MODES)),
-                ]));
+                ]), 'events');
     }
 
     public function withBeatmaps(?string $ruleset = null, int $count = 1, ?User $guestMapper = null)
     {
         return $this
             ->has(Beatmap::factory()
-            ->count($count)
-            ->ruleset($ruleset ?? array_rand(Beatmap::MODES))
-            ->state(fn (array $attr, Beatmapset $set) => [
-                'approved' => $set->approved,
-                'user_id' => $guestMapper?->getKey() ?? $set->user_id,
-            ]));
+                ->count($count)
+                ->ruleset($ruleset ?? array_rand(Beatmap::MODES))
+                ->state(fn (array $attr, Beatmapset $set) => [
+                    'approved' => $set->approved,
+                    'user_id' => $guestMapper?->getKey() ?? $set->user_id,
+                ]));
     }
 }

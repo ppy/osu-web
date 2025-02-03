@@ -34,7 +34,7 @@ return [
     'search' => [
         'default' => 'Tidak ada hasil pencarian yang dapat diperoleh. Silakan coba lagi nanti.',
         'invalid_cursor_exception' => 'Parameter kursor yang ditentukan tidak valid.',
-        'operation_timeout_exception' => 'Aktivitas pencarian saat ini sedang lebih sibuk dari biasanya. Mohon coba lagi nanti.',
+        'operation_timeout_exception' => 'Aktivitas pencarian saat ini sedang lebih sibuk dari biasanya. Silakan coba lagi nanti.',
     ],
     'user_report' => [
         'recently_reported' => "Kamu telah melaporkan hal ini baru-baru ini.",

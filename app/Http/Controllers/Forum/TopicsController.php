@@ -256,19 +256,30 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicReply', $topic)->ensureCan();
 
-        $post = Post::createNew($topic, auth()->user(), get_string(request('body')));
+        $user = \Auth::user();
+        $post = Post::createNew($topic, $user, get_string(request('body')));
 
-        $post->markRead(Auth::user());
-        (new ForumTopicReply($post, auth()->user()))->dispatch();
+        $post->markRead($user);
+        (new ForumTopicReply($post, $user))->dispatch();
+
+        $watch = $user->user_notify
+            ? TopicWatch::setState($topic, $user, 'watching_mail')
+            : TopicWatch::lookup($topic, $user);
 
         if (is_api_request()) {
             return json_item($post, 'Forum\Post', ['body']);
         } else {
-            return ext_view('forum.topics._posts', [
-                'firstPostPosition' => $topic->postPosition($post->post_id),
-                'posts' => collect([$post]),
-                'topic' => $topic,
-            ]);
+            return [
+                'posts' => view('forum.topics._posts', [
+                    'firstPostPosition' => $topic->postPosition($post->post_id),
+                    'posts' => collect([$post]),
+                    'topic' => $topic,
+                ])->render(),
+                'watch' => view('forum.topics._watch', [
+                    'state' => $watch,
+                    'topic' => $topic,
+                ])->render(),
+            ];
         }
     }
 
@@ -389,6 +400,7 @@ class TopicsController extends Controller
             'user.country',
             'user.rank',
             'user.supporterTagPurchases',
+            'user.team',
             'user.userGroups',
         ]);
 
@@ -617,7 +629,7 @@ class TopicsController extends Controller
     {
         $rawParams = request()->all();
         $params = get_params($rawParams, null, [
-            'start', // either number or "unread"
+            'start', // either number or "unread" or "latest"
             'end:int',
             'n:int',
 
@@ -629,10 +641,10 @@ class TopicsController extends Controller
         ], ['null_missing' => true]);
 
         $params['skip_layout'] = $params['skip_layout'] ?? false;
-        $params['limit'] = clamp($params['limit'] ?? 20, 1, 50);
+        $params['limit'] = \Number::clamp($params['limit'] ?? Post::PER_PAGE, 1, 50);
 
         if ($userCanModerate) {
-            $params['with_deleted'] ??= ($currentUser->userProfileCustomization ?? UserProfileCustomization::DEFAULTS)['forum_posts_show_deleted'];
+            $params['with_deleted'] ??= UserProfileCustomization::forUser($currentUser)['forum_posts_show_deleted'];
         } else {
             $params['with_deleted'] = false;
         }
@@ -640,11 +652,11 @@ class TopicsController extends Controller
         $params['cursor'] = cursor_from_params($rawParams);
 
         if (!is_array($params['cursor'])) {
-            if ($params['start'] === 'unread') {
-                $params['start'] = Post::lastUnreadByUser($topic, $currentUser);
-            } else {
-                $params['start'] = get_int($params['start']);
-            }
+            $params['start'] = match ($params['start']) {
+                'latest' => $topic->topic_last_post_id,
+                'unread' => Post::lastUnreadByUser($topic, $currentUser),
+                default => get_int($params['start']),
+            };
 
             if ($params['n'] !== null && $params['n'] > 0) {
                 $post = $topic->nthPost($params['n']) ?? $topic->posts()->last();

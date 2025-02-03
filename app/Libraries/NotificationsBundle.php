@@ -22,6 +22,7 @@ class NotificationsBundle
     }
 
     private $category;
+    private array $countByType;
     private $cursorId;
     private $objectId;
     private $objectType;
@@ -61,7 +62,7 @@ class NotificationsBundle
         ];
 
         if ($this->unreadOnly) {
-            $response['unread_count'] = $this->user->userNotifications()->hasPushDelivery()->where('is_read', false)->count();
+            $response['unread_count'] = $this->getTotalNotificationCount();
         }
 
         return $response;
@@ -75,23 +76,28 @@ class NotificationsBundle
             return;
         }
 
-        $query = $this->user->userNotifications()->hasPushDelivery()->whereHas('notification', function ($q) use ($objectId, $objectType, $category) {
-            $names = Notification::namesInCategory($category);
-            $q
-                ->where('notifiable_type', $objectType)
-                ->where('notifiable_id', $objectId)
-                ->whereIn('name', $names);
-        });
+        $query = $this
+            ->user
+            ->userNotifications()
+            ->hasPushDelivery()
+            ->joinRelation('notification', function ($q) use ($category, $objectId, $objectType) {
+                $q
+                    ->where($q->qualifyColumn('notifiable_type'), $objectType)
+                    ->where($q->qualifyColumn('notifiable_id'), $objectId)
+                    ->whereIn($q->qualifyColumn('name'), Notification::namesInCategory($category))
+                    ->orderByDesc($q->qualifyColumn('created_at'))
+                    ->orderByDesc($q->qualifyColumn('id'));
+
+                if ($this->cursorId !== null) {
+                    $q->where($q->qualifyColumn('id'), '<', $this->cursorId);
+                }
+            })
+            ->limit(static::PER_STACK_LIMIT);
 
         if ($this->unreadOnly) {
-            $query->where('is_read', false);
+            $query->where($query->qualifyColumn('is_read'), false);
         }
-
-        $query->orderBy('id', 'desc')->limit(static::PER_STACK_LIMIT);
-
-        if ($this->cursorId !== null) {
-            $query->where('notification_id', '<', $this->cursorId);
-        }
+        $query->select($query->qualifyColumn('*'));
 
         $stack = $query->get();
 
@@ -186,18 +192,29 @@ class NotificationsBundle
 
     private function getTotalNotificationCount(?string $type = null)
     {
-        $query = Notification::whereHas('userNotifications', function ($q) {
-            $q->hasPushDelivery()->where('user_id', $this->user->getKey());
-            if ($this->unreadOnly) {
-                $q->where('is_read', false);
-            }
-        });
+        if (!isset($this->countByType)) {
+            $query = Notification ::whereHas('userNotifications', function ($q) {
+                $q->hasPushDelivery()->where('user_id', $this->user->getKey());
+                if ($this->unreadOnly) {
+                    $q->where('is_read', false);
+                }
+            });
 
-        if ($type !== null) {
-            $query->where('notifiable_type', $type);
+            if ($this->objectType !== null) {
+                $query->where('notifiable_type', $this->objectType);
+            }
+
+            $this->countByType = $query
+                ->groupBy('notifiable_type')
+                ->selectRaw('count(*) type_count, notifiable_type')
+                ->get()
+                ->mapWithKeys(fn ($agg) => [$agg->notifiable_type => $agg->type_count])
+                ->all();
         }
 
-        return $query->count();
+        return $type === null
+            ? array_sum($this->countByType)
+            : $this->countByType[$type] ?? 0;
     }
 
     private function getStackHeads(?string $type = null)

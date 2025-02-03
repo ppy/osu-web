@@ -200,6 +200,7 @@ return [
             'daily' => 'Série quotidienne',
             'daily_streak_best' => 'Meilleure série quotidienne',
             'daily_streak_current' => 'Série quotidienne actuelle',
+            'playcount' => 'Participations totales',
             'title' => 'Défi\ndu Jour',
             'top_10p_placements' => 'Placements dans le Top 10%',
             'top_50p_placements' => 'Placements dans le Top 50%',

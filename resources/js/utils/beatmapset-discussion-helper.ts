@@ -12,17 +12,19 @@ import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import Ruleset, { rulesets } from 'interfaces/ruleset';
 import UserJson from 'interfaces/user-json';
+import WithBeatmapOwners from 'interfaces/with-beatmap-owners';
 import { route } from 'laroute';
 import { assign, padStart, sortBy } from 'lodash';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import { currentUrl } from 'utils/turbolinks';
 import { linkHtml, openBeatmapEditor } from 'utils/url';
+import { isOwner } from './beatmap-helper';
 import { getInt } from './math';
 
 interface BadgeGroupParams {
   beatmapset?: BeatmapsetJson;
-  currentBeatmap?: BeatmapJson | null;
+  currentBeatmap?: WithBeatmapOwners<BeatmapJson> | null;
   discussion: BeatmapsetDiscussionJson;
   user?: UserJson;
 }
@@ -91,7 +93,7 @@ export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: Bad
     return mapperGroup;
   }
 
-  if (currentBeatmap != null && discussion.beatmap_id === currentBeatmap.id && user.id === currentBeatmap.user_id) {
+  if (currentBeatmap != null && discussion.beatmap_id === currentBeatmap.id && isOwner(user.id, currentBeatmap)) {
     return guestGroup;
   }
 
@@ -144,12 +146,12 @@ function isNearbyDiscussion<T extends BeatmapsetDiscussionJson>(discussion: T): 
 }
 
 // sync with $defaultRulesets in app/Models/UserGroup.php
-const defaultGroupRulesets: Partial<Record<string, Readonly<Ruleset[]>>> = { nat: rulesets };
+const defaultGroupRulesets: Partial<Record<string, readonly Ruleset[]>> = { nat: rulesets };
 
 export function isUserFullNominator(user?: UserJson | null, gameMode?: Ruleset) {
   return user != null && user.groups != null && user.groups.some((group) => {
     if (gameMode != null) {
-      let groupRulesets: Readonly<Ruleset[]> = group.playmodes ?? [];
+      let groupRulesets: readonly Ruleset[] = group.playmodes ?? [];
       if (groupRulesets.length === 0) {
         groupRulesets = defaultGroupRulesets[group.identifier] ?? [];
       }
@@ -348,7 +350,7 @@ export function propsFromHref(href = '') {
     // Either accept that as fact of life or a better regexp is needed which is
     // probably rather difficult especially if we're going to support parsing IDN.
     targetUrl = new URL(href);
-  } catch (e: unknown) {
+  } catch (_error) {
     // ignore error
   }
 

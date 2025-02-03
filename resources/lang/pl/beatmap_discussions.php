@@ -66,6 +66,13 @@ return [
         'version' => 'Poziom trudności',
     ],
 
+    'refresh' => [
+        'checking' => 'Sprawdzanie nowych wiadomości...',
+        'has_updates' => 'Dyskusja zawiera nowe wiadomości, kliknij, aby odświeżyć.',
+        'no_updates' => 'Brak nowych wiadomości.',
+        'updating' => 'Aktualizowanie...',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Zaloguj się, aby odpowiedzieć',

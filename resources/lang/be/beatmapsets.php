@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Запавольвайце, гуляйце больш.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Вы сапраўды жадаеце намінаваць гэту бiтмапу?',
+            'different_nominator_warning' => '',
             'header' => 'Намінаваць бiтмапу',
             'hybrid_warning' => 'заўвага: вы можаце намінаваць толькі адзін раз, таму, калі ласка, пераканайцеся, што вы вылучаецеся для ўсіх рэжымаў гульні, якіх вы збіраецеся',
             'current_main_ruleset' => '',

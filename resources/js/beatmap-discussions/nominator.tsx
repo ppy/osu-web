@@ -14,6 +14,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
+import { isOwner } from 'utils/beatmap-helper';
 import { isUserFullNominator } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
@@ -103,7 +104,7 @@ export class Nominator extends React.Component<Props> {
     const userId = core.currentUserOrFail.id;
 
     return userId === this.beatmapset.user_id
-      || this.beatmapset.beatmaps.some((beatmap) => beatmap.deleted_at == null && userId === beatmap.user_id);
+      || this.beatmapset.beatmaps.some((beatmap) => beatmap.deleted_at == null && isOwner(userId, beatmap));
   }
 
   private get userNominatableModes() {
@@ -112,6 +113,14 @@ export class Nominator extends React.Component<Props> {
     }
 
     return this.beatmapset.current_user_attributes.nomination_modes ?? {};
+  }
+
+  private get nominatorsWillBeDifferent() {
+    if (this.props.discussionsState.previousNominatorIds == null) return false;
+
+    const previousNominatorIds = new Set(this.props.discussionsState.previousNominatorIds);
+    return [core.currentUserOrFail.id, ...this.props.discussionsState.nominators.map((user) => user.id)]
+      .some((userId) => !previousNominatorIds.has(userId));
   }
 
   constructor(props: Props) {
@@ -232,6 +241,11 @@ export class Nominator extends React.Component<Props> {
         <div className={bn}>
           <div className={`${bn}__header`}>{trans('beatmapsets.nominate.dialog.header')}</div>
           {isHybrid ? this.renderModalContentHybrid() : this.renderModalContentNormal()}
+          {this.nominatorsWillBeDifferent && (
+            <div className={`${bn}__warn`}>
+              {trans('beatmapsets.nominate.dialog.different_nominator_warning')}
+            </div>
+          )}
           <div className={`${bn}__buttons`}>
             <BigButton
               disabled={isHybrid && this.selectedModes.length < 1}

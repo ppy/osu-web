@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => 'góc thảo luận beatmap ',
     ],
+
+    'store' => [
+        'too_many' => 'Đã đạt giới hạn theo dõi.',
+    ],
 ];

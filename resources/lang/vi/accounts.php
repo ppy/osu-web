@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Ảnh đại diện',
-            'reset' => '',
+            'reset' => 'đặt lại',
             'rules' => 'Hãy chắc rằng ảnh đại diện của bạn tuân thủ :link.<br/>Điều này có nghĩa rằng ảnh phải <strong>phù hợp với mọi lứa tuổi</strong>. Ví dụ như không có nội dung khiêu gợi, thô tục hoặc gợi tưởng.',
             'rules_link' => 'những tiêu chuẩn cộng đồng',
         ],

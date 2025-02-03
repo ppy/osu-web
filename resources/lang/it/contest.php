@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'commenti',
         'hide_judged' => 'nascondi le voci valutate',
         'nav_title' => 'giudice',
         'no_current_vote' => 'non hai ancora votato.',

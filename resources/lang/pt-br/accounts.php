@@ -5,12 +5,12 @@
 
 return [
     'edit' => [
-        'title_compact' => 'configurações de conta',
+        'title_compact' => 'opções da conta',
         'username' => 'nome de usuário',
 
         'avatar' => [
             'title' => 'Avatar',
-            'reset' => '',
+            'reset' => 'reiniciar',
             'rules' => 'Por favor tenha certeza que seu avatar respeite :link.<br/>Isso significa que deve ser <strong>adequado para todas as idades</strong>. ou seja, sem nudez, palavrões ou conteúdo sugestivo.',
             'rules_link' => 'as regras da comunidade',
         ],
@@ -64,7 +64,7 @@ return [
     ],
 
     'github_user' => [
-        'info' => "Se você é um colaborador dos repositórios open-source do osu!, vincular sua conta do GitHub aqui associará suas entradas de changelog ao seu perfil do osu!. Contas do GitHub sem histórico de contribuições para o osu! não podem ser vinculadas.",
+        'info' => "Se você é um contribuidor dos repositórios de código aberto do osu!, vincular sua conta do GitHub aqui associará suas entradas ao registro de alterações com seu perfil do osu!. Contas do GitHub sem histórico de contribuições para o osu! não podem ser vinculadas.",
         'link' => 'Conectar conta do GitHub',
         'title' => 'GitHub',
         'unlink' => 'Desconectar conta do GitHub',

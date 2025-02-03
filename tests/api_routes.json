@@ -29,7 +29,7 @@
             "App\\Http\\Middleware\\RequireScopes:any",
             "Illuminate\\Auth\\Middleware\\Authenticate",
             "App\\Http\\Middleware\\VerifyUser",
-            "App\\Http\\Middleware\\ThrottleRequests:60,10"
+            "App\\Http\\Middleware\\ThrottleRequests:3,5"
         ],
         "scopes": [
             "any"
@@ -174,6 +174,32 @@
         "scopes": []
     },
     {
+        "uri": "api/v2/beatmaps/{beatmap}/tags",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\BeatmapTagsController@store",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/beatmaps/{beatmap}/tags/{tag}",
+        "methods": [
+            "DELETE"
+        ],
+        "controller": "App\\Http\\Controllers\\BeatmapTagsController@destroy",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate"
+        ],
+        "scopes": []
+    },
+    {
         "uri": "api/v2/beatmaps",
         "methods": [
             "GET",
@@ -294,6 +320,48 @@
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",
             "Illuminate\\Auth\\Middleware\\Authenticate"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/blocks",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\BlocksController@index",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/blocks",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\BlocksController@store",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate",
+            "App\\Http\\Middleware\\VerifyUser"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/blocks/{block}",
+        "methods": [
+            "DELETE"
+        ],
+        "controller": "App\\Http\\Controllers\\BlocksController@destroy",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate",
+            "App\\Http\\Middleware\\VerifyUser"
         ],
         "scopes": []
     },
@@ -921,6 +989,19 @@
         ]
     },
     {
+        "uri": "api/v2/rooms/{room}",
+        "methods": [
+            "DELETE"
+        ],
+        "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@destroy",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate"
+        ],
+        "scopes": []
+    },
+    {
         "uri": "api/v2/seasonal-backgrounds",
         "methods": [
             "GET",
@@ -944,7 +1025,6 @@
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",
             "App\\Http\\Middleware\\ThrottleRequests:10,1,api-scores-download:",
-            "Illuminate\\Auth\\Middleware\\Authenticate",
             "App\\Http\\Middleware\\RequireScopes:public"
         ],
         "scopes": [
@@ -962,7 +1042,6 @@
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",
             "App\\Http\\Middleware\\ThrottleRequests:10,1,api-scores-download:",
-            "Illuminate\\Auth\\Middleware\\Authenticate",
             "App\\Http\\Middleware\\RequireScopes:public"
         ],
         "scopes": [
@@ -976,6 +1055,22 @@
             "HEAD"
         ],
         "controller": "App\\Http\\Controllers\\ScoresController@show",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/scores",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\ScoresController@index",
         "middlewares": [
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",
@@ -1049,6 +1144,34 @@
         "scopes": [
             "friends.read"
         ]
+    },
+    {
+        "uri": "api/v2/friends",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\FriendsController@store",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate",
+            "App\\Http\\Middleware\\VerifyUser"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/friends/{friend}",
+        "methods": [
+            "DELETE"
+        ],
+        "controller": "App\\Http\\Controllers\\FriendsController@destroy",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate",
+            "App\\Http\\Middleware\\VerifyUser"
+        ],
+        "scopes": []
     },
     {
         "uri": "api/v2/me/download-quota-check",
@@ -1214,6 +1337,23 @@
         ]
     },
     {
+        "uri": "api/v2/users/lookup",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\Users\\LookupController@index",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
         "uri": "api/v2/users/{user}/kudosu",
         "methods": [
             "GET",
@@ -1321,6 +1461,22 @@
             "App\\Http\\Middleware\\RequireScopes"
         ],
         "scopes": []
+    },
+    {
+        "uri": "api/v2/tags",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\TagsController@index",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/beatmapsets/{beatmapset}/download",

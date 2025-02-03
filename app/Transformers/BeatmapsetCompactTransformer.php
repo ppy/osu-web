@@ -40,6 +40,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         'ratings',
         'recent_favourites',
         'related_users',
+        'related_tags',
         'user',
     ];
 
@@ -253,7 +254,9 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         $userIds = new Set([$beatmapset->user_id]);
         switch ($this->relatedUsersType) {
             case 'discussions':
-                $userIds->add(...$beatmapset->allBeatmaps->pluck('user_id'));
+                $beatmaps = $beatmapset->allBeatmaps;
+                $userIds->add(...$beatmaps->pluck('user_id'));
+                $userIds->add(...$beatmaps->flatMap->beatmapOwners->pluck('user_id'));
 
                 foreach ($beatmapset->beatmapDiscussions as $discussion) {
                     if (!priv_check('BeatmapDiscussionShow', $discussion)->can()) {
@@ -285,7 +288,9 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
                 }
                 break;
             case 'show':
-                $userIds->add(...$this->beatmaps($beatmapset)->pluck('user_id'));
+                $beatmaps = $this->beatmaps($beatmapset);
+                $userIds->add(...$beatmaps->pluck('user_id'));
+                $userIds->add(...$beatmaps->flatMap->beatmapOwners->pluck('user_id'));
                 $userIds->add(...$beatmapset->beatmapsetNominationsCurrent->pluck('user_id'));
                 break;
         }
@@ -293,6 +298,24 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         $users = User::with('userGroups')->whereIn('user_id', $userIds->toArray())->get();
 
         return $this->collection($users, new UserCompactTransformer());
+    }
+
+    public function includeRelatedTags(Beatmapset $beatmapset)
+    {
+        $beatmaps = $this->beatmaps($beatmapset);
+        $tagIdSet = new Set($beatmaps->flatMap->topTagIds()->pluck('tag_id'));
+
+        $cachedTags = app('tags');
+        $json = [];
+
+        foreach ($tagIdSet as $tagId) {
+            $tag = $cachedTags->get($tagId);
+            if ($tag !== null) {
+                $json[] = $tag;
+            }
+        }
+
+        return $this->primitive($json);
     }
 
     private function beatmaps(Beatmapset $beatmapset, ?Fractal\ParamBag $params = null): EloquentCollection

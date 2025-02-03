@@ -9,6 +9,12 @@ return [
         'title' => 'Країни',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Складність',
+        'top_10p' => 'Для досягнення топ 10%',
+        'top_50p' => 'Для досягнення топ 50%',
+    ],
+
     'filter' => [
         'title' => 'Показати',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'чарти',
         'country' => 'країни',
+        'daily_challenge' => 'щоденний виклик',
         'kudosu' => 'кудосу',
         'multiplayer' => 'мультиплеєр',
         'performance' => 'продуктивність',

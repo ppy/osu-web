@@ -3,7 +3,6 @@
 
 import Captcha from 'core/captcha';
 import UserJson from 'interfaces/user-json';
-import * as Cookies from 'js-cookie';
 import core from 'osu-core-singleton';
 import { xhrErrorMessage } from 'utils/ajax';
 import { createClickCallback } from 'utils/html';
@@ -21,6 +20,7 @@ interface CaptchaTriggeredResponse {
 }
 
 interface LoginSuccessJson {
+  csrf_token: string;
   header: string;
   header_popup: string;
   user: UserJson;
@@ -46,7 +46,7 @@ export default class UserLogin {
       .on('click', '.js-login-required--click', this.showToContinue)
       .on('ajax:before', '.js-login-required--click', () => core.currentUser != null)
       .on('ajax:error', this.onError)
-      .on('turbolinks:load', this.showOnLoad);
+      .on('turbo:load', this.showOnLoad);
     $.subscribe('nav:popup:hidden', this.reset);
   }
 
@@ -121,7 +121,7 @@ export default class UserLogin {
 
     this.reset();
 
-    this.refreshToken();
+    this.refreshToken(data.csrf_token);
 
     $.publish('user:update', data.user);
 
@@ -139,8 +139,7 @@ export default class UserLogin {
     this.showOnError(xhr, createClickCallback(e.target));
   };
 
-  private readonly refreshToken = () => {
-    const token = Cookies.get('XSRF-TOKEN') ?? null;
+  private readonly refreshToken = (token: string) => {
     $('[name="_token"]').attr('value', token);
     $('[name="csrf-token"]').attr('content', token);
   };

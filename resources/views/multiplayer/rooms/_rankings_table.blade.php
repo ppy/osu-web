@@ -19,18 +19,32 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($scores as $index => $score)
+        @foreach ([$userScore, ...$scores] as $index => $score)
+            @if ($score === null)
+                @continue
+            @endif
+            @php
+                $rank = $loop->first
+                    ? $score->userRank()
+                    // -1 due to userScore being prepended
+                    : $scores->firstItem() + $index - 1;
+            @endphp
             <tr class="ranking-page-table__row{{$score->user->isActive() ? '' : ' ranking-page-table__row--inactive'}}">
                 <td class="ranking-page-table__column ranking-page-table__column--rank">
-                    #{{ $scores->firstItem() + $index }}
+                    #{{ $rank }}
                 </td>
                 <td class="ranking-page-table__column">
                     <div class="ranking-page-table__user-link">
-                        @include('objects._flag_country', [
-                            'countryName' => $score->user->country->name,
-                            'countryCode' => $score->user->country->acronym,
-                            'modifiers' => ['medium'],
-                        ])
+                        <span class="ranking-page-table__flags">
+                            @include('objects._flag_country', [
+                                'country' => $score->user->country,
+                            ])
+                            @if (($team = $score->user->team) !== null)
+                                <a class="u-contents" href="{{ route('teams.show', $team) }}">
+                                    @include('objects._flag_team', compact('team'))
+                                </a>
+                            @endif
+                        </span>
                         <a
                             href="{{ route('users.show', ['user' => $score->user_id, 'mode' => $mode ?? null]) }}"
                             class="ranking-page-table__user-link-text js-usercard"
@@ -42,15 +56,20 @@
                     </div>
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                    {{ format_percentage($score->averageAccuracy() * 100) }}
+                    {{ format_percentage($score->averageAccuracy()) }}
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                     {{ i18n_number_format($score->attempts) }}
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--focused">
-                    {!! suffixed_number_format_tag($score->total_score) !!}
+                    {!! i18n_number_format($score->total_score) !!}
                 </td>
             </tr>
+            @if ($loop->first)
+                <tr>
+                    <td colspan="5">&nbsp;</td>
+                </tr>
+            @endif
         @endforeach
     </tbody>
 </table>

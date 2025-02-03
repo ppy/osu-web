@@ -5,7 +5,7 @@
 
 return [
     'all_read' => 'Lette tutte le notifiche!',
-    'delete' => 'Elimina :type',
+    'delete' => 'Svuota ":type"',
     'loading' => 'Caricamento notifiche non lette...',
     'mark_read' => 'Segna :type come letto',
     'none' => 'Nessuna notifica',
@@ -14,13 +14,13 @@ return [
     'verifying' => 'Verifica la sessione per visualizzare le notifiche',
 
     'action_type' => [
-        '_' => '"tutto"',
-        'beatmapset' => '"beatmap"',
-        'build' => '"versioni"',
-        'channel' => '"chat"',
-        'forum_topic' => '"forum"',
-        'news_post' => '"notizie"',
-        'user' => '"profilo"',
+        '_' => 'tutto',
+        'beatmapset' => 'beatmap',
+        'build' => 'versioni',
+        'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'notizie',
+        'user' => 'profilo',
     ],
 
     'filters' => [

@@ -22,7 +22,7 @@ export default class ConversationPanel extends React.Component<Record<string, ne
   constructor(props: Record<string, never>) {
     super(props);
 
-    document.addEventListener('turbolinks:before-cache', this.handleBeforeCache);
+    document.addEventListener('turbo:before-cache', this.handleBeforeCache);
 
     this.disposer = autorun(() => {
       // Don't set title if this is on the document that is going away.
@@ -40,7 +40,7 @@ export default class ConversationPanel extends React.Component<Record<string, ne
 
   componentWillUnmount() {
     this.disposer();
-    document.removeEventListener('turbolinks:before-cache', this.handleBeforeCache);
+    document.removeEventListener('turbo:before-cache', this.handleBeforeCache);
 
     if (!core.dataStore.chatState.isChatMounted) {
       core.browserTitleWithNotificationCount.title = null;

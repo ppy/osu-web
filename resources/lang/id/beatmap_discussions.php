@@ -27,7 +27,7 @@ return [
             'mode' => 'Mode beatmap',
             'only_unresolved' => 'Hanya tampilkan topik diskusi yang belum terjawab',
             'show_review_embeds' => 'Tampilkan pos ulasan',
-            'types' => 'Tipe pesan',
+            'types' => 'Jenis pesan',
             'username' => 'Nama Pengguna',
 
             'beatmapset_status' => [
@@ -66,6 +66,13 @@ return [
         'version' => 'Tingkat Kesulitan',
     ],
 
+    'refresh' => [
+        'checking' => 'Memeriksa pembaruan...',
+        'has_updates' => 'Halaman diskusi ini memiliki pembaruan. Klik untuk memuat ulang halaman.',
+        'no_updates' => 'Tidak ada pembaruan.',
+        'updating' => 'Memperbarui...',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Masuk untuk Menanggapi',
@@ -85,7 +92,7 @@ return [
             'invalid_discussion_type' => 'tipe diskusi tidak valid',
             'minimum_issues' => 'kajian harus mengandung setidaknya :count isu|kajian harus mengandung setidaknya :count isu',
             'missing_text' => 'blok tidak mengandung teks',
-            'too_many_blocks' => 'kajian hanya dapat mengandung maksimal :count paragraf/isu|kajian hanya dapat mengandung maksimal :count paragraf/isu',
+            'too_many_blocks' => 'kajian hanya dapat mengandung :count paragraf/isu|kajian hanya dapat mengandung hingga :count paragraf/isu',
         ],
     ],
 

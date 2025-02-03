@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Más despacio, juega un poco.',
+        'no_mirrors' => 'No hay servidores de descarga disponibles.',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => '¿Estás seguro de que quieres nominar este mapa?',
+            'different_nominator_warning' => 'Calificar este mapa con diferentes nominadores restablecerá su posición en la cola de calificación.',
             'header' => 'Nominar mapa',
             'hybrid_warning' => 'nota: solo puedes nominar una vez, así que asegúrate de que estás nominando para todos los modos de juego que desees',
             'current_main_ruleset' => 'El modo de juego principal es: :ruleset',

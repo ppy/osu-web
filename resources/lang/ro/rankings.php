@@ -9,6 +9,12 @@ return [
         'title' => 'Țară',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Dificultate',
+        'top_10p' => 'Scor Top 10%',
+        'top_50p' => 'Scor Top 50%',
+    ],
+
     'filter' => [
         'title' => 'Afișează',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'promovări',
         'country' => 'național',
+        'daily_challenge' => 'provocare zilnică',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'performance' => 'performanță',

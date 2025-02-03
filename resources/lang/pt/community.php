@@ -20,7 +20,7 @@ return [
             ],
             'infra' => [
                 'title' => 'Infraestrutura do servidor',
-                'description' => 'As contribuições vão para os servidores que correm o sítio web, serviços multijogador, tabelas de líderes online, etc.',
+                'description' => 'As contribuições vão para os servidores que executam o sítio web, serviços multijogadores, classificações online, etc.',
             ],
             'featured-artists' => [
                 'title' => 'Artistas destacados',
@@ -51,7 +51,7 @@ return [
 
             'friend_ranking' => [
                 'title' => 'Classificação de amigos',
-                'description' => "Vê como te comparas contra os teus amigos numa tabela de classificações dum beatmap, dentro do jogo como também no sítio web.",
+                'description' => "Vê como te compara contra os teus amigos numa tabela de classificações do beatmap, no jogo como também no sítio web.",
             ],
 
             'country_ranking' => [
@@ -132,7 +132,7 @@ return [
                 'description' => 'O número máximo de beatmaps não classificados que podes possuir é calculado dum valor base mais um bónus adicional para cada beatmap classificado que atualmente possuas (até a um certo limite).<br/><br/>Normalmente é 4 mais 1 por cada beatmap classificado (até 2). Com a osu!supporter, isto aumenta para 8 mais 1 por cada beatmap classificado (até 12).',
             ],
             'friend_filtering' => [
-                'title' => 'Tabela de classificações de amigos',
+                'title' => 'Classificações de amigos',
                 'description' => 'Compete com os teus amigos e vê como te classificas contra eles!',
             ],
 

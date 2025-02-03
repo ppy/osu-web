@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Descarcă mai puțin, joacă mai mult.',
+        'no_mirrors' => 'Nu există servere de descărcare disponibile.',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Ești sigur că vrei să nominalizezi acest beatmap?',
+            'different_nominator_warning' => 'Calificarea acestui beatmap cu nominalizatori diferiți va reseta poziția beatmap-ului în coadă pentru calificare.',
             'header' => 'Nominalizează acest Beatmap',
             'hybrid_warning' => 'observație: poți nominaliza o singură dată, așa că te rugăm să te asiguri că nominalizezi pentru toate modurile de joc pentru care intenționezi să nominalizezi',
             'current_main_ruleset' => 'Ruleset-ul principal este :ruleset momentan',

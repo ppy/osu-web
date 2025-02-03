@@ -43,8 +43,8 @@ const sectionToUrlType = {
 } as const;
 
 // #region lazy loaded extra pages
-const beatmapsetsExtraPageKeys = ['favourite', 'graveyard', 'guest', 'loved', 'nominated', 'pending', 'ranked'] as const;
-type BeatmapsetsJson = Record<typeof beatmapsetsExtraPageKeys[number], PageSectionJson<BeatmapsetExtendedJson>>;
+type BeatmapsetsExtraPageKeys = 'favourite' | 'graveyard' | 'guest' | 'loved' | 'nominated' | 'pending' | 'ranked';
+type BeatmapsetsJson = Record<BeatmapsetsExtraPageKeys, PageSectionJson<BeatmapsetExtendedJson>>;
 
 interface HistoricalJson {
   beatmap_playcounts: PageSectionJson<BeatmapPlaycountJson>;
@@ -52,8 +52,9 @@ interface HistoricalJson {
   recent: PageSectionJson<SoloScoreJsonForUser>;
   replays_watched_counts: UserReplaysWatchedCountJson[];
 }
-const topScoresKeys = ['best', 'firsts', 'pinned'] as const;
-type TopScoresJson = Record<typeof topScoresKeys[number], PageSectionJson<SoloScoreJsonForUser>>;
+
+type TopScoresKeys = 'best' | 'firsts' | 'pinned';
+type TopScoresJson = Record<TopScoresKeys, PageSectionJson<SoloScoreJsonForUser>>;
 // #endregion
 
 export function validPage(page: unknown) {
@@ -169,7 +170,7 @@ export default class Controller {
     makeObservable(this);
 
     $.subscribe('score:pin', this.onScorePinUpdate);
-    $(document).on('turbolinks:before-cache', this.saveState);
+    $(document).on('turbo:before-cache', this.saveState);
   }
 
   @action
@@ -409,7 +410,7 @@ export default class Controller {
     Object.values(this.xhr).forEach((xhr) => xhr?.abort());
     this.debouncedSetDisplayCoverUrl.cancel();
     $.unsubscribe('score:pin', this.onScorePinUpdate);
-    $(document).off('turbolinks:before-cache', this.saveState);
+    $(document).off('turbo:before-cache', this.saveState);
     this.saveState();
   }
 

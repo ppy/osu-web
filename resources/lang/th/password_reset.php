@@ -37,7 +37,7 @@ return [
         'username' => 'กรอกอีเมล หรือชื่อผู้ใช้',
 
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "บัญชีของคุณไม่ได้ใช้งานมานาน หากต้องการรักษาความปลอดภัยของบัญชีคุณ โปรดรีเซ็ตรหัสผ่านของคุณ",
         ],
         'support' => [
             '_' => '

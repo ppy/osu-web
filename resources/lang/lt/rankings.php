@@ -9,6 +9,12 @@ return [
         'title' => 'Šalis',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'top_10p' => '',
+        'top_50p' => '',
+    ],
+
     'filter' => [
         'title' => 'Rodyti',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'pasižymėje',
         'country' => 'Šalimis',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'žaidimas tinkle',
         'performance' => 'pp',

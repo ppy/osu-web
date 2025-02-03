@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'reset' => '',
+            'reset' => 'nollaa',
             'rules' => 'Pidäthän huolen, että profiilikuvasi noudattaa :link.<br/>Tämä tarkoittaa sitä, että sen on <strong>sovittava kaikenikäisille</strong>, eli ei alastomuutta tai muita hävyttömyyksiä.',
             'rules_link' => 'yhteisön sääntöjä',
         ],
@@ -26,7 +26,7 @@ return [
         ],
 
         'legacy_api' => [
-            'api' => 'rajapinta',
+            'api' => 'api',
             'irc' => 'irc',
             'title' => 'Vanha rajapinta',
         ],
@@ -64,14 +64,14 @@ return [
     ],
 
     'github_user' => [
-        'info' => "Jos osallistut osu!n kehitykseen, GitHub-tilin linkittäminen tässä yhdistää muutoslokin merkintäsi osu!-profiiliisi. GitHub-tilit, joilla ei ole osallistumishistoriaa osu!un, ei voida linkittää.",
+        'info' => "Jos osallistut osu!n kehitykseen, GitHub-tilin linkittäminen tässä yhdistää muutoslokin merkintäsi osu!-profiiliisi. GitHub-tilit, joilla ei ole osallistumishistoriaa osu!:n kanssa, ei voida linkittää.",
         'link' => 'Linkitä GitHub-tili',
         'title' => 'GitHub',
         'unlink' => 'Poista GitHub-tilin linkitys',
 
         'error' => [
             'already_linked' => 'Tämä GitHub-tili on jo linkitetty toiselle käyttäjälle.',
-            'no_contribution' => 'GitHub-tiliä ei voi linkittää, jos sillä ei ole muutoshistoriaa osu!lle.',
+            'no_contribution' => 'GitHub-tiliä ei voi linkittää, jos sillä ei ole osallistumishistoriaa osu!:n tietovarastoihin.',
             'unverified_email' => 'Ole hyvä ja vahvista ensisijainen sähköpostiosoitteesi GitHubissa ja yritä sitten yhdistää tilisi uudelleen.',
         ],
     ],

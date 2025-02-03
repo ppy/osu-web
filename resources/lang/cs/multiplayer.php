@@ -19,6 +19,7 @@ return [
 
         'errors' => [
             'duration_too_long' => 'Doba je příliě dlouhá.',
+            'name_too_long' => '',
         ],
 
         'status' => [

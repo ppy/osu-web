@@ -6,6 +6,7 @@
 namespace App\Transformers;
 
 use App\Models\UserRelation;
+use League\Fractal\ParamBag;
 
 class UserRelationTransformer extends TransformerAbstract
 {
@@ -23,8 +24,15 @@ class UserRelationTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeTarget(UserRelation $userRelation)
+    public function includeTarget(UserRelation $userRelation, ?ParamBag $params = null)
     {
-        return $this->item($userRelation->target, new UserCompactTransformer());
+        $transformer = new UserCompactTransformer();
+
+        $rulesetName = $params?->get('ruleset')[0];
+        if ($rulesetName !== null) {
+            $transformer->setMode($rulesetName);
+        }
+
+        return $this->item($userRelation->target, $transformer);
     }
 }

@@ -22,6 +22,7 @@ return [
         'admin' => 'Администратор',
         'authorise' => 'Авторизовать',
         'authorising' => 'Авторизация...',
+        'back' => '',
         'back_to_previous' => 'Вернуться',
         'back_to_top' => 'В начало',
         'cancel' => 'Отмена',

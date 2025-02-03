@@ -35,20 +35,9 @@ interface Window {
 }
 // #endregion
 
-// #region interfaces for using process.env
-interface Process {
-  env: ProcessEnv;
-}
-
-interface ProcessEnv {
-  [key: string]: string | undefined;
-}
-
-declare const process: Process;
+// #region defined through webpack DefinePlugin
+declare const docsUrl: string;
 // #endregion
-
-// TODO: Turbolinks 5.3 is Typescript, so this should be updated then...or it could be never released.
-declare const Turbolinks: import('turbolinks').default;
 
 // our helpers
 declare const tooltipDefault: import('legacy-modules').TooltipDefault;

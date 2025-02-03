@@ -140,7 +140,7 @@ return [
         'invalid_email' => "无效的邮箱地址。",
         'invalid_twitter' => 'Twitter 用户名无效',
         'too_short' => '新密码太短。',
-        'unknown_duplicate' => '已使用的用户名或邮箱。',
+        'unknown_duplicate' => '用户名或邮箱已被使用。',
         'username_available_in' => '该用户名将在 :duration 后可用。',
         'username_available_soon' => '该用户名即将可用！',
         'username_invalid_characters' => '用户名中包含非法字符。',
@@ -169,7 +169,7 @@ return [
                 '_' => '你必须 :link 才能更改用户名！',
                 'link_text' => '支持 osu!',
             ],
-            'username_is_same' => '这就是你现在的用户名，大笨蛋！',
+            'username_is_same' => '这就是你现在的玩家名，大笨蛋！',
         ],
     ],
 

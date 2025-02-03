@@ -4,6 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Äänen päivitys ei onnistunut',
@@ -25,14 +29,14 @@ return [
         'message_placeholder_silenced' => "Keskusteluun ei voi osallistua mykistettynä.",
         'message_type_select' => 'Valitse kommentin tyyppi',
         'reply_notice' => 'Vastaa painamalla enter-näppäintä.',
-        'reply_resolve_notice' => '',
+        'reply_resolve_notice' => 'Paina enteriä vastataksesi. Paina ctrl+enteriä vastataksesi ja ratkaistaksesi.',
         'reply_placeholder' => 'Kirjoita vastauksesi tähän',
         'require-login' => 'Kirjaudu sisään lähettääksesi viestejä tai vastauksia',
         'resolved' => 'Ratkaistu',
         'restore' => 'palauta',
         'show_deleted' => 'Näytä poistetut',
         'title' => 'Keskustelut',
-        'unresolved_count' => '',
+        'unresolved_count' => ':count_delimited ratkaisematon ongelma|:count_delimited ratkaisematonta ongelmaa',
 
         'collapse' => [
             'all-collapse' => 'Sulje kaikki',
@@ -314,7 +318,7 @@ return [
         'metal' => 'Metalli',
         'classical' => 'Klassinen',
         'folk' => 'Kansanmusiikki',
-        'jazz' => 'Jazz',
+        'jazz' => 'Jatsi',
     ],
     'language' => [
         'any' => 'Kaikki',
@@ -331,7 +335,7 @@ return [
         'polish' => 'puola',
         'instrumental' => 'Instrumentaalinen',
         'other' => 'Muu',
-        'unspecified' => 'Täsmentämätön',
+        'unspecified' => 'Määrittelemätön',
     ],
 
     'nsfw' => [
@@ -360,8 +364,8 @@ return [
         'D' => '',
     ],
     'panel' => [
-        'playcount' => 'Pelikertoja: :count',
-        'favourites' => 'Suosikkeja: :count',
+        'playcount' => ':count Pelikertaa',
+        'favourites' => ':count Suosikkia',
     ],
     'variant' => [
         'mania' => [

@@ -9,6 +9,12 @@ return [
         'title' => 'Ülke',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Zorluk',
+        'top_10p' => '',
+        'top_50p' => '',
+    ],
+
     'filter' => [
         'title' => 'Göster',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'Öne Çıkanlar',
         'country' => 'Ülke',
+        'daily_challenge' => 'günlük meydan okuma',
         'kudosu' => 'kudosu',
         'multiplayer' => 'çok oyunculu',
         'performance' => 'Performans',

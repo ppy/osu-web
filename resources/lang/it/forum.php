@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Vuoi veramente ripristinare il topic?',
         'deleted' => 'discussione eliminata',
         'go_to_latest' => 'guarda l\'ultimo post',
+        'go_to_unread' => 'vedi ultimo post non letto',
         'has_replied' => 'Hai risposto a questo topic',
         'in_forum' => 'in :forum',
         'latest_post' => ':when da :user',

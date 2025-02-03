@@ -9,6 +9,12 @@ return [
         'title' => '国別',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '難易度',
+        'top_10p' => '',
+        'top_50p' => '',
+    ],
+
     'filter' => [
         'title' => '表示',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'スポットライト',
         'country' => '国別',
+        'daily_challenge' => 'デイリーチャレンジ',
         'kudosu' => 'kudosu',
         'multiplayer' => 'マルチプレイ',
         'performance' => 'パフォーマンス',

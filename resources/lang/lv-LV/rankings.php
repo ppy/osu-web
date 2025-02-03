@@ -9,6 +9,12 @@ return [
         'title' => 'Valsts',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'top_10p' => '',
+        'top_50p' => '',
+    ],
+
     'filter' => [
         'title' => 'Rādīt',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'Uzmanības centrā',
         'country' => 'Valsts',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'Daudzspēlētāju režīms',
         'performance' => 'Veiktspēja',

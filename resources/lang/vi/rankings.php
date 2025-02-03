@@ -9,6 +9,12 @@ return [
         'title' => 'Quốc gia',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Độ khó',
+        'top_10p' => 'Điểm thuộc top 10%',
+        'top_50p' => 'Điểm thuộc top 50%',
+    ],
+
     'filter' => [
         'title' => 'Hiển thị',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'tiêu điểm',
         'country' => 'quốc gia',
+        'daily_challenge' => 'thử thách hằng ngày',
         'kudosu' => 'kudosu',
         'multiplayer' => 'nhiều người chơi',
         'performance' => 'thành tích',

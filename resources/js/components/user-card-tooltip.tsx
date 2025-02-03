@@ -3,8 +3,8 @@
 
 import Reportable from 'interfaces/reportable';
 import UserJson from 'interfaces/user-json';
-import { route } from 'laroute';
 import * as _ from 'lodash';
+import { userNotFoundJson } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { unmountComponentAtNode } from 'react-dom';
@@ -12,6 +12,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { activeKeyDidChange as contextActiveKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
 import { TooltipContext } from 'tooltip-context';
 import { presence } from 'utils/string';
+import { apiLookupUsers } from 'utils/user';
 import { UserCard } from './user-card';
 
 interface Props {
@@ -204,7 +205,7 @@ export function startListening() {
   $(document).on('mouseover', '.js-usercard', onMouseOver);
   $(document).on('mouseenter', '.js-react--user-card-tooltip', onMouseEnter);
   $(document).on('mouseleave', '.js-react--user-card-tooltip', onMouseLeave);
-  $(document).on('turbolinks:before-cache', onBeforeCache);
+  $(document).on('turbo:before-cache', onBeforeCache);
   $.subscribe('user-card:remove.tooltip', onRemoveUserCard);
 }
 
@@ -224,19 +225,14 @@ export class UserCardTooltip extends React.PureComponent<Props, State> {
   }
 
   componentDidMount() {
-    this.getUser().then((user) => {
-      this.setState({ user });
-    });
-  }
-
-  getUser() {
-    const url = route('users.card', { user: this.props.lookup });
-
-    return $.ajax({
-      dataType: 'json',
-      type: 'GET',
-      url,
-    }) as JQuery.jqXHR<UserJson>;
+    const currentUser = core.currentUser;
+    if (currentUser != null && this.props.lookup === currentUser.id.toString()) {
+      this.setState({ user: currentUser });
+    } else {
+      apiLookupUsers([this.props.lookup]).done((response) => {
+        this.setState({ user: response.users[0] ?? userNotFoundJson });
+      });
+    }
   }
 
   render() {

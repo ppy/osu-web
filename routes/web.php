@@ -6,7 +6,7 @@
 use App\Http\Middleware\ThrottleRequests;
 
 Route::get('wiki/images/{path}', 'WikiController@image')->name('wiki.image')->where('path', '.+');
-Route::get('beatmapsets/discussions/media-url', 'BeatmapDiscussionsController@mediaUrl')->name('beatmapsets.discussions.media-url');
+Route::get('media-url', 'ProxyMediaController')->name('media-url');
 
 Route::group(['middleware' => ['web']], function () {
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
@@ -41,10 +41,9 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
 
         Route::group(['as' => 'beatmaps.', 'prefix' => '{beatmap}'], function () {
-            Route::get('scores/users/{user}', 'BeatmapsController@userScore');
             Route::get('scores', 'BeatmapsController@scores')->name('scores');
             Route::get('solo-scores', 'BeatmapsController@soloScores')->name('solo-scores');
-            Route::put('update-owner', 'BeatmapsController@updateOwner')->name('update-owner');
+            Route::post('update-owner', 'BeatmapsController@updateOwner')->name('update-owner');
         });
     });
 
@@ -95,6 +94,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('beatmapsets/search', 'BeatmapsetsController@search')->name('beatmapsets.search');
     Route::get('beatmapsets/{beatmapset}/discussion/{beatmap?}/{mode?}/{filter?}', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');
     Route::post('beatmapsets/{beatmapset}/discussion/review', 'BeatmapDiscussionsController@review')->name('beatmapsets.discussion.review');
+    Route::get('beatmapsets/{beatmapset}/discussion-last-update', 'BeatmapsetsController@discussionLastUpdate')->name('beatmapsets.discussion-last-update');
     Route::post('beatmapsets/{beatmapset}/discussion-lock', 'BeatmapsetsController@discussionLock')->name('beatmapsets.discussion-lock');
     Route::post('beatmapsets/{beatmapset}/discussion-unlock', 'BeatmapsetsController@discussionUnlock')->name('beatmapsets.discussion-unlock');
     Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download')->name('beatmapsets.download');
@@ -187,12 +187,12 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('updates', 'ChatController@updates')->name('updates');
             Route::group(['as' => 'channels.', 'prefix' => 'channels'], function () {
                 Route::apiResource('{channel}/messages', 'Channels\MessagesController', ['only' => ['index', 'store']]);
+                Route::apiResource('{channel}/users', 'Channels\UsersController', ['only' => ['index']]);
                 Route::put('{channel}/users/{user}', 'ChannelsController@join')->name('join');
                 Route::delete('{channel}/users/{user}', 'ChannelsController@part')->name('part');
                 Route::put('{channel}/mark-as-read/{message}', 'ChannelsController@markAsRead')->name('mark-as-read');
             });
             Route::apiResource('channels', 'ChannelsController', ['only' => ['index', 'show', 'store']]);
-            Route::apiResource('users', 'UsersController', ['only' => ['index']]);
         });
         Route::resource('chat', 'ChatController', ['only' => ['index']]);
     });
@@ -282,6 +282,7 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::get('rankings/kudosu', 'RankingController@kudosu')->name('rankings.kudosu');
+    Route::resource('rankings/daily-challenge', 'Ranking\DailyChallengeController', ['only' => ['index', 'show']]);
     Route::get('rankings/{mode?}/{type?}', 'RankingController@index')->name('rankings');
 
     Route::resource('reports', 'ReportsController', ['only' => ['store']]);
@@ -295,14 +296,19 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('user-cover-presets/batch-activate', 'UserCoverPresetsController@batchActivate')->name('user-cover-presets.batch-activate');
     Route::resource('user-cover-presets', 'UserCoverPresetsController', ['only' => ['index', 'store', 'update']]);
 
+    Route::group(['as' => 'teams.', 'prefix' => 'teams/{team}'], function () {
+        Route::post('part', 'TeamsController@part')->name('part');
+        Route::resource('members', 'Teams\MembersController', ['only' => ['destroy', 'index']]);
+    });
+    Route::resource('teams', 'TeamsController', ['only' => ['destroy', 'edit', 'show', 'update']]);
+
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
-    Route::post('users/check-username-exists', 'UsersController@checkUsernameExists')->name('users.check-username-exists');
+    Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');
     Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled');
     Route::get('users/create', 'UsersController@create')->name('users.create');
     Route::post('users/store-web', 'UsersController@storeWeb')->name('users.store-web');
 
     Route::group(['as' => 'users.', 'prefix' => 'users/{user}'], function () {
-        Route::get('card', 'UsersController@card')->name('card');
         Route::get('extra-pages/{page}', 'UsersController@extraPages')->name('extra-page');
         Route::put('page', 'UsersController@updatePage')->name('page');
         Route::group(['namespace' => 'Users'], function () {
@@ -361,7 +367,6 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('approved', 'PaypalController@approved')->name('approved');
             Route::get('declined', 'PaypalController@declined')->name('declined');
             Route::post('create', 'PaypalController@create')->name('create');
-            Route::get('completed', 'PaypalController@completed')->name('completed');
             Route::post('ipn', 'PaypalController@ipn')->name('ipn');
         });
 
@@ -425,6 +430,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
                         Route::put('scores/{token}', 'ScoresController@store')->name('scores.store');
                     });
                 });
+
+                Route::apiResource('tags', 'BeatmapTagsController', ['only' => ['store', 'destroy']]);
             });
         });
 
@@ -446,6 +453,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
                 Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
             });
         });
+
+        Route::resource('blocks', 'BlocksController', ['only' => ['destroy', 'index', 'store']]);
 
         Route::apiResource('comments', 'CommentsController');
         Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
@@ -491,7 +500,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             });
         });
 
-        Route::apiResource('rooms', 'Multiplayer\RoomsController', ['only' => ['index', 'show', 'store']]);
+        Route::apiResource('rooms', 'Multiplayer\RoomsController', ['only' => ['index', 'show', 'store', 'destroy']]);
 
         Route::apiResource('seasonal-backgrounds', 'SeasonalBackgroundsController', ['only' => ['index']]);
 
@@ -500,6 +509,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download-legacy');
 
             Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
+
+            Route::get('/', 'ScoresController@index');
         });
 
         // Beatmapsets
@@ -511,8 +522,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['show']]);
 
         // Friends
-        //  GET /api/v2/friends
-        Route::resource('friends', 'FriendsController', ['only' => ['index']]);
+        Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
 
         //  GET /api/v2/me/download-quota-check
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
@@ -536,6 +546,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         Route::get('search', 'HomeController@search');
 
+        Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');
         //  GET /api/v2/users/:user_id/kudosu
         Route::get('users/{user}/kudosu', 'UsersController@kudosu');
         //  GET /api/v2/users/:user_id/scores/:type [best, firsts, recent]
@@ -549,6 +560,9 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::resource('users', 'UsersController', ['only' => ['index']]);
 
         Route::get('wiki/{locale}/{path}', 'WikiController@show')->name('wiki.show')->where('path', '.+');
+
+        // Tags
+        Route::apiResource('tags', 'TagsController', ['only' => ['index']]);
     });
 });
 
@@ -563,7 +577,6 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     Route::post('generate-notification', 'LegacyInterOpController@generateNotification');
     Route::post('index-beatmapset/{beatmapset}', 'LegacyInterOpController@indexBeatmapset');
     Route::post('/refresh-beatmapset-cache/{beatmapset}', 'LegacyInterOpController@refreshBeatmapsetCache');
-    Route::post('/user-best-scores-check/{user}', 'LegacyInterOpController@userBestScoresCheck');
     Route::post('user-send-message', 'LegacyInterOpController@userSendMessage');
     Route::post('user-batch-mark-channel-as-read', 'LegacyInterOpController@userBatchMarkChannelAsRead');
     Route::post('user-batch-send-message', 'LegacyInterOpController@userBatchSendMessage');
@@ -579,6 +592,7 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
             Route::group(['prefix' => '{beatmapset}'], function () {
                 Route::post('broadcast-new', 'BeatmapsetsController@broadcastNew')->name('broadcast-new');
                 Route::post('broadcast-revive', 'BeatmapsetsController@broadcastRevive')->name('broadcast-revive');
+                Route::post('broadcast-update', 'BeatmapsetsController@broadcastUpdate')->name('broadcast-update');
                 Route::post('disqualify', 'BeatmapsetsController@disqualify')->name('disqualify');
             });
         });
@@ -586,6 +600,12 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
 
         Route::group(['as' => 'indexing.', 'prefix' => 'indexing'], function () {
             Route::apiResource('bulk', 'Indexing\BulkController', ['only' => ['store']]);
+        });
+
+        Route::group(['as' => 'multiplayer.', 'namespace' => 'Multiplayer', 'prefix' => 'multiplayer'], function () {
+            Route::put('rooms/{room}/users/{user}', 'RoomsController@join')->name('rooms.join');
+            Route::delete('rooms/{room}/users/{user}', 'RoomsController@part')->name('rooms.part');
+            Route::apiResource('rooms', 'RoomsController', ['only' => ['store']]);
         });
 
         Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'UsersController@achievement')->name('users.achievement');

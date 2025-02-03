@@ -9,6 +9,12 @@ return [
         'title' => '국가별',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '난이도',
+        'top_10p' => '상위 10% 점수',
+        'top_50p' => '상위 50% 점수',
+    ],
+
     'filter' => [
         'title' => '보기',
 
@@ -24,12 +30,13 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => '해당 유저는 랭킹 이력이 최근 30일 이내입니다.',
     ],
 
     'type' => [
         'charts' => '스포트라이트',
         'country' => '국가별',
+        'daily_challenge' => '데일리 챌린지',
         'kudosu' => 'Kudosu',
         'multiplayer' => '멀티플레이어',
         'performance' => '퍼포먼스',

@@ -9,6 +9,12 @@ return [
         'title' => 'Paese',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Difficoltà',
+        'top_10p' => '',
+        'top_50p' => '',
+    ],
+
     'filter' => [
         'title' => 'Mostra',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'spotlight (archivio)',
         'country' => 'paese',
+        'daily_challenge' => 'sfida giornaliera',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multigiocatore',
         'performance' => 'performance',

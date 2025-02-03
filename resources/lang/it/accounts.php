@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'reset' => '',
+            'reset' => 'resetta',
             'rules' => 'Assicurati che la tua immagine di profilo aderisca alle :link.<br/>Questo significa che dev\'essere <strong>adatta a tutte le età</strong> (quindi niente nudità, profanità o contenuti provocanti).',
             'rules_link' => 'regole della comunità',
         ],

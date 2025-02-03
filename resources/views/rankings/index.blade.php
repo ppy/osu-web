@@ -26,24 +26,43 @@
 
 @extends('master', ['titlePrepend' => $titlePrepend ?? osu_trans("rankings.type.{$type}")])
 
+@if ($hasMode)
+    @section('rulesetSelector')
+        @include('objects._ruleset_selector', [
+            'currentRuleset' => $mode,
+            'urlFn' => fn ($r) => $rankingUrl($type, $r),
+        ])
+    @endsection
+@endif
+
 @section('content')
     @component('layout._page_header_v4', ['params' => [
         'links' => $links,
         'theme' => 'rankings',
     ]])
-        @slot('linksAppend')
-            @if($hasMode)
-                @include('rankings._mode_selector')
+        @slot('contentAppend')
+            @if ($hasMode)
+                @yield('rulesetSelector')
             @endif
+        @endslot
 
+        @slot('linksAppend')
             @yield('additionalHeaderLinks')
+            @if ($hasMode)
+                <div class="visible-xs">
+                    @yield('rulesetSelector')
+                </div>
+            @endif
         @endslot
     @endcomponent
 
     @yield('ranking-header')
 
     @if ($hasScores)
-        <div class="osu-page osu-page--generic" id="scores">
+        <div class="osu-page osu-page--generic">
+            @yield('scores-header')
+
+            <div id="scores"></div>
             @if ($hasPager)
                 @include('objects._pagination_v2', [
                     'object' => $scores
@@ -56,8 +75,6 @@
                 @yield('scores')
             </div>
 
-            @yield('ranking-footer')
-
             @if ($hasPager)
                 @include('objects._pagination_v2', [
                     'object' => $scores
@@ -65,6 +82,8 @@
                         ->fragment('scores')
                 ])
             @endif
+
+            @yield('ranking-footer')
         </div>
     @endif
 @endsection

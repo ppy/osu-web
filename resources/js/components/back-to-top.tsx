@@ -29,7 +29,7 @@ export default class BackToTop extends React.Component<Props> {
   render() {
     return (
       <button
-        className='back-to-top'
+        className='floating-toolbar-button'
         data-tooltip-float='fixed'
         onClick={this.onClick}
         title={trans(this.lastScrollY == null ? 'common.buttons.back_to_top' : 'common.buttons.back_to_previous')}

@@ -29,11 +29,14 @@ use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageUrl;
 use App\Libraries\Transactions\AfterCommit;
+use App\Models\Forum\Post;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
+use App\Transformers\BeatmapsetTransformer;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Ds\Set;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -149,6 +152,12 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     ];
 
     public $timestamps = false;
+
+    protected $attributes = [
+        'hype' => 0,
+        'nominations' => 0,
+        'previous_queue_duration' => 0,
+    ];
 
     protected $casts = self::CASTS;
     protected $primaryKey = 'beatmapset_id';
@@ -267,11 +276,13 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function lastDiscussionTime()
     {
-        $time = $this->beatmapDiscussions()->max('updated_at');
+        $lastDiscussionUpdate = $this->beatmapDiscussions()->max('updated_at');
+        $lastEventUpdate = $this->events()->max('updated_at');
 
-        if ($time !== null) {
-            return Carbon::parse($time);
-        }
+        $lastDiscussionDate = $lastDiscussionUpdate !== null ? Carbon::parse($lastDiscussionUpdate) : null;
+        $lastEventDate = $lastEventUpdate !== null ? Carbon::parse($lastEventUpdate) : null;
+
+        return max($lastDiscussionDate, $lastEventDate);
     }
 
     public function scopeGraveyard($query)
@@ -621,9 +632,29 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             $this->previous_queue_duration = ($this->queued_at ?? $this->approved_date)->diffinSeconds();
             $this->queued_at = null;
         } elseif ($this->isPending() && $state === 'qualified') {
-            $maxAdjustment = ($GLOBALS['cfg']['osu']['beatmapset']['minimum_days_for_rank'] - 1) * 24 * 3600;
-            $adjustment = min($this->previous_queue_duration, $maxAdjustment);
-            $this->queued_at = $currentTime->copy()->subSeconds($adjustment);
+            // Check if any beatmaps where added after most recent invalidated nomination.
+            $disqualifyEvent = $this->disqualificationEvent();
+            if (
+                $disqualifyEvent !== null
+                && !(
+                    (new Set($this->beatmaps()->pluck('beatmap_id')))
+                        ->diff(new Set($disqualifyEvent->comment['beatmap_ids'] ?? []))
+                        ->isEmpty())
+            ) {
+                $this->queued_at = $currentTime;
+            } else {
+                // amount of queue time to skip.
+                $maxAdjustment = ($GLOBALS['cfg']['osu']['beatmapset']['minimum_days_for_rank'] - 1) * 24 * 3600;
+                $adjustment = min($this->previous_queue_duration, $maxAdjustment);
+                $this->queued_at = $currentTime->copy()->subSeconds($adjustment);
+
+                // additional penalty for disqualification period, 1 day per week disqualified.
+                if ($disqualifyEvent !== null) {
+                    $interval = $currentTime->diffInDays($disqualifyEvent->created_at);
+                    $penaltyDays = min($interval / 7, $GLOBALS['cfg']['osu']['beatmapset']['maximum_disqualified_rank_penalty_days']);
+                    $this->queued_at = $this->queued_at->addDays($penaltyDays);
+                }
+            }
         }
 
         $this->approved = $approvedState;
@@ -691,8 +722,12 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
         $this->getConnection()->transaction(function () use ($discussion, $event, $notificationClass, $user) {
             $nominators = User::whereIn('user_id', $this->beatmapsetNominations()->current()->select('user_id'))->get();
+            $extraData = ['nominator_ids' => $nominators->pluck('user_id')];
+            if ($event === BeatmapsetEvent::DISQUALIFY) {
+                $extraData['beatmap_ids'] = $this->beatmaps()->pluck('beatmap_id');
+            }
 
-            BeatmapsetEvent::log($event, $user, $discussion, ['nominator_ids' => $nominators->pluck('user_id')])->saveOrExplode();
+            BeatmapsetEvent::log($event, $user, $discussion, $extraData)->saveOrExplode();
             foreach ($nominators as $nominator) {
                 BeatmapsetEvent::log(
                     BeatmapsetEvent::NOMINATION_RESET_RECEIVED,
@@ -714,13 +749,25 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         });
     }
 
-    public function qualify($user)
+    public function qualify(User $user)
     {
         if (!$this->isPending()) {
-            return;
+            throw new InvariantException('cannot qualify a beatmapset not in a pending state.');
         }
 
-        DB::transaction(function () use ($user) {
+        $this->getConnection()->transaction(function () use ($user) {
+            // Reset the queue timer if the beatmapset was previously disqualified,
+            // and any of the current nominators were not part of the most recent disqualified nominations.
+            $disqualifyEvent = $this->events()->disqualifications()->last();
+            if ($disqualifyEvent !== null) {
+                $previousNominators = new Set($disqualifyEvent->comment['nominator_ids']);
+                $currentNominators = new Set($this->beatmapsetNominations()->current()->pluck('user_id'));
+                // Uses xor to make problems during testing stand out, like the number of nominations in the test being wrong.
+                if (!$currentNominators->xor($previousNominators)->isEmpty()) {
+                    $this->update(['previous_queue_duration' => 0]);
+                }
+            }
+
             $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
 
             $this->setApproved('qualified', $user);
@@ -1233,18 +1280,34 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function defaultDiscussionJson()
     {
+        $this->loadMissing([
+            'allBeatmaps',
+            'allBeatmaps.beatmapOwners.user',
+            'allBeatmaps.user', // TODO: for compatibility only, should migrate user_id to BeatmapOwner.
+            'beatmapDiscussions.beatmapDiscussionPosts',
+            'beatmapDiscussions.beatmapDiscussionVotes',
+        ]);
+
+        foreach ($this->allBeatmaps as $beatmap) {
+            $beatmap->setRelation('beatmapset', $this);
+        }
+
+        $beatmapsByKey = $this->allBeatmaps->keyBy('beatmap_id');
+
+        foreach ($this->beatmapDiscussions as $discussion) {
+            // set relations for priv checks.
+            $discussion->setRelation('beatmapset', $this);
+
+            if ($discussion->beatmap_id !== null) {
+                $discussion->setRelation('beatmap', $beatmapsByKey[$discussion->beatmap_id]);
+            }
+        }
+
         return json_item(
-            static::with([
-                'allBeatmaps.beatmapset',
-                'beatmapDiscussions.beatmapDiscussionPosts',
-                'beatmapDiscussions.beatmapDiscussionVotes',
-                'beatmapDiscussions.beatmapset',
-                'beatmapDiscussions.beatmap',
-                'beatmapDiscussions.beatmapDiscussionVotes',
-            ])->find($this->getKey()),
-            'Beatmapset',
+            $this,
+            new BeatmapsetTransformer(),
             [
-                'beatmaps:with_trashed',
+                'beatmaps:with_trashed.owners',
                 'current_user_attributes',
                 'discussions',
                 'discussions.current_user_attributes',
@@ -1344,27 +1407,40 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function updateDescription($bbcode, $user)
     {
-        $post = $this->descriptionPost;
-        if ($post === null) {
-            return;
-        }
+        return DB::transaction(function () use ($bbcode, $user) {
+            $post = $this->descriptionPost;
 
-        $split = preg_split('/-{15}/', $post->post_text, 2);
+            if ($post === null) {
+                $forum = Forum\Forum::findOrFail($GLOBALS['cfg']['osu']['forum']['beatmap_description_forum_id']);
+                $title = $this->artist.' - '.$this->title;
 
-        $options = [
-            'withGallery' => true,
-            'ignoreLineHeight' => true,
-        ];
+                $topic = Forum\Topic::createNew($forum, [
+                    'title' => $title,
+                    'user' => $user,
+                    'body' => '---------------',
+                ]);
+                $topic->lock();
+                $this->update(['thread_id' => $topic->getKey()]);
+                $post = $topic->firstPost;
+            }
 
-        $header = new BBCodeFromDB($split[0], $post->bbcode_uid, $options);
-        $newBody = $header->toEditor()."---------------\n".ltrim($bbcode);
+            $split = preg_split('/-{15}/', $post->post_text, 2);
 
-        return $post
-            ->skipBeatmapPostRestrictions()
-            ->update([
-                'post_text' => $newBody,
-                'post_edit_user' => $user === null ? null : $user->getKey(),
-            ]);
+            $options = [
+                'withGallery' => true,
+                'ignoreLineHeight' => true,
+            ];
+
+            $header = new BBCodeFromDB($split[0], $post->bbcode_uid, $options);
+            $newBody = $header->toEditor()."---------------\n".ltrim($bbcode);
+
+            return $post
+                ->skipBeatmapPostRestrictions()
+                ->update([
+                    'post_text' => $newBody,
+                    'post_edit_user' => $user === null ? null : $user->getKey(),
+                ]);
+        });
     }
 
     private function extractDescription($post)
@@ -1381,12 +1457,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     private function getBBCode()
     {
-        $post = $this->descriptionPost;
-
-        if ($post === null) {
-            return;
-        }
-
+        $post = $this->descriptionPost ?? new Post();
         $description = $this->extractDescription($post);
 
         $options = [
@@ -1399,7 +1470,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function getDisplayArtist(?User $user)
     {
-        $profileCustomization = $user->userProfileCustomization ?? UserProfileCustomization::DEFAULTS;
+        $profileCustomization = UserProfileCustomization::forUser($user);
 
         return $profileCustomization['beatmapset_title_show_original']
             ? $this->artist_unicode
@@ -1408,7 +1479,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function getDisplayTitle(?User $user)
     {
-        $profileCustomization = $user->userProfileCustomization ?? UserProfileCustomization::DEFAULTS;
+        $profileCustomization = UserProfileCustomization::forUser($user);
 
         return $profileCustomization['beatmapset_title_show_original']
             ? $this->title_unicode

@@ -9,7 +9,7 @@ return [
     ],
 
     'item' => [
-        'content' => '',
-        'modding_history_link' => '',
+        'content' => 'Kandungan',
+        'modding_history_link' => 'Lihat sejarah modding',
     ],
 ];

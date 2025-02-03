@@ -70,6 +70,9 @@ class FollowsController extends Controller
 
     public function store()
     {
+        if (\Auth::user()->follows()->count() >= $GLOBALS['cfg']['osu']['user']['max_follows']) {
+            return error_popup(osu_trans('follows.store.too_many'));
+        }
         $params = $this->getParams();
         $follow = new Follow($params);
 
@@ -89,7 +92,7 @@ class FollowsController extends Controller
             dispatch(new UpdateUserMappingFollowerCountCache($params['notifiable_id']));
         }
 
-        return response([], 204);
+        return response(null, 204);
     }
 
     private function getParams()
@@ -137,7 +140,7 @@ class FollowsController extends Controller
 
     private function indexForumTopic()
     {
-        $topics = Topic::watchedByUser($this->user)->paginate(50);
+        $topics = Topic::watchedByUser($this->user)->paginate();
         $topicReadStatus = TopicTrack::readStatus($this->user, $topics);
         $topicWatchStatus = TopicWatch::watchStatus($this->user, $topics);
 
@@ -193,7 +196,7 @@ class FollowsController extends Controller
             ->visible()
             ->orderBy('last_notified', 'DESC')
             ->with('beatmapset')
-            ->paginate(50);
+            ->paginate();
         $totalCount = $watches->total();
         $unreadCount = $this->user->beatmapsetWatches()->visible()->unread()->count();
         $openIssues = BeatmapDiscussion

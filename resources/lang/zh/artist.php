@@ -13,8 +13,8 @@ return [
 
     'beatmaps' => [
         '_' => '谱面',
-        'download' => '下载谱面模版',
-        'download-na' => '谱面模版暂时不可用',
+        'download' => '下载谱面模板',
+        'download-na' => '谱面模板尚不可用',
     ],
 
     'index' => [

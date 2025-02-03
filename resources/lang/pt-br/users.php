@@ -200,6 +200,7 @@ return [
             'daily' => 'Sequência diária',
             'daily_streak_best' => 'Melhor sequência diária',
             'daily_streak_current' => 'Sequência diária atual',
+            'playcount' => 'Participação total',
             'title' => 'Desafio\ndiário',
             'top_10p_placements' => 'Melhores 10% nos colocados',
             'top_50p_placements' => 'Melhores 50% nos colocados',

@@ -7,14 +7,13 @@ namespace App\Http\Controllers;
 
 use App\Enums\Ruleset;
 use App\Exceptions\InvariantException;
-use App\Jobs\Notifications\BeatmapOwnerChange;
 use App\Libraries\BeatmapDifficultyAttributes;
+use App\Libraries\Beatmapset\ChangeBeatmapOwners;
 use App\Libraries\Score\BeatmapScores;
 use App\Libraries\Score\UserRank;
 use App\Libraries\Search\ScoreSearch;
 use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
-use App\Models\BeatmapsetEvent;
 use App\Models\User;
 use App\Transformers\BeatmapTransformer;
 use App\Transformers\ScoreTransformer;
@@ -24,8 +23,8 @@ use App\Transformers\ScoreTransformer;
  */
 class BeatmapsController extends Controller
 {
-    const DEFAULT_API_INCLUDES = ['beatmapset.ratings', 'failtimes', 'max_combo'];
-    const DEFAULT_SCORE_INCLUDES = ['user', 'user.country', 'user.cover'];
+    const DEFAULT_API_INCLUDES = ['beatmapset.ratings', 'failtimes', 'max_combo', 'owners'];
+    const DEFAULT_SCORE_INCLUDES = ['user', 'user.country', 'user.cover', 'user.team'];
 
     public function __construct()
     {
@@ -75,7 +74,7 @@ class BeatmapsController extends Controller
             'type' => $type,
             'user' => $currentUser,
         ]);
-        $scores = $esFetch->all()->loadMissing(['beatmap', 'user.country', 'processHistory']);
+        $scores = $esFetch->all()->loadMissing(['beatmap', 'user.country', 'user.team', 'processHistory']);
         $userScore = $esFetch->userBest();
         $scoreTransformer = new ScoreTransformer($scoreTransformerType);
 
@@ -160,7 +159,7 @@ class BeatmapsController extends Controller
             $rulesetId = $beatmap->playmode;
         } else {
             abort_if(
-                $rulesetId !== $beatmap->playmode && !$beatmap->canBeConverted(),
+                !$beatmap->canBeConvertedTo($rulesetId),
                 422,
                 "specified beatmap can't be converted to the specified ruleset"
             );
@@ -195,7 +194,7 @@ class BeatmapsController extends Controller
      *
      * Field    | Type                                  | Description
      * -------- | ------------------------------------- | -----------
-     * beatmaps | [BeatmapExtended](#beatmapextended)[] | Includes `beatmapset` (with `ratings`), `failtimes`, and `max_combo`.
+     * beatmaps | [BeatmapExtended](#beatmapextended)[] | Includes `beatmapset` (with `ratings`), `failtimes`, `max_combo`, and `owners`.
      *
      * @queryParam ids[] integer Beatmap IDs to be returned. Specify once for each beatmap ID requested. Up to 50 beatmaps can be requested at once. Example: 1
      *
@@ -217,6 +216,7 @@ class BeatmapsController extends Controller
                 ::whereIn('beatmap_id', $ids)
                 ->whereHas('beatmapset')
                 ->with([
+                    'beatmapOwners.user',
                     'beatmapset',
                     'beatmapset.userRatings' => fn ($q) => $q->select('beatmapset_id', 'rating'),
                     'failtimes',
@@ -381,26 +381,9 @@ class BeatmapsController extends Controller
     public function updateOwner($id)
     {
         $beatmap = Beatmap::findOrFail($id);
-        $currentUser = auth()->user();
+        $newUserIds = get_arr(request('user_ids'), 'get_int');
 
-        priv_check('BeatmapUpdateOwner', $beatmap->beatmapset)->ensureCan();
-
-        $newUserId = get_int(request('beatmap.user_id'));
-
-        $beatmap->getConnection()->transaction(function () use ($beatmap, $currentUser, $newUserId) {
-            $beatmap->setOwner($newUserId);
-
-            BeatmapsetEvent::log(BeatmapsetEvent::BEATMAP_OWNER_CHANGE, $currentUser, $beatmap->beatmapset, [
-                'beatmap_id' => $beatmap->getKey(),
-                'beatmap_version' => $beatmap->version,
-                'new_user_id' => $beatmap->user_id,
-                'new_user_username' => $beatmap->user->username,
-            ])->saveOrExplode();
-        });
-
-        if ($beatmap->user_id !== $currentUser->getKey()) {
-            (new BeatmapOwnerChange($beatmap, $currentUser))->dispatch();
-        }
+        (new ChangeBeatmapOwners($beatmap, $newUserIds ?? [], \Auth::user()))->handle();
 
         return $beatmap->beatmapset->defaultDiscussionJson();
     }
@@ -459,7 +442,7 @@ class BeatmapsController extends Controller
             'score' => json_item(
                 $score,
                 new ScoreTransformer(),
-                ['beatmap', ...static::DEFAULT_SCORE_INCLUDES]
+                ['beatmap.owners', ...static::DEFAULT_SCORE_INCLUDES]
             ),
         ];
     }

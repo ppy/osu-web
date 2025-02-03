@@ -107,6 +107,10 @@ return [
         'seasons_controller' => [
             '_' => 'рэйтынг',
         ],
+        'teams_controller' => [
+            '_' => '',
+            'show' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'турніры',
         ],

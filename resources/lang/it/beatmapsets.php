@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Rallenta, gioca di più.',
+        'no_mirrors' => 'Nessun server di download disponibile.',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Sei sicuro di voler nominare questa beatmap?',
+            'different_nominator_warning' => 'Qualificare questa beatmap con diversi nominatori resetterà la sua posizione nella coda di qualifica.',
             'header' => 'Nomina Beatmap',
             'hybrid_warning' => 'nota: puoi nominare una sola volta, quindi assicurati di nominare per tutte le modalità di gioco che vuoi',
             'current_main_ruleset' => 'La modalità principale al momento è: :ruleset',

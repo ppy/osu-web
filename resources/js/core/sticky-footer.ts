@@ -20,7 +20,7 @@ export default class StickyFooter {
 
     $(window).on('scroll resize', this.stickOrUnstick);
     $.subscribe('stickyFooter:check', this.throttledStickOrUnstick);
-    $(document).on('turbolinks:load', this.throttledStickOrUnstick);
+    $(document).on('turbo:load', this.throttledStickOrUnstick);
   }
 
   markerDisable(el: HTMLElement) {

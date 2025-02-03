@@ -59,8 +59,11 @@ class AccountController extends Controller
             'updateOptions',
         ]]);
 
-        $this->middleware('throttle:60,10', ['only' => [
+        $this->middleware('throttle:3,5', ['only' => [
             'reissueCode',
+        ]]);
+
+        $this->middleware('throttle:60,10', ['only' => [
             'updateEmail',
             'updatePassword',
             'verify',
@@ -279,18 +282,21 @@ class AccountController extends Controller
             'user_list_view:string',
         ]);
 
+        $profileCustomization = $user->userProfileCustomization()->createOrFirst();
+        $user->setRelation('userProfileCustomization', $profileCustomization);
+
         try {
             if (!empty($userParams)) {
                 $user->fill($userParams)->saveOrExplode();
             }
 
             if (!empty($profileParams)) {
-                $user->profileCustomization()->fill($profileParams)->saveOrExplode();
+                $profileCustomization->fill($profileParams)->saveOrExplode();
             }
         } catch (ModelNotSavedException $e) {
             return ModelNotSavedException::makeResponse($e, [
                 'user' => $user,
-                'user_profile_customization' => $user->profileCustomization(),
+                'user_profile_customization' => $profileCustomization,
             ]);
         }
 

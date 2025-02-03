@@ -287,7 +287,8 @@
           }
         ],
         "IncompatibleMods": [
-          "BL"
+          "BL",
+          "BM"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1016,7 +1017,9 @@
             "Description": "The combo count at which the cursor becomes completely hidden"
           }
         ],
-        "IncompatibleMods": [],
+        "IncompatibleMods": [
+          "BM"
+        ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
@@ -1204,6 +1207,36 @@
         "AlwaysValidForSubmission": false
       },
       {
+        "Acronym": "BM",
+        "Name": "Bloom",
+        "Description": "The cursor blooms into.. a larger cursor!",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "max_size_combo_count",
+            "Type": "number",
+            "Label": "Max size at combo",
+            "Description": "The combo count at which the cursor reaches its maximum size"
+          },
+          {
+            "Name": "max_cursor_size",
+            "Type": "number",
+            "Label": "Final size multiplier",
+            "Description": "The multiplier applied to cursor size when combo reaches maximum"
+          }
+        ],
+        "IncompatibleMods": [
+          "FL",
+          "NS",
+          "TD"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
+      },
+      {
         "Acronym": "TD",
         "Name": "Touch Device",
         "Description": "Automatically applied to plays on devices with a touchscreen.",
@@ -1212,7 +1245,8 @@
         "IncompatibleMods": [
           "AT",
           "CN",
-          "AP"
+          "AP",
+          "BM"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,

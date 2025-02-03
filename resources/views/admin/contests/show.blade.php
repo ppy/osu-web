@@ -39,6 +39,7 @@
                 <form
                     action="{{ route('admin.contests.get-zip', $contest->id) }}"
                     data-loading-overlay="0"
+                    data-turbo="false"
                     method="POST"
                 >
                     @csrf

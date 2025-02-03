@@ -5,7 +5,7 @@
 
 return [
     'create' => [
-        'beatmap_hash_invalid' => '',
-        'submission_disabled' => '',
+        'beatmap_hash_invalid' => 'beatmap_hash ไม่ถูกต้องหรือขาดหายไป',
+        'submission_disabled' => 'การส่งคะแนนถูกปิดใช้งาน',
     ],
 ];

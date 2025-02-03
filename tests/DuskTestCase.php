@@ -30,7 +30,7 @@ abstract class DuskTestCase extends BaseTestCase
         }
 
         if (!present(env('DUSK_WEBDRIVER_URL'))) {
-            static::startChromeDriver();
+            static::startChromeDriver(['--port=9515']);
         }
     }
 

@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Questo canale è solamente per gli annunci.',
-        'blocked' => 'Non puoi inviare messaggi ad un utente che ti sta bloccando o che hai bloccato.',
+        'blocked' => 'Non puoi inviare messaggi a un utente che ti sta bloccando o che hai bloccato.',
         'friends_only' => 'L\'utente sta bloccando i messaggi da chi non è nella sua lista amici.',
         'moderated' => 'Questo canale è attualmente moderato.',
         'no_access' => 'Non hai accesso a quel canale.',
+        'no_announce' => 'Non hai il permesso di pubblicare un annuncio.',
         'receive_friends_only' => 'L\'utente potrebbe non essere in grado di rispondere perché stai accettando messaggi solo da persone della tua lista amici.',
         'restricted' => 'Non puoi inviare messaggi mentre sei silenziato, limitato o bannato.',
         'silenced' => 'Non puoi inviare messaggi mentre sei silenziato, limitato o bannato.',
@@ -167,6 +173,12 @@ return [
 
         'view' => [
             'admin_only' => 'Solo gli amministratori possono vedere questo forum.',
+        ],
+    ],
+
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Solo il proprietario della stanza può chiuderla.',
         ],
     ],
 

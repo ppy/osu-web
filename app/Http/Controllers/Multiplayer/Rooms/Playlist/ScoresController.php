@@ -5,7 +5,6 @@
 
 namespace App\Http\Controllers\Multiplayer\Rooms\Playlist;
 
-use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
 use App\Libraries\ClientCheck;
 use App\Models\Multiplayer\PlaylistItem;
@@ -50,10 +49,13 @@ class ScoresController extends BaseController
     {
         $playlist = PlaylistItem::where('room_id', $roomId)->findOrFail($playlistId);
         $params = request()->all();
-        $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
+        $limit = \Number::clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
         $cursorHelper = PlaylistItemUserHighScore::makeDbCursorHelper($params['sort'] ?? null);
 
-        $highScoresQuery = $playlist->highScores()->whereHas('scoreLink');
+        $highScoresQuery = $playlist
+            ->highScores()
+            ->whereHas('user', fn ($userQuery) => $userQuery->default())
+            ->whereHas('scoreLink.score');
 
         [$highScores, $hasMore] = $highScoresQuery
             ->clone()
@@ -179,15 +181,11 @@ class ScoresController extends BaseController
         $playlistItem = $room->playlist()->findOrFail($playlistId);
         $user = \Auth::user();
         $request = \Request::instance();
-        $params = $request->all();
 
-        if (get_string($params['beatmap_hash'] ?? null) !== $playlistItem->beatmap->checksum) {
-            throw new InvariantException(osu_trans('score_tokens.create.beatmap_hash_invalid'));
-        }
-
-        $buildId = ClientCheck::parseToken($request)['buildId'];
-
-        $scoreToken = $room->startPlay($user, $playlistItem, $buildId);
+        $scoreToken = $room->startPlay($user, $playlistItem, [
+            ...$request->all(),
+            'build_id' => ClientCheck::parseToken($request)['buildId'],
+        ]);
 
         return json_item($scoreToken, new ScoreTokenTransformer());
     }

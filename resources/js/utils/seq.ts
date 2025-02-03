@@ -6,7 +6,3 @@ let currVal = 0;
 export function nextVal() {
   return ++currVal;
 }
-
-export function uuid() {
-  return Turbolinks.uuid(); // no point rolling our own
-}

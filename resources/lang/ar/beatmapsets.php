@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'تَمهل, ألعب أكثر.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'هل أنت متأكد من أنك تريد ترشيح هذه الخريطة؟',
+            'different_nominator_warning' => '',
             'header' => 'ترشيح خريطة',
             'hybrid_warning' => 'ملاحظة: يمكنك أن ترشح مرة واحدة فقط، لذا يرجى التأكد من أنك ترشح لجميع أنماط اللعبة التي تنويها',
             'current_main_ruleset' => 'النمط الرئيسي حالياً: :ruleset',

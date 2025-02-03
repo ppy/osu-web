@@ -108,7 +108,7 @@ class DailyChallengeUserStatsTest extends TestCase
 
         $user = User::factory()->create();
 
-        $lastWeeklyStreak = $playTime->subWeeks(1)->subDays(1);
+        $lastWeeklyStreak = $playTime->subWeeks(2);
         DailyChallengeUserStats::create([
             'user_id' => $user->getKey(),
             'weekly_streak_current' => 3,
@@ -122,6 +122,32 @@ class DailyChallengeUserStatsTest extends TestCase
         $this->assertSame(0, $stats->weekly_streak_current);
         $this->assertSame(3, $stats->weekly_streak_best);
         $this->assertTrue($lastWeeklyStreak->equalTo($stats->last_weekly_streak));
+    }
+
+    public function testCalculateNoPlaysOverAWeekBreaksWeeklyStreakLastStreakOnStartOfWeek(): void
+    {
+        $user = User::factory()->create();
+        $lastWeeklyStreak = static::startOfWeek();
+        DailyChallengeUserStats::create([
+            'user_id' => $user->getKey(),
+            'weekly_streak_current' => 3,
+            'weekly_streak_best' => 3,
+            'last_update' => $lastWeeklyStreak->addDays(1),
+            'last_weekly_streak' => $lastWeeklyStreak,
+        ]);
+
+        // no break until the exact 14th day after last weekly streak
+        for ($i = 7; $i <= 14; $i++) {
+            $playTime = $lastWeeklyStreak->addDays($i);
+            $playlistItem = static::preparePlaylistItem($playTime);
+            DailyChallengeUserStats::calculate($playTime);
+
+            $stats = DailyChallengeUserStats::find($user->getKey());
+            $testHint = "After {$i} days";
+            $this->assertSame($i === 14 ? 0 : 3, $stats->weekly_streak_current, $testHint);
+            $this->assertSame(3, $stats->weekly_streak_best, $testHint);
+            $this->assertTrue($lastWeeklyStreak->equalTo($stats->last_weekly_streak), $testHint);
+        }
     }
 
     public function testCalculatePercentile(): void
@@ -169,6 +195,7 @@ class DailyChallengeUserStatsTest extends TestCase
             $this->roomAddPlay($user, $playlistItem);
             DailyChallengeUserStats::calculate($playTime);
         }
+        $this->travelTo($playTime->addDays(1));
 
         $stats = DailyChallengeUserStats::find($user->getKey());
         $expectedAttributes = $stats->getAttributes();
@@ -183,6 +210,38 @@ class DailyChallengeUserStatsTest extends TestCase
         $this->assertSame(2, $stats->weekly_streak_best);
         $this->assertSame(9, $stats->top_10p_placements);
         $this->assertSame(9, $stats->top_50p_placements);
+
+        $this->travelBack();
+
+        $stats->fresh()->fix();
+
+        $stats->refresh();
+        $this->assertSame(9, $stats->playcount);
+        $this->assertSame(0, $stats->daily_streak_current);
+        $this->assertSame(6, $stats->daily_streak_best);
+    }
+
+    public function testFixZeroTotalScore(): void
+    {
+        $user = User::factory()->create();
+
+        foreach ([3 => 100, 2 => 0, 1 => 100] as $subDay => $score) {
+            $playTime = static::startOfWeek()->subDays($subDay);
+            $playlistItem = static::preparePlaylistItem($playTime);
+            $this->roomAddPlay($user, $playlistItem, ['total_score' => $score]);
+        }
+        $this->travelTo($playTime->addDays(1));
+
+        $stats = DailyChallengeUserStats::find($user->getKey());
+        $stats->fill([...DailyChallengeUserStats::INITIAL_VALUES])->saveOrExplode();
+        $stats->fix();
+
+        $stats->refresh();
+        $this->assertSame(2, $stats->playcount);
+        $this->assertSame(1, $stats->daily_streak_current);
+        $this->assertSame(1, $stats->daily_streak_best);
+        $this->assertSame(1, $stats->weekly_streak_current);
+        $this->assertSame(1, $stats->weekly_streak_best);
     }
 
     public function testFlowFromStart(): void

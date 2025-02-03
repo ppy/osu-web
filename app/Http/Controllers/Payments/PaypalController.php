@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Payments;
 
 use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\Store\OrderException;
+use App\Exceptions\Store\PaymentRejectedException;
 use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\NotificationType;
 use App\Libraries\Payments\PaypalCreatePayment;
@@ -61,6 +62,8 @@ class PaypalController extends Controller
             (new PaypalExecutePayment($order))->run();
         } catch (HttpException $e) {
             return $this->setAndRedirectCheckoutError($order, $this->userErrorMessage($e));
+        } catch (PaymentRejectedException) {
+            return $this->setAndRedirectCheckoutError($order, osu_trans('paypal/errors.unknown'));
         }
 
         return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));

@@ -26,7 +26,7 @@ return [
             'deleted' => 'Inkludera raderade diskussioner',
             'mode' => 'Beatmapläge',
             'only_unresolved' => 'Visa bara olösta diskussioner',
-            'show_review_embeds' => '',
+            'show_review_embeds' => 'Visa recensionsinlägg',
             'types' => 'Meddelandetyper',
             'username' => 'Användarnamn',
 
@@ -64,6 +64,13 @@ return [
         'reset_confirm' => 'Återställ ägare för denna svårighetsgrad?',
         'user' => 'Ägare',
         'version' => 'Svårighetsgrad',
+    ],
+
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
     ],
 
     'reply' => [

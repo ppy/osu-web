@@ -1,18 +1,19 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import UserLinkList from 'beatmap-discussions/user-link-list';
 import BeatmapsetBadge from 'components/beatmapset-badge';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import BeatmapsetMapping from 'components/beatmapset-mapping';
 import BigButton from 'components/big-button';
 import StringWithComponent from 'components/string-with-component';
-import UserLink from 'components/user-link';
 import { createTooltip } from 'components/user-list-popup';
 import { route } from 'laroute';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { hasGuestOwners } from 'utils/beatmap-helper';
 import { downloadLimited, getArtist, getTitle, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
@@ -24,6 +25,19 @@ import Controller from './controller';
 import Stats from './stats';
 
 const favouritesToShow = 50;
+
+function statusIcon(type: 'storyboard' | 'video') {
+  const iconClass = type === 'video' ? 'fas fa-film' : 'fas fa-image';
+
+  return (
+    <div
+      className='beatmapset-status beatmapset-status--show-icon'
+      title={trans(`beatmapsets.show.info.${type}`)}
+    >
+      <span className={iconClass} />
+    </div>
+  );
+}
 
 interface DownloadButtonOptions {
   bottomTextKey?: string;
@@ -203,9 +217,6 @@ export default class Header extends React.Component<Props> {
         href={href}
         icon={icon}
         modifiers='beatmapset-header'
-        props={{
-          'data-turbolinks': 'false',
-        }}
         text={{
           bottom: bottomTextKey == null ? undefined : trans(`beatmapsets.show.details.download.${bottomTextKey}`),
           top: trans(`beatmapsets.show.details.download.${topTextKey}`),
@@ -280,11 +291,11 @@ export default class Header extends React.Component<Props> {
       <span className='beatmapset-header__diff-name'>
         {beatmap.version}
 
-        {beatmap.user_id !== this.controller.beatmapset.user_id && (
+        {hasGuestOwners(beatmap, this.controller.beatmapset) && (
           <span className='beatmapset-header__diff-extra'>
             <StringWithComponent
               mappings={{
-                mapper: <UserLink user={this.controller.mapper(beatmap)} />,
+                mapper: <UserLinkList users={this.controller.owners(beatmap)} />,
               }}
               pattern={trans('beatmapsets.show.details.mapped_by')}
             />
@@ -352,14 +363,8 @@ export default class Header extends React.Component<Props> {
   private renderStatusBar() {
     return (
       <div className='beatmapset-header__status'>
-        {this.controller.beatmapset.storyboard &&
-          <div
-            className='beatmapset-status beatmapset-status--show-icon'
-            title={trans('beatmapsets.show.info.storyboard')}
-          >
-            <span className='fas fa-image' />
-          </div>
-        }
+        {this.controller.beatmapset.video && statusIcon('video')}
+        {this.controller.beatmapset.storyboard && statusIcon('storyboard')}
         <a className='beatmapset-status beatmapset-status--show' href={this.statusToWikiLink(this.controller.currentBeatmap.status)}>
           {trans(`beatmapsets.show.status.${this.controller.currentBeatmap.status}`)}
         </a>

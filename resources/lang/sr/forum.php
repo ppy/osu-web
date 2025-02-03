@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Стварно вратити тему?',
         'deleted' => 'обрисана тема',
         'go_to_latest' => 'погледај најновији пост',
+        'go_to_unread' => '',
         'has_replied' => 'Одговорили сте на ову тему',
         'in_forum' => 'у :forum',
         'latest_post' => ':when од :user',

@@ -89,7 +89,7 @@ class ContestEntriesController extends Controller
 
             foreach ($entry->contest->scoringCategories as $category) {
                 $score = $scoresByCategoryId[$category->getKey()];
-                $value = clamp($score['value'], 0, $category->max_value);
+                $value = \Number::clamp($score['value'], 0, $category->max_value);
 
                 $vote->scores()->firstOrNew([
                     'contest_judge_vote_id' => $vote->getKey(),

@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\CountryStatistics;
+use App\Models\Model;
 use App\Models\Spotlight;
 use App\Models\User;
 use App\Models\UserStatistics;
@@ -28,11 +29,20 @@ class RankingController extends Controller
     private $friendsOnly;
 
     const MAX_RESULTS = 10000;
-    const PAGE_SIZE = 50;
+    const PAGE_SIZE = Model::PER_PAGE;
     const RANKING_TYPES = ['performance', 'charts', 'score', 'country'];
     const SPOTLIGHT_TYPES = ['charts'];
     // in display order
-    const TYPES = ['performance', 'score', 'country', 'multiplayer', 'seasons', 'charts', 'kudosu'];
+    const TYPES = [
+        'performance',
+        'score',
+        'country',
+        'multiplayer',
+        'daily_challenge',
+        'seasons',
+        'charts',
+        'kudosu',
+    ];
 
     public function __construct()
     {
@@ -113,6 +123,7 @@ class RankingController extends Controller
     ): string {
         return match ($type) {
             'country' => route('rankings', ['mode' => $rulesetName, 'type' => $type]),
+            'daily_challenge' => route('daily-challenge.index'),
             'kudosu' => route('rankings.kudosu'),
             'multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
             'seasons' => route('seasons.show', ['season' => 'latest']),
@@ -163,7 +174,7 @@ class RankingController extends Controller
             $table = (new $class())->getTable();
             $ppColumn = $class::ppColumn();
             $stats = $class
-                ::with(['user', 'user.country'])
+                ::with(['user', 'user.country', 'user.team'])
                 ->where($ppColumn, '>', 0)
                 ->whereHas('user', function ($userQuery) {
                     $userQuery->default();
@@ -201,8 +212,8 @@ class RankingController extends Controller
 
         $maxResults = $this->maxResults($modeInt, $stats);
         $maxPages = ceil($maxResults / static::PAGE_SIZE);
-        // TODO: less repeatedly getting params out of request.
-        $page = clamp(get_int(request('cursor.page') ?? request('page')), 1, $maxPages);
+        $params = get_params(\Request::all(), null, ['cursor.page:int', 'page:int']);
+        $page = \Number::clamp($params['cursor']['page'] ?? $params['page'] ?? 1, 1, $maxPages);
 
         $stats = $stats->limit(static::PAGE_SIZE)
             ->offset(static::PAGE_SIZE * ($page - 1))
@@ -296,6 +307,7 @@ class RankingController extends Controller
         $page = min(get_int(request('page')) ?? 1, $maxPage);
 
         $scores = User::default()
+            ->with('team')
             ->orderBy('osu_kudostotal', 'desc')
             ->paginate(static::PAGE_SIZE, ['*'], 'page', $page, $maxResults);
 
@@ -353,8 +365,9 @@ class RankingController extends Controller
 
         $selectOptionTransformer = new SelectOptionTransformer();
         $selectOptions = [
-            'selected' => json_item($spotlight, $selectOptionTransformer),
-            'options' => json_collection($spotlights, $selectOptionTransformer),
+            'currentItem' => json_item($spotlight, $selectOptionTransformer),
+            'items' => json_collection($spotlights, $selectOptionTransformer),
+            'type' => 'spotlight',
         ];
 
         return ext_view(

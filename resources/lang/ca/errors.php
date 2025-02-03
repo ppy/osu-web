@@ -29,7 +29,7 @@ return [
         'generic' => 'S\'ha produït un error mentre preparàvem la teva compra.',
     ],
     'scores' => [
-        'invalid_id' => '',
+        'invalid_id' => 'Id de puntuació no vàlid.',
     ],
     'search' => [
         'default' => 'No s\'ha pogut trobar cap resultat. Torna-ho a provar més tard.',
@@ -37,6 +37,6 @@ return [
         'operation_timeout_exception' => 'La cerca es troba més congestionada que d\'habitual, prova-ho més tard.',
     ],
     'user_report' => [
-        'recently_reported' => "",
+        'recently_reported' => "Ja l'heu denunciat fa poc.",
     ],
 ];

@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Voulez-vous vraiment restaurer ce sujet ?',
         'deleted' => 'sujet supprimé',
         'go_to_latest' => 'voir le dernier post',
+        'go_to_unread' => 'voir le premier message non lu',
         'has_replied' => 'Vous avez répondu à ce sujet',
         'in_forum' => 'dans :forum',
         'latest_post' => ':when par :user',

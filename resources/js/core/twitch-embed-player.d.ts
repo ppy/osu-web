@@ -6,7 +6,7 @@ declare module 'twitch-embed-player' {
   export default class TwitchEmbedPlayer {
     static PLAY: string;
 
-    constructor (id: string, options: Record<string, unknown>);
+    constructor(id: string, options: Record<string, unknown>);
     addEventListener(action: string, callback: () => void): void;
   }
 }

@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => '',
         'hide_judged' => 'itago ang hinuhusgahang mga entry',
         'nav_title' => 'maghusga',
         'no_current_vote' => 'hindi ka pa nakaboto.',

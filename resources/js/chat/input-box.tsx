@@ -24,7 +24,7 @@ export default class InputBox extends React.Component<Props> {
   private readonly inputBoxRef = React.createRef<HTMLTextAreaElement>();
 
   get allowMultiLine() {
-    return this.currentChannel?.type === 'ANNOUNCE';
+    return this.isAnnouncement;
   }
 
   @computed
@@ -35,6 +35,10 @@ export default class InputBox extends React.Component<Props> {
   @computed
   get inputDisabled() {
     return !this.currentChannel?.canMessage;
+  }
+
+  get isAnnouncement() {
+    return this.currentChannel != null && this.currentChannel.type === 'ANNOUNCE';
   }
 
   @computed
@@ -67,8 +71,7 @@ export default class InputBox extends React.Component<Props> {
   }
 
   buttonClicked = () => {
-    this.sendMessage(this.currentChannel?.inputText);
-    this.currentChannel?.setInputText('');
+    this.startSendMessage();
   };
 
   checkIfEnterPressed = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -77,8 +80,7 @@ export default class InputBox extends React.Component<Props> {
 
       e.preventDefault();
       if (!this.sendDisabled) {
-        this.sendMessage(this.currentChannel?.inputText);
-        this.currentChannel?.setInputText('');
+        this.startSendMessage();
       }
     }
   };
@@ -181,4 +183,13 @@ export default class InputBox extends React.Component<Props> {
 
     dispatch(new ChatMessageSendAction(message));
   }
+
+  @action
+  private readonly startSendMessage = () => {
+    if (this.isAnnouncement && !confirm(trans('common.confirmation'))) {
+      return;
+    }
+    this.sendMessage(this.currentChannel?.inputText);
+    this.currentChannel?.setInputText('');
+  };
 }

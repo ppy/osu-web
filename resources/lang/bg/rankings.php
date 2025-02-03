@@ -9,6 +9,12 @@ return [
         'title' => 'Държава',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Трудност',
+        'top_10p' => 'Топ 10% резултати ',
+        'top_50p' => 'Топ 50% резултати ',
+    ],
+
     'filter' => [
         'title' => 'Покажи',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'под прожекторите',
         'country' => 'държава',
+        'daily_challenge' => 'предизвикателство',
         'kudosu' => 'kudosu',
         'multiplayer' => 'мултиплейър',
         'performance' => 'представяне',

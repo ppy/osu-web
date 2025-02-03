@@ -12,6 +12,7 @@ use App\Models\LoginAttempt;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
 use Sentry\State\Scope;
@@ -54,15 +55,11 @@ function atom_id(string $namespace, $id = null): string
     return 'tag:'.request()->getHttpHost().',2019:'.$namespace.($id === null ? '' : "/{$id}");
 }
 
-function background_image($url, $proxy = true)
+function background_image($url): string
 {
-    if (!present($url)) {
-        return '';
-    }
-
-    $url = $proxy ? proxy_media($url) : $url;
-
-    return sprintf(' style="background-image:url(\'%s\');" ', e($url));
+    return present($url)
+        ? sprintf(' style="background-image:url(\'%s\');" ', e($url))
+        : '';
 }
 
 function beatmap_timestamp_format($ms)
@@ -593,11 +590,6 @@ function max_offset($page, $limit)
     return max(0, min($offset, $GLOBALS['cfg']['osu']['pagination']['max_count'] - $limit));
 }
 
-function mysql_escape_like($string)
-{
-    return addcslashes($string, '%_\\');
-}
-
 function oauth_token(): ?App\Models\OAuth\Token
 {
     return Request::instance()->attributes->get(App\Http\Middleware\AuthApi::REQUEST_OAUTH_TOKEN_KEY);
@@ -649,17 +641,6 @@ function osu_url(string $key): ?string
 function pack_str($str)
 {
     return pack('ccH*', 0x0b, strlen($str), bin2hex($str));
-}
-
-function pagination($params, $defaults = null)
-{
-    $limit = clamp(get_int($params['limit'] ?? null) ?? $defaults['limit'] ?? 20, 5, 50);
-    $page = max(get_int($params['page'] ?? null) ?? 1, 1);
-
-    $offset = max_offset($page, $limit);
-    $page = 1 + $offset / $limit;
-
-    return compact('limit', 'page', 'offset');
 }
 
 function product_quantity_options($product, $selected = null)
@@ -827,12 +808,15 @@ function ext_view($view, $data = null, $type = null, $status = null)
     );
 }
 
-function from_app_url()
+function from_app_url(?HttpRequest $request = null)
 {
-    // Add trailing slash so people can't just use https://osu.web.domain.com
-    // to bypass https://osu.web referrer check.
+    $headers = ($request ?? Request::instance())->headers;
+    $appUrl = $GLOBALS['cfg']['app']['url'];
+    // Add trailing slash for referer check to avoid matching
+    // https://osu.web.domain.com.
     // This assumes app.url doesn't contain trailing slash.
-    return starts_with(request()->headers->get('referer'), $GLOBALS['cfg']['app']['url'].'/');
+    return $headers->get('origin') === $appUrl
+        || str_starts_with($headers->get('referer'), "{$appUrl}/");
 }
 
 function forum_user_link(int $id, string $username, string|null $colour, int|null $currentUserId): string
@@ -842,17 +826,25 @@ function forum_user_link(int $id, string $username, string|null $colour, int|nul
         'style' => user_color_style($colour, 'background-color'),
     ]);
 
-    $link = link_to_user($id, $username, null, []);
+    $link = link_to_user($id, blade_safe($icon.e($username)), null, []);
     if ($currentUserId === $id) {
         $link = tag('strong', null, $link);
     }
 
-    return "{$icon} {$link}";
+    return $link;
 }
 
 function is_api_request(): bool
 {
-    return str_starts_with(rawurldecode(Request::getPathInfo()), '/api/');
+    $url = rawurldecode(Request::getPathInfo());
+    return str_starts_with($url, '/api/')
+        || str_starts_with($url, '/_lio/');
+}
+
+function is_http(string $url): bool
+{
+    return str_starts_with($url, 'http://')
+        || str_starts_with($url, 'https://');
 }
 
 function is_json_request(): bool
@@ -917,11 +909,13 @@ function page_title()
         'main.artist_tracks_controller._' => 'main.artists_controller._',
         'main.store_controller._' => 'store._',
         'multiplayer.rooms_controller._' => 'main.ranking_controller._',
+        'ranking.daily_challenge_controller._' => 'main.ranking_controller._',
         default => $controllerKey,
     };
     $namespaceKey = "{$currentRoute['namespace']}._";
     $namespaceKey = match ($namespaceKey) {
         'admin_forum._' => 'admin._',
+        'teams._' => 'main.teams_controller._',
         default => $namespaceKey,
     };
     $keys = [
@@ -941,13 +935,20 @@ function page_title()
 
 function ujs_redirect($url, $status = 200)
 {
-    if (Request::ajax() && !Request::isMethod('get')) {
-        return ext_view('layout.ujs-redirect', compact('url'), 'js', $status);
-    } else {
-        if (Request::header('Turbolinks-Referrer')) {
-            Request::session()->put('_turbolinks_location', $url);
+    $request = Request::instance();
+    // This is done mainly to work around fetch ignoring/removing anchor from page redirect.
+    // Reference: https://github.com/hotwired/turbo/issues/211
+    if ($request->headers->get('x-turbo-request-id') !== null) {
+        if ($status === 200 && $request->getMethod() !== 'GET') {
+            // Turbo doesn't like 200 response on non-GET requests.
+            // Reference: https://github.com/hotwired/turbo/issues/22
+            $status = 201;
         }
 
+        return response($url, $status, ['content-type' => 'text/osu-turbo-redirect']);
+    } elseif ($request->ajax() && $request->getMethod() !== 'GET') {
+        return ext_view('layout.ujs-redirect', compact('url'), 'js', $status);
+    } else {
         // because non-3xx redirects make no sense.
         if ($status < 300 || $status > 399) {
             $status = 302;
@@ -1085,7 +1086,7 @@ function wiki_url($path = null, $locale = null, $api = null, $fullUrl = true)
     return rtrim(str_replace($params['path'], $path, route($route, $params, $fullUrl)), '/');
 }
 
-function bbcode($text, $uid, $options = [])
+function bbcode($text, $uid = null, $options = [])
 {
     return (new App\Libraries\BBCodeFromDB($text, $uid, $options))->toHTML();
 }
@@ -1115,20 +1116,18 @@ function proxy_media($url)
         return '';
     }
 
-    $url = html_entity_decode_better($url);
-
     if ($GLOBALS['cfg']['osu']['camo']['key'] === null) {
         return $url;
     }
 
-    $isProxied = starts_with($url, $GLOBALS['cfg']['osu']['camo']['prefix']);
+    $isProxied = str_starts_with($url, $GLOBALS['cfg']['osu']['camo']['prefix']);
 
     if ($isProxied) {
         return $url;
     }
 
     // turn relative urls into absolute urls
-    if (!preg_match('/^https?\:\/\//', $url)) {
+    if (!is_http($url)) {
         // ensure url is relative to the site root
         if ($url[0] !== '/') {
             $url = "/{$url}";
@@ -1141,6 +1140,17 @@ function proxy_media($url)
     $secret = hash_hmac('sha1', $url, $GLOBALS['cfg']['osu']['camo']['key']);
 
     return $GLOBALS['cfg']['osu']['camo']['prefix']."{$secret}/{$hexUrl}";
+}
+
+function proxy_media_original_url(?string $url): ?string
+{
+    if ($url === null) {
+        return null;
+    }
+
+    return str_starts_with($url, $GLOBALS['cfg']['osu']['camo']['prefix'])
+        ? hex2bin(substr($url, strrpos($url, '/') + 1))
+        : $url;
 }
 
 function lazy_load_image($url, $class = '', $alt = '')
@@ -1256,7 +1266,7 @@ function display_regdate($user)
 
     $tooltipDate = i18n_date($user->user_regdate);
 
-    $formattedDate = i18n_date($user->user_regdate, null, 'year_month');
+    $formattedDate = i18n_date($user->user_regdate, pattern: 'year_month');
 
     if ($user->user_regdate < Carbon\Carbon::createFromDate(2008, 1, 1)) {
         return '<div title="'.$tooltipDate.'">'.osu_trans('users.show.first_members').'</div>';
@@ -1267,7 +1277,7 @@ function display_regdate($user)
     ]);
 }
 
-function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null)
+function i18n_date($datetime, int $format = IntlDateFormatter::LONG, $pattern = null)
 {
     $formatter = IntlDateFormatter::create(
         App::getLocale(),
@@ -1613,9 +1623,13 @@ function get_params($input, $namespace, $keys, $options = [])
 
     $params = [];
 
-    if (Arr::accessible($input)) {
-        $options['null_missing'] = $options['null_missing'] ?? false;
+    $options['null_missing'] ??= false;
 
+    if (!Arr::accessible($input) && $options['null_missing']) {
+        $input = [];
+    }
+
+    if (Arr::accessible($input)) {
         foreach ($keys as $keyAndType) {
             $keyAndType = explode(':', $keyAndType);
 
@@ -1677,27 +1691,6 @@ function model_pluck($builder, $key, $class = null)
     return $result;
 }
 
-/*
- * Returns null if $timestamp is null or 0.
- * Used for table which has not null constraints but accepts "empty" value (0).
- */
-function get_time_or_null($timestamp)
-{
-    if ($timestamp !== 0) {
-        return parse_time_to_carbon($timestamp);
-    }
-}
-
-/*
- * Get unix timestamp of a DateTime (or Carbon\Carbon).
- * Returns 0 if $time is null so mysql doesn't explode because of not null
- * constraints.
- */
-function get_timestamp_or_zero(DateTime $time = null): int
-{
-    return $time === null ? 0 : $time->getTimestamp();
-}
-
 function null_if_false($value)
 {
     return $value === false ? null : $value;
@@ -1732,6 +1725,10 @@ function parse_time_to_carbon($value)
     if ($value instanceof DateTime) {
         return Carbon\Carbon::instance($value);
     }
+
+    if ($value instanceof Carbon\CarbonImmutable) {
+        return $value->toMutable();
+    }
 }
 
 function format_duration_for_display(int $seconds)
@@ -1757,16 +1754,18 @@ function priv_check_user($user, $ability, $object = null)
 }
 
 // Used to generate x,y pairs for fancy-chart.coffee
-function array_to_graph_json(array &$array, $property_to_use)
+function array_to_graph_json(array $array, string $fieldName): array
 {
-    $index = 0;
+    $ret = [];
 
-    return array_map(function ($e) use (&$index, $property_to_use) {
-        return [
-            'x' => $index++,
-            'y' => $e[$property_to_use],
+    foreach ($array as $index => $item) {
+        $ret[] = [
+            'x' => $index,
+            'y' => $item[$fieldName],
         ];
-    }, $array);
+    }
+
+    return $ret;
 }
 
 // Fisher-Yates
@@ -1797,12 +1796,6 @@ function first_paragraph($html, $split_on = "\n")
     return $match_pos === false ? $text : substr($text, 0, $match_pos);
 }
 
-// clamps $number to be between $min and $max
-function clamp($number, $min, $max)
-{
-    return min($max, max($min, $number));
-}
-
 // e.g. 100634983048665 -> 100.63 trillion
 function suffixed_number_format(float|int $number, ?string $locale = null): string
 {
@@ -1824,11 +1817,11 @@ function suffixed_number_format_tag($number)
 }
 
 // formats a number as a percentage with a fixed number of precision
-// e.g.: 98.3 -> 98.30%
+// e.g.: 0.983 -> 98.30%
 function format_percentage($number, $precision = 2)
 {
     // the formatter assumes decimal number while the function receives percentage number.
-    return i18n_number_format($number / 100, NumberFormatter::PERCENT, null, $precision);
+    return i18n_number_format($number, NumberFormatter::PERCENT, null, $precision);
 }
 
 // shorthand to return the filename of an open stream/handle

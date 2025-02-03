@@ -88,7 +88,7 @@ export default class Controller {
 
     makeObservable(this);
 
-    $(document).on('turbolinks:before-cache', this.storeState);
+    $(document).on('turbo:before-cache', this.storeState);
 
     // fetch score data if needed
     this.setCurrent({});
@@ -103,7 +103,7 @@ export default class Controller {
     this.xhr?.abort();
     this.disposers.forEach((d) => d?.());
     this.storeState();
-    $(document).off('turbolinks:before-cache', this.storeState);
+    $(document).off('turbo:before-cache', this.storeState);
   }
 
   @action

@@ -123,7 +123,7 @@ return [
         ],
 
         'item' => [
-            'quantity' => 'Quantity',
+            'quantity' => 'quantity',
 
             'display_name' => [
                 'supporter_tag' => ':name for :username (:duration)',

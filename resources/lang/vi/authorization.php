@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Bạn phải đạt điểm trên một beatmap để thêm thẻ.',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Kênh này chỉ dành cho các thông báo.',
         'blocked' => 'Không thể nhắn tin cho người dùng đã chặn bạn hoặc nếu bạn đã chặn người đó.',
         'friends_only' => 'Người dùng này đang chặn tin nhắn từ những người không trong danh sách bạn của họ.',
         'moderated' => 'Kênh hiện đang được kiểm duyệt.',
         'no_access' => 'Bạn không có quyền truy cập vào kênh này.',
+        'no_announce' => 'Bạn không có quyền đăng thông báo.',
         'receive_friends_only' => 'Người này có thể không trả lời được vì bạn đang chỉ chấp nhận tin nhắn từ người trong danh sách bạn bè.',
         'restricted' => 'Bạn không thể gửi tin nhắn trong khi bị silenced, bị hạn chế hoặc bị cấm (ban).',
         'silenced' => 'Bạn không thể gửi tin nhắn trong khi bị silenced, bị hạn chế hoặc bị cấm (ban).',
@@ -167,6 +173,12 @@ return [
 
         'view' => [
             'admin_only' => 'Chỉ có admin mới có thể xem diễn đàn này.',
+        ],
+    ],
+
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Chỉ chủ phòng mới có thể đóng phòng.',
         ],
     ],
 

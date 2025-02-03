@@ -9,6 +9,12 @@ return [
         'title' => 'Maa',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Vaikeustaso',
+        'top_10p' => '',
+        'top_50p' => '',
+    ],
+
     'filter' => [
         'title' => 'Näytä',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'kohdevalot (vanha)',
         'country' => 'maat',
+        'daily_challenge' => 'päivittäinen haaste',
         'kudosu' => 'kudosu',
         'multiplayer' => 'moninpelit',
         'performance' => 'suorituskyky',

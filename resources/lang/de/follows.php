@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => 'Beatmap-Diskussion',
     ],
+
+    'store' => [
+        'too_many' => 'Followerlimit erreicht.',
+    ],
 ];

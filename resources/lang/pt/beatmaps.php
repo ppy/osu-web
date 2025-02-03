@@ -4,6 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Falha ao atualizar voto',
@@ -293,7 +297,7 @@ return [
         'approved' => 'Aprovados',
         'favourites' => 'Favoritos',
         'graveyard' => 'Cemitério',
-        'leaderboard' => 'Possui uma tabela de classificações',
+        'leaderboard' => 'Tem classificações',
         'loved' => 'Adorados',
         'mine' => 'Os meus mapas',
         'pending' => 'Pendente',

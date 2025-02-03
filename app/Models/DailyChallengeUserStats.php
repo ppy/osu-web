@@ -55,11 +55,11 @@ class DailyChallengeUserStats extends Model
 
         $highScoresByUserId = $playlist
             ->highScores()
-            ->where('total_score', '>', 0)
+            ->passing()
             ->get()
             ->keyBy('user_id');
         $statsByUserId = static
-            ::where('last_weekly_streak', '>=', $previousWeek->subDays(1))
+            ::where('last_weekly_streak', '>=', $previousWeek->subWeeks(1))
             ->orWhereIn('user_id', $highScoresByUserId->keys())
             ->get()
             ->keyBy('user_id');
@@ -100,6 +100,7 @@ class DailyChallengeUserStats extends Model
         $highScores = PlaylistItemUserHighScore
             ::where('user_id', $this->user_id)
             ->whereRelation('playlistItem.room', 'category', 'daily_challenge')
+            ->passing()
             ->with('playlistItem.room')
             ->orderBy('created_at')
             ->get();
@@ -114,6 +115,10 @@ class DailyChallengeUserStats extends Model
             if ($room->hasEnded()) {
                 $this->updatePercentile($playlistItem->scorePercentile(), $highScore, $startTime);
             }
+        }
+        $streakBreakDay = CarbonImmutable::yesterday();
+        if ($this->last_update < $streakBreakDay) {
+            $this->updateStreak(false, $streakBreakDay);
         }
 
         $this->saveOrExplode();
@@ -173,7 +178,7 @@ class DailyChallengeUserStats extends Model
 
         foreach ($playlistPercentile as $p => $totalScore) {
             if ($highScore->total_score >= $totalScore) {
-                $this->{"top_{$p}_placements"}++;
+                $this->{"{$p}_placements"}++;
             }
         }
         $this->last_percentile_calculation = $startTime;

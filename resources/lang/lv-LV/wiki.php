@@ -10,9 +10,9 @@ return [
         'missing' => 'Pieprasītā lapa ":keyword" netika atrasta.',
         'missing_title' => 'Nav Atrasts',
         'missing_translation' => 'Pieprasītā lapa netika atrasta ar pašreizējo, izvēlēto valodu.',
-        'needs_cleanup_or_rewrite' => '',
+        'needs_cleanup_or_rewrite' => 'Šī lapa neatbilst osu! vikipēdijas standartiem, un to vajag nopulēt vai pārrakstīt. Ja tu vari izpalīdzēt, lūdzu apdomā atjaunināt artikulu!',
         'search' => 'Meklēt esošās lapas :link.',
-        'stub' => '',
+        'stub' => 'Šis artikuls nav pabeigts, un kāds to drīz paplašinās.',
         'toc' => 'Saturs',
 
         'edit' => [

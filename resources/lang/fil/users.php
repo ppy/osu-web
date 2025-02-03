@@ -164,7 +164,7 @@ return [
             'multiple_accounts' => 'Gumagamit ng maraming account',
             'insults' => 'Iniinsulto ako o ang iba',
             'spam' => 'Nag-iispam',
-            'unwanted_content' => 'Paglink ng hindi pwedeng content.',
+            'unwanted_content' => 'Paglink ng hindi pwedeng content',
             'nonsense' => 'Bagay na walang kapararakan',
             'other' => 'Iba( i type sa baba)',
         ],
@@ -200,6 +200,7 @@ return [
             'daily' => '',
             'daily_streak_best' => '',
             'daily_streak_current' => '',
+            'playcount' => '',
             'title' => '',
             'top_10p_placements' => '',
             'top_50p_placements' => '',
@@ -242,7 +243,7 @@ return [
 
             'hue' => [
                 'reset_no_supporter' => '',
-                'title' => '',
+                'title' => 'Kulay',
 
                 'supporter' => [
                     '_' => '',
@@ -475,7 +476,7 @@ return [
             'country' => 'Pambansang Ranggo para sa :mode',
             'country_simple' => 'Pambansang Ranggo',
             'global' => 'Pandaigdigang ranggo para sa :mode',
-            'global_simple' => 'Pambansang Ranggo',
+            'global_simple' => 'Pandaigdigang Ranggo',
             'highest' => 'Pinakamataas na ranggo: :rank sa :date',
         ],
         'stats' => [

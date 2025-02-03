@@ -16,6 +16,11 @@ interface GetChannelResponse {
   users: UserJson[];
 }
 
+interface GetChannelUsersResponse {
+  cursor_string: null | string;
+  users: UserJson[];
+}
+
 interface GetMessagesResponse {
   messages: MessageJson[];
   users: UserJson[];
@@ -56,6 +61,13 @@ export function getChannel(channelId: number) {
   }));
 }
 
+export function getChannelUsers(channelId: number, cursor: string) {
+  return $.get(route('chat.channels.users.index', {
+    channel: channelId,
+    cursor_string: cursor,
+  })) as JQuery.jqXHR<GetChannelUsersResponse>;
+}
+
 export function getMessages(channelId: number, params?: { until?: number }) {
   const request = $.get(route('chat.channels.messages.index', { channel: channelId, return_object: 1, ...params })) as JQuery.jqXHR<GetMessagesResponse>;
 
@@ -78,7 +90,7 @@ export function getUpdates(since: number, lastHistoryId?: number | null) {
       includes: ['presence', 'silences'],
       since,
     },
-  ) as JQuery.jqXHR<ChatUpdatesJson | null>;
+  ) as JQuery.jqXHR<ChatUpdatesJson>;
 }
 
 export function joinChannel(channelId: number, userId: number) {

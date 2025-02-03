@@ -200,6 +200,7 @@ return [
             'daily' => '',
             'daily_streak_best' => '',
             'daily_streak_current' => '',
+            'playcount' => '',
             'title' => '',
             'top_10p_placements' => '',
             'top_50p_placements' => '',
@@ -395,7 +396,7 @@ return [
                 'title' => 'Uvrstitve',
 
                 'best' => [
-                    'title' => 'Najboljša izvedba',
+                    'title' => 'Najboljši rezultati',
                 ],
                 'first' => [
                     'title' => 'Uvrstitve na prvo mesto',

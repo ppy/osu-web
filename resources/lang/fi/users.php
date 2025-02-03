@@ -200,6 +200,7 @@ return [
             'daily' => 'Päivittäinen Putki',
             'daily_streak_best' => 'Paras Päivittäinen Putki',
             'daily_streak_current' => 'Nykyinen Päivittäinen Putki',
+            'playcount' => 'Osallistuminen Yhteensä',
             'title' => 'Päivittäinen\nHaaste',
             'top_10p_placements' => 'Top 10% -Sijoitukset',
             'top_50p_placements' => 'Top 50% -Sijoitukset',
@@ -241,11 +242,11 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
+                'reset_no_supporter' => 'Palauta oletusväri? Tukijamerkki vaaditaan värin vaihtamiseen.',
                 'title' => 'Väri',
 
                 'supporter' => [
-                    '_' => '',
+                    '_' => 'Muokatut väriteemat saatavilla vain :link',
                     'link' => 'osu!tukijat',
                 ],
             ],

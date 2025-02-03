@@ -83,7 +83,7 @@ return [
             ],
             'processing' => [
                 'title' => 'Pembayaranmu belum terkonfirmasi!',
-                'line_1' => 'Apabila kamu telah membayar, ada kemungkinan sistem kami masih menunggu konfirmasi atas pembayaranmu. Silakan muat ulang halaman ini dalam beberapa menit!',
+                'line_1' => 'Apabila kamu telah membayar, kami mungkin masih menunggu konfirmasi atas pembayaranmu. Silakan muat ulang halaman ini dalam beberapa menit!',
                 'line_2' => [
                     '_' => 'Apabila kamu menemui masalah dalam proses checkout, :link',
                     'link_text' => 'klik di sini untuk melanjutkan proses checkout',
@@ -172,7 +172,7 @@ return [
         ],
 
         'add_to_cart' => 'Tambahkan ke Keranjang',
-        'notify' => 'Beri tahu saya bila telah tersedia!',
+        'notify' => 'Beri tahu saya ketika telah tersedia!',
 
         'notification_success' => 'kamu akan menerima notifikasi pada saat kami memiliki stok baru. klik :link untuk membatalkan',
         'notification_remove_text' => 'di sini',

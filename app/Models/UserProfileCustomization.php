@@ -69,7 +69,23 @@ class UserProfileCustomization extends Model
     ];
     protected $primaryKey = 'user_id';
 
-    public static function repairExtrasOrder($value)
+    public static function forUser(?User $user): array|static
+    {
+        if ($user === null) {
+            return static::DEFAULTS;
+        }
+
+        $ret = $user->userProfileCustomization;
+
+        if ($ret === null) {
+            $ret = new static(['user_id' => $user->getKey()]);
+            $user->setRelation('userProfileCustomization', $ret);
+        }
+
+        return $ret;
+    }
+
+    public static function repairExtrasOrder(array $value): array
     {
         // read from inside out
         return array_values(
@@ -207,7 +223,14 @@ class UserProfileCustomization extends Model
             } else {
                 $option = $lastScore->isLegacy();
                 $this->setOption('legacy_score_only', $option);
-                $this->save();
+
+                try {
+                    $this->save();
+                } catch (\Throwable $e) {
+                    if (!is_sql_unique_exception($e)) {
+                        throw $e;
+                    }
+                }
             }
         }
 
@@ -293,7 +316,10 @@ class UserProfileCustomization extends Model
     public function setExtrasOrderAttribute($value)
     {
         $this->attributes['extras_order'] = null;
-        $this->setOption('extras_order', static::repairExtrasOrder($value));
+        $this->setOption(
+            'extras_order',
+            $value === null ? null : static::repairExtrasOrder($value),
+        );
     }
 
     public function getProfileCoverExpandedAttribute()

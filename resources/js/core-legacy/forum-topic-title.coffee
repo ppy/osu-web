@@ -12,7 +12,7 @@ export default class ForumTopicTitle
     @title = document.getElementsByClassName('js-forum-topic-title--title')
     @toggleables = document.getElementsByClassName('js-forum-topic-title--toggleable')
 
-    addEventListener 'turbolinks:before-cache', @abort
+    addEventListener 'turbo:before-cache', @abort
     $(document).on 'click', '.js-forum-topic-title--edit-start', @editShow
     $(document).on 'click', '.js-forum-topic-title--save', @save
     $(document).on 'keyup', '.js-forum-topic-title--input', @onKeyup

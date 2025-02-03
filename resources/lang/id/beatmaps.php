@@ -4,6 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Pilihan gagal diperbarui',
@@ -27,7 +31,7 @@ return [
         'reply_notice' => 'Tekan enter untuk membalas.',
         'reply_resolve_notice' => 'Tekan enter untuk membalas. Tekan ctrl+enter untuk membalas dan menutup topik diskusi.',
         'reply_placeholder' => 'Ketik balasanmu di sini',
-        'require-login' => 'Silakan masuk untuk membuka topik diskusi baru atau membalas',
+        'require-login' => 'Silakan masuk untuk mengirim atau membalas postingan',
         'resolved' => 'Terjawab',
         'restore' => 'pulihkan',
         'show_deleted' => 'Tampilkan yang telah dihapus',
@@ -62,10 +66,10 @@ return [
         ],
 
         'message_placeholder' => [
-            'general' => 'Ketik di sini untuk membuka topik diskusi baru pada Umum (:version)',
-            'generalAll' => 'Ketik di sini untuk membuka topik diskusi baru pada Umum (Seluruh tingkat kesulitan)',
-            'review' => 'Ketik di sini untuk menulis kajian',
-            'timeline' => 'Ketik di sini untuk membuka topik diskusi baru pada Linimasa (:version)',
+            'general' => 'Ketik di sini untuk mengirimkan topik diskusi baru pada Umum (:version)',
+            'generalAll' => 'Ketik di sini untuk mengirimkan topik diskusi baru pada Umum (Seluruh tingkat kesulitan)',
+            'review' => 'Ketik di sini untuk mengirimkan kajian',
+            'timeline' => 'Ketik di sini untuk mengirimkan topik diskusi baru pada Linimasa (:version)',
         ],
 
         'message_type' => [
@@ -106,7 +110,7 @@ return [
         'new' => [
             'pin' => 'Sematkan',
             'timestamp' => 'Keterangan Waktu',
-            'timestamp_missing' => 'salin (ctrl+c) objek di editor dan tempelkan (ctrl+v) pada boks di atas untuk membubuhkan keterangan waktu!',
+            'timestamp_missing' => 'salin (ctrl+c) objek pada mode edit dan tempelkan (ctrl+v) pada pesanmu untuk menambahkan keterangan waktu!',
             'title' => 'Topik Diskusi Baru',
             'unpin' => 'Lepas Sematan',
         ],
@@ -119,7 +123,7 @@ return [
                 'unlink' => 'Lepas Tautan',
                 'unsaved' => 'Belum Tersimpan',
                 'timestamp' => [
-                    'all-diff' => 'Keterangan waktu tidak dapat dibubuhkan pada topik diskusi yang tertuju pada "Umum (Seluruh tingkat kesulitan)".',
+                    'all-diff' => 'Postingan yang tertuju pada "Umum (Seluruh tingkat kesulitan)" tidak dapat mengandung keterangan waktu.',
                     'diff' => 'Apabila topik diskusi ini dimulai dengan keterangan waktu, topik ini akan muncul pada tab Linimasa.',
                 ],
             ],
@@ -154,7 +158,7 @@ return [
         'status-messages' => [
             'approved' => 'Beatmap ini telah di-approve pada tanggal :date!',
             'graveyard' => "Beatmap ini belum diperbarui sejak :date dan sepertinya telah diabaikan oleh pembuatnya...",
-            'loved' => 'Beatmap ini telah ditambahkan pada kategori Loved pada tanggal :date!',
+            'loved' => 'Beatmap ini telah ditambahkan ke kategori Loved pada tanggal :date!',
             'ranked' => 'Beatmap ini telah di-rank pada tanggal :date!',
             'wip' => 'Catatan: Beatmap ini ditandai dengan status dalam pengerjaan (work-in-progress) oleh pembuatnya.',
         ],
@@ -192,8 +196,8 @@ return [
         'already_nominated' => 'Kamu telah menominasikan beatmap ini.',
         'cannot_nominate' => 'Kamu tidak dapat memberikan nominasi untuk mode permainan ini.',
         'delete' => 'Hapus',
-        'delete_own_confirm' => 'Apakah kamu yakin? Beatmap yang dipilih akan dihapus dan kamu akan dialihkan kembali ke halaman profilmu.',
-        'delete_other_confirm' => 'Apakah kamu yakin? Beatmap yang dipilih akan dihapus dan kamu akan dialihkan kembali ke halaman profil pengguna yang bersangkutan.',
+        'delete_own_confirm' => 'Apakah kamu yakin? Beatmap ini akan dihapus dan kamu akan dialihkan kembali ke halaman profilmu.',
+        'delete_other_confirm' => 'Apakah kamu yakin? Beatmap ini akan dihapus dan kamu akan dialihkan kembali ke halaman profil pengguna yang bersangkutan.',
         'disqualification_prompt' => 'Alasan diskualifikasi?',
         'disqualified_at' => 'Didiskualifikasi pada :time_ago (:reason).',
         'disqualified_no_reason' => 'tidak ada alasan yang diberikan',
@@ -211,20 +215,20 @@ return [
         'required_text' => 'Nominasi: :current/:required',
         'reset_message_deleted' => 'dihapus',
         'title' => 'Status Nominasi',
-        'unresolved_issues' => 'Terdapat satu atau lebih masalah yang belum terjawab dan harus ditangani terlebih dahulu.',
+        'unresolved_issues' => 'Terdapat masalah belum terjawab yang harus diselesaikan terlebih dahulu.',
 
         'rank_estimate' => [
-            '_' => 'Map ini akan berstatus Ranked :date apabila tidak terdapat masalah baru yang ditemukan. Map ini berada pada urutan ke-:position dalam :queue yang ada.',
+            '_' => 'Map ini diperkirakan akan berstatus Ranked :date apabila tidak terdapat masalah yang ditemukan. Map ini berada pada urutan ke-:position dalam :queue saat ini.',
             'unresolved_problems' => 'Beatmap ini sedang diblokir untuk dapat melewati kategori Qualified hingga :problems terselesaikan.',
             'problems' => 'masalah berikut',
             'on' => 'pada tanggal :date',
-            'queue' => 'antrian ranking',
+            'queue' => 'antrean ranking',
             'soon' => 'segera',
         ],
 
         'reset_at' => [
-            'nomination_reset' => 'Proses nominasi dianulir :time_ago oleh :user akibat ditemukannya masalah baru :discussion (:message).',
-            'disqualify' => 'Didiskualifikasi :time_ago oleh :user akibat ditemukannya masalah baru :discussion (:message).',
+            'nomination_reset' => 'Proses nominasi dianulir :time_ago oleh :user dengan ditemukannya masalah baru :discussion (:message).',
+            'disqualify' => 'Didiskualifikasi :time_ago oleh :user dengan ditemukannya masalah baru :discussion (:message).',
         ],
 
         'reset_confirm' => [
@@ -239,7 +243,7 @@ return [
             'prompt' => 'ketik kata kunci pencarian...',
             'login_required' => 'Silakan masuk untuk memulai pencarian.',
             'options' => 'Pilihan Pencarian Lebih Lanjut',
-            'supporter_filter' => 'Penyaringan berdasarkan :filters memerlukan osu!supporter tag yang aktif',
+            'supporter_filter' => 'Penyaringan berdasarkan :filters memerlukan tag osu!supporter yang aktif',
             'not-found' => 'tidak ada hasil',
             'not-found-quote' => '… enggak, tidak ada yang ditemukan.',
             'filters' => [

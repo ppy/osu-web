@@ -18,8 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Vill du dölja denna kanal? Du kommer fortfarande ta emot meddelanden från denna kanal.',
         'create' => 'skapa meddelande',
-        'join' => '',
-        'none' => '',
+        'join' => 'gå med i kanal',
+        'none' => 'ingen kanal',
 
         'list' => [
             'title' => [
@@ -64,6 +64,6 @@ return [
     ],
 
     'join_channels' => [
-        'loading' => '',
+        'loading' => 'Laddar kanallista...',
     ],
 ];

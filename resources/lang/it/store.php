@@ -56,8 +56,8 @@ return [
         'date' => 'Data:',
         'echeck_delay' => 'Visto che il tuo pagamento era un eCheck, dovrai attendere altri 10 giorni per far passare il pagamento attraverso PayPal!',
         'hide_from_activity' => 'I tag osu!supporter in questo ordine non verranno mostrati nella tua attività recente.',
-        'sent_via' => '',
-        'shipping_to' => '',
+        'sent_via' => 'Inviato con:',
+        'shipping_to' => 'Indirizzo di spedizione:',
         'title' => 'Ricevuta',
         'title_compact' => 'ricevuta',
 
@@ -91,7 +91,7 @@ return [
             ],
             'shipped' => [
                 'title' => 'Il tuo ordine è stato spedito!',
-                'tracking_details' => '',
+                'tracking_details' => 'Dettagli di tracciamento:',
                 'no_tracking_details' => [
                     '_' => "Non disponiamo dei dettagli di tracciabilità poiché abbiamo inviato il tuo pacco tramite posta aerea, ma puoi aspettarti di riceverlo entro 1-3 settimane. Per l'Europa, a volte la dogana può ritardare l'ordine senza il nostro controllo. Se hai qualche dubbio, rispondi all'e-mail di conferma dell'ordine che hai ricevuto (o :link).",
                     'link_text' => 'inviaci un\'email',
@@ -123,7 +123,7 @@ return [
         ],
 
         'item' => [
-            'quantity' => 'Quantità',
+            'quantity' => 'quantità',
 
             'display_name' => [
                 'supporter_tag' => ':name per :username (:duration)',
@@ -174,7 +174,7 @@ return [
         'add_to_cart' => 'Aggiungi al carrello',
         'notify' => 'Avvisami quando è disponibile!',
 
-        'notification_success' => 'sarai avvisato quando sarà disponibile. clicca :link per annullare',
+        'notification_success' => 'verrai avvisato quando sarà disponibile. clicca :link per annullare',
         'notification_remove_text' => 'qui',
 
         'notification_in_stock' => 'Questo prodotto è già disponibile!',

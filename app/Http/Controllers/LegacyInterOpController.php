@@ -10,7 +10,6 @@ use App\Jobs\EsDocument;
 use App\Jobs\Notifications\ForumTopicReply;
 use App\Jobs\RegenerateBeatmapsetCover;
 use App\Libraries\Chat;
-use App\Libraries\UserBestScoresCheck;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Chat\Channel;
@@ -295,17 +294,6 @@ class LegacyInterOpController extends Controller
         }
 
         return response()->json($results);
-    }
-
-    public function userBestScoresCheck($id)
-    {
-        $user = User::findOrFail($id);
-
-        foreach (Beatmap::MODES as $mode => $_v) {
-            (new UserBestScoresCheck($user))->run($mode);
-        }
-
-        return ['success' => true];
     }
 
     public function userIndex($id)

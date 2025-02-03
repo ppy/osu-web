@@ -40,118 +40,124 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
-            'resolved' => '',
-            'system_generated' => '',
+            'not_owner' => 'Anda hanya boleh memadamkan post sendiri.',
+            'resolved' => 'Anda tidak boleh memadamkan post perbincangan yang telah diselesaikan.',
+            'system_generated' => 'Post yang dijana secara automatik tidak boleh dipadamkan.',
         ],
 
         'edit' => [
-            'not_owner' => '',
-            'resolved' => '',
-            'system_generated' => '',
+            'not_owner' => 'Hanya pembuat post boleh membuat pengeditan terhadap post tersebut.',
+            'resolved' => 'Anda tidak boleh edit post perbincangan yang telah diselesaikan.',
+            'system_generated' => 'Post yang dijana secara automatik tidak boleh dieditkan.',
         ],
     ],
 
     'beatmapset' => [
-        'discussion_locked' => '',
+        'discussion_locked' => 'Beatmap ini dikunci bagi perbincangan.',
 
         'metadata' => [
             'nominated' => '',
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => '',
-        'blocked' => '',
-        'friends_only' => '',
-        'moderated' => '',
-        'no_access' => '',
-        'receive_friends_only' => '',
-        'restricted' => '',
-        'silenced' => '',
+        'blocked' => 'Tidak boleh mesej pengguna yang telah menyekat anda atau yang anda sekat.',
+        'friends_only' => 'Pengguna menyekat pesanan dari orang yang tiada dalam senarai kawan.',
+        'moderated' => 'Saluran ini sedang diawas.',
+        'no_access' => 'Anda tiada kebenaran untuk mengakses saluran itu.',
+        'no_announce' => 'Anda tidak mempunyai kebenaran untuk post pengumuman.',
+        'receive_friends_only' => 'Pengguna ini mungkin tidak boleh membalas kerana anda hanya menerima pesanan dari orang dalam senarai kawan anda.',
+        'restricted' => 'Anda tidak boleh menghantar pesanan ketika didiamkan, disekat atau dilarang.',
+        'silenced' => 'Anda tidak boleh menghantar pesanan ketika didiamkan, disekat atau dilarang.',
     ],
 
     'comment' => [
         'store' => [
-            'disabled' => '',
+            'disabled' => 'Ruangan komen ditutup',
         ],
         'update' => [
-            'deleted' => "",
+            'deleted' => "Ruangan komen ditutup",
         ],
     ],
 
     'contest' => [
         'judging_not_active' => '',
-        'voting_over' => '',
+        'voting_over' => 'Anda tidak boleh tukar undian selepas tempoh mengundi untuk pertandingan ini telah tamat.',
 
         'entry' => [
-            'limit_reached' => '',
+            'limit_reached' => 'Anda telah mencapai had kemasukan untuk pertandingan ini',
             'over' => '',
         ],
     ],
 
     'forum' => [
         'moderate' => [
-            'no_permission' => '',
+            'no_permission' => 'Tiada kebenaran untuk mengawas forum ini.',
         ],
 
         'post' => [
             'delete' => [
-                'only_last_post' => '',
-                'locked' => '',
-                'no_forum_access' => '',
-                'not_owner' => '',
+                'only_last_post' => 'Hanya hantaran terakhir boleh dipadam.',
+                'locked' => 'Tidak boleh padam hantaran bagi topik yang dikunci.',
+                'no_forum_access' => 'Akses kepada forum yang dimohon diperlukan.',
+                'not_owner' => 'Hanya penghantar boleh memadam hantaran ini.',
             ],
 
             'edit' => [
-                'deleted' => '',
-                'locked' => '',
-                'no_forum_access' => '',
-                'not_owner' => '',
-                'topic_locked' => '',
+                'deleted' => 'Tidak boleh sunting hantaran yang dipadam.',
+                'locked' => 'Hantaran ini dikunci daripada disunting.',
+                'no_forum_access' => 'Akses kepada forum yang dimohon diperlukan.',
+                'not_owner' => 'Hanya penghantar boleh memadam hantaran ini.',
+                'topic_locked' => 'Tidak boleh mengedit post topik yang dikunci.',
             ],
 
             'store' => [
-                'play_more' => '',
+                'play_more' => 'Sila main game dulu sebelum membuat post di forum! Jika anda menghadapi apa-apa masalah ketika bermain, sila post masalah tersebut di Bantuan dan Sokongan forum.',
                 'too_many_help_posts' => "", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => '',
-                'locked' => '',
-                'no_forum_access' => '',
-                'no_permission' => '',
+                'double_post' => 'Daripada membuat post baharu, sila editkan post terakhir anda.',
+                'locked' => 'Tidak boleh membalas jalur yang dikunci.',
+                'no_forum_access' => 'Akses kepada forum yang dimohon diperlukan.',
+                'no_permission' => 'Tiada kebenaran untuk membuat balasan.',
 
                 'user' => [
-                    'require_login' => '',
-                    'restricted' => "",
-                    'silenced' => "",
+                    'require_login' => 'Sila daftar masuk untuk membuat balasan.',
+                    'restricted' => "Tidak boleh membuat balasan semasa dibatasi.",
+                    'silenced' => "Tidak boleh membuat balasana semasa disenyapkan.",
                 ],
             ],
 
             'store' => [
-                'no_forum_access' => '',
-                'no_permission' => '',
+                'no_forum_access' => 'Akses kepada forum yang dimohon diperlukan.',
+                'no_permission' => 'Tiada kebenaran untuk memulakan topik baharu.',
                 'forum_closed' => '',
             ],
 
             'vote' => [
-                'no_forum_access' => '',
+                'no_forum_access' => 'Akses kepada forum yang dimohon diperlukan.',
                 'over' => '',
                 'play_more' => '',
-                'voted' => '',
+                'voted' => 'Pertukaran pengundian tidak dibenarkan.',
 
                 'user' => [
-                    'require_login' => '',
-                    'restricted' => "",
-                    'silenced' => "",
+                    'require_login' => 'Sila daftar masuk untuk mengundi.',
+                    'restricted' => "Tidak boleh mengundi semasa dibatasi.",
+                    'silenced' => "Tidak boleh mengundi semasa disenyapkan.",
                 ],
             ],
 
             'watch' => [
-                'no_forum_access' => '',
+                'no_forum_access' => 'Akses kepada forum yang dimohon diperlukan.',
             ],
         ],
 
@@ -167,6 +173,12 @@ return [
 
         'view' => [
             'admin_only' => '',
+        ],
+    ],
+
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
         ],
     ],
 
@@ -188,7 +200,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => 'alamat emel terkunci',
         ],
     ],
 ];

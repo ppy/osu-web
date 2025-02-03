@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Ta kanal je namenjen za obvestila.',
         'blocked' => 'Ni možno klepetati z igralcem, ki te je blokiral ali si ga ti blokiral.',
         'friends_only' => 'Igralec ima blokirana sporočila od drugih, ki niso na njegovem seznamu prijateljev.',
         'moderated' => 'Ta kanal je trenutno moderiran.',
         'no_access' => 'Nimaš dostopa do tega kanala.',
+        'no_announce' => '',
         'receive_friends_only' => 'Igralec morda ne bo mogel odgovoriti, ker lahko sprejemaš le sporočila od igralcev s seznama prijateljev.',
         'restricted' => 'Ne moreš pošiljati sporočila medtem, ko si utišan, omejen ali suspendiran.',
         'silenced' => 'Ne moreš pošiljati sporočila medtem, ko si utišan, omejen ali suspendiran.',
@@ -167,6 +173,12 @@ return [
 
         'view' => [
             'admin_only' => 'Samo administrator si lahko ogleda ta forum.',
+        ],
+    ],
+
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
         ],
     ],
 

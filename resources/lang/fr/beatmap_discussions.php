@@ -66,6 +66,13 @@ return [
         'version' => 'Difficulté',
     ],
 
+    'refresh' => [
+        'checking' => 'Vérification des mises à jour...',
+        'has_updates' => 'La discussion a des mises à jour, cliquez pour rafraîchir.',
+        'no_updates' => 'Aucune mise à jour.',
+        'updating' => 'Mise à jour...',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Connectez-vous pour répondre',

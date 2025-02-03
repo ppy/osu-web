@@ -18,6 +18,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Успорите, играјте више.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -52,6 +53,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Да ли сте сигурни да желите да номинујете ову мапу?',
+            'different_nominator_warning' => '',
             'header' => 'Номинујте ову мапу',
             'hybrid_warning' => 'напомена: можете номиновати само једном, па вас молимо да се уверите да номинујете за све модове игре које намеравате да играте',
             'current_main_ruleset' => '',

@@ -4,6 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => '投票更新失敗',
@@ -17,26 +21,26 @@ return [
         'deleted' => '被 :editor 於 :delete_time 刪除。',
         'deny_kudosu' => '收回 kudosu',
         'edit' => '編輯',
-        'edited' => '最後由 :editor 編輯於 :update_time 。',
+        'edited' => '最後由 :editor 在 :update_time 編輯。',
         'guest' => '由 :user 製作的客串難度',
         'kudosu_denied' => 'kudosu 被收回',
         'message_placeholder_deleted_beatmap' => '該難度已被刪除，無法繼續討論',
-        'message_placeholder_locked' => '此圖譜的討論已被禁用。',
-        'message_placeholder_silenced' => "帳戶被禁言，無法發佈討論。",
+        'message_placeholder_locked' => '此圖譜的討論已被停用。',
+        'message_placeholder_silenced' => "禁言時無法發布討論。",
         'message_type_select' => '選擇回覆類型',
         'reply_notice' => '按下 Enter 以回覆',
-        'reply_resolve_notice' => '按下 Enter 以回覆。按 Ctrl+Enter 以回覆與解決。',
+        'reply_resolve_notice' => '按下 Enter 以回覆。按下 Ctrl+Enter 以回覆並標記為解決。',
         'reply_placeholder' => '在此處輸入您的回覆',
-        'require-login' => '回覆前請先登入。',
+        'require-login' => '登入以發文或回覆',
         'resolved' => '已解決',
         'restore' => '已修復',
-        'show_deleted' => '顯示刪除的項目',
+        'show_deleted' => '顯示已刪除的訊息',
         'title' => '討論區',
         'unresolved_count' => ':count_delimited 個未解決問題',
 
         'collapse' => [
-            'all-collapse' => '收回全部',
-            'all-expand' => '展開全部',
+            'all-collapse' => '全部摺疊',
+            'all-expand' => '全部展開',
         ],
 
         'empty' => [
@@ -51,21 +55,21 @@ return [
             ],
 
             'prompt' => [
-                'lock' => '鎖定的原因',
-                'unlock' => '確認解鎖？',
+                'lock' => '鎖定原因',
+                'unlock' => '確定要解鎖嗎？',
             ],
         ],
 
         'message_hint' => [
-            'in_general' => '這篇貼文將發佈到圖譜討論區中。如需要檢查此圖譜某個特定部分，請在開頭加入時間戳 (例如: 00:12:345)。',
-            'in_timeline' => '每篇貼文僅加入一個時間戳，如需要檢查多個時間戳，請將時間戳分別發佈至不同貼文，並寫下發表意見。',
+            'in_general' => '這則貼文將發布至一般圖譜討論區。如要針對此難度提供修改意見，請在訊息開頭加上時間戳記（例如：00:12:345）。',
+            'in_timeline' => '如要針對多個時間戳記提供修改意見，請分多次發布訊息（每個時間戳記一則貼文）。',
         ],
 
         'message_placeholder' => [
-            'general' => '在此處輸入以發佈至整體 (:version)',
-            'generalAll' => '在此處輸入以發佈至整體 (所有難度)',
-            'review' => '在此處輸入以發佈評論',
-            'timeline' => '在此處輸入以發佈至時間軸 (:version)',
+            'general' => '在這裡輸入以發布至整體 (:version)',
+            'generalAll' => '在這裡輸入以發布至整體（所有難度）',
+            'review' => '在這裡輸入以發布評論',
+            'timeline' => '在這裡輸入以發布至時間軸 (:version)',
         ],
 
         'message_type' => [
@@ -83,7 +87,7 @@ return [
         'message_type_title' => [
             'disqualify' => '取消提名',
             'hype' => '推薦！',
-            'mapper_note' => '備注',
+            'mapper_note' => '發布備註',
             'nomination_reset' => '刪除所有提名',
             'praise' => '表揚',
             'problem' => '問題',
@@ -96,7 +100,7 @@ return [
             'events' => '歷史',
             'general' => '整體:scope',
             'reviews' => '評論',
-            'timeline' => '時間線',
+            'timeline' => '時間軸',
             'scopes' => [
                 'general' => '目前難度',
                 'generalAll' => '所有難度',
@@ -106,7 +110,7 @@ return [
         'new' => [
             'pin' => '釘選',
             'timestamp' => '時間戳',
-            'timestamp_missing' => '在編輯模式下按 Ctrl+C 並至您輸入的對話框中按 Ctrl+V 以加入時間戳！',
+            'timestamp_missing' => '在編輯模式下按下 Ctrl+C，然後貼到你的訊息中即可加入時間戳記！',
             'title' => '新的討論',
             'unpin' => '取消釘選',
         ],
@@ -119,8 +123,8 @@ return [
                 'unlink' => '取消連結',
                 'unsaved' => '尚未儲存',
                 'timestamp' => [
-                    'all-diff' => '發佈於「所有難度」的無法進行時間戳記',
-                    'diff' => '如果這個 :type 開頭是時間戳，時間戳會在「時間軸」下顯示。',
+                    'all-diff' => '發布於「所有難度」的無法進行時間戳記',
+                    'diff' => '如果這則貼文以時間戳記開頭，它將顯示在時間軸下方。',
                 ],
             ],
             'insert-block' => [
@@ -152,10 +156,10 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => '這張圖譜於 :date 被批准!',
+            'approved' => '這張圖譜在 :date 獲得核准！',
             'graveyard' => "這張圖譜自 :date 就未更新了，或許它已經被作者拋棄了 ;w;",
-            'loved' => '這張圖譜於 :date 被 Loved !',
-            'ranked' => '這張圖譜於 :date 進榜了!',
+            'loved' => '這張圖譜於 :date 被加入到社群喜愛分類！',
+            'ranked' => '這張圖譜於 :date 進榜！',
             'wip' => '注意：這張圖譜被作者標記為製作中（半成品）',
         ],
 
@@ -174,9 +178,9 @@ return [
     'hype' => [
         'button' => '推薦圖譜！',
         'button_done' => '已經推薦！',
-        'confirm' => "你確定嗎？這將會使用你剩下的 :n 次推薦次數並且無法撤銷。",
-        'explanation' => '推薦這張圖譜讓它更容易被提名和進榜 ！',
-        'explanation_guest' => '登錄並推薦這張譜面讓它更容易被提名然後 ranked ！',
+        'confirm' => "你確定嗎？這將會使用你剩下的 :n 次推薦次數並且無法取消。",
+        'explanation' => '推薦這張圖譜讓它更容易被提名和進榜！',
+        'explanation_guest' => '登入並推薦這張圖譜，讓它更容易被提名並進榜！',
         'new_time' => "你將在 :new_time 後獲得新的推薦次數。",
         'remaining' => '你還可以推薦 :remaining 次。',
         'required_text' => '推薦進度： :current/:required',
@@ -190,47 +194,47 @@ return [
 
     'nominations' => [
         'already_nominated' => '您已經提名過這張圖譜了',
-        'cannot_nominate' => '您不能提名此遊戲模式的圖譜',
+        'cannot_nominate' => '您不能提名這個遊戲模式的圖譜',
         'delete' => '刪除',
-        'delete_own_confirm' => '你確定嗎？這個圖譜將被刪除，刪除後你將重新導向到你的個人資料頁面。',
-        'delete_other_confirm' => '你確定嗎？這個圖譜將被刪除，刪除後你將重新導向到他的個人資料頁面。',
-        'disqualification_prompt' => 'Disqualified 的理由？',
-        'disqualified_at' => '於 :time_ago 被 Disqualified（:reason）。',
+        'delete_own_confirm' => '你確定嗎？這張圖譜將被刪除，刪除後你將重新導向到你的個人檔案頁面。',
+        'delete_other_confirm' => '你確定嗎？這張圖譜將被刪除，刪除後你將重新導向到他的個人檔案頁面。',
+        'disqualification_prompt' => '請說明取消資格的原因。',
+        'disqualified_at' => '於 :time_ago 被取消資格（:reason）。',
         'disqualified_no_reason' => '沒有指定原因',
         'disqualify' => '取消提名',
-        'incorrect_state' => '操作發生錯誤，請重新載入頁面。',
-        'love' => '喜歡',
-        'love_choose' => '選擇 Loved 圖譜的難度',
+        'incorrect_state' => '執行該操作時發生錯誤，請嘗試重新整理頁面。',
+        'love' => '社群喜愛',
+        'love_choose' => '選擇要移入社群喜愛狀態的難度',
         'love_confirm' => '喜歡這張圖譜嗎？',
         'nominate' => '提名',
         'nominate_confirm' => '確定要提名這張圖譜？',
         'nominated_by' => '被 :users 提名',
         'not_enough_hype' => "沒有足夠的推薦。",
-        'remove_from_loved' => '從 Loved 中移除',
-        'remove_from_loved_prompt' => '從 Loved 中移除的原因：',
-        'required_text' => '提名數: :current/:required',
+        'remove_from_loved' => '從社群喜愛中移除',
+        'remove_from_loved_prompt' => '從社群喜愛中移除的原因：',
+        'required_text' => '提名數：:current/:required',
         'reset_message_deleted' => '已刪除',
         'title' => '提名狀態',
-        'unresolved_issues' => '仍然有需解決的問題 。',
+        'unresolved_issues' => '請先處理圖譜中待解決的問題。',
 
         'rank_estimate' => [
-            '_' => '若沒找到問題，該圖譜將於 :date 進榜。位於 :queue 中的 #:position。',
+            '_' => '如果沒有發現問題，這張圖譜預計會在 :date 進榜。它在 :queue 中排名第 #:position。',
             'unresolved_problems' => '除非已解決 :problems，否則這張圖譜會一直處於已提名狀態。',
             'problems' => '這些問題',
             'on' => '在:date',
-            'queue' => 'ranking 列隊',
+            'queue' => '排名佇列',
             'soon' => '不久後',
         ],
 
         'reset_at' => [
-            'nomination_reset' => '提名進度於 :time_ago 被新問題 :discussion 重置。',
-            'disqualify' => ':time_ago  :user 因新问题 :discussion (:message) 而被 DQ.',
+            'nomination_reset' => '提名程序已由 :user 在 :time_ago 重設，新的問題是 :discussion (:message)。',
+            'disqualify' => '由 :user 在 :time_ago 取消資格，新的問題是 :discussion (:message)。',
         ],
 
         'reset_confirm' => [
-            'disqualify' => '你確定嗎？這個會移除圖譜從進榜和重設提名進度。',
-            'nomination_reset' => '你確定嗎？提出新的問題會重置提名進度。',
-            'problem_warning' => '您確定要回報本圖譜的問題嗎？這問題將通知圖譜管理團隊。',
+            'disqualify' => '你確定嗎？這將把譜面從合格狀態移除並重設提名程序。',
+            'nomination_reset' => '你確定嗎？提出新的問題將重設提名程序。',
+            'problem_warning' => '你確定要回報這個譜面的問題嗎？這會通知圖譜管理團隊 (BN)。',
         ],
     ],
 
@@ -239,9 +243,9 @@ return [
             'prompt' => '輸入關鍵字...',
             'login_required' => '登入以搜尋。',
             'options' => '更多搜尋選項',
-            'supporter_filter' => '按 :filters 篩選需要擁有有效的贊助者標籤',
+            'supporter_filter' => '使用 :filters 進行篩選需要有效的 osu!supporter 標籤',
             'not-found' => '沒有結果',
-            'not-found-quote' => '姆....，什麼也沒有。',
+            'not-found-quote' => '… 呃，什麼都沒找到。',
             'filters' => [
                 'extra' => '其他資訊',
                 'general' => '一般',
@@ -266,7 +270,7 @@ return [
                 'nominations' => '提名狀態',
             ],
             'supporter_filter_quote' => [
-                '_' => '按 :filters 篩選需先成為 :link',
+                '_' => '使用 :filters 進行篩選需要有效的 :link',
                 'link_text' => 'osu! 贊助者標籤',
             ],
         ],
@@ -274,7 +278,7 @@ return [
     'general' => [
         'converts' => '包括轉換圖譜',
         'featured_artists' => '精選藝術家',
-        'follows' => '訂閱的作圖者',
+        'follows' => '已訂閱的圖譜製作者',
         'recommended' => '推薦難度',
         'spotlights' => '聚光燈圖譜',
     ],
@@ -289,15 +293,15 @@ return [
     ],
     'status' => [
         'any' => '所有',
-        'approved' => '批准',
+        'approved' => '已核准',
         'favourites' => '收藏',
         'graveyard' => '拋棄',
         'leaderboard' => '擁有排行榜',
-        'loved' => 'Loved',
+        'loved' => '社群喜愛',
         'mine' => '我的圖譜',
-        'pending' => '待處理&製作中',
+        'pending' => '待處理',
         'wip' => '尚未完工 (WIP)',
-        'qualified' => 'Qualified',
+        'qualified' => '提名',
         'ranked' => '已進榜',
     ],
     'genre' => [
@@ -318,17 +322,17 @@ return [
     ],
     'language' => [
         'any' => '所有',
-        'english' => '英語',
+        'english' => '英文',
         'chinese' => '漢語',
-        'french' => '法語',
-        'german' => '德語',
-        'italian' => '意大利語',
-        'japanese' => '日語',
-        'korean' => '韓語',
-        'spanish' => '西班牙語',
-        'swedish' => '瑞典語',
-        'russian' => '俄語',
-        'polish' => '波蘭語',
+        'french' => '法文',
+        'german' => '德文',
+        'italian' => '義大利文',
+        'japanese' => '日文',
+        'korean' => '韓文',
+        'spanish' => '西班牙文',
+        'swedish' => '瑞典文',
+        'russian' => '俄文',
+        'polish' => '波蘭文',
         'instrumental' => '樂器演奏',
         'other' => '其他',
         'unspecified' => '未指定',

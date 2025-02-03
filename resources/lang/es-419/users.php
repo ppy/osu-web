@@ -200,6 +200,7 @@ return [
             'daily' => 'Racha diaria',
             'daily_streak_best' => 'Mejor racha diaria',
             'daily_streak_current' => 'Racha diaria actual',
+            'playcount' => 'Participación total',
             'title' => 'Desafío\ndiario',
             'top_10p_placements' => 'Puestos en el top 10 %',
             'top_50p_placements' => 'Puestos en el top 50 %',

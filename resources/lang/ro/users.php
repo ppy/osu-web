@@ -197,27 +197,28 @@ return [
             'to_1' => 'Afișează coperta',
         ],
         'daily_challenge' => [
-            'daily' => '',
-            'daily_streak_best' => '',
-            'daily_streak_current' => '',
-            'title' => '',
-            'top_10p_placements' => '',
-            'top_50p_placements' => '',
-            'weekly' => '',
-            'weekly_streak_best' => '',
-            'weekly_streak_current' => '',
+            'daily' => 'Serie Zilnică',
+            'daily_streak_best' => 'Cea Mai Bună Serie Zilnică',
+            'daily_streak_current' => 'Serie Zilnică Actuală',
+            'playcount' => 'Participare Totală',
+            'title' => 'Provocare\nZilnică',
+            'top_10p_placements' => 'Plasamente Top 10%',
+            'top_50p_placements' => 'Plasamente Top 50%',
+            'weekly' => 'Serie Săptămânală',
+            'weekly_streak_best' => 'Cea Mai Bună Serie Săptămânală',
+            'weekly_streak_current' => 'Serie Săptămânală Actuală',
 
             'unit' => [
-                'day' => '',
-                'week' => '',
+                'day' => ':valuez',
+                'week' => ':values',
             ],
         ],
         'edit' => [
             'cover' => [
-                'button' => 'Schimbă coperta de profil',
+                'button' => 'Schimbă Coperta de Profil',
                 'defaults_info' => 'Mai multe opțiuni pentru coperți vor fi disponibile în viitor',
                 'holdover_remove_confirm' => "Coperta selectată anterior nu mai este disponibilă pentru selecție. Nu o veți mai putea selecta înapoi după ce treceți la o copertă diferită. Continuați?",
-                'title' => '',
+                'title' => 'Copertă',
 
                 'upload' => [
                     'broken_file' => 'Imposibil de procesat imaginea. Verifică imaginea încărcată și încearcă din nou.',
@@ -241,12 +242,12 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
-                'title' => '',
+                'reset_no_supporter' => 'Resetați culoarea la cea implicită? Va fi necesar statusul de suporter pentru a o schimba la o culoare diferită.',
+                'title' => 'Culoare',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Temele de culori personalizate sunt disponibile numai pentru :link',
+                    'link' => 'suporteri osu!',
                 ],
             ],
         ],

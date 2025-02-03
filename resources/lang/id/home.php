@@ -103,7 +103,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'buat akunnya',
-                'description' => 'ikuti petunjuk yang muncul pada awal permainan untuk masuk atau membuat akun baru',
+                'description' => 'ikuti petunjuk yang tertera pada saat memulai permainan untuk masuk atau membuat akun baru',
             ],
             'download' => [
                 'title' => 'unduh permainannya',

@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'コメント',
         'hide_judged' => '',
         'nav_title' => '',
         'no_current_vote' => 'あなたはまだ投票していません。',

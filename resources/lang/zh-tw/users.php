@@ -151,7 +151,7 @@ return [
         'comments' => '補充評論',
         'placeholder' => '請提供任何您覺得有用的資訊。',
         'reason' => '原因',
-        'thanks' => '感謝您的舉報！',
+        'thanks' => '感謝您的檢舉！',
         'title' => '檢舉 :username?',
 
         'actions' => [
@@ -183,7 +183,7 @@ return [
         'joined_at' => '註冊時間：:date',
         'lastvisit' => '最後登入於：:date',
         'lastvisit_online' => '上線中',
-        'missingtext' => '未找到的使用者！（或者該使用者已經被封鎖）',
+        'missingtext' => '您可能打錯字了！（或者該使用者可能已被封鎖）',
         'origin_country' => '來自 :country',
         'previous_usernames' => '前一個的使用者名稱',
         'plays_with' => '慣用 :devices',
@@ -200,6 +200,7 @@ return [
             'daily' => '每日連續次數',
             'daily_streak_best' => '最佳每日連續次數',
             'daily_streak_current' => '目前每日連續次數',
+            'playcount' => '總遊玩次數',
             'title' => '每日挑戰',
             'top_10p_placements' => '前10%名次',
             'top_50p_placements' => '前50%名次',
@@ -214,7 +215,7 @@ return [
         ],
         'edit' => [
             'cover' => [
-                'button' => '變更個人簡介封面',
+                'button' => '變更個人檔案封面',
                 'defaults_info' => '未來將提供更多的封面選項',
                 'holdover_remove_confirm' => "上一個橫幅已經無法使用。您無法在切換別的橫幅後選回去了。要繼續嗎？",
                 'title' => '封面',
@@ -223,7 +224,7 @@ return [
                     'broken_file' => '上傳失敗。請檢查上傳的圖片並重試.',
                     'button' => '上傳圖片',
                     'dropzone' => '拖動到此處以上傳',
-                    'dropzone_info' => '您也可以將圖片拉到此處上傳',
+                    'dropzone_info' => '您也可以將圖片拖曳至此以上傳',
                     'size_info' => '圖片尺寸應為2400x620',
                     'too_large' => '上傳的圖片檔案過大.',
                     'unsupported_format' => '不支援的檔案格式.',
@@ -237,7 +238,7 @@ return [
 
             'default_playmode' => [
                 'is_default_tooltip' => '預設遊戲模式',
-                'set' => '設定 :mode 為個人簡介預設的遊戲模式',
+                'set' => '設定 :mode 為個人檔案預設的遊戲模式',
             ],
 
             'hue' => [
@@ -366,7 +367,7 @@ return [
                 ],
             ],
             'me' => [
-                'title' => '個人簡介!',
+                'title' => '個人檔案！',
             ],
             'medals' => [
                 'empty' => "該使用者尚未獲得成就。;_;",
@@ -457,8 +458,8 @@ return [
             'title' => '找不到使用者',
         ],
         'page' => [
-            'button' => '編輯個人簡介頁',
-            'description' => '<strong>個人介紹</strong> 在您的個人簡介網頁可以自行修改。',
+            'button' => '編輯個人檔案頁面',
+            'description' => '<strong>個人檔案</strong> 在您的個人檔案頁面可以自行修改。',
             'edit_big' => '編輯',
             'placeholder' => '在這裡編輯',
 

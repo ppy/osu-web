@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'reset' => '',
+            'reset' => 'återställ',
             'rules' => 'Se till att din avatar följer :link.<br/>Det betyder att den måste vara <strong>lämplig för alla åldrar</strong>. dvs. ingen nakenhet, svordomar eller suggestivt innehåll.',
             'rules_link' => 'gemenskapsreglerna',
         ],

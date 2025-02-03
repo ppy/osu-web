@@ -66,6 +66,13 @@ return [
         'version' => 'Obtížnost',
     ],
 
+    'refresh' => [
+        'checking' => 'Hledání aktualizací...',
+        'has_updates' => 'Diskuze byla aktualizována, klikni pro obnovení.',
+        'no_updates' => 'Žádné aktualizace.',
+        'updating' => 'Aktualizování...',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Pro přidání odpovědi se musíš přihlásit',

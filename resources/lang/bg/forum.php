@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Наистина ли възстановявате темата?',
         'deleted' => 'изтрита тема',
         'go_to_latest' => 'виж най-новата публикация',
+        'go_to_unread' => 'към първата непрочетена публикация',
         'has_replied' => 'Вече отговорихте на тази тема',
         'in_forum' => 'в :forum',
         'latest_post' => ':when от :user',

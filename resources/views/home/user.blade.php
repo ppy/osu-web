@@ -13,6 +13,24 @@
     @include('home._user_header_default')
 
     <div class="osu-page">
+        @if (count($menuImages) > 0)
+            <div class="js-react--menu-images u-contents">
+                <div class="menu-images menu-images--placeholder">
+                    <div class="menu-images__images">
+                        {!! spinner() !!}
+                    </div>
+                    @if (count($menuImages) > 1)
+                        <div class="menu-images__indicators">
+                            @foreach ($menuImages as $_i)
+                                <div class="menu-images__indicator">
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+            </div>
+        @endif
+
         <div class="user-home">
             <div class="user-home__news">
                 <h2 class="user-home__news-title">{{ osu_trans('home.user.news.title') }}</h2>
@@ -100,4 +118,12 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section("script")
+    @parent
+
+    <script id="json-menu-images" type="application/json">
+        {!! json_encode($menuImages) !!}
+    </script>
 @endsection

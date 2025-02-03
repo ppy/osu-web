@@ -92,6 +92,29 @@ class RoomTest extends TestCase
         (new Room())->startGame($user, $params);
     }
 
+    public function testStartGameWithInvalidRuleset()
+    {
+        $beatmap = Beatmap::factory()->create([
+            'playmode' => 2,
+        ]);
+        $user = User::factory()->create();
+
+        $params = [
+            'duration' => 60,
+            'name' => 'test',
+            'playlist' => [
+                [
+                    'beatmap_id' => $beatmap->getKey(),
+                    'ruleset_id' => 0,
+                ],
+            ],
+        ];
+
+        $this->expectException(InvariantException::class);
+        $this->expectExceptionMessageMatches('/^invalid ruleset_id for beatmap \d+$/');
+        (new Room())->startGame($user, $params);
+    }
+
     public function testRoomHasEnded()
     {
         $user = User::factory()->create();
@@ -101,7 +124,7 @@ class RoomTest extends TestCase
         ]);
 
         $this->expectException(InvariantException::class);
-        $room->startPlay($user, $playlistItem, 0);
+        static::roomStartPlay($user, $playlistItem);
     }
 
     public function testStartPlay(): void
@@ -114,7 +137,7 @@ class RoomTest extends TestCase
         $this->expectCountChange(fn () => $room->userHighScores()->count(), 1);
         $this->expectCountChange(fn () => $playlistItem->scoreTokens()->count(), 1);
 
-        $room->startPlay($user, $playlistItem, 0);
+        static::roomStartPlay($user, $playlistItem);
         $room->refresh();
 
         $this->assertSame($user->getKey(), $playlistItem->scoreTokens()->last()->user_id);
@@ -127,14 +150,14 @@ class RoomTest extends TestCase
         $playlistItem1 = PlaylistItem::factory()->create(['room_id' => $room]);
         $playlistItem2 = PlaylistItem::factory()->create(['room_id' => $room]);
 
-        $room->startPlay($user, $playlistItem1, 0);
+        static::roomStartPlay($user, $playlistItem1);
         $this->assertTrue(true);
 
-        $room->startPlay($user, $playlistItem2, 0);
+        static::roomStartPlay($user, $playlistItem2);
         $this->assertTrue(true);
 
         $this->expectException(InvariantException::class);
-        $room->startPlay($user, $playlistItem1, 0);
+        static::roomStartPlay($user, $playlistItem1);
     }
 
     public function testMaxAttemptsForItemReached()
@@ -151,19 +174,19 @@ class RoomTest extends TestCase
         ]);
 
         $initialCount = $playlistItem1->scoreTokens()->count();
-        $room->startPlay($user, $playlistItem1, 0);
+        static::roomStartPlay($user, $playlistItem1);
         $this->assertSame($initialCount + 1, $playlistItem1->scoreTokens()->count());
 
         $initialCount = $playlistItem1->scoreTokens()->count();
         try {
-            $room->startPlay($user, $playlistItem1, 0);
+            static::roomStartPlay($user, $playlistItem1);
         } catch (Exception $ex) {
             $this->assertTrue($ex instanceof InvariantException);
         }
         $this->assertSame($initialCount, $playlistItem1->scoreTokens()->count());
 
         $initialCount = $playlistItem2->scoreTokens()->count();
-        $room->startPlay($user, $playlistItem2, 0);
+        static::roomStartPlay($user, $playlistItem2);
         $this->assertSame($initialCount + 1, $playlistItem2->scoreTokens()->count());
     }
 

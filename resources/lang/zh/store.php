@@ -31,7 +31,7 @@ return [
         'cart_problems' => '啊哦，您的购物车中存在问题！',
         'cart_problems_edit' => '点击此处编辑。',
         'declined' => '支付被取消。',
-        'delayed_shipping' => '欢迎购买，但是我们正在处理大量的订单，所以订单**可能会有 1-2 周的延迟**。',
+        'delayed_shipping' => '欢迎购买，但是我们正在处理大量的订单，所以订单可能会有 **1-2 周的延迟**。',
         'hide_from_activity' => '不把此订单中的支持者标签购买同步到个人活动',
         'old_cart' => '您的购物车已经过期，请重试。',
         'pay' => '使用 Paypal 支付',

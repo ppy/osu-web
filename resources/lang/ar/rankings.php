@@ -9,6 +9,12 @@ return [
         'title' => 'الدولة',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'top_10p' => '',
+        'top_50p' => '',
+    ],
+
     'filter' => [
         'title' => 'عرض',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'منطقة ألأضواء',
         'country' => 'الدولة',
+        'daily_challenge' => '',
         'kudosu' => 'كودوسو',
         'multiplayer' => 'متعدد اللاعبين',
         'performance' => 'الأداء',

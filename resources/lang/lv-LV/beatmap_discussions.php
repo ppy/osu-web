@@ -66,6 +66,13 @@ return [
         'version' => 'Grūtība',
     ],
 
+    'refresh' => [
+        'checking' => 'Pārbauda atjauninājumus...',
+        'has_updates' => 'Šai diskusijai ir atjauninājumi, uzspiest lai atsvaidzinātu.',
+        'no_updates' => 'Nav atjauninājumu.',
+        'updating' => 'Atjauninās...',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Pierakstieties, lai atbildētu',

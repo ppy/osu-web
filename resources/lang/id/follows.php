@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => 'diskusi beatmap',
     ],
+
+    'store' => [
+        'too_many' => 'Batas pengikutan tercapai.',
+    ],
 ];

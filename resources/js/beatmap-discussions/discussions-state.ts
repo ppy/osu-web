@@ -1,13 +1,16 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetStatus } from 'interfaces/beatmapset-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import Ruleset from 'interfaces/ruleset';
+import UserJson from 'interfaces/user-json';
+import WithBeatmapOwners from 'interfaces/with-beatmap-owners';
 import { intersectionWith, maxBy, sum } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
-import moment from 'moment';
+import { deletedUserJson } from 'models/user';
 import core from 'osu-core-singleton';
 import BeatmapsetDiscussionsShowStore from 'stores/beatmapset-discussions-show-store';
 import { findDefault, group, sortWithMode } from 'utils/beatmap-helper';
@@ -19,6 +22,13 @@ import DiscussionPage, { isDiscussionPage } from './discussion-page';
 
 const defaultFilterPraise = new Set<BeatmapsetStatus>(['approved', 'ranked']);
 const jsonId = 'json-discussions-state';
+
+function deletedUser(userId: number) {
+  const user: UserJson = structuredClone(deletedUserJson) as UserJson; // structuredClone copies the Readonly type but is actually mutable.
+  user.id = userId;
+
+  return user;
+}
 
 export interface UpdateOptions {
   beatmap_discussion_post_ids: number[];
@@ -234,17 +244,17 @@ export default class DiscussionsState {
   }
 
   @computed
-  get lastUpdate() {
+  get lastUpdateDate() {
     const maxDiscussions = maxBy(this.beatmapset.discussions, 'updated_at')?.updated_at;
     const maxEvents = maxBy(this.beatmapset.events, 'created_at')?.created_at;
 
-    const maxLastUpdate = Math.max(
+    const lastUpdateMs = Math.max(
       Date.parse(this.beatmapset.last_updated),
       maxDiscussions != null ? Date.parse(maxDiscussions) : 0,
       maxEvents != null ? Date.parse(maxEvents) : 0,
     );
 
-    return moment(maxLastUpdate).unix();
+    return new Date(lastUpdateMs);
   }
 
   get calculatedMainRuleset() {
@@ -267,8 +277,41 @@ export default class DiscussionsState {
   }
 
   @computed
+  get nominators() {
+    const nominators: UserJson[] = [];
+    for (let i = this.beatmapset.events.length - 1; i >= 0; i--) {
+      const event = this.beatmapset.events[i];
+      if (event.type === 'disqualify' || event.type === 'nomination_reset') {
+        break;
+      }
+
+      if (event.type === 'nominate' && event.user_id != null) {
+        const user = this.store.users.get(event.user_id);
+        if (user != null) {
+          nominators.unshift(user);
+        }
+      }
+    }
+
+    return nominators;
+  }
+
+  @computed
   get nonDeletedDiscussions() {
     return this.discussionsArray.filter((discussion) => discussion.deleted_at == null);
+  }
+
+  @computed
+  get previousNominatorIds() {
+    // TODO: use findLast in es2023
+    for (let i = this.beatmapset.events.length - 1; i >= 0; i--) {
+      const event = this.beatmapset.events[i];
+      if (event.type === 'disqualify') {
+        return typeof event.comment === 'string' ? [] : event.comment.nominator_ids ?? [];
+      }
+    }
+
+    return null;
   }
 
   @computed
@@ -382,6 +425,10 @@ export default class DiscussionsState {
     }
 
     makeObservable(this);
+  }
+
+  beatmapOwners(beatmap: WithBeatmapOwners<BeatmapJson>) {
+    return beatmap.owners.map((user) => this.store.users.get(user.id) ?? deletedUser(user.id));
   }
 
   @action

@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Баяу болыңыз, көбірек ойнаңыз.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Осы картаны номинация беретініне сенімдісіз бе?',
+            'different_nominator_warning' => '',
             'header' => 'Картаға номинацияны беру',
             'hybrid_warning' => 'ескерту: сіз тек бір рет номинация бере аласыз, сондықтан сіз барлық қажетті ойын режимдеріне номинация беретін екеніңізге көз жеткізіңіз',
             'current_main_ruleset' => '',

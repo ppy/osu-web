@@ -65,7 +65,7 @@ return [
             'cancelled' => [
                 'title' => 'Din beställning har avbrutits',
                 'line_1' => [
-                    '_' => "",
+                    '_' => "Om du inte bad om en avbrytning var god kontakta :link med ditt order nummer (#:order_number).",
                     'link_text' => 'osu!store support',
                 ],
             ],
@@ -93,7 +93,7 @@ return [
                 'title' => 'Din beställning har skickats!',
                 'tracking_details' => 'Spårningsinformation följer:',
                 'no_tracking_details' => [
-                    '_' => "",
+                    '_' => "Vi har inga spårningsuppgifter eftersom vi skickade paketet via Air Mail, men vi uppskattar att du kommer få det inom 1-3 veckor. I Europa kan tullen förlänga väntetiden, vilket är utom vår kontroll. Om du har några funderingar kan du svara på bekräftelse mejlet du fick av oss (eller :link).",
                     'link_text' => 'skicka oss ett e-post',
                 ],
             ],

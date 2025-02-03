@@ -5,8 +5,7 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import ChangelogBuild from 'interfaces/changelog-build';
 import Ruleset from 'interfaces/ruleset';
 import { route } from 'laroute';
-import { startsWith, unescape } from 'lodash';
-import { TurbolinksLocation } from 'turbolinks';
+import { unescape } from 'lodash';
 import { generate } from './beatmapset-page-hash';
 import { currentUrl } from './turbolinks';
 
@@ -36,11 +35,6 @@ export function changelogBuild(build: ChangelogBuild): string {
 
 export function giftSupporterTagUrl(user: { username: string }) {
   return route('store.products.show', { product: 'supporter-tag', target: user.username });
-}
-
-export function isHTML(location: TurbolinksLocation): boolean {
-  // Some changelog builds have `.` in their version, failing turbolinks' check.
-  return location.isHTML() || startsWith(location.getPath(), '/home/changelog/');
 }
 
 // external link
@@ -117,7 +111,7 @@ export function updateQueryString(url: string | null, params: Record<string, str
   return urlObj.href;
 }
 
-export function wikiUrl(path: string, locale?: string | null | undefined) {
+export function wikiUrl(path: string, locale?: string | null) {
   return route('wiki.show', { locale: locale ?? currentLocale, path: 'WIKI_PATH' })
     .replace('WIKI_PATH', encodeURI(path));
 }

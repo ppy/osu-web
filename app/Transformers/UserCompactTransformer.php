@@ -19,13 +19,15 @@ class UserCompactTransformer extends TransformerAbstract
         'country',
         'cover',
         'groups',
+        'team',
     ];
 
     const CARD_INCLUDES_PRELOAD = [
-        'country',
+        'team',
         'userGroups',
     ];
 
+    // Paired with static::listIncludesPreload
     const LIST_INCLUDES = [
         ...self::CARD_INCLUDES,
         'statistics',
@@ -92,6 +94,7 @@ class UserCompactTransformer extends TransformerAbstract
         'statistics',
         'statistics_rulesets',
         'support_level',
+        'team',
         'unread_pm_count',
         'user_achievements',
         'user_preferences',
@@ -112,6 +115,15 @@ class UserCompactTransformer extends TransformerAbstract
         'is_restricted' => 'UserShowRestrictedStatus',
         'is_silenced' => 'IsNotOAuth',
     ];
+
+    public static function listIncludesPreload(string $rulesetName): array
+    {
+        return [
+            ...static::CARD_INCLUDES_PRELOAD,
+            User::statisticsRelationName($rulesetName),
+            'supporterTagPurchases',
+        ];
+    }
 
     public function transform(User $user)
     {
@@ -150,7 +162,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeActiveTournamentBanner(User $user)
     {
-        $banner = $user->profileBanners()->active();
+        $banner = $user->profileBannersActive->last();
 
         return $banner === null
             ? $this->primitive(null)
@@ -160,7 +172,7 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeActiveTournamentBanners(User $user)
     {
         return $this->collection(
-            $user->profileBanners()->activeOnly()->orderBy('banner_id')->get(),
+            $user->profileBannersActive,
             new ProfileBannerTransformer(),
         );
     }
@@ -193,9 +205,14 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeCountry(User $user)
     {
-        return $user->country === null
+        $countryAcronym = $user->country_acronym;
+        $country = $countryAcronym === null
+            ? null
+            : app('countries')->byCode($countryAcronym);
+
+        return $country === null
             ? $this->primitive(null)
-            : $this->item($user->country, new CountryTransformer());
+            : $this->item($country, new CountryTransformer());
     }
 
     public function includeCover(User $user)
@@ -241,7 +258,7 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeFriends(User $user)
     {
         return $this->collection(
-            $user->relations()->friends()->withMutual()->get(),
+            $user->relationFriends,
             new UserRelationTransformer()
         );
     }
@@ -405,7 +422,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeScoresFirstCount(User $user)
     {
-        return $this->primitive($user->scoresFirst($this->mode, true)->visibleUsers()->count());
+        return $this->primitive($user->scoresFirst($this->mode, true)->count());
     }
 
     public function includeScoresPinnedCount(User $user)
@@ -438,6 +455,13 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeSupportLevel(User $user)
     {
         return $this->primitive($user->supportLevel());
+    }
+
+    public function includeTeam(User $user)
+    {
+        return ($team = $user->team) === null
+            ? $this->null()
+            : $this->item($team, new TeamTransformer());
     }
 
     public function includeUnreadPmCount(User $user)

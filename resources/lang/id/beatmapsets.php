@@ -17,10 +17,11 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Jangan terlalu bernafsu dalam mengunduh. Mainkan beatmap yang telah kamu miliki terlebih dahulu.',
+        'no_mirrors' => 'Tidak ada server unduhan yang tersedia.',
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Featured artist',
+        'label' => 'Featured Artist',
     ],
 
     'index' => [
@@ -51,8 +52,9 @@ return [
 
         'dialog' => [
             'confirmation' => 'Apakah kamu yakin untuk menominasikan beatmap ini?',
+            'different_nominator_warning' => 'Mengkualifikasikan beatmap ini dengan nominator yang berbeda akan mengatur ulang posisi antrean kualifikasinya.',
             'header' => 'Nominasikan Beatmap',
-            'hybrid_warning' => 'catatan: kamu hanya dapat memberikan satu nominasi, sehingga pastikan kamu memberikan nominasi pada mode permainan yang memang kamu kehendaki',
+            'hybrid_warning' => 'catatan: kamu hanya dapat memberikan nominasi satu kali, sehingga pastikan kamu memberikan nominasi pada mode permainan yang memang kamu kehendaki',
             'current_main_ruleset' => 'Ruleset utama saat ini: :ruleset',
             'which_modes' => 'Mode permainan mana yang ingin dinominasikan?',
         ],
@@ -81,7 +83,7 @@ return [
             'logged-out' => 'kamu harus masuk untuk mengunduh beatmap!',
             'mapped_by' => 'dibuat oleh :mapper',
             'mapped_by_guest' => 'guest difficulty oleh :mapper',
-            'unfavourite' => 'hapus beatmap ini dari daftar beatmap favorit',
+            'unfavourite' => 'hapus beatmap ini dari daftar favorit',
             'updated_timeago' => 'terakhir diperbarui :timeago',
 
             'download' => [

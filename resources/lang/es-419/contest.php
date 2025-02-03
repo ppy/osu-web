@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'comentarios',
         'hide_judged' => 'ocultar las inscripciones evaluadas',
         'nav_title' => 'evaluar',
         'no_current_vote' => 'aún no has votado.',

@@ -197,27 +197,28 @@ return [
             'to_1' => 'MostraR portada',
         ],
         'daily_challenge' => [
-            'daily' => '',
-            'daily_streak_best' => '',
-            'daily_streak_current' => '',
-            'title' => '',
-            'top_10p_placements' => '',
-            'top_50p_placements' => '',
-            'weekly' => '',
-            'weekly_streak_best' => '',
-            'weekly_streak_current' => '',
+            'daily' => 'Ratxa diària',
+            'daily_streak_best' => 'Millor ratxa diària',
+            'daily_streak_current' => 'Ratxa diària actual',
+            'playcount' => 'Participació total',
+            'title' => 'Repte\ndiari',
+            'top_10p_placements' => 'Llocs del top 10 %',
+            'top_50p_placements' => 'Llocs del top 50 %',
+            'weekly' => 'Ratxa setmanal',
+            'weekly_streak_best' => 'Millor ratxa setmanal',
+            'weekly_streak_current' => 'Ratxa setmanal actual',
 
             'unit' => [
-                'day' => '',
-                'week' => '',
+                'day' => ':value d',
+                'week' => ':value s',
             ],
         ],
         'edit' => [
             'cover' => [
                 'button' => 'Canvia la portada del perfil',
                 'defaults_info' => 'Més opcions de portada estaran disponibles en el futur',
-                'holdover_remove_confirm' => "",
-                'title' => '',
+                'holdover_remove_confirm' => "La coberta seleccionada anteriorment ja no està disponible. No la podreu tornar a triar si canvieu de coberta. Voleu continuar?",
+                'title' => 'Portada',
 
                 'upload' => [
                     'broken_file' => 'Error en processar la imatge. Verifica la imatge pujada i torna-ho a intentar.',
@@ -241,12 +242,12 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
-                'title' => '',
+                'reset_no_supporter' => 'Voleu restablir els valors per defecte? Cal una etiqueta de seguidor per a canviar el color.',
+                'title' => 'Color',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Els temes de colors personalitzats només estan disponibles per a :link.',
+                    'link' => 'osu!supporters',
                 ],
             ],
         ],

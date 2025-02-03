@@ -4,6 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Actualizarea votului a eșuat',
@@ -25,14 +29,14 @@ return [
         'message_placeholder_silenced' => "Nu poți posta atunci când ești mut.",
         'message_type_select' => 'Selectează tipul comentariului',
         'reply_notice' => 'Apasă enter pentru a răspunde.',
-        'reply_resolve_notice' => '',
+        'reply_resolve_notice' => 'Apăsați enter pentru a răspunde. Apăsați ctrl+enter pentru a răspunde și rezolva.',
         'reply_placeholder' => 'Scrie-ți răspunsul aici',
         'require-login' => 'Te rugăm să te autentifici pentru a posta sau a răspunde',
         'resolved' => 'Rezolvat',
         'restore' => 'restabilește',
         'show_deleted' => 'Afișează șterse',
         'title' => 'Discuții',
-        'unresolved_count' => '',
+        'unresolved_count' => 'o problemă nerezolvată|:count_delimited probleme nerezolvate|:count_delimited de probleme nerezolvate',
 
         'collapse' => [
             'all-collapse' => 'Restrânge tot',

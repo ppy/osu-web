@@ -9,6 +9,12 @@ return [
         'title' => '國家',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '難度',
+        'top_10p' => '前 10%的分數',
+        'top_50p' => '前 50%的分數',
+    ],
+
     'filter' => [
         'title' => '顯示',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => '月賽',
         'country' => '國家',
+        'daily_challenge' => '每日挑戰',
         'kudosu' => 'kudosu',
         'multiplayer' => '多人遊戲',
         'performance' => '成績',

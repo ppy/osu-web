@@ -9,6 +9,12 @@ return [
         'title' => '国家或地区',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '难度',
+        'top_10p' => '前 10% 成绩',
+        'top_50p' => '前 50% 成绩',
+    ],
+
     'filter' => [
         'title' => '显示',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => '季赛（旧版）',
         'country' => '国家/地区',
+        'daily_challenge' => '每日挑战',
         'kudosu' => 'Kudosu',
         'multiplayer' => '多人游戏',
         'performance' => '表现',
@@ -58,7 +65,7 @@ return [
         'play_count' => '游戏次数',
         'performance' => '表现',
         'total_score' => '总分',
-        'ranked_score' => '进榜总分',
+        'ranked_score' => '计分成绩总分',
         'average_score' => '平均得分',
         'average_performance' => '平均表现',
         'ss' => '',

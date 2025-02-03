@@ -259,16 +259,33 @@ export default class ConversationView extends React.Component<Props> {
   renderUsers() {
     if (this.currentChannel?.type !== 'ANNOUNCE') return null;
 
+    const users = this.currentChannel.users;
+
+    if (users != null && users.length === 0) {
+      return null;
+    }
+
     return (
-      <div className={classWithModifiers('chat-conversation__users', { loading: this.currentChannel.announcementUsers == null })}>
-        {this.currentChannel.announcementUsers == null ? (
-          <>
-            <Spinner modifiers='self-center' /><span>{trans('chat.loading_users')}</span>
-          </>
-        ) : (
-          this.currentChannel.announcementUsers.map((user) => (
-            <UserCardBrick key={user.id} user={user.toJson()} />
-          ))
+      <div className='chat-conversation__users-container'>
+        <div className={classWithModifiers('chat-conversation__users', { loading: users == null })}>
+          {users == null ? (
+            <>
+              <Spinner modifiers='self-center' /><span>{trans('chat.loading_users')}</span>
+            </>
+          ) : (
+            users.map((user) => (
+              <UserCardBrick key={user.id} user={user} />
+            ))
+          )}
+        </div>
+        {users != null && this.currentChannel.usersCursor != null && (
+          <div className='chat-conversation__more-users'>
+            <ShowMoreLink
+              callback={this.currentChannel.loadUsers}
+              hasMore
+              loading={this.currentChannel.loadUsersXhr != null}
+            />
+          </div>
         )}
       </div>
     );

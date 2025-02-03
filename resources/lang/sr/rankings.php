@@ -9,6 +9,12 @@ return [
         'title' => 'Држава',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'top_10p' => '',
+        'top_50p' => '',
+    ],
+
     'filter' => [
         'title' => 'Прикажи',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'колекције',
         'country' => 'држава',
+        'daily_challenge' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'мултиплејер',
         'performance' => 'перформансе',

@@ -10,13 +10,13 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'reset' => '',
+            'reset' => 'restableix',
             'rules' => 'Si us plau asseguri\'s que el seu avatar s\'adhereix a :link. <br/> Això vol dir que ha de ser <strong>adequat per a totes les edats</strong>. És a dir, sense nuesa, blasfèmia o contingut suggestiu.',
-            'rules_link' => 'regles de la comunitat',
+            'rules_link' => 'consideracions del contingut visual',
         ],
 
         'email' => [
-            'new' => 'nou correu electrònic',
+            'new' => 'correu electrònic nou',
             'new_confirmation' => 'confirmació per correu electrònic',
             'title' => 'Correu electrònic',
             'locked' => [
@@ -44,7 +44,7 @@ return [
 
             'country_change' => [
                 '_' => "Sembla que el país del teu compte no coincideix amb el teu país de residència. :update_link.",
-                'update_link' => 'Actualitza a :country',
+                'update_link' => 'Canvia a :country',
             ],
 
             'user' => [
@@ -59,7 +59,7 @@ return [
 
         'signature' => [
             'title' => 'Signatura',
-            'update' => 'actualitzar',
+            'update' => 'actualitza',
         ],
     ],
 
@@ -86,12 +86,12 @@ return [
         'options' => [
             '_' => 'opcions d\'entrega',
             'beatmap_owner_change' => 'dificultat de convidat',
-            'beatmapset:modding' => 'modding de beatmaps',
+            'beatmapset:modding' => 'modding de mapes',
             'channel_message' => 'missatges de xat privats',
             'comment_new' => 'comentaris nous',
             'forum_topic_reply' => 'resposta del tema',
             'mail' => 'correu',
-            'mapping' => 'creador de beatmaps',
+            'mapping' => 'edició de mapes',
             'push' => 'push',
         ],
     ],
@@ -110,7 +110,7 @@ return [
         'beatmapset_download' => [
             '_' => 'tipus de baixada de beatmap predeterminat',
             'all' => 'amb vídeo si està disponible',
-            'direct' => 'obrir a osu!direct',
+            'direct' => 'obre a osu!direct',
             'no_video' => 'sense vídeo',
         ],
     ],
@@ -120,30 +120,30 @@ return [
         'mouse' => 'ratolí',
         'tablet' => 'tauleta',
         'title' => 'Estils de joc',
-        'touch' => 'tocar',
+        'touch' => 'pantalla tàctil',
     ],
 
     'privacy' => [
-        'friends_only' => 'bloquejar els missatges privats de persones que no són a la llista d\'amics',
+        'friends_only' => 'bloca els missatges privats de persones que no són a la llista d\'amics',
         'hide_online' => 'amaga la teva presència en línia',
         'title' => 'Privadesa',
     ],
 
     'security' => [
         'current_session' => 'actual',
-        'end_session' => 'Finalitzar sessió',
-        'end_session_confirmation' => 'Això finalitzarà immediatament la sessió en aquest dispositiu. Estàs segur?',
+        'end_session' => 'Tanca la sessió',
+        'end_session_confirmation' => 'Això tancarà immediatament la sessió en aquest dispositiu. N\'esteu segur?',
         'last_active' => 'Última connexió:',
         'title' => 'Seguretat',
         'web_sessions' => 'sessions web',
     ],
 
     'update_email' => [
-        'update' => 'actualitzar',
+        'update' => 'actualitza',
     ],
 
     'update_password' => [
-        'update' => 'actualitzar',
+        'update' => 'actualitza',
     ],
 
     'verification_completed' => [

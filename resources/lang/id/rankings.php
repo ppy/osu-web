@@ -9,6 +9,12 @@ return [
         'title' => 'Negara',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Tingkat Kesulitan',
+        'top_10p' => 'Skor 10% Teratas',
+        'top_50p' => 'Skor 50% Teratas',
+    ],
+
     'filter' => [
         'title' => 'Tampilkan',
 
@@ -30,6 +36,7 @@ return [
     'type' => [
         'charts' => 'spotlights',
         'country' => 'negara',
+        'daily_challenge' => 'tantangan harian',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'performance' => 'performa',

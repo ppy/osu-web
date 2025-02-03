@@ -66,6 +66,13 @@ return [
         'version' => 'Difficulty',
     ],
 
+    'refresh' => [
+        'checking' => 'Prüfe auf Updates...',
+        'has_updates' => 'Klicke, um die Aktualisierungen der Diskussion zu laden.',
+        'no_updates' => 'Keine Updates.',
+        'updating' => 'Aktualisiere...',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Zum Antworten einloggen',

@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Hinay lang, maglaro ka muna.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Sigurado ka bang gusto mong i-nomina ito?',
+            'different_nominator_warning' => '',
             'header' => 'Inomina ang Beatmap',
             'hybrid_warning' => 'tandaan: ikaw ay maaaring mag-nominate nang isang beses lamang, kaya siguraduhin na ikaw ay nagno-nominate para sa lahat ng game mode na iyong binabalak',
             'current_main_ruleset' => '',

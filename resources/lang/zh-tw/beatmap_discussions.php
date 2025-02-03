@@ -26,28 +26,28 @@ return [
             'deleted' => '包括已經刪除的討論',
             'mode' => '圖譜遊戲模式',
             'only_unresolved' => '只顯示未解決的討論',
-            'show_review_embeds' => '顯示評論帖子',
+            'show_review_embeds' => '顯示審核貼文',
             'types' => '訊息類別',
             'username' => '使用者名稱',
 
             'beatmapset_status' => [
                 '_' => '圖譜狀態',
                 'all' => '全部',
-                'disqualified' => 'Disqualified',
-                'never_qualified' => 'Never Qualified',
-                'qualified' => 'Qualified',
+                'disqualified' => '取消提名',
+                'never_qualified' => '從未提名',
+                'qualified' => '提名',
                 'ranked' => '已進榜',
             ],
 
             'user' => [
-                'label' => '用戶',
+                'label' => '使用者',
                 'overview' => '活動總覽',
             ],
         ],
     ],
 
     'item' => [
-        'created_at' => '發佈日期',
+        'created_at' => '發布日期',
         'deleted_at' => '刪除日期',
         'message_type' => '類型',
         'permalink' => '固定連結',
@@ -56,14 +56,21 @@ return [
     'nearby_posts' => [
         'confirm' => '在這個時間點上沒有相關的討論記錄。',
         'notice' => '在 :timestamp 附近（:existing_timestamps）有討論記錄，發表前請檢查。',
-        'unsaved' => '在此結算的:count',
+        'unsaved' => '這個審核中有 :count',
     ],
 
     'owner_editor' => [
-        'button' => '難度作者',
-        'reset_confirm' => '要重設此難度的作者嗎？',
-        'user' => '作者',
+        'button' => '難度擁有者',
+        'reset_confirm' => '要重設這個難度的擁有者嗎？',
+        'user' => '擁有者',
         'version' => '難度',
+    ],
+
+    'refresh' => [
+        'checking' => '檢查更新...',
+        'has_updates' => '此討論區有更新，點擊來重刷。',
+        'no_updates' => '沒有更新',
+        'updating' => '正在更新...',
     ],
 
     'reply' => [
@@ -74,16 +81,16 @@ return [
     ],
 
     'review' => [
-        'block_count' => '已耗用 :used / :max 個方塊',
-        'go_to_parent' => '檢視其他人的評論',
+        'block_count' => '已使用 :used / :max 個區塊',
+        'go_to_parent' => '查看其他人的審核',
         'go_to_child' => '查看討論',
         'validation' => [
             'block_too_large' => '每個區塊最多只能有 :limit 個字元',
-            'external_references' => '評論有指向不屬於這個評論的議題',
+            'external_references' => '評論有指向不屬於這個審核的議題',
             'invalid_block_type' => '區塊類型無效',
-            'invalid_document' => '評論無效',
+            'invalid_document' => '審核無效',
             'invalid_discussion_type' => '討論類型不正確',
-            'minimum_issues' => '評論至少要有 :count 個議題|評論至少要有 :count 個議題',
+            'minimum_issues' => '審核時必須指出最少 :count 個問題',
             'missing_text' => '區塊缺少文字',
             'too_many_blocks' => '評論最多只能有 :count 個段落或議題|評論最多只能有 :count 個段落或議題',
         ],
@@ -92,17 +99,17 @@ return [
     'system' => [
         'resolved' => [
             'true' => '被 :user 標記為 “已解決”',
-            'false' => '被 :user 標記為 “未解決”',
+            'false' => '被 :user 標記為「未解決」',
         ],
     ],
 
     'timestamp_display' => [
         'general' => '一般',
-        'general_all' => '一般(所有)',
+        'general_all' => '一般（所有難度）',
     ],
 
     'user_filter' => [
         'everyone' => '所有人',
-        'label' => '按使用者篩選',
+        'label' => '依使用者篩選',
     ],
 ];

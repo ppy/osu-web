@@ -24,7 +24,7 @@ return [
     ],
 
     'filters' => [
-        '_' => 'semua notifikasi',
+        '_' => 'semua',
         'user' => 'profil',
         'beatmapset' => 'beatmap',
         'forum_topic' => 'forum',
@@ -79,8 +79,8 @@ return [
                 'beatmapset_love_compact' => 'Beatmap telah dipromosikan ke kategori Loved',
                 'beatmapset_nominate' => '":title" telah dinominasikan',
                 'beatmapset_nominate_compact' => 'Beatmap telah dinominasikan',
-                'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk dapat memasuki antrian ranking',
-                'beatmapset_qualify_compact' => 'Beatmap memasuki antrian ranking',
+                'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk dapat memasuki antrean ranking',
+                'beatmapset_qualify_compact' => 'Beatmap memasuki antrean ranking',
                 'beatmapset_rank' => '":title" telah berstatus Ranked',
                 'beatmapset_rank_compact' => 'Beatmap telah berstatus Ranked',
                 'beatmapset_remove_from_loved' => '":title" telah dilepas dari Loved',
@@ -204,7 +204,7 @@ return [
                 'beatmapset_disqualify' => '":title" telah didiskualifikasi',
                 'beatmapset_love' => '":title" telah dipromosikan ke kategori Loved',
                 'beatmapset_nominate' => '":title" telah dinominasikan',
-                'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk dapat memasuki antrian ranking',
+                'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk dapat memasuki antrean ranking',
                 'beatmapset_rank' => '":title" telah berstatus Ranked',
                 'beatmapset_remove_from_loved' => ':title telah dilepas dari Loved',
                 'beatmapset_reset_nominations' => 'Nominasi pada beatmap ":title" telah dianulir',

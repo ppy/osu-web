@@ -8,6 +8,7 @@ namespace App\Libraries\Search;
 use App\Libraries\Elasticsearch\SearchParams;
 use App\Models\Beatmap;
 use App\Models\User;
+use App\Models\UserProfileCustomization;
 
 class BeatmapsetSearchParams extends SearchParams
 {
@@ -18,6 +19,8 @@ class BeatmapsetSearchParams extends SearchParams
     public ?array $ar = null;
     public ?string $artist = null;
     public ?array $bpm = null;
+    public ?array $countNormal = null;
+    public ?array $countSlider = null;
     public ?array $created = null;
     public ?string $creator = null;
     public ?array $cs = null;
@@ -25,10 +28,11 @@ class BeatmapsetSearchParams extends SearchParams
     public ?array $difficultyRating = null;
     public ?array $drain = null;
     public array $extra = [];
+    public ?array $favouriteCount = null;
     public ?int $featuredArtist = null;
     public ?int $genre = null;
     public bool $includeConverts = false;
-    public bool $includeNsfw = false;
+    public bool $includeNsfw = UserProfileCustomization::DEFAULTS['beatmapset_show_nsfw'];
     public ?array $keys = null;
     public ?int $language = null;
     public ?int $mode = null;

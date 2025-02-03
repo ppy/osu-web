@@ -13,8 +13,8 @@ return [
         ],
 
         'player' => [
-            'by' => 'Зіграно',
-            'submitted_on' => 'Відправлено',
+            'by' => 'Гравець',
+            'submitted_on' => 'Поставлено',
 
             'rank' => [
                 'country' => 'Ранг країни',

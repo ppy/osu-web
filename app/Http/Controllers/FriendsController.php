@@ -9,8 +9,7 @@ use App\Jobs\UpdateUserFollowerCountCache;
 use App\Models\User;
 use App\Models\UserRelation;
 use App\Transformers\UserCompactTransformer;
-use Auth;
-use Exception;
+use App\Transformers\UserRelationTransformer;
 
 class FriendsController extends Controller
 {
@@ -32,32 +31,42 @@ class FriendsController extends Controller
 
     public function index()
     {
-        $currentUser = auth()->user();
+        $currentUser = \Auth::user();
         $currentMode = default_mode();
 
-        $friends = $currentUser
-            ->friends()
-            ->with('statistics'.studly_case($currentMode))
-            ->eagerloadForListing()
-            ->orderBy('username', 'asc')
-            ->get();
+        $relationFriends = $currentUser->relationFriends->sortBy('username');
+        $relationFriends->load(array_map(
+            fn ($userPreload) => "target.{$userPreload}",
+            UserCompactTransformer::listIncludesPreload($currentMode),
+        ));
 
+        $isApi = is_api_request();
+
+        if ($isApi && api_version() >= 20241022) {
+            return json_collection($relationFriends, new UserRelationTransformer(), [
+                "target:ruleset({$currentMode})",
+                ...array_map(
+                    fn ($userInclude) => "target.{$userInclude}",
+                    UserCompactTransformer::LIST_INCLUDES,
+                ),
+            ]);
+        }
+
+        $friends = $relationFriends->pluck('target');
         $usersJson = json_collection(
             $friends,
             (new UserCompactTransformer())->setMode($currentMode),
             UserCompactTransformer::LIST_INCLUDES
         );
 
-        if (is_api_request()) {
-            return $usersJson;
-        }
-
-        return ext_view('friends.index', compact('usersJson'));
+        return $isApi
+            ? $usersJson
+            : ext_view('friends.index', compact('usersJson'));
     }
 
     public function store()
     {
-        $currentUser = auth()->user();
+        $currentUser = \Auth::user();
 
         if ($currentUser->friends()->count() >= $currentUser->maxFriends()) {
             return error_popup(osu_trans('friends.too_many'));
@@ -74,19 +83,20 @@ class FriendsController extends Controller
             abort(422);
         }
 
+        $relationQuery = $currentUser->relations()->where('zebra_id', $targetId);
         while (true) {
-            $existingRelation = $currentUser->relations()->where('zebra_id', $targetId)->first();
+            $existingRelation = $relationQuery->first();
             $updateCount = false;
 
             if ($existingRelation === null) {
                 try {
                     UserRelation::create([
-                        'user_id' => $currentUser->user_id,
+                        'user_id' => $currentUser->getKey(),
                         'zebra_id' => $targetId,
                         'friend' => true,
                     ]);
                     $updateCount = true;
-                } catch (Exception $e) {
+                } catch (\Throwable $e) {
                     if (is_sql_unique_exception($e)) {
                         // redo the loop with what should be a non-null
                         // $existingRelation on the next one
@@ -110,30 +120,31 @@ class FriendsController extends Controller
             dispatch(new UpdateUserFollowerCountCache($targetId));
         }
 
-        return json_collection(
-            $currentUser->relations()->friends()->withMutual()->get(),
-            'UserRelation'
-        );
+        return [
+            'user_relation' => json_item(
+                $relationQuery->withMutual()->first(),
+                new UserRelationTransformer(),
+            ),
+        ];
     }
 
     public function destroy($id)
     {
-        $friend = Auth::user()
+        $currentUser = \Auth::user();
+
+        $currentUser
             ->friends()
             ->wherePivot('zebra_id', $id)
             ->firstOrFail();
 
         UserRelation::where([
-            'user_id' => Auth::user()->user_id,
+            'user_id' => $currentUser->getKey(),
             'zebra_id' => $id,
             'friend' => 1,
         ])->delete();
 
         dispatch(new UpdateUserFollowerCountCache($id));
 
-        return json_collection(
-            Auth::user()->relations()->friends()->withMutual()->get(),
-            'UserRelation'
-        );
+        return response(null, 204);
     }
 }

@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Debes establecer una puntuación en un mapa para añadir una etiqueta.',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Este canal es solo para anuncios.',
         'blocked' => 'No puedes enviar mensajes a un usuario que bloqueaste o que te haya bloqueado.',
         'friends_only' => 'Este usuario está bloqueando los mensajes de las personas que no estén en su lista de amigos.',
         'moderated' => 'Este canal está actualmente siendo moderado.',
         'no_access' => 'No tienes acceso a ese canal.',
+        'no_announce' => 'No tienes permiso para publicar anuncios.',
         'receive_friends_only' => 'Es posible que el usuario no pueda responder porque solo aceptas mensajes de las personas en tu lista de amigos.',
         'restricted' => 'No puedes enviar mensajes mientras estés silenciado, restringido o baneado.',
         'silenced' => 'No puedes enviar mensajes mientras estés silenciado, restringido o baneado.',
@@ -167,6 +173,12 @@ return [
 
         'view' => [
             'admin_only' => 'Solo los administradores pueden ver este foro.',
+        ],
+    ],
+
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Solo el propietario de la sala puede cerrarla.',
         ],
     ],
 
