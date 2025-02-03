@@ -129,6 +129,7 @@ use Request;
  * @property-read Collection<UserDonation> $supporterTagPurchases
  * @property-read Collection<UserDonation> $supporterTags
  * @property-read Team|null $team
+ * @property-read TeamApplication|null $teamApplication
  * @property-read Collection<OAuth\Token> $tokens
  * @property-read Collection<Forum\TopicWatch> $topicWatches
  * @property-read Collection<UserAchievement> $userAchievements
