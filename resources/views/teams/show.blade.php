@@ -118,8 +118,8 @@
                     method="POST"
                 >
                     <button
-                        class="team-action-button team-action-button--join"
-                        @if (!$joinPriv->can())
+                        class="team-action-button team-action-button--join js-login-required--click"
+                        @if (!$joinPriv->can() && $currentUser !== null)
                             disabled
                         @endif
                     >
