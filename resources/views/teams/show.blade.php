@@ -42,6 +42,14 @@
                             title="{{ osu_trans('teams.members.index.title') }}"
                         >
                             <span class="fa fa-users"></span>
+                            @php
+                                $applicationCount = $team->applications()->count();
+                            @endphp
+                            @if ($applicationCount > 0)
+                                <span class="btn-circle__count">
+                                    {{ i18n_number_format($applicationCount) }}
+                                </span>
+                            @endif
                         </a>
 
                         <a
