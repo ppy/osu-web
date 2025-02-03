@@ -98,16 +98,14 @@ class Topic extends Model implements AfterCommit
         'duplicate',
         'invalid',
         'resolved',
+
+        'osu!lazer',
+        'osu!stable',
+        'osu!web',
     ];
 
     const MAX_FIELD_LENGTHS = [
         'topic_title' => 100,
-    ];
-
-    const PLATFORM_ISSUE_TAGS = [
-        'lazer',
-        'stable',
-        'web',
     ];
 
     const VIEW_COUNT_INTERVAL = 86400; // 1 day
@@ -773,10 +771,6 @@ class Topic extends Model implements AfterCommit
     {
         $this->topic_type = static::typeInt($tag === 'confirmed' ? 'sticky' : 'normal');
 
-        if (in_array($tag, static::PLATFORM_ISSUE_TAGS, true)) {
-            $tag = "osu!{$tag}";
-        }
-
         if (!$this->hasIssueTag($tag)) {
             $this->topic_title = "[{$tag}] {$this->topic_title}";
         }
@@ -787,10 +781,6 @@ class Topic extends Model implements AfterCommit
     public function unsetIssueTag($tag)
     {
         $this->topic_type = static::typeInt($tag === 'resolved' ? 'sticky' : 'normal');
-
-        if (in_array($tag, static::PLATFORM_ISSUE_TAGS, true)) {
-            $tag = "osu!{$tag}";
-        }
 
         $this->topic_title = preg_replace(
             '/  +/',
@@ -803,10 +793,6 @@ class Topic extends Model implements AfterCommit
 
     public function hasIssueTag($tag)
     {
-        if (in_array($tag, static::PLATFORM_ISSUE_TAGS, true)) {
-            $tag = "osu!{$tag}";
-        }
-
         return strpos($this->topic_title, "[{$tag}]") !== false;
     }
 

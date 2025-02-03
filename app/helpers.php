@@ -1017,20 +1017,25 @@ function make_blade_safe(HtmlString|string $text): HtmlString
 
 function issue_icon($issue)
 {
-    switch ($issue) {
-        case 'added':
-            return 'fas fa-cogs';
-        case 'assigned':
-            return 'fas fa-user';
-        case 'confirmed':
-            return 'fas fa-exclamation-triangle';
-        case 'duplicate':
-            return 'fas fa-copy';
-        case 'invalid':
-            return 'far fa-times-circle';
-        case 'resolved':
-            return 'far fa-check-circle';
+    $fa = match ($issue) {
+        'added' => 'fas fa-cogs',
+        'assigned' => 'fas fa-user',
+        'confirmed' => 'fas fa-exclamation-triangle',
+        'duplicate' => 'fas fa-copy',
+        'invalid' => 'far fa-times-circle',
+        'resolved' => 'far fa-check-circle',
+        default => null,
+    };
+
+    if ($fa !== null) {
+        return tag('i', ['class' => $fa]);
     }
+
+    return match ($issue) {
+        'osu!lazer' => 'lzr',
+        'osu!stable' => 'stb',
+        'osu!web' => 'web',
+    };
 }
 
 function build_url($build)
@@ -1099,15 +1104,6 @@ function bbcode_for_editor($text, $uid = null)
 function concat_path($paths)
 {
     return implode('/', array_filter($paths, 'present'));
-}
-
-function platform_issue_text($issue)
-{
-    return match ($issue) {
-        'lazer' => 'laz',
-        'stable' => 'stb',
-        'web' => 'web',
-    };
 }
 
 function proxy_media($url)

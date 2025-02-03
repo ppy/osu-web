@@ -10,8 +10,8 @@
         @include('forum.topics._moderate_move', compact('topic'))
 
         @if ($topic->isIssue())
-            @foreach (array_merge($topic::ISSUE_TAGS, $topic::PLATFORM_ISSUE_TAGS) as $type)
-                @include("forum.topics._issue_tag_{$type}")
+            @foreach ($topic::ISSUE_TAGS as $type)
+                @include('forum.topics._issue_tag_'.str_slug($type))
             @endforeach
         @endif
 

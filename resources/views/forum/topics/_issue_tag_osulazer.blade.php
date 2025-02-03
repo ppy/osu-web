@@ -3,5 +3,5 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @include('forum.topics._issue_tag', [
-    'issueTag' => 'stable',
+    'issueTag' => 'osu!lazer',
 ])

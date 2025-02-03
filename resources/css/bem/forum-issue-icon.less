@@ -9,6 +9,7 @@
   font-size: 10px;
   color: #fff;
   text-shadow: 0 0 2px #000;
+  --platform-tag: hsl(var(--hsl-orange-1));
 
   margin: 0 5px;
 
@@ -34,5 +35,17 @@
 
   &--resolved {
     background-color: @green-dark;
+  }
+
+  &--osulazer {
+    background-color: var(--platform-tag);
+  }
+
+  &--osustable {
+    background-color: var(--platform-tag);
+  }
+
+  &--osuweb {
+    background-color: var(--platform-tag);
   }
 }

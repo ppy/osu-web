@@ -4,18 +4,19 @@
 --}}
 <?php
     $state = $topic->hasIssueTag($issueTag);
+    $slug = str_slug($issueTag);
 ?>
 <button
     type="button"
     class="
-        js-forum-topic-issue_tag_{{ $issueTag }}
+        js-forum-topic-issue_tag_{{ $slug }}
         btn-circle
         btn-circle--topic-nav
         btn-circle--purple
         {{ $state ? 'btn-circle--activated' : '' }}
     "
     data-topic-id="{{ $topic->topic_id }}"
-    title="{{ osu_trans('forum.topics.issue_tag_'.$issueTag.'.to_'.(int) !$state) }}"
+    title="{{ osu_trans('forum.topics.issue_tag_'.$slug.'.to_'.(int) !$state) }}"
     data-url="{{ route('forum.topics.issue-tag', [
         $topic,
         'state' => !$state,
@@ -25,10 +26,6 @@
     data-method="post"
 >
     <span class="btn-circle__content">
-        @if (in_array($issueTag, $topic::ISSUE_TAGS, true))
-            <i class="{{ issue_icon($issueTag) }}"></i>
-        @elseif (in_array($issueTag, $topic::PLATFORM_ISSUE_TAGS, true))
-            {{ platform_issue_text($issueTag) }}
-        @endif
+        {!! issue_icon($issueTag) !!}
     </span>
 </button>
