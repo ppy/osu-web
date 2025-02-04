@@ -186,17 +186,17 @@ class Order extends Model
     }
 
     #region Shopify convenience setters for webhook updates
-    public function setAdminGraphqlApiId(string $value)
+    public function setAdminGraphqlApiIdAttribute(string $value)
     {
         $this->reference = $value;
     }
 
-    public function setOrderNumber(string $value)
+    public function setOrderNumberAttribute(string $value)
     {
         $this->transaction_id = static::PROVIDER_SHOPIFY."-{$value}";
     }
 
-    public function setOrderStatusUrl(string $value)
+    public function setOrderStatusUrlAttribute(string $value)
     {
         $this->shopify_url = $value;
     }
@@ -287,6 +287,15 @@ class Order extends Model
     public function setShopifyOrderNumber(string|int $value)
     {
         $this->attributes['transaction_id'] = static::PROVIDER_SHOPIFY."-{$value}";
+    }
+
+    /**
+     * Returns shopify_url without any of the querystring params
+     */
+    public function getShopifyUrl(): ?string
+    {
+        // doesn't remove the /authenticate part of the url which is also unnecessary but still redirects to the right url.
+        return mb_substr($this->shopify_url, 0, mb_strpos($this->shopify_url, '?'));
     }
 
     public function getSubtotal()
