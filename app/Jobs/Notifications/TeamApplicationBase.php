@@ -14,8 +14,8 @@ abstract class TeamApplicationBase extends BroadcastNotificationBase
 {
     const DELIVERY_MODE_DEFAULTS = ['mail' => true, 'push' => true];
 
-    private Team $team;
-    private int $userId;
+    protected Team $team;
+    protected int $userId;
 
     public static function getMailLink(Notification $notification): string
     {
