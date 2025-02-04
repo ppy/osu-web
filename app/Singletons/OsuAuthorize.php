@@ -52,6 +52,7 @@ class OsuAuthorize
             'IsNotOAuth',
             'IsOwnClient',
             'IsSpecialScope',
+            'TeamApplicationStore',
             'TeamPart',
             'UserUpdateEmail',
         ]);
