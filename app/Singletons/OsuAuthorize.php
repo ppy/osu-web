@@ -1916,7 +1916,7 @@ class OsuAuthorize
             return null;
         }
         if ($team->emptySlots() < 1) {
-            return 'team.member.store.full';
+            return 'team.application.store.team_full';
         }
 
         return 'ok';
