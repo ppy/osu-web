@@ -119,11 +119,12 @@
                     $joinPriv = priv_check('TeamApplicationStore', $team);
                 @endphp
                 <form
-                    title="{{ $joinPriv->message() }}"
                     action="{{ route('teams.applications.store', ['team' => $team]) }}"
-                    data-turbo-confirm="{{ osu_trans('common.confirmation') }}"
+                    data-confirm="{{ osu_trans('common.confirmation') }}"
                     data-reload-on-success="1"
+                    data-remote="1"
                     method="POST"
+                    title="{{ $joinPriv->message() }}"
                 >
                     <button
                         class="team-action-button team-action-button--join js-login-required--click"
