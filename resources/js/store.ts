@@ -90,10 +90,13 @@ export class Store {
     if (event.target == null) return;
 
     const target = event.target;
-    const { provider, providerReference, status } = target.dataset;
+    const { provider, providerReference, shopifyUrl, status } = target.dataset;
 
+    // TODO: replace the links with just links...
     if (provider === 'shopify' && status !== 'cancelled') {
-      if (providerReference != null) {
+      if (shopifyUrl != null) {
+        window.location.href = shopifyUrl;
+      } else if (providerReference != null) {
         this.resumeShopifyCheckout(providerReference);
       } else {
         // TODO: show error.

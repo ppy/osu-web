@@ -180,7 +180,5 @@ class ShopifyController extends Controller
 
         $order->fill($shopifyParams);
         $order->paid($payment);
-
-
     }
 }
