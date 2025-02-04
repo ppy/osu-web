@@ -112,6 +112,7 @@ class ShopifyController extends Controller
 
         $gid = $params['admin_graphql_api_id'] ?? null;
         $orderNumber = $params['order_number'] ?? null;
+        $orderStatusUrl = $params['order_status_url'] ?? null;
 
         if ($gid === null) {
             app('sentry')->getClient()->captureMessage(
@@ -129,7 +130,15 @@ class ShopifyController extends Controller
             );
         }
 
-        return [$orderNumber, $gid];
+        if ($orderStatusUrl === null) {
+            app('sentry')->getClient()->captureMessage(
+                'Missing order_status_url in Shopify webhook.',
+                new Severity(Severity::WARNING),
+                (new Scope())->setExtra('order_id', $this->getOrderId())
+            );
+        }
+
+        return [$orderNumber, $gid, $orderStatusUrl];
     }
 
     private function getParams()
@@ -185,14 +194,18 @@ class ShopifyController extends Controller
 
     private function updateWithShopifyParams(Order $order)
     {
-        [$orderNumber, $gid] = $this->getShopifyParams();
-                //
+        [$orderNumber, $gid, $orderStatusUrl] = $this->getShopifyParams();
+
         if ($orderNumber !== null) {
             $order->setShopifyOrderNumber($orderNumber);
         }
 
         if ($gid !== null) {
             $order->reference = $gid;
+        }
+
+        if ($orderStatusUrl !== null) {
+            $order->shopify_url = $orderStatusUrl;
         }
 
         $order->save();

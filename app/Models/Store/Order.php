@@ -41,6 +41,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $reference For paypal transactions, this is the resource Id of the paypal order; otherwise, it is the same as the transaction_id without the prefix.
  * @property Carbon|null $shipped_at
  * @property float|null $shipping
+ * @property string|null $shopify_url
  * @property mixed $status
  * @property string|null $tracking_code
  * @property string|null $transaction_id For paypal transactions, this value is based on the IPN or captured payment Id, not the order resource id.
