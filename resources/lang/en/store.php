@@ -55,6 +55,7 @@ return [
         'contact' => 'Contact:',
         'date' => 'Date:',
         'echeck_delay' => 'As your payment was an eCheck, please allow up to 10 extra days for the payment to clear through PayPal!',
+        'echeck_denied' => 'The eCheck payment was rejected by PayPal.',
         'hide_from_activity' => 'osu!supporter tags in this order are not displayed in your recent activities.',
         'sent_via' => 'Sent Via:',
         'shipping_to' => 'Shipping To:',

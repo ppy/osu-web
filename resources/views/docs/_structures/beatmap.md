@@ -21,6 +21,7 @@ beatmapset  | [Beatmapset](#beatmapset)\|[BeatmapsetExtended](#beatmapsetextende
 checksum    | string?                                                                    | |
 failtimes   | [Failtimes](#beatmap-failtimes)                                            | |
 max_combo   | integer                                                                    | |
+owners      | [BeatmapOwner](#beatmapowner)[]                                            | List of owners (mappers) for the Beatmap.
 
 <div id="beatmap-failtimes" data-unique="beatmap-failtimes"></div>
 
