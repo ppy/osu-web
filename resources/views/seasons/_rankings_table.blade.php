@@ -3,10 +3,6 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 
-@php
-    $currentDivision = $divisions[0];
-@endphp
-
 <table class="ranking-page-table">
     <thead>
         <tr>
@@ -26,12 +22,19 @@
             @php
                 $rank = $scores->firstItem() + $index;
 
-                if ($rank > $currentDivision['absolute_threshold']) {
+                $currentThreshold = isset($currentDivision)
+                    ? $currentDivision['absolute_threshold']
+                    : 0;
+
+                if ($rank > $currentThreshold) {
                     foreach ($divisions as $division) {
                         if ($rank <= $division['absolute_threshold']) {
                             $currentDivision = $division;
                             break;
                         }
+
+                        // this shouldn't ever happen if divisions are set up properly :)
+                        $currentDivision = null;
                     }
                 }
             @endphp
@@ -66,7 +69,9 @@
                     {!! i18n_number_format($score->total_score) !!}
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--division">
-                    {{ $currentDivision['division']->name }}
+                    @if (isset($currentDivision))
+                        {{ $currentDivision['division']->name }}
+                    @endif
                 </td>
             </tr>
         @endforeach

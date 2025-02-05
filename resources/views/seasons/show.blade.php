@@ -34,11 +34,9 @@
     <div class="js-react--seasons-show"></div>
 @endsection
 
-@if (!empty($divisions))
-    @section('scores')
-        @include('seasons._rankings_table', [$divisions, $scores])
-    @endsection
-@endif
+@section('scores')
+    @include('seasons._rankings_table', [$divisions, $scores])
+@endsection
 
 @section ("script")
     @parent
