@@ -53,6 +53,7 @@ class Order extends Model
     use SoftDeletes;
 
     const ECHECK_CLEARED = 'ECHECK CLEARED';
+    const ECHECK_DENIED = 'ECHECK DENIED';
     const ORDER_NUMBER_REGEX = '/^(?<prefix>[A-Za-z]+)-(?<userId>\d+)-(?<orderId>\d+)$/';
     const PENDING_ECHECK = 'PENDING ECHECK';
 
@@ -434,11 +435,6 @@ class Order extends Model
     public function isPaidOrDelivered(): bool
     {
         return in_array($this->status, [static::STATUS_PAID, static::STATUS_DELIVERED], true);
-    }
-
-    public function isPendingEcheck(): bool
-    {
-        return $this->tracking_code === static::PENDING_ECHECK;
     }
 
     public function isShipped(): bool

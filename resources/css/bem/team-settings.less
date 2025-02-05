@@ -3,7 +3,11 @@
 
 .team-settings {
   display: grid;
-  gap: 5px;
+  gap: 15px 5px;
+
+  @media @desktop {
+    gap: 5px;
+  }
 
   &__buttons {
     display: flex;
@@ -30,20 +34,31 @@
   }
 
   &__item {
+    --grid-rows: none;
+    --grid-rows-desktop: none;
+    --grid-columns: 1fr;
+    --grid-columns-desktop: 2fr 1fr;
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 15px;
+    gap: 5px 15px;
+    grid-template-columns: var(--grid-columns);
+    grid-template-rows: var(--grid-rows);
+
+    @media @desktop {
+      --grid-columns: var(--grid-columns-desktop);
+      --grid-rows: var(--grid-rows-desktop);
+    }
 
     &--buttons {
-      grid-template-columns: 1fr auto;
+      --grid-columns-desktop: 1fr auto;
     }
 
     &--description {
-      grid-template-columns: 1fr 1fr;
+      --grid-columns-desktop: 1fr 1fr;
+      --grid-rows: calc(var(--vh, 1vh) * 70) auto;
     }
 
     &--image {
-      grid-template-columns: 1fr;
+      --grid-columns-desktop: 1fr;
     }
   }
 }
