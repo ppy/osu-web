@@ -11,7 +11,7 @@
 
         @if ($topic->isIssue())
             @foreach ($topic::ISSUE_TAGS as $type)
-                @include("forum.topics._issue_tag_{$type}")
+                @include('forum.topics._issue_tag_'.str_slug($type))
             @endforeach
         @endif
 
