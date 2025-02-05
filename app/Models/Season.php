@@ -53,29 +53,21 @@ class Season extends Model
         return $this->hasMany(Division::class);
     }
 
-    public function divisionsOrdered(): Collection
-    {
-        return cache_remember_mutexed(
-            "divisions:{$this->id}",
-            600,
-            [],
-            fn () => $this->divisions()->orderBy('threshold')->get(),
-        );
-    }
-
     public function divisionsWithAbsoluteThresholds(): array
     {
-        $divisions = [];
+        $divisions = $this->divisions()->orderBy('threshold')->get();
         $userCount = $this->userScores()->count();
 
-        foreach ($this->divisionsOrdered() as $division) {
-            $divisions[] = [
+        $divisionsWithThresholds = [];
+
+        foreach ($divisions as $division) {
+            $divisionsWithThresholds[] = [
                 'division' => $division,
                 'absolute_threshold' => $division->threshold * $userCount,
             ];
         }
 
-        return $divisions;
+        return $divisionsWithThresholds;
     }
 
     public function endDate(): ?Carbon
