@@ -286,13 +286,13 @@ class Order extends Model
         // TODO: migrate to always using provider and reference instead of transaction_id.
         $this->attributes['transaction_id'] = $value;
 
-        $split = static::splitTransactionId($value);
-        $this->provider = $split[0] ?? null;
-
-        $reference = $split[1] ?? null;
-        // For Paypal we're going to use the PAYID number for reference instead of the IPN txn_id
-        if ($this->provider !== static::PROVIDER_PAYPAL && $reference !== 'failed') {
-            $this->reference = $reference;
+        // only apply the transaction id to reference number if it's Xsolla and not failed.
+        // All other transactions have different ids to track.
+        if ($this->provider === static::PROVIDER_XSOLLA) {
+            $reference = static::splitTransactionId($value) ?? null;
+            if ($reference !== 'failed') {
+                $this->reference = $reference;
+            }
         }
     }
 
