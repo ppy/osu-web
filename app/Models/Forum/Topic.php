@@ -98,6 +98,10 @@ class Topic extends Model implements AfterCommit
         'duplicate',
         'invalid',
         'resolved',
+
+        'osu!lazer',
+        'osu!stable',
+        'osu!web',
     ];
 
     const MAX_FIELD_LENGTHS = [
