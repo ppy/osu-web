@@ -57,7 +57,7 @@ class Season extends Model
     {
         return cache_remember_mutexed(
             "divisions:{$this->id}",
-            $GLOBALS['cfg']['osu']['seasons']['divisions_cache_duration'],
+            600,
             [],
             fn () => $this->divisions()->orderBy('threshold')->get(),
         );
