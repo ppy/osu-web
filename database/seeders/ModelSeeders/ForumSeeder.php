@@ -95,9 +95,9 @@ class ForumSeeder extends Seeder
 
         // Forums to be populated, i.e. all open forums except "User Pages"
         $forums = Forum::where('forum_type', 1)
-            ->where([
-                ['forum_id', '<>', $GLOBALS['cfg']['osu']['user']['user_page_forum_id']],
-                ['forum_id', '<>', $GLOBALS['cfg']['osu']['forum']['beatmap_description_forum_id']],
+            ->whereNotIn('forum_id', [
+                $GLOBALS['cfg']['osu']['user']['user_page_forum_id'],
+                $GLOBALS['cfg']['osu']['forum']['beatmap_description_forum_id'],
             ])
             ->get();
 
