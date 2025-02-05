@@ -164,7 +164,7 @@ class TopicsController extends Controller
 
         $issueTag = presence(Request::input('issue_tag'));
         $state = get_bool(Request::input('state'));
-        $type = 'issue_tag_'.$issueTag;
+        $type = 'issue_tag_'.str_slug($issueTag);
 
         if ($issueTag === null || !$topic->isIssue() || !in_array($issueTag, $topic::ISSUE_TAGS, true)) {
             abort(422);
