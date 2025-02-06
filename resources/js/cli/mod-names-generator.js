@@ -7,13 +7,35 @@ const fs = require('fs');
 
 const root = `${__dirname}/../../..`;
 
+// Reference: https://github.com/ppy/osu/blob/91bc23e39eb1048d7b75acf669bd46e9ef9a4f9e/osu.Game/Rulesets/Mods/ModType.cs
+const typeOrder = {};
+for (const [index, type] of [
+  'DifficultyReduction',
+  'DifficultyIncrease',
+  'Conversion',
+  'Automation',
+  'Fun',
+  'System',
+].entries()) {
+  typeOrder[type] = index;
+}
+
+// Reference: https://github.com/ppy/osu/blob/91bc23e39eb1048d7b75acf669bd46e9ef9a4f9e/osu.Game/Rulesets/Mods/ModExtensions.cs#L33-L35
+function modSorter(a, b) {
+  if (a.Type !== b.Type) {
+    return typeOrder[a.Type] - typeOrder[b.Type];
+  }
+
+  return a.Acronym.localeCompare(b.Acronym);
+}
+
 function modNamesGenerator() {
   const modsByRuleset = JSON.parse(fs.readFileSync(`${root}/database/mods.json`));
 
   const modNames = {};
   for (const mods of modsByRuleset) {
     let rulesetId = mods.RulesetID;
-    for (const [i, mod] of mods.Mods.entries()) {
+    for (const [i, mod] of mods.Mods.sort(modSorter).entries()) {
       modNames[mod.Acronym] ??= {
         acronym: mod.Acronym,
         index: {},
