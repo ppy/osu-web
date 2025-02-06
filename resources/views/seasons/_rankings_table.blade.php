@@ -22,9 +22,9 @@
             @php
                 $rank = $scores->firstItem() + $index;
 
-                if (!isset($currentDivision) || $rank > $currentDivision['absolute_threshold']) {
+                if (!isset($currentDivision) || $rank > $currentDivision['max_rank']) {
                     while (($currentDivision = array_shift($divisions)) !== null) {
-                        if ($rank <= $currentDivision['absolute_threshold']) {
+                        if ($rank <= $currentDivision['max_rank']) {
                             break;
                         }
                     }

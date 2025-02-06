@@ -53,21 +53,21 @@ class Season extends Model
         return $this->hasMany(Division::class);
     }
 
-    public function divisionsWithAbsoluteThresholds(): array
+    public function divisionsWithMaxRanks(): array
     {
         $divisions = $this->divisions()->orderBy('threshold')->get();
         $userCount = $this->userScores()->count();
 
-        $divisionsWithThresholds = [];
+        $divisionsWithMaxRanks = [];
 
         foreach ($divisions as $division) {
-            $divisionsWithThresholds[] = [
+            $divisionsWithMaxRanks[] = [
                 'division' => $division,
-                'absolute_threshold' => $division->threshold * $userCount,
+                'max_rank' => $division->threshold * $userCount,
             ];
         }
 
-        return $divisionsWithThresholds;
+        return $divisionsWithMaxRanks;
     }
 
     public function endDate(): ?Carbon

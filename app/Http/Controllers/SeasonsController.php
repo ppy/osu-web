@@ -32,7 +32,7 @@ class SeasonsController extends Controller
         $seasons = Season::orderByDesc('id')->get();
         $seasonsJson = json_collection($seasons, new SelectOptionTransformer());
 
-        $divisions = $season->divisionsWithAbsoluteThresholds();
+        $divisions = $season->divisionsWithMaxRanks();
         $scores = $season->topScores()->paginate();
 
         return ext_view('seasons.show', compact(
