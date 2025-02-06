@@ -61,9 +61,7 @@
                     {{ i18n_number_format($score->total_score) }}
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--division">
-                    @if (isset($currentDivision))
-                        {{ $currentDivision['division']->name }}
-                    @endif
+                    {{ $currentDivision['division']->name ?? '' }}
                 </td>
             </tr>
         @endforeach
