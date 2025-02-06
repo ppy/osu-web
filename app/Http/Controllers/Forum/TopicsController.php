@@ -312,7 +312,7 @@ class TopicsController extends Controller
         $params = get_params(request()->all(), null, [
             'limit:int',
             'sort',
-            'forum_id:int'
+            'forum_id:int',
         ], ['null_missing' => true]);
 
         $limit = \Number::clamp($params['limit'] ?? Topic::PER_PAGE, 1, Topic::PER_PAGE);
