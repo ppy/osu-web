@@ -53,10 +53,10 @@ class Season extends Model
         return $this->hasMany(Division::class);
     }
 
-    public function divisionsWithMaxRanks(): array
+    public function divisionsWithMaxRanks(?int $userCount): array
     {
         $divisions = $this->divisions()->orderBy('threshold')->get();
-        $userCount = $this->userScores()->count();
+        $userCount ??= $this->userScores()->forRanking()->count();
 
         $divisionsWithMaxRanks = [];
 
