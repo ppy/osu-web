@@ -22,24 +22,16 @@
             @php
                 $rank = $scores->firstItem() + $index;
 
-                $currentThreshold = isset($currentDivision)
-                    ? $currentDivision['absolute_threshold']
-                    : 0;
-
-                if ($rank > $currentThreshold) {
-                    foreach ($divisions as $division) {
-                        if ($rank <= $division['absolute_threshold']) {
-                            $currentDivision = $division;
+                if (!isset($currentDivision) || $rank > $currentDivision['absolute_threshold']) {
+                    while (($currentDivision = array_shift($divisions)) !== null) {
+                        if ($rank <= $currentDivision['absolute_threshold']) {
                             break;
                         }
-
-                        // this shouldn't ever happen if divisions are set up properly :)
-                        $currentDivision = null;
                     }
                 }
             @endphp
 
-            <tr class="ranking-page-table__row{{$score->user->isActive() ? '' : ' ranking-page-table__row--inactive'}}">
+            <tr class="{{ class_with_modifiers('ranking-page-table__row', ['inactive' => !$score->user->isActive()]) }}">
                 <td class="ranking-page-table__column ranking-page-table__column--rank">
                     #{{ $rank }}
                 </td>
@@ -66,7 +58,7 @@
                     </div>
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                    {!! i18n_number_format($score->total_score) !!}
+                    {{ i18n_number_format($score->total_score) }}
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--division">
                     @if (isset($currentDivision))
