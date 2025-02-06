@@ -16,7 +16,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('divisions', function (Blueprint $table) {
+        Schema::create('season_divisions', function (Blueprint $table) {
             $table->id();
             $table->integer('season_id')->unsigned();
             $table->string('name');

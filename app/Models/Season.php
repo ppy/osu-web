@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * @property-read Collection<Division> $divisions
+ * @property-read Collection<SeasonDivision> $divisions
  * @property bool $finalised
  * @property string $name
  * @property-read Collection<Multiplayer\Room> $rooms
@@ -50,7 +50,7 @@ class Season extends Model
 
     public function divisions(): HasMany
     {
-        return $this->hasMany(Division::class);
+        return $this->hasMany(SeasonDivision::class);
     }
 
     public function divisionsWithMaxRanks(?int $userCount): array

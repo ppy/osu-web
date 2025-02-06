@@ -14,7 +14,7 @@ namespace App\Models;
  * @property int $season_id
  * @property int $threshold
  */
-class Division extends Model
+class SeasonDivision extends Model
 {
     public $timestamps = false;
 }
