@@ -95,7 +95,7 @@ class ForumsController extends Controller
     /**
      * Get Forum and Topics
      *
-     * Get a forum by id, its pinned topics, recent topics, its subforums, and the subforums' last topics.
+     * Get a forum by id, its pinned topics, recent topics, and its subforums.
      *
      * ---
      *
@@ -105,7 +105,6 @@ class ForumsController extends Controller
      * ------------- | ---------------------------- |
      * forum         | [Forum](#forum)              |
      * topics        | [ForumTopic](#forum-topic)[] |
-     * last_topics   | [ForumTopic](#forum-topic)[] |
      * pinned_topics | [ForumTopic](#forum-topic)[] |
      *
      * @urlParam forum integer required Id of the forum. Example: 1
@@ -113,10 +112,6 @@ class ForumsController extends Controller
      * @response {
      *   "forum": { "id": 1, "...": "..." },
      *   "topics": [
-     *     { "id": 1, "...": "..." },
-     *     { "id": 2, "...": "..." },
-     *   ],
-     *   "last_topics": [
      *     { "id": 1, "...": "..." },
      *     { "id": 2, "...": "..." },
      *   ],
@@ -164,7 +159,6 @@ class ForumsController extends Controller
             return [
                 'forum' => json_item($forum, new ForumTransformer(), ['subforums.subforums']),
                 'topics' => json_collection($topics, new TopicTransformer()),
-                'last_topics' => json_collection($lastTopics, new TopicTransformer()),
                 'pinned_topics' => json_collection($pinnedTopics, new TopicTransformer()),
             ];
         }
