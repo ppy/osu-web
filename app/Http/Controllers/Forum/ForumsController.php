@@ -10,6 +10,8 @@ use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicTrack;
 use App\Transformers\Forum\ForumCoverTransformer;
+use App\Transformers\Forum\ForumTransformer;
+use App\Transformers\Forum\TopicTransformer;
 use Auth;
 
 /**
@@ -65,8 +67,8 @@ class ForumsController extends Controller
 
         if (is_api_request()) {
             return [
-                'forums' => json_collection($forums, 'Forum/Forum', ['subforums.subforums']),
-                'last_topics' => json_collection($lastTopics, 'Forum/Topic'),
+                'forums' => json_collection($forums, new ForumTransformer(), ['subforums.subforums']),
+                'last_topics' => json_collection($lastTopics, new TopicTransformer()),
             ];
         }
 
@@ -160,10 +162,10 @@ class ForumsController extends Controller
             $topics->limit(Topic::PER_PAGE);
 
             return [
-                'forum' => json_item($forum, 'Forum/Forum', ['subforums.subforums']),
-                'topics' => json_collection($topics, 'Forum/Topic'),
-                'last_topics' => json_collection($lastTopics, 'Forum/Topic'),
-                'pinned_topics' => json_collection($pinnedTopics, 'Forum/Topic'),
+                'forum' => json_item($forum, new ForumTransformer(), ['subforums.subforums']),
+                'topics' => json_collection($topics, new TopicTransformer()),
+                'last_topics' => json_collection($lastTopics, new TopicTransformer()),
+                'pinned_topics' => json_collection($pinnedTopics, new TopicTransformer()),
             ];
         }
 

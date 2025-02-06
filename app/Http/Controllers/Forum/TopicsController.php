@@ -18,6 +18,7 @@ use App\Models\Forum\TopicPoll;
 use App\Models\Forum\TopicWatch;
 use App\Models\UserProfileCustomization;
 use App\Transformers\Forum\TopicCoverTransformer;
+use App\Transformers\Forum\TopicTransformer;
 use Auth;
 use DB;
 use Request;
@@ -308,14 +309,19 @@ class TopicsController extends Controller
      */
     public function index()
     {
-        $params = request()->all();
-        $limit = \Number::clamp(get_int($params['limit'] ?? null) ?? Topic::PER_PAGE, 1, Topic::PER_PAGE);
-        $cursorHelper = Topic::makeDbCursorHelper($params['sort'] ?? null);
+        $params = get_params(request()->all(), null, [
+            'limit:int',
+            'sort',
+            'forum_id:int'
+        ], ['null_missing' => true]);
+
+        $limit = \Number::clamp($params['limit'] ?? Topic::PER_PAGE, 1, Topic::PER_PAGE);
+        $cursorHelper = Topic::makeDbCursorHelper($params['sort']);
 
         $topics = Topic::cursorSort($cursorHelper, cursor_from_params($params))
             ->limit($limit);
 
-        $forum_id = get_int($params['forum_id'] ?? null) ?? null;
+        $forum_id = $params['forum_id'];
         if ($forum_id !== null) {
             $topics->where('forum_id', $forum_id);
         }
@@ -323,7 +329,7 @@ class TopicsController extends Controller
         [$topics, $hasMore] = $topics->getWithHasMore();
 
         return [
-            'topics' => json_collection($topics, 'Forum/Topic'),
+            'topics' => json_collection($topics, new TopicTransformer()),
             ...cursor_for_response($cursorHelper->next($topics, $hasMore)),
         ];
     }

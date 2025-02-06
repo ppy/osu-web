@@ -1748,13 +1748,9 @@ function parse_time_to_carbon($value)
     }
 }
 
-function parse_time_to_timestamp($value)
+function parse_time_to_timestamp(mixed $value): ?int
 {
-    $time = parse_time_to_carbon($value);
-
-    if ($time instanceof Carbon\Carbon) {
-        return $time->timestamp;
-    }
+    return parse_time_to_carbon($value)?->timestamp;
 }
 
 function format_duration_for_display(int $seconds)

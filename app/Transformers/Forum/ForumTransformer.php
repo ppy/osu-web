@@ -18,7 +18,7 @@ class ForumTransformer extends TransformerAbstract
     public function transform(Forum $forum): array
     {
         return [
-            'id' => $forum->forum_id,
+            'id' => $forum->getKey(),
             'name' => $forum->forum_name,
             'description' => $forum->forum_desc,
         ];
@@ -28,7 +28,7 @@ class ForumTransformer extends TransformerAbstract
     {
         return $this->collection(
             $forum->subforums,
-            new ForumTransformer()
+            new static()
         );
     }
 }
