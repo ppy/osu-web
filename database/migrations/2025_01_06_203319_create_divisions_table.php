@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('season_id')->unsigned();
             $table->string('name');
             $table->string('image_url');
-            $table->float('threshold');
+            $table->decimal('threshold', 4, 3);
 
             $table->index(['season_id', 'threshold']);
         });
