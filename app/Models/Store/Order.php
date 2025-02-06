@@ -281,21 +281,6 @@ class Order extends Model
         return (float) $total;
     }
 
-    public function setTransactionIdAttribute($value)
-    {
-        // TODO: migrate to always using provider and reference instead of transaction_id.
-        $this->attributes['transaction_id'] = $value;
-
-        // only apply the transaction id to reference number if it's Xsolla and not failed.
-        // All other transactions have different ids to track.
-        if ($this->provider === static::PROVIDER_XSOLLA) {
-            $reference = static::splitTransactionId($value) ?? null;
-            if ($reference !== 'failed') {
-                $this->reference = $reference;
-            }
-        }
-    }
-
     public function requiresShipping()
     {
         foreach ($this->items as $i) {
