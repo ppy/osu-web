@@ -66,10 +66,7 @@ class UserSeasonScoreAggregate extends Model
 
     public function scopeForRanking($query): Builder
     {
-        return $query
-            ->whereHas('user', function ($userQuery) {
-                $userQuery->default();
-            })
+        return $query->whereHas('user', fn ($q) => $q->default())
             ->orderByDesc('total_score');
     }
 
