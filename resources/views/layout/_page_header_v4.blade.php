@@ -74,7 +74,7 @@
                                     >
                                         <span
                                             class="fake-bold"
-                                            data-content={{ $link['title'] }}
+                                            data-content="{{ $link['title'] }}"
                                         >{{ $link['title'] }}</span>
                                     </a>
                                 @else
