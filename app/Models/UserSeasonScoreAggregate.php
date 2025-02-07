@@ -9,12 +9,14 @@ namespace App\Models;
 
 use App\Exceptions\InvariantException;
 use App\Models\Multiplayer\UserScoreAggregate;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property-read Season $season
  * @property int $season_id
  * @property float $total_score
+ * @property-read User $user
  * @property int $user_id
  */
 class UserSeasonScoreAggregate extends Model
@@ -62,8 +64,20 @@ class UserSeasonScoreAggregate extends Model
         $this->total_score = $total;
     }
 
+    public function scopeForRanking($query): Builder
+    {
+        return $query->whereHas('user', fn ($q) => $q->default())
+            ->orderByDesc('total_score');
+    }
+
+
     public function season(): BelongsTo
     {
         return $this->belongsTo(Season::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
