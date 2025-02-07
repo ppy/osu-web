@@ -3,6 +3,10 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 
+@php
+    $firstItem = $scores->firstItem();
+@endphp
+
 <table class="ranking-page-table">
     <thead>
         <tr>
@@ -20,7 +24,7 @@
     <tbody>
         @foreach ($scores as $index => $score)
             @php
-                $rank = $scores->firstItem() + $index;
+                $rank = $firstItem + $index;
 
                 if (!isset($currentDivision) || $rank > $currentDivision['max_rank']) {
                     while (($currentDivision = array_shift($divisions)) !== null) {
@@ -33,7 +37,7 @@
 
             <tr class="{{ class_with_modifiers('ranking-page-table__row', ['inactive' => !$score->user->isActive()]) }}">
                 <td class="ranking-page-table__column ranking-page-table__column--rank">
-                    #{{ $rank }}
+                    #{{ i18n_number_format($rank) }}
                 </td>
                 <td class="ranking-page-table__column">
                     <div class="ranking-page-table__user-link">
