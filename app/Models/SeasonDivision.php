@@ -12,7 +12,7 @@ namespace App\Models;
  * @property string $image_url
  * @property string $name
  * @property int $season_id
- * @property double $threshold
+ * @property float $threshold
  */
 class SeasonDivision extends Model
 {
