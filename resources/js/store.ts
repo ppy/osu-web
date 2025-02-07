@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { Cart, CartCreatePayload } from '@shopify/hydrogen-react/storefront-api-types';
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import { toShopifyVariantGid } from 'shopify-gid';
@@ -94,18 +95,14 @@ export class Store {
 
     // create shopify checkout.
     // error returned will be a JSON string in error.message
-    const { data, errors } = await storefrontClient().request(operation, { variables: this.shopifyCartInput(orderId) });
+    const response = await storefrontClient().request(operation, { variables: this.shopifyCartInput(orderId) });
+    const data = response.data as { cartCreate: CartCreatePayload };
 
-    console.log(data);
-    console.log(data.cartCreate.cart.id);
-    console.log(errors);
-
-    if (errors != null) {
+    if (response.errors != null || data.cartCreate.cart == null) {
       hideLoadingOverlay();
       popup(trans('errors.checkout.generic'), 'danger');
       return;
     }
-
 
     const params = {
       orderId,
@@ -141,7 +138,6 @@ export class Store {
     showLoadingOverlay();
     showLoadingOverlay.flush();
 
-    console.log(cartId);
     const operation = `
       query ($cartId: ID!) {
         cart(id: $cartId) {
@@ -156,12 +152,10 @@ export class Store {
     `;
 
     const variables = { variables: { cartId } };
-    const { data, errors } = await storefrontClient().request(operation, variables);
+    const response = await storefrontClient().request(operation, variables);
+    const data = response.data as { cart?: Cart };
 
-    console.log(data);
-    console.log(errors?.graphQLErrors);
-
-    if (errors != null) {
+    if (response.errors != null || data.cart == null) {
       hideLoadingOverlay();
       popup(trans('errors.checkout.generic'), 'danger');
       return;
