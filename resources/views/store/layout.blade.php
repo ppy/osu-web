@@ -5,13 +5,6 @@
 @extends('master')
 
 @section('script')
-    <script id="json-shopify-options" type="application/json">
-        {!! json_encode([
-            'domain' => $GLOBALS['cfg']['store']['shopify']['domain'],
-            'storefrontAccessToken' => $GLOBALS['cfg']['store']['shopify']['storefront_token'],
-        ]) !!}
-    </script>
-
     <script id="json-shopify-storefront-options" type="application/json">
         {!! json_encode([
             'storeDomain' => $GLOBALS['cfg']['store']['shopify']['domain'],

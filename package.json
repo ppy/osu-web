@@ -83,7 +83,6 @@
     "remark-breaks": "^3.0.2",
     "remark-parse": "^10.0.1",
     "remark-wiki-link": "^1.0.4",
-    "shopify-buy": "^2.19.0",
     "slate": "^0.82.1",
     "slate-history": "^0.66.0",
     "slate-react": "^0.83.0",
