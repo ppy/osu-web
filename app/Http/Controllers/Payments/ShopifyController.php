@@ -58,8 +58,7 @@ class ShopifyController extends Controller
                 });
                 break;
             case 'orders/fulfilled':
-                $this->updateWithShopifyParams($order);
-                $order->update(['status' => Order::STATUS_SHIPPED, 'shipped_at' => now()]);
+                $order->update(['status' => Order::STATUS_SHIPPED, 'shipped_at' => now(), ...$this->getShopifyParams()]);
                 break;
             case 'orders/create':
                 if ($order->isShipped() && $this->isDuplicateOrder()) {
@@ -68,11 +67,10 @@ class ShopifyController extends Controller
 
                 (new OrderCheckout($order))->completeCheckout();
 
-                $this->updateWithShopifyParams($order);
+                $order->update($this->getShopifyParams());
 
                 break;
             case 'orders/paid':
-                $this->updateWithShopifyParams($order);
                 $this->updateOrderPayment($order);
                 break;
             default:
@@ -106,39 +104,27 @@ class ShopifyController extends Controller
         }
     }
 
-    private function getShopifyParams()
+    private function getShopifyParams(): array
     {
-        $params = $this->getParams();
+        $params = get_params($this->getParams(), null, [
+            'admin_graphql_api_id:string',
+            'order_number:string',
+            'order_status_url:string',
+        ], ['null_missing' => true]);
 
-        $gid = $params['admin_graphql_api_id'] ?? null;
-        $orderNumber = $params['order_number'] ?? null;
-        $orderStatusUrl = $params['order_status_url'] ?? null;
-
-        if ($gid === null) {
-            app('sentry')->getClient()->captureMessage(
-                'Missing admin_graphql_api_id in Shopify webhook.',
-                new Severity(Severity::WARNING),
-                (new Scope())->setExtra('order_id', $this->getOrderId())
-            );
+        // Log warning if the webhook isn't sending the expected data anymore.
+        foreach ($params as $key => $value) {
+            if ($value === null) {
+                app('sentry')->getClient()->captureMessage(
+                    "Missing {$key} in Shopify webhook.",
+                    new Severity(Severity::WARNING),
+                    (new Scope())->setExtra('order_id', $this->getOrderId())
+                );
+            }
         }
 
-        if ($orderNumber === null) {
-            app('sentry')->getClient()->captureMessage(
-                'Missing order_number in Shopify webhook.',
-                new Severity(Severity::WARNING),
-                (new Scope())->setExtra('order_id', $this->getOrderId())
-            );
-        }
-
-        if ($orderStatusUrl === null) {
-            app('sentry')->getClient()->captureMessage(
-                'Missing order_status_url in Shopify webhook.',
-                new Severity(Severity::WARNING),
-                (new Scope())->setExtra('order_id', $this->getOrderId())
-            );
-        }
-
-        return [$orderNumber, $gid, $orderStatusUrl];
+        // Don't overwrite existing values with null/empty string later.
+        return array_filter($params);
     }
 
     private function getParams()
@@ -182,32 +168,19 @@ class ShopifyController extends Controller
     private function updateOrderPayment(Order $order)
     {
         $params = $this->getParams();
+        $shopifyParams = $this->getShopifyParams();
+
         $payment = new Payment([
             'provider' => Order::PROVIDER_SHOPIFY,
-            'transaction_id' => $order->getProviderReference(),
+            'transaction_id' => $shopifyParams['order_number'],
             'country_code' => array_get($params, 'billing_address.country_code'),
+            // TODO: fix timezones...
             'paid_at' => Carbon::parse(array_get($params, 'processed_at')),
         ]);
 
+        $order->fill($shopifyParams);
         $order->paid($payment);
-    }
 
-    private function updateWithShopifyParams(Order $order)
-    {
-        [$orderNumber, $gid, $orderStatusUrl] = $this->getShopifyParams();
 
-        if ($orderNumber !== null) {
-            $order->setShopifyOrderNumber($orderNumber);
-        }
-
-        if ($gid !== null) {
-            $order->reference = $gid;
-        }
-
-        if ($orderStatusUrl !== null) {
-            $order->shopify_url = $orderStatusUrl;
-        }
-
-        $order->save();
     }
 }
