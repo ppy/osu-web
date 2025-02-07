@@ -124,7 +124,7 @@ class ShopifyController extends Controller
         }
 
         // Don't overwrite existing values with null/empty string later.
-        return array_filter($params);
+        return array_filter($params, fn ($value) => present($value));
     }
 
     private function getParams()
