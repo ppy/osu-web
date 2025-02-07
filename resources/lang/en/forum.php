@@ -295,6 +295,27 @@ return [
             'to_1_done' => 'Added "resolved" tag',
         ],
 
+        'issue_tag_osulazer' => [
+            'to_0' => 'Remove "osu!lazer" tag',
+            'to_0_done' => 'Removed "osu!lazer" tag',
+            'to_1' => 'Add "osu!lazer" tag',
+            'to_1_done' => 'Added "osu!lazer" tag',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => 'Remove "osu!stable" tag',
+            'to_0_done' => 'Removed "osu!stable" tag',
+            'to_1' => 'Add "osu!stable" tag',
+            'to_1_done' => 'Added "osu!stable" tag',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => 'Remove "osu!web" tag',
+            'to_0_done' => 'Removed "osu!web" tag',
+            'to_1' => 'Add "osu!web" tag',
+            'to_1_done' => 'Added "osu!web" tag',
+        ],
+
         'lock' => [
             'is_locked' => 'This topic is locked and can not be replied to',
             'to_0' => 'Unlock topic',

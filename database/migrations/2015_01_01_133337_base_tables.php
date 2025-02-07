@@ -1135,7 +1135,7 @@ class BaseTables extends Migration
         });
 
         Schema::create('phpbb_users', function (Blueprint $table) {
-            $table->mediumIncrements('user_id');
+            $table->mediumIncrements('user_id')->from(2);
             $table->tinyInteger('user_type')->default(0);
             $table->mediumInteger('group_id')->unsigned()->default(2);
             $table->mediumText('user_permissions');

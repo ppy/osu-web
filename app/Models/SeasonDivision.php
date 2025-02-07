@@ -8,12 +8,13 @@ declare(strict_types=1);
 namespace App\Models;
 
 /**
- * @property string|null $group_indicator
  * @property int $id
- * @property int $room_id
+ * @property string $image_url
+ * @property string $name
  * @property int $season_id
+ * @property float $threshold
  */
-class SeasonRoom extends Model
+class SeasonDivision extends Model
 {
     public $timestamps = false;
 }

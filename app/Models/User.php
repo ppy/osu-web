@@ -119,6 +119,7 @@ use Request;
  * @property-read Collection<Score\Mania> $scoresMania
  * @property-read Collection<Score\Osu> $scoresOsu
  * @property-read Collection<Score\Taiko> $scoresTaiko
+ * @property-read Collection<UserSeasonScoreAggregate> $seasonScores
  * @property-read UserStatistics\Fruits|null $statisticsFruits
  * @property-read UserStatistics\Mania|null $statisticsMania
  * @property-read UserStatistics\Mania4k|null $statisticsMania4k
@@ -323,14 +324,15 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function usernameChangeCost()
     {
-        $tier = min($this->usernameChangeHistory()->paid()->count(), 5);
+        $minTier = $this->usernameChangeHistory()->paid()->exists() ? 1 : 0;
 
-        if ($tier > 1) {
-            $lastChange = $this->usernameChangeHistory()->paid()->last()?->timestamp;
-            if ($lastChange !== null) {
-                $tier = max($tier - $lastChange->diffInYears(Carbon::now(), false), 1);
-            }
-        }
+        $tier = max(
+            $this->usernameChangeHistory()
+                ->paid()
+                ->where('timestamp', '>', Carbon::now()->subYears(3))
+                ->count(),
+            $minTier,
+        );
 
         return match ($tier) {
             0 => 0,
@@ -1363,6 +1365,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function country()
     {
         return $this->belongsTo(Country::class, 'country_acronym');
+    }
+
+    public function seasonScores(): HasMany
+    {
+        return $this->hasMany(UserSeasonScoreAggregate::class);
     }
 
     public function statisticsOsu()
