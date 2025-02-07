@@ -63,7 +63,7 @@ class Season extends Model
         foreach ($divisions as $division) {
             $divisionsWithMaxRanks[] = [
                 'division' => $division,
-                'max_rank' => get_int($division->threshold * $userCount),
+                'max_rank' => (int) ($division->threshold * $userCount),
             ];
         }
 
