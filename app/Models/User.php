@@ -130,6 +130,7 @@ use Request;
  * @property-read Collection<UserDonation> $supporterTagPurchases
  * @property-read Collection<UserDonation> $supporterTags
  * @property-read Team|null $team
+ * @property-read TeamApplication|null $teamApplication
  * @property-read Collection<OAuth\Token> $tokens
  * @property-read Collection<Forum\TopicWatch> $topicWatches
  * @property-read Collection<UserAchievement> $userAchievements
@@ -309,6 +310,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'user_id',
             'team_id',
         );
+    }
+
+    public function teamApplication(): HasOne
+    {
+        return $this->hasOne(TeamApplication::class);
     }
 
     public function getAuthPassword()
@@ -968,6 +974,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'supporterTagPurchases',
             'supporterTags',
             'team',
+            'teamApplication',
             'tokens',
             'topicWatches',
             'userAchievements',

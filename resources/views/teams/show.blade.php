@@ -13,6 +13,8 @@
     $teamMembers['member'] ??= [];
     $teamMembers['leader'] ??= $toJson([$team->members()->make(['user_id' => $team->leader_id])->userOrDeleted()]);
     $headerUrl = $team->header()->url();
+
+    $currentUser = Auth::user();
 @endphp
 
 @extends('master', [
@@ -40,6 +42,14 @@
                             title="{{ osu_trans('teams.members.index.title') }}"
                         >
                             <span class="fa fa-users"></span>
+                            @php
+                                $applicationCount = $team->applications()->count();
+                            @endphp
+                            @if ($applicationCount > 0)
+                                <span class="btn-circle__count">
+                                    {{ i18n_number_format($applicationCount) }}
+                                </span>
+                            @endif
                         </a>
 
                         <a
@@ -69,8 +79,8 @@
                 </div>
             </div>
         </div>
-        @if (Auth::user()?->team?->getKey() === $team->getKey())
-            <div class="profile-detail-bar profile-detail-bar--team">
+        <div class="profile-detail-bar profile-detail-bar--team">
+            @if ($currentUser?->team?->getKey() === $team->getKey())
                 @php
                     $partPriv = priv_check('TeamPart', $team);
                     $canPart = $partPriv->can();
@@ -90,8 +100,43 @@
                         {{ osu_trans('teams.show.bar.part') }}
                     </button>
                 </form>
-            </div>
-        @endif
+            @elseif ($currentUser?->teamApplication?->team_id === $team->getKey())
+                <form
+                    action="{{ route('teams.applications.destroy', ['team' => $team, 'application' => $currentUser->getKey()]) }}"
+                    data-turbo-confirm="{{ osu_trans('common.confirmation') }}"
+                    data-reload-on-success="1"
+                    method="POST"
+                >
+                    <input type="hidden" name="_method" value="DELETE" />
+                    <button
+                        class="team-action-button team-action-button--join-cancel"
+                    >
+                        {{ osu_trans('teams.show.bar.join_cancel') }}
+                    </button>
+                </form>
+            @else
+                @php
+                    $joinPriv = priv_check('TeamApplicationStore', $team);
+                @endphp
+                <form
+                    action="{{ route('teams.applications.store', ['team' => $team]) }}"
+                    data-confirm="{{ osu_trans('common.confirmation') }}"
+                    data-reload-on-success="1"
+                    data-remote="1"
+                    method="POST"
+                    title="{{ $joinPriv->message() }}"
+                >
+                    <button
+                        class="team-action-button team-action-button--join js-login-required--click"
+                        @if (!$joinPriv->can() && $currentUser !== null)
+                            disabled
+                        @endif
+                    >
+                        {{ osu_trans('teams.show.bar.join') }}
+                    </button>
+                </form>
+            @endif
+        </div>
         <div class="user-profile-pages user-profile-pages--no-tabs">
             <div class="page-extra u-fancy-scrollbar">
                 <div class="team-summary">
