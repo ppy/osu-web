@@ -185,6 +185,23 @@ class Order extends Model
         return $query->with('payments');
     }
 
+    #region Shopify convenience setters for webhook updates
+    public function setAdminGraphqlApiId(string $value)
+    {
+        $this->reference = $value;
+    }
+
+    public function setOrderNumber(string $value)
+    {
+        $this->transaction_id = static::PROVIDER_SHOPIFY."-{$value}";
+    }
+
+    public function setOrderStatusUrl(string $value)
+    {
+        $this->shopify_url = $value;
+    }
+    #endregion
+
     public function trackingCodes()
     {
         $codes = [];
