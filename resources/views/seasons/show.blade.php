@@ -35,7 +35,7 @@
 @endsection
 
 @section('scores')
-    @include('seasons._rankings_table', [$divisions, $scores])
+    @include('seasons._rankings_table', compact('divisions', 'scores'))
 @endsection
 
 @section ("script")
