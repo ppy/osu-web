@@ -12,9 +12,13 @@ namespace App\Models;
  * @property string $image_url
  * @property string $name
  * @property int $season_id
- * @property int $threshold
+ * @property double $threshold
  */
 class SeasonDivision extends Model
 {
     public $timestamps = false;
+
+    protected $casts = [
+        'threshold' => 'double',
+    ];
 }
