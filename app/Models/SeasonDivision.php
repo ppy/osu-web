@@ -17,8 +17,4 @@ namespace App\Models;
 class SeasonDivision extends Model
 {
     public $timestamps = false;
-
-    protected $casts = [
-        'threshold' => 'double',
-    ];
 }
