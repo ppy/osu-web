@@ -149,11 +149,9 @@ class ForumsController extends Controller
             ->recent(compact('sort', 'withReplies'));
 
         if (is_api_request()) {
-            $topics->limit(Topic::PER_PAGE);
-
             return [
                 'forum' => json_item($forum, new ForumTransformer(), ['subforums.subforums']),
-                'topics' => json_collection($topics, new TopicTransformer()),
+                'topics' => json_collection($topics->limit(Topic::PER_PAGE)->get(), new TopicTransformer()),
                 'pinned_topics' => json_collection($pinnedTopics, new TopicTransformer()),
             ];
         }
