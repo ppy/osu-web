@@ -44,10 +44,6 @@ class ForumsController extends Controller
      *   "forums": [
      *     { "forum_id": 1, "...": "..." },
      *     { "forum_id": 2, "...": "..." }
-     *   ],
-     *   "last_topics": [
-     *     { "id": 1, "...": "..." },
-     *     { "id": 2, "...": "..." }
      *   ]
      * }
      */
@@ -68,7 +64,6 @@ class ForumsController extends Controller
         if (is_api_request()) {
             return [
                 'forums' => json_collection($forums, new ForumTransformer(), ['subforums.subforums']),
-                'last_topics' => json_collection($lastTopics, new TopicTransformer()),
             ];
         }
 
