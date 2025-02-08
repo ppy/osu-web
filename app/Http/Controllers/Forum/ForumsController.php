@@ -55,8 +55,6 @@ class ForumsController extends Controller
             ->orderBy('left_id')
             ->get();
 
-        $lastTopics = Forum::lastTopics();
-
         $forums = $forums->filter(function ($forum) {
             return priv_check('ForumView', $forum)->can();
         });
@@ -66,6 +64,8 @@ class ForumsController extends Controller
                 'forums' => json_collection($forums, new ForumTransformer(), ['subforums.subforums']),
             ];
         }
+
+        $lastTopics = Forum::lastTopics();
 
         return ext_view('forum.forums.index', compact('forums', 'lastTopics'));
     }
@@ -126,7 +126,6 @@ class ForumsController extends Controller
         $user = auth()->user();
 
         $forum = Forum::with('subforums.subforums')->findOrFail($id);
-        $lastTopics = Forum::lastTopics($forum);
 
         $sort = $params['sort'] ?? Topic::DEFAULT_SORT;
         $withReplies = $params['with_replies'] ?? null;
@@ -157,6 +156,8 @@ class ForumsController extends Controller
         }
 
         $topics = $topics->paginate();
+
+        $lastTopics = Forum::lastTopics($forum);
 
         $allTopics = array_merge($pinnedTopics->all(), $topics->all());
         $topicReadStatus = TopicTrack::readStatus($user, $allTopics);
