@@ -38,7 +38,7 @@ export default class ChangelogChart {
   private hasData!: boolean | null;
   private height!: number;
   private readonly hoverArea;
-  private readonly options;
+  private readonly scales;
   private readonly svg;
   private readonly svgWrapper;
   private readonly tooltip;
@@ -53,12 +53,10 @@ export default class ChangelogChart {
   private y?: number;
 
   constructor(area: HTMLElement) {
-    this.options = {
-      scales: {
-        class: d3.scaleOrdinal<string>(),
-        x: d3.scaleTime(),
-        y: d3.scaleLinear(),
-      },
+    this.scales = {
+      class: d3.scaleOrdinal<string>(),
+      x: d3.scaleTime(),
+      y: d3.scaleLinear(),
     };
 
     this.area = d3.select(area);
@@ -70,9 +68,9 @@ export default class ChangelogChart {
     this.areaFunction = d3
       .area<Datum>()
       .curve(d3.curveMonotoneX)
-      .x((d) => this.options.scales.x(d.data.date))
-      .y1((d) => this.options.scales.y(d[1]))
-      .y0((d) => this.options.scales.y(d[0]));
+      .x((d) => this.scales.x(d.data.date))
+      .y1((d) => this.scales.y(d[1]))
+      .y0((d) => this.scales.y(d[0]));
 
     this.hoverArea = this.svg
       .append('rect')
@@ -151,7 +149,7 @@ export default class ChangelogChart {
       .data(this.data)
       .enter()
       .append('path')
-      .attr('class', (d) => `changelog-chart__area changelog-chart__area--${this.options.scales.class(d.key)}`)
+      .attr('class', (d) => `changelog-chart__area changelog-chart__area--${this.scales.class(d.key)}`)
       .attr('d', this.areaFunction);
   }
 
@@ -159,7 +157,7 @@ export default class ChangelogChart {
 
   private readonly moveTooltip = (event: Event) => {
     const mousePos = d3.pointer(event);
-    this.x = this.options.scales.x.invert(mousePos[0]);
+    this.x = this.scales.x.invert(mousePos[0]);
     this.y = mousePos[1] / this.height;
 
     this.showTooltip();
@@ -237,12 +235,12 @@ export default class ChangelogChart {
       if (y <= el[pos][1] && el[pos].data[el.key] != null) {
         dataRow = i;
         currentLabel = el.key;
-        labelModifier = this.options.scales.class(currentLabel);
+        labelModifier = this.scales.class(currentLabel);
         break;
       }
     }
 
-    const coord = this.options.scales.x(x);
+    const coord = this.scales.x(x);
 
     this.tooltipName
       .attr(
@@ -283,14 +281,14 @@ export default class ChangelogChart {
   }
 
   private setScalesRange() {
-    this.options.scales.x.range([0, this.width]).domain([
+    this.scales.x.range([0, this.width]).domain([
       first(this.data[0])?.data.date ?? 0,
       last(this.data[0])?.data.date ?? 0,
     ]);
 
-    this.options.scales.y.range([0, this.height]).domain([0, 1]);
+    this.scales.y.range([0, this.height]).domain([0, 1]);
 
-    this.options.scales.class.range(
+    this.scales.class.range(
       this.config.order.map((d, i) =>
         // rotate over available build ids (0-6) when the amount of builds
         // exceeds the available amount of colors
