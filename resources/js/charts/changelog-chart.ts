@@ -75,8 +75,8 @@ export default class ChangelogChart {
     this.hoverArea = this.svg
       .append('rect')
       .classed('changelog-chart__hover-area', true)
-      .on('mouseout', this.hideTooltip)
-      .on('mousemove', this.moveTooltip);
+      .on('mouseout', this.tooltipHide)
+      .on('mousemove', this.tooltipMove);
 
     this.tooltipArea = this.area
       .append('div')
@@ -140,7 +140,7 @@ export default class ChangelogChart {
     this.setSvgSize();
     this.setHoverAreaSize();
     this.drawLines();
-    this.positionTooltip();
+    this.tooltipPosition();
   }
 
   private drawLines() {
@@ -152,21 +152,6 @@ export default class ChangelogChart {
       .attr('class', (d) => `changelog-chart__area changelog-chart__area--${this.scales.class(d.key)}`)
       .attr('d', this.areaFunction);
   }
-
-  private readonly hideTooltip = () => fadeOut(this.tooltipContainer.node());
-
-  private readonly moveTooltip = (event: Event) => {
-    const mousePos = d3.pointer(event);
-    this.x = this.scales.x.invert(mousePos[0]);
-    this.y = mousePos[1] / this.height;
-
-    this.showTooltip();
-
-    clearTimeout(this._autoHideTooltip);
-    this._autoHideTooltip = setTimeout(this.hideTooltip, 3000);
-
-    this.positionTooltip();
-  };
 
   private normalizeData(rawData: BuildHistory[]) {
     // normalize the user count values
@@ -217,7 +202,57 @@ export default class ChangelogChart {
     return { data, hasData };
   }
 
-  private positionTooltip() {
+  private setDimensions() {
+    const areaDims = this.area.node()?.getBoundingClientRect();
+    if (!areaDims) return;
+
+    this.width = areaDims.width;
+    this.height = areaDims.height;
+  }
+
+  private setHoverAreaSize() {
+    this.hoverArea.attr('width', this.width).attr('height', this.height);
+  }
+
+  private setScalesRange() {
+    this.scales.x.range([0, this.width]).domain([
+      first(this.data[0])?.data.date ?? 0,
+      last(this.data[0])?.data.date ?? 0,
+    ]);
+
+    this.scales.y.range([0, this.height]).domain([0, 1]);
+
+    this.scales.class.range(
+      this.config.order.map((d, i) =>
+        // rotate over available build ids (0-6) when the amount of builds
+        // exceeds the available amount of colors
+        this.config.stream_name != null
+          ? `${this.config.stream_name}-build-${i % 7}`
+          : kebabCase(d ?? ''),
+      ),
+    ).domain(this.config.order.map(String));
+  }
+
+  private setSvgSize() {
+    this.svg.attr('width', this.width).attr('height', this.height);
+  }
+
+  private readonly tooltipHide = () => fadeOut(this.tooltipContainer.node());
+
+  private readonly tooltipMove = (event: Event) => {
+    const mousePos = d3.pointer(event);
+    this.x = this.scales.x.invert(mousePos[0]);
+    this.y = mousePos[1] / this.height;
+
+    this.tooltipShow();
+
+    clearTimeout(this._autoHideTooltip);
+    this._autoHideTooltip = setTimeout(this.tooltipHide, 3000);
+
+    this.tooltipPosition();
+  };
+
+  private tooltipPosition() {
     const { x, y } = this;
 
     if (x == null || y == null) return;
@@ -268,40 +303,5 @@ export default class ChangelogChart {
     this.tooltipLine.style('transform', `translateX(${coord}px)`);
   }
 
-  private setDimensions() {
-    const areaDims = this.area.node()?.getBoundingClientRect();
-    if (!areaDims) return;
-
-    this.width = areaDims.width;
-    this.height = areaDims.height;
-  }
-
-  private setHoverAreaSize() {
-    this.hoverArea.attr('width', this.width).attr('height', this.height);
-  }
-
-  private setScalesRange() {
-    this.scales.x.range([0, this.width]).domain([
-      first(this.data[0])?.data.date ?? 0,
-      last(this.data[0])?.data.date ?? 0,
-    ]);
-
-    this.scales.y.range([0, this.height]).domain([0, 1]);
-
-    this.scales.class.range(
-      this.config.order.map((d, i) =>
-        // rotate over available build ids (0-6) when the amount of builds
-        // exceeds the available amount of colors
-        this.config.stream_name != null
-          ? `${this.config.stream_name}-build-${i % 7}`
-          : kebabCase(d ?? ''),
-      ),
-    ).domain(this.config.order.map(String));
-  }
-
-  private setSvgSize() {
-    this.svg.attr('width', this.width).attr('height', this.height);
-  }
-
-  private readonly showTooltip = () => fadeIn(this.tooltipContainer.node());
+  private readonly tooltipShow = () => fadeIn(this.tooltipContainer.node());
 }
