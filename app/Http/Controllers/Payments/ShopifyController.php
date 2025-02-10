@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use Log;
 use Sentry\Severity;
 use Sentry\State\Scope;
+use Shopify\Utils;
 
 class ShopifyController extends Controller
 {
@@ -121,6 +122,17 @@ class ShopifyController extends Controller
                     (new Scope())->setExtra('order_id', $this->getOrderId())
                 );
             }
+        }
+
+        $key = Utils::getQueryParams($params['order_status_url'] ?? '')['key'] ?? null;
+        if ($key !== null) {
+            $params['admin_graphql_api_id'] .= "?key={$key}";
+        } else {
+            app('sentry')->getClient()->captureMessage(
+                'Missing key param in order_status_url in Shopify webhook.',
+                new Severity(Severity::WARNING),
+                (new Scope())->setExtra('order_id', $this->getOrderId())
+            );
         }
 
         // Don't overwrite existing values with null/empty string later.
