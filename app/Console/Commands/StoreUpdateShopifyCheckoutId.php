@@ -15,6 +15,7 @@ use Shopify\ApiVersion;
 use Shopify\Auth\FileSessionStorage;
 use Shopify\Clients\Storefront;
 use Shopify\Context;
+use Symfony\Component\Console\Helper\ProgressBar;
 
 class StoreUpdateShopifyCheckoutId extends Command
 {
@@ -23,6 +24,8 @@ class StoreUpdateShopifyCheckoutId extends Command
     protected $description = 'Updates Shopify orders using checkout id to order number.';
 
     private Storefront $client;
+    /** @var ProgressBar[]  */
+    private array $progress;
 
     private static function getOrderIdFromNode(array $node): ?int
     {
@@ -55,10 +58,28 @@ class StoreUpdateShopifyCheckoutId extends Command
             $GLOBALS['cfg']['store']['shopify']['storefront_token'],
         );
 
-        $progress = $this->output->createProgressBar();
+        /** @var \Symfony\Component\Console\Output\ConsoleOutput $output */
+        $output = $this->output->getOutput();
+        for ($i = 0; $i < 3; $i++){
+            $section[] = $output->section();
+        }
 
-        Order::where('provider', 'shopify')->whereNotNull('reference')->chunkById(1000, function (Collection $chunk) use ($progress) {
+        $this->progress['orders'] = new ProgressBar($section[0]);
+        $this->progress['orders']->setMessage('Orders read');
+        $this->progress['gids'] = new ProgressBar($section[1]);
+        $this->progress['gids']->setMessage('response nodes processed');
+        $this->progress['updated'] = new ProgressBar($section[2]);
+        $this->progress['updated']->setMessage('Orders updated');
+
+        foreach ($this->progress as $progress) {
+            $progress->setFormat('[%bar%] %current% %message%');
+            $progress->start();
+        }
+
+        Order::where('provider', 'shopify')->whereNotNull('reference')->chunkById(1000, function (Collection $chunk) {
             $ordersById = $chunk->keyBy('order_id');
+            $this->progress['orders']->advance(count($ordersById));
+
             $ids = $chunk->map(fn ($order) => $this->getCheckoutId($order->reference))->filter();
             $idChunks = $ids->chunk(10);
 
@@ -74,11 +95,11 @@ class StoreUpdateShopifyCheckoutId extends Command
                 }
 
                 foreach ($nodes as $node) {
+                    $this->progress['gids']->advance();
                     // nodes appear to be returned in order of values queried, including nulls set for not found
                     if ($node !== null) {
                         $orderId = static::getOrderIdFromNode($node);
                         if ($orderId !== null) {
-                            $this->line("Updating Order {$orderId}.");
                             $order = $ordersById[$orderId];
                             $order->getConnection()->transaction(function () use ($node, $order) {
                                 $orderNode = $node['order'];
@@ -101,7 +122,7 @@ class StoreUpdateShopifyCheckoutId extends Command
                                 Payment::where('order_id', $order->getKey())->update(['transaction_id' => $orderNode['orderNumber']]);
                             });
 
-                            $progress->advance();
+                            $this->progress['updated']->advance();
                         }
                     }
                 }
@@ -109,6 +130,10 @@ class StoreUpdateShopifyCheckoutId extends Command
                 sleep(1);
             }
         });
+
+        foreach ($this->progress as $progress) {
+            $progress->finish();
+        }
 
         return;
     }
