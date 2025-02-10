@@ -13,6 +13,7 @@ use Shopify\ApiVersion;
 use Shopify\Auth\FileSessionStorage;
 use Shopify\Clients\Storefront;
 use Shopify\Context;
+use Shopify\Utils;
 
 class StoreGetShopifyOrder extends Command
 {
@@ -75,8 +76,14 @@ class StoreGetShopifyOrder extends Command
             return static::INVALID;
         }
 
-        $gid = $order->reference;
         $this->info("Getting details for Order {$order->getKey()}");
+
+        $gid = $order->reference;
+        if (!isset(Utils::getQueryParams($gid)['key'])) {
+            $this->error('Missing key param in id for querying');
+            return static::INVALID;
+        }
+
         $this->warn('The id and statusUrl returned are private and should not be shared!');
 
         if (str_starts_with($gid, 'gid://shopify/Checkout')) {
