@@ -60,7 +60,7 @@ class StoreUpdateShopifyCheckoutId extends Command
 
         /** @var \Symfony\Component\Console\Output\ConsoleOutput $output */
         $output = $this->output->getOutput();
-        for ($i = 0; $i < 3; $i++){
+        for ($i = 0; $i < 3; $i++) {
             $section[] = $output->section();
         }
 
