@@ -179,7 +179,7 @@ class UsersController extends Controller
                 return [
                     'best' => $this->getExtraSection(
                         'scoresBest',
-                        count($this->user->beatmapBestScoreIds($this->mode, ScoreSearchParams::showLegacyForUser(\Auth::user())))
+                        count($this->user->beatmapBestScoreIds($this->mode))
                     ),
                     'firsts' => $this->getExtraSection(
                         'scoresFirsts',
@@ -813,8 +813,7 @@ class UsersController extends Controller
                     $this->mode,
                     $perPage,
                     $offset,
-                    ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD,
-                    ScoreSearchParams::showLegacyForUser(\Auth::user()),
+                    ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD
                 );
                 $userRelationColumn = 'user';
                 break;
