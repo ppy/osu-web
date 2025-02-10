@@ -46,25 +46,25 @@
                         @endforeach
                     </ul>
                     @if ($order->isShopify())
-                        <button
-                            class="js-store-resume-checkout btn-osu-big btn-osu-big--rounded-thin"
-                            data-order-id="{{ $order->getKey() }}"
-                            data-provider="{{ $order->getPaymentProvider() }}"
-                            data-provider-reference="{{ $order->getProviderReference() }}"
-                            data-shopify-url="{{ $order->getShopifyUrl() }}"
-                            data-status="{{ $order->status }}"
-                        >
-                            {{ $order->isPaymentRequested() ? osu_trans('store.order.resume') : osu_trans('store.order.invoice') }}
-                        </button>
+                        @if ($order->shopify_url !== null)
+                            <a class="btn-osu-big btn-osu-big--rounded-thin" href="{{ $order->getShopifyUrl() }}">
+                                {{ $order->isPaymentRequested() ? osu_trans('store.order.resume') : osu_trans('store.order.invoice') }}
+                            </a>
+                        @else
+                            <button
+                                class="js-store-resume-checkout btn-osu-big btn-osu-big--rounded-thin"
+                                data-order-id="{{ $order->getKey() }}"
+                                data-provider="{{ $order->getPaymentProvider() }}"
+                                data-provider-reference="{{ $order->getProviderReference() }}"
+                                data-status="{{ $order->status }}"
+                            >
+                                {{ $order->isPaymentRequested() ? osu_trans('store.order.resume') : osu_trans('store.order.invoice') }}
+                            </button>
+                        @endif
                     @elseif ($order->hasInvoice())
-                        <button
-                            class="js-store-resume-checkout btn-osu-big btn-osu-big--rounded-thin"
-                            data-order-id="{{ $order->getKey() }}"
-                            data-provider="{{ $order->getPaymentProvider() }}"
-                            data-status="{{ $order->status }}"
-                        >
+                        <a class="btn-osu-big btn-osu-big--rounded-thin" href="{{ route('store.invoice.show', ['invoice' => $order->getKey()]) }}">
                             {{ osu_trans('store.order.invoice') }}
-                        </button>
+                        </a>
                     @endif
 
                     @if ($order->canUserCancel())
