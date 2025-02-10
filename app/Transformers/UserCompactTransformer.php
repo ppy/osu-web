@@ -6,7 +6,6 @@
 namespace App\Transformers;
 
 use App\Libraries\MorphMap;
-use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
 use App\Models\User;
 use App\Models\UserProfileCustomization;
