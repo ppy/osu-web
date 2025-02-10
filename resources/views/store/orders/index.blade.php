@@ -51,6 +51,7 @@
                                 {{ $order->isPaymentRequested() ? osu_trans('store.order.resume') : osu_trans('store.order.invoice') }}
                             </a>
                         @else
+                            {{-- TODO: remove after updating all checkouts to orders. --}}
                             <button
                                 class="js-store-resume-checkout btn-osu-big btn-osu-big--rounded-thin"
                                 data-order-id="{{ $order->getKey() }}"
