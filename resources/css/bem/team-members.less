@@ -2,15 +2,29 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .team-members {
-  border-radius: @border-radius--large;
   display: grid;
-  gap: 5px;
-  padding: 5px;
-  background-color: hsl(var(--hsl-b2));
+  gap: 10px;
 
-  &--owner {
-    background-color: hsl(var(--hsl-orange-1));
-    color: hsl(var(--hsl-orange-4));
+  &__type {
+    border-radius: @border-radius--large;
+    display: grid;
+    gap: 5px;
+    padding: 5px;
+    background-color: hsl(var(--hsl-b2));
+    grid-template-columns: var(--grid-template-columns);
+    --grid-template-columns: 1fr;
+    --grid-template-columns-desktop: 1fr 1fr 1fr;
+
+    &--owner {
+      background-color: hsl(var(--hsl-orange-1));
+      color: hsl(var(--hsl-orange-4));
+      --grid-template-columns: 1fr;
+      --grid-template-columns-desktop: 1fr;
+    }
+
+    @media @desktop {
+      --grid-template-columns: var(--grid-template-columns-desktop);
+    }
   }
 
   &__meta {
@@ -18,5 +32,6 @@
     font-weight: 600;
     display: grid;
     grid-template-columns: 1fr auto;
+    grid-column: 1 / -1;
   }
 }
