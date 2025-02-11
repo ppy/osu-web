@@ -20,11 +20,12 @@ class StoreGetShopifyOrder extends Command
     protected $description = 'Gets order info from shopify.';
     protected $signature = 'store:get-shopify-order {orderId}';
 
-    private static function checkoutQuery(string $gid)
+    private static function makeQuery(string $gid): ?string
     {
         $id = '"'.$gid.'"';
 
-        return <<<QUERY
+        return match (true) {
+            str_starts_with($gid, 'gid://shopify/Checkout') => <<<QUERY
             {
                 node(id: $id) {
                     ... on Checkout {
@@ -44,28 +45,36 @@ class StoreGetShopifyOrder extends Command
                     }
                 }
             }
-        QUERY;
-    }
+            QUERY,
 
-    private static function orderQuery(string $gid)
-    {
-        $id = '"'.$gid.'"';
-
-        return <<<QUERY
-        {
-            node(id: $id) {
-                ... on Order {
-                    canceledAt
-                    financialStatus
-                    fulfillmentStatus
-                    id
-                    orderNumber
-                    processedAt
-                    statusUrl
+            str_starts_with($gid, 'gid://shopify/Order') => <<<QUERY
+            {
+                node(id: $id) {
+                    ... on Order {
+                        canceledAt
+                        financialStatus
+                        fulfillmentStatus
+                        id
+                        orderNumber
+                        processedAt
+                        statusUrl
+                    }
                 }
             }
-        }
-        QUERY;
+            QUERY,
+
+            str_starts_with($gid, 'gid://shopify/Cart') => <<<QUERY
+            {
+                cart(id: $id) {
+                    createdAt
+                    id
+                    checkoutUrl
+                }
+            }
+            QUERY,
+
+            default => null,
+        };
     }
 
     public function handle()
@@ -86,13 +95,10 @@ class StoreGetShopifyOrder extends Command
 
         $this->warn('The id and statusUrl returned are private and should not be shared!');
 
-        if (str_starts_with($gid, 'gid://shopify/Checkout')) {
-            $query = static::checkoutQuery($gid);
-        } elseif (str_starts_with($gid, 'gid://shopify/Order')) {
-            $query = static::orderQuery($gid);
-        } else {
-            $this->error('Not a supported Shopify ID for querying.');
+        $query = static::makeQuery($gid);
 
+        if ($query === null) {
+            $this->error('Not a supported Shopify ID for querying.');
             return static::INVALID;
         }
 
