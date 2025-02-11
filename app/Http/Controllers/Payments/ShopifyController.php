@@ -186,8 +186,7 @@ class ShopifyController extends Controller
             'provider' => Order::PROVIDER_SHOPIFY,
             'transaction_id' => $shopifyParams['order_number'],
             'country_code' => array_get($params, 'billing_address.country_code'),
-            // TODO: fix timezones...
-            'paid_at' => Carbon::parse(array_get($params, 'processed_at')),
+            'paid_at' => Carbon::parse(array_get($params, 'processed_at'))->utc(),
         ]);
 
         $order->fill($shopifyParams);
