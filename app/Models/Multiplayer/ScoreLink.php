@@ -42,9 +42,11 @@ class ScoreLink extends Model
                 }
             }
 
-            $allowedMods = array_column($playlistItem->allowed_mods, 'acronym');
-            if (!empty(array_diff($mods, $requiredMods, $allowedMods))) {
-                throw new InvariantException('This play includes mods that are not allowed.');
+            if (!$playlistItem->freestyle) {
+                $allowedMods = array_column($playlistItem->allowed_mods, 'acronym');
+                if (!empty(array_diff($mods, $requiredMods, $allowedMods))) {
+                    throw new InvariantException('This play includes mods that are not allowed.');
+                }
             }
 
             $token->score()->associate($score)->saveOrExplode();
