@@ -25,6 +25,16 @@ class StoreGetShopifyOrder extends Command
         $id = '"'.$gid.'"';
 
         return match (true) {
+            str_starts_with($gid, 'gid://shopify/Cart') => <<<QUERY
+            {
+                cart(id: $id) {
+                    createdAt
+                    id
+                    checkoutUrl
+                }
+            }
+            QUERY,
+
             str_starts_with($gid, 'gid://shopify/Checkout') => <<<QUERY
             {
                 node(id: $id) {
@@ -59,16 +69,6 @@ class StoreGetShopifyOrder extends Command
                         processedAt
                         statusUrl
                     }
-                }
-            }
-            QUERY,
-
-            str_starts_with($gid, 'gid://shopify/Cart') => <<<QUERY
-            {
-                cart(id: $id) {
-                    createdAt
-                    id
-                    checkoutUrl
                 }
             }
             QUERY,
