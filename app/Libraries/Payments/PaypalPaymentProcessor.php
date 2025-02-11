@@ -149,7 +149,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
         $this->validatePendingStatus();
 
         // just check if IPN transaction id is as expected with the Paypal v2 API.
-        $capturedId = $this->getOrder()->getProviderReference();
+        $capturedId = $this->getOrder()->getTransactionId();
         $transactionId = $this->getNotificationType() === NotificationType::REFUND
             ? $this->getParentTransactionId()
             : $this->getPaymentTransactionId();

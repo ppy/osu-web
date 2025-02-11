@@ -264,18 +264,16 @@ class Order extends Model
     }
 
     /**
-     * Returns the reference id for the provider associated with this Order.
+     * Returns the 'final' id for the provider associated with this Order.
      *
-     * For Paypal transactions, this is "paypal-{$capturedId}" where $capturedId is the IPN txn_id
-     * or captured Id of the payment item in the payment transaction (not the payment itself).
+     * For Paypal, is the IPN txn_id or captured Id of the payment item in the payment transaction.
+     *  (not the payment itself).
+     * For Xsolla, it is the Xsolla transaction id and should be the same as reference.
+     * For Shopify, it is the Shopify order number.
      *
-     * For other payment providers, this value should be "{$provider}-{$reference}".
-     *
-     * In the case of failed or user-aborted payments, this should be "{$provider}-failed".
-     *
-     * @return string|null
+     * TODO: remove the splitting and remove the provider prefix? (was for legacy purposes).
      */
-    public function getProviderReference(): ?string
+    public function getTransactionId(): ?string
     {
         if (!present($this->transaction_id)) {
             return null;

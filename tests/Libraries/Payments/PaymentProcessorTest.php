@@ -45,7 +45,7 @@ class PaymentProcessorTest extends TestCase
             'country_code' => 'CC',
             'paid_at' => now(),
             'provider' => 'test',
-            'transaction_id' => $this->order->getProviderReference(),
+            'transaction_id' => $this->order->getTransactionId(),
         ]);
 
         $this->order->paid($payment);
@@ -64,7 +64,7 @@ class PaymentProcessorTest extends TestCase
             'country_code' => 'CC',
             'paid_at' => now(),
             'provider' => 'test',
-            'transaction_id' => $this->order->getProviderReference(),
+            'transaction_id' => $this->order->getTransactionId(),
         ];
 
         $this->order->paid(new Payment($params));

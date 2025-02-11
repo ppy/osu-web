@@ -18,7 +18,7 @@ class ShopifyControllerTest extends TestCase
         $order = Order::factory()->paid()->shopify()->create();
         $payment = new Payment([
             'provider' => Order::PROVIDER_SHOPIFY,
-            'transaction_id' => $order->getProviderReference(),
+            'transaction_id' => $order->getTransactionId(),
             'country_code' => Country::UNKNOWN,
             'paid_at' => now(),
         ]);
