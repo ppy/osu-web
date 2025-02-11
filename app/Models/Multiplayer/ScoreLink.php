@@ -34,7 +34,7 @@ class ScoreLink extends Model
             $playlistItem = $token->playlistItem()->firstOrFail();
             $requiredMods = array_column($playlistItem->required_mods, 'acronym');
             $mods = array_column($score->data->mods, 'acronym');
-            $mods = app('mods')->excludeModsAlwaysValidForSubmission($playlistItem->ruleset_id, $mods);
+            $mods = app('mods')->excludeModsAlwaysValidForSubmission($score->ruleset_id, $mods);
 
             if (!empty($requiredMods)) {
                 if (!empty(array_diff($requiredMods, $mods))) {
