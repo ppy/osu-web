@@ -147,13 +147,11 @@ class StoreUpdateShopifyCheckoutId extends Command
         // other values maybe base64 or already converted to non-gids
         $decoded = base64_decode($value, true);
 
-        $return = $decoded === false
+        return $decoded === false
             ? null
             : (str_starts_with($decoded, 'gid://shopify/Checkout')
                 ? $decoded
                 : null);
-
-        return $return;
     }
 
     /**
