@@ -5,6 +5,7 @@ import ScoreModJson from 'interfaces/score-mod-json';
 import modNames from 'mod-names.json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { modDetails } from 'utils/score-helper';
 
 // English only until the labels are translated.
 const numberFormatter = new Intl.NumberFormat('en');
@@ -44,12 +45,7 @@ interface Props {
 }
 
 export default function Mod({ mod }: Props) {
-  const modJson = modNames[mod.acronym] ?? {
-    acronym: mod.acronym,
-    name: '',
-    setting_labels: {},
-    type: 'Fun',
-  };
+  const modJson = modDetails(mod);
 
   return (
     <div

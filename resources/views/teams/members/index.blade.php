@@ -6,8 +6,9 @@
 
 @section('content')
     @include('layout._page_header_v4', ['params' => [
-        'theme' => 'team',
         'backgroundImage' => $team->header()->url(),
+        'links' => App\Http\Controllers\TeamsController::pageLinks('members.index', $team),
+        'theme' => 'team',
     ]])
 
     <div class="osu-page osu-page--generic-compact">
@@ -79,20 +80,77 @@
             </div>
 
             <div class="page-extra">
-                <div class="team-settings">
-                    <div class="team-settings__item team-settings__item--buttons">
-                        <div>
-                            <a
-                                class="btn-osu-big btn-osu-big--rounded-thin"
-                                href="{{ route('teams.show', ['team' => $team]) }}"
-                            >
-                                {{ osu_trans('common.buttons.back') }}
-                            </a>
-                        </div>
+                <h2 class="title title--page-extra-small title--page-extra-small-top">
+                    {{ osu_trans('teams.members.index.applications.title') }}
+                </h2>
+                <p>
+                    {{ osu_trans('teams.members.index.applications.empty_slots') }}: {{ $team->emptySlots() }}
+                </p>
+                @if ($team->applications->isEmpty())
+                    {{ osu_trans('teams.members.index.applications.empty') }}
+                @else
+                    <ul class="team-members-manage">
+                        <li class="team-members-manage__item team-members-manage__item--header">
+                            <span></span>
+                            <span>{{ osu_trans('teams.members.index.applications.created_at') }}</span>
+                            <span></span>
+                            <span></span>
+                        @foreach ($team->applications as $application)
+                            @php
+                                $user = $application->user;
+                            @endphp
+                            @if ($user === null)
+                                @continue
+                            @endif
+                            <li class="team-members-manage__item">
+                                <a
+                                    class="team-members-manage__username js-usercard"
+                                    data-user-id="{{ $user->getKey() }}"
+                                    href="{{ route('users.show', $user->getKey()) }}"
+                                >
+                                    <span class="team-members-manage__avatar">
+                                        <span
+                                            class="avatar avatar--full avatar--guest"
+                                            {!! background_image($user->user_avatar) !!}
+                                        ></span>
+                                    </span>
 
-                        <div></div>
-                    </div>
-                </div>
+                                    {{ $user->username }}
+                                </a>
+                                <span>
+                                    {!! timeago($application->created_at) !!}
+                                </span>
+                                <span>
+                                    <form
+                                        action="{{ route('teams.applications.accept', compact('application', 'team')) }}"
+                                        class="u-contents"
+                                        data-confirm="{{ osu_trans('common.confirmation') }}"
+                                        data-reload-on-success="1"
+                                        data-remote="1"
+                                        method="POST"
+                                    >
+                                        <button class="btn-osu-big btn-osu-big--rounded-small">
+                                            <span class="fas fa-fw fa-check"></span>
+                                        </button>
+                                    </form>
+                                </span>
+                                <span>
+                                    <form
+                                        action="{{ route('teams.applications.reject', compact('application', 'team')) }}"
+                                        class="u-contents"
+                                        data-confirm="{{ osu_trans('common.confirmation') }}"
+                                        data-reload-on-success="1"
+                                        data-remote="1"
+                                        method="POST"
+                                    >
+                                        <button class="btn-osu-big btn-osu-big--rounded-small">
+                                            <span class="fas fa-fw fa-times"></span>
+                                        </button>
+                                    </form>
+                                </span>
+                        @endforeach
+                    </ul>
+                @endif
             </div>
         </div>
     </div>

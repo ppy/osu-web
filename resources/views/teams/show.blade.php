@@ -13,6 +13,8 @@
     $teamMembers['member'] ??= [];
     $teamMembers['leader'] ??= $toJson([$team->members()->make(['user_id' => $team->leader_id])->userOrDeleted()]);
     $headerUrl = $team->header()->url();
+
+    $currentUser = Auth::user();
 @endphp
 
 @extends('master', [
@@ -21,8 +23,9 @@
 
 @section('content')
     @include('layout._page_header_v4', ['params' => [
-        'theme' => 'team',
         'backgroundImage' => $headerUrl,
+        'links' => App\Http\Controllers\TeamsController::pageLinks('show', $team),
+        'theme' => 'team',
     ]])
 
     <div class="osu-page osu-page--generic-compact">
@@ -30,29 +33,7 @@
             <div
                 class="profile-info__bg profile-info__bg--team"
                 {!! background_image($headerUrl) !!}
-            >
-                @if (priv_check('TeamUpdate', $team)->can())
-                    <div class="profile-page-cover-editor-button">
-                        <a
-                            class="btn-circle btn-circle--page-toggle"
-                            data-tooltip-position="left center"
-                            href="{{ route('teams.members.index', $team) }}"
-                            title="{{ osu_trans('teams.members.index.title') }}"
-                        >
-                            <span class="fa fa-users"></span>
-                        </a>
-
-                        <a
-                            class="btn-circle btn-circle--page-toggle"
-                            data-tooltip-position="left center"
-                            href="{{ route('teams.edit', $team) }}"
-                            title="{{ osu_trans('teams.edit.title') }}"
-                        >
-                            <span class="fa fa-wrench"></span>
-                        </a>
-                    </div>
-                @endif
-            </div>
+            ></div>
             <div class="profile-info__details">
                 <div class="profile-info__avatar">
                     @include('objects._flag_team', ['modifiers' => 'full', 'team' => $team])
@@ -69,8 +50,8 @@
                 </div>
             </div>
         </div>
-        @if (Auth::user()?->team?->getKey() === $team->getKey())
-            <div class="profile-detail-bar profile-detail-bar--team">
+        <div class="profile-detail-bar profile-detail-bar--team">
+            @if ($currentUser?->team?->getKey() === $team->getKey())
                 @php
                     $partPriv = priv_check('TeamPart', $team);
                     $canPart = $partPriv->can();
@@ -90,8 +71,43 @@
                         {{ osu_trans('teams.show.bar.part') }}
                     </button>
                 </form>
-            </div>
-        @endif
+            @elseif ($currentUser?->teamApplication?->team_id === $team->getKey())
+                <form
+                    action="{{ route('teams.applications.destroy', ['team' => $team, 'application' => $currentUser->getKey()]) }}"
+                    data-turbo-confirm="{{ osu_trans('common.confirmation') }}"
+                    data-reload-on-success="1"
+                    method="POST"
+                >
+                    <input type="hidden" name="_method" value="DELETE" />
+                    <button
+                        class="team-action-button team-action-button--join-cancel"
+                    >
+                        {{ osu_trans('teams.show.bar.join_cancel') }}
+                    </button>
+                </form>
+            @else
+                @php
+                    $joinPriv = priv_check('TeamApplicationStore', $team);
+                @endphp
+                <form
+                    action="{{ route('teams.applications.store', ['team' => $team]) }}"
+                    data-confirm="{{ osu_trans('common.confirmation') }}"
+                    data-reload-on-success="1"
+                    data-remote="1"
+                    method="POST"
+                    title="{{ $joinPriv->message() }}"
+                >
+                    <button
+                        class="team-action-button team-action-button--join js-login-required--click"
+                        @if (!$joinPriv->can() && $currentUser !== null)
+                            disabled
+                        @endif
+                    >
+                        {{ osu_trans('teams.show.bar.join') }}
+                    </button>
+                </form>
+            @endif
+        </div>
         <div class="user-profile-pages user-profile-pages--no-tabs">
             <div class="page-extra u-fancy-scrollbar">
                 <div class="team-summary">

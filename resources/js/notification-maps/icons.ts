@@ -14,6 +14,7 @@ export const categoryToIcons: IconsMap = {
   channel: ['fas fa-comments'],
   comment: ['fas fa-comment'],
   forum_topic_reply: ['fas fa-comment-medical'],
+  team_application: ['fas fa-users'],
   user_achievement_unlock: ['fas fa-medal'],
   user_beatmapset_new: ['fas fa-music'],
 };
@@ -36,6 +37,8 @@ export const nameToIcons: IconsMap = {
   comment_new: ['fas fa-comment'],
   comment_reply: ['fas fa-reply'],
   forum_topic_reply: ['fas fa-comment-medical'],
+  team_application_accept: ['fas fa-users', 'fas fa-check'],
+  team_application_reject: ['fas fa-users', 'fas fa-times'],
   user_achievement_unlock: ['fas fa-trophy'],
   user_beatmapset_new: ['fas fa-music'],
   user_beatmapset_revive: ['fas fa-trash-restore'],
@@ -59,6 +62,8 @@ export const nameToIconsCompact: IconsMap = {
   comment_new: ['fas fa-comment'],
   comment_reply: ['fas fa-reply'],
   forum_topic_reply: ['fas fa-comment-medical'],
+  team_application_accept: ['fas fa-check'],
+  team_application_reject: ['fas fa-times'],
   user_beatmapset_new: ['fas fa-music'],
   user_beatmapset_revive: ['fas fa-trash-restore'],
 };

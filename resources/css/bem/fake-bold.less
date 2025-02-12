@@ -2,12 +2,17 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .fake-bold {
-  &::after {
+  &::after,
+  &::before {
     content: attr(data-content);
     font-weight: bold;
     opacity: 0;
     pointer-events: none;
     display: block;
     height: 0;
+  }
+  // some text may be longer at normal weight (ex: "manage members")
+  &::before {
+    font-weight: normal;
   }
 }
