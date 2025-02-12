@@ -89,9 +89,9 @@
             @foreach ($topic->issueTags() as $tag)
                 <div
                     title="{{ $tag }}"
-                    class="forum-issue-icon forum-issue-icon--{{ $tag }}"
+                    class="forum-issue-icon forum-issue-icon--{{ str_slug($tag) }}"
                 >
-                    <i class="{{ issue_icon($tag) }}"></i>
+                    {!! issue_icon($tag) !!}
                 </div>
             @endforeach
         </div>
