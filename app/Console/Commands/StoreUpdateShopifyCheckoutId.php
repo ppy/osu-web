@@ -105,10 +105,13 @@ class StoreUpdateShopifyCheckoutId extends Command
                                 $orderNode = $node['order'];
 
                                 $params = [
-                                    'transaction_id' => Order::PROVIDER_SHOPIFY.'-'.$orderNode['orderNumber'],
                                     'reference' => $orderNode['id'],
                                     'shopify_url' => $orderNode['statusUrl'],
                                 ];
+
+                                if (isset($orderNode['orderNumber'])) {
+                                    $params['transaction_id'] = Order::PROVIDER_SHOPIFY.'-'.$orderNode['orderNumber'];
+                                }
 
                                 if ($orderNode['canceledAt'] !== null) {
                                     $params['status'] = 'cancelled';
