@@ -81,7 +81,7 @@ class StoreUpdateShopifyCheckoutId extends Command
             $this->progress['orders']->advance(count($ordersById));
 
             $ids = $chunk->map(fn ($order) => $this->getCheckoutId($order->reference))->filter();
-            $idChunks = $ids->chunk(10);
+            $idChunks = $ids->chunk(100);
 
             foreach ($idChunks as $idChunk) {
                 // values() because laravel uses preserve_keys: true ...
