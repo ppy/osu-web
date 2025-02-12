@@ -117,8 +117,7 @@ class StoreGetShopifyOrder extends Command
             $GLOBALS['cfg']['store']['shopify']['storefront_token'],
         );
 
-        $response = $client->query($query);
-        $body = $response->getDecodedBody() ?? '';
+        $body = $client->query($query)->getDecodedBody() ?? '';
         $this->line(is_array($body) ? json_encode($body, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) : $body);
     }
 }
