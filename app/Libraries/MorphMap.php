@@ -18,6 +18,7 @@ use App\Models\Multiplayer\ScoreLink as MultiplayerScoreLink;
 use App\Models\NewsPost;
 use App\Models\Score;
 use App\Models\Solo;
+use App\Models\Team;
 use App\Models\User;
 
 class MorphMap
@@ -44,6 +45,7 @@ class MorphMap
         Score\Osu::class => 'score_osu',
         Score\Taiko::class => 'score_taiko',
         Solo\Score::class => 'solo_score',
+        Team::class => 'team',
         User::class => 'user',
     ];
 

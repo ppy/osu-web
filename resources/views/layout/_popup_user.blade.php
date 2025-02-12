@@ -5,6 +5,8 @@
 @php
     $currentUser = Auth::user();
     $currentUserUrl = route('users.show', ['user' => $currentUser->getKey()]);
+
+    $teamId = $currentUser->team?->getKey() ?? $currentUser->teamApplication?->team_id;
 @endphp
 <div
     class="simple-menu simple-menu--nav2 js-click-menu js-nav2--centered-popup"
@@ -31,8 +33,8 @@
         {{ osu_trans('layout.popup_user.links.profile') }}
     </a>
 
-    @if (($team = $currentUser->team) !== null)
-        <a class="simple-menu__item" href="{{ route('teams.show', $team) }}">
+    @if ($teamId !== null)
+        <a class="simple-menu__item" href="{{ route('teams.show', ['team' => $teamId]) }}">
             {{ osu_trans('layout.popup_user.links.team') }}
         </a>
     @endif

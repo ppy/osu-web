@@ -221,15 +221,19 @@ class DailyChallengeUserStatsTest extends TestCase
         $this->assertSame(6, $stats->daily_streak_best);
     }
 
+    // Score 0 can't be submitted anymore. This is for existing scores in database.
     public function testFixZeroTotalScore(): void
     {
         $user = User::factory()->create();
 
-        foreach ([3 => 100, 2 => 0, 1 => 100] as $subDay => $score) {
+        $scores = [];
+        foreach ([3 => 100, 2 => 1, 1 => 100] as $subDay => $score) {
             $playTime = static::startOfWeek()->subDays($subDay);
             $playlistItem = static::preparePlaylistItem($playTime);
-            $this->roomAddPlay($user, $playlistItem, ['total_score' => $score]);
+            $scores[] = $this->roomAddPlay($user, $playlistItem, ['total_score' => $score]);
         }
+        $scores[1]->score->update(['total_score' => 0]);
+        $scores[1]->playlistItem->room->userHighScores->each->recalculate();
         $this->travelTo($playTime->addDays(1));
 
         $stats = DailyChallengeUserStats::find($user->getKey());
