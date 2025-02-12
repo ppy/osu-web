@@ -109,8 +109,9 @@ class StoreUpdateShopifyCheckoutId extends Command
                                     'shopify_url' => $orderNode['statusUrl'],
                                 ];
 
-                                if (isset($orderNode['orderNumber'])) {
-                                    $params['transaction_id'] = Order::PROVIDER_SHOPIFY.'-'.$orderNode['orderNumber'];
+                                $orderNumber = $orderNode['orderNumber'] ?? null;
+                                if ($orderNumber !== null) {
+                                    $params['transaction_id'] = Order::PROVIDER_SHOPIFY.'-'.$orderNumber;
                                 }
 
                                 if ($orderNode['canceledAt'] !== null) {
@@ -122,7 +123,9 @@ class StoreUpdateShopifyCheckoutId extends Command
                                 }
 
                                 $order->update($params);
-                                Payment::where('order_id', $order->getKey())->update(['transaction_id' => $orderNode['orderNumber']]);
+                                if ($orderNumber !== null) { // Anything paid should already have a number, though...
+                                    Payment::where('order_id', $order->getKey())->update(['transaction_id' => $orderNumber]);
+                                }
                             });
 
                             $this->progress['updated']->advance();
