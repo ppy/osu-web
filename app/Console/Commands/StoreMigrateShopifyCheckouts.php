@@ -17,11 +17,11 @@ use Shopify\Clients\Storefront;
 use Shopify\Context;
 use Symfony\Component\Console\Helper\ProgressBar;
 
-class StoreUpdateShopifyCheckoutId extends Command
+class StoreMigrateShopifyCheckouts extends Command
 {
-    protected $signature = 'store:update-shopify-checkout-id';
+    protected $signature = 'store:migrate-shopify-checkouts';
 
-    protected $description = 'Updates Shopify orders using checkout id to order number.';
+    protected $description = 'Migrates Shopify orders using Checkout ids to the Order or Cart ids.';
 
     private Storefront $client;
     /** @var ProgressBar[]  */
