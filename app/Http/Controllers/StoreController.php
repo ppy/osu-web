@@ -51,6 +51,10 @@ class StoreController extends Controller
             abort(403);
         }
 
+        if ($order->shopify_url !== null) {
+            return redirect($order->shopify_url);
+        }
+
         return ext_view('store.invoice', compact('order'));
     }
 }
