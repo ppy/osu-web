@@ -62,7 +62,7 @@ return [
 
     'beatmap_tag' => [
         'store' => [
-            'no_score' => '',
+            'no_score' => 'Trebuie să ai un scor pe acest beatmap pentru a adăuga o etichetă.',
         ],
     ],
 
@@ -178,7 +178,7 @@ return [
 
     'room' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'Doar proprietarul camerei o poate închide.',
         ],
     ],
 

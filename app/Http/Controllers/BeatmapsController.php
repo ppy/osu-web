@@ -23,8 +23,8 @@ use App\Transformers\ScoreTransformer;
  */
 class BeatmapsController extends Controller
 {
-    const DEFAULT_API_INCLUDES = ['beatmapset.ratings', 'failtimes', 'max_combo'];
-    const DEFAULT_SCORE_INCLUDES = ['user', 'user.country', 'user.cover'];
+    const DEFAULT_API_INCLUDES = ['beatmapset.ratings', 'failtimes', 'max_combo', 'owners'];
+    const DEFAULT_SCORE_INCLUDES = ['user', 'user.country', 'user.cover', 'user.team'];
 
     public function __construct()
     {
@@ -74,7 +74,7 @@ class BeatmapsController extends Controller
             'type' => $type,
             'user' => $currentUser,
         ]);
-        $scores = $esFetch->all()->loadMissing(['beatmap', 'user.country', 'processHistory']);
+        $scores = $esFetch->all()->loadMissing(['beatmap', 'user.country', 'user.team', 'processHistory']);
         $userScore = $esFetch->userBest();
         $scoreTransformer = new ScoreTransformer($scoreTransformerType);
 
@@ -194,7 +194,7 @@ class BeatmapsController extends Controller
      *
      * Field    | Type                                  | Description
      * -------- | ------------------------------------- | -----------
-     * beatmaps | [BeatmapExtended](#beatmapextended)[] | Includes `beatmapset` (with `ratings`), `failtimes`, and `max_combo`.
+     * beatmaps | [BeatmapExtended](#beatmapextended)[] | Includes `beatmapset` (with `ratings`), `failtimes`, `max_combo`, and `owners`.
      *
      * @queryParam ids[] integer Beatmap IDs to be returned. Specify once for each beatmap ID requested. Up to 50 beatmaps can be requested at once. Example: 1
      *
@@ -216,6 +216,7 @@ class BeatmapsController extends Controller
                 ::whereIn('beatmap_id', $ids)
                 ->whereHas('beatmapset')
                 ->with([
+                    'beatmapOwners.user',
                     'beatmapset',
                     'beatmapset.userRatings' => fn ($q) => $q->select('beatmapset_id', 'rating'),
                     'failtimes',

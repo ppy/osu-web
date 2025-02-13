@@ -17,6 +17,7 @@ return [
     ],
 
     'show' => [
+        'created_by' => 'by :author',
         'download' => 'Download',
         'item' => [
             'cleared' => 'cleared',

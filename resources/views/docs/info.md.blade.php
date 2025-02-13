@@ -27,6 +27,7 @@ Below is a list of some language-specific wrappers maintained by the community. 
 - [osu.py](https://github.com/sheppsu/osu.py) (python)
 - [rosu-v2](https://github.com/MaxOhn/rosu-v2) (rust)
 - [osu.js](https://github.com/L-Mario564/osu.js) (javascript/typescript)
+- [osu-api-v2-js](https://github.com/TTTaevas/osu-api-v2-js) (javascript/typescript)
 
 # Changelog
 

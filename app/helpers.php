@@ -55,15 +55,11 @@ function atom_id(string $namespace, $id = null): string
     return 'tag:'.request()->getHttpHost().',2019:'.$namespace.($id === null ? '' : "/{$id}");
 }
 
-function background_image($url, $proxy = true)
+function background_image($url): string
 {
-    if (!present($url)) {
-        return '';
-    }
-
-    $url = $proxy ? proxy_media($url) : $url;
-
-    return sprintf(' style="background-image:url(\'%s\');" ', e($url));
+    return present($url)
+        ? sprintf(' style="background-image:url(\'%s\');" ', e($url))
+        : '';
 }
 
 function beatmap_timestamp_format($ms)
@@ -594,11 +590,6 @@ function max_offset($page, $limit)
     return max(0, min($offset, $GLOBALS['cfg']['osu']['pagination']['max_count'] - $limit));
 }
 
-function mysql_escape_like($string)
-{
-    return addcslashes($string, '%_\\');
-}
-
 function oauth_token(): ?App\Models\OAuth\Token
 {
     return Request::instance()->attributes->get(App\Http\Middleware\AuthApi::REQUEST_OAUTH_TOKEN_KEY);
@@ -845,7 +836,9 @@ function forum_user_link(int $id, string $username, string|null $colour, int|nul
 
 function is_api_request(): bool
 {
-    return str_starts_with(rawurldecode(Request::getPathInfo()), '/api/');
+    $url = rawurldecode(Request::getPathInfo());
+    return str_starts_with($url, '/api/')
+        || str_starts_with($url, '/_lio/');
 }
 
 function is_http(string $url): bool
@@ -1024,20 +1017,25 @@ function make_blade_safe(HtmlString|string $text): HtmlString
 
 function issue_icon($issue)
 {
-    switch ($issue) {
-        case 'added':
-            return 'fas fa-cogs';
-        case 'assigned':
-            return 'fas fa-user';
-        case 'confirmed':
-            return 'fas fa-exclamation-triangle';
-        case 'resolved':
-            return 'far fa-check-circle';
-        case 'duplicate':
-            return 'fas fa-copy';
-        case 'invalid':
-            return 'far fa-times-circle';
+    $fa = match ($issue) {
+        'added' => 'fas fa-cogs',
+        'assigned' => 'fas fa-user',
+        'confirmed' => 'fas fa-exclamation-triangle',
+        'duplicate' => 'fas fa-copy',
+        'invalid' => 'far fa-times-circle',
+        'resolved' => 'far fa-check-circle',
+        default => null,
+    };
+
+    if ($fa !== null) {
+        return tag('i', ['class' => $fa]);
     }
+
+    return match ($issue) {
+        'osu!lazer' => 'lzr',
+        'osu!stable' => 'stb',
+        'osu!web' => 'web',
+    };
 }
 
 function build_url($build)
@@ -1691,27 +1689,6 @@ function model_pluck($builder, $key, $class = null)
     return $result;
 }
 
-/*
- * Returns null if $timestamp is null or 0.
- * Used for table which has not null constraints but accepts "empty" value (0).
- */
-function get_time_or_null($timestamp)
-{
-    if ($timestamp !== 0) {
-        return parse_time_to_carbon($timestamp);
-    }
-}
-
-/*
- * Get unix timestamp of a DateTime (or Carbon\Carbon).
- * Returns 0 if $time is null so mysql doesn't explode because of not null
- * constraints.
- */
-function get_timestamp_or_zero(DateTime $time = null): int
-{
-    return $time === null ? 0 : $time->getTimestamp();
-}
-
 function null_if_false($value)
 {
     return $value === false ? null : $value;
@@ -1745,6 +1722,10 @@ function parse_time_to_carbon($value)
 
     if ($value instanceof DateTime) {
         return Carbon\Carbon::instance($value);
+    }
+
+    if ($value instanceof Carbon\CarbonImmutable) {
+        return $value->toMutable();
     }
 }
 

@@ -7,9 +7,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Models\Tag;
-use App\Transformers\TagTransformer;
-
 class TagsController extends Controller
 {
     public function __construct()
@@ -21,15 +18,8 @@ class TagsController extends Controller
 
     public function index()
     {
-        $tags = cache_remember_mutexed(
-            'tags',
-            $GLOBALS['cfg']['osu']['tags']['tags_cache_duration'],
-            [],
-            fn () => Tag::all(),
-        );
-
         return [
-            'tags' => json_collection($tags, new TagTransformer()),
+            'tags' => app('tags')->json(),
         ];
     }
 }

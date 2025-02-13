@@ -23,22 +23,6 @@ class BeatmapTagsController extends Controller
                 'destroy',
             ],
         ]);
-
-        $this->middleware('require-scopes:public', ['only' => 'index']);
-    }
-
-    public function index($beatmapId)
-    {
-        $topBeatmapTags = cache_remember_mutexed(
-            "beatmap_tags:{$beatmapId}",
-            $GLOBALS['cfg']['osu']['tags']['beatmap_tags_cache_duration'],
-            [],
-            fn () => Tag::topTags($beatmapId),
-        );
-
-        return [
-            'beatmap_tags' => $topBeatmapTags,
-        ];
     }
 
     public function destroy($beatmapId, $tagId)

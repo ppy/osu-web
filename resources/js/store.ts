@@ -70,7 +70,7 @@ export class Store {
         customAttributes: [{ key: 'orderId', value: orderId }],
         lineItems: this.collectShopifyItems(),
       });
-    } catch (error) {
+    } catch (_error) {
       hideLoadingOverlay();
       popup(trans('errors.checkout.generic'), 'danger');
       return;

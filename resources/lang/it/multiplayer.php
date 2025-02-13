@@ -19,6 +19,7 @@ return [
 
         'errors' => [
             'duration_too_long' => 'La durata è troppo lunga.',
+            'name_too_long' => '',
         ],
 
         'status' => [

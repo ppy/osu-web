@@ -20,17 +20,19 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'forum',
         'news_post' => 'news',
+        'team' => 'team',
         'user' => 'profile',
     ],
 
     'filters' => [
         '_' => 'all',
-        'user' => 'profile',
         'beatmapset' => 'beatmaps',
-        'forum_topic' => 'forum',
-        'news_post' => 'news',
         'build' => 'builds',
         'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'news',
+        'team' => 'team',
+        'user' => 'profile',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => 'Team join request',
+
+                'team_application_accept' => "You're now member of team :title",
+                'team_application_accept_compact' => "You're now member of team :title",
+                'team_application_reject' => 'Your request to join team :title has been declined',
+                'team_application_reject_compact' => 'Your request to join team :title has been declined',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'New beatmap',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'There are new replies in ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "You're now member of team :title",
+                'team_application_reject' => 'Your request to join team :title has been declined',
             ],
         ],
 

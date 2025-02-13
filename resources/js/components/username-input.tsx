@@ -15,6 +15,7 @@ import { Spinner } from './spinner';
 import UserCardBrick from './user-card-brick';
 
 interface Props {
+  excludeBots?: boolean;
   id?: string;
   ignoreCurrentUser?: boolean;
   initialUsers?: UserJson[];
@@ -166,7 +167,7 @@ export default class UsernameInput extends React.PureComponent<Props> {
     }
 
     try {
-      this.xhr = apiLookupUsers(userIds);
+      this.xhr = apiLookupUsers(userIds, this.props.excludeBots);
       const response = await this.xhr;
       this.extractValidUsers(response.users);
     } catch (error) {

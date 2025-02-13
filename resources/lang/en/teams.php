@@ -4,8 +4,28 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'applications' => [
+        'accept' => [
+            'ok' => 'Added user to team.',
+        ],
+        'destroy' => [
+            'ok' => 'Cancelled join request.',
+        ],
+        'reject' => [
+            'ok' => 'Rejected join request.',
+        ],
+        'store' => [
+            'ok' => 'Requested to join team.',
+        ],
+    ],
+
+    'destroy' => [
+        'ok' => 'Team removed',
+    ],
+
     'edit' => [
         'saved' => 'Settings saved successfully',
+        'title' => 'Team Settings',
 
         'description' => [
             'label' => 'Description',
@@ -37,9 +57,54 @@ return [
         ],
     ],
 
+    'header_links' => [
+        'edit' => 'settings',
+        'show' => 'info',
+
+        'members' => [
+            'index' => 'manage members',
+        ],
+    ],
+
+    'members' => [
+        'destroy' => [
+            'success' => 'Team member removed',
+        ],
+
+        'index' => [
+            'title' => 'Manage Members',
+
+            'applications' => [
+                'empty' => 'No join requests at the moment.',
+                'empty_slots' => 'Available slots',
+                'title' => 'Join Requests',
+                'created_at' => 'Requested At',
+            ],
+
+            'table' => [
+                'status' => 'Status',
+                'joined_at' => 'Join Date',
+                'remove' => 'Remove',
+                'title' => 'Current Members',
+            ],
+
+            'status' => [
+                'status_0' => 'Inactive',
+                'status_1' => 'Active',
+            ],
+        ],
+    ],
+
+    'part' => [
+        'ok' => 'Left the team ;_;',
+    ],
+
     'show' => [
         'bar' => [
-            'settings' => 'Settings',
+            'destroy' => 'Disband Team',
+            'join' => 'Request Join',
+            'join_cancel' => 'Cancel Join',
+            'part' => 'Leave Team',
         ],
 
         'info' => [

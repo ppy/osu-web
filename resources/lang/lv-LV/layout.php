@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Spēlēt nākamo sarakstu automātiski',
     ],
 
     'defaults' => [
@@ -18,20 +18,20 @@ return [
             'beatmapset_covers' => '',
             'contest' => '',
             'contests' => '',
-            'root' => '',
+            'root' => 'konsole',
         ],
 
         'artists' => [
-            'index' => '',
+            'index' => 'saraksts',
         ],
 
         'beatmapsets' => [
-            'show' => '',
-            'discussions' => '',
+            'show' => 'info',
+            'discussions' => 'diskusija',
         ],
 
         'changelog' => [
-            'index' => '',
+            'index' => 'saraksts',
         ],
 
         'help' => [
@@ -46,7 +46,7 @@ return [
         ],
 
         'tournaments' => [
-            'index' => '',
+            'index' => 'saraksts',
         ],
 
         'users' => [
@@ -97,7 +97,7 @@ return [
             '_' => 'Vispārīgi',
             'home' => 'Sākums',
             'changelog-index' => 'Izmaiņu saraksts',
-            'beatmaps' => '',
+            'beatmaps' => 'Ritma-mapju Saraksts',
             'download' => 'Lejupielādēt osu!',
         ],
         'help' => [
@@ -109,7 +109,7 @@ return [
             'wiki' => 'Wiki',
         ],
         'legal' => [
-            '_' => '',
+            '_' => 'Legālais & Statuss',
             'copyright' => 'Autortiesības (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Konfidencialitāte',
@@ -125,8 +125,8 @@ return [
             'description' => '',
         ],
         '404' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Lapa trūkst',
+            'description' => "Piedod, bet lapa kuru tu esi pieprasījis nav šeit!",
         ],
         '403' => [
             'error' => "Tev šeit nevajedzētu būt.",
@@ -134,11 +134,11 @@ return [
         ],
         '401' => [
             'error' => "Tev šeit nevajedzētu būt.",
-            'description' => '',
+            'description' => 'Tu varētu mēģināt iet atpakaļ. Vai varbūt pierakstīties.',
         ],
         '405' => [
             'error' => 'Lapas Trūkst',
-            'description' => "",
+            'description' => "Piedod, bet lapa kuru tu esi pieprasījis nav šeit!",
         ],
         '422' => [
             'error' => '',
@@ -150,32 +150,32 @@ return [
         ],
         '500' => [
             'error' => 'Ak nē! Kaut kas salūza! ;_;',
-            'description' => "",
+            'description' => "Mums automātiski paziņo par katru kļūdu.",
         ],
         'fatal' => [
             'error' => 'Ak nē! Kaut kas salūza (ļoti)! ;_;',
-            'description' => "",
+            'description' => "Mums automātiski paziņo par katru kļūdu.",
         ],
         '503' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Izslēgts remontdarbu dēļ!',
+            'description' => "Parasti remonti var aizņemt no 5 sekundēm līdz 10 minūtēm. Ja remonti notiek ilgāk, apskatīt :link priekš vairāk informācijas.",
             'link' => [
                 'text' => '',
                 'href' => '',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "",
+        'reference' => "Tikai drošības dēļ, te ir kods, kuru tu vari iedot atbalstam!",
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'pierakstīties / reģistrēties',
 
         'login' => [
-            'forgot' => "",
+            'forgot' => "Esmu aizmirsis/usi savus datus",
             'password' => 'parole',
             'title' => 'Ielogojieties, lai turpinātu',
-            'username' => '',
+            'username' => 'lietotājvārds',
 
             'error' => [
                 'email' => "Lietotājvārds vai e-pasta adrese neeksistē",
@@ -195,12 +195,13 @@ return [
             'account-edit' => 'Iestatījumi',
             'follows' => '',
             'friends' => 'Draugi',
-            'legacy_score_only_toggle' => '',
-            'legacy_score_only_toggle_tooltip' => '',
+            'legacy_score_only_toggle' => 'Lazer režīms',
+            'legacy_score_only_toggle_tooltip' => 'Lazer režīms rāda rezultātus, kuri ir uzstādīti no lazer ar jauno skaitīšanas algoritmu',
             'logout' => 'Iziet',
             'profile' => 'Mans Profils',
-            'scoring_mode_toggle' => '',
-            'scoring_mode_toggle_tooltip' => '',
+            'scoring_mode_toggle' => 'Klasiskā skaitīšana',
+            'scoring_mode_toggle_tooltip' => 'Pielāgot rezultātus klasiskākai vērtēšanas sistēmai',
+            'team' => '',
         ],
     ],
 

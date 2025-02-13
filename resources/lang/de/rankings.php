@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Level',
-        'top_10p' => '',
-        'top_50p' => '',
+        'top_10p' => '90%-Perzentil',
+        'top_50p' => 'Median',
     ],
 
     'filter' => [

@@ -33,9 +33,9 @@ return [
             'beatmapset_status' => [
                 '_' => '圖譜狀態',
                 'all' => '全部',
-                'disqualified' => '取消資格',
-                'never_qualified' => '從未合格',
-                'qualified' => '合格',
+                'disqualified' => '取消提名',
+                'never_qualified' => '從未提名',
+                'qualified' => '提名',
                 'ranked' => '已進榜',
             ],
 
@@ -67,10 +67,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
-        'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'checking' => '檢查更新...',
+        'has_updates' => '此討論區有更新，點擊來重刷。',
+        'no_updates' => '沒有更新',
+        'updating' => '正在更新...',
     ],
 
     'reply' => [

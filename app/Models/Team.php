@@ -76,6 +76,30 @@ class Team extends Model
             : bbcode((new BBCodeForDB($description))->generate());
     }
 
+    public function delete()
+    {
+        $this->header()->delete();
+        $this->logo()->delete();
+
+        return $this->getConnection()->transaction(function () {
+            $ret = parent::delete();
+
+            if ($ret) {
+                $this->members()->delete();
+            }
+
+            return $ret;
+        });
+    }
+
+    public function emptySlots(): int
+    {
+        $max = $this->maxMembers();
+        $current = $this->members->count();
+
+        return max(0, $max - $current);
+    }
+
     public function header(): Uploader
     {
         return $this->header ??= new Uploader(
@@ -112,7 +136,14 @@ class Team extends Model
             'teams/logo',
             $this,
             'logo_file',
-            ['image' => ['maxDimensions' => [256, 128]]],
+            ['image' => ['maxDimensions' => [512, 256]]],
         );
+    }
+
+    public function maxMembers(): int
+    {
+        $this->loadMissing('members.user');
+
+        return 8 + (4 * $this->members->filter(fn ($member) => $member->user?->osu_subscriber ?? false)->count());
     }
 }

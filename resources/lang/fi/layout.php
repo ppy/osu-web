@@ -201,6 +201,7 @@ return [
             'profile' => 'Oma profiili',
             'scoring_mode_toggle' => 'Klassinen pisteytys',
             'scoring_mode_toggle_tooltip' => 'Säädä pistemäärät tuntumaan enemmän klassiselta rajoittamattomalta pisteytykseltä',
+            'team' => '',
         ],
     ],
 

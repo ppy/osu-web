@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Tingkat Kesulitan',
-        'top_10p' => '',
-        'top_50p' => '',
+        'top_10p' => 'Skor 10% Teratas',
+        'top_50p' => 'Skor 50% Teratas',
     ],
 
     'filter' => [

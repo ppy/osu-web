@@ -16,6 +16,7 @@ use App\Models\Forum\Post;
 use App\Models\NewsPost;
 use App\Models\UserDonation;
 use App\Transformers\MenuImageTransformer;
+use App\Transformers\UserCompactTransformer;
 use Auth;
 use Jenssegers\Agent\Agent;
 use Request;
@@ -142,12 +143,11 @@ class HomeController extends Controller
                 $result[$mode]['total'] = $search->count();
             }
 
-            $result['user']['users'] = json_collection($searches['user']->data(), 'UserCompact', [
-                'country',
-                'cover',
-                'groups',
-                'support_level',
-            ]);
+            $result['user']['users'] = json_collection(
+                $searches['user']->data(),
+                new UserCompactTransformer(),
+                [...UserCompactTransformer::CARD_INCLUDES, 'support_level'],
+            );
             $result['beatmapset']['beatmapsets'] = json_collection($searches['beatmapset']->data(), 'Beatmapset', ['beatmaps']);
         }
 
@@ -210,7 +210,7 @@ class HomeController extends Controller
             ]);
         }
 
-        return ext_view('layout.ujs-reload', [], 'js')
+        return ext_view('layout.ujs_full_reload', [], 'js')
             ->withCookie(cookie()->forever('locale', $newLocale));
     }
 

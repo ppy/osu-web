@@ -296,7 +296,14 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('user-cover-presets/batch-activate', 'UserCoverPresetsController@batchActivate')->name('user-cover-presets.batch-activate');
     Route::resource('user-cover-presets', 'UserCoverPresetsController', ['only' => ['index', 'store', 'update']]);
 
-    Route::resource('teams', 'TeamsController', ['only' => ['edit', 'show', 'update']]);
+    Route::group(['as' => 'teams.', 'prefix' => 'teams/{team}'], function () {
+        Route::resource('applications', 'Teams\ApplicationsController', ['only' => ['destroy', 'store']]);
+        Route::post('applications/{application}/accept', 'Teams\ApplicationsController@accept')->name('applications.accept');
+        Route::post('applications/{application}/reject', 'Teams\ApplicationsController@reject')->name('applications.reject');
+        Route::post('part', 'TeamsController@part')->name('part');
+        Route::resource('members', 'Teams\MembersController', ['only' => ['destroy', 'index']]);
+    });
+    Route::resource('teams', 'TeamsController', ['only' => ['destroy', 'edit', 'show', 'update']]);
 
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
     Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');
@@ -427,7 +434,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
                     });
                 });
 
-                Route::apiResource('tags', 'BeatmapTagsController', ['only' => ['index', 'store', 'destroy']]);
+                Route::apiResource('tags', 'BeatmapTagsController', ['only' => ['store', 'destroy']]);
             });
         });
 
@@ -589,6 +596,7 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
             Route::group(['prefix' => '{beatmapset}'], function () {
                 Route::post('broadcast-new', 'BeatmapsetsController@broadcastNew')->name('broadcast-new');
                 Route::post('broadcast-revive', 'BeatmapsetsController@broadcastRevive')->name('broadcast-revive');
+                Route::post('broadcast-update', 'BeatmapsetsController@broadcastUpdate')->name('broadcast-update');
                 Route::post('disqualify', 'BeatmapsetsController@disqualify')->name('disqualify');
             });
         });
@@ -596,6 +604,12 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
 
         Route::group(['as' => 'indexing.', 'prefix' => 'indexing'], function () {
             Route::apiResource('bulk', 'Indexing\BulkController', ['only' => ['store']]);
+        });
+
+        Route::group(['as' => 'multiplayer.', 'namespace' => 'Multiplayer', 'prefix' => 'multiplayer'], function () {
+            Route::put('rooms/{room}/users/{user}', 'RoomsController@join')->name('rooms.join');
+            Route::delete('rooms/{room}/users/{user}', 'RoomsController@part')->name('rooms.part');
+            Route::apiResource('rooms', 'RoomsController', ['only' => ['store']]);
         });
 
         Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'UsersController@achievement')->name('users.achievement');

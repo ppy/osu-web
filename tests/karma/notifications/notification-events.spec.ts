@@ -80,7 +80,7 @@ describe('Notification Events', () => {
             const stack = store.unreadStacks.getStack(extra);
             expect(stack).toBeDefined();
             if (stack != null) {
-              expect([...stack?.notifications.values()].find((notification) => notification.isRead)).toBeUndefined();
+              expect([...stack.notifications.values()].find((notification) => notification.isRead)).toBeUndefined();
             }
           });
         });

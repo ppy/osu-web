@@ -60,7 +60,7 @@
                                 <td class="beatmapset-watches__col beatmapset-watches__col--cover">
                                     <a href="{{ route('beatmapsets.discussion', $watch->beatmapset) }}">
                                         <div
-                                            {!! background_image($watch->beatmapset->coverURL('list'), false) !!}
+                                            {!! background_image($watch->beatmapset->coverURL('list')) !!}
                                             class="beatmapset-watches__cover"
                                         ></div>
                                     </a>
