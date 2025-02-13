@@ -86,11 +86,9 @@ class Topic extends Model implements AfterCommit
         'new' => [
             // type 'timestamp' because the values are stored as integer in the database
             ['column' => 'topic_last_post_time', 'order' => 'DESC', 'type' => 'timestamp'],
-            ['column' => 'topic_last_post_id', 'order' => 'DESC'],
         ],
         'old' => [
             ['column' => 'topic_last_post_time', 'order' => 'ASC', 'type' => 'timestamp'],
-            ['column' => 'topic_last_post_id', 'order' => 'ASC'],
         ],
     ];
 
