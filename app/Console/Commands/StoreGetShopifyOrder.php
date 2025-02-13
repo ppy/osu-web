@@ -21,59 +21,13 @@ class StoreGetShopifyOrder extends Command
     protected $description = 'Gets order info from shopify.';
     protected $signature = 'store:get-shopify-order {orderId} {--u|update : Updates the existing Order if possible}';
 
-    private static function makeQuery(string $gid): ?string
-    {
-        $id = json_encode($gid, JSON_UNESCAPED_SLASHES);
+    private ?string $gidType;
 
+    private static function shopifyGidType(string $gid): ?string {
         return match (true) {
-            str_starts_with($gid, 'gid://shopify/Cart') => <<<QUERY
-            {
-                cart(id: $id) {
-                    createdAt
-                    id
-                    checkoutUrl
-                }
-            }
-            QUERY,
-
-            str_starts_with($gid, 'gid://shopify/Checkout') => <<<QUERY
-            {
-                node(id: $id) {
-                    ... on Checkout {
-                        id
-                        ready
-                        completedAt
-                        updatedAt
-                        order {
-                            canceledAt
-                            financialStatus
-                            fulfillmentStatus
-                            id
-                            orderNumber
-                            processedAt
-                            statusUrl
-                        }
-                    }
-                }
-            }
-            QUERY,
-
-            str_starts_with($gid, 'gid://shopify/Order') => <<<QUERY
-            {
-                node(id: $id) {
-                    ... on Order {
-                        canceledAt
-                        financialStatus
-                        fulfillmentStatus
-                        id
-                        orderNumber
-                        processedAt
-                        statusUrl
-                    }
-                }
-            }
-            QUERY,
-
+            str_starts_with($gid, 'gid://shopify/Cart') => 'Cart',
+            str_starts_with($gid, 'gid://shopify/Checkout') => 'Checkout',
+            str_starts_with($gid, 'gid://shopify/Order') => 'Order',
             default => null,
         };
     }
@@ -96,7 +50,8 @@ class StoreGetShopifyOrder extends Command
 
         $this->warn('The id and statusUrl returned are private and should not be shared!');
 
-        $query = static::makeQuery($gid);
+        $this->gidType = static::shopifyGidType($gid);
+        $query = $this->makeQuery($gid);
 
         if ($query === null) {
             $this->error('Not a supported Shopify ID for querying.');
@@ -127,7 +82,7 @@ class StoreGetShopifyOrder extends Command
 
         if ($this->option('update')) {
             $this->comment('Updating Order with Shopify details...');
-            $orderNode = $body['data']['node'] ?? null; // TODO also handle checkout
+            $orderNode = $this->gidType === 'Order' ? $body['data']['node'] : $body['data']['node']['order'] ?? null;
             if ($orderNode === null) {
                 $this->error('Missing order node in response.');
                 return static::FAILURE;
@@ -157,5 +112,62 @@ class StoreGetShopifyOrder extends Command
                 Payment::where('order_id', $order->getKey())->update(['transaction_id' => $orderNumber]);
             }
         }
+    }
+
+    private function makeQuery(string $gid): ?string
+    {
+        $id = json_encode($gid, JSON_UNESCAPED_SLASHES);
+
+        return match ($this->gidType) {
+            'Cart' => <<<QUERY
+            {
+                cart(id: $id) {
+                    createdAt
+                    id
+                    checkoutUrl
+                }
+            }
+            QUERY,
+
+            'Checkout' => <<<QUERY
+            {
+                node(id: $id) {
+                    ... on Checkout {
+                        id
+                        ready
+                        completedAt
+                        updatedAt
+                        order {
+                            canceledAt
+                            financialStatus
+                            fulfillmentStatus
+                            id
+                            orderNumber
+                            processedAt
+                            statusUrl
+                        }
+                    }
+                }
+            }
+            QUERY,
+
+            'Order' => <<<QUERY
+            {
+                node(id: $id) {
+                    ... on Order {
+                        canceledAt
+                        financialStatus
+                        fulfillmentStatus
+                        id
+                        orderNumber
+                        processedAt
+                        statusUrl
+                    }
+                }
+            }
+            QUERY,
+
+            default => null,
+        };
     }
 }
