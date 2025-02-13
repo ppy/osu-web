@@ -7,14 +7,12 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
+use App\Libraries\Shopify;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
-use Shopify\ApiVersion;
-use Shopify\Auth\FileSessionStorage;
 use Shopify\Clients\Storefront;
-use Shopify\Context;
 use Symfony\Component\Console\Helper\ProgressBar;
 
 class StoreMigrateShopifyCheckouts extends Command
@@ -43,20 +41,7 @@ class StoreMigrateShopifyCheckouts extends Command
 
     public function handle()
     {
-        Context::initialize(
-            // public unauthenticated Storefront API doesn't need OAuth and we can't use blanks.
-            'unauthenticated_only',
-            'unauthenticated_only',
-            'unauthenticated_read_checkouts',
-            $GLOBALS['cfg']['store']['shopify']['domain'],
-            new FileSessionStorage(),
-            ApiVersion::APRIL_2023,
-        );
-
-        $this->client = new Storefront(
-            $GLOBALS['cfg']['store']['shopify']['domain'],
-            $GLOBALS['cfg']['store']['shopify']['storefront_token'],
-        );
+        $this->client = Shopify::storefontClient('unauthenticated_read_checkouts');
 
         /** @var \Symfony\Component\Console\Output\ConsoleOutput $output */
         $output = $this->output->getOutput();
@@ -146,7 +131,7 @@ class StoreMigrateShopifyCheckouts extends Command
 
     private function getCheckoutId(string $value): ?string
     {
-        if (str_starts_with($value, 'gid://shopify/Checkout')) {
+        if (Shopify::gidType($value) === 'Checkout') {
             return $value;
         }
 
@@ -155,7 +140,7 @@ class StoreMigrateShopifyCheckouts extends Command
 
         return $decoded === false
             ? null
-            : (str_starts_with($decoded, 'gid://shopify/Checkout')
+            : (Shopify::gidType($decoded) === 'Checkout'
                 ? $decoded
                 : null);
     }
