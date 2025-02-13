@@ -45,13 +45,13 @@
                                 <span class="store-order__item-quantity">x{{ $item->quantity }}</span>
                         @endforeach
                     </ul>
-                    @if ($order->isShopify())
-                        @if ($order->shopify_url !== null)
-                            <a class="btn-osu-big btn-osu-big--rounded-thin" href="{{ route('store.invoice.show', ['invoice' => $order->getKey()]) }}">
-                                {{ $order->isPaymentRequested() ? osu_trans('store.order.resume') : osu_trans('store.order.invoice') }}
-                            </a>
-                        @else
-                            {{-- TODO: remove after updating all checkouts to orders. --}}
+
+                    @if ($order->shopify_url !== null)
+                        <a class="btn-osu-big btn-osu-big--rounded-thin" href="{{ route('store.invoice.show', ['invoice' => $order->getKey()]) }}">
+                            {{ $order->isPaymentRequested() ? osu_trans('store.order.resume') : osu_trans('store.order.invoice') }}
+                        </a>
+                    @elseif ($order->isShopify())
+                        @if ($order->isPaymentRequested())
                             <button
                                 class="js-store-resume-checkout btn-osu-big btn-osu-big--rounded-thin"
                                 data-order-id="{{ $order->getKey() }}"
@@ -60,6 +60,11 @@
                                 data-status="{{ $order->status }}"
                             >
                                 {{ $order->isPaymentRequested() ? osu_trans('store.order.resume') : osu_trans('store.order.invoice') }}
+                            </button>
+                        @else
+                            {{-- TODO: remove after legacy carts migrated/check failed migration --}}
+                            <button class="btn-osu-big btn-osu-big--rounded-thin" disabled>
+                                Temporarily unavailable
                             </button>
                         @endif
                     @elseif ($order->hasInvoice())
