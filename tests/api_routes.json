@@ -736,6 +736,22 @@
         ]
     },
     {
+      "uri": "api/v2/forums/topics",
+      "methods": [
+          "GET",
+          "HEAD"
+      ],
+      "controller": "App\\Http\\Controllers\\Forum\\TopicsController@index",
+      "middlewares": [
+          "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+          "App\\Http\\Middleware\\RequireScopes",
+          "App\\Http\\Middleware\\RequireScopes:public"
+      ],
+      "scopes": [
+          "public"
+      ]
+    },
+    {
         "uri": "api/v2/forums/topics/{topic}",
         "methods": [
             "GET",
@@ -781,6 +797,38 @@
         ],
         "scopes": [
             "forum.write"
+        ]
+    },
+    {
+        "uri": "api/v2/forums",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\Forum\\ForumsController@index",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/forums/{forum}",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\Forum\\ForumsController@show",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
         ]
     },
     {
