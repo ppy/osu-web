@@ -47,7 +47,7 @@
                     </ul>
                     @if ($order->isShopify())
                         @if ($order->shopify_url !== null)
-                            <a class="btn-osu-big btn-osu-big--rounded-thin" href="{{ $order->getShopifyUrl() }}">
+                            <a class="btn-osu-big btn-osu-big--rounded-thin" href="{{ route('store.invoice.show', ['invoice' => $order->getKey()]) }}">
                                 {{ $order->isPaymentRequested() ? osu_trans('store.order.resume') : osu_trans('store.order.invoice') }}
                             </a>
                         @else
