@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace App\Console\Commands;
 
 use App\Models\Store\Order;
+use App\Models\Store\Payment;
 use Illuminate\Console\Command;
 use Shopify\ApiVersion;
 use Shopify\Auth\FileSessionStorage;
@@ -18,7 +19,7 @@ use Shopify\Utils;
 class StoreGetShopifyOrder extends Command
 {
     protected $description = 'Gets order info from shopify.';
-    protected $signature = 'store:get-shopify-order {orderId}';
+    protected $signature = 'store:get-shopify-order {orderId} {--u|update : Updates the existing Order if possible}';
 
     private static function makeQuery(string $gid): ?string
     {
@@ -119,5 +120,42 @@ class StoreGetShopifyOrder extends Command
 
         $body = $client->query($query)->getDecodedBody() ?? '';
         $this->line(is_array($body) ? json_encode($body, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) : $body);
+
+        if (isset($body['errors'])) {
+            return static::FAILURE;
+        }
+
+        if ($this->option('update')) {
+            $this->comment('Updating Order with Shopify details...');
+            $orderNode = $body['data']['node'] ?? null; // TODO also handle checkout
+            if ($orderNode === null) {
+                $this->error('Missing order node in response.');
+                return static::FAILURE;
+            }
+
+            $params = [
+                'reference' => $orderNode['id'],
+                'shopify_url' => $orderNode['statusUrl'],
+            ];
+
+            $orderNumber = $orderNode['orderNumber'] ?? null;
+            if ($orderNumber !== null) {
+                $params['transaction_id'] = Order::PROVIDER_SHOPIFY.'-'.$orderNumber;
+            }
+
+            if ($orderNode['canceledAt'] !== null) {
+                $params['status'] = 'cancelled';
+            } elseif ($orderNode['fulfillmentStatus'] === 'FULFILLED') {
+                $params['status'] = 'shipped';
+            } elseif ($orderNode['financialStatus'] === 'PAID') {
+                $params['status'] = 'paid';
+            }
+
+            $order->update($params);
+            if ($orderNumber !== null) {
+                // TODO: check missing Payment record
+                Payment::where('order_id', $order->getKey())->update(['transaction_id' => $orderNumber]);
+            }
+        }
     }
 }
