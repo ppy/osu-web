@@ -22,7 +22,7 @@ class StoreGetShopifyOrder extends Command
 
     private static function makeQuery(string $gid): ?string
     {
-        $id = '"'.$gid.'"';
+        $id = json_encode($gid, JSON_UNESCAPED_SLASHES);
 
         return match (true) {
             str_starts_with($gid, 'gid://shopify/Cart') => <<<QUERY
