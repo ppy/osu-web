@@ -17,14 +17,7 @@ use Shopify\Context;
 
 class ShopifyOrder
 {
-    public static function gidType(string $gid): ?string {
-        return match (true) {
-            str_starts_with($gid, 'gid://shopify/Cart') => 'Cart',
-            str_starts_with($gid, 'gid://shopify/Checkout') => 'Checkout',
-            str_starts_with($gid, 'gid://shopify/Order') => 'Order',
-            default => null,
-        };
-    }
+    public readonly ?string $gidType;
 
     public static function storefontClient(string $scopes)
     {
@@ -44,11 +37,39 @@ class ShopifyOrder
         );
     }
 
-    public function __construct(private Order $order)
+    private static function gidType(string $gid): ?string {
+        return match (true) {
+            str_starts_with($gid, 'gid://shopify/Cart') => 'Cart',
+            str_starts_with($gid, 'gid://shopify/Checkout') => 'Checkout',
+            str_starts_with($gid, 'gid://shopify/Order') => 'Order',
+            default => null,
+        };
+    }
+
+    public function __construct(public readonly Order $order)
     {
         if ($order->provider !== Order::PROVIDER_SHOPIFY) {
             throw new Exception('Not a Shopify Order.');
         }
+
+        $this->gidType = static::gidType($order->reference);
+    }
+
+    // TODO: this can be removed after Checkout ids are migrated, the base64 conversion is for old gids that were base64 encoded.
+    public function getCheckoutId(): ?string
+    {
+        if ($this->gidType === 'Checkout') {
+            return $this->order->reference;
+        }
+
+        // other values maybe base64 or already converted to non-gids
+        $decoded = base64_decode($this->order->reference, true);
+
+        return $decoded === false
+            ? null
+            : (static::gidType($decoded) === 'Checkout'
+                ? $decoded
+                : null);
     }
 
     public function updateOrderWithGql(array $node)
