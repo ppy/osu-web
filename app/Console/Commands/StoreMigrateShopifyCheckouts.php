@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use App\Libraries\Shopify;
+use App\Libraries\ShopifyOrder;
 use App\Models\Store\Order;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
@@ -40,7 +40,7 @@ class StoreMigrateShopifyCheckouts extends Command
 
     public function handle()
     {
-        $this->client = Shopify::storefontClient('unauthenticated_read_checkouts');
+        $this->client = ShopifyOrder::storefontClient('unauthenticated_read_checkouts');
 
         /** @var \Symfony\Component\Console\Output\ConsoleOutput $output */
         $output = $this->output->getOutput();
@@ -86,7 +86,7 @@ class StoreMigrateShopifyCheckouts extends Command
                         if ($orderId !== null) {
                             $order = $ordersById[$orderId];
 
-                            Shopify::updateOrderWithGql($node['order'], $order);
+                            (new ShopifyOrder($order))->updateOrderWithGql($node['order']);
 
                             $this->progress['updated']->advance();
                         }
