@@ -100,8 +100,8 @@
     display: flex;
 
     width: 40px;
-    height: 11px;
-    padding: 0 5px 5px;
+    height: 16px;
+    padding: 5px;
 
     --content-height: 2px;
     --content-opacity: 0.5;
@@ -131,12 +131,15 @@
   }
 
   &__indicators {
-    position: relative;
     align-items: center;
+    bottom: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 0 var(--page-gutter);
     opacity: var(--indicators-opacity);
+    padding: 0 var(--page-gutter);
+    position: absolute;
+    transform: translateY(50%);
+    width: 100%;
   }
 }
