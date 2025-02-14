@@ -11,6 +11,12 @@ use League\Fractal\Resource\ResourceInterface;
 
 class UserStatisticsTransformer extends TransformerAbstract
 {
+    const RANKING_INCLUDES = [
+        'user.country',
+        'user.cover',
+        'user.team',
+    ];
+
     protected array $availableIncludes = [
         'country_rank',
         'rank',
