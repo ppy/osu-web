@@ -24,28 +24,30 @@
                     {{ $stats->user->username }}
                 </a>
             </div>
-            <div class="team-members-leaderboard-item__number">
-                <div class="team-members-leaderboard-item__number-title">
-                    {{ osu_trans('teams.leaderboard.total_score') }}
+            <div class="team-members-leaderboard-item__numbers">
+                <div class="team-members-leaderboard-item__number">
+                    <div class="team-members-leaderboard-item__number-title">
+                        {{ osu_trans('teams.leaderboard.total_score') }}
+                    </div>
+                    <div>
+                        {{ i18n_number_format($stats->total_score) }}
+                    </div>
                 </div>
-                <div>
-                    {{ i18n_number_format($stats->total_score) }}
+                <div class="team-members-leaderboard-item__number">
+                    <div class="team-members-leaderboard-item__number-title">
+                        {{ osu_trans('teams.leaderboard.performance') }}
+                    </div>
+                    <div>
+                        {{ i18n_number_format($stats->pp()) ?? '-' }}
+                    </div>
                 </div>
-            </div>
-            <div class="team-members-leaderboard-item__number">
-                <div class="team-members-leaderboard-item__number-title">
-                    {{ osu_trans('teams.leaderboard.performance') }}
-                </div>
-                <div>
-                    {{ i18n_number_format($stats->pp()) ?? '-' }}
-                </div>
-            </div>
-            <div class="team-members-leaderboard-item__number">
-                <div class="team-members-leaderboard-item__number-title">
-                    {{ osu_trans('teams.leaderboard.global_rank') }}
-                </div>
-                <div>
-                    {{ i18n_number_format($stats->globalRank()) ?? '-' }}
+                <div class="team-members-leaderboard-item__number">
+                    <div class="team-members-leaderboard-item__number-title">
+                        {{ osu_trans('teams.leaderboard.global_rank') }}
+                    </div>
+                    <div>
+                        {{ i18n_number_format($stats->globalRank()) ?? '-' }}
+                    </div>
                 </div>
             </div>
     @endforeach
