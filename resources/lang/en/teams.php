@@ -25,8 +25,8 @@ return [
         'form' => [
             'name' => 'Team Name',
             'name_help' => 'Your team name. No changey',
-            'short_name' => 'Short Name',
-            'short_name_help' => 'What',
+            'short_name' => 'Team Initials',
+            'short_name_help' => 'Maximum 4 characters.',
             'title' => "Let's set up a new team",
         ],
 
