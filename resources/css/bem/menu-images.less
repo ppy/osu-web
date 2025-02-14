@@ -18,8 +18,9 @@
   &__arrow {
     .reset-input();
     .fade-element(@hover-transition-duration);
+    --padding: 10px;
     height: 100%;
-    padding: 10px;
+    padding: var(--padding) calc(var(--page-gutter) + var(--padding));
     position: absolute;
     top: 0;
 
@@ -33,12 +34,14 @@
 
     &--left {
       --icon: @fa-var-chevron-left;
-      left: var(--page-gutter);
+      left: 0;
+      padding-right: var(--padding);
     }
 
     &--right {
       --icon: @fa-var-chevron-right;
-      right: var(--page-gutter);
+      right: 0;
+      padding-left: var(--padding);
     }
 
     &::before {
