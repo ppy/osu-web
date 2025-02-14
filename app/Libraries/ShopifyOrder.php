@@ -37,7 +37,8 @@ class ShopifyOrder
         );
     }
 
-    private static function gidType(string $gid): ?string {
+    private static function gidType(string $gid): ?string
+    {
         return match (true) {
             str_starts_with($gid, 'gid://shopify/Cart') => 'Cart',
             str_starts_with($gid, 'gid://shopify/Checkout') => 'Checkout',
