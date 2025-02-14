@@ -9,7 +9,6 @@ namespace App\Console\Commands;
 
 use App\Libraries\Shopify;
 use App\Models\Store\Order;
-use App\Models\Store\Payment;
 use Illuminate\Console\Command;
 use Shopify\Utils;
 
@@ -63,29 +62,7 @@ class StoreGetShopifyOrder extends Command
                 return static::FAILURE;
             }
 
-            $params = [
-                'reference' => $orderNode['id'],
-                'shopify_url' => $orderNode['statusUrl'],
-            ];
-
-            $orderNumber = $orderNode['orderNumber'] ?? null;
-            if ($orderNumber !== null) {
-                $params['transaction_id'] = Order::PROVIDER_SHOPIFY.'-'.$orderNumber;
-            }
-
-            if ($orderNode['canceledAt'] !== null) {
-                $params['status'] = 'cancelled';
-            } elseif ($orderNode['fulfillmentStatus'] === 'FULFILLED') {
-                $params['status'] = 'shipped';
-            } elseif ($orderNode['financialStatus'] === 'PAID') {
-                $params['status'] = 'paid';
-            }
-
-            $order->update($params);
-            if ($orderNumber !== null) {
-                // TODO: check missing Payment record
-                Payment::where('order_id', $order->getKey())->update(['transaction_id' => $orderNumber]);
-            }
+            Shopify::updateOrderWithGql($orderNode, $order);
         }
     }
 

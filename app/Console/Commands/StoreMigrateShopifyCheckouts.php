@@ -9,7 +9,6 @@ namespace App\Console\Commands;
 
 use App\Libraries\Shopify;
 use App\Models\Store\Order;
-use App\Models\Store\Payment;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Shopify\Clients\Storefront;
@@ -86,32 +85,8 @@ class StoreMigrateShopifyCheckouts extends Command
                         $orderId = static::getOrderIdFromNode($node);
                         if ($orderId !== null) {
                             $order = $ordersById[$orderId];
-                            $order->getConnection()->transaction(function () use ($node, $order) {
-                                $orderNode = $node['order'];
 
-                                $params = [
-                                    'reference' => $orderNode['id'],
-                                    'shopify_url' => $orderNode['statusUrl'],
-                                ];
-
-                                $orderNumber = $orderNode['orderNumber'] ?? null;
-                                if ($orderNumber !== null) {
-                                    $params['transaction_id'] = Order::PROVIDER_SHOPIFY.'-'.$orderNumber;
-                                }
-
-                                if ($orderNode['canceledAt'] !== null) {
-                                    $params['status'] = 'cancelled';
-                                } elseif ($orderNode['fulfillmentStatus'] === 'FULFILLED') {
-                                    $params['status'] = 'shipped';
-                                } elseif ($orderNode['financialStatus'] === 'PAID') {
-                                    $params['status'] = 'paid';
-                                }
-
-                                $order->update($params);
-                                if ($orderNumber !== null) { // Anything paid should already have a number, though...
-                                    Payment::where('order_id', $order->getKey())->update(['transaction_id' => $orderNumber]);
-                                }
-                            });
+                            Shopify::updateOrderWithGql($node['order'], $order);
 
                             $this->progress['updated']->advance();
                         }

@@ -7,6 +7,8 @@ declare(strict_types=1);
 
 namespace App\Libraries;
 
+use App\Models\Store\Order;
+use App\Models\Store\Payment;
 use Shopify\ApiVersion;
 use Shopify\Auth\FileSessionStorage;
 use Shopify\Clients\Storefront;
@@ -39,5 +41,35 @@ class Shopify
             $GLOBALS['cfg']['store']['shopify']['domain'],
             $GLOBALS['cfg']['store']['shopify']['storefront_token'],
         );
+    }
+
+    public static function updateOrderWithGql(array $node, Order $order)
+    {
+        $order->getConnection()->transaction(function () use ($node, $order) {
+            $params = [
+                'reference' => $node['id'],
+                'shopify_url' => $node['statusUrl'],
+            ];
+
+            $orderNumber = $node['orderNumber'] ?? null;
+            if ($orderNumber !== null) {
+                $params['transaction_id'] = Order::PROVIDER_SHOPIFY.'-'.$orderNumber;
+            }
+
+            if ($node['canceledAt'] !== null) {
+                $params['status'] = 'cancelled';
+            } elseif ($node['fulfillmentStatus'] === 'FULFILLED') {
+                $params['status'] = 'shipped';
+            } elseif ($node['financialStatus'] === 'PAID') {
+                $params['status'] = 'paid';
+            }
+
+            $order->update($params);
+
+            if ($orderNumber !== null) {
+                // TODO: check missing Payment record
+                Payment::where('order_id', $order->getKey())->update(['transaction_id' => $orderNumber]);
+            }
+        });
     }
 }
