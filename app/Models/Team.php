@@ -15,6 +15,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Team extends Model
 {
+    const MAX_FIELD_LENGTHS = [
+        'name' => 100,
+        'short_name' => 4,
+    ];
+
     protected $casts = ['is_open' => 'bool'];
 
     private Uploader $header;
@@ -128,6 +133,8 @@ class Team extends Model
                 }
             }
         }
+
+        $this->validateDbFieldLengths();
 
         if ($this->isDirty('url')) {
             $url = $this->url;
