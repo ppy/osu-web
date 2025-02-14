@@ -111,6 +111,7 @@ return [
             '_' => 'teams',
             'create' => 'create team',
             'edit' => 'team settings',
+            'leaderboard' => 'team leaderboard',
             'show' => 'team info',
         ],
         'tournaments_controller' => [
