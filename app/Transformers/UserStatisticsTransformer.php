@@ -25,11 +25,9 @@ class UserStatisticsTransformer extends TransformerAbstract
         'variants',
     ];
 
-    public function transform(UserStatistics\Model $stats = null)
+    public function transform(?UserStatistics\Model $stats = null)
     {
-        if ($stats === null) {
-            $stats = new UserStatistics\Osu();
-        }
+        $stats ??= new UserStatistics\Osu();
 
         if (!$GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default'] && $GLOBALS['cfg']['osu']['scores']['experimental_rank_as_extra']) {
             $globalRankExp = $stats->globalRankExp();
