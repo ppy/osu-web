@@ -25,7 +25,7 @@ class TeamFactory extends Factory
     {
         return [
             'name' => fn () => $this->faker->name(),
-            'short_name' => fn () => $this->faker->domainWord(),
+            'short_name' => fn () => substr($this->faker->name(), 0, 4),
             'leader_id' => User::factory(),
         ];
     }
