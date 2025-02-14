@@ -61,10 +61,10 @@ class StoreMigrateShopifyCheckouts extends Command
         }
 
         Order::where('provider', 'shopify')->whereNotNull('reference')->chunkById(1000, function (Collection $chunk) {
-            $ordersById = $chunk->keyBy('order_id');
+            $ordersById = $chunk->map(fn (Order $order) => new ShopifyOrder($order))->keyBy('order.order_id');
             $this->progress['orders']->advance(count($ordersById));
 
-            $ids = $chunk->map(fn ($order) => $this->getCheckoutId($order->reference))->filter();
+            $ids = $ordersById->values()->map(fn (ShopifyOrder $order) => $order->getCheckoutId())->filter();
             $idChunks = $ids->chunk(100);
 
             foreach ($idChunks as $idChunk) {
@@ -85,8 +85,7 @@ class StoreMigrateShopifyCheckouts extends Command
                         $orderId = static::getOrderIdFromNode($node);
                         if ($orderId !== null) {
                             $order = $ordersById[$orderId];
-
-                            (new ShopifyOrder($order))->updateOrderWithGql($node['order']);
+                            $order->updateOrderWithGql($node['order']);
 
                             $this->progress['updated']->advance();
                         }
@@ -102,22 +101,6 @@ class StoreMigrateShopifyCheckouts extends Command
         }
 
         return;
-    }
-
-    private function getCheckoutId(string $value): ?string
-    {
-        if (Shopify::gidType($value) === 'Checkout') {
-            return $value;
-        }
-
-        // other values maybe base64 or already converted to non-gids
-        $decoded = base64_decode($value, true);
-
-        return $decoded === false
-            ? null
-            : (Shopify::gidType($decoded) === 'Checkout'
-                ? $decoded
-                : null);
     }
 
     /**

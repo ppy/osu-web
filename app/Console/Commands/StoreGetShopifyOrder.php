@@ -17,7 +17,7 @@ class StoreGetShopifyOrder extends Command
     protected $description = 'Gets order info from shopify.';
     protected $signature = 'store:get-shopify-order {orderId} {--u|update : Updates the existing Order if possible}';
 
-    private ?string $gidType;
+    private ShopifyOrder $order;
 
     public function handle()
     {
@@ -37,9 +37,9 @@ class StoreGetShopifyOrder extends Command
 
         $this->warn('The id and statusUrl returned are private and should not be shared!');
 
-        $this->gidType = ShopifyOrder::gidType($gid);
-        $query = $this->makeQuery($gid);
+        $this->order = new ShopifyOrder($order);
 
+        $query = $this->makeQuery($gid);
         if ($query === null) {
             $this->error('Not a supported Shopify ID for querying.');
             return static::INVALID;
@@ -56,13 +56,13 @@ class StoreGetShopifyOrder extends Command
 
         if ($this->option('update')) {
             $this->comment('Updating Order with Shopify details...');
-            $orderNode = $this->gidType === 'Order' ? $body['data']['node'] : $body['data']['node']['order'] ?? null;
+            $orderNode = $this->order->gidType === 'Order' ? $body['data']['node'] : $body['data']['node']['order'] ?? null;
             if ($orderNode === null) {
                 $this->error('Missing order node in response.');
                 return static::FAILURE;
             }
 
-            (new ShopifyOrder($order))->updateOrderWithGql($orderNode, $order);
+            $this->order->updateOrderWithGql($orderNode);
         }
     }
 
@@ -70,7 +70,7 @@ class StoreGetShopifyOrder extends Command
     {
         $id = json_encode($gid, JSON_UNESCAPED_SLASHES);
 
-        return match ($this->gidType) {
+        return match ($this->order->gidType) {
             'Cart' => <<<QUERY
             {
                 cart(id: $id) {
