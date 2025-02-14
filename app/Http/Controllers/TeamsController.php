@@ -102,7 +102,7 @@ class TeamsController extends Controller
         return ext_view('teams.show', compact('team'));
     }
 
-    public function store(): Reponse
+    public function store(): Response
     {
         priv_check('TeamStore')->ensureCan();
 
