@@ -2,8 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 export default interface TeamJson {
+  flag_url: string | null;
   id: number;
-  logo: string | null;
   name: string;
   short_name: string;
 }

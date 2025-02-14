@@ -9,7 +9,7 @@ export default function FlagTeam({ team }: { team: TeamJson }) {
   return (
     <span
       className='flag-team'
-      style={{ backgroundImage: urlPresence(team.logo) }}
+      style={{ backgroundImage: urlPresence(team.flag_url) }}
       title={team.name}
     />
   );
