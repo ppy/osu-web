@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use App\Libraries\Shopify;
+use App\Libraries\ShopifyOrder;
 use App\Models\Store\Order;
 use Illuminate\Console\Command;
 use Shopify\Utils;
@@ -37,7 +37,7 @@ class StoreGetShopifyOrder extends Command
 
         $this->warn('The id and statusUrl returned are private and should not be shared!');
 
-        $this->gidType = Shopify::gidType($gid);
+        $this->gidType = ShopifyOrder::gidType($gid);
         $query = $this->makeQuery($gid);
 
         if ($query === null) {
@@ -45,7 +45,7 @@ class StoreGetShopifyOrder extends Command
             return static::INVALID;
         }
 
-        $client = Shopify::storefontClient('unauthenticated_read_checkouts,unauthenticated_read_customers');
+        $client = ShopifyOrder::storefontClient('unauthenticated_read_checkouts,unauthenticated_read_customers');
 
         $body = $client->query($query)->getDecodedBody() ?? '';
         $this->line(is_array($body) ? json_encode($body, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) : $body);
@@ -62,7 +62,7 @@ class StoreGetShopifyOrder extends Command
                 return static::FAILURE;
             }
 
-            Shopify::updateOrderWithGql($orderNode, $order);
+            (new ShopifyOrder($order))->updateOrderWithGql($orderNode, $order);
         }
     }
 
