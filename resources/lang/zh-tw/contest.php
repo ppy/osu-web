@@ -20,7 +20,7 @@ return [
         'no_current_vote' => '您尚未投票',
         'update' => '更新',
         'validation' => [
-            'missing_score' => '缺失成績',
+            'missing_score' => '缺少成績',
             'contest_vote_judged' => '無法在已評分的競賽中投票',
         ],
         'voted' => '您已經提交過此項目的投票',

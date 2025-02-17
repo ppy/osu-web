@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Ez a szezon még folyamatban van (lesznek még játéklisták).',
         'room_count' => 'Játéklista száma',
         'url' => 'További információk megjelenítése az adott szezonról.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => 'Pontosság',
         'active_users' => 'Aktív Felhasználók',
         'country' => 'Ország',
+        'division' => '',
         'play_count' => 'Játékszám',
         'performance' => 'Teljesítmény',
         'total_score' => 'Összpontszám',

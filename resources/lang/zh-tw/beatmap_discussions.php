@@ -7,7 +7,7 @@ return [
     'authorizations' => [
         'update' => [
             'null_user' => '編輯前請先登入。',
-            'system_generated' => '無法編輯系統發佈的貼文。',
+            'system_generated' => '無法編輯系統發表的貼文。',
             'wrong_user' => '只有作者可以編輯。',
         ],
     ],
@@ -33,9 +33,9 @@ return [
             'beatmapset_status' => [
                 '_' => '圖譜狀態',
                 'all' => '全部',
-                'disqualified' => '取消提名',
-                'never_qualified' => '從未提名',
-                'qualified' => '提名',
+                'disqualified' => '取消資格',
+                'never_qualified' => '從未合格',
+                'qualified' => '已合格',
                 'ranked' => '已進榜',
             ],
 
@@ -47,7 +47,7 @@ return [
     ],
 
     'item' => [
-        'created_at' => '發布日期',
+        'created_at' => '發表日期',
         'deleted_at' => '刪除日期',
         'message_type' => '類型',
         'permalink' => '固定連結',
@@ -55,7 +55,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => '在這個時間點上沒有相關的討論記錄。',
-        'notice' => '在 :timestamp 附近（:existing_timestamps）有討論記錄，發表前請檢查。',
+        'notice' => '在 :timestamp 附近(:existing_timestamps)有討論記錄，發表前請檢查。',
         'unsaved' => '這個審核中有 :count',
     ],
 
@@ -68,7 +68,7 @@ return [
 
     'refresh' => [
         'checking' => '檢查更新...',
-        'has_updates' => '此討論區有更新，點擊來重刷。',
+        'has_updates' => '這個討論區有更新，按這裡重新整理。',
         'no_updates' => '沒有更新',
         'updating' => '正在更新...',
     ],
@@ -86,13 +86,13 @@ return [
         'go_to_child' => '查看討論',
         'validation' => [
             'block_too_large' => '每個區塊最多只能有 :limit 個字元',
-            'external_references' => '評論有指向不屬於這個審核的議題',
+            'external_references' => '審核有指向不屬於這個審核的議題',
             'invalid_block_type' => '區塊類型無效',
             'invalid_document' => '審核無效',
             'invalid_discussion_type' => '討論類型不正確',
             'minimum_issues' => '審核時必須指出最少 :count 個問題',
-            'missing_text' => '區塊缺少文字',
-            'too_many_blocks' => '評論最多只能有 :count 個段落或議題|評論最多只能有 :count 個段落或議題',
+            'missing_text' => '這個板塊缺少文字',
+            'too_many_blocks' => '審核最多只能有 :count 個段落或議題|審核最多只能有 :count 個段落或議題',
         ],
     ],
 

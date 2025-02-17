@@ -14,10 +14,10 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
+            'beatmapset' => '?',
+            'beatmapset_covers' => '?',
+            'contest' => 'konkurs',
+            'contests' => 'konkursi',
             'root' => 'konsole',
         ],
 
@@ -36,7 +36,7 @@ return [
 
         'help' => [
             'index' => 'indekss',
-            'sitemap' => '',
+            'sitemap' => '?',
         ],
 
         'store' => [
@@ -50,8 +50,8 @@ return [
         ],
 
         'users' => [
-            'modding' => 'modēšana',
-            'playlists' => 'pleiliste',
+            'modding' => 'moderēšana',
+            'playlists' => 'dziesmu saraksti',
             'realtime' => 'daudzspēlētāju režīms',
             'show' => 'info',
         ],
@@ -59,7 +59,7 @@ return [
 
     'gallery' => [
         'close' => 'Aiztaisīt (Esc)',
-        'fullscreen' => 'Lūkot pilnekrānā',
+        'fullscreen' => 'Ieslēgt pilnekrāna režīmu',
         'zoom' => 'Pietuvināt/Attālināt',
         'previous' => 'Iepriekšējais (bulta pa kreisi)',
         'next' => 'Nākamais (bulta pa labi)',
@@ -67,7 +67,7 @@ return [
 
     'menu' => [
         'beatmaps' => [
-            '_' => 'bītmapes',
+            '_' => 'ritma-mapes',
         ],
         'community' => [
             '_' => 'kopiena',
@@ -106,7 +106,7 @@ return [
             'forum' => 'Kopienas forumi',
             'livestreams' => 'Tiešraides',
             'report' => 'Ziņot par problēmu',
-            'wiki' => 'Wiki',
+            'wiki' => 'Vikipēdija',
         ],
         'legal' => [
             '_' => 'Legālais & Statuss',
@@ -121,7 +121,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Nareizs pieprasījuma parametrs',
             'description' => '',
         ],
         '404' => [
@@ -141,7 +141,7 @@ return [
             'description' => "Piedod, bet lapa kuru tu esi pieprasījis nav šeit!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Nepareizs pieprasījuma prametrs',
             'description' => '',
         ],
         '429' => [
@@ -193,7 +193,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Iestatījumi',
-            'follows' => '',
+            'follows' => 'Vērošanas saraksts',
             'friends' => 'Draugi',
             'legacy_score_only_toggle' => 'Lazer režīms',
             'legacy_score_only_toggle_tooltip' => 'Lazer režīms rāda rezultātus, kuri ir uzstādīti no lazer ar jauno skaitīšanas algoritmu',
@@ -201,7 +201,7 @@ return [
             'profile' => 'Mans Profils',
             'scoring_mode_toggle' => 'Klasiskā skaitīšana',
             'scoring_mode_toggle_tooltip' => 'Pielāgot rezultātus klasiskākai vērtēšanas sistēmai',
-            'team' => '',
+            'team' => 'Mana komanda',
         ],
     ],
 

@@ -10,6 +10,6 @@ return [
         'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'La donació és menor a la requerida per el regal de l\'etiqueta osu!supporter (:actual > :expected)',
+        'insufficient_paid' => 'La donació és menor a la requerida pel regal de l\'etiqueta osu!supporter (:actual > :expected)',
     ],
 ];

@@ -55,8 +55,8 @@ return [
                 'general' => '',
 
                 'users' => [
-                    'header' => '',
-                    'cover_presets' => '',
+                    'header' => 'Użytkownik',
+                    'cover_presets' => 'Domyślne tła profili',
                 ],
             ],
         ],

@@ -5,28 +5,28 @@
 
 return [
     'show' => [
-        'non_preserved' => '',
-        'title' => '',
+        'non_preserved' => 'Šis rezultāts ir atzīmēts uz izdzēšanu un drīz pazudīs.',
+        'title' => ':username uz :title [:version]',
 
         'beatmap' => [
-            'by' => '',
+            'by' => 'izveidoja :artist',
         ],
 
         'player' => [
-            'by' => '',
-            'submitted_on' => '',
+            'by' => 'Spēlēja',
+            'submitted_on' => 'Iesūtīja',
 
             'rank' => [
-                'country' => '',
-                'global' => '',
+                'country' => 'Valsts Vieta',
+                'global' => 'Globālā vieta',
             ],
         ],
     ],
 
     'status' => [
-        'non_best' => '',
-        'no_pp' => '',
-        'processing' => '',
-        'no_rank' => '',
+        'non_best' => 'Tikai personīgie labākie rezultāti izsniedz pp',
+        'no_pp' => 'šim rezultātam pp netiks izsniegts',
+        'processing' => 'Šis rezultāts vēl kalkulējās un tiks parādīts drīz',
+        'no_rank' => 'Šim rezultātam nav novietojums, jo tas ir nenovērtējams vai atzīmēts izdzēšanai',
     ],
 ];

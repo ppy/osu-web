@@ -20,17 +20,19 @@ return [
         'channel' => 'perbualan',
         'forum_topic' => 'forum',
         'news_post' => 'berita',
+        'team' => '',
         'user' => 'profil',
     ],
 
     'filters' => [
         '_' => 'semua pemberitahuan',
-        'user' => 'profil',
         'beatmapset' => 'beatmap',
-        'forum_topic' => 'forum',
-        'news_post' => 'berita',
         'build' => 'versi',
         'channel' => 'bual',
+        'forum_topic' => 'forum',
+        'news_post' => 'berita',
+        'team' => '',
+        'user' => 'profil',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Beatmap baharu',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Terdapat balasan baharu pada ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
             ],
         ],
 

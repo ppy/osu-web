@@ -17,15 +17,15 @@ return [
         ],
 
         'state' => [
-            'current' => 'Torneigs actius',
-            'previous' => 'Tornejos pasats',
+            'current' => 'Tornejos actius',
+            'previous' => 'Tornejos passats',
         ],
     ],
 
     'show' => [
         'banner' => 'Dona suport al teu equip',
-        'entered' => 'Esteu registrat per a aquest torneig.<br><br>Tingueu en compte que <b>no</b> significa que heu estat assignat a un equip.<br><br>Les instruccions addicionals s\'enviaran per correu electrònic més a prop de la data del torneig, així que assegureu-vos d\'osu! l\'adreça de correu electrònic del compte és vàlida!',
-        'info_page' => 'Pàgina d\'informació',
+        'entered' => 'Esteu registrat per a aquest torneig.<br><br>Tingueu en compte que <b>no</b> significa que heu estat assignat a un equip.<br><br>Les instruccions addicionals s\'enviaran per correu electrònic més a prop de la data del torneig, així que assegureu-vos l\'adreça de correu electrònic del compte d\'osu! és vàlida!',
+        'info_page' => 'Pàgina d\'Informació',
         'login_to_register' => 'Si us plau :login per veure els detalls del registre!',
         'not_yet_entered' => 'No esteu registrat per a aquest torneig.',
         'rank_too_low' => 'No compleixes els requisits de classificació per a aquest torneig!',

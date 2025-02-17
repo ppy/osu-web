@@ -27,10 +27,10 @@ return [
         'title' => 'cerca',
 
         'beatmapset' => [
-            'login_required' => 'Inicieu sessió per cercar beatmaps',
-            'more' => ':count resultats més de cerca de beatmap',
+            'login_required' => 'Inicieu sessió per cercar mapes',
+            'more' => ':count resultats més de cerca de mapes',
             'more_simple' => 'Veure més resultats',
-            'title' => 'Beatmaps',
+            'title' => 'Mapes',
         ],
 
         'forum_post' => [
@@ -51,7 +51,7 @@ return [
 
         'mode' => [
             'all' => 'tots',
-            'beatmapset' => 'beatmap',
+            'beatmapset' => 'mapa',
             'forum_post' => 'fòrum',
             'user' => 'jugador',
             'wiki_page' => 'wiki',

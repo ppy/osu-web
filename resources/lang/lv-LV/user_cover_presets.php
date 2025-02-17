@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Izslēgt Izvēlētos',
+        'batch_enable' => 'Ieslēgt Izvēlētos',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':action :items?',
+            'disable' => 'Izslēgt',
+            'enable' => 'Ieslēgt',
+            'items' => ':count_delimited pārklājs|:count_delimited pārklāji',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Faili',
+            'submit' => 'Saglabāt',
+            'title' => 'Pievienot Jaunu',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'Uzspiest lai izslēgtu',
+            'click_to_enable' => 'Uzspiest lai ieslēgtu',
+            'enabled' => 'Ieslēgts',
+            'disabled' => 'Izslēgts',
+            'image_store' => 'Uzstādīt Bildi',
+            'image_update' => 'Aizvietot Bildi',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'Veidojot pārklāju izveidojās kļūda: :error',
+        'ok' => 'Pārklāji izveidoti',
     ],
 ];

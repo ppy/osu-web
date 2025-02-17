@@ -20,17 +20,19 @@ return [
         'channel' => 'chatt',
         'forum_topic' => 'forum',
         'news_post' => 'nyheter',
+        'team' => '',
         'user' => 'profil',
     ],
 
     'filters' => [
         '_' => 'alla',
-        'user' => 'profil',
         'beatmapset' => 'beatmaps',
-        'forum_topic' => 'forum',
-        'news_post' => 'nyheter',
         'build' => 'builds',
         'channel' => 'chatt',
+        'forum_topic' => 'forum',
+        'news_post' => 'nyheter',
+        'team' => '',
+        'user' => 'profil',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Ny beatmap',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Det finns nya svar i ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
             ],
         ],
 

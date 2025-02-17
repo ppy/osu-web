@@ -55,6 +55,7 @@ return [
         'contact' => '',
         'date' => 'Data:',
         'echeck_delay' => 'Kadangi jūsų mokėjote el. čekiu, pervedimas gali užtrukti iki 10 dienų kol praeis per PayPal sistemą!',
+        'echeck_denied' => '',
         'hide_from_activity' => 'osu!rėmėjo žymos šiame užsakyme nerodomos jūsų pastarojoje veikloje.',
         'sent_via' => '',
         'shipping_to' => '',

@@ -75,7 +75,7 @@ return [
         ],
         'home_controller' => [
             'get_download' => '下載',
-            'index' => '主頁',
+            'index' => '儀表板',
             'search' => '搜尋',
             'support_the_game' => '贊助 osu!',
             'testflight' => 'testflight 測試',
@@ -96,7 +96,7 @@ return [
             '_' => '歷史通知紀錄',
         ],
         'password_reset_controller' => [
-            '_' => '重置密碼',
+            '_' => '重設密碼',
         ],
         'ranking_controller' => [
             '_' => '排行榜',
@@ -108,8 +108,10 @@ return [
             '_' => '排行榜',
         ],
         'teams_controller' => [
-            '_' => '',
-            'show' => '',
+            '_' => '隊伍',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => '隊伍資訊',
         ],
         'tournaments_controller' => [
             '_' => '官方比賽',
@@ -133,6 +135,11 @@ return [
     ],
     'store' => [
         '_' => '商店',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

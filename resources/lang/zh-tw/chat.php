@@ -64,6 +64,6 @@ return [
     ],
 
     'join_channels' => [
-        'loading' => '正在載入頻道列表...',
+        'loading' => '正在載入頻道清單...',
     ],
 ];

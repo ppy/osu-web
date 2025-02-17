@@ -4,12 +4,31 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'applications' => [
+        'accept' => [
+            'ok' => '',
+        ],
+        'destroy' => [
+            'ok' => '',
+        ],
+        'reject' => [
+            'ok' => '',
+        ],
+        'store' => [
+            'ok' => '',
+        ],
+    ],
+
+    'destroy' => [
+        'ok' => '',
+    ],
+
     'edit' => [
-        'saved' => '',
+        'saved' => 'Asetukset tallennettu',
         'title' => '',
 
         'description' => [
-            'label' => '',
+            'label' => 'Kuvaus',
             'title' => '',
         ],
 
@@ -29,13 +48,29 @@ return [
             'default_ruleset' => '',
             'default_ruleset_help' => '',
             'title' => '',
-            'url' => '',
+            'url' => 'URL-osoite',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => 'Suljettu',
+                'state_1' => 'Avaa',
             ],
         ],
+    ],
+
+    'header_links' => [
+        'edit' => '',
+        'leaderboard' => '',
+        'show' => '',
+
+        'members' => [
+            'index' => '',
+        ],
+    ],
+
+    'leaderboard' => [
+        'global_rank' => '',
+        'performance' => '',
+        'total_score' => '',
     ],
 
     'members' => [
@@ -45,6 +80,13 @@ return [
 
         'index' => [
             'title' => '',
+
+            'applications' => [
+                'empty' => '',
+                'empty_slots' => '',
+                'title' => '',
+                'created_at' => '',
+            ],
 
             'table' => [
                 'status' => '',
@@ -59,14 +101,22 @@ return [
             ],
         ],
     ],
+
+    'part' => [
+        'ok' => '',
+    ],
+
     'show' => [
         'bar' => [
-            'settings' => '',
+            'destroy' => '',
+            'join' => '',
+            'join_cancel' => '',
+            'part' => '',
         ],
 
         'info' => [
             'created' => '',
-            'website' => '',
+            'website' => 'Verkkosivu',
         ],
 
         'members' => [
@@ -75,8 +125,8 @@ return [
         ],
 
         'sections' => [
-            'members' => '',
             'info' => '',
+            'members' => '',
         ],
     ],
 ];

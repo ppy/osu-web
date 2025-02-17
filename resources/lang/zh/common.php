@@ -22,7 +22,7 @@ return [
         'admin' => '管理员',
         'authorise' => '授权',
         'authorising' => '授权中……',
-        'back' => '',
+        'back' => '返回',
         'back_to_previous' => '返回上一位置',
         'back_to_top' => '回到顶部',
         'cancel' => '取消',

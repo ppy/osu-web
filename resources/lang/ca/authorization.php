@@ -13,28 +13,28 @@ return [
 
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'No es pot desfer el hyping.',
+            'is_hype' => 'No es pot desfer l\'eufòria.',
             'has_reply' => 'No es pot eliminar una discussió amb respostes',
         ],
         'nominate' => [
             'exhausted' => 'Has assolit el teu límit de nominacions diàries, si us plau torna-ho a intentar demà.',
             'incorrect_state' => 'Error en realitzar aquesta acció, intenteu actualitzar la pàgina.',
-            'owner' => "No pots nominar el teu propi beatmap.",
+            'owner' => "No pots nominar el teu propi mapa.",
             'set_metadata' => 'Heu d\'establir el gènere i l\'idioma abans de nominar.',
         ],
         'resolve' => [
-            'not_owner' => 'Només el creador del tema i el propietari del beatmap poden resoldre una discussió.',
+            'not_owner' => 'Només el creador del tema i el propietari del mapa poden resoldre una discussió.',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Només el propietari del beatmap o el nominador/membre del grup NAT pot publicar notes de mapatge.',
+            'mapper_note_wrong_user' => 'Només el propietari del mapa o el nominador/membre del grup NAT pot publicar notes de mapatge.',
         ],
 
         'vote' => [
             'bot' => "No podeu votar en una discussió feta per un bot",
             'limit_exceeded' => 'Espera una mica abans de continuar votant',
             'owner' => "No pots votar les teves discussions.",
-            'wrong_beatmapset_state' => 'Només podeu votar en discussions de beatmaps pendents.',
+            'wrong_beatmapset_state' => 'Només podeu votar en discussions de mapes pendents.',
         ],
     ],
 
@@ -56,13 +56,13 @@ return [
         'discussion_locked' => 'La discussió d\'aquest beatmap està bloquejada.',
 
         'metadata' => [
-            'nominated' => 'No podeu canviar les metadades d\'un beatmap nominat. Contacta amb un membre dels BN o NAT si creus que estan establerts incorrectament.',
+            'nominated' => 'No podeu canviar les metadades d\'un mapa nominat. Contacta amb un membre dels BN o NAT si creus que estan establerts incorrectament.',
         ],
     ],
 
     'beatmap_tag' => [
         'store' => [
-            'no_score' => '',
+            'no_score' => 'Has de tenir una puntuació al mapa per afegir una etiqueta.',
         ],
     ],
 
@@ -73,8 +73,8 @@ return [
         'no_access' => 'No tens accés a aquest canal.',
         'no_announce' => 'No teniu permisos per a publicar anuncis.',
         'receive_friends_only' => 'És possible que l\'usuari no pugui respondre perquè només accepta missatges de persones de la llista d\'amics.',
-        'restricted' => 'No podeu enviar missatges mentre estigui silenciat, restringit o banejat.',
-        'silenced' => 'No podeu enviar missatges mentre estigui silenciat, restringit o banejat.',
+        'restricted' => 'No podeu enviar missatges mentre estigui silenciat, restringit o prohibit.',
+        'silenced' => 'No podeu enviar missatges mentre estigui silenciat, restringit o prohibit.',
     ],
 
     'comment' => [
@@ -178,7 +178,7 @@ return [
 
     'room' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'Només el propietari de la sala pot tancar-la.',
         ],
     ],
 
@@ -188,6 +188,22 @@ return [
             'failed' => "No pots fixar una puntuació fallida.",
             'not_owner' => 'Només el propietari de la puntuació pot fixar la puntuació.',
             'too_many' => 'Has fixat massa puntuacions.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "",
+                'already_other_member' => "",
+                'currently_applying' => '',
+                'team_closed' => '',
+                'team_full' => "",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "",
+            'not_member' => '',
         ],
     ],
 

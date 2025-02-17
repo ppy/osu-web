@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Denne sæson er stadig i gang (der vil være flere playlister tilføjet).',
         'room_count' => 'Playlist-antal',
         'url' => 'Vis flere oplysninger om den sæson.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => 'Præcision',
         'active_users' => 'Aktive Brugere',
         'country' => 'Land',
+        'division' => '',
         'play_count' => 'Antal Gange Spillet',
         'performance' => 'Præstation',
         'total_score' => 'Total Score',
