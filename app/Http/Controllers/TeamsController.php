@@ -152,7 +152,7 @@ class TeamsController extends Controller
             return ext_view('teams.create', compact('team'), status: 422);
         }
 
-        \Session::flash('popup', osu_trans('teams.store.saved'));
+        \Session::flash('popup', osu_trans('teams.store.ok'));
 
         return ujs_redirect(route('teams.show', $team));
     }
@@ -174,7 +174,7 @@ class TeamsController extends Controller
 
         $team->fill($params)->saveOrExplode();
 
-        \Session::flash('popup', osu_trans('teams.edit.saved'));
+        \Session::flash('popup', osu_trans('teams.edit.ok'));
 
         return response(null, 201);
     }

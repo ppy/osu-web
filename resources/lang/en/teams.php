@@ -37,11 +37,11 @@ return [
     ],
 
     'destroy' => [
-        'ok' => 'Team removed',
+        'ok' => 'Team removed.',
     ],
 
     'edit' => [
-        'saved' => 'Settings saved successfully',
+        'ok' => 'Settings saved successfully.',
         'title' => 'Team Settings',
 
         'description' => [
@@ -145,5 +145,9 @@ return [
             'info' => 'Info',
             'members' => 'Members',
         ],
+    ],
+
+    'store' => [
+        'ok' => 'Team created.',
     ],
 ];
