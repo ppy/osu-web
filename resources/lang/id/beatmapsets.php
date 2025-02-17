@@ -153,7 +153,7 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => 'Beatmap ini mengandung konten yang bersifat eksplisit dan/atau konten yang dapat dianggap menyinggung bagi kalangan tertentu. Apakah kamu tetap ingin melihat beatmap ini?',
+            'details' => 'Beatmap ini mengandung konten yang bersifat eksplisit, menyinggung, atau meresahkan. Apakah kamu tetap ingin menampilkan beatmap ini?',
             'title' => 'Konten Eksplisit',
 
             'buttons' => [

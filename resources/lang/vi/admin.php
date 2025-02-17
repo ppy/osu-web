@@ -55,8 +55,8 @@ return [
                 'general' => '',
 
                 'users' => [
-                    'header' => '',
-                    'cover_presets' => '',
+                    'header' => 'Người dùng',
+                    'cover_presets' => 'Thiết lập sẵn hồ sơ nền',
                 ],
             ],
         ],

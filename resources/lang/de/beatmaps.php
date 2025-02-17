@@ -4,8 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => '',
+
     'change_owner' => [
-        'too_many' => '',
+        'too_many' => 'Zu viele Gastmapper.',
     ],
 
     'discussion-votes' => [
@@ -23,7 +25,7 @@ return [
         'edit' => 'bearbeiten',
         'edited' => 'Zuletzt bearbeitet von :editor (:update_time).',
         'guest' => 'Guest-Difficulty von :user',
-        'kudosu_denied' => 'Kudosu-Annahme abgelehnt.',
+        'kudosu_denied' => 'Kudosu-Vergabe abgelehnt.',
         'message_placeholder_deleted_beatmap' => 'Diese Difficulty wurde gelöscht und kann nicht mehr diskutiert werden.',
         'message_placeholder_locked' => 'Die Diskussion für diese Beatmap wurde deaktiviert.',
         'message_placeholder_silenced' => "Posten in der Diskussion nicht möglich, während du stummgeschaltet bist.",

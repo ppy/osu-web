@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Esta temporada aún está en curso (se añadirán más listas de juego).',
         'room_count' => 'Número de listas de juego',
         'url' => 'Mostrar más información sobre esa temporada.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => 'Precisión',
         'active_users' => 'Usuarios activos',
         'country' => 'País',
+        'division' => '',
         'play_count' => 'Número de jugadas',
         'performance' => 'Rendimiento',
         'total_score' => 'Puntuación total',

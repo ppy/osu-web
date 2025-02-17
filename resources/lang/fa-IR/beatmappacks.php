@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'مجموعه بیتمپ های از پیش بسته بندی شده در مورد یک سبک/ژانر محبوب.',
-        'empty' => '',
+        'empty' => 'بزودی!',
         'nav_title' => 'فهرست',
         'title' => 'بسته بیت مپ ها',
 
@@ -17,6 +17,7 @@ return [
     ],
 
     'show' => [
+        'created_by' => '',
         'download' => 'دانلود',
         'item' => [
             'cleared' => 'پاک شده',
@@ -31,11 +32,11 @@ return [
     'mode' => [
         'artist' => 'آلبوم/هنرمند',
         'chart' => 'برجسته ها',
-        'featured' => '',
-        'loved' => '',
+        'featured' => 'آرتیست ویژه',
+        'loved' => 'پروژهٔ Loved',
         'standard' => 'استاندارد',
         'theme' => 'تم',
-        'tournament' => '',
+        'tournament' => 'تورنومنت',
     ],
 
     'require_login' => [

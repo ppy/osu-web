@@ -108,8 +108,10 @@ return [
             '_' => 'classifiche',
         ],
         'teams_controller' => [
-            '_' => '',
-            'show' => '',
+            '_' => 'squadre',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => 'informazioni squadra',
         ],
         'tournaments_controller' => [
             '_' => 'tornei',
@@ -133,6 +135,11 @@ return [
     ],
     'store' => [
         '_' => 'osu!store',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

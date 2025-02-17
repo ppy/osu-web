@@ -108,8 +108,10 @@ return [
             '_' => 'Ranglisten',
         ],
         'teams_controller' => [
-            '_' => '',
-            'show' => '',
+            '_' => 'Teams',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => 'Teaminfo',
         ],
         'tournaments_controller' => [
             '_' => 'Turniere',
@@ -133,6 +135,11 @@ return [
     ],
     'store' => [
         '_' => 'Shop',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

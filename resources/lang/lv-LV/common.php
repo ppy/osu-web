@@ -22,7 +22,7 @@ return [
         'admin' => 'Admin',
         'authorise' => 'Autorizēt',
         'authorising' => 'Autorizē...',
-        'back' => '',
+        'back' => 'Atpakaļ',
         'back_to_previous' => 'Atgriezties iepriekšējā pozīcijā',
         'back_to_top' => 'Atpakaļ uz augšu',
         'cancel' => 'Atcelt',

@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Trenutna sezona je še v teku (več seznamov bo dodanih kmalu).',
         'room_count' => 'Število seznamov',
         'url' => 'Prikaži več informacij o tej sezoni.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => 'Natančnost',
         'active_users' => 'Aktivni igralci',
         'country' => 'Država',
+        'division' => '',
         'play_count' => 'Število igranj',
         'performance' => 'Uspešnost',
         'total_score' => 'Skupaj točk',

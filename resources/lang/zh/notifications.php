@@ -20,17 +20,19 @@ return [
         'channel' => '聊天',
         'forum_topic' => '论坛',
         'news_post' => '新闻',
+        'team' => '',
         'user' => '个人资料',
     ],
 
     'filters' => [
         '_' => '所有',
-        'user' => '个人资料',
         'beatmapset' => '谱面',
-        'forum_topic' => '论坛',
-        'news_post' => '新闻',
         'build' => '版本',
         'channel' => '聊天',
+        'forum_topic' => '论坛',
+        'news_post' => '新闻',
+        'team' => '',
+        'user' => '个人资料',
     ],
 
     'item' => [
@@ -161,6 +163,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => '新谱面',
@@ -243,6 +256,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => '主题 ":title" 有新的回复',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
             ],
         ],
 

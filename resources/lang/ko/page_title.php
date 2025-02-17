@@ -108,8 +108,10 @@ return [
             '_' => '순위',
         ],
         'teams_controller' => [
-            '_' => '',
-            'show' => '',
+            '_' => '팀',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => '팀 정보',
         ],
         'tournaments_controller' => [
             '_' => '토너먼트',
@@ -133,6 +135,11 @@ return [
     ],
     'store' => [
         '_' => '상점',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

@@ -55,8 +55,8 @@ return [
                 'general' => '',
 
                 'users' => [
-                    'header' => '',
-                    'cover_presets' => '',
+                    'header' => 'Benutzer',
+                    'cover_presets' => 'Voreinstellungen für Profilbanner',
                 ],
             ],
         ],
