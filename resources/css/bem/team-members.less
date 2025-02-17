@@ -6,24 +6,17 @@
   gap: 10px;
 
   &__type {
+    background-color: hsl(var(--hsl-b2));
     border-radius: @border-radius--large;
     display: grid;
     gap: 5px;
+    grid-template-columns: repeat(auto-fill, minmax(@user-card-width-min, 1fr));
     padding: 5px;
-    background-color: hsl(var(--hsl-b2));
-    grid-template-columns: var(--grid-template-columns);
-    --grid-template-columns: 1fr;
-    --grid-template-columns-desktop: 1fr 1fr 1fr;
 
     &--owner {
       background-color: hsl(var(--hsl-orange-1));
       color: hsl(var(--hsl-orange-4));
-      --grid-template-columns: 1fr;
-      --grid-template-columns-desktop: 1fr;
-    }
-
-    @media @desktop {
-      --grid-template-columns: var(--grid-template-columns-desktop);
+      grid-template-columns: 1fr;
     }
   }
 
