@@ -5,7 +5,7 @@
 
 declare(strict_types=1);
 
-namespace App\Libraries;
+namespace App\Libraries\Store;
 
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
