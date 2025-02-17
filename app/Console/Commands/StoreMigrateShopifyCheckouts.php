@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use App\Libraries\ShopifyOrder;
+use App\Libraries\Store\ShopifyOrder;
 use App\Models\Store\Order;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
