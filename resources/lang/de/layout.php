@@ -201,7 +201,7 @@ return [
             'profile' => 'Mein Profil',
             'scoring_mode_toggle' => 'Klassisches Punktesystem',
             'scoring_mode_toggle_tooltip' => 'Punktestände entsprechen dem klassischen, unbegrenzten Punktesystem',
-            'team' => '',
+            'team' => 'Mein Team',
         ],
     ],
 

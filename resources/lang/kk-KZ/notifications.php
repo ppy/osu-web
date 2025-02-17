@@ -20,17 +20,19 @@ return [
         'channel' => 'чат',
         'forum_topic' => 'форум',
         'news_post' => 'жаңалықтар',
+        'team' => '',
         'user' => '',
     ],
 
     'filters' => [
         '_' => 'бәрі',
-        'user' => '',
         'beatmapset' => 'карталар',
-        'forum_topic' => 'форум',
-        'news_post' => 'жаңалықтар',
         'build' => '',
         'channel' => 'чат',
+        'forum_topic' => 'форум',
+        'news_post' => 'жаңалықтар',
+        'team' => '',
+        'user' => '',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Жаңа карта',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => '',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
             ],
         ],
 

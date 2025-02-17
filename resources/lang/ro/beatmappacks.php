@@ -17,6 +17,7 @@ return [
     ],
 
     'show' => [
+        'created_by' => '',
         'download' => 'Descarcă',
         'item' => [
             'cleared' => 'eliminat',

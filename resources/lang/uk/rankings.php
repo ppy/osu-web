@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Цей сезон все ще триває (буде додано більше плейлистів).',
         'room_count' => 'Кількість плейлистів',
         'url' => 'Показувати більше інформації про цей сезон.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => 'Точність',
         'active_users' => 'Активні гравці',
         'country' => 'Країна',
+        'division' => '',
         'play_count' => 'Кількість ігор',
         'performance' => 'Продуктивність',
         'total_score' => 'Всього очок',

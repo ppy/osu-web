@@ -17,6 +17,7 @@ return [
     ],
 
     'show' => [
+        'created_by' => '',
         'download' => 'Muat turun',
         'item' => [
             'cleared' => '',

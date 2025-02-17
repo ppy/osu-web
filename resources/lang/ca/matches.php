@@ -5,13 +5,13 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'beatmap eliminat',
+        'beatmap-deleted' => 'mapa eliminat',
         'failed' => 'FRACASSAT',
         'header' => 'Partides Multijugador',
         'in-progress' => '(partida en progrés)',
         'in_progress_spinner_label' => 'partida en progrés',
         'loading-events' => 'Carregant esdeveniments...',
-        'winner' => 'guanya :team',
+        'winner' => ':team guanya',
         'winner_by' => ':winner per :difference',
 
         'events' => [
@@ -39,10 +39,10 @@ return [
         ],
 
         'team-types' => [
-            'head-to-head' => 'Head-to-head',
+            'head-to-head' => 'Cara a cara',
             'tag-coop' => 'Tag Co-op',
             'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+            'tag-team-vs' => 'Etiqueta de l\'Equip VS',
         ],
 
         'teams' => [
@@ -52,7 +52,7 @@ return [
     ],
     'game' => [
         'scoring-type' => [
-            'score' => 'Equip Blau',
+            'score' => 'Puntuació més alta',
             'accuracy' => 'Precisió més alta',
             'combo' => 'Combo més alt',
             'scorev2' => 'Puntuació V2',

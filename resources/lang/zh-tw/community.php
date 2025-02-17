@@ -9,14 +9,14 @@ return [
             'title' => '可以可以，買買買！',
             'support' => '贊助 osu!',
             'gift' => '或者以禮物方式贈送給其他玩家',
-            'instructions' => '點擊愛心前往 osu! 商店',
+            'instructions' => '點選愛心前往 osu! 商店',
         ],
         'why-support' => [
             'title' => '我為什麼要贊助 osu!？錢都花到哪裡了？',
 
             'team' => [
-                'title' => '資助團隊',
-                'description' => 'osu! 是由一個小團隊進行開發和營運。您的贊助可以幫助團隊...你知道的，維持生計。',
+                'title' => '支持團隊',
+                'description' => 'osu! 是一個小團隊在開發和經營的。你的支持能讓他們，你知道的... 活下去。',
             ],
             'infra' => [
                 'title' => '伺服器基礎設施',
@@ -43,7 +43,7 @@ return [
             ],
         ],
         'perks' => [
-            'title' => '我能得到什麼？',
+            'title' => '酷欸！我能得到什麼？',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => '在遊戲內提供圖譜快速下載與搜尋。',
@@ -60,18 +60,18 @@ return [
             ],
 
             'mod_filtering' => [
-                'title' => '按 Mods 篩選',
+                'title' => '依 Mod 篩選',
                 'description' => '只想和 HDHR 玩家一起玩？沒問題！',
             ],
 
             'auto_downloads' => [
                 'title' => '自動下載',
-                'description' => '本地沒有需要的譜面時，osu! 會自動下載！',
+                'description' => '本機沒有需要的圖譜時，osu! 會自動下載！',
             ],
 
             'upload_more' => [
                 'title' => '上傳更多圖譜',
-                'description' => '做圖者上傳待處理的圖譜上限增加到 10 張。',
+                'description' => '譜師能額外上傳待處理的圖譜上限增加至 10 張圖譜。',
             ],
 
             'early_access' => [
@@ -86,7 +86,7 @@ return [
 
             'beatmap_filters' => [
                 'title' => '圖譜篩選器',
-                'description' => '更多角度的去篩選圖譜。',
+                'description' => '篩選圖譜搜尋結果，可依據已遊玩或未遊玩地圖，或依據達成的排名進行篩選。',
             ],
 
             'yellow_fellow' => [
@@ -101,7 +101,7 @@ return [
 
             'change_username' => [
                 'title' => '修改使用者名稱',
-                'description' => '修改使用者名稱而不需要支付費用（最多 1 次）。',
+                'description' => '您的首次購買贊助者將包含一次免費的修改名稱機會。',
             ],
 
             'skinnables' => [
@@ -110,17 +110,17 @@ return [
             ],
 
             'feature_votes' => [
-                'title' => '新特性投票',
-                'description' => '為新特性請求投票（每月 2 票）。',
+                'title' => '新功能投票',
+                'description' => '為新功能請求投票（每月 2 票）。',
             ],
 
             'sort_options' => [
-                'title' => '排名',
-                'description' => '可以查看圖譜的 國內／好友／所選 MOD 排名。',
+                'title' => '排序選項',
+                'description' => '能夠在遊戲內查看譜面依國家／好友／特定 mod 的排行榜',
             ],
 
             'more_favourites' => [
-                'title' => '更多收藏',
+                'title' => '收藏更多圖譜',
                 'description' => '你可收藏的圖譜上限將從 :normally &rarr; :supporter',
             ],
             'more_friends' => [

@@ -201,7 +201,7 @@ return [
             'profile' => 'Mon profil',
             'scoring_mode_toggle' => 'Score classique',
             'scoring_mode_toggle_tooltip' => 'Le score classique utilise un calcul du score qui n\'a pas de limites fixes, similaire à la version stable d\'osu!.',
-            'team' => '',
+            'team' => 'Mon Équipe',
         ],
     ],
 

@@ -55,6 +55,7 @@ return [
         'contact' => '',
         'date' => '',
         'echeck_delay' => 'Так як аплата была праз eCheck, чаканне пацверджання аплаты праз Paypal можа займаць да 10 дзён!',
+        'echeck_denied' => '',
         'hide_from_activity' => 'паведамленні аб тэгах osu!supporter пасля куплі не будуць адлюстраваны ў вашым профілі.',
         'sent_via' => '',
         'shipping_to' => '',

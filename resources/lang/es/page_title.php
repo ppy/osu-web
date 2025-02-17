@@ -108,14 +108,16 @@ return [
             '_' => 'clasificaciones',
         ],
         'teams_controller' => [
-            '_' => '',
-            'show' => '',
+            '_' => 'equipos',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => 'información del equipo',
         ],
         'tournaments_controller' => [
             '_' => 'torneos',
         ],
         'user_cover_presets_controller' => [
-            '_' => 'preselecciones de portadas de usuario',
+            '_' => 'portadas preestablecidas para el usuario',
         ],
         'users_controller' => [
             '_' => 'información del jugador',
@@ -133,6 +135,11 @@ return [
     ],
     'store' => [
         '_' => 'tienda',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

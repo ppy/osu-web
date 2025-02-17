@@ -4,79 +4,129 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'applications' => [
+        'accept' => [
+            'ok' => '',
+        ],
+        'destroy' => [
+            'ok' => '',
+        ],
+        'reject' => [
+            'ok' => '',
+        ],
+        'store' => [
+            'ok' => '',
+        ],
+    ],
+
+    'destroy' => [
+        'ok' => '',
+    ],
+
     'edit' => [
-        'saved' => '',
-        'title' => '',
+        'saved' => 'Paramètres enregistrés avec succès',
+        'title' => 'Paramètres de l\'équipe',
 
         'description' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Description',
+            'title' => 'Description de l\'équipe',
         ],
 
         'header' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Image d\'en-tête',
+            'title' => 'Définir l\'image d\'en-tête',
         ],
 
         'logo' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Drapeau de l\'équipe',
+            'title' => 'Définir le drapeau de l\'équipe',
         ],
 
         'settings' => [
-            'application' => '',
-            'application_help' => '',
-            'default_ruleset' => '',
-            'default_ruleset_help' => '',
-            'title' => '',
-            'url' => '',
+            'application' => 'Candidatures d\'équipe',
+            'application_help' => 'Permettre aux personnes de candidater pour l\'équipe',
+            'default_ruleset' => 'Mode de jeu par défaut',
+            'default_ruleset_help' => 'Le mode de jeu à sélectionner par défaut lors de la visite de la page de l\'équipe',
+            'title' => 'Paramètres de l\'équipe',
+            'url' => 'URL',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => 'Fermée',
+                'state_1' => 'Ouverte',
             ],
         ],
+    ],
+
+    'header_links' => [
+        'edit' => '',
+        'leaderboard' => '',
+        'show' => '',
+
+        'members' => [
+            'index' => '',
+        ],
+    ],
+
+    'leaderboard' => [
+        'global_rank' => '',
+        'performance' => '',
+        'total_score' => '',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '',
+            'success' => 'Membre d\'équipe retiré',
         ],
 
         'index' => [
-            'title' => '',
+            'title' => 'Gérer les membres',
+
+            'applications' => [
+                'empty' => '',
+                'empty_slots' => '',
+                'title' => '',
+                'created_at' => '',
+            ],
 
             'table' => [
-                'status' => '',
-                'joined_at' => '',
-                'remove' => '',
-                'title' => '',
+                'status' => 'Statut',
+                'joined_at' => 'Date d\'adhésion',
+                'remove' => 'Retirer',
+                'title' => 'Membres Actuels',
             ],
 
             'status' => [
-                'status_0' => '',
-                'status_1' => '',
+                'status_0' => 'Inactif',
+                'status_1' => 'Actif',
             ],
         ],
     ],
+
+    'part' => [
+        'ok' => '',
+    ],
+
     'show' => [
         'bar' => [
-            'settings' => '',
+            'destroy' => '',
+            'join' => '',
+            'join_cancel' => '',
+            'part' => '',
         ],
 
         'info' => [
-            'created' => '',
-            'website' => '',
+            'created' => 'Formé',
+            'website' => 'Site web',
         ],
 
         'members' => [
-            'members' => '',
-            'owner' => '',
+            'members' => 'Membres de l\'équipe',
+            'owner' => 'Chef d\'équipe',
         ],
 
         'sections' => [
-            'members' => '',
-            'info' => '',
+            'info' => 'Infos',
+            'members' => 'Membres',
         ],
     ],
 ];

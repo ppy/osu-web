@@ -17,6 +17,7 @@ return [
     ],
 
     'show' => [
+        'created_by' => '',
         'download' => 'İndir',
         'item' => [
             'cleared' => 'geçildi',

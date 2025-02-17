@@ -51,6 +51,9 @@ return [
         'ongoing' => '',
         'room_count' => '',
         'url' => '',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -64,6 +67,7 @@ return [
         'accuracy' => 'Preciznost',
         'active_users' => 'Aktivni Korisnici',
         'country' => 'Države',
+        'division' => '',
         'play_count' => 'Broj Igranja',
         'performance' => 'Izvedba',
         'total_score' => 'Ukupni Bodovi',

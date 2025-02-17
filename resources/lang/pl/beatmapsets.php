@@ -17,7 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Zwolnij, pograj więcej!',
-        'no_mirrors' => 'Brak dostępnych serwerów pobierania.',
+        'no_mirrors' => 'Brak serwerów umożliwiających pobranie beatmapy.',
     ],
 
     'featured_artist_badge' => [
@@ -41,21 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Nie możesz nominować dla wielu trybów gry jako nominator z niepełnymi uprawnieniami.',
+        'full_nomination_required' => 'Do dokonania ostatecznej nominacji dla trybu gry wymagane są pełne uprawnienia nominatora.',
         'hybrid_requires_modes' => 'Beatmapa hybrydowa wymaga wybrania przynajmniej jednego trybu gry, dla którego chcesz ją nominować.',
         'incorrect_mode' => 'Nie posiadasz uprawnień do nominowania beatmap dla tych trybów (:mode)',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => 'Ta nominacja ma niewłaściwy zestaw zasad.',
+        'invalid_limited_nomination' => 'Ta beatmapa posiada nieprawidłowe nominacje i nie może zostać zakwalifikowana.',
+        'invalid_ruleset' => 'Wybrano nieprawidłowe tryby gry w nominacji.',
         'too_many' => 'Osiągnięto już wystarczającą liczbę nominacji.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'Wymóg nominacji dla dodatkowych trybów gry został już spełniony.',
 
         'dialog' => [
             'confirmation' => 'Czy na pewno chcesz nominować tę beatmapę?',
-            'different_nominator_warning' => '',
+            'different_nominator_warning' => 'Zakwalifikowanie tej beatmapy z inną grupą nominatorów zresetuje jej pozycję w kolejce kwalifikacji.',
             'header' => 'Nominuj beatmapę',
             'hybrid_warning' => 'Uwaga: możesz nominować tylko raz, więc upewnij się, że nominujesz ją dla wszystkich pożądanych trybów gry.',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'Główny tryb gry beatmapy - :ruleset',
             'which_modes' => 'Dla jakich trybów chcesz nominować tę beatmapę?',
         ],
     ],
@@ -164,9 +164,9 @@ return [
         ],
 
         'scoreboard' => [
-            'achieved' => 'osiągnięte :when',
+            'achieved' => 'osiągnięty :when',
             'country' => 'Ranking krajowy',
-            'error' => 'Nie udało się załadować tabeli wyników',
+            'error' => 'Nie udało się załadować rankingu',
             'friend' => 'Ranking znajomych',
             'global' => 'Ranking globalny',
             'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, jakie jeszcze funkcje otrzymasz w zamian za zakup statusu donatora!',
@@ -217,7 +217,7 @@ return [
             'count_sliders' => 'Liczba sliderów',
             'offset' => 'Opóźnienie: :offset',
             'user-rating' => 'Oceny użytkowników',
-            'rating-spread' => 'Wykres ocen',
+            'rating-spread' => 'Rozkład ocen',
             'nominations' => 'Nominacje',
             'playcount' => 'Liczba zagrań',
         ],

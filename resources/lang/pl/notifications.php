@@ -20,17 +20,19 @@ return [
         'channel' => 'czat',
         'forum_topic' => 'forum',
         'news_post' => 'aktualności',
+        'team' => '',
         'user' => 'profil',
     ],
 
     'filters' => [
         '_' => 'wszystkie',
-        'user' => 'profil',
         'beatmapset' => 'beatmapy',
-        'forum_topic' => 'forum',
-        'news_post' => 'aktualności',
         'build' => 'kompilacje',
         'channel' => 'czat',
+        'forum_topic' => 'forum',
+        'news_post' => 'aktualności',
+        'team' => '',
+        'user' => 'profil',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Nowa beatmapa',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'W wątku „:title” pojawiły się nowe odpowiedzi',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
             ],
         ],
 

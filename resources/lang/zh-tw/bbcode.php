@@ -8,7 +8,7 @@ return [
     'heading' => '標題',
     'help' => '說明',
     'image' => '圖片',
-    'imagemap' => '圖片地圖',
+    'imagemap' => '影像圖',
     'italic' => '斜體',
     'link' => '超連結',
     'list' => '無序列表',

@@ -201,7 +201,7 @@ return [
             'profile' => 'Můj profil',
             'scoring_mode_toggle' => 'Klasické skórování',
             'scoring_mode_toggle_tooltip' => 'Upravit hodnoty skóre tak, aby se více podobaly klasickému neomezenému skórování',
-            'team' => '',
+            'team' => 'Můj tým',
         ],
     ],
 

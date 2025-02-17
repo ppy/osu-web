@@ -108,8 +108,10 @@ return [
             '_' => 'peringkat',
         ],
         'teams_controller' => [
-            '_' => '',
-            'show' => '',
+            '_' => 'tim',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => 'info tim',
         ],
         'tournaments_controller' => [
             '_' => 'turnamen',
@@ -133,6 +135,11 @@ return [
     ],
     'store' => [
         '_' => 'toko',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

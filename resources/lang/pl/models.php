@@ -7,7 +7,7 @@ return [
     'not_found' => "",
 
     'name' => [
-        'App\Models\Beatmap' => '',
-        'App\Models\Beatmapset' => '',
+        'App\Models\Beatmap' => 'trudność beatmapy',
+        'App\Models\Beatmapset' => 'beatmapa',
     ],
 ];

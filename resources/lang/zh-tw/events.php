@@ -8,12 +8,12 @@ return [
     'beatmap_playcount' => ':beatmap 已經被玩了 :count 次！',
     'beatmapset_approve' => '<strong>:user</strong> 製作的 :beatmapset 已經被 :approval！',
     'beatmapset_delete' => ':beatmapset 已經被刪除。',
-    'beatmapset_revive' => ':beatmapset 已經被 <strong>:user</strong> 恢復。',
+    'beatmapset_revive' => ':beatmapset 已由 <strong>:user</strong> 從永恆的沉睡中甦醒。',
     'beatmapset_update' => '<strong><em>:user</em></strong> 更新了圖譜 "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> 提交了一個新圖譜 ":beatmapset"',
     'empty' => "該使用者最近沒有活動！",
     'rank' => '<strong><em>:user</em></strong> 在 <em>:beatmap</em> （:mode）中取得第 :rank 名',
-    'rank_lost' => '<strong><em>:user</em></strong> 失去了 <em>:beatmap</em> （:mode）的第一名',
+    'rank_lost' => '<strong><em>:user</em></strong> 失去了 <em>:beatmap</em>（:mode）的第一名',
     'user_support_again' => '<strong>:user</strong> 又一次支持了 osu! - 感謝您的慷慨捐贈！',
     'user_support_first' => '<strong>:user</strong> 成為了 osu! 贊助者 - 感謝您的慷慨捐贈！',
     'user_support_gift' => '<strong>:user</strong> 成為了 osu! 贊助者 - 來自匿名玩家的贈禮！',
@@ -21,8 +21,8 @@ return [
 
     'beatmapset_status' => [
         'approved' => '核准',
-        'loved' => 'loved',
-        'qualified' => '給與上架資格',
+        'loved' => '加入社群喜愛',
+        'qualified' => '列為合格圖譜並上架',
         'ranked' => '列為正式上架',
     ],
 
