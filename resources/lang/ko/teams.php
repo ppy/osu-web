@@ -6,25 +6,25 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => '유저를 팀에 추가했습니다.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => '가입 요청을 취소했습니다.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => '가입 요청을 거부했습니다.',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => '가입을 요청하였습니다.',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => '팀 삭제됨',
     ],
 
     'edit' => [
-        'saved' => '',
+        'saved' => '설정이 저장되었습니다',
         'title' => '팀 설정',
 
         'description' => [
@@ -44,38 +44,38 @@ return [
 
         'settings' => [
             'application' => '',
-            'application_help' => '',
+            'application_help' => '사람들이 팀에 가입 요청을 보낼 수 있을지에 대한 여부',
             'default_ruleset' => '기본 룰셋',
             'default_ruleset_help' => '',
             'title' => '팀 설정',
             'url' => 'URL',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => '닫힘',
+                'state_1' => '열림',
             ],
         ],
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
+        'edit' => '설정',
+        'leaderboard' => '리더보드',
         'show' => '',
 
         'members' => [
-            'index' => '',
+            'index' => '팀원 관리',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
-        'performance' => '',
-        'total_score' => '',
+        'global_rank' => '세계 순위',
+        'performance' => '퍼포먼스 점수',
+        'total_score' => '총 점수',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '',
+            'success' => '팀원이 삭제되었습니다',
         ],
 
         'index' => [

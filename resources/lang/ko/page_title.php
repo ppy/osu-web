@@ -109,8 +109,8 @@ return [
         ],
         'teams_controller' => [
             '_' => '팀',
-            'edit' => '',
-            'leaderboard' => '',
+            'edit' => '팀 설정',
+            'leaderboard' => '팀 리더보드',
             'show' => '팀 정보',
         ],
         'tournaments_controller' => [
@@ -138,7 +138,7 @@ return [
     ],
     'teams' => [
         'members_controller' => [
-            'index' => '',
+            'index' => '팀원',
         ],
     ],
     'users' => [

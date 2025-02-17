@@ -194,16 +194,16 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
-                'currently_applying' => '',
-                'team_closed' => '',
+                'already_member' => "이미 팀에 소속되어 있습니다.",
+                'already_other_member' => "이미 다른 팀에 소속되어 있습니다.",
+                'currently_applying' => '대기 중인 팀 가입 요청이 있습니다.',
+                'team_closed' => '이 팀은 현재 가입 요청을 받고 있지 않습니다.',
                 'team_full' => "",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "팀 리더는 팀을 떠날 수 없습니다.",
+            'not_member' => '팀의 멤버가 아닙니다.',
         ],
     ],
 

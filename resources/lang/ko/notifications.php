@@ -20,7 +20,7 @@ return [
         'channel' => '채팅',
         'forum_topic' => '포럼',
         'news_post' => '뉴스',
-        'team' => '',
+        'team' => '팀',
         'user' => '프로필',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => '채팅',
         'forum_topic' => '포럼',
         'news_post' => '뉴스',
-        'team' => '',
+        'team' => '팀',
         'user' => '프로필',
     ],
 
@@ -163,10 +163,10 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => '팀 가입 요청',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
+                'team_application_accept' => "당신은 이제 :title 팀의 멤버입니다.",
+                'team_application_accept_compact' => "당신은 이제 :title 팀의 멤버입니다.",
                 'team_application_reject' => '',
                 'team_application_reject_compact' => '',
             ],
@@ -258,7 +258,7 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
+                'team_application_accept' => "당신은 이제 :title 팀의 멤버입니다.",
                 'team_application_reject' => '',
             ],
         ],
