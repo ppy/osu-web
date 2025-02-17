@@ -29,7 +29,7 @@ class ForumsController extends Controller
     /**
      * Get Forum Listing
      *
-     * Get top-level forums, their subforums (max 2 deep), and their last topics.
+     * Get top-level forums and their subforums (max 2 deep).
      *
      * ---
      *
@@ -37,8 +37,7 @@ class ForumsController extends Controller
      *
      * Field       | Type                         |
      * ----------- | ---------------------------- |
-     * forums      | [Forum](#forum)[]            |
-     * last_topics | [ForumTopic](#forum-topic)[] |
+     * forums      | [Forum](#forum-object)[]     |
      *
      * @response {
      *   "forums": [
@@ -98,7 +97,7 @@ class ForumsController extends Controller
      *
      * Field         | Type                         |
      * ------------- | ---------------------------- |
-     * forum         | [Forum](#forum)              |
+     * forum         | [Forum](#forum-object)       |
      * topics        | [ForumTopic](#forum-topic)[] |
      * pinned_topics | [ForumTopic](#forum-topic)[] |
      *
