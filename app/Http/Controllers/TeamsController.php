@@ -20,7 +20,7 @@ class TeamsController extends Controller
     public function __construct()
     {
         parent::__construct();
-        $this->middleware('auth', ['only' => ['part']]);
+        $this->middleware('auth', ['only' => ['create', 'part']]);
     }
 
     public static function pageLinks(string $current, Team $team): array
@@ -141,9 +141,13 @@ class TeamsController extends Controller
             'short_name',
         ]);
 
-        $team = new Team([...$params, 'leader_id' => \Auth::user()->getKey()]);
+        $user = \Auth::user();
+        $team = (new Team([...$params, 'leader_id' => $user->getKey()]));
         try {
-            $team->saveOrExplode();
+            \DB::transaction(function () use ($params, $team, $user) {
+                $team->saveOrExplode();
+                $team->members()->make(['user_id' => $user->getKey()])->saveOrExplode();
+            });
         } catch (ModelNotSavedException) {
             return ext_view('teams.create', compact('team'), status: 422);
         }
