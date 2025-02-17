@@ -122,11 +122,13 @@ class Team extends Model
 
         $wordFilters = app('chat-filters');
         foreach (['name', 'short_name'] as $field) {
-            $value = presence($this->$field);
+            $value = $this->$field = presence(trim($this->$field ?? ''));
             if ($value === null) {
                 $this->validationErrors()->add($field, 'required');
             } elseif ($this->isDirty($field)) {
-                if (!$wordFilters->isClean($value) || !UsernameValidation::allowedName($value)) {
+                if (!preg_match('#^[A-Za-z0-9-\[\]_ ]+$#u', $value)) {
+                    $this->validationErrors()->add($field, '.invalid_characters');
+                } elseif (!$wordFilters->isClean($value) || !UsernameValidation::allowedName($value)) {
                     $this->validationErrors()->add($field, '.word_not_allowed');
                 } elseif (static::whereNot('id', $this->getKey())->where($field, $value)->exists()) {
                     $this->validationErrors()->add($field, '.used');

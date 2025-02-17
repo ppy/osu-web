@@ -24,8 +24,8 @@ class TeamFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fn () => $this->faker->name(),
-            'short_name' => fn () => substr($this->faker->name(), 0, 4),
+            'name' => fn () => strtr($this->faker->unique()->userName(), '.', ' '),
+            'short_name' => fn () => substr(strtr($this->faker->unique()->userName(), '.', ' '), 0, 4),
             'leader_id' => User::factory(),
         ];
     }

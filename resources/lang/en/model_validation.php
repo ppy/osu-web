@@ -132,6 +132,7 @@ return [
     ],
 
     'team' => [
+        'invalid_characters' => 'This :attribute contains invalid characters.',
         'used' => 'This :attribute choice is already used.',
         'word_not_allowed' => 'This :attribute choice is not allowed.',
 
