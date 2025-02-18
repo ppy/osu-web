@@ -1970,11 +1970,11 @@ class OsuAuthorize
         $this->ensureHasPlayed($user);
 
         if ($user->team !== null) {
-            return 'team.store.in_team';
+            return 'team.application.store.already_other_member';
         }
 
         if ($user->teamApplication !== null) {
-            return 'team.store.applying';
+            return 'team.application.store.currently_applying';
         }
 
         return 'ok';
