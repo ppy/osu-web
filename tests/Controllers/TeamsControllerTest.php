@@ -39,7 +39,9 @@ class TeamsControllerTest extends TestCase
             ->post(route('teams.store'), ['team' => ['name' => 'test', 'short_name' => 'test']])
             ->assertRedirect();
 
-        $this->assertNotNull($user->fresh()->team);
+        $team = $user->fresh()->team;
+        $this->assertNotNull($team);
+        $this->assertSame($user->getKey(), $team->leader_id);
     }
 
     public function testStoreAlreadyPartOfTeam()
