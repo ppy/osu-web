@@ -40,7 +40,7 @@
                             ['error' => isset($errors['name'])],
                         ) }}">
                             <span class="input-container__label">
-                                {{ osu_trans('teams.create.form.name') }}
+                                {{ osu_trans('model_validation.team.attributes.name') }}
                             </span>
                             <input
                                 {{ $autofocus === 'name' ? 'autofocus' : '' }}
@@ -69,7 +69,7 @@
                             ['error' => isset($errors['short_name'])],
                         ) }}">
                             <span class="input-container__label">
-                                {{ osu_trans('teams.create.form.short_name') }}
+                                {{ osu_trans('model_validation.team.attributes.short_name') }}
                             </span>
                             <input
                                 {{ $autofocus === 'short_name' ? 'autofocus' : '' }}

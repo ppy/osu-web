@@ -137,8 +137,8 @@ return [
         'word_not_allowed' => 'This :attribute choice is not allowed.',
 
         'attributes' => [
-            'name' => 'name',
-            'short_name' => 'short name',
+            'name' => 'Name',
+            'short_name' => 'Short name',
         ],
     ],
 

@@ -23,9 +23,7 @@ return [
         'submit' => 'Create Team',
 
         'form' => [
-            'name' => 'Name',
             'name_help' => 'Your team name. The name is permanent at the moment.',
-            'short_name' => 'Short name',
             'short_name_help' => 'Maximum 4 characters.',
             'title' => "Let's set up a new team",
         ],
