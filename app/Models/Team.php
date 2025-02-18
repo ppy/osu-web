@@ -122,7 +122,7 @@ class Team extends Model
 
         $wordFilters = app('chat-filters');
         foreach (['name', 'short_name'] as $field) {
-            $value = $this->$field = presence(trim($this->$field ?? ''));
+            $value = $this->$field = presence(preg_replace('/  +/', ' ', trim($this->$field ?? '')));
             if ($value === null) {
                 $this->validationErrors()->add($field, 'required');
             } elseif ($this->isDirty($field)) {
