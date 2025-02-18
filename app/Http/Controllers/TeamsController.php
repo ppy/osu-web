@@ -146,7 +146,7 @@ class TeamsController extends Controller
         try {
             \DB::transaction(function () use ($team, $user) {
                 $team->saveOrExplode();
-                $team->members()->createOrFirst(['user_id' => $user->getKey()]);
+                $team->members()->create(['user_id' => $user->getKey()]);
             });
         } catch (ModelNotSavedException) {
             return ext_view('teams.create', compact('team'), status: 422);
