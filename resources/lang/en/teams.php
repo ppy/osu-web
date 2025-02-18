@@ -116,7 +116,6 @@ return [
 
         'info' => [
             'created' => 'Formed',
-            'website' => 'Website',
         ],
 
         'members' => [
