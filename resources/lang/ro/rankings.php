@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Acest sezon este în curs de desfășurare (vor fi adăugate mai multe playlist-uri).',
         'room_count' => 'Număr playlist-uri',
         'url' => 'Afișează mai multe informații despre acel sezon.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => 'Precizie',
         'active_users' => 'Utilizatori activi',
         'country' => 'Țară',
+        'division' => '',
         'play_count' => 'Număr de Încercări',
         'performance' => 'Performanță',
         'total_score' => 'Scor total',

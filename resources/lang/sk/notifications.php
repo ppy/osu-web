@@ -20,17 +20,19 @@ return [
         'channel' => '',
         'forum_topic' => '',
         'news_post' => '',
+        'team' => '',
         'user' => '',
     ],
 
     'filters' => [
         '_' => 'všetko',
-        'user' => 'profil',
         'beatmapset' => 'beatmapy',
-        'forum_topic' => 'fórum',
-        'news_post' => 'novinky',
         'build' => '',
         'channel' => 'konverzácie',
+        'forum_topic' => 'fórum',
+        'news_post' => 'novinky',
+        'team' => '',
+        'user' => 'profil',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => '',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => '',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
             ],
         ],
 

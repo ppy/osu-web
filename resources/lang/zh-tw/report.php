@@ -6,12 +6,12 @@
 return [
     'beatmapset' => [
         'button' => '檢舉',
-        'title' => '確定要檢舉 :username 的圖譜嗎？',
+        'title' => '要檢舉 :username 的圖譜嗎？',
     ],
 
     'beatmapset_discussion_post' => [
         'button' => '檢舉',
-        'title' => '檢舉 :username 的貼文？',
+        'title' => '要檢舉 :username 的貼文嗎？',
     ],
 
     'comment' => [
@@ -21,7 +21,7 @@ return [
 
     'forum_post' => [
         'button' => '檢舉',
-        'title' => '檢舉 :username 的貼文？',
+        'title' => '要檢舉 :username 的貼文嗎？',
     ],
 
     'message' => [
@@ -31,11 +31,11 @@ return [
 
     'scores' => [
         'button' => '檢舉成績',
-        'title' => '檢舉 :username 的成績？',
+        'title' => '要檢舉 :username 的成績嗎？',
     ],
 
     'user' => [
         'button' => '檢舉',
-        'title' => '檢舉 :username?',
+        'title' => '要檢舉 :username 嗎？',
     ],
 ];

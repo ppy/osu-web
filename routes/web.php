@@ -300,6 +300,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('applications', 'Teams\ApplicationsController', ['only' => ['destroy', 'store']]);
         Route::post('applications/{application}/accept', 'Teams\ApplicationsController@accept')->name('applications.accept');
         Route::post('applications/{application}/reject', 'Teams\ApplicationsController@reject')->name('applications.reject');
+        Route::get('leaderboard/{ruleset?}', 'TeamsController@leaderboard')->name('leaderboard');
         Route::post('part', 'TeamsController@part')->name('part');
         Route::resource('members', 'Teams\MembersController', ['only' => ['destroy', 'index']]);
     });
@@ -485,9 +486,10 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::group(['as' => 'forum.', 'namespace' => 'Forum'], function () {
             Route::group(['prefix' => 'forums'], function () {
                 Route::post('topics/{topic}/reply', 'TopicsController@reply')->name('topics.reply');
-                Route::resource('topics', 'TopicsController', ['only' => ['show', 'store', 'update']]);
+                Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'store', 'update']]);
                 Route::resource('posts', 'PostsController', ['only' => ['update']]);
             });
+            Route::resource('forums', 'ForumsController', ['only' => ['index', 'show']]);
         });
         Route::resource('matches', 'MatchesController', ['only' => ['index', 'show']]);
 

@@ -55,6 +55,7 @@ return [
         'contact' => '',
         'date' => '',
         'echeck_delay' => 'Δεδομένου ότι η πληρωμή σας ήταν μια eCheck, παρακαλώ επιτρέψτε έως και 10ημέρες για την πληρωμή μέσω PayPal!',
+        'echeck_denied' => '',
         'hide_from_activity' => 'osu!supporter ετικέτες με αυτή τη σειρά δεν εμφανίζονται στις πρόσφατες δραστηριότητές σας.',
         'sent_via' => '',
         'shipping_to' => '',

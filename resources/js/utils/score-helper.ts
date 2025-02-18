@@ -2,8 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Ruleset from 'interfaces/ruleset';
+import ScoreModJson from 'interfaces/score-mod-json';
 import SoloScoreJson, { SoloScoreStatisticsAttribute } from 'interfaces/solo-score-json';
 import { route } from 'laroute';
+import modNames from 'mod-names.json';
 import core from 'osu-core-singleton';
 import { rulesetName } from './beatmap-helper';
 import { trans } from './lang';
@@ -21,12 +23,20 @@ export function canBeReported(score: SoloScoreJson) {
     && score.user_id !== core.currentUser.id;
 }
 
-// Removes CL mod on legacy score if user has lazer mode disabled
+/**
+ * Process score mods array for display
+ *
+ * Removes CL mod on legacy score if user has lazer mode disabled
+ * and sort the mods.
+ */
 export function filterMods(score: SoloScoreJson) {
-  return shouldReturnLegacyValue(score)
+  const shownMods = shouldReturnLegacyValue(score)
     ? score.mods.filter((mod) => mod.acronym !== 'CL')
     : score.mods;
 
+  return shownMods
+    .slice()
+    .sort((a, b) => (modDetails(a).index[score.ruleset_id] ?? 0) - (modDetails(b).index[score.ruleset_id] ?? 0));
 }
 
 // TODO: move to application state repository thingy later
@@ -46,6 +56,16 @@ export function isPerfectCombo(score: SoloScoreJson) {
   return shouldReturnLegacyValue(score)
     ? score.legacy_perfect
     : score.is_perfect_combo;
+}
+
+export function modDetails(mod: ScoreModJson) {
+  return modNames[mod.acronym] ?? {
+    acronym: mod.acronym,
+    index: {},
+    name: '',
+    setting_labels: {},
+    type: 'Fun',
+  };
 }
 
 interface AttributeDisplayMapping {

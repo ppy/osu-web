@@ -528,8 +528,8 @@
           {
             "Name": "reflection",
             "Type": "string",
-            "Label": "Mirrored axes",
-            "Description": "Choose which axes objects are mirrored over."
+            "Label": "Flipped axes",
+            "Description": ""
           }
         ],
         "IncompatibleMods": [

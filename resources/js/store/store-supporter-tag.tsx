@@ -5,7 +5,7 @@ import { UserCard } from 'components/user-card';
 import UserJson from 'interfaces/user-json';
 import { debounce } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
-import { disposeOnUnmount, observer } from 'mobx-react';
+import { observer } from 'mobx-react';
 import { userNotFoundJson } from 'models/user';
 import core from 'osu-core-singleton';
 import React from 'react';
@@ -50,6 +50,7 @@ function durationToPrice(duration: number) {
 @observer
 export default class StoreSupporterTag extends React.Component<Props> {
   private readonly debouncedGetUser;
+  private readonly disposers = new Set<((() => void) | undefined)>();
   private readonly giftMessageRef = React.createRef<HTMLTextAreaElement>();
   private readonly savedGiftMessage: string = '';
   private readonly sliderRef = React.createRef<HTMLDivElement>();
@@ -140,24 +141,26 @@ export default class StoreSupporterTag extends React.Component<Props> {
       this.user = core.currentUserOrFail;
     }
 
-    disposeOnUnmount(
-      this,
-      autorun(() => {
+    this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => {
+      this.disposers.add(autorun(() => {
         toggleCart(this.isValidUser);
         if (this.sliderRef.current != null) {
           $(this.sliderRef.current).slider({ disabled: !this.isValidUser });
         }
-      }),
-    );
+      }));
+    }));
   }
 
   componentDidMount() {
-    this.initializeSlider();
+    this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => {
+      this.initializeSlider();
+    }));
   }
 
   componentWillUnmount() {
     document.removeEventListener('turbo:before-cache', this.handleBeforeCache);
     this.xhr?.abort();
+    this.disposers.forEach((disposer) => disposer?.());
   }
 
   render() {

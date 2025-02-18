@@ -17,6 +17,7 @@ return [
     ],
 
     'show' => [
+        'created_by' => '',
         'download' => '下载',
         'item' => [
             'cleared' => '已通过',

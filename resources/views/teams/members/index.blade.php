@@ -6,8 +6,9 @@
 
 @section('content')
     @include('layout._page_header_v4', ['params' => [
-        'theme' => 'team',
         'backgroundImage' => $team->header()->url(),
+        'links' => App\Http\Controllers\TeamsController::pageLinks('members.index', $team),
+        'theme' => 'team',
     ]])
 
     <div class="osu-page osu-page--generic-compact">
@@ -150,23 +151,6 @@
                         @endforeach
                     </ul>
                 @endif
-            </div>
-
-            <div class="page-extra">
-                <div class="team-settings">
-                    <div class="team-settings__item team-settings__item--buttons">
-                        <div>
-                            <a
-                                class="btn-osu-big btn-osu-big--rounded-thin"
-                                href="{{ route('teams.show', ['team' => $team]) }}"
-                            >
-                                {{ osu_trans('common.buttons.back') }}
-                            </a>
-                        </div>
-
-                        <div></div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

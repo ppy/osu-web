@@ -12,11 +12,11 @@ return [
     'wrong_confirmation' => 'La confirmació no coincideix.',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'La marca de temps s\'ha especificat però falta la dificultat del beatmap. ',
-        'beatmapset_no_hype' => "El beatmap no pot ser hypejat.",
-        'hype_requires_null_beatmap' => 'El hype s\'ha de fer a la secció General (totes les dificultats).',
+        'beatmap_missing' => 'La marca de temps s\'ha especificat però falta la dificultat del mapa. ',
+        'beatmapset_no_hype' => "El mapa no pot rebre més eufòria.",
+        'hype_requires_null_beatmap' => 'Mostrar eufòria s\'ha de fer a la secció General (totes les dificultats).',
         'invalid_beatmap_id' => 'Dificultat no vàlida.',
-        'invalid_beatmapset_id' => 'Beatmap no vàlid.',
+        'invalid_beatmapset_id' => 'Mapa no vàlid.',
         'locked' => 'La discussió està tancada.',
 
         'attributes' => [
@@ -25,16 +25,16 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Aquest beatmap està tancat per discussió i no es pot hypejar",
-            'guest' => 'Has d\'haver iniciat la sessió per hypejar.',
-            'hyped' => 'Ja has hypejat aquest beatmap.',
-            'limit_exceeded' => 'Ja has fet servir tots els teus hype.',
-            'not_hypeable' => 'No es pot hypejar aquest beatmap',
-            'owner' => 'No pots hypejar el teu propi beatmap.',
+            'discussion_locked' => "Aquest mapa està tancat per discussió i no pot mostrar més eufòria",
+            'guest' => 'Has d\'haver iniciat la sessió per mostrar eufòria.',
+            'hyped' => 'Ja has mostrat eufòria a aquest mapa.',
+            'limit_exceeded' => 'Ja has fet servir totes les teves mostres d\'eufòria.',
+            'not_hypeable' => 'No es pot mostrar més eufòria a aquest mapa',
+            'owner' => 'No pots mostrar eufòria al teu propi mapa.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'La marca de temps està fora de la llargada del beatmap.',
+            'exceeds_beatmapset_length' => 'La marca de temps està fora de la llargada del mapa.',
             'negative' => "La marca de temps no pot ser negativa.",
         ],
     ],
@@ -72,8 +72,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Eliminar la publicació de les metadades del beatmap no està permès.',
-            'beatmapset_post_no_edit' => 'Editar la publicación de los metadatos del beatmap no está permitido.',
+            'beatmapset_post_no_delete' => 'Eliminar la publicació de les metadades del mapa no està permès.',
+            'beatmapset_post_no_edit' => 'Editar les metadades de la publicació del mapa no està permès.',
             'first_post_no_delete' => 'No es pot eliminar la publicació inicial',
             'missing_topic' => 'A la publicació li falta un tema',
             'only_quote' => 'La teva resposta conté una cita.',

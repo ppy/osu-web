@@ -19,7 +19,7 @@ return [
     'commentable_name' => [
         'beatmapset' => 'Beatmapa',
         'build' => 'Zmiany',
-        'news_post' => 'Wiadomość',
+        'news_post' => 'Aktualności',
         '_deleted' => 'Źródło usunięte',
     ],
 
@@ -44,7 +44,7 @@ return [
     ],
 
     'ogp' => [
-        'title' => 'skomentowane przez :user',
+        'title' => 'komentarz użytkownika :user',
     ],
 
     'placeholder' => [

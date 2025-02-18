@@ -4,79 +4,129 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'applications' => [
+        'accept' => [
+            'ok' => '',
+        ],
+        'destroy' => [
+            'ok' => '',
+        ],
+        'reject' => [
+            'ok' => '',
+        ],
+        'store' => [
+            'ok' => '',
+        ],
+    ],
+
+    'destroy' => [
+        'ok' => '',
+    ],
+
     'edit' => [
-        'saved' => '',
-        'title' => '',
+        'saved' => 'Nastavení bylo úspěšně uloženo',
+        'title' => 'Nastavení týmu',
 
         'description' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Popis',
+            'title' => 'Popis týmu',
         ],
 
         'header' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Obrázek záhlaví',
+            'title' => 'Nastavit obrázek záhlaví',
         ],
 
         'logo' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Vlajka týmu',
+            'title' => 'Nastavit vlajku týmu',
         ],
 
         'settings' => [
-            'application' => '',
-            'application_help' => '',
-            'default_ruleset' => '',
-            'default_ruleset_help' => '',
-            'title' => '',
-            'url' => '',
+            'application' => 'Přihláška do týmu',
+            'application_help' => 'Zdali umožnit lidem, aby mohli podávat přihlášky do týmu',
+            'default_ruleset' => 'Výchozí ruleset',
+            'default_ruleset_help' => 'Ruleset, který má být automaticky vybrán při návštěvě stránky týmu',
+            'title' => 'Nastavení týmu',
+            'url' => 'URL',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => 'Uzavřená',
+                'state_1' => 'Otevřená',
             ],
         ],
+    ],
+
+    'header_links' => [
+        'edit' => '',
+        'leaderboard' => '',
+        'show' => '',
+
+        'members' => [
+            'index' => '',
+        ],
+    ],
+
+    'leaderboard' => [
+        'global_rank' => '',
+        'performance' => '',
+        'total_score' => '',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '',
+            'success' => 'Člen týmu byl odebrán',
         ],
 
         'index' => [
-            'title' => '',
+            'title' => 'Spravovat členy',
+
+            'applications' => [
+                'empty' => '',
+                'empty_slots' => '',
+                'title' => '',
+                'created_at' => '',
+            ],
 
             'table' => [
-                'status' => '',
-                'joined_at' => '',
-                'remove' => '',
-                'title' => '',
+                'status' => 'Stav',
+                'joined_at' => 'Členem od',
+                'remove' => 'Odebrat',
+                'title' => 'Aktuální členové',
             ],
 
             'status' => [
-                'status_0' => '',
-                'status_1' => '',
+                'status_0' => 'Neaktivní',
+                'status_1' => 'Aktivní',
             ],
         ],
     ],
+
+    'part' => [
+        'ok' => '',
+    ],
+
     'show' => [
         'bar' => [
-            'settings' => '',
+            'destroy' => '',
+            'join' => '',
+            'join_cancel' => '',
+            'part' => '',
         ],
 
         'info' => [
-            'created' => '',
-            'website' => '',
+            'created' => 'Založen',
+            'website' => 'Webové stránky',
         ],
 
         'members' => [
-            'members' => '',
-            'owner' => '',
+            'members' => 'Členové týmu',
+            'owner' => 'Vedoucí týmu',
         ],
 
         'sections' => [
-            'members' => '',
-            'info' => '',
+            'info' => 'Info',
+            'members' => 'Členové',
         ],
     ],
 ];

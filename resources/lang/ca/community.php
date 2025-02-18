@@ -12,10 +12,10 @@ return [
             'instructions' => 'clica el botó amb el cor per accedir a la osu!store',
         ],
         'why-support' => [
-            'title' => 'Per què hauria de donar suport a l\'osu!? On van els diners?',
+            'title' => 'Per què hauria de donar suport a osu!? On van els diners?',
 
             'team' => [
-                'title' => 'Dóna suport a l\'equip',
+                'title' => 'Dona suport a l\'equip',
                 'description' => 'Un petit equip desenvolupa i manté osu!. El seu suport els ajuda, ja sap... viure.',
             ],
             'infra' => [
@@ -24,7 +24,7 @@ return [
             ],
             'featured-artists' => [
                 'title' => 'Artistes Destacats',
-                'description' => 'Amb el teu suport, podem arribar a artistes encara més impressionants i llicenciar més música per fer-la servir a l\'osu!',
+                'description' => 'Amb el teu suport, podem arribar a artistes encara més impressionants i llicenciar més música per fer-la servir a osu!',
                 'link_text' => 'Veure la llista actual &raquo;',
             ],
             'ads' => [
@@ -33,12 +33,12 @@ return [
             ],
             'tournaments' => [
                 'title' => 'Tornejos oficials',
-                'description' => 'Ajuda a finançar el funcionament (i els premis) de la Copa del Món oficial de l\'osu!.',
+                'description' => 'Ajuda a finançar el funcionament (i els premis) de la Copa del Món oficial d\'osu!.',
                 'link_text' => 'Explora tornejos &raquo;',
             ],
             'bounty-program' => [
                 'title' => 'Programa de recompenses de codi lliure',
-                'description' => 'Dóna suport als contribuïdors de la comunitat que han dedicat el seu temps i esforç a fer l\'osu! millor.',
+                'description' => 'Dona suport als contribuïdors de la comunitat que han dedicat el seu temps i esforç a fer osu! millor.',
                 'link_text' => 'Descobreix més &raquo;',
             ],
         ],
@@ -46,12 +46,12 @@ return [
             'title' => 'Genial! Quins beneficis obtinc?',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'Guanya accés ràpid i fàcil per a buscar i descarregar beatmaps sense haver de sortir del joc.',
+                'description' => 'Guanya accés ràpid i fàcil per a buscar i descarregar mapes sense haver de sortir del joc.',
             ],
 
             'friend_ranking' => [
                 'title' => 'Classificació entre amics',
-                'description' => "Mira com et compares amb els teus amics a la taula de classificació d'un beatmap, tant al joc com al lloc web.",
+                'description' => "Mira com et compares amb els teus amics a la taula de classificació d'un mapa,  tant al joc com al lloc web.",
             ],
 
             'country_ranking' => [
@@ -66,12 +66,12 @@ return [
 
             'auto_downloads' => [
                 'title' => 'Descàrregues Automàtiques',
-                'description' => 'Els beatmaps es descarregaran automàticament en partides multijugador, mentre espectes a altres, o en fer clic a enllaços rellevants al xat!',
+                'description' => 'Els mapes es descarregaran automàticament en partides multijugador, mentre observes a altres, o en fer clic a enllaços rellevants al xat!',
             ],
 
             'upload_more' => [
                 'title' => 'Més espai per pujades',
-                'description' => 'Tindràs espais pendents per a beatmaps (per beatmap classificat) fins a un màxim de 10.',
+                'description' => 'Tindràs espais pendents per a  (per mapa classificat) fins a un màxim de 10.',
             ],
 
             'early_access' => [
@@ -85,8 +85,8 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => 'Filtres de beatmaps',
-                'description' => 'Filtra les cerques de beatmaps per jugats i no jugats, o per rang obtingut.',
+                'title' => 'Filtres de mapa',
+                'description' => 'Filtra les cerques de mapes per jugats i no jugats, o per rang obtingut.',
             ],
 
             'yellow_fellow' => [

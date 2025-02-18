@@ -20,17 +20,19 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'foorumit',
         'news_post' => 'uutiset',
+        'team' => '',
         'user' => 'profiili',
     ],
 
     'filters' => [
         '_' => 'kaikki',
-        'user' => 'profiili',
         'beatmapset' => 'rytmikartat',
-        'forum_topic' => 'foorumi',
-        'news_post' => 'uutiset',
         'build' => 'rakennukset',
         'channel' => 'chatti',
+        'forum_topic' => 'foorumi',
+        'news_post' => 'uutiset',
+        'team' => '',
+        'user' => 'profiili',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Uusi rytmikartta',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Aihe ":title" on saanut uusia vastauksia',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
             ],
         ],
 

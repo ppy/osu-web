@@ -295,6 +295,27 @@ return [
             'to_1_done' => 'La till "löst" tagg',
         ],
 
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
         'lock' => [
             'is_locked' => 'Detta ämne är låst och kan ej svaras på',
             'to_0' => 'Lås upp ämne',

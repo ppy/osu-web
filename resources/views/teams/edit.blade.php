@@ -5,7 +5,11 @@
 @extends('master')
 
 @section('content')
-    @include('layout._page_header_v4')
+    @include('layout._page_header_v4', ['params' => [
+        'backgroundImage' => $team->header()->url(),
+        'links' => App\Http\Controllers\TeamsController::pageLinks('edit', $team),
+        'theme' => 'team',
+    ]])
 
     <form
         method="POST"
@@ -181,12 +185,6 @@
                             </div>
 
                             <div class="team-settings__buttons">
-                                <a
-                                    class="btn-osu-big btn-osu-big--rounded-thin"
-                                    href="{{ route('teams.show', ['team' => $team]) }}"
-                                >
-                                    {{ osu_trans('common.buttons.cancel') }}
-                                </a>
                                 <button class="btn-osu-big btn-osu-big--rounded-thin">
                                     {{ osu_trans('common.buttons.save') }}
                                 </button>

@@ -55,6 +55,7 @@ return [
         'contact' => 'Kontakt:',
         'date' => 'Dato:',
         'echeck_delay' => 'Ettersom betalingen din var en eCheck, vennligst tillatt opp til 10 ekstra dager for at betalingen skal kunne komme gjennom PayPal!',
+        'echeck_denied' => '',
         'hide_from_activity' => 'osu!supporter tag i denne bestillingen vises ikke i dine nylige aktiviteter.',
         'sent_via' => 'Sendt Via:',
         'shipping_to' => 'Frakt til:',

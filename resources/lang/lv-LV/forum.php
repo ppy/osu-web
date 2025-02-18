@@ -6,7 +6,7 @@
 return [
     'pinned_topics' => 'Piespraustās Tēmas',
     'slogan' => "ir bīstami spēlēt vienam.",
-    'subforums' => 'Subforums',
+    'subforums' => 'Apakšforuma',
     'title' => 'Forums',
 
     'covers' => [
@@ -14,7 +14,7 @@ return [
 
         'create' => [
             '_' => 'Uzstādīt pārklājuma bildi',
-            'button' => 'Augšuplādēt attēlu',
+            'button' => 'Augšupielādēt attēlu',
             'info' => 'Pārklājuma izmēram būtu jābūt ap :dimensions. Tu vari arī nomest bildi šeit, lai augšupielādētu.',
         ],
 
@@ -46,9 +46,9 @@ return [
     'post' => [
         'confirm_destroy' => 'Vai tiešām izdzēst rakstu?',
         'confirm_restore' => 'Vai tiešām atjaunot rakstu?',
-        'edited' => 'Beidzamo reizi rediģēts pēc :user :when, rediģējot :count reizes kopumā.',
+        'edited' => 'Beidzamo reizi rediģēja :user :when, rediģēts :count_delimited reizes kopā.|Pēdējo reizi rediģēja :user :when, rediģēja :count_delimited reizes kopā.',
         'posted_at' => 'publicēts :when',
-        'posted_by_in' => 'publicēja :username iekš :forum',
+        'posted_by_in' => 'publicēja :username , :forum',
 
         'actions' => [
             'destroy' => 'Izdzēst rakstu',
@@ -65,7 +65,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited raksts|:count_delimited raksti',
-            'topic_starter' => 'Tēmas Sāknētājs',
+            'topic_starter' => 'Tēmas Uzsācējs',
         ],
     ],
 
@@ -230,7 +230,7 @@ return [
             'poll' => [
                 'hide_results' => 'Paslēpt aptaujas rezultātus.',
                 'hide_results_info' => 'Tie tiks parādīti tikai pēc tam, kad aptauja būs beigusies.',
-                'length' => '',
+                'length' => 'Publicēt aptauju uz',
                 'length_days_suffix' => 'dienas',
                 'length_info' => 'Atstāt tukšu priekš nekad nebeidzošas aptaujas',
                 'max_options' => 'Opciju daudzums lietotājam',
@@ -293,6 +293,27 @@ return [
             'to_0_done' => 'Noņemts "atrisināts" piespraudnis',
             'to_1' => 'Pievienot "atrisināts" piespraudni',
             'to_1_done' => 'Pievienots "atrisināts" piespraudnis',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'lock' => [

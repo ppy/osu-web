@@ -23,8 +23,9 @@
 
 @section('content')
     @include('layout._page_header_v4', ['params' => [
-        'theme' => 'team',
         'backgroundImage' => $headerUrl,
+        'links' => App\Http\Controllers\TeamsController::pageLinks('show', $team),
+        'theme' => 'team',
     ]])
 
     <div class="osu-page osu-page--generic-compact">
@@ -32,37 +33,7 @@
             <div
                 class="profile-info__bg profile-info__bg--team"
                 {!! background_image($headerUrl) !!}
-            >
-                @if (priv_check('TeamUpdate', $team)->can())
-                    <div class="profile-page-cover-editor-button">
-                        <a
-                            class="btn-circle btn-circle--page-toggle"
-                            data-tooltip-position="left center"
-                            href="{{ route('teams.members.index', $team) }}"
-                            title="{{ osu_trans('teams.members.index.title') }}"
-                        >
-                            <span class="fa fa-users"></span>
-                            @php
-                                $applicationCount = $team->applications()->count();
-                            @endphp
-                            @if ($applicationCount > 0)
-                                <span class="btn-circle__count">
-                                    {{ i18n_number_format($applicationCount) }}
-                                </span>
-                            @endif
-                        </a>
-
-                        <a
-                            class="btn-circle btn-circle--page-toggle"
-                            data-tooltip-position="left center"
-                            href="{{ route('teams.edit', $team) }}"
-                            title="{{ osu_trans('teams.edit.title') }}"
-                        >
-                            <span class="fa fa-wrench"></span>
-                        </a>
-                    </div>
-                @endif
-            </div>
+            ></div>
             <div class="profile-info__details">
                 <div class="profile-info__avatar">
                     @include('objects._flag_team', ['modifiers' => 'full', 'team' => $team])

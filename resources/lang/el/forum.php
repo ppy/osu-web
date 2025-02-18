@@ -295,6 +295,27 @@ return [
             'to_1_done' => 'Το tag "resolved" προστέθηκε',
         ],
 
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
         'lock' => [
             'is_locked' => 'Η συζήτηση κλειδώθηκε και δεν δέχεται άλλες απαντήσεις',
             'to_0' => 'Ξεκλειδώστε το θέμα',

@@ -109,8 +109,10 @@ return [
             '_' => 'xếp hạng',
         ],
         'teams_controller' => [
-            '_' => '',
-            'show' => '',
+            '_' => 'đội',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => 'thông tin về đội',
         ],
         'tournaments_controller' => [
             '_' => 'giải đấu',
@@ -134,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'cửa hàng',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

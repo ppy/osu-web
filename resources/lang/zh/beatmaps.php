@@ -4,8 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => '',
+
     'change_owner' => [
-        'too_many' => '',
+        'too_many' => '客串谱师太多。',
     ],
 
     'discussion-votes' => [
@@ -252,7 +254,7 @@ return [
                 'genre' => '流派',
                 'language' => '语言',
                 'mode' => '模式',
-                'nsfw' => '不良内容',
+                'nsfw' => '少儿不宜谱面',
                 'played' => '玩过',
                 'rank' => '成绩',
                 'status' => '分类',

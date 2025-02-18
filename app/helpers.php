@@ -1299,6 +1299,10 @@ function i18n_date_auto(DateTimeInterface $date, string $skeleton): string
 
 function i18n_number_format($number, $style = null, $pattern = null, $precision = null, $locale = null)
 {
+    if ($number === null) {
+        return null;
+    }
+
     if ($style === null && $pattern === null && $precision === null) {
         static $formatters = [];
         $locale ??= App::getLocale();
@@ -1606,6 +1610,8 @@ function get_param_value($input, $type)
             return get_arr($input, 'get_int');
         case 'time':
             return parse_time_to_carbon($input);
+        case 'timestamp':
+            return parse_time_to_timestamp($input);
         default:
             return presence(get_string($input));
     }
@@ -1725,6 +1731,11 @@ function parse_time_to_carbon($value)
     if ($value instanceof Carbon\CarbonImmutable) {
         return $value->toMutable();
     }
+}
+
+function parse_time_to_timestamp(mixed $value): ?int
+{
+    return parse_time_to_carbon($value)?->timestamp;
 }
 
 function format_duration_for_display(int $seconds)

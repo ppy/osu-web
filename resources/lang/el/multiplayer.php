@@ -19,7 +19,7 @@ return [
 
         'errors' => [
             'duration_too_long' => 'Η διάρκεια είναι πολύ μεγάλη.',
-            'name_too_long' => '',
+            'name_too_long' => 'Το όνομα δωματίου είναι πολύ μεγάλο.',
         ],
 
         'status' => [
