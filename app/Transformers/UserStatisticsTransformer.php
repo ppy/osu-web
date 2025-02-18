@@ -11,6 +11,12 @@ use League\Fractal\Resource\ResourceInterface;
 
 class UserStatisticsTransformer extends TransformerAbstract
 {
+    const RANKING_INCLUDES = [
+        'user.country',
+        'user.cover',
+        'user.team',
+    ];
+
     protected array $availableIncludes = [
         'country_rank',
         'rank',
@@ -19,11 +25,9 @@ class UserStatisticsTransformer extends TransformerAbstract
         'variants',
     ];
 
-    public function transform(UserStatistics\Model $stats = null)
+    public function transform(?UserStatistics\Model $stats = null)
     {
-        if ($stats === null) {
-            $stats = new UserStatistics\Osu();
-        }
+        $stats ??= new UserStatistics\Osu();
 
         if (!$GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default'] && $GLOBALS['cfg']['osu']['scores']['experimental_rank_as_extra']) {
             $globalRankExp = $stats->globalRankExp();
