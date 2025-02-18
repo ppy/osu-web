@@ -69,6 +69,22 @@ class ModsTest extends TestCase
     }
 
     /**
+     * @dataProvider modComboExclusives
+     */
+    public function testAssertValidExclusivity(Ruleset $ruleset, $mods, $isValid)
+    {
+        if (!$isValid) {
+            $this->expectException(InvariantException::class);
+        }
+
+        $result = app('mods')->assertValidExclusivity($ruleset->value, $mods);
+
+        if ($isValid) {
+            $this->assertTrue($result);
+        }
+    }
+
+    /**
      * @dataProvider multiplayerModComboExclusives
      */
     public function testAssertValidMultiplayerExclusivity(Ruleset $ruleset, $requiredIds, $allowedIds, $isValid)
@@ -137,6 +153,17 @@ class ModsTest extends TestCase
             [Ruleset::catch, ['AP'], false],
 
             [Ruleset::mania, ['AP'], false],
+        ];
+    }
+
+    public static function modComboExclusives()
+    {
+        return [
+            [Ruleset::osu, [], true],
+            [Ruleset::osu, ['HD', 'NC'], true],
+            [Ruleset::mania, ['DT', 'PF'], true],
+            [Ruleset::taiko, ['HT', 'DT'], false],
+            [Ruleset::osu, ['MR', 'NC', 'HR'], false],
         ];
     }
 

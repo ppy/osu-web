@@ -135,6 +135,21 @@ class Mods
         );
     }
 
+    public function assertValidExclusivity(int $rulesetId, array $modAcronyms): bool
+    {
+        while (($modAcronym = array_pop($modAcronyms)) !== null) {
+            $mod = $this->mods[$rulesetId][$modAcronym];
+            $incompatibleIds = $mod['IncompatibleMods'];
+
+            $invalidIds = $incompatibleIds->intersect(new Set($modAcronyms));
+            if ($invalidIds->count() > 0) {
+                throw new InvariantException("incompatible mods: {$modAcronym}, {$invalidIds->join(', ')}");
+            }
+        }
+
+        return true;
+    }
+
     public function assertValidMultiplayerExclusivity(int $rulesetId, array $requiredIds, array $allowedIds): bool
     {
         $disallowedIds = new Set();
