@@ -69,15 +69,15 @@ class ModsTest extends TestCase
     }
 
     /**
-     * @dataProvider modComboExclusives
+     * @dataProvider multiplayerModComboExclusives
      */
-    public function testAssertValidExclusivity(Ruleset $ruleset, $requiredIds, $allowedIds, $isValid)
+    public function testAssertValidMultiplayerExclusivity(Ruleset $ruleset, $requiredIds, $allowedIds, $isValid)
     {
         if (!$isValid) {
             $this->expectException(InvariantException::class);
         }
 
-        $result = app('mods')->assertValidExclusivity($ruleset->value, $requiredIds, $allowedIds);
+        $result = app('mods')->assertValidMultiplayerExclusivity($ruleset->value, $requiredIds, $allowedIds);
 
         if ($isValid) {
             $this->assertTrue($result);
@@ -140,7 +140,7 @@ class ModsTest extends TestCase
         ];
     }
 
-    public static function modComboExclusives()
+    public static function multiplayerModComboExclusives()
     {
         return [
             // non-exclusive required mods and no allowed mods

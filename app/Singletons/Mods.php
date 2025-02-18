@@ -135,7 +135,7 @@ class Mods
         );
     }
 
-    public function assertValidExclusivity(int $rulesetId, array $requiredIds, array $allowedIds): bool
+    public function assertValidMultiplayerExclusivity(int $rulesetId, array $requiredIds, array $allowedIds): bool
     {
         $disallowedIds = new Set();
 
