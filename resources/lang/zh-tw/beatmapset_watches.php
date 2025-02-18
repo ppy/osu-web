@@ -5,16 +5,16 @@
 
 return [
     'index' => [
-        'description' => '這裡是你關注的圖譜，您將會在它們更新或有新討論的時候收到通知。',
+        'description' => '這些是您正在追蹤的圖譜討論。當有新的貼文或更新時，您會收到通知。',
         'title_compact' => '摸圖',
 
         'counts' => [
-            'total' => '已關注的圖譜',
+            'total' => '已追蹤的圖譜',
             'unread' => '有新活動的圖譜',
         ],
 
         'table' => [
-            'empty' => '沒有正在關注的圖譜',
+            'empty' => '沒有正在追蹤的圖譜',
             'last_update' => '最後更新',
             'open_issues' => '進行中的議題',
             'state' => '狀態',

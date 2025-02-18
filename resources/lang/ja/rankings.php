@@ -49,6 +49,9 @@ return [
         'ongoing' => '',
         'room_count' => 'プレイリスト数',
         'url' => '',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => '精度',
         'active_users' => 'アクティブユーザー数',
         'country' => '所在国',
+        'division' => '',
         'play_count' => 'プレイ回数',
         'performance' => 'パフォーマンス',
         'total_score' => '合計スコア',

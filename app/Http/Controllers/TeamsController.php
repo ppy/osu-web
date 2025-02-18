@@ -7,7 +7,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\InvariantException;
+use App\Models\Beatmap;
 use App\Models\Team;
+use App\Models\User;
 use App\Transformers\UserCompactTransformer;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -26,6 +29,11 @@ class TeamsController extends Controller
                 'active' => $current === 'show',
                 'title' => osu_trans('teams.header_links.show'),
                 'url' => route('teams.show', ['team' => $team->getKey()]),
+            ],
+            [
+                'active' => $current === 'leaderboard',
+                'title' => osu_trans('teams.header_links.leaderboard'),
+                'url' => route('teams.leaderboard', ['team' => $team->getKey()]),
             ],
         ];
 
@@ -64,6 +72,28 @@ class TeamsController extends Controller
         priv_check('TeamUpdate', $team)->ensureCan();
 
         return ext_view('teams.edit', compact('team'));
+    }
+
+    public function leaderboard(string $id, ?string $ruleset = null): Response
+    {
+        $team = Team::findOrFail($id);
+        $ruleset ??= Beatmap::modeStr($team->default_ruleset_id);
+        $statisticsRelationName = User::statisticsRelationName($ruleset);
+        if ($statisticsRelationName === null) {
+            throw new InvariantException(osu_trans('beatmaps.invalid_ruleset'));
+        }
+        $leaderboard = $team
+            ->members
+            ->loadMissing("user.{$statisticsRelationName}")
+            ->map(fn ($member) =>
+                (
+                    $member->user->$statisticsRelationName
+                    ?? $member->user->$statisticsRelationName()->make()
+                )->setRelation('user', $member->user))
+            ->sortByDesc(['rank_score', 'total_score'])
+            ->values();
+
+        return ext_view('teams.leaderboard', compact('leaderboard', 'ruleset', 'team'));
     }
 
     public function part(string $id): Response

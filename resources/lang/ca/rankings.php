@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Dificultat',
-        'top_10p' => '',
-        'top_50p' => '',
+        'top_10p' => 'Puntuació top 10%',
+        'top_50p' => 'Puntuació top 50%',
     ],
 
     'filter' => [
@@ -34,7 +34,7 @@ return [
     ],
 
     'type' => [
-        'charts' => 'spotlights',
+        'charts' => 'en el focus (vell)',
         'country' => 'país',
         'daily_challenge' => 'repte diari',
         'kudosu' => 'kudosu',
@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Aquesta temporada encara està en curs (s\'afegiran més llistes de reproducció).',
         'room_count' => 'Nombre de llistes de reproducció',
         'url' => 'Mostra més informació sobre la temporada.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => 'Precisió',
         'active_users' => 'Usuaris actius',
         'country' => 'País',
+        'division' => '',
         'play_count' => 'Nombre de partides',
         'performance' => 'Rendiment',
         'total_score' => 'Puntuació total',

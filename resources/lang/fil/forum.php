@@ -295,6 +295,27 @@ return [
             'to_1_done' => 'Nilagyan ng panandang "naresolba"',
         ],
 
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
         'lock' => [
             'is_locked' => 'Sarado na ang paksang ito at hindi na maaari pang sagutan',
             'to_0' => 'I-unlock ang paksa',

@@ -4,79 +4,129 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'applications' => [
+        'accept' => [
+            'ok' => '',
+        ],
+        'destroy' => [
+            'ok' => '',
+        ],
+        'reject' => [
+            'ok' => '',
+        ],
+        'store' => [
+            'ok' => '',
+        ],
+    ],
+
+    'destroy' => [
+        'ok' => '',
+    ],
+
     'edit' => [
-        'saved' => '',
-        'title' => '',
+        'saved' => 'Configuración guardada correctamente',
+        'title' => 'Configuración del equipo',
 
         'description' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Descripción',
+            'title' => 'Descripción del equipo',
         ],
 
         'header' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Imagen del encabezado',
+            'title' => 'Establecer imagen del encabezado',
         ],
 
         'logo' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Bandera del equipo',
+            'title' => 'Establecer bandera del equipo',
         ],
 
         'settings' => [
-            'application' => '',
-            'application_help' => '',
-            'default_ruleset' => '',
-            'default_ruleset_help' => '',
-            'title' => '',
-            'url' => '',
+            'application' => 'Solicitudes para unirse al equipo',
+            'application_help' => 'Permitir o no que las personas puedan solicitar formar parte del equipo',
+            'default_ruleset' => 'Modo de juego predeterminado',
+            'default_ruleset_help' => 'El modo de juego que se seleccionará de forma predeterminada al visitar la página del equipo',
+            'title' => 'Configuración del equipo',
+            'url' => 'URL',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => 'Cerradas',
+                'state_1' => 'Abiertas',
             ],
         ],
+    ],
+
+    'header_links' => [
+        'edit' => '',
+        'leaderboard' => '',
+        'show' => '',
+
+        'members' => [
+            'index' => '',
+        ],
+    ],
+
+    'leaderboard' => [
+        'global_rank' => '',
+        'performance' => '',
+        'total_score' => '',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '',
+            'success' => 'Miembro del equipo eliminado',
         ],
 
         'index' => [
-            'title' => '',
+            'title' => 'Gestionar miembros',
+
+            'applications' => [
+                'empty' => '',
+                'empty_slots' => '',
+                'title' => '',
+                'created_at' => '',
+            ],
 
             'table' => [
-                'status' => '',
-                'joined_at' => '',
-                'remove' => '',
-                'title' => '',
+                'status' => 'Estado',
+                'joined_at' => 'Fecha de ingreso',
+                'remove' => 'Eliminar',
+                'title' => 'Miembros actuales',
             ],
 
             'status' => [
-                'status_0' => '',
-                'status_1' => '',
+                'status_0' => 'Inactivo',
+                'status_1' => 'Activo',
             ],
         ],
     ],
+
+    'part' => [
+        'ok' => '',
+    ],
+
     'show' => [
         'bar' => [
-            'settings' => '',
+            'destroy' => '',
+            'join' => '',
+            'join_cancel' => '',
+            'part' => '',
         ],
 
         'info' => [
-            'created' => '',
-            'website' => '',
+            'created' => 'Formado',
+            'website' => 'Sitio web',
         ],
 
         'members' => [
-            'members' => '',
-            'owner' => '',
+            'members' => 'Miembros del equipo',
+            'owner' => 'Líder del equipo',
         ],
 
         'sections' => [
-            'members' => '',
-            'info' => '',
+            'info' => 'Información',
+            'members' => 'Miembros',
         ],
     ],
 ];

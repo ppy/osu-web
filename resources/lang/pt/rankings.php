@@ -50,6 +50,9 @@ return [
         'ongoing' => 'Esta temporada ainda está em curso (serão acrescentadas mais listas de reprodução).',
         'room_count' => 'Soma das listas de reprodução',
         'url' => 'Mostrar mais informações sobre a época.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -63,6 +66,7 @@ return [
         'accuracy' => 'Precisão',
         'active_users' => 'Utilizadores ativos',
         'country' => 'País',
+        'division' => '',
         'play_count' => 'Nº de partidas',
         'performance' => 'Desempenho',
         'total_score' => 'Pontuação total',

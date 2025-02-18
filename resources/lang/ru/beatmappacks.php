@@ -17,6 +17,7 @@ return [
     ],
 
     'show' => [
+        'created_by' => '',
         'download' => 'Скачать',
         'item' => [
             'cleared' => 'пройдена',

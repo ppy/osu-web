@@ -8,7 +8,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Historial de modding de :user",
-        'title_compact' => 'Modding',
+        'title_compact' => 'Moding',
 
         'discussions' => [
             'title_recent' => 'Discussions iniciades recentment',
@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => 'Regalar etiqueta de supporter',
+        'gift_supporter' => 'Regalar l\'etiqueta de supporter',
         'loading' => 'Carregant...',
         'send_message' => 'Enviar missatge',
     ],

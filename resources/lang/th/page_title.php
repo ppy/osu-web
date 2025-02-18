@@ -109,6 +109,8 @@ return [
         ],
         'teams_controller' => [
             '_' => '',
+            'edit' => '',
+            'leaderboard' => '',
             'show' => '',
         ],
         'tournaments_controller' => [
@@ -134,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'ร้านค้า',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

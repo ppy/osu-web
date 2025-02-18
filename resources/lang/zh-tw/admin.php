@@ -55,8 +55,8 @@ return [
                 'general' => '',
 
                 'users' => [
-                    'header' => '',
-                    'cover_presets' => '',
+                    'header' => '使用者',
+                    'cover_presets' => '個人檔案封面預設',
                 ],
             ],
         ],

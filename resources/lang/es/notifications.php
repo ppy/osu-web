@@ -20,17 +20,19 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'foro',
         'news_post' => 'noticias',
+        'team' => '',
         'user' => 'perfil',
     ],
 
     'filters' => [
         '_' => 'todas',
-        'user' => 'perfil',
         'beatmapset' => 'mapas',
-        'forum_topic' => 'foro',
-        'news_post' => 'noticias',
         'build' => 'versiones',
         'channel' => 'chat',
+        'forum_topic' => 'foro',
+        'news_post' => 'noticias',
+        'team' => '',
+        'user' => 'perfil',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Nuevo mapa',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Hay nuevas respuestas en «:title»',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
             ],
         ],
 

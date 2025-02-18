@@ -4,27 +4,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => '',
-    'none' => '',
+    'new' => 'Jauna Legacy API Atslēga',
+    'none' => 'Nav atslēgas.',
 
     'docs' => [
-        '_' => '',
-        'github' => '',
+        '_' => 'Dokumentācija ir pieejama :github.',
+        'github' => 'GiftHub',
     ],
 
     'form' => [
-        'create' => '',
+        'create' => 'Izveidot Atslēgu',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Paslēpt Atslēgu',
+        'show' => 'Parādīt Atslēgu',
+        'delete' => 'Izdzēst',
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'Nedot šo nevienam citam.',
+        'line2' => "Tas būtu tas pats kā savas paroles rādīšana.",
+        'line3' => 'Tavs konts iespējams varētu būt kompromizējams.',
     ],
 ];

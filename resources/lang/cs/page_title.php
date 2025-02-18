@@ -108,8 +108,10 @@ return [
             '_' => 'hodnocení',
         ],
         'teams_controller' => [
-            '_' => '',
-            'show' => '',
+            '_' => 'týmy',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => 'informace o týmu',
         ],
         'tournaments_controller' => [
             '_' => 'turnaje',
@@ -133,6 +135,11 @@ return [
     ],
     'store' => [
         '_' => 'obchod',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

@@ -49,6 +49,9 @@ return [
         'ongoing' => '',
         'room_count' => '',
         'url' => '',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => 'Presnosť',
         'active_users' => 'Aktívni Užívatelia',
         'country' => 'Krajina',
+        'division' => '',
         'play_count' => 'Počet Zahraní',
         'performance' => 'Výkon',
         'total_score' => 'Celkové Skóre',
