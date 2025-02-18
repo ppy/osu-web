@@ -52,6 +52,7 @@ class OsuAuthorize
             'IsNotOAuth',
             'IsOwnClient',
             'IsSpecialScope',
+            'TeamApplicationAccept',
             'TeamApplicationStore',
             'TeamPart',
             'UserUpdateEmail',
@@ -1910,6 +1911,7 @@ class OsuAuthorize
     public function checkTeamApplicationAccept(?User $user, TeamApplication $application): ?string
     {
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         $team = $application->team;
 
@@ -1928,6 +1930,7 @@ class OsuAuthorize
         $prefix = 'team.application.store.';
 
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ($user->team !== null) {
             return $user->team->getKey() === $team->getKey()
@@ -1966,6 +1969,7 @@ class OsuAuthorize
     public function checkTeamUpdate(?User $user, Team $team): ?string
     {
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         return $team->leader_id === $user->getKey() ? 'ok' : null;
     }
