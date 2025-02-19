@@ -65,13 +65,13 @@ export class Header extends React.Component<Props> {
   render() {
     return (
       <>
-        {this.beatmapset.deleted_at != null ? (
+        {this.beatmapset.deleted_at != null && (
           <NotificationBanner
             message={trans('beatmapsets.show.deleted_banner.message')}
             title={trans('beatmapsets.show.deleted_banner.title')}
             type='info'
           />
-        ) : null}
+        )}
         <HeaderV4
           links={headerLinks('discussions', this.beatmapset)}
           linksAppend={(
