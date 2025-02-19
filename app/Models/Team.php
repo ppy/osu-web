@@ -25,7 +25,7 @@ class Team extends Model
     private Uploader $header;
     private Uploader $logo;
 
-    public static function sanitiseName(?string $value): ?string
+    private static function sanitiseName(?string $value): ?string
     {
         return presence(preg_replace('/  +/', ' ', trim($value ?? '')));
     }
