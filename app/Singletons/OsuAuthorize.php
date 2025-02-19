@@ -55,6 +55,8 @@ class OsuAuthorize
             'TeamApplicationAccept',
             'TeamApplicationStore',
             'TeamPart',
+            'TeamStore',
+            'TeamUpdate',
             'UserUpdateEmail',
         ]);
 
