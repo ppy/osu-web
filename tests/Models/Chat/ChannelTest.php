@@ -11,8 +11,6 @@ use App\Events\ChatChannelEvent;
 use App\Jobs\Notifications\ChannelAnnouncement;
 use App\Libraries\User\AvatarHelper;
 use App\Models\Chat\Channel;
-use App\Models\Chat\Message;
-use App\Models\Chat\UserChannel;
 use App\Models\User;
 use App\Models\UserRelation;
 use Event;
@@ -211,18 +209,6 @@ class ChannelTest extends TestCase
 
         Event::assertDispatched(fn (ChatChannelEvent $event) => $event->action === 'join', 2);
         Event::assertNotDispatched(fn (ChatChannelEvent $event) => $event->action !== 'join');
-    }
-
-    public function testDelete(): void
-    {
-        $message = Message::factory()->create();
-        $message->channel->addUser($message->sender);
-
-        $this->expectCountChange(fn () => Channel::count(), -1);
-        $this->expectCountChange(fn () => UserChannel::count(), -1);
-        $this->expectCountChange(fn () => Message::count(), -1);
-
-        $message->channel->delete();
     }
 
     public function testGetPMChannelName()

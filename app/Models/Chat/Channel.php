@@ -268,26 +268,6 @@ class Channel extends Model
         return $this->hasMany(UserChannel::class);
     }
 
-    public function delete()
-    {
-        return $this->getConnection()->transaction(function () {
-            $this->loadMissing('userChannels.user');
-
-            foreach ($this->userChannels as $userChannel) {
-                $user = $userChannel->user;
-                if ($user === null) {
-                    $userChannel->delete();
-                } else {
-                    $this->removeUser($user);
-                }
-            }
-
-            $this->messages()->delete();
-
-            return parent::delete();
-        });
-    }
-
     public function userIds(): array
     {
         return $this->memoize(__FUNCTION__, function () {
