@@ -58,15 +58,11 @@ class TopicCoversController extends Controller
 
         priv_check('ForumTopicCoverStore', $forum)->ensureCan();
 
-        try {
-            $cover = TopicCover::upload(
-                $params['cover_file'],
-                Auth::user(),
-                $topic ?? null,
-            );
-        } catch (ImageProcessorException $e) {
-            return error_popup($e->getMessage());
-        }
+        $cover = TopicCover::upload(
+            $params['cover_file'],
+            Auth::user(),
+            $topic ?? null,
+        );
 
         return json_item($cover, new TopicCoverTransformer());
     }

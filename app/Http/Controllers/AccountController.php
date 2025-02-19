@@ -77,11 +77,7 @@ class AccountController extends Controller
     {
         $user = auth()->user();
 
-        try {
-            AvatarHelper::set($user, Request::file('avatar_file'));
-        } catch (ImageProcessorException $e) {
-            return error_popup($e->getMessage());
-        }
+        AvatarHelper::set($user, Request::file('avatar_file'));
 
         return json_item($user, new CurrentUserTransformer());
     }
