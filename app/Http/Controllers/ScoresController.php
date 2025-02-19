@@ -215,7 +215,10 @@ class ScoresController extends Controller
                 'legacy_score_id' => static::parseIdOrFail($legacyId),
             ]);
         }
-        $score = $scoreQuery->whereHas('beatmap.beatmapset')->visibleUsers()->firstOrFail();
+        if (\Auth::user()?->isAdmin() !== true) {
+            $scoreQuery->visibleUsers();
+        }
+        $score = $scoreQuery->whereHas('beatmap.beatmapset')->firstOrFail();
 
         $userIncludes = array_map(function ($include) {
             return "user.{$include}";
