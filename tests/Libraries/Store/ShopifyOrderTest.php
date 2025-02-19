@@ -15,23 +15,23 @@ class ShopifyOrderTest extends TestCase
 {
     private const AUTHORIZED = [
         'financialStatus' => 'AUTHORIZED',
-        'fulfillmentStatus' => 'UNFULFILLED'
+        'fulfillmentStatus' => 'UNFULFILLED',
     ];
 
     private const CANCELLED = [
         'canceledAt' => '2025-01-23T01:23:45Z',
         'financialStatus' => 'AUTHORIZED',
-        'fulfillmentStatus' => 'FULFILLED'
+        'fulfillmentStatus' => 'FULFILLED',
     ];
 
     private const FULFILLED = [
         'financialStatus' => 'PAID',
-        'fulfillmentStatus' => 'FULFILLED'
+        'fulfillmentStatus' => 'FULFILLED',
     ];
 
     private const PAID = [
         'financialStatus' => 'PAID',
-        'fulfillmentStatus' => 'UNFULFILLED'
+        'fulfillmentStatus' => 'UNFULFILLED',
     ];
 
     public static function dataProviderForUpdateOrderStatus()
@@ -47,7 +47,7 @@ class ShopifyOrderTest extends TestCase
     private static function baseResponse(array $extra)
     {
         return [
-            'canceledAt' => NULL,
+            'canceledAt' => null,
             'id' => 'gid://shopify/Order/1',
             'orderNumber' => 123,
             'processedAt' => '2025-01-23T01:23:45Z',
