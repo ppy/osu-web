@@ -143,7 +143,7 @@
                             <div class="team-info-entry">
                                 <div class="team-info-entry__title">{{ osu_trans('model_validation.team.attributes.is_open') }}</div>
                                 <div class="team-info-entry__value">
-                                    {{ osu_trans('teams.edit.settings.application_state.state_'.(string) $team->is_open) }}
+                                    {{ osu_trans('teams.edit.settings.application_state.state_'.(int) $team->is_open) }}
                                 </div>
                             </div>
                         </div>
