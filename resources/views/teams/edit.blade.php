@@ -74,7 +74,7 @@
                                 {{ osu_trans('model_validation.team.attributes.is_open') }}
                             </span>
                             @php
-                                $currentIsOpen = $team->is_open;
+                                $currentIsOpen = (int) $team->is_open;
                             @endphp
                             <select
                                 name="team[is_open]"
