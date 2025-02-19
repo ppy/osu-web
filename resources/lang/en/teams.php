@@ -19,12 +19,27 @@ return [
         ],
     ],
 
+    'create' => [
+        'submit' => 'Create Team',
+
+        'form' => [
+            'name_help' => 'Your team name. The name is permanent at the moment.',
+            'short_name_help' => 'Maximum 4 characters.',
+            'title' => "Let's set up a new team",
+        ],
+
+        'intro' => [
+            'description' => "Play together with friends; existing or new. You're not currently in a team. Join an existing team by visiting their team page or create your own team from this page.",
+            'title' => 'Team!',
+        ],
+    ],
+
     'destroy' => [
-        'ok' => 'Team removed',
+        'ok' => 'Team removed.',
     ],
 
     'edit' => [
-        'saved' => 'Settings saved successfully',
+        'ok' => 'Settings saved successfully.',
         'title' => 'Team Settings',
 
         'description' => [
@@ -124,5 +139,9 @@ return [
             'info' => 'Info',
             'members' => 'Members',
         ],
+    ],
+
+    'store' => [
+        'ok' => 'Team created.',
     ],
 ];

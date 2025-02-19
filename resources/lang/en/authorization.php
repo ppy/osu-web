@@ -205,6 +205,9 @@ return [
             'is_leader' => "Team leader can't leave the team.",
             'not_member' => 'Not a member of the team.',
         ],
+        'store' => [
+            'require_supporter_tag' => 'osu!supporter tag is required to create team.',
+        ],
     ],
 
     'user' => [
