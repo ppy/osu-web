@@ -41,6 +41,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $reference For paypal transactions, this is the resource Id of the paypal order; otherwise, it is the same as the transaction_id without the prefix.
  * @property Carbon|null $shipped_at
  * @property float|null $shipping
+ * @property string|null $shopify_url
  * @property mixed $status
  * @property string|null $tracking_code
  * @property string|null $transaction_id For paypal transactions, this value is based on the IPN or captured payment Id, not the order resource id.
@@ -184,6 +185,23 @@ class Order extends Model
         return $query->with('payments');
     }
 
+    #region Shopify convenience setters for webhook updates
+    public function setAdminGraphqlApiIdAttribute(string $value)
+    {
+        $this->reference = $value;
+    }
+
+    public function setOrderNumberAttribute(string $value)
+    {
+        $this->transaction_id = static::PROVIDER_SHOPIFY."-{$value}";
+    }
+
+    public function setOrderStatusUrlAttribute(string $value)
+    {
+        $this->shopify_url = $value;
+    }
+    #endregion
+
     public function trackingCodes()
     {
         $codes = [];
@@ -246,24 +264,31 @@ class Order extends Model
     }
 
     /**
-     * Returns the reference id for the provider associated with this Order.
+     * Returns the 'final' id for the provider associated with this Order.
      *
-     * For Paypal transactions, this is "paypal-{$capturedId}" where $capturedId is the IPN txn_id
-     * or captured Id of the payment item in the payment transaction (not the payment itself).
+     * For Paypal, is the IPN txn_id or captured Id of the payment item in the payment transaction.
+     *  (not the payment itself).
+     * For Xsolla, it is the Xsolla transaction id and should be the same as reference.
+     * For Shopify, it is the Shopify order number.
      *
-     * For other payment providers, this value should be "{$provider}-{$reference}".
-     *
-     * In the case of failed or user-aborted payments, this should be "{$provider}-failed".
-     *
-     * @return string|null
+     * TODO: remove the splitting and remove the provider prefix? (was for legacy purposes).
      */
-    public function getProviderReference(): ?string
+    public function getTransactionId(): ?string
     {
         if (!present($this->transaction_id)) {
             return null;
         }
 
         return static::splitTransactionId($this->transaction_id)[1] ?? null;
+    }
+
+    /**
+     * Returns shopify_url without any of the querystring params
+     */
+    public function getShopifyUrl(): ?string
+    {
+        // doesn't remove the /authenticate part of the url which is also unnecessary but still redirects to the right url.
+        return mb_substr($this->shopify_url, 0, mb_strpos($this->shopify_url, '?'));
     }
 
     public function getSubtotal()
@@ -274,21 +299,6 @@ class Order extends Model
         }
 
         return (float) $total;
-    }
-
-    public function setTransactionIdAttribute($value)
-    {
-        // TODO: migrate to always using provider and reference instead of transaction_id.
-        $this->attributes['transaction_id'] = $value;
-
-        $split = static::splitTransactionId($value);
-        $this->provider = $split[0] ?? null;
-
-        $reference = $split[1] ?? null;
-        // For Paypal we're going to use the PAYID number for reference instead of the IPN txn_id
-        if ($this->provider !== static::PROVIDER_PAYPAL && $reference !== 'failed') {
-            $this->reference = $reference;
-        }
     }
 
     public function requiresShipping()
