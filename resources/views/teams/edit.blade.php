@@ -31,7 +31,7 @@
                     <div class="team-settings__item">
                         <label class="input-container">
                             <span class="input-container__label">
-                                {{ osu_trans('teams.edit.settings.url') }}
+                                {{ osu_trans('model_validation.team.attributes.url') }}
                             </span>
                             <input
                                 name="team[url]"
@@ -44,7 +44,7 @@
                     <div class="team-settings__item">
                         <label class="input-container input-container--select">
                             <span class="input-container__label">
-                                {{ osu_trans('teams.edit.settings.default_ruleset') }}
+                                {{ osu_trans('model_validation.team.attributes.default_ruleset_id') }}
                             </span>
                             <select
                                 name="team[default_ruleset_id]"
@@ -71,7 +71,7 @@
                     <div class="team-settings__item">
                         <label class="input-container input-container--select">
                             <span class="input-container__label">
-                                {{ osu_trans('teams.edit.settings.application') }}
+                                {{ osu_trans('model_validation.team.attributes.is_open') }}
                             </span>
                             @php
                                 $currentIsOpen = $team->is_open;

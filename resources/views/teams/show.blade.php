@@ -124,14 +124,28 @@
                             </div>
                             @if (present($team->url))
                                 <div class="team-info-entry">
-                                    <div class="team-info-entry__title">{{ osu_trans('teams.show.info.website') }}</div>
-                                    <div class="team-info-entry__value">
-                                        <span class="u-ellipsis-overflow">
-                                            <a href="{{ $team->url }}">{{ $team->url }}</a>
-                                        </span>
+                                    <div class="team-info-entry__title">{{ osu_trans('model_validation.team.attributes.url') }}</div>
+                                    <div class="team-info-entry__value u-ellipsis-overflow">
+                                        <a href="{{ $team->url }}">{{ $team->url }}</a>
                                     </div>
                                 </div>
                             @endif
+                            <div class="team-info-entry">
+                                <div class="team-info-entry__title">{{ osu_trans('model_validation.team.attributes.default_ruleset_id') }}</div>
+                                <div class="team-info-entry__value">
+                                    @php
+                                        $rulesetName = App\Models\Beatmap::modeStr($team->default_ruleset_id);
+                                    @endphp
+                                    <span class="fal fa-extra-mode-{{ $rulesetName }}"></span>
+                                    {{ osu_trans("beatmaps.mode.{$rulesetName}") }}
+                                </div>
+                            </div>
+                            <div class="team-info-entry">
+                                <div class="team-info-entry__title">{{ osu_trans('model_validation.team.attributes.is_open') }}</div>
+                                <div class="team-info-entry__value">
+                                    {{ osu_trans('teams.edit.settings.application_state.state_'.(string) $team->is_open) }}
+                                </div>
+                            </div>
                         </div>
                     </div>
 
