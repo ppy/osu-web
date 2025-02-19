@@ -56,10 +56,6 @@ class OrderFactory extends Factory
 
     public function shopify(): static
     {
-        return $this->state([
-            'provider' => 'shopify',
-            // Doesn't need to be a gid for tests.
-            'transaction_id' => Order::PROVIDER_SHOPIFY.'-'.time(),
-        ]);
+        return $this->state(['provider' => 'shopify']);
     }
 }
