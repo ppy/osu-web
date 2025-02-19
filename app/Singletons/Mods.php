@@ -138,8 +138,7 @@ class Mods
     public function assertValidExclusivity(int $rulesetId, array $modAcronyms): bool
     {
         while (($modAcronym = array_pop($modAcronyms)) !== null) {
-            $mod = $this->mods[$rulesetId][$modAcronym];
-            $incompatibleIds = $mod['IncompatibleMods'];
+            $incompatibleIds = $this->mods[$rulesetId][$modAcronym]['IncompatibleMods'];
 
             $invalidIds = $incompatibleIds->intersect(new Set($modAcronyms));
             if ($invalidIds->count() > 0) {
@@ -157,8 +156,7 @@ class Mods
         $disallowedIds = new Set();
 
         while (($requiredId = array_pop($requiredIds)) !== null) {
-            $mod = $this->mods[$rulesetId][$requiredId];
-            $incompatibleIds = $mod['IncompatibleMods'];
+            $incompatibleIds = $this->mods[$rulesetId][$requiredId]['IncompatibleMods'];
             $disallowedIds->add($requiredId, ...$incompatibleIds);
         }
 
