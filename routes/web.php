@@ -613,6 +613,8 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
             Route::apiResource('rooms', 'RoomsController', ['only' => ['store']]);
         });
 
+        Route::resource('teams', 'TeamsController', ['only' => ['destroy']]);
+
         Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'UsersController@achievement')->name('users.achievement');
 
         Route::group(['as' => 'user-group.'], function () {
