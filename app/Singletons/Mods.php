@@ -152,17 +152,14 @@ class Mods
 
     public function assertValidMultiplayerExclusivity(int $rulesetId, array $requiredIds, array $allowedIds): bool
     {
+        $this->assertValidExclusivity($rulesetId, $requiredIds);
+
         $disallowedIds = new Set();
 
         while (($requiredId = array_pop($requiredIds)) !== null) {
             $mod = $this->mods[$rulesetId][$requiredId];
             $incompatibleIds = $mod['IncompatibleMods'];
             $disallowedIds->add($requiredId, ...$incompatibleIds);
-
-            $invalidRequiredIds = $incompatibleIds->intersect(new Set($requiredIds));
-            if ($invalidRequiredIds->count() > 0) {
-                throw new InvariantException("incompatible mods: {$requiredId}, {$invalidRequiredIds->join(', ')}");
-            }
         }
 
         $invalidAllowedIds = $disallowedIds->intersect(new Set($allowedIds));
