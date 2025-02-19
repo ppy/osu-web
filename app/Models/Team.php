@@ -25,6 +25,11 @@ class Team extends Model
     private Uploader $header;
     private Uploader $logo;
 
+    public static function sanitiseName(?string $value): ?string
+    {
+        return presence(preg_replace('/  +/', ' ', trim($value ?? '')));
+    }
+
     public function applications(): HasMany
     {
         return $this->hasMany(TeamApplication::class);
@@ -38,6 +43,11 @@ class Team extends Model
     public function members(): HasMany
     {
         return $this->hasMany(TeamMember::class);
+    }
+
+    public function setDefaultRulesetIdAttribute(?int $value): void
+    {
+        $this->attributes['default_ruleset_id'] = Beatmap::MODES[Beatmap::modeStr($value) ?? 'osu'];
     }
 
     public function setHeaderAttribute(?string $value): void
@@ -58,9 +68,14 @@ class Team extends Model
         }
     }
 
-    public function setDefaultRulesetIdAttribute(?int $value): void
+    public function setNameAttribute(?string $value): void
     {
-        $this->attributes['default_ruleset_id'] = Beatmap::MODES[Beatmap::modeStr($value) ?? 'osu'];
+        $this->attributes['name'] = static::sanitiseName($value);
+    }
+
+    public function setShortNameAttribute(?string $value): void
+    {
+        $this->attributes['short_name'] = static::sanitiseName($value);
     }
 
     public function setUrlAttribute(?string $value): void
@@ -122,7 +137,7 @@ class Team extends Model
 
         $wordFilters = app('chat-filters');
         foreach (['name', 'short_name'] as $field) {
-            $value = $this->$field = presence(preg_replace('/  +/', ' ', trim($this->$field ?? '')));
+            $value = $this->$field;
             if ($value === null) {
                 $this->validationErrors()->add($field, 'required');
             } elseif ($this->isDirty($field)) {
