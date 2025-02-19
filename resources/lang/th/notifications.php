@@ -20,17 +20,19 @@ return [
         'channel' => 'แชท',
         'forum_topic' => 'ฟอรั่ม',
         'news_post' => 'ข่าวสาร',
+        'team' => '',
         'user' => 'โปรไฟล์',
     ],
 
     'filters' => [
         '_' => 'ทั้งหมด',
-        'user' => 'โปรไฟล์',
         'beatmapset' => 'บีทแมพ',
-        'forum_topic' => 'บอร์ดข่าวสาร',
-        'news_post' => 'ข่าวสาร',
         'build' => 'เวอร์ชั่น',
         'channel' => 'แชท',
+        'forum_topic' => 'บอร์ดข่าวสาร',
+        'news_post' => 'ข่าวสาร',
+        'team' => '',
+        'user' => 'โปรไฟล์',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'บีทแมพใหม่',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'มีการตอบกลับใหม่ใน ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
             ],
         ],
 

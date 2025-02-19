@@ -17,6 +17,7 @@ return [
     ],
 
     'show' => [
+        'created_by' => '',
         'download' => 'Stáhnout',
         'item' => [
             'cleared' => 'splněno',

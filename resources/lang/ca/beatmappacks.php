@@ -5,10 +5,10 @@
 
 return [
     'index' => [
-        'description' => 'Col·leccions preempaquetades de beatmaps basades en un tema comú.',
+        'description' => 'Col·leccions preempaquetades de mapes basades en un tema comú.',
         'empty' => 'Pròximament!',
         'nav_title' => 'llistat',
-        'title' => 'Paquets de beatmaps',
+        'title' => 'Paquets de Mapes',
 
         'blurb' => [
             'important' => 'LLEGEIX AIXÒ ABANS DE DESCARREGAR',
@@ -17,6 +17,7 @@ return [
     ],
 
     'show' => [
+        'created_by' => '',
         'download' => 'Descarregar',
         'item' => [
             'cleared' => 'completat',
@@ -30,10 +31,10 @@ return [
 
     'mode' => [
         'artist' => 'Artista/Àlbum',
-        'chart' => 'Spotlights',
+        'chart' => 'En el focus',
         'featured' => 'Artista Destacat',
-        'loved' => 'Project Loved',
-        'standard' => 'Standard',
+        'loved' => 'Projecte Amat',
+        'standard' => 'Estàndard',
         'theme' => 'Tema',
         'tournament' => 'Torneig',
     ],

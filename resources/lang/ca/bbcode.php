@@ -20,6 +20,6 @@ return [
         'normal' => 'Normal',
         'large' => 'Gran',
     ],
-    'spoilerbox' => 'Caixa Spoiler',
+    'spoilerbox' => 'Caixa Desvetllament',
     'strikethrough' => 'Barrat',
 ];

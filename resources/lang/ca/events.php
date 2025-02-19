@@ -9,8 +9,8 @@ return [
     'beatmapset_approve' => ':beatmapset de <strong>:user</strong> s\'ha aprovat :approval!',
     'beatmapset_delete' => ':beatmapset s\'ha eliminat.',
     'beatmapset_revive' => ':beatmapset ha estat ressuscitat del somni etern per  <strong>:user</strong>.',
-    'beatmapset_update' => '<strong><em>:user</em></strong> ha actualitzat el beatmap "<em>:beatmapset</em>"',
-    'beatmapset_upload' => '<strong><em>:user</em></strong> ha enviat un nou beatmap «:beatmapset»',
+    'beatmapset_update' => '<strong><em>:user</em></strong> ha actualitzat el mapa "<em>:beatmapset</em>"',
+    'beatmapset_upload' => '<strong><em>:user</em></strong> ha enviat un nou mapa «:beatmapset»',
     'empty' => "Aquest usuari no ha fet res rellevant recentment!",
     'rank' => ':user ha assolit la :rank a :beatmap (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> ha perdut la primera posició a  <em>:beatmap</em> (:mode)',
@@ -20,8 +20,8 @@ return [
     'username_change' => '<strong>:previousUsername</strong> ha canviat el seu nom d\'usuari a  <strong><em>:user</em></strong>!',
 
     'beatmapset_status' => [
-        'approved' => 'aprobado',
-        'loved' => 'estimat',
+        'approved' => 'aprovat',
+        'loved' => 'amat',
         'qualified' => 'qualificat',
         'ranked' => 'classificat',
     ],

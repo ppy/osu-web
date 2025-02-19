@@ -20,17 +20,19 @@ return [
         'channel' => 'ћаскање',
         'forum_topic' => 'форум',
         'news_post' => 'новости',
+        'team' => '',
         'user' => 'профил',
     ],
 
     'filters' => [
         '_' => 'све',
-        'user' => 'профил',
         'beatmapset' => 'мапе',
-        'forum_topic' => 'форум',
-        'news_post' => 'новости',
         'build' => 'верзије',
         'channel' => 'чет',
+        'forum_topic' => 'форум',
+        'news_post' => 'новости',
+        'team' => '',
+        'user' => 'профил',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Нова мапа',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Има нових одговора у ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
             ],
         ],
 

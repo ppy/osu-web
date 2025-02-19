@@ -25,18 +25,18 @@ return [
 
     'mapping' => [
         'empty' => 'No s\'ha mirat cap mapejador.',
-        'followers' => 'subscriptors de mapping',
+        'followers' => 'subscriptors de mapeig',
         'page_title' => 'llista de seguiment de mapejadors',
         'title' => 'mapejador',
-        'to_0' => 'deixar de notificar-me quan aquest usuari pugi un nou beatmap',
-        'to_1' => 'notificar-me quan aquest usuari pugi un nou beatmap',
+        'to_0' => 'deixar de notificar-me quan aquest usuari pugi un nou mapa',
+        'to_1' => 'notificar-me quan aquest usuari pugi un nou mapa',
     ],
 
     'modding' => [
-        'title' => 'discusió del beatmap',
+        'title' => 'discusió del mapa',
     ],
 
     'store' => [
-        'too_many' => '',
+        'too_many' => 'Límit de seguiments assolit.',
     ],
 ];

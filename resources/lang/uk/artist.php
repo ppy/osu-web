@@ -30,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Пісні',
         'count' => ':count_delimited пісня|:count_delimited пісні|:count_delimited пісень',
-        'original' => 'ексклюзивно для osu! ',
+        'original' => 'osu! original',
         'original_badge' => 'ОРИГІНАЛ',
     ],
 
@@ -47,7 +47,7 @@ return [
 
             'exclusive_only' => [
                 'all' => 'Всі',
-                'exclusive_only' => 'ексклюзив для osu!',
+                'exclusive_only' => 'osu! original',
             ],
 
             'form' => [

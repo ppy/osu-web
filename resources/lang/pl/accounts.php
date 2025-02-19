@@ -12,7 +12,7 @@ return [
             'title' => 'Awatar',
             'reset' => 'zresetuj',
             'rules' => 'Upewnij się, że twój awatar jest zgodny z :link.<br/>Oznacza to, że musi być <strong>stosowny dla wszystkich grup wiekowych</strong> i nie może ukazywać nagości, wulgarności ani sugestywnej zawartości.',
-            'rules_link' => 'zasadami społeczności',
+            'rules_link' => 'wymaganiami dot. treści wizualnych',
         ],
 
         'email' => [
@@ -28,7 +28,7 @@ return [
         'legacy_api' => [
             'api' => 'api',
             'irc' => 'irc',
-            'title' => 'Starsze API',
+            'title' => 'Stare API',
         ],
 
         'password' => [
@@ -64,14 +64,14 @@ return [
     ],
 
     'github_user' => [
-        'info' => "Jeśli jesteś współtwórcą repozytoriów osu!, połączenie Twojego konta GitHub powiąże Twoje działania z twoim profilem osu!. Konta GitHub bez wpisów do repozytoriów osu! nie mogą zostać połączone.",
+        'info' => "Jeśli przyczyniasz się do rozwoju otwartoźródłowych projektów osu!, połączenie konta GitHub pozwoli na powiązanie odpowiednich pozycji na liście zmian z twoim profilem osu!. Konta GitHub bez zarejestrowanego wkładu w repozytoria osu! nie będą mogły zostać połączone.",
         'link' => 'Połącz konto GitHub',
         'title' => 'GitHub',
         'unlink' => 'Rozłącz konto GitHub',
 
         'error' => [
             'already_linked' => 'To konto GitHub jest już połączone z innym użytkownikiem.',
-            'no_contribution' => 'Nie możesz połączyć konta GitHub bez historii wkładu w repozytoria osu!.',
+            'no_contribution' => 'Nie możesz połączyć konta GitHub bez zarejestrowanego wkładu w repozytoria osu!.',
             'unverified_email' => 'Zweryfikuj swój główny adres e-mail na GitHub, a następnie spróbuj połączyć konto ponownie.',
         ],
     ],
@@ -97,8 +97,8 @@ return [
     ],
 
     'oauth' => [
-        'authorized_clients' => 'autoryzowane klienty',
-        'own_clients' => 'moje klienty',
+        'authorized_clients' => 'autoryzowani klienci',
+        'own_clients' => 'moi klienci',
         'title' => 'OAuth',
     ],
 

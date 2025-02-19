@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirm_new' => '',
-    'new' => '',
-    'none' => '',
+    'confirm_new' => 'Izveidot jaunu IRC paroli?',
+    'new' => 'Jauna Legacy IRC Parole',
+    'none' => 'IRC Parole nav uzstādīta.',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
-        'token' => '',
-        'username' => '',
+        'server_host' => 'serveris',
+        'server_port' => 'ports',
+        'token' => 'servera parole',
+        'username' => 'lietotājvārds',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Paslēpt Paroli',
+        'show' => 'Parādīt Paroli',
+        'delete' => 'Izdzēst',
     ],
 ];

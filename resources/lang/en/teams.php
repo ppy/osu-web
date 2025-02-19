@@ -58,12 +58,9 @@ return [
         ],
 
         'settings' => [
-            'application' => 'Team Application',
             'application_help' => 'Whether to allow people to apply for the team',
-            'default_ruleset' => 'Default Ruleset',
             'default_ruleset_help' => 'The ruleset to be selected by default when visiting the team page',
             'title' => 'Team Settings',
-            'url' => 'URL',
 
             'application_state' => [
                 'state_0' => 'Closed',
@@ -131,7 +128,6 @@ return [
 
         'info' => [
             'created' => 'Formed',
-            'website' => 'Website',
         ],
 
         'members' => [

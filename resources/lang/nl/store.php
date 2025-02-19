@@ -55,6 +55,7 @@ return [
         'contact' => 'Contact:',
         'date' => 'Datum:',
         'echeck_delay' => 'Aangezien uw betaling een eCheck was, Wacht maximaal 10 dagen extra om de betaling veilig via PayPal te laten gaan!',
+        'echeck_denied' => '',
         'hide_from_activity' => 'osu!supporter tags in deze bestelling worden niet weergegeven in je recente activiteiten.',
         'sent_via' => 'Gestuurd Via:',
         'shipping_to' => 'Verzenden Naar:',

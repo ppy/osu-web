@@ -55,6 +55,7 @@ return [
         'contact' => 'İletişim:',
         'date' => 'Tarih:',
         'echeck_delay' => 'Ödemenizin bir eCheck olması nedeniyle, ödemenizin PayPal\'dan temizlenmesi için 10 ekstra günü göz önüne alın!',
+        'echeck_denied' => '',
         'hide_from_activity' => 'Bu siparişteki osu!supporter etiketleri yakın zamandaki etkinliklerinizde gösterilmez.',
         'sent_via' => 'Kargo şirketi:',
         'shipping_to' => 'Gönderim adresi:',

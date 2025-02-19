@@ -19,7 +19,7 @@ return [
 
         'errors' => [
             'duration_too_long' => 'Thời lượng quá dài. ',
-            'name_too_long' => '',
+            'name_too_long' => 'Tên phòng quá dài.',
         ],
 
         'status' => [

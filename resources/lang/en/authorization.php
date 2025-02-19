@@ -196,7 +196,7 @@ return [
             'store' => [
                 'already_member' => "You're already part of the team.",
                 'already_other_member' => "You're already part of a different team.",
-                'currently_applying' => 'You have pending team join request.',
+                'currently_applying' => 'You have a pending team join request.',
                 'team_closed' => 'The team is currently not accepting any join requests.',
                 'team_full' => "The team is full and can't accept any more members.",
             ],

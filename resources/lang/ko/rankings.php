@@ -49,6 +49,9 @@ return [
         'ongoing' => '시즌이 진행 중입니다 (더 많은 플레이리스트가 추가될 예정이에요).',
         'room_count' => '플레이리스트 갯수',
         'url' => '해당 시즌의 자세한 정보를 표시합니다.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => '정확도',
         'active_users' => '유저 수',
         'country' => '국가',
+        'division' => '',
         'play_count' => '플레이 횟수',
         'performance' => '퍼포먼스 점수',
         'total_score' => '총 점수',

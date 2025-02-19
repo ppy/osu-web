@@ -76,6 +76,7 @@ export class ArtEntry extends React.Component
         div className: "#{bn}__result",
           if showName
             a
+              className: "#{bn}__result-name u-ellipsis-overflow"
               href: @props.entry.preview
               rel: 'nofollow noreferrer'
               target: '_blank'

@@ -137,8 +137,11 @@ return [
         'word_not_allowed' => 'This :attribute choice is not allowed.',
 
         'attributes' => [
+            'default_ruleset_id' => 'Default ruleset',
+            'is_open' => 'Team application',
             'name' => 'Name',
             'short_name' => 'Short name',
+            'url' => 'URL',
         ],
     ],
 

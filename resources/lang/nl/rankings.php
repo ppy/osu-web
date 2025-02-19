@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Dit seizoen is nog steeds gaande (er zullen meer afspeellijsten toegevoegd worden).',
         'room_count' => 'Aantal afspeellijsten',
         'url' => 'Geef meer informatie weer over dat seizoen.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => 'Nauwkeurigheid',
         'active_users' => 'Actieve gebruikers',
         'country' => 'Land',
+        'division' => '',
         'play_count' => 'Aantal keer gespeeld',
         'performance' => 'Prestatie',
         'total_score' => 'Totale Score',

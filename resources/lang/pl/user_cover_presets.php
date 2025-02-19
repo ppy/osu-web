@@ -23,10 +23,10 @@ return [
 
         'item' => [
             'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => 'Ustaw Obraz',
+            'click_to_enable' => 'Kliknij, aby aktywować',
+            'enabled' => 'Aktywne',
+            'disabled' => 'Nieaktywne',
+            'image_store' => 'Ustaw obraz',
             'image_update' => '',
         ],
     ],
