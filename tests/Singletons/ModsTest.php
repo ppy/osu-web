@@ -75,13 +75,11 @@ class ModsTest extends TestCase
     {
         if (!$isValid) {
             $this->expectException(InvariantException::class);
+        } else {
+            $this->expectNotToPerformAssertions();
         }
 
         $result = app('mods')->assertValidExclusivity($ruleset->value, $mods);
-
-        if ($isValid) {
-            $this->assertTrue($result);
-        }
     }
 
     /**
@@ -91,13 +89,11 @@ class ModsTest extends TestCase
     {
         if (!$isValid) {
             $this->expectException(InvariantException::class);
+        } else {
+            $this->expectNotToPerformAssertions();
         }
 
-        $result = app('mods')->assertValidMultiplayerExclusivity($ruleset->value, $requiredIds, $allowedIds);
-
-        if ($isValid) {
-            $this->assertTrue($result);
-        }
+        app('mods')->assertValidMultiplayerExclusivity($ruleset->value, $requiredIds, $allowedIds);
     }
 
     /**
@@ -107,13 +103,11 @@ class ModsTest extends TestCase
     {
         if (!$isValid) {
             $this->expectException(InvariantException::class);
+        } else {
+            $this->expectNotToPerformAssertions();
         }
 
-        $result = app('mods')->validateSelection($ruleset->value, $modCombo);
-
-        if ($isValid) {
-            $this->assertTrue($result);
-        }
+        app('mods')->validateSelection($ruleset->value, $modCombo);
     }
 
     public static function modCombos()

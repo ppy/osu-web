@@ -135,7 +135,7 @@ class Mods
         );
     }
 
-    public function assertValidExclusivity(int $rulesetId, array $modAcronyms): bool
+    public function assertValidExclusivity(int $rulesetId, array $modAcronyms): void
     {
         foreach ($modAcronyms as $modAcronym) {
             $incompatibleIds = $this->mods[$rulesetId][$modAcronym]['IncompatibleMods'];
@@ -145,11 +145,9 @@ class Mods
                 throw new InvariantException("incompatible mods: {$modAcronym}, {$invalidIds->join(', ')}");
             }
         }
-
-        return true;
     }
 
-    public function assertValidMultiplayerExclusivity(int $rulesetId, array $requiredIds, array $allowedIds): bool
+    public function assertValidMultiplayerExclusivity(int $rulesetId, array $requiredIds, array $allowedIds): void
     {
         $this->assertValidExclusivity($rulesetId, $requiredIds);
 
@@ -165,8 +163,6 @@ class Mods
         if ($invalidAllowedIds->count() > 0) {
             throw new InvariantException("allowed mods conflict with required mods: {$invalidAllowedIds->join(', ')}");
         }
-
-        return true;
     }
 
     public function bitsetToIds(int $inputBitset): array
