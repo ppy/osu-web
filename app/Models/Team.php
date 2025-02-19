@@ -185,7 +185,7 @@ class Team extends Model
 
         $supporterCount = $this->members->filter(fn ($member) => $member->user?->isSupporter() ?? false)->count();
 
-        return min(8 + (4 * $supporterCount), $GLOBALS['cfg']['osu']['team']['max_members']);;
+        return min(8 + (4 * $supporterCount), $GLOBALS['cfg']['osu']['team']['max_members']);
     }
 
     public function save(array $options = [])
