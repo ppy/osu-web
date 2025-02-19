@@ -183,7 +183,7 @@ class Team extends Model
     {
         $this->loadMissing('members.user');
 
-        $supporterCount = $this->members->filter(fn ($member) => $member->user?->osu_subscriber ?? false)->count();
+        $supporterCount = $this->members->filter(fn ($member) => $member->user?->isSupporter() ?? false)->count();
 
         return min(8 + (4 * $supporterCount), $GLOBALS['cfg']['osu']['team']['max_members']);;
     }
