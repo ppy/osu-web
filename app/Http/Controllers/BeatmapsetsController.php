@@ -129,7 +129,9 @@ class BeatmapsetsController extends Controller
 
     public function discussion($id)
     {
-        $beatmapset = Beatmapset::findOrFail($id);
+        $beatmapset = priv_check('BeatmapsetShowDeleted')->can()
+            ? Beatmapset::withTrashed()->findOrFail($id)
+            : Beatmapset::findOrFail($id);
 
         $initialData = [
             'beatmapset' => $beatmapset->defaultDiscussionJson(),
