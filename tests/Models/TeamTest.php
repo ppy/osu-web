@@ -9,6 +9,7 @@ namespace Tests\Models;
 
 use App\Models\Chat;
 use App\Models\Team;
+use App\Models\TeamApplication;
 use App\Models\TeamMember;
 use App\Models\User;
 use Tests\TestCase;
@@ -28,11 +29,14 @@ class TeamTest extends TestCase
         $team = Team::factory()->create();
         $team->members()->create(['user_id' => User::factory()->create()->getKey()]);
         Chat\Message::factory()->create(['channel_id' => $team->channel, 'user_id' => $team->leader_id]);
+        $team->applications()->create(['user_id' => User::factory()->create()->getKey()]);
+
         $otherTeam = Team::factory()->create();
         $otherTeam->members()->create(['user_id' => User::factory()->create()->getKey()]);
         Chat\Message::factory()->create(['channel_id' => $otherTeam->channel]);
 
         $this->expectCountChange(fn () => Team::count(), -1);
+        $this->expectCountChange(fn () => TeamApplication::count(), -1);
         $this->expectCountChange(fn () => TeamMember::count(), -2);
         $this->expectCountChange(fn () => $otherTeam->members()->count(), 0);
 

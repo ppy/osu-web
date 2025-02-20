@@ -3,6 +3,8 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    use App\Models\Team;
+
     $imageTypeAccept = implode(',', array_map(
         image_type_to_mime_type(...),
         App\Libraries\ImageProcessor::ALLOWED_TYPES,
@@ -111,17 +113,24 @@
                     {{ osu_trans('teams.edit.header.title') }}
                 </h2>
                 <div class="team-settings">
-                    <div class="team-settings__item team-settings__item--image">
+                    <div class="team-settings__item">
                         <img
                             class="team-settings__image"
                             src="{{ $team->header()->url() }}"
                         >
+                        <span></span>
                         <label class="input-container">
                             <span class="input-container__label">
                                 {{ osu_trans('teams.edit.header.label') }}
                             </span>
                             <input accept="{{ $imageTypeAccept }}" class="input-text" type="file" name="team[header]">
                         </label>
+                        <span class="team-settings__help">
+                            @php
+                                [$width, $height] = array_map(i18n_number_format(...), Team::HEADER_MAX_DIMENSIONS);
+                            @endphp
+                            {{ osu_trans('teams.edit.settings.header_help', compact('height', 'width')) }}
+                        </span>
                     </div>
                 </div>
             </div>
@@ -131,17 +140,24 @@
                     {{ osu_trans('teams.edit.flag.title') }}
                 </h2>
                 <div class="team-settings">
-                    <div class="team-settings__item team-settings__item--image">
+                    <div class="team-settings__item">
                         <img
                             class="team-settings__image"
                             srcset="{{ $team->flag()->url() }} 2x"
                         >
+                        <span></span>
                         <label class="input-container">
                             <span class="input-container__label">
                                 {{ osu_trans('teams.edit.flag.label') }}
                             </span>
                             <input accept="{{ $imageTypeAccept }}" class="input-text" type="file" name="team[flag]">
                         </label>
+                        <span class="team-settings__help">
+                            @php
+                                [$width, $height] = array_map(i18n_number_format(...), Team::FLAG_MAX_DIMENSIONS);
+                            @endphp
+                            {{ osu_trans('teams.edit.settings.flag_help', compact('height', 'width')) }}
+                        </span>
                     </div>
                 </div>
             </div>

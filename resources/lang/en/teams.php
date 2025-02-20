@@ -60,6 +60,8 @@ return [
         'settings' => [
             'application_help' => 'Whether to allow people to apply for the team',
             'default_ruleset_help' => 'The ruleset to be selected by default when visiting the team page',
+            'flag_help' => 'Maximum size of :width×:height',
+            'header_help' => 'Maximum size of :width×:height',
             'title' => 'Team Settings',
 
             'application_state' => [
