@@ -19,12 +19,27 @@ return [
         ],
     ],
 
+    'create' => [
+        'submit' => 'Create Team',
+
+        'form' => [
+            'name_help' => 'Your team name. The name is permanent at the moment.',
+            'short_name_help' => 'Maximum 4 characters.',
+            'title' => "Let's set up a new team",
+        ],
+
+        'intro' => [
+            'description' => "Play together with friends; existing or new. You're not currently in a team. Join an existing team by visiting their team page or create your own team from this page.",
+            'title' => 'Team!',
+        ],
+    ],
+
     'destroy' => [
-        'ok' => 'Team removed',
+        'ok' => 'Team removed.',
     ],
 
     'edit' => [
-        'saved' => 'Settings saved successfully',
+        'ok' => 'Settings saved successfully.',
         'title' => 'Team Settings',
 
         'description' => [
@@ -43,12 +58,9 @@ return [
         ],
 
         'settings' => [
-            'application' => 'Team Application',
             'application_help' => 'Whether to allow people to apply for the team',
-            'default_ruleset' => 'Default Ruleset',
             'default_ruleset_help' => 'The ruleset to be selected by default when visiting the team page',
             'title' => 'Team Settings',
-            'url' => 'URL',
 
             'application_state' => [
                 'state_0' => 'Closed',
@@ -59,11 +71,18 @@ return [
 
     'header_links' => [
         'edit' => 'settings',
+        'leaderboard' => 'leaderboard',
         'show' => 'info',
 
         'members' => [
             'index' => 'manage members',
         ],
+    ],
+
+    'leaderboard' => [
+        'global_rank' => 'Global Rank',
+        'performance' => 'Performance',
+        'total_score' => 'Total Score',
     ],
 
     'members' => [
@@ -109,7 +128,6 @@ return [
 
         'info' => [
             'created' => 'Formed',
-            'website' => 'Website',
         ],
 
         'members' => [
@@ -118,8 +136,12 @@ return [
         ],
 
         'sections' => [
-            'members' => 'Members',
             'info' => 'Info',
+            'members' => 'Members',
         ],
+    ],
+
+    'store' => [
+        'ok' => 'Team created.',
     ],
 ];

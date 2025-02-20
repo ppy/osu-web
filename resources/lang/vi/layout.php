@@ -201,7 +201,7 @@ return [
             'profile' => 'Trang Cá Nhân',
             'scoring_mode_toggle' => 'Hệ thống điểm cổ điển',
             'scoring_mode_toggle_tooltip' => 'Thay đổi giá trị điểm để có cảm giác như hệ thống điểm cổ điển không giới hạn',
-            'team' => '',
+            'team' => 'Đội của tôi',
         ],
     ],
 

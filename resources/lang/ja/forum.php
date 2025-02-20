@@ -295,6 +295,27 @@ return [
             'to_1_done' => '"resolved" タグを追加しました',
         ],
 
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
         'lock' => [
             'is_locked' => 'このトピックはロックされていて投稿が制限されています。',
             'to_0' => 'トピックのロックを解除する',

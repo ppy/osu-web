@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Bu sezon hala devam etmektedir (daha fazla çalma listesi eklenecektir).',
         'room_count' => 'Oynatma listesi sayısı',
         'url' => 'Bu sezon hakkında daha fazla bilgi görüntüleyin.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => 'İsabetlilik',
         'active_users' => 'Aktif Kullanıcılar',
         'country' => 'Ülke',
+        'division' => '',
         'play_count' => 'Oynama Sayısı',
         'performance' => 'Performans',
         'total_score' => 'Toplam Skor',

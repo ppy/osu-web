@@ -20,17 +20,19 @@ return [
         'channel' => '채팅',
         'forum_topic' => '포럼',
         'news_post' => '뉴스',
+        'team' => '',
         'user' => '프로필',
     ],
 
     'filters' => [
         '_' => '전체',
-        'user' => '프로필',
         'beatmapset' => '비트맵',
-        'forum_topic' => '포럼',
-        'news_post' => '뉴스',
         'build' => '빌드 버전',
         'channel' => '채팅',
+        'forum_topic' => '포럼',
+        'news_post' => '뉴스',
+        'team' => '',
+        'user' => '프로필',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => '새 비트맵',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => '":title"에 새로운 답글이 달렸습니다.',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
             ],
         ],
 

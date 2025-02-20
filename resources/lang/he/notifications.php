@@ -20,17 +20,19 @@ return [
         'channel' => '',
         'forum_topic' => '',
         'news_post' => '',
+        'team' => '',
         'user' => '',
     ],
 
     'filters' => [
         '_' => 'הכל',
-        'user' => 'פרופיל',
         'beatmapset' => 'מפות',
-        'forum_topic' => 'פורום',
-        'news_post' => 'חדשות',
         'build' => 'בניות',
         'channel' => 'צ\'אטים',
+        'forum_topic' => 'פורום',
+        'news_post' => 'חדשות',
+        'team' => '',
+        'user' => 'פרופיל',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'מפה חדשה',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'יש תגובות חדשות ב":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
             ],
         ],
 

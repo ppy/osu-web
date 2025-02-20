@@ -26,7 +26,7 @@ return [
             'deleted' => 'شامل شدن گفتگو های پاک شده',
             'mode' => 'حالت بیت مپ',
             'only_unresolved' => 'فقط نمایش گفتگو های حل نشده',
-            'show_review_embeds' => '',
+            'show_review_embeds' => 'دیدن پست‌های نظرات',
             'types' => 'نوع پیام',
             'username' => 'نام کاربری',
 
@@ -67,10 +67,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
-        'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'checking' => 'چک‌کردن تغییرات...',
+        'has_updates' => 'این مباحثه تغییر کرده، کلیک کنید تا ری‌فرش بشه.',
+        'no_updates' => 'تغییری نیست.',
+        'updating' => 'تازه‌سازی...',
     ],
 
     'reply' => [

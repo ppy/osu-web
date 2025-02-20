@@ -20,17 +20,19 @@ return [
         'channel' => 'pokalbiai',
         'forum_topic' => 'forumas',
         'news_post' => 'naujienos',
+        'team' => '',
         'user' => 'profilis',
     ],
 
     'filters' => [
         '_' => 'visi',
-        'user' => 'profilis',
         'beatmapset' => 'beatmap\'ai',
-        'forum_topic' => 'forumas',
-        'news_post' => 'naujienos',
         'build' => 'versijos',
         'channel' => 'pokalbiai',
+        'forum_topic' => 'forumas',
+        'news_post' => 'naujienos',
+        'team' => '',
+        'user' => 'profilis',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Naujas beatmap\'as',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Yra naujų atsakymų tarp ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
             ],
         ],
 

@@ -20,17 +20,19 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'forum',
         'news_post' => 'mga balita',
+        'team' => '',
         'user' => 'profile',
     ],
 
     'filters' => [
         '_' => 'lahat',
-        'user' => 'profile',
         'beatmapset' => 'mga beatmap',
-        'forum_topic' => 'forum',
-        'news_post' => 'mga balita',
         'build' => 'mga build',
         'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'mga balita',
+        'team' => '',
+        'user' => 'profile',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Bagong beatmap',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'May mga bagong tugon sa ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
             ],
         ],
 

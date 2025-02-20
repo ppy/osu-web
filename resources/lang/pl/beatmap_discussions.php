@@ -6,9 +6,9 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Musisz się zalogować, aby zedytować post.',
+            'null_user' => 'Zaloguj się, aby edytować post.',
             'system_generated' => 'Nie możesz edytować automatycznie wygenerowanych postów.',
-            'wrong_user' => 'Tylko autor posta może go zedytować.',
+            'wrong_user' => 'Tylko autor posta może go edytować.',
         ],
     ],
 
@@ -19,14 +19,14 @@ return [
     'index' => [
         'deleted_beatmap' => 'usunięta',
         'none_found' => 'Nie znaleziono dyskusji pasujących do podanych kryteriów wyszukiwania.',
-        'title' => 'dyskusje beatmapy',
+        'title' => 'dyskusje beatmap',
 
         'form' => [
             '_' => 'Szukaj',
             'deleted' => 'Uwzględnij usunięte dyskusje',
-            'mode' => 'Tryb beatmapy',
+            'mode' => 'Tryb gry',
             'only_unresolved' => 'Pokaż tylko nierozwiązane dyskusje',
-            'show_review_embeds' => 'Pokaż posty z opinią',
+            'show_review_embeds' => 'Pokaż recenzje',
             'types' => 'Rodzaj wiadomości',
             'username' => 'Nazwa użytkownika',
 
@@ -54,7 +54,7 @@ return [
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Żaden z tych postów nie jest istotny',
+        'confirm' => 'Żaden z postów nie odnosi się do moich uwag',
         'notice' => 'Istnieją posty dotyczące :timestamp (:existing_timestamps). Sprawdź je przed opublikowaniem posta.',
         'unsaved' => ':count w tej recenzji',
     ],
@@ -67,9 +67,9 @@ return [
     ],
 
     'refresh' => [
-        'checking' => 'Sprawdzanie nowych wiadomości...',
-        'has_updates' => 'Dyskusja zawiera nowe wiadomości, kliknij, aby odświeżyć.',
-        'no_updates' => 'Brak nowych wiadomości.',
+        'checking' => 'Sprawdzanie dostępności aktualizacji...',
+        'has_updates' => 'Pojawiły się nowe aktualizacje - kliknij, aby odświeżyć.',
+        'no_updates' => 'Brak aktualizacji.',
         'updating' => 'Aktualizowanie...',
     ],
 
@@ -82,8 +82,8 @@ return [
 
     'review' => [
         'block_count' => 'użyto :used z :max bloków',
-        'go_to_parent' => 'Zobacz recenzję',
-        'go_to_child' => 'Zobacz dyskusję',
+        'go_to_parent' => 'Przejdź do recenzji',
+        'go_to_child' => 'Przejdź do dyskusji',
         'validation' => [
             'block_too_large' => 'każdy blok może zawierać do :limit znaków',
             'external_references' => 'recenzja zawiera odniesienia do problemów, które do niej nie należą',
@@ -98,7 +98,7 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => 'Oznaczone jako gotowe przez :user',
+            'true' => 'Oznaczone jako rozwiązane przez :user',
             'false' => 'Otworzone ponownie przez :user',
         ],
     ],

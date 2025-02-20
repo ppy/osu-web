@@ -55,6 +55,7 @@ return [
         'contact' => '',
         'date' => '日付:',
         'echeck_delay' => '決済方法がeCheckのため、PayPalを介した支払いが完了するまで、さらに最大10日を要します。予めご了承ください。',
+        'echeck_denied' => '',
         'hide_from_activity' => 'osu!サポータータグは最近のアクティビティには表示されません。',
         'sent_via' => '',
         'shipping_to' => '',

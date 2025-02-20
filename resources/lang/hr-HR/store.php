@@ -57,6 +57,7 @@ return [
         'contact' => '',
         'date' => '',
         'echeck_delay' => 'Budući da je tvoje plaćanje bilo eCheck, pricekaj do 10 dodatnih dana da se uplata izvrši putem PayPala!',
+        'echeck_denied' => '',
         'hide_from_activity' => '',
         'sent_via' => '',
         'shipping_to' => '',

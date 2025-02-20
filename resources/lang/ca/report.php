@@ -6,7 +6,7 @@
 return [
     'beatmapset' => [
         'button' => 'Reportar',
-        'title' => 'Reportar el beatmap de :username?',
+        'title' => 'Reportar el mapa de :username?',
     ],
 
     'beatmapset_discussion_post' => [

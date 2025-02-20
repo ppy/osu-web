@@ -300,10 +300,11 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('applications', 'Teams\ApplicationsController', ['only' => ['destroy', 'store']]);
         Route::post('applications/{application}/accept', 'Teams\ApplicationsController@accept')->name('applications.accept');
         Route::post('applications/{application}/reject', 'Teams\ApplicationsController@reject')->name('applications.reject');
+        Route::get('leaderboard/{ruleset?}', 'TeamsController@leaderboard')->name('leaderboard');
         Route::post('part', 'TeamsController@part')->name('part');
         Route::resource('members', 'Teams\MembersController', ['only' => ['destroy', 'index']]);
     });
-    Route::resource('teams', 'TeamsController', ['only' => ['destroy', 'edit', 'show', 'update']]);
+    Route::resource('teams', 'TeamsController', ['only' => ['create', 'destroy', 'edit', 'store', 'show', 'update']]);
 
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
     Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');

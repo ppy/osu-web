@@ -4,79 +4,129 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'applications' => [
+        'accept' => [
+            'ok' => '',
+        ],
+        'destroy' => [
+            'ok' => '',
+        ],
+        'reject' => [
+            'ok' => '',
+        ],
+        'store' => [
+            'ok' => '',
+        ],
+    ],
+
+    'destroy' => [
+        'ok' => '',
+    ],
+
     'edit' => [
-        'saved' => '',
-        'title' => '',
+        'saved' => 'Настройките са запазени успешно',
+        'title' => 'Отборни настройки',
 
         'description' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Описание',
+            'title' => 'Описание на отбора',
         ],
 
         'header' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Заглавна снимка',
+            'title' => 'Задай заглавна снимка',
         ],
 
         'logo' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Отборно знаме',
+            'title' => 'Задай отборно знаме',
         ],
 
         'settings' => [
-            'application' => '',
-            'application_help' => '',
-            'default_ruleset' => '',
-            'default_ruleset_help' => '',
-            'title' => '',
-            'url' => '',
+            'application' => 'Отборни заявки',
+            'application_help' => 'Дали да е разрешено за потребители да заявяват отбор',
+            'default_ruleset' => 'Основни правила',
+            'default_ruleset_help' => 'Правилата да се избират подразбиране при посещение на отборната страница',
+            'title' => 'Отборни настройки',
+            'url' => 'Връзка',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => 'Затворен',
+                'state_1' => 'Отворен',
             ],
         ],
+    ],
+
+    'header_links' => [
+        'edit' => '',
+        'leaderboard' => '',
+        'show' => '',
+
+        'members' => [
+            'index' => '',
+        ],
+    ],
+
+    'leaderboard' => [
+        'global_rank' => '',
+        'performance' => '',
+        'total_score' => '',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '',
+            'success' => 'Отборният член е премахнат',
         ],
 
         'index' => [
-            'title' => '',
+            'title' => 'Управление на членове',
+
+            'applications' => [
+                'empty' => '',
+                'empty_slots' => '',
+                'title' => '',
+                'created_at' => '',
+            ],
 
             'table' => [
-                'status' => '',
-                'joined_at' => '',
-                'remove' => '',
-                'title' => '',
+                'status' => 'Състояние',
+                'joined_at' => 'Дата на присъединяване',
+                'remove' => 'Премахване',
+                'title' => 'Текущи членове',
             ],
 
             'status' => [
-                'status_0' => '',
-                'status_1' => '',
+                'status_0' => 'Неактивни',
+                'status_1' => 'Активни',
             ],
         ],
     ],
+
+    'part' => [
+        'ok' => '',
+    ],
+
     'show' => [
         'bar' => [
-            'settings' => '',
+            'destroy' => '',
+            'join' => '',
+            'join_cancel' => '',
+            'part' => '',
         ],
 
         'info' => [
-            'created' => '',
-            'website' => '',
+            'created' => 'Учреден',
+            'website' => 'Уебсайт',
         ],
 
         'members' => [
-            'members' => '',
-            'owner' => '',
+            'members' => 'Членове в отбора',
+            'owner' => 'Лидер на отбора',
         ],
 
         'sections' => [
-            'members' => '',
-            'info' => '',
+            'info' => 'Инфо',
+            'members' => 'Членове',
         ],
     ],
 ];

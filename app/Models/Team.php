@@ -9,15 +9,26 @@ namespace App\Models;
 
 use App\Libraries\BBCodeForDB;
 use App\Libraries\Uploader;
+use App\Libraries\UsernameValidation;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Team extends Model
 {
+    const MAX_FIELD_LENGTHS = [
+        'name' => 100,
+        'short_name' => 4,
+    ];
+
     protected $casts = ['is_open' => 'bool'];
 
     private Uploader $header;
     private Uploader $logo;
+
+    private static function sanitiseName(?string $value): ?string
+    {
+        return presence(preg_replace('/  +/', ' ', trim($value ?? '')));
+    }
 
     public function applications(): HasMany
     {
@@ -32,6 +43,11 @@ class Team extends Model
     public function members(): HasMany
     {
         return $this->hasMany(TeamMember::class);
+    }
+
+    public function setDefaultRulesetIdAttribute(?int $value): void
+    {
+        $this->attributes['default_ruleset_id'] = Beatmap::MODES[Beatmap::modeStr($value) ?? 'osu'];
     }
 
     public function setHeaderAttribute(?string $value): void
@@ -52,9 +68,14 @@ class Team extends Model
         }
     }
 
-    public function setDefaultRulesetIdAttribute(?int $value): void
+    public function setNameAttribute(?string $value): void
     {
-        $this->attributes['default_ruleset_id'] = Beatmap::MODES[Beatmap::modeStr($value) ?? 'osu'];
+        $this->attributes['name'] = static::sanitiseName($value);
+    }
+
+    public function setShortNameAttribute(?string $value): void
+    {
+        $this->attributes['short_name'] = static::sanitiseName($value);
     }
 
     public function setUrlAttribute(?string $value): void
@@ -114,6 +135,24 @@ class Team extends Model
     {
         $this->validationErrors()->reset();
 
+        $wordFilters = app('chat-filters');
+        foreach (['name', 'short_name'] as $field) {
+            $value = $this->$field;
+            if ($value === null) {
+                $this->validationErrors()->add($field, 'required');
+            } elseif ($this->isDirty($field)) {
+                if (!preg_match('#^[A-Za-z0-9-\[\]_ ]+$#u', $value)) {
+                    $this->validationErrors()->add($field, '.invalid_characters');
+                } elseif (!$wordFilters->isClean($value) || !UsernameValidation::allowedName($value)) {
+                    $this->validationErrors()->add($field, '.word_not_allowed');
+                } elseif (static::whereNot('id', $this->getKey())->where($field, $value)->exists()) {
+                    $this->validationErrors()->add($field, '.used');
+                }
+            }
+        }
+
+        $this->validateDbFieldLengths();
+
         if ($this->isDirty('url')) {
             $url = $this->url;
             if ($url !== null && !is_http($url)) {
@@ -144,6 +183,22 @@ class Team extends Model
     {
         $this->loadMissing('members.user');
 
-        return 8 + (4 * $this->members->filter(fn ($member) => $member->user?->osu_subscriber ?? false)->count());
+        $supporterCount = $this->members->filter(fn ($member) => $member->user?->isSupporter() ?? false)->count();
+
+        return min(8 + (4 * $supporterCount), $GLOBALS['cfg']['osu']['team']['max_members']);
+    }
+
+    public function save(array $options = [])
+    {
+        if (!$this->isValid()) {
+            return false;
+        }
+
+        return parent::save($options);
+    }
+
+    public function validationErrorsTranslationPrefix(): string
+    {
+        return 'team';
     }
 }

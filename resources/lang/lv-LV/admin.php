@@ -55,8 +55,8 @@ return [
                 'general' => '',
 
                 'users' => [
-                    'header' => '',
-                    'cover_presets' => '',
+                    'header' => 'Lietotājs',
+                    'cover_presets' => 'Profila Pārklājuma Priekšiestatījumi',
                 ],
             ],
         ],

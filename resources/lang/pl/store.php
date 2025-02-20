@@ -55,6 +55,7 @@ return [
         'contact' => 'Kontakt:',
         'date' => 'Data:',
         'echeck_delay' => 'Jako że twoja płatność została przesłana czekiem elektronicznym, odczekaj do 10 dni na przetworzenie transakcji przez PayPal.',
+        'echeck_denied' => '',
         'hide_from_activity' => 'Zakup statusów donatora osu! z tego zamówienia nie zostanie wyświetlony w twojej aktywności.',
         'sent_via' => 'Wysłane poprzez:',
         'shipping_to' => 'Wysyłka do:',

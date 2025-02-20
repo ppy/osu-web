@@ -4,79 +4,129 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'applications' => [
+        'accept' => [
+            'ok' => '',
+        ],
+        'destroy' => [
+            'ok' => '',
+        ],
+        'reject' => [
+            'ok' => '',
+        ],
+        'store' => [
+            'ok' => '',
+        ],
+    ],
+
+    'destroy' => [
+        'ok' => '',
+    ],
+
     'edit' => [
-        'saved' => '',
-        'title' => '',
+        'saved' => 'Impostazioni salvate',
+        'title' => 'Impostazioni Squadra',
 
         'description' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Descrizione',
+            'title' => 'Descrizione Squadra',
         ],
 
         'header' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Copertina',
+            'title' => 'Imposta Copertina',
         ],
 
         'logo' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Bandiera Squadra',
+            'title' => 'Imposta Bandiera Squadra',
         ],
 
         'settings' => [
-            'application' => '',
-            'application_help' => '',
-            'default_ruleset' => '',
-            'default_ruleset_help' => '',
-            'title' => '',
-            'url' => '',
+            'application' => 'Candidature Squadra',
+            'application_help' => 'Indica se consentire alle persone di candidarsi per la squadra',
+            'default_ruleset' => 'Modalità Predefinita di Gioco',
+            'default_ruleset_help' => 'La modalità di gioco impostata come predefinita quando si visita la pagina della squadra',
+            'title' => 'Impostazioni Squadra',
+            'url' => 'URL',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => 'Chiuse',
+                'state_1' => 'Aperte',
             ],
         ],
+    ],
+
+    'header_links' => [
+        'edit' => '',
+        'leaderboard' => '',
+        'show' => '',
+
+        'members' => [
+            'index' => '',
+        ],
+    ],
+
+    'leaderboard' => [
+        'global_rank' => '',
+        'performance' => '',
+        'total_score' => '',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '',
+            'success' => 'Rimosso membro della squadra',
         ],
 
         'index' => [
-            'title' => '',
+            'title' => 'Gestisci Membri',
+
+            'applications' => [
+                'empty' => '',
+                'empty_slots' => '',
+                'title' => '',
+                'created_at' => '',
+            ],
 
             'table' => [
-                'status' => '',
-                'joined_at' => '',
-                'remove' => '',
-                'title' => '',
+                'status' => 'Stato',
+                'joined_at' => 'Data Iscrizione',
+                'remove' => 'Espelli',
+                'title' => 'Membri Attuali',
             ],
 
             'status' => [
-                'status_0' => '',
-                'status_1' => '',
+                'status_0' => 'Inattivo',
+                'status_1' => 'Attivo',
             ],
         ],
     ],
+
+    'part' => [
+        'ok' => '',
+    ],
+
     'show' => [
         'bar' => [
-            'settings' => '',
+            'destroy' => '',
+            'join' => '',
+            'join_cancel' => '',
+            'part' => '',
         ],
 
         'info' => [
-            'created' => '',
-            'website' => '',
+            'created' => 'Creato',
+            'website' => 'Sito Web',
         ],
 
         'members' => [
-            'members' => '',
-            'owner' => '',
+            'members' => 'Membri della Squadra',
+            'owner' => 'Capitano della Squadra',
         ],
 
         'sections' => [
-            'members' => '',
-            'info' => '',
+            'info' => 'Info',
+            'members' => 'Membri',
         ],
     ],
 ];

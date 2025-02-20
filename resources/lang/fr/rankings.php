@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Cette saison est toujours en cours (d\'autres playlists seront ajoutées).',
         'room_count' => 'Nombre de playlists',
         'url' => 'Afficher plus d\'informations sur cette saison.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => 'Précision',
         'active_users' => 'Utilisateurs actifs',
         'country' => 'Pays',
+        'division' => '',
         'play_count' => 'Nombres de parties',
         'performance' => 'Performance',
         'total_score' => 'Score total',

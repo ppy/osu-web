@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Сезонът все още продължава (ще има повече плейлисти).',
         'room_count' => 'Брой плейлисти',
         'url' => 'Повече информация за текущия сезон.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => 'Прецизност',
         'active_users' => 'Активни потребители',
         'country' => 'Държава',
+        'division' => '',
         'play_count' => 'Брой игри',
         'performance' => 'Представяне',
         'total_score' => 'Резултат',

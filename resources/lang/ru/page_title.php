@@ -108,8 +108,10 @@ return [
             '_' => 'рейтинг',
         ],
         'teams_controller' => [
-            '_' => '',
-            'show' => '',
+            '_' => 'команды',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => 'информация',
         ],
         'tournaments_controller' => [
             '_' => 'турниры',
@@ -133,6 +135,11 @@ return [
     ],
     'store' => [
         '_' => 'магазин',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

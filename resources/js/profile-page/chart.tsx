@@ -32,17 +32,10 @@ function updateTicks(chart: LineChart<Date>, data: ChartData[]) {
   }
 }
 
-// @observer
 export default class Chart extends React.Component<Props> {
   private chart?: LineChart<Date>;
   private readonly disposers = new Set<(() => void) | undefined>();
   private readonly ref = React.createRef<HTMLDivElement>();
-
-  constructor(props: Props) {
-    super(props);
-
-    // makeObservable(this);
-  }
 
   componentDidMount() {
     $(window).on('resize', this.resizeChart);

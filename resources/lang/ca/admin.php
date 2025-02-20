@@ -55,8 +55,8 @@ return [
                 'general' => '',
 
                 'users' => [
-                    'header' => '',
-                    'cover_presets' => '',
+                    'header' => 'Usuari',
+                    'cover_presets' => 'Coberta Preseleccionada del Perfil',
                 ],
             ],
         ],

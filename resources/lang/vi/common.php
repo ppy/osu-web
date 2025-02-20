@@ -22,7 +22,7 @@ return [
         'admin' => 'Admin',
         'authorise' => 'Cho phép',
         'authorising' => 'Cho phép...',
-        'back' => '',
+        'back' => 'Quay lại',
         'back_to_previous' => 'Trở về vị trí trước',
         'back_to_top' => 'Quay lại đầu trang',
         'cancel' => 'Hủy',

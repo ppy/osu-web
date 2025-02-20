@@ -52,8 +52,11 @@ class OsuAuthorize
             'IsNotOAuth',
             'IsOwnClient',
             'IsSpecialScope',
+            'TeamApplicationAccept',
             'TeamApplicationStore',
             'TeamPart',
+            'TeamStore',
+            'TeamUpdate',
             'UserUpdateEmail',
         ]);
 
@@ -1910,6 +1913,7 @@ class OsuAuthorize
     public function checkTeamApplicationAccept(?User $user, TeamApplication $application): ?string
     {
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         $team = $application->team;
 
@@ -1928,6 +1932,7 @@ class OsuAuthorize
         $prefix = 'team.application.store.';
 
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ($user->team !== null) {
             return $user->team->getKey() === $team->getKey()
@@ -1963,9 +1968,31 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkTeamStore(?User $user): ?string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+        $this->ensureHasPlayed($user);
+
+        if ($GLOBALS['cfg']['osu']['team']['create_require_supporter'] && !$user->isSupporter()) {
+            return 'team.store.require_supporter_tag';
+        }
+
+        if ($user->team !== null) {
+            return 'team.application.store.already_other_member';
+        }
+
+        if ($user->teamApplication !== null) {
+            return 'team.application.store.currently_applying';
+        }
+
+        return 'ok';
+    }
+
     public function checkTeamUpdate(?User $user, Team $team): ?string
     {
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         return $team->leader_id === $user->getKey() ? 'ok' : null;
     }

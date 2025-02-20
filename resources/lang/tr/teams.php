@@ -4,6 +4,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'applications' => [
+        'accept' => [
+            'ok' => '',
+        ],
+        'destroy' => [
+            'ok' => '',
+        ],
+        'reject' => [
+            'ok' => '',
+        ],
+        'store' => [
+            'ok' => '',
+        ],
+    ],
+
+    'destroy' => [
+        'ok' => '',
+    ],
+
     'edit' => [
         'saved' => '',
         'title' => '',
@@ -38,6 +57,22 @@ return [
         ],
     ],
 
+    'header_links' => [
+        'edit' => '',
+        'leaderboard' => '',
+        'show' => '',
+
+        'members' => [
+            'index' => '',
+        ],
+    ],
+
+    'leaderboard' => [
+        'global_rank' => '',
+        'performance' => '',
+        'total_score' => '',
+    ],
+
     'members' => [
         'destroy' => [
             'success' => '',
@@ -45,6 +80,13 @@ return [
 
         'index' => [
             'title' => '',
+
+            'applications' => [
+                'empty' => '',
+                'empty_slots' => '',
+                'title' => '',
+                'created_at' => '',
+            ],
 
             'table' => [
                 'status' => '',
@@ -59,9 +101,17 @@ return [
             ],
         ],
     ],
+
+    'part' => [
+        'ok' => '',
+    ],
+
     'show' => [
         'bar' => [
-            'settings' => '',
+            'destroy' => '',
+            'join' => '',
+            'join_cancel' => '',
+            'part' => '',
         ],
 
         'info' => [
@@ -75,8 +125,8 @@ return [
         ],
 
         'sections' => [
-            'members' => '',
             'info' => '',
+            'members' => '',
         ],
     ],
 ];

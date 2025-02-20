@@ -49,6 +49,9 @@ return [
         'ongoing' => '',
         'room_count' => '',
         'url' => '',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => 'דיוק',
         'active_users' => 'משתמשים פעילים',
         'country' => 'מדינה',
+        'division' => '',
         'play_count' => 'מספר משחקים',
         'performance' => 'ביצועים',
         'total_score' => 'תוצאה סופית',

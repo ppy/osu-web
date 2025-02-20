@@ -8,8 +8,8 @@ return [
         'title_page' => 'osu!新聞',
 
         'nav' => [
-            'newer' => '下一條新消息',
-            'older' => '上一條新消息',
+            'newer' => '下一條新聞',
+            'older' => '上一條新聞',
         ],
 
         'title' => [
@@ -28,17 +28,17 @@ return [
 
         'title' => [
             '_' => '新聞 :info',
-            'info' => '發布',
+            'info' => '發表',
         ],
     ],
 
     'sidebar' => [
-        'archive' => '新聞檔案',
+        'archive' => '新聞歸檔',
     ],
 
     'store' => [
         'button' => '更新',
-        'ok' => '列表已更新。',
+        'ok' => '清單已更新。',
     ],
 
     'update' => [

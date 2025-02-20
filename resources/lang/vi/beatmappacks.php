@@ -17,6 +17,7 @@ return [
     ],
 
     'show' => [
+        'created_by' => '',
         'download' => 'Tải Xuống',
         'item' => [
             'cleared' => 'đã chơi',

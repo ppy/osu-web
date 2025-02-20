@@ -55,6 +55,7 @@ return [
         'contact' => 'Contacto:',
         'date' => 'Fecha:',
         'echeck_delay' => 'Como tu pago fue un eCheck, tendrás que esperar alrededor de 10 días más para que el pago sea procesado por PayPal.',
+        'echeck_denied' => '',
         'hide_from_activity' => 'las etiquetas de osu!supporter en esta orden no se muestran en tus actividades recientes.',
         'sent_via' => 'Enviado vía:',
         'shipping_to' => 'Envío a:',
