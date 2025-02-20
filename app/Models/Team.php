@@ -98,6 +98,7 @@ class Team extends Model
             $ret = parent::delete();
 
             if ($ret) {
+                $this->applications()->delete();
                 $this->members()->delete();
             }
 
