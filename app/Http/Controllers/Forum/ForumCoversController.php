@@ -5,7 +5,6 @@
 
 namespace App\Http\Controllers\Forum;
 
-use App\Exceptions\ImageProcessorException;
 use App\Models\Forum\Forum;
 use App\Models\Forum\ForumCover;
 use App\Transformers\Forum\ForumCoverTransformer;
@@ -45,15 +44,11 @@ class ForumCoversController extends Controller
             abort(422);
         }
 
-        try {
-            $cover = ForumCover::upload(
-                Request::file('cover_file')->getRealPath(),
-                Auth::user(),
-                $forum
-            );
-        } catch (ImageProcessorException $e) {
-            return error_popup($e->getMessage());
-        }
+        $cover = ForumCover::upload(
+            Request::file('cover_file')->getRealPath(),
+            Auth::user(),
+            $forum
+        );
 
         return json_item($cover, new ForumCoverTransformer());
     }
@@ -74,14 +69,10 @@ class ForumCoversController extends Controller
         $cover = ForumCover::findOrFail($id);
 
         if (Request::hasFile('cover_file') === true) {
-            try {
-                $cover = $cover->updateFile(
-                    Request::file('cover_file')->getRealPath(),
-                    Auth::user()
-                );
-            } catch (ImageProcessorException $e) {
-                return error_popup($e->getMessage());
-            }
+            $cover = $cover->updateFile(
+                Request::file('cover_file')->getRealPath(),
+                Auth::user()
+            );
         }
 
         return json_item($cover, new ForumCoverTransformer());

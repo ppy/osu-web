@@ -5,7 +5,6 @@
 
 namespace App\Http\Controllers\Forum;
 
-use App\Exceptions\ImageProcessorException;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
@@ -58,15 +57,11 @@ class TopicCoversController extends Controller
 
         priv_check('ForumTopicCoverStore', $forum)->ensureCan();
 
-        try {
-            $cover = TopicCover::upload(
-                $params['cover_file'],
-                Auth::user(),
-                $topic ?? null,
-            );
-        } catch (ImageProcessorException $e) {
-            return error_popup($e->getMessage());
-        }
+        $cover = TopicCover::upload(
+            $params['cover_file'],
+            Auth::user(),
+            $topic ?? null,
+        );
 
         return json_item($cover, new TopicCoverTransformer());
     }
@@ -91,14 +86,10 @@ class TopicCoversController extends Controller
         priv_check('ForumTopicCoverEdit', $cover)->ensureCan();
 
         if (Request::hasFile('cover_file') === true) {
-            try {
-                $cover = $cover->updateFile(
-                    Request::file('cover_file')->getRealPath(),
-                    Auth::user()
-                );
-            } catch (ImageProcessorException $e) {
-                return error_popup($e->getMessage());
-            }
+            $cover = $cover->updateFile(
+                Request::file('cover_file')->getRealPath(),
+                Auth::user()
+            );
         }
 
         return json_item($cover, new TopicCoverTransformer());
