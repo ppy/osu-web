@@ -127,7 +127,7 @@ class Team extends Model
             'teams/header',
             $this,
             'header_file',
-            ['image' => ['maxDimensions' => [1000, 250]]],
+            ['image' => ['maxDimensions' => [2000, 500]]],
         );
     }
 
