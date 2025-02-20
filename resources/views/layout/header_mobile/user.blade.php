@@ -4,7 +4,7 @@
 --}}
 @php
     $currentUser ??= Auth::user();
-    $teamId = $currentUser->team?->getKey() ?? $currentUser->teamApplication?->team_id;
+    $teamId = $currentUser?->team?->getKey() ?? $currentUser?->teamApplication?->team_id;
 @endphp
 <div class="navbar-mobile-item js-click-menu--close">
     @if ($currentUser === null)
