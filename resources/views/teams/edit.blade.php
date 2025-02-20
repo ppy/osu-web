@@ -122,19 +122,19 @@
 
             <div class="page-extra">
                 <h2 class="title title--page-extra-small title--page-extra-small-top">
-                    {{ osu_trans('teams.edit.logo.title') }}
+                    {{ osu_trans('teams.edit.flag.title') }}
                 </h2>
                 <div class="team-settings">
                     <div class="team-settings__item team-settings__item--image">
                         <img
                             class="team-settings__image"
-                            src="{{ $team->logo()->url() }}"
+                            src="{{ $team->flag()->url() }}"
                         >
                         <label class="input-container">
                             <span class="input-container__label">
-                                {{ osu_trans('teams.edit.logo.label') }}
+                                {{ osu_trans('teams.edit.flag.label') }}
                             </span>
-                            <input class="input-text" type="file" name="team[logo]">
+                            <input class="input-text" type="file" name="team[flag]">
                         </label>
                     </div>
                 </div>

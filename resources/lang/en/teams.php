@@ -47,14 +47,14 @@ return [
             'title' => 'Team Description',
         ],
 
+        'flag' => [
+            'label' => 'Team Flag',
+            'title' => 'Set Team Flag',
+        ],
+
         'header' => [
             'label' => 'Header Image',
             'title' => 'Set Header Image',
-        ],
-
-        'logo' => [
-            'label' => 'Team Flag',
-            'title' => 'Set Team Flag',
         ],
 
         'settings' => [

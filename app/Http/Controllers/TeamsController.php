@@ -164,11 +164,9 @@ class TeamsController extends Controller
         $params = get_params(\Request::all(), 'team', [
             'default_ruleset_id:int',
             'description',
+            'flag:file',
             'header:file',
-            'header_remove:bool',
             'is_open:bool',
-            'logo:file',
-            'logo_remove:bool',
             'url',
         ]);
 
