@@ -23,7 +23,7 @@ class Team extends Model
     protected $casts = ['is_open' => 'bool'];
 
     private Uploader $header;
-    private Uploader $logo;
+    private Uploader $flag;
 
     private static function sanitiseName(?string $value): ?string
     {
@@ -50,22 +50,14 @@ class Team extends Model
         $this->attributes['default_ruleset_id'] = Beatmap::MODES[Beatmap::modeStr($value) ?? 'osu'];
     }
 
-    public function setHeaderAttribute(?string $value): void
+    public function setFlagAttribute(?string $value): void
     {
-        if ($value === null) {
-            $this->header()->delete();
-        } else {
-            $this->header()->store($value);
-        }
+        $this->flag()->store($value);
     }
 
-    public function setLogoAttribute(?string $value): void
+    public function setHeaderAttribute(?string $value): void
     {
-        if ($value === null) {
-            $this->logo()->delete();
-        } else {
-            $this->logo()->store($value);
-        }
+        $this->header()->store($value);
     }
 
     public function setNameAttribute(?string $value): void
@@ -100,7 +92,7 @@ class Team extends Model
     public function delete()
     {
         $this->header()->delete();
-        $this->logo()->delete();
+        $this->flag()->delete();
 
         return $this->getConnection()->transaction(function () {
             $ret = parent::delete();
@@ -169,12 +161,12 @@ class Team extends Model
         return $this->validationErrors()->isEmpty();
     }
 
-    public function logo(): Uploader
+    public function flag(): Uploader
     {
-        return $this->logo ??= new Uploader(
-            'teams/logo',
+        return $this->flag ??= new Uploader(
+            'teams/flag',
             $this,
-            'logo_file',
+            'flag_file',
             ['image' => ['maxDimensions' => [512, 256]]],
         );
     }
