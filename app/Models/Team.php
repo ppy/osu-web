@@ -15,6 +15,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Team extends Model
 {
+    const FLAG_MAX_DIMENSIONS = [512, 256];
+    const HEADER_MAX_DIMENSIONS = [2000, 500];
+
     const MAX_FIELD_LENGTHS = [
         'name' => 100,
         'short_name' => 4,
@@ -120,7 +123,7 @@ class Team extends Model
             'teams/header',
             $this,
             'header_file',
-            ['image' => ['maxDimensions' => [2000, 500]]],
+            ['image' => ['maxDimensions' => static::HEADER_MAX_DIMENSIONS]],
         );
     }
 
@@ -169,7 +172,7 @@ class Team extends Model
             'teams/flag',
             $this,
             'flag_file',
-            ['image' => ['maxDimensions' => [512, 256]]],
+            ['image' => ['maxDimensions' => static::FLAG_MAX_DIMENSIONS]],
         );
     }
 
