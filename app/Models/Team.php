@@ -104,10 +104,11 @@ class Team extends Model
             return $this->channel;
         }
 
-        $channel = Chat\Channel::create([
+        $channel = new Chat\Channel([
             'name' => truncate($this->name, 50),
             'type' => Chat\Channel::TYPES['team'],
         ]);
+        $channel->saveOrExplode();
         $this->channel()->associate($channel);
 
         return $channel;
