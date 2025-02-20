@@ -133,7 +133,8 @@ class Team extends Model
             if ($value === null) {
                 $this->validationErrors()->add($field, 'required');
             } elseif ($this->isDirty($field)) {
-                if (!preg_match('#^[A-Za-z0-9-\[\]_ ]+$#u', $value)) {
+                // printable ascii characters
+                if (!preg_match('/^[ -~]+$/', $value)) {
                     $this->validationErrors()->add($field, '.invalid_characters');
                 } elseif (!$wordFilters->isClean($value) || !UsernameValidation::allowedName($value)) {
                     $this->validationErrors()->add($field, '.word_not_allowed');
