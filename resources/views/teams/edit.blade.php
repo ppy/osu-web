@@ -128,7 +128,7 @@
                     <div class="team-settings__item team-settings__item--image">
                         <img
                             class="team-settings__image"
-                            src="{{ $team->flag()->url() }}"
+                            srcset="{{ $team->flag()->url() }} 2x"
                         >
                         <label class="input-container">
                             <span class="input-container__label">
