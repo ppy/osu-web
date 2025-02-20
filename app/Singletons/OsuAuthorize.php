@@ -55,6 +55,8 @@ class OsuAuthorize
             'TeamApplicationAccept',
             'TeamApplicationStore',
             'TeamPart',
+            'TeamStore',
+            'TeamUpdate',
             'UserUpdateEmail',
         ]);
 
@@ -1961,6 +1963,27 @@ class OsuAuthorize
         }
         if ($team->getKey() !== $user?->team?->getKey()) {
             return $prefix.'not_member';
+        }
+
+        return 'ok';
+    }
+
+    public function checkTeamStore(?User $user): ?string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+        $this->ensureHasPlayed($user);
+
+        if ($GLOBALS['cfg']['osu']['team']['create_require_supporter'] && !$user->isSupporter()) {
+            return 'team.store.require_supporter_tag';
+        }
+
+        if ($user->team !== null) {
+            return 'team.application.store.already_other_member';
+        }
+
+        if ($user->teamApplication !== null) {
+            return 'team.application.store.currently_applying';
         }
 
         return 'ok';
