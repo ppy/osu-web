@@ -79,11 +79,7 @@ class BeatmapsetsController extends Controller
 
     public function show($id)
     {
-        $beatmapset = (
-            priv_check('BeatmapsetShowDeleted')->can()
-                ? Beatmapset::withTrashed()->whereHas('allBeatmaps')
-                : Beatmapset::whereHas('beatmaps')
-        )->findOrFail($id);
+        $beatmapset = $this->findBeatmapset($id);
 
         $set = $this->showJson($beatmapset);
 
@@ -129,7 +125,7 @@ class BeatmapsetsController extends Controller
 
     public function discussion($id)
     {
-        $beatmapset = Beatmapset::findOrFail($id);
+        $beatmapset = $this->findBeatmapset($id);
 
         $initialData = [
             'beatmapset' => $beatmapset->defaultDiscussionJson(),
@@ -379,6 +375,15 @@ class BeatmapsetsController extends Controller
             ], cursor_for_response($search->getSortCursor())),
             'status' => $error === null ? 200 : ExceptionsHandler::statusCode($error),
         ];
+    }
+
+    private function findBeatmapset($id): Beatmapset
+    {
+        return (
+            priv_check('BeatmapsetShowDeleted')->can()
+                ? Beatmapset::withTrashed()->whereHas('allBeatmaps')
+                : Beatmapset::whereHas('beatmaps')
+        )->findOrFail($id);
     }
 
     private function showJson($beatmapset)

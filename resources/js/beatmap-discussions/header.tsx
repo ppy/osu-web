@@ -8,6 +8,7 @@ import BeatmapsetCover from 'components/beatmapset-cover';
 import BeatmapsetMapping from 'components/beatmapset-mapping';
 import BigButton from 'components/big-button';
 import HeaderV4 from 'components/header-v4';
+import NotificationBanner from 'components/notification-banner';
 import PlaymodeTabs from 'components/playmode-tabs';
 import StringWithComponent from 'components/string-with-component';
 import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
@@ -64,6 +65,13 @@ export class Header extends React.Component<Props> {
   render() {
     return (
       <>
+        {this.beatmapset.deleted_at != null && (
+          <NotificationBanner
+            message={trans('beatmapsets.show.deleted_banner.message')}
+            title={trans('beatmapsets.show.deleted_banner.title')}
+            type='info'
+          />
+        )}
         <HeaderV4
           links={headerLinks('discussions', this.beatmapset)}
           linksAppend={(
