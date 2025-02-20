@@ -52,12 +52,12 @@ class Team extends Model
 
     public function setFlagAttribute(?string $value): void
     {
-        $this->flag()->store($value);
+        $this->flag()->set($value);
     }
 
     public function setHeaderAttribute(?string $value): void
     {
-        $this->header()->store($value);
+        $this->header()->set($value);
     }
 
     public function setNameAttribute(?string $value): void
@@ -185,6 +185,9 @@ class Team extends Model
         if (!$this->isValid()) {
             return false;
         }
+
+        $this->flag()->updateFile();
+        $this->header()->updateFile();
 
         return parent::save($options);
     }

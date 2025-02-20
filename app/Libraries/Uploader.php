@@ -16,7 +16,9 @@ class Uploader
 {
     private const DEFAULT_MAX_FILESIZE = 10_000_000;
 
+    private string $ext;
     private ?string $filename;
+    private string $srcPath;
 
     public function __construct(
         private string $baseDir,
@@ -57,19 +59,35 @@ class Uploader
         return $path === null ? null : \Storage::get($path);
     }
 
+    public function set(string $srcPath, string $ext = ''): void
+    {
+        $this->srcPath = $srcPath;
+        $this->ext = $ext;
+
+        foreach ($this->processors as $processName => $processOptions) {
+            $newExt = static::process($processName, $processOptions, $this->srcPath);
+            if ($newExt !== null) {
+                $this->ext = $newExt;
+            }
+        }
+    }
+
     public function store(string $srcPath, string $ext = ''): void
     {
-        foreach ($this->processors as $processName => $processOptions) {
-            $newExt = static::process($processName, $processOptions, $srcPath);
-            if ($newExt !== null) {
-                $ext = $newExt;
-            }
+        $this->set($srcPath, $ext);
+        $this->updateFile();
+    }
+
+    public function updateFile(): void
+    {
+        if (!isset($this->ext, $this->srcPath)) {
+            return;
         }
 
         $this->delete();
-        $filename = hash_file('sha256', $srcPath);
-        if (present($ext)) {
-            $filename .= ".{$ext}";
+        $filename = hash_file('sha256', $this->srcPath);
+        if (present($this->ext)) {
+            $filename .= ".{$this->ext}";
         }
         $this->setFilename($filename);
         $storage = \Storage::disk();
@@ -83,7 +101,7 @@ class Uploader
 
         $storage->putFileAs(
             $this->dir(),
-            new File($srcPath),
+            new File($this->srcPath),
             $this->filename,
             $options ?? [],
         );
