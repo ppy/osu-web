@@ -17,6 +17,17 @@ use Illuminate\Support\Collection;
 
 class UsernameValidation
 {
+    public static function allowedName(string $username): bool
+    {
+        foreach (model_pluck(DB::table('phpbb_disallow'), 'disallow_username') as $check) {
+            if (preg_match('#^'.str_replace('%', '.*?', preg_quote($check, '#')).'$#i', $username)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public static function validateAvailability(string $username): ValidationErrors
     {
         $errors = new ValidationErrors('user');
@@ -72,11 +83,8 @@ class UsernameValidation
             $errors->add('username', '.username_no_space_userscore_mix');
         }
 
-        foreach (model_pluck(DB::table('phpbb_disallow'), 'disallow_username') as $check) {
-            if (preg_match('#^'.str_replace('%', '.*?', preg_quote($check, '#')).'$#i', $username)) {
-                $errors->add('username', '.username_not_allowed');
-                break;
-            }
+        if (!static::allowedName($username)) {
+            $errors->add('username', '.username_not_allowed');
         }
 
         return $errors;

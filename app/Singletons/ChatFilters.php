@@ -29,6 +29,30 @@ class ChatFilters
         return "/{$regex}/iu";
     }
 
+    public function isClean(string $text): bool
+    {
+        $filters = $this->filterRegexps();
+
+        foreach ($filters['non_whitespace_delimited_replaces'] as $search => $_replacement) {
+            if (stripos($text, $search) !== false) {
+                return false;
+            }
+        }
+
+        $patterns = [
+            $filters['block_regex'] ?? null,
+            ...array_keys($filters['whitespace_delimited_replaces']),
+        ];
+
+        foreach ($patterns as $pattern) {
+            if ($pattern !== null && preg_match($pattern, $text)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     /**
      * Applies all active chat filters to the provided text.
      * @param string $text The text to filter.
@@ -38,7 +62,27 @@ class ChatFilters
      */
     public function filter(string $text): string
     {
-        $filters = $this->memoize(__FUNCTION__, function () {
+        $filters = $this->filterRegexps();
+
+        if (isset($filters['block_regex']) && preg_match($filters['block_regex'], $text)) {
+            throw new ContentModerationException();
+        }
+
+        $text = str_ireplace(
+            array_keys($filters['non_whitespace_delimited_replaces']),
+            array_values($filters['non_whitespace_delimited_replaces']),
+            $text
+        );
+        return preg_replace(
+            array_keys($filters['whitespace_delimited_replaces']),
+            array_values($filters['whitespace_delimited_replaces']),
+            $text
+        );
+    }
+
+    private function filterRegexps(): array
+    {
+        return $this->memoize(__FUNCTION__, function () {
             $ret = [];
 
             $allFilters = ChatFilter::all();
@@ -63,20 +107,5 @@ class ChatFilters
 
             return $ret;
         });
-
-        if (isset($filters['block_regex']) && preg_match($filters['block_regex'], $text)) {
-            throw new ContentModerationException();
-        }
-
-        $text = str_ireplace(
-            array_keys($filters['non_whitespace_delimited_replaces']),
-            array_values($filters['non_whitespace_delimited_replaces']),
-            $text
-        );
-        return preg_replace(
-            array_keys($filters['whitespace_delimited_replaces']),
-            array_values($filters['whitespace_delimited_replaces']),
-            $text
-        );
     }
 }
