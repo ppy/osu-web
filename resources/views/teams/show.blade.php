@@ -63,7 +63,7 @@
                     method="POST"
                 >
                     <button
-                        class="{{ class_with_modifiers('team-action-button', 'part', ['disabled' => !$canPart]) }}"
+                        class="team-action-button team-action-button--join"
                         @if (!$canPart)
                             disabled
                         @endif

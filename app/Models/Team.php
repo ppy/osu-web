@@ -52,12 +52,12 @@ class Team extends Model
 
     public function setFlagAttribute(?string $value): void
     {
-        $this->flag()->store($value);
+        $this->flag()->set($value);
     }
 
     public function setHeaderAttribute(?string $value): void
     {
-        $this->header()->store($value);
+        $this->header()->set($value);
     }
 
     public function setNameAttribute(?string $value): void
@@ -133,7 +133,8 @@ class Team extends Model
             if ($value === null) {
                 $this->validationErrors()->add($field, 'required');
             } elseif ($this->isDirty($field)) {
-                if (!preg_match('#^[A-Za-z0-9-\[\]_ ]+$#u', $value)) {
+                // printable ascii characters
+                if (!preg_match('/^[ -~]+$/', $value)) {
                     $this->validationErrors()->add($field, '.invalid_characters');
                 } elseif (!$wordFilters->isClean($value) || !UsernameValidation::allowedName($value)) {
                     $this->validationErrors()->add($field, '.word_not_allowed');
@@ -185,6 +186,9 @@ class Team extends Model
         if (!$this->isValid()) {
             return false;
         }
+
+        $this->flag()->updateFile();
+        $this->header()->updateFile();
 
         return parent::save($options);
     }
