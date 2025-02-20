@@ -2,6 +2,12 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    $imageTypeAccept = implode(',', array_map(
+        image_type_to_mime_type(...),
+        App\Libraries\ImageProcessor::ALLOWED_TYPES,
+    ));
+@endphp
 @extends('master')
 
 @section('content')
@@ -114,7 +120,7 @@
                             <span class="input-container__label">
                                 {{ osu_trans('teams.edit.header.label') }}
                             </span>
-                            <input class="input-text" type="file" name="team[header]">
+                            <input accept="{{ $imageTypeAccept }}" class="input-text" type="file" name="team[header]">
                         </label>
                     </div>
                 </div>
@@ -122,19 +128,19 @@
 
             <div class="page-extra">
                 <h2 class="title title--page-extra-small title--page-extra-small-top">
-                    {{ osu_trans('teams.edit.logo.title') }}
+                    {{ osu_trans('teams.edit.flag.title') }}
                 </h2>
                 <div class="team-settings">
                     <div class="team-settings__item team-settings__item--image">
                         <img
                             class="team-settings__image"
-                            src="{{ $team->logo()->url() }}"
+                            srcset="{{ $team->flag()->url() }} 2x"
                         >
                         <label class="input-container">
                             <span class="input-container__label">
-                                {{ osu_trans('teams.edit.logo.label') }}
+                                {{ osu_trans('teams.edit.flag.label') }}
                             </span>
-                            <input class="input-text" type="file" name="team[logo]">
+                            <input accept="{{ $imageTypeAccept }}" class="input-text" type="file" name="team[flag]">
                         </label>
                     </div>
                 </div>

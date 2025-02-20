@@ -25,7 +25,7 @@ class Team extends Model
     protected $casts = ['is_open' => 'bool'];
 
     private Uploader $header;
-    private Uploader $logo;
+    private Uploader $flag;
 
     private static function sanitiseName(?string $value): ?string
     {
@@ -57,22 +57,14 @@ class Team extends Model
         $this->attributes['default_ruleset_id'] = Beatmap::MODES[Beatmap::modeStr($value) ?? 'osu'];
     }
 
-    public function setHeaderAttribute(?string $value): void
+    public function setFlagAttribute(?string $value): void
     {
-        if ($value === null) {
-            $this->header()->delete();
-        } else {
-            $this->header()->store($value);
-        }
+        $this->flag()->set($value);
     }
 
-    public function setLogoAttribute(?string $value): void
+    public function setHeaderAttribute(?string $value): void
     {
-        if ($value === null) {
-            $this->logo()->delete();
-        } else {
-            $this->logo()->store($value);
-        }
+        $this->header()->set($value);
     }
 
     public function setNameAttribute(?string $value): void
@@ -120,7 +112,7 @@ class Team extends Model
     public function delete()
     {
         $this->header()->delete();
-        $this->logo()->delete();
+        $this->flag()->delete();
 
         return $this->getConnection()->transaction(function () {
             $ret = parent::delete();
@@ -171,7 +163,7 @@ class Team extends Model
             'teams/header',
             $this,
             'header_file',
-            ['image' => ['maxDimensions' => [1000, 250]]],
+            ['image' => ['maxDimensions' => [2000, 500]]],
         );
     }
 
@@ -185,7 +177,8 @@ class Team extends Model
             if ($value === null) {
                 $this->validationErrors()->add($field, 'required');
             } elseif ($this->isDirty($field)) {
-                if (!preg_match('#^[A-Za-z0-9-\[\]_ ]+$#u', $value)) {
+                // printable ascii characters
+                if (!preg_match('/^[ -~]+$/', $value)) {
                     $this->validationErrors()->add($field, '.invalid_characters');
                 } elseif (!$wordFilters->isClean($value) || !UsernameValidation::allowedName($value)) {
                     $this->validationErrors()->add($field, '.word_not_allowed');
@@ -213,12 +206,12 @@ class Team extends Model
         return $this->validationErrors()->isEmpty();
     }
 
-    public function logo(): Uploader
+    public function flag(): Uploader
     {
-        return $this->logo ??= new Uploader(
-            'teams/logo',
+        return $this->flag ??= new Uploader(
+            'teams/flag',
             $this,
-            'logo_file',
+            'flag_file',
             ['image' => ['maxDimensions' => [512, 256]]],
         );
     }
@@ -264,6 +257,9 @@ class Team extends Model
         if (!$this->isValid()) {
             return false;
         }
+
+        $this->flag()->updateFile();
+        $this->header()->updateFile();
 
         return parent::save($options);
     }

@@ -131,6 +131,12 @@
         "Type": "DifficultyIncrease",
         "Settings": [
           {
+            "Name": "fail_on_slider_tail",
+            "Type": "boolean",
+            "Label": "Also fail when missing a slider tail",
+            "Description": ""
+          },
+          {
             "Name": "restart",
             "Type": "boolean",
             "Label": "Restart on fail",

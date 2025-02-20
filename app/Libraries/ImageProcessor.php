@@ -9,11 +9,12 @@ use App\Exceptions\ImageProcessorException;
 
 class ImageProcessor
 {
+    const ALLOWED_TYPES = [IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG];
+
     public $errors = [];
 
     public $hardMaxDim = [5000, 5000];
     public $hardMaxFileSize = 10000000;
-    public $allowedTypes = [IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG];
 
     public $inputDim = null;
     public $inputFileSize = null;
@@ -36,7 +37,7 @@ class ImageProcessor
             throw new ImageProcessorException(osu_trans('users.show.edit.cover.upload.too_large'));
         }
 
-        if ($this->inputDim === null || !in_array($this->inputDim[2], $this->allowedTypes, true)) {
+        if ($this->inputDim === null || !in_array($this->inputDim[2], static::ALLOWED_TYPES, true)) {
             throw new ImageProcessorException(osu_trans('users.show.edit.cover.upload.unsupported_format'));
         }
 
