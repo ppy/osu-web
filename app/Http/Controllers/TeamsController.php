@@ -104,7 +104,7 @@ class TeamsController extends Controller
                     $member->user->$statisticsRelationName
                     ?? $member->user->$statisticsRelationName()->make()
                 )->setRelation('user', $member->user))
-            ->sortByDesc(['rank_score', 'total_score'])
+            ->sortByDesc(['rank_score', 'ranked_score'])
             ->values();
 
         return ext_view('teams.leaderboard', compact('leaderboard', 'ruleset', 'team'));
