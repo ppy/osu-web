@@ -100,6 +100,10 @@ class Team extends Model
 
     public function createChannel(): Chat\Channel
     {
+        if ($this->channel !== null) {
+            return $this->channel;
+        }
+
         $channel = Chat\Channel::create([
             'type' => Chat\Channel::TYPES['team'],
             'name' => $this->name,
