@@ -12,7 +12,7 @@ use App\Models\User;
 
 abstract class TeamApplicationBase extends BroadcastNotificationBase
 {
-    const DELIVERY_MODE_DEFAULTS = ['mail' => true, 'push' => true];
+    const DELIVERY_MODE_DEFAULTS = ['mail' => false, 'push' => true];
 
     protected Team $team;
     protected int $userId;
