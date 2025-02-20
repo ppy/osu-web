@@ -33,7 +33,7 @@ abstract class TeamApplicationBase extends BroadcastNotificationBase
     public function getDetails(): array
     {
         return [
-            'cover_url' => $this->team->logo()->url(),
+            'cover_url' => $this->team->flag()->url(),
             'team_id' => $this->team->getKey(),
             'title' => $this->team->name,
         ];
