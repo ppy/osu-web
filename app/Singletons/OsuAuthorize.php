@@ -48,6 +48,7 @@ class OsuAuthorize
         static $set;
 
         $set ??= new Ds\Set([
+            'ChannelPart',
             'ContestJudge',
             'IsNotOAuth',
             'IsOwnClient',
@@ -1046,7 +1047,8 @@ class OsuAuthorize
         $this->ensureCleanRecord($user, $prefix);
 
         // joining multiplayer room is done through room endpoint
-        if ($channel->isMultiplayer()) {
+        // team channel handling is done through team model
+        if ($channel->isMultiplayer() || $channel->isTeam()) {
             return null;
         }
 
@@ -1070,7 +1072,8 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
 
-        if ($channel->type !== Channel::TYPES['private']) {
+        // team channel handling is done through team model
+        if (!$channel->isTeam() && $channel->type !== Channel::TYPES['private']) {
             return 'ok';
         }
 

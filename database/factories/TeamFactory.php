@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\Chat\Channel;
 use App\Models\Team;
 use App\Models\User;
 
@@ -18,6 +19,7 @@ class TeamFactory extends Factory
     {
         return $this->afterCreating(function (Team $team): void {
             $team->members()->create(['user_id' => $team->leader_id]);
+            $team->channel->userChannels()->create(['user_id' => $team->leader_id]);
         });
     }
 
@@ -27,6 +29,8 @@ class TeamFactory extends Factory
             'name' => fn () => strtr($this->faker->unique()->userName(), '.', ' '),
             'short_name' => fn () => substr(strtr($this->faker->unique()->userName(), '.', ' '), 0, 4),
             'leader_id' => User::factory(),
+
+            'channel_id' => fn (array $attrs) => Channel::factory()->state(fn () => ['name' => $attrs['name']]),
         ];
     }
 }

@@ -7,6 +7,8 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Exceptions\InvariantException;
+use App\Jobs\Notifications\TeamApplicationAccept;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\Uploader;
 use App\Libraries\UsernameValidation;
@@ -37,6 +39,11 @@ class Team extends Model
     public function applications(): HasMany
     {
         return $this->hasMany(TeamApplication::class);
+    }
+
+    public function channel(): BelongsTo
+    {
+        return $this->belongsTo(Chat\Channel::class, 'channel_id');
     }
 
     public function leader(): BelongsTo
@@ -84,13 +91,31 @@ class Team extends Model
             );
     }
 
-    public function descriptionHtml(): string
+    public function addMember(TeamApplication $application): void
     {
-        $description = presence($this->description);
+        $this->getConnection()->transaction(function () use ($application) {
+            $application->delete();
+            $this->members()->create(['user_id' => $application->getKey()]);
+            $this->channel->addUser($application->user);
+        });
 
-        return $description === null
-            ? ''
-            : bbcode((new BBCodeForDB($description))->generate());
+        (new TeamApplicationAccept($application, $this->leader))->dispatch();
+    }
+
+    public function createChannel(): Chat\Channel
+    {
+        if ($this->channel !== null) {
+            return $this->channel;
+        }
+
+        $channel = new Chat\Channel([
+            'name' => truncate($this->name, 50),
+            'type' => Chat\Channel::TYPES['team'],
+        ]);
+        $channel->saveOrExplode();
+        $this->channel()->associate($channel);
+
+        return $channel;
     }
 
     public function delete()
@@ -104,10 +129,34 @@ class Team extends Model
             if ($ret) {
                 $this->applications()->delete();
                 $this->members()->delete();
+
+                $channel = $this->channel;
+                if ($channel !== null) {
+                    $channel->loadMissing('userChannels.user');
+                    $channel->update(['name' => "#DeletedTeam_{$this->getKey()}"]);
+
+                    foreach ($channel->userChannels as $userChannel) {
+                        $user = $userChannel->user;
+                        if ($user === null) {
+                            $userChannel->delete();
+                        } else {
+                            $channel->removeUser($user);
+                        }
+                    }
+                }
             }
 
             return $ret;
         });
+    }
+
+    public function descriptionHtml(): string
+    {
+        $description = presence($this->description);
+
+        return $description === null
+            ? ''
+            : bbcode((new BBCodeForDB($description))->generate());
     }
 
     public function emptySlots(): int
@@ -184,6 +233,33 @@ class Team extends Model
         $supporterCount = $this->members->filter(fn ($member) => $member->user?->isSupporter() ?? false)->count();
 
         return min(8 + (4 * $supporterCount), $GLOBALS['cfg']['osu']['team']['max_members']);
+    }
+
+    public function removeMember(TeamMember $member): void
+    {
+        if ($member->user_id === $this->leader_id) {
+            throw new InvariantException('can not remove leader from the team');
+        }
+
+        $this->getConnection()->transaction(function () use ($member) {
+            $member->delete();
+            $user = $member->user;
+            if ($user !== null) {
+                $this->channel->removeUser($user);
+            }
+        });
+    }
+
+    public function resetChannelUsers(): void
+    {
+        $channel = $this->channel;
+        $this->loadMissing('members.user');
+
+        foreach ($this->members->pluck('user') as $user) {
+            if ($user !== null) {
+                $channel->addUser($user);
+            }
+        }
     }
 
     public function save(array $options = [])

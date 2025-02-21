@@ -15,6 +15,7 @@ const icons: Record<SupportedChannelType, string> = {
   GROUP: 'fas fa-user-group', // just give it an icon; nothing returns this yet.
   PM: 'fas fa-envelope',
   PUBLIC: 'fas fa-comments',
+  TEAM: 'fas fa-users',
 };
 
 function renderChannels(type: SupportedChannelType) {
