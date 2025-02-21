@@ -114,11 +114,13 @@
                 </h2>
                 <div class="team-settings">
                     <div class="team-settings__item">
-                        <img
-                            class="team-settings__image"
-                            src="{{ $team->header()->url() }}"
-                        >
-                        <span></span>
+                        @if (($url = $team->header()->url()) !== null)
+                            <img
+                                class="team-settings__image"
+                                src="{{ $url }}"
+                            >
+                            <span></span>
+                        @endif
                         <label class="input-container">
                             <span class="input-container__label">
                                 {{ osu_trans('teams.edit.header.label') }}
@@ -141,11 +143,13 @@
                 </h2>
                 <div class="team-settings">
                     <div class="team-settings__item">
-                        <img
-                            class="team-settings__image"
-                            srcset="{{ $team->flag()->url() }} 2x"
-                        >
-                        <span></span>
+                        @if (($url = $team->flag()->url()) !== null)
+                            <img
+                                class="team-settings__image"
+                                srcset="{{ $url }} 2x"
+                            >
+                            <span></span>
+                        @endif
                         <label class="input-container">
                             <span class="input-container__label">
                                 {{ osu_trans('teams.edit.flag.label') }}

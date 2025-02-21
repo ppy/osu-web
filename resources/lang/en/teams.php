@@ -83,8 +83,6 @@ return [
 
     'leaderboard' => [
         'global_rank' => 'Global Rank',
-        'performance' => 'Performance',
-        'total_score' => 'Total Score',
     ],
 
     'members' => [
