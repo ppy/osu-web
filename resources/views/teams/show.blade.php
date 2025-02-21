@@ -52,6 +52,12 @@
         </div>
         <div class="profile-detail-bar profile-detail-bar--team">
             @if ($currentUser?->team?->getKey() === $team->getKey())
+                <a
+                    class="team-action-button"
+                    href="{{ route('chat.index', ['channel_id' => $team->channel_id]) }}"
+                >
+                    {{ osu_trans('teams.show.bar.chat') }}
+                </a>
                 @php
                     $partPriv = priv_check('TeamPart', $team);
                     $canPart = $partPriv->can();

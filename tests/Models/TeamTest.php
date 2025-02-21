@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Tests\Models;
 
+use App\Models\Chat;
 use App\Models\Team;
 use App\Models\TeamApplication;
 use App\Models\TeamMember;
@@ -27,18 +28,27 @@ class TeamTest extends TestCase
     {
         $team = Team::factory()->create();
         $team->members()->create(['user_id' => User::factory()->create()->getKey()]);
+        Chat\Message::factory()->create(['channel_id' => $team->channel, 'user_id' => $team->leader_id]);
         $team->applications()->create(['user_id' => User::factory()->create()->getKey()]);
+
         $otherTeam = Team::factory()->create();
         $otherTeam->members()->create(['user_id' => User::factory()->create()->getKey()]);
+        Chat\Message::factory()->create(['channel_id' => $otherTeam->channel]);
 
         $this->expectCountChange(fn () => Team::count(), -1);
         $this->expectCountChange(fn () => TeamApplication::count(), -1);
         $this->expectCountChange(fn () => TeamMember::count(), -2);
         $this->expectCountChange(fn () => $otherTeam->members()->count(), 0);
 
+        // Members are booted from the channel but the channel and message themselves are preserved.
+        $this->expectCountChange(fn () => $team->channel->userChannels()->count(), -1);
+        $this->expectCountChange(fn () => Chat\Channel::count(), 0);
+        $this->expectCountChange(fn () => Chat\Message::count(), 0);
+
         $team->fresh()->delete();
 
         $this->assertNotNull($otherTeam->fresh());
+        $this->assertSame("#DeletedTeam_{$team->getKey()}", $team->channel->fresh()->name);
     }
 
     /**
