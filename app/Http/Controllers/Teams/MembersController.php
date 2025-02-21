@@ -9,6 +9,7 @@ namespace App\Http\Controllers\Teams;
 
 use App\Http\Controllers\Controller;
 use App\Models\Team;
+use App\Models\TeamMember;
 use Symfony\Component\HttpFoundation\Response;
 
 class MembersController extends Controller
