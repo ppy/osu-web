@@ -56,12 +56,16 @@ class Team extends Model
 
     public function setFlagAttribute(?string $value): void
     {
-        $this->flag()->set($value);
+        if ($value !== null) {
+            $this->flag()->set($value);
+        }
     }
 
     public function setHeaderAttribute(?string $value): void
     {
-        $this->header()->set($value);
+        if ($value !== null) {
+            $this->header()->set($value);
+        }
     }
 
     public function setNameAttribute(?string $value): void
