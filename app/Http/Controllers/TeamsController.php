@@ -115,7 +115,8 @@ class TeamsController extends Controller
         $team = Team::findOrFail($id);
         priv_check('TeamPart', $team)->ensureCan();
 
-        $team->members()->findOrFail(\Auth::user()->getKey())->delete();
+        $teamMember = $team->members()->findOrFail(\Auth::user()->getKey());
+        $team->removeMember($teamMember);
         \Session::flash('popup', osu_trans('teams.part.ok'));
 
         return ujs_redirect(route('teams.show', ['team' => $team]));
