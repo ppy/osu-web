@@ -10,7 +10,7 @@ use Symfony\Component\Finder\Finder;
 class ZalgoTest extends TestCase
 {
     /**
-     * @dataProvider zalgoExamples
+     * @dataProvider combinationExamples
      */
     public function testCombination($text)
     {
@@ -41,7 +41,7 @@ class ZalgoTest extends TestCase
         $this->assertSame(unzalgo($text, $level), $expected);
     }
 
-    public function combinationExamples()
+    public static function combinationExamples()
     {
         return [
             ['👩🏻‍⚕️'],
