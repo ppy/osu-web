@@ -113,8 +113,6 @@ export default class ChatStateStore implements DispatchListener {
         }
 
         runInAction(() => {
-          this.selectedChannel?.load();
-
           this.isReady = true;
         });
       }
