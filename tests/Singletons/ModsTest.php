@@ -71,17 +71,29 @@ class ModsTest extends TestCase
     /**
      * @dataProvider modComboExclusives
      */
-    public function testAssertValidExclusivity(Ruleset $ruleset, $requiredIds, $allowedIds, $isValid)
+    public function testAssertValidExclusivity(Ruleset $ruleset, $mods, $isValid)
     {
         if (!$isValid) {
             $this->expectException(InvariantException::class);
+        } else {
+            $this->expectNotToPerformAssertions();
         }
 
-        $result = app('mods')->assertValidExclusivity($ruleset->value, $requiredIds, $allowedIds);
+        $result = app('mods')->assertValidExclusivity($ruleset->value, $mods);
+    }
 
-        if ($isValid) {
-            $this->assertTrue($result);
+    /**
+     * @dataProvider multiplayerModComboExclusives
+     */
+    public function testAssertValidMultiplayerExclusivity(Ruleset $ruleset, $requiredIds, $allowedIds, $isValid)
+    {
+        if (!$isValid) {
+            $this->expectException(InvariantException::class);
+        } else {
+            $this->expectNotToPerformAssertions();
         }
+
+        app('mods')->assertValidMultiplayerExclusivity($ruleset->value, $requiredIds, $allowedIds);
     }
 
     /**
@@ -91,13 +103,11 @@ class ModsTest extends TestCase
     {
         if (!$isValid) {
             $this->expectException(InvariantException::class);
+        } else {
+            $this->expectNotToPerformAssertions();
         }
 
-        $result = app('mods')->validateSelection($ruleset->value, $modCombo);
-
-        if ($isValid) {
-            $this->assertTrue($result);
-        }
+        app('mods')->validateSelection($ruleset->value, $modCombo);
     }
 
     public static function modCombos()
@@ -141,6 +151,17 @@ class ModsTest extends TestCase
     }
 
     public static function modComboExclusives()
+    {
+        return [
+            [Ruleset::osu, [], true],
+            [Ruleset::osu, ['HD', 'NC'], true],
+            [Ruleset::mania, ['DT', 'PF'], true],
+            [Ruleset::taiko, ['HT', 'DT'], false],
+            [Ruleset::osu, ['MR', 'NC', 'HR'], false],
+        ];
+    }
+
+    public static function multiplayerModComboExclusives()
     {
         return [
             // non-exclusive required mods and no allowed mods
