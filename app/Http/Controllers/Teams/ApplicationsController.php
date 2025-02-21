@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Teams;
 
 use App\Http\Controllers\Controller;
-use App\Jobs\Notifications\TeamApplicationAccept;
 use App\Jobs\Notifications\TeamApplicationReject;
 use App\Models\Team;
 use App\Models\TeamApplication;
@@ -30,12 +29,8 @@ class ApplicationsController extends Controller
 
         priv_check('TeamApplicationAccept', $application)->ensureCan();
 
-        \DB::transaction(function () use ($application, $team) {
-            $application->delete();
-            $team->members()->create(['user_id' => $application->getKey()]);
-        });
+        $team->addMember($application);
 
-        (new TeamApplicationAccept($application, \Auth::user()))->dispatch();
         \Session::flash('popup', osu_trans('teams.applications.accept.ok'));
 
         return response(null, 204);

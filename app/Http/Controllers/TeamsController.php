@@ -115,7 +115,8 @@ class TeamsController extends Controller
         $team = Team::findOrFail($id);
         priv_check('TeamPart', $team)->ensureCan();
 
-        $team->members()->findOrFail(\Auth::user()->getKey())->delete();
+        $teamMember = $team->members()->findOrFail(\Auth::user()->getKey());
+        $team->removeMember($teamMember);
         \Session::flash('popup', osu_trans('teams.part.ok'));
 
         return ujs_redirect(route('teams.show', ['team' => $team]));
@@ -145,8 +146,10 @@ class TeamsController extends Controller
         $team = (new Team([...$params, 'leader_id' => $user->getKey()]));
         try {
             \DB::transaction(function () use ($team, $user) {
+                $channel = $team->createChannel();
                 $team->saveOrExplode();
                 $team->members()->create(['user_id' => $user->getKey()]);
+                $channel->addUser($user);
             });
         } catch (ModelNotSavedException) {
             return ext_view('teams.create', compact('team'), status: 422);

@@ -42,6 +42,7 @@ class TeamsControllerTest extends TestCase
         $team = $user->fresh()->team;
         $this->assertNotNull($team);
         $this->assertSame($user->getKey(), $team->leader_id);
+        $this->assertNotNull($team->channel);
     }
 
     public function testStoreAlreadyPartOfTeam()
