@@ -167,13 +167,29 @@ class Team extends Model
         return max(0, $max - $current);
     }
 
+    public function flag(): Uploader
+    {
+        return $this->flag ??= new Uploader(
+            'teams/flag',
+            $this,
+            'flag_file',
+            ['image' => [
+                'maxDimensions' => static::FLAG_MAX_DIMENSIONS,
+                'maxFilesize' => 200_000,
+            ]],
+        );
+    }
+
     public function header(): Uploader
     {
         return $this->header ??= new Uploader(
             'teams/header',
             $this,
             'header_file',
-            ['image' => ['maxDimensions' => static::HEADER_MAX_DIMENSIONS]],
+            ['image' => [
+                'maxDimensions' => static::HEADER_MAX_DIMENSIONS,
+                'maxFilesize' => 4_000_000,
+            ]],
         );
     }
 
@@ -214,16 +230,6 @@ class Team extends Model
         }
 
         return $this->validationErrors()->isEmpty();
-    }
-
-    public function flag(): Uploader
-    {
-        return $this->flag ??= new Uploader(
-            'teams/flag',
-            $this,
-            'flag_file',
-            ['image' => ['maxDimensions' => static::FLAG_MAX_DIMENSIONS]],
-        );
     }
 
     public function maxMembers(): int
