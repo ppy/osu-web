@@ -120,6 +120,7 @@ return [
 
     'show' => [
         'bar' => [
+            'chat' => 'Team Chat',
             'destroy' => 'Disband Team',
             'join' => 'Request Join',
             'join_cancel' => 'Cancel Join',
