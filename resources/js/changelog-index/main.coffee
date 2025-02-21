@@ -6,6 +6,7 @@ import { ChangelogHeaderStreams } from 'components/changelog-header-streams'
 import HeaderV4 from 'components/header-v4'
 import ShowMoreLink from 'components/show-more-link'
 import { route } from 'laroute'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { button, div, h1, p, span } from 'react-dom-factories'
 import { jsonClone } from 'utils/json'
@@ -29,7 +30,7 @@ export class Main extends React.PureComponent
 
 
   componentDidMount: =>
-    changelogChartLoader.initialize()
+    core.changelogChartLoader.initialize()
 
 
   render: =>
