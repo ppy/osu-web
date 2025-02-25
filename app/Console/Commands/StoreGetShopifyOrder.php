@@ -22,7 +22,7 @@ class StoreGetShopifyOrder extends Command
     public function handle()
     {
         $order = Order::findOrFail(get_int($this->argument('orderId')));
-        if ($order->provider !== 'shopify') {
+        if ($order->provider !== Order::PROVIDER_SHOPIFY) {
             $this->error('Not a Shopify order');
             return static::INVALID;
         }

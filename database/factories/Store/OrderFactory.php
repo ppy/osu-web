@@ -18,7 +18,7 @@ class OrderFactory extends Factory
 
     public function checkout(): static
     {
-        return $this->state(['status' => 'checkout']);
+        return $this->state(['status' => Order::STATUS_PAYMENT_APPROVED]);
     }
 
     public function definition(): array
@@ -41,21 +41,21 @@ class OrderFactory extends Factory
 
     public function incart(): static
     {
-        return $this->state(['status' => 'incart']);
+        return $this->state(['status' => Order::STATUS_INCART]);
     }
 
     public function processing(): static
     {
-        return $this->state(['status' => 'processing']);
+        return $this->state(['status' => Order::STATUS_PAYMENT_REQUESTED]);
     }
 
     public function shipped(): static
     {
-        return $this->state(['status' => 'shipped']);
+        return $this->state(['status' => Order::STATUS_SHIPPED]);
     }
 
     public function shopify(): static
     {
-        return $this->state(['provider' => 'shopify']);
+        return $this->state(['provider' => Order::PROVIDER_SHOPIFY]);
     }
 }
