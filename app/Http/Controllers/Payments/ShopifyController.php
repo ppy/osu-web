@@ -37,7 +37,7 @@ class ShopifyController extends Controller
             $params = $this->getParams();
             // just log info that can be used for lookup if necessary.
             $data = [
-                'shopify_gid' => $params['id'],
+                'shopify_gid' => $params['admin_graphql_api_id'],
                 'shopify_order_number' => $params['order_number'],
                 'webhook_type' => $type,
             ];
