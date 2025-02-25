@@ -137,13 +137,16 @@ class Mods
 
     public function assertValidExclusivity(int $rulesetId, array $modAcronyms): void
     {
+        $disallowedIds = new Set();
+
         foreach ($modAcronyms as $modAcronym) {
             $incompatibleIds = $this->mods[$rulesetId][$modAcronym]['IncompatibleMods'];
+            $disallowedIds->add(...$incompatibleIds);
+        }
 
-            $invalidIds = $incompatibleIds->intersect(new Set($modAcronyms));
-            if ($invalidIds->count() > 0) {
-                throw new InvariantException("incompatible mods: {$modAcronym}, {$invalidIds->join(', ')}");
-            }
+        $invalidIds = $disallowedIds->intersect(new Set($modAcronyms));
+        if ($invalidIds->count() > 0) {
+            throw new InvariantException("incompatible mods: {$modAcronym}, {$invalidIds->join(', ')}");
         }
     }
 
