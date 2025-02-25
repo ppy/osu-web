@@ -110,7 +110,7 @@ class StoreMigrateShopifyCheckouts extends Command
     {
         $query = <<<QUERY
         {
-            nodes(ids: {$ids}) {
+            nodes(ids: {$ids->toJson(JSON_UNESCAPED_SLASHES)}) {
                 ... on Checkout {
                     id
                     customAttributes {
