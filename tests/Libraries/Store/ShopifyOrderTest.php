@@ -47,6 +47,9 @@ class ShopifyOrderTest extends TestCase
     private static function baseResponse(array $extra)
     {
         return [
+            'billingAddress' => [
+                'countryCodeV2' => 'AU',
+            ],
             'canceledAt' => null,
             'id' => 'gid://shopify/Order/1',
             'orderNumber' => 123,
