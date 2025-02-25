@@ -136,7 +136,11 @@ class ShopifyController extends Controller
         }
 
         // Don't overwrite existing values with null/empty string later.
-        return array_filter($params, fn ($value) => present($value));
+        return array_filter([
+            'reference' => $params['admin_graphql_api_id'],
+            'order_number' => $params['order_number'],
+            'shopify_url' => $params['order_status_url'],
+        ], fn ($value) => present($value));
     }
 
     private function getParams()

@@ -120,6 +120,26 @@ class ShopifyControllerTest extends TestCase
         $this->assertEquals($order->updated_at, $oldUpdatedAt);
     }
 
+
+    public function testWebhookOrderUpdateEmptyParams()
+    {
+        $order = Order::factory()->shopify()->paymentApproved()->create([
+            'reference' => 'gid://shopify/Order/123?key=foo',
+            'transaction_id' => 'shopify-123',
+            'shopify_url' => 'https://not-real.local?key=foo',
+        ]);
+        $oldParams = $order->only('reference', 'transaction_id', 'shopify_url');
+
+        $this->setShopifyPayload([
+            'note_attributes' => [['name' => 'orderId', 'value' => $order->getKey()]],
+        ]);
+
+        $this->sendCallbackRequest(['X-Shopify-Topic' => 'orders/fulfilled'])->assertStatus(204);
+
+        $order->refresh();
+        $this->assertSame($oldParams, $order->only('reference', 'transaction_id', 'shopify_url'));
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
