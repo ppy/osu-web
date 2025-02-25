@@ -169,7 +169,7 @@ class ShopifyControllerTest extends TestCase
             'admin_graphql_api_id' => 'gid://shopify/Order/123',
             'order_number' => 123,
             'order_status_url' => 'https://not-real.local?key=foo',
-            ...$params
+            ...$params,
         ];
     }
 }
