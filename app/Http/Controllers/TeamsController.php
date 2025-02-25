@@ -124,11 +124,19 @@ class TeamsController extends Controller
 
     public function show(string $id, ?string $ruleset = null): Response
     {
+        $params = str_starts_with($id, '@')
+            ? ['short_name' => substr($id, 1)]
+            : ['id' => $id];
+
         $team = Team
             ::with(array_map(
                 fn (string $preload): string => "members.user.{$preload}",
                 UserCompactTransformer::CARD_INCLUDES_PRELOAD,
-            ))->findOrFail($id);
+            ))->where($params)->firstOrFail();
+
+        if ($id !== (string) $team->getKey()) {
+            return ujs_redirect(route('teams.show', compact('team', 'ruleset')));
+        }
 
         if ($ruleset === null) {
             $rulesetId = $team->default_ruleset_id;
