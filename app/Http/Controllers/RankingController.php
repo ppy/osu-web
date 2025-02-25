@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Models\UserStatistics;
 use App\Transformers\SelectOptionTransformer;
 use App\Transformers\UserCompactTransformer;
+use App\Transformers\UserStatisticsTransformer;
 use DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -242,7 +243,7 @@ class RankingController extends Controller
                     break;
 
                 default:
-                    $includes = ['user', 'user.cover', 'user.country'];
+                    $includes = UserStatisticsTransformer::RANKING_INCLUDES;
 
                     if ($this->country !== null) {
                         $includes[] = 'country_rank';
@@ -256,7 +257,7 @@ class RankingController extends Controller
                         $includes[] = 'rank_change_since_30_days';
                     }
 
-                    $ranking = json_collection($stats, 'UserStatistics', $includes);
+                    $ranking = json_collection($stats, new UserStatisticsTransformer(), $includes);
                     break;
             }
 
@@ -346,7 +347,11 @@ class RankingController extends Controller
                     // transformer can't do nested includes with params properly.
                     // https://github.com/thephpleague/fractal/issues/239
                     'beatmapsets' => json_collection($beatmapsets, 'Beatmapset', ['beatmaps']),
-                    'ranking' => json_collection($scores->get(), 'UserStatistics', ['user', 'user.cover', 'user.country']),
+                    'ranking' => json_collection(
+                        $scores->get(),
+                        new UserStatisticsTransformer(),
+                        UserStatisticsTransformer::RANKING_INCLUDES,
+                    ),
                     'spotlight' => json_item($spotlight, 'Spotlight', ["participant_count:mode({$mode})"]),
                 ];
             } else {

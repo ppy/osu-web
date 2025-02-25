@@ -48,6 +48,7 @@ class OsuAuthorize
         static $set;
 
         $set ??= new Ds\Set([
+            'ChannelPart',
             'ContestJudge',
             'IsNotOAuth',
             'IsOwnClient',
@@ -55,6 +56,8 @@ class OsuAuthorize
             'TeamApplicationAccept',
             'TeamApplicationStore',
             'TeamPart',
+            'TeamStore',
+            'TeamUpdate',
             'UserUpdateEmail',
         ]);
 
@@ -1044,7 +1047,8 @@ class OsuAuthorize
         $this->ensureCleanRecord($user, $prefix);
 
         // joining multiplayer room is done through room endpoint
-        if ($channel->isMultiplayer()) {
+        // team channel handling is done through team model
+        if ($channel->isMultiplayer() || $channel->isTeam()) {
             return null;
         }
 
@@ -1068,7 +1072,8 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
 
-        if ($channel->type !== Channel::TYPES['private']) {
+        // team channel handling is done through team model
+        if (!$channel->isTeam() && $channel->type !== Channel::TYPES['private']) {
             return 'ok';
         }
 
@@ -1961,6 +1966,27 @@ class OsuAuthorize
         }
         if ($team->getKey() !== $user?->team?->getKey()) {
             return $prefix.'not_member';
+        }
+
+        return 'ok';
+    }
+
+    public function checkTeamStore(?User $user): ?string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+        $this->ensureHasPlayed($user);
+
+        if ($GLOBALS['cfg']['osu']['team']['create_require_supporter'] && !$user->isSupporter()) {
+            return 'team.store.require_supporter_tag';
+        }
+
+        if ($user->team !== null) {
+            return 'team.application.store.already_other_member';
+        }
+
+        if ($user->teamApplication !== null) {
+            return 'team.application.store.currently_applying';
         }
 
         return 'ok';

@@ -21,6 +21,12 @@
     border-radius: @border-radius-large;
   }
 
+  &__errors {
+    color: hsl(var(--hsl-red-1));
+    margin-top: 1em;
+    padding: 0 0 0 2em;
+  }
+
   &__help {
     color: hsl(var(--hsl-c2));
     font-size: @font-size--normal;
@@ -34,6 +40,7 @@
   }
 
   &__item {
+    --align-items-desktop: start;
     --grid-rows: none;
     --grid-rows-desktop: none;
     --grid-columns: 1fr;
@@ -43,22 +50,20 @@
     grid-template-columns: var(--grid-columns);
     grid-template-rows: var(--grid-rows);
 
-    @media @desktop {
-      --grid-columns: var(--grid-columns-desktop);
-      --grid-rows: var(--grid-rows-desktop);
-    }
-
     &--buttons {
       --grid-columns-desktop: 1fr auto;
     }
 
     &--description {
+      --align-items-desktop: stretch;
       --grid-columns-desktop: 1fr 1fr;
       --grid-rows: calc(var(--vh, 1vh) * 70) auto;
     }
 
-    &--image {
-      --grid-columns-desktop: 1fr;
+    @media @desktop {
+      --grid-columns: var(--grid-columns-desktop);
+      --grid-rows: var(--grid-rows-desktop);
+      align-items: var(--align-items-desktop);
     }
   }
 }

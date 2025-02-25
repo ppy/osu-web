@@ -47,6 +47,7 @@ const channelSorts = {
     return a.lastMessageId > b.lastMessageId ? -1 : 1;
   },
   PUBLIC: alphabeticalSort,
+  TEAM: alphabeticalSort,
 };
 
 @dispatchListener

@@ -27,14 +27,12 @@ class MembersController extends Controller
             'team_id' => $teamId,
             'user_id' => $userId,
         ])->firstOrFail();
+        $team = $teamMember->team;
 
-        if ($teamMember->user_id === \Auth::user()->getKey()) {
-            abort(422, 'can not remove self from team');
-        }
+        priv_check('TeamUpdate', $team)->ensureCan();
 
-        priv_check('TeamUpdate', $teamMember->team)->ensureCan();
+        $team->removeMember($teamMember);
 
-        $teamMember->delete();
         \Session::flash('popup', osu_trans('teams.members.destroy.success'));
 
         return response(null, 204);

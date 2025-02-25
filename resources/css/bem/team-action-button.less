@@ -24,11 +24,6 @@
     background: var(--bg-hover);
   }
 
-  &--disabled {
-    pointer-events: none;
-    opacity: 0.7;
-  }
-
   &--join {
     --bg: hsl(var(--hsl-blue-3));
     --bg-hover: hsl(var(--hsl-blue-2));
@@ -42,5 +37,10 @@
   &--part {
     --bg: hsl(var(--hsl-red-3));
     --bg-hover: hsl(var(--hsl-red-2));
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    opacity: 0.7;
   }
 }

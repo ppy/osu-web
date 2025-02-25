@@ -5,9 +5,7 @@
 
 namespace App\Exceptions;
 
-use Exception;
-
-class ImageProcessorException extends Exception
+class ImageProcessorException extends InvariantException
 {
     // doesn't really contain anything
 }

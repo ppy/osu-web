@@ -304,7 +304,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('part', 'TeamsController@part')->name('part');
         Route::resource('members', 'Teams\MembersController', ['only' => ['destroy', 'index']]);
     });
-    Route::resource('teams', 'TeamsController', ['only' => ['destroy', 'edit', 'show', 'update']]);
+    Route::resource('teams', 'TeamsController', ['only' => ['create', 'destroy', 'edit', 'store', 'show', 'update']]);
 
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
     Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');
@@ -612,6 +612,8 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
             Route::delete('rooms/{room}/users/{user}', 'RoomsController@part')->name('rooms.part');
             Route::apiResource('rooms', 'RoomsController', ['only' => ['store']]);
         });
+
+        Route::resource('teams', 'TeamsController', ['only' => ['destroy']]);
 
         Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'UsersController@achievement')->name('users.achievement');
 

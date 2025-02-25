@@ -2,6 +2,14 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    use App\Models\Team;
+
+    $imageTypeAccept = implode(',', array_map(
+        image_type_to_mime_type(...),
+        App\Libraries\ImageProcessor::ALLOWED_TYPES,
+    ));
+@endphp
 @extends('master')
 
 @section('content')
@@ -31,7 +39,7 @@
                     <div class="team-settings__item">
                         <label class="input-container">
                             <span class="input-container__label">
-                                {{ osu_trans('teams.edit.settings.url') }}
+                                {{ osu_trans('model_validation.team.attributes.url') }}
                             </span>
                             <input
                                 name="team[url]"
@@ -44,7 +52,7 @@
                     <div class="team-settings__item">
                         <label class="input-container input-container--select">
                             <span class="input-container__label">
-                                {{ osu_trans('teams.edit.settings.default_ruleset') }}
+                                {{ osu_trans('model_validation.team.attributes.default_ruleset_id') }}
                             </span>
                             <select
                                 name="team[default_ruleset_id]"
@@ -71,10 +79,10 @@
                     <div class="team-settings__item">
                         <label class="input-container input-container--select">
                             <span class="input-container__label">
-                                {{ osu_trans('teams.edit.settings.application') }}
+                                {{ osu_trans('model_validation.team.attributes.is_open') }}
                             </span>
                             @php
-                                $currentIsOpen = $team->is_open;
+                                $currentIsOpen = (int) $team->is_open;
                             @endphp
                             <select
                                 name="team[is_open]"
@@ -105,37 +113,55 @@
                     {{ osu_trans('teams.edit.header.title') }}
                 </h2>
                 <div class="team-settings">
-                    <div class="team-settings__item team-settings__item--image">
-                        <img
-                            class="team-settings__image"
-                            src="{{ $team->header()->url() }}"
-                        >
+                    <div class="team-settings__item">
+                        @if (($url = $team->header()->url()) !== null)
+                            <img
+                                class="team-settings__image"
+                                src="{{ $url }}"
+                            >
+                            <span></span>
+                        @endif
                         <label class="input-container">
                             <span class="input-container__label">
                                 {{ osu_trans('teams.edit.header.label') }}
                             </span>
-                            <input class="input-text" type="file" name="team[header]">
+                            <input accept="{{ $imageTypeAccept }}" class="input-text" type="file" name="team[header]">
                         </label>
+                        <span class="team-settings__help">
+                            @php
+                                [$width, $height] = array_map(i18n_number_format(...), Team::HEADER_MAX_DIMENSIONS);
+                            @endphp
+                            {{ osu_trans('teams.edit.settings.header_help', compact('height', 'width')) }}
+                        </span>
                     </div>
                 </div>
             </div>
 
             <div class="page-extra">
                 <h2 class="title title--page-extra-small title--page-extra-small-top">
-                    {{ osu_trans('teams.edit.logo.title') }}
+                    {{ osu_trans('teams.edit.flag.title') }}
                 </h2>
                 <div class="team-settings">
-                    <div class="team-settings__item team-settings__item--image">
-                        <img
-                            class="team-settings__image"
-                            src="{{ $team->logo()->url() }}"
-                        >
+                    <div class="team-settings__item">
+                        @if (($url = $team->flag()->url()) !== null)
+                            <img
+                                class="team-settings__image"
+                                srcset="{{ $url }} 2x"
+                            >
+                            <span></span>
+                        @endif
                         <label class="input-container">
                             <span class="input-container__label">
-                                {{ osu_trans('teams.edit.logo.label') }}
+                                {{ osu_trans('teams.edit.flag.label') }}
                             </span>
-                            <input class="input-text" type="file" name="team[logo]">
+                            <input accept="{{ $imageTypeAccept }}" class="input-text" type="file" name="team[flag]">
                         </label>
+                        <span class="team-settings__help">
+                            @php
+                                [$width, $height] = array_map(i18n_number_format(...), Team::FLAG_MAX_DIMENSIONS);
+                            @endphp
+                            {{ osu_trans('teams.edit.settings.flag_help', compact('height', 'width')) }}
+                        </span>
                     </div>
                 </div>
             </div>
