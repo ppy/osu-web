@@ -124,13 +124,21 @@ class TeamsController extends Controller
 
     public function show(string $id): Response
     {
+        if (str_starts_with($id, '[')) {
+            $length = str_ends_with($id, ']') ? -1 : null;
+            $params = ['short_name' => substr($id, 1, $length)];
+        } else {
+            $params = ['id' => $id];
+        }
         $team = Team
             ::with(array_map(
                 fn (string $preload): string => "members.user.{$preload}",
                 UserCompactTransformer::CARD_INCLUDES_PRELOAD,
-            ))->findOrFail($id);
+            ))->where($params)->firstOrFail();
 
-        return ext_view('teams.show', compact('team'));
+        return $id === (string) $team->getKey()
+            ? ext_view('teams.show', compact('team'))
+            : ujs_redirect(route('teams.show', $team));
     }
 
     public function store(): Response
