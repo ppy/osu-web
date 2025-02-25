@@ -27,15 +27,15 @@
             <div class="team-members-leaderboard-item__numbers">
                 <div class="team-members-leaderboard-item__number">
                     <div class="team-members-leaderboard-item__number-title">
-                        {{ osu_trans('teams.leaderboard.total_score') }}
+                        {{ osu_trans('rankings.stat.ranked_score') }}
                     </div>
                     <div>
-                        {{ i18n_number_format($stats->total_score) }}
+                        {{ i18n_number_format($stats->ranked_score) }}
                     </div>
                 </div>
                 <div class="team-members-leaderboard-item__number">
                     <div class="team-members-leaderboard-item__number-title">
-                        {{ osu_trans('teams.leaderboard.performance') }}
+                        {{ osu_trans('rankings.stat.performance') }}
                     </div>
                     <div>
                         {{ i18n_number_format($stats->pp()) ?? '-' }}

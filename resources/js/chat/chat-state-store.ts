@@ -100,6 +100,7 @@ export default class ChatStateStore implements DispatchListener {
       } else {
         this.pingService.stop();
         dispatch(new SocketMessageSendAction({ event: 'chat.end' }));
+        this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
       }
     });
 
@@ -112,8 +113,6 @@ export default class ChatStateStore implements DispatchListener {
         }
 
         runInAction(() => {
-          this.selectedChannel?.load();
-
           this.isReady = true;
         });
       }
@@ -274,7 +273,6 @@ export default class ChatStateStore implements DispatchListener {
   private handleSocketStateChanged(event: SocketStateChangedAction) {
     this.isConnected = event.connected;
     if (!event.connected) {
-      this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
       this.isReady = false;
     }
   }
