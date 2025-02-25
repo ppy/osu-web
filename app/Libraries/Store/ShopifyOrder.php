@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Libraries\Store;
 
+use App\Exceptions\InvariantException;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use Exception;
@@ -75,6 +76,11 @@ class ShopifyOrder
 
     public function updateOrderWithGql(array $node)
     {
+        // validate the id we get is one we can work with.
+        if (static::gidType($node['id']) === null) {
+            throw new InvariantException('Invalid node id');
+        }
+
         $this->order->getConnection()->transaction(function () use ($node) {
             $params = [
                 'reference' => $node['id'],
