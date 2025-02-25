@@ -10,6 +10,7 @@ namespace App\Libraries\Store;
 use App\Exceptions\InvariantException;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
+use Carbon\Carbon;
 use Exception;
 use Shopify\ApiVersion;
 use Shopify\Auth\FileSessionStorage;
@@ -103,8 +104,21 @@ class ShopifyOrder
             $this->order->update($params);
 
             if ($orderNumber !== null) {
-                // TODO: check missing Payment record
-                Payment::where('order_id', $this->order->getKey())->update(['transaction_id' => $orderNumber]);
+                if ($node['financialStatus'] === 'PAID') {
+                    // fill missing Payment record if missing (webhook failure, etc).
+                    $payment = Payment::where(['cancelled' => false, 'order_id' => $this->order->getKey()])->first();
+                    if ($payment === null) {
+                        $this->order->payments()->create([
+                            'country_code' => $node['billingAddress']['countryCodeV2'],
+                            // This api doesn't have the payment so just take the order date
+                            'paid_at' => Carbon::parse($node['processedAt'])->utc(),
+                            'provider' => Order::PROVIDER_SHOPIFY,
+                            'transaction_id' => $orderNumber,
+                        ]);
+                    }
+                } else {
+                    Payment::where('order_id', $this->order->getKey())->update(['transaction_id' => $orderNumber]);
+                }
             }
         });
     }

@@ -114,6 +114,9 @@ class StoreGetShopifyOrder extends Command
                         orderNumber
                         processedAt
                         statusUrl
+                        billingAddress {
+                            countryCodeV2
+                        }
                     }
                 }
             }
