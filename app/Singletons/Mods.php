@@ -146,7 +146,7 @@ class Mods
 
         $invalidIds = $disallowedIds->intersect(new Set($modAcronyms));
         if ($invalidIds->count() > 0) {
-            throw new InvariantException("incompatible mods: {$modAcronym}, {$invalidIds->join(', ')}");
+            throw new InvariantException("incompatible mods: {$invalidIds->join(', ')}");
         }
     }
 
