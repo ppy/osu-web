@@ -100,7 +100,7 @@ class PaymentProcessorTest extends TestCase
 
         config_set('store.order.prefix', 'test');
 
-        $this->order = Order::factory()->checkout()->create([
+        $this->order = Order::factory()->paymentApproved()->create([
             'transaction_id' => 'test-123',
         ]);
         OrderItem::factory()->supporterTag()->create(['order_id' => $this->order]);

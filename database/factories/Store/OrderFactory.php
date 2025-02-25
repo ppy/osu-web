@@ -16,11 +16,6 @@ class OrderFactory extends Factory
 {
     protected $model = Order::class;
 
-    public function checkout(): static
-    {
-        return $this->state(['status' => Order::STATUS_PAYMENT_APPROVED]);
-    }
-
     public function definition(): array
     {
         return [
@@ -44,7 +39,12 @@ class OrderFactory extends Factory
         return $this->state(['status' => Order::STATUS_INCART]);
     }
 
-    public function processing(): static
+    public function paymentApproved(): static
+    {
+        return $this->state(['status' => Order::STATUS_PAYMENT_APPROVED]);
+    }
+
+    public function paymentRequested(): static
     {
         return $this->state(['status' => Order::STATUS_PAYMENT_REQUESTED]);
     }

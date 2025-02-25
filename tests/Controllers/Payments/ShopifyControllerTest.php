@@ -40,7 +40,7 @@ class ShopifyControllerTest extends TestCase
 
     public function testWebhookOrdersCreate()
     {
-        $order = Order::factory()->shopify()->processing()->create();
+        $order = Order::factory()->shopify()->paymentRequested()->create();
         $this->setShopifyPayload([
             'note_attributes' => [['name' => 'orderId', 'value' => $order->getKey()]],
         ]);
@@ -54,7 +54,7 @@ class ShopifyControllerTest extends TestCase
 
     public function testWebhookOrdersFulfilled()
     {
-        $order = Order::factory()->shopify()->checkout()->create();
+        $order = Order::factory()->shopify()->paymentApproved()->create();
         $this->setShopifyPayload([
             'note_attributes' => [['name' => 'orderId', 'value' => $order->getKey()]],
         ]);
@@ -69,7 +69,7 @@ class ShopifyControllerTest extends TestCase
 
     public function testWebhookOrdersPaid()
     {
-        $order = Order::factory()->shopify()->processing()->create();
+        $order = Order::factory()->shopify()->paymentRequested()->create();
         $this->setShopifyPayload([
             'note_attributes' => [['name' => 'orderId', 'value' => $order->getKey()]],
         ]);

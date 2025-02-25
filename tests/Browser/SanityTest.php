@@ -184,7 +184,7 @@ class SanityTest extends DuskTestCase
 
         // factories for /store/*
         self::$scaffolding['product'] = Store\Product::factory()->masterTshirt()->create();
-        self::$scaffolding['order'] = Store\Order::factory()->checkout()->create([
+        self::$scaffolding['order'] = Store\Order::factory()->paymentApproved()->create([
             'user_id' => self::$scaffolding['user'],
         ]);
         self::$scaffolding['checkout'] = new ScaffoldDummy(self::$scaffolding['order']->getKey());

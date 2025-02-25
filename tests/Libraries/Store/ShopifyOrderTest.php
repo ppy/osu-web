@@ -65,7 +65,7 @@ class ShopifyOrderTest extends TestCase
      */
     public function testUpdateOrderStatus(array $node, string $expectedStatus)
     {
-        $order = Order::factory()->shopify()->checkout()->state(['reference' => 'gid://shopify/Cart/1'])->create();
+        $order = Order::factory()->shopify()->paymentApproved()->state(['reference' => 'gid://shopify/Cart/1'])->create();
         $shopifyOrder = new ShopifyOrder($order);
 
         $shopifyOrder->updateOrderWithGql($node);
@@ -79,7 +79,7 @@ class ShopifyOrderTest extends TestCase
 
     public function testUpdateOrderWithGqlFailsNonShopify()
     {
-        $order = Order::factory()->checkout()->create();
+        $order = Order::factory()->paymentApproved()->create();
 
         $this->expectException(\Exception::class);
 

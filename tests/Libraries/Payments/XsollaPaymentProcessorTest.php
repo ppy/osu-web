@@ -95,7 +95,7 @@ class XsollaPaymentProcessorTest extends TestCase
 
     public function testWhenOrderProcessingState()
     {
-        $this->order = Order::factory()->processing()->create();
+        $this->order = Order::factory()->paymentRequested()->create();
         $params = $this->getTestParams();
         $subject = new XsollaPaymentProcessor($params, $this->validSignature());
         $subject->run();
@@ -119,7 +119,7 @@ class XsollaPaymentProcessorTest extends TestCase
     {
         parent::setUp();
         config_set('payments.xsolla.api_key', 'api_key');
-        $this->order = Order::factory()->checkout()->create();
+        $this->order = Order::factory()->paymentApproved()->create();
     }
 
     private function getTestParams(array $overrides = [])
