@@ -7,18 +7,14 @@ type PopupType = 'danger' | 'info' | 'warning';
 const persistentPopupClasses: `alert-${PopupType}`[] = ['alert-danger', 'alert-warning'];
 
 export function applyPopupEffects(popupEl: HTMLElement) {
-  const closeAlert = () => {
-    popupEl.click();
-  };
-
-  $('#overlay')
-    .off('click.close-alert')
-    .one('click.close-alert', closeAlert)
-    .fadeIn();
+  const $overlay = $('#overlay');
+  $overlay.fadeIn();
   // warning/danger messages stay forever until clicked
   const persistent = persistentPopupClasses.some((className) => popupEl.classList.contains(className));
   if (!persistent) {
-    setTimeout(closeAlert, 5000);
+    setTimeout(() => {
+      $overlay.click();
+    }, 5000);
   }
 
   htmlElementOrNull(document.activeElement)?.blur();
