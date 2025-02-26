@@ -97,11 +97,11 @@ trait BeatmapsetSearch
                         continue;
                     }
 
-                    $convertValues = $beatmapValues;
-                    $convertValues['playmode'] = $modeInt;
-                    $convertValues['convert'] = true;
-
-                    $values[] = $convertValues;
+                    $values[] = [
+                        ...$beatmapValues,
+                        'convert' => true,
+                        'playmode' => $modeInt,
+                    ];
                 }
             }
         }
