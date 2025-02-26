@@ -168,7 +168,7 @@ class Team extends Model
         $max = $this->maxMembers();
         $current = $this->members->count();
 
-        return max(0, $max - $current);
+        return $max - $current;
     }
 
     public function flag(): Uploader
