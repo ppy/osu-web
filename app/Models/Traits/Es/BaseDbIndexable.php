@@ -83,12 +83,13 @@ trait BaseDbIndexable
 
     public function esDeleteDocument(array $options = [])
     {
-        $document = array_merge([
+        $document = [
             'index' => static::esIndexName(),
             'routing' => $this->esRouting(),
             'id' => $this->getEsId(),
             'client' => ['ignore' => 404],
-        ], $options);
+            ...$options,
+        ];
 
         return Es::getClient()->delete($document);
     }
@@ -99,12 +100,13 @@ trait BaseDbIndexable
             return $this->esDeleteDocument($options);
         }
 
-        $document = array_merge([
+        $document = [
             'index' => static::esIndexName(),
             'routing' => $this->esRouting(),
             'id' => $this->getEsId(),
             'body' => $this->toEsJson(),
-        ], $options);
+            ...$options,
+        ];
 
         return Es::getClient()->index($document);
     }

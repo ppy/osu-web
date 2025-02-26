@@ -38,11 +38,11 @@ trait BeatmapsetSearch
 
     public function toEsJson()
     {
-        return array_merge(
-            $this->esBeatmapsetValues(),
-            ['beatmaps' => $this->esBeatmapsValues()],
-            ['difficulties' => $this->esDifficultiesValues()]
-        );
+        return [
+            ...$this->esBeatmapsetValues(),
+            'beatmaps' => $this->esBeatmapsValues(),
+            'difficulties' => $this->esDifficultiesValues(),
+        ];
     }
 
     private function esBeatmapsetValues()
