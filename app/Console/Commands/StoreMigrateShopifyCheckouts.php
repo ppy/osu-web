@@ -16,6 +16,12 @@ use Symfony\Component\Console\Helper\ProgressBar;
 
 class StoreMigrateShopifyCheckouts extends Command
 {
+    private const PROGRESS_BARS = [
+        'orders' => 'Orders read',
+        'gids' => 'Response nodes processed',
+        'updated' => 'Orders updated',
+    ];
+
     protected $signature = 'store:migrate-shopify-checkouts';
 
     protected $description = 'Migrates Shopify orders using Checkout ids to the Order or Cart ids.';
@@ -44,20 +50,14 @@ class StoreMigrateShopifyCheckouts extends Command
 
         /** @var \Symfony\Component\Console\Output\ConsoleOutput $output */
         $output = $this->output->getOutput();
-        for ($i = 0; $i < 3; $i++) {
-            $section[] = $output->section();
-        }
 
-        $this->progress['orders'] = new ProgressBar($section[0]);
-        $this->progress['orders']->setMessage('Orders read');
-        $this->progress['gids'] = new ProgressBar($section[1]);
-        $this->progress['gids']->setMessage('response nodes processed');
-        $this->progress['updated'] = new ProgressBar($section[2]);
-        $this->progress['updated']->setMessage('Orders updated');
-
-        foreach ($this->progress as $progress) {
-            $progress->setFormat('[%bar%] %current% %message%');
+        foreach (static::PROGRESS_BARS as $name => $description) {
+            $progress = new ProgressBar($output->section());
+            $progress->setFormat("%current% {$description} | %message%");
+            $progress->setMessage('');
             $progress->start();
+
+            $this->progress[$name] = $progress;
         }
 
         $result = Order::where('provider', 'shopify')->whereNotNull('reference')->chunkById(1000, function (Collection $chunk) {
@@ -75,12 +75,18 @@ class StoreMigrateShopifyCheckouts extends Command
 
                 if ($errors !== null) {
                     $this->error($this->printableResponse($errors));
+
+                    foreach ($this->progress as $progress) {
+                        $progress->display();
+                    }
+
                     return false;
                 }
 
                 $nodes = $body['data']['nodes'];
                 foreach ($nodes as $node) {
                     $this->progress['gids']->advance();
+                    $this->progress['gids']->setMessage($node['id'] ?? 'null');
                     // nodes appear to be returned in order of values queried, including nulls set for not found
                     if ($node !== null) {
                         $orderId = static::getOrderIdFromNode($node);
@@ -94,6 +100,7 @@ class StoreMigrateShopifyCheckouts extends Command
                             }
 
                             $this->progress['updated']->advance();
+                            $this->progress['updated']->setMessage((string) $orderId);
                         }
                     }
                 }
@@ -107,6 +114,7 @@ class StoreMigrateShopifyCheckouts extends Command
         }
 
         foreach ($this->progress as $progress) {
+            $progress->display();
             $progress->finish();
         }
     }
