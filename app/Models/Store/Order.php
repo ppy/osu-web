@@ -544,7 +544,10 @@ class Order extends Model
             $this->paid_at = Carbon::now();
         }
 
-        $this->status = $this->requiresShipping() ? static::STATUS_PAID : static::STATUS_DELIVERED;
+        if (!in_array($this->status, [static::STATUS_DELIVERED, static::STATUS_SHIPPED], true)) {
+            $this->status = $this->requiresShipping() ? static::STATUS_PAID : static::STATUS_DELIVERED;
+        }
+
         $this->saveOrExplode();
     }
 

@@ -108,13 +108,15 @@ class ShopifyOrder
                     // fill missing Payment record if missing (webhook failure, etc).
                     $payment = Payment::where(['cancelled' => false, 'order_id' => $this->order->getKey()])->first();
                     if ($payment === null) {
-                        $this->order->payments()->create([
+                        $payment = new Payment([
                             'country_code' => $node['billingAddress']['countryCodeV2'],
                             // This api doesn't have the payment so just take the order date
                             'paid_at' => Carbon::parse($node['processedAt'])->utc(),
                             'provider' => Order::PROVIDER_SHOPIFY,
                             'transaction_id' => $orderNumber,
                         ]);
+
+                        $this->order->paid($payment);
                     }
                 } else {
                     Payment::where('order_id', $this->order->getKey())->update(['transaction_id' => $orderNumber]);
