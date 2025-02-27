@@ -117,9 +117,9 @@ class ShopifyOrder
                         ]);
 
                         $this->order->paid($payment);
+                    } else {
+                        Payment::where('order_id', $this->order->getKey())->update(['transaction_id' => $orderNumber]);
                     }
-                } else {
-                    Payment::where('order_id', $this->order->getKey())->update(['transaction_id' => $orderNumber]);
                 }
             }
         });
