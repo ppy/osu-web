@@ -104,8 +104,6 @@ class StoreMigrateShopifyCheckouts extends Command
         foreach ($this->progress as $progress) {
             $progress->finish();
         }
-
-        return;
     }
 
     /**
