@@ -138,7 +138,7 @@ class ShopifyController extends Controller
         // Don't overwrite existing values with null/empty string later.
         return array_filter([
             'reference' => $params['admin_graphql_api_id'],
-            'order_number' => $params['order_number'],
+            'shopify_order_number' => $params['order_number'],
             'shopify_url' => $params['order_status_url'],
         ], fn ($value) => present($value));
     }
@@ -188,7 +188,7 @@ class ShopifyController extends Controller
 
         $payment = new Payment([
             'provider' => Order::PROVIDER_SHOPIFY,
-            'transaction_id' => $shopifyParams['order_number'],
+            'transaction_id' => $shopifyParams['shopify_order_number'],
             'country_code' => array_get($params, 'billing_address.country_code'),
             'paid_at' => Carbon::parse(array_get($params, 'processed_at'))->utc(),
         ]);

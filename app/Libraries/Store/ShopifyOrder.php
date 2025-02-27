@@ -90,7 +90,7 @@ class ShopifyOrder
 
             $orderNumber = $node['orderNumber'] ?? null;
             if ($orderNumber !== null) {
-                $params['transaction_id'] = Order::PROVIDER_SHOPIFY.'-'.$orderNumber;
+                $params['shopify_order_number'] = $orderNumber;
             }
 
             if ($node['canceledAt'] !== null) {

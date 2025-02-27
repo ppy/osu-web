@@ -185,7 +185,7 @@ class Order extends Model
         return $query->with('payments');
     }
 
-    public function setOrderNumberAttribute(string $value)
+    public function setShopifyOrderNumberAttribute(string $value)
     {
         $this->transaction_id = static::PROVIDER_SHOPIFY.'-'.$value;
     }
