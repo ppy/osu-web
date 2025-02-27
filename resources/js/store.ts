@@ -64,8 +64,8 @@ export class Store {
     showLoadingOverlay.flush();
 
     const operation = `
-      mutation CreateCart($cartInput: CartInput) {
-        cartCreate(input: $cartInput) {
+      mutation CreateCart($input: CartInput) {
+        cartCreate(input: $input) {
           cart {
             id
             checkoutUrl
@@ -95,7 +95,7 @@ export class Store {
 
     // create shopify checkout.
     // error returned will be a JSON string in error.message
-    const response = await storefrontClient().request(operation, { variables: this.shopifyCartInput(orderId) });
+    const response = await storefrontClient().request(operation, { variables: { input: this.shopifyCartInput(orderId) } });
     const data = response.data as { cartCreate: CartCreatePayload };
 
     if (response.errors != null || data.cartCreate.cart == null) {
@@ -178,10 +178,8 @@ export class Store {
 
   private shopifyCartInput(orderId: string) {
     return {
-      cartInput: {
-        attributes: [{ key: 'orderId', value: orderId }],
-        lines: this.collectShopifyCartLines(),
-      },
+      attributes: [{ key: 'orderId', value: orderId }],
+      lines: this.collectShopifyCartLines(),
     };
   }
 }
