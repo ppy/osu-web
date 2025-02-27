@@ -85,9 +85,10 @@ class StoreGetShopifyOrder extends Command
             {
                 node(id: $id) {
                     ... on Checkout {
+                        completedAt
                         id
                         ready
-                        completedAt
+                        webUrl
                         updatedAt
                         order {
                             canceledAt
@@ -97,6 +98,9 @@ class StoreGetShopifyOrder extends Command
                             orderNumber
                             processedAt
                             statusUrl
+                            billingAddress {
+                               countryCodeV2
+                            }
                         }
                     }
                 }

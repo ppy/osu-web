@@ -85,7 +85,12 @@ class StoreMigrateShopifyCheckouts extends Command
                         $orderId = static::getOrderIdFromNode($node);
                         if ($orderId !== null) {
                             $order = $ordersById[$orderId];
-                            $order->updateOrderWithGql($node['order']);
+                            if (isset($node['order'])) {
+                                $order->updateOrderWithGql($node['order']);
+                            } else {
+                                // orders that haven't completed checkout.
+                                $order->order->update(['shopify_url' => 'webUrl']);
+                            }
 
                             $this->progress['updated']->advance();
                         }
@@ -113,6 +118,7 @@ class StoreMigrateShopifyCheckouts extends Command
             nodes(ids: {$ids->toJson(JSON_UNESCAPED_SLASHES)}) {
                 ... on Checkout {
                     id
+                    webUrl
                     customAttributes {
                         key
                         value
@@ -122,8 +128,12 @@ class StoreMigrateShopifyCheckouts extends Command
                         financialStatus
                         fulfillmentStatus
                         id
-                        statusUrl
                         orderNumber
+                        processedAt
+                        statusUrl
+                        billingAddress {
+                            countryCodeV2
+                        }
                     }
                 }
             }
