@@ -151,8 +151,7 @@ export class Store {
       }
     `;
 
-    const variables = { variables: { cartId } };
-    const response = await storefrontClient().request(operation, variables);
+    const response = await storefrontClient().request(operation, { variables: { cartId } });
     const data = response.data as { cart?: Cart };
 
     if (response.errors != null || data.cart == null) {
