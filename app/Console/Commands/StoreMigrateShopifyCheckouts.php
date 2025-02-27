@@ -60,7 +60,7 @@ class StoreMigrateShopifyCheckouts extends Command
             $progress->start();
         }
 
-        Order::where('provider', 'shopify')->whereNotNull('reference')->chunkById(1000, function (Collection $chunk) {
+        $result = Order::where('provider', 'shopify')->whereNotNull('reference')->chunkById(1000, function (Collection $chunk) {
             $ordersById = $chunk->map(fn (Order $order) => new ShopifyOrder($order))->keyBy('order.order_id');
             $this->progress['orders']->advance(count($ordersById));
 
@@ -72,12 +72,13 @@ class StoreMigrateShopifyCheckouts extends Command
                 $body = $this->queryCheckoutIds($idChunk->values());
 
                 $errors = $body['errors'] ?? null;
-                $nodes = $body['data']['nodes'] ?? null;
 
                 if ($errors !== null) {
                     $this->error($this->printableResponse($errors));
+                    return false;
                 }
 
+                $nodes = $body['data']['nodes'];
                 foreach ($nodes as $node) {
                     $this->progress['gids']->advance();
                     // nodes appear to be returned in order of values queried, including nulls set for not found
@@ -100,6 +101,10 @@ class StoreMigrateShopifyCheckouts extends Command
                 sleep(1);
             }
         });
+
+        if (!$result) {
+            return static::FAILURE;
+        }
 
         foreach ($this->progress as $progress) {
             $progress->finish();
