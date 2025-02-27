@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import StringWithComponent from 'components/string-with-component'
+import UserLink from 'components/user-link'
 import * as React from 'react'
 import { div, span, a } from 'react-dom-factories'
 import { trans } from 'utils/lang'
@@ -10,6 +12,22 @@ icon =
   add: 'fas fa-plus'
   fix: 'fas fa-check'
   misc: 'far fa-circle'
+
+userLinkClass = 'changelog-entry__user-link'
+userLink = (githubUser) ->
+  if githubUser.osu_username?
+    el UserLink,
+      className: userLinkClass
+      user:
+        id: githubUser.user_id
+        username: githubUser.osu_username
+  else if githubUser.github_url?
+    a
+      className: userLinkClass
+      href: githubUser.github_url
+      githubUser.display_name
+  else
+    githubUser.display_name
 
 export ChangelogEntry = ({entry}) =>
   titleHtml = _.escape(entry.title).replace(/(`+)([^`]+)\1/g, '<code>$2</code>')
@@ -41,24 +59,13 @@ export ChangelogEntry = ({entry}) =>
               href: entry.github_url
               "#{entry.repository.replace /^.*\//, ''}##{entry.github_pull_request_id}"
             ')'
-        do =>
-          user = _.escape(entry.github_user.display_name)
-          url = entry.github_user.github_url ? entry.github_user.user_url
 
-          link =
-            if url?
-              "<a
-                data-user-id='#{entry.github_user.user_id ? ''}'
-                class='changelog-entry__user-link js-usercard'
-                href='#{_.escape(url)}'
-              >#{user}</a>"
-            else
-              user
-
-          span
-            className: 'changelog-entry__user'
-            dangerouslySetInnerHTML:
-              __html: trans('changelog.entry.by', user: link)
+        span
+          className: 'changelog-entry__user'
+          el StringWithComponent,
+            mappings:
+              user: userLink entry.github_user
+            pattern: trans 'changelog.entry.by'
 
     if entry.message_html?
       div
