@@ -89,7 +89,7 @@ class StoreMigrateShopifyCheckouts extends Command
                                 $order->updateOrderWithGql($node['order']);
                             } else {
                                 // orders that haven't completed checkout.
-                                $order->order->update(['shopify_url' => 'webUrl']);
+                                $order->order->update(['shopify_url' => $node['webUrl']]);
                             }
 
                             $this->progress['updated']->advance();
