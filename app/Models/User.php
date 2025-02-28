@@ -2189,7 +2189,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'user-profile-covers',
             $this,
             'custom_cover_filename',
-            ['image' => ['maxDimensions' => Cover::CUSTOM_COVER_MAX_DIMENSIONS]],
+            ['image' => [
+                'maxDimensions' => Cover::CUSTOM_COVER_MAX_DIMENSIONS,
+                'maxFilesize' => Cover::CUSTOM_COVER_MAX_FILESIZE,
+            ]],
         );
     }
 
