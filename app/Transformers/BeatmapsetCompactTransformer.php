@@ -46,6 +46,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 
     // TODO: switch to enum after php 8.1
     public string $relatedUsersType = 'discussions';
+    public ?User $user = null;
 
     protected $beatmapTransformer = BeatmapCompactTransformer::class;
 
@@ -92,8 +93,9 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 
     public function includeBeatmaps(Beatmapset $beatmapset, Fractal\ParamBag $params)
     {
-
-        return $this->collection($this->beatmaps($beatmapset, $params), new $this->beatmapTransformer());
+        $beatmapTransformer = new $this->beatmapTransformer();
+        $beatmapTransformer->user = $this->user;
+        return $this->collection($this->beatmaps($beatmapset, $params), $beatmapTransformer);
     }
 
     public function includeConverts(Beatmapset $beatmapset)

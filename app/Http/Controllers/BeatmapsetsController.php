@@ -403,12 +403,14 @@ class BeatmapsetsController extends Controller
 
         $transformer = new BeatmapsetTransformer();
         $transformer->relatedUsersType = 'show';
+        $transformer->user = \Auth::user();
 
         return json_item($beatmapset, $transformer, [
             'beatmaps',
             'beatmaps.failtimes',
             'beatmaps.max_combo',
             'beatmaps.owners',
+            'beatmaps.own_tag_ids',
             'beatmaps.top_tag_ids',
             'converts',
             'converts.failtimes',

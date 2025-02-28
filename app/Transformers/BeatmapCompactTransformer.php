@@ -12,12 +12,15 @@ use App\Models\User;
 
 class BeatmapCompactTransformer extends TransformerAbstract
 {
+    public ?User $user = null;
+
     protected array $availableIncludes = [
         'beatmapset',
         'checksum',
         'failtimes',
         'max_combo',
         'owners',
+        'own_tag_ids',
         'top_tag_ids',
         'user',
     ];
@@ -82,6 +85,15 @@ class BeatmapCompactTransformer extends TransformerAbstract
             'id' => $user->getKey(),
             'username' => $user->username,
         ]);
+    }
+
+    public function includeOwnTagIds(Beatmap $beatmap)
+    {
+        return $this->primitive(
+            $this->user === null
+                ? []
+                : $beatmap->beatmapTags()->where('user_id', $this->user->getKey())->pluck('tag_id')
+        );
     }
 
     public function includeTopTagIds(Beatmap $beatmap)
