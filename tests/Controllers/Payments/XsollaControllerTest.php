@@ -11,6 +11,8 @@ use Tests\TestCase;
 
 class XsollaControllerTest extends TestCase
 {
+    private Order $order;
+
     public function testWhenEverythingIsFine()
     {
         $data = $this->getPostData();
@@ -65,7 +67,7 @@ class XsollaControllerTest extends TestCase
     {
         parent::setUp();
         config_set('payments.xsolla.secret_key', 'magic');
-        $this->order = Order::factory()->checkout()->create();
+        $this->order = Order::factory()->paymentApproved()->create();
     }
 
     private function getPostData(array $overrides = [])
