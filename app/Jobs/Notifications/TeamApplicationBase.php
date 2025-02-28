@@ -12,7 +12,7 @@ use App\Models\User;
 
 abstract class TeamApplicationBase extends BroadcastNotificationBase
 {
-    const DELIVERY_MODE_DEFAULTS = ['mail' => true, 'push' => true];
+    const DELIVERY_MODE_DEFAULTS = ['mail' => false, 'push' => true];
 
     protected Team $team;
     protected int $userId;
@@ -33,7 +33,7 @@ abstract class TeamApplicationBase extends BroadcastNotificationBase
     public function getDetails(): array
     {
         return [
-            'cover_url' => $this->team->logo()->url(),
+            'cover_url' => $this->team->flag()->url(),
             'team_id' => $this->team->getKey(),
             'title' => $this->team->name,
         ];

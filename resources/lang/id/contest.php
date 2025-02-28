@@ -46,7 +46,7 @@ return [
 
         'button' => [
             'add' => 'Pilih',
-            'remove' => 'Hapus pilihan',
+            'remove' => 'Lepas pilihan',
             'used_up' => 'Kamu telah menggunakan seluruh hak suaramu',
         ],
 

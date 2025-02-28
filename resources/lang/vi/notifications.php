@@ -20,17 +20,19 @@ return [
         'channel' => 'trò chuyện',
         'forum_topic' => 'diễn đàn',
         'news_post' => 'tin tức',
+        'team' => '',
         'user' => 'hồ sơ',
     ],
 
     'filters' => [
         '_' => 'tất cả',
-        'user' => 'trang cá nhân',
         'beatmapset' => 'beatmap',
-        'forum_topic' => 'diễn đàn',
-        'news_post' => 'tin tức',
         'build' => 'xây dựng',
         'channel' => 'chat',
+        'forum_topic' => 'diễn đàn',
+        'news_post' => 'tin tức',
+        'team' => '',
+        'user' => 'trang cá nhân',
     ],
 
     'item' => [
@@ -160,6 +162,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Beatmap mới',
@@ -242,6 +255,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Có câu trả lời mới trong ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
             ],
         ],
 

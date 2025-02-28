@@ -55,6 +55,7 @@ return [
         'contact' => 'Kapcsolat:',
         'date' => 'Dátum:',
         'echeck_delay' => 'Mivel a fizetésed egy eCheck volt, engedj meg neki legalább 10 napot a PayPal-es feldolgozásra!',
+        'echeck_denied' => '',
         'hide_from_activity' => 'ebben a vásárlásban szereplő osu!supporter címkék nem jelennek meg a legutóbbi aktivitásaid között.',
         'sent_via' => 'Általa küldve:',
         'shipping_to' => 'Szállítás ide:',

@@ -4,79 +4,129 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'applications' => [
+        'accept' => [
+            'ok' => '',
+        ],
+        'destroy' => [
+            'ok' => '',
+        ],
+        'reject' => [
+            'ok' => '',
+        ],
+        'store' => [
+            'ok' => '',
+        ],
+    ],
+
+    'destroy' => [
+        'ok' => '',
+    ],
+
     'edit' => [
-        'saved' => '',
-        'title' => '',
+        'saved' => 'Настройки сохранены',
+        'title' => 'Настройки команды',
 
         'description' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Описание',
+            'title' => 'Описание команды',
         ],
 
         'header' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Обложка',
+            'title' => 'Загрузить обложку',
         ],
 
         'logo' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Флаг команды',
+            'title' => 'Установить флаг команды',
         ],
 
         'settings' => [
-            'application' => '',
-            'application_help' => '',
-            'default_ruleset' => '',
-            'default_ruleset_help' => '',
-            'title' => '',
-            'url' => '',
+            'application' => 'Подача заявок на вступление',
+            'application_help' => 'Разрешить ли игрокам подавать заявки на вступление в команду',
+            'default_ruleset' => 'Режим игры по умолчанию',
+            'default_ruleset_help' => 'Режим игры, отображаемый при открытии страницы команды',
+            'title' => 'Настройки команды',
+            'url' => 'Ссылка',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => 'Закрыта',
+                'state_1' => 'Открыта',
             ],
         ],
+    ],
+
+    'header_links' => [
+        'edit' => '',
+        'leaderboard' => '',
+        'show' => '',
+
+        'members' => [
+            'index' => '',
+        ],
+    ],
+
+    'leaderboard' => [
+        'global_rank' => '',
+        'performance' => '',
+        'total_score' => '',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '',
+            'success' => 'Участник успешно выгнан',
         ],
 
         'index' => [
-            'title' => '',
+            'title' => 'Управление участниками',
+
+            'applications' => [
+                'empty' => '',
+                'empty_slots' => '',
+                'title' => '',
+                'created_at' => '',
+            ],
 
             'table' => [
-                'status' => '',
-                'joined_at' => '',
-                'remove' => '',
-                'title' => '',
+                'status' => 'Статус',
+                'joined_at' => 'Дата вступления',
+                'remove' => 'Выгнать',
+                'title' => 'Текущие участники',
             ],
 
             'status' => [
-                'status_0' => '',
-                'status_1' => '',
+                'status_0' => 'Неактивный',
+                'status_1' => 'Активный',
             ],
         ],
     ],
+
+    'part' => [
+        'ok' => '',
+    ],
+
     'show' => [
         'bar' => [
-            'settings' => '',
+            'destroy' => '',
+            'join' => '',
+            'join_cancel' => '',
+            'part' => '',
         ],
 
         'info' => [
-            'created' => '',
-            'website' => '',
+            'created' => 'Сформирована',
+            'website' => 'Веб-сайт',
         ],
 
         'members' => [
-            'members' => '',
-            'owner' => '',
+            'members' => 'Участники команды',
+            'owner' => 'Капитан команды',
         ],
 
         'sections' => [
-            'members' => '',
-            'info' => '',
+            'info' => 'Информация',
+            'members' => 'Участники',
         ],
     ],
 ];

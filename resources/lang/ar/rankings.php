@@ -49,6 +49,9 @@ return [
         'ongoing' => 'هذا الموسم لا يزال جاريا (سيتم إضافة المزيد من قوائم التشغيل).',
         'room_count' => 'عدد قوائم التشغيل',
         'url' => 'عرض المزيد من المعلومات عن هذا الموسم.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => 'ألدِقة',
         'active_users' => 'المستخدمين النشطين',
         'country' => 'الدولة',
+        'division' => '',
         'play_count' => 'مرات اللعب',
         'performance' => 'الأداء',
         'total_score' => 'مجموع النقاط',

@@ -207,6 +207,10 @@ return [
         'tags_cache_duration' => 60 * (get_int(env('TAGS_CACHE_DURATION')) ?? 60), // in minutes, converted to seconds
         'beatmap_tags_cache_duration' => 60 * (get_int(env('BEATMAP_TAGS_CACHE_DURATION')) ?? 60), // in minutes, converted to seconds
     ],
+    'team' => [
+        'create_require_supporter' => get_bool(env('TEAM_CREATE_REQUIRE_SUPPORTER')) ?? false,
+        'max_members' => get_int(env('TEAM_MAX_MEMBERS')) ?? 40,
+    ],
     'twitch_client_id' => presence(env('TWITCH_CLIENT_ID')),
     'twitch_client_secret' => presence(env('TWITCH_CLIENT_SECRET')),
     'urls' => [

@@ -5,7 +5,7 @@
 
 return [
     'insufficient_stock' => 'Niewystarczająca liczba produktów!',
-    'must_separate' => 'Ten przedmiot musi zostać zamówiony oddzielnie od pozostałych',
+    'must_separate' => 'Ten produkt musi zostać zamówiony oddzielnie od pozostałych',
     'not_available' => 'Ten produkt nie jest dostępny.',
     'too_many' => 'Możesz dodać tylko :count szt. tego produktu dla każdego zamówienia.',
 ];

@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Musim ini masih lagi berlangsung (lebih banyak senarai main akan ditambah).',
         'room_count' => 'Jumlah senarai main',
         'url' => 'Paparan lebih banyak maklumat untuk musim itu.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => 'Ketepatan',
         'active_users' => 'Pengguna aktif',
         'country' => 'Negara',
+        'division' => '',
         'play_count' => 'Kiraan Mainan',
         'performance' => 'Pencapaian',
         'total_score' => 'Jumlah Markah',

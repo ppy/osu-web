@@ -5,8 +5,8 @@
 
 return [
     'create' => [
-        'download' => '',
-        'label' => '',
-        'title' => '',
+        'download' => 'Uzspiest šeit lai lejupielādētu spēli un izveidotu kontu',
+        'label' => 'Pirmkārt, pieraksties savā kontā!',
+        'title' => 'Konta Pierakstīšanās',
     ],
 ];

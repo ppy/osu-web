@@ -4,79 +4,129 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'applications' => [
+        'accept' => [
+            'ok' => '',
+        ],
+        'destroy' => [
+            'ok' => '',
+        ],
+        'reject' => [
+            'ok' => '',
+        ],
+        'store' => [
+            'ok' => '',
+        ],
+    ],
+
+    'destroy' => [
+        'ok' => '',
+    ],
+
     'edit' => [
-        'saved' => '',
-        'title' => '',
+        'saved' => 'Einstellungen gespeichert',
+        'title' => 'Teameinstellungen',
 
         'description' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Beschreibung',
+            'title' => 'Teambeschreibung',
         ],
 
         'header' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Bannerlogo',
+            'title' => 'Bannerlogo hinzufügen',
         ],
 
         'logo' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Teamflagge',
+            'title' => 'Teamflagge einstellen',
         ],
 
         'settings' => [
-            'application' => '',
-            'application_help' => '',
-            'default_ruleset' => '',
-            'default_ruleset_help' => '',
-            'title' => '',
-            'url' => '',
+            'application' => 'Team-Bewerbungen',
+            'application_help' => 'Ob Personen sich für das Team bewerben können',
+            'default_ruleset' => 'Standardspielmodus',
+            'default_ruleset_help' => 'Der Spielmodus, der beim Besuchen der Teamseite standardmäßig ausgewählt ist',
+            'title' => 'Teameinstellungen',
+            'url' => 'URL',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => 'Geschlossen',
+                'state_1' => 'Offen',
             ],
         ],
+    ],
+
+    'header_links' => [
+        'edit' => '',
+        'leaderboard' => '',
+        'show' => '',
+
+        'members' => [
+            'index' => '',
+        ],
+    ],
+
+    'leaderboard' => [
+        'global_rank' => '',
+        'performance' => '',
+        'total_score' => '',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '',
+            'success' => 'Teammitglied entfernt',
         ],
 
         'index' => [
-            'title' => '',
+            'title' => 'Mitglieder verwalten',
+
+            'applications' => [
+                'empty' => '',
+                'empty_slots' => '',
+                'title' => '',
+                'created_at' => '',
+            ],
 
             'table' => [
-                'status' => '',
-                'joined_at' => '',
-                'remove' => '',
-                'title' => '',
+                'status' => 'Status',
+                'joined_at' => 'Beitrittsdatum',
+                'remove' => 'Entfernen',
+                'title' => 'Aktuelle Mitglieder',
             ],
 
             'status' => [
-                'status_0' => '',
-                'status_1' => '',
+                'status_0' => 'Inaktiv',
+                'status_1' => 'Aktiv',
             ],
         ],
     ],
+
+    'part' => [
+        'ok' => '',
+    ],
+
     'show' => [
         'bar' => [
-            'settings' => '',
+            'destroy' => '',
+            'join' => '',
+            'join_cancel' => '',
+            'part' => '',
         ],
 
         'info' => [
-            'created' => '',
-            'website' => '',
+            'created' => 'Gegründet',
+            'website' => 'Webseite',
         ],
 
         'members' => [
-            'members' => '',
-            'owner' => '',
+            'members' => 'Teammitglieder',
+            'owner' => 'Teamleiter',
         ],
 
         'sections' => [
-            'members' => '',
-            'info' => '',
+            'info' => 'Info',
+            'members' => 'Mitglieder',
         ],
     ],
 ];

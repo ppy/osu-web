@@ -55,6 +55,7 @@ return [
         'contact' => 'Hubungi:',
         'date' => 'Tarikh:',
         'echeck_delay' => 'Oleh kerana bayaran anda berupa eCheck, sila benarkan sampai 10 hari tambahan untuk bayaran ini untuk diproses PayPal!',
+        'echeck_denied' => '',
         'hide_from_activity' => '',
         'sent_via' => '',
         'shipping_to' => '',

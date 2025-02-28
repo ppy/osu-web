@@ -131,6 +131,12 @@
         "Type": "DifficultyIncrease",
         "Settings": [
           {
+            "Name": "fail_on_slider_tail",
+            "Type": "boolean",
+            "Label": "Also fail when missing a slider tail",
+            "Description": ""
+          },
+          {
             "Name": "restart",
             "Type": "boolean",
             "Label": "Restart on fail",
@@ -528,8 +534,8 @@
           {
             "Name": "reflection",
             "Type": "string",
-            "Label": "Mirrored axes",
-            "Description": "Choose which axes objects are mirrored over."
+            "Label": "Flipped axes",
+            "Description": ""
           }
         ],
         "IncompatibleMods": [

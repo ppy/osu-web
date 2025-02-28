@@ -18,8 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Vai vēlaties paslēpt šo kanālu? Jūs joprojām saņemsiet ziņas no šī kanāla.',
         'create' => 'izveidot paziņojumu',
-        'join' => '',
-        'none' => '',
+        'join' => 'Pievienoties kanālam',
+        'none' => 'nav kanālu',
 
         'list' => [
             'title' => [
@@ -64,6 +64,6 @@ return [
     ],
 
     'join_channels' => [
-        'loading' => '',
+        'loading' => 'Lādē kanālu sarakstu...',
     ],
 ];

@@ -16,11 +16,6 @@ class OrderFactory extends Factory
 {
     protected $model = Order::class;
 
-    public function checkout(): static
-    {
-        return $this->state(['status' => 'checkout']);
-    }
-
     public function definition(): array
     {
         return [
@@ -41,24 +36,26 @@ class OrderFactory extends Factory
 
     public function incart(): static
     {
-        return $this->state(['status' => 'incart']);
+        return $this->state(['status' => Order::STATUS_INCART]);
     }
 
-    public function processing(): static
+    public function paymentApproved(): static
     {
-        return $this->state(['status' => 'processing']);
+        return $this->state(['status' => Order::STATUS_PAYMENT_APPROVED]);
+    }
+
+    public function paymentRequested(): static
+    {
+        return $this->state(['status' => Order::STATUS_PAYMENT_REQUESTED]);
     }
 
     public function shipped(): static
     {
-        return $this->state(['status' => 'shipped']);
+        return $this->state(['status' => Order::STATUS_SHIPPED]);
     }
 
     public function shopify(): static
     {
-        return $this->state([
-            // Doesn't need to be a gid for tests.
-            'transaction_id' => Order::PROVIDER_SHOPIFY.'-'.time(),
-        ]);
+        return $this->state(['provider' => Order::PROVIDER_SHOPIFY]);
     }
 }

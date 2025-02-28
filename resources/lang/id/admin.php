@@ -55,8 +55,8 @@ return [
                 'general' => '',
 
                 'users' => [
-                    'header' => '',
-                    'cover_presets' => '',
+                    'header' => 'Pengguna',
+                    'cover_presets' => 'Preset Sampul Profil',
                 ],
             ],
         ],

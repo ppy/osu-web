@@ -9,7 +9,7 @@
   .default-text-shadow();
   display: flex;
   width: auto;
-  height: 100%;
+  height: var(--item-height);
   padding: 10px 30px;
   border-radius: 10000px;
   text-align: center;
@@ -22,11 +22,6 @@
 
   &:hover {
     background: var(--bg-hover);
-  }
-
-  &--disabled {
-    pointer-events: none;
-    opacity: 0.7;
   }
 
   &--join {
@@ -42,5 +37,10 @@
   &--part {
     --bg: hsl(var(--hsl-red-3));
     --bg-hover: hsl(var(--hsl-red-2));
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    opacity: 0.7;
   }
 }

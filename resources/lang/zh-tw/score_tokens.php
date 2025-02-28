@@ -5,7 +5,7 @@
 
 return [
     'create' => [
-        'beatmap_hash_invalid' => '無效或丟失的圖譜雜湊值',
+        'beatmap_hash_invalid' => '圖譜雜湊值無效或遺失',
         'submission_disabled' => '已禁用成績提交',
     ],
 ];

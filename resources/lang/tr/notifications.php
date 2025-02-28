@@ -20,17 +20,19 @@ return [
         'channel' => 'sohbet',
         'forum_topic' => 'forum',
         'news_post' => 'haberler',
+        'team' => '',
         'user' => 'profil',
     ],
 
     'filters' => [
         '_' => 'hepsi',
-        'user' => 'profil',
         'beatmapset' => 'haritalar',
-        'forum_topic' => 'forum',
-        'news_post' => 'gelişmeler',
         'build' => 'sürümler',
         'channel' => 'sohbet',
+        'forum_topic' => 'forum',
+        'news_post' => 'gelişmeler',
+        'team' => '',
+        'user' => 'profil',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Yeni beatmap',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => '":title" konusunda yeni yanıtlar mevcut',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
             ],
         ],
 

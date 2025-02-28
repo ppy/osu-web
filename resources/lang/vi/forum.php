@@ -295,6 +295,27 @@ return [
             'to_1_done' => 'Đã thêm tag "resolved"',
         ],
 
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
         'lock' => [
             'is_locked' => 'Chủ đề này đã bị khóa và không thể trả lời',
             'to_0' => 'Mở khóa chủ đề',

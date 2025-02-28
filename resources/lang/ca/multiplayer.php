@@ -6,7 +6,7 @@
 return [
     'empty' => [
         '_' => 'No s\'ha jugat cap partida :type_group d\'osu!(lazer) encara!',
-        'playlists' => 'llista de reproducció',
+        'playlists' => 'llista d\'àudio',
         'realtime' => 'multijugador',
     ],
 
@@ -19,7 +19,7 @@ return [
 
         'errors' => [
             'duration_too_long' => 'La durada és massa llarga.',
-            'name_too_long' => '',
+            'name_too_long' => 'El nom de la sala és massa llarg.',
         ],
 
         'status' => [

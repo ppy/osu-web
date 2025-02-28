@@ -55,8 +55,8 @@ return [
                 'general' => '',
 
                 'users' => [
-                    'header' => '',
-                    'cover_presets' => '',
+                    'header' => 'Uživatel',
+                    'cover_presets' => 'Předvolby záhlaví profilu',
                 ],
             ],
         ],

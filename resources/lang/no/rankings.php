@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Denne sesongen er pågående (flere spillelister vil bli lagt til).',
         'room_count' => 'Antall spillelister',
         'url' => 'Vis mer informasjon om den sesongen.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => 'Presisjon',
         'active_users' => 'Aktive Brukere',
         'country' => 'Land',
+        'division' => '',
         'play_count' => 'Spillforsøk',
         'performance' => 'Prestasjon',
         'total_score' => 'Total Poengsum',

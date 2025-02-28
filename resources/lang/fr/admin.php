@@ -55,8 +55,8 @@ return [
                 'general' => '',
 
                 'users' => [
-                    'header' => '',
-                    'cover_presets' => '',
+                    'header' => 'Utilisateur',
+                    'cover_presets' => 'Préréglages de bannières',
                 ],
             ],
         ],

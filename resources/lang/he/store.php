@@ -55,6 +55,7 @@ return [
         'contact' => '',
         'date' => '',
         'echeck_delay' => 'מכיוון שהתשלום שלך היה eCheck, נא אפשר עד ל-- 10 ימים נוספים לתשלום לעבור דרך PayPal!',
+        'echeck_denied' => '',
         'hide_from_activity' => '',
         'sent_via' => '',
         'shipping_to' => '',
