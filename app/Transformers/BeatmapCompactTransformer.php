@@ -89,7 +89,7 @@ class BeatmapCompactTransformer extends TransformerAbstract
 
     public function includeOwnTagIds(Beatmap $beatmap)
     {
-        return $this->primitive($beatmap->beatmapTags->pluck('tag_id'));
+        return $this->primitive($beatmap->ownBeatmapTags->pluck('tag_id'));
     }
 
     public function includeTopTagIds(Beatmap $beatmap)

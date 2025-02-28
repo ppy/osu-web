@@ -398,7 +398,7 @@ class BeatmapsetsController extends Controller
             "{$beatmapRelation}.baseMaxCombo",
             "{$beatmapRelation}.failtimes",
             "{$beatmapRelation}.beatmapOwners.user",
-            "{$beatmapRelation}.beatmapTags" => fn ($q) => $user !== null ? $q->where('user_id', $user->getKey()) : $q->none(),
+            "{$beatmapRelation}.ownBeatmapTags" => fn ($q) => $user !== null ? $q->where('user_id', $user->getKey()) : $q->none(),
             'genre',
             'language',
             'user',
