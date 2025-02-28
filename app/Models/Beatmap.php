@@ -278,6 +278,7 @@ class Beatmap extends Model implements AfterCommit
             'baseMaxCombo',
             'beatmapDiscussions',
             'beatmapOwners',
+            'beatmapTags',
             'beatmapset',
             'difficulty',
             'difficultyAttribs',
