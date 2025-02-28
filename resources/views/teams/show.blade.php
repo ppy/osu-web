@@ -104,9 +104,8 @@
                 @endphp
                 <form
                     action="{{ route('teams.applications.store', ['team' => $team]) }}"
-                    data-confirm="{{ osu_trans('common.confirmation') }}"
+                    data-turbo-confirm="{{ osu_trans('common.confirmation') }}"
                     data-reload-on-success="1"
-                    data-remote="1"
                     method="POST"
                     title="{{ $joinPriv->message() }}"
                 >
