@@ -194,16 +194,19 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
-                'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'already_member' => "Du bist bereits Teil des Teams.",
+                'already_other_member' => "Du bist bereits Teil eines anderen Teams.",
+                'currently_applying' => 'Eine Team-Beitrittsanfrage steht noch aus.',
+                'team_closed' => 'Das Team akzeptiert derzeit keine Beitrittsanfragen.',
+                'team_full' => "Das Team ist voll und kann keine weiteren Mitglieder mehr aufnehmen.",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "Der Teamleiter kann das Team nicht verlassen.",
+            'not_member' => 'Kein Mitglied des Teams.',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

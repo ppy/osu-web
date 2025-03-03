@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => '',
+        'used' => '',
+        'word_not_allowed' => '',
+
+        'attributes' => [
+            'default_ruleset_id' => '',
+            'is_open' => '',
+            'name' => '',
+            'short_name' => '',
+            'url' => '',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'รหัสผ่านต้องไม่ประกอบด้วยชื่อผู้ใช้',
         'email_already_used' => 'อีเมลนี้ถูกใช้ไปแล้ว',

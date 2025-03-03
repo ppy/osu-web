@@ -5,14 +5,14 @@
 
 return [
     'promote' => [
-        'pin' => '',
-        'unpin' => "",
+        'pin' => 'Adakah anda pasti ingin menguarkan siaran langsung ini?',
+        'unpin' => "Adakah anda pasti ingin memadam penguaran siaran langsung ini?",
     ],
 
     'top-headers' => [
-        'headline' => '',
-        'description' => '',
+        'headline' => 'Siaran Langsung',
+        'description' => 'Data diambil dari twitch.tv setiap lima minit berpangkalkan senarai direktori. Jangan malu-malu untuk mula menyiar dan masuk senarai! Untuk maklumat lanjut tentang persediaan, lihat :link.',
 
-        'link' => '',
+        'link' => 'halaman wiki tentang siaran langsung',
     ],
 ];

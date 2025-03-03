@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => '',
+        'used' => '',
+        'word_not_allowed' => '',
+
+        'attributes' => [
+            'default_ruleset_id' => '',
+            'is_open' => '',
+            'name' => '',
+            'short_name' => '',
+            'url' => '',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Wachtwoorden mogen je gebruikersnaam niet bevatten.',
         'email_already_used' => 'Dit e-mailadres is al in gebruik.',

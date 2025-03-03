@@ -20,7 +20,7 @@ return [
         'channel' => 'Chat',
         'forum_topic' => 'Forum',
         'news_post' => 'Neuigkeiten',
-        'team' => '',
+        'team' => 'Team',
         'user' => 'Profil',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'Forum',
         'news_post' => 'Neuigkeiten',
-        'team' => '',
+        'team' => 'Team',
         'user' => 'Profil',
     ],
 
@@ -163,12 +163,12 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Team-Beitrittsanfrage',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "Du bist jetzt Mitglied des Teams :title",
+                'team_application_accept_compact' => "Du bist jetzt Mitglied des Teams :title",
+                'team_application_reject' => 'Deine Beitrittsanfrage für das Team :title wurde abgelehnt',
+                'team_application_reject_compact' => 'Deine Beitrittsanfrage für das Team :title wurde abgelehnt',
             ],
         ],
 
@@ -258,8 +258,8 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "Du bist jetzt Mitglied des Teams :title",
+                'team_application_reject' => 'Deine Beitrittsanfrage für das Team :title wurde abgelehnt',
             ],
         ],
 

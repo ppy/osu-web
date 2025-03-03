@@ -5,8 +5,8 @@
 
 return [
     'create' => [
-        'download' => '',
-        'label' => '',
-        'title' => '',
+        'download' => 'Klik di sini untuk memuat turun mainan dan mencipta akaun',
+        'label' => 'Pertama sekali, mari daftar masuk ke akaun anda!',
+        'title' => 'Daftar Masuk Akaun',
     ],
 ];

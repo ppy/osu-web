@@ -296,24 +296,24 @@ return [
         ],
 
         'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Loại bỏ nhãn "osu!lazer"',
+            'to_0_done' => 'Đã loại bỏ nhãn "osu!lazer"',
+            'to_1' => 'Thêm nhãn "osu!lazer"',
+            'to_1_done' => 'Đã thêm nhãn "osu!lazer"',
         ],
 
         'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Loại bỏ nhãn "osu!stable"',
+            'to_0_done' => 'Đã loại bỏ nhãn "osu!stable"',
+            'to_1' => 'Thêm nhãn "osu!stable"',
+            'to_1_done' => 'Đã thêm nhãn "osu!stable"',
         ],
 
         'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Loại bỏ nhãn "osu!web"',
+            'to_0_done' => 'Đã loại bỏ nhãn "osu!web"',
+            'to_1' => 'Thêm nhãn "osu!web"',
+            'to_1_done' => 'Đã thêm nhãn "osu!web"',
         ],
 
         'lock' => [

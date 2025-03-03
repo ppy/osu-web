@@ -27,6 +27,7 @@ return [
                 'GROUP' => 'Mga grupo',
                 'PM' => 'Mga direktang mensahe',
                 'PUBLIC' => 'Mga Channel',
+                'TEAM' => '',
             ],
         ],
     ],

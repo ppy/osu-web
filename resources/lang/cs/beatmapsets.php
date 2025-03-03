@@ -21,7 +21,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Featured Artist',
+        'label' => 'Oficiální umělec',
     ],
 
     'index' => [

@@ -17,7 +17,7 @@ return [
     ],
 
     'show' => [
-        'created_by' => '',
+        'created_by' => 'bởi :author',
         'download' => 'Tải Xuống',
         'item' => [
             'cleared' => 'đã chơi',

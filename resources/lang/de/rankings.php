@@ -50,7 +50,7 @@ return [
         'room_count' => 'Anzahl der Playlists',
         'url' => 'Weitere Informationen zu dieser Season anzeigen.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'Es gibt nicht genügend Score-Faktoren für eine korrekte Berechnung',
         ],
     ],
 
@@ -65,7 +65,7 @@ return [
         'accuracy' => 'Genauigkeit',
         'active_users' => 'Aktive Nutzer',
         'country' => 'Land',
-        'division' => '',
+        'division' => 'Spielklasse',
         'play_count' => 'Gespielt',
         'performance' => 'Performance',
         'total_score' => 'Gesamtpunktzahl',

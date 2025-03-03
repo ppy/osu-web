@@ -50,7 +50,7 @@ return [
         'room_count' => 'Nombre de playlists',
         'url' => 'Afficher plus d\'informations sur cette saison.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'Il n\'y a pas suffisamment de facteurs de score pour établir un calcul correct',
         ],
     ],
 
@@ -65,7 +65,7 @@ return [
         'accuracy' => 'Précision',
         'active_users' => 'Utilisateurs actifs',
         'country' => 'Pays',
-        'division' => '',
+        'division' => 'Division',
         'play_count' => 'Nombres de parties',
         'performance' => 'Performance',
         'total_score' => 'Score total',

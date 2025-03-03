@@ -20,7 +20,7 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'forum',
         'news_post' => 'notizie',
-        'team' => '',
+        'team' => 'squadra',
         'user' => 'profilo',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'forum',
         'news_post' => 'notizie',
-        'team' => '',
+        'team' => 'squadra',
         'user' => 'profilo',
     ],
 
@@ -165,10 +165,10 @@ return [
             'team_application' => [
                 '_' => '',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "Sei diventato un membro della squadra :title",
+                'team_application_accept_compact' => "Sei diventato un membro della squadra :title",
+                'team_application_reject' => 'La tua richiesta di unirsi alla squadra :title è stata rifiutata',
+                'team_application_reject_compact' => 'La tua richiesta di unirsi alla squadra :title è stata rifiutata',
             ],
         ],
 
@@ -218,7 +218,7 @@ return [
                 'beatmapset_love' => '":title" è stata promossa tra le amate',
                 'beatmapset_nominate' => '":title" è stata nominata',
                 'beatmapset_qualify' => '":title" ha ottenuto abbastanza nomine ed è entrata nella coda di ranking',
-                'beatmapset_rank' => '":title" è stata rankata',
+                'beatmapset_rank' => '":title" è stata classificata',
                 'beatmapset_remove_from_loved' => '":title" è stata rimossa dalle amate',
                 'beatmapset_reset_nominations' => 'La nomina di ":title" è stata resettata',
             ],
@@ -258,8 +258,8 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "Sei diventato un membro della squadra :title",
+                'team_application_reject' => 'La tua richiesta di unirsi alla squadra :title è stata rifiutata',
             ],
         ],
 
