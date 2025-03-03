@@ -15,7 +15,7 @@ interface BuildHistory {
   user_count: number;
 }
 
-interface ChartConfig {
+interface ChartData {
   build_history: BuildHistory[];
   order: (string | null)[];
   stream_name: string | null;
@@ -34,7 +34,7 @@ export default class ChangelogChart {
   private readonly area;
   private readonly areaFunction;
   private autoHideTooltip?: number;
-  private chartConfig!: ChartConfig;
+  private chartData!: ChartData;
   private data!: d3.Series<DataObj, string>[];
   private hasData = false;
   private height!: number;
@@ -116,17 +116,17 @@ export default class ChangelogChart {
   }
 
   loadData() {
-    this.chartConfig = parseJson('json-chart-config');
+    this.chartData = parseJson('json-chart-config');
 
-    const { data, hasData } = this.normalizeData(this.chartConfig.build_history);
+    const { data, hasData } = this.normalizeData(this.chartData.build_history);
 
     const stack = d3
       .stack<DataObj, string>()
-      .keys(this.chartConfig.order.map(String))
+      .keys(this.chartData.order.map(String))
       .value((d, val) => (d.builds[val] != null ? d.builds[val].normalized : 0));
 
     this.data = stack(data);
-    this.hasData = this.chartConfig.build_history.length > 0 && hasData;
+    this.hasData = this.chartData.build_history.length > 0 && hasData;
 
     this.resize();
   }
@@ -227,14 +227,14 @@ export default class ChangelogChart {
     this.scales.y.range([0, this.height]).domain([0, 1]);
 
     this.scales.class.range(
-      this.chartConfig.order.map((d, i) =>
+      this.chartData.order.map((d, i) =>
         // rotate over available build ids (0-6) when the amount of builds
         // exceeds the available amount of colors
-        this.chartConfig.stream_name != null
-          ? `${this.chartConfig.stream_name}-build-${i % 7}`
+        this.chartData.stream_name != null
+          ? `${this.chartData.stream_name}-build-${i % 7}`
           : kebabCase(d ?? ''),
       ),
-    ).domain(this.chartConfig.order.map(String));
+    ).domain(this.chartData.order.map(String));
   }
 
   private setSvgSize() {
