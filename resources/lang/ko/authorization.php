@@ -198,12 +198,15 @@ return [
                 'already_other_member' => "이미 다른 팀에 소속되어 있습니다.",
                 'currently_applying' => '대기 중인 팀 가입 요청이 있습니다.',
                 'team_closed' => '이 팀은 현재 가입 요청을 받고 있지 않습니다.',
-                'team_full' => "",
+                'team_full' => "이 팀은 가득 차 더 이상 팀원을 받을 수 없습니다.",
             ],
         ],
         'part' => [
             'is_leader' => "팀 리더는 팀을 떠날 수 없습니다.",
             'not_member' => '팀의 멤버가 아닙니다.',
+        ],
+        'store' => [
+            'require_supporter_tag' => '팀을 만들려면 osu! 서포터 태그가 필요합니다.',
         ],
     ],
 

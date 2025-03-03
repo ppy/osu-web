@@ -11,23 +11,23 @@ return [
         'avatar' => [
             'title' => 'Avatar',
             'reset' => 'set semula',
-            'rules' => 'Pastikan avatarmu akur pada :link yang berlaku.<br/>Dengan kata lain, avatarmu mestilah <strong>sesuai untuk segala usia</strong> tanpa mengandung unsur apa pun yang tidak dibenarkan seperti cacian, hinaan, atau hal yang tidak senonoh.',
-            'rules_link' => 'peraturan komuniti',
+            'rules' => 'Sila pastikan avatar anda akur pada :link.<br/>Hal ini bermakna avatar anda mesti <strong>sesuai bagi penglihatan umum,</strong> iaitu senonoh serta tidak menyinggung.',
+            'rules_link' => 'Pertimbangan kandungan visual',
         ],
 
         'email' => [
-            'new' => 'e-mel baharu',
+            'new' => 'emel baharu',
             'new_confirmation' => 'pengesahan e-mel',
             'title' => 'E-mel',
             'locked' => [
-                '_' => 'Sila hubungi akaun jika anda mahu emel anda dikemaskini.',
-                'accounts' => 'akaun sokongan khidmat',
+                '_' => 'Sila hubungi :accounts sekiranya anda perlu mengemas kini emel anda.',
+                'accounts' => 'pasukan sokongan akaun',
             ],
         ],
 
         'legacy_api' => [
             'api' => 'api',
-            'irc' => '\'irc\' ',
+            'irc' => 'irc',
             'title' => 'API Legasi',
         ],
 
@@ -43,13 +43,13 @@ return [
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "Kelihatannya negara akaun anda tidak sempadan dengan negara petempatan anda. :update_link.",
-                'update_link' => 'Kemaskini ke :country',
+                '_' => "Nampaknya negara akaun anda tidak sepadan dengan negara mastautin anda. :update_link.",
+                'update_link' => 'Kemas kini ke :country',
             ],
 
             'user' => [
                 'user_discord' => '',
-                'user_from' => 'kedudukan semasa',
+                'user_from' => 'tempat semasa',
                 'user_interests' => 'minat',
                 'user_occ' => 'pekerjaan',
                 'user_twitter' => '',
@@ -64,53 +64,53 @@ return [
     ],
 
     'github_user' => [
-        'info' => "Jika anda kontributor kepada osu! repositori sumber terbuka, menghubungkan akaun Github anda disini akan mengaitkan entri log perubahan dengan osu! profil anda. Akaun Github tanpa sejarah kontribusi kepada osu! tidak boleh dihubungkan.",
+        'info' => "Sekiranya anda penyumbang kepada gedung-gedung sumber terbuka osu!, anda akan mengaitkan entri log perubahan anda dengan profil osu! anda jika anda memaut akain GitHub anda ke sini. Akaun GitHub tanpa sejarah sumbangan kepada osu! tidak boleh dipaut.",
         'link' => 'Pautkan Akaun Github',
         'title' => 'GitHub',
         'unlink' => 'Nyahpautkan Akaun Github',
 
         'error' => [
             'already_linked' => 'Akaun Github ini telah dipautkan dengan pengguna lain.',
-            'no_contribution' => 'Tidak boleh menghubungkan akaun Github tanpa sebarang sejarah kontribusi dalam repositori osu!.',
-            'unverified_email' => 'Sila sahkan e-mel utama anda di Github, seterusnya pautkan akaun anda sekali lagi.',
+            'no_contribution' => 'Tidak boleh pautkan akaun Github tanpa sebarang sejarah sumbangan dalam gedung osu!.',
+            'unverified_email' => 'Sila sahkan emel utama anda di GitHub kemudian cuba pautkan akaun anda sekali lagi.',
         ],
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'terima notifikasi untuk masalah baru pada beatmap berkelayakan pada mod tersebut ',
-        'beatmapset_disqualify' => 'terima notifikasi apabila beatmap bagi mod tersebut telah didisqualifikasi ',
-        'comment_reply' => 'terima notifikasi untuk balasan pada komen anda',
+        'beatmapset_discussion_qualified_problem' => 'terima pemberitahuan untuk masalah baru pada peta rentak layak pada mod berikut',
+        'beatmapset_disqualify' => 'terima pemberitahuan ketika peta rentak mod berikut tersingkir',
+        'comment_reply' => 'terima pemberitahuan untuk balasan pada komen',
         'title' => 'Notifications',
-        'topic_auto_subscribe' => 'hidupkan notifikasi secara automatik pada topik forum baru yang anda cipta',
+        'topic_auto_subscribe' => 'upayakan pemberitahuan automatik pada tajuk forum baharu yang anda cipta atau balas',
 
         'options' => [
             '_' => 'hantarkan pemberitahuan melalui',
             'beatmap_owner_change' => 'kesukaran tamu',
-            'beatmapset:modding' => 'beatmap modding',
-            'channel_message' => 'pesanan peribadi',
-            'comment_new' => 'ulasan baharu',
-            'forum_topic_reply' => 'balasan pada topik',
-            'mail' => 'e-mel',
-            'mapping' => 'pembuat beatmap',
+            'beatmapset:modding' => 'penyelarasan peta rentak',
+            'channel_message' => 'pesanan bualan peribadi',
+            'comment_new' => 'komen baharu',
+            'forum_topic_reply' => 'balasan tajuk',
+            'mail' => 'emel',
+            'mapping' => 'pemeta rentak',
             'push' => 'web',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => 'klien yang dibenarkan',
-        'own_clients' => 'klien yang dimiliki',
+        'authorized_clients' => 'pelanggan berizin',
+        'own_clients' => 'pelanggan sendiri',
         'title' => 'OAuth',
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'matikan peringatan untuk beatmap yang mengandungi kandungan eksplisit',
+        'beatmapset_show_nsfw' => 'sorok amaran untuk kandungan tidak senonoh dalam peta rentak',
         'beatmapset_title_show_original' => 'paparkan metadata beatmap dalam bahasa aslinya',
         'title' => 'Pengaturan',
 
         'beatmapset_download' => [
-            '_' => 'jenis lalai beatmap yang dimuat turun',
-            'all' => 'dengan video (jika tersedia)',
-            'direct' => 'buka melalui osu!direct',
+            '_' => 'jenis pemuatan turun peta rentak asal',
+            'all' => 'dengan video ketika tersedia',
+            'direct' => 'buka di osu!direct',
             'no_video' => 'tanpa video',
         ],
     ],
@@ -119,20 +119,20 @@ return [
         'keyboard' => 'kekunci',
         'mouse' => 'tetikus',
         'tablet' => 'tablet',
-        'title' => 'Gaya Bermain',
-        'touch' => 'layar sentuh',
+        'title' => 'Gaya Main',
+        'touch' => 'sentuhan',
     ],
 
     'privacy' => [
-        'friends_only' => 'sekat pesanan peribadi dari orang yang tiada dalam senarai kawan kamu',
-        'hide_online' => 'sembunyikan keberadaan dalam talian kamu',
-        'title' => 'Privasi',
+        'friends_only' => 'sekat pesanan peribadi daripada orang yang tiada pada senarai kawan',
+        'hide_online' => 'sorok kehadiran dalam talian',
+        'title' => 'Kebersendirian',
     ],
 
     'security' => [
         'current_session' => 'semasa',
         'end_session' => 'Akhiri Sesi',
-        'end_session_confirmation' => 'Tindakan ini akan menamatkan sesi kamu pada peranti yang disangkutkan. Adakah kamu pasti?',
+        'end_session_confirmation' => 'Tindakan ini akan langsung menamatkan sesi anda pada peranti itu. Adakah anda pasti?',
         'last_active' => 'Terakhir aktif:',
         'title' => 'Keselamatan',
         'web_sessions' => 'sesi web',
@@ -147,11 +147,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => 'Kamu boleh tutup tab/tetingkap ini sekarang',
+        'text' => 'Anda kini boleh menutup tab/tetingkap ini',
         'title' => 'Pengesahan selesai',
     ],
 
     'verification_invalid' => [
-        'title' => 'Pautan pengesahan tidak sah atau sudah luput',
+        'title' => 'Pautan pengesahan tidak sah atau luput',
     ],
 ];

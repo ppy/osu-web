@@ -5,11 +5,11 @@
 
 return [
     'index' => [
-        'title' => '',
+        'title' => 'Hantaran Perbincangan Peta Rentak',
     ],
 
     'item' => [
         'content' => 'Kandungan',
-        'modding_history_link' => 'Lihat sejarah modding',
+        'modding_history_link' => 'Lihat sejarah penyelarasan',
     ],
 ];

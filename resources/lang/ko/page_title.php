@@ -109,6 +109,7 @@ return [
         ],
         'teams_controller' => [
             '_' => '팀',
+            'create' => '팀 만들기',
             'edit' => '팀 설정',
             'leaderboard' => '팀 리더보드',
             'show' => '팀 정보',

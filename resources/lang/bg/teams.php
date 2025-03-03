@@ -19,12 +19,27 @@ return [
         ],
     ],
 
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
+        ],
+    ],
+
     'destroy' => [
         'ok' => '',
     ],
 
     'edit' => [
-        'saved' => 'Настройките са запазени успешно',
+        'ok' => '',
         'title' => 'Отборни настройки',
 
         'description' => [
@@ -32,23 +47,22 @@ return [
             'title' => 'Описание на отбора',
         ],
 
+        'flag' => [
+            'label' => '',
+            'title' => '',
+        ],
+
         'header' => [
             'label' => 'Заглавна снимка',
             'title' => 'Задай заглавна снимка',
         ],
 
-        'logo' => [
-            'label' => 'Отборно знаме',
-            'title' => 'Задай отборно знаме',
-        ],
-
         'settings' => [
-            'application' => 'Отборни заявки',
             'application_help' => 'Дали да е разрешено за потребители да заявяват отбор',
-            'default_ruleset' => 'Основни правила',
             'default_ruleset_help' => 'Правилата да се избират подразбиране при посещение на отборната страница',
+            'flag_help' => '',
+            'header_help' => '',
             'title' => 'Отборни настройки',
-            'url' => 'Връзка',
 
             'application_state' => [
                 'state_0' => 'Затворен',
@@ -69,8 +83,6 @@ return [
 
     'leaderboard' => [
         'global_rank' => '',
-        'performance' => '',
-        'total_score' => '',
     ],
 
     'members' => [
@@ -108,6 +120,7 @@ return [
 
     'show' => [
         'bar' => [
+            'chat' => '',
             'destroy' => '',
             'join' => '',
             'join_cancel' => '',
@@ -116,7 +129,6 @@ return [
 
         'info' => [
             'created' => 'Учреден',
-            'website' => 'Уебсайт',
         ],
 
         'members' => [
@@ -128,5 +140,9 @@ return [
             'info' => 'Инфо',
             'members' => 'Членове',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];

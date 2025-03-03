@@ -7,7 +7,7 @@ return [
     'availability' => [
         'disabled' => 'Questa beatmap non è al momento disponibile per il download.',
         'parts-removed' => 'Porzioni di questa beatmap sono state rimosse su richiesta del creatore o di un titolare di copyright di terze parti.',
-        'more-info' => 'Controlla qui per maggiori informazioni.',
+        'more-info' => 'Controlla qui per maggiori dettagli.',
         'rule_violation' => 'Alcuni elementi contenuti in questa mappa sono stati rimossi dopo che sono stati giudicati non idonei per l\'uso in osu!.',
     ],
 

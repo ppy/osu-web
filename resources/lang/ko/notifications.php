@@ -167,8 +167,8 @@ return [
 
                 'team_application_accept' => "당신은 이제 :title 팀의 멤버입니다.",
                 'team_application_accept_compact' => "당신은 이제 :title 팀의 멤버입니다.",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_reject' => '팀 :title에 보낸 가입 요청이 거부되었습니다.',
+                'team_application_reject_compact' => '팀 :title에 보낸 가입 요청이 거부되었습니다.',
             ],
         ],
 
@@ -259,7 +259,7 @@ return [
         'team' => [
             'team_application' => [
                 'team_application_accept' => "당신은 이제 :title 팀의 멤버입니다.",
-                'team_application_reject' => '',
+                'team_application_reject' => '팀 :title에 보낸 가입 요청이 거부되었습니다.',
             ],
         ],
 

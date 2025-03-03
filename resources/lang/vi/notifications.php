@@ -20,7 +20,7 @@ return [
         'channel' => 'trò chuyện',
         'forum_topic' => 'diễn đàn',
         'news_post' => 'tin tức',
-        'team' => '',
+        'team' => 'đội',
         'user' => 'hồ sơ',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'diễn đàn',
         'news_post' => 'tin tức',
-        'team' => '',
+        'team' => 'đội',
         'user' => 'trang cá nhân',
     ],
 
@@ -164,12 +164,12 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Yêu cầu gia nhập đội',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "Bạn vừa trở thành thành viên của đội :title",
+                'team_application_accept_compact' => "Bây giờ bạn là thành viên của đội :title",
+                'team_application_reject' => 'Yêu cầu gia nhập đội :title của bạn đã bị từ chối',
+                'team_application_reject_compact' => 'Yêu cầu gia nhập đội :title của bạn đã bị từ chối',
             ],
         ],
 
@@ -260,8 +260,8 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "Bây giờ bạn là thành viên của đội :title",
+                'team_application_reject' => 'Yêu cầu gia nhập đội :title của bạn đã bị từ chối',
             ],
         ],
 

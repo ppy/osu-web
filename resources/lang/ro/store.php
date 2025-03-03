@@ -55,7 +55,7 @@ return [
         'contact' => 'Contact:',
         'date' => 'Dată:',
         'echeck_delay' => 'Pentru că plata ta a fost făcută electronic, te rugăm să aștepți încă 10 zile pentru ca plata să se afișeze prin PayPal!',
-        'echeck_denied' => '',
+        'echeck_denied' => 'Plata eCheck a fost respinsă de către PayPal.',
         'hide_from_activity' => 'Statusul de suporter osu! din această comandă nu sunt afișate în activitățile tale recente.',
         'sent_via' => 'Trimis Prin:',
         'shipping_to' => 'Livrare Către:',

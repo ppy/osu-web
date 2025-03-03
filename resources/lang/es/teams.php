@@ -6,25 +6,40 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Usuario añadido al equipo.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Solicitud para unirse al equipo cancelada.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Solicitud para unirse al equipo rechazada.',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Solicita unirse al equipo.',
+        ],
+    ],
+
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Equipo eliminado',
     ],
 
     'edit' => [
-        'saved' => 'Configuración guardada correctamente',
+        'ok' => '',
         'title' => 'Configuración del equipo',
 
         'description' => [
@@ -32,23 +47,22 @@ return [
             'title' => 'Descripción del equipo',
         ],
 
+        'flag' => [
+            'label' => '',
+            'title' => '',
+        ],
+
         'header' => [
             'label' => 'Imagen del encabezado',
             'title' => 'Establecer imagen del encabezado',
         ],
 
-        'logo' => [
-            'label' => 'Bandera del equipo',
-            'title' => 'Establecer bandera del equipo',
-        ],
-
         'settings' => [
-            'application' => 'Solicitudes para unirse al equipo',
             'application_help' => 'Permitir o no que las personas puedan solicitar formar parte del equipo',
-            'default_ruleset' => 'Modo de juego predeterminado',
             'default_ruleset_help' => 'El modo de juego que se seleccionará de forma predeterminada al visitar la página del equipo',
+            'flag_help' => '',
+            'header_help' => '',
             'title' => 'Configuración del equipo',
-            'url' => 'URL',
 
             'application_state' => [
                 'state_0' => 'Cerradas',
@@ -58,19 +72,17 @@ return [
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'configuración',
+        'leaderboard' => 'tabla de clasificación',
+        'show' => 'información',
 
         'members' => [
-            'index' => '',
+            'index' => 'gestionar miembros',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
-        'performance' => '',
-        'total_score' => '',
+        'global_rank' => 'Clasificación global',
     ],
 
     'members' => [
@@ -82,8 +94,8 @@ return [
             'title' => 'Gestionar miembros',
 
             'applications' => [
-                'empty' => '',
-                'empty_slots' => '',
+                'empty' => 'No hay solicitudes para unirse al equipo por el momento.',
+                'empty_slots' => 'Espacios disponibles',
                 'title' => '',
                 'created_at' => '',
             ],
@@ -108,6 +120,7 @@ return [
 
     'show' => [
         'bar' => [
+            'chat' => '',
             'destroy' => '',
             'join' => '',
             'join_cancel' => '',
@@ -116,7 +129,6 @@ return [
 
         'info' => [
             'created' => 'Formado',
-            'website' => 'Sitio web',
         ],
 
         'members' => [
@@ -128,5 +140,9 @@ return [
             'info' => 'Información',
             'members' => 'Miembros',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];

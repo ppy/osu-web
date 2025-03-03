@@ -62,7 +62,7 @@ return [
 
     'beatmap_tag' => [
         'store' => [
-            'no_score' => 'Vous devez soumettre un score sur une beatmap pour ajouter un tag.',
+            'no_score' => 'Vous devez réaliser un score sur une beatmap pour ajouter un tag.',
         ],
     ],
 
@@ -194,16 +194,19 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
-                'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'already_member' => "Vous faites déjà partie de l'équipe.",
+                'already_other_member' => "Vous faites déjà partie d'une autre équipe.",
+                'currently_applying' => 'Vous avez déjà demandé à rejoindre une autre équipe.',
+                'team_closed' => 'Cette équipe n\'accepte pas les candidatures pour l\'instant.',
+                'team_full' => "L'équipe est complète et ne peut plus accepter de nouveaux membres.",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "Le chef d'équipe ne peut pas quitter l'équipe.",
+            'not_member' => 'Pas un membre de l\'équipe.',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 
