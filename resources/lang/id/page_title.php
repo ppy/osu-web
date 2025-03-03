@@ -109,8 +109,9 @@ return [
         ],
         'teams_controller' => [
             '_' => 'tim',
-            'edit' => '',
-            'leaderboard' => '',
+            'create' => '',
+            'edit' => 'pengaturan tim',
+            'leaderboard' => 'papan peringkat tim',
             'show' => 'info tim',
         ],
         'tournaments_controller' => [
@@ -138,7 +139,7 @@ return [
     ],
     'teams' => [
         'members_controller' => [
-            'index' => '',
+            'index' => 'anggota tim',
         ],
     ],
     'users' => [

@@ -298,24 +298,24 @@ return [
         ],
 
         'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => '移除「osu!lazer」標籤',
+            'to_0_done' => '已移除「osu!lazer」標籤',
+            'to_1' => '加入「osu!lazer」標籤',
+            'to_1_done' => '已加入「osu!lazer」標籤',
         ],
 
         'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => '移除「osu!stable」標籤',
+            'to_0_done' => '已移除「osu!stable」標籤',
+            'to_1' => '加入「osu!stable」標籤',
+            'to_1_done' => '已加入「osu!stable」標籤',
         ],
 
         'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => '移除「osu!web」標籤',
+            'to_0_done' => '已移除「osu!web」標籤',
+            'to_1' => '加入「osu!web」標籤',
+            'to_1_done' => '已加入「osu!web」標籤',
         ],
 
         'lock' => [

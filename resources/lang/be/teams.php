@@ -19,15 +19,35 @@ return [
         ],
     ],
 
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
+        ],
+    ],
+
     'destroy' => [
         'ok' => '',
     ],
 
     'edit' => [
-        'saved' => '',
+        'ok' => '',
         'title' => '',
 
         'description' => [
+            'label' => '',
+            'title' => '',
+        ],
+
+        'flag' => [
             'label' => '',
             'title' => '',
         ],
@@ -37,18 +57,12 @@ return [
             'title' => '',
         ],
 
-        'logo' => [
-            'label' => '',
-            'title' => '',
-        ],
-
         'settings' => [
-            'application' => '',
             'application_help' => '',
-            'default_ruleset' => '',
             'default_ruleset_help' => '',
+            'flag_help' => '',
+            'header_help' => '',
             'title' => '',
-            'url' => '',
 
             'application_state' => [
                 'state_0' => '',
@@ -69,8 +83,6 @@ return [
 
     'leaderboard' => [
         'global_rank' => '',
-        'performance' => '',
-        'total_score' => '',
     ],
 
     'members' => [
@@ -108,6 +120,7 @@ return [
 
     'show' => [
         'bar' => [
+            'chat' => '',
             'destroy' => '',
             'join' => '',
             'join_cancel' => '',
@@ -116,7 +129,6 @@ return [
 
         'info' => [
             'created' => '',
-            'website' => '',
         ],
 
         'members' => [
@@ -128,5 +140,9 @@ return [
             'info' => '',
             'members' => '',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];

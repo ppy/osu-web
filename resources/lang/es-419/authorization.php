@@ -194,16 +194,19 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
-                'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'already_member' => "Ya formas parte del equipo.",
+                'already_other_member' => "Ya formas parte de otro equipo.",
+                'currently_applying' => 'Tienes pendiente una solicitud para unirte a un equipo.',
+                'team_closed' => 'Por el momento, el equipo no está aceptando solicitudes para formar parte de él.',
+                'team_full' => "El equipo está completo y no puede aceptar a más miembros.",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "El líder del equipo no puede abandonar el equipo.",
+            'not_member' => 'No es miembro del equipo.',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

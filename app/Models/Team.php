@@ -11,6 +11,7 @@ use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\TeamApplicationAccept;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\Uploader;
+use App\Libraries\User\Cover as UserCover;
 use App\Libraries\UsernameValidation;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -18,7 +19,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Team extends Model
 {
     const FLAG_MAX_DIMENSIONS = [512, 256];
-    const HEADER_MAX_DIMENSIONS = [2000, 500];
 
     const MAX_FIELD_LENGTHS = [
         'name' => 100,
@@ -193,8 +193,8 @@ class Team extends Model
             $this,
             'header_file',
             ['image' => [
-                'maxDimensions' => static::HEADER_MAX_DIMENSIONS,
-                'maxFilesize' => 4_000_000,
+                'maxDimensions' => UserCover::CUSTOM_COVER_MAX_DIMENSIONS,
+                'maxFilesize' => UserCover::CUSTOM_COVER_MAX_FILESIZE,
             ]],
         );
     }

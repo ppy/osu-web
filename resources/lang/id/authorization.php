@@ -194,16 +194,19 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
-                'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'already_member' => "Kamu sudah menjadi bagian dari tim ini.",
+                'already_other_member' => "Kamu sudah menjadi bagian dari tim yang berbeda.",
+                'currently_applying' => 'Kamu memiliki permintaan untuk bergabung ke tim yang belum dijawab.',
+                'team_closed' => 'Tim ini saat ini tidak menerima permintaan untuk bergabung.',
+                'team_full' => "Tim ini sudah penuh dan tidak lagi dapat menerima lebih banyak anggota.",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "Ketua tim tidak dapat meninggalkan tim.",
+            'not_member' => 'Kamu bukan merupakan anggota dari tim ini.',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

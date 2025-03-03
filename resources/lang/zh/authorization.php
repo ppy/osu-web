@@ -194,16 +194,19 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
-                'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'already_member' => "你已经是战队成员了。",
+                'already_other_member' => "你已经是其他战队的成员了。",
+                'currently_applying' => '你有待处理的加入战队请求。',
+                'team_closed' => '这个战队暂不接受任何加入战队请求。',
+                'team_full' => "这个战队已满，无法容纳更多成员。",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "队长无法离开战队。",
+            'not_member' => '不是战队成员。',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

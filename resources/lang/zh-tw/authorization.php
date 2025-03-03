@@ -194,16 +194,19 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
-                'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'already_member' => "你已經是此團隊成員了。",
+                'already_other_member' => "你已經是其他團隊的成員了。",
+                'currently_applying' => '你有待處理的團隊加入請求。',
+                'team_closed' => '這個團隊目前不接受任何加入請求。',
+                'team_full' => "這個團隊已經額滿，無法再接受新成員。",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "隊伍領導人無法離開團隊。",
+            'not_member' => '不是此團隊成員。',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

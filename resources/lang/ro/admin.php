@@ -55,8 +55,8 @@ return [
                 'general' => '',
 
                 'users' => [
-                    'header' => '',
-                    'cover_presets' => '',
+                    'header' => 'Utilizator',
+                    'cover_presets' => 'Preset-uri Coperți Profil',
                 ],
             ],
         ],
