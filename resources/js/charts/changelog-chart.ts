@@ -21,16 +21,16 @@ interface Config {
   stream_name: string | null;
 }
 
-type DataObj = {
+interface DataObj {
+  builds: Record<string, BuildHistory>;
   created_at: string;
   date: Date;
   date_formatted: string;
-} & Record<string, BuildHistory>;
+}
 
 type Datum = d3.SeriesPoint<DataObj>;
 
 export default class ChangelogChart {
-  private _autoHideTooltip?: number;
   private readonly area;
   private readonly areaFunction;
   private autoHideTooltip?: number;
@@ -123,7 +123,7 @@ export default class ChangelogChart {
     const stack = d3
       .stack<DataObj, string>()
       .keys(this.config.order.map(String))
-      .value((d, val) => (d[val] != null ? d[val].normalized : 0));
+      .value((d, val) => (d.builds[val] != null ? d.builds[val].normalized : 0));
 
     this.data = stack(data);
     this.hasData = this.config.build_history.length > 0 && hasData;
@@ -186,15 +186,16 @@ export default class ChangelogChart {
       // d3 domains, and format it into a string shown on the tooltip
       const m = moment(values[0].created_at);
 
-      const obj = {
+      const obj: DataObj = {
+        builds: {},
         created_at: timestamp,
         date: m.toDate(),
         date_formatted: m.format('YYYY/MM/DD'),
-      } as DataObj;
+      };
 
       for (const val of values) {
         val.normalized = val.user_count / sum;
-        obj[String(val.label)] = val;
+        obj.builds[String(val.label)] = val;
       }
 
       return obj;
@@ -268,7 +269,7 @@ export default class ChangelogChart {
 
     for (let i = 0; i < this.data.length; i++) {
       const el = this.data[i];
-      if (y <= el[pos][1] && el[pos].data[el.key] != null) {
+      if (y <= el[pos][1] && el[pos].data.builds[el.key] != null) {
         dataRow = i;
         currentLabel = el.key;
         labelModifier = this.scales.class(currentLabel);
@@ -285,7 +286,7 @@ export default class ChangelogChart {
       )
       .text(currentLabel);
     this.tooltipUserCount.text(
-      formatNumber(this.data[dataRow][pos].data[currentLabel].user_count),
+      formatNumber(this.data[dataRow][pos].data.builds[currentLabel].user_count),
     );
     this.tooltipDate.text(this.data[dataRow][pos].data.date_formatted);
 
