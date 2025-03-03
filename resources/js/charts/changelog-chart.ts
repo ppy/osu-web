@@ -15,7 +15,7 @@ interface BuildHistory {
   user_count: number;
 }
 
-interface Config {
+interface ChartConfig {
   build_history: BuildHistory[];
   order: (string | null)[];
   stream_name: string | null;
@@ -34,7 +34,7 @@ export default class ChangelogChart {
   private readonly area;
   private readonly areaFunction;
   private autoHideTooltip?: number;
-  private config!: Config;
+  private chartConfig!: ChartConfig;
   private data!: d3.Series<DataObj, string>[];
   private hasData!: boolean | null;
   private height!: number;
@@ -116,17 +116,17 @@ export default class ChangelogChart {
   }
 
   loadData() {
-    this.config = parseJson('json-chart-config');
+    this.chartConfig = parseJson('json-chart-config');
 
-    const { data, hasData } = this.normalizeData(this.config.build_history);
+    const { data, hasData } = this.normalizeData(this.chartConfig.build_history);
 
     const stack = d3
       .stack<DataObj, string>()
-      .keys(this.config.order.map(String))
+      .keys(this.chartConfig.order.map(String))
       .value((d, val) => (d.builds[val] != null ? d.builds[val].normalized : 0));
 
     this.data = stack(data);
-    this.hasData = this.config.build_history.length > 0 && hasData;
+    this.hasData = this.chartConfig.build_history.length > 0 && hasData;
 
     this.resize();
   }
@@ -225,14 +225,14 @@ export default class ChangelogChart {
     this.scales.y.range([0, this.height]).domain([0, 1]);
 
     this.scales.class.range(
-      this.config.order.map((d, i) =>
+      this.chartConfig.order.map((d, i) =>
         // rotate over available build ids (0-6) when the amount of builds
         // exceeds the available amount of colors
-        this.config.stream_name != null
-          ? `${this.config.stream_name}-build-${i % 7}`
+        this.chartConfig.stream_name != null
+          ? `${this.chartConfig.stream_name}-build-${i % 7}`
           : kebabCase(d ?? ''),
       ),
-    ).domain(this.config.order.map(String));
+    ).domain(this.chartConfig.order.map(String));
   }
 
   private setSvgSize() {
