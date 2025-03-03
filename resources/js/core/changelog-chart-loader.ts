@@ -11,7 +11,7 @@ export default class ChangelogChartLoader {
     document.addEventListener('turbo:before-cache', this.reset);
   }
 
-  readonly initialize = () => {
+  private readonly initialize = () => {
     const container = document.querySelector('.js-changelog-chart');
 
     if (!(container instanceof HTMLElement)) return;
