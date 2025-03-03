@@ -128,29 +128,31 @@ class Team extends Model
         $this->flag()->delete();
 
         return $this->getConnection()->transaction(function () {
-            $ret = parent::delete();
+            return \DB::connection('mysql-chat')->transaction(function () {
+                $ret = parent::delete();
 
-            if ($ret) {
-                $this->applications()->delete();
-                $this->members()->delete();
+                if ($ret) {
+                    $this->applications()->delete();
+                    $this->members()->delete();
 
-                $channel = $this->channel;
-                if ($channel !== null) {
-                    $channel->loadMissing('userChannels.user');
-                    $channel->update(['name' => "#DeletedTeam_{$this->getKey()}"]);
+                    $channel = $this->channel;
+                    if ($channel !== null) {
+                        $channel->loadMissing('userChannels.user');
+                        $channel->update(['name' => "#DeletedTeam_{$this->getKey()}"]);
 
-                    foreach ($channel->userChannels as $userChannel) {
-                        $user = $userChannel->user;
-                        if ($user === null) {
-                            $userChannel->delete();
-                        } else {
-                            $channel->removeUser($user);
+                        foreach ($channel->userChannels as $userChannel) {
+                            $user = $userChannel->user;
+                            if ($user === null) {
+                                $userChannel->delete();
+                            } else {
+                                $channel->removeUser($user);
+                            }
                         }
                     }
                 }
-            }
 
-            return $ret;
+                return $ret;
+            });
         });
     }
 
