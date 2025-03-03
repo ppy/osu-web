@@ -127,8 +127,8 @@ class Team extends Model
         $this->header()->delete();
         $this->flag()->delete();
 
-        return $this->getConnection()->transaction(fn () =>
-            \DB::connection('mysql-chat')->transaction(function () {
+        return $this->getConnection()->transaction(function () {
+            return \DB::connection('mysql-chat')->transaction(function () {
                 $ret = parent::delete();
 
                 if ($ret) {
@@ -152,7 +152,8 @@ class Team extends Model
                 }
 
                 return $ret;
-            }));
+            });
+        });
     }
 
     public function descriptionHtml(): string
