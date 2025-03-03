@@ -4,6 +4,7 @@
 --}}
 @php
     use App\Models\Team;
+    use App\Libraries\User\Cover as UserCover;
 
     $imageTypeAccept = implode(',', array_map(
         image_type_to_mime_type(...),
@@ -129,7 +130,7 @@
                         </label>
                         <span class="team-settings__help">
                             @php
-                                [$width, $height] = array_map(i18n_number_format(...), Team::HEADER_MAX_DIMENSIONS);
+                                [$width, $height] = array_map(i18n_number_format(...), UserCover::CUSTOM_COVER_MAX_DIMENSIONS);
                             @endphp
                             {{ osu_trans('teams.edit.settings.header_help', compact('height', 'width')) }}
                         </span>
