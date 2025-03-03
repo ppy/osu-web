@@ -10,14 +10,14 @@ import { parseJson } from 'utils/json';
 
 interface BuildHistory {
   created_at: string;
-  label: string | null;
+  label: string;
   normalized: number;
   user_count: number;
 }
 
 interface ChartData {
   build_history: BuildHistory[];
-  order: (string | null)[];
+  order: string[];
   stream_name: string | null;
 }
 
@@ -122,7 +122,7 @@ export default class ChangelogChart {
 
     const stack = d3
       .stack<DataObj, string>()
-      .keys(this.chartData.order.map(String))
+      .keys(this.chartData.order)
       .value((d, val) => (d.builds[val] != null ? d.builds[val].normalized : 0));
 
     this.data = stack(data);
@@ -195,7 +195,7 @@ export default class ChangelogChart {
 
       for (const val of values) {
         val.normalized = val.user_count / sum;
-        obj.builds[String(val.label)] = val;
+        obj.builds[val.label] = val;
       }
 
       return obj;
@@ -232,9 +232,9 @@ export default class ChangelogChart {
         // exceeds the available amount of colors
         this.chartData.stream_name != null
           ? `${this.chartData.stream_name}-build-${i % 7}`
-          : kebabCase(d ?? ''),
+          : kebabCase(d),
       ),
-    ).domain(this.chartData.order.map(String));
+    ).domain(this.chartData.order);
   }
 
   private setSvgSize() {
