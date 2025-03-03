@@ -265,13 +265,13 @@ export default class ChangelogChart {
       .bisector<Datum, Date>((d) => d.data.date)
       .left(this.data[0], x);
 
-    let dataRow = 0;
+    let tooltipData: DataObj | null = null;
     let currentLabel = '';
     let labelModifier = '';
 
-    for (const [i, el] of this.data.entries()) {
+    for (const el of this.data) {
       if (y <= el[pos][1] && el[pos].data.builds[el.key] != null) {
-        dataRow = i;
+        tooltipData = el[pos].data;
         currentLabel = el.key;
         labelModifier = this.scales.class(currentLabel);
         break;
@@ -286,10 +286,8 @@ export default class ChangelogChart {
         `changelog-chart__text changelog-chart__text--name changelog-chart__text--${labelModifier}`,
       )
       .text(currentLabel);
-    this.tooltipUserCount.text(
-      formatNumber(this.data[dataRow][pos].data.builds[currentLabel].user_count),
-    );
-    this.tooltipDate.text(this.data[dataRow][pos].data.date_formatted);
+    this.tooltipUserCount.text(formatNumber(tooltipData?.builds[currentLabel].user_count ?? 0));
+    this.tooltipDate.text(tooltipData?.date_formatted ?? '');
 
     const tooltipWidth = this.tooltip.node()?.getBoundingClientRect().width ?? 0;
     const tooltipXBase = coord - tooltipWidth / 2;
