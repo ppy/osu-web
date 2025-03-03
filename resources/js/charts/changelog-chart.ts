@@ -33,6 +33,7 @@ export default class ChangelogChart {
   private _autoHideTooltip?: number;
   private readonly area;
   private readonly areaFunction;
+  private autoHideTooltip?: number;
   private config!: Config;
   private data!: d3.Series<DataObj, string>[];
   private hasData!: boolean | null;
@@ -246,8 +247,8 @@ export default class ChangelogChart {
 
     this.tooltipShow();
 
-    clearTimeout(this._autoHideTooltip);
-    this._autoHideTooltip = setTimeout(this.tooltipHide, 3000);
+    clearTimeout(this.autoHideTooltip);
+    this.autoHideTooltip = setTimeout(this.tooltipHide, 3000);
 
     this.tooltipPosition();
   };
