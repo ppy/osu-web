@@ -36,7 +36,7 @@ export default class ChangelogChart {
   private autoHideTooltip?: number;
   private chartConfig!: ChartConfig;
   private data!: d3.Series<DataObj, string>[];
-  private hasData!: boolean | null;
+  private hasData = false;
   private height!: number;
   private readonly hoverArea;
   private readonly scales;
@@ -200,6 +200,8 @@ export default class ChangelogChart {
 
       return obj;
     });
+
+    hasData ??= false;
 
     return { data, hasData };
   }
