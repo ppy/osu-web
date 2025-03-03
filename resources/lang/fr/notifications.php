@@ -20,7 +20,7 @@ return [
         'channel' => 'tchat',
         'forum_topic' => 'forum',
         'news_post' => 'news',
-        'team' => '',
+        'team' => 'équipe',
         'user' => 'profil',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'tchat',
         'forum_topic' => 'forum',
         'news_post' => 'news',
-        'team' => '',
+        'team' => 'équipe',
         'user' => 'profil',
     ],
 
@@ -163,12 +163,12 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Demander à rejoindre',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "Vous faites désormais partie de l'équipe :title",
+                'team_application_accept_compact' => "Vous faites désormais partie de l'équipe :title",
+                'team_application_reject' => 'Votre demande pour rejoindre l\'équipe :title a été refusée',
+                'team_application_reject_compact' => 'Votre demande pour rejoindre l\'équipe :title a été refusée',
             ],
         ],
 
@@ -258,8 +258,8 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "Vous faites désormais partie de l'équipe :title",
+                'team_application_reject' => 'Votre demande pour rejoindre l\'équipe :title a été refusée',
             ],
         ],
 

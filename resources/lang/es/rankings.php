@@ -50,7 +50,7 @@ return [
         'room_count' => 'Número de listas de juego',
         'url' => 'Mostrar más información sobre esa temporada.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'no hay suficientes factores de puntuación para un cálculo adecuado',
         ],
     ],
 
@@ -65,7 +65,7 @@ return [
         'accuracy' => 'Precisión',
         'active_users' => 'Usuarios activos',
         'country' => 'País',
-        'division' => '',
+        'division' => 'División',
         'play_count' => 'Número de jugadas',
         'performance' => 'Rendimiento',
         'total_score' => 'Puntuación total',

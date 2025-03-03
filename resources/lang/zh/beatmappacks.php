@@ -17,7 +17,7 @@ return [
     ],
 
     'show' => [
-        'created_by' => '',
+        'created_by' => '作者：:author',
         'download' => '下载',
         'item' => [
             'cleared' => '已通过',

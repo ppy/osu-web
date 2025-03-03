@@ -6,25 +6,40 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Uživatel byl přidán do týmu.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Žádost o připojení byla zrušena.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Žádost o připojení byla zamítnuta.',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Požádáno o připojení k týmu.',
+        ],
+    ],
+
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Tým odebrán',
     ],
 
     'edit' => [
-        'saved' => 'Nastavení bylo úspěšně uloženo',
+        'ok' => '',
         'title' => 'Nastavení týmu',
 
         'description' => [
@@ -32,45 +47,42 @@ return [
             'title' => 'Popis týmu',
         ],
 
+        'flag' => [
+            'label' => '',
+            'title' => '',
+        ],
+
         'header' => [
             'label' => 'Obrázek záhlaví',
             'title' => 'Nastavit obrázek záhlaví',
         ],
 
-        'logo' => [
-            'label' => 'Vlajka týmu',
-            'title' => 'Nastavit vlajku týmu',
-        ],
-
         'settings' => [
-            'application' => 'Přihláška do týmu',
             'application_help' => 'Zdali umožnit lidem, aby mohli podávat přihlášky do týmu',
-            'default_ruleset' => 'Výchozí ruleset',
             'default_ruleset_help' => 'Ruleset, který má být automaticky vybrán při návštěvě stránky týmu',
+            'flag_help' => '',
+            'header_help' => '',
             'title' => 'Nastavení týmu',
-            'url' => 'URL',
 
             'application_state' => [
-                'state_0' => 'Uzavřená',
-                'state_1' => 'Otevřená',
+                'state_0' => 'Zavřené',
+                'state_1' => 'Otevřené',
             ],
         ],
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'nastavení',
+        'leaderboard' => 'žebříček',
+        'show' => 'info',
 
         'members' => [
-            'index' => '',
+            'index' => 'spravovat členy',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
-        'performance' => '',
-        'total_score' => '',
+        'global_rank' => 'Globální umístění',
     ],
 
     'members' => [
@@ -82,10 +94,10 @@ return [
             'title' => 'Spravovat členy',
 
             'applications' => [
-                'empty' => '',
-                'empty_slots' => '',
-                'title' => '',
-                'created_at' => '',
+                'empty' => 'Momentálně nemáte žádné žádosti o připojení.',
+                'empty_slots' => 'Dostupná místa',
+                'title' => 'Žádosti o připojení',
+                'created_at' => 'Žádost vytvořena',
             ],
 
             'table' => [
@@ -103,20 +115,20 @@ return [
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Opustil jsi tento tým ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'chat' => '',
+            'destroy' => 'Rozpustit tým',
+            'join' => 'Požádat o připojení',
+            'join_cancel' => 'Zrušit žádost',
+            'part' => 'Opustit tým',
         ],
 
         'info' => [
             'created' => 'Založen',
-            'website' => 'Webové stránky',
         ],
 
         'members' => [
@@ -128,5 +140,9 @@ return [
             'info' => 'Info',
             'members' => 'Členové',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];

@@ -109,9 +109,10 @@ return [
         ],
         'teams_controller' => [
             '_' => 'squadre',
-            'edit' => '',
-            'leaderboard' => '',
-            'show' => 'informazioni squadra',
+            'create' => '',
+            'edit' => 'impostazioni squadra',
+            'leaderboard' => 'classifica della squadra',
+            'show' => 'dettagli squadra',
         ],
         'tournaments_controller' => [
             '_' => 'tornei',
@@ -120,7 +121,7 @@ return [
             '_' => '',
         ],
         'users_controller' => [
-            '_' => 'informazioni giocatore',
+            '_' => 'dettagli giocatore',
             'create' => 'crea account',
             'disabled' => 'avviso',
         ],
@@ -138,12 +139,12 @@ return [
     ],
     'teams' => [
         'members_controller' => [
-            'index' => '',
+            'index' => 'membri della squadra',
         ],
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => 'informazioni modder',
+            '_' => 'dettagli modder',
         ],
         'multiplayer_controller' => [
             '_' => 'cronologia multigiocatore',

@@ -55,7 +55,7 @@ return [
         'contact' => 'Kontakt:',
         'date' => 'Datum:',
         'echeck_delay' => 'Da es sich bei deiner Zahlung um einen eCheck handelt, kannst du bis zu 10 zusätzliche Tage einplanen, um die Zahlung über PayPal abzuwickeln!',
-        'echeck_denied' => '',
+        'echeck_denied' => 'Die E-Check-Zahlung wurde von PayPal abgelehnt.',
         'hide_from_activity' => 'osu!supporter-Tags in dieser Bestellung werden nicht in deinen letzten Aktivitäten angezeigt.',
         'sent_via' => 'Versand durch:',
         'shipping_to' => 'Lieferung an:',

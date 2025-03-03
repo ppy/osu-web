@@ -6,49 +6,63 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => '将玩家添加进战队。',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => '已取消加入战队请求。',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => '已拒绝加入战队请求。',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => '已请求加入战队。',
+        ],
+    ],
+
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => '已删除战队',
     ],
 
     'edit' => [
-        'saved' => '设置保存成功',
-        'title' => '队伍设置',
+        'ok' => '',
+        'title' => '战队设置',
 
         'description' => [
             'label' => '介绍',
-            'title' => '队伍介绍',
+            'title' => '战队介绍',
+        ],
+
+        'flag' => [
+            'label' => '',
+            'title' => '',
         ],
 
         'header' => [
-            'label' => '头图',
-            'title' => '设置头图',
-        ],
-
-        'logo' => [
-            'label' => '队伍旗帜',
-            'title' => '设置队伍旗帜',
+            'label' => '战队头像',
+            'title' => '设置战队头像',
         ],
 
         'settings' => [
-            'application' => '队伍申请',
-            'application_help' => '是否允许其他人申请加入队伍',
-            'default_ruleset' => '默认游戏模式',
+            'application_help' => '是否允许其他人申请加入战队',
             'default_ruleset_help' => '第一次进入组队界面时默认选择的游戏模式',
-            'title' => '队伍设置',
-            'url' => 'URL',
+            'flag_help' => '',
+            'header_help' => '',
+            'title' => '战队设置',
 
             'application_state' => [
                 'state_0' => '关闭',
@@ -58,41 +72,39 @@ return [
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => '设置',
+        'leaderboard' => '排行榜',
+        'show' => '信息',
 
         'members' => [
-            'index' => '',
+            'index' => '管理战队成员',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
-        'performance' => '',
-        'total_score' => '',
+        'global_rank' => '全球排名',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '已移除队员',
+            'success' => '已移除战队成员',
         ],
 
         'index' => [
-            'title' => '管理队员',
+            'title' => '管理战队成员',
 
             'applications' => [
-                'empty' => '',
-                'empty_slots' => '',
-                'title' => '',
-                'created_at' => '',
+                'empty' => '目前没有加入战队请求。',
+                'empty_slots' => '剩余名额',
+                'title' => '加入战队申请',
+                'created_at' => '请求于',
             ],
 
             'table' => [
                 'status' => '状态',
                 'joined_at' => '加入日期',
                 'remove' => '移除',
-                'title' => '当前队员',
+                'title' => '当前战队成员',
             ],
 
             'status' => [
@@ -103,24 +115,24 @@ return [
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => '已离开战队 ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'chat' => '',
+            'destroy' => '解散战队',
+            'join' => '请求加入',
+            'join_cancel' => '取消加入',
+            'part' => '离开战队',
         ],
 
         'info' => [
             'created' => '创立于',
-            'website' => '网站',
         ],
 
         'members' => [
-            'members' => '队伍成员',
+            'members' => '战队成员',
             'owner' => '队长',
         ],
 
@@ -128,5 +140,9 @@ return [
             'info' => '信息',
             'members' => '成员',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];

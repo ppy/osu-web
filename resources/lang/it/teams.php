@@ -6,25 +6,40 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Utente aggiunto alla squadra.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Richiesta di adesione annullata.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Richiesta di adesione respinta.',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Richiesto di unirsi al team.',
+        ],
+    ],
+
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Squadra rimossa',
     ],
 
     'edit' => [
-        'saved' => 'Impostazioni salvate',
+        'ok' => '',
         'title' => 'Impostazioni Squadra',
 
         'description' => [
@@ -32,23 +47,22 @@ return [
             'title' => 'Descrizione Squadra',
         ],
 
-        'header' => [
-            'label' => 'Copertina',
-            'title' => 'Imposta Copertina',
+        'flag' => [
+            'label' => '',
+            'title' => '',
         ],
 
-        'logo' => [
-            'label' => 'Bandiera Squadra',
-            'title' => 'Imposta Bandiera Squadra',
+        'header' => [
+            'label' => 'Copertina',
+            'title' => 'Imposta immagine di sfondo',
         ],
 
         'settings' => [
-            'application' => 'Candidature Squadra',
             'application_help' => 'Indica se consentire alle persone di candidarsi per la squadra',
-            'default_ruleset' => 'Modalità Predefinita di Gioco',
             'default_ruleset_help' => 'La modalità di gioco impostata come predefinita quando si visita la pagina della squadra',
+            'flag_help' => '',
+            'header_help' => '',
             'title' => 'Impostazioni Squadra',
-            'url' => 'URL',
 
             'application_state' => [
                 'state_0' => 'Chiuse',
@@ -58,19 +72,17 @@ return [
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'impostazioni',
+        'leaderboard' => 'classifica',
+        'show' => 'dettagli',
 
         'members' => [
-            'index' => '',
+            'index' => 'gestisci membri',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
-        'performance' => '',
-        'total_score' => '',
+        'global_rank' => 'Classifica Globale',
     ],
 
     'members' => [
@@ -82,10 +94,10 @@ return [
             'title' => 'Gestisci Membri',
 
             'applications' => [
-                'empty' => '',
-                'empty_slots' => '',
-                'title' => '',
-                'created_at' => '',
+                'empty' => 'Nessuna richiesta di partecipazione per ora.',
+                'empty_slots' => 'Posti disponibili',
+                'title' => 'Richieste di partecipazione',
+                'created_at' => 'Data',
             ],
 
             'table' => [
@@ -103,30 +115,34 @@ return [
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Abbandonato la squadra ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'chat' => '',
+            'destroy' => 'Sciogli la squadra',
+            'join' => 'Richiedi Partecipazione',
+            'join_cancel' => 'Annulla Partecipazione',
+            'part' => 'Abbandona la squadra',
         ],
 
         'info' => [
             'created' => 'Creato',
-            'website' => 'Sito Web',
         ],
 
         'members' => [
             'members' => 'Membri della Squadra',
-            'owner' => 'Capitano della Squadra',
+            'owner' => 'Capitano della squadra',
         ],
 
         'sections' => [
-            'info' => 'Info',
+            'info' => 'Dettagli',
             'members' => 'Membri',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];

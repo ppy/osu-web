@@ -194,16 +194,19 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
-                'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'already_member' => "Bạn đã là một phần của đội rồi.",
+                'already_other_member' => "Bạn đã là một phần của một đội khác rồi.",
+                'currently_applying' => 'Bạn có yêu cầu gia nhập đội đang chờ.',
+                'team_closed' => 'Đội này hiện không chấp nhận bất kì yêu cầu gia nhập nào.',
+                'team_full' => "Đội đã đầy và không thể chấp nhận thêm thành viên nữa.",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "Đội trưởng không thể rời khỏi đội.",
+            'not_member' => 'Không phải thành viên của một đội.',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

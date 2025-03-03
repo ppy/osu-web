@@ -17,7 +17,7 @@ return [
     ],
 
     'show' => [
-        'created_by' => '',
+        'created_by' => 'от :author',
         'download' => 'Скачать',
         'item' => [
             'cleared' => 'пройдена',

@@ -31,7 +31,7 @@ return [
         'nomination_reset_received' => ':source_user 重設了 :user 的提名 (:text)',
         'nomination_reset_received_profile' => ':user 重設了提名 (:text)',
         'offset_edit' => '線上偏移調整已從 :old 變更為 :new。',
-        'qualify' => '這張圖譜已經達到所需的提名數量，並已經給予上架資格。',
+        'qualify' => '這張圖譜已達到所需的提名次數，並已合格。',
         'rank' => '進榜',
         'remove_from_loved' => '由 :user 從社群喜愛中移除。(:text)',
         'tags_edit' => '標籤由「:old」變更為「:new」。',

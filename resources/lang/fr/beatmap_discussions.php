@@ -68,7 +68,7 @@ return [
 
     'refresh' => [
         'checking' => 'Vérification des mises à jour...',
-        'has_updates' => 'La discussion a des mises à jour, cliquez pour rafraîchir.',
+        'has_updates' => 'De nouveaux éléments ont été ajoutés à cette discussion. Cliquez pour rafraîchir.',
         'no_updates' => 'Aucune mise à jour.',
         'updating' => 'Mise à jour...',
     ],

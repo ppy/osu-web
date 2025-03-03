@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => '',
+        'used' => '',
+        'word_not_allowed' => '',
+
+        'attributes' => [
+            'default_ruleset_id' => '',
+            'is_open' => '',
+            'name' => '',
+            'short_name' => '',
+            'url' => '',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Heslo nesmí obsahovat uživatelské jméno.',
         'email_already_used' => 'E-mailová adresa už byla použita.',

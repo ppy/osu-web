@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => '',
+        'used' => '',
+        'word_not_allowed' => '',
+
+        'attributes' => [
+            'default_ruleset_id' => '',
+            'is_open' => '',
+            'name' => '',
+            'short_name' => '',
+            'url' => '',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Nama pengguna tidak diperbolehkan untuk berada di dalam kata sandi.',
         'email_already_used' => 'Alamat email ini sudah digunakan sebelumnya.',

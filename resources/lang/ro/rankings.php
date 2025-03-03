@@ -50,7 +50,7 @@ return [
         'room_count' => 'Număr playlist-uri',
         'url' => 'Afișează mai multe informații despre acel sezon.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'nu există suficienți factori de evaluare a scorului pentru un calcul corect',
         ],
     ],
 
@@ -65,7 +65,7 @@ return [
         'accuracy' => 'Precizie',
         'active_users' => 'Utilizatori activi',
         'country' => 'Țară',
-        'division' => '',
+        'division' => 'Divizie',
         'play_count' => 'Număr de Încercări',
         'performance' => 'Performanță',
         'total_score' => 'Scor total',

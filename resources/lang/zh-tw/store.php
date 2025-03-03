@@ -55,7 +55,7 @@ return [
         'contact' => '聯絡:',
         'date' => '日期：',
         'echeck_delay' => '由於您是用 eCheck 付款，請等待至多 10 天以使該支付通過 PayPal 完成！',
-        'echeck_denied' => '',
+        'echeck_denied' => '您的電子支票付款已被 PayPal 拒絕。',
         'hide_from_activity' => '這項 osu! 贊助者訂單未在您的最近活動中顯示。',
         'sent_via' => '透過:',
         'shipping_to' => '運送至：',
