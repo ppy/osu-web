@@ -35,9 +35,9 @@ export default class ChangelogChart {
   private readonly areaFunction;
   private autoHideTooltip?: number;
   private chartData!: ChartData;
-  private data!: d3.Series<DataObj, string>[];
+  private data: d3.Series<DataObj, string>[] = [];
   private hasData = false;
-  private height!: number;
+  private height = 0;
   private readonly hoverArea;
   private readonly scales;
   private readonly svg;
@@ -49,7 +49,7 @@ export default class ChangelogChart {
   private readonly tooltipLine;
   private readonly tooltipName;
   private readonly tooltipUserCount;
-  private width!: number;
+  private width = 0;
   private x?: Date;
   private y?: number;
 
