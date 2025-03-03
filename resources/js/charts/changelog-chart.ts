@@ -267,8 +267,7 @@ export default class ChangelogChart {
     let currentLabel = '';
     let labelModifier = '';
 
-    for (let i = 0; i < this.data.length; i++) {
-      const el = this.data[i];
+    for (const [i, el] of this.data.entries()) {
       if (y <= el[pos][1] && el[pos].data.builds[el.key] != null) {
         dataRow = i;
         currentLabel = el.key;
