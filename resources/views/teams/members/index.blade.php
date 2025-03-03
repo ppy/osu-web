@@ -84,7 +84,7 @@
                     {{ osu_trans('teams.members.index.applications.title') }}
                 </h2>
                 <p>
-                    {{ osu_trans('teams.members.index.applications.empty_slots') }}: {{ $team->emptySlots() }}
+                    {{ osu_trans('teams.members.index.applications.empty_slots') }}: {{ i18n_number_format($team->emptySlots()) }}
                 </p>
                 @if ($team->applications->isEmpty())
                     {{ osu_trans('teams.members.index.applications.empty') }}

@@ -45,25 +45,32 @@
                                 <span class="store-order__item-quantity">x{{ $item->quantity }}</span>
                         @endforeach
                     </ul>
-                    @if ($order->isShopify())
-                        <button
-                            class="js-store-resume-checkout btn-osu-big btn-osu-big--rounded-thin"
-                            data-order-id="{{ $order->getKey() }}"
-                            data-provider="{{ $order->getPaymentProvider() }}"
-                            data-provider-reference="{{ $order->getProviderReference() }}"
-                            data-status="{{ $order->status }}"
-                        >
+
+                    @if ($order->shopify_url !== null)
+                        <a class="btn-osu-big btn-osu-big--rounded-thin" href="{{ route('store.invoice.show', ['invoice' => $order->getKey()]) }}">
                             {{ $order->isPaymentRequested() ? osu_trans('store.order.resume') : osu_trans('store.order.invoice') }}
-                        </button>
+                        </a>
+                    @elseif ($order->isShopify())
+                        @if ($order->isPaymentRequested())
+                            <button
+                                class="js-store-resume-checkout btn-osu-big btn-osu-big--rounded-thin"
+                                data-order-id="{{ $order->getKey() }}"
+                                data-provider="{{ $order->getPaymentProvider() }}"
+                                data-provider-reference="{{ $order->getTransactionId() }}"
+                                data-status="{{ $order->status }}"
+                            >
+                                {{ $order->isPaymentRequested() ? osu_trans('store.order.resume') : osu_trans('store.order.invoice') }}
+                            </button>
+                        @else
+                            {{-- TODO: remove after legacy carts migrated/check failed migration --}}
+                            <button class="btn-osu-big btn-osu-big--rounded-thin" disabled>
+                                Temporarily unavailable
+                            </button>
+                        @endif
                     @elseif ($order->hasInvoice())
-                        <button
-                            class="js-store-resume-checkout btn-osu-big btn-osu-big--rounded-thin"
-                            data-order-id="{{ $order->getKey() }}"
-                            data-provider="{{ $order->getPaymentProvider() }}"
-                            data-status="{{ $order->status }}"
-                        >
+                        <a class="btn-osu-big btn-osu-big--rounded-thin" href="{{ route('store.invoice.show', ['invoice' => $order->getKey()]) }}">
                             {{ osu_trans('store.order.invoice') }}
-                        </button>
+                        </a>
                     @endif
 
                     @if ($order->canUserCancel())

@@ -3,16 +3,36 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace Tests;
 
 use Symfony\Component\Finder\Finder;
 
 class ZalgoTest extends TestCase
 {
+    public static function dataProviderForCombination()
+    {
+        return [
+            ['👩🏻‍⚕️'],
+            ['再⃝'],
+            ['N⃝H⃝K⃝'],
+        ];
+    }
+
+    public static function dataProviderForUnzalgo()
+    {
+        return [
+            ['testing', 0],
+            ['t͘e̎s̐ťi͛ñg̈́', 1],
+            ['t́͘e̎̀s̐̑ť̎i͛̋ñ̈́g̈́͡', 2],
+        ];
+    }
+
     /**
-     * @dataProvider zalgoExamples
+     * @dataProvider dataProviderForCombination
      */
-    public function testCombination($text)
+    public function testCombination(string $text)
     {
         $this->assertSame(unzalgo($text), $text);
     }
@@ -32,30 +52,12 @@ class ZalgoTest extends TestCase
     /**
      * This does not seem like the best idea.
      *
-     * @dataProvider zalgoExamples
+     * @dataProvider dataProviderForUnzalgo
      */
-    public function testUnzalgo($expected, $level)
+    public function testUnzalgo(string $expected, int $level)
     {
         $text = 't́̌͌̌͘e̎̀́͐̅s̐̑̈͋͡ť̎̅̌̅i͛̋̋͋̽ñ̈́̌̽̿g̈́̆͋͡͞';
 
         $this->assertSame(unzalgo($text, $level), $expected);
-    }
-
-    public function combinationExamples()
-    {
-        return [
-            ['👩🏻‍⚕️'],
-            ['再⃝'],
-            ['N⃝H⃝K⃝'],
-        ];
-    }
-
-    public static function zalgoExamples()
-    {
-        return [
-            ['testing', 0],
-            ['t͘e̎s̐ťi͛ñg̈́', 1],
-            ['t́͘e̎̀s̐̑ť̎i͛̋ñ̈́g̈́͡', 2],
-        ];
     }
 }

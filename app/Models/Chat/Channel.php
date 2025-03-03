@@ -82,6 +82,7 @@ class Channel extends Model
         'temporary' => 'TEMPORARY',
         'pm' => 'PM',
         'group' => 'GROUP',
+        'team' => 'TEAM',
     ];
 
     public static function ack(int $channelId, int $userId, ?int $timestamp = null, ?Redis $redis = null): void
@@ -364,6 +365,11 @@ class Channel extends Model
     public function isGroup()
     {
         return $this->type === static::TYPES['group'];
+    }
+
+    public function isTeam(): bool
+    {
+        return $this->type === static::TYPES['team'];
     }
 
     public function isBanchoMultiplayerChat()
