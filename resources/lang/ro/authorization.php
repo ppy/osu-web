@@ -194,16 +194,19 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
-                'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'already_member' => "Deja faci parte din echipă.",
+                'already_other_member' => "Deja faci parte dintr-o altă echipă.",
+                'currently_applying' => 'Ai o cerere de înscriere în echipa care este în așteptare.',
+                'team_closed' => 'Echipa nu acceptă cereri de înscriere.',
+                'team_full' => "Echipa este plină și nu mai poate accepta alți membri.",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "Liderul echipei nu poate părăsi echipa.",
+            'not_member' => 'Nu este membru al echipei.',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

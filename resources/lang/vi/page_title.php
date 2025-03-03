@@ -110,8 +110,9 @@ return [
         ],
         'teams_controller' => [
             '_' => 'đội',
-            'edit' => '',
-            'leaderboard' => '',
+            'create' => '',
+            'edit' => 'cài đặt đội',
+            'leaderboard' => 'bảng xếp hạng đội',
             'show' => 'thông tin về đội',
         ],
         'tournaments_controller' => [
@@ -139,7 +140,7 @@ return [
     ],
     'teams' => [
         'members_controller' => [
-            'index' => '',
+            'index' => 'thành viên trong đội',
         ],
     ],
     'users' => [

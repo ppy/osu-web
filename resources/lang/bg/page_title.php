@@ -109,6 +109,7 @@ return [
         ],
         'teams_controller' => [
             '_' => 'отбори',
+            'create' => '',
             'edit' => '',
             'leaderboard' => '',
             'show' => 'инфо за отбор',

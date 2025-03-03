@@ -5,38 +5,38 @@
 
 return [
     'comment' => [
-        'empty' => '',
-        'page_title' => '',
-        'title' => '',
+        'empty' => 'Tiada komen diikuti.',
+        'page_title' => 'komen ikutan',
+        'title' => 'komen',
 
         'table' => [
-            'latest_comment_empty' => '',
-            'latest_comment_value' => '',
+            'latest_comment_empty' => 'tiada komen',
+            'latest_comment_value' => ':time oleh :username',
         ],
     ],
 
     'forum_topic' => [
-        'title' => '',
+        'title' => 'tajuk forum',
     ],
 
     'index' => [
-        'title_compact' => '',
+        'title_compact' => 'ikutan',
     ],
 
     'mapping' => [
-        'empty' => '',
-        'followers' => '',
-        'page_title' => '',
-        'title' => '',
-        'to_0' => '',
-        'to_1' => '',
+        'empty' => 'Tiada pemeta diikuti.',
+        'followers' => 'pengikut pemetaan',
+        'page_title' => 'pemeta ikutan',
+        'title' => 'pemeta',
+        'to_0' => 'berhenti memberitahu saya ketika pengguna ini memuat naik peta rentak baharu',
+        'to_1' => 'beritahu saya ketika pengguna ini memuat naik peta rentak baharu',
     ],
 
     'modding' => [
-        'title' => '',
+        'title' => 'perbincangan peta rentak',
     ],
 
     'store' => [
-        'too_many' => '',
+        'too_many' => 'Had ikutan dicapai.',
     ],
 ];

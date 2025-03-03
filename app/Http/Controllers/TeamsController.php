@@ -146,10 +146,12 @@ class TeamsController extends Controller
         $team = (new Team([...$params, 'leader_id' => $user->getKey()]));
         try {
             \DB::transaction(function () use ($team, $user) {
-                $channel = $team->createChannel();
-                $team->saveOrExplode();
-                $team->members()->create(['user_id' => $user->getKey()]);
-                $channel->addUser($user);
+                \DB::connection('mysql-chat')->transaction(function () use ($team, $user) {
+                    $channel = $team->createChannel();
+                    $team->saveOrExplode();
+                    $team->members()->create(['user_id' => $user->getKey()]);
+                    $channel->addUser($user);
+                });
             });
         } catch (ModelNotSavedException) {
             return ext_view('teams.create', compact('team'), status: 422);

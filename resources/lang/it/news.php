@@ -13,7 +13,7 @@ return [
         ],
 
         'title' => [
-            '_' => 'Notizie :info',
+            '_' => 'notizie',
             'info' => 'Pagina principale',
         ],
     ],

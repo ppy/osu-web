@@ -296,24 +296,24 @@ return [
         ],
 
         'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => '删除 "osu!lazer" 标签',
+            'to_0_done' => '已删除 "osu!lazer" 标签',
+            'to_1' => '添加 "osu!lazer" 标签',
+            'to_1_done' => '已添加 "osu!lazer" 标签',
         ],
 
         'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => '删除 "osu!stable" 标签',
+            'to_0_done' => '已删除 "osu!stable" 标签',
+            'to_1' => '添加 "osu!stable" 标签',
+            'to_1_done' => '已添加 "osu!stable" 标签',
         ],
 
         'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => '删除 "osu!web" 标签',
+            'to_0_done' => '已删除 "osu!web" 标签',
+            'to_1' => '添加 "osu!web" 标签',
+            'to_1_done' => '已添加 "osu!web" 标签',
         ],
 
         'lock' => [

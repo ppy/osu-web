@@ -19,12 +19,27 @@ return [
         ],
     ],
 
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
+        ],
+    ],
+
     'destroy' => [
         'ok' => '',
     ],
 
     'edit' => [
-        'saved' => 'Iestatījumi veiksmīgi saglabāti',
+        'ok' => '',
         'title' => 'Komandas Iestatījumi',
 
         'description' => [
@@ -32,23 +47,22 @@ return [
             'title' => 'Komandas Apraksts',
         ],
 
+        'flag' => [
+            'label' => '',
+            'title' => '',
+        ],
+
         'header' => [
             'label' => 'Galvenes Bilde',
             'title' => 'Uzstādīt Galvenes Bildi',
         ],
 
-        'logo' => [
-            'label' => 'Komandas Karogs',
-            'title' => 'Uzstādīt Komandas Karogu',
-        ],
-
         'settings' => [
-            'application' => 'Komandas Pieteikums',
             'application_help' => 'Vai atļaut cilvēkiem pieteikties komandai',
-            'default_ruleset' => 'Standarta Pamatlikumi',
             'default_ruleset_help' => 'Pamatlikums, kurš būs izvēlēts standarti, apmeklējot komandas lapu',
+            'flag_help' => '',
+            'header_help' => '',
             'title' => 'Komandas Iestatījumi',
-            'url' => 'URL',
 
             'application_state' => [
                 'state_0' => 'Aizvērts',
@@ -69,8 +83,6 @@ return [
 
     'leaderboard' => [
         'global_rank' => '',
-        'performance' => '',
-        'total_score' => '',
     ],
 
     'members' => [
@@ -108,6 +120,7 @@ return [
 
     'show' => [
         'bar' => [
+            'chat' => '',
             'destroy' => '',
             'join' => '',
             'join_cancel' => '',
@@ -116,7 +129,6 @@ return [
 
         'info' => [
             'created' => 'Izveidoti',
-            'website' => 'Mājaslapa',
         ],
 
         'members' => [
@@ -128,5 +140,9 @@ return [
             'info' => 'Info',
             'members' => 'Dalībnieki',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];

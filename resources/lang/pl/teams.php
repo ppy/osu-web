@@ -15,7 +15,22 @@ return [
             'ok' => '',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Przesłano prośbę o dołączenie do zespołu.',
+        ],
+    ],
+
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
         ],
     ],
 
@@ -24,7 +39,7 @@ return [
     ],
 
     'edit' => [
-        'saved' => 'Ustawienia zostały zapisane pomyślnie',
+        'ok' => '',
         'title' => 'Ustawienia zespołu',
 
         'description' => [
@@ -32,23 +47,22 @@ return [
             'title' => 'Opis zespołu',
         ],
 
+        'flag' => [
+            'label' => '',
+            'title' => '',
+        ],
+
         'header' => [
             'label' => 'Tło',
             'title' => 'Ustaw tło',
         ],
 
-        'logo' => [
-            'label' => 'Herb zespołu',
-            'title' => 'Ustaw herb zespołu',
-        ],
-
         'settings' => [
-            'application' => 'Dostępność zespołu',
             'application_help' => 'Określa, czy inni użytkownicy mogą ubiegać się o dołączenie do zespołu',
-            'default_ruleset' => 'Domyślny tryb gry',
             'default_ruleset_help' => 'Określa, który tryb gry zostanie wybrany automatycznie podczas odwiedzania strony zespołu',
+            'flag_help' => '',
+            'header_help' => '',
             'title' => 'Ustawienia zespołu',
-            'url' => 'Adres URL',
 
             'application_state' => [
                 'state_0' => 'Prywatny',
@@ -58,19 +72,17 @@ return [
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'ustawienia',
+        'leaderboard' => 'ranking',
+        'show' => 'informacje',
 
         'members' => [
-            'index' => '',
+            'index' => 'zarządzaj członkami',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
-        'performance' => '',
-        'total_score' => '',
+        'global_rank' => 'Ranking globalny',
     ],
 
     'members' => [
@@ -82,9 +94,9 @@ return [
             'title' => 'Zarządzaj członkami zespołu',
 
             'applications' => [
-                'empty' => '',
-                'empty_slots' => '',
-                'title' => '',
+                'empty' => 'Brak próśb o dołączenie do zespołu.',
+                'empty_slots' => 'Dostępnych miejsc',
+                'title' => 'Prośby o dołączenie',
                 'created_at' => '',
             ],
 
@@ -108,15 +120,15 @@ return [
 
     'show' => [
         'bar' => [
+            'chat' => '',
             'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'join' => 'Poproś o dołączenie',
+            'join_cancel' => 'Anuluj prośbę o dołączenie',
+            'part' => 'Opuść zespół',
         ],
 
         'info' => [
             'created' => 'Data założenia',
-            'website' => 'Strona internetowa',
         ],
 
         'members' => [
@@ -128,5 +140,9 @@ return [
             'info' => 'Informacje',
             'members' => 'Członkowie',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];

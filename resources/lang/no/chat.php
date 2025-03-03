@@ -27,6 +27,7 @@ return [
                 'GROUP' => 'Grupper',
                 'PM' => 'Direktemeldinger',
                 'PUBLIC' => 'Kanaler',
+                'TEAM' => '',
             ],
         ],
     ],

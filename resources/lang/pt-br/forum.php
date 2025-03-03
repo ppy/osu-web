@@ -296,24 +296,24 @@ return [
         ],
 
         'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Remover marcador "osu!lazer"',
+            'to_0_done' => 'Marcador "osu!lazer" removido',
+            'to_1' => 'Adicionar marcador "osu!lazer"',
+            'to_1_done' => 'Marcador "osu!lazer" adicionado',
         ],
 
         'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Remova marcador "osu!stable"',
+            'to_0_done' => 'Marcador "osu!stable" removido',
+            'to_1' => 'Adicionar marcador "osu!stable"',
+            'to_1_done' => 'Marcador "osu!stable" adicionado',
         ],
 
         'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Remova o marcador "osu!web"',
+            'to_0_done' => 'Marcador "osu!web" removido',
+            'to_1' => 'Adicionar marcador "osu!web"',
+            'to_1_done' => 'Marcador "osu!web" adicionado',
         ],
 
         'lock' => [

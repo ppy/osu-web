@@ -332,31 +332,31 @@ return [
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => '此貼文 :post 總共被拒絕 :amount 點 kudosu',
+                            'reset' => '在 :post 總共被拒絕 :amount',
                         ],
 
                         'delete' => [
-                            'reset' => '此貼文 :post 因被移除總共失去 :amount 點 kudosu',
+                            'reset' => '在 :post 因被移除總共失去 :amount',
                         ],
 
                         'restore' => [
-                            'give' => '此貼文 :post 因被還原總共獲得 :amount 點 kudosu',
+                            'give' => '在 :post 因被還原總共獲得 :amount',
                         ],
 
                         'vote' => [
-                            'give' => '此貼文 :post 因取得足夠票數總共獲得 :amount 點 kudosu',
-                            'reset' => '此貼文 :post 因得票數不足總共失去 :amount 點 kudosu',
+                            'give' => '在 :post 因取得足夠票數總共獲得 :amount',
+                            'reset' => '在 :post 因得票數不足總共失去 :amount',
                         ],
 
                         'recalculate' => [
-                            'give' => '此貼文 :post 因得票數重新計算總共獲得 :amount 點 kudosu',
-                            'reset' => '此貼文 :post 因得票數重新計算總共失去 :amount 點 kudosu',
+                            'give' => '在 :post 因得票數重新計算總共獲得 :amount',
+                            'reset' => '在 :post 因得票數重新計算總共失去 :amount',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => '此貼文 :post 由 :giver 給予 :amount 點 kudosu',
-                        'reset' => '此貼文 :post 的 kudosu 點數由 :giver 重新設定 ',
+                        'give' => '在 :post 由 :giver 給予 :amount',
+                        'reset' => '在 :post 的 kudosu 點數由 :giver 重新設定 ',
                         'revoke' => '此貼文 :post 已被 :giver 移除 kudosu 點數',
                     ],
                 ],
