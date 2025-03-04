@@ -20,7 +20,7 @@ return [
         'channel' => 'чат',
         'forum_topic' => 'форум',
         'news_post' => 'новости',
-        'team' => '',
+        'team' => 'команда',
         'user' => 'игроки',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'чат',
         'forum_topic' => 'форум',
         'news_post' => 'новости',
-        'team' => '',
+        'team' => 'команда',
         'user' => 'игроки',
     ],
 
@@ -163,12 +163,12 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Запрос на вступление в команду',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "Вы присоединились к команде :title",
+                'team_application_accept_compact' => "Вы присоединились к команде :title",
+                'team_application_reject' => 'Ваш запрос на вступление в команду :title отклонен',
+                'team_application_reject_compact' => 'Ваш запрос на вступление в команду :title отклонен',
             ],
         ],
 
@@ -258,8 +258,8 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "Вы присоединились к команде :title",
+                'team_application_reject' => 'Ваш запрос на вступление в команду :title отклонен',
             ],
         ],
 

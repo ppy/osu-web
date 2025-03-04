@@ -203,7 +203,7 @@ CAPTCHA認証を成功させてから再試行してください。
             'daily' => '連続記録',
             'daily_streak_best' => '最高連続記録',
             'daily_streak_current' => '現在の連続記録',
-            'playcount' => '',
+            'playcount' => '参加合計',
             'title' => 'デイリー\nチャレンジ',
             'top_10p_placements' => '上位10%',
             'top_50p_placements' => '上位50%',
@@ -250,7 +250,7 @@ CAPTCHA認証を成功させてから再試行してください。
 
                 'supporter' => [
                     '_' => 'カラーテーマをカスタムできるのは :link のみです',
-                    'link' => 'osu!サポーター',
+                    'link' => 'osu!supporters',
                 ],
             ],
         ],

@@ -75,7 +75,7 @@ return [
         ],
         'home_controller' => [
             'get_download' => '下載',
-            'index' => '儀表板',
+            'index' => '主控台',
             'search' => '搜尋',
             'support_the_game' => '贊助 osu!',
             'testflight' => 'testflight 測試',
@@ -109,8 +109,9 @@ return [
         ],
         'teams_controller' => [
             '_' => '隊伍',
-            'edit' => '',
-            'leaderboard' => '',
+            'create' => '',
+            'edit' => '團隊設定',
+            'leaderboard' => '團隊排行榜',
             'show' => '隊伍資訊',
         ],
         'tournaments_controller' => [
@@ -138,7 +139,7 @@ return [
     ],
     'teams' => [
         'members_controller' => [
-            'index' => '',
+            'index' => '團隊成員',
         ],
     ],
     'users' => [

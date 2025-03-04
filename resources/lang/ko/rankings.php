@@ -50,7 +50,7 @@ return [
         'room_count' => '플레이리스트 갯수',
         'url' => '해당 시즌의 자세한 정보를 표시합니다.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => '적절한 계산을 수행하기에 충분한 점수 요인이 없습니다.',
         ],
     ],
 

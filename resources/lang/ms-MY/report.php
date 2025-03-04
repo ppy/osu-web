@@ -15,7 +15,7 @@ return [
     ],
 
     'comment' => [
-        'button' => 'Lapor',
+        'button' => 'Laporkan',
         'title' => 'Laporkan komen :username?',
     ],
 

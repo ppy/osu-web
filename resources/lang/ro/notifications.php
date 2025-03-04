@@ -20,7 +20,7 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'forum',
         'news_post' => 'știri',
-        'team' => '',
+        'team' => 'echipă',
         'user' => 'profil',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'forum',
         'news_post' => 'noutăți',
-        'team' => '',
+        'team' => 'echipă',
         'user' => 'profil',
     ],
 
@@ -163,12 +163,12 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Cerere de înscriere în echipă',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "Acum ești membru al echipei :title",
+                'team_application_accept_compact' => "Acum ești membru al echipei :title",
+                'team_application_reject' => 'Cererea ta de înscriere în echipa :title a fost refuzată',
+                'team_application_reject_compact' => 'Cererea ta de înscriere în echipa :title a fost refuzată',
             ],
         ],
 
@@ -258,8 +258,8 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "Acum ești membru al echipei :title",
+                'team_application_reject' => 'Cererea ta de înscriere în echipa :title a fost refuzată',
             ],
         ],
 

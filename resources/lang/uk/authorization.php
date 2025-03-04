@@ -194,16 +194,19 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
-                'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'already_member' => "Ви вже стали частиною команди.",
+                'already_other_member' => "Ви вже в іншій команди.",
+                'currently_applying' => 'Ваш запит на вступ до команди очікує на розгляд.',
+                'team_closed' => 'Наразі команда більше не приймає жодних заявок на вступ.',
+                'team_full' => "Команда переповнена і не може прийняти більше учасників.",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "Лідер команди не може покинути команду.",
+            'not_member' => 'Не є членом команди.',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

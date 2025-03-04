@@ -308,6 +308,11 @@ class Score extends Model implements Traits\ReportableInterface
         if ($this->data->statistics->isEmpty()) {
             throw new InvariantException("field cannot be empty: 'statistics'");
         }
+
+        app('mods')->assertValidExclusivity(
+            $this->ruleset_id,
+            array_column($this->data->mods, 'acronym')
+        );
     }
 
     public function getClassicTotalScore(): int

@@ -20,7 +20,7 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'fórum',
         'news_post' => 'novinky',
-        'team' => '',
+        'team' => 'tým',
         'user' => 'profil',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'fórum',
         'news_post' => 'novinky',
-        'team' => '',
+        'team' => 'tým',
         'user' => 'profil',
     ],
 
@@ -163,12 +163,12 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Žádost o připojení k týmu',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "Jsi nyní členem týmu :title",
+                'team_application_accept_compact' => "Jsi nyní členem týmu :title",
+                'team_application_reject' => 'Tvoje žádost o připojení k týmu :title byla zamítnuta',
+                'team_application_reject_compact' => 'Tvoje žádost o připojení k týmu :title byla zamítnuta',
             ],
         ],
 
@@ -258,8 +258,8 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "Jsi nyní členem týmu :title",
+                'team_application_reject' => 'Tvoje žádost o připojení k týmu :title byla zamítnuta',
             ],
         ],
 

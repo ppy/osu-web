@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property bool $finalised
  * @property string $name
  * @property-read Collection<Multiplayer\Room> $rooms
+ * @property int|null $ruleset_id
  * @property float[]|null $score_factors
  * @property string|null $url
  */

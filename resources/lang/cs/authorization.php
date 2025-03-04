@@ -194,16 +194,19 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
-                'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'already_member' => "Jsi již součástí tohoto týmu.",
+                'already_other_member' => "Jsi již součástí jiného týmu.",
+                'currently_applying' => 'Máte čekající žádosti o připojení.',
+                'team_closed' => 'Tým v současné době nepřijímá žádné žádosti o připojení.',
+                'team_full' => "Tým je plný a nemůže přijmout žádné další členy.",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "Vedoucí týmu nemůže opustit tým.",
+            'not_member' => 'Není členem tohoto týmu.',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

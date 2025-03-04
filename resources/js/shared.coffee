@@ -58,7 +58,7 @@ $(document).on 'turbo:load', ->
 # fadeOut effect for popup
 $(document).on 'click', '#popup-container, #overlay', (e) ->
   $('#overlay').fadeOut()
-  $popup = $(e.target).closest('.popup-active')
+  $popup = $('.popup-active')
   $popup.fadeOut null, -> $popup.remove()
 
 

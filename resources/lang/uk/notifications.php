@@ -20,7 +20,7 @@ return [
         'channel' => 'чат',
         'forum_topic' => 'форум',
         'news_post' => 'новини',
-        'team' => '',
+        'team' => 'команда',
         'user' => 'профіль',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'чат',
         'forum_topic' => 'форум',
         'news_post' => 'новини',
-        'team' => '',
+        'team' => 'команда',
         'user' => 'профіль',
     ],
 
@@ -163,12 +163,12 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Запит на вступ до команди',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "Тепер ви член команди :title",
+                'team_application_accept_compact' => "Тепер ви член команди :title",
+                'team_application_reject' => 'Ваш запит на вступ до команди :title був відхилений',
+                'team_application_reject_compact' => 'Ваш запит на вступ до команди :title був відхилений',
             ],
         ],
 
@@ -258,8 +258,8 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "Тепер ви член команди :title",
+                'team_application_reject' => 'Ваш запит на вступ до команди :title був відхилений',
             ],
         ],
 

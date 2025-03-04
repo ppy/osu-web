@@ -109,6 +109,7 @@ return [
         ],
         'teams_controller' => [
             '_' => 'zespoły',
+            'create' => '',
             'edit' => '',
             'leaderboard' => '',
             'show' => 'informacje o zespole',

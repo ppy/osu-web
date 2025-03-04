@@ -5,42 +5,42 @@
 
 return [
     'button' => [
-        'resend' => 'Hantar semula e-mel pengesahan',
+        'resend' => 'Kirim semula emel pengesahan',
         'set' => 'Tetap kata laluan',
         'start' => 'Mula',
     ],
 
     'error' => [
-        'contact_support' => 'Sila hubungi layanan pembantu untuk memulihkan akaun.',
+        'contact_support' => 'Sila hubungi pasukan bantuan untuk memulihkan akaun.',
         'expired' => 'Kod pengesahan telah luput.',
-        'invalid' => 'Terdapat keralatan dalam mengesahkan kod.',
-        'is_privileged' => 'Sila hubungi admin yang memiliki akses perizinan tingkat tinggi untuk memulihkan akaun.',
-        'missing_key' => 'Wajib.',
+        'invalid' => 'Ralat tidak terjangka dalam kod pengesahan.',
+        'is_privileged' => 'Sila hubungi pentadbir bertahap tinggi untuk memulihkan akaun.',
+        'missing_key' => 'Diperlukan.',
         'too_many_tries' => 'Terlalu banyak percubaan yang gagal.',
-        'user_not_found' => 'Pengguna yang diminta tidak ditemukan.',
+        'user_not_found' => 'Pengguna yang diminta tidak wujud.',
         'wrong_key' => 'Kod salah.',
     ],
 
     'notice' => [
-        'sent' => 'Sila semak e-mel kamu untuk kod pengesahan.',
+        'sent' => 'Sila semak emel anda untuk kod pengesahan.',
         'saved' => 'Kata laluan baharu disimpan!',
     ],
 
     'started' => [
         'password' => 'Kata laluan baharu',
         'password_confirmation' => 'Pengesahan kata laluan',
-        'title' => 'Mengatur ulang kata laluan akaun <strong>:username</strong>.',
+        'title' => 'Mengeset semula kata laluan akaun <strong>:username</strong>.',
         'verification_key' => 'Kod pengesahan',
     ],
 
     'starting' => [
-        'username' => 'Masukkan alamat e-mel atau nama pengguna',
+        'username' => 'Masukkan alamat emel atau nama pengguna',
 
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Akaun anda telah lama tidak digunakan. Untuk memastikan keselamatan akaun anda, sila set semula kata laluan anda.",
         ],
         'support' => [
-            '_' => 'Perlukan bantuan lebih lanjut? Hubungi :button kami.',
+            '_' => 'Perlukan bantuan lanjut? Hubungi melalui :button kami.',
             'button' => 'layanan dukungan',
         ],
     ],

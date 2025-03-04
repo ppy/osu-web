@@ -6,25 +6,40 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Користувача додано у команду.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Запит на вступ відкликано.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Запит на вступ відхилено.',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Запрошено вступ до команди.',
+        ],
+    ],
+
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Команду видалено',
     ],
 
     'edit' => [
-        'saved' => 'Налаштування успішно збережено',
+        'ok' => '',
         'title' => 'Налаштування команди',
 
         'description' => [
@@ -32,23 +47,22 @@ return [
             'title' => 'Опис команди',
         ],
 
+        'flag' => [
+            'label' => '',
+            'title' => '',
+        ],
+
         'header' => [
             'label' => 'Обкладинка',
             'title' => 'Встановити обкладинку',
         ],
 
-        'logo' => [
-            'label' => 'Прапор команди',
-            'title' => 'Встановити прапор команди',
-        ],
-
         'settings' => [
-            'application' => 'Подавати заявки',
             'application_help' => 'Чи дозволяти користувачам подавати заявку на вступ в команду',
-            'default_ruleset' => 'Режим гри',
             'default_ruleset_help' => 'Режим гри, який буде обрано при відвідуванні сторінки команди',
+            'flag_help' => '',
+            'header_help' => '',
             'title' => 'Налаштування команди',
-            'url' => 'URL',
 
             'application_state' => [
                 'state_0' => 'Закрита',
@@ -58,19 +72,17 @@ return [
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'налаштування',
+        'leaderboard' => 'таблиця лідерів',
+        'show' => 'інформація',
 
         'members' => [
-            'index' => '',
+            'index' => 'керувати учасниками',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
-        'performance' => '',
-        'total_score' => '',
+        'global_rank' => 'Рейтинг у світі',
     ],
 
     'members' => [
@@ -82,10 +94,10 @@ return [
             'title' => 'Керувати учасниками',
 
             'applications' => [
-                'empty' => '',
-                'empty_slots' => '',
-                'title' => '',
-                'created_at' => '',
+                'empty' => 'Наразі немає запитів на вступ.',
+                'empty_slots' => 'Доступні слоти',
+                'title' => 'Запити на вступ',
+                'created_at' => 'Запитано',
             ],
 
             'table' => [
@@ -103,20 +115,20 @@ return [
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Команду покинуто ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'chat' => '',
+            'destroy' => 'Розпустити команду',
+            'join' => 'Запит на вступ',
+            'join_cancel' => 'Скасувати запит',
+            'part' => 'Покинути команду',
         ],
 
         'info' => [
             'created' => 'Створена',
-            'website' => 'Сайт',
         ],
 
         'members' => [
@@ -128,5 +140,9 @@ return [
             'info' => 'Інформація',
             'members' => 'Учасники',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];

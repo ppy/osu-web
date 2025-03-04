@@ -6,67 +6,67 @@
 return [
     'all_read' => 'Semuanya telah dibaca!',
     'delete' => 'Padam :type',
-    'loading' => 'Memuatkan yang belum dibaca...',
+    'loading' => 'Memuatkan pemberitahuan belum dibaca...',
     'mark_read' => 'Padam :type',
     'none' => 'Tiada pemberitahuan',
     'see_all' => 'lihat semua pemberitahuan',
-    'see_channel' => 'buka tetingkap bual',
-    'verifying' => 'Harap disahkan sesi terlebih dahulu sebelum melihat pemberitahuan',
+    'see_channel' => 'ke bualan',
+    'verifying' => 'Sila sahkan sesi untuk melihat pemberitahuan',
 
     'action_type' => [
         '_' => 'semua',
         'beatmapset' => 'beatmap',
-        'build' => 'versi terbitan',
-        'channel' => 'perbualan',
+        'build' => 'binaan',
+        'channel' => 'bualan',
         'forum_topic' => 'forum',
         'news_post' => 'berita',
-        'team' => '',
+        'team' => 'pasukan',
         'user' => 'profil',
     ],
 
     'filters' => [
-        '_' => 'semua pemberitahuan',
-        'beatmapset' => 'beatmap',
+        '_' => 'semua',
+        'beatmapset' => 'peta rentak',
         'build' => 'versi',
         'channel' => 'bual',
         'forum_topic' => 'forum',
         'news_post' => 'berita',
-        'team' => '',
+        'team' => 'pasukan',
         'user' => 'profil',
     ],
 
     'item' => [
         'beatmapset' => [
-            '_' => 'Beatmap',
+            '_' => 'Peta rentak',
 
             'beatmap_owner_change' => [
                 '_' => 'Kesukaran tamu',
-                'beatmap_owner_change' => 'Kamu telah terdaftar sebagai pemilik tingkat kesukaran ":beatmap" pada beatmap ":title"',
-                'beatmap_owner_change_compact' => 'Kamu telah terdaftar sebagai pemilik dari tingkat kesukaran ":beatmap"',
+                'beatmap_owner_change' => 'Anda kini pemilik kesukaran ":beatmap" pada peta rentak ":title"',
+                'beatmap_owner_change_compact' => 'Anda kini pemilik kesukaran ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
-                '_' => 'Laman perbincangan beatmap',
-                'beatmapset_discussion_lock' => 'Perbincangan untuk beatmap ":title" telah ditutup',
-                'beatmapset_discussion_lock_compact' => 'Perbincangan beatmap telah ditutup',
-                'beatmapset_discussion_post_new' => 'Kiriman baharu pada ":title" oleh :username: ":content"',
-                'beatmapset_discussion_post_new_empty' => 'Kiriman baharu pada ":title" oleh :username',
-                'beatmapset_discussion_post_new_compact' => 'Kiriman baharu oleh :username: ":content"',
-                'beatmapset_discussion_post_new_compact_empty' => 'Kiriman baharu oleh :username',
-                'beatmapset_discussion_review_new' => 'Terdapat ulasan baharu pada ":title" oleh :username yang menyinggung seputar masalah: :problems, saran: :suggestions, dan pujian berupa: :praises',
-                'beatmapset_discussion_review_new_compact' => 'Terdapat ulasan baharu oleh :username yang menyinggung seputar masalah: :problems, saran: :suggestions, dan pujian berupa: :praises',
-                'beatmapset_discussion_unlock' => 'Perbincangan untuk beatmap ":title" telah dibuka kembali.',
-                'beatmapset_discussion_unlock_compact' => 'Perbincangan beatmap telah dibuka',
+                '_' => 'Perbincangan peta rentak',
+                'beatmapset_discussion_lock' => 'Perbincangan pada ":title" telah dikunci',
+                'beatmapset_discussion_lock_compact' => 'Perbincangan dikunci',
+                'beatmapset_discussion_post_new' => 'Hantaran baharu pada ":title" oleh :username: ":content"',
+                'beatmapset_discussion_post_new_empty' => 'Hantaran baharu pada ":title" oleh :username',
+                'beatmapset_discussion_post_new_compact' => 'Hantaran baharu oleh :username: ":content"',
+                'beatmapset_discussion_post_new_compact_empty' => 'Hantaran baharu oleh :username',
+                'beatmapset_discussion_review_new' => 'Ulasan baharu pada ":title" oleh :username mengandungi :review_counts',
+                'beatmapset_discussion_review_new_compact' => 'Ulasan baharu oleh :username mengandungi :review_counts',
+                'beatmapset_discussion_unlock' => 'Perbincangan tentang ":title" telah dibuka kunci',
+                'beatmapset_discussion_unlock_compact' => 'Perbincangan telah dibuka kunci',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited pujian',
+                    'problems' => ':count_delimited masalah',
+                    'suggestions' => ':count_delimited cadangan',
                 ],
             ],
 
             'beatmapset_problem' => [
-                '_' => 'Masalah pada Beatmap Lulusan',
+                '_' => 'Masalah Peta Rentak Layak',
                 'beatmapset_discussion_qualified_problem' => 'Dilaporkan oleh :username pada ":title": ":content"',
                 'beatmapset_discussion_qualified_problem_empty' => 'Dilaporkan oleh :username pada ":title"',
                 'beatmapset_discussion_qualified_problem_compact' => 'Dilaporkan oleh :username: ":content"',
@@ -74,114 +74,114 @@ return [
             ],
 
             'beatmapset_state' => [
-                '_' => 'Perubahan status beatmap',
+                '_' => 'Taraf peta rentak diubah',
                 'beatmapset_disqualify' => 'Beatmap ":title" telah disingkirkan',
                 'beatmapset_disqualify_compact' => 'Beatmap telah disingkirkan',
-                'beatmapset_love' => 'Beatmap ":title" telah diberikan status digemari',
-                'beatmapset_love_compact' => 'Beatmap telah diberikan status digemari',
+                'beatmapset_love' => 'Peta rentak ":title" telah dinaikkan ke Kegemaran',
+                'beatmapset_love_compact' => 'Peta rentak telah dinaikkan ke Kegemaran',
                 'beatmapset_nominate' => '":title" telah dicalonkan',
-                'beatmapset_nominate_compact' => 'Beatmap telah dicalonkan',
-                'beatmapset_qualify' => '":title" telah memperoleh jumlah pencalonan yang diperlukan untuk memasuki barisan pemeringkatan',
-                'beatmapset_qualify_compact' => '',
+                'beatmapset_nominate_compact' => 'Peta rentak telah dicalonkan',
+                'beatmapset_qualify' => '":title" telah memperoleh jumlah pencalonan yang cukup dan memasuki giliran pemeringkatan',
+                'beatmapset_qualify_compact' => 'Peta rentak memasuki giliran pemeringkatan',
                 'beatmapset_rank' => '":title" telah diperingkatkan',
-                'beatmapset_rank_compact' => 'Beatmap telah diperingkatkan',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
-                'beatmapset_reset_nominations' => '',
-                'beatmapset_reset_nominations_compact' => '',
+                'beatmapset_rank_compact' => 'Peta rentak telah diperingkatkan',
+                'beatmapset_remove_from_loved' => '":title" dipadam dari Kegemaran',
+                'beatmapset_remove_from_loved_compact' => 'Peta rentak dipadam dari Kegemaran',
+                'beatmapset_reset_nominations' => 'Pencalonan ":title" telah diset semula',
+                'beatmapset_reset_nominations_compact' => 'Pencalonan telah diset semula',
             ],
 
             'comment' => [
-                '_' => '',
+                '_' => 'Komen baharu',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_new' => ':username mengomen ":content" pada ":title"',
+                'comment_new_compact' => ':username mengomen ":content"',
+                'comment_reply' => ':username membalas ":content" pada ":title"',
+                'comment_reply_compact' => ':username membalas ":content"',
             ],
         ],
 
         'channel' => [
-            '_' => '',
+            '_' => 'Bualan',
 
             'announcement' => [
-                '_' => '',
+                '_' => 'Pengumuman baharu',
 
                 'announce' => [
-                    'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
-                    'channel_announcement_group' => '',
+                    'channel_announcement' => ':username berkata ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Pengumuman dari :username',
                 ],
             ],
 
             'channel' => [
-                '_' => '',
+                '_' => 'Pesanan baharu',
 
                 'pm' => [
-                    'channel_message' => '',
-                    'channel_message_compact' => '',
-                    'channel_message_group' => '',
+                    'channel_message' => ':username berkata ":title"',
+                    'channel_message_compact' => ':title',
+                    'channel_message_group' => 'dari :username',
                 ],
             ],
         ],
 
         'build' => [
-            '_' => '',
+            '_' => 'Log perubahan',
 
             'comment' => [
-                '_' => '',
+                '_' => 'Komen baharu',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_new' => ':username mengomen ":content" pada ":title"',
+                'comment_new_compact' => ':username mengomen ":content"',
+                'comment_reply' => ':username membalas ":content" pada ":title"',
+                'comment_reply_compact' => ':username membalas ":content"',
             ],
         ],
 
         'news_post' => [
-            '_' => '',
+            '_' => 'Berita',
 
             'comment' => [
-                '_' => '',
+                '_' => 'Komen baharu',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_new' => ':username mengomen ":content" pada ":title"',
+                'comment_new_compact' => ':username mengomen ":content"',
+                'comment_reply' => ':username membalas ":content" pada ":title"',
+                'comment_reply_compact' => ':username membalas ":content"',
             ],
         ],
 
         'forum_topic' => [
-            '_' => '',
+            '_' => 'Tajuk forum',
 
             'forum_topic_reply' => [
-                '_' => '',
-                'forum_topic_reply' => '',
-                'forum_topic_reply_compact' => '',
+                '_' => 'Balasan forum baharu',
+                'forum_topic_reply' => ':username membalas pada ":title"',
+                'forum_topic_reply_compact' => ':username membalas',
             ],
         ],
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Permintaan masuk pasukan',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "Anda kini ahli pasukan :title",
+                'team_application_accept_compact' => "Anda kini ahli pasukan :title",
+                'team_application_reject' => 'Permintaan anda untuk memasuki pasukan :title ditolak',
+                'team_application_reject_compact' => 'Permintaan anda untuk memasuki pasukan :title ditolak',
             ],
         ],
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => 'Beatmap baharu',
+                '_' => 'Peta rentak baharu',
 
-                'user_beatmapset_new' => 'Beatmap baharu ":title" oleh :username',
-                'user_beatmapset_new_compact' => 'Beatmap baharu ":title"',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => 'Peta rentak baharu ":title" oleh :username',
+                'user_beatmapset_new_compact' => 'Peta rentak baharu ":title"',
+                'user_beatmapset_new_group' => 'Peta rentak baharu oleh :username',
 
-                'user_beatmapset_revive' => '',
-                'user_beatmapset_revive_compact' => '',
+                'user_beatmapset_revive' => 'Peta rentak ":title" dikembalikan oleh :username',
+                'user_beatmapset_revive_compact' => 'Peta rentak ":title" dikembalikan',
             ],
         ],
 
@@ -190,9 +190,9 @@ return [
 
             'user_achievement_unlock' => [
                 '_' => 'Pingat baharu',
-                'user_achievement_unlock' => '":title" terbuka!',
-                'user_achievement_unlock_compact' => 'Pingat ":title" terbuka!',
-                'user_achievement_unlock_group' => 'Pingat diperolehi!',
+                'user_achievement_unlock' => '":title" dibuka!',
+                'user_achievement_unlock_compact' => 'Pingat ":title" dibuka!',
+                'user_achievement_unlock_group' => 'Pingat dibuka!',
             ],
         ],
     ],
@@ -200,13 +200,13 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => 'Kamu telah terdaftar sebagai pemilik kesukaran tamu pada beatmap ":title"',
+                'beatmap_owner_change' => 'Anda kini tamu beatmap ":title"',
             ],
 
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'Perbincangan untuk ":title" telah ditutup',
                 'beatmapset_discussion_post_new' => 'Terdapat kemas kini pada perbincangan ":title"',
-                'beatmapset_discussion_unlock' => 'Perbincangan untuk ":title\' telah dibuka',
+                'beatmapset_discussion_unlock' => 'Perbincangan untuk ":title\' telah dibuka kunci',
             ],
 
             'beatmapset_problem' => [
@@ -215,16 +215,16 @@ return [
 
             'beatmapset_state' => [
                 'beatmapset_disqualify' => '":title" telah disingkirkan',
-                'beatmapset_love' => '":title" telah diberikan status digemari',
+                'beatmapset_love' => '":title" telah dinaikkan ke Kegemaran',
                 'beatmapset_nominate' => '":title" telah diberikan status dicalonkan',
-                'beatmapset_qualify' => '":title" telah memperoleh jumlah pencalonan yang diperlukan untuk memasuki barisan pemeringkatan',
-                'beatmapset_rank' => '":title" telah diberikan status diperingkatkan',
-                'beatmapset_remove_from_loved' => 'Status digemari telah dibuang dari ":title"',
-                'beatmapset_reset_nominations' => 'Status dicalonkan pada ":title" telah dibatalkan',
+                'beatmapset_qualify' => '":title" telah memperoleh jumlah pencalonan yang cukup dan memasuki giliran pemeringkatan',
+                'beatmapset_rank' => '":title" telah diperingkatkan',
+                'beatmapset_remove_from_loved' => '":title" dipadam dari Kegemaran',
+                'beatmapset_reset_nominations' => 'Pencalonan ":title" telah diset semula',
             ],
 
             'comment' => [
-                'comment_new' => 'Terdapat ulasan baharu pada beatmap ":title"',
+                'comment_new' => 'Peta rentak ":title" mempunyai komen baharu',
             ],
         ],
 
@@ -240,13 +240,13 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => 'Terdapat ulasan baharu pada riwayat perubahan ":title"',
+                'comment_new' => 'Terdapat komen baharu pada log perubahan ":title"',
             ],
         ],
 
         'news_post' => [
             'comment' => [
-                'comment_new' => 'Terdapat ulasan baharu pada berita ":title"',
+                'comment_new' => 'Terdapat komen baharu pada berita ":title"',
             ],
         ],
 
@@ -258,8 +258,8 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "Anda kini ahli pasukan :title",
+                'team_application_reject' => 'Permintaan anda untuk memasuki pasukan :title ditolak',
             ],
         ],
 

@@ -50,7 +50,7 @@ return [
         'room_count' => 'Jumlah playlist',
         'url' => 'Menampilkan informasi lebih lanjut seputar musim yang dipilih.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'faktor skor yang ada tidak cukup untuk dapat dihitung secara layak',
         ],
     ],
 
@@ -65,7 +65,7 @@ return [
         'accuracy' => 'Akurasi',
         'active_users' => 'Pengguna Aktif',
         'country' => 'Negara',
-        'division' => '',
+        'division' => 'Divisi',
         'play_count' => 'Jml. Permainan',
         'performance' => 'Total pp',
         'total_score' => 'Total Skor',
