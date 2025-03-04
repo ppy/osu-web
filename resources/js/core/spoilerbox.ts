@@ -10,7 +10,7 @@ function expand(e: JQuery.ClickEvent) {
 
   const container = htmlElementOrNull(e.target)?.closest('.js-spoilerbox')
     ?? fail('spoiler container is missing');
-  const body = container.querySelector(':scope > .js-spoilerbox__body')
+  const body = htmlElementOrNull(container.querySelector(':scope > .js-spoilerbox__body'))
     ?? fail('spoiler body is missing');
 
   const toggle = container.classList.toggle('js-spoilerbox--open')
