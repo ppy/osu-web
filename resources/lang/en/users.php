@@ -479,6 +479,10 @@ return [
             'global_simple' => 'Global Ranking',
             'highest' => 'Highest rank: :rank on :date',
         ],
+        'season_stats' => [
+            'division_top_percentage' => 'Top :value%',
+            'total_score' => 'Total score',
+        ],
         'stats' => [
             'hit_accuracy' => 'Hit Accuracy',
             'level' => 'Level :level',

@@ -6,6 +6,7 @@ import DailyChallengeUserStatsJson from './daily-challenge-user-stats-json';
 import ProfileBannerJson from './profile-banner';
 import RankHighestJson from './rank-highest-json';
 import RankHistoryJson from './rank-history-json';
+import SeasonStatsJson from './season-stats-json';
 import TeamJson from './team-json';
 import UserAccountHistoryJson from './user-account-history-json';
 import UserAchievementJson from './user-achievement-json';
@@ -29,6 +30,7 @@ interface UserJsonAvailableIncludes {
   comments_count: number;
   country: CountryJson | null;
   cover: UserCoverJson;
+  current_season_stats: SeasonStatsJson | null;
   daily_challenge_user_stats: DailyChallengeUserStatsJson;
   favourite_beatmapset_count: number;
   follow_user_mapping: number[];

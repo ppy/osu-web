@@ -16,6 +16,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
 import { trans } from 'utils/lang';
+import SeasonStats from './season-stats';
 
 interface Props {
   coverUrl: string | null;
@@ -106,6 +107,8 @@ export default class Cover extends React.Component<Props> {
               </div>
             </div>
           </div>
+
+          {this.props.user.current_season_stats && <SeasonStats stats={this.props.user.current_season_stats} />}
 
           <div className='profile-info__cover-toggle'>
             <button

@@ -1,0 +1,76 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.season-stats-popup {
+  @_gap: 10px;
+
+  background: hsl(var(--hsl-b4));
+  border-radius: @border-radius--extra;
+  font-size: @font-size--normal;
+
+  &__content {
+    padding: 15px;
+    gap: @_gap;
+    display: grid;
+
+    &--stats {
+      grid-template-columns: 1fr auto;
+    }
+
+    &--top {
+      justify-content: center;
+      background: hsl(var(--hsl-b5));
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+    }
+  }
+
+  &__division {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: calc(@_gap * 2);
+    border-left: 2px solid hsl(var(--hsl-c1));
+  }
+
+  &__img {
+    height: 35px;
+    border-radius: @border-radius-small;
+  }
+
+  &__main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__name {
+    color: hsl(var(--hsl-c2));
+    font-size: @font-size--title-small; //-2?
+    margin-top: 5px;
+  }
+
+  &__rank {
+    font-size: @font-size--title;
+    color: hsl(var(--hsl-c2));
+    padding-right: calc(@_gap * 2);;
+  }
+
+  &__row {
+    display: contents;
+  }
+
+  &__season {
+    margin: auto;
+  }
+
+  &__threshold {
+    font-size: @font-size--small;
+    margin-top: 3px;
+  }
+
+  &__value {
+    color: hsl(var(--hsl-c2));
+  }
+}
