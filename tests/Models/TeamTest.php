@@ -51,6 +51,16 @@ class TeamTest extends TestCase
         $this->assertSame("#DeletedTeam_{$team->getKey()}", $team->channel->fresh()->name);
     }
 
+    public function testDeleteNoChannelMessage(): void
+    {
+        $team = Team::factory()->create();
+
+        $this->expectCountChange(fn () => Chat\UserChannel::count(), -1);
+        $this->expectCountChange(fn () => Chat\Channel::count(), -1);
+
+        $team->fresh()->delete();
+    }
+
     /**
      * @dataProvider dataProviderForTestUniquenessValidation
      */
