@@ -20,6 +20,7 @@ function expand(e: JQuery.ClickEvent) {
   $(body).stop()[toggle]({
     complete(this: void) {
       $.publish('sync-height:force');
+      body.style.height = '';
     },
   });
 }
