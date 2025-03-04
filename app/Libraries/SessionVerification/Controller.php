@@ -29,7 +29,7 @@ class Controller
         }
 
         $request = \Request::instance();
-        if ($request->ajax() || is_turbo_request($request)) {
+        if ($request->ajax() || ($request->getMethod() !== 'GET' && is_turbo_request($request))) {
             return response([
                 'authentication' => 'verify',
                 'box' => view(
