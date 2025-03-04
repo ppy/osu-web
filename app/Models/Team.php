@@ -281,30 +281,30 @@ class Team extends Model
         }
 
         if (!$this->exists) {
-            $this->channel_id ??= 0;
-            $saved = $this->getConnection()->transaction(function () use ($options) {
+            return $this->getConnection()->transaction(function () use ($options) {
                 return (new Chat\Channel())->getConnection()->transaction(function () use ($options) {
-                    $channel = $this->createChannel();
+                    $this->channel_id ??= 0;
                     $saved = parent::save($options);
 
                     if ($saved) {
                         $this->members()->create(['user_id' => $this->leader_id]);
+
+                        $channel = $this->createChannel();
                         $channel->addUser($this->leader);
+
+                        $this->flag()->updateFile();
+                        $this->header()->updateFile();
                     }
 
-                    return $saved;
+                    return parent::save($options);
                 });
             });
-        } else {
-            $saved = parent::save($options);
         }
 
-        if ($saved) {
-            $this->flag()->updateFile();
-            $this->header()->updateFile();
-        }
+        $this->flag()->updateFile();
+        $this->header()->updateFile();
 
-        return $saved;
+        return parent::save($options);
     }
 
     public function validationErrorsTranslationPrefix(): string
