@@ -285,6 +285,27 @@ class Team extends Model
             return false;
         }
 
+        if (!$this->exists) {
+            return $this->getConnection()->transaction(function () use ($options) {
+                return (new Chat\Channel())->getConnection()->transaction(function () use ($options) {
+                    $this->channel_id ??= 0;
+                    $saved = parent::save($options);
+
+                    if ($saved) {
+                        $this->members()->create(['user_id' => $this->leader_id]);
+
+                        $channel = $this->createChannel();
+                        $channel->addUser($this->leader);
+
+                        $this->flag()->updateFile();
+                        $this->header()->updateFile();
+                    }
+
+                    return parent::save($options);
+                });
+            });
+        }
+
         $this->flag()->updateFile();
         $this->header()->updateFile();
 
