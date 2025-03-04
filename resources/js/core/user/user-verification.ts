@@ -149,8 +149,8 @@ export default class UserVerification {
       return;
     }
 
-    const fetchResponse = e.detail.fetchResponse as FetchResponse;
-    if (fetchResponse.header('x-turbo-action') !== 'session-verification') {
+    const fetchResponse = e.detail.fetchResponse as FetchResponse | undefined;
+    if (fetchResponse == null || fetchResponse.header('x-turbo-action') !== 'session-verification') {
       return;
     }
 
