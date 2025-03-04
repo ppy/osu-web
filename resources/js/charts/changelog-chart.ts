@@ -34,7 +34,7 @@ export default class ChangelogChart {
   private readonly area;
   private readonly areaFunction;
   private autoHideTooltip?: number;
-  private chartData!: ChartData;
+  private chartData?: ChartData;
   private data: d3.Series<DataObj, string>[] = [];
   private hasData = false;
   private height = 0;
@@ -219,6 +219,8 @@ export default class ChangelogChart {
   }
 
   private setScalesRange() {
+    if (this.chartData == null) return;
+
     this.scales.x.range([0, this.width]).domain([
       first(this.data[0])?.data.date ?? 0,
       last(this.data[0])?.data.date ?? 0,
@@ -230,7 +232,7 @@ export default class ChangelogChart {
       this.chartData.order.map((d, i) =>
         // rotate over available build ids (0-6) when the amount of builds
         // exceeds the available amount of colors
-        this.chartData.stream_name != null
+        this.chartData?.stream_name != null
           ? `${this.chartData.stream_name}-build-${i % 7}`
           : kebabCase(d),
       ),
