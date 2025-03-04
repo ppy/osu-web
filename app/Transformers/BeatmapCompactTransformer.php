@@ -12,8 +12,6 @@ use App\Models\User;
 
 class BeatmapCompactTransformer extends TransformerAbstract
 {
-    public ?User $user = null;
-
     protected array $availableIncludes = [
         'beatmapset',
         'checksum',
