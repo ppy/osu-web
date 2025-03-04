@@ -262,18 +262,6 @@ class Team extends Model
         });
     }
 
-    public function resetChannelUsers(): void
-    {
-        $channel = $this->channel;
-        $this->loadMissing('members.user');
-
-        foreach ($this->members->pluck('user') as $user) {
-            if ($user !== null) {
-                $channel->addUser($user);
-            }
-        }
-    }
-
     public function save(array $options = [])
     {
         if (!$this->isValid()) {
