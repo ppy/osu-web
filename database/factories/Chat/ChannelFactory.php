@@ -20,8 +20,9 @@ class ChannelFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => '#'.$this->faker->colorName(),
             'description' => $this->faker->bs(),
+            'name' => '#'.$this->faker->colorName(),
+            'type' => array_rand_val(Channel::TYPES),
         ];
     }
 
