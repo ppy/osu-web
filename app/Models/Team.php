@@ -11,6 +11,7 @@ use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\TeamApplicationAccept;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\Uploader;
+use App\Libraries\User\Cover as UserCover;
 use App\Libraries\UsernameValidation;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -18,7 +19,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Team extends Model
 {
     const FLAG_MAX_DIMENSIONS = [512, 256];
-    const HEADER_MAX_DIMENSIONS = [2000, 500];
 
     const MAX_FIELD_LENGTHS = [
         'name' => 100,
@@ -128,22 +128,24 @@ class Team extends Model
         $this->flag()->delete();
 
         return $this->getConnection()->transaction(function () {
-            $ret = parent::delete();
+            return \DB::connection('mysql-chat')->transaction(function () {
+                $ret = parent::delete();
 
-            if ($ret) {
-                $this->applications()->delete();
-                $this->members()->delete();
+                if ($ret) {
+                    $this->applications()->delete();
+                    $this->members()->delete();
 
-                $channel = $this->channel;
-                if ($channel !== null) {
-                    $channel->loadMissing('userChannels.user');
+                    $channel = $this->channel;
+                    if ($channel !== null) {
+                        $channel->loadMissing('userChannels.user');
 
-                    foreach ($channel->userChannels as $userChannel) {
-                        $user = $userChannel->user;
-                        if ($user === null) {
-                            $userChannel->delete();
-                        } else {
-                            $channel->removeUser($user);
+                        foreach ($channel->userChannels as $userChannel) {
+                            $user = $userChannel->user;
+                            if ($user === null) {
+                                $userChannel->delete();
+                            } else {
+                                $channel->removeUser($user);
+                            }
                         }
                     }
 
@@ -153,9 +155,9 @@ class Team extends Model
                         $channel->update(['name' => "#DeletedTeam_{$this->getKey()}"]);
                     }
                 }
-            }
 
-            return $ret;
+                return $ret;
+            });
         });
     }
 
@@ -196,8 +198,8 @@ class Team extends Model
             $this,
             'header_file',
             ['image' => [
-                'maxDimensions' => static::HEADER_MAX_DIMENSIONS,
-                'maxFilesize' => 4_000_000,
+                'maxDimensions' => UserCover::CUSTOM_COVER_MAX_DIMENSIONS,
+                'maxFilesize' => UserCover::CUSTOM_COVER_MAX_FILESIZE,
             ]],
         );
     }
