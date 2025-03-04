@@ -147,12 +147,12 @@ class Team extends Model
                                 $channel->removeUser($user);
                             }
                         }
-                    }
 
-                    if ($channel->messages()->count() === 0) {
-                        $channel->delete();
-                    } else {
-                        $channel->update(['name' => "#DeletedTeam_{$this->getKey()}"]);
+                        if ($channel->messages()->count() === 0) {
+                            $channel->delete();
+                        } else {
+                            $channel->update(['name' => "#DeletedTeam_{$this->getKey()}"]);
+                        }
                     }
                 }
 
