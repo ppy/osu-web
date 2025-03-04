@@ -128,7 +128,7 @@ class Team extends Model
         $this->flag()->delete();
 
         return $this->getConnection()->transaction(function () {
-            return \DB::connection('mysql-chat')->transaction(function () {
+            return (new Chat\Channel())->getConnection()->transaction(function () {
                 $ret = parent::delete();
 
                 if ($ret) {
