@@ -388,17 +388,15 @@ class BeatmapsetsController extends Controller
 
     private function showJson($beatmapset)
     {
-        $user = \Auth::user();
-
         $beatmapRelation = $beatmapset->trashed()
             ? 'allBeatmaps'
             : 'beatmaps';
         $beatmapset->load([
+            "{$beatmapRelation}" => fn ($q) => $q->withUserTagIds(\Auth::id()),
             "{$beatmapRelation}.baseDifficultyRatings",
             "{$beatmapRelation}.baseMaxCombo",
             "{$beatmapRelation}.failtimes",
             "{$beatmapRelation}.beatmapOwners.user",
-            "{$beatmapRelation}.ownBeatmapTags" => fn ($q) => $user !== null ? $q->where('user_id', $user->getKey()) : $q->none(),
             'genre',
             'language',
             'user',
@@ -412,7 +410,7 @@ class BeatmapsetsController extends Controller
             'beatmaps.failtimes',
             'beatmaps.max_combo',
             'beatmaps.owners',
-            'beatmaps.own_tag_ids',
+            'beatmaps.current_user_tag_ids',
             'beatmaps.top_tag_ids',
             'converts',
             'converts.failtimes',

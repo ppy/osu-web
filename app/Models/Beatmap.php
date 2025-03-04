@@ -42,7 +42,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $max_combo
  * @property mixed $mode
  * @property-read Collection<User> $owners
- * @property-read Collection<BeatmapTag> $ownBeatmapTags Intended to be used for eager loading per-user beatmapTags.
  * @property int $passcount
  * @property int $playcount
  * @property int $playmode
@@ -143,11 +142,6 @@ class Beatmap extends Model implements AfterCommit
         return $this->hasMany(BeatmapDifficultyAttrib::class);
     }
 
-    public function ownBeatmapTags()
-    {
-        return $this->hasMany(BeatmapTag::class);
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -187,6 +181,20 @@ class Beatmap extends Model implements AfterCommit
                     AND mods = {$mods}
                     AND attrib_id = {$attrib}
             ) AS attrib_max_combo"));
+    }
+
+    public function scopeWithUserTagIds($query, ?int $userId)
+    {
+        if ($userId === null) {
+            $tagQuery = \DB::query()->selectRaw('null');
+        } else {
+            $tagQuery = BeatmapTag
+                ::where('user_id', $userId)
+                ->whereColumn('beatmap_id', $this->qualifyColumn('beatmap_id'));
+            $tagQuery->selectRaw("json_arrayagg({$tagQuery->qualifyColumn('tag_id')})");
+        }
+
+        return $query->addSelect(['user_tag_ids' => $tagQuery]);
     }
 
     public function failtimes()
@@ -288,13 +296,22 @@ class Beatmap extends Model implements AfterCommit
             'difficulty',
             'difficultyAttribs',
             'failtimes',
-            'ownBeatmapTags',
             'scoresBestFruits',
             'scoresBestMania',
             'scoresBestOsu',
             'scoresBestTaiko',
             'user' => $this->getRelationValue($key),
         };
+    }
+
+    /**
+     * Requires calling withUserTagIds scope to populate user_tag_ids
+     *
+     * @return int[]
+     */
+    public function getUserTagIds(): array
+    {
+        return json_decode($this->attributes['user_tag_ids'] ?? '', true) ?? [];
     }
 
     /**
