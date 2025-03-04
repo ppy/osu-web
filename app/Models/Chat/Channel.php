@@ -385,7 +385,9 @@ class Channel extends Model
             $this->validationErrors()->add('name', 'required');
         }
 
-        if (!in_array($this->type, static::TYPES, true)) {
+        if ($this->type === null) {
+            $this->type = static::TYPES['temporary'];
+        } else if (!in_array($this->type, static::TYPES, true)) {
             $this->validationErrors()->add('type', '.unsupported_type');
         }
 
