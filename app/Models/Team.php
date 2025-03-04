@@ -128,7 +128,7 @@ class Team extends Model
         $this->flag()->delete();
 
         return $this->getConnection()->transaction(function () {
-            return \DB::connection('mysql-chat')->transaction(function () {
+            return (new Chat\Channel())->getConnection()->transaction(function () {
                 $ret = parent::delete();
 
                 if ($ret) {
@@ -138,7 +138,6 @@ class Team extends Model
                     $channel = $this->channel;
                     if ($channel !== null) {
                         $channel->loadMissing('userChannels.user');
-                        $channel->update(['name' => "#DeletedTeam_{$this->getKey()}"]);
 
                         foreach ($channel->userChannels as $userChannel) {
                             $user = $userChannel->user;
@@ -147,6 +146,12 @@ class Team extends Model
                             } else {
                                 $channel->removeUser($user);
                             }
+                        }
+
+                        if ($channel->messages()->count() === 0) {
+                            $channel->delete();
+                        } else {
+                            $channel->update(['name' => "#DeletedTeam_{$this->getKey()}"]);
                         }
                     }
                 }
