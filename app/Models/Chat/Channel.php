@@ -385,6 +385,10 @@ class Channel extends Model
             $this->validationErrors()->add('name', 'required');
         }
 
+        if (!in_array($this->type, static::TYPES, true)) {
+            $this->validationErrors()->add('type', '.unsupported_type');
+        }
+
         $this->validateDbFieldLengths();
 
         return $this->validationErrors()->isEmpty();
