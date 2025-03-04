@@ -56,7 +56,7 @@ return [
 
                 'users' => [
                     'header' => '',
-                    'cover_presets' => '',
+                    'cover_presets' => 'کاورهای آماده',
                 ],
             ],
         ],

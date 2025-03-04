@@ -20,17 +20,19 @@ return [
         'channel' => 'المحادثة',
         'forum_topic' => 'منتدى',
         'news_post' => 'الأخبار',
+        'team' => '',
         'user' => 'الملف الشخصي',
     ],
 
     'filters' => [
         '_' => 'الكل',
-        'user' => 'الملف الشخصي',
         'beatmapset' => 'الخرائط',
-        'forum_topic' => 'المنتدى',
-        'news_post' => 'الأخبار',
         'build' => 'النُسَخ',
         'channel' => 'محادثة',
+        'forum_topic' => 'المنتدى',
+        'news_post' => 'الأخبار',
+        'team' => '',
+        'user' => 'الملف الشخصي',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'خريطة جديدة',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'هناك ردود جديدة في ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
             ],
         ],
 

@@ -23,7 +23,7 @@ return [
 
     'links' => [
         'beatmaps' => 'Powiązane beatmapy',
-        'osu' => 'Konto osu!',
+        'osu' => 'Profil osu!',
         'site' => 'Oficjalna strona internetowa',
     ],
 

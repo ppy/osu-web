@@ -5,7 +5,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\ImageProcessorException;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\SessionVerification;
@@ -77,11 +76,7 @@ class AccountController extends Controller
     {
         $user = auth()->user();
 
-        try {
-            AvatarHelper::set($user, Request::file('avatar_file'));
-        } catch (ImageProcessorException $e) {
-            return error_popup($e->getMessage());
-        }
+        AvatarHelper::set($user, Request::file('avatar_file'));
 
         return json_item($user, new CurrentUserTransformer());
     }
@@ -98,12 +93,8 @@ class AccountController extends Controller
             return error_popup(osu_trans('errors.supporter_only'));
         }
 
-        try {
-            $user->cover()->set($params['cover_id'], $params['cover_file']);
-            $user->save();
-        } catch (ImageProcessorException $e) {
-            return error_popup($e->getMessage());
-        }
+        $user->cover()->set($params['cover_id'], $params['cover_file']);
+        $user->save();
 
         return json_item($user, new CurrentUserTransformer());
     }

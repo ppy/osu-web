@@ -74,10 +74,10 @@
     @if (($team = $user->team) !== null)
         <div class="forum-post-info__row forum-post-info__row--flag">
             <a
-                class="flag-team"
+                class="u-contents"
                 href="{{ route('teams.show', $team) }}"
-                {!! background_image($team->logo()->url()) !!}
             >
+                @include('objects._flag_team', compact('team'))
             </a>
         </div>
     @endif

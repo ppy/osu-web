@@ -6,17 +6,17 @@
 return [
     'invalid' => '所指定的 :attribute 無效。',
     'not_negative' => ':attribute 不能為負數。',
-    'required' => '需要 :attribute 。',
-    'too_long' => ':attribute 超出最大長度——最多允許 :limit 個字符。',
-    'url' => '請輸入一個正確無誤的網址。',
+    'required' => '需要 :attribute。',
+    'too_long' => ':attribute 超出最大長度限制，最多只能輸入 :limit 個字元。',
+    'url' => '請輸入有效的 URL。',
     'wrong_confirmation' => '確認資訊不符。',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => '指定了時間戳記但是譜面不存在。',
-        'beatmapset_no_hype' => "無法推薦譜面。",
-        'hype_requires_null_beatmap' => '只能在 常規（全難度） 中推薦。',
+        'beatmap_missing' => '指定了時間戳記但是圖譜不存在。',
+        'beatmapset_no_hype' => "無法推薦圖譜。",
+        'hype_requires_null_beatmap' => '推薦必須在「一般（所有難度）」區塊進行。',
         'invalid_beatmap_id' => '指定的難度無效。',
-        'invalid_beatmapset_id' => '指定的譜面無效。',
+        'invalid_beatmapset_id' => '指定的圖譜無效。',
         'locked' => '討論被鎖定。',
 
         'attributes' => [
@@ -27,14 +27,14 @@ return [
         'hype' => [
             'discussion_locked' => "該圖譜目前為鎖定討論狀態，無法被推薦",
             'guest' => '必須登入後才能推薦',
-            'hyped' => '你已經推薦了這張譜面',
+            'hyped' => '你已經推薦了這張圖譜。',
             'limit_exceeded' => '你已經用完推薦次數',
             'not_hypeable' => '這張譜面無法推薦',
-            'owner' => '不能推薦你自己的譜面',
+            'owner' => '不能推薦你自己的圖譜。',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => '指定的時間戳記不在譜面範圍內。',
+            'exceeds_beatmapset_length' => '指定的時間戳記不在圖譜範圍內。',
             'negative' => "無法定位時間戳記。",
         ],
     ],
@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => '',
+        'used' => '',
+        'word_not_allowed' => '',
+
+        'attributes' => [
+            'default_ruleset_id' => '',
+            'is_open' => '',
+            'name' => '',
+            'short_name' => '',
+            'url' => '',
+        ],
+    ],
+
     'user' => [
         'contains_username' => '密碼不能包含使用者名稱。',
         'email_already_used' => '電郵地址已被使用。',
@@ -155,7 +169,7 @@ return [
         'wrong_current_password' => '密碼不正確.',
         'wrong_email_confirmation' => '新電郵地址不一致。',
         'wrong_password_confirmation' => '重複新密碼與新密碼不一致。',
-        'too_long' => '超出長度限制——最多為 :limit 個字符。',
+        'too_long' => '超出最大長度限制，最多只能輸入 :limit 個字元。',
 
         'attributes' => [
             'username' => '使用者名稱',

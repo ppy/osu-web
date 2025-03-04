@@ -7,7 +7,7 @@ return [
     'availability' => [
         'disabled' => 'Questa beatmap non è al momento disponibile per il download.',
         'parts-removed' => 'Porzioni di questa beatmap sono state rimosse su richiesta del creatore o di un titolare di copyright di terze parti.',
-        'more-info' => 'Controlla qui per maggiori informazioni.',
+        'more-info' => 'Controlla qui per maggiori dettagli.',
         'rule_violation' => 'Alcuni elementi contenuti in questa mappa sono stati rimossi dopo che sono stati giudicati non idonei per l\'uso in osu!.',
     ],
 
@@ -80,7 +80,7 @@ return [
             'by_artist' => 'di :artist',
             'favourite' => 'Mi piace questa beatmap',
             'favourite_login' => 'Accedi per aggiungere questa beatmap ai preferiti',
-            'logged-out' => 'hai bisogno di accedere per scaricare le beatmap!',
+            'logged-out' => 'devi accedere se vuoi scaricare le beatmap!',
             'mapped_by' => 'mappata da :mapper',
             'mapped_by_guest' => 'difficoltà guest di :mapper',
             'unfavourite' => 'Non mi piace questa beatmap',
@@ -94,7 +94,7 @@ return [
             ],
 
             'login_required' => [
-                'bottom' => 'per accedere a maggiori funzionalità',
+                'bottom' => 'per vedere altre funzioni',
                 'top' => 'Accedi',
             ],
         ],

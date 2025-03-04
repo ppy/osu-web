@@ -295,6 +295,27 @@ return [
             'to_1_done' => 'Etiqueta «resolved» añadida',
         ],
 
+        'issue_tag_osulazer' => [
+            'to_0' => 'Eliminar la etiqueta «osu!lazer»',
+            'to_0_done' => 'Etiqueta «osu!lazer» eliminada',
+            'to_1' => 'Añadir la etiqueta «osu!lazer»',
+            'to_1_done' => 'Etiqueta «osu!lazer» añadida',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => 'Eliminar la etiqueta «osu!stable»',
+            'to_0_done' => 'Etiqueta «osu!stable» eliminada',
+            'to_1' => 'Añadir la etiqueta «osu!stable»',
+            'to_1_done' => 'Etiqueta «osu!stable» añadida',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => 'Eliminar la etiqueta «osu!web»',
+            'to_0_done' => 'Etiqueta «osu!web» eliminada',
+            'to_1' => 'Añadir la etiqueta «osu!web»',
+            'to_1_done' => 'Etiqueta «osu!web» añadida',
+        ],
+
         'lock' => [
             'is_locked' => 'Este tema está cerrado y no se puede responder',
             'to_0' => 'Abrir tema',

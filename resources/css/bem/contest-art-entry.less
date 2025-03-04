@@ -4,8 +4,6 @@
 .contest-art-entry {
   @_top: contest-art-entry;
 
-  margin: 10px;
-  transform: translateZ(0);
   --thumbnail-border-colour: transparent;
   --thumbnail-height-multiplier: 1;
   --thumbnail-scale: 1;
@@ -14,6 +12,12 @@
   --trophy-colour: chocolate;
   --vote-link-banner-bg: hsl(var(--hsl-b2));
   --vote-link-banner-scale: 1;
+  margin: 10px;
+  transform: translateZ(0);
+  width: calc(
+    var(--thumbnail-size) * var(--thumbnail-scale) *
+      var(--thumbnail-width-multiplier)
+  );
 
   &--placed-1 {
     --thumbnail-scale: 1;
@@ -71,6 +75,10 @@
     text-align: center;
   }
 
+  &__result-name {
+    display: block;
+  }
+
   &__result-place {
     padding-right: 5px;
 
@@ -92,10 +100,7 @@
   }
 
   &__thumbnail {
-    width: calc(
-      var(--thumbnail-size) * var(--thumbnail-scale) *
-        var(--thumbnail-width-multiplier)
-    );
+    width: 100%;
     height: calc(
       var(--thumbnail-size) * var(--thumbnail-scale) *
         var(--thumbnail-height-multiplier)

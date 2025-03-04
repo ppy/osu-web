@@ -18,6 +18,7 @@ use App\Models\Forum\TopicPoll;
 use App\Models\Forum\TopicWatch;
 use App\Models\UserProfileCustomization;
 use App\Transformers\Forum\TopicCoverTransformer;
+use App\Transformers\Forum\TopicTransformer;
 use Auth;
 use DB;
 use Request;
@@ -50,7 +51,7 @@ class TopicsController extends Controller
             'store',
         ]]);
 
-        $this->middleware('require-scopes:public', ['only' => ['show']]);
+        $this->middleware('require-scopes:public', ['only' => ['index', 'show']]);
         $this->middleware('require-scopes:forum.write', ['only' => ['reply', 'store', 'update']]);
     }
 
@@ -277,6 +278,60 @@ class TopicsController extends Controller
                 ])->render(),
             ];
         }
+    }
+
+    /**
+     * Get Topic Listing
+     *
+     * Get a sorted list of topics, optionally from a specific forum
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field         | Type                          | Notes
+     * ------------- | ----------------------------- | -----
+     * topics        | [ForumTopic](#forum-topic)[]  | |
+     * cursor_string | [CursorString](#cursorstring) | |
+     *
+     * @usesCursor
+     * @queryParam forum_id Id of a specific forum to get topics from. No-example
+     * @queryParam sort Topic sorting option. Valid values are `new` (default) and `old`. Both sort by the topic's last post time. No-example
+     * @queryParam limit Maximum number of topics to be returned (50 at most and by default). No-example
+     *
+     * @response {
+     *   "topics": [
+     *     { "id": 1, "...": "..." },
+     *     { "id": 2, "...": "..." }
+     *   ],
+     *   "cursor_string": "eyJoZWxsbyI6IndvcmxkIn0"
+     * }
+     */
+    public function index()
+    {
+        $params = get_params(request()->all(), null, [
+            'limit:int',
+            'sort',
+            'forum_id:int',
+        ], ['null_missing' => true]);
+
+        $limit = \Number::clamp($params['limit'] ?? Topic::PER_PAGE, 1, Topic::PER_PAGE);
+        $cursorHelper = Topic::makeDbCursorHelper($params['sort']);
+
+        $topics = Topic::cursorSort($cursorHelper, cursor_from_params($params))
+            ->limit($limit);
+
+        $forum_id = $params['forum_id'];
+        if ($forum_id !== null) {
+            $topics->where('forum_id', $forum_id);
+        }
+
+        [$topics, $hasMore] = $topics->getWithHasMore();
+
+        return [
+            'topics' => json_collection($topics, new TopicTransformer()),
+            ...cursor_for_response($cursorHelper->next($topics, $hasMore)),
+        ];
     }
 
     /**

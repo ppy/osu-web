@@ -55,6 +55,7 @@ return [
         'contact' => '联系：',
         'date' => '日期：',
         'echeck_delay' => '由于您的支付是通过 eCheck 进行的，请再等待至多 10 天来让 PayPal 完成支付。',
+        'echeck_denied' => 'Paypal 拒绝受理 eCheck 支付。',
         'hide_from_activity' => '此订单的支持者标签购买未显示在你的个人活动中。',
         'sent_via' => '通过：',
         'shipping_to' => '送货到：',

@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Ten sezon nadal trwa - wkrótce zostanie dodanych więcej gier.',
         'room_count' => 'Liczba gier',
         'url' => 'Dowiedz się więcej o tym sezonie.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => 'Celność',
         'active_users' => 'Aktywni użytkownicy',
         'country' => 'Kraj',
+        'division' => '',
         'play_count' => 'Liczba zagrań',
         'performance' => 'Liczba pp',
         'total_score' => 'Łączna liczba punktów',

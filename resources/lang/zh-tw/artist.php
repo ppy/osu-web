@@ -37,7 +37,7 @@ return [
     'tracklist' => [
         'title' => '標題',
         'length' => '長度',
-        'bpm' => 'bpm',
+        'bpm' => 'BPM',
         'genre' => '類型',
     ],
 

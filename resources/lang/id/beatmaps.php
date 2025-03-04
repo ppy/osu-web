@@ -4,8 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'Ruleset yang diberikan tidak valid.',
+
     'change_owner' => [
-        'too_many' => '',
+        'too_many' => 'Jumlah mapper tamu terlalu banyak.',
     ],
 
     'discussion-votes' => [

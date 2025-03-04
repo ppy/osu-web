@@ -62,7 +62,7 @@ return [
 
     'beatmap_tag' => [
         'store' => [
-            'no_score' => '',
+            'no_score' => 'タグを追加するには、ビートマップでスコアを登録する必要があります。',
         ],
     ],
 
@@ -178,7 +178,7 @@ return [
 
     'room' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'ルームオーナーのみが閉じることができます。',
         ],
     ],
 
@@ -188,6 +188,25 @@ return [
             'failed' => "パスしていないスコアはピン留めできません。",
             'not_owner' => 'スコアの所有者のみがピン留めできます。',
             'too_many' => 'ピン留めの数が多すぎます。',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "あなたは既にチームの一員です。",
+                'already_other_member' => "あなたはすでに別のチームの一員です。",
+                'currently_applying' => 'チームへの参加申請が保留中です。',
+                'team_closed' => '現在、このチームは参加申請を受け付けていません。',
+                'team_full' => "チームが満員で、これ以上メンバーを受け入れることはできません。",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "チームリーダーはチームから抜けることはできません。",
+            'not_member' => 'チームのメンバーではありません。',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

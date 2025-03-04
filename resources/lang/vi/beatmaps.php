@@ -4,8 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => '',
+
     'change_owner' => [
-        'too_many' => '',
+        'too_many' => 'Quá nhiều mapper khách.',
     ],
 
     'discussion-votes' => [
@@ -24,8 +26,8 @@ return [
         'edited' => 'Sửa đổi lần cuối bởi :editor :update_time.',
         'guest' => 'Chế độ khách bởi :user',
         'kudosu_denied' => 'Đã từ chối nhận kudosu.',
-        'message_placeholder_deleted_beatmap' => 'Difficulty này đã bị xóa nên nó có thể sẽ không còn được thảo luận nữa.',
-        'message_placeholder_locked' => 'Chức năng bàn luận của beatmap này đã bị vô hiệu hóa.',
+        'message_placeholder_deleted_beatmap' => 'Độ khó này đã bị xóa nên nó có thể sẽ không còn được thảo luận nữa.',
+        'message_placeholder_locked' => 'Chức năng thảo luận của beatmap này đã bị vô hiệu hóa.',
         'message_placeholder_silenced' => "Không thể đăng thảo luận khi bị khoá mõm.",
         'message_type_select' => 'Chọn Kiểu Bình Luận',
         'reply_notice' => 'Nhấn enter để trả lời.',
@@ -67,13 +69,13 @@ return [
 
         'message_placeholder' => [
             'general' => 'Nhập vào đây để đăng vào Chung (:version)',
-            'generalAll' => 'Nhập vào đây để đăng vào Chung (Tất cả difficulties)',
+            'generalAll' => 'Nhập vào đây để đăng vào Chung (Tất cả độ khó)',
             'review' => 'Gõ ở đây để đăng một bài đánh giá',
-            'timeline' => 'Nhập vào đây để đăng vào Timeline (:version)',
+            'timeline' => 'Nhập vào đây để đăng vào dòng thời gian (:version)',
         ],
 
         'message_type' => [
-            'disqualify' => 'Không đủ tư cách',
+            'disqualify' => 'Hủy tư cách',
             'hype' => 'Hype!',
             'mapper_note' => 'Ghi Chú',
             'nomination_reset' => 'Thiết Lập Lại Đề Cử',
@@ -85,7 +87,7 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => 'Đăng Disqualification',
+            'disqualify' => 'Hủy xét duyệt tư cách',
             'hype' => 'Đăng Hype!',
             'mapper_note' => 'Đăng Ghi Chú',
             'nomination_reset' => 'Loại bỏ tất cả đề cử',

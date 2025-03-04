@@ -27,6 +27,7 @@ return [
                 'GROUP' => 'Grupės',
                 'PM' => 'Tiesioginės žinutės',
                 'PUBLIC' => 'Kanalai',
+                'TEAM' => '',
             ],
         ],
     ],

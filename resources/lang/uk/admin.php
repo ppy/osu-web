@@ -55,8 +55,8 @@ return [
                 'general' => '',
 
                 'users' => [
-                    'header' => '',
-                    'cover_presets' => '',
+                    'header' => 'Користувач',
+                    'cover_presets' => 'Пресети обкладинки профілю',
                 ],
             ],
         ],

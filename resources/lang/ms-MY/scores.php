@@ -5,8 +5,8 @@
 
 return [
     'show' => [
-        'non_preserved' => 'Markah ini ditanda untuk dipadam dan akan lenyap sebentar lagi.',
-        'title' => '',
+        'non_preserved' => 'Markah ini ditanda untuk pemadaman dan akan lenyap sebentar lagi.',
+        'title' => ':username pada :title [:version]',
 
         'beatmap' => [
             'by' => 'oleh :artist',
@@ -14,7 +14,7 @@ return [
 
         'player' => [
             'by' => 'Dimain oleh',
-            'submitted_on' => 'Diserahkan oleh',
+            'submitted_on' => 'Diserahkan pada',
 
             'rank' => [
                 'country' => 'Kedudukan Kebangsaan',
@@ -24,9 +24,9 @@ return [
     ],
 
     'status' => [
-        'non_best' => 'Hanya markah terbaik peribadi dianugerahkan pp',
-        'no_pp' => 'pp tidak dianugerahkan untuk markah ini',
+        'non_best' => 'Hanya markah terbaik peribadi memberi pp',
+        'no_pp' => 'pp tidak diberi untuk markah ini',
         'processing' => 'Markah ini masih dikira dan akan dipaparkan sebentar lagi',
-        'no_rank' => 'Markah ini tiada peringkat ekoran ianya tidak diperingkat atau ditanda untuk dipadam',
+        'no_rank' => 'Markah ini tiada kedudukan kerana tanpa peringkat atau ditanda untuk pemadaman',
     ],
 ];

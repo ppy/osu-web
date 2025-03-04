@@ -7,7 +7,7 @@ return [
     'deleted' => '[已刪除的使用者]',
 
     'beatmapset_activities' => [
-        'title' => ":user 的摸圖紀錄",
+        'title' => ":user 的摸圖歷史記錄",
         'title_compact' => '摸圖',
 
         'discussions' => [
@@ -75,7 +75,7 @@ return [
         'warning' => "若你沒有遵守規則，我們原則上在一個月的期限以內不會考慮解禁您的帳號。在此之後，您如有需要，可以隨時聯絡我們。請注意，在一個帳號被封禁後創建新帳號會<strong>使您的封禁期限被延長</strong>。而且<strong>每當您創建一個新帳號，您都是在更嚴重地破壞規則</strong>。我們強烈建議您不要誤入歧途。",
 
         'if_mistake' => [
-            '_' => '如果您認為這是一個錯誤，歡迎您與我們聯繫（通過 :email 或點擊本頁右下角的"？"）。請注意：我們對於我們的作為充滿信心，因為它是基於非常可靠的資料證據。如果我們認為您是故意不誠實，我們有可能無視您的請求。',
+            '_' => '如果您認為這是個錯誤，歡迎透過電子郵件（:email）或點選這個頁面右下方的「?」來聯絡我們。請注意，我們對我們的行動始終充滿信心，因為這些行動都是基於非常紮實的資料。如果我們認為您是故意不誠實，我們保留無視您的請求的權利。',
             'email' => '電郵',
         ],
 
@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "你的帳號有一段時間沒有登入了",
+            'inactive' => "你的帳號已經很久沒有使用了。",
             'inactive_different_country' => "你的帳號已經一段時間沒有登入了",
         ],
     ],
@@ -164,8 +164,8 @@ return [
             'multiple_accounts' => '使用多個帳號',
             'insults' => '侮辱我 / 其他人',
             'spam' => '垃圾訊息',
-            'unwanted_content' => '鏈接不適當的內容',
-            'nonsense' => '無用內容',
+            'unwanted_content' => '連結不適當的內容',
+            'nonsense' => '無意義內容',
             'other' => '其他（在下方輸入原因）',
         ],
     ],
@@ -185,7 +185,7 @@ return [
         'lastvisit_online' => '上線中',
         'missingtext' => '您可能打錯字了！（或者該使用者可能已被封鎖）',
         'origin_country' => '來自 :country',
-        'previous_usernames' => '前一個的使用者名稱',
+        'previous_usernames' => '曾用名為',
         'plays_with' => '慣用 :devices',
 
         'comments_count' => [
@@ -202,11 +202,11 @@ return [
             'daily_streak_current' => '目前每日連續次數',
             'playcount' => '總遊玩次數',
             'title' => '每日挑戰',
-            'top_10p_placements' => '前10%名次',
-            'top_50p_placements' => '前50%名次',
-            'weekly' => '每周連續次數',
-            'weekly_streak_best' => '最佳每周連續次數',
-            'weekly_streak_current' => '目前每周連續次數',
+            'top_10p_placements' => '前10% 名次',
+            'top_50p_placements' => '前50% 名次',
+            'weekly' => '每週連續次數',
+            'weekly_streak_best' => '最佳每週連續次數',
+            'weekly_streak_current' => '目前每週連續次數',
 
             'unit' => [
                 'day' => ':valued',
@@ -217,7 +217,7 @@ return [
             'cover' => [
                 'button' => '變更個人檔案封面',
                 'defaults_info' => '未來將提供更多的封面選項',
-                'holdover_remove_confirm' => "上一個橫幅已經無法使用。您無法在切換別的橫幅後選回去了。要繼續嗎？",
+                'holdover_remove_confirm' => "先前選擇的封面已無法再次選取。切換到其他封面後，你無法再選回之前的封面。確定要繼續嗎？",
                 'title' => '封面',
 
                 'upload' => [
@@ -246,7 +246,7 @@ return [
                 'title' => '顏色',
 
                 'supporter' => [
-                    '_' => '自定義色彩主題只對 :link 開放',
+                    '_' => '自訂色彩主題只對 :link 開放',
                     'link' => 'osu! 贊助者',
                 ],
             ],
@@ -269,13 +269,13 @@ return [
                     'title' => '收藏的圖譜',
                 ],
                 'graveyard' => [
-                    'title' => '已拋棄的圖譜',
+                    'title' => '已閒置的圖譜',
                 ],
                 'guest' => [
-                    'title' => '客串圖譜',
+                    'title' => '客串的圖譜',
                 ],
                 'loved' => [
-                    'title' => '喜歡的圖譜',
+                    'title' => '社群喜愛的圖譜',
                 ],
                 'nominated' => [
                     'title' => '已提名 & 進榜的圖譜',
@@ -332,31 +332,31 @@ return [
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => '此貼文 :post 總共被拒絕 :amount 點 kudosu',
+                            'reset' => '在 :post 總共被拒絕 :amount',
                         ],
 
                         'delete' => [
-                            'reset' => '此貼文 :post 因被移除總共失去 :amount 點 kudosu',
+                            'reset' => '在 :post 因被移除總共失去 :amount',
                         ],
 
                         'restore' => [
-                            'give' => '此貼文 :post 因被還原總共獲得 :amount 點 kudosu',
+                            'give' => '在 :post 因被還原總共獲得 :amount',
                         ],
 
                         'vote' => [
-                            'give' => '此貼文 :post 因取得足夠票數總共獲得 :amount 點 kudosu',
-                            'reset' => '此貼文 :post 因得票數不足總共失去 :amount 點 kudosu',
+                            'give' => '在 :post 因取得足夠票數總共獲得 :amount',
+                            'reset' => '在 :post 因得票數不足總共失去 :amount',
                         ],
 
                         'recalculate' => [
-                            'give' => '此貼文 :post 因得票數重新計算總共獲得 :amount 點 kudosu',
-                            'reset' => '此貼文 :post 因得票數重新計算總共失去 :amount 點 kudosu',
+                            'give' => '在 :post 因得票數重新計算總共獲得 :amount',
+                            'reset' => '在 :post 因得票數重新計算總共失去 :amount',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => '此貼文 :post 由 :giver 給予 :amount 點 kudosu',
-                        'reset' => '此貼文 :post 的 kudosu 點數由 :giver 重新設定 ',
+                        'give' => '在 :post 由 :giver 給予 :amount',
+                        'reset' => '在 :post 的 kudosu 點數由 :giver 重新設定 ',
                         'revoke' => '此貼文 :post 已被 :giver 移除 kudosu 點數',
                     ],
                 ],
@@ -493,8 +493,8 @@ return [
             'total_hits' => '總命中次數',
             'total_score' => '總分',
             // modding stats
-            'graveyard_beatmapset_count' => '已拋棄的圖譜',
-            'loved_beatmapset_count' => 'Loved 圖譜',
+            'graveyard_beatmapset_count' => '已閒置的圖譜',
+            'loved_beatmapset_count' => '社群喜愛的圖譜',
             'pending_beatmapset_count' => '待處理的圖譜',
             'ranked_beatmapset_count' => '已進榜 & 批准的圖譜',
         ],

@@ -10,9 +10,9 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'top_10p' => '',
-        'top_50p' => '',
+        'beatmap' => 'Kesukaran',
+        'top_10p' => 'Markah 10% Teratas',
+        'top_50p' => 'Markah 50% Teratas',
     ],
 
     'filter' => [
@@ -30,44 +30,48 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => 'Pengguna ini mempunyai kurang dari 30 hari bagi sejarah peringkat terkini.',
+        'insufficient_history' => 'Pengguna ini mempunyai kurang daripada 30 hari bagi sejarah pemeringkatan terkini.',
     ],
 
     'type' => [
         'charts' => 'sorotan (lama)',
         'country' => 'negara',
-        'daily_challenge' => '',
+        'daily_challenge' => 'cabaran harian',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'pemainan beramai-ramai',
-        'performance' => 'pencapaian',
+        'multiplayer' => 'pemain ramai',
+        'performance' => 'prestasi',
         'score' => 'markah',
         'seasons' => 'musim',
     ],
 
     'seasons' => [
         'empty' => 'Musim ini belum memiliki bilik.',
-        'ongoing' => 'Musim ini masih lagi berlangsung (lebih banyak senarai main akan ditambah).',
+        'ongoing' => 'Musim ini masih berlangsung (lebih banyak senarai main akan ditambah).',
         'room_count' => 'Jumlah senarai main',
-        'url' => 'Paparan lebih banyak maklumat untuk musim itu.',
+        'url' => 'Paparkan lebih banyak maklumat tentang musim tersebut.',
+        'validation' => [
+            'not_enough_factors' => 'faktor permarkahan tidak cukup untuk pengiraan sah',
+        ],
     ],
 
     'spotlight' => [
         'end_date' => 'Tarikh Akhir',
-        'map_count' => 'Kiraan Peta',
+        'map_count' => 'Jumlah Peta',
         'participants' => 'Peserta',
         'start_date' => 'Tarikh Mula',
     ],
 
     'stat' => [
-        'accuracy' => 'Ketepatan',
-        'active_users' => 'Pengguna aktif',
+        'accuracy' => 'Kejituan',
+        'active_users' => 'Pengguna Giat',
         'country' => 'Negara',
-        'play_count' => 'Kiraan Mainan',
-        'performance' => 'Pencapaian',
+        'division' => 'Pembahagian',
+        'play_count' => 'Jumlah Mainan',
+        'performance' => 'Prestasi',
         'total_score' => 'Jumlah Markah',
-        'ranked_score' => 'Markah Diperingkat',
+        'ranked_score' => 'Markah Berperingkat',
         'average_score' => 'Markah Purata',
-        'average_performance' => 'Prestasi Purata. ',
+        'average_performance' => 'Prestasi Purata',
         'ss' => '',
         's' => '',
         'a' => '',

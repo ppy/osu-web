@@ -7,9 +7,16 @@
 
     $userTransformer = new UserCompactTransformer();
     $toJson = fn ($users) => json_collection($users, $userTransformer, UserCompactTransformer::CARD_INCLUDES);
-    $teamMembers = array_map($toJson, $team->members->mapToGroups(fn ($member) => [
-        $member->user_id === $team->leader_id ? 'leader' : 'member' => $member->userOrDeleted(),
-    ])->all());
+    $teamMembers = array_map(
+        $toJson,
+        $team
+            ->members
+            ->sortBy('user.username', SORT_STRING | SORT_FLAG_CASE)
+            ->mapToGroups(fn ($member) => [
+                $member->user_id === $team->leader_id ? 'leader' : 'member' => $member->userOrDeleted(),
+            ])
+            ->all(),
+    );
     $teamMembers['member'] ??= [];
     $teamMembers['leader'] ??= $toJson([$team->members()->make(['user_id' => $team->leader_id])->userOrDeleted()]);
     $headerUrl = $team->header()->url();
@@ -23,8 +30,9 @@
 
 @section('content')
     @include('layout._page_header_v4', ['params' => [
-        'theme' => 'team',
         'backgroundImage' => $headerUrl,
+        'links' => App\Http\Controllers\TeamsController::pageLinks('show', $team),
+        'theme' => 'team',
     ]])
 
     <div class="osu-page osu-page--generic-compact">
@@ -32,44 +40,14 @@
             <div
                 class="profile-info__bg profile-info__bg--team"
                 {!! background_image($headerUrl) !!}
-            >
-                @if (priv_check('TeamUpdate', $team)->can())
-                    <div class="profile-page-cover-editor-button">
-                        <a
-                            class="btn-circle btn-circle--page-toggle"
-                            data-tooltip-position="left center"
-                            href="{{ route('teams.members.index', $team) }}"
-                            title="{{ osu_trans('teams.members.index.title') }}"
-                        >
-                            <span class="fa fa-users"></span>
-                            @php
-                                $applicationCount = $team->applications()->count();
-                            @endphp
-                            @if ($applicationCount > 0)
-                                <span class="btn-circle__count">
-                                    {{ i18n_number_format($applicationCount) }}
-                                </span>
-                            @endif
-                        </a>
-
-                        <a
-                            class="btn-circle btn-circle--page-toggle"
-                            data-tooltip-position="left center"
-                            href="{{ route('teams.edit', $team) }}"
-                            title="{{ osu_trans('teams.edit.title') }}"
-                        >
-                            <span class="fa fa-wrench"></span>
-                        </a>
-                    </div>
-                @endif
-            </div>
+            ></div>
             <div class="profile-info__details">
                 <div class="profile-info__avatar">
                     @include('objects._flag_team', ['modifiers' => 'full', 'team' => $team])
                 </div>
                 <div class="profile-info__info">
                     <h1 class="profile-info__name">
-                        {{ $team->name }}
+                        <span class="u-ellipsis-overflow">{{ $team->name }}</span>
                     </h1>
                     <div class="profile-info__flags">
                         <p class="profile-info__flag">
@@ -81,6 +59,12 @@
         </div>
         <div class="profile-detail-bar profile-detail-bar--team">
             @if ($currentUser?->team?->getKey() === $team->getKey())
+                <a
+                    class="team-action-button"
+                    href="{{ route('chat.index', ['channel_id' => $team->channel_id]) }}"
+                >
+                    {{ osu_trans('teams.show.bar.chat') }}
+                </a>
                 @php
                     $partPriv = priv_check('TeamPart', $team);
                     $canPart = $partPriv->can();
@@ -92,7 +76,7 @@
                     method="POST"
                 >
                     <button
-                        class="{{ class_with_modifiers('team-action-button', 'part', ['disabled' => !$canPart]) }}"
+                        class="team-action-button team-action-button--join"
                         @if (!$canPart)
                             disabled
                         @endif
@@ -153,44 +137,27 @@
                             </div>
                             @if (present($team->url))
                                 <div class="team-info-entry">
-                                    <div class="team-info-entry__title">{{ osu_trans('teams.show.info.website') }}</div>
-                                    <div class="team-info-entry__value">
-                                        <span class="u-ellipsis-overflow">
-                                            <a href="{{ $team->url }}">{{ $team->url }}</a>
-                                        </span>
+                                    <div class="team-info-entry__title">{{ osu_trans('model_validation.team.attributes.url') }}</div>
+                                    <div class="team-info-entry__value u-ellipsis-overflow">
+                                        <a href="{{ $team->url }}">{{ $team->url }}</a>
                                     </div>
                                 </div>
                             @endif
-                        </div>
-                        <h2 class="title title--page-extra-small title--page-extra-small-top">
-                            {{ osu_trans('teams.show.sections.members') }}
-                        </h2>
-                        <div class="team-summary__members">
-                            <div class="team-members team-members--owner">
-                                <div class="team-members__meta">
-                                    {{ osu_trans('teams.show.members.owner') }}
+                            <div class="team-info-entry">
+                                <div class="team-info-entry__title">{{ osu_trans('model_validation.team.attributes.default_ruleset_id') }}</div>
+                                <div class="team-info-entry__value">
+                                    @php
+                                        $rulesetName = App\Models\Beatmap::modeStr($team->default_ruleset_id);
+                                    @endphp
+                                    <span class="fal fa-extra-mode-{{ $rulesetName }}"></span>
+                                    {{ osu_trans("beatmaps.mode.{$rulesetName}") }}
                                 </div>
-                                <div
-                                    class="js-react--user-card u-contents"
-                                    data-user="{{ json_encode($teamMembers['leader'][0]) }}"
-                                ></div>
                             </div>
-
-                            <div class="team-members">
-                                <div class="team-members__meta">
-                                    <span>
-                                        {{ osu_trans('teams.show.members.members') }}
-                                    </span>
-                                    <span>
-                                        {{ i18n_number_format(count($teamMembers['member'])) }}
-                                    </span>
+                            <div class="team-info-entry">
+                                <div class="team-info-entry__title">{{ osu_trans('model_validation.team.attributes.is_open') }}</div>
+                                <div class="team-info-entry__value">
+                                    {{ osu_trans('teams.edit.settings.application_state.state_'.(int) $team->is_open) }}
                                 </div>
-                                @foreach ($teamMembers['member'] as $memberJson)
-                                    <div
-                                        class="js-react--user-card u-contents"
-                                        data-user="{{ json_encode($memberJson) }}"
-                                    ></div>
-                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -199,6 +166,40 @@
 
                     <div>
                         {!! $team->descriptionHtml() !!}
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-extra">
+                <h2 class="title title--page-extra-small title--page-extra-small-top">
+                    {{ osu_trans('teams.show.sections.members') }}
+                </h2>
+                <div class="team-members">
+                    <div class="team-members__type team-members__type--owner">
+                        <div class="team-members__meta">
+                            {{ osu_trans('teams.show.members.owner') }}
+                        </div>
+                        <div
+                            class="js-react--user-card u-contents"
+                            data-user="{{ json_encode($teamMembers['leader'][0]) }}"
+                        ></div>
+                    </div>
+
+                    <div class="team-members__type">
+                        <div class="team-members__meta">
+                            <span>
+                                {{ osu_trans('teams.show.members.members') }}
+                            </span>
+                            <span>
+                                {{ i18n_number_format(count($teamMembers['member'])) }}
+                            </span>
+                        </div>
+                        @foreach ($teamMembers['member'] as $memberJson)
+                            <div
+                                class="js-react--user-card u-contents"
+                                data-user="{{ json_encode($memberJson) }}"
+                            ></div>
+                        @endforeach
                     </div>
                 </div>
             </div>

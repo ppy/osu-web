@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Tato sezóna stále probíhá (více playlistů bude přidáno průběhem času).',
         'room_count' => 'Počet playlistů',
         'url' => 'Zobrazit více informací pro tuto sezónu.',
+        'validation' => [
+            'not_enough_factors' => 'neexistuje dostatek prvků skóre pro řádný výpočet',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => 'Přesnost',
         'active_users' => 'Aktivní uživatelé',
         'country' => 'Stát',
+        'division' => 'Divize',
         'play_count' => 'Počet zahrání',
         'performance' => 'Výkon',
         'total_score' => 'Celkové skóre',

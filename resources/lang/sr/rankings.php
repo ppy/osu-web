@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Ова сезона је још увек у току (биће додато још плејлиста).',
         'room_count' => 'Број плејлиста',
         'url' => 'Прикажи више информација о тој сезони.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => 'Прецизност',
         'active_users' => 'Активни Корисници',
         'country' => 'Држава',
+        'division' => '',
         'play_count' => 'Број играња',
         'performance' => 'Перформансе',
         'total_score' => 'Укупан резултат',

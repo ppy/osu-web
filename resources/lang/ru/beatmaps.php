@@ -4,8 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'Указан недопустимый режим игры.',
+
     'change_owner' => [
-        'too_many' => '',
+        'too_many' => 'Слишком много гостевых мапперов.',
     ],
 
     'discussion-votes' => [

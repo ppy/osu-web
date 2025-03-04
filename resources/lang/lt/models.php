@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'not_found' => "",
+    'not_found' => "Nurodytas :model nebuvo rastas",
 
     'name' => [
-        'App\Models\Beatmap' => '',
-        'App\Models\Beatmapset' => '',
+        'App\Models\Beatmap' => 'beatmap\'o sunkumas',
+        'App\Models\Beatmapset' => 'beatmap\'as',
     ],
 ];

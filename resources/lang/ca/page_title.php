@@ -35,24 +35,24 @@ return [
             '_' => 'artistes destacats',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'publicacions de discussió de beatmaps',
+            '_' => 'publicacions de discussió de mapes',
         ],
         'beatmap_discussions_controller' => [
-            '_' => 'discussions de beatmaps',
+            '_' => 'discussions de mapes',
         ],
         'beatmap_packs_controller' => [
-            '_' => 'paquets de beatmaps',
+            '_' => 'paquets de mapes',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => 'vots de discussions de beatmaps',
+            '_' => 'vots de discussions de mapes',
         ],
         'beatmapset_events_controller' => [
-            '_' => 'historial de beatmaps',
+            '_' => 'historial de mapes',
         ],
         'beatmapsets_controller' => [
-            'discussion' => 'discusió de beatmap',
-            'index' => 'llista de beatmaps',
-            'show' => 'info del beatmap',
+            'discussion' => 'discusió de mapes',
+            'index' => 'llista de mapes',
+            'show' => 'info del mapes',
         ],
         'changelog_controller' => [
             '_' => 'registre de canvis',
@@ -108,8 +108,11 @@ return [
             '_' => 'classificacions',
         ],
         'teams_controller' => [
-            '_' => '',
-            'show' => '',
+            '_' => 'equips',
+            'create' => '',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => 'info de l\'equip',
         ],
         'tournaments_controller' => [
             '_' => 'tornejos',
@@ -133,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'botiga',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

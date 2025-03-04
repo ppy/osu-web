@@ -108,8 +108,11 @@ return [
             '_' => 'ランキング',
         ],
         'teams_controller' => [
-            '_' => '',
-            'show' => '',
+            '_' => 'チーム',
+            'create' => '',
+            'edit' => 'チームの設定',
+            'leaderboard' => 'チームリーダーボード',
+            'show' => 'チーム情報',
         ],
         'tournaments_controller' => [
             '_' => 'トーナメント',
@@ -133,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'ストア',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'チームメンバー',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

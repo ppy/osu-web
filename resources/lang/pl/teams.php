@@ -4,79 +4,145 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'applications' => [
+        'accept' => [
+            'ok' => '',
+        ],
+        'destroy' => [
+            'ok' => '',
+        ],
+        'reject' => [
+            'ok' => '',
+        ],
+        'store' => [
+            'ok' => 'Przesłano prośbę o dołączenie do zespołu.',
+        ],
+    ],
+
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
+        ],
+    ],
+
+    'destroy' => [
+        'ok' => '',
+    ],
+
     'edit' => [
-        'saved' => '',
-        'title' => '',
+        'ok' => '',
+        'title' => 'Ustawienia zespołu',
 
         'description' => [
+            'label' => 'Opis',
+            'title' => 'Opis zespołu',
+        ],
+
+        'flag' => [
             'label' => '',
             'title' => '',
         ],
 
         'header' => [
-            'label' => '',
-            'title' => '',
-        ],
-
-        'logo' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Tło',
+            'title' => 'Ustaw tło',
         ],
 
         'settings' => [
-            'application' => '',
-            'application_help' => '',
-            'default_ruleset' => '',
-            'default_ruleset_help' => '',
-            'title' => '',
-            'url' => '',
+            'application_help' => 'Określa, czy inni użytkownicy mogą ubiegać się o dołączenie do zespołu',
+            'default_ruleset_help' => 'Określa, który tryb gry zostanie wybrany automatycznie podczas odwiedzania strony zespołu',
+            'flag_help' => '',
+            'header_help' => '',
+            'title' => 'Ustawienia zespołu',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => 'Prywatny',
+                'state_1' => 'Publiczny',
             ],
         ],
+    ],
+
+    'header_links' => [
+        'edit' => 'ustawienia',
+        'leaderboard' => 'ranking',
+        'show' => 'informacje',
+
+        'members' => [
+            'index' => 'zarządzaj członkami',
+        ],
+    ],
+
+    'leaderboard' => [
+        'global_rank' => 'Ranking globalny',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '',
+            'success' => 'Usunięto członka zespołu',
         ],
 
         'index' => [
-            'title' => '',
+            'title' => 'Zarządzaj członkami zespołu',
+
+            'applications' => [
+                'empty' => 'Brak próśb o dołączenie do zespołu.',
+                'empty_slots' => 'Dostępnych miejsc',
+                'title' => 'Prośby o dołączenie',
+                'created_at' => '',
+            ],
 
             'table' => [
-                'status' => '',
-                'joined_at' => '',
-                'remove' => '',
-                'title' => '',
+                'status' => 'Status',
+                'joined_at' => 'Data dołączenia',
+                'remove' => 'Usuń',
+                'title' => 'Aktualni członkowie',
             ],
 
             'status' => [
-                'status_0' => '',
-                'status_1' => '',
+                'status_0' => 'Nieaktywny',
+                'status_1' => 'Aktywny',
             ],
         ],
     ],
+
+    'part' => [
+        'ok' => '',
+    ],
+
     'show' => [
         'bar' => [
-            'settings' => '',
+            'chat' => '',
+            'destroy' => '',
+            'join' => 'Poproś o dołączenie',
+            'join_cancel' => 'Anuluj prośbę o dołączenie',
+            'part' => 'Opuść zespół',
         ],
 
         'info' => [
-            'created' => '',
-            'website' => '',
+            'created' => 'Data założenia',
         ],
 
         'members' => [
-            'members' => '',
-            'owner' => '',
+            'members' => 'Członkowie zespołu',
+            'owner' => 'Lider zespołu',
         ],
 
         'sections' => [
-            'members' => '',
-            'info' => '',
+            'info' => 'Informacje',
+            'members' => 'Członkowie',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];

@@ -20,17 +20,19 @@ return [
         'channel' => '채팅',
         'forum_topic' => '포럼',
         'news_post' => '뉴스',
+        'team' => '팀',
         'user' => '프로필',
     ],
 
     'filters' => [
         '_' => '전체',
-        'user' => '프로필',
         'beatmapset' => '비트맵',
-        'forum_topic' => '포럼',
-        'news_post' => '뉴스',
         'build' => '빌드 버전',
         'channel' => '채팅',
+        'forum_topic' => '포럼',
+        'news_post' => '뉴스',
+        'team' => '팀',
+        'user' => '프로필',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '팀 가입 요청',
+
+                'team_application_accept' => "당신은 이제 :title 팀의 멤버입니다.",
+                'team_application_accept_compact' => "당신은 이제 :title 팀의 멤버입니다.",
+                'team_application_reject' => '팀 :title에 보낸 가입 요청이 거부되었습니다.',
+                'team_application_reject_compact' => '팀 :title에 보낸 가입 요청이 거부되었습니다.',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => '새 비트맵',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => '":title"에 새로운 답글이 달렸습니다.',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "당신은 이제 :title 팀의 멤버입니다.",
+                'team_application_reject' => '팀 :title에 보낸 가입 요청이 거부되었습니다.',
             ],
         ],
 

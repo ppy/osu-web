@@ -76,6 +76,11 @@
                                             class="fake-bold"
                                             data-content="{{ $link['title'] }}"
                                         >{{ $link['title'] }}</span>
+                                        @if (isset($link['count']))
+                                            <span class="header-nav-item-count">
+                                                {{ i18n_number_format($link['count']) }}
+                                            </span>
+                                        @endif
                                     </a>
                                 @else
                                     <span class="header-nav-v4__text">{{ $link['title'] }}</span>
@@ -110,6 +115,11 @@
                                             href="{{ $link['url'] }}"
                                         >
                                             {{ $link['title'] }}
+                                            @if (isset($link['count']))
+                                                <span class="header-nav-item-count">
+                                                    {{ i18n_number_format($link['count']) }}
+                                                </span>
+                                            @endif
                                         </a>
                                     </li>
                                 @endforeach

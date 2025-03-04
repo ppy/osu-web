@@ -8,7 +8,7 @@ return [
         'disabled' => '該圖譜現在無法下載。',
         'parts-removed' => '因作者或第三方版權擁有者的要求，故該圖譜已經下架。',
         'more-info' => '按這裡查看更多資訊。',
-        'rule_violation' => '已移除此圖譜中部份被評斷為不合適於 osu! 的內容。',
+        'rule_violation' => '這個地圖中包含的一些素材，在被評估為不適合在 osu! 中使用後已移除。',
     ],
 
     'cover' => [
@@ -42,7 +42,7 @@ return [
 
     'nominate' => [
         'bng_limited_too_many_rulesets' => '見習提名者無法提名多個規則集的圖譜。',
-        'full_nomination_required' => '你必須完全是一個提名者才能展現一個遊戲模式的最終提名。',
+        'full_nomination_required' => '你必須是完整的提名者才能執行遊戲模式的最終提名。',
         'hybrid_requires_modes' => '包含多個遊戲模式的圖譜至少需要選擇一種遊戲模式進行提名。',
         'incorrect_mode' => '您沒有權限為 :mode 模式提名',
         'invalid_limited_nomination' => '這張圖譜有無效的提名而且無法在這個階段被檢驗。',
@@ -89,8 +89,8 @@ return [
             'download' => [
                 '_' => '下載',
                 'direct' => '',
-                'no-video' => '不含影像',
-                'video' => '含影像',
+                'no-video' => '不含影片',
+                'video' => '含影片',
             ],
 
             'login_required' => [
@@ -101,10 +101,10 @@ return [
 
         'details_date' => [
             'approved' => '於 :timeago 核准',
-            'loved' => 'loved :timeago',
-            'qualified' => '已提名 :timeago',
-            'ranked' => '於:timeago進榜',
-            'submitted' => '於:timeago提交',
+            'loved' => '於 :timeago 被加入至社群喜愛',
+            'qualified' => '於 :timeago 列為合格圖譜',
+            'ranked' => '於 :timeago 進榜',
+            'submitted' => '於 :timeago 提交',
             'updated' => '上次更新於:timeago',
         ],
 
@@ -120,7 +120,7 @@ return [
 
                 'status' => [
                     'pending' => '等待中',
-                    'qualified' => '已提名',
+                    'qualified' => '已合格',
                     'wip' => '製作中',
                 ],
             ],
@@ -169,7 +169,7 @@ return [
             'error' => '無法載入排行榜',
             'friend' => '好友排名',
             'global' => '全球排名',
-            'supporter-link' => '點擊 <a href=":link">這裡</a> 來查看你可以得到的精彩功能！',
+            'supporter-link' => '按<a href=":link">這裡</a>來查看你可以得到的精彩功能！',
             'supporter-only' => '你需要成為贊助者才能查看國內與好友排名！',
             'title' => '排行榜',
 
@@ -199,7 +199,7 @@ return [
                 'own' => '您的最佳成績',
             ],
             'supporter_link' => [
-                '_' => '點:here查看您能得到的精彩功能！',
+                '_' => '按:here查看您能得到的精彩功能！',
                 'here' => '這裡',
             ],
         ],
@@ -217,7 +217,7 @@ return [
             'count_sliders' => '滑條總數',
             'offset' => '線上偏移調整：:offset',
             'user-rating' => '玩家評價',
-            'rating-spread' => '評分情況',
+            'rating-spread' => '評分狀況',
             'nominations' => '提名',
             'playcount' => '遊玩次數',
         ],
@@ -225,11 +225,11 @@ return [
         'status' => [
             'ranked' => '已進榜',
             'approved' => '已核准',
-            'loved' => 'Loved',
-            'qualified' => '已提名',
+            'loved' => '社群喜愛',
+            'qualified' => '已合格',
             'wip' => '製作中',
             'pending' => '待處理',
-            'graveyard' => '拋棄',
+            'graveyard' => '閒置',
         ],
     ],
 

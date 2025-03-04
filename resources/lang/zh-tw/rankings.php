@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => '難度',
-        'top_10p' => '前 10%的分數',
-        'top_50p' => '前 50%的分數',
+        'top_10p' => '前 10% 的分數',
+        'top_50p' => '前 50% 的分數',
     ],
 
     'filter' => [
@@ -49,6 +49,9 @@ return [
         'ongoing' => '這個賽季仍在進行中 (更多歌單即將加入)。',
         'room_count' => '歌單數量',
         'url' => '顯示這個賽季的更多資訊。',
+        'validation' => [
+            'not_enough_factors' => '沒有足夠的評分因素以進行正確的計算',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => '準確率',
         'active_users' => '活躍的使用者',
         'country' => '國家',
+        'division' => '組別',
         'play_count' => '遊戲次數',
         'performance' => '成績',
         'total_score' => '總分',

@@ -191,6 +191,25 @@ return [
         ],
     ],
 
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "Fai già parte della squadra.",
+                'already_other_member' => "Fai già parte di un'altra squadra.",
+                'currently_applying' => 'Hai in sospeso una richiesta di partecipazione da una squadra.',
+                'team_closed' => 'Attualmente la squadra non accetta richieste di partecipazione.',
+                'team_full' => "La squadra è al completo e non può accettare ulteriori membri.",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "Il capitano non può abbandonare la squadra.",
+            'not_member' => 'Non un membro della squadra.',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [

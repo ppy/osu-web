@@ -32,7 +32,7 @@ return [
             'verify_link' => 'ověření účtu',
         ],
         'artists_controller' => [
-            '_' => 'featured artists',
+            '_' => 'oficiální umělci',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'příspěvky diskuze o beatmapě',
@@ -108,8 +108,11 @@ return [
             '_' => 'hodnocení',
         ],
         'teams_controller' => [
-            '_' => '',
-            'show' => '',
+            '_' => 'týmy',
+            'create' => '',
+            'edit' => 'nastavení týmu',
+            'leaderboard' => 'žebříček týmu',
+            'show' => 'informace o týmu',
         ],
         'tournaments_controller' => [
             '_' => 'turnaje',
@@ -133,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'obchod',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'členové týmu',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [
