@@ -47,7 +47,7 @@
                 </div>
                 <div class="profile-info__info">
                     <h1 class="profile-info__name">
-                        {{ $team->name }}
+                        <span class="u-ellipsis-overflow">{{ $team->name }}</span>
                     </h1>
                     <div class="profile-info__flags">
                         <p class="profile-info__flag">
@@ -104,9 +104,8 @@
                 @endphp
                 <form
                     action="{{ route('teams.applications.store', ['team' => $team]) }}"
-                    data-confirm="{{ osu_trans('common.confirmation') }}"
+                    data-turbo-confirm="{{ osu_trans('common.confirmation') }}"
                     data-reload-on-success="1"
-                    data-remote="1"
                     method="POST"
                     title="{{ $joinPriv->message() }}"
                 >
