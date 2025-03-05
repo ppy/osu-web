@@ -62,7 +62,7 @@ return [
 
     'beatmap_tag' => [
         'store' => [
-            'no_score' => '',
+            'no_score' => 'Морате поставити резултат на овој мапи да би додали таг',
         ],
     ],
 
@@ -204,6 +204,9 @@ return [
         'part' => [
             'is_leader' => "",
             'not_member' => '',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

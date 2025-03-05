@@ -6,25 +6,40 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Benutzer zum Team hinzugefügt.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Beitrittsanfrage abgebrochen.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Beitrittsanfrage abgelehnt.',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Beitrittsanfrage abgesendet.',
+        ],
+    ],
+
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Team entfernt',
     ],
 
     'edit' => [
-        'saved' => 'Einstellungen gespeichert',
+        'ok' => '',
         'title' => 'Teameinstellungen',
 
         'description' => [
@@ -32,23 +47,22 @@ return [
             'title' => 'Teambeschreibung',
         ],
 
+        'flag' => [
+            'label' => '',
+            'title' => '',
+        ],
+
         'header' => [
             'label' => 'Bannerlogo',
             'title' => 'Bannerlogo hinzufügen',
         ],
 
-        'logo' => [
-            'label' => 'Teamflagge',
-            'title' => 'Teamflagge einstellen',
-        ],
-
         'settings' => [
-            'application' => 'Team-Bewerbungen',
             'application_help' => 'Ob Personen sich für das Team bewerben können',
-            'default_ruleset' => 'Standardspielmodus',
             'default_ruleset_help' => 'Der Spielmodus, der beim Besuchen der Teamseite standardmäßig ausgewählt ist',
+            'flag_help' => '',
+            'header_help' => '',
             'title' => 'Teameinstellungen',
-            'url' => 'URL',
 
             'application_state' => [
                 'state_0' => 'Geschlossen',
@@ -58,19 +72,17 @@ return [
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'Einstellungen',
+        'leaderboard' => 'Rangliste',
+        'show' => 'Info',
 
         'members' => [
-            'index' => '',
+            'index' => 'Mitglieder verwalten',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
-        'performance' => '',
-        'total_score' => '',
+        'global_rank' => 'Globaler Rang',
     ],
 
     'members' => [
@@ -82,10 +94,10 @@ return [
             'title' => 'Mitglieder verwalten',
 
             'applications' => [
-                'empty' => '',
-                'empty_slots' => '',
-                'title' => '',
-                'created_at' => '',
+                'empty' => 'Keine Beitrittsanfragen zurzeit.',
+                'empty_slots' => 'Verfügbare Plätze',
+                'title' => 'Beitrittsanfragen',
+                'created_at' => 'Anfrage am',
             ],
 
             'table' => [
@@ -103,20 +115,20 @@ return [
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Team verlassen ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'chat' => '',
+            'destroy' => 'Team auflösen',
+            'join' => 'Beitrittsanfrage stellen',
+            'join_cancel' => 'Beitritt abbrechen',
+            'part' => 'Team verlassen',
         ],
 
         'info' => [
             'created' => 'Gegründet',
-            'website' => 'Webseite',
         ],
 
         'members' => [
@@ -128,5 +140,9 @@ return [
             'info' => 'Info',
             'members' => 'Mitglieder',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];

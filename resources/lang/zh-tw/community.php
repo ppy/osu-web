@@ -125,7 +125,7 @@ return [
             ],
             'more_friends' => [
                 'title' => '更多好友',
-                'description' => '你的好友上限將從 :normally &rarr; :supporter',
+                'description' => '您可擁有的好友上限從 :normally 提升至 :supporter',
             ],
             'more_beatmaps' => [
                 'title' => '上傳更多圖譜',

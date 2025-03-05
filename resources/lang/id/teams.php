@@ -6,25 +6,40 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Pengguna ditambahkan ke tim.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Permintaan bergabung dibatalkan.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Permintaan bergabung ditolak.',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Permintaan bergabung dikirim.',
+        ],
+    ],
+
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Tim dihapus',
     ],
 
     'edit' => [
-        'saved' => 'Pengaturan berhasil disimpan',
+        'ok' => '',
         'title' => 'Pengaturan Tim',
 
         'description' => [
@@ -32,23 +47,22 @@ return [
             'title' => 'Deskripsi Tim',
         ],
 
+        'flag' => [
+            'label' => '',
+            'title' => '',
+        ],
+
         'header' => [
             'label' => 'Gambar Tajuk',
             'title' => 'Pasang Gambar Tajuk',
         ],
 
-        'logo' => [
-            'label' => 'Bendera Tim',
-            'title' => 'Pasang Bendera Tim',
-        ],
-
         'settings' => [
-            'application' => 'Pendaftaran Tim',
             'application_help' => 'Apakah pengguna lain akan diizinkan untuk mendaftar ke tim',
-            'default_ruleset' => 'Ruleset Bawaan',
             'default_ruleset_help' => 'Ruleset yang akan terpilih secara bawaan pada saat mengunjungi halaman tim',
+            'flag_help' => '',
+            'header_help' => '',
             'title' => 'Pengaturan Tim',
-            'url' => 'URL',
 
             'application_state' => [
                 'state_0' => 'Ditutup',
@@ -58,19 +72,17 @@ return [
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'pengaturan',
+        'leaderboard' => 'papan peringkat',
+        'show' => 'info',
 
         'members' => [
-            'index' => '',
+            'index' => 'kelola anggota',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
-        'performance' => '',
-        'total_score' => '',
+        'global_rank' => 'Peringkat Global',
     ],
 
     'members' => [
@@ -82,10 +94,10 @@ return [
             'title' => 'Kelola Anggota',
 
             'applications' => [
-                'empty' => '',
-                'empty_slots' => '',
-                'title' => '',
-                'created_at' => '',
+                'empty' => 'Tidak ada permintaan untuk bergabung pada saat ini.',
+                'empty_slots' => 'Slot yang tersedia',
+                'title' => 'Permintaan Bergabung',
+                'created_at' => 'Diminta Pada',
             ],
 
             'table' => [
@@ -103,20 +115,20 @@ return [
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Tinggalkan tim ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'chat' => '',
+            'destroy' => 'Bubarkan Tim',
+            'join' => 'Minta Gabung',
+            'join_cancel' => 'Batal Gabung',
+            'part' => 'Tinggalkan Tim',
         ],
 
         'info' => [
             'created' => 'Dibentuk pada',
-            'website' => 'Situs web',
         ],
 
         'members' => [
@@ -128,5 +140,9 @@ return [
             'info' => 'Info',
             'members' => 'Anggota',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];

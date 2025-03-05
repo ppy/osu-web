@@ -46,8 +46,8 @@ return [
         ],
 
         'teams' => [
-            'blue' => 'Team Blu',
-            'red' => 'Team Rosso',
+            'blue' => 'Squadra Blu',
+            'red' => 'Squadra Rossa',
         ],
     ],
     'game' => [

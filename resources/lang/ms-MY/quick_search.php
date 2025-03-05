@@ -13,9 +13,9 @@ return [
     ],
 
     'result' => [
-        'empty' => 'Tiada hasil ditemukan',
-        'empty_for' => 'Tiada hasil pencarian :modes ditemukan',
-        'more' => 'Muat Lebih Banyak Hasil Pencarian :mode',
+        'empty' => 'Tiada hasil',
+        'empty_for' => 'Tiada hasil bagi :modes',
+        'more' => 'Hasil Carian :mode Lain',
         'title' => 'Hasil Carian :mode',
     ],
 ];

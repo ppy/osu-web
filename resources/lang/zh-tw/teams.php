@@ -6,25 +6,40 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => '已將使用者加入團隊。',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => '已取消加入請求。',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => '已拒絕加入請求。',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => '已請求加入團隊。',
+        ],
+    ],
+
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => '團隊已移除',
     ],
 
     'edit' => [
-        'saved' => '設定儲存成功',
+        'ok' => '',
         'title' => '隊伍設定',
 
         'description' => [
@@ -32,23 +47,22 @@ return [
             'title' => '隊伍描述',
         ],
 
+        'flag' => [
+            'label' => '',
+            'title' => '',
+        ],
+
         'header' => [
             'label' => '標題圖片',
             'title' => '設定標題圖片',
         ],
 
-        'logo' => [
-            'label' => '隊伍旗幟',
-            'title' => '設定隊伍旗幟',
-        ],
-
         'settings' => [
-            'application' => '隊伍申請',
-            'application_help' => '是否開放他人申請加入隊伍？',
-            'default_ruleset' => '預設遊戲模式',
+            'application_help' => '是否開放他人申請加入隊伍',
             'default_ruleset_help' => '第一次進入組隊介面時預設選擇的遊戲模式',
+            'flag_help' => '',
+            'header_help' => '',
             'title' => '隊伍設定',
-            'url' => 'URL',
 
             'application_state' => [
                 'state_0' => '關閉',
@@ -58,19 +72,17 @@ return [
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => '設定',
+        'leaderboard' => '排行榜',
+        'show' => '資訊',
 
         'members' => [
-            'index' => '',
+            'index' => '管理成員',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
-        'performance' => '',
-        'total_score' => '',
+        'global_rank' => '全球排名',
     ],
 
     'members' => [
@@ -82,10 +94,10 @@ return [
             'title' => '管理成員',
 
             'applications' => [
-                'empty' => '',
-                'empty_slots' => '',
-                'title' => '',
-                'created_at' => '',
+                'empty' => '目前沒有加入請求。',
+                'empty_slots' => '剩餘名額',
+                'title' => '加入請求',
+                'created_at' => '申請日期：',
             ],
 
             'table' => [
@@ -97,36 +109,40 @@ return [
 
             'status' => [
                 'status_0' => '不活躍',
-                'status_1' => '活躍',
+                'status_1' => '活躍中',
             ],
         ],
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => '離開了隊伍 ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'chat' => '',
+            'destroy' => '解散隊伍',
+            'join' => '請求加入',
+            'join_cancel' => '取消加入',
+            'part' => '離開隊伍',
         ],
 
         'info' => [
             'created' => '成立於',
-            'website' => '個人網站',
         ],
 
         'members' => [
             'members' => '隊伍成員',
-            'owner' => '隊長',
+            'owner' => '隊伍領導人',
         ],
 
         'sections' => [
             'info' => '資訊',
             'members' => '成員',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];

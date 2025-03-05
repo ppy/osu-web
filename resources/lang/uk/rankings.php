@@ -50,7 +50,7 @@ return [
         'room_count' => 'Кількість плейлистів',
         'url' => 'Показувати більше інформації про цей сезон.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'недостатньо факторів для належного підрахунку результатів',
         ],
     ],
 
@@ -65,7 +65,7 @@ return [
         'accuracy' => 'Точність',
         'active_users' => 'Активні гравці',
         'country' => 'Країна',
-        'division' => '',
+        'division' => 'Дивізіон',
         'play_count' => 'Кількість ігор',
         'performance' => 'Продуктивність',
         'total_score' => 'Всього очок',

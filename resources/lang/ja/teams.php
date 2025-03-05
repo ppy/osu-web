@@ -6,127 +6,143 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'ユーザーをチームに追加しました。',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => '参加申請をキャンセルしました。',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => '参加申請が拒否されました。',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'チームへの参加をリクエストしました。',
+        ],
+    ],
+
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'チームを削除しました',
     ],
 
     'edit' => [
-        'saved' => '',
-        'title' => '',
+        'ok' => '',
+        'title' => 'チームの設定',
 
         'description' => [
+            'label' => '説明',
+            'title' => 'チームの説明',
+        ],
+
+        'flag' => [
             'label' => '',
             'title' => '',
         ],
 
         'header' => [
-            'label' => '',
-            'title' => '',
-        ],
-
-        'logo' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'ヘッダー画像',
+            'title' => 'ヘッダー画像を設定',
         ],
 
         'settings' => [
-            'application' => '',
-            'application_help' => '',
-            'default_ruleset' => '',
-            'default_ruleset_help' => '',
-            'title' => '',
-            'url' => '',
+            'application_help' => 'チームへの参加申請を許可するかどうか',
+            'default_ruleset_help' => 'チームのページにアクセスしたときにデフォルトで表示されるルールセット',
+            'flag_help' => '',
+            'header_help' => '',
+            'title' => 'チームの設定',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => '申請不可',
+                'state_1' => '申請可能',
             ],
         ],
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => '設定',
+        'leaderboard' => 'リーダーボード',
+        'show' => '情報',
 
         'members' => [
-            'index' => '',
+            'index' => 'メンバーの管理',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
-        'performance' => '',
-        'total_score' => '',
+        'global_rank' => '世界ランキング',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '',
+            'success' => 'チームメンバーを削除しました',
         ],
 
         'index' => [
-            'title' => '',
+            'title' => 'メンバーの管理',
 
             'applications' => [
-                'empty' => '',
-                'empty_slots' => '',
-                'title' => '',
-                'created_at' => '',
+                'empty' => '現在参加申請はありません。',
+                'empty_slots' => '空きスロット',
+                'title' => '参加リクエスト',
+                'created_at' => '申請日',
             ],
 
             'table' => [
-                'status' => '',
-                'joined_at' => '',
-                'remove' => '',
-                'title' => '',
+                'status' => 'ステータス',
+                'joined_at' => '参加日',
+                'remove' => '削除',
+                'title' => '現在参加しているメンバー',
             ],
 
             'status' => [
-                'status_0' => '',
-                'status_1' => '',
+                'status_0' => '非アクティブ',
+                'status_1' => 'アクティブ',
             ],
         ],
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'チームから退出しました ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'chat' => '',
+            'destroy' => 'チームを解散',
+            'join' => '参加をリクエスト',
+            'join_cancel' => 'リクエストを取り消し',
+            'part' => 'チームから抜ける',
         ],
 
         'info' => [
-            'created' => '',
-            'website' => '',
+            'created' => '結成日',
         ],
 
         'members' => [
-            'members' => '',
-            'owner' => '',
+            'members' => 'チームメンバー',
+            'owner' => 'チームリーダー',
         ],
 
         'sections' => [
-            'info' => '',
-            'members' => '',
+            'info' => '情報',
+            'members' => 'メンバー',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];

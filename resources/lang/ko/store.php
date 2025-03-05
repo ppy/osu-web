@@ -55,7 +55,7 @@ return [
         'contact' => '연락처:',
         'date' => '날짜:',
         'echeck_delay' => 'eCheck로 결제하셨다면 10일까지 PayPal을 통해 결제할 수 있도록 허용해주세요.',
-        'echeck_denied' => '',
+        'echeck_denied' => 'eCheck 결제가 PayPal에서 거부되었습니다.',
         'hide_from_activity' => '이 주문에 포함된 osu! 서포터 내역은 나의 최근 활동에 표시되지 않습니다.',
         'sent_via' => '배송 수단:',
         'shipping_to' => '배송지:',

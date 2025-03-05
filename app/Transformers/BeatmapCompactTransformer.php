@@ -15,6 +15,7 @@ class BeatmapCompactTransformer extends TransformerAbstract
     protected array $availableIncludes = [
         'beatmapset',
         'checksum',
+        'current_user_tag_ids',
         'failtimes',
         'max_combo',
         'owners',
@@ -50,6 +51,11 @@ class BeatmapCompactTransformer extends TransformerAbstract
     public function includeChecksum(Beatmap $beatmap)
     {
         return $this->primitive($beatmap->checksum);
+    }
+
+    public function includeCurrentUserTagIds(Beatmap $beatmap)
+    {
+        return $this->primitive($beatmap->getUserTagIds());
     }
 
     public function includeFailtimes(Beatmap $beatmap)

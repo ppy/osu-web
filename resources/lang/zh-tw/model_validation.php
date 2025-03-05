@@ -34,7 +34,7 @@ return [
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => '指定的時間戳記不在譜面範圍內。',
+            'exceeds_beatmapset_length' => '指定的時間戳記不在圖譜範圍內。',
             'negative' => "無法定位時間戳記。",
         ],
     ],
@@ -128,6 +128,20 @@ return [
                 'name' => '應用程式名稱',
                 'redirect' => '應用程式回傳 URL',
             ],
+        ],
+    ],
+
+    'team' => [
+        'invalid_characters' => '',
+        'used' => '',
+        'word_not_allowed' => '',
+
+        'attributes' => [
+            'default_ruleset_id' => '',
+            'is_open' => '',
+            'name' => '',
+            'short_name' => '',
+            'url' => '',
         ],
     ],
 

@@ -6,9 +6,9 @@
 return [
     'landing' => [
         'download' => 'Scarica ora',
-        'online' => '<strong>:players</strong> giocatori online in <strong>:games</strong> partite',
+        'online' => '<strong>:players</strong> online in <strong>:games</strong> partite',
         'peak' => 'Picco, :count utenti online',
-        'players' => '<strong>:count</strong> utenti registrati',
+        'players' => '<strong>:count</strong> giocatori registrati',
         'title' => 'benvenuto',
         'see_more_news' => 'guarda più notizie',
 

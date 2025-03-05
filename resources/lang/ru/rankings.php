@@ -50,7 +50,7 @@ return [
         'room_count' => 'Количество плейлистов',
         'url' => 'Открыть подробную статью об этом сезоне.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'недостаточно факторов для правильного расчета скора',
         ],
     ],
 
@@ -65,7 +65,7 @@ return [
         'accuracy' => 'Точность',
         'active_users' => 'Активные игроки',
         'country' => 'Страна',
-        'division' => '',
+        'division' => 'Подразделение',
         'play_count' => 'Количество игр',
         'performance' => 'Производительность',
         'total_score' => 'Всего очков',

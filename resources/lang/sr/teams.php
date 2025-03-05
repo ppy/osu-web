@@ -19,15 +19,35 @@ return [
         ],
     ],
 
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
+        ],
+    ],
+
     'destroy' => [
         'ok' => '',
     ],
 
     'edit' => [
-        'saved' => '',
-        'title' => '',
+        'ok' => '',
+        'title' => 'Подешавања Тима',
 
         'description' => [
+            'label' => 'Опис',
+            'title' => 'Опис Тима',
+        ],
+
+        'flag' => [
             'label' => '',
             'title' => '',
         ],
@@ -37,30 +57,24 @@ return [
             'title' => '',
         ],
 
-        'logo' => [
-            'label' => '',
-            'title' => '',
-        ],
-
         'settings' => [
-            'application' => '',
             'application_help' => '',
-            'default_ruleset' => '',
             'default_ruleset_help' => '',
-            'title' => '',
-            'url' => '',
+            'flag_help' => '',
+            'header_help' => '',
+            'title' => 'Подешавање Тима',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => 'Затворено',
+                'state_1' => 'Отворено',
             ],
         ],
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'поставке',
+        'leaderboard' => 'ранг листа',
+        'show' => 'инфо',
 
         'members' => [
             'index' => '',
@@ -68,55 +82,53 @@ return [
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
-        'performance' => '',
-        'total_score' => '',
+        'global_rank' => 'Глобални Ранг',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '',
+            'success' => 'Члан тима уклоњен',
         ],
 
         'index' => [
-            'title' => '',
+            'title' => 'Управљајте Чланове',
 
             'applications' => [
-                'empty' => '',
-                'empty_slots' => '',
+                'empty' => 'Тренутно нема захтева за придруживање.',
+                'empty_slots' => 'Број доступних места',
                 'title' => '',
                 'created_at' => '',
             ],
 
             'table' => [
-                'status' => '',
+                'status' => 'Статус',
                 'joined_at' => '',
-                'remove' => '',
-                'title' => '',
+                'remove' => 'Уклони',
+                'title' => 'Тренутни чланови',
             ],
 
             'status' => [
-                'status_0' => '',
-                'status_1' => '',
+                'status_0' => 'Неактивно',
+                'status_1' => 'Активно',
             ],
         ],
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Изашао/ла из тима ;_;',
     ],
 
     'show' => [
         'bar' => [
+            'chat' => '',
             'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'join' => 'Захтев за придруживање',
+            'join_cancel' => 'Откажи захтев за придруживање',
+            'part' => 'Изађи из тима',
         ],
 
         'info' => [
             'created' => '',
-            'website' => '',
         ],
 
         'members' => [
@@ -125,8 +137,12 @@ return [
         ],
 
         'sections' => [
-            'info' => '',
-            'members' => '',
+            'info' => 'Инфо',
+            'members' => 'Чланови',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];
