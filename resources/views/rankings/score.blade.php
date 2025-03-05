@@ -50,13 +50,13 @@
                     <td class="ranking-page-table__column">
                         <div class="ranking-page-table__user-link">
                             <span class="ranking-page-table__flags">
-                                <a href="{{route('rankings', ['mode' => $mode, 'type' => 'performance', 'country' => $score->user->country_acronym])}}">
+                                <a class="u-contents" href="{{route('rankings', ['mode' => $mode, 'type' => 'performance', 'country' => $score->user->country_acronym])}}">
                                     @include('objects._flag_country', [
                                         'country' => $score->user->country,
                                     ])
                                 </a>
                                 @if (($team = $score->user->team) !== null)
-                                    <a class="u-hover" href="{{ route('teams.show', $team) }}">
+                                    <a class="u-contents u-hover" href="{{ route('teams.show', $team) }}">
                                         @include('objects._flag_team', compact('team'))
                                     </a>
                                 @endif

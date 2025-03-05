@@ -135,19 +135,30 @@ class Mods
         );
     }
 
-    public function assertValidExclusivity(int $rulesetId, array $requiredIds, array $allowedIds): bool
+    public function assertValidExclusivity(int $rulesetId, array $modAcronyms): void
     {
         $disallowedIds = new Set();
 
-        while (($requiredId = array_pop($requiredIds)) !== null) {
-            $mod = $this->mods[$rulesetId][$requiredId];
-            $incompatibleIds = $mod['IncompatibleMods'];
-            $disallowedIds->add($requiredId, ...$incompatibleIds);
+        foreach ($modAcronyms as $modAcronym) {
+            $incompatibleIds = $this->mods[$rulesetId][$modAcronym]['IncompatibleMods'];
+            $disallowedIds->add(...$incompatibleIds);
+        }
 
-            $invalidRequiredIds = $incompatibleIds->intersect(new Set($requiredIds));
-            if ($invalidRequiredIds->count() > 0) {
-                throw new InvariantException("incompatible mods: {$requiredId}, {$invalidRequiredIds->join(', ')}");
-            }
+        $invalidIds = $disallowedIds->intersect(new Set($modAcronyms));
+        if ($invalidIds->count() > 0) {
+            throw new InvariantException("incompatible mods: {$invalidIds->join(', ')}");
+        }
+    }
+
+    public function assertValidMultiplayerExclusivity(int $rulesetId, array $requiredIds, array $allowedIds): void
+    {
+        $this->assertValidExclusivity($rulesetId, $requiredIds);
+
+        $disallowedIds = new Set();
+
+        foreach ($requiredIds as $requiredId) {
+            $incompatibleIds = $this->mods[$rulesetId][$requiredId]['IncompatibleMods'];
+            $disallowedIds->add($requiredId, ...$incompatibleIds);
         }
 
         $invalidAllowedIds = $disallowedIds->intersect(new Set($allowedIds));
@@ -155,8 +166,6 @@ class Mods
         if ($invalidAllowedIds->count() > 0) {
             throw new InvariantException("allowed mods conflict with required mods: {$invalidAllowedIds->join(', ')}");
         }
-
-        return true;
     }
 
     public function bitsetToIds(int $inputBitset): array

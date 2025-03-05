@@ -109,6 +109,7 @@ return [
         ],
         'teams_controller' => [
             '_' => 'komandas',
+            'create' => '',
             'edit' => '',
             'leaderboard' => '',
             'show' => 'komandas info',

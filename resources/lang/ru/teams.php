@@ -6,25 +6,40 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Игрок добавлен в команду.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Запрос на вступление отменен.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Запрос на вступление отклонен.',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Запрос отправлен.',
+        ],
+    ],
+
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Команда удалена',
     ],
 
     'edit' => [
-        'saved' => 'Настройки сохранены',
+        'ok' => '',
         'title' => 'Настройки команды',
 
         'description' => [
@@ -32,23 +47,22 @@ return [
             'title' => 'Описание команды',
         ],
 
+        'flag' => [
+            'label' => '',
+            'title' => '',
+        ],
+
         'header' => [
             'label' => 'Обложка',
             'title' => 'Загрузить обложку',
         ],
 
-        'logo' => [
-            'label' => 'Флаг команды',
-            'title' => 'Установить флаг команды',
-        ],
-
         'settings' => [
-            'application' => 'Подача заявок на вступление',
             'application_help' => 'Разрешить ли игрокам подавать заявки на вступление в команду',
-            'default_ruleset' => 'Режим игры по умолчанию',
             'default_ruleset_help' => 'Режим игры, отображаемый при открытии страницы команды',
+            'flag_help' => '',
+            'header_help' => '',
             'title' => 'Настройки команды',
-            'url' => 'Ссылка',
 
             'application_state' => [
                 'state_0' => 'Закрыта',
@@ -58,19 +72,17 @@ return [
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'настройки',
+        'leaderboard' => 'таблица лидеров',
+        'show' => 'информация',
 
         'members' => [
-            'index' => '',
+            'index' => 'управление участниками',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
-        'performance' => '',
-        'total_score' => '',
+        'global_rank' => 'Рейтинг в мире',
     ],
 
     'members' => [
@@ -82,10 +94,10 @@ return [
             'title' => 'Управление участниками',
 
             'applications' => [
-                'empty' => '',
-                'empty_slots' => '',
-                'title' => '',
-                'created_at' => '',
+                'empty' => 'Нет запросов на вступление.',
+                'empty_slots' => 'Свободных мест',
+                'title' => 'Запросы на вступление',
+                'created_at' => 'Запрос отправлен в',
             ],
 
             'table' => [
@@ -103,20 +115,20 @@ return [
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Вы покинули команду ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'chat' => '',
+            'destroy' => 'Удалить команду',
+            'join' => 'Отправить запрос',
+            'join_cancel' => 'Отменить запрос',
+            'part' => 'Покинуть команду',
         ],
 
         'info' => [
             'created' => 'Сформирована',
-            'website' => 'Веб-сайт',
         ],
 
         'members' => [
@@ -128,5 +140,9 @@ return [
             'info' => 'Информация',
             'members' => 'Участники',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];

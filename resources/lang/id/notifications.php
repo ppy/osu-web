@@ -20,7 +20,7 @@ return [
         'channel' => 'percakapan',
         'forum_topic' => 'forum',
         'news_post' => 'berita',
-        'team' => '',
+        'team' => 'tim',
         'user' => 'profil',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'forum',
         'news_post' => 'berita',
-        'team' => '',
+        'team' => 'tim',
         'user' => 'profil',
     ],
 
@@ -163,12 +163,12 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Permintaan gabung tim',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "Kamu kini merupakan anggota dari tim :title",
+                'team_application_accept_compact' => "Kamu kini merupakan anggota dari tim :title",
+                'team_application_reject' => 'Permintaan kamu untuk bergabung ke tim :title telah ditolak',
+                'team_application_reject_compact' => 'Permintaan kamu untuk bergabung ke tim :title telah ditolak',
             ],
         ],
 
@@ -258,8 +258,8 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "Kamu kini merupakan anggota dari tim :title",
+                'team_application_reject' => 'Permintaan kamu untuk bergabung ke tim :title telah ditolak',
             ],
         ],
 

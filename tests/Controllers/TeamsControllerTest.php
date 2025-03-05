@@ -5,6 +5,7 @@
 
 namespace Tests\Controllers;
 
+use App\Models\Chat;
 use App\Models\Team;
 use App\Models\TeamMember;
 use App\Models\User;
@@ -33,6 +34,8 @@ class TeamsControllerTest extends TestCase
 
         $this->expectCountChange(fn () => Team::count(), 1);
         $this->expectCountChange(fn () => TeamMember::count(), 1);
+        $this->expectCountChange(fn () => Chat\Channel::count(), 1);
+        $this->expectCountChange(fn () => Chat\UserChannel::count(), 1);
 
         $this
             ->actingAsVerified($user)
@@ -58,5 +61,23 @@ class TeamsControllerTest extends TestCase
             ->actingAsVerified($user)
             ->post(route('teams.store'), ['name' => 'test', 'short_name' => 'test'])
             ->assertStatus(403);
+    }
+
+    public function testStoreInvalid(): void
+    {
+        $existingTeam = Team::factory()->create();
+        $user = User::factory()->create();
+
+        $this->expectCountChange(fn () => Team::count(), 0);
+        $this->expectCountChange(fn () => TeamMember::count(), 0);
+        $this->expectCountChange(fn () => Chat\Channel::count(), 0);
+        $this->expectCountChange(fn () => Chat\UserChannel::count(), 0);
+
+        $this
+            ->actingAsVerified($user)
+            ->post(route('teams.store'), ['team' => ['name' => $existingTeam->name, 'short_name' => 'test']])
+            ->assertStatus(422);
+
+        $this->assertNull($user->fresh()->team);
     }
 }

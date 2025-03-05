@@ -55,7 +55,7 @@ return [
         'contact' => 'Referente:',
         'date' => 'Data:',
         'echeck_delay' => 'Visto che il tuo pagamento era un eCheck, dovrai attendere altri 10 giorni per far passare il pagamento attraverso PayPal!',
-        'echeck_denied' => '',
+        'echeck_denied' => 'Il pagamento eCheck è stato rifiutato da PayPal.',
         'hide_from_activity' => 'I tag osu!supporter in questo ordine non verranno mostrati nella tua attività recente.',
         'sent_via' => 'Inviato con:',
         'shipping_to' => 'Indirizzo di spedizione:',
@@ -79,7 +79,7 @@ return [
             ],
             'prepared' => [
                 'title' => 'Il tuo ordine è in preparazione!',
-                'line_1' => 'Si prega di attendere ancora un po\' prima che venga spedito. Le informazioni di tracciamento verranno visualizzate qui una volta che l\'ordine è stato elaborato e inviato. Questo può richiedere fino a cinque giorni (ma di solito meno!) a seconda di quanto siamo occupati.',
+                'line_1' => 'Si prega di attendere ancora un po\' prima che venga spedito. I dettagli di tracciamento verranno visualizzati qui una volta che l\'ordine è stato elaborato e inviato. Questo può richiedere fino a 5 giorni (ma di solito meno!) a seconda di quanto siamo occupati.',
                 'line_2' => 'Inviamo tutti gli ordini dal Giappone utilizzando una varietà di servizi di spedizione a seconda del peso e del valore. Questa area verrà aggiornata con le specifiche una volta spedito l\'ordine.',
             ],
             'processing' => [

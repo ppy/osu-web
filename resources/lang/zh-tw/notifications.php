@@ -20,7 +20,7 @@ return [
         'channel' => '聊天',
         'forum_topic' => '論壇',
         'news_post' => '新聞',
-        'team' => '',
+        'team' => '團隊',
         'user' => '個人資料',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => '聊天',
         'forum_topic' => '討論區',
         'news_post' => '最新消息',
-        'team' => '',
+        'team' => '團隊',
         'user' => '個人檔案',
     ],
 
@@ -163,12 +163,12 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => '團隊加入請求',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "你現在是 :title 團隊的成員了",
+                'team_application_accept_compact' => "你現在是 :title 團隊的成員了",
+                'team_application_reject' => '你加入 :title 團隊的請求已被拒絕',
+                'team_application_reject_compact' => '你加入 :title 團隊的請求已被拒絕',
             ],
         ],
 
@@ -258,8 +258,8 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "你現在是 :title 團隊的成員了",
+                'team_application_reject' => '你加入 :title 團隊的請求已被拒絕',
             ],
         ],
 

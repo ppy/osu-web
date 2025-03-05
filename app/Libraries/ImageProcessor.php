@@ -75,7 +75,7 @@ class ImageProcessor
 
         $inputImage = open_image($this->inputPath, $this->inputDim);
 
-        if ($inputImage === null) {
+        if ($inputImage === null || $this->inputDim[0] === 0 || $this->inputDim[1] === 0) {
             throw new ImageProcessorException(osu_trans('users.show.edit.cover.upload.broken_file'));
         }
 
@@ -85,8 +85,7 @@ class ImageProcessor
         ) {
             if (
                 $this->inputFileSize < $this->targetFileSize &&
-                $this->inputDim[0] === $this->targetDim[0] &&
-                $this->inputDim[1] === $this->targetDim[1]
+                $this->inputDim[0] / $this->inputDim[1] === $this->targetDim[0] / $this->targetDim[1]
             ) {
                 return;
             }

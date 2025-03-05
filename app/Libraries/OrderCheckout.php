@@ -67,7 +67,11 @@ class OrderCheckout
             }
 
             $order->status = Order::STATUS_PAYMENT_REQUESTED;
-            $order->transaction_id = $this->newOrderTransactionId();
+            $order->provider = $this->provider;
+            $order->reference = $this->providerReference;
+            // TODO: maybe don't fill transaction_id at the start anymore?
+            $order->transaction_id = $this->providerReference !== null ? "{$this->provider}-{$this->providerReference}" : $this->provider;
+
             $order->reserveItems();
 
             $order->saveorExplode();
@@ -176,10 +180,5 @@ class OrderCheckout
     private function allowXsollaPayment(): bool
     {
         return !$this->order->requiresShipping();
-    }
-
-    private function newOrderTransactionId(): string
-    {
-        return $this->provider === Order::PROVIDER_SHOPIFY ? "{$this->provider}-{$this->providerReference}" : $this->provider;
     }
 }
