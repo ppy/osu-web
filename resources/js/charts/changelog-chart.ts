@@ -11,7 +11,7 @@ import { parseJson } from 'utils/json';
 interface BuildHistory {
   created_at: string;
   label: string;
-  normalized: number;
+  normalized?: number;
   user_count: number;
 }
 
@@ -123,7 +123,7 @@ export default class ChangelogChart {
     const stack = d3
       .stack<DataObj, string>()
       .keys(this.chartData.order)
-      .value((d, val) => (d.builds[val] != null ? d.builds[val].normalized : 0));
+      .value((d, val) => (d.builds[val]?.normalized ?? 0));
 
     this.data = stack(data);
     this.hasData = this.chartData.build_history.length > 0 && hasData;
