@@ -5,29 +5,29 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Išjungti pasirinktus',
+        'batch_enable' => 'Įjungti pasirinktus',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
+            '_' => ':action :items?',
+            'disable' => 'Išjungti',
+            'enable' => 'Įjungti',
             'items' => '',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Failai',
+            'submit' => 'Išsaugoti',
+            'title' => 'Pridėti naują',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
+            'click_to_disable' => 'Paspausk kad išjungtum',
+            'click_to_enable' => 'Paspausk kad įjungtum',
+            'enabled' => 'Įjungtas(-a)',
+            'disabled' => 'Išjungtas(-a)',
             'image_store' => '',
-            'image_update' => '',
+            'image_update' => 'Pakeisti paveikslėlį',
         ],
     ],
     'store' => [

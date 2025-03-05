@@ -6,25 +6,40 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Vous avez accepté la candidature.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Candidature annulée.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Vous avez refusé la candidature.',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Candidature envoyée.',
+        ],
+    ],
+
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Équipe supprimée',
     ],
 
     'edit' => [
-        'saved' => 'Paramètres enregistrés avec succès',
+        'ok' => '',
         'title' => 'Paramètres de l\'équipe',
 
         'description' => [
@@ -32,67 +47,64 @@ return [
             'title' => 'Description de l\'équipe',
         ],
 
-        'header' => [
-            'label' => 'Image d\'en-tête',
-            'title' => 'Définir l\'image d\'en-tête',
+        'flag' => [
+            'label' => '',
+            'title' => '',
         ],
 
-        'logo' => [
-            'label' => 'Drapeau de l\'équipe',
-            'title' => 'Définir le drapeau de l\'équipe',
+        'header' => [
+            'label' => 'Bannière',
+            'title' => 'Définir la bannière',
         ],
 
         'settings' => [
-            'application' => 'Candidatures d\'équipe',
-            'application_help' => 'Permettre aux personnes de candidater pour l\'équipe',
-            'default_ruleset' => 'Mode de jeu par défaut',
-            'default_ruleset_help' => 'Le mode de jeu à sélectionner par défaut lors de la visite de la page de l\'équipe',
+            'application_help' => 'Cette option permet aux autres joueurs d\'envoyer une candidature pour rejoindre votre équipe',
+            'default_ruleset_help' => 'Le mode de jeu sélectionné par défaut lors de la visite de la page de l\'équipe',
+            'flag_help' => '',
+            'header_help' => '',
             'title' => 'Paramètres de l\'équipe',
-            'url' => 'URL',
 
             'application_state' => [
-                'state_0' => 'Fermée',
-                'state_1' => 'Ouverte',
+                'state_0' => 'Fermées',
+                'state_1' => 'Ouvertes',
             ],
         ],
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'paramètres',
+        'leaderboard' => 'classement',
+        'show' => 'infos',
 
         'members' => [
-            'index' => '',
+            'index' => 'gestion des membres',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
-        'performance' => '',
-        'total_score' => '',
+        'global_rank' => 'Classement global',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => 'Membre d\'équipe retiré',
+            'success' => 'Ce membre a été exclu',
         ],
 
         'index' => [
-            'title' => 'Gérer les membres',
+            'title' => 'Gestion des membres',
 
             'applications' => [
-                'empty' => '',
-                'empty_slots' => '',
-                'title' => '',
-                'created_at' => '',
+                'empty' => 'Aucune candidature pour le moment.',
+                'empty_slots' => 'Places disponibles ',
+                'title' => 'Candidatures',
+                'created_at' => 'Date',
             ],
 
             'table' => [
                 'status' => 'Statut',
                 'joined_at' => 'Date d\'adhésion',
-                'remove' => 'Retirer',
-                'title' => 'Membres Actuels',
+                'remove' => 'Exclure',
+                'title' => 'Liste des membres',
             ],
 
             'status' => [
@@ -103,20 +115,20 @@ return [
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Vous avez quitté l\'équipe ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'chat' => '',
+            'destroy' => 'Dissoudre l\'équipe',
+            'join' => 'Demander à rejoindre',
+            'join_cancel' => 'Annuler la demande',
+            'part' => 'Quitter l\'équipe',
         ],
 
         'info' => [
-            'created' => 'Formé',
-            'website' => 'Site web',
+            'created' => 'Créée en',
         ],
 
         'members' => [
@@ -128,5 +140,9 @@ return [
             'info' => 'Infos',
             'members' => 'Membres',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];

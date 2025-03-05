@@ -6,25 +6,40 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Đã thêm thành viên vào đội.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Đã huỷ yêu cầu gia nhập.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Đã từ chối yêu cầu gia nhập.',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Đã yêu cầu gia nhập vào đội.',
+        ],
+    ],
+
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Nhóm đã bị xóa',
     ],
 
     'edit' => [
-        'saved' => 'Lưu cài đặt thành công',
+        'ok' => '',
         'title' => 'Cài đặt đội',
 
         'description' => [
@@ -32,23 +47,22 @@ return [
             'title' => 'Mô tả đội',
         ],
 
+        'flag' => [
+            'label' => '',
+            'title' => '',
+        ],
+
         'header' => [
             'label' => 'Ảnh bìa',
             'title' => 'Đặt ảnh bìa',
         ],
 
-        'logo' => [
-            'label' => 'Cờ đội',
-            'title' => 'Đặt cờ đội',
-        ],
-
         'settings' => [
-            'application' => 'Đơn ứng tuyển của đội',
             'application_help' => 'Tùy chọn cho phép mọi người vào đội',
-            'default_ruleset' => 'Quy tắc mặc định',
             'default_ruleset_help' => 'Quy tắc sẽ được chọn làm mặc định khi xem trang của đội',
+            'flag_help' => '',
+            'header_help' => '',
             'title' => 'Cài đặt đội',
-            'url' => 'Liên kết',
 
             'application_state' => [
                 'state_0' => 'Đã đóng',
@@ -58,19 +72,17 @@ return [
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'cài đặt',
+        'leaderboard' => 'bảng xếp hạng',
+        'show' => 'thông tin',
 
         'members' => [
-            'index' => '',
+            'index' => 'quản lý thành viên',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
-        'performance' => '',
-        'total_score' => '',
+        'global_rank' => 'Xếp hạng toàn cầu',
     ],
 
     'members' => [
@@ -82,10 +94,10 @@ return [
             'title' => 'Quản lý thành viên',
 
             'applications' => [
-                'empty' => '',
-                'empty_slots' => '',
-                'title' => '',
-                'created_at' => '',
+                'empty' => 'Hiện nay không có yêu cầu gia nhập.',
+                'empty_slots' => 'Số chỗ còn trống',
+                'title' => 'Yêu cầu gia nhập',
+                'created_at' => 'Yêu cầu vào lúc',
             ],
 
             'table' => [
@@ -103,20 +115,20 @@ return [
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Đã rời đội ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'chat' => '',
+            'destroy' => 'Giải tán đội',
+            'join' => 'Yêu cầu gia nhập',
+            'join_cancel' => 'Huỷ gia nhập',
+            'part' => 'Rời đội',
         ],
 
         'info' => [
             'created' => 'Đã hình thành',
-            'website' => 'Website',
         ],
 
         'members' => [
@@ -128,5 +140,9 @@ return [
             'info' => 'Thông tin',
             'members' => 'Thành viên',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];

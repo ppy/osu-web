@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid_ruleset' => '',
+    'invalid_ruleset' => '指定的遊戲模式無效。',
 
     'change_owner' => [
         'too_many' => '客串譜師過多。',

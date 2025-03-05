@@ -109,8 +109,9 @@ return [
         ],
         'teams_controller' => [
             '_' => 'команды',
-            'edit' => '',
-            'leaderboard' => '',
+            'create' => '',
+            'edit' => 'настройки команды',
+            'leaderboard' => 'таблица лидеров команды',
             'show' => 'информация',
         ],
         'tournaments_controller' => [
@@ -138,7 +139,7 @@ return [
     ],
     'teams' => [
         'members_controller' => [
-            'index' => '',
+            'index' => 'участники команды',
         ],
     ],
     'users' => [

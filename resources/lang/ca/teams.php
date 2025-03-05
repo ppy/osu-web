@@ -19,12 +19,27 @@ return [
         ],
     ],
 
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
+        ],
+    ],
+
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Equip eliminat',
     ],
 
     'edit' => [
-        'saved' => 'Configuració desada correctament',
+        'ok' => '',
         'title' => 'Configuracions de l\'Equip',
 
         'description' => [
@@ -32,23 +47,22 @@ return [
             'title' => 'Descripció de l\'equip',
         ],
 
+        'flag' => [
+            'label' => '',
+            'title' => '',
+        ],
+
         'header' => [
             'label' => 'Capçalera de la Imatge',
             'title' => 'Posar Capçalera a la Imatge',
         ],
 
-        'logo' => [
-            'label' => 'Bandera de l\'Equip',
-            'title' => 'Posar Bandera de l\'Equip',
-        ],
-
         'settings' => [
-            'application' => 'Sol·licitud de l\'Equip',
             'application_help' => 'Si permetre que la gent sol·liciti unir-se a l\'equip',
-            'default_ruleset' => 'Mode de joc Predeterminat',
             'default_ruleset_help' => 'El Mode de joc a ser seleccionat per defecte quan visites la pàgina de l\'equip',
+            'flag_help' => '',
+            'header_help' => '',
             'title' => 'Configuració de l\'Equip',
-            'url' => 'URL',
 
             'application_state' => [
                 'state_0' => 'Tancat',
@@ -58,7 +72,7 @@ return [
     ],
 
     'header_links' => [
-        'edit' => '',
+        'edit' => 'configuració',
         'leaderboard' => '',
         'show' => '',
 
@@ -68,9 +82,7 @@ return [
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
-        'performance' => '',
-        'total_score' => '',
+        'global_rank' => 'Classificació global',
     ],
 
     'members' => [
@@ -83,9 +95,9 @@ return [
 
             'applications' => [
                 'empty' => '',
-                'empty_slots' => '',
-                'title' => '',
-                'created_at' => '',
+                'empty_slots' => 'Places disponibles',
+                'title' => 'Sol·licituds d\'accés',
+                'created_at' => 'Sol·licitat a',
             ],
 
             'table' => [
@@ -103,20 +115,20 @@ return [
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Has abandonat l\'equip ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'chat' => '',
+            'destroy' => 'Dissol l\'Equip',
+            'join' => 'Sol·licitar accés',
+            'join_cancel' => 'Cancel·la la sol·licitud d\'accés',
+            'part' => 'Abandona l\'Equip',
         ],
 
         'info' => [
             'created' => 'Format',
-            'website' => 'Lloc web',
         ],
 
         'members' => [
@@ -128,5 +140,9 @@ return [
             'info' => 'Info',
             'members' => 'Membres',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];

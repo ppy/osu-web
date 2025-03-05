@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Lumpuhkan Pilihan',
+        'batch_enable' => 'Upayakan Pilihan',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':action :items?',
+            'disable' => 'Lumpuhkan',
+            'enable' => 'Upayakan',
+            'items' => ':count_delimited kulit',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Fail',
+            'submit' => 'Simpan',
+            'title' => 'Tambah Baharu',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'Klik untuk lumpuhkan',
+            'click_to_enable' => 'Klik untuk upayakan',
+            'enabled' => 'Diupayakan',
+            'disabled' => 'Dilumpuhkan',
+            'image_store' => 'Tetapkan Gambar',
+            'image_update' => 'Ganti Gambar',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'Ralat berlaku ketika mencipta kulit. :error',
+        'ok' => 'Kulit dicipta',
     ],
 ];

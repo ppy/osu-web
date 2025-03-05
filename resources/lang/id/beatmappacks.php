@@ -17,7 +17,7 @@ return [
     ],
 
     'show' => [
-        'created_by' => '',
+        'created_by' => 'oleh :author',
         'download' => 'Unduh',
         'item' => [
             'cleared' => 'telah dituntaskan',

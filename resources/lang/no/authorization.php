@@ -205,6 +205,9 @@ return [
             'is_leader' => "",
             'not_member' => '',
         ],
+        'store' => [
+            'require_supporter_tag' => '',
+        ],
     ],
 
     'user' => [

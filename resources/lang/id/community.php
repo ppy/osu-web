@@ -115,7 +115,7 @@ return [
             ],
 
             'sort_options' => [
-                'title' => 'Opsi Untuk Menyortir',
+                'title' => 'Opsi Penyortiran',
                 'description' => 'Kemampuan untuk dapat mengakses papan peringkat negara / teman / mod dari dalam permainan.',
             ],
 

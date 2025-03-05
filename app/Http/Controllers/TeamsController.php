@@ -137,20 +137,13 @@ class TeamsController extends Controller
     {
         priv_check('TeamStore')->ensureCan();
 
-        $params = get_params(\Request::all(), 'team', [
+        $team = new Team(get_params(\Request::all(), 'team', [
             'name',
             'short_name',
-        ]);
-
-        $user = \Auth::user();
-        $team = (new Team([...$params, 'leader_id' => $user->getKey()]));
+        ]));
+        $team->leader()->associate(\Auth::user());
         try {
-            \DB::transaction(function () use ($team, $user) {
-                $channel = $team->createChannel();
-                $team->saveOrExplode();
-                $team->members()->create(['user_id' => $user->getKey()]);
-                $channel->addUser($user);
-            });
+            $team->saveOrExplode();
         } catch (ModelNotSavedException) {
             return ext_view('teams.create', compact('team'), status: 422);
         }

@@ -6,30 +6,30 @@
 return [
     'error' => [
         'chat' => [
-            'empty' => 'Tidak dapat mengirim pesanan kosong.',
-            'limit_exceeded' => 'Kamu mengirim pesanan terlalu cepat, sila tunggu sebentar sebelum mencubanya lagi.',
-            'too_long' => 'Pesanan yang ingin dikirim terlalu panjang.',
+            'empty' => 'Pesanan kosong tidak boleh dikirim.',
+            'limit_exceeded' => 'Anda terlalu cepat mengirim pesanan, sila cuba lagi selepas menunggu sebentar.',
+            'too_long' => 'Pesanan yang dicuba kirim terlalu panjang.',
         ],
     ],
 
     'scopes' => [
-        'bot' => 'Bertindak selaku bot bual.',
-        'identify' => 'Mengenali dirimu dan membaca profil awam milik kamu.',
+        'bot' => 'Bertindak selaku bot perbualan.',
+        'identify' => 'Mengenali dan membaca profil awam anda.',
 
         'chat' => [
-            'read' => '',
-            'write' => 'Mengirim pesan atas nama akaun kamu.',
-            'write_manage' => '',
+            'read' => 'Baca pesanan bagi pihak anda.',
+            'write' => 'Kirim pesanan bagi pihak anda.',
+            'write_manage' => 'Memasuki dan meninggalkan saluran bagi pihak anda.',
         ],
 
         'forum' => [
-            'write' => 'Membuat dan menyunting topik forum serta kiriman forum atas nama akaun kamu.',
+            'write' => 'Mencipta dan menyunting tajuk dan hantaran forum bagi pihak anda.',
         ],
 
         'friends' => [
-            'read' => 'Melihat siapa saja yang kamu ikuti.',
+            'read' => 'Melihat ikutan anda.',
         ],
 
-        'public' => 'Membaca data yang bersifat awam atas nama akaun kamu.',
+        'public' => 'Membaca data awam bagi pihak anda.',
     ],
 ];

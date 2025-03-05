@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => '',
+        'used' => '',
+        'word_not_allowed' => '',
+
+        'attributes' => [
+            'default_ruleset_id' => '',
+            'is_open' => '',
+            'name' => '이름',
+            'short_name' => '짧은 이름',
+            'url' => 'URL',
+        ],
+    ],
+
     'user' => [
         'contains_username' => '비밀번호에 아이디를 포함할 수 없습니다.',
         'email_already_used' => '이미 사용중인 이메일 주소입니다.',

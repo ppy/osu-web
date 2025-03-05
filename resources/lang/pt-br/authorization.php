@@ -194,16 +194,19 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
-                'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'already_member' => "Você já faz parte do time.",
+                'already_other_member' => "Você já faz parte de um time diferente.",
+                'currently_applying' => 'Você tem pedido de adesão de equipe pendente.',
+                'team_closed' => 'A equipe não está aceitando nenhum pedido de adesão.',
+                'team_full' => "A equipe está cheia e não pode mais aceitar nenhum membro.",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "O líder da equipe não pode sair da equipe.",
+            'not_member' => 'Não é um membro da equipe.',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

@@ -47,7 +47,7 @@
                 </div>
                 <div class="profile-info__info">
                     <h1 class="profile-info__name">
-                        {{ $team->name }}
+                        <span class="u-ellipsis-overflow">{{ $team->name }}</span>
                     </h1>
                     <div class="profile-info__flags">
                         <p class="profile-info__flag">
