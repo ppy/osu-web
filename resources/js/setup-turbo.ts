@@ -25,21 +25,19 @@ document.addEventListener('turbo:submit-end', (e) => {
 });
 
 document.addEventListener('turbo:before-fetch-response', (e) => {
-  if (!e.detail.fetchResponse.contentType?.match(/^text\/osu-turbo-redirect[ ;]*/)) {
-    return;
+  if (e.detail.fetchResponse.header('x-turbo-action') === 'redirect') {
+    e.preventDefault();
+    e.detail.fetchResponse.responseText.then((url) => {
+      const [currentUrlBase, urlBase] = [document.location.href, url].map((u) => u.replace(/#.*/, ''));
+
+      if (currentUrlBase === urlBase) {
+        // a normal/advance visit to same url won't reload the page
+        Turbo.visit(url, { action: 'replace' });
+      } else {
+        Turbo.visit(url);
+      }
+    });
   }
-
-  e.preventDefault();
-  e.detail.fetchResponse.responseText.then((url) => {
-    const [currentUrlBase, urlBase] = [document.location.href, url].map((u) => u.replace(/#.*/, ''));
-
-    if (currentUrlBase === urlBase) {
-      // a normal/advance visit to same url won't reload the page
-      Turbo.visit(url, { action: 'replace' });
-    } else {
-      Turbo.visit(url);
-    }
-  });
 });
 
 // disable turbo navigation for old webs
