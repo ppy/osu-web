@@ -194,8 +194,8 @@ export default class ChangelogChart {
       };
 
       for (const val of values) {
-        val.normalized = val.user_count / sum;
         obj.builds[val.label] = val;
+        obj.builds[val.label].normalized = val.user_count / sum;
       }
 
       return obj;
