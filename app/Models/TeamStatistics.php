@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class TeamStatistics extends Model
 {
@@ -19,6 +20,11 @@ class TeamStatistics extends Model
     public function team(): BelongsTo
     {
         return $this->belongsTo(Team::class);
+    }
+
+    public function members(): HasMany
+    {
+        return $this->hasMany(TeamMember::class, 'team_id', 'team_id');
     }
 
     public function recalculate(): void
