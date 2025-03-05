@@ -55,7 +55,7 @@ return [
         'contact' => 'Kontakt:',
         'date' => 'Datum:',
         'echeck_delay' => 'Jelikož vaše platba byla prováděna službou eCheck, prosím, dejte nám až 10 dní na to, aby platba úspěšně prošla přes PayPal!',
-        'echeck_denied' => '',
+        'echeck_denied' => 'eCheck platba byla zamítnuta PayPalem.',
         'hide_from_activity' => 'osu!supporter tagy v této objednávce se nebudou zobrazovat v nedávných aktivitách.',
         'sent_via' => 'Odesláno přes:',
         'shipping_to' => 'Místo doručení:',

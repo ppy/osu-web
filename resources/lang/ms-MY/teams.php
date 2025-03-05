@@ -6,127 +6,143 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Pengguna ditambah ke pasukan.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Permintaan masuk dibatalkan.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Permintaan masuk ditolak.',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Kemasukan ke pasukan diminta.',
+        ],
+    ],
+
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Pasukan dipadam',
     ],
 
     'edit' => [
-        'saved' => '',
-        'title' => '',
+        'ok' => '',
+        'title' => 'Tetapan Pasukan',
 
         'description' => [
+            'label' => 'Keterangan',
+            'title' => 'Keterangan Pasukan',
+        ],
+
+        'flag' => [
             'label' => '',
             'title' => '',
         ],
 
         'header' => [
-            'label' => '',
-            'title' => '',
-        ],
-
-        'logo' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Gambar Kepala',
+            'title' => 'Tetapkan Gambar Kepala',
         ],
 
         'settings' => [
-            'application' => '',
-            'application_help' => '',
-            'default_ruleset' => '',
-            'default_ruleset_help' => '',
-            'title' => '',
-            'url' => '',
+            'application_help' => 'Membenarkan pemain lain memohon masuk pasukan',
+            'default_ruleset_help' => 'Ruleset yang dipilih secara asal ketika melawat halaman pasukan',
+            'flag_help' => '',
+            'header_help' => '',
+            'title' => 'Tetapan Pasukan',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => 'Ditutup',
+                'state_1' => 'Dibuka',
             ],
         ],
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'tetapan',
+        'leaderboard' => 'carta kedudukan',
+        'show' => 'maklumat',
 
         'members' => [
-            'index' => '',
+            'index' => 'urus ahli',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
-        'performance' => '',
-        'total_score' => '',
+        'global_rank' => 'Kedudukan Dunia',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '',
+            'success' => 'Ahli pasukan dikeluarkan',
         ],
 
         'index' => [
-            'title' => '',
+            'title' => 'Urus Ahli',
 
             'applications' => [
-                'empty' => '',
-                'empty_slots' => '',
-                'title' => '',
-                'created_at' => '',
+                'empty' => 'Tiada permintaan masuk pada masa ini.',
+                'empty_slots' => 'Slot tersedia',
+                'title' => 'Permintaan Masuk',
+                'created_at' => 'Diminta pada',
             ],
 
             'table' => [
-                'status' => '',
-                'joined_at' => '',
-                'remove' => '',
-                'title' => '',
+                'status' => 'Taraf',
+                'joined_at' => 'Tarikh Masuk',
+                'remove' => 'Keluarkan',
+                'title' => 'Ahli Semasa',
             ],
 
             'status' => [
-                'status_0' => '',
-                'status_1' => '',
+                'status_0' => 'Lengai',
+                'status_1' => 'Giat',
             ],
         ],
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Pasukan ditinggalkan ;m;',
     ],
 
     'show' => [
         'bar' => [
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'chat' => '',
+            'destroy' => 'Bubarkan Pasukan',
+            'join' => 'Minta Kemasukan',
+            'join_cancel' => 'Batal Kemasukan',
+            'part' => 'Tinggalkan Pasukan',
         ],
 
         'info' => [
-            'created' => '',
-            'website' => '',
+            'created' => 'Pembentukan',
         ],
 
         'members' => [
-            'members' => '',
-            'owner' => '',
+            'members' => 'Ahli Pasukan',
+            'owner' => 'Ketua Pasukan',
         ],
 
         'sections' => [
-            'info' => '',
-            'members' => '',
+            'info' => 'Maklumat',
+            'members' => 'Ahli',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];

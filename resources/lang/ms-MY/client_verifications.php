@@ -5,14 +5,14 @@
 
 return [
     'completed' => [
-        'home' => '',
-        'logout' => '',
-        'text' => '',
-        'title' => '',
+        'home' => 'Ke papan pemuka',
+        'logout' => 'Log keluar',
+        'text' => 'Anda kini boleh menutup tetingkap/tab ini',
+        'title' => 'pengesahan pelanggan osu! selesai',
     ],
 
     'create' => [
-        'confirm' => '',
-        'title' => '',
+        'confirm' => 'Klik butang izinkan di bawah untuk melengkapkan pengesahan pelanggan.',
+        'title' => 'pengesahan pelanggan osu!',
     ],
 ];

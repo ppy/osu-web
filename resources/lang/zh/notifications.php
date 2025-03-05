@@ -20,7 +20,7 @@ return [
         'channel' => '聊天',
         'forum_topic' => '论坛',
         'news_post' => '新闻',
-        'team' => '',
+        'team' => '战队',
         'user' => '个人资料',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => '聊天',
         'forum_topic' => '论坛',
         'news_post' => '新闻',
-        'team' => '',
+        'team' => '战队',
         'user' => '个人资料',
     ],
 
@@ -165,12 +165,12 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => '加入战队请求',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "您现在是战队 :title 的成员",
+                'team_application_accept_compact' => "您现在是战队 :title 的成员",
+                'team_application_reject' => '您加入战队 :title 的请求已被拒绝',
+                'team_application_reject_compact' => '您加入战队 :title 的请求已被拒绝',
             ],
         ],
 
@@ -261,8 +261,8 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "您现在是战队 :title 的成员",
+                'team_application_reject' => '您加入战队 :title 的请求已被拒绝',
             ],
         ],
 

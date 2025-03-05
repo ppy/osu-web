@@ -20,7 +20,7 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'fórum',
         'news_post' => 'notícias',
-        'team' => '',
+        'team' => 'equipe',
         'user' => 'perfil',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'fórum',
         'news_post' => 'notícias',
-        'team' => '',
+        'team' => 'equipe',
         'user' => 'perfil',
     ],
 
@@ -163,12 +163,12 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Solicitação para participar de equipe',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "Você agora é membro da equipe :title",
+                'team_application_accept_compact' => "Você agora é membro da equipe :title",
+                'team_application_reject' => 'Seu pedido para se juntar à equipe :title foi recusado',
+                'team_application_reject_compact' => 'Seu pedido para se juntar à equipe :title foi recusado',
             ],
         ],
 
@@ -258,8 +258,8 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "Você agora é membro da equipe :title",
+                'team_application_reject' => 'Seu pedido para se juntar à equipe :title foi recusado',
             ],
         ],
 

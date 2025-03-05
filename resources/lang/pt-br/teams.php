@@ -6,25 +6,40 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Adicionado usuário à equipe.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Pedido de adesão cancelado.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Pedido de adesão rejeitado.',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Solicitado para se juntar à equipe.',
+        ],
+    ],
+
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Time removido',
     ],
 
     'edit' => [
-        'saved' => 'Configurações salvas com sucesso',
+        'ok' => '',
         'title' => 'Configurações da Equipe',
 
         'description' => [
@@ -32,23 +47,22 @@ return [
             'title' => 'Descrição da Equipe',
         ],
 
+        'flag' => [
+            'label' => '',
+            'title' => '',
+        ],
+
         'header' => [
             'label' => 'Imagem do cabeçalho',
             'title' => 'Definir imagem do cabeçalho',
         ],
 
-        'logo' => [
-            'label' => 'Bandeira da Equipe',
-            'title' => 'Definir Bandeira da Equipe',
-        ],
-
         'settings' => [
-            'application' => 'Aplicativo de Equipe',
             'application_help' => 'Se deve permitir que as pessoas se inscrevam para a equipe',
-            'default_ruleset' => 'Regras padrão',
             'default_ruleset_help' => 'O conjunto de regras a ser selecionado por padrão quando visitar a página da equipe',
+            'flag_help' => '',
+            'header_help' => '',
             'title' => 'Configurações da Equipe',
-            'url' => 'URL',
 
             'application_state' => [
                 'state_0' => 'Fechado',
@@ -58,19 +72,17 @@ return [
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'configurações',
+        'leaderboard' => 'placar',
+        'show' => 'informações',
 
         'members' => [
-            'index' => '',
+            'index' => 'gerenciar membros',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
-        'performance' => '',
-        'total_score' => '',
+        'global_rank' => 'Ranking Global',
     ],
 
     'members' => [
@@ -82,10 +94,10 @@ return [
             'title' => 'Gerenciar Membros',
 
             'applications' => [
-                'empty' => '',
-                'empty_slots' => '',
-                'title' => '',
-                'created_at' => '',
+                'empty' => 'Nenhum pedido de adesão no momento.',
+                'empty_slots' => 'Espaços disponíveis',
+                'title' => 'Pedidos de Adesão',
+                'created_at' => 'Solicitado em',
             ],
 
             'table' => [
@@ -103,20 +115,20 @@ return [
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Deixou a equipe ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'chat' => '',
+            'destroy' => 'Dispensar Equipe',
+            'join' => 'Pedir para juntar-se',
+            'join_cancel' => 'Cancelar Entrada',
+            'part' => 'Deixe a equipe',
         ],
 
         'info' => [
             'created' => 'Formado',
-            'website' => 'Website',
         ],
 
         'members' => [
@@ -128,5 +140,9 @@ return [
             'info' => 'Info',
             'members' => 'Membros',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];

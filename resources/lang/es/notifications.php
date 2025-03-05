@@ -20,7 +20,7 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'foro',
         'news_post' => 'noticias',
-        'team' => '',
+        'team' => 'equipo',
         'user' => 'perfil',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'foro',
         'news_post' => 'noticias',
-        'team' => '',
+        'team' => 'equipo',
         'user' => 'perfil',
     ],
 
@@ -163,12 +163,12 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Solicitud de unirse al equipo',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "Ahora eres miembro del equipo :title",
+                'team_application_accept_compact' => "Ahora eres miembro del equipo :title",
+                'team_application_reject' => 'Tu solicitud para unirte al equipo :title ha sido rechazada',
+                'team_application_reject_compact' => 'Tu solicitud para unirte al equipo :title ha sido rechazada',
             ],
         ],
 
@@ -258,8 +258,8 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "Ahora eres miembro del equipo :title",
+                'team_application_reject' => 'Tu solicitud para unirte al equipo :title ha sido rechazada',
             ],
         ],
 

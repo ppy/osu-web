@@ -296,24 +296,24 @@ return [
         ],
 
         'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Hapus tag "osu!lazer"',
+            'to_0_done' => 'Tag "osu!lazer" dihapus',
+            'to_1' => 'Tambah tag "osu!lazer"',
+            'to_1_done' => 'Tag "osu!lazer" ditambahkan',
         ],
 
         'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Hapus tag "osu!stable"',
+            'to_0_done' => 'Tag "osu!stable" dihapus',
+            'to_1' => 'Tambah tag "osu!stable"',
+            'to_1_done' => 'Tag "osu!stable" ditambahkan',
         ],
 
         'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Hapus tag "osu!web"',
+            'to_0_done' => 'Tag "osu!web" dihapus',
+            'to_1' => 'Tambah tag "osu!web"',
+            'to_1_done' => 'Tag "osu!web" ditambahkan',
         ],
 
         'lock' => [

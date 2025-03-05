@@ -42,7 +42,7 @@ return [
 
     'nominate' => [
         'bng_limited_too_many_rulesets' => '見習提名者無法提名多個規則集的圖譜。',
-        'full_nomination_required' => '你必須完全是一個提名者才能展現一個遊戲模式的最終提名。',
+        'full_nomination_required' => '你必須是完整的提名者才能執行遊戲模式的最終提名。',
         'hybrid_requires_modes' => '包含多個遊戲模式的圖譜至少需要選擇一種遊戲模式進行提名。',
         'incorrect_mode' => '您沒有權限為 :mode 模式提名',
         'invalid_limited_nomination' => '這張圖譜有無效的提名而且無法在這個階段被檢驗。',

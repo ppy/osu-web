@@ -17,7 +17,7 @@ return [
     ],
 
     'show' => [
-        'created_by' => '',
+        'created_by' => ':author 님이 제작',
         'download' => '다운로드',
         'item' => [
             'cleared' => '클리어한 맵',

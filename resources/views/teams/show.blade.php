@@ -7,9 +7,16 @@
 
     $userTransformer = new UserCompactTransformer();
     $toJson = fn ($users) => json_collection($users, $userTransformer, UserCompactTransformer::CARD_INCLUDES);
-    $teamMembers = array_map($toJson, $team->members->sortBy('user.username')->mapToGroups(fn ($member) => [
-        $member->user_id === $team->leader_id ? 'leader' : 'member' => $member->userOrDeleted(),
-    ])->all());
+    $teamMembers = array_map(
+        $toJson,
+        $team
+            ->members
+            ->sortBy('user.username', SORT_STRING | SORT_FLAG_CASE)
+            ->mapToGroups(fn ($member) => [
+                $member->user_id === $team->leader_id ? 'leader' : 'member' => $member->userOrDeleted(),
+            ])
+            ->all(),
+    );
     $teamMembers['member'] ??= [];
     $teamMembers['leader'] ??= $toJson([$team->members()->make(['user_id' => $team->leader_id])->userOrDeleted()]);
     $headerUrl = $team->header()->url();
@@ -40,7 +47,7 @@
                 </div>
                 <div class="profile-info__info">
                     <h1 class="profile-info__name">
-                        {{ $team->name }}
+                        <span class="u-ellipsis-overflow">{{ $team->name }}</span>
                     </h1>
                     <div class="profile-info__flags">
                         <p class="profile-info__flag">

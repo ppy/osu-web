@@ -12,7 +12,8 @@ use App\Models\UserCoverPreset;
 
 class Cover
 {
-    const CUSTOM_COVER_MAX_DIMENSIONS = [2400, 640];
+    const CUSTOM_COVER_MAX_DIMENSIONS = [2000, 500];
+    const CUSTOM_COVER_MAX_FILESIZE = 4_000_000;
 
     public function __construct(private User $user)
     {

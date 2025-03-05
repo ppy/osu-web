@@ -5,46 +5,46 @@
 
 return [
     'cart' => [
-        'checkout' => 'Daftar keluar',
-        'empty_cart' => 'Buang semua barang dari kereta sorong',
-        'info' => ':count_delimited barang dalam kereta sorong ($:subtotal)|:count_delimited barang dalam kereta sorong ($:subtotal)',
+        'checkout' => 'Semak keluar',
+        'empty_cart' => 'Padam semua barang dari troli',
+        'info' => ':count_delimited barang dalam troli ($:subtotal)',
         'more_goodies' => 'Saya nak tengok lagi cenderahati sebelum habiskan pesanan',
-        'shipping_fees' => 'yuran hantaran',
-        'title' => 'Kereta Sorong Beli-Belah',
+        'shipping_fees' => 'yuran penghantaran',
+        'title' => 'Troli Beli-Belah',
         'total' => 'jumlah',
 
         'errors_no_checkout' => [
-            'line_1' => 'Alamak, ada masalah dengan barang awak yang menghalang daftar keluar!',
-            'line_2' => 'Buang atau kemaskini barang diatas untuk sambung.',
+            'line_1' => 'Alamak, troli anda mempunyai masalah yang menghalang semak keluar!',
+            'line_2' => 'Padam atau kemas kini barang di atas untuk teruskan.',
         ],
 
         'empty' => [
             'text' => 'Kereta sorong anda kosong.',
             'return_link' => [
-                '_' => 'Kembali ke :link untuk cari beberapa cenderahati!',
+                '_' => 'Kembali ke :link untuk mencari cenderahati!',
                 'link_text' => 'senarai kedai',
             ],
         ],
     ],
 
     'checkout' => [
-        'cart_problems' => 'Alamak, ada masalah dengan barang awak!',
-        'cart_problems_edit' => 'Tekan sini untuk sunting ia.',
-        'declined' => 'Pembayaran telah dibatalkan.',
-        'delayed_shipping' => 'Kami sedang mengalami pesanan yang banyak! Anda dialu-alukan meletak pesanan anda tetapi sila jangkakan **kelewatan seminggu atau dua** sambil kami mengurus pesanan semasa.',
-        'hide_from_activity' => 'Sorokkan semua tag osu!supporter dalam pesanan ini dari aktiviti saya',
-        'old_cart' => 'Kereta sorong anda nampaknya telah tamat tempoh dan sudah dimuatkan semula, sila cuba lagi.',
-        'pay' => 'Daftar keluar dengan Paypal',
-        'title_compact' => 'daftar keluar',
+        'cart_problems' => 'Alamak, ada masalah dengan troli anda!',
+        'cart_problems_edit' => 'Tekan di sini untuk sunting.',
+        'declined' => 'Bayaran dibatalkan.',
+        'delayed_shipping' => 'Kami kini dilandai banyak pesanan! Anda dialu-alukan meletak pesanan anda tetapi sila jangkakan **kelewatan 1-2 minggu** sambil kami mengurus pesanan semasa.',
+        'hide_from_activity' => 'Sorok semua tag osu!supporter dalam pesanan ini dari aktivitiku',
+        'old_cart' => 'Troli anda nampaknya usang dan sudah dimuat semula, sila cuba lagi.',
+        'pay' => 'Semak keluar dengan Paypal',
+        'title_compact' => 'semak keluar',
 
         'has_pending' => [
-            '_' => 'Anda mempunyai daftar keluar tidak lengkap, tekan :link untuk melihatnya.',
-            'link_text' => 'sini',
+            '_' => 'Anda mempunyai semak keluar tidak lengkap, klik :link untuk lihat.',
+            'link_text' => 'di sini',
         ],
 
         'pending_checkout' => [
-            'line_1' => 'Daftar keluar dimulakan sebelum ini tetapi tidak dilunaskan.',
-            'line_2' => 'Sambung daftar keluar dengan memilih kaedah pembayaran.',
+            'line_1' => 'Sebuah semak keluar dimulakan tetapi tidak selesai.',
+            'line_2' => 'Sambung semak keluar dengan memilih kaedah bayaran.',
         ],
     ],
 
@@ -54,153 +54,153 @@ return [
     'invoice' => [
         'contact' => 'Hubungi:',
         'date' => 'Tarikh:',
-        'echeck_delay' => 'Oleh kerana bayaran anda berupa eCheck, sila benarkan sampai 10 hari tambahan untuk bayaran ini untuk diproses PayPal!',
-        'echeck_denied' => '',
-        'hide_from_activity' => '',
-        'sent_via' => '',
-        'shipping_to' => '',
-        'title' => '',
-        'title_compact' => '',
+        'echeck_delay' => 'Bayaran anda berupa eCheck jadi sila benarkan hingga 10 hari tambahan untuk penyelesaian pembayaran melalui PayPal!',
+        'echeck_denied' => 'Bayaran eCheck ditolak oleh PayPal.',
+        'hide_from_activity' => 'Tag osu!supporter dalam urutan ini tidak dipaparkan dalam aktiviti terkini anda.',
+        'sent_via' => 'Dihantar Melalui:',
+        'shipping_to' => 'Dihantar ke:',
+        'title' => 'Invois',
+        'title_compact' => 'invois',
 
         'status' => [
             'cancelled' => [
-                'title' => '',
+                'title' => 'Pesanan anda telah dibatalkan',
                 'line_1' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Sekiranya anda tidak meminta pembatalan, sila hubungi :link dan sebutkan angka pesanan anda (#:order_number).",
+                    'link_text' => 'sokongan osu!store',
                 ],
             ],
             'delivered' => [
-                'title' => '',
+                'title' => 'Pesanan anda telah dihantar! Semoga anda menikmatinya!',
                 'line_1' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => 'Sekiranya anda mempunyai isu dengan pembelian anda, sila hubungi :link.',
+                    'link_text' => 'sokongan osu!store',
                 ],
             ],
             'prepared' => [
-                'title' => '',
-                'line_1' => '',
-                'line_2' => '',
+                'title' => 'Pesanan anda kini disediakan!',
+                'line_1' => 'Sila tunggu sebentar lagi untuk penghantaran. Maklumat penjejakan akan muncul di sini setelah pesanan telah diproses dan dihantar yang akan mengambil masa hingga 5 hari (tetapi biasanya kurang!) bergantung kepada kesibukan kami.',
+                'line_2' => 'Kami mengirim semua pesanan dari Jepun menggunakan pelbagai perkhidmatan penghantaran bergantung kepada nilai dan berat. Kawasan ini akan kemas kini dengan tentuan setelah pesanan dihantar.',
             ],
             'processing' => [
-                'title' => '',
-                'line_1' => '',
+                'title' => 'Bayaran anda belum disahkan!',
+                'line_1' => 'Sekiranya anda telah bayar, kami mungkin masih menunggu penerimaan pengesahan bayaran anda. Sila segar semula halaman ini dalam seminit dua!',
                 'line_2' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => 'Sekiranya anda menghadapi masalah semasa semak keluar, :link',
+                    'link_text' => 'klik di sini untuk menyambung semak keluar',
                 ],
             ],
             'shipped' => [
-                'title' => '',
-                'tracking_details' => '',
+                'title' => 'Pesanan anda telah dihantar!',
+                'tracking_details' => 'Butiran penjejakan adalah berikut:',
                 'no_tracking_details' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Kami tidak mempunyai butiran penjejakan kerana bungkusan anda dihantar melalui Air Mail tetapi anda boleh menjangkakan penerimaan dalam masa 1-3 minggu. Bagi Eropah, sesekali pemeriksaan kastam boleh melewatkan pesanan di luar kawalan kami. Sekiranya anda mempunyai keraguan, sila balas emel pengesahan pesanan yang diterima (atau :link).",
+                    'link_text' => 'kirimi kami emel',
                 ],
             ],
         ],
     ],
 
     'order' => [
-        'cancel' => '',
-        'cancel_confirm' => '',
-        'cancel_not_allowed' => '',
-        'invoice' => '',
-        'no_orders' => '',
-        'paid_on' => '',
-        'resume' => '',
-        'shipping_and_handling' => '',
-        'shopify_expired' => '',
-        'subtotal' => '',
-        'total' => '',
+        'cancel' => 'Batalkan Pesanan',
+        'cancel_confirm' => 'Pesanan ini akan dibatalkan dan bayaran pesanan tidak akan diterima. Penyedia bayaran mungkin tidak akan segera mengeluarkan dana rizab. Adakah anda pasti?',
+        'cancel_not_allowed' => 'Pesanan tidak boleh dibatalkan pada masa ini.',
+        'invoice' => 'Lihat Invois',
+        'no_orders' => 'Tiada pesanan untuk dilihat.',
+        'paid_on' => 'Pesanan ditempah pada :date',
+        'resume' => 'Sambung Semak Keluar',
+        'shipping_and_handling' => 'Penghantaran & Pengendalian',
+        'shopify_expired' => 'Pautan semak keluar pesanan ini telah luput.',
+        'subtotal' => 'Jumlah kecil',
+        'total' => 'Jumlah',
 
         'details' => [
-            'order_number' => '',
-            'payment_terms' => '',
-            'salesperson' => '',
-            'shipping_method' => '',
-            'shipping_terms' => '',
-            'title' => '',
+            'order_number' => 'Pesanan #',
+            'payment_terms' => 'Syarat Bayaran',
+            'salesperson' => 'Jurujual',
+            'shipping_method' => 'Kaedah Penghantaran',
+            'shipping_terms' => 'Syarat Penghantaran',
+            'title' => 'Butiran Pesanan',
         ],
 
         'item' => [
-            'quantity' => '',
+            'quantity' => 'kuantiti',
 
             'display_name' => [
-                'supporter_tag' => '',
+                'supporter_tag' => ':name untuk :username (:duration)',
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => 'Pesanan: :message',
             ],
         ],
 
         'not_modifiable_exception' => [
-            'cancelled' => '',
-            'checkout' => '', // checkout and processing should have the same message.
-            'default' => '',
-            'delivered' => '',
-            'paid' => '',
-            'processing' => '',
-            'shipped' => '',
+            'cancelled' => 'Anda tidak boleh menyesuai pesanan anda kerana telah dibatalkan.',
+            'checkout' => 'Anda tidak boleh menyesuai pesanan anda ketika diproses.', // checkout and processing should have the same message.
+            'default' => 'Pesanan tidak boleh disesuaikan',
+            'delivered' => 'Anda tidak boleh menyesuai pesanan anda kerana telah dihantar.',
+            'paid' => 'Anda tidak boleh menyesuai pesanan anda kerana telah dibayar.',
+            'processing' => 'Anda tidak boleh menyesuai pesanan anda ketika diproses.',
+            'shipped' => 'Anda tidak boleh menyesuai pesanan anda kerana telah dihantar.',
         ],
 
         'status' => [
-            'cancelled' => '',
-            'checkout' => '',
-            'delivered' => '',
-            'paid' => '',
-            'processing' => '',
-            'shipped' => '',
-            'title' => '',
+            'cancelled' => 'Dibatalkan',
+            'checkout' => 'Menyediakan',
+            'delivered' => 'Dihantar',
+            'paid' => 'Dibayar',
+            'processing' => 'Menunggu pengesahan',
+            'shipped' => 'Dihantar',
+            'title' => 'Taraf Pesanan',
         ],
 
         'thanks' => [
-            'title' => '',
+            'title' => 'Terima kasih atas pesanan anda!',
             'line_1' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Anda akan menerima emel pengesahan sebentar lagi. Sekiranya anda mempunyai pertanyaan, sila :link!',
+                'link_text' => 'hubungi kami',
             ],
         ],
     ],
 
     'product' => [
-        'name' => '',
+        'name' => 'Nama',
 
         'stock' => [
-            'out' => '',
-            'out_with_alternative' => '',
+            'out' => 'Barang ini kini tiada dalam stok. Semak semula nanti!',
+            'out_with_alternative' => 'Malangnya barang ini tiada dalam stok. Gunakan menu ke bawah untuk memilih jenis yang lain atau semak semula nanti!',
         ],
 
-        'add_to_cart' => '',
-        'notify' => '',
+        'add_to_cart' => 'Masukkan ke Troli',
+        'notify' => 'Beritahu saya ketika telah tersedia!',
 
-        'notification_success' => '',
-        'notification_remove_text' => '',
+        'notification_success' => 'anda akan diberitahu ketika kami mempunyai stok baharu. klik :link untuk batal',
+        'notification_remove_text' => 'di sini',
 
-        'notification_in_stock' => '',
+        'notification_in_stock' => 'Barangan ini sudah dalam stok!',
     ],
 
     'supporter_tag' => [
-        'gift' => '',
-        'gift_message' => '',
+        'gift' => 'hadiahi pemain',
+        'gift_message' => 'tambahkan pesanan pilihan pada hadiah anda! (hingga :length characters)',
 
         'require_login' => [
-            '_' => '',
-            'link_text' => '',
+            '_' => 'Anda perlu :link untuk mendapat tag osu!supporter!',
+            'link_text' => 'mendaftar masuk',
         ],
     ],
 
     'username_change' => [
-        'check' => '',
-        'checking' => '',
-        'placeholder' => '',
-        'label' => '',
-        'current' => '',
+        'check' => 'Masukkan nama pengguna untuk semak ketersediaan!',
+        'checking' => 'Menyemak ketersediaan :username...',
+        'placeholder' => 'Nama Pengguna Permintaan',
+        'label' => 'Nama Pengguna Baharu',
+        'current' => 'Nama pengguna semasa anda ialah ":username".',
 
         'require_login' => [
-            '_' => '',
-            'link_text' => '',
+            '_' => 'Anda perlu :link untuk mengubah nama anda!',
+            'link_text' => 'mendaftar masuk',
         ],
     ],
 

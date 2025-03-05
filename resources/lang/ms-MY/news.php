@@ -33,16 +33,16 @@ return [
     ],
 
     'sidebar' => [
-        'archive' => 'Pustaka Berita',
+        'archive' => 'Arkib Berita',
     ],
 
     'store' => [
-        'button' => 'Kemaskini',
-        'ok' => 'Senarai telah dikemaskini.',
+        'button' => 'Kemas kini',
+        'ok' => 'Senarai telah kemas kini.',
     ],
 
     'update' => [
-        'button' => 'Kemaskini',
-        'ok' => 'Hantaran dikemaskini.',
+        'button' => 'Kemas kini',
+        'ok' => 'Hantaran telah kemas kini.',
     ],
 ];

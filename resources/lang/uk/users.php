@@ -491,7 +491,7 @@ return [
             'replays_watched_by_others' => 'Переглянутих повторів іншими',
             'score_ranks' => 'Рейтинг по очках',
             'total_hits' => 'Всього попадань',
-            'total_score' => 'Всього очків',
+            'total_score' => 'Всього очок',
             // modding stats
             'graveyard_beatmapset_count' => 'Покинуті мапи',
             'loved_beatmapset_count' => 'Улюблені мапи',

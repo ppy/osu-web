@@ -50,7 +50,7 @@ return [
         'room_count' => 'Số danh sách phát',
         'url' => 'Hiện thêm thông tin về mùa đó.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'không có đủ các hệ số điểm để tính toán một cách bình thường',
         ],
     ],
 

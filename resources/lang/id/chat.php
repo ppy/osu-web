@@ -27,6 +27,7 @@ return [
                 'GROUP' => 'Grup',
                 'PM' => 'Pesan pribadi',
                 'PUBLIC' => 'Kanal Percakapan',
+                'TEAM' => '',
             ],
         ],
     ],
