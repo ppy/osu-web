@@ -184,7 +184,7 @@ export default class ChangelogChart {
 
       // parse date stored in strings to JS Date object for use by
       // d3 domains, and format it into a string shown on the tooltip
-      const m = moment(values[0].created_at);
+      const m = moment(timestamp);
 
       const obj: DataObj = {
         builds: {},
