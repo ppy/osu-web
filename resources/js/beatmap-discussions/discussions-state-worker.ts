@@ -44,7 +44,9 @@ export default class DiscussionsStateWorker {
 
   constructor(private readonly discussionsState: DiscussionsState) {
     makeObservable(this);
-    this.timeoutCheckNew = window.setTimeout(this.checkNew, checkNewTimeoutDefault);
+    if (this.discussionsState.beatmapset.deleted_at == null) {
+      this.timeoutCheckNew = window.setTimeout(this.checkNew, checkNewTimeoutDefault);
+    }
   }
 
   @action
