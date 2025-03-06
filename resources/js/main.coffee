@@ -3,7 +3,6 @@
 
 import BbcodePreview from 'core-legacy/bbcode-preview'
 import BeatmapPack from 'core-legacy/beatmap-pack'
-import ChangelogChartLoader from 'core-legacy/changelog-chart-loader'
 import CheckboxValidation from 'core-legacy/checkbox-validation'
 import FancyGraph from 'core-legacy/fancy-graph'
 import FormClear from 'core-legacy/form-clear'
@@ -43,7 +42,6 @@ $(document).on 'turbo:load', ->
   StoreCheckout.initialize()
 
 window.bbcodePreview ?= new BbcodePreview
-window.changelogChartLoader ?= new ChangelogChartLoader
 window.checkboxValidation ?= new CheckboxValidation
 window.fancyGraph ?= new FancyGraph
 window.formClear ?= new FormClear
