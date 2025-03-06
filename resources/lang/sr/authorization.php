@@ -62,7 +62,7 @@ return [
 
     'beatmap_tag' => [
         'store' => [
-            'no_score' => '',
+            'no_score' => 'Морате поставити резултат на овој мапи да би додали таг',
         ],
     ],
 
@@ -188,6 +188,25 @@ return [
             'failed' => "",
             'not_owner' => 'Само власник овог резултата може пиновати резултат.',
             'too_many' => 'Пиновали сте превише резултата.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "",
+                'already_other_member' => "",
+                'currently_applying' => '',
+                'team_closed' => '',
+                'team_full' => "",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "",
+            'not_member' => '',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

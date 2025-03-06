@@ -168,6 +168,34 @@ class ScoresControllerTest extends TestCase
         )->assertStatus(404);
     }
 
+    public function testStoreInvalidModCombination()
+    {
+        $scoreToken = ScoreToken::factory()->create();
+        $this->expectCountChange(fn () => Score::count(), 0);
+
+        $this->actAsScopedUser($scoreToken->user);
+
+        $this->json(
+            'PUT',
+            route('api.beatmaps.solo.scores.store', [
+                'beatmap' => $scoreToken->beatmap->getKey(),
+                'token' => $scoreToken->getKey(),
+            ]),
+            [
+                'accuracy' => 1,
+                'max_combo' => 10,
+                'mods' => [
+                    ['acronym' => 'DT'],
+                    ['acronym' => 'HT'],
+                ],
+                'passed' => true,
+                'rank' => 'A',
+                'statistics' => ['Good' => 1],
+                'total_score' => 10,
+            ]
+        )->assertStatus(422);
+    }
+
     public function tearDown(): void
     {
         parent::tearDown();

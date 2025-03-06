@@ -7,10 +7,7 @@
   display: grid;
   gap: 10px;
   // auto-fit centres if there's only 1 card
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(@user-card-width-min, @user-card-width)
-  );
+  grid-template-columns: repeat(auto-fill, minmax(@user-card-width, 1fr));
 
   justify-content: center;
 

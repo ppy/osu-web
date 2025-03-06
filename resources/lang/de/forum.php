@@ -295,6 +295,27 @@ return [
             'to_1_done' => 'Tag "resolved" hinzugefügt',
         ],
 
+        'issue_tag_osulazer' => [
+            'to_0' => '"osu!lazer"-Tag entfernen',
+            'to_0_done' => '"osu!lazer" Tag entfernt',
+            'to_1' => 'Tag "osu!lazer" hinzufügen',
+            'to_1_done' => '"osu!lazer" Tag hinzugefügt',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '"osu!stable" Tag entfernen',
+            'to_0_done' => '"osu!stable"-Tag entfernt',
+            'to_1' => '"osu!stable"-Tag hinzufügen',
+            'to_1_done' => '"osu!stable"-Tag hinzugefügt',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '"osu!web"-Tag entfernen',
+            'to_0_done' => '"osu!web"-Tag entfernt',
+            'to_1' => '"osu!web"-Tag hinzufügen',
+            'to_1_done' => '"osu!web"-Tag hinzugefügt',
+        ],
+
         'lock' => [
             'is_locked' => 'Dieser Thread ist gesperrt und erlaubt keine weiteren Antworten',
             'to_0' => 'Thread entsperren',

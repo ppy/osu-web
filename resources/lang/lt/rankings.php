@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Šis sezonas dar tęsiasi (bus pridėta daugiau grojaraščių).',
         'room_count' => 'Grojaraščių skaičius',
         'url' => 'Rodyti daugiau informacijos apie šį sezoną.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => 'Tikslumas',
         'active_users' => 'Aktyvūs Vartotojai',
         'country' => 'Šalis',
+        'division' => '',
         'play_count' => 'Sužaidimų Skaičius',
         'performance' => 'pp',
         'total_score' => 'Iš viso taškų',

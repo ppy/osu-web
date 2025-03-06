@@ -79,11 +79,7 @@ class BeatmapsetsController extends Controller
 
     public function show($id)
     {
-        $beatmapset = (
-            priv_check('BeatmapsetShowDeleted')->can()
-                ? Beatmapset::withTrashed()->whereHas('allBeatmaps')
-                : Beatmapset::whereHas('beatmaps')
-        )->findOrFail($id);
+        $beatmapset = $this->findBeatmapset($id);
 
         $set = $this->showJson($beatmapset);
 
@@ -129,7 +125,7 @@ class BeatmapsetsController extends Controller
 
     public function discussion($id)
     {
-        $beatmapset = Beatmapset::findOrFail($id);
+        $beatmapset = $this->findBeatmapset($id);
 
         $initialData = [
             'beatmapset' => $beatmapset->defaultDiscussionJson(),
@@ -381,12 +377,22 @@ class BeatmapsetsController extends Controller
         ];
     }
 
+    private function findBeatmapset($id): Beatmapset
+    {
+        return (
+            priv_check('BeatmapsetShowDeleted')->can()
+                ? Beatmapset::withTrashed()->whereHas('allBeatmaps')
+                : Beatmapset::whereHas('beatmaps')
+        )->findOrFail($id);
+    }
+
     private function showJson($beatmapset)
     {
         $beatmapRelation = $beatmapset->trashed()
             ? 'allBeatmaps'
             : 'beatmaps';
         $beatmapset->load([
+            "{$beatmapRelation}" => fn ($q) => $q->withUserTagIds(\Auth::id()),
             "{$beatmapRelation}.baseDifficultyRatings",
             "{$beatmapRelation}.baseMaxCombo",
             "{$beatmapRelation}.failtimes",
@@ -404,6 +410,7 @@ class BeatmapsetsController extends Controller
             'beatmaps.failtimes',
             'beatmaps.max_combo',
             'beatmaps.owners',
+            'beatmaps.current_user_tag_ids',
             'beatmaps.top_tag_ids',
             'converts',
             'converts.failtimes',

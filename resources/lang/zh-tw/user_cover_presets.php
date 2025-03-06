@@ -12,7 +12,7 @@ return [
             '_' => ':action :items ？',
             'disable' => '停用',
             'enable' => '啟用',
-            'items' => ':count_delimited 封面 | :count_delimited 封面',
+            'items' => ':count_delimited 封面|:count_delimited 封面',
         ],
 
         'create_form' => [
@@ -22,8 +22,8 @@ return [
         ],
 
         'item' => [
-            'click_to_disable' => '點擊停用',
-            'click_to_enable' => '點擊啟用',
+            'click_to_disable' => '按這裡停用',
+            'click_to_enable' => '按這裡啟用',
             'enabled' => '已啟用',
             'disabled' => '已停用',
             'image_store' => '設定圖像',
@@ -31,7 +31,7 @@ return [
         ],
     ],
     'store' => [
-        'failed' => '在建立封面時發生了問題 : :error',
+        'failed' => '在建立封面時發生錯誤：:error',
         'ok' => '封面已建立',
     ],
 ];

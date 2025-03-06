@@ -11,13 +11,13 @@ return [
     ],
 
     'error' => [
-        'contact_support' => 'Sisplau contacta\'ns per a recuperar el compte.',
+        'contact_support' => 'Si us plau contacta\'ns per a recuperar el compte.',
         'expired' => 'El codi de verificació ha expirat.',
         'invalid' => 'Error inesperat en el codi de verificació.',
-        'is_privileged' => 'Sisplau, contacta un administrador per a recuperar el teu compte.',
+        'is_privileged' => 'Si us plau, contacta un administrador per a recuperar el teu compte.',
         'missing_key' => 'Requerit.',
         'too_many_tries' => 'Massa intents fracassats.',
-        'user_not_found' => 'Usuari innexistent.',
+        'user_not_found' => 'Usuari inexistent.',
         'wrong_key' => 'Codi incorrecte.',
     ],
 

@@ -12,12 +12,12 @@ return [
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'Διαγραμμένα beatmap',
     ],
 
     'download' => [
         'limit_exceeded' => '',
-        'no_mirrors' => '',
+        'no_mirrors' => 'Κανένας διαθέσιμος server λήψης.',
     ],
 
     'featured_artist_badge' => [
@@ -30,12 +30,12 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'κανένα beatmap',
 
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
+            'all' => 'λήψη',
+            'video' => 'λήψη με βίντεο',
+            'no_video' => 'λήψη χωρίς βίντεο',
             'direct' => '',
         ],
     ],

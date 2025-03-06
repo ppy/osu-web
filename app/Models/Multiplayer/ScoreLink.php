@@ -34,7 +34,7 @@ class ScoreLink extends Model
             $playlistItem = $token->playlistItem()->firstOrFail();
             $requiredMods = array_column($playlistItem->required_mods, 'acronym');
             $mods = array_column($score->data->mods, 'acronym');
-            $mods = app('mods')->excludeModsAlwaysValidForSubmission($playlistItem->ruleset_id, $mods);
+            $mods = app('mods')->excludeModsAlwaysValidForSubmission($score->ruleset_id, $mods);
 
             if (!empty($requiredMods)) {
                 if (!empty(array_diff($requiredMods, $mods))) {
@@ -42,9 +42,11 @@ class ScoreLink extends Model
                 }
             }
 
-            $allowedMods = array_column($playlistItem->allowed_mods, 'acronym');
-            if (!empty(array_diff($mods, $requiredMods, $allowedMods))) {
-                throw new InvariantException('This play includes mods that are not allowed.');
+            if (!$playlistItem->freestyle) {
+                $allowedMods = array_column($playlistItem->allowed_mods, 'acronym');
+                if (!empty(array_diff($mods, $requiredMods, $allowedMods))) {
+                    throw new InvariantException('This play includes mods that are not allowed.');
+                }
             }
 
             $token->score()->associate($score)->saveOrExplode();

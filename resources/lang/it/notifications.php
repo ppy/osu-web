@@ -20,17 +20,19 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'forum',
         'news_post' => 'notizie',
+        'team' => 'squadra',
         'user' => 'profilo',
     ],
 
     'filters' => [
         '_' => 'tutto',
-        'user' => 'profilo',
         'beatmapset' => 'beatmap',
-        'forum_topic' => 'forum',
-        'news_post' => 'notizie',
         'build' => 'versioni',
         'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'notizie',
+        'team' => 'squadra',
+        'user' => 'profilo',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "Sei diventato un membro della squadra :title",
+                'team_application_accept_compact' => "Sei diventato un membro della squadra :title",
+                'team_application_reject' => 'La tua richiesta di unirsi alla squadra :title è stata rifiutata',
+                'team_application_reject_compact' => 'La tua richiesta di unirsi alla squadra :title è stata rifiutata',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Nuova beatmap',
@@ -205,7 +218,7 @@ return [
                 'beatmapset_love' => '":title" è stata promossa tra le amate',
                 'beatmapset_nominate' => '":title" è stata nominata',
                 'beatmapset_qualify' => '":title" ha ottenuto abbastanza nomine ed è entrata nella coda di ranking',
-                'beatmapset_rank' => '":title" è stata rankata',
+                'beatmapset_rank' => '":title" è stata classificata',
                 'beatmapset_remove_from_loved' => '":title" è stata rimossa dalle amate',
                 'beatmapset_reset_nominations' => 'La nomina di ":title" è stata resettata',
             ],
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Ci sono nuove risposte in ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Sei diventato un membro della squadra :title",
+                'team_application_reject' => 'La tua richiesta di unirsi alla squadra :title è stata rifiutata',
             ],
         ],
 

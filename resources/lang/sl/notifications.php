@@ -20,17 +20,19 @@ return [
         'channel' => 'klepet',
         'forum_topic' => 'forum',
         'news_post' => 'novice',
+        'team' => '',
         'user' => 'profil',
     ],
 
     'filters' => [
         '_' => 'vse',
-        'user' => 'profil',
         'beatmapset' => 'beatmape',
-        'forum_topic' => 'forum',
-        'news_post' => 'novice',
         'build' => 'builde',
         'channel' => 'klepet',
+        'forum_topic' => 'forum',
+        'news_post' => 'novice',
+        'team' => '',
+        'user' => 'profil',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Nova beatmapa',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Imaš nove odgovore na ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
             ],
         ],
 

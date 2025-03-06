@@ -20,17 +20,19 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'fórum',
         'news_post' => 'notícias',
+        'team' => 'equipe',
         'user' => 'perfil',
     ],
 
     'filters' => [
         '_' => 'tudo',
-        'user' => 'perfil',
         'beatmapset' => 'beatmaps',
-        'forum_topic' => 'fórum',
-        'news_post' => 'notícias',
         'build' => 'versões',
         'channel' => 'chat',
+        'forum_topic' => 'fórum',
+        'news_post' => 'notícias',
+        'team' => 'equipe',
+        'user' => 'perfil',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => 'Solicitação para participar de equipe',
+
+                'team_application_accept' => "Você agora é membro da equipe :title",
+                'team_application_accept_compact' => "Você agora é membro da equipe :title",
+                'team_application_reject' => 'Seu pedido para se juntar à equipe :title foi recusado',
+                'team_application_reject_compact' => 'Seu pedido para se juntar à equipe :title foi recusado',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Novo beatmap',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Há novas respostas em ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Você agora é membro da equipe :title",
+                'team_application_reject' => 'Seu pedido para se juntar à equipe :title foi recusado',
             ],
         ],
 

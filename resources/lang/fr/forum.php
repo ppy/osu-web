@@ -295,6 +295,27 @@ return [
             'to_1_done' => 'Tag "resolved" ajouté',
         ],
 
+        'issue_tag_osulazer' => [
+            'to_0' => 'Supprimer le tag « osu!lazer »',
+            'to_0_done' => 'Tag « osu!lazer » supprimé',
+            'to_1' => 'Ajouter le tag « osu!lazer »',
+            'to_1_done' => 'Tag « osu!lazer » ajouté',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => 'Supprimer le tag « osu!stable »',
+            'to_0_done' => 'Tag « osu!stable » supprimé',
+            'to_1' => 'Ajouter le tag « osu!stable »',
+            'to_1_done' => 'Tag « osu!stable » ajouté',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => 'Supprimer le tag « osu!web »',
+            'to_0_done' => 'Tag « osu!web » supprimé',
+            'to_1' => 'Ajouter le tag « osu!web »',
+            'to_1_done' => 'Tag « osu!web » ajouté',
+        ],
+
         'lock' => [
             'is_locked' => 'Ce sujet est verrouillé, vous ne pouvez pas y répondre',
             'to_0' => 'Déverrouiller le sujet',

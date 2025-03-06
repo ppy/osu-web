@@ -15,7 +15,7 @@ return [
         'create' => [
             '_' => 'Estableix la imatge de portada',
             'button' => 'Pujar portada',
-            'info' => 'La portada ha de ser :dimensions. També pots deixar anar la imatge aquí per penjar-la.',
+            'info' => 'La portada ha de ser de :dimensions. També pots deixar anar la imatge aquí per penjar-la.',
         ],
 
         'destroy' => [
@@ -46,7 +46,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Realment voleu eliminar la publicació?',
         'confirm_restore' => 'Realment voleu restaurar la publicació?',
-        'edited' => 'Editat per últim cop per :user :when, editat :count_delimited vegada en total.|Editat per últim cop per :user :when, editat :count_delimited vegades en total.',
+        'edited' => 'Editat per últim cop per :user :when,  editat :count_delimited vegada en total.|Editat per últim cop per :user :when, editat :count_delimited vegades en total.',
         'posted_at' => 'publicat :when',
         'posted_by_in' => 'publicat per :username a :forum',
 
@@ -80,7 +80,7 @@ return [
         'confirm_restore' => 'Realment voleu restaurar el tema?',
         'deleted' => 'tema eliminat',
         'go_to_latest' => 'veure l\'última publicació',
-        'go_to_unread' => '',
+        'go_to_unread' => 'veure primera publicació no llegida',
         'has_replied' => 'Has respost a aquest tema',
         'in_forum' => 'en :forum',
         'latest_post' => ':when per :user',
@@ -293,6 +293,27 @@ return [
             'to_0_done' => 'S\'ha eliminat l\'etiqueta "resolt"',
             'to_1' => 'Afegeix l\'etiqueta "resolt"',
             'to_1_done' => 'S\'ha afegit l\'etiqueta "resolt"',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'lock' => [

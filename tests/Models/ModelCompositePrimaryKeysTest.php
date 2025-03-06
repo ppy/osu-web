@@ -15,6 +15,7 @@ use App\Models\Chat;
 use App\Models\FavouriteBeatmapset;
 use App\Models\Forum;
 use App\Models\LegacyMatch;
+use App\Models\TeamStatistics;
 use App\Models\UserAchievement;
 use App\Models\UserClient;
 use App\Models\UserCountryHistory;
@@ -194,6 +195,15 @@ class ModelCompositePrimaryKeysTest extends TestCase
                 ],
                 ['slot' => 1],
                 ['score', [10, 20], 30],
+            ],
+            [
+                TeamStatistics::class,
+                [
+                    'team_id' => 0,
+                    'ruleset_id' => 0,
+                ],
+                ['team_id' => 1],
+                ['performance', [1, 2], 3],
             ],
             [
                 UserAchievement::class,

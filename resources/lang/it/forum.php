@@ -15,7 +15,7 @@ return [
         'create' => [
             '_' => 'Imposta immagine di copertina',
             'button' => 'Carica immagine',
-            'info' => 'L\'immagine di copertina dovrebbe essere :dimensions. Puoi anche trascinare la tua immagine qui per caricarla.',
+            'info' => 'La dimensione della copertina dovrebbe essere di :dimensions. È possibile anche trascinare qui l\'immagine per caricarla.',
         ],
 
         'destroy' => [
@@ -293,6 +293,27 @@ return [
             'to_0_done' => 'Rimosso tag "risolto"',
             'to_1' => 'Aggiungi tag "risolto"',
             'to_1_done' => 'Aggiunto tag "risolto"',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => 'Rimuovi il tag "osu!lazer"',
+            'to_0_done' => 'Rimosso il tag "osu!lazer"',
+            'to_1' => 'Aggiungi il tag "osu!lazer"',
+            'to_1_done' => 'Aggiunto il tag "osu!lazer"',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => 'Rimuovi il tag "osu!stable"',
+            'to_0_done' => 'Rimosso il tag "osu!stable"',
+            'to_1' => 'Aggiungi il tag "osu!stable"',
+            'to_1_done' => 'Aggiunto il tag "osu!stable"',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => 'Rimuovi il tag "osu!web"',
+            'to_0_done' => 'Rimosso il tag "osu!web"',
+            'to_1' => 'Aggiungi il tag "osu!web"',
+            'to_1_done' => 'Aggiunto il tag "osu!web"',
         ],
 
         'lock' => [

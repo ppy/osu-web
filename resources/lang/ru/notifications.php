@@ -20,17 +20,19 @@ return [
         'channel' => 'чат',
         'forum_topic' => 'форум',
         'news_post' => 'новости',
+        'team' => 'команда',
         'user' => 'игроки',
     ],
 
     'filters' => [
         '_' => 'все',
-        'user' => 'игроки',
         'beatmapset' => 'карты',
-        'forum_topic' => 'форум',
-        'news_post' => 'новости',
         'build' => 'билды',
         'channel' => 'чат',
+        'forum_topic' => 'форум',
+        'news_post' => 'новости',
+        'team' => 'команда',
+        'user' => 'игроки',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => 'Запрос на вступление в команду',
+
+                'team_application_accept' => "Вы присоединились к команде :title",
+                'team_application_accept_compact' => "Вы присоединились к команде :title",
+                'team_application_reject' => 'Ваш запрос на вступление в команду :title отклонен',
+                'team_application_reject_compact' => 'Ваш запрос на вступление в команду :title отклонен',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Новая карта',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Есть новые ответы в ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Вы присоединились к команде :title",
+                'team_application_reject' => 'Ваш запрос на вступление в команду :title отклонен',
             ],
         ],
 

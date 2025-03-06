@@ -55,6 +55,7 @@ return [
         'contact' => '',
         'date' => '',
         'echeck_delay' => 'Ker je bilo tvoje plačilo narejeno z eCheck-om, prosimo počakaj vsaj do 10 dodatnih dni, da se plačilo poravna preko PayPal-a!',
+        'echeck_denied' => '',
         'hide_from_activity' => 'osu!supporter oznake v tem naročilu ne bodo prikazane v tvojih nedavnih dejavnostih.',
         'sent_via' => '',
         'shipping_to' => '',

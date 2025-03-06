@@ -5,16 +5,16 @@
 
 return [
     'index' => [
-        'description' => 'Aquestes són les discussions de beatmaps que estàs seguint. Se\'t notificarà quan hi hagi noves publicacions o actualitzacions.',
-        'title_compact' => 'llista de seguiment de modding',
+        'description' => 'Aquestes són les discussions de mapes que estàs seguint. Se\'t notificarà quan hi hagi noves publicacions o actualitzacions.',
+        'title_compact' => 'llista de seguiment de moding',
 
         'counts' => [
-            'total' => 'Beatmaps vistos',
-            'unread' => 'Beatmaps amb nova activitat',
+            'total' => 'Mapes vistos',
+            'unread' => 'Mapes amb nova activitat',
         ],
 
         'table' => [
-            'empty' => 'No estàs veient cap discussió de beatmap.',
+            'empty' => 'No estàs veient cap discussió de mapa.',
             'last_update' => 'Última actualització',
             'open_issues' => 'Incidències obertes',
             'state' => 'Estat',

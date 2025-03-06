@@ -4,8 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => '指定的遊戲模式無效。',
+
     'change_owner' => [
-        'too_many' => '',
+        'too_many' => '客串譜師過多。',
     ],
 
     'discussion-votes' => [
@@ -26,14 +28,14 @@ return [
         'kudosu_denied' => 'kudosu 被收回',
         'message_placeholder_deleted_beatmap' => '該難度已被刪除，無法繼續討論',
         'message_placeholder_locked' => '此圖譜的討論已被停用。',
-        'message_placeholder_silenced' => "禁言時無法發布討論。",
+        'message_placeholder_silenced' => "禁言時無法發表討論。",
         'message_type_select' => '選擇回覆類型',
         'reply_notice' => '按下 Enter 以回覆',
         'reply_resolve_notice' => '按下 Enter 以回覆。按下 Ctrl+Enter 以回覆並標記為解決。',
         'reply_placeholder' => '在此處輸入您的回覆',
         'require-login' => '登入以發文或回覆',
         'resolved' => '已解決',
-        'restore' => '已修復',
+        'restore' => '已還原',
         'show_deleted' => '顯示已刪除的訊息',
         'title' => '討論區',
         'unresolved_count' => ':count_delimited 個未解決問題',
@@ -61,45 +63,45 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => '這則貼文將發布至一般圖譜討論區。如要針對此難度提供修改意見，請在訊息開頭加上時間戳記（例如：00:12:345）。',
-            'in_timeline' => '如要針對多個時間戳記提供修改意見，請分多次發布訊息（每個時間戳記一則貼文）。',
+            'in_general' => '這則貼文將發表至一般圖譜討論區。如要針對此難度提供修改意見，請在內容開頭加上時間戳記（例如：00:12:345）。',
+            'in_timeline' => '如要針對多個時間戳記提供修改意見，請分多次發表內容(每個時間戳記一則貼文)。',
         ],
 
         'message_placeholder' => [
-            'general' => '在這裡輸入以發布至整體 (:version)',
-            'generalAll' => '在這裡輸入以發布至整體（所有難度）',
-            'review' => '在這裡輸入以發布評論',
-            'timeline' => '在這裡輸入以發布至時間軸 (:version)',
+            'general' => '在這裡輸入以發表至整體 (:version)',
+            'generalAll' => '在這裡輸入以發表至整體(所有難度)',
+            'review' => '在這裡輸入以發表審核',
+            'timeline' => '在這裡輸入以發表至時間軸 (:version)',
         ],
 
         'message_type' => [
-            'disqualify' => '取消提名',
+            'disqualify' => '取消資格',
             'hype' => '推薦！',
             'mapper_note' => '備註',
             'nomination_reset' => '重置提名',
-            'praise' => '讚',
+            'praise' => '稱讚',
             'problem' => '問題',
             'problem_warning' => '回報問題',
-            'review' => '評論',
+            'review' => '審核',
             'suggestion' => '建議',
         ],
 
         'message_type_title' => [
-            'disqualify' => '取消提名',
+            'disqualify' => '發表取消資格原因',
             'hype' => '推薦！',
-            'mapper_note' => '發布備註',
+            'mapper_note' => '發表備註',
             'nomination_reset' => '刪除所有提名',
             'praise' => '表揚',
             'problem' => '問題',
             'problem_warning' => '問題警告',
-            'review' => '評論',
+            'review' => '發表審核串',
             'suggestion' => '建議',
         ],
 
         'mode' => [
             'events' => '歷史',
             'general' => '整體:scope',
-            'reviews' => '評論',
+            'reviews' => '審核',
             'timeline' => '時間軸',
             'scopes' => [
                 'general' => '目前難度',
@@ -116,14 +118,14 @@ return [
         ],
 
         'review' => [
-            'new' => '新評論',
+            'new' => '新的審核',
             'embed' => [
                 'delete' => '刪除',
                 'missing' => '[該討論已移除]',
                 'unlink' => '取消連結',
                 'unsaved' => '尚未儲存',
                 'timestamp' => [
-                    'all-diff' => '發布於「所有難度」的無法進行時間戳記',
+                    'all-diff' => '發表於「所有難度」的無法進行時間戳記。',
                     'diff' => '如果這則貼文以時間戳記開頭，它將顯示在時間軸下方。',
                 ],
             ],
@@ -157,7 +159,7 @@ return [
 
         'status-messages' => [
             'approved' => '這張圖譜在 :date 獲得核准！',
-            'graveyard' => "這張圖譜自 :date 就未更新了，或許它已經被作者拋棄了 ;w;",
+            'graveyard' => "這張圖譜自 :date 就停止更新了，或許它已經被譜師拋棄了 ;w;",
             'loved' => '這張圖譜於 :date 被加入到社群喜愛分類！',
             'ranked' => '這張圖譜於 :date 進榜！',
             'wip' => '注意：這張圖譜被作者標記為製作中（半成品）',
@@ -178,12 +180,12 @@ return [
     'hype' => [
         'button' => '推薦圖譜！',
         'button_done' => '已經推薦！',
-        'confirm' => "你確定嗎？這將會使用你剩下的 :n 次推薦次數並且無法取消。",
+        'confirm' => "你確定嗎？這將使用你剩下的 :n 次推薦次數並且無法取消。",
         'explanation' => '推薦這張圖譜讓它更容易被提名和進榜！',
         'explanation_guest' => '登入並推薦這張圖譜，讓它更容易被提名並進榜！',
         'new_time' => "你將在 :new_time 後獲得新的推薦次數。",
         'remaining' => '你還可以推薦 :remaining 次。',
-        'required_text' => '推薦進度： :current/:required',
+        'required_text' => '推薦進度：:current/:required',
         'section_title' => '推薦進度',
         'title' => '推薦',
     ],
@@ -199,19 +201,19 @@ return [
         'delete_own_confirm' => '你確定嗎？這張圖譜將被刪除，刪除後你將重新導向到你的個人檔案頁面。',
         'delete_other_confirm' => '你確定嗎？這張圖譜將被刪除，刪除後你將重新導向到他的個人檔案頁面。',
         'disqualification_prompt' => '請說明取消資格的原因。',
-        'disqualified_at' => '於 :time_ago 被取消資格（:reason）。',
+        'disqualified_at' => '於 :time_ago 被取消資格(:reason)。',
         'disqualified_no_reason' => '沒有指定原因',
         'disqualify' => '取消提名',
         'incorrect_state' => '執行該操作時發生錯誤，請嘗試重新整理頁面。',
         'love' => '社群喜愛',
-        'love_choose' => '選擇要移入社群喜愛狀態的難度',
-        'love_confirm' => '喜歡這張圖譜嗎？',
+        'love_choose' => '選擇要加入至社群喜愛狀態的難度',
+        'love_confirm' => '確定要喜歡這張圖譜嗎？',
         'nominate' => '提名',
         'nominate_confirm' => '確定要提名這張圖譜？',
         'nominated_by' => '被 :users 提名',
         'not_enough_hype' => "沒有足夠的推薦。",
         'remove_from_loved' => '從社群喜愛中移除',
-        'remove_from_loved_prompt' => '從社群喜愛中移除的原因：',
+        'remove_from_loved_prompt' => '從社群喜愛中移除的原因:',
         'required_text' => '提名數：:current/:required',
         'reset_message_deleted' => '已刪除',
         'title' => '提名狀態',
@@ -219,7 +221,7 @@ return [
 
         'rank_estimate' => [
             '_' => '如果沒有發現問題，這張圖譜預計會在 :date 進榜。它在 :queue 中排名第 #:position。',
-            'unresolved_problems' => '除非已解決 :problems，否則這張圖譜會一直處於已提名狀態。',
+            'unresolved_problems' => '除非已解決 :problems，否則這張圖譜會一直處於已合格狀態。',
             'problems' => '這些問題',
             'on' => '在:date',
             'queue' => '排名佇列',
@@ -234,7 +236,7 @@ return [
         'reset_confirm' => [
             'disqualify' => '你確定嗎？這將把譜面從合格狀態移除並重設提名程序。',
             'nomination_reset' => '你確定嗎？提出新的問題將重設提名程序。',
-            'problem_warning' => '你確定要回報這個譜面的問題嗎？這會通知圖譜管理團隊 (BN)。',
+            'problem_warning' => '你確定要回報這個圖譜的問題嗎？這會通知圖譜管理團隊 (BN)。',
         ],
     ],
 
@@ -261,8 +263,8 @@ return [
                 'title' => '曲名',
                 'artist' => '演出者',
                 'difficulty' => '難度',
-                'favourites' => '我的最愛',
-                'updated' => '已更新',
+                'favourites' => '收藏數',
+                'updated' => '更新時間',
                 'ranked' => '進榜',
                 'rating' => '評分',
                 'plays' => '遊玩次數',
@@ -278,7 +280,7 @@ return [
     'general' => [
         'converts' => '包括轉換圖譜',
         'featured_artists' => '精選藝術家',
-        'follows' => '已訂閱的圖譜製作者',
+        'follows' => '已訂閱的譜師',
         'recommended' => '推薦難度',
         'spotlights' => '聚光燈圖譜',
     ],
@@ -295,13 +297,13 @@ return [
         'any' => '所有',
         'approved' => '已核准',
         'favourites' => '收藏',
-        'graveyard' => '拋棄',
+        'graveyard' => '閒置',
         'leaderboard' => '擁有排行榜',
         'loved' => '社群喜愛',
         'mine' => '我的圖譜',
         'pending' => '待處理',
         'wip' => '尚未完工 (WIP)',
-        'qualified' => '提名',
+        'qualified' => '已合格',
         'ranked' => '已進榜',
     ],
     'genre' => [

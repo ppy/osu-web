@@ -295,6 +295,27 @@ return [
             'to_1_done' => 'Добавлен тег "решено"',
         ],
 
+        'issue_tag_osulazer' => [
+            'to_0' => 'Удалить тег «osu!lazer»',
+            'to_0_done' => 'Удален тег «osu!lazer»',
+            'to_1' => 'Добавить тег «osu!lazer»',
+            'to_1_done' => 'Добавлен тег «osu!lazer»',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => 'Удалить тег «osu!stable»',
+            'to_0_done' => 'Удален тег «osu!stable»',
+            'to_1' => 'Добавить тег «osu!stable»',
+            'to_1_done' => 'Добавлен тег «osu!stable»',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => 'Удалить тег «osu!web»',
+            'to_0_done' => 'Удален тег «osu!web»',
+            'to_1' => 'Добавить тег «osu!web»',
+            'to_1_done' => 'Добавлен тег «osu!web»',
+        ],
+
         'lock' => [
             'is_locked' => 'Нельзя написать ответ в закрытой теме',
             'to_0' => 'Открыть тему',

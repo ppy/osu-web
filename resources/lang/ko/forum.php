@@ -295,6 +295,27 @@ return [
             'to_1_done' => '"resolved" 태그 추가됨',
         ],
 
+        'issue_tag_osulazer' => [
+            'to_0' => '"osu!lazer" 태그 제거',
+            'to_0_done' => '"osu!lazer" 태그 제거됨',
+            'to_1' => '"osu!lazer" 태그 추가',
+            'to_1_done' => '"osu!lazer" 태그 추가됨',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '"osu!stable" 태그 제거',
+            'to_0_done' => '"osu!stable" 태그 제거됨',
+            'to_1' => '"osu!stable" 태그 추가',
+            'to_1_done' => '"osu!stable" 태그 추가됨',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '"osu!web" 태그 제거',
+            'to_0_done' => '"osu!web" 태그 제거됨',
+            'to_1' => '"osu!web" 태그 추가',
+            'to_1_done' => '"osu!web" 태그 추가됨',
+        ],
+
         'lock' => [
             'is_locked' => '주제글이 잠겨있어 답글을 달 수 없습니다.',
             'to_0' => '주제글 잠금 풀기',

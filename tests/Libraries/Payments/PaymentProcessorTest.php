@@ -45,7 +45,7 @@ class PaymentProcessorTest extends TestCase
             'country_code' => 'CC',
             'paid_at' => now(),
             'provider' => 'test',
-            'transaction_id' => $this->order->getProviderReference(),
+            'transaction_id' => $this->order->getTransactionId(),
         ]);
 
         $this->order->paid($payment);
@@ -64,7 +64,7 @@ class PaymentProcessorTest extends TestCase
             'country_code' => 'CC',
             'paid_at' => now(),
             'provider' => 'test',
-            'transaction_id' => $this->order->getProviderReference(),
+            'transaction_id' => $this->order->getTransactionId(),
         ];
 
         $this->order->paid(new Payment($params));
@@ -100,7 +100,7 @@ class PaymentProcessorTest extends TestCase
 
         config_set('store.order.prefix', 'test');
 
-        $this->order = Order::factory()->checkout()->create([
+        $this->order = Order::factory()->paymentApproved()->create([
             'transaction_id' => 'test-123',
         ]);
         OrderItem::factory()->supporterTag()->create(['order_id' => $this->order]);

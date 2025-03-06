@@ -295,6 +295,27 @@ return [
             'to_1_done' => '已添加 "已解决" 标签',
         ],
 
+        'issue_tag_osulazer' => [
+            'to_0' => '删除 "osu!lazer" 标签',
+            'to_0_done' => '已删除 "osu!lazer" 标签',
+            'to_1' => '添加 "osu!lazer" 标签',
+            'to_1_done' => '已添加 "osu!lazer" 标签',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '删除 "osu!stable" 标签',
+            'to_0_done' => '已删除 "osu!stable" 标签',
+            'to_1' => '添加 "osu!stable" 标签',
+            'to_1_done' => '已添加 "osu!stable" 标签',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '删除 "osu!web" 标签',
+            'to_0_done' => '已删除 "osu!web" 标签',
+            'to_1' => '添加 "osu!web" 标签',
+            'to_1_done' => '已添加 "osu!web" 标签',
+        ],
+
         'lock' => [
             'is_locked' => '主题已被锁定，不能回复',
             'to_0' => '解锁主题',

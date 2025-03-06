@@ -108,8 +108,11 @@ return [
             '_' => 'clasamente',
         ],
         'teams_controller' => [
-            '_' => '',
-            'show' => '',
+            '_' => 'echipe',
+            'create' => '',
+            'edit' => 'setări echipă',
+            'leaderboard' => 'clasament echipă',
+            'show' => 'informații echipă',
         ],
         'tournaments_controller' => [
             '_' => 'turnee',
@@ -133,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'magazin',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'membrii echipei',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

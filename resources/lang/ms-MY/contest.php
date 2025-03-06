@@ -5,103 +5,103 @@
 
 return [
     'header' => [
-        'small' => '',
-        'large' => '',
+        'small' => 'Beradu bukan sekadar mengklik bulatan.',
+        'large' => 'Peraduan Komuniti',
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'senarai',
     ],
 
     'judge' => [
-        'comments' => '',
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'comments' => 'komen',
+        'hide_judged' => 'sorok penyertaan yang diadili',
+        'nav_title' => 'pengadil',
+        'no_current_vote' => 'anda belum mengundi.',
+        'update' => 'kemas kini',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'markah tiada',
+            'contest_vote_judged' => 'tidak boleh mengundi dalam peraduan berpengadil',
         ],
-        'voted' => '',
+        'voted' => 'Anda telah menyerahkan undian untuk penyertaan ini.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'Keputusan pengadilan',
+        'creator' => 'pencipta',
+        'score' => 'Markah',
+        'total_score' => 'jumlah markah',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
-        'login_required' => '',
-        'over' => '',
-        'show_voted_only' => '',
+        'judge_link' => 'Anda pengadil peraduan ini. Adili penyertaan di sini!',
+        'judged_notice' => 'Peraduan ini menggunakan sistem pengadilan. Pengadil kini memproses penyertaan.',
+        'login_required' => 'Sila daftar masuk untuk mengundi.',
+        'over' => 'Pengundian untuk peraduan ini telah tamat',
+        'show_voted_only' => 'Tunjukkan undian',
 
         'best_of' => [
-            'none_played' => "",
+            'none_played' => "Nampaknya anda belum bermain peta rentak yang layak untuk peraduan ini!",
         ],
 
         'button' => [
-            'add' => '',
-            'remove' => '',
-            'used_up' => '',
+            'add' => 'Undi',
+            'remove' => 'Padam undian',
+            'used_up' => 'Anda telah menggunakan semua undian anda',
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => ':used / :max undian diguna',
         ],
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => 'Main semua peta rentak dalam senarai main yang ditentukan sebelum mengundi',
             ],
         ],
     ],
 
     'entry' => [
-        '_' => '',
-        'login_required' => '',
-        'silenced_or_restricted' => '',
-        'preparation' => '',
-        'drop_here' => '',
-        'download' => '',
+        '_' => 'penyertaan',
+        'login_required' => 'Sila daftar masuk untuk menyertai peraduan.',
+        'silenced_or_restricted' => 'Anda tidak boleh menyertai peraduan ketika dihadkan atau didiamkan.',
+        'preparation' => 'Kami kini menyediakan peraduan ini. Mohon bersabar!',
+        'drop_here' => 'Lepaskan penyertaan di sini',
+        'download' => 'Muat turun .osz',
 
         'wrong_type' => [
-            'art' => '',
-            'beatmap' => '',
-            'music' => '',
+            'art' => 'Hanya fail .jpg dan .png diterima untuk peraduan.',
+            'beatmap' => 'Hanya fail .osu diterima untuk peraduan.',
+            'music' => 'Hanya fail .mp3 diterima untuk peraduan.',
         ],
 
-        'wrong_dimensions' => '',
-        'too_big' => '',
+        'wrong_dimensions' => 'Penyertaan bagi peraduan mesti :widthx:height',
+        'too_big' => 'Penyertaan peraduan ini hanya dibolehkan hingga :limit.',
     ],
 
     'beatmaps' => [
-        'download' => '',
+        'download' => 'Muat Turun Penyertaan',
     ],
 
     'vote' => [
-        'list' => '',
-        'count' => '',
-        'points' => '',
+        'list' => 'undian',
+        'count' => ':count_delimited undian',
+        'points' => ':count_delimited mata',
     ],
 
     'dates' => [
-        'ended' => '',
-        'ended_no_date' => '',
+        'ended' => 'Tamat :date',
+        'ended_no_date' => 'Tamat',
 
         'starts' => [
-            '_' => '',
-            'soon' => '',
+            '_' => 'Mula :date',
+            'soon' => 'nanti™',
         ],
     ],
 
     'states' => [
-        'entry' => '',
-        'voting' => '',
-        'results' => '',
+        'entry' => 'Terbuka untuk Masukan',
+        'voting' => 'Pengundian Bermula',
+        'results' => 'Keputusan Diumumkan',
     ],
 ];

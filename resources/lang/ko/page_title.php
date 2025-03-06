@@ -108,8 +108,11 @@ return [
             '_' => '순위',
         ],
         'teams_controller' => [
-            '_' => '',
-            'show' => '',
+            '_' => '팀',
+            'create' => '팀 만들기',
+            'edit' => '팀 설정',
+            'leaderboard' => '팀 리더보드',
+            'show' => '팀 정보',
         ],
         'tournaments_controller' => [
             '_' => '토너먼트',
@@ -133,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => '상점',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '팀원',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

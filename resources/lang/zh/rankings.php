@@ -49,6 +49,9 @@ return [
         'ongoing' => '本季赛仍在进行中（将加入更多歌单）。',
         'room_count' => '歌单数量',
         'url' => '显示该季赛更多信息。',
+        'validation' => [
+            'not_enough_factors' => '成绩因子过少，无法计算',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,7 @@ return [
         'accuracy' => '准确率',
         'active_users' => '活跃用户',
         'country' => '国家/地区',
+        'division' => '排位',
         'play_count' => '游戏次数',
         'performance' => '表现',
         'total_score' => '总分',

@@ -19,7 +19,7 @@ return [
 
         'errors' => [
             'duration_too_long' => 'Прекалено голяма продължителност.',
-            'name_too_long' => '',
+            'name_too_long' => 'Името на стаята е много дълго.',
         ],
 
         'status' => [

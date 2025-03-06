@@ -55,6 +55,7 @@ return [
         'contact' => 'Kontakt:',
         'date' => 'Datum:',
         'echeck_delay' => 'Eftersom din betalning var en eCheck, vänligen tillåt upp till 10 extra dagar för betalningen att accepteras via PayPal! ',
+        'echeck_denied' => '',
         'hide_from_activity' => 'osu!supporter taggar i denna ordning visas inte i dina senaste aktiviteter.',
         'sent_via' => 'Skickat Via:',
         'shipping_to' => 'Levereras Till:',

@@ -20,17 +20,19 @@ return [
         'channel' => 'Chat',
         'forum_topic' => 'Forum',
         'news_post' => 'Neuigkeiten',
+        'team' => 'Team',
         'user' => 'Profil',
     ],
 
     'filters' => [
         '_' => 'alle',
-        'user' => 'Profil',
         'beatmapset' => 'Beatmaps',
-        'forum_topic' => 'Forum',
-        'news_post' => 'Neuigkeiten',
         'build' => 'Versionen',
         'channel' => 'chat',
+        'forum_topic' => 'Forum',
+        'news_post' => 'Neuigkeiten',
+        'team' => 'Team',
+        'user' => 'Profil',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => 'Team-Beitrittsanfrage',
+
+                'team_application_accept' => "Du bist jetzt Mitglied des Teams :title",
+                'team_application_accept_compact' => "Du bist jetzt Mitglied des Teams :title",
+                'team_application_reject' => 'Deine Beitrittsanfrage für das Team :title wurde abgelehnt',
+                'team_application_reject_compact' => 'Deine Beitrittsanfrage für das Team :title wurde abgelehnt',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Neue Beatmap',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Es gibt neue Antworten in ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Du bist jetzt Mitglied des Teams :title",
+                'team_application_reject' => 'Deine Beitrittsanfrage für das Team :title wurde abgelehnt',
             ],
         ],
 

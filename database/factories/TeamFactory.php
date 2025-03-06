@@ -14,18 +14,11 @@ class TeamFactory extends Factory
 {
     protected $model = Team::class;
 
-    public function configure(): static
-    {
-        return $this->afterCreating(function (Team $team): void {
-            $team->members()->create(['user_id' => $team->leader_id]);
-        });
-    }
-
     public function definition(): array
     {
         return [
-            'name' => fn () => $this->faker->name(),
-            'short_name' => fn () => $this->faker->domainWord(),
+            'name' => fn () => strtr($this->faker->unique()->userName(), '.', ' '),
+            'short_name' => fn () => substr(strtr($this->faker->unique()->userName(), '.', ' '), 0, 4),
             'leader_id' => User::factory(),
         ];
     }

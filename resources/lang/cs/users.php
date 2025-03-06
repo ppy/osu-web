@@ -390,7 +390,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Stáhnout záznam',
-                'not_ranked' => 'Pouze hodnocené mapy vydávají pp.',
+                'not_ranked' => 'Pouze hodnocené mapy udělují pp',
                 'pp_weight' => 'váženo na :percentage',
                 'view_details' => 'Zobrazit detaily',
                 'title' => 'Umístění',

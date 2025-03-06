@@ -20,17 +20,19 @@ return [
         'channel' => 'tchat',
         'forum_topic' => 'forum',
         'news_post' => 'news',
+        'team' => 'équipe',
         'user' => 'profil',
     ],
 
     'filters' => [
         '_' => 'tout',
-        'user' => 'profil',
         'beatmapset' => 'beatmaps',
-        'forum_topic' => 'forum',
-        'news_post' => 'news',
         'build' => 'versions',
         'channel' => 'tchat',
+        'forum_topic' => 'forum',
+        'news_post' => 'news',
+        'team' => 'équipe',
+        'user' => 'profil',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => 'Demander à rejoindre',
+
+                'team_application_accept' => "Vous faites désormais partie de l'équipe :title",
+                'team_application_accept_compact' => "Vous faites désormais partie de l'équipe :title",
+                'team_application_reject' => 'Votre demande pour rejoindre l\'équipe :title a été refusée',
+                'team_application_reject_compact' => 'Votre demande pour rejoindre l\'équipe :title a été refusée',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Nouvelle beatmap',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Il y a de nouvelles réponses dans ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Vous faites désormais partie de l'équipe :title",
+                'team_application_reject' => 'Votre demande pour rejoindre l\'équipe :title a été refusée',
             ],
         ],
 

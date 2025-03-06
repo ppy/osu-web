@@ -55,6 +55,7 @@ return [
         'contact' => 'Kontak:',
         'date' => 'Tanggal:',
         'echeck_delay' => 'Berhubung pembayaranmu berupa eCheck, mohon tunggu hingga setidaknya 10 hari agar pembayaranmu dapat diproses oleh PayPal!',
+        'echeck_denied' => 'Pembayaran eCheck ini ditolak oleh PayPal.',
         'hide_from_activity' => 'Tag osu!supporter yang dipesan melalui pesanan ini tidak akan ditampilkan pada riwayat aktivitas terkini milikmu.',
         'sent_via' => 'Dikirim Melalui:',
         'shipping_to' => 'Dikirim Ke:',

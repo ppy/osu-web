@@ -18,6 +18,10 @@ interface Props {
 export default class ConversationListItem extends React.Component<Props> {
   private readonly ref = React.createRef<HTMLDivElement>();
 
+  get canPart() {
+    return this.props.channel.type !== 'TEAM';
+  }
+
   @computed
   get selected() {
     return this.props.channel.channelId === core.dataStore.chatState.selectedChannel?.channelId;
@@ -48,9 +52,11 @@ export default class ConversationListItem extends React.Component<Props> {
           ? <div className={`${baseClassName}__unread-indicator`} />
           : null}
 
-        <button className={`${baseClassName}__close-button`} onClick={this.part}>
-          <i className='fas fa-times' />
-        </button>
+        {this.canPart &&
+          <button className={`${baseClassName}__close-button`} onClick={this.part}>
+            <i className='fas fa-times' />
+          </button>
+        }
 
         <button className={`${baseClassName}__tile`} onClick={this.switch}>
           <div className={`${baseClassName}__avatar`}>

@@ -18,7 +18,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Featured Artists jsou umělci, se kterými spolupracujeme, abychom do osu! přinesli novou a originální hudbu. Tito umělci a výběr jejich skladeb byli ručně zvoleni týmem osu! kvůli jejich úžasnosti a vlohám pro zmapování. Někteří z Featured Artists navíc vytvořili nové skladby exkluzivně pro osu!.<br><br>Všechny skladby v této sekci jsou k dispozici jako předem načasované .osz soubory a jsou oficiálně licencované pro použití v osu! a obsahu s osu! souvisejícím.',
+        'description' => 'Oficiální umělci jsou tvůrci, se kterými spolupracujeme, abychom do osu! přinesli novou a originální hudbu. Tito umělci a výběr jejich skladeb byli ručně zvoleni týmem osu! kvůli jejich úžasnosti a vlohám pro mapování. Někteří z Oficiálních umělců navíc vytvořili nové skladby exkluzivně pro osu!.<br><br>Všechny skladby v této sekci jsou k dispozici jako předem načasované .osz soubory a jsou oficiálně licencované pro použití v osu! a obsahu s osu! souvisejícím.',
     ],
 
     'links' => [

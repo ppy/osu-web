@@ -77,22 +77,22 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'rebre notificacions de nous problemes en beatmaps qualificats dels següents modes',
-        'beatmapset_disqualify' => 'rebre notificacions per quan els beatmaps dels següents modes siguin desqualificats',
+        'beatmapset_discussion_qualified_problem' => 'rebre notificacions de nous problemes en mapes qualificats dels següents modes',
+        'beatmapset_disqualify' => 'rebre notificacions per quan els mapes dels següents modes siguin desqualificats',
         'comment_reply' => 'rebre notificacions de respostes als teus comentaris',
         'title' => 'Notificacions',
-        'topic_auto_subscribe' => 'habilita automàticament les notificacions en els nous temes de fòrum que creeu',
+        'topic_auto_subscribe' => 'habilita automàticament les notificacions en els nous temes de fòrum que creis or responguis',
 
         'options' => [
             '_' => 'opcions d\'entrega',
             'beatmap_owner_change' => 'dificultat de convidat',
-            'beatmapset:modding' => 'modding de mapes',
+            'beatmapset:modding' => 'moding de mapes',
             'channel_message' => 'missatges de xat privats',
             'comment_new' => 'comentaris nous',
             'forum_topic_reply' => 'resposta del tema',
             'mail' => 'correu',
             'mapping' => 'edició de mapes',
-            'push' => 'push',
+            'push' => 'emergent',
         ],
     ],
 

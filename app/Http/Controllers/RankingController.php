@@ -10,10 +10,13 @@ use App\Models\Country;
 use App\Models\CountryStatistics;
 use App\Models\Model;
 use App\Models\Spotlight;
+use App\Models\TeamStatistics;
 use App\Models\User;
 use App\Models\UserStatistics;
 use App\Transformers\SelectOptionTransformer;
+use App\Transformers\TeamStatisticsTransformer;
 use App\Transformers\UserCompactTransformer;
+use App\Transformers\UserStatisticsTransformer;
 use DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -30,13 +33,14 @@ class RankingController extends Controller
 
     const MAX_RESULTS = 10000;
     const PAGE_SIZE = Model::PER_PAGE;
-    const RANKING_TYPES = ['performance', 'charts', 'score', 'country'];
+    const RANKING_TYPES = ['performance', 'charts', 'score', 'country', 'team'];
     const SPOTLIGHT_TYPES = ['charts'];
     // in display order
     const TYPES = [
         'performance',
         'score',
         'country',
+        'team',
         'multiplayer',
         'daily_challenge',
         'seasons',
@@ -169,6 +173,12 @@ class RankingController extends Controller
                 ->with('country')
                 ->where('mode', $modeInt)
                 ->orderBy('performance', 'desc');
+        } elseif ($type === 'team') {
+            $stats = TeamStatistics::where('ranked_score', '>', 0)
+                ->where('ruleset_id', $modeInt)
+                ->withCount('members')
+                ->with('team')
+                ->orderBy('performance', 'desc');
         } else {
             $class = UserStatistics\Model::getClass($mode, $this->params['variant']);
             $table = (new $class())->getTable();
@@ -241,8 +251,12 @@ class RankingController extends Controller
                     $ranking = json_collection($stats, 'CountryStatistics', ['country']);
                     break;
 
+                case 'team':
+                    $ranking = json_collection($stats, new TeamStatisticsTransformer(), ['member_count', 'team']);
+                    break;
+
                 default:
-                    $includes = ['user', 'user.cover', 'user.country'];
+                    $includes = UserStatisticsTransformer::RANKING_INCLUDES;
 
                     if ($this->country !== null) {
                         $includes[] = 'country_rank';
@@ -256,7 +270,7 @@ class RankingController extends Controller
                         $includes[] = 'rank_change_since_30_days';
                     }
 
-                    $ranking = json_collection($stats, 'UserStatistics', $includes);
+                    $ranking = json_collection($stats, new UserStatisticsTransformer(), $includes);
                     break;
             }
 
@@ -346,7 +360,11 @@ class RankingController extends Controller
                     // transformer can't do nested includes with params properly.
                     // https://github.com/thephpleague/fractal/issues/239
                     'beatmapsets' => json_collection($beatmapsets, 'Beatmapset', ['beatmaps']),
-                    'ranking' => json_collection($scores->get(), 'UserStatistics', ['user', 'user.cover', 'user.country']),
+                    'ranking' => json_collection(
+                        $scores->get(),
+                        new UserStatisticsTransformer(),
+                        UserStatisticsTransformer::RANKING_INCLUDES,
+                    ),
                     'spotlight' => json_item($spotlight, 'Spotlight', ["participant_count:mode({$mode})"]),
                 ];
             } else {
@@ -392,6 +410,10 @@ class RankingController extends Controller
             return CountryStatistics::where('display', 1)
                 ->where('mode', $modeInt)
                 ->count();
+        }
+
+        if ($this->params['type'] === 'team') {
+            return TeamStatistics::where('ruleset_id', $modeInt)->where('ranked_score', '>', 0)->count();
         }
 
         $maxResults = static::MAX_RESULTS;

@@ -108,8 +108,11 @@ return [
             '_' => '排名',
         ],
         'teams_controller' => [
-            '_' => '',
-            'show' => '',
+            '_' => '战队',
+            'create' => '',
+            'edit' => '战队设置',
+            'leaderboard' => '战队排行',
+            'show' => '战队信息',
         ],
         'tournaments_controller' => [
             '_' => '比赛',
@@ -133,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => '商店',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '战队成员',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

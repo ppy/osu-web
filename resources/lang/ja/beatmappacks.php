@@ -17,6 +17,7 @@ return [
     ],
 
     'show' => [
+        'created_by' => '',
         'download' => 'ダウンロード',
         'item' => [
             'cleared' => '削除済み',

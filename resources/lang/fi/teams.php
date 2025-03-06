@@ -4,11 +4,50 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'applications' => [
+        'accept' => [
+            'ok' => '',
+        ],
+        'destroy' => [
+            'ok' => '',
+        ],
+        'reject' => [
+            'ok' => '',
+        ],
+        'store' => [
+            'ok' => '',
+        ],
+    ],
+
+    'create' => [
+        'submit' => '',
+
+        'form' => [
+            'name_help' => '',
+            'short_name_help' => '',
+            'title' => "",
+        ],
+
+        'intro' => [
+            'description' => "",
+            'title' => '',
+        ],
+    ],
+
+    'destroy' => [
+        'ok' => '',
+    ],
+
     'edit' => [
-        'saved' => '',
+        'ok' => '',
         'title' => '',
 
         'description' => [
+            'label' => 'Kuvaus',
+            'title' => '',
+        ],
+
+        'flag' => [
             'label' => '',
             'title' => '',
         ],
@@ -18,24 +57,32 @@ return [
             'title' => '',
         ],
 
-        'logo' => [
-            'label' => '',
-            'title' => '',
-        ],
-
         'settings' => [
-            'application' => '',
             'application_help' => '',
-            'default_ruleset' => '',
             'default_ruleset_help' => '',
+            'flag_help' => '',
+            'header_help' => '',
             'title' => '',
-            'url' => '',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => 'Suljettu',
+                'state_1' => 'Avaa',
             ],
         ],
+    ],
+
+    'header_links' => [
+        'edit' => '',
+        'leaderboard' => '',
+        'show' => '',
+
+        'members' => [
+            'index' => '',
+        ],
+    ],
+
+    'leaderboard' => [
+        'global_rank' => '',
     ],
 
     'members' => [
@@ -45,6 +92,13 @@ return [
 
         'index' => [
             'title' => '',
+
+            'applications' => [
+                'empty' => '',
+                'empty_slots' => '',
+                'title' => '',
+                'created_at' => '',
+            ],
 
             'table' => [
                 'status' => '',
@@ -59,14 +113,22 @@ return [
             ],
         ],
     ],
+
+    'part' => [
+        'ok' => '',
+    ],
+
     'show' => [
         'bar' => [
-            'settings' => '',
+            'chat' => '',
+            'destroy' => '',
+            'join' => '',
+            'join_cancel' => '',
+            'part' => '',
         ],
 
         'info' => [
             'created' => '',
-            'website' => '',
         ],
 
         'members' => [
@@ -75,8 +137,12 @@ return [
         ],
 
         'sections' => [
-            'members' => '',
             'info' => '',
+            'members' => '',
         ],
+    ],
+
+    'store' => [
+        'ok' => '',
     ],
 ];

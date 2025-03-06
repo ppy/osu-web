@@ -108,8 +108,11 @@ return [
             '_' => 'рейтинги',
         ],
         'teams_controller' => [
-            '_' => '',
-            'show' => '',
+            '_' => 'команди',
+            'create' => '',
+            'edit' => 'налаштування команди',
+            'leaderboard' => 'таблиця лідерів команди',
+            'show' => 'інформація про команду',
         ],
         'tournaments_controller' => [
             '_' => 'турніри',
@@ -133,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'крамниця',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'члени команди',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

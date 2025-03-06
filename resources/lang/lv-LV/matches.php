@@ -5,11 +5,11 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'izdzēsta bītmape',
-        'failed' => '',
-        'header' => '',
-        'in-progress' => '(notiek mačs)',
-        'in_progress_spinner_label' => 'notiek mačs',
+        'beatmap-deleted' => 'izdzēsta ritma-mape',
+        'failed' => 'IZGĀZĀS',
+        'header' => 'Daudzspēlētāju Mači',
+        'in-progress' => '(notiek spēle)',
+        'in_progress_spinner_label' => 'notiek spēle',
         'loading-events' => 'Ielādē notikumus...',
         'winner' => ':team uzvar',
         'winner_by' => ':winner ar starpību :difference',
@@ -19,30 +19,30 @@ return [
             'player-joined' => ':user pievienojās mačam',
             'player-kicked' => ':user tika izraidīts no mača',
             'match-created' => ':user izveidoja maču',
-            'match-disbanded' => '',
-            'host-changed' => '',
+            'match-disbanded' => 'šis mačs bija izbeigts',
+            'host-changed' => ':user kļuva par vadītāju',
 
             'player-left-no-user' => 'spēlētājs pameta maču',
             'player-joined-no-user' => 'spēlētājs pievienojās mačam',
             'player-kicked-no-user' => 'spēlētājs tika izraidīts no mača',
             'match-created-no-user' => 'mačs tika izveidots',
-            'match-disbanded-no-user' => '',
-            'host-changed-no-user' => '',
+            'match-disbanded-no-user' => 'šis mačs bija pamests',
+            'host-changed-no-user' => 'vadītājs tika izmainīts',
         ],
 
         'score' => [
             'stats' => [
                 'accuracy' => 'Precizitāte',
-                'combo' => '',
-                'score' => '',
+                'combo' => 'Kombinācija',
+                'score' => 'Rezultāts',
             ],
         ],
 
         'team-types' => [
-            'head-to-head' => '',
-            'tag-coop' => '',
-            'team-vs' => '',
-            'tag-team-vs' => '',
+            'head-to-head' => 'Visi-pret-Visiem',
+            'tag-coop' => 'Stafetes ',
+            'team-vs' => 'Komandas VS',
+            'tag-team-vs' => 'Stafešu Komanda pret',
         ],
 
         'teams' => [
@@ -52,10 +52,10 @@ return [
     ],
     'game' => [
         'scoring-type' => [
-            'score' => '',
+            'score' => 'Visaugstākais Rezultāts',
             'accuracy' => 'Augstākā Precizitāte',
-            'combo' => 'Augstākais Kombo',
-            'scorev2' => '',
+            'combo' => 'Augstākā Kombinācija',
+            'scorev2' => 'Skaitīšana V2',
         ],
     ],
 ];

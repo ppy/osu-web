@@ -108,14 +108,17 @@ return [
             '_' => 'rankingi',
         ],
         'teams_controller' => [
-            '_' => '',
-            'show' => '',
+            '_' => 'zespoły',
+            'create' => '',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => 'informacje o zespole',
         ],
         'tournaments_controller' => [
             '_' => 'turnieje',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'ustawienia okładki użytkownika',
         ],
         'users_controller' => [
             '_' => 'informacje o użytkowniku',
@@ -133,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'sklep',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

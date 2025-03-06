@@ -295,6 +295,27 @@ return [
             'to_1_done' => 'A fost adăugată eticheta "resolved"',
         ],
 
+        'issue_tag_osulazer' => [
+            'to_0' => 'Elimină eticheta „osu!lazer”',
+            'to_0_done' => 'S-a eliminat eticheta „osu!lazer”',
+            'to_1' => 'Adaugă eticheta „osu!lazer”',
+            'to_1_done' => 'S-a adăugat eticheta „osu!lazer”',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => 'Elimină eticheta „osu!stable”',
+            'to_0_done' => 'S-a eliminat eticheta „osu!stable”',
+            'to_1' => 'Adaugă eticheta „osu!stable”',
+            'to_1_done' => 'S-a adăugat eticheta „osu!stable”',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => 'Elimină eticheta „osu!web”',
+            'to_0_done' => 'S-a eliminat eticheta „osu!web”',
+            'to_1' => 'Adaugă eticheta „osu!web”',
+            'to_1_done' => 'S-a adăugat eticheta „osu!web”',
+        ],
+
         'lock' => [
             'is_locked' => 'Acest subiect este închis și nu se pot adăuga răspunsuri',
             'to_0' => 'Deblochează subiectul',

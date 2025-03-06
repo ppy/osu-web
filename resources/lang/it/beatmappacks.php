@@ -17,6 +17,7 @@ return [
     ],
 
     'show' => [
+        'created_by' => 'di :author',
         'download' => 'Scarica',
         'item' => [
             'cleared' => 'completata',
