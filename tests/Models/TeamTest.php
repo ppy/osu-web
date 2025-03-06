@@ -11,6 +11,7 @@ use App\Models\Chat;
 use App\Models\Team;
 use App\Models\TeamApplication;
 use App\Models\TeamMember;
+use App\Models\TeamStatistics;
 use App\Models\User;
 use Tests\TestCase;
 
@@ -30,6 +31,7 @@ class TeamTest extends TestCase
         $team->members()->create(['user_id' => User::factory()->create()->getKey()]);
         Chat\Message::factory()->create(['channel_id' => $team->channel, 'user_id' => $team->leader_id]);
         $team->applications()->create(['user_id' => User::factory()->create()->getKey()]);
+        $team->statistics()->create(['ruleset_id' => 0]);
 
         $otherTeam = Team::factory()->create();
         $otherTeam->members()->create(['user_id' => User::factory()->create()->getKey()]);
@@ -38,6 +40,7 @@ class TeamTest extends TestCase
         $this->expectCountChange(fn () => Team::count(), -1);
         $this->expectCountChange(fn () => TeamApplication::count(), -1);
         $this->expectCountChange(fn () => TeamMember::count(), -2);
+        $this->expectCountChange(fn () => TeamStatistics::count(), -1);
         $this->expectCountChange(fn () => $otherTeam->members()->count(), 0);
 
         // Members are booted from the channel but the channel and message themselves are preserved.
