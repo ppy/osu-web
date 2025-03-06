@@ -176,6 +176,7 @@ class RankingController extends Controller
         } elseif ($type === 'team') {
             $stats = TeamStatistics::where('ranked_score', '>', 0)
                 ->where('ruleset_id', $modeInt)
+                ->whereHas('team')
                 ->withCount('members')
                 ->with('team')
                 ->orderBy('performance', 'desc');
