@@ -25,7 +25,7 @@ class TeamTest extends TestCase
         ];
     }
 
-    public function testDeleteZZZ(): void
+    public function testDelete(): void
     {
         [$team, $otherTeam] = array_map(function () {
             $team = Team::factory()->create();
