@@ -19,7 +19,7 @@
             ->all(),
     );
     $teamMembers['member'] ??= [];
-    $leader = $teamMembers['leader'][0] ?? $toJson([$team->members()->make(['user_id' => $team->leader_id])->userOrDeleted()]);
+    $leader = ($teamMembers['leader'] ?? $toJson([$team->members()->make(['user_id' => $team->leader_id])->userOrDeleted()]))[0];
     $headerUrl = $team->header()->url();
 
     $currentUser = Auth::user();
