@@ -34,9 +34,11 @@ class TeamStatistics extends Model
         return $this->hasMany(TeamMember::class, 'team_id', 'team_id');
     }
 
-    public function getRank(): int
+    public function getRank(): ?int
     {
-        return 1 + static
+        return $this->performance === 0
+            ? null
+            : 1 + static
             ::where('ruleset_id', $this->ruleset_id)
             ->where('performance', '>', $this->performance)
             ->count();
