@@ -304,7 +304,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('part', 'TeamsController@part')->name('part');
         Route::resource('members', 'Teams\MembersController', ['only' => ['destroy', 'index']]);
     });
-    Route::resource('teams', 'TeamsController', ['only' => ['create', 'destroy', 'edit', 'store', 'show', 'update']]);
+    Route::resource('teams', 'TeamsController', ['only' => ['create', 'destroy', 'edit', 'store', 'update']]);
+    Route::get('teams/{team}/{ruleset?}', 'TeamsController@show')->name('teams.show');
 
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
     Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');
