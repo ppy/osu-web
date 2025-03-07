@@ -26,12 +26,13 @@
 
     $title = '';
     foreach ($titleTree as $i => $titlePart) {
-        $title .= e($titlePart);
+        // Reset text direction (202c = reset, 202d = force ltr).
+        $title .= e($titlePart)."\u{202c}";
 
         if ($i + 1 === count($titleTree)) {
             // Titles ending with phrase containing "osu!" like "osu!store" don't need the suffix.
             if (strpos($titlePart, 'osu!') === false) {
-                $title .= ' | osu!';
+                $title .= " | \u{202d}osu!\u{202c}";
             }
         } else {
             $title .= ' · ';
