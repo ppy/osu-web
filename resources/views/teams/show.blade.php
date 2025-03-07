@@ -181,7 +181,10 @@
                                 {{ osu_trans('teams.show.statistics.rank') }}
                             </div>
                             <div class="team-info-entry__value team-info-entry__value--large">
-                                #{{ i18n_number_format($statistics->getRank()) ?? '-' }}
+                                @php
+                                    $rank = $statistics->getRank();
+                                @endphp
+                                {{ $rank === null ? '-' : '#'.i18n_number_format($rank) }}
                             </div>
                         </div>
                         <div class="team-info-entry">
