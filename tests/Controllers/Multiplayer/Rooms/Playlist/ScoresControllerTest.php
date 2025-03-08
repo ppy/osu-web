@@ -125,6 +125,8 @@ class ScoresControllerTest extends TestCase
             'beatmap_hash' => $playlistItem->beatmap->checksum,
             'playlist' => $playlistItem->getKey(),
             'room' => $playlistItem->room_id,
+            'ruleset_id' => $playlistItem->ruleset_id,
+            'beatmap_id' => $playlistItem->beatmap_id,
         ]))->assertStatus($status);
 
         config_set('osu.client.check_version', $origClientCheckVersion);
@@ -148,6 +150,7 @@ class ScoresControllerTest extends TestCase
 
         // simulate invalid external modification from osu-server-spectator
         PlaylistItem::whereKey($playlistItem->getKey())->update(['ruleset_id' => 3]);
+        $playlistItem->refresh();
 
         $this->actAsScopedUser($user, ['*']);
 
@@ -155,8 +158,10 @@ class ScoresControllerTest extends TestCase
 
         $this->json('POST', route('api.rooms.playlist.scores.store', [
             'beatmap_hash' => $playlistItem->beatmap->checksum,
+            'beatmap_id' => $playlistItem->beatmap_id,
             'playlist' => $playlistItem->getKey(),
             'room' => $playlistItem->room_id,
+            'ruleset_id' => $playlistItem->ruleset_id,
         ]))->assertStatus(422);
     }
 

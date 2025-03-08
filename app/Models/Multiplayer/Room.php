@@ -704,11 +704,6 @@ class Room extends Model
             'ruleset_id:int',
         ], ['null_missing' => true]);
 
-        if (!$playlistItem->freestyle) {
-            $params['beatmap_id'] = $playlistItem->beatmap_id;
-            $params['ruleset_id'] = $playlistItem->ruleset_id;
-        }
-
         $this->assertValidStartPlay($user, $playlistItem, $params);
 
         return $this->getConnection()->transaction(function () use ($params, $playlistItem, $user) {
@@ -799,6 +794,13 @@ class Room extends Model
         if ($playlistItem->freestyle) {
             // assert the beatmap_id is part of playlist item's beatmapset
             if ($playlistItem->beatmap->beatmapset_id !== Beatmap::find($params['beatmap_id'])?->beatmapset_id) {
+                throw new InvariantException('Specified beatmap_id is not allowed');
+            }
+        } else {
+            if ($playlistItem->ruleset_id !== $params['ruleset_id']) {
+                throw new InvariantException('Specified ruleset_id is not allowed');
+            }
+            if ($playlistItem->beatmap_id !== $params['beatmap_id']) {
                 throw new InvariantException('Specified beatmap_id is not allowed');
             }
         }
