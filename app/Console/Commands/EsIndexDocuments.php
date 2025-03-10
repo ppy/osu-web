@@ -104,20 +104,21 @@ class EsIndexDocuments extends Command
 
         foreach ($types as $type) {
             $bar = $this->output->createProgressBar();
+            $bar->setFormat(' %current% [%bar%] %message%');
 
             $this->info("{$pretext} {$type} into {$indexName}");
 
+            $progressCallback = function ($progress, $message) use ($bar) {
+                $bar->setProgress($progress);
+                $bar->setMessage($message);
+            };
             if (!$this->inplace && $type === $first) {
                 // create new index if the first type for this index, otherwise
                 // index in place.
-                $type::esIndexIntoNew(Es::CHUNK_SIZE, $indexName, function ($progress) use ($bar) {
-                    $bar->setProgress($progress);
-                });
+                $type::esIndexIntoNew(Es::CHUNK_SIZE, $indexName, $progressCallback);
             } else {
                 $options = ['index' => $indexName];
-                $type::esReindexAll(Es::CHUNK_SIZE, 0, $options, function ($progress) use ($bar) {
-                    $bar->setProgress($progress);
-                });
+                $type::esReindexAll(Es::CHUNK_SIZE, 0, $options, $progressCallback);
             }
 
             $bar->finish();

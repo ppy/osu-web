@@ -60,9 +60,11 @@ trait BaseDbIndexable
                 $count += count($result['items']);
             }
 
-            Log::info(static::class." next: {$models->last()->getKey()}");
-            if ($progress) {
-                $progress($count);
+            $message = "next: {$models->last()->getKey()}";
+            if ($progress === null) {
+                Log::info(static::class.' '.$message);
+            } else {
+                $progress($count, $message);
             }
         });
 
