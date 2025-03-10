@@ -46,6 +46,7 @@ trait BaseDbIndexable
 
         $baseQuery = static::esIndexingQuery()->where($dummy->getKeyName(), '>', $fromId);
         $count = 0;
+        $progress ??= fn ($count, $message) => \Log::info(static::class.' '.$message);
 
         $baseQuery->chunkById($batchSize, function ($models) use ($options, &$count, $progress) {
             $actions = Es::generateBulkActions($models);
@@ -60,14 +61,12 @@ trait BaseDbIndexable
                 $count += count($result['items']);
             }
 
-            Log::info(static::class." next: {$models->last()->getKey()}");
-            if ($progress) {
-                $progress($count);
-            }
+            $progress($count, "next: {$models->last()->getKey()}");
         });
 
         $duration = time() - $startTime;
-        Log::info(static::class." Indexed {$count} records in {$duration} s.");
+
+        $progress($count, $message = "Indexed {$count} records in {$duration} s.");
     }
 
     /**

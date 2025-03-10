@@ -57,8 +57,6 @@ class MigrateFreshAllCommand extends FreshCommand
             '--no-interaction' => $this->option('no-interaction'),
         ]);
 
-        $this->call('es:create-search-blacklist');
-
         if ($this->needsSeeding()) {
             $this->runSeeder(null);
         }
