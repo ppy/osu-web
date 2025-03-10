@@ -136,10 +136,13 @@ class EsIndexWiki extends Command
         $total = count($paths);
         $this->line("Total: {$total} documents");
         $bar = $this->output->createProgressBar($total);
+        $bar->setFormat(' %current% [%bar%] %message%');
+        $logger = fn ($message) => $bar->setMessage($message);
 
         foreach ($paths as $path => $_inEs) {
             $pagePath = Page::parsePagePath($path);
             $page = new Page($pagePath['path'], $pagePath['locale']);
+            $page->logger = $logger;
             $page->sync(true, $this->indexName);
 
             if (!$page->isVisible()) {
