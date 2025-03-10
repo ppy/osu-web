@@ -22,6 +22,13 @@ class ChannelsController extends Controller
         return response(null, 204);
     }
 
+    public function close(string $id): Response
+    {
+        Channel::findOrFail($id)->close();
+
+        return response(null, 204);
+    }
+
     public function removeUser(string $id, string $userId): Response
     {
         $channel = Channel::findOrFail($id);

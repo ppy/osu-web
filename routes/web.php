@@ -605,6 +605,7 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
 
         Route::group(['as' => 'chat.', 'namespace' => 'Chat', 'prefix' => 'chat'], function () {
             Route::resource('channels', 'ChannelsController', ['only' => ['store']]);
+            Route::post('channels/{channel}/close', 'ChannelsController@close');
             Route::delete('channels/{channel}/users/{user}', 'ChannelsController@removeUser');
             Route::put('channels/{channel}/users/{user}', 'ChannelsController@addUser');
         });

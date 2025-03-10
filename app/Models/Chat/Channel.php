@@ -527,6 +527,24 @@ class Channel extends Model
         datadog_increment('chat.channel.join', ['type' => $this->type]);
     }
 
+    /**
+     * Remove all users from the channel but keep existing messages.
+     *
+     * This doesn't do anything to prevent anyone to re-join the channel.
+     */
+    public function close(): void
+    {
+        $this->loadMissing('userChannels.user');
+        foreach ($this->userChannels as $userChannel) {
+            $user = $userChannel->user;
+            if ($user === null) {
+                $userChannel->delete();
+            } else {
+                $this->removeUser($user);
+            }
+        }
+    }
+
     public function removeUser(User $user)
     {
         $userChannel = $this->userChannelFor($user);

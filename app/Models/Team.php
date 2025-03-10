@@ -137,17 +137,8 @@ class Team extends Model
 
                     $channel = $this->channel;
                     if ($channel !== null) {
-                        $channel->loadMissing('userChannels.user');
                         $channel->update(['name' => "#DeletedTeam_{$this->getKey()}"]);
-
-                        foreach ($channel->userChannels as $userChannel) {
-                            $user = $userChannel->user;
-                            if ($user === null) {
-                                $userChannel->delete();
-                            } else {
-                                $channel->removeUser($user);
-                            }
-                        }
+                        $channel->close();
                     }
                 }
 
