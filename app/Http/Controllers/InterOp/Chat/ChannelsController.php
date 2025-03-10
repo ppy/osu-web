@@ -15,9 +15,8 @@ class ChannelsController extends Controller
 {
     public function addUser(string $id, string $userId): Response
     {
-        $channel = Channel::findOrFail($id);
         $user = User::findOrFail($userId);
-        $channel->addUser($user);
+        Channel::findOrFail($id)->addUser($user);
 
         return response(null, 204);
     }
@@ -31,9 +30,8 @@ class ChannelsController extends Controller
 
     public function removeUser(string $id, string $userId): Response
     {
-        $channel = Channel::findOrFail($id);
         $user = User::findOrFail($userId);
-        $channel->removeUser($user);
+        Channel::findOrFail($id)->removeUser($user);
 
         return response(null, 204);
     }
