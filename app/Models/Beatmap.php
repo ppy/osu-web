@@ -183,6 +183,20 @@ class Beatmap extends Model implements AfterCommit
             ) AS attrib_max_combo"));
     }
 
+    public function scopeWithUserTagIds($query, ?int $userId)
+    {
+        if ($userId === null) {
+            $tagQuery = \DB::query()->selectRaw('null');
+        } else {
+            $tagQuery = BeatmapTag
+                ::where('user_id', $userId)
+                ->whereColumn('beatmap_id', $this->qualifyColumn('beatmap_id'));
+            $tagQuery->selectRaw("json_arrayagg({$tagQuery->qualifyColumn('tag_id')})");
+        }
+
+        return $query->addSelect(['user_tag_ids' => $tagQuery]);
+    }
+
     public function failtimes()
     {
         return $this->hasMany(BeatmapFailtimes::class);
@@ -288,6 +302,16 @@ class Beatmap extends Model implements AfterCommit
             'scoresBestTaiko',
             'user' => $this->getRelationValue($key),
         };
+    }
+
+    /**
+     * Requires calling withUserTagIds scope to populate user_tag_ids
+     *
+     * @return int[]
+     */
+    public function getUserTagIds(): array
+    {
+        return json_decode($this->attributes['user_tag_ids'] ?? '', true) ?? [];
     }
 
     /**

@@ -8,17 +8,40 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class TeamStatistics extends Model
 {
+    private const DEFAULT_ATTRIBUTES = [
+        'performance' => 0,
+        'play_count' => 0,
+        'ranked_score' => 0,
+    ];
+
     public $incrementing = false;
 
+    protected $attributes = self::DEFAULT_ATTRIBUTES;
     protected $primaryKey = ':composite';
     protected $primaryKeys = ['team_id', 'ruleset_id'];
 
     public function team(): BelongsTo
     {
         return $this->belongsTo(Team::class);
+    }
+
+    public function members(): HasMany
+    {
+        return $this->hasMany(TeamMember::class, 'team_id', 'team_id');
+    }
+
+    public function getRank(): ?int
+    {
+        return $this->performance === 0
+            ? null
+            : 1 + static
+            ::where('ruleset_id', $this->ruleset_id)
+            ->where('performance', '>', $this->performance)
+            ->count();
     }
 
     public function recalculate(): void
@@ -36,11 +59,7 @@ class TeamStatistics extends Model
             ->first();
 
         if ($statistics === null) {
-            $this->update([
-                'performance' => 0,
-                'ranked_score' => 0,
-                'play_count' => 0,
-            ]);
+            $this->update(static::DEFAULT_ATTRIBUTES);
 
             return;
         }

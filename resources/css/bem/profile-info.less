@@ -103,7 +103,8 @@
   &__flag {
     .link-plain();
     .link-white();
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr;
     gap: 4px;
     align-items: center;
   }
@@ -175,6 +176,7 @@
     flex-direction: column;
     align-items: flex-start;
     flex: 1;
+    min-width: 0;
   }
 
   &__level {

@@ -68,6 +68,8 @@ trait UserScoreable
         }
 
         $results->load($with);
+        // make outdated index less obvious
+        $results = $results->sortByDesc('pp');
 
         // fill in positions for weighting
         // also preload the user relation

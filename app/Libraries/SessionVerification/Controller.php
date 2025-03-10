@@ -28,14 +28,15 @@ class Controller
             return response(null, $statusCode);
         }
 
-        if (\Request::ajax()) {
+        $request = \Request::instance();
+        if ($request->ajax() || ($request->getMethod() !== 'GET' && is_turbo_request($request))) {
             return response([
                 'authentication' => 'verify',
                 'box' => view(
                     'users._verify_box',
                     compact('email')
                 )->render(),
-            ], $statusCode);
+            ], $statusCode, ['x-turbo-action' => 'session-verification']);
         }
 
         return ext_view('users.verify', compact('email'), null, $statusCode);

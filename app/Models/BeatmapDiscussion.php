@@ -249,6 +249,7 @@ class BeatmapDiscussion extends Model
     public function canGrantKudosu()
     {
         return in_array($this->attributes['message_type'] ?? null, static::KUDOSUABLE_TYPES, true) &&
+            $this->beatmapset !== null &&
             $this->user_id !== $this->beatmapset->user_id &&
             !$this->trashed() &&
             !$this->kudosu_denied;

@@ -122,7 +122,7 @@ class TeamsController extends Controller
         return ujs_redirect(route('teams.show', ['team' => $team]));
     }
 
-    public function show(string $id): Response
+    public function show(string $id, ?string $ruleset = null): Response
     {
         $team = Team
             ::with(array_map(
@@ -130,29 +130,31 @@ class TeamsController extends Controller
                 UserCompactTransformer::CARD_INCLUDES_PRELOAD,
             ))->findOrFail($id);
 
-        return ext_view('teams.show', compact('team'));
+        if ($ruleset === null) {
+            $rulesetId = $team->default_ruleset_id;
+        } else {
+            $rulesetId = Beatmap::MODES[$ruleset] ?? null;
+
+            if ($rulesetId === null) {
+                abort(422, 'invalid ruleset name');
+            }
+        }
+        $statistics = $team->statistics()->firstOrNew(['ruleset_id' => $rulesetId]);
+
+        return ext_view('teams.show', compact('rulesetId', 'statistics', 'team'));
     }
 
     public function store(): Response
     {
         priv_check('TeamStore')->ensureCan();
 
-        $params = get_params(\Request::all(), 'team', [
+        $team = new Team(get_params(\Request::all(), 'team', [
             'name',
             'short_name',
-        ]);
-
-        $user = \Auth::user();
-        $team = (new Team([...$params, 'leader_id' => $user->getKey()]));
+        ]));
+        $team->leader()->associate(\Auth::user());
         try {
-            \DB::transaction(function () use ($team, $user) {
-                \DB::connection('mysql-chat')->transaction(function () use ($team, $user) {
-                    $channel = $team->createChannel();
-                    $team->saveOrExplode();
-                    $team->members()->create(['user_id' => $user->getKey()]);
-                    $channel->addUser($user);
-                });
-            });
+            $team->saveOrExplode();
         } catch (ModelNotSavedException) {
             return ext_view('teams.create', compact('team'), status: 422);
         }

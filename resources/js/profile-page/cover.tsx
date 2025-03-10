@@ -98,7 +98,7 @@ export default class Cover extends React.Component<Props> {
                   href={route('teams.show', { team: this.props.user.team.id })}
                 >
                   <FlagTeam team={this.props.user.team} />
-                  <span className='profile-info__flag-text'>{this.props.user.team.name}</span>
+                  <span className='profile-info__flag-text u-ellipsis-overflow'>{this.props.user.team.name}</span>
                 </a>
               }
               <div className='profile-info__icons profile-info__icons--flag-inline'>

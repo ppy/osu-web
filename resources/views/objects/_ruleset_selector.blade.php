@@ -14,6 +14,14 @@
                     class="fal fa-extra-mode-{{ $ruleset }}"
                     title="{{ osu_trans("beatmaps.mode.{$ruleset}") }}"
                 ></span>
+                @if (isset($defaultRuleset) && $ruleset === $defaultRuleset)
+                    <span
+                      class="game-mode-link__icon"
+                      title="{{ osu_trans('users.show.edit.default_playmode.is_default_tooltip') }}"
+                    >
+                      <span class="fas fa-star"></span>
+                    </span>
+                @endif
             </a>
         </li>
     @endforeach

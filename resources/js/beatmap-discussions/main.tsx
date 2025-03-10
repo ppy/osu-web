@@ -128,7 +128,7 @@ export default class Main extends React.Component<Props> {
           </ReviewEditorConfigContext.Provider>
         )}
         <div className='floating-toolbar'>
-          <Refresh worker={this.discussionsStateWorker} />
+          {this.discussionsState.beatmapset.deleted_at == null && <Refresh worker={this.discussionsStateWorker} />}
           <BackToTop />
         </div>
       </>

@@ -92,7 +92,6 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 
     public function includeBeatmaps(Beatmapset $beatmapset, Fractal\ParamBag $params)
     {
-
         return $this->collection($this->beatmaps($beatmapset, $params), new $this->beatmapTransformer());
     }
 

@@ -117,7 +117,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           <td className={`${bn}__cell u-relative`}>
             <span className={`${classWithModifiers(`${bn}__cell-content`, 'user-link')}`}>
               {score.user.team != null &&
-                <a className='u-contents' href={route('teams.show', { id: score.user.team.id })}>
+                <a className='u-contents' href={route('teams.show', { team: score.user.team.id })}>
                   <FlagTeam team={score.user.team} />
                 </a>
               }
