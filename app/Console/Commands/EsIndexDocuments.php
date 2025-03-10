@@ -109,8 +109,8 @@ class EsIndexDocuments extends Command
             $this->info("{$pretext} {$type} into {$indexName}");
 
             $progressCallback = function ($progress, $message) use ($bar) {
-                $bar->setProgress($progress);
                 $bar->setMessage($message);
+                $bar->setProgress($progress);
             };
             if (!$this->inplace && $type === $first) {
                 // create new index if the first type for this index, otherwise
