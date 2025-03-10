@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as d3 from 'd3';
-import { first, groupBy, kebabCase, last, map, sumBy } from 'lodash';
+import { first, groupBy, kebabCase, keyBy, last, map } from 'lodash';
 import moment from 'moment';
 import { fadeIn, fadeOut } from 'utils/fade';
 import { formatNumber } from 'utils/html';
@@ -11,7 +11,6 @@ import { parseJson } from 'utils/json';
 interface BuildHistory {
   created_at: string;
   label: string;
-  normalized?: number;
   user_count: number;
 }
 
@@ -36,7 +35,6 @@ export default class ChangelogChart {
   private autoHideTooltip?: number;
   private chartData?: ChartData;
   private data: d3.Series<DataObj, string>[] = [];
-  private hasData = false;
   private height = 0;
   private readonly hoverArea;
   private readonly scales;
@@ -52,6 +50,10 @@ export default class ChangelogChart {
   private width = 0;
   private x?: Date;
   private y?: number;
+
+  private get hasData() {
+    return this.data.length > 0;
+  }
 
   constructor(area: HTMLElement) {
     this.scales = {
@@ -118,15 +120,15 @@ export default class ChangelogChart {
   loadData() {
     this.chartData = parseJson('json-chart-config');
 
-    const { data, hasData } = this.normalizeData(this.chartData.build_history);
+    const data = this.normalizeData(this.chartData.build_history);
 
     const stack = d3
       .stack<DataObj, string>()
       .keys(this.chartData.order)
-      .value((d, val) => (d.builds[val]?.normalized ?? 0));
+      .offset(d3.stackOffsetExpand)
+      .value((d, val) => (d.builds[val]?.user_count ?? 0));
 
     this.data = stack(data);
-    this.hasData = this.chartData.build_history.length > 0 && hasData;
 
     this.resize();
   }
@@ -157,53 +159,20 @@ export default class ChangelogChart {
   private normalizeData(rawData: BuildHistory[]) {
     // normalize the user count values
     // and parse data into a form digestible by d3.stack()
-
-    let resetLabel: string | null = null;
-    let hasData: boolean | null = null;
-
     const sortedData = groupBy(rawData, 'created_at');
 
-    const data = map(sortedData, (values, timestamp) => {
-      let sum = sumBy(values, 'user_count');
-
-      if (sum === 0) {
-        let fakedVal = resetLabel != null
-          ? values.find((val) => val.label === resetLabel)
-          : null;
-
-        if (fakedVal == null) {
-          fakedVal = last(values);
-          resetLabel = fakedVal?.label ?? null;
-        }
-
-        if (fakedVal) fakedVal.user_count = 1;
-        sum = 1;
-      } else {
-        hasData ??= true;
-      }
-
+    return map(sortedData, (values, timestamp): DataObj => {
       // parse date stored in strings to JS Date object for use by
       // d3 domains, and format it into a string shown on the tooltip
-      const m = moment(values[0].created_at);
+      const m = moment(timestamp);
 
-      const obj: DataObj = {
-        builds: {},
+      return {
+        builds: keyBy(values, 'label'),
         created_at: timestamp,
         date: m.toDate(),
         date_formatted: m.format('YYYY/MM/DD'),
       };
-
-      for (const val of values) {
-        obj.builds[val.label] = val;
-        obj.builds[val.label].normalized = val.user_count / sum;
-      }
-
-      return obj;
     });
-
-    hasData ??= false;
-
-    return { data, hasData };
   }
 
   private setDimensions() {
