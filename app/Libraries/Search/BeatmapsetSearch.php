@@ -63,7 +63,6 @@ class BeatmapsetSearch extends RecordSearch
             );
         }
 
-        $this->addBlacklistFilter($query);
         $this->addBlockedUsersFilter($query);
         $this->addFeaturedArtistFilter($query);
         $this->addFeaturedArtistsFilter($query);
@@ -120,29 +119,6 @@ class BeatmapsetSearch extends RecordSearch
             ->with(['beatmaps' => function ($q) {
                 return $q->withMaxCombo();
             }])->get();
-    }
-
-    private function addBlacklistFilter($query)
-    {
-        static $fields = ['artist', 'source', 'tags'];
-        $params = [
-            'index' => $GLOBALS['cfg']['osu']['elasticsearch']['prefix'].'blacklist',
-            'id' => 'beatmapsets',
-            // can be changed to per-field blacklist as different fields should probably have different restrictions.
-            'path' => 'keywords',
-        ];
-
-        $bool = new BoolQuery();
-
-        foreach ($fields as $field) {
-            $bool->mustNot([
-                'terms' => [
-                    $field => $params,
-                ],
-            ]);
-        }
-
-        $query->filter($bool);
     }
 
     private function addBlockedUsersFilter($query)
