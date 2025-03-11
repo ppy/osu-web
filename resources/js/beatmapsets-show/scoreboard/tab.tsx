@@ -23,6 +23,8 @@ export default class ScoreboardTab extends React.Component<Props> {
   render() {
     if (!this.isVisible) return null;
 
+    const label = trans(`beatmapsets.show.scoreboard.${this.props.type}`);
+
     return (
       <div
         className={classWithModifiers('page-tabs__tab', {
@@ -30,7 +32,9 @@ export default class ScoreboardTab extends React.Component<Props> {
         })}
         onClick={this.onClick}
       >
-        {trans(`beatmapsets.show.scoreboard.${this.props.type}`)}
+        <span className='fake-bold' data-content={label}>
+          {label}
+        </span>
       </div>
     );
   }
