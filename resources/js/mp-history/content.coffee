@@ -8,7 +8,7 @@ import { classWithModifiers } from 'utils/css'
 import { bottomPageDistance } from 'utils/html'
 import { trans } from 'utils/lang'
 import Event from './event'
-import { Game } from './game'
+import Game from './game'
 
 el = React.createElement
 

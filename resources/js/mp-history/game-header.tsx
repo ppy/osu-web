@@ -24,7 +24,7 @@ const timeFormat = 'LTS';
 export default function GameHeader(props: Props) {
   let title = getTitle(props.beatmapset);
   const version = props.beatmap.version;
-  if (version != null) {
+  if (version !== '') {
     title += ` [${version}]`;
   }
 
