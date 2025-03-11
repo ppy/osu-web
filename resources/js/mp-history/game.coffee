@@ -7,7 +7,7 @@ import { div, span, strong } from 'react-dom-factories'
 import { formatNumber } from 'utils/html'
 import { trans, transExists } from 'utils/lang'
 import GameHeader from './game-header'
-import { Score } from './score'
+import Score from './score'
 
 el = React.createElement
 
