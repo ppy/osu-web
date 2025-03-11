@@ -27,26 +27,29 @@ class TeamTest extends TestCase
 
     public function testDelete(): void
     {
-        $team = Team::factory()->create();
-        $team->members()->create(['user_id' => User::factory()->create()->getKey()]);
-        Chat\Message::factory()->create(['channel_id' => $team->channel, 'user_id' => $team->leader_id]);
-        $team->applications()->create(['user_id' => User::factory()->create()->getKey()]);
-        $team->statistics()->create(['ruleset_id' => 0]);
+        [$team, $otherTeam] = array_map(function () {
+            $team = Team::factory()->create();
+            $team->addMember($team->applications()->make(['user_id' => User::factory()->create()->getKey()]));
+            Chat\Message::factory()->create(['channel_id' => $team->channel, 'user_id' => $team->leader_id]);
+            $team->applications()->create(['user_id' => User::factory()->create()->getKey()]);
+            $team->statistics()->create(['ruleset_id' => 0]);
 
-        $otherTeam = Team::factory()->create();
-        $otherTeam->members()->create(['user_id' => User::factory()->create()->getKey()]);
-        Chat\Message::factory()->create(['channel_id' => $otherTeam->channel]);
+            return $team;
+        }, [null, null]);
 
         $this->expectCountChange(fn () => Team::count(), -1);
-        $this->expectCountChange(fn () => TeamApplication::count(), -1);
         $this->expectCountChange(fn () => TeamMember::count(), -2);
+        $this->expectCountChange(fn () => Chat\UserChannel::count(), -2);
+        $this->expectCountChange(fn () => TeamApplication::count(), -1);
         $this->expectCountChange(fn () => TeamStatistics::count(), -1);
-        $this->expectCountChange(fn () => $otherTeam->members()->count(), 0);
-
         // Members are booted from the channel but the channel and message themselves are preserved.
-        $this->expectCountChange(fn () => $team->channel->userChannels()->count(), -1);
         $this->expectCountChange(fn () => Chat\Channel::count(), 0);
         $this->expectCountChange(fn () => Chat\Message::count(), 0);
+
+        $this->expectCountChange(fn () => $otherTeam->members()->count(), 0);
+        $this->expectCountChange(fn () => $otherTeam->channel->userChannels()->count(), 0);
+        $this->expectCountChange(fn () => $otherTeam->applications()->count(), 0);
+        $this->expectCountChange(fn () => $otherTeam->statistics()->count(), 0);
 
         $team->fresh()->delete();
 
