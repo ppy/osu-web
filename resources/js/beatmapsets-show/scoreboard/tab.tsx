@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
@@ -15,7 +16,13 @@ interface Props {
 
 @observer
 export default class ScoreboardTab extends React.Component<Props> {
+  private get isVisible() {
+    return this.props.type !== 'team' || core.currentUser?.team != null;
+  }
+
   render() {
+    if (!this.isVisible) return null;
+
     return (
       <div
         className={classWithModifiers('page-tabs__tab', {

@@ -15,8 +15,9 @@ use App\Models\UserProfileCustomization;
 
 class ScoreSearchParams extends SearchParams
 {
-    const VALID_TYPES = ['global', 'country', 'friend'];
     const DEFAULT_TYPE = 'global';
+    const FREE_TYPES = ['global', 'team'];
+    const VALID_TYPES = ['global', 'country', 'friend', 'team'];
 
     public ?array $beatmapIds = null;
     public ?Score $beforeScore = null;
@@ -101,6 +102,11 @@ class ScoreSearchParams extends SearchParams
     public function getFriendIds(): array
     {
         return [...$this->user->friends()->allRelatedIds(), $this->user->getKey()];
+    }
+
+    public function getTeamMemberIds(): array
+    {
+        return $this->user?->team?->members()->pluck('user_id')->all() ?? [];
     }
 
     public function getType(): string

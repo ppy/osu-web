@@ -65,11 +65,15 @@ export default class Controller {
       return 'unranked';
     }
 
-    if (!core.currentUser?.is_supporter && (this.currentType !== 'global' || this.enabledMods.size > 0)) {
+    if (!core.currentUser?.is_supporter && this.requiresSupporter) {
       return 'supporter_only';
     }
 
     return this.xhrState;
+  }
+
+  get requiresSupporter() {
+    return !['global', 'team'].includes(this.currentType) || this.enabledMods.size > 0;
   }
 
   constructor(private readonly container: HTMLElement, private readonly getBeatmap: () => BeatmapExtendedJson) {
