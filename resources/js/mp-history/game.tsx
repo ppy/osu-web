@@ -10,11 +10,7 @@ import { formatNumber } from 'utils/html';
 import { trans, transExists } from 'utils/lang';
 import GameHeader from './game-header';
 import Score from './score';
-
-interface TeamScores {
-  blue: number;
-  red: number;
-}
+import { TeamScores } from './content';
 
 interface Props {
   game: LegacyMatchGameJson;
