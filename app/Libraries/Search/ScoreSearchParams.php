@@ -16,7 +16,7 @@ use App\Models\UserProfileCustomization;
 class ScoreSearchParams extends SearchParams
 {
     const DEFAULT_TYPE = 'global';
-    const FREE_TYPES = ['global', 'team'];
+    const SUPPORTER_TYPES = ['country', 'friend'];
     const VALID_TYPES = ['global', 'country', 'friend', 'team'];
 
     public ?array $beatmapIds = null;

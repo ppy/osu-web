@@ -36,7 +36,7 @@ class BeatmapsController extends Controller
     private static function assertSupporterOnlyOptions(?User $currentUser, string $type, array $mods): void
     {
         $isSupporter = $currentUser !== null && $currentUser->isSupporter();
-        if (!in_array($type, ScoreSearchParams::FREE_TYPES, true) && !$isSupporter) {
+        if (in_array($type, ScoreSearchParams::SUPPORTER_TYPES, true) && !$isSupporter) {
             throw new InvariantException(osu_trans('errors.supporter_only'));
         }
         if (!empty($mods) && !is_api_request() && !$isSupporter) {

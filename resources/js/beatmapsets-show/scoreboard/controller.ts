@@ -6,7 +6,7 @@ import { SoloScoreJsonForBeatmap } from 'interfaces/solo-score-json';
 import { route } from 'laroute';
 import { action, computed, makeObservable, observable, reaction, runInAction } from 'mobx';
 import core from 'osu-core-singleton';
-import ScoreboardType from './scoreboard-type';
+import ScoreboardType, { supporterTypes } from './scoreboard-type';
 
 interface SetOptions {
   forceReload?: boolean;
@@ -73,7 +73,7 @@ export default class Controller {
   }
 
   get requiresSupporter() {
-    return !['global', 'team'].includes(this.currentType) || this.enabledMods.size > 0;
+    return supporterTypes.has(this.currentType) || this.enabledMods.size > 0;
   }
 
   constructor(private readonly container: HTMLElement, private readonly getBeatmap: () => BeatmapExtendedJson) {
