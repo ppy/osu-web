@@ -965,12 +965,15 @@ function ujs_redirect($url, $status = 200)
     }
 }
 
-function std_dev(array $values): float
+function std_dev(array $values): array
 {
     $size = count($values);
     $mean = array_sum($values) / $size;
 
-    return sqrt(array_sum(array_map(fn ($value) => pow($value - $mean, 2), $values)) / $size);
+    return [
+        sqrt(array_sum(array_map(fn ($value) => pow($value - $mean, 2), $values)) / $size),
+        $mean,
+    ];
 }
 
 // strips combining characters after x levels deep

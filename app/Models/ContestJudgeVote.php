@@ -39,6 +39,13 @@ class ContestJudgeVote extends Model
         return intval($this->scores()->sum('value'));
     }
 
+    public function totalScoreStd(): float
+    {
+        [$stdDev, $mean] = ContestJudge::where(['contest_id' => $this->entry->contest_id, 'user_id' => $this->user_id])->first()->stdDev();
+
+        return ($this->totalScore() - $mean) / $stdDev;
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
