@@ -46,6 +46,8 @@ class BeatmapTagsController extends Controller
             ->beatmapTags()
             ->firstOrCreate(['beatmap_id' => $beatmapId, 'user_id' => \Auth::user()->getKey()]);
 
+        $beatmap->expireTopTagIds();
+
         return response()->noContent();
     }
 }

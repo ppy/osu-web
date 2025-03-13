@@ -251,6 +251,11 @@ class Beatmap extends Model implements AfterCommit
         return $this->playmode === static::MODES['osu'] || $this->playmode === $rulesetId;
     }
 
+    public function expireTopTagIds()
+    {
+        cache_expire_with_fallback("beatmap_top_tag_ids:{$this->getKey()}", $GLOBALS['cfg']['osu']['tags']['beatmap_tags_cache_duration']);
+    }
+
     public function getAttribute($key)
     {
         return match ($key) {
