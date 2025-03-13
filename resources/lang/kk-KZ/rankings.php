@@ -42,6 +42,7 @@ return [
         'performance' => 'өнімділік',
         'score' => '',
         'seasons' => '',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => '',
         'country' => 'Ел',
         'division' => '',
+        'members' => '',
         'play_count' => 'Ойын саны',
         'performance' => 'Өнімділік',
         'total_score' => '',

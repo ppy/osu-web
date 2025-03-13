@@ -51,7 +51,7 @@ return [
 
             'friend_ranking' => [
                 'title' => 'Papan Peringkat Teman',
-                'description' => "Bandingkan skor yang kamu peroleh dengan skor teman-temanmu baik di dalam permainan maupun pada situs web.",
+                'description' => "Bandingkan skor kamu dengan skor teman-temanmu pada papan peringkat khusus teman, baik itu di dalam permainan maupun pada situs web.",
             ],
 
             'country_ranking' => [

@@ -42,6 +42,7 @@ return [
         'performance' => 'パフォーマンス',
         'score' => 'スコア',
         'seasons' => '',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'アクティブユーザー数',
         'country' => '所在国',
         'division' => '',
+        'members' => '',
         'play_count' => 'プレイ回数',
         'performance' => 'パフォーマンス',
         'total_score' => '合計スコア',

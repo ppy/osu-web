@@ -42,6 +42,7 @@ return [
         'performance' => 'pp',
         'score' => 'Taškai',
         'seasons' => 'sezonai',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Aktyvūs Vartotojai',
         'country' => 'Šalis',
         'division' => '',
+        'members' => '',
         'play_count' => 'Sužaidimų Skaičius',
         'performance' => 'pp',
         'total_score' => 'Iš viso taškų',

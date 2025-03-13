@@ -20,7 +20,7 @@ return [
         'channel' => 'แชท',
         'forum_topic' => 'ฟอรั่ม',
         'news_post' => 'ข่าวสาร',
-        'team' => '',
+        'team' => 'ทีม',
         'user' => 'โปรไฟล์',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'แชท',
         'forum_topic' => 'บอร์ดข่าวสาร',
         'news_post' => 'ข่าวสาร',
-        'team' => '',
+        'team' => 'ทีม',
         'user' => 'โปรไฟล์',
     ],
 

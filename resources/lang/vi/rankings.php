@@ -42,6 +42,7 @@ return [
         'performance' => 'thành tích',
         'score' => 'số điểm',
         'seasons' => 'mùa',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Số người đang hoạt động',
         'country' => 'Quốc gia',
         'division' => '',
+        'members' => '',
         'play_count' => 'Số lần chơi',
         'performance' => 'Thành tích',
         'total_score' => 'Tổng số điểm',

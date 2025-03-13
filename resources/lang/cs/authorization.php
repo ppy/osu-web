@@ -206,7 +206,7 @@ return [
             'not_member' => 'Není členem tohoto týmu.',
         ],
         'store' => [
-            'require_supporter_tag' => '',
+            'require_supporter_tag' => 'osu!supporter tag je vyžadován pro vytvoření týmu.',
         ],
     ],
 

@@ -7,7 +7,7 @@ return [
     'invalid' => 'Указан неверный :attribute.',
     'not_negative' => ':attribute не может быть отрицательным.',
     'required' => 'Поле :attribute обязательно для заполнения.',
-    'too_long' => ':attribute превышает максимальное количество символов - можно использовать только до :limit characters символов.',
+    'too_long' => 'Максимально допустимое количество символов в поле :attribute — не более :limit.',
     'url' => 'Пожалуйста, введите действительный URL.',
     'wrong_confirmation' => 'Поля не совпадают.',
 
@@ -25,7 +25,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Данная карта в текущий момент закрыта для обсуждения и не может быть хайпанута",
+            'discussion_locked' => "Эта карта закрыта для обсуждения, поэтому на данный момент её нельзя хайпануть",
             'guest' => 'Вам нужно войти, чтобы хайпить.',
             'hyped' => 'Вы уже хайпили на этой карте.',
             'limit_exceeded' => 'Вы уже использовали весь свой хайп.',
@@ -132,16 +132,16 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => ':attribute содержит недопустимые символы.',
+        'used' => ':attribute уже занято.',
+        'word_not_allowed' => 'Такое :attribute запрещено.',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'default_ruleset_id' => 'Основной режим игры',
+            'is_open' => 'Подача заявок',
+            'name' => 'Название',
+            'short_name' => 'Короткое название',
+            'url' => 'Ссылка',
         ],
     ],
 
@@ -162,7 +162,7 @@ return [
         'username_locked' => 'Этот ник уже занят!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Пожалуйста не используйте пробелы и подчёркивания одновременно!',
         'username_no_spaces' => "Никнейм не может начинаться или заканчиваться пробелами!",
-        'username_not_allowed' => 'Этот ник запрещён к регистрации.',
+        'username_not_allowed' => 'Этот ник запрещён.',
         'username_too_short' => 'Введённый никнейм слишком короткий.',
         'username_too_long' => 'Введённый никнейм слишком длинный.',
         'weak' => 'Введённый пароль находится в чёрном списке.',

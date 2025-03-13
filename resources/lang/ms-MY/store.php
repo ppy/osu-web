@@ -95,7 +95,7 @@ return [
                 'tracking_details' => 'Butiran penjejakan adalah berikut:',
                 'no_tracking_details' => [
                     '_' => "Kami tidak mempunyai butiran penjejakan kerana bungkusan anda dihantar melalui Air Mail tetapi anda boleh menjangkakan penerimaan dalam masa 1-3 minggu. Bagi Eropah, sesekali pemeriksaan kastam boleh melewatkan pesanan di luar kawalan kami. Sekiranya anda mempunyai keraguan, sila balas emel pengesahan pesanan yang diterima (atau :link).",
-                    'link_text' => 'kirimi kami emel',
+                    'link_text' => 'kirimi kami e-mel',
                 ],
             ],
         ],
@@ -158,7 +158,7 @@ return [
         'thanks' => [
             'title' => 'Terima kasih atas pesanan anda!',
             'line_1' => [
-                '_' => 'Anda akan menerima emel pengesahan sebentar lagi. Sekiranya anda mempunyai pertanyaan, sila :link!',
+                '_' => 'Anda akan menerima e-mel pengesahan sebentar lagi. Sekiranya anda mempunyai pertanyaan, sila :link!',
                 'link_text' => 'hubungi kami',
             ],
         ],

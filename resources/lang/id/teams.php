@@ -20,17 +20,17 @@ return [
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'Buat Tim',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => 'Nama tim kamu. Nama ini bersifat permanen untuk saat ini.',
+            'short_name_help' => 'Maksimum 4 karakter.',
+            'title' => "Mari bentuk tim baru",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "Bermainlah bersama teman-temanmu; baik itu yang sudah akrab denganmu atau yang baru kamu kenal. Kamu saat ini tidak tergabung di dalam tim. Bergabunglah dengan tim yang sudah ada dengan mengunjungi halaman tim mereka atau buat tim kamu sendiri dari halaman ini.",
+            'title' => 'Tim!',
         ],
     ],
 
@@ -39,7 +39,7 @@ return [
     ],
 
     'edit' => [
-        'ok' => '',
+        'ok' => 'Pengaturan berhasil disimpan.',
         'title' => 'Pengaturan Tim',
 
         'description' => [
@@ -48,8 +48,8 @@ return [
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Bendera Tim',
+            'title' => 'Atur Bendera Tim',
         ],
 
         'header' => [
@@ -60,8 +60,8 @@ return [
         'settings' => [
             'application_help' => 'Apakah pengguna lain akan diizinkan untuk mendaftar ke tim',
             'default_ruleset_help' => 'Ruleset yang akan terpilih secara bawaan pada saat mengunjungi halaman tim',
-            'flag_help' => '',
-            'header_help' => '',
+            'flag_help' => 'Ukuran maksimum :width×:height',
+            'header_help' => 'Ukuran maksimum :width×:height',
             'title' => 'Pengaturan Tim',
 
             'application_state' => [
@@ -120,7 +120,7 @@ return [
 
     'show' => [
         'bar' => [
-            'chat' => '',
+            'chat' => 'Percakapan Tim',
             'destroy' => 'Bubarkan Tim',
             'join' => 'Minta Gabung',
             'join_cancel' => 'Batal Gabung',
@@ -137,12 +137,18 @@ return [
         ],
 
         'sections' => [
+            'about' => '',
             'info' => 'Info',
             'members' => 'Anggota',
+        ],
+
+        'statistics' => [
+            'rank' => '',
+            'leader' => '',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'Tim telah dibuat.',
     ],
 ];

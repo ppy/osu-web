@@ -206,7 +206,7 @@ return [
             'not_member' => '不是此團隊成員。',
         ],
         'store' => [
-            'require_supporter_tag' => '',
+            'require_supporter_tag' => '只有有osu! 贊助者才能建立隊伍。',
         ],
     ],
 

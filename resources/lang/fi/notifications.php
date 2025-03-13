@@ -20,7 +20,7 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'foorumit',
         'news_post' => 'uutiset',
-        'team' => '',
+        'team' => 'tiimi',
         'user' => 'profiili',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'chatti',
         'forum_topic' => 'foorumi',
         'news_post' => 'uutiset',
-        'team' => '',
+        'team' => 'tiimi',
         'user' => 'profiili',
     ],
 
@@ -163,12 +163,12 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Tiimiin liittymispyyntö',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "Olet nyt tiimin :title jäsen",
+                'team_application_accept_compact' => "Olet nyt tiimin :title jäsen",
+                'team_application_reject' => 'Sinun pyyntösi tiimiin :title on hylätty',
+                'team_application_reject_compact' => 'Sinun pyyntösi tiimiin :title on hylätty',
             ],
         ],
 
@@ -258,8 +258,8 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "Olet nyt tiimin :title jäsen",
+                'team_application_reject' => 'Pyyntösi tiimiin :title on hylätty',
             ],
         ],
 

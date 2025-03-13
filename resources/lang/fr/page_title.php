@@ -109,7 +109,7 @@ return [
         ],
         'teams_controller' => [
             '_' => 'équipes',
-            'create' => '',
+            'create' => 'créer une équipe',
             'edit' => 'paramètres de l\'équipe',
             'leaderboard' => 'classement de l\'équipe',
             'show' => 'informations de l\'équipe',

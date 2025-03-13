@@ -55,8 +55,8 @@ return [
                 'general' => '',
 
                 'users' => [
-                    'header' => '',
-                    'cover_presets' => '',
+                    'header' => 'Utilizador',
+                    'cover_presets' => 'Predefinições da capa de perfil',
                 ],
             ],
         ],

@@ -171,6 +171,7 @@ return [
             'global' => 'Ranking globalny',
             'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, jakie jeszcze funkcje otrzymasz w zamian za zakup statusu donatora!',
             'supporter-only' => 'Musisz posiadać status donatora, by uzyskać dostęp do rankingu krajowego, znajomych i odrębnych dla modyfikatorów!',
+            'team' => '',
             'title' => 'Tabela wyników',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Żaden z twoich znajomych nie ustanowił jeszcze wyniku na tej beatmapie!',
                 'global' => 'Brak wyników. Może czas jakieś ustanowić?',
                 'loading' => 'Ładowanie wyników...',
+                'team' => '',
                 'unranked' => 'Nierankingowa beatmapa.',
             ],
             'score' => [

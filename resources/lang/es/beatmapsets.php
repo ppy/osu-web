@@ -171,6 +171,7 @@ return [
             'global' => 'Clasificación global',
             'supporter-link' => '¡Haz clic <a href=":link">aquí</a> para ver todas las características de lujo que ofrece!',
             'supporter-only' => '¡Necesitas ser osu!supporter para acceder a las clasificaciones nacionales y entre amigos!',
+            'team' => '',
             'title' => 'Tabla de puntuaciones',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => '¡Ninguno de tus amigos ha marcado una puntuación en este mapa aún!',
                 'global' => 'Sin puntuaciones aún. ¿Tal vez deberías intentar marcar alguna?',
                 'loading' => 'Cargando puntuaciones...',
+                'team' => '',
                 'unranked' => 'Mapa no clasificado.',
             ],
             'score' => [

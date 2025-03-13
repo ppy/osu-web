@@ -108,11 +108,11 @@ return [
             '_' => 'classificação',
         ],
         'teams_controller' => [
-            '_' => '',
-            'create' => '',
-            'edit' => '',
-            'leaderboard' => '',
-            'show' => '',
+            '_' => 'equipas',
+            'create' => 'criar equipa',
+            'edit' => 'definições da equipa',
+            'leaderboard' => 'classificação da equipa',
+            'show' => 'informações da equipa',
         ],
         'tournaments_controller' => [
             '_' => 'torneios',
@@ -139,7 +139,7 @@ return [
     ],
     'teams' => [
         'members_controller' => [
-            'index' => '',
+            'index' => 'membros da equipa',
         ],
     ],
     'users' => [

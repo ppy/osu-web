@@ -20,17 +20,17 @@ return [
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'Luo Tiimi',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => 'Sinun tiimisi nimi. Nimi on pysyvä tällä hetkellä.',
+            'short_name_help' => 'Enintään 4 merkkiä.',
+            'title' => "Perustetaan uusi tiimi",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "Pelaa yhdessä kavereidesi kanssa; entisten tai uusien. Et ole tällä hetkellä tiimissä. Liity olemassa olevaan tiimiin vierailemalla heidän tiimisivullaan tai luo oma tiimisi tältä sivulta.",
+            'title' => 'Tiimi!',
         ],
     ],
 
@@ -39,7 +39,7 @@ return [
     ],
 
     'edit' => [
-        'ok' => '',
+        'ok' => 'Asetukset tallennettu onnistuneesti.',
         'title' => '',
 
         'description' => [
@@ -48,8 +48,8 @@ return [
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Tiimin lippu',
+            'title' => 'Aseta Tiimin Lippu',
         ],
 
         'header' => [
@@ -60,8 +60,8 @@ return [
         'settings' => [
             'application_help' => '',
             'default_ruleset_help' => '',
-            'flag_help' => '',
-            'header_help' => '',
+            'flag_help' => 'Enimmäiskoko :width×:height',
+            'header_help' => 'Enimmäiskoko :width×:height',
             'title' => '',
 
             'application_state' => [
@@ -120,7 +120,7 @@ return [
 
     'show' => [
         'bar' => [
-            'chat' => '',
+            'chat' => 'Tiimikeskustelu',
             'destroy' => '',
             'join' => '',
             'join_cancel' => '',
@@ -137,12 +137,18 @@ return [
         ],
 
         'sections' => [
+            'about' => '',
             'info' => '',
             'members' => '',
+        ],
+
+        'statistics' => [
+            'rank' => '',
+            'leader' => '',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'Tiimi luotu.',
     ],
 ];

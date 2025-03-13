@@ -171,6 +171,7 @@ return [
             'global' => 'Hạng Toàn Cầu',
             'supporter-link' => 'Nhấp vào <a href=":link">đây</a> để biết thêm những tính năng bạn có thể nhận!',
             'supporter-only' => 'Bạn cần là người ủng hộ để truy cập xếp hạng bạn bè và quốc gia!',
+            'team' => '',
             'title' => 'Bảng Xếp hạng',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Chưa có bạn bè nào của bạn lập điểm số tại beatmap này!',
                 'global' => 'Chưa có điểm số. Hãy thử lập một vài điểm số xem?',
                 'loading' => 'Đang tải điểm số...',
+                'team' => '',
                 'unranked' => 'Beatmap chưa được xếp hạng.',
             ],
             'score' => [

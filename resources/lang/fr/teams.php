@@ -20,17 +20,17 @@ return [
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'Créer une équipe',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => 'Le nom de votre équipe. Ce nom est permanent pour le moment.',
+            'short_name_help' => 'Maximum 4 caractères.',
+            'title' => "Créons une nouvelle équipe",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "Jouez avec des amis, qu'ils soient nouveaux ou plus anciens. Vous n'avez pas encore rejoint d'équipe. Vous pouvez rejoindre une équipe existante en visitant leur page d'équipe, ou créer votre propre équipe à partir de cette page.",
+            'title' => 'Équipe !',
         ],
     ],
 
@@ -39,7 +39,7 @@ return [
     ],
 
     'edit' => [
-        'ok' => '',
+        'ok' => 'Paramètres enregistrés avec succès.',
         'title' => 'Paramètres de l\'équipe',
 
         'description' => [
@@ -48,8 +48,8 @@ return [
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Drapeau de l\'équipe',
+            'title' => 'Définir le drapeau de l\'équipe',
         ],
 
         'header' => [
@@ -60,8 +60,8 @@ return [
         'settings' => [
             'application_help' => 'Cette option permet aux autres joueurs d\'envoyer une candidature pour rejoindre votre équipe',
             'default_ruleset_help' => 'Le mode de jeu sélectionné par défaut lors de la visite de la page de l\'équipe',
-            'flag_help' => '',
-            'header_help' => '',
+            'flag_help' => 'Taille maximale de :width×:height',
+            'header_help' => 'Taille maximale de :width×:height',
             'title' => 'Paramètres de l\'équipe',
 
             'application_state' => [
@@ -120,7 +120,7 @@ return [
 
     'show' => [
         'bar' => [
-            'chat' => '',
+            'chat' => 'Tchat d\'équipe',
             'destroy' => 'Dissoudre l\'équipe',
             'join' => 'Demander à rejoindre',
             'join_cancel' => 'Annuler la demande',
@@ -137,12 +137,18 @@ return [
         ],
 
         'sections' => [
+            'about' => '',
             'info' => 'Infos',
             'members' => 'Membres',
+        ],
+
+        'statistics' => [
+            'rank' => '',
+            'leader' => '',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'Équipe créée.',
     ],
 ];
