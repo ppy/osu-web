@@ -133,8 +133,8 @@ return [
 
     'team' => [
         'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'used' => 'ตัวเลือก :attribute นี้ถูกใช้ไปแล้ว',
+        'word_not_allowed' => 'ตัวเลือก :attribute นี้ใช้ไม่ได้',
 
         'attributes' => [
             'default_ruleset_id' => '',

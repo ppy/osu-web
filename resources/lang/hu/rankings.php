@@ -42,6 +42,7 @@ return [
         'performance' => 'Teljesítmény',
         'score' => 'Pontszám',
         'seasons' => 'szezonok',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Aktív Felhasználók',
         'country' => 'Ország',
         'division' => '',
+        'members' => '',
         'play_count' => 'Játékszám',
         'performance' => 'Teljesítmény',
         'total_score' => 'Összpontszám',

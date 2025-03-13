@@ -42,6 +42,7 @@ return [
         'performance' => 'Výkon',
         'score' => 'Skóre',
         'seasons' => '',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Aktívni Užívatelia',
         'country' => 'Krajina',
         'division' => '',
+        'members' => '',
         'play_count' => 'Počet Zahraní',
         'performance' => 'Výkon',
         'total_score' => 'Celkové Skóre',

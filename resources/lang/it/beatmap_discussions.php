@@ -67,9 +67,9 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
-        'has_updates' => '',
-        'no_updates' => '',
+        'checking' => 'Ricerca aggiornamenti...',
+        'has_updates' => 'Questa discussione ha degli aggiornamenti, clicca per aggiornare.',
+        'no_updates' => 'Nessun aggiornamento.',
         'updating' => 'Aggiornamento...',
     ],
 

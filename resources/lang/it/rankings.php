@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Difficoltà',
-        'top_10p' => '',
-        'top_50p' => '',
+        'top_10p' => 'Top 10% Punteggi',
+        'top_50p' => 'Top 50% Punteggi',
     ],
 
     'filter' => [
@@ -42,6 +42,7 @@ return [
         'performance' => 'performance',
         'score' => 'punteggio',
         'seasons' => 'stagioni',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Utenti Attivi',
         'country' => 'Paese',
         'division' => 'Divisione',
+        'members' => '',
         'play_count' => 'Partite Giocate',
         'performance' => 'Performance',
         'total_score' => 'Punteggio Totale',

@@ -42,6 +42,7 @@ return [
         'performance' => 'performanță',
         'score' => 'scor',
         'seasons' => 'sezoane',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Utilizatori activi',
         'country' => 'Țară',
         'division' => 'Divizie',
+        'members' => '',
         'play_count' => 'Număr de Încercări',
         'performance' => 'Performanță',
         'total_score' => 'Scor total',

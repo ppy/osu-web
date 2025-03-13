@@ -44,6 +44,7 @@ return [
         'performance' => 'izvedba',
         'score' => 'bodovi',
         'seasons' => '',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -68,6 +69,7 @@ return [
         'active_users' => 'Aktivni Korisnici',
         'country' => 'Države',
         'division' => '',
+        'members' => '',
         'play_count' => 'Broj Igranja',
         'performance' => 'Izvedba',
         'total_score' => 'Ukupni Bodovi',

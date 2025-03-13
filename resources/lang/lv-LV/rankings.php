@@ -42,6 +42,7 @@ return [
         'performance' => 'veiktspēja',
         'score' => 'punkti',
         'seasons' => 'sezonas',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Aktīvie lietotāji',
         'country' => 'Valsts',
         'division' => '',
+        'members' => '',
         'play_count' => 'Spēļu skaits',
         'performance' => 'Veiktspēja',
         'total_score' => 'Kopējais punktu skaits',

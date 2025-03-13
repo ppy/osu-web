@@ -171,6 +171,7 @@ return [
             'global' => 'Classifica Globale',
             'supporter-link' => 'Clicca <a href=":link">qui</a> per vedere tutte le fantastiche funzionalità che otterrai!',
             'supporter-only' => 'Devi essere un osu!supporter per vedere la classifica nazionale, degli amici, o con mod specifiche!',
+            'team' => '',
             'title' => 'Classifica',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Nessuno dei tuoi amici ha ancora fatto un punteggio su questa mappa!',
                 'global' => 'Ancora nessun punteggio. Perché non provi a farne uno?',
                 'loading' => 'Caricamento punteggi...',
+                'team' => '',
                 'unranked' => 'Beatmap non classificata.',
             ],
             'score' => [

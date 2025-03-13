@@ -6,7 +6,7 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'เพิ่มผู้ใช้งานสู่ทีม',
         ],
         'destroy' => [
             'ok' => '',
@@ -20,7 +20,7 @@ return [
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'สร้างทีม',
 
         'form' => [
             'name_help' => '',
@@ -62,7 +62,7 @@ return [
             'default_ruleset_help' => '',
             'flag_help' => '',
             'header_help' => '',
-            'title' => '',
+            'title' => 'การตั้งค่าทีม',
 
             'application_state' => [
                 'state_0' => '',
@@ -72,7 +72,7 @@ return [
     ],
 
     'header_links' => [
-        'edit' => '',
+        'edit' => 'การตั้งค่า',
         'leaderboard' => '',
         'show' => '',
 
@@ -115,7 +115,7 @@ return [
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'ออกจากทีม ;_;',
     ],
 
     'show' => [
@@ -137,8 +137,14 @@ return [
         ],
 
         'sections' => [
+            'about' => '',
             'info' => '',
             'members' => '',
+        ],
+
+        'statistics' => [
+            'rank' => '',
+            'leader' => '',
         ],
     ],
 

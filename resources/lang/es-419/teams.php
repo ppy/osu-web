@@ -20,17 +20,17 @@ return [
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'Crear equipo',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => 'El nombre de tu equipo. Por el momento, los nombres son permanentes.',
+            'short_name_help' => 'Máximo 4 caracteres.',
+            'title' => "Vamos a crear un nuevo equipo",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "Juega con tus amigos, con los que ya tienes o con los nuevos. Actualmente no estás en un equipo. Únete a un equipo existente visitando su página de equipo o crea tu propio equipo desde esta página.",
+            'title' => '¡Equipo!',
         ],
     ],
 
@@ -39,7 +39,7 @@ return [
     ],
 
     'edit' => [
-        'ok' => '',
+        'ok' => 'Configuración guardada correctamente.',
         'title' => 'Configuración del equipo',
 
         'description' => [
@@ -48,8 +48,8 @@ return [
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Bandera del equipo',
+            'title' => 'Establecer bandera del equipo',
         ],
 
         'header' => [
@@ -60,8 +60,8 @@ return [
         'settings' => [
             'application_help' => 'Permitir o no que las personas puedan solicitar formar parte del equipo',
             'default_ruleset_help' => 'El modo de juego que se seleccionará de forma predeterminada al visitar la página del equipo',
-            'flag_help' => '',
-            'header_help' => '',
+            'flag_help' => 'Tamaño máximo de :width×:height',
+            'header_help' => 'Tamaño máximo de :width×:height',
             'title' => 'Configuración del equipo',
 
             'application_state' => [
@@ -96,8 +96,8 @@ return [
             'applications' => [
                 'empty' => 'No hay solicitudes para unirse al equipo por el momento.',
                 'empty_slots' => 'Espacios disponibles',
-                'title' => '',
-                'created_at' => '',
+                'title' => 'Solicitudes para unirse al equipo',
+                'created_at' => 'Solicitud realizada',
             ],
 
             'table' => [
@@ -115,16 +115,16 @@ return [
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Abandonar equipo ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'chat' => '',
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'chat' => 'Chat del equipo',
+            'destroy' => 'Disolver equipo',
+            'join' => 'Solicitar unirse',
+            'join_cancel' => 'Cancelar solicitud',
+            'part' => 'Abandonar equipo',
         ],
 
         'info' => [
@@ -137,12 +137,18 @@ return [
         ],
 
         'sections' => [
+            'about' => '',
             'info' => 'Información',
             'members' => 'Miembros',
+        ],
+
+        'statistics' => [
+            'rank' => '',
+            'leader' => '',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'Equipo creado.',
     ],
 ];

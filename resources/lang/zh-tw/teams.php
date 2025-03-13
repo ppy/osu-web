@@ -20,17 +20,17 @@ return [
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => '建立隊伍',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => '你的隊伍名稱。名稱為永久的。',
+            'short_name_help' => '最多4個字元。',
+            'title' => "讓我們設立一個新的隊伍",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "與新舊朋友一齊玩。你目前不在隊伍中。你可以到訪好友的隊伍頁面加入，或在這裏建立自己的隊伍。",
+            'title' => '隊伍！',
         ],
     ],
 
@@ -39,17 +39,17 @@ return [
     ],
 
     'edit' => [
-        'ok' => '',
+        'ok' => '設定儲存成功',
         'title' => '隊伍設定',
 
         'description' => [
-            'label' => '描述',
-            'title' => '隊伍描述',
+            'label' => '敘述',
+            'title' => '隊伍敘述',
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => '隊伍旗幟',
+            'title' => '設定隊伍旗幟',
         ],
 
         'header' => [
@@ -60,8 +60,8 @@ return [
         'settings' => [
             'application_help' => '是否開放他人申請加入隊伍',
             'default_ruleset_help' => '第一次進入組隊介面時預設選擇的遊戲模式',
-            'flag_help' => '',
-            'header_help' => '',
+            'flag_help' => '最大尺寸為 :width×:height',
+            'header_help' => '最大尺寸為 :width×:height',
             'title' => '隊伍設定',
 
             'application_state' => [
@@ -120,7 +120,7 @@ return [
 
     'show' => [
         'bar' => [
-            'chat' => '',
+            'chat' => '隊伍聊天',
             'destroy' => '解散隊伍',
             'join' => '請求加入',
             'join_cancel' => '取消加入',
@@ -137,12 +137,18 @@ return [
         ],
 
         'sections' => [
+            'about' => '',
             'info' => '資訊',
             'members' => '成員',
+        ],
+
+        'statistics' => [
+            'rank' => '',
+            'leader' => '',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => '團隊已創建。',
     ],
 ];

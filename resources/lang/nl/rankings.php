@@ -42,6 +42,7 @@ return [
         'performance' => 'prestatie',
         'score' => 'score',
         'seasons' => 'seizoenen',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Actieve gebruikers',
         'country' => 'Land',
         'division' => '',
+        'members' => '',
         'play_count' => 'Aantal keer gespeeld',
         'performance' => 'Prestatie',
         'total_score' => 'Totale Score',

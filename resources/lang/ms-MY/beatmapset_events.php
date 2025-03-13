@@ -43,7 +43,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Peristiwa set peta rentak',
+        'title' => 'Peristiwa peta rentak',
 
         'form' => [
             'period' => 'Tempoh',
