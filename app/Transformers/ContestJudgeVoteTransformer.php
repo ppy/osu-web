@@ -16,6 +16,7 @@ class ContestJudgeVoteTransformer extends TransformerAbstract
 {
     protected array $availableIncludes = [
         'scores',
+        'total_score_std',
         'total_score',
         'user',
     ];
@@ -36,6 +37,11 @@ class ContestJudgeVoteTransformer extends TransformerAbstract
     public function includeTotalScore(ContestJudgeVote $judgeVote): Primitive
     {
         return $this->primitive($judgeVote->totalScore());
+    }
+
+    public function includeTotalScoreStd(ContestJudgeVote $judgeVote): Primitive
+    {
+        return $this->primitive($judgeVote->totalScoreStd());
     }
 
     public function includeUser(ContestJudgeVote $judgeVote): Item
