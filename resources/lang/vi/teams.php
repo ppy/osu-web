@@ -20,17 +20,17 @@ return [
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'Tạo đội',
 
         'form' => [
             'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'short_name_help' => 'Tối đa 4 kí tự.',
+            'title' => "Hãy thành lập một đội mới nào",
         ],
 
         'intro' => [
             'description' => "",
-            'title' => '',
+            'title' => 'Đội!',
         ],
     ],
 
@@ -39,7 +39,7 @@ return [
     ],
 
     'edit' => [
-        'ok' => '',
+        'ok' => 'Lưu cài đặt thành công.',
         'title' => 'Cài đặt đội',
 
         'description' => [
@@ -48,8 +48,8 @@ return [
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Cờ đội',
+            'title' => 'Đặt cờ đội',
         ],
 
         'header' => [
@@ -60,8 +60,8 @@ return [
         'settings' => [
             'application_help' => 'Tùy chọn cho phép mọi người vào đội',
             'default_ruleset_help' => 'Quy tắc sẽ được chọn làm mặc định khi xem trang của đội',
-            'flag_help' => '',
-            'header_help' => '',
+            'flag_help' => 'Kích cỡ tối đa là :width×:height',
+            'header_help' => 'Kích cỡ tối đa là :width×:height',
             'title' => 'Cài đặt đội',
 
             'application_state' => [
@@ -120,7 +120,7 @@ return [
 
     'show' => [
         'bar' => [
-            'chat' => '',
+            'chat' => 'Trò chuyện đội',
             'destroy' => 'Giải tán đội',
             'join' => 'Yêu cầu gia nhập',
             'join_cancel' => 'Huỷ gia nhập',
@@ -137,12 +137,18 @@ return [
         ],
 
         'sections' => [
+            'about' => '',
             'info' => 'Thông tin',
             'members' => 'Thành viên',
+        ],
+
+        'statistics' => [
+            'rank' => '',
+            'leader' => '',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'Đội đã được tạo.',
     ],
 ];

@@ -42,6 +42,7 @@ return [
         'performance' => 'по производительности',
         'score' => 'по очкам',
         'seasons' => 'по сезонам',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -50,7 +51,7 @@ return [
         'room_count' => 'Количество плейлистов',
         'url' => 'Открыть подробную статью об этом сезоне.',
         'validation' => [
-            'not_enough_factors' => 'недостаточно факторов для правильного расчета скора',
+            'not_enough_factors' => 'не набрано достаточно критериев для корректного подсчёта очков',
         ],
     ],
 
@@ -65,13 +66,14 @@ return [
         'accuracy' => 'Точность',
         'active_users' => 'Активные игроки',
         'country' => 'Страна',
-        'division' => 'Подразделение',
+        'division' => 'Ранг',
+        'members' => '',
         'play_count' => 'Количество игр',
         'performance' => 'Производительность',
         'total_score' => 'Всего очков',
         'ranked_score' => 'Рейтинговых очков',
         'average_score' => 'Сред. очки',
-        'average_performance' => 'Сред. произ.',
+        'average_performance' => 'Сред. произв.',
         'ss' => '',
         's' => '',
         'a' => '',

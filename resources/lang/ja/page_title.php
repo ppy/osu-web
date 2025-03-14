@@ -109,7 +109,7 @@ return [
         ],
         'teams_controller' => [
             '_' => 'チーム',
-            'create' => '',
+            'create' => 'チームの作成',
             'edit' => 'チームの設定',
             'leaderboard' => 'チームリーダーボード',
             'show' => 'チーム情報',

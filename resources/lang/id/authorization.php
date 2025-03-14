@@ -206,7 +206,7 @@ return [
             'not_member' => 'Kamu bukan merupakan anggota dari tim ini.',
         ],
         'store' => [
-            'require_supporter_tag' => '',
+            'require_supporter_tag' => 'Tag osu!supporter diperlukan untuk membuat tim.',
         ],
     ],
 

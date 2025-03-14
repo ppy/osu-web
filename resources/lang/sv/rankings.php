@@ -42,6 +42,7 @@ return [
         'performance' => 'prestation',
         'score' => 'poäng',
         'seasons' => 'säsonger',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Aktiva Användare',
         'country' => 'Land',
         'division' => '',
+        'members' => '',
         'play_count' => 'Antal gånger spelat',
         'performance' => 'Prestation',
         'total_score' => 'Total Poäng',

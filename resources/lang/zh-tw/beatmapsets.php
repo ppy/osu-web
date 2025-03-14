@@ -171,6 +171,7 @@ return [
             'global' => '全球排名',
             'supporter-link' => '按<a href=":link">這裡</a>來查看你可以得到的精彩功能！',
             'supporter-only' => '你需要成為贊助者才能查看國內與好友排名！',
+            'team' => '',
             'title' => '排行榜',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => '您的好友尚未上傳成績！',
                 'global' => '沒有任何玩家上傳過成績，來挑戰嗎？',
                 'loading' => '正在載入分數...',
+                'team' => '',
                 'unranked' => 'Unranked 譜面',
             ],
             'score' => [

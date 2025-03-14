@@ -6,7 +6,7 @@
 return [
     'deleted' => 'dipadam',
     'deleted_by' => 'dipadam :timeago oleh :user',
-    'deleted_by_system' => 'sistem',
+    'deleted_by_system' => 'tatanan',
     'deleted_count' => ':count_delimited komen dipadam',
     'edited' => 'disunting :timeago oleh :user',
     'pinned' => 'disemat',

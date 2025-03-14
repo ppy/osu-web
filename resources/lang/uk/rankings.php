@@ -42,6 +42,7 @@ return [
         'performance' => 'продуктивність',
         'score' => 'очки',
         'seasons' => 'сезонні',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Активні гравці',
         'country' => 'Країна',
         'division' => 'Дивізіон',
+        'members' => '',
         'play_count' => 'Кількість ігор',
         'performance' => 'Продуктивність',
         'total_score' => 'Всього очок',

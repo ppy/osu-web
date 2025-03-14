@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid_ruleset' => '',
+    'invalid_ruleset' => 'Conjunto de regras inválido.',
 
     'change_owner' => [
-        'too_many' => '',
+        'too_many' => 'Há demasiados mapeadores convidados.',
     ],
 
     'discussion-votes' => [

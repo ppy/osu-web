@@ -109,7 +109,7 @@ return [
         ],
         'teams_controller' => [
             '_' => 'squadre',
-            'create' => '',
+            'create' => 'creazione squadra',
             'edit' => 'impostazioni squadra',
             'leaderboard' => 'classifica della squadra',
             'show' => 'dettagli squadra',

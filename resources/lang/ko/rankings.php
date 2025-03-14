@@ -42,6 +42,7 @@ return [
         'performance' => '퍼포먼스',
         'score' => '점수',
         'seasons' => '시즌',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -65,7 +66,8 @@ return [
         'accuracy' => '정확도',
         'active_users' => '유저 수',
         'country' => '국가',
-        'division' => '',
+        'division' => '티어',
+        'members' => '',
         'play_count' => '플레이 횟수',
         'performance' => '퍼포먼스 점수',
         'total_score' => '총 점수',

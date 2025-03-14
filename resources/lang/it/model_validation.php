@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => ':attribute specificato invalido.',
+    'invalid' => ':attribute specificato non valido.',
     'not_negative' => ':attribute non può essere negativo.',
     'required' => ':attribute è richiesto.',
     'too_long' => ':attribute ha superato la lunghezza massima - può essere solo fino a :limit caratteri.',
@@ -58,7 +58,7 @@ return [
     ],
 
     'follow' => [
-        'invalid' => ':attribute specificato invalido.',
+        'invalid' => ':attribute specificato non valido.',
     ],
 
     'forum' => [
@@ -132,16 +132,16 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => ':attribute non valido.',
+        'used' => ':attribute già in uso.',
+        'word_not_allowed' => ':attribute non utilizzabile.',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'default_ruleset_id' => 'Modalità di gioco principale',
+            'is_open' => 'Richieste di partecipazione',
+            'name' => 'Nome',
+            'short_name' => 'Sigla',
+            'url' => 'URL',
         ],
     ],
 

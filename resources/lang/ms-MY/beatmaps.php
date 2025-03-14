@@ -355,7 +355,7 @@ return [
         'storyboard' => 'Ada Papan Cerita',
     ],
     'rank' => [
-        'any' => 'Mana-Mana',
+        'any' => 'Semua',
         'XH' => 'SS Perak',
         'X' => '',
         'SH' => 'S Perak',

@@ -42,6 +42,7 @@ return [
         'performance' => 'Prestasjon',
         'score' => 'Poengsum',
         'seasons' => 'sesonger',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Aktive Brukere',
         'country' => 'Land',
         'division' => '',
+        'members' => '',
         'play_count' => 'Spillforsøk',
         'performance' => 'Prestasjon',
         'total_score' => 'Total Poengsum',

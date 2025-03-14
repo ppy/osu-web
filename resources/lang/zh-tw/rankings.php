@@ -42,6 +42,7 @@ return [
         'performance' => '成績',
         'score' => '總分',
         'seasons' => '季',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => '活躍的使用者',
         'country' => '國家',
         'division' => '組別',
+        'members' => '',
         'play_count' => '遊戲次數',
         'performance' => '成績',
         'total_score' => '總分',

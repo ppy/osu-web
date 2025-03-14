@@ -132,16 +132,16 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => 'Das gewählte Attribut :attribute enthält ungültige Zeichen.',
+        'used' => 'Das gewählte Attribut :attribute wird bereits verwendet.',
+        'word_not_allowed' => 'Das gewählte Attribut :attribute ist nicht erlaubt.',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'default_ruleset_id' => 'Standardspielmodus',
+            'is_open' => 'Team-Bewerbungen',
+            'name' => 'Name',
+            'short_name' => 'Kürzel',
+            'url' => 'URL',
         ],
     ],
 

@@ -132,16 +132,16 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => 'Esta :attribute contém caracteres inválidos.',
+        'used' => 'Esta escolha :attribute já foi utilizada.',
+        'word_not_allowed' => 'Esta escolha :attribute não é permitida.',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'default_ruleset_id' => 'Regras padrão',
+            'is_open' => 'Candidatura à equipa',
+            'name' => 'Nome',
+            'short_name' => 'Nome abreviado',
+            'url' => 'Hiperligação',
         ],
     ],
 
