@@ -5,6 +5,7 @@
 
 namespace Tests\Controllers;
 
+use App\Models\Beatmap;
 use App\Models\OAuth\Client;
 use App\Models\Score\Best\Osu;
 use App\Models\ScoreReplayStats;
@@ -227,9 +228,9 @@ class ScoresControllerTest extends TestCase
 
         // fake all the replay disks
         $disks = [SoloScore::replayFileDiskName()];
-        foreach ($GLOBALS['cfg']['filesystems']['disks']['replays'] as $ruleset => $types) {
-            foreach ($types as $type => $_config) {
-                $disks[] = "replays.{$ruleset}.{$type}";
+        foreach (['local', 's3'] as $type) {
+            foreach (Beatmap::MODES as $ruleset => $_rulesetId) {
+                $disks[] = "{$type}-legacy-replay-{$ruleset}";
             }
         }
         foreach ($disks as $disk) {
