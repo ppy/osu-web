@@ -174,11 +174,12 @@
         "scopes": []
     },
     {
-        "uri": "api/v2/beatmaps/{beatmap}/tags",
+        "uri": "api/v2/beatmaps/{beatmap}/tags/{tag}",
         "methods": [
-            "POST"
+            "PATCH",
+            "PUT"
         ],
-        "controller": "App\\Http\\Controllers\\BeatmapTagsController@store",
+        "controller": "App\\Http\\Controllers\\BeatmapTagsController@update",
         "middlewares": [
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",
@@ -722,6 +723,22 @@
     {
         "uri": "api/v2/forums/topics",
         "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\Forum\\TopicsController@index",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/forums/topics",
+        "methods": [
             "POST"
         ],
         "controller": "App\\Http\\Controllers\\Forum\\TopicsController@store",
@@ -734,22 +751,6 @@
         "scopes": [
             "forum.write"
         ]
-    },
-    {
-      "uri": "api/v2/forums/topics",
-      "methods": [
-          "GET",
-          "HEAD"
-      ],
-      "controller": "App\\Http\\Controllers\\Forum\\TopicsController@index",
-      "middlewares": [
-          "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
-          "App\\Http\\Middleware\\RequireScopes",
-          "App\\Http\\Middleware\\RequireScopes:public"
-      ],
-      "scopes": [
-          "public"
-      ]
     },
     {
         "uri": "api/v2/forums/topics/{topic}",

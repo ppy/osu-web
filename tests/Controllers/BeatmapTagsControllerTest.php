@@ -30,7 +30,7 @@ class BeatmapTagsControllerTest extends TestCase
 
         $this->actAsScopedUser($user);
         $this
-            ->post(route('api.beatmaps.tags.store', ['beatmap' => $this->beatmap->getKey()]), ['tag_id' => $this->tag->getKey()])
+            ->put(route('api.beatmaps.tags.update', ['beatmap' => $this->beatmap->getKey(), 'tag' => $this->tag->getKey()]))
             ->assertSuccessful();
     }
 
@@ -40,7 +40,7 @@ class BeatmapTagsControllerTest extends TestCase
 
         $this->actAsScopedUser(User::factory()->create());
         $this
-            ->post(route('api.beatmaps.tags.store', ['beatmap' => $this->beatmap->getKey()]), ['tag_id' => $this->tag->getKey()])
+            ->put(route('api.beatmaps.tags.update', ['beatmap' => $this->beatmap->getKey(), 'tag' => $this->tag->getKey()]))
             ->assertForbidden();
     }
 
