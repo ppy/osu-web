@@ -17,7 +17,7 @@ class EsDocument implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable;
 
-    private array $modelMeta;
+    protected array $modelMeta;
 
     /**
      * Create a new job instance.
