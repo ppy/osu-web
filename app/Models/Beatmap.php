@@ -253,7 +253,7 @@ class Beatmap extends Model implements AfterCommit
 
     public function expireTopTagIds()
     {
-        cache_expire_with_fallback("beatmap_top_tag_ids:{$this->getKey()}", $GLOBALS['cfg']['osu']['tags']['beatmap_tags_cache_duration']);
+        \Cache::delete("beatmap_top_tag_ids:{$this->getKey()}");
     }
 
     public function getAttribute($key)
@@ -383,10 +383,9 @@ class Beatmap extends Model implements AfterCommit
         // TODO: Add option to multi query when beatmapset requests all tags for beatmaps?
         return $this->memoize(
             __FUNCTION__,
-            fn () => cache_remember_mutexed(
+            fn () => \Cache::remember(
                 "beatmap_top_tag_ids:{$this->getKey()}",
                 $GLOBALS['cfg']['osu']['tags']['beatmap_tags_cache_duration'],
-                [],
                 fn () => $this->beatmapTags()->topTagIds()->limit(50)->get()->toArray(),
             ),
         );
