@@ -22,9 +22,7 @@ class Count extends Model
 
     public static function currentRankStartName(string $ruleset): string
     {
-        return $GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default']
-            ? "pp_rank_column_exp_{$ruleset}"
-            : "pp_rank_column_{$ruleset}";
+        return "pp_rank_column_{$ruleset}";
     }
 
     public static function totalUsers(): static
