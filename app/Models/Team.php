@@ -283,6 +283,7 @@ class Team extends Model
             return $this->getConnection()->transaction(function () use ($options) {
                 return (new Chat\Channel())->getConnection()->transaction(function () use ($options) {
                     $this->channel_id ??= 0;
+                    $this->default_ruleset_id ??= $this->leader->osu_playmode;
                     $saved = parent::save($options);
 
                     if ($saved) {
