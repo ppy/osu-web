@@ -14,6 +14,11 @@
     >
         <img class="search-forum-post__avatar-image" src="{{ $user->user_avatar }}">
     </a>
+
+    @if ($post->legacyIcon() !== null)
+        @include('forum._legacy_icon', ['icon' => $post->legacyIcon()])
+    @endif
+
     <div class="search-forum-post__content">
         @if (isset($title))
             <div class="search-forum-post__text search-forum-post__text--title">

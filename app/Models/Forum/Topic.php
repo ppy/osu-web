@@ -477,6 +477,11 @@ class Topic extends Model implements AfterCommit
         return $this->topic_last_post_time > Carbon::now()->subMonths($GLOBALS['cfg']['osu']['forum']['necropost_months']);
     }
 
+    public function legacyIcon(): ?LegacyIcon
+    {
+        return app('forum-legacy-icons')->byId($this->icon_id);
+    }
+
     public function markRead($user, $markTime)
     {
         if ($user === null) {

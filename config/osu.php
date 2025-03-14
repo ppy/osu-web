@@ -218,6 +218,7 @@ return [
         'bounty-form' => env('OS_BOUNTY_URL'),
         'dev' => 'https://discord.gg/ppy',
         'experimental_host' => presence(env('OSU_EXPERIMENTAL_HOST')),
+        'forum_legacy_icons' => 'https://old.ppy.sh/forum/images/icons',
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
         'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',
         'lazer_dl.android' => presence(env('OSU_URL_LAZER_ANDROID')) ?? 'https://github.com/ppy/osu/releases/latest/download/sh.ppy.osulazer.apk',

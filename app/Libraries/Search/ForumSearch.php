@@ -83,6 +83,14 @@ class ForumSearch extends Search
     }
 
     /**
+     * @return Builder<Post>
+     */
+    public function posts(): Builder
+    {
+        return Post::withTrashed()->whereKey($this->response()->ids('post_id'));
+    }
+
+    /**
      * Returns a Builder for a Collection of all the posts that appeared in this query.
      */
     public function topics(): Builder

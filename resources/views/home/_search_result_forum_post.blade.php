@@ -4,6 +4,7 @@
 --}}
 {{-- more code than template in this view :best: --}}
 @php
+    $posts = $search->posts()->select('post_id', 'icon_id')->get()->keyBy('post_id');
     $users = $search->users()->select('user_id', 'username', 'user_avatar')->get()->keyBy('user_id');
     $topics = $search->topics()->with('forum')->get()->keyBy('topic_id');
     $skipTitle = $search->isTopicSpecificSearch();
@@ -12,6 +13,7 @@
 @foreach ($search->data() as $entry)
     @php
         // $entry should be of type App\Libraries\Elasticsearch\Hit
+        $post = $posts[$entry->source('post_id')];
         $postUrl = post_url($entry->source('topic_id'), $entry->source('post_id'));
         $postId = $entry->source('post_id');
         $topic = $topics[$entry->source('topic_id')] ?? new App\Models\Forum\Topic();
@@ -25,6 +27,7 @@
     @endphp
     <div class="{{ class_with_modifiers('search-entry', ['deleted' => $entry->source('is_deleted')]) }}">
         @include('objects.search._forum_post', [
+            'post' => $post,
             'user' => $user,
             'title' => $title,
             'link' => $postUrl,
