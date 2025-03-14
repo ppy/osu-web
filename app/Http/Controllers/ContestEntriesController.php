@@ -9,6 +9,7 @@ use App\Exceptions\InvariantException;
 use App\Models\Contest;
 use App\Models\ContestEntry;
 use App\Models\UserContestEntry;
+use App\Transformers\ContestEntryTransformer;
 use App\Transformers\ContestTransformer;
 use Auth;
 use Ds\Set;
@@ -45,7 +46,7 @@ class ContestEntriesController extends Controller
             ],
         );
 
-        $entryJson = json_item($entry, 'ContestEntry', [
+        $entryJson = json_item($entry, new ContestEntryTransformer(), [
             'judge_votes.scores',
             'judge_votes.total_score',
             'judge_votes.total_score_std',
@@ -54,7 +55,7 @@ class ContestEntriesController extends Controller
             'user',
         ]);
 
-        $entriesJson = json_collection($entry->contest->entries, 'ContestEntry');
+        $entriesJson = json_collection($entry->contest->entries, new ContestEntryTransformer());
 
         return ext_view('contest_entries.judge-results', [
             'contestJson' => $contestJson,
@@ -101,7 +102,7 @@ class ContestEntriesController extends Controller
 
         $updatedEntry = $entry->refresh()->load('judgeVotes.scores');
 
-        return json_item($updatedEntry, 'ContestEntry', ['current_user_judge_vote.scores']);
+        return json_item($updatedEntry, new ContestEntryTransformer(), ['current_user_judge_vote.scores']);
     }
 
     public function vote($id)
