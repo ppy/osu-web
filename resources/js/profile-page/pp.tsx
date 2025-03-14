@@ -13,7 +13,6 @@ function formatNumberRounded(value: number) {
 
 export default function Pp({ stats }: { stats: UserStatisticsJson }) {
   let extraTooltip = '';
-  let extraTooltipHoverable = '0';
 
   (stats.variants ?? []).forEach((variant) => {
     const name = trans(`beatmaps.variant.${variant.mode}.${variant.variant}`);
@@ -21,17 +20,6 @@ export default function Pp({ stats }: { stats: UserStatisticsJson }) {
 
     extraTooltip += `<div>${name}: ${value}</div>`;
   });
-  if (stats.pp_exp !== 0 && window.experimentalHost != null) {
-    const experimentalUrl = new URL(window.location.href);
-    experimentalUrl.host = window.experimentalHost;
-    extraTooltip += `<div>
-      pp<sup>next</sup>:
-      <a href="${experimentalUrl.toString()}">
-        ${formatNumberRounded(stats.pp_exp)}
-      </a>
-    </div>`;
-    extraTooltipHoverable = '1';
-  }
 
   return (
     <ValueDisplay
@@ -40,7 +28,6 @@ export default function Pp({ stats }: { stats: UserStatisticsJson }) {
       value={(
         <div
           data-html-title={extraTooltip}
-          data-tooltip-hoverable={extraTooltipHoverable}
           title=''
         >
           {formatNumberRounded(stats.pp)}

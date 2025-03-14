@@ -90,7 +90,6 @@
 <script>
     var currentLocale = {!! json_encode($currentLocale) !!};
     var fallbackLocale = {!! json_encode($fallbackLocale) !!};
-    var experimentalHost = {!! json_encode(osu_url('experimental_host')) !!}
 </script>
 
 <script src="{{ unmix('js/runtime.js') }}" data-turbo-eval="false"></script>
