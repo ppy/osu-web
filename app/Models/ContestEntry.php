@@ -60,4 +60,9 @@ class ContestEntry extends Model
 
         return presence($this->thumbnail_url) ?? $this->entry_url;
     }
+
+    public function totalScoreStd(): float
+    {
+        return $this->judgeVotes->map(fn (ContestJudgeVote $judgeVote) => $judgeVote->totalScoreStd())->sum();
+    }
 }

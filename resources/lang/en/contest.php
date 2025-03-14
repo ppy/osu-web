@@ -30,6 +30,7 @@ return [
         '_' => 'Judging results',
         'creator' => 'creator',
         'score' => 'Score',
+        'score_std' => 'Standardised Score',
         'total_score' => 'total score',
     ],
 

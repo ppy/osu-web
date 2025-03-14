@@ -5,7 +5,7 @@ import TrackPreview from 'components/track-preview'
 import UserLink from 'components/user-link'
 import { route } from 'laroute'
 import * as React from 'react'
-import { a,i,div,span } from 'react-dom-factories'
+import { a, i, div, span } from 'react-dom-factories'
 import { formatNumber } from 'utils/html'
 import { trans, transChoice } from 'utils/lang'
 import { Voter } from './voter'
@@ -60,14 +60,7 @@ export class Entry extends React.Component
           el Voter, key: @props.entry.id, entry: @props.entry, waitingForResponse: @props.waitingForResponse, selected: @props.selected, contest: @props.contest
 
       if @props.contest.show_votes
-        if @props.contest.best_of || @props.contest.judged
-          div className:'contest__vote-count contest__vote-count--no-percentages',
-            transChoice 'contest.vote.points', @props.entry.results.votes
-        else
-          div className:'contest__vote-count',
-            transChoice 'contest.vote.count', @props.entry.results.votes
-            if Number.isFinite usersVotedPercentage
-              " (#{formatNumber(usersVotedPercentage)}%)"
+        @renderScore()
 
       if @props.contest.judged
         div className: 'contest-voting-list__icon contest-voting-list__icon--bg',
@@ -76,6 +69,23 @@ export class Entry extends React.Component
             href: route('contest-entries.judge-results', @props.entry.id)
             target: '_blank'
             i className: 'fas fa-fw fa-lg fa-external-link-alt'
+
+
+  renderScore: ->
+    score = if @props.entry.results.score_std != null
+      @props.entry.results.score_std.toFixed(2)
+    else
+      @props.entry.results.votes
+
+    if @props.contest.best_of || @props.contest.judged
+      div className: 'contest__vote-count contest__vote-count--no-percentages',
+        transChoice 'contest.vote.points', score
+    else
+      div className: 'contest__vote-count',
+        transChoice 'contest.vote.count', score
+        if Number.isFinite usersVotedPercentage
+          " (#{formatNumber(usersVotedPercentage)}%)"
+
 
   renderTitle: ->
     el React.Fragment, null,
