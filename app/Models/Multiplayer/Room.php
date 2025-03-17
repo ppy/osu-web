@@ -456,6 +456,10 @@ class Room extends Model
         $this->assertValidCompletePlay();
 
         return $this->getConnection()->transaction(function () use ($params, $scoreToken) {
+            $playlistItem = $scoreToken->playlistItem()->firstOrFail();
+            $playlistItem->setRelation('room', $this);
+            $scoreToken->setRelation('playlistItem', $playlistItem);
+
             $scoreLink = ScoreLink::complete($scoreToken, $params);
             $user = $scoreLink->user;
             $agg = UserScoreAggregate::new($user, $this);
