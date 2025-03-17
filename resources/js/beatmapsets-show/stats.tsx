@@ -67,7 +67,11 @@ export default class Stats extends React.Component<Props> {
 
         {this.props.controller.beatmapset.is_scoreable &&
           <div className='beatmapset-stats__row beatmapset-stats__row--rating'>
-            <div className='beatmapset-stats__rating-header'>{trans('beatmapsets.show.stats.user-rating')}</div>
+            <div className='beatmapset-stats__rating-header'>
+              {trans('beatmapsets.show.stats.user-rating')}
+              {' '}
+              ({formatNumber(this.props.controller.beatmapset.rating, 2)})
+            </div>
 
             {this.renderRatingBar()}
 
