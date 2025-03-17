@@ -171,6 +171,7 @@ return [
             'global' => 'Celosvětové žebříčky',
             'supporter-link' => 'Klikněte <a href=":link">zde</a> pro zobrazení všech výhod, které dostanete!',
             'supporter-only' => 'Pro zobrazení národních žebříčků a žebříčků přátel potřebujete funkci Supportera!',
+            'team' => '',
             'title' => 'Tabulka výsledků',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Nikdo z vašich přátel na této mapě zatím žádné skóre nenahrál!',
                 'global' => 'Zatím žádné skóre. Možná by ses o to měl pokusit!',
                 'loading' => 'Načítání skóre...',
+                'team' => '',
                 'unranked' => 'Neschválená beatmapa.',
             ],
             'score' => [

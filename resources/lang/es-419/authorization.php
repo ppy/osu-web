@@ -206,7 +206,7 @@ return [
             'not_member' => 'No es miembro del equipo.',
         ],
         'store' => [
-            'require_supporter_tag' => '',
+            'require_supporter_tag' => 'Se requiere una etiqueta de osu!supporter para crear un equipo.',
         ],
     ],
 

@@ -62,7 +62,7 @@ return [
 
     'beatmap_tag' => [
         'store' => [
-            'no_score' => '',
+            'no_score' => 'Precisas de estabelecer uma pontuação num beatmap para adicionar uma etiqueta.',
         ],
     ],
 
@@ -178,7 +178,7 @@ return [
 
     'room' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'Só o dono da sala pode fechá-la.',
         ],
     ],
 
@@ -194,19 +194,19 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
-                'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'already_member' => "Já fazes parte da equipa.",
+                'already_other_member' => "Já fazes parte duma equipa diferente.",
+                'currently_applying' => 'Tens um pedido pendente de adesão à equipa.',
+                'team_closed' => 'De momento, a equipa não está a aceitar pedidos de adesão.',
+                'team_full' => "A equipa está lotada e não pode aceitar mais membros.",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "O líder não pode abandonar a equipa.",
+            'not_member' => 'Não fazes parte da equipa.',
         ],
         'store' => [
-            'require_supporter_tag' => '',
+            'require_supporter_tag' => 'A etiqueta osu!supporter é necessária para criar uma equipa.',
         ],
     ],
 

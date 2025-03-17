@@ -132,29 +132,29 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => ':attribute ini mengandungi aksara tidak sah.',
+        'used' => ':attribute ini telah digunakan.',
+        'word_not_allowed' => ':attribute ini tidak dibenarkan.',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'default_ruleset_id' => 'Ruleset asal',
+            'is_open' => 'Permohonan pasukan',
+            'name' => 'Nama',
+            'short_name' => 'Nama pendek',
+            'url' => 'URL',
         ],
     ],
 
     'user' => [
         'contains_username' => 'Kata laluan tidak boleh mengandungi nama pengguna.',
-        'email_already_used' => 'Alamat emel telah digunakan.',
-        'email_not_allowed' => 'Alamat emel tidak dibenarkan.',
+        'email_already_used' => 'Alamat e-mel telah digunakan.',
+        'email_not_allowed' => 'Alamat e-mel tidak dibenarkan.',
         'invalid_country' => 'Negara tiada dalam pangkalan data.',
         'invalid_discord' => 'Nama pengguna Discord tidak sah.',
-        'invalid_email' => "Nampaknya bukan alamat emel sah.",
+        'invalid_email' => "Nampaknya bukan alamat e-mel sah.",
         'invalid_twitter' => 'Nama pengguna Twitter tidak sah.',
         'too_short' => 'Kata laluan baharu terlalu pendek.',
-        'unknown_duplicate' => 'Nama pengguna atau emel telah digunakan.',
+        'unknown_duplicate' => 'Nama pengguna atau e-mel telah digunakan.',
         'username_available_in' => 'Nama pengguna ini akan sedia digunakan dalam :duration.',
         'username_available_soon' => 'Nama pengguna akan sedia digunakan sebentar lagi!',
         'username_invalid_characters' => 'Nama pengguna yang diminta mengandungi aksara yang tidak sah.',
@@ -167,13 +167,13 @@ return [
         'username_too_long' => 'Pilihan nama pengguna ini terlalu panjang.',
         'weak' => 'Kata laluan disenarai hitam.',
         'wrong_current_password' => 'Kata laluan semasa tidak betul.',
-        'wrong_email_confirmation' => 'Pengesahan emel tidak sepadan.',
+        'wrong_email_confirmation' => 'Pengesahan e-mel tidak sepadan.',
         'wrong_password_confirmation' => 'Pengesahan kata laluan tidak sepadan.',
         'too_long' => 'Melebihi panjang maksimum iaitu :limit aksara sahaja.',
 
         'attributes' => [
             'username' => 'Nama pengguna',
-            'user_email' => 'Alamat emel',
+            'user_email' => 'Alamat e-mel',
             'password' => 'Kata Laluan',
         ],
 

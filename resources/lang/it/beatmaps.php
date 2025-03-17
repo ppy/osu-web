@@ -7,7 +7,7 @@ return [
     'invalid_ruleset' => 'Modalità specificata non valida.',
 
     'change_owner' => [
-        'too_many' => '',
+        'too_many' => 'Troppi mapper guest.',
     ],
 
     'discussion-votes' => [

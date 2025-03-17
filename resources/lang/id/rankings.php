@@ -42,6 +42,7 @@ return [
         'performance' => 'performa',
         'score' => 'skor',
         'seasons' => 'musim',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Pengguna Aktif',
         'country' => 'Negara',
         'division' => 'Divisi',
+        'members' => '',
         'play_count' => 'Jml. Permainan',
         'performance' => 'Total pp',
         'total_score' => 'Total Skor',

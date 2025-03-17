@@ -42,6 +42,7 @@ return [
         'performance' => 'Επίδοσης',
         'score' => 'Σκορ',
         'seasons' => 'εποχές',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Ενεργοί Χρήστες',
         'country' => 'Χώρα',
         'division' => '',
+        'members' => '',
         'play_count' => 'Αριθμός Προσπαθειών',
         'performance' => 'Eπίδοση',
         'total_score' => 'Συνολικό Σκορ',

@@ -171,6 +171,7 @@ return [
             'global' => 'Celosvetový Rebríčok',
             'supporter-link' => 'Kliknite <a href=":link">tu</a> pre zobrazenie všetkych výhod, ktoré dostanete!',
             'supporter-only' => 'Pre zobrazenie štátnych a rebriček priateľov potrebujete funkciu supportera!',
+            'team' => '',
             'title' => 'Tabuľka výsledkov',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Zatiaľ nikto z tvojich priateľov nedosiahol žiadne skóre na tejto mape!',
                 'global' => 'Zatiaľ žiadne skóre. Možno by si sa o to mal pokúsiť?',
                 'loading' => 'Načítava sa skóre...',
+                'team' => '',
                 'unranked' => 'Nehodnotená beatmapa.',
             ],
             'score' => [

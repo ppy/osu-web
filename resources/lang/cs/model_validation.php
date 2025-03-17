@@ -132,16 +132,16 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => ':attribute obsahuje neplatné znaky.',
+        'used' => 'Toto :attribute je již používáno.',
+        'word_not_allowed' => 'Toto :attribute není povoleno.',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'default_ruleset_id' => 'Výchozí ruleset',
+            'is_open' => 'Přihlašování do týmu',
+            'name' => 'Jméno',
+            'short_name' => 'Krátké jméno',
+            'url' => 'URL',
         ],
     ],
 

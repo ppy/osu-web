@@ -206,7 +206,7 @@ return [
             'not_member' => 'Не є членом команди.',
         ],
         'store' => [
-            'require_supporter_tag' => '',
+            'require_supporter_tag' => 'для створення команди потрібен тег osu!supporter.',
         ],
     ],
 

@@ -171,6 +171,7 @@ return [
             'global' => 'Classificació Global',
             'supporter-link' => 'Feu clic <a href=":link">aquí</a> per veure totes les funcions de luxe que teniu!',
             'supporter-only' => 'Has de ser un osu!supporter per accedir a les classificacions per amics, països o mods!',
+            'team' => '',
             'title' => 'Tauler de puntuació',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Cap dels teus amics ha marcat cap puntuació en aquest beatmap encara!',
                 'global' => 'Sense puntuacions encara. Potser hauries d\'intentar-ne establir alguna?',
                 'loading' => 'Carregant puntuacions...',
+                'team' => '',
                 'unranked' => 'Beatmap no classificat.',
             ],
             'score' => [

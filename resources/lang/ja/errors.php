@@ -37,6 +37,6 @@ return [
         'operation_timeout_exception' => '検索機能が平時より混み合っています。もう一度お試しください。',
     ],
     'user_report' => [
-        'recently_reported' => "",
+        'recently_reported' => "あなたはすでに報告済みです。",
     ],
 ];

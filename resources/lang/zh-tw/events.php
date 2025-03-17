@@ -8,7 +8,7 @@ return [
     'beatmap_playcount' => ':beatmap 已經被玩了 :count 次！',
     'beatmapset_approve' => '<strong>:user</strong> 製作的 :beatmapset 已經被 :approval！',
     'beatmapset_delete' => ':beatmapset 已經被刪除。',
-    'beatmapset_revive' => ':beatmapset 已由 <strong>:user</strong> 從永恆的沉睡中甦醒。',
+    'beatmapset_revive' => ':beatmapset 已由 <strong>:user</strong> 從永恆的沉睡中喚醒。',
     'beatmapset_update' => '<strong><em>:user</em></strong> 更新了圖譜 "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> 提交了一個新圖譜 ":beatmapset"',
     'empty' => "該使用者最近沒有活動！",

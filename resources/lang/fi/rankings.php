@@ -42,6 +42,7 @@ return [
         'performance' => 'suorituskyky',
         'score' => 'pisteet',
         'seasons' => 'kaudet',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Aktiiviset käyttäjät',
         'country' => 'Maa',
         'division' => '',
+        'members' => '',
         'play_count' => 'Pelikerrat',
         'performance' => 'Suorituskyky',
         'total_score' => 'Kokonaispisteet',

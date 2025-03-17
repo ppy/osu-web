@@ -171,6 +171,7 @@ return [
             'global' => 'Ranking Global',
             'supporter-link' => 'Clique <a href=":link">aqui</a> para ver todas as novas funções às quais você ganha acesso!',
             'supporter-only' => 'Você precisa ser um osu!supporter para acessar rankings de amigos e de países!',
+            'team' => '',
             'title' => 'Placar',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Nenhum de seus amigos fez uma pontuação nesse beatmap ainda!',
                 'global' => 'Nenhuma pontuação ainda. Não quer tentar fazer uma?',
                 'loading' => 'Carregando pontuações...',
+                'team' => '',
                 'unranked' => 'Beatmap não ranqueado.',
             ],
             'score' => [

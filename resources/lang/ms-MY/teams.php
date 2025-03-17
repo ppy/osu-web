@@ -20,17 +20,17 @@ return [
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'Cipta Pasukan',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => 'Nama pasukan anda. Nama ini kekal buat masa ini.',
+            'short_name_help' => 'Maksimum 4 aksara.',
+            'title' => "Mari sediakan pasukan baharu",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "Main bersama-sama dengan rakan yang ada mahupun yang baharu. Anda kini tiada dalam mana-mana pasukan. Masuk pasukan yang ada dengan melawati halaman pasukan mereka atau cipta pasukan sendiri dari halaman ini.",
+            'title' => 'Pasukan!',
         ],
     ],
 
@@ -39,7 +39,7 @@ return [
     ],
 
     'edit' => [
-        'ok' => '',
+        'ok' => 'Tetapan berjaya disimpan.',
         'title' => 'Tetapan Pasukan',
 
         'description' => [
@@ -48,8 +48,8 @@ return [
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Bendera Pasukan',
+            'title' => 'Tetapkan Bendera Pasukan',
         ],
 
         'header' => [
@@ -60,8 +60,8 @@ return [
         'settings' => [
             'application_help' => 'Membenarkan pemain lain memohon masuk pasukan',
             'default_ruleset_help' => 'Ruleset yang dipilih secara asal ketika melawat halaman pasukan',
-            'flag_help' => '',
-            'header_help' => '',
+            'flag_help' => 'Ukuran maksimum :width×:height',
+            'header_help' => 'Ukuran maksimum :width×:height',
             'title' => 'Tetapan Pasukan',
 
             'application_state' => [
@@ -120,7 +120,7 @@ return [
 
     'show' => [
         'bar' => [
-            'chat' => '',
+            'chat' => 'Bualan Pasukan',
             'destroy' => 'Bubarkan Pasukan',
             'join' => 'Minta Kemasukan',
             'join_cancel' => 'Batal Kemasukan',
@@ -137,12 +137,18 @@ return [
         ],
 
         'sections' => [
+            'about' => '',
             'info' => 'Maklumat',
             'members' => 'Ahli',
+        ],
+
+        'statistics' => [
+            'rank' => '',
+            'leader' => '',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'Pasukan dicipta.',
     ],
 ];

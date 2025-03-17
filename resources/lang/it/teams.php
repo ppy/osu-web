@@ -9,37 +9,37 @@ return [
             'ok' => 'Utente aggiunto alla squadra.',
         ],
         'destroy' => [
-            'ok' => 'Richiesta di adesione annullata.',
+            'ok' => 'Richiesta di partecipazione annullata.',
         ],
         'reject' => [
-            'ok' => 'Richiesta di adesione respinta.',
+            'ok' => 'Richiesta di partecipazione respinta.',
         ],
         'store' => [
-            'ok' => 'Richiesto di unirsi al team.',
+            'ok' => 'Richiesto di partecipare al team.',
         ],
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'Crea Squadra',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => 'Il nome della tua squadra. Il nome è permanente al momento.',
+            'short_name_help' => 'Massimo 4 caratteri.',
+            'title' => "Creiamo una nuova squadra",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "Gioca insieme ad amici; presenti o nuovi. Al momento non sei in una squadra. Unisciti a squadre esistenti visitando la loro pagina oppure crea la tua squadra attraverso questa pagina.",
+            'title' => 'Squadra!',
         ],
     ],
 
     'destroy' => [
-        'ok' => 'Squadra rimossa',
+        'ok' => 'Squadra rimossa.',
     ],
 
     'edit' => [
-        'ok' => '',
+        'ok' => 'Impostazioni salvate con successo.',
         'title' => 'Impostazioni Squadra',
 
         'description' => [
@@ -48,8 +48,8 @@ return [
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Bandiera della squadra',
+            'title' => 'Imposta bandiera della squadra',
         ],
 
         'header' => [
@@ -60,8 +60,8 @@ return [
         'settings' => [
             'application_help' => 'Indica se consentire alle persone di candidarsi per la squadra',
             'default_ruleset_help' => 'La modalità di gioco impostata come predefinita quando si visita la pagina della squadra',
-            'flag_help' => '',
-            'header_help' => '',
+            'flag_help' => 'Dimensione massima di :width×:height',
+            'header_help' => 'Dimensione massima di :width×:height',
             'title' => 'Impostazioni Squadra',
 
             'application_state' => [
@@ -115,34 +115,40 @@ return [
     ],
 
     'part' => [
-        'ok' => 'Abbandonato la squadra ;_;',
+        'ok' => 'Abbandonata la squadra ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'chat' => '',
+            'chat' => 'Chat della squadra',
             'destroy' => 'Sciogli la squadra',
             'join' => 'Richiedi Partecipazione',
             'join_cancel' => 'Annulla Partecipazione',
-            'part' => 'Abbandona la squadra',
+            'part' => 'Abbandona squadra',
         ],
 
         'info' => [
-            'created' => 'Creato',
+            'created' => 'Fondazione squadra',
         ],
 
         'members' => [
-            'members' => 'Membri della Squadra',
-            'owner' => 'Capitano della squadra',
+            'members' => 'Membri della squadra',
+            'owner' => 'Capitano',
         ],
 
         'sections' => [
+            'about' => '',
             'info' => 'Dettagli',
             'members' => 'Membri',
+        ],
+
+        'statistics' => [
+            'rank' => '',
+            'leader' => '',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'Squadra creata.',
     ],
 ];

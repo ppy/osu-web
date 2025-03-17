@@ -32,7 +32,7 @@ class UserContestEntryTransformer extends TransformerAbstract
     public function includeUser(UserContestEntry $entry)
     {
         return $this->item(
-            $entry->user ?? (new DeletedUser()),
+            $entry->user ?? new DeletedUser(),
             new UserCompactTransformer()
         );
     }

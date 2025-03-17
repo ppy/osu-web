@@ -20,17 +20,17 @@ return [
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => '创建战队',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => '你的战队名称。目前不可再修改。',
+            'short_name_help' => '最多4个字符。',
+            'title' => "来组建战队吧",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "与新老朋友一起游戏吧。你目前并未加入战队，但你可以在这一页内，访问其他战队的主页并加入，或是直接创建你自己的战队。",
+            'title' => '战队！',
         ],
     ],
 
@@ -39,7 +39,7 @@ return [
     ],
 
     'edit' => [
-        'ok' => '',
+        'ok' => '成功保存设置。',
         'title' => '战队设置',
 
         'description' => [
@@ -48,8 +48,8 @@ return [
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => '战队旗帜',
+            'title' => '设置战队旗帜',
         ],
 
         'header' => [
@@ -60,8 +60,8 @@ return [
         'settings' => [
             'application_help' => '是否允许其他人申请加入战队',
             'default_ruleset_help' => '第一次进入组队界面时默认选择的游戏模式',
-            'flag_help' => '',
-            'header_help' => '',
+            'flag_help' => '最大尺寸 :width×:height',
+            'header_help' => '最大尺寸 :width×:height',
             'title' => '战队设置',
 
             'application_state' => [
@@ -120,7 +120,7 @@ return [
 
     'show' => [
         'bar' => [
-            'chat' => '',
+            'chat' => '战队聊天',
             'destroy' => '解散战队',
             'join' => '请求加入',
             'join_cancel' => '取消加入',
@@ -137,12 +137,18 @@ return [
         ],
 
         'sections' => [
+            'about' => '',
             'info' => '信息',
             'members' => '成员',
+        ],
+
+        'statistics' => [
+            'rank' => '',
+            'leader' => '',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => '已创建战队。',
     ],
 ];

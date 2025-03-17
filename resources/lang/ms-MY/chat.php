@@ -27,7 +27,7 @@ return [
                 'GROUP' => 'Pasukan',
                 'PM' => 'Pesanan langsung',
                 'PUBLIC' => 'Saluran',
-                'TEAM' => '',
+                'TEAM' => 'Pasukan',
             ],
         ],
     ],

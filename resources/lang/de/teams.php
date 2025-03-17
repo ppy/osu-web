@@ -20,26 +20,26 @@ return [
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'Team erstellen',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => 'Dein Teamname. Der Name kann nicht mehr geändert werden.',
+            'short_name_help' => 'Maximal 4 Zeichen.',
+            'title' => "Ein neues Team anlegen",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "Spiele zusammen mit Freunden, egal ob bereits erfahrene Spieler oder Anfänger. Du bist aktuell in keinem Team. Tritt einem existierendem Team bei, indem du die Teamseite besuchst oder hier dein eigenes Team erstellst.",
+            'title' => 'Team!',
         ],
     ],
 
     'destroy' => [
-        'ok' => 'Team entfernt',
+        'ok' => 'Team entfernt.',
     ],
 
     'edit' => [
-        'ok' => '',
+        'ok' => 'Einstellungen gespeichert.',
         'title' => 'Teameinstellungen',
 
         'description' => [
@@ -48,8 +48,8 @@ return [
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Teamflagge',
+            'title' => 'Teamflagge einstellen',
         ],
 
         'header' => [
@@ -60,8 +60,8 @@ return [
         'settings' => [
             'application_help' => 'Ob Personen sich für das Team bewerben können',
             'default_ruleset_help' => 'Der Spielmodus, der beim Besuchen der Teamseite standardmäßig ausgewählt ist',
-            'flag_help' => '',
-            'header_help' => '',
+            'flag_help' => 'Maximale Größe von :width × :height',
+            'header_help' => 'Maximale Größe von :width × :height',
             'title' => 'Teameinstellungen',
 
             'application_state' => [
@@ -120,7 +120,7 @@ return [
 
     'show' => [
         'bar' => [
-            'chat' => '',
+            'chat' => 'Teamchat',
             'destroy' => 'Team auflösen',
             'join' => 'Beitrittsanfrage stellen',
             'join_cancel' => 'Beitritt abbrechen',
@@ -137,12 +137,18 @@ return [
         ],
 
         'sections' => [
+            'about' => '',
             'info' => 'Info',
             'members' => 'Mitglieder',
+        ],
+
+        'statistics' => [
+            'rank' => '',
+            'leader' => '',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'Team erstellt.',
     ],
 ];

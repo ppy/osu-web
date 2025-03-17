@@ -20,17 +20,17 @@ return [
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'Creează Echipă',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => 'Numele echipei. Acest nume este permanent pe moment.',
+            'short_name_help' => 'Maxim 4 caractere.',
+            'title' => "Hai să configurăm o nouă echipă",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "Jucați împreună cu prieteni, existenți sau noi. Nu sunteți într-o echipă momentan. Alătură-te unei echipe existente vizitând pagina echipei sau creează-ți propria echipă de pe această pagină.",
+            'title' => 'Echipă!',
         ],
     ],
 
@@ -39,7 +39,7 @@ return [
     ],
 
     'edit' => [
-        'ok' => '',
+        'ok' => 'Setările au fost salvate cu succes.',
         'title' => 'Setări Echipă',
 
         'description' => [
@@ -48,8 +48,8 @@ return [
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Steagul Echipei',
+            'title' => 'Setează Steagul Echipei',
         ],
 
         'header' => [
@@ -60,8 +60,8 @@ return [
         'settings' => [
             'application_help' => 'Dacă este permis altora să trimită cereri de înscriere în echipă',
             'default_ruleset_help' => 'Ruleset-ul care va fi selectat implicit la vizitarea paginii echipei',
-            'flag_help' => '',
-            'header_help' => '',
+            'flag_help' => 'Dimensiunea maximă de :width×:height',
+            'header_help' => 'Dimensiunea maximă de :width×:height',
             'title' => 'Setări Echipă',
 
             'application_state' => [
@@ -120,7 +120,7 @@ return [
 
     'show' => [
         'bar' => [
-            'chat' => '',
+            'chat' => 'Chat Echipă',
             'destroy' => 'Dizolvă Echipa',
             'join' => 'Cere Înscrierea',
             'join_cancel' => 'Anulează Cererea',
@@ -137,12 +137,18 @@ return [
         ],
 
         'sections' => [
+            'about' => '',
             'info' => 'Info',
             'members' => 'Membri',
+        ],
+
+        'statistics' => [
+            'rank' => '',
+            'leader' => '',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'Echipă creată.',
     ],
 ];

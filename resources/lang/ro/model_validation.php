@@ -132,16 +132,16 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => 'Această alegere pentru :attribute conține caractere invalide.',
+        'used' => 'Această alegere pentru :attribute este deja utilizată.',
+        'word_not_allowed' => 'Această alegere pentru :attribute nu este permisă.',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'default_ruleset_id' => 'Ruleset implicit',
+            'is_open' => 'Cereri înscriere echipă',
+            'name' => 'Nume',
+            'short_name' => 'Nume scurt',
+            'url' => 'URL',
         ],
     ],
 
