@@ -42,16 +42,11 @@ class RoomsController extends Controller
     public function index()
     {
         $apiVersion = api_version();
-        $compactReturn = $apiVersion >= 20220217;
         $objectReturn = $apiVersion >= 99999999;
         $params = request()->all();
         $params['user'] = auth()->user();
 
         $includes = ['host.country', 'playlist.beatmap'];
-
-        if (!$compactReturn) {
-            $includes = [...$includes, 'playlist.beatmap.beatmapset', 'playlist.beatmap.baseMaxCombo'];
-        }
 
         $search = Room::search($params);
         $query = $search['query'];
@@ -68,33 +63,23 @@ class RoomsController extends Controller
             ->get();
         Room::preloadRecentParticipants($rooms);
 
-        if ($compactReturn) {
-            $rooms->each->findAndSetCurrentPlaylistItem();
-            $rooms->loadMissing('currentPlaylistItem.beatmap.beatmapset');
+        $rooms->each->findAndSetCurrentPlaylistItem();
+        $rooms->loadMissing('currentPlaylistItem.beatmap.beatmapset');
 
-            $roomsJson = json_collection($rooms, new RoomTransformer(), [
-                'current_playlist_item.beatmap.beatmapset',
-                'difficulty_range',
-                'host.country',
-                'playlist_item_stats',
-                'recent_participants',
-            ]);
+        $roomsJson = json_collection($rooms, new RoomTransformer(), [
+            'current_playlist_item.beatmap.beatmapset',
+            'difficulty_range',
+            'host.country',
+            'playlist_item_stats',
+            'recent_participants',
+        ]);
 
-            if ($objectReturn) {
-                return array_merge([
-                    'rooms' => $roomsJson,
-                ], cursor_for_response($search['cursorHelper']->next($rooms)));
-            } else {
-                return $roomsJson;
-            }
+        if ($objectReturn) {
+            return array_merge([
+                'rooms' => $roomsJson,
+            ], cursor_for_response($search['cursorHelper']->next($rooms)));
         } else {
-            return json_collection($rooms, new RoomTransformer(), [
-                'host.country',
-                'playlist.beatmap.beatmapset',
-                'playlist.beatmap.checksum',
-                'playlist.beatmap.max_combo',
-                'recent_participants',
-            ]);
+            return $roomsJson;
         }
     }
 
