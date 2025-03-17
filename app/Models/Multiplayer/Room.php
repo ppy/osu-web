@@ -301,17 +301,21 @@ class Room extends Model
         return $query->whereIn('category', ['featured_artist', 'spotlight']);
     }
 
-    public function scopeHasParticipated($query, User $user)
+    public function scopeHasParticipated($query, ?User $user)
     {
-        return $query->whereHas(
-            'userHighScores',
-            fn ($q) => $q->where('user_id', $user->getKey()),
-        );
+        return $user === null
+            ? $query->none()
+            : $query->whereHas(
+                'userHighScores',
+                fn ($q) => $q->where('user_id', $user->getKey()),
+            );
     }
 
-    public function scopeStartedBy($query, User $user)
+    public function scopeStartedBy($query, ?User $user)
     {
-        return $query->where('user_id', $user->user_id);
+        return $user === null
+            ? $query->none()
+            : $query->where('user_id', $user->getKey());
     }
 
     public function scopeWithRecentParticipantIds($query, ?int $limit = null)
