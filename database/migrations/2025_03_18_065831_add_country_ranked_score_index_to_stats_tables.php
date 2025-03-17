@@ -28,6 +28,7 @@ return new class extends Migration
         foreach (static::TABLE_VARIANTS as $table) {
             Schema::table($table, function (Blueprint $table) {
                 $table->bigInteger('ranked_score')->default(0)->after('rank_score_index');
+                $table->index('ranked_score', 'ranked_score');
             });
         }
 
@@ -48,6 +49,7 @@ return new class extends Migration
 
         foreach (static::TABLE_VARIANTS as $table) {
             Schema::table($table, function (Blueprint $table) {
+                $table->dropIndex('ranked_score', 'ranked_score');
                 $table->dropColumn('ranked_score');
             });
         }
