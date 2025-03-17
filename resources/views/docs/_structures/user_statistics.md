@@ -75,9 +75,9 @@ maximum_combo             | integer  | Highest maximum combo.
 play_count                | integer  | Number of maps played.
 play_time                 | integer  | Cumulative time played.
 pp                        | float    | Performance points
-pp_exp                    | float    | Experimental (lazer) performance points
+pp_exp                    | float    | Experimental (lazer) performance points. Deprecated; it's now always 0.
 global_rank               | integer? | Current rank according to pp.
-global_rank_exp           | integer? | Current rank according to experimental (lazer) pp.
+global_rank_exp           | integer? | Current rank according to experimental (lazer) pp. Deprecated; it's now always null.
 ranked_score              | integer  | Current ranked score.
 replays_watched_by_others | integer  | Number of replays watched by other users.
 total_hits                | integer  | Total number of hits.

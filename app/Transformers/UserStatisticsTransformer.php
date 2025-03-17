@@ -29,11 +29,6 @@ class UserStatisticsTransformer extends TransformerAbstract
     {
         $stats ??= new UserStatistics\Osu();
 
-        if (!$GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default'] && $GLOBALS['cfg']['osu']['scores']['experimental_rank_as_extra']) {
-            $globalRankExp = $stats->globalRankExp();
-            $ppExp = $stats->rank_score_exp;
-        }
-
         return [
             'count_100' => $stats->count100,
             'count_300' => $stats->count300,
@@ -44,9 +39,9 @@ class UserStatisticsTransformer extends TransformerAbstract
                 'progress' => $stats->currentLevelProgressPercent(),
             ],
             'global_rank' => $stats->globalRank(),
-            'global_rank_exp' => $globalRankExp ?? null,
-            'pp' => $stats->pp(),
-            'pp_exp' => $ppExp ?? 0,
+            'global_rank_exp' => null,
+            'pp' => $stats->rank_score,
+            'pp_exp' => 0,
             'ranked_score' => $stats->ranked_score,
             'hit_accuracy' => $stats->hit_accuracy,
             'play_count' => $stats->playcount,
