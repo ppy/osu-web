@@ -206,7 +206,7 @@ return [
             'not_member' => '不是战队成员。',
         ],
         'store' => [
-            'require_supporter_tag' => '',
+            'require_supporter_tag' => '只有支持者才能创建战队。',
         ],
     ],
 

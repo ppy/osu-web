@@ -55,7 +55,7 @@ return [
                 'general' => '',
 
                 'users' => [
-                    'header' => '',
+                    'header' => 'ผู้ใช้งาน',
                     'cover_presets' => '',
                 ],
             ],

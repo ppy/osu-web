@@ -226,7 +226,7 @@ return [
                     'button' => 'Dodaj tło',
                     'dropzone' => 'Upuść tutaj, aby dodać',
                     'dropzone_info' => 'Możesz także upuścić swoje tło tutaj, aby je dodać',
-                    'size_info' => 'Rozmiary tła powinny wynosić przynajmniej 2400x640',
+                    'size_info' => 'Rozmiary tła powinny wynosić przynajmniej 2800x620',
                     'too_large' => 'Plik jest zbyt duży.',
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
 

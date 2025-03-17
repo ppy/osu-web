@@ -19,8 +19,8 @@ class BeatmapTagsController extends Controller
 
         $this->middleware('auth', [
             'only' => [
-                'store',
                 'destroy',
+                'update',
             ],
         ]);
     }
@@ -35,20 +35,18 @@ class BeatmapTagsController extends Controller
         return response()->noContent();
     }
 
-    public function store($beatmapId)
+    public function update($beatmapId, $tagId)
     {
-        $tagId = get_int(request('tag_id'));
-
         $beatmap = Beatmap::findOrFail($beatmapId);
         priv_check('BeatmapTagStore', $beatmap)->ensureCan();
 
         $tag = Tag::findOrFail($tagId);
 
-        $user = \Auth::user();
-
         $tag
             ->beatmapTags()
-            ->firstOrCreate(['beatmap_id' => $beatmapId, 'user_id' => $user->getKey()]);
+            ->firstOrCreate(['beatmap_id' => $beatmapId, 'user_id' => \Auth::user()->getKey()]);
+
+        $beatmap->expireTopTagIds();
 
         return response()->noContent();
     }

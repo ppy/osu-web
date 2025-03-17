@@ -42,6 +42,7 @@ return [
         'performance' => 'ביצועים',
         'score' => 'תוצאה',
         'seasons' => '',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'משתמשים פעילים',
         'country' => 'מדינה',
         'division' => '',
+        'members' => '',
         'play_count' => 'מספר משחקים',
         'performance' => 'ביצועים',
         'total_score' => 'תוצאה סופית',

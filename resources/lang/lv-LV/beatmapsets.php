@@ -171,6 +171,7 @@ return [
             'global' => 'Pasaules rangi',
             'supporter-link' => 'Klikšķiniet <a href=":link">šeit</a>, lai redzētu visas modernās funkcijas, ko saņemat!',
             'supporter-only' => 'Jums nepieciešams būt atbalstītājam, lai redzētu draugu un valsts rangus!',
+            'team' => '',
             'title' => 'Rezultātu apkopojums',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Neviens no jūsu draugiem vēl nav uzstādījis rezultātu šajā mapē!',
                 'global' => 'Pagaidām nav rezultātu. Varbūt pamēģināt kādu uzstādīt?',
                 'loading' => 'Ielādē rezultātus...',
+                'team' => '',
                 'unranked' => 'Nevērtējama ritma-mape.',
             ],
             'score' => [

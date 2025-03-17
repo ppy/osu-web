@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Tests\Models;
 
+use App\Models\Beatmap;
 use App\Models\Chat;
 use App\Models\Team;
 use App\Models\TeamApplication;
@@ -17,6 +18,14 @@ use Tests\TestCase;
 
 class TeamTest extends TestCase
 {
+    public static function dataProviderForTestSaveNullDefaultRulesetIdFollowsLeader(): array
+    {
+        return array_map(
+            fn ($rulesetId) => [$rulesetId],
+            Beatmap::MODES,
+        );
+    }
+
     public static function dataProviderForTestUniquenessValidation(): array
     {
         return [
@@ -66,6 +75,23 @@ class TeamTest extends TestCase
 
         $team->fresh()->delete();
     }
+
+    /**
+     * @dataProvider dataProviderForTestSaveNullDefaultRulesetIdFollowsLeader
+     */
+    public function testSaveNullDefaultRulesetIdFollowsLeader(int $leaderRulesetId): void
+    {
+        $leader = User::factory()->create(['osu_playmode' => $leaderRulesetId]);
+
+        $team = Team::create([
+            'name' => 'Test Team',
+            'short_name' => 'test',
+            'leader_id' => $leader->getKey(),
+        ]);
+
+        $this->assertSame($leaderRulesetId, $team->fresh()->default_ruleset_id);
+    }
+
 
     /**
      * @dataProvider dataProviderForTestUniquenessValidation

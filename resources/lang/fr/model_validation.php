@@ -132,16 +132,16 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => 'Erreur : caractères invalides.',
+        'used' => 'Erreur : déjà utilisé par une autre équipe.',
+        'word_not_allowed' => 'Erreur : contient un ou plusieurs mots interdits.',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'default_ruleset_id' => 'Mode de jeu principal',
+            'is_open' => 'Candidatures',
+            'name' => 'Nom',
+            'short_name' => 'Abréviation',
+            'url' => 'URL',
         ],
     ],
 

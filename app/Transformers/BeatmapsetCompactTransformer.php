@@ -230,7 +230,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     public function includeUser(Beatmapset $beatmapset)
     {
         return $this->item(
-            $beatmapset->user ?? (new DeletedUser()),
+            $beatmapset->user ?? new DeletedUser(),
             new UserCompactTransformer()
         );
     }

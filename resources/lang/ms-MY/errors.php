@@ -33,7 +33,7 @@ return [
     ],
     'search' => [
         'default' => 'Hasil tidak ditemui. Cuba lagi nanti.',
-        'invalid_cursor_exception' => 'Parameter penanda kini tidak sah ditentukan.',
+        'invalid_cursor_exception' => 'Parameter kursor tidak sah ditentukan.',
         'operation_timeout_exception' => 'Pencari kini lebih sibuk dari biasa, cuba lagi nanti.',
     ],
     'user_report' => [

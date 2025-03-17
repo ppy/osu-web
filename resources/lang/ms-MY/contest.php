@@ -35,7 +35,7 @@ return [
 
     'voting' => [
         'judge_link' => 'Anda pengadil peraduan ini. Adili penyertaan di sini!',
-        'judged_notice' => 'Peraduan ini menggunakan sistem pengadilan. Pengadil kini memproses penyertaan.',
+        'judged_notice' => 'Peraduan ini menggunakan tatanan pengadilan. Pengadil kini memproses penyertaan.',
         'login_required' => 'Sila daftar masuk untuk mengundi.',
         'over' => 'Pengundian untuk peraduan ini telah tamat',
         'show_voted_only' => 'Tunjukkan undian',

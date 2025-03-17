@@ -7,7 +7,7 @@ return [
     'authorizations' => [
         'update' => [
             'null_user' => 'Daftar masuk untuk menyunting.',
-            'system_generated' => 'Hantaran janaan sistem tidak boleh disunting.',
+            'system_generated' => 'Hantaran janaan tatanan tidak boleh disunting.',
             'wrong_user' => 'Pemilik hantaran sahaja boleh menyunting.',
         ],
     ],

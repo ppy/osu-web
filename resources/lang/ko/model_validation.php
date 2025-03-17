@@ -137,7 +137,7 @@ return [
         'word_not_allowed' => '',
 
         'attributes' => [
-            'default_ruleset_id' => '',
+            'default_ruleset_id' => '기본 룰셋',
             'is_open' => '',
             'name' => '이름',
             'short_name' => '짧은 이름',

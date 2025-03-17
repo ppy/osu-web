@@ -69,6 +69,9 @@ class ScoreSearch extends RecordSearch
             case 'friend':
                 $query->filter(['terms' => ['user_id' => $this->params->getFriendIds()]]);
                 break;
+            case 'team':
+                $query->filter(['terms' => ['user_id' => $this->params->getTeamMemberIds()]]);
+                break;
         }
 
         $beforeTotalScore = $this->params->beforeTotalScore;

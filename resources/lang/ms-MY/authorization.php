@@ -119,7 +119,7 @@ return [
 
             'store' => [
                 'play_more' => 'Sila cuba bermain sebelum menghantar di forum! Sekiranya anda mempunyai masalah ketika bermain, sila hantar ke forum Bantuan dan Sokongan.',
-                'too_many_help_posts' => "Anda perlu bermain osu! lagi sebelum anda boleh menghantar lagi. Sekiranya anda masih mempunyai masalah bermain, hantar emel ke support@ppy.sh", // FIXME: unhardcode email address.
+                'too_many_help_posts' => "Anda perlu bermain osu! lagi sebelum anda boleh menghantar lagi. Sekiranya anda masih mempunyai masalah bermain, hantar e-mel ke support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -206,7 +206,7 @@ return [
             'not_member' => 'Anda bukan ahli pasukan.',
         ],
         'store' => [
-            'require_supporter_tag' => '',
+            'require_supporter_tag' => 'Tag osu!supporter diperlukan untuk mencipta pasukan.',
         ],
     ],
 
@@ -219,7 +219,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => 'alamat emel dikunci',
+            'locked' => 'alamat e-mel dikunci',
         ],
     ],
 ];
