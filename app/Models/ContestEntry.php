@@ -81,16 +81,16 @@ class ContestEntry extends Model
         return $query;
     }
 
-    public function scopeWithScore(Builder $query, Contest $contest): Builder
+    public function scopeWithScore(Builder $query, string $option): Builder
     {
         $orderValue = 'votes_count';
 
-        if ($contest->isBestOf()) {
+        if ($option === 'best_of') {
             $query
                 ->selectRaw('*')
                 ->selectRaw('(SELECT FLOOR(SUM(`weight`)) FROM `contest_votes` WHERE `contest_entries`.`id` = `contest_votes`.`contest_entry_id`) AS votes_count')
                 ->limit(50); // best of contests tend to have a _lot_ of entries...
-        } else if ($contest->isJudged()) {
+        } else if ($option === 'judged') {
             $query->withSum('scores', 'value');
             $orderValue = 'scores_sum_value';
         } else {
