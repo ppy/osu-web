@@ -5,7 +5,7 @@
          colors="true"
 >
     <extensions>
-        <extension class="Tests\SeederExtension" />
+        <bootstrap class="Tests\SeederExtension" />
     </extensions>
     <testsuites>
         <testsuite name="Application Test Suite">
