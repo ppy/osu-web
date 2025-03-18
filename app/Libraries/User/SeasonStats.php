@@ -57,9 +57,7 @@ class SeasonStats
         return \Cache::remember(
             $this->seasonCacheKey(),
             600,
-            function () {
-                return $this->calculate();
-            }
+            fn () => $this->calculate(),
         );
     }
 
