@@ -50,10 +50,8 @@ const popup = (stats: SeasonStatsJson) => (
       </a>
     </div>
     <div className='season-stats-popup__content season-stats-popup__content--stats'>
-      <div className='season-stats-popup__row'>
-        <div className='season-stats-popup__key'>{trans('users.show.season_stats.total_score')}</div>
-        <div className='season-stats-popup__value'>{formatNumber(stats.total_score)}</div>
-      </div>
+      <div className='season-stats-popup__key'>{trans('users.show.season_stats.total_score')}</div>
+      <div className='season-stats-popup__value'>{formatNumber(stats.total_score)}</div>
     </div>
   </div>
 );
