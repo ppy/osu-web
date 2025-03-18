@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+
 /**
  * @property-read Contest $contest
  * @property int $contest_id
@@ -81,18 +82,26 @@ class ContestEntry extends Model
         return $query;
     }
 
-    public function scopeWithScore(Builder $query, string $option): Builder
+    public function scopeWithScore(Builder $query, array $options): Builder
     {
         $orderValue = 'votes_count';
 
-        if ($option === 'best_of') {
+        if (isset($options['best_of'])) {
             $query
                 ->selectRaw('*')
                 ->selectRaw('(SELECT FLOOR(SUM(`weight`)) FROM `contest_votes` WHERE `contest_entries`.`id` = `contest_votes`.`contest_entry_id`) AS votes_count')
                 ->limit(50); // best of contests tend to have a _lot_ of entries...
-        } else if ($option === 'judged') {
+        } else if ($options['judged'] ?? false) {
             $query->withSum('scores', 'value');
-            $orderValue = 'scores_sum_value';
+
+            if ($options['is_score_standardised'] ?? false) {
+                $scoreQuery = ContestJudgeVote::selectRaw(\DB::raw('SUM(`total_score_std`)'));
+                $scoreQuery->whereColumn($scoreQuery->qualifyColumn('contest_entry_id'), $this->qualifyColumn('id'));
+                $query->addSelect(['total_score_std' => $scoreQuery]);
+                $orderValue = 'total_score_std';
+            } else {
+                $orderValue = 'scores_sum_value';
+            }
         } else {
             $query->withCount('votes');
         }
@@ -107,10 +116,5 @@ class ContestEntry extends Model
         }
 
         return presence($this->thumbnail_url) ?? $this->entry_url;
-    }
-
-    public function totalScoreStd(): float
-    {
-        return $this->judgeVotes->map(fn (ContestJudgeVote $judgeVote) => $judgeVote->totalScoreStd())->sum();
     }
 }

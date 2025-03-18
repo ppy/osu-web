@@ -41,7 +41,7 @@ class ContestJudgeVoteTransformer extends TransformerAbstract
 
     public function includeTotalScoreStd(ContestJudgeVote $judgeVote): Primitive
     {
-        return $this->primitive($judgeVote->totalScoreStd());
+        return $this->primitive($judgeVote->total_score_std);
     }
 
     public function includeUser(ContestJudgeVote $judgeVote): Item
