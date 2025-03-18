@@ -131,7 +131,7 @@ class Contest extends Model
 
     public function isBestOf(): bool
     {
-        return $this->getExtraOptions()['best_of'] ?? false;
+        return isset($this->getExtraOptions()['best_of']);
     }
 
     public function isJudge(User $user): bool
@@ -149,6 +149,11 @@ class Contest extends Model
     public function isJudgingActive(): bool
     {
         return $this->isJudged() && $this->isVotingOpen() && !$this->show_votes;
+    }
+
+    public function isScoreStandardised(): bool
+    {
+        return $this->getExtraOptions()['is_score_standardised'] ?? false;
     }
 
     public function isSubmittedBeatmaps(): bool
@@ -295,16 +300,12 @@ class Contest extends Model
         $query = $this->entries()->with(['contest', ...$preloads]);
 
         if ($this->show_votes) {
-            $option = $this->isBestOf()
-                ? 'best_of'
-                : ($this->isJudged()
-                    ? 'judged'
-                    : null);
+            $options = $this->getExtraOptions();
 
             return Cache::remember(
                 "contest_entries_with_votes_{$this->id}",
                 300,
-                fn () => $query->with(['contest', ...$preloads])->withScore($option)->get()
+                fn () => $query->with(['contest', ...$preloads])->withScore($options)->get()
             );
         } elseif ($this->isBestOf()) {
             if ($user === null) {
