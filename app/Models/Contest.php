@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
+ * @property-read Collection<ContestJudge> $contestJudges
  * @property \Carbon\Carbon|null $created_at
  * @property string $description_enter
  * @property string|null $description_voting
@@ -28,7 +29,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $header_url
  * @property int $id
  * @property mixed $link_icon
- * @property-read Collection<ContestJudge> $judges
+ * @property-read Collection<User> $judges
  * @property int $max_entries
  * @property int $max_votes
  * @property string $name
@@ -56,6 +57,11 @@ class Contest extends Model
         'voting_ends_at' => 'datetime',
         'voting_starts_at' => 'datetime',
     ];
+
+    public function contestJudges(): HasMany
+    {
+        return $this->HasMany(ContestJudge::class);
+    }
 
     public function entries()
     {
@@ -113,6 +119,14 @@ class Contest extends Model
             default:
                 throw new Exception('unknown requirement');
         }
+    }
+
+    public function calculateScores(): void
+    {
+        $this->contestJudges->each->calculateStdDev();
+
+        $judgeVotes = ContestJudgeVote::whereHas('entry', fn ($q) => $q->whereHas('contest', fn ($qq) => $qq->where('contest_id', $this->getKey())))->get();
+        $judgeVotes->each->calculateScore();
     }
 
     public function isBestOf(): bool
