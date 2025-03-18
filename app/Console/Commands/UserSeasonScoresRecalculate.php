@@ -52,7 +52,7 @@ class UserSeasonScoresRecalculate extends Command
                     $seasonScore->calculate(false);
                     if ($seasonScore->total_score > 0) {
                         $seasonScore->save();
-                        SeasonStats::resetCache($user->getKey(), $season->getKey());
+                        (new SeasonStats($user, $season))->resetCache();
                     }
 
                     $bar->advance();

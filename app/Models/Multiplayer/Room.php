@@ -476,7 +476,7 @@ class Room extends Model
                 $seasonScore->calculate();
                 $seasonScore->save();
 
-                SeasonStats::resetCache($user->getKey(), $this->season->getKey());
+                (new SeasonStats($user, $this->season))->resetCache();
             }
 
             return $scoreLink;

@@ -14,21 +14,26 @@ use App\Transformers\SeasonTransformer;
 
 class SeasonStats
 {
-    public function calculate(User $user, Season $season): ?array {
-        $score = $season->userScores()
-            ->whereBelongsTo($user)
+    public function __construct(
+        public User $user,
+        public Season $season,
+    ) {}
+
+    public function calculate(): ?array {
+        $score = $this->season->userScores()
+            ->whereBelongsTo($this->user)
             ->first();
 
         if ($score === null) {
             return null;
         }
 
-        $rank = $season->userScores()
+        $rank = $this->season->userScores()
             ->where('user_id', '<>', $score->user_id)
             ->where('total_score', '>=', $score->total_score)
             ->count() + 1;
 
-        foreach ($season->divisionsWithMaxRanks() as $division) {
+        foreach ($this->season->divisionsWithMaxRanks() as $division) {
             if ($rank <= $division['max_rank']) {
                 $userDivision = $division['division'];
                 break;
@@ -42,29 +47,29 @@ class SeasonStats
         return [
             'division' => json_item($userDivision, new SeasonDivisionTransformer()),
             'rank' => $rank,
-            'season' => json_item($season, new SeasonTransformer()),
+            'season' => json_item($this->season, new SeasonTransformer()),
             'total_score' => $score->total_score,
         ];
     }
 
-    public static function get(User $user, Season $season): ?array
+    public function get(): ?array
     {
         return \Cache::remember(
-            static::seasonCacheKey($user->getKey(), $season->getKey()),
+            $this->seasonCacheKey(),
             600,
-            function () use ($season, $user) {
-                return $this->calculate($user, $season);
+            function () {
+                return $this->calculate();
             }
         );
     }
 
-    public static function resetCache(int $userId, int $seasonId): bool
+    public function resetCache(): bool
     {
-        return \Cache::forget(static::seasonCacheKey($userId, $seasonId));
+        return \Cache::forget($this->seasonCacheKey());
     }
 
-    private static function seasonCacheKey(int $userId, int $seasonId): string
+    private function seasonCacheKey(): string
     {
-        return "season_stats:{$userId}:{$seasonId}";
+        return "season_stats:{$this->user->getKey()}:{$this->season->getKey()}";
     }
 }

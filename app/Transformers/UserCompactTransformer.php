@@ -239,7 +239,7 @@ class UserCompactTransformer extends TransformerAbstract
 
         return $season === null
             ? $this->primitive(null)
-            : $this->primitive(SeasonStats::get($user, $season));
+            : $this->primitive((new SeasonStats($user, $season))->get());
     }
 
     public function includeDailyChallengeUserStats(User $user)
