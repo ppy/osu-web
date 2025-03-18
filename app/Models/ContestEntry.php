@@ -95,9 +95,7 @@ class ContestEntry extends Model
             $query->withSum('scores', 'value');
 
             if ($options['is_score_standardised'] ?? false) {
-                $scoreQuery = ContestJudgeVote::selectRaw(\DB::raw('SUM(`total_score_std`)'));
-                $scoreQuery->whereColumn($scoreQuery->qualifyColumn('contest_entry_id'), $this->qualifyColumn('id'));
-                $query->addSelect(['total_score_std' => $scoreQuery]);
+                $query->withSum('judgeVotes as total_score_std', 'total_score_std');
                 $orderValue = 'total_score_std';
             } else {
                 $orderValue = 'scores_sum_value';
