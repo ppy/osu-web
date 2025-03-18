@@ -276,64 +276,21 @@ class Contest extends Model
         }
     }
 
-    public function entriesByType($user = null, array $preloads = [])
+    public function entriesByType(?User $user, array $preloads = [])
     {
-        $entries = $this->entries()->with(['contest', ...$preloads]);
-
         if ($this->show_votes) {
-            return Cache::remember("contest_entries_with_votes_{$this->id}", 300, function () use ($entries) {
-                $orderValue = 'votes_count';
-
-                if ($this->isBestOf()) {
-                    $entries = $entries
-                        ->selectRaw('*')
-                        ->selectRaw('(SELECT FLOOR(SUM(`weight`)) FROM `contest_votes` WHERE `contest_entries`.`id` = `contest_votes`.`contest_entry_id`) AS votes_count')
-                        ->limit(50); // best of contests tend to have a _lot_ of entries...
-                } else if ($this->isJudged()) {
-                    $entries = $entries->withSum('scores', 'value');
-                    $orderValue = 'scores_sum_value';
-                } else {
-                    $entries = $entries->withCount('votes');
-                }
-
-                return $entries->orderBy($orderValue, 'desc')->get();
-            });
+            return Cache::remember(
+                "contest_entries_with_votes_{$this->id}",
+                300,
+                fn () => $this->entriesByTypeWithVotes($user, $preloads)
+            );
         } else {
             if ($this->isBestOf()) {
-                if ($user === null) {
-                    return [];
-                }
-
-                // Only return contest entries that a user has actually played
-                return $entries
-                    ->whereIn('entry_url', function ($query) use ($user) {
-                        $options = $this->getExtraOptions()['best_of'];
-                        $ruleset = $options['mode'] ?? 'osu';
-                        $query->select('beatmapset_id')
-                            ->from('osu_beatmaps')
-                            ->where('osu_beatmaps.playmode', Beatmap::MODES[$ruleset])
-                            ->whereIn('beatmap_id', function ($query) use ($user) {
-                                $query->select('beatmap_id')
-                                    ->from('osu_user_beatmap_playcount')
-                                    ->where('user_id', '=', $user->user_id);
-                            });
-
-                        if ($ruleset === 'mania' && isset($options['variant'])) {
-                            if ($options['variant'] === 'nk') {
-                                $query->whereNotIn('osu_beatmaps.diff_size', [4, 7]);
-                            } else {
-                                $keys = match ($options['variant']) {
-                                    '4k' => 4,
-                                    '7k' => 7,
-                                };
-                                $query->where('osu_beatmaps.diff_size', $keys);
-                            }
-                        }
-                    })->get();
+                return $this->entriesByTypeBestOf($user, $preloads);
             }
         }
 
-        return $entries->get();
+        return $this->entries()->with(['contest', ...$preloads])->get();
     }
 
     public function defaultJson($user = null)
@@ -455,5 +412,59 @@ class Contest extends Model
     public function showEntryUser(): bool
     {
         return $this->show_votes || ($this->getExtraOptions()['show_entry_user'] ?? false);
+    }
+
+    private function entriesByTypeBestOf(?User $user, array $preloads = []): array|Collection
+    {
+        if ($user === null) {
+            return [];
+        }
+
+        // Only return contest entries that a user has actually played
+        return $this->entries()->with(['contest', ...$preloads])
+            ->whereIn('entry_url', function ($query) use ($user) {
+                $options = $this->getExtraOptions()['best_of'];
+                $ruleset = $options['mode'] ?? 'osu';
+                $query->select('beatmapset_id')
+                    ->from('osu_beatmaps')
+                    ->where('osu_beatmaps.playmode', Beatmap::MODES[$ruleset])
+                    ->whereIn('beatmap_id', function ($query) use ($user) {
+                        $query->select('beatmap_id')
+                            ->from('osu_user_beatmap_playcount')
+                            ->where('user_id', '=', $user->user_id);
+                    });
+
+                if ($ruleset === 'mania' && isset($options['variant'])) {
+                    if ($options['variant'] === 'nk') {
+                        $query->whereNotIn('osu_beatmaps.diff_size', [4, 7]);
+                    } else {
+                        $keys = match ($options['variant']) {
+                            '4k' => 4,
+                            '7k' => 7,
+                        };
+                        $query->where('osu_beatmaps.diff_size', $keys);
+                    }
+                }
+            })->get();
+    }
+
+    private function entriesByTypeWithVotes(?User $user, array $preloads = []): Collection
+    {
+        $entries = $this->entries()->with(['contest', ...$preloads]);
+        $orderValue = 'votes_count';
+
+        if ($this->isBestOf()) {
+            $entries = $entries
+                ->selectRaw('*')
+                ->selectRaw('(SELECT FLOOR(SUM(`weight`)) FROM `contest_votes` WHERE `contest_entries`.`id` = `contest_votes`.`contest_entry_id`) AS votes_count')
+                ->limit(50); // best of contests tend to have a _lot_ of entries...
+        } else if ($this->isJudged()) {
+            $entries = $entries->withSum('scores', 'value');
+            $orderValue = 'scores_sum_value';
+        } else {
+            $entries = $entries->withCount('votes');
+        }
+
+        return $entries->orderBy($orderValue, 'desc')->get();
     }
 }
