@@ -480,7 +480,7 @@ return [
             'highest' => 'Highest rank: :rank on :date',
         ],
         'season_stats' => [
-            'division_top_percentage' => 'Top :value%',
+            'division_top_percentage' => 'Top :value',
             'total_score' => 'Total score',
         ],
         'stats' => [
