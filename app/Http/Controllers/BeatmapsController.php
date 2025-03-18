@@ -79,6 +79,7 @@ class BeatmapsController extends Controller
         $scoreTransformer = new ScoreTransformer($scoreTransformerType);
 
         $results = [
+            'score_count' => UserRank::getCount($esFetch->baseParams),
             'scores' => json_collection(
                 $scores,
                 $scoreTransformer,
