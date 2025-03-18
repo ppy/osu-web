@@ -67,7 +67,7 @@ class ContestEntryTransformer extends TransformerAbstract
 
         return $this->primitive([
             'actual_name' => $entry->name,
-            'score_std' => $judged ? $entry->totalScoreStd() : null,
+            'score_std' => $judged ? $entry->total_score_std : null,
             'votes' => (int) $votes, // TODO: change to score or something else, or even better stop overloading the results value.
         ]);
     }
