@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @property-read Contest $contest
  * @property int $contest_id
+ * @property ?float $mean
+ * @property ?float $std_dev
  * @property-read User $user
  * @property int $user_id
  */
@@ -29,7 +31,14 @@ class ContestJudge extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function stdDev()
+    public function calculateStdDev(): void
+    {
+        [$stdDev, $mean] = $this->stdDev();
+
+        $this->update(['mean' => $mean, 'std_dev' => $stdDev]);
+    }
+
+    public function stdDev(): array
     {
         // TODO: treat missing scores as 0?
         $entryScores = ContestJudgeScore::scoresByEntry()
