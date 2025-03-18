@@ -282,7 +282,7 @@ class Contest extends Model
             return Cache::remember(
                 "contest_entries_with_votes_{$this->id}",
                 300,
-                fn () => $this->entriesByTypeWithVotes($user, $preloads)
+                fn () => $this->entries()->with(['contest', ...$preloads])->withScore($this)->get()
             );
         } else {
             if ($this->isBestOf()) {
@@ -446,25 +446,5 @@ class Contest extends Model
                     }
                 }
             })->get();
-    }
-
-    private function entriesByTypeWithVotes(?User $user, array $preloads = []): Collection
-    {
-        $entries = $this->entries()->with(['contest', ...$preloads]);
-        $orderValue = 'votes_count';
-
-        if ($this->isBestOf()) {
-            $entries = $entries
-                ->selectRaw('*')
-                ->selectRaw('(SELECT FLOOR(SUM(`weight`)) FROM `contest_votes` WHERE `contest_entries`.`id` = `contest_votes`.`contest_entry_id`) AS votes_count')
-                ->limit(50); // best of contests tend to have a _lot_ of entries...
-        } else if ($this->isJudged()) {
-            $entries = $entries->withSum('scores', 'value');
-            $orderValue = 'scores_sum_value';
-        } else {
-            $entries = $entries->withCount('votes');
-        }
-
-        return $entries->orderBy($orderValue, 'desc')->get();
     }
 }

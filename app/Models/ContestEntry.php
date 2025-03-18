@@ -5,10 +5,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
-
 /**
  * @property-read Contest $contest
  * @property int $contest_id
@@ -50,6 +50,25 @@ class ContestEntry extends Model
     public function votes()
     {
         return $this->hasMany(ContestVote::class);
+    }
+
+    public function scopeWithScore(Builder $query, Contest $contest): Builder
+    {
+        $orderValue = 'votes_count';
+
+        if ($contest->isBestOf()) {
+            $query
+                ->selectRaw('*')
+                ->selectRaw('(SELECT FLOOR(SUM(`weight`)) FROM `contest_votes` WHERE `contest_entries`.`id` = `contest_votes`.`contest_entry_id`) AS votes_count')
+                ->limit(50); // best of contests tend to have a _lot_ of entries...
+        } else if ($contest->isJudged()) {
+            $query->withSum('scores', 'value');
+            $orderValue = 'scores_sum_value';
+        } else {
+            $query->withCount('votes');
+        }
+
+        return $query->orderBy($orderValue, 'desc');
     }
 
     public function thumbnail(): ?string
