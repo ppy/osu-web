@@ -54,10 +54,12 @@ class SeasonStats
 
     public function get(): ?array
     {
-        return \Cache::remember(
-            $this->seasonCacheKey(),
-            600,
-            fn () => $this->calculate(),
+        return null_if_false(
+            \Cache::remember(
+                $this->seasonCacheKey(),
+                600,
+                fn () => $this->calculate() ?? false,
+            ),
         );
     }
 
