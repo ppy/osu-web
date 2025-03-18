@@ -173,14 +173,28 @@ class Beatmap extends Model implements AfterCommit
         $id = $this->qualifyColumn('beatmap_id');
 
         return $query
-            ->select(DB::raw("*, (
+            ->addSelect(['attrib_max_combo' => DB::raw("(
                 SELECT value
                 FROM {$attribTable}
                 WHERE beatmap_id = {$id}
                     AND mode = {$mode}
                     AND mods = {$mods}
                     AND attrib_id = {$attrib}
-            ) AS attrib_max_combo"));
+            )")]);
+    }
+
+    public function scopeWithUserPlaycount(Builder $query, ?int $userId): Builder
+    {
+        if ($userId === null) {
+            $countQuery = \DB::query()->selectRaw('null');
+        } else {
+            $countQuery = BeatmapPlaycount
+                ::where('user_id', $userId)
+                ->whereColumn('beatmap_id', $this->qualifyColumn('beatmap_id'))
+                ->select('playcount');
+        }
+
+        return $query->addSelect(['user_playcount' => $countQuery]);
     }
 
     public function scopeWithUserTagIds($query, ?int $userId)
@@ -307,6 +321,15 @@ class Beatmap extends Model implements AfterCommit
             'scoresBestTaiko',
             'user' => $this->getRelationValue($key),
         };
+    }
+
+    public function getUserPlaycount(): int
+    {
+        if (!array_key_exists('user_playcount', $this->attributes)) {
+            throw new \Exception('withUserPlaycount scope is required');
+        }
+
+        return $this->attributes['user_playcount'] ?? 0;
     }
 
     /**
