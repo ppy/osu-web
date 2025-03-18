@@ -2,15 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .season-stats-popup {
-  @_gap: 10px;
-
   background: hsl(var(--hsl-b4));
   border-radius: @border-radius--extra;
   font-size: @font-size--normal;
 
   &__content {
     padding: 15px;
-    gap: @_gap;
+    gap: 10px;
     display: grid;
 
     &--stats {
@@ -30,7 +28,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-left: calc(@_gap * 2);
+    padding-left: 20px;
     border-left: 2px solid hsl(var(--hsl-c1));
   }
 
@@ -54,7 +52,7 @@
   &__rank {
     font-size: @font-size--title;
     color: hsl(var(--hsl-c2));
-    padding-right: calc(@_gap * 2);
+    padding-right: 20px;
   }
 
   &__season {
