@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -50,6 +51,34 @@ class ContestEntry extends Model
     public function votes()
     {
         return $this->hasMany(ContestVote::class);
+    }
+
+    public function scopeForBestOf(Builder $query, User $user, string $ruleset, ?string $variant = null): Builder
+    {
+        $query->whereIn('entry_url', function (QueryBuilder $beatmapsetQuery) use ($ruleset, $user, $variant) {
+            $beatmapsetQuery->select('beatmapset_id')
+                ->from('osu_beatmaps')
+                ->where('osu_beatmaps.playmode', Beatmap::MODES[$ruleset])
+                ->whereIn('beatmap_id', function (QueryBuilder $beatmapQuery) use ($user) {
+                    $beatmapQuery->select('beatmap_id')
+                        ->from('osu_user_beatmap_playcount')
+                        ->where('user_id', $user->getKey());
+                });
+
+            if ($ruleset === 'mania' && $variant !== null) {
+                if ($variant === 'nk') {
+                    $beatmapsetQuery->whereNotIn('osu_beatmaps.diff_size', [4, 7]);
+                } else {
+                    $keys = match ($variant) {
+                        '4k' => 4,
+                        '7k' => 7,
+                    };
+                    $beatmapsetQuery->where('osu_beatmaps.diff_size', $keys);
+                }
+            }
+        });
+
+        return $query;
     }
 
     public function scopeWithScore(Builder $query, Contest $contest): Builder
