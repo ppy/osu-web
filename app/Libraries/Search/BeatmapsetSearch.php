@@ -88,7 +88,7 @@ class BeatmapsetSearch extends RecordSearch
         $this->addPlayedFilter($query, $nested);
         $this->addRankFilter($nested);
         $this->addRecommendedFilter($nested);
-        $this->addTextFilter($nested, 'tag', ['beatmaps.top_tags']);
+        $this->addTagsFilter($nested);
 
         $this->addSimpleFilters($query, $nested);
         $this->addCreatorFilter($query, $nested);
@@ -403,6 +403,21 @@ class BeatmapsetSearch extends RecordSearch
         $subQuery->should(QueryHelper::queryString($value, $searchFields, 'and'));
 
         $query->must($subQuery);
+    }
+
+    private function addTagsFilter(BoolQuery $query): void
+    {
+        if (!present($this->params->tags)) {
+            return;
+        }
+
+        // $subQuery = (new BoolQuery());
+
+        foreach ($this->params->tags as $tag) {
+            $query->filter(QueryHelper::queryString($tag, ['beatmaps.top_tags'], 'and'));
+        }
+
+        // $query->filter($subQuery);
     }
 
     private function getPlayedBeatmapIds(?array $rank = null)
