@@ -226,6 +226,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             'source' => 'source',
             'stars' => 'difficultyRating',
             'status' => 'statusRange',
+            'tag' => 'tag',
             'title' => 'title',
             'updated' => 'updated',
         ];

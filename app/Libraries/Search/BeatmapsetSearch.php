@@ -88,6 +88,7 @@ class BeatmapsetSearch extends RecordSearch
         $this->addPlayedFilter($query, $nested);
         $this->addRankFilter($nested);
         $this->addRecommendedFilter($nested);
+        $this->addTextFilter($nested, 'tag', ['beatmaps.top_tags']);
 
         $this->addSimpleFilters($query, $nested);
         $this->addCreatorFilter($query, $nested);
