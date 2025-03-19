@@ -112,6 +112,8 @@ class BeatmapsetsController extends Controller
     }
 
     /**
+     * Search Beatmapset
+     *
      * TODO: documentation
      *
      * @usesCursor
