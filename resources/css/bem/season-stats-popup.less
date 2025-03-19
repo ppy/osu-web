@@ -28,19 +28,23 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-left: 20px;
-    border-left: 2px solid hsl(var(--hsl-c1));
   }
 
   &__img {
-    height: 35px;
+    height: 40px;
     border-radius: @border-radius-small;
+  }
+
+  &__line {
+    width: 3px;
+    border-radius: @border-radius-small;
+    background: linear-gradient(var(--colour));
+    --colour: hsl(var(--hsl-c2));
   }
 
   &__main {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    gap: 15px;
   }
 
   &__name {
@@ -50,9 +54,9 @@
   }
 
   &__rank {
+    align-self: center;
     font-size: @font-size--title;
     color: hsl(var(--hsl-c2));
-    padding-right: 20px;
   }
 
   &__season {

@@ -27,6 +27,10 @@ const popup = (stats: SeasonStatsJson) => (
         <div className='season-stats-popup__rank'>
           #{formatNumber(stats.rank)}
         </div>
+        <div
+          className='season-stats-popup__line'
+          style={colourStyle(stats.division.colour_tier)}
+        />
         <div className='season-stats-popup__division'>
           <Img2x
             className='season-stats-popup__img'
