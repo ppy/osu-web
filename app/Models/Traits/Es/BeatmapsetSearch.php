@@ -97,11 +97,21 @@ trait BeatmapsetSearch
                         continue;
                     }
 
-                    $values[] = [
-                        ...$beatmapValues,
-                        'convert' => true,
-                        'playmode' => $modeInt,
-                    ];
+                    $convert = clone $beatmap;
+                    $convert->playmode = $modeInt;
+                    $convert->convert = true;
+                    $convertValues = [];
+                    foreach ($mappings as $field => $_mapping) {
+                        $convertValues[$field] = match ($field) {
+                            // just add a copy for converts too.
+                            'top_tags',
+                            'user_id' => $beatmapValues[$field],
+
+                            default => $convert->$field,
+                        };
+                    }
+
+                    $values[] = $convertValues;
                 }
             }
         }
