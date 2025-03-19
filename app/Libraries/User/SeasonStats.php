@@ -17,9 +17,11 @@ class SeasonStats
     public function __construct(
         public User $user,
         public Season $season,
-    ) {}
+    ) {
+    }
 
-    public function calculate(): ?array {
+    public function calculate(): ?array
+    {
         $score = $this->season->userScores()
             ->whereBelongsTo($this->user)
             ->first();
