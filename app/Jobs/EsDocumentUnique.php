@@ -13,11 +13,6 @@ class EsDocumentUnique extends EsDocument implements ShouldBeUnique
 {
     public int $uniqueFor = 600;
 
-    public function __construct($model)
-    {
-        parent::__construct($model);
-    }
-
     public function uniqueId(): string
     {
         return "{$this->modelMeta['class']}-{$this->modelMeta['id']}";
