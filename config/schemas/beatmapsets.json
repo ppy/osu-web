@@ -85,12 +85,7 @@
             "type": "byte"
           },
           "top_tags": {
-            "type": "text",
-            "fields": {
-              "raw": {
-                "type": "keyword"
-              }
-            }
+            "type": "text"
           },
           "total_length": {
             "type": "long"
