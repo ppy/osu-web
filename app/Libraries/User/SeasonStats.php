@@ -29,8 +29,7 @@ class SeasonStats
         }
 
         $rank = $this->season->userScores()
-            ->where('user_id', '<>', $score->user_id)
-            ->where('total_score', '>=', $score->total_score)
+            ->where('total_score', '>', $score->total_score)
             ->count() + 1;
 
         foreach ($this->season->divisionsWithMaxRanks() as $division) {
