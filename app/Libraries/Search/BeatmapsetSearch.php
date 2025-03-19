@@ -411,13 +411,9 @@ class BeatmapsetSearch extends RecordSearch
             return;
         }
 
-        // $subQuery = (new BoolQuery());
-
         foreach ($this->params->tags as $tag) {
             $query->filter(QueryHelper::queryString($tag, ['beatmaps.top_tags'], 'and'));
         }
-
-        // $query->filter($subQuery);
     }
 
     private function getPlayedBeatmapIds(?array $rank = null)
