@@ -9,7 +9,6 @@ use App\Exceptions\InvariantException;
 use App\Jobs\EsDocument;
 use App\Libraries\Transactions\AfterCommit;
 use App\Traits\Memoizes;
-use DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
