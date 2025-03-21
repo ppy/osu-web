@@ -50,7 +50,7 @@ class ContestJudgeVote extends Model
         $judge = ContestJudge::where(['contest_id' => $this->entry->contest_id, 'user_id' => $this->user_id])->first();
 
         if ($judge->std_dev !== null) {
-            $this->update(['total_score_std' => ($this->totalScore() - $judge->mean) / $judge->std_dev]);
+            $this->update(['total_score_std' => $judge->std_dev === 0.0 ? 0 : ($this->totalScore() - $judge->mean) / $judge->std_dev]);
         }
     }
 }
