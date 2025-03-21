@@ -41,13 +41,13 @@ export default class Header extends React.PureComponent<Props> {
         <div className='contest-judge-results-header__values'>
           <ValueDisplay
             label={trans('contest.judge_results.total_score')}
-            modifiers={'judge-results'}
+            modifiers='judge-results'
             value={totalScore}
           />
 
           <ValueDisplay
             label={trans('contest.judge_results.creator')}
-            modifiers={'judge-results'}
+            modifiers='judge-results'
             value={
               <UserLink user={this.props.entry.user} />
             }
