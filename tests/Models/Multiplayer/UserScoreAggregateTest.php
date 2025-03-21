@@ -16,12 +16,11 @@ use Tests\TestCase;
 
 class UserScoreAggregateTest extends TestCase
 {
-    private Room $room;
-
     public function testAddingHigherScore(): void
     {
         $user = User::factory()->create();
-        $playlistItem = $this->createPlaylistItem();
+        $room = Room::factory()->create();
+        $playlistItem = self::createPlaylistItem($room);
 
         // first play
         $scoreLink = $this->roomAddPlay($user, $playlistItem, [
@@ -30,7 +29,7 @@ class UserScoreAggregateTest extends TestCase
             'total_score' => 10,
         ]);
 
-        $agg = UserScoreAggregate::new($user, $this->room);
+        $agg = UserScoreAggregate::new($user, $room);
         $this->assertSame(1, $agg->completed);
         $this->assertSame(0.5, $agg->accuracy);
         $this->assertSame(10, $agg->total_score);
@@ -53,7 +52,8 @@ class UserScoreAggregateTest extends TestCase
     public function testAddingLowerScore(): void
     {
         $user = User::factory()->create();
-        $playlistItem = $this->createPlaylistItem();
+        $room = Room::factory()->create();
+        $playlistItem = self::createPlaylistItem($room);
 
         // first play
         $scoreLink = $this->roomAddPlay($user, $playlistItem, [
@@ -62,7 +62,7 @@ class UserScoreAggregateTest extends TestCase
             'total_score' => 10,
         ]);
 
-        $agg = UserScoreAggregate::new($user, $this->room);
+        $agg = UserScoreAggregate::new($user, $room);
         $this->assertSame(1, $agg->completed);
         $this->assertSame(0.5, $agg->accuracy);
         $this->assertSame(10, $agg->total_score);
@@ -86,7 +86,8 @@ class UserScoreAggregateTest extends TestCase
     {
         $firstUser = User::factory()->create();
         $secondUser = User::factory()->create();
-        $playlistItem = $this->createPlaylistItem();
+        $room = Room::factory()->create();
+        $playlistItem = self::createPlaylistItem($room);
 
         // first user sets play
         $firstUserPlay = $this->roomAddPlay($firstUser, $playlistItem, [
@@ -95,7 +96,7 @@ class UserScoreAggregateTest extends TestCase
             'total_score' => 10,
         ]);
 
-        $firstUserAgg = UserScoreAggregate::new($firstUser, $this->room);
+        $firstUserAgg = UserScoreAggregate::new($firstUser, $room);
         $this->assertSame(1, $firstUserAgg->completed);
         $this->assertSame(0.5, $firstUserAgg->accuracy);
         $this->assertSame(10, $firstUserAgg->total_score);
@@ -109,7 +110,7 @@ class UserScoreAggregateTest extends TestCase
             'total_score' => 10,
         ]);
 
-        $secondUserAgg = UserScoreAggregate::new($secondUser, $this->room);
+        $secondUserAgg = UserScoreAggregate::new($secondUser, $room);
         $this->assertSame(1, $secondUserAgg->completed);
         $this->assertSame(0.5, $secondUserAgg->accuracy);
         $this->assertSame(10, $secondUserAgg->total_score);
@@ -137,8 +138,9 @@ class UserScoreAggregateTest extends TestCase
     public function testAddingMultiplePlaylistItems(): void
     {
         $user = User::factory()->create();
-        $playlistItem = $this->createPlaylistItem();
-        $playlistItem2 = $this->createPlaylistItem();
+        $room = Room::factory()->create();
+        $playlistItem = self::createPlaylistItem($room);
+        $playlistItem2 = self::createPlaylistItem($room);
 
         // first playlist item
         $this->roomAddPlay($user, $playlistItem, [
@@ -147,7 +149,7 @@ class UserScoreAggregateTest extends TestCase
             'total_score' => 10,
         ]);
 
-        $agg = UserScoreAggregate::new($user, $this->room);
+        $agg = UserScoreAggregate::new($user, $room);
         $this->assertSame(1, $agg->completed);
         $this->assertSame(0.5, $agg->accuracy);
         $this->assertSame(0.5, $agg->averageAccuracy());
@@ -171,10 +173,11 @@ class UserScoreAggregateTest extends TestCase
     public function testStartingPlayIncreasesAttempts(): void
     {
         $user = User::factory()->create();
-        $playlistItem = $this->createPlaylistItem();
+        $room = Room::factory()->create();
+        $playlistItem = self::createPlaylistItem($room);
 
         static::roomStartPlay($user, $playlistItem);
-        $agg = UserScoreAggregate::new($user, $this->room);
+        $agg = UserScoreAggregate::new($user, $room);
 
         $this->assertSame(1, $agg->attempts);
         $this->assertSame(0, $agg->completed);
@@ -183,7 +186,8 @@ class UserScoreAggregateTest extends TestCase
     public function testFailedScoresAreAttemptsOnly(): void
     {
         $user = User::factory()->create();
-        $playlistItem = $this->createPlaylistItem();
+        $room = Room::factory()->create();
+        $playlistItem = self::createPlaylistItem($room);
 
         $this->roomAddPlay($user, $playlistItem, [
             'accuracy' => 0.1,
@@ -191,14 +195,14 @@ class UserScoreAggregateTest extends TestCase
             'total_score' => 10,
         ]);
 
-        $playlistItem2 = $this->createPlaylistItem();
+        $playlistItem2 = self::createPlaylistItem($room);
         $this->roomAddPlay($user, $playlistItem2, [
             'accuracy' => 1,
             'passed' => true,
             'total_score' => 1,
         ]);
 
-        $agg = UserScoreAggregate::new($user, $this->room);
+        $agg = UserScoreAggregate::new($user, $room);
 
         $this->assertSame(2, $agg->attempts);
         $this->assertSame(1, $agg->completed);
@@ -209,7 +213,8 @@ class UserScoreAggregateTest extends TestCase
     public function testPassedScoresIncrementsCompletedCount(): void
     {
         $user = User::factory()->create();
-        $playlistItem = $this->createPlaylistItem();
+        $room = Room::factory()->create();
+        $playlistItem = self::createPlaylistItem($room);
 
         $this->roomAddPlay($user, $playlistItem, [
             'accuracy' => 1,
@@ -217,7 +222,7 @@ class UserScoreAggregateTest extends TestCase
             'total_score' => 1,
         ]);
 
-        $agg = UserScoreAggregate::new($user, $this->room);
+        $agg = UserScoreAggregate::new($user, $room);
 
         $this->assertSame(1, $agg->completed);
         $this->assertSame(1, $agg->total_score);
@@ -226,8 +231,9 @@ class UserScoreAggregateTest extends TestCase
     public function testPassedScoresAreAveragedInTransformer(): void
     {
         $user = User::factory()->create();
-        $playlistItem = $this->createPlaylistItem();
-        $playlistItem2 = $this->createPlaylistItem();
+        $room = Room::factory()->create();
+        $playlistItem = self::createPlaylistItem($room);
+        $playlistItem2 = self::createPlaylistItem($room);
 
         $this->roomAddPlay($user, $playlistItem, [
             'accuracy' => 0.1,
@@ -253,7 +259,7 @@ class UserScoreAggregateTest extends TestCase
             'total_score' => 1,
         ]);
 
-        $agg = UserScoreAggregate::new($user, $this->room);
+        $agg = UserScoreAggregate::new($user, $room);
 
         $result = json_item($agg, new UserScoreAggregateTransformer());
 
@@ -262,14 +268,15 @@ class UserScoreAggregateTest extends TestCase
 
     public function testRecalculate(): void
     {
-        $playlistItem = $this->createPlaylistItem();
+        $room = Room::factory()->create();
+        $playlistItem = self::createPlaylistItem($room);
         $user = User::factory()->create();
         $this->roomAddPlay($user, $playlistItem, [
             'accuracy' => 0.3,
             'passed' => true,
             'total_score' => 1,
         ]);
-        $agg = UserScoreAggregate::new($user, $this->room);
+        $agg = UserScoreAggregate::new($user, $room);
         $agg->recalculate();
         $agg->refresh();
 
@@ -279,18 +286,11 @@ class UserScoreAggregateTest extends TestCase
         $this->assertSame(1, $agg->completed);
     }
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->room = Room::factory()->create();
-    }
-
-    private function createPlaylistItem(): PlaylistItem
+    private static function createPlaylistItem(Room $room): PlaylistItem
     {
         return PlaylistItem::factory()->create([
-            'owner_id' => $this->room->host,
-            'room_id' => $this->room,
+            'owner_id' => $room->host,
+            'room_id' => $room,
         ]);
     }
 }
