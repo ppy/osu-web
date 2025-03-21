@@ -60,6 +60,12 @@ class BeatmapsetSearch extends RecordSearch
                     ->should(['term' => ['_id' => ['value' => $this->params->queryString, 'boost' => 100]]])
                     ->should(QueryHelper::queryString($this->params->queryString, $partialMatchFields, 'or', 1 / count($terms)))
                     ->should(QueryHelper::queryString($this->params->queryString, [], 'and'))
+                    ->should([
+                        'nested' => [
+                            'path' => 'beatmaps',
+                            'query' => QueryHelper::queryString($this->params->queryString, ['beatmaps.top_tags'], 'or', 0.5 / count($terms)),
+                        ],
+                    ])
             );
         }
 
@@ -82,6 +88,7 @@ class BeatmapsetSearch extends RecordSearch
         $this->addPlayedFilter($query, $nested);
         $this->addRankFilter($nested);
         $this->addRecommendedFilter($nested);
+        $this->addTagsFilter($nested);
 
         $this->addSimpleFilters($query, $nested);
         $this->addCreatorFilter($query, $nested);
@@ -396,6 +403,17 @@ class BeatmapsetSearch extends RecordSearch
         $subQuery->should(QueryHelper::queryString($value, $searchFields, 'and'));
 
         $query->must($subQuery);
+    }
+
+    private function addTagsFilter(BoolQuery $query): void
+    {
+        if (!present($this->params->tags)) {
+            return;
+        }
+
+        foreach ($this->params->tags as $tag) {
+            $query->filter(QueryHelper::queryString($tag, ['beatmaps.top_tags'], 'and'));
+        }
     }
 
     private function getPlayedBeatmapIds(?array $rank = null)

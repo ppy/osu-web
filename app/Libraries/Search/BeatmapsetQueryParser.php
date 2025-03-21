@@ -82,6 +82,9 @@ class BeatmapsetQueryParser
                 case 'source':
                     $option = static::makeTextOption($op, $m['value']);
                     break;
+                case 'tag':
+                    $option = [static::makeTextOption($op, $m['value'])];
+                    break;
                 case 'title':
                     $option = static::makeTextOption($op, $m['value']);
                     break;
