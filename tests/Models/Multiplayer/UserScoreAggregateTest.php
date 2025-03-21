@@ -303,7 +303,7 @@ class UserScoreAggregateTest extends TestCase
         ]);
         $playlistItem = self::createPlaylistItem($room);
 
-        $this->roomAddPlay($user, $playlistItem, [
+        $scoreLink = $this->roomAddPlay($user, $playlistItem, [
             'accuracy' => 0.6,
             'passed' => false,
             'total_score' => 1000,
@@ -318,7 +318,7 @@ class UserScoreAggregateTest extends TestCase
             'playlist_item_id' => $playlistItem->getKey(),
             'user_id' => $user->getKey(),
         ])->first();
-        $this->assertNotNull($userHighScore->score_id);
+        $this->assertEquals($scoreLink->score_id, $userHighScore->score_id);
     }
 
     public function testFailedScoresDoNotCountToAggregateInPlaylists(): void
