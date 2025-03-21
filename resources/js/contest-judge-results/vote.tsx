@@ -47,17 +47,17 @@ export default function Vote(props: Props) {
         {props.vote.scores.map((score) => {
           const category = props.contest.scoring_categories.find((x) => x.id === score.contest_scoring_category_id);
 
-          return (
+          return category != null && (
             <div key={score.id} className='contest-judge-results-scores__row'>
               <div className='contest-judge-results-scores__col'>
-                <div className='contest-judge-entry__description-icon' title={category?.description}>
+                <div className='contest-judge-entry__description-icon' title={category.description}>
                   <i className='fas fa-question-circle' />
                 </div>
 
-                <span className='u-ellipsis-overflow'>{category?.name}</span>
+                <span className='u-ellipsis-overflow'>{category.name}</span>
               </div>
               <div className='contest-judge-results-scores__col contest-judge-results-scores__col--score'>
-                {score.value}/{category?.max_value}
+                {score.value}/{category.max_value}
               </div>
             </div>
           );
