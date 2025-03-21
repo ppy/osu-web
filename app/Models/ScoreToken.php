@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int|null $build_id
  * @property \Carbon\Carbon|null $created_at
  * @property int $id
+ * @property \App\Models\Multiplayer\PlaylistItem $playlistItem
  * @property int $ruleset_id
  * @property \App\Models\Solo\Score $score
  * @property int $score_id
