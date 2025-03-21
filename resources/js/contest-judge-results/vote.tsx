@@ -27,17 +27,15 @@ export default function Vote(props: Props) {
         </div>
       )}
 
-      {props.vote.total_score_std != null && (
-        <div className='contest-judge-results-vote__total-score'>
+      <div className='contest-judge-results-vote__scores-header'>
+        {props.vote.total_score_std != null && (
           <ValueDisplay
             label={trans('contest.judge_results.score_std')}
             modifiers={'score'}
             value={props.vote.total_score_std.toFixed(2)}
           />
-        </div>
-      )}
+        )}
 
-      <div className='contest-judge-results-vote__total-score'>
         <ValueDisplay
           label={trans('contest.judge_results.score')}
           modifiers={'score'}
