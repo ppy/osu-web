@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
+use App\Libraries\User\SeasonStats;
 use App\Models\Multiplayer\UserScoreAggregate;
 use App\Models\Season;
 use App\Models\User;
@@ -51,6 +52,7 @@ class UserSeasonScoresRecalculate extends Command
                     $seasonScore->calculate(false);
                     if ($seasonScore->total_score > 0) {
                         $seasonScore->save();
+                        (new SeasonStats($user, $season))->resetCache();
                     }
 
                     $bar->advance();
