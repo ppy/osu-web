@@ -32,6 +32,7 @@ return [
         'score' => 'Score',
         'score_std' => 'Standardised Score',
         'total_score' => 'total score',
+        'total_score_std' => 'total standardised score',
     ],
 
     'voting' => [
