@@ -1,5 +1,6 @@
 <?php
 
+use Knuckles\Scribe\Config;
 use Knuckles\Scribe\Extracting\Strategies;
 
 return [
@@ -36,11 +37,6 @@ return [
                  * Match only routes whose paths match this pattern (use * as a wildcard to match any characters). Example: 'users/*'.
                  */
                 'prefixes' => ['api/v2/*'],
-
-                /*
-                 * [Dingo router only] Match only routes registered under this version. Wildcards are not supported.
-                 */
-                'versions' => ['v1'],
             ],
 
             /*
@@ -57,72 +53,6 @@ return [
              */
             'exclude' => [
                 // '/health', 'admin.*'
-            ],
-
-            /*
-             * Settings to be applied to all the matched routes in this group when generating documentation
-             */
-            'apply' => [
-                /*
-                 * Additional headers to be added to the example requests
-                 */
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json',
-                ],
-
-                /*
-                 * If no @response or @transformer declarations are found for the route,
-                 * Scribe will try to get a sample response by attempting an API call.
-                 * Configure the settings for the API call here.
-                 */
-                'response_calls' => [
-                    /*
-                     * API calls will be made only for routes in this group matching these HTTP methods (GET, POST, etc).
-                     * List the methods here or use '*' to mean all methods. Leave empty to disable API calls.
-                     */
-                    'methods' => ['GET'],
-
-                    /*
-                     * Laravel config variables which should be set for the API call.
-                     * This is a good place to ensure that notifications, emails and other external services
-                     * are not triggered during the documentation API calls.
-                     * You can also create a `.env.docs` file and run the generate command with `--env docs`.
-                     */
-                    'config' => [
-                        'app.env' => 'documentation',
-                        'app.debug' => false,
-                    ],
-
-                    /*
-                     * Query parameters which should be sent with the API call.
-                     */
-                    'queryParams' => [
-                        // 'key' => 'value',
-                    ],
-
-                    /*
-                     * Body parameters which should be sent with the API call.
-                     */
-                    'bodyParams' => [
-                        // 'key' => 'value',
-                    ],
-
-                    /*
-                     * Files which should be sent with the API call.
-                     * Each value should be a valid path (absolute or relative to your project directory) to a file on this machine (but not in the project root).
-                     */
-                    'fileParams' => [
-                        // 'key' => 'storage/app/image.png',
-                    ],
-
-                    /*
-                     * Cookies which should be sent with the API call.
-                     */
-                    'cookies' => [
-                        // 'name' => 'value'
-                    ],
-                ],
             ],
         ],
     ],
@@ -299,34 +229,33 @@ INTRO
      */
     'strategies' => [
         'metadata' => [
-            Strategies\Metadata\GetFromDocBlocks::class,
+            ...Config\Defaults::METADATA_STRATEGIES,
         ],
         'urlParameters' => [
-            Strategies\UrlParameters\GetFromLaravelAPI::class,
-            Strategies\UrlParameters\GetFromLumenAPI::class,
-            Strategies\UrlParameters\GetFromUrlParamTag::class,
+            ...Config\Defaults::URL_PARAMETERS_STRATEGIES,
         ],
         'queryParameters' => [
-            Strategies\QueryParameters\GetFromQueryParamTag::class,
-            Strategies\QueryParameters\GetFromFormRequest::class,
-            Strategies\QueryParameters\GetFromInlineValidator::class,
+            ...Config\Defaults::QUERY_PARAMETERS_STRATEGIES,
             App\Docs\Strategies\UsesCursor::class,
         ],
         'headers' => [
-            Strategies\Headers\GetFromRouteRules::class,
-            Strategies\Headers\GetFromHeaderTag::class,
+            ...Config\Defaults::HEADERS_STRATEGIES,
+            Strategies\StaticData::withSettings(data: [
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ]),
         ],
         'bodyParameters' => [
-            Strategies\BodyParameters\GetFromFormRequest::class,
-            Strategies\BodyParameters\GetFromBodyParamTag::class,
-            Strategies\BodyParameters\GetFromInlineValidator::class,
+            ...Config\Defaults::BODY_PARAMETERS_STRATEGIES,
         ],
         'responses' => [
+            // Limit to explicitly documented responses
+            Strategies\Responses\UseResponseAttributes::class,
             Strategies\Responses\UseResponseTag::class,
             Strategies\Responses\UseResponseFileTag::class,
         ],
         'responseFields' => [
-            Strategies\ResponseFields\GetFromResponseFieldTag::class,
+            ...Config\Defaults::RESPONSE_FIELDS_STRATEGIES,
         ],
     ],
 

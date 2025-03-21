@@ -10,6 +10,7 @@ use App\Models\UserReport;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Channels\SlackWebhookChannel;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notification;
 
@@ -69,7 +70,8 @@ class UserReportNotification extends Notification implements ShouldQueue
 
     public function via($notifiable)
     {
-        return ['slack'];
+        // see https://github.com/laravel/slack-notification-channel/issues/68#issuecomment-2569304703
+        return SlackWebhookChannel::class;
     }
 
     private function discordMarkdownLink(string $url, string $text): string
