@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -29,5 +30,23 @@ class ContestJudgeScore extends Model
     public function vote(): BelongsTo
     {
         return $this->belongsTo(ContestJudgeVote::class, 'contest_judge_vote_id');
+    }
+
+    public function scopeScoresFrom(Builder $query, User $user, Contest $contest)
+    {
+        return $query->whereIn(
+            'contest_judge_vote_id',
+            ContestJudgeVote
+                ::where('user_id', $user->getKey())
+                ->whereIn('contest_entry_id', $contest->entries()->select('id'))
+            ->select('id')
+        );
+    }
+
+    public function scopeScoresByEntry(Builder $query)
+    {
+        return $query->groupBy('contest_judge_vote_id')
+            ->select('contest_judge_vote_id')
+            ->addSelect(\DB::raw('SUM(value) as total'));
     }
 }

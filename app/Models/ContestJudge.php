@@ -7,11 +7,14 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property-read Contest $contest
  * @property int $contest_id
+ * @property ?float $mean
+ * @property ?float $std_dev
  * @property-read User $user
  * @property int $user_id
  */
@@ -26,5 +29,25 @@ class ContestJudge extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function calculateStdDev(): void
+    {
+        [$stdDev, $mean] = $this->stdDev();
+
+        $this->update(['mean' => $mean, 'std_dev' => $stdDev]);
+    }
+
+    public function stdDev(): array
+    {
+        // TODO: treat missing scores as 0?
+        $entryScores = ContestJudgeScore::scoresByEntry()
+            ->whereHas(
+                'vote',
+                fn (Builder $q) => $q->where('user_id', $this->user_id)
+                    ->whereHas('entry', fn (Builder $qq) => $qq->where('contest_id', $this->contest_id))
+            )->pluck('total');
+
+        return std_dev($entryScores->toArray());
     }
 }
