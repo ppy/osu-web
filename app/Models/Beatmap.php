@@ -9,7 +9,6 @@ use App\Exceptions\InvariantException;
 use App\Jobs\EsDocument;
 use App\Libraries\Transactions\AfterCommit;
 use App\Traits\Memoizes;
-use DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -166,21 +165,32 @@ class Beatmap extends Model implements AfterCommit
 
     public function scopeWithMaxCombo($query)
     {
-        $mods = BeatmapDifficultyAttrib::NO_MODS;
-        $attrib = BeatmapDifficultyAttrib::MAX_COMBO;
-        $attribTable = (new BeatmapDifficultyAttrib())->tableName();
-        $mode = $this->qualifyColumn('playmode');
-        $id = $this->qualifyColumn('beatmap_id');
+        $valueQuery = BeatmapDifficultyAttrib
+            ::select('value')
+            ->whereColumn([
+                'beatmap_id' => $this->qualifyColumn('beatmap_id'),
+                'mode' => $this->qualifyColumn('playmode'),
+            ])
+            ->where([
+                'attrib_id' => BeatmapDifficultyAttrib::MAX_COMBO,
+                'mods' => BeatmapDifficultyAttrib::NO_MODS,
+            ]);
 
-        return $query
-            ->select(DB::raw("*, (
-                SELECT value
-                FROM {$attribTable}
-                WHERE beatmap_id = {$id}
-                    AND mode = {$mode}
-                    AND mods = {$mods}
-                    AND attrib_id = {$attrib}
-            ) AS attrib_max_combo"));
+        return $query->addSelect(['attrib_max_combo' => $valueQuery]);
+    }
+
+    public function scopeWithUserPlaycount(Builder $query, ?int $userId): Builder
+    {
+        if ($userId === null) {
+            $countQuery = \DB::query()->selectRaw('null');
+        } else {
+            $countQuery = BeatmapPlaycount
+                ::where('user_id', $userId)
+                ->whereColumn('beatmap_id', $this->qualifyColumn('beatmap_id'))
+                ->select('playcount');
+        }
+
+        return $query->addSelect(['user_playcount' => $countQuery]);
     }
 
     public function scopeWithUserTagIds($query, ?int $userId)
@@ -307,6 +317,15 @@ class Beatmap extends Model implements AfterCommit
             'scoresBestTaiko',
             'user' => $this->getRelationValue($key),
         };
+    }
+
+    public function getUserPlaycount(): int
+    {
+        if (!array_key_exists('user_playcount', $this->attributes)) {
+            throw new \Exception('withUserPlaycount scope is required');
+        }
+
+        return $this->attributes['user_playcount'] ?? 0;
     }
 
     /**
