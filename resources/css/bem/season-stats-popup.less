@@ -16,7 +16,6 @@
     }
 
     &--top {
-      justify-content: center;
       background: hsl(var(--hsl-b5));
       border-top-left-radius: inherit;
       border-top-right-radius: inherit;
@@ -43,7 +42,8 @@
   }
 
   &__main {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto 1fr;
     gap: 15px;
   }
 
