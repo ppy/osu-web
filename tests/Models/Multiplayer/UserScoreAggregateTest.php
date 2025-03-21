@@ -17,6 +17,14 @@ use Tests\TestCase;
 
 class UserScoreAggregateTest extends TestCase
 {
+    private static function createPlaylistItem(Room $room): PlaylistItem
+    {
+        return PlaylistItem::factory()->create([
+            'owner_id' => $room->host,
+            'room_id' => $room,
+        ]);
+    }
+
     public function testAddingHigherScore(): void
     {
         $user = User::factory()->create();
@@ -337,13 +345,5 @@ class UserScoreAggregateTest extends TestCase
             'user_id' => $user->getKey(),
         ])->first();
         $this->assertNull($userHighScore->score_id);
-    }
-
-    private static function createPlaylistItem(Room $room): PlaylistItem
-    {
-        return PlaylistItem::factory()->create([
-            'owner_id' => $room->host,
-            'room_id' => $room,
-        ]);
     }
 }
