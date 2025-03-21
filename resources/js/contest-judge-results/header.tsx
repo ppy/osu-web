@@ -29,6 +29,7 @@ export default class Header extends React.PureComponent<Props> {
 
   render() {
     const totalScore = `${this.props.entry.results.votes}/${this.props.contest.max_total_score}`;
+    const totalScoreStd = this.props.entry.judge_votes.reduce((total, vote) => (vote.total_score_std ?? NaN) + total, 0);
 
     return (
       <div className='contest-judge-results-header'>
@@ -39,6 +40,14 @@ export default class Header extends React.PureComponent<Props> {
         />
 
         <div className='contest-judge-results-header__values'>
+          {!Number.isNaN(totalScoreStd) && (
+            <ValueDisplay
+              label={trans('contest.judge_results.total_score_std')}
+              modifiers='judge-results'
+              value={totalScoreStd.toFixed(2)}
+            />
+          )}
+
           <ValueDisplay
             label={trans('contest.judge_results.total_score')}
             modifiers='judge-results'
