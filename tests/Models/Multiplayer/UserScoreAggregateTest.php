@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Tests\Models\Multiplayer;
 
 use App\Models\Multiplayer\PlaylistItem;
+use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\Room;
 use App\Models\Multiplayer\UserScoreAggregate;
 use App\Models\User;
@@ -284,6 +285,58 @@ class UserScoreAggregateTest extends TestCase
         $this->assertSame(1, $agg->attempts);
         $this->assertSame(0.3, $agg->accuracy);
         $this->assertSame(1, $agg->completed);
+    }
+
+    public function testFailedScoresCountToAggregateInRealtime(): void
+    {
+        $user = User::factory()->create();
+        $room = Room::factory()->create([
+            'type' => 'head_to_head',
+        ]);
+        $playlistItem = self::createPlaylistItem($room);
+
+        $this->roomAddPlay($user, $playlistItem, [
+            'accuracy' => 0.6,
+            'passed' => false,
+            'total_score' => 1000,
+        ]);
+
+        $agg = UserScoreAggregate::new($user, $room);
+
+        $this->assertSame(1, $agg->completed);
+        $this->assertSame(1000, $agg->total_score);
+
+        $userHighScore = PlaylistItemUserHighScore::where([
+            'playlist_item_id' => $playlistItem->getKey(),
+            'user_id' => $user->getKey(),
+        ])->first();
+        $this->assertNotNull($userHighScore->score_id);
+    }
+
+    public function testFailedScoresDoNotCountToAggregateInPlaylists(): void
+    {
+        $user = User::factory()->create();
+        $room = Room::factory()->create([
+            'type' => 'playlists',
+        ]);
+        $playlistItem = self::createPlaylistItem($room);
+
+        $this->roomAddPlay($user, $playlistItem, [
+            'accuracy' => 0.6,
+            'passed' => false,
+            'total_score' => 1000,
+        ]);
+
+        $agg = UserScoreAggregate::new($user, $room);
+
+        $this->assertSame(0, $agg->completed);
+        $this->assertSame(0, $agg->total_score);
+
+        $userHighScore = PlaylistItemUserHighScore::where([
+            'playlist_item_id' => $playlistItem->getKey(),
+            'user_id' => $user->getKey(),
+        ])->first();
+        $this->assertNull($userHighScore->score_id);
     }
 
     private static function createPlaylistItem(Room $room): PlaylistItem
