@@ -171,6 +171,7 @@ return [
             'global' => '',
             'supporter-link' => '',
             'supporter-only' => '',
+            'team' => '',
             'title' => '',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => '',
                 'global' => '',
                 'loading' => '',
+                'team' => '',
                 'unranked' => '',
             ],
             'score' => [

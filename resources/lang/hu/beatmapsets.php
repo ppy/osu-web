@@ -171,6 +171,7 @@ return [
             'global' => 'Globális Ranglista',
             'supporter-link' => 'Kattints <a href=":link">ide</a>, hogy megtekinthesd azt a sok jó funkciót amit kaphatsz!',
             'supporter-only' => 'Támogató kell legyél, hogy elérd a baráti és az országos ranglistát!',
+            'team' => '',
             'title' => 'Eredménylista',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Senki sem ért még el eredményt a barátaid közül ezen a map-en!',
                 'global' => 'Egyetlen eredmény sincs. Esetleg megpróbálhatnál szerezni párat?',
                 'loading' => 'Eredmények betöltése...',
+                'team' => '',
                 'unranked' => 'Rangsorolatlan beatmap.',
             ],
             'score' => [

@@ -12,9 +12,13 @@ import { trans } from './lang';
 import { legacyAccuracyAndRank } from './legacy-score-helper';
 
 export function accuracy(score: SoloScoreJson) {
-  return shouldReturnLegacyValue(score)
+  const acc = shouldReturnLegacyValue(score)
     ? legacyAccuracyAndRank(score).accuracy
     : score.accuracy;
+
+  // Matches rounding on client.
+  // Reference: https://github.com/ppy/osu/blob/01828931a211fd4de31cacedbd73a247c1e22bd2/osu.Game/Utils/FormatUtils.cs#L20-L24
+  return Math.floor(acc * 10000) / 10000;
 }
 
 export function canBeReported(score: SoloScoreJson) {

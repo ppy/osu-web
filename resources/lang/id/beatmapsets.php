@@ -171,6 +171,7 @@ return [
             'global' => 'Peringkat Global',
             'supporter-link' => 'Klik <a href=":link">di sini</a> untuk melihat seluruh fitur menarik yang akan kamu peroleh!',
             'supporter-only' => 'Kamu harus menjadi osu!supporter untuk mengakses papan peringkat teman, negara, atau mod!',
+            'team' => '',
             'title' => 'Papan Skor',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Belum ada seorang pun dari daftar temanmu yang telah mencetak skor pada map ini!',
                 'global' => 'Belum ada skor yang tercatat. Mungkin kamu tertarik untuk mencetak skormu sendiri?',
                 'loading' => 'Memuat skor...',
+                'team' => '',
                 'unranked' => 'Beatmap ini tidak berstatus Ranked.',
             ],
             'score' => [

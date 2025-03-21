@@ -171,6 +171,7 @@ return [
             'global' => 'Classement global',
             'supporter-link' => 'Cliquez <a href=":link">ici</a> pour connaître toutes les supers fonctions que vous obtiendrez !',
             'supporter-only' => 'Vous devez être un osu!supporter pour accéder aux classements par pays, amis et mods spécifiques !',
+            'team' => '',
             'title' => 'Classement',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Aucun de vos amis n\'a encore établi de score sur cette beatmap !',
                 'global' => 'Pas de scores. Peut-être devriez-vous en faire un ?',
                 'loading' => 'Chargement des scores...',
+                'team' => '',
                 'unranked' => 'Beatmap non classée.',
             ],
             'score' => [

@@ -132,16 +132,16 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => ':attribute містить недопустимі символи.',
+        'used' => ':attribute вже використовується.',
+        'word_not_allowed' => ':attribute недопустима для використання.',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'default_ruleset_id' => 'Режим гри',
+            'is_open' => 'Подача заявок',
+            'name' => 'Назва',
+            'short_name' => 'Коротка назва',
+            'url' => 'URL',
         ],
     ],
 

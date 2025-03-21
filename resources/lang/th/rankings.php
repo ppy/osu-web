@@ -42,6 +42,7 @@ return [
         'performance' => 'ประสิทธิภาพ',
         'score' => 'คะแนน',
         'seasons' => 'ซีซั่น',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'จำนวนผู้เล่นที่ยังมีความเคลื่อนไหวอยู่',
         'country' => 'ประเทศ',
         'division' => '',
+        'members' => '',
         'play_count' => 'จำนวนครั้งที่เล่น',
         'performance' => 'ประสิทธิภาพ​',
         'total_score' => 'คะแนนรวมทั้งหมด',

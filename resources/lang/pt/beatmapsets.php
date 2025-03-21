@@ -171,6 +171,7 @@ return [
             'global' => 'Classificação global',
             'supporter-link' => 'Clica <a href=":link">aqui</a> para ver todas as funcionalidades extravagantes que obténs!',
             'supporter-only' => 'Precisas de ser um osu!supporter para acederes às classificações de amigos e países!',
+            'team' => '',
             'title' => 'Tabela de pontuações',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Ainda nenhum dos teus amigos estabeleceu uma pontuação neste mapa!',
                 'global' => 'Ainda sem pontuações. Talvez deverias estabelecer algumas?',
                 'loading' => 'A carregar pontuações...',
+                'team' => '',
                 'unranked' => 'Beatmap sem classificação.',
             ],
             'score' => [

@@ -132,16 +132,16 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => ':attribute包含無效字符。',
+        'used' => ':attribute已被使用。',
+        'word_not_allowed' => '不允許使用:attribute。',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'default_ruleset_id' => '預設遊戲模式',
+            'is_open' => '隊伍申請',
+            'name' => '名稱',
+            'short_name' => '簡稱',
+            'url' => '超連結',
         ],
     ],
 

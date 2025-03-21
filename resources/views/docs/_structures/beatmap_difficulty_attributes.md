@@ -4,39 +4,23 @@ Represent beatmap difficulty attributes. Following fields are always present and
 
 Field       | Type
 ----------- | ----
-max_combo   | integer
 star_rating | float
+max_combo   | integer
 
 ### osu
 
-Field                 | Type
---------------------- | ----
-aim_difficulty        | float
-approach_rate         | float
-flashlight_difficulty | float
-overall_difficulty    | float
-slider_factor         | float
-speed_difficulty      | float
+Field                        | Type
+---------------------------- | ----
+aim_difficulty               | float
+aim_difficult_slider_count   | float
+speed_difficulty             | float
+speed_note_count             | float
+slider_factor                | float
+aim_difficult_strain_count   | float
+speed_difficult_strain_count | float
 
 ### taiko
 
-Field              | Type
------------------- | ----
-stamina_difficulty | float
-rhythm_difficulty  | float
-colour_difficulty  | float
-approach_rate      | float
-great_hit_window   | float
-
-### fruits
-
-Field         | Type
-------------- | ----
-approach_rate | float
-
-### mania
-
-Field            | Type
----------------- | ----
-great_hit_window | float
-score_multiplier | float
+Field               | Type
+------------------- | ----
+mono_stamina_factor | float

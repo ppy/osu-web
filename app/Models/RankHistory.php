@@ -112,15 +112,6 @@ class RankHistory extends Model
 
     public $timestamps = false;
 
-    public function __construct(array $attributes = [])
-    {
-        if ($GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default']) {
-            $this->table = 'osu_user_performance_rank_exp';
-        }
-
-        parent::__construct($attributes);
-    }
-
     public function currentStart(): BelongsTo
     {
         return $this->belongsTo(Count::class, 'current_start_name', 'name');

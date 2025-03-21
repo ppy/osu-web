@@ -411,7 +411,7 @@ class Page implements WikiObject
             $layout = OsuMarkdown::parseYamlHeader($content)['header']['layout'] ?? null;
             $layout = $this->layout($layout);
             $rendererClass = static::RENDERERS[$layout];
-            $contentRenderer = (new $rendererClass($this, $content));
+            $contentRenderer = new $rendererClass($this, $content);
 
             $this->page = $contentRenderer->render();
             $pageIndex = $contentRenderer->renderIndexable();

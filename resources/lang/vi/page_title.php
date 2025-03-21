@@ -110,7 +110,7 @@ return [
         ],
         'teams_controller' => [
             '_' => 'đội',
-            'create' => '',
+            'create' => 'tạo đội',
             'edit' => 'cài đặt đội',
             'leaderboard' => 'bảng xếp hạng đội',
             'show' => 'thông tin về đội',

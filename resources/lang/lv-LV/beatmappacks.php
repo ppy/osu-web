@@ -17,7 +17,7 @@ return [
     ],
 
     'show' => [
-        'created_by' => '',
+        'created_by' => 'no :author',
         'download' => 'Lejupielādēt',
         'item' => [
             'cleared' => 'nokārtots',

@@ -17,7 +17,7 @@ return [
     ],
 
     'show' => [
-        'created_by' => '',
+        'created_by' => 'tehnyt :author',
         'download' => 'Lataa',
         'item' => [
             'cleared' => 'läpäisty',

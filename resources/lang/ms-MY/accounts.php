@@ -16,11 +16,11 @@ return [
         ],
 
         'email' => [
-            'new' => 'emel baharu',
+            'new' => 'e-mel baharu',
             'new_confirmation' => 'pengesahan e-mel',
             'title' => 'E-mel',
             'locked' => [
-                '_' => 'Sila hubungi :accounts sekiranya anda perlu mengemas kini emel anda.',
+                '_' => 'Sila hubungi :accounts sekiranya anda perlu mengemas kini e-mel anda.',
                 'accounts' => 'pasukan sokongan akaun',
             ],
         ],
@@ -58,7 +58,7 @@ return [
         ],
 
         'signature' => [
-            'title' => 'Tanda Tangan',
+            'title' => 'Tandatangan',
             'update' => 'kemas kini',
         ],
     ],
@@ -72,7 +72,7 @@ return [
         'error' => [
             'already_linked' => 'Akaun Github ini telah dipautkan dengan pengguna lain.',
             'no_contribution' => 'Tidak boleh pautkan akaun Github tanpa sebarang sejarah sumbangan dalam gedung osu!.',
-            'unverified_email' => 'Sila sahkan emel utama anda di GitHub kemudian cuba pautkan akaun anda sekali lagi.',
+            'unverified_email' => 'Sila sahkan e-mel utama anda di GitHub kemudian cuba pautkan akaun anda sekali lagi.',
         ],
     ],
 
@@ -90,7 +90,7 @@ return [
             'channel_message' => 'pesanan bualan peribadi',
             'comment_new' => 'komen baharu',
             'forum_topic_reply' => 'balasan tajuk',
-            'mail' => 'emel',
+            'mail' => 'e-mel',
             'mapping' => 'pemeta rentak',
             'push' => 'web',
         ],

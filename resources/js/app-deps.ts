@@ -52,7 +52,6 @@ declare global {
     _styles: SharedStyles;
     currentLocale: string;
     currentUser: CurrentUserJson | { id: undefined };
-    experimentalHost: string | null;
     fallbackLocale: string;
     jQuery: JQueryStatic;
     Lang: Lang;

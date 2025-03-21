@@ -40,6 +40,7 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
             'nominations_summary' => $nominationsSummary,
             'ranked' => $beatmapset->approved,
             'ranked_date' => $beatmapset->approved_date_json,
+            'rating' => $beatmapset->rating,
             'storyboard' => $beatmapset->storyboard,
             'submitted_date' => $beatmapset->submit_date_json,
             'tags' => $beatmapset->tags,

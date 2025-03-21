@@ -108,11 +108,11 @@ return [
             '_' => 'การจัดอันดับ',
         ],
         'teams_controller' => [
-            '_' => '',
-            'create' => '',
-            'edit' => '',
+            '_' => 'ทีม',
+            'create' => 'สร้างทีม',
+            'edit' => 'การตั้งค่าทีม',
             'leaderboard' => '',
-            'show' => '',
+            'show' => 'ข้อมูลทีม',
         ],
         'tournaments_controller' => [
             '_' => '

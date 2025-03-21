@@ -124,6 +124,7 @@ class RankingController extends Controller
         string $rulesetName,
         ?Country $country = null,
         ?Spotlight $spotlight = null,
+        ?string $sort = null,
     ): string {
         return match ($type) {
             'country' => route('rankings', ['mode' => $rulesetName, 'type' => $type]),
@@ -134,6 +135,7 @@ class RankingController extends Controller
             default => route('rankings', [
                 'country' => $country !== null && $type === 'performance' ? $country->getKey() : null,
                 'mode' => $rulesetName,
+                'sort' => $sort,
                 'spotlight' => $spotlight !== null && $type === 'charts' ? $spotlight->getKey() : null,
                 'type' => $type,
             ]),
@@ -160,7 +162,7 @@ class RankingController extends Controller
      * @queryParam spotlight The id of the spotlight if `type` is `charts`. Ranking for latest spotlight will be returned if not specified. No-example
      * @queryParam variant Filter ranking to specified mode variant. For `mode` of `mania`, it's either `4k` or `7k`. Only available for `type` of `performance`. Example: 4k
      */
-    public function index($mode, $type)
+    public function index($mode, $type, ?string $sort = null)
     {
         if ($type === 'charts') {
             return $this->spotlight($mode);
@@ -174,36 +176,36 @@ class RankingController extends Controller
                 ->where('mode', $modeInt)
                 ->orderBy('performance', 'desc');
         } elseif ($type === 'team') {
+            $sort = $sort === 'score' ? 'score' : 'performance';
+            $sortColumn = $sort === 'score' ? 'ranked_score' : 'performance';
             $stats = TeamStatistics::where('ranked_score', '>', 0)
                 ->where('ruleset_id', $modeInt)
                 ->whereHas('team')
                 ->withCount('members')
                 ->with('team')
-                ->orderBy('performance', 'desc');
+                ->orderBy($sortColumn, 'desc');
         } else {
             $class = UserStatistics\Model::getClass($mode, $this->params['variant']);
             $table = (new $class())->getTable();
-            $ppColumn = $class::ppColumn();
             $stats = $class
                 ::with(['user', 'user.country', 'user.team'])
-                ->where($ppColumn, '>', 0)
+                ->where('rank_score', '>', 0)
                 ->whereHas('user', function ($userQuery) {
                     $userQuery->default();
                 });
 
             if ($type === 'performance') {
-                $isExperimentalRank = $GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default'];
                 if ($this->country !== null) {
                     $stats->where('country_acronym', $this->country['acronym']);
                     // preferrable to rank_score when filtering by country.
                     // On a few countries the default index is slightly better but much worse on the rest.
-                    $forceIndex = $isExperimentalRank ? 'country_acronym_exp' : 'country_acronym_2';
+                    $forceIndex = 'country_acronym_2';
                 } else {
                     // force to order by rank_score instead of sucking down entire users table first.
-                    $forceIndex = $isExperimentalRank ? 'rank_score_exp' : 'rank_score';
+                    $forceIndex = 'rank_score';
                 }
 
-                $stats->orderBy($ppColumn, 'desc');
+                $stats->orderBy('rank_score', 'desc');
             } else { // 'score'
                 $stats->orderBy('ranked_score', 'desc');
                 // force to order by ranked_score instead of sucking down entire users table first.
@@ -296,7 +298,13 @@ class RankingController extends Controller
             ])]
         );
 
-        return ext_view("rankings.{$type}", array_merge($this->defaultViewVars, compact('scores', 'showRankChange')));
+        return ext_view(
+            "rankings.{$type}",
+            array_merge(
+                $this->defaultViewVars,
+                compact('scores', 'sort', 'showRankChange'),
+            ),
+        );
     }
 
     /**

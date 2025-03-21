@@ -171,6 +171,7 @@ return [
             'global' => '全球排名',
             'supporter-link' => '点击 <a href=":link">这里</a> 来查看你得到的精彩功能！',
             'supporter-only' => '你需要成为 osu! 支持者才能查看地区/好友/特定 Mod 排名！',
+            'team' => '',
             'title' => '排行榜',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => '还没有好友上传成绩！',
                 'global' => '还没有玩家上传过成绩，来玩一把？',
                 'loading' => '加载成绩中...',
+                'team' => '',
                 'unranked' => '未上架 (Unranked) 谱面',
             ],
             'score' => [

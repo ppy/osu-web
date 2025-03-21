@@ -27,6 +27,7 @@ interface BeatmapsetExtendedJsonAdditionalAttributes {
   nominations_summary: NominationsSummary;
   ranked: number;
   ranked_date: string | null;
+  rating: number;
   storyboard: boolean;
   submitted_date: string | null;
   tags: string;

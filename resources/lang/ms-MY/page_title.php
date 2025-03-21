@@ -109,7 +109,7 @@ return [
         ],
         'teams_controller' => [
             '_' => 'pasukan',
-            'create' => '',
+            'create' => 'cipta pasukan',
             'edit' => 'tetapan pasukan',
             'leaderboard' => 'carta kedudukan pasukan',
             'show' => 'maklumat pasukan',

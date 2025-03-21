@@ -42,6 +42,7 @@ return [
         'performance' => 'globalny',
         'score' => 'punktowy',
         'seasons' => 'sezony',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Aktywni użytkownicy',
         'country' => 'Kraj',
         'division' => '',
+        'members' => '',
         'play_count' => 'Liczba zagrań',
         'performance' => 'Liczba pp',
         'total_score' => 'Łączna liczba punktów',

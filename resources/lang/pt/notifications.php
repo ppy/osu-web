@@ -20,7 +20,7 @@ return [
         'channel' => 'conversa',
         'forum_topic' => 'fórum',
         'news_post' => 'notícias',
-        'team' => '',
+        'team' => 'equipa',
         'user' => 'perfil',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'fórum',
         'news_post' => 'notícias',
-        'team' => '',
+        'team' => 'equipa',
         'user' => 'perfil',
     ],
 
@@ -163,12 +163,12 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Pedido de adesão à equipa',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "Agora pertences à equipa :title",
+                'team_application_accept_compact' => "Agora pertences à equipa :title",
+                'team_application_reject' => 'O teu pedido de adesão à equipa :title foi recusado',
+                'team_application_reject_compact' => 'O teu pedido de adesão à equipa :title foi recusado',
             ],
         ],
 
@@ -258,8 +258,8 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "Agora pertences à equipa :title",
+                'team_application_reject' => 'O teu pedido de adesão à equipa :title foi recusado',
             ],
         ],
 

@@ -171,6 +171,7 @@ return [
             'global' => 'Svetovna lestvica',
             'supporter-link' => 'Klikni <a href=":link">tukaj</a>, kakšne funkcije lahko dobiš!',
             'supporter-only' => 'Za dostop do državnih, prijateljskih in mod specifičnih lestvic potrebuješ osu!supporter značko!',
+            'team' => '',
             'title' => 'Točkovnik',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Nihče od tvojih prijateljev še ni dosegel rezultata na tej beatmapi!',
                 'global' => 'Ni še rezultatov. Mogoče lahko ti poskusiš za rezultat?',
                 'loading' => 'Nalaganje rezultatov...',
+                'team' => '',
                 'unranked' => 'Neuvrščena beatmapa.',
             ],
             'score' => [

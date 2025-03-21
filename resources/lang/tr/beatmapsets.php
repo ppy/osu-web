@@ -171,6 +171,7 @@ return [
             'global' => 'Dünya Sıralaması',
             'supporter-link' => 'Aldığınız tüm süslü özellikleri görmek için buraya <a href=":link">tıklayın</a>!',
             'supporter-only' => 'Arkadaş ve ülke sıralamasına erişebilmek için osu!supporter olman gerekiyor!',
+            'team' => '',
             'title' => 'Skor tahtası',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Hiçbir arkadaşın henüz bu mapte bir skora sahip değil!',
                 'global' => 'Henüz skor yok. Biraz skor yapmaya ne dersin?',
                 'loading' => 'Skorlar yükleniyor...',
+                'team' => '',
                 'unranked' => 'Derecelendirilmemiş beatmap.',
             ],
             'score' => [

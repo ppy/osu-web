@@ -171,6 +171,7 @@ return [
             'global' => 'Global rankning',
             'supporter-link' => 'Klicka <a href=":link">här</a> för att se alla fina funktioner du kommer få!',
             'supporter-only' => 'Du behöver vara en supporter för att komma åt vän-, land-, och modspecifika rankningar!',
+            'team' => '',
             'title' => 'Poängtavla',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Ingen av dina vänner har satt ett poäng på denna map än!',
                 'global' => 'Inga poäng än. Du kanske ska försöka sätta några?',
                 'loading' => 'Laddar poäng...',
+                'team' => '',
                 'unranked' => 'Ej rankad beatmap.',
             ],
             'score' => [

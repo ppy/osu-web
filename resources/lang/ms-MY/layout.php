@@ -14,8 +14,8 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => 'set peta rentak',
-            'beatmapset_covers' => 'kulit set peta rentak',
+            'beatmapset' => 'peta rentak',
+            'beatmapset_covers' => 'kulit peta rentak',
             'contest' => 'peraduan',
             'contests' => 'peraduan',
             'root' => 'konsol',
@@ -178,7 +178,7 @@ return [
             'username' => 'nama pengguna',
 
             'error' => [
-                'email' => "Nama pengguna atau alamat emel tidak wujud",
+                'email' => "Nama pengguna atau alamat e-mel tidak wujud",
                 'password' => 'Kata laluan tidak betul',
             ],
         ],

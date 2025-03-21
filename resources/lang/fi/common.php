@@ -22,7 +22,7 @@ return [
         'admin' => 'Ylläpitäjä',
         'authorise' => 'Valtuuta',
         'authorising' => 'Valtuutetaan...',
-        'back' => '',
+        'back' => 'Takaisin',
         'back_to_previous' => 'Takaisin',
         'back_to_top' => 'Takaisin ylös',
         'cancel' => 'Peruuta',
