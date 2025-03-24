@@ -2,11 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import TimeWithTooltip from 'components/time-with-tooltip';
-import { route } from 'laroute';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
-import { linkHtml } from 'utils/url';
+import StringWithComponent from '../components/string-with-component';
+import UserLink from '../components/user-link';
 import { MatchEvent } from '../interfaces/match-json';
 import UserJson from '../interfaces/user-json';
 
@@ -32,12 +32,6 @@ export default function Event(props: Props) {
     return null;
   }
 
-  let userLink = '';
-
-  if (user != null && event_type !== 'match-disbanded') {
-    userLink = linkHtml(route('users.show', { user: user.id }), user.username, { classNames: ['mp-history-event__username'] });
-  }
-
   return (
     <div className='mp-history-event'>
       <div className='mp-history-event__time'>
@@ -46,11 +40,20 @@ export default function Event(props: Props) {
       <div className={classWithModifiers('mp-history-event__type', [event_type])}>
         {icons[event_type].map((m) => <i key={m} className={m} />)}
       </div>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: trans(`matches.match.events.${event_type}${user != null ? '' : '-no-user'}`, { user: userLink }),
-        }}
-        className='mp-history-event__text' />
+      <div className='mp-history-event__text'>
+        <StringWithComponent
+          mappings={{
+            user: user != null && event_type !== 'match-disbanded'
+              ? (<UserLink className={'mp-history-event__username'}
+                user={{
+                  id: user.id,
+                  username: user.username,
+                }} />)
+              : null,
+          }}
+          pattern={trans(`matches.match.events.${event_type}${user != null ? '' : '-no-user'}`)}
+        />
+      </div>
     </div>
   );
 }
