@@ -39,8 +39,8 @@ export default function Event(props: Props) {
   }
 
   return (
-    <div className={'mp-history-event'}>
-      <div className={'mp-history-event__time'}>
+    <div className='mp-history-event'>
+      <div className='mp-history-event__time'>
         <TimeWithTooltip dateTime={props.event.timestamp} format={'LTS'} />
       </div>
       <div className={classWithModifiers('mp-history-event__type', [event_type])}>
@@ -50,7 +50,7 @@ export default function Event(props: Props) {
         dangerouslySetInnerHTML={{
           __html: trans(`matches.match.events.${event_type}${user != null ? '' : '-no-user'}`, { user: userLink }),
         }}
-        className={'mp-history-event__text'} />
+        className='mp-history-event__text' />
     </div>
   );
 }
