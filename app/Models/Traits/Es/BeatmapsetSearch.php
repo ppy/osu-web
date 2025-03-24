@@ -31,6 +31,18 @@ trait BeatmapsetSearch
         return config_path('schemas/beatmapsets.json');
     }
 
+    private static function esBeatmapTags(Beatmap $beatmap): array
+    {
+        $tags = app('tags');
+
+        return array_reject_null(
+            array_map(
+                fn ($tagId) => $tags->get($tagId['tag_id'])?->name,
+                $beatmap->topTagIds()
+            )
+        );
+    }
+
     public function esShouldIndex()
     {
         return !$this->trashed() && !present($this->download_disabled_url);
@@ -117,18 +129,6 @@ trait BeatmapsetSearch
         }
 
         return $values;
-    }
-
-    private function esBeatmapTags(Beatmap $beatmap): array
-    {
-        $tags = app('tags');
-
-        return array_filter(
-            array_map(
-                fn ($tagId) => $tags->get($tagId['tag_id'])?->name,
-                $beatmap->topTagIds()
-            )
-        );
     }
 
     private function esDifficultiesValues()
