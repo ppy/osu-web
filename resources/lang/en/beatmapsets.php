@@ -148,8 +148,9 @@ return [
             'source' => 'Source',
             'storyboard' => 'This beatmap contains storyboard',
             'success-rate' => 'Success Rate',
-            'tags' => 'Tags',
+            'tags' => 'Mapper Tags',
             'video' => 'This beatmap contains video',
+            'user_tags' => 'User Tags',
         ],
 
         'nsfw_warning' => [
