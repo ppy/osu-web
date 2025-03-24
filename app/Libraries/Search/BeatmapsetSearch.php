@@ -14,6 +14,7 @@ use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Follow;
 use App\Models\Solo;
+use App\Models\Tag;
 use App\Models\User;
 use Ds\Set;
 
@@ -407,12 +408,20 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addTagsFilter(BoolQuery $query): void
     {
-        if (!present($this->params->tags)) {
+        if ($this->params->tags === null) {
             return;
         }
 
-        foreach ($this->params->tags as $tag) {
+        $tagSet = new Set(array_map('mb_strtolower', $this->params->tags));
+        $tags = Tag::whereIn('name', $this->params->tags)->limit(10)->pluck('name');
+        $tagSet->remove(...$tags->map(fn ($name) => mb_strtolower($name))->toArray());
+
+        foreach ($tagSet as $tag) {
             $query->filter(QueryHelper::queryString($tag, ['beatmaps.top_tags'], 'and'));
+        }
+
+        foreach ($tags as $tag) {
+            $query->filter(['term' => ['beatmaps.top_tags.raw' => $tag]]);
         }
     }
 
