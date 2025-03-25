@@ -211,7 +211,7 @@ export default class Info extends React.Component<Props> {
           {this.controller.tags.mapperTags.length > 0 &&
             <div className='beatmapset-info__row beatmapset-info__row--value-overflow'>
               <h3 className='beatmapset-info__header'>
-                {trans('beatmapsets.show.info.tags')}
+                {trans('beatmapsets.show.info.mapper_tags')}
               </h3>
               <div className='beatmapset-info__value-overflow'>
                 {this.controller.tags.mapperTags.map((tag, i) => (
