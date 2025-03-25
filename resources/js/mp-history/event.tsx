@@ -35,7 +35,7 @@ export default function Event(props: Props) {
   return (
     <div className='mp-history-event'>
       <div className='mp-history-event__time'>
-        <TimeWithTooltip dateTime={props.event.timestamp} format={'LTS'} />
+        <TimeWithTooltip dateTime={props.event.timestamp} format='LTS' />
       </div>
       <div className={classWithModifiers('mp-history-event__type', [eventType])}>
         {icons[eventType].map((m) => <i key={m} className={m} />)}
