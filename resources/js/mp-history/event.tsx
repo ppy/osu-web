@@ -41,18 +41,21 @@ export default function Event(props: Props) {
         {icons[event_type].map((m) => <i key={m} className={m} />)}
       </div>
       <div className='mp-history-event__text'>
-        <StringWithComponent
-          mappings={{
-            user: user != null && event_type !== 'match-disbanded'
-              ? (<UserLink className={'mp-history-event__username'}
-                user={{
-                  id: user.id,
-                  username: user.username,
-                }} />)
-              : null,
-          }}
-          pattern={trans(`matches.match.events.${event_type}${user != null ? '' : '-no-user'}`)}
-        />
+        {
+          user == null
+            ? trans(`matches.match.events.${event_type}-no-user`)
+            : <StringWithComponent
+              mappings={{
+                user: (<UserLink
+                  className={'mp-history-event__username'}
+                  user={{
+                    id: user.id,
+                    username: user.username,
+                  }}
+                />),
+              }}
+              pattern={trans(`matches.match.events.${event_type}`)} />
+        }
       </div>
     </div>
   );
