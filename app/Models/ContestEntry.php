@@ -56,30 +56,23 @@ class ContestEntry extends Model
 
     public function scopeForBestOf(Builder $query, User $user, string $ruleset, ?string $variant = null): Builder
     {
-        $query->whereIn('entry_url', function (QueryBuilder $beatmapsetQuery) use ($ruleset, $user, $variant) {
-            $beatmapsetQuery->select('beatmapset_id')
-                ->from('osu_beatmaps')
-                ->where('osu_beatmaps.playmode', Beatmap::MODES[$ruleset])
-                ->whereIn('beatmap_id', function (QueryBuilder $beatmapQuery) use ($user) {
-                    $beatmapQuery->select('beatmap_id')
-                        ->from('osu_user_beatmap_playcount')
-                        ->where('user_id', $user->getKey());
-                });
+        $beatmapsetIdsQuery = Beatmap::select('beatmapset_id')
+            ->where('playmode', Beatmap::MODES[$ruleset])
+            ->whereIn('beatmap_id', $user->beatmapPlaycounts()->select('beatmap_id'));
 
-            if ($ruleset === 'mania' && $variant !== null) {
-                if ($variant === 'nk') {
-                    $beatmapsetQuery->whereNotIn('osu_beatmaps.diff_size', [4, 7]);
-                } else {
-                    $keys = match ($variant) {
-                        '4k' => 4,
-                        '7k' => 7,
-                    };
-                    $beatmapsetQuery->where('osu_beatmaps.diff_size', $keys);
-                }
+        if ($ruleset === 'mania' && $variant !== null) {
+            if ($variant === 'nk') {
+                $beatmapsetIdsQuery->whereNotIn('osu_beatmaps.diff_size', [4, 7]);
+            } else {
+                $keys = match ($variant) {
+                    '4k' => 4,
+                    '7k' => 7,
+                };
+                $beatmapsetIdsQuery->where('osu_beatmaps.diff_size', $keys);
             }
-        });
+        }
 
-        return $query;
+        return $query->whereIn('entry_url', $beatmapsetIdsQuery);
     }
 
     public function scopeWithScore(Builder $query, array $options): Builder
