@@ -1,14 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import StringWithComponent from 'components/string-with-component';
 import TimeWithTooltip from 'components/time-with-tooltip';
+import UserLink from 'components/user-link';
+import LegacyMatchEventJson from 'interfaces/legacy-match-event-json';
+import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
-import StringWithComponent from '../components/string-with-component';
-import UserLink from '../components/user-link';
-import LegacyMatchEventJson from '../interfaces/legacy-match-event-json';
-import UserJson from '../interfaces/user-json';
 
 interface Props {
   event: LegacyMatchEventJson;
