@@ -198,7 +198,7 @@ export default class Info extends React.Component<Props> {
                   <React.Fragment key={`${tag.name}-${i}`}>
                     <a
                       className='beatmapset-info__link'
-                      href={route('beatmapsets.index', { q: tag.name })}
+                      href={route('beatmapsets.index', { q: makeSearchQueryOption('tag', tag.name) })}
                     >
                       {tag.name}
                     </a>
