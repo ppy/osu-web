@@ -62,13 +62,13 @@ class ContestEntry extends Model
 
         if ($ruleset === 'mania' && $variant !== null) {
             if ($variant === 'nk') {
-                $beatmapsetIdsQuery->whereNotIn('osu_beatmaps.diff_size', [4, 7]);
+                $beatmapsetIdsQuery->whereNotIn('diff_size', [4, 7]);
             } else {
                 $keys = match ($variant) {
                     '4k' => 4,
                     '7k' => 7,
                 };
-                $beatmapsetIdsQuery->where('osu_beatmaps.diff_size', $keys);
+                $beatmapsetIdsQuery->where('diff_size', $keys);
             }
         }
 
