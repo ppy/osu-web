@@ -14,7 +14,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { hasGuestOwners } from 'utils/beatmap-helper';
-import { downloadLimited, getArtist, getTitle, toggleFavourite } from 'utils/beatmapset-helper';
+import { downloadLimited, getArtist, getTitle, makeSearchQueryOption, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
@@ -146,7 +146,7 @@ export default class Header extends React.Component<Props> {
           <span className='beatmapset-header__details-text beatmapset-header__details-text--title'>
             <a
               className='beatmapset-header__details-text-link'
-              href={route('beatmapsets.index', { q: `title=""${getTitle(this.controller.beatmapset)}""` })}
+              href={route('beatmapsets.index', { q: makeSearchQueryOption('title', getTitle(this.controller.beatmapset)) })}
             >
               {getTitle(this.controller.beatmapset)}
             </a>
@@ -163,7 +163,7 @@ export default class Header extends React.Component<Props> {
           <span className='beatmapset-header__details-text beatmapset-header__details-text--artist'>
             <a
               className='beatmapset-header__details-text-link'
-              href={route('beatmapsets.index', { q: `artist=""${getArtist(this.controller.beatmapset)}""` })}
+              href={route('beatmapsets.index', { q: makeSearchQueryOption('artist', getArtist(this.controller.beatmapset)) })}
             >
               {getArtist(this.controller.beatmapset)}
             </a>

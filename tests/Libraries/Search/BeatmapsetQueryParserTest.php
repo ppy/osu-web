@@ -45,10 +45,13 @@ class BeatmapsetQueryParserTest extends TestCase
             ['ranked>2018/05/01', ['keywords' => null, 'options' => ['ranked' => ['gte' => static::parseTime('2018-05-02')]]]],
             ['ranked>="2020-07-21 12:30:30 +09:00"', ['keywords' => null, 'options' => ['ranked' => ['gte' => static::parseTime('2020-07-21 03:30:30')]]]],
             ['ranked="2020-07-21 12:30:30 +09:00"', ['keywords' => null, 'options' => ['ranked' => ['gte' => static::parseTime('2020-07-21 03:30:30'), 'lt' => static::parseTime('2020-07-21 03:30:31')]]]],
+            ['ranked>="2020-07-21 12:30:30 +09:00" ranked<="2020-08-21 13:40:40 +09:00"', ['keywords' => null, 'options' => ['ranked' => ['gte' => static::parseTime('2020-07-21 03:30:30'), 'lt' => static::parseTime('2020-08-21 04:40:41')]]]],
             ['ranked="invalid date format"', ['keywords' => 'ranked="invalid date format"', 'options' => []]],
             ['tag=hello', ['keywords' => null, 'options' => ['tag' => ['hello']]]],
             ['tag=hello tag=world', ['keywords' => null, 'options' => ['tag' => ['hello', 'world']]]],
             ['tag="hello world"', ['keywords' => null, 'options' => ['tag' => ['hello world']]]],
+            ['tag="hello world" tag="foo bar"', ['keywords' => null, 'options' => ['tag' => ['hello world', 'foo bar']]]],
+            ['tag="hello world"aa tag="foo bar"', ['keywords' => 'aa', 'options' => ['tag' => ['hello world', 'foo bar']]]],
 
             // multiple options
             ['artist=hello creator:world', ['keywords' => null, 'options' => ['artist' => 'hello', 'creator' => 'world']]],
@@ -88,7 +91,7 @@ class BeatmapsetQueryParserTest extends TestCase
             ['find me songs by artist=singer please', ['keywords' => 'find me songs by  please', 'options' => ['artist' => 'singer']]],
             ['really like artist="name with space" yes', ['keywords' => 'really like  yes', 'options' => ['artist' => 'name with space']]],
             ['weird artist=double"quote', ['keywords' => 'weird', 'options' => ['artist' => 'double"quote']]],
-            ['weird artist="nested "quote"" thing', ['keywords' => 'weird  thing', 'options' => ['artist' => 'nested "quote"']]],
+            ['weird artist="nested \"quote\"" thing', ['keywords' => 'weird  thing', 'options' => ['artist' => 'nested "quote"']]],
             ['artist=><something', ['keywords' => null, 'options' => ['artist' => '><something']]],
             ['unrecognised=keyword', ['keywords' => 'unrecognised=keyword', 'options' => []]],
             ['cs=nope', ['keywords' => 'cs=nope', 'options' => []]],

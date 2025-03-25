@@ -13,6 +13,7 @@ import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onErrorWithClick } from 'utils/ajax';
+import { makeSearchQueryOption } from 'utils/beatmapset-helper';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
 import { present } from 'utils/string';
@@ -154,7 +155,7 @@ export default class Info extends React.Component<Props> {
               </h3>
               <a
                 className='beatmapset-info__link'
-                href={route('beatmapsets.index', { q: `source=""${this.controller.beatmapset.source}""` })}
+                href={route('beatmapsets.index', { q: makeSearchQueryOption('source', this.controller.beatmapset.source) })}
               >
                 {this.controller.beatmapset.source}
               </a>
