@@ -7,11 +7,11 @@ import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import StringWithComponent from '../components/string-with-component';
 import UserLink from '../components/user-link';
-import { MatchEvent } from '../interfaces/match-json';
+import LegacyMatchEventJson from '../interfaces/legacy-match-event-json';
 import UserJson from '../interfaces/user-json';
 
 interface Props {
-  event: MatchEvent;
+  event: LegacyMatchEventJson;
   users: Partial<Record<number, UserJson>>;
 }
 
