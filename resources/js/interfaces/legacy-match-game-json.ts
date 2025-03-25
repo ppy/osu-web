@@ -11,6 +11,7 @@ export default interface LegacyMatchGameJson {
   end_time?: string;
   id: number;
   mode: Ruleset;
+  mode_int: number;
   mods: string[]; // TODO: use ModJson
   scores: ScoreJson[]; // TODO: use SoloScoreJson
   scoring_type: LegacyMatchScoringType;
