@@ -9,7 +9,6 @@ use App\Exceptions\InvariantException;
 use App\Jobs\EsDocumentUnique;
 use App\Libraries\Transactions\AfterCommit;
 use App\Traits\Memoizes;
-use DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -166,21 +165,18 @@ class Beatmap extends Model implements AfterCommit
 
     public function scopeWithMaxCombo($query)
     {
-        $mods = BeatmapDifficultyAttrib::NO_MODS;
-        $attrib = BeatmapDifficultyAttrib::MAX_COMBO;
-        $attribTable = (new BeatmapDifficultyAttrib())->tableName();
-        $mode = $this->qualifyColumn('playmode');
-        $id = $this->qualifyColumn('beatmap_id');
+        $valueQuery = BeatmapDifficultyAttrib
+            ::select('value')
+            ->whereColumn([
+                'beatmap_id' => $this->qualifyColumn('beatmap_id'),
+                'mode' => $this->qualifyColumn('playmode'),
+            ])
+            ->where([
+                'attrib_id' => BeatmapDifficultyAttrib::MAX_COMBO,
+                'mods' => BeatmapDifficultyAttrib::NO_MODS,
+            ]);
 
-        return $query
-            ->addSelect(['attrib_max_combo' => DB::raw("(
-                SELECT value
-                FROM {$attribTable}
-                WHERE beatmap_id = {$id}
-                    AND mode = {$mode}
-                    AND mods = {$mods}
-                    AND attrib_id = {$attrib}
-            )")]);
+        return $query->addSelect(['attrib_max_combo' => $valueQuery]);
     }
 
     public function scopeWithUserPlaycount(Builder $query, ?int $userId): Builder

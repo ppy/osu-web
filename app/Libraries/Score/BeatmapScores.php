@@ -14,8 +14,8 @@ use Illuminate\Database\Eloquent\Collection;
 
 class BeatmapScores
 {
+    public ScoreSearchParams $baseParams;
     public array $result;
-    private ScoreSearchParams $baseParams;
 
     public function __construct(private array $rawParams)
     {
@@ -48,7 +48,6 @@ class BeatmapScores
 
         $params = clone $this->baseParams;
         $params->beforeScore = $score;
-        $params->setSort(null);
 
         return UserRank::getRank($params);
     }
