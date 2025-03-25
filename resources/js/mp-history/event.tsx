@@ -12,7 +12,7 @@ import UserJson from '../interfaces/user-json';
 
 interface Props {
   event: MatchEvent;
-  users: { [userId: number]: UserJson };
+  users: Partial<Record<number, UserJson>>;
 }
 
 const icons = {
