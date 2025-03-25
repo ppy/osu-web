@@ -27,8 +27,8 @@ const icons = {
 export default function Event(props: Props) {
   const user = props.event.user_id != null ? props.users[props.event.user_id] : undefined;
 
-  const event_type = props.event.detail.type;
-  if (event_type === 'other') {
+  const eventType = props.event.detail.type;
+  if (eventType === 'other') {
     return null;
   }
 
@@ -37,13 +37,13 @@ export default function Event(props: Props) {
       <div className='mp-history-event__time'>
         <TimeWithTooltip dateTime={props.event.timestamp} format={'LTS'} />
       </div>
-      <div className={classWithModifiers('mp-history-event__type', [event_type])}>
-        {icons[event_type].map((m) => <i key={m} className={m} />)}
+      <div className={classWithModifiers('mp-history-event__type', [eventType])}>
+        {icons[eventType].map((m) => <i key={m} className={m} />)}
       </div>
       <div className='mp-history-event__text'>
         {
           user == null
-            ? trans(`matches.match.events.${event_type}-no-user`)
+            ? trans(`matches.match.events.${eventType}-no-user`)
             : <StringWithComponent
               mappings={{
                 user: (<UserLink
@@ -54,7 +54,7 @@ export default function Event(props: Props) {
                   }}
                 />),
               }}
-              pattern={trans(`matches.match.events.${event_type}`)} />
+              pattern={trans(`matches.match.events.${eventType}`)} />
         }
       </div>
     </div>
