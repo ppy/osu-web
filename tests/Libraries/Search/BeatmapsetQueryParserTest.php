@@ -46,6 +46,9 @@ class BeatmapsetQueryParserTest extends TestCase
             ['ranked>="2020-07-21 12:30:30 +09:00"', ['keywords' => null, 'options' => ['ranked' => ['gte' => static::parseTime('2020-07-21 03:30:30')]]]],
             ['ranked="2020-07-21 12:30:30 +09:00"', ['keywords' => null, 'options' => ['ranked' => ['gte' => static::parseTime('2020-07-21 03:30:30'), 'lt' => static::parseTime('2020-07-21 03:30:31')]]]],
             ['ranked="invalid date format"', ['keywords' => 'ranked="invalid date format"', 'options' => []]],
+            ['tag=hello', ['keywords' => null, 'options' => ['tag' => ['hello']]]],
+            ['tag=hello tag=world', ['keywords' => null, 'options' => ['tag' => ['hello', 'world']]]],
+            ['tag="hello world"', ['keywords' => null, 'options' => ['tag' => ['hello world']]]],
 
             // multiple options
             ['artist=hello creator:world', ['keywords' => null, 'options' => ['artist' => 'hello', 'creator' => 'world']]],
