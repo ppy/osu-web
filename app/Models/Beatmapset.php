@@ -10,7 +10,7 @@ use App\Exceptions\BeatmapProcessorException;
 use App\Exceptions\ImageProcessorServiceException;
 use App\Exceptions\InvariantException;
 use App\Jobs\CheckBeatmapsetCovers;
-use App\Jobs\EsDocument;
+use App\Jobs\EsDocumentUnique;
 use App\Jobs\Notifications\BeatmapsetDiscussionLock;
 use App\Jobs\Notifications\BeatmapsetDiscussionUnlock;
 use App\Jobs\Notifications\BeatmapsetDisqualify;
@@ -1508,7 +1508,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function afterCommit()
     {
-        dispatch(new EsDocument($this));
+        dispatch(new EsDocumentUnique($this));
     }
 
     public function notificationCover()

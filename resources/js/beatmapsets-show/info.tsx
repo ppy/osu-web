@@ -13,6 +13,7 @@ import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onErrorWithClick } from 'utils/ajax';
+import { makeSearchQueryOption } from 'utils/beatmapset-helper';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
 import { present } from 'utils/string';
@@ -63,15 +64,6 @@ export default class Info extends React.Component<Props> {
     }
 
     return ret;
-  }
-
-  private get tags() {
-    const tags = this.controller.tags;
-
-    return [
-      ...tags.userTags.map((tag) => tag.name),
-      ...tags.mapperTags,
-    ];
   }
 
   private get withEditDescription() {
@@ -163,7 +155,7 @@ export default class Info extends React.Component<Props> {
               </h3>
               <a
                 className='beatmapset-info__link'
-                href={route('beatmapsets.index', { q: `source=""${this.controller.beatmapset.source}""` })}
+                href={route('beatmapsets.index', { q: makeSearchQueryOption('source', this.controller.beatmapset.source) })}
               >
                 {this.controller.beatmapset.source}
               </a>
@@ -196,13 +188,34 @@ export default class Info extends React.Component<Props> {
             </div>
           </div>
 
-          {this.tags.length > 0 &&
+          {this.controller.tags.userTags.length > 0 &&
             <div className='beatmapset-info__row beatmapset-info__row--value-overflow'>
               <h3 className='beatmapset-info__header'>
-                {trans('beatmapsets.show.info.tags')}
+                {trans('beatmapsets.show.info.user_tags')}
               </h3>
               <div className='beatmapset-info__value-overflow'>
-                {this.tags.map((tag, i) => (
+                {this.controller.tags.userTags.map((tag, i) => (
+                  <React.Fragment key={`${tag.name}-${i}`}>
+                    <a
+                      className='beatmapset-info__link'
+                      href={route('beatmapsets.index', { q: tag.name })}
+                    >
+                      {tag.name}
+                    </a>
+                    {' '}
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
+          }
+
+          {this.controller.tags.mapperTags.length > 0 &&
+            <div className='beatmapset-info__row beatmapset-info__row--value-overflow'>
+              <h3 className='beatmapset-info__header'>
+                {trans('beatmapsets.show.info.mapper_tags')}
+              </h3>
+              <div className='beatmapset-info__value-overflow'>
+                {this.controller.tags.mapperTags.map((tag, i) => (
                   <React.Fragment key={`${tag}-${i}`}>
                     <a
                       className='beatmapset-info__link'

@@ -14,6 +14,7 @@ use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Follow;
 use App\Models\Solo;
+use App\Models\Tag;
 use App\Models\User;
 use Ds\Set;
 
@@ -60,6 +61,12 @@ class BeatmapsetSearch extends RecordSearch
                     ->should(['term' => ['_id' => ['value' => $this->params->queryString, 'boost' => 100]]])
                     ->should(QueryHelper::queryString($this->params->queryString, $partialMatchFields, 'or', 1 / count($terms)))
                     ->should(QueryHelper::queryString($this->params->queryString, [], 'and'))
+                    ->should([
+                        'nested' => [
+                            'path' => 'beatmaps',
+                            'query' => QueryHelper::queryString($this->params->queryString, ['beatmaps.top_tags'], 'or', 0.5 / count($terms)),
+                        ],
+                    ])
             );
         }
 
@@ -82,6 +89,7 @@ class BeatmapsetSearch extends RecordSearch
         $this->addPlayedFilter($query, $nested);
         $this->addRankFilter($nested);
         $this->addRecommendedFilter($nested);
+        $this->addTagsFilter($nested);
 
         $this->addSimpleFilters($query, $nested);
         $this->addCreatorFilter($query, $nested);
@@ -396,6 +404,25 @@ class BeatmapsetSearch extends RecordSearch
         $subQuery->should(QueryHelper::queryString($value, $searchFields, 'and'));
 
         $query->must($subQuery);
+    }
+
+    private function addTagsFilter(BoolQuery $query): void
+    {
+        if ($this->params->tags === null) {
+            return;
+        }
+
+        $tagSet = new Set(array_map('mb_strtolower', $this->params->tags));
+        $tags = Tag::whereIn('name', $this->params->tags)->limit(10)->pluck('name');
+        $tagSet->remove(...$tags->map(fn ($name) => mb_strtolower($name))->toArray());
+
+        foreach ($tagSet as $tag) {
+            $query->filter(QueryHelper::queryString($tag, ['beatmaps.top_tags'], 'and'));
+        }
+
+        foreach ($tags as $tag) {
+            $query->filter(['term' => ['beatmaps.top_tags.raw' => $tag]]);
+        }
     }
 
     private function getPlayedBeatmapIds(?array $rank = null)
