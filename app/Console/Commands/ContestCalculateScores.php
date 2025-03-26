@@ -10,9 +10,8 @@ use Illuminate\Console\Command;
 
 class ContestCalculateScores extends Command
 {
+    protected $description = 'Calculated standardised scores for judged contests.';
     protected $signature = 'contest:calculate-scores {contestId}';
-
-    protected $description = 'Cleans up expired chat keep alives.';
 
     public function handle()
     {
