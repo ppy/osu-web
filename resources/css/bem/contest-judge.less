@@ -2,16 +2,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .contest-judge {
-  .default-gutter-v2();
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
   font-size: @font-size--title-small;
-  padding-top: 15px;
-  padding-bottom: $padding-top;
+  background-color: hsl(var(--hsl-b5));
 
-  &--header {
+  &__header {
+    .default-gutter-v2();
     background-color: hsl(var(--hsl-d3));
+    padding-top: 15px;
+    padding-bottom: $padding-top;
   }
 
-  &--items {
-    background-color: hsl(var(--hsl-b5));
+  &__items {
+    .default-gutter-v2();
   }
 }
