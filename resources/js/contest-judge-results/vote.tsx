@@ -7,6 +7,7 @@ import ValueDisplay from 'components/value-display';
 import { ContestJsonForResults } from 'interfaces/contest-json';
 import { ContestJudgeVoteJsonForResults } from 'interfaces/contest-judge-vote-json';
 import * as React from 'react';
+import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
 
 interface Props {
@@ -32,7 +33,7 @@ export default function Vote(props: Props) {
           <ValueDisplay
             label={trans('contest.judge_results.score_std')}
             modifiers='score'
-            value={props.vote.total_score_std.toFixed(2)}
+            value={formatNumber(props.vote.total_score_std, 2)}
           />
         )}
 

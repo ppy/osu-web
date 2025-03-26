@@ -8,6 +8,7 @@ import { ContestEntryJsonForResults } from 'interfaces/contest-entry-json';
 import { ContestJsonForResults } from 'interfaces/contest-json';
 import SelectOptionJson from 'interfaces/select-option-json';
 import * as React from 'react';
+import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
 
 interface Props {
@@ -44,7 +45,7 @@ export default class Header extends React.PureComponent<Props> {
             <ValueDisplay
               label={trans('contest.judge_results.total_score_std')}
               modifiers='judge-results'
-              value={totalScoreStd.toFixed(2)}
+              value={formatNumber(totalScoreStd, 2)}
             />
           )}
 
