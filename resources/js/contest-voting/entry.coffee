@@ -73,7 +73,7 @@ export class Entry extends React.Component
 
   renderScore: ->
     score = if @props.entry.results.score_std != null
-      @props.entry.results.score_std.toFixed(2)
+      formatNumber @props.entry.results.score_std, 2
     else
       @props.entry.results.votes
 
