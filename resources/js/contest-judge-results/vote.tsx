@@ -51,7 +51,7 @@ export default function Vote(props: Props) {
           return category != null && (
             <div key={score.id} className='contest-judge-results-scores__row'>
               <div className='contest-judge-results-scores__col'>
-                <div className='contest-judge-entry__description-icon' title={category.description}>
+                <div title={category.description}>
                   <i className='fas fa-question-circle' />
                 </div>
 
