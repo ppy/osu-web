@@ -31,14 +31,14 @@ export default function Vote(props: Props) {
         {props.vote.total_score_std != null && (
           <ValueDisplay
             label={trans('contest.judge_results.score_std')}
-            modifiers={'score'}
+            modifiers='score'
             value={props.vote.total_score_std.toFixed(2)}
           />
         )}
 
         <ValueDisplay
           label={trans('contest.judge_results.score')}
-          modifiers={'score'}
+          modifiers='score'
           value={`${props.vote.total_score}/${props.contest.max_judging_score}`}
         />
       </div>
