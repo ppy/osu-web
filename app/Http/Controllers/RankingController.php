@@ -293,6 +293,7 @@ class RankingController extends Controller
             ['path' => route('rankings', [
                 'filter' => $this->params['filter'],
                 'mode' => $mode,
+                'sort' => $sort,
                 'type' => $type,
                 'variant' => $this->params['variant'],
             ])]
