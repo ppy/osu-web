@@ -47,11 +47,8 @@ export default function Event(props: Props) {
             : <StringWithComponent
               mappings={{
                 user: (<UserLink
-                  className={'mp-history-event__username'}
-                  user={{
-                    id: user.id,
-                    username: user.username,
-                  }}
+                  className='mp-history-event__username'
+                  user={user}
                 />),
               }}
               pattern={trans(`matches.match.events.${eventType}`)} />
