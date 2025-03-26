@@ -38,6 +38,9 @@ export default class Main extends React.Component<Props> {
       <>
         <div className='contest-judge contest-judge--header'>
           {this.renderShowJudgedToggle()}
+          {!this.props.store.canJudge && (
+            <span>{trans('authorization.contest.judging_not_active')}</span>
+          )}
         </div>
 
         <div className='contest-judge contest-judge--items'>
