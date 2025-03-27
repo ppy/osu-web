@@ -53,7 +53,7 @@ class SpotlightFactory extends Factory
     {
         $chartMonth = Carbon::instance($this->faker->dateTimeBetween('-6 years'))->endOfYear();
 
-        return [
+        return $this->state([
             'active' => true,
             'chart_month' => $chartMonth,
             'mode_specific' => true,
@@ -62,6 +62,6 @@ class SpotlightFactory extends Factory
             'acronym' => fn (array $attr) => "BEST{$attr['chart_month']->format('Y')}",
             'name' => fn (array $attr) => "Best of {$attr['chart_month']->format('Y')}",
             'start_date' => fn (array $attr) => $attr['chart_month']->copy()->addMonths(1)->addDays(rand(0, 27)),
-        ];
+        ]);
     }
 }

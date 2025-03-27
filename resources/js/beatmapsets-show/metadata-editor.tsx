@@ -124,7 +124,7 @@ export default class MetadataEditor extends React.Component<Props> {
         {this.canEditTags &&
           <label className='simple-form__row'>
             <div className='simple-form__label'>
-              {trans('beatmapsets.show.info.tags')}
+              {trans('beatmapsets.show.info.mapper_tags')}
             </div>
 
             <textarea

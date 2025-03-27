@@ -39,7 +39,14 @@ function getAllMesssages() {
 }
 
 function generateTranslations() {
-  spawnSync('php', [path.resolve(rootPath, 'artisan'), 'lang:js', '--json', messagesPath], { stdio: 'inherit' });
+  spawnSync('php', [
+    path.resolve(rootPath, 'artisan'),
+    'lang:js',
+    '--json',
+    messagesPath,
+    '--source',
+    path.resolve(rootPath, 'resources/lang'),
+  ], { stdio: 'inherit' });
 }
 
 function writeTranslations(languages) {
