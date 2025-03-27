@@ -5,6 +5,7 @@
 
 use App\Exceptions\FastImagesizeFetchException;
 use App\Exceptions\HasExtraExceptionData;
+use App\Exceptions\InvariantException;
 use App\Http\Controllers\RankingController;
 use App\Libraries\Base64Url;
 use App\Libraries\LocaleMeta;
@@ -968,6 +969,10 @@ function ujs_redirect($url, $status = 200)
 function std_dev(array $values): array
 {
     $size = count($values);
+    if ($size < 1) {
+        throw new InvariantException('std_dev requires sample size > 0');
+    }
+
     $mean = array_sum($values) / $size;
 
     return [
