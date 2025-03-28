@@ -134,7 +134,7 @@ class Contest extends Model
 
     public function isJudgingActive(): bool
     {
-        return $this->isJudged() && $this->isVotingStarted() && !$this->show_votes;
+        return $this->isJudged() && $this->isVotingOpen() && !$this->show_votes;
     }
 
     public function isSubmittedBeatmaps(): bool

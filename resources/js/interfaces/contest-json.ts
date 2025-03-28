@@ -5,6 +5,9 @@ import ContestEntryJson, { ContestEntryJsonForResults } from './contest-entry-js
 import ContestScoringCategoryJson from './contest-scoring-category-json';
 
 interface ContestJsonAvailableIncludes {
+  current_user_attributes: {
+    can_judge: boolean;
+  };
   entries: ContestEntryJson[];
   max_judging_score: number;
   max_total_score: number;
@@ -26,4 +29,4 @@ export type ContestJsonForResults = ContestJsonDefaultAttributes
 };
 
 export type ContestJsonForStore = ContestJsonDefaultAttributes
-& Required<Pick<ContestJsonAvailableIncludes, 'entries' | 'scoring_categories'>>;
+& Required<Pick<ContestJsonAvailableIncludes, 'current_user_attributes' | 'entries' | 'scoring_categories'>>;
