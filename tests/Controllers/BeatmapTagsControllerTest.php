@@ -20,7 +20,17 @@ class BeatmapTagsControllerTest extends TestCase
     private Beatmap $beatmap;
     private BeatmapTag $beatmapTag;
 
-    public function testStore(): void
+    public function testDestroy(): void
+    {
+        $this->expectCountChange(fn () => BeatmapTag::count(), -1);
+
+        $this->actAsScopedUser($this->beatmapTag->user);
+        $this
+            ->delete(route('api.beatmaps.tags.destroy', ['beatmap' => $this->beatmap->getKey(), 'tag' => $this->tag->getKey()]))
+            ->assertSuccessful();
+    }
+
+    public function testUpdate(): void
     {
         $user = User::factory()
             ->has(Score::factory()->state(['beatmap_id' => $this->beatmap]), 'soloScores')
@@ -34,7 +44,7 @@ class BeatmapTagsControllerTest extends TestCase
             ->assertSuccessful();
     }
 
-    public function testStoreNoScore(): void
+    public function testUpdateNoScore(): void
     {
         $this->expectCountChange(fn () => BeatmapTag::count(), 0);
 
@@ -44,14 +54,19 @@ class BeatmapTagsControllerTest extends TestCase
             ->assertForbidden();
     }
 
-    public function testDestroy(): void
+    public function testUpdateWrongRulesetId(): void
     {
-        $this->expectCountChange(fn () => BeatmapTag::count(), -1);
+        $user = User::factory()
+            ->has(Score::factory()->state(['beatmap_id' => $this->beatmap]), 'soloScores')
+            ->create();
 
-        $this->actAsScopedUser($this->beatmapTag->user);
+        $this->expectCountChange(fn () => BeatmapTag::count(), 0);
+
+        $this->actAsScopedUser($user);
+        $tag = Tag::factory()->state(['ruleset_id' => 1])->create();
         $this
-            ->delete(route('api.beatmaps.tags.destroy', ['beatmap' => $this->beatmap->getKey(), 'tag' => $this->tag->getKey()]))
-            ->assertSuccessful();
+            ->put(route('api.beatmaps.tags.update', ['beatmap' => $this->beatmap->getKey(), 'tag' => $tag->getKey()]))
+            ->assertStatus(422);
     }
 
     protected function setUp(): void
@@ -59,7 +74,7 @@ class BeatmapTagsControllerTest extends TestCase
         parent::setUp();
 
         $this->tag = Tag::factory()->create();
-        $this->beatmap = Beatmap::factory()->create();
+        $this->beatmap = Beatmap::factory()->state(['playmode' => 0])->create();
         $this->beatmapTag = BeatmapTag::factory()->create([
             'tag_id' => $this->tag,
             'beatmap_id' => $this->beatmap,
