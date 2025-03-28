@@ -94,17 +94,22 @@ return [
             'title' => 'Manage Members',
 
             'applications' => [
+                'accept_confirm' => 'Add user :user to team?',
+                'created_at' => 'Requested At',
                 'empty' => 'No join requests at the moment.',
                 'empty_slots' => 'Available slots',
                 'empty_slots_overflow' => ':count_delimited user overflow|:count_delimited users overflow',
+                'reject_confirm' => 'Deny join request from user :user?',
                 'title' => 'Join Requests',
-                'created_at' => 'Requested At',
             ],
 
             'table' => [
-                'status' => 'Status',
                 'joined_at' => 'Join Date',
                 'remove' => 'Remove',
+                'remove_confirm' => 'Remove user :user from team?',
+                'set_leader' => 'Transfer team leadership',
+                'set_leader_confirm' => 'Transfer team leadership to user :user?',
+                'status' => 'Status',
                 'title' => 'Current Members',
             ],
 
@@ -112,6 +117,10 @@ return [
                 'status_0' => 'Inactive',
                 'status_1' => 'Active',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => 'User :user is now the team leader.',
         ],
     ],
 

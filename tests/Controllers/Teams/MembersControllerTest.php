@@ -26,4 +26,35 @@ class MembersControllerTest extends TestCase
             ->delete(route('teams.members.destroy', ['team' => $team->getKey(), 'member' => $userId]))
             ->assertStatus(204);
     }
+
+    public function testSetLeader(): void
+    {
+        $team = Team::factory()->create();
+        $initialLeader = $team->leader;
+        $user = User::factory()->create();
+        $application = $team->applications()->create(['user_id' => $user->getKey()]);
+        $team->addMember($application);
+
+        $this
+            ->actingAsVerified($user)
+            ->get(route('teams.members.index', ['team' => $team->getKey()]))
+            ->assertStatus(403);
+
+        $this
+            ->actingAsVerified($initialLeader)
+            ->post(route('teams.members.set-leader', ['team' => $team->getKey(), 'member' => $user->getKey()]))
+            ->assertRedirect();
+
+        $this->assertSame($user->getKey(), $team->fresh()->leader_id);
+
+        $this
+            ->actingAsVerified($initialLeader)
+            ->get(route('teams.members.index', ['team' => $team->getKey()]))
+            ->assertStatus(403);
+
+        $this
+            ->actingAsVerified($user)
+            ->get(route('teams.members.index', ['team' => $team->getKey()]))
+            ->assertStatus(200);
+    }
 }

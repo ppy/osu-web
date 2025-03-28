@@ -57,24 +57,43 @@
                             <span>
                                 {!! timeago($member->created_at) !!}
                             </span>
-                            <span>
-                                <form
-                                    action="{{ route('teams.members.destroy', compact('member', 'team')) }}"
-                                    class="u-contents"
-                                    data-confirm="{{ osu_trans('common.confirmation') }}"
-                                    data-reload-on-success="1"
-                                    data-remote="1"
-                                    method="POST"
+                            <form
+                                action="{{ route('teams.members.set-leader', compact('member', 'team')) }}"
+                                class="u-contents"
+                                data-turbo-confirm="{{ osu_trans(
+                                    'teams.members.index.table.set_leader_confirm',
+                                    ['user' => $user->username],
+                                ) }}"
+                                method="POST"
+                            >
+                                <button
+                                    class="btn-osu-big btn-osu-big--rounded-small"
+                                    {{ $member->user_id === $team->leader_id ? 'disabled' : '' }}
+                                    title="{{ osu_trans('teams.members.index.table.set_leader') }}"
                                 >
-                                    <input type="hidden" name="_method" value="DELETE" />
-                                    <button
-                                        class="btn-osu-big btn-osu-big--rounded-small"
-                                        {{ $member->user_id === $team->leader_id ? 'disabled' : '' }}
-                                    >
-                                        {{ osu_trans('teams.members.index.table.remove') }}
-                                    </button>
-                                </form>
-                            </span>
+                                    <span class="fas fa-fw fa-user-cog"></span>
+                                </button>
+                            </form>
+                            <form
+                                action="{{ route('teams.members.destroy', compact('member', 'team')) }}"
+                                class="u-contents"
+                                data-confirm="{{ osu_trans(
+                                    'teams.members.index.table.remove_confirm',
+                                    ['user' => $user->username],
+                                ) }}"
+                                data-reload-on-success="1"
+                                data-remote="1"
+                                method="POST"
+                            >
+                                <input type="hidden" name="_method" value="DELETE" />
+                                <button
+                                    class="btn-osu-big btn-osu-big--rounded-small"
+                                    {{ $member->user_id === $team->leader_id ? 'disabled' : '' }}
+                                    title="{{ osu_trans('teams.members.index.table.remove') }}"
+                                >
+                                    <span class="fas fa-fw fa-times"></span>
+                                </button>
+                            </form>
                     @endforeach
                 </ul>
             </div>
@@ -96,7 +115,7 @@
                 @if ($team->applications->isEmpty())
                     {{ osu_trans('teams.members.index.applications.empty') }}
                 @else
-                    <ul class="team-members-manage">
+                    <ul class="team-members-manage team-members-manage--applications">
                         <li class="team-members-manage__item team-members-manage__item--header">
                             <span></span>
                             <span>{{ osu_trans('teams.members.index.applications.created_at') }}</span>
@@ -131,7 +150,10 @@
                                     <form
                                         action="{{ route('teams.applications.accept', compact('application', 'team')) }}"
                                         class="u-contents"
-                                        data-confirm="{{ osu_trans('common.confirmation') }}"
+                                        data-confirm="{{ osu_trans(
+                                            'teams.members.index.applications.accept_confirm',
+                                            ['user' => $user->username],
+                                        ) }}"
                                         data-reload-on-success="1"
                                         data-remote="1"
                                         method="POST"
@@ -145,7 +167,10 @@
                                     <form
                                         action="{{ route('teams.applications.reject', compact('application', 'team')) }}"
                                         class="u-contents"
-                                        data-confirm="{{ osu_trans('common.confirmation') }}"
+                                        data-confirm="{{ osu_trans(
+                                            'teams.members.index.applications.reject_confirm',
+                                            ['user' => $user->username],
+                                        ) }}"
                                         data-reload-on-success="1"
                                         data-remote="1"
                                         method="POST"

@@ -48,4 +48,24 @@ class MembersController extends Controller
 
         return ext_view('teams.members.index', compact('team'));
     }
+
+    public function setLeader(string $teamId, string $userId): Response
+    {
+        $teamMember = TeamMember::where([
+            'team_id' => $teamId,
+            'user_id' => $userId,
+        ])->firstOrFail();
+        $team = $teamMember->team;
+
+        priv_check('TeamUpdate', $team)->ensureCan();
+
+        $team->update(['leader_id' => $teamMember->user_id]);
+
+        \Session::flash('popup', osu_trans(
+            'teams.members.set_leader.success',
+            ['user' => $teamMember->userOrDeleted()->username],
+        ));
+
+        return ujs_redirect(route('teams.show', $teamMember->team));
+    }
 }
