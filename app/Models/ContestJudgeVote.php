@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property \Carbon\Carbon|null $created_at
  * @property-read ContestEntry $entry
  * @property int $id
+ * @property float $total_score_std
  * @property \Carbon\Carbon|null $updated_at
  * @property-read User $user
  * @property int $user_id
@@ -42,5 +43,14 @@ class ContestJudgeVote extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function calculateScore(): void
+    {
+        $judge = ContestJudge::where(['contest_id' => $this->entry->contest_id, 'user_id' => $this->user_id])->first();
+
+        if ($judge->std_dev !== null) {
+            $this->update(['total_score_std' => $judge->std_dev === 0.0 ? 0 : ($this->totalScore() - $judge->mean) / $judge->std_dev]);
+        }
     }
 }
