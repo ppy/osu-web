@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * @property int $id
  * @property string $name
+ * @property ?int $ruleset_id
  * @property string $description
  * @property-read Collection<BeatmapTag> $beatmapTags
  */
