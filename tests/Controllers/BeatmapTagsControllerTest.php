@@ -54,12 +54,27 @@ class BeatmapTagsControllerTest extends TestCase
             ->assertForbidden();
     }
 
+    public function testUpdateWrongRulesetId(): void
+    {
+        $user = User::factory()
+            ->has(Score::factory()->state(['beatmap_id' => $this->beatmap]), 'soloScores')
+            ->create();
+
+        $this->expectCountChange(fn () => BeatmapTag::count(), 0);
+
+        $this->actAsScopedUser($user);
+        $tag = Tag::factory()->state(['ruleset_id' => 1])->create();
+        $this
+            ->put(route('api.beatmaps.tags.update', ['beatmap' => $this->beatmap->getKey(), 'tag' => $tag->getKey()]))
+            ->assertStatus(422);
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->tag = Tag::factory()->create();
-        $this->beatmap = Beatmap::factory()->create();
+        $this->beatmap = Beatmap::factory()->state(['playmode' => 0])->create();
         $this->beatmapTag = BeatmapTag::factory()->create([
             'tag_id' => $this->tag,
             'beatmap_id' => $this->beatmap,
