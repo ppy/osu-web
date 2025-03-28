@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 /**
+ * @property string $colour_tier
  * @property int $id
  * @property string $image_url
  * @property string $name

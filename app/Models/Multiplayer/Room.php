@@ -8,6 +8,7 @@ namespace App\Models\Multiplayer;
 use App\Casts\PresentString;
 use App\Exceptions\AuthorizationException;
 use App\Exceptions\InvariantException;
+use App\Libraries\User\SeasonStats;
 use App\Models\Beatmap;
 use App\Models\Chat\Channel;
 use App\Models\Model;
@@ -482,6 +483,8 @@ class Room extends Model
                 $seasonScore->season()->associate($this->season);
                 $seasonScore->calculate();
                 $seasonScore->save();
+
+                (new SeasonStats($user, $this->season))->resetCache();
             }
 
             return $scoreLink;
