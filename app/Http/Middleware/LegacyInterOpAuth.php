@@ -21,7 +21,7 @@ class LegacyInterOpAuth
     public function handle($request, Closure $next)
     {
         $timestamp = $request->query('timestamp');
-        $diff = Carbon::createFromTimestamp($timestamp)->diffInSeconds();
+        $diff = Carbon::createFromTimestamp($timestamp)->diffInSeconds(absolute: true);
         $signature = $request->header('X-LIO-Signature');
         // don't use $request->fullUrl() because it returns normalised url.
         $fullUrl = $request->getSchemeAndHttpHost().$request->getRequestUri();
