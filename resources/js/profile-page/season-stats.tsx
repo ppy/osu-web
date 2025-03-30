@@ -102,6 +102,7 @@ export default class SeasonStats extends React.Component<Props> {
       overwrite: false,
       position: {
         adjust: {
+          method: 'shift flip',
           scroll: false,
         },
         at: 'top center',
