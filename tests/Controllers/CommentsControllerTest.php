@@ -10,6 +10,7 @@ use App\Models\Comment;
 use App\Models\Follow;
 use App\Models\Notification;
 use App\Models\User;
+use App\Models\UserNotification;
 use Tests\TestCase;
 
 class CommentsControllerTest extends TestCase
@@ -80,6 +81,31 @@ class CommentsControllerTest extends TestCase
 
         $this->assertSame($previousComments + 1, Comment::count());
         $this->assertSame($previousNotifications + 1, Notification::count());
+    }
+
+    public function testStoreBlockedUser(): void
+    {
+        $this->prepareForStore();
+        $otherUser = User::factory()->create();
+
+        $follow = Follow::create([
+            'notifiable' => $this->beatmapset,
+            'subtype' => 'comment',
+            'user' => $otherUser,
+        ]);
+        $otherUser->relations()->create([
+            'foe' => true,
+            'zebra_id' => $this->user->getKey(),
+        ]);
+
+        $this->expectCountChange(fn () => Comment::count(), 1);
+        $this->expectCountChange(fn () => Notification::count(), 0);
+        $this->expectCountChange(fn () => UserNotification::count(), 0);
+
+        $this
+            ->be($this->user)
+            ->post(route('comments.store'), $this->params)
+            ->assertSuccessful();
     }
 
     public function testStoreDownloadLimitedBeatmapset()
