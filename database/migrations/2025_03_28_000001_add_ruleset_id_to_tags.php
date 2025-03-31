@@ -16,14 +16,12 @@ return new class extends Migration
         Schema::table('tags', function (Blueprint $table) {
             $table->smallInteger('ruleset_id')->nullable()->unsigned()->after('name');
             $table->dropIndex('tags_name_unique');
-            $table->unique(['name', 'ruleset_id'], 'tags_name_ruleset_id_unique');
         });
     }
 
     public function down(): void
     {
         Schema::table('tags', function (Blueprint $table) {
-            $table->dropIndex('tags_name_ruleset_id_unique');
             $table->unique('name', 'tags_name_unique');
             $table->dropColumn('ruleset_id');
         });
