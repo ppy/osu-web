@@ -236,7 +236,7 @@ class UserTest extends TestCase
     public function testUsernameChangeCostWindow(int $years, int $cost)
     {
         $now = CarbonImmutable::now();
-        $this->travelTo(CarbonImmutable::now()->subYearsNoOverflow(3));
+        $this->travelTo($now->subYearsNoOverflow(3));
 
         $user = User::factory()->create();
         // every 6 months for 3 years = 6
