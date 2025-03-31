@@ -38,8 +38,8 @@ class BeatmapTagsControllerTest extends TestCase
     }
 
      /**
-     * @dataProvider dataProviderForUpdate
-     */
+      * @dataProvider dataProviderForUpdate
+      */
     public function testUpdate(int $beatmapRulesetId, ?int $tagRulesetId, bool $successful): void
     {
         $tag = Tag::factory()->state(['ruleset_id' => $tagRulesetId])->create();
