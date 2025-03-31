@@ -239,14 +239,16 @@ class UserTest extends TestCase
         $this->travelTo(CarbonImmutable::now()->subYears(3));
 
         $user = User::factory()->create();
-        while (CarbonImmutable::now()->isBefore($now)) {
+        // every 6 months for 3 years = 6
+        // using isBefore to setup adds too many when run at month boundaries.
+        for ($i = 0; $i < 6; $i++) {
             $user->usernameChangeHistory()->create([
                 'timestamp' => CarbonImmutable::now(),
                 'type' => 'paid',
                 'username' => 'marty',
             ]);
 
-            $this->travelTo(CarbonImmutable::now()->addMonths(6));
+            $this->travelTo(CarbonImmutable::now()->addMonthsNoOverflow(6));
         }
 
         $this->travelTo($now->addYears($years));
