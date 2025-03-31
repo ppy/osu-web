@@ -145,7 +145,7 @@ class UserTest extends TestCase
     public function testUsernameAvailableAtForDefaultGroup()
     {
         config_set('osu.user.allowed_rename_groups', ['default']);
-        $allowedAtUpTo = now()->addYears(5);
+        $allowedAtUpTo = now()->addYearsNoOverflow(5);
         $user = User::factory()->withGroup('default')->create();
 
         $this->assertLessThanOrEqual($allowedAtUpTo, $user->getUsernameAvailableAt());
@@ -154,7 +154,7 @@ class UserTest extends TestCase
     public function testUsernameAvailableAtForNonDefaultGroup()
     {
         config_set('osu.user.allowed_rename_groups', ['default']);
-        $allowedAt = now()->addYears(10);
+        $allowedAt = now()->addYearsNoOverflow(10);
         $user = User::factory()->withGroup('gmt')->create(['group_id' => app('groups')->byIdentifier('default')]);
 
         $this->assertGreaterThanOrEqual($allowedAt, $user->getUsernameAvailableAt());
@@ -185,11 +185,11 @@ class UserTest extends TestCase
         ]);
 
         // 1 change in last 3 years
-        $this->travelTo(CarbonImmutable::now()->addYears(3));
+        $this->travelTo(CarbonImmutable::now()->addYearsNoOverflow(3));
         $this->assertSame(8, $user->usernameChangeCost());
 
         // 0 changes in last 3 years
-        $this->travelTo(CarbonImmutable::now()->addYears(1));
+        $this->travelTo(CarbonImmutable::now()->addYearsNoOverflow(1));
         $this->assertSame(8, $user->usernameChangeCost());
 
         $user->usernameChangeHistory()->create([
@@ -211,10 +211,10 @@ class UserTest extends TestCase
         $this->assertSame(16, $user->usernameChangeCost());
 
         // 1 changes in last 3 years
-        $this->travelTo(CarbonImmutable::now()->addYears(3));
+        $this->travelTo(CarbonImmutable::now()->addYearsNoOverflow(3));
         $this->assertSame(8, $user->usernameChangeCost());
         // 0 changes in last 3 years
-        $this->travelTo(CarbonImmutable::now()->addYears(1));
+        $this->travelTo(CarbonImmutable::now()->addYearsNoOverflow(1));
         $this->assertSame(8, $user->usernameChangeCost());
     }
 
