@@ -44,7 +44,7 @@ class BeatmapTagsController extends Controller
         $tag = Tag::findOrFail($tagId);
 
         if ($tag->ruleset_id !== null && $tag->ruleset_id !== $beatmap->playmode) {
-            throw new InvariantException();
+            throw new InvariantException(osu_trans('beatmap_tags.update.invalid_ruleset'));
         }
 
         $tag
