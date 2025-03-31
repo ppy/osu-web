@@ -106,9 +106,9 @@ class XsollaController extends Controller
     public function completed()
     {
         $orderNumber = Request::input('foreignInvoice') ?? '';
-        $order = OrderCheckout::for($orderNumber)->completeCheckout();
+        $order = Order::whereOrderNumber($orderNumber)->firstOrFail();
 
-        return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
+        return redirect(route('store.invoice.show', ['invoice' => $order->getKey(), 'thanks' => 1]));
     }
 
     private function errorResponse(string $message, string $code, int $status)
