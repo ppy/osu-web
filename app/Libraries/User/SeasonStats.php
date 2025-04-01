@@ -31,6 +31,7 @@ class SeasonStats
         }
 
         $rank = $this->season->userScores()
+            ->whereHas('user', fn ($q) => $q->default())
             ->where('total_score', '>', $score->total_score)
             ->count() + 1;
 
