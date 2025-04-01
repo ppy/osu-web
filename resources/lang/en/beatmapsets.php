@@ -140,6 +140,7 @@ return [
             'description' => 'Description',
             'genre' => 'Genre',
             'language' => 'Language',
+            'mapper_tags' => 'Mapper Tags',
             'no_scores' => 'Data still being calculated...',
             'nominators' => 'Nominators',
             'nsfw' => 'Explicit content',
@@ -148,9 +149,8 @@ return [
             'source' => 'Source',
             'storyboard' => 'This beatmap contains storyboard',
             'success-rate' => 'Success Rate',
-            'video' => 'This beatmap contains video',
             'user_tags' => 'User Tags',
-            'mapper_tags' => 'Mapper Tags',
+            'video' => 'This beatmap contains video',
         ],
 
         'nsfw_warning' => [
