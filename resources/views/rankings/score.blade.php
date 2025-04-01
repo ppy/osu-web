@@ -17,7 +17,7 @@
     <table class="ranking-page-table">
         <thead>
             <tr>
-                <th class="ranking-page-table__heading"></th>
+                <th></th>
                 <th class="ranking-page-table__heading ranking-page-table__heading--main"></th>
                 <th class="ranking-page-table__heading">
                     {{ osu_trans('rankings.stat.accuracy') }}
@@ -43,12 +43,15 @@
             </tr>
         </thead>
         <tbody>
+            @php
+                $firstItem = $scores->firstItem();
+            @endphp
             @foreach ($scores as $index => $score)
-                <tr class="ranking-page-table__row{{$score->user->isActive() ? '' : ' ranking-page-table__row--inactive'}}">
-                    <td class="ranking-page-table__column ranking-page-table__column--rank">
-                        #{{ $scores->firstItem() + $index }}
-                    </td>
+                <tr class="{{ class_with_modifiers('ranking-page-table__row', ['inactive' => !$score->user->isActive()]) }}">
                     <td class="ranking-page-table__column">
+                        #{{ i18n_number_format($firstItem + $index) }}
+                    </td>
+                    <td class="ranking-page-table__column ranking-page-table__column--main">
                         <div class="ranking-page-table__user-link">
                             <span class="ranking-page-table__flags">
                                 <a class="u-contents" href="{{route('rankings', ['mode' => $mode, 'type' => 'performance', 'country' => $score->user->country_acronym])}}">
@@ -57,14 +60,15 @@
                                     ])
                                 </a>
                                 @if (($team = $score->user->team) !== null)
-                                    <a class="u-contents u-hover" href="{{ route('teams.show', $team) }}">
+                                    <a class="u-contents" href="{{ route('teams.show', $team) }}">
                                         @include('objects._flag_team', compact('team'))
                                     </a>
                                 @endif
                             </span>
                             <a
                                 href="{{ route('users.show', ['user' => $score->user_id, 'mode' => $mode]) }}"
-                                class="ranking-page-table__user-link-text js-usercard"
+                                class="u-ellipsis-overflow js-usercard"
+                                data-overflow-tooltip-disabled="1"
                                 data-user-id="{{ $score->user_id }}"
                                 data-tooltip-position="right center"
                             >
@@ -81,7 +85,7 @@
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {!! suffixed_number_format_tag($score->total_score) !!}
                     </td>
-                    <td class="ranking-page-table__column ranking-page-table__column--focused">
+                    <td class="ranking-page-table__column">
                         {!! suffixed_number_format_tag($score->ranked_score) !!}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">

@@ -4,14 +4,6 @@
 --}}
 @extends('rankings.index')
 
-@php
-    $variants = App\Models\Beatmap::VARIANTS[$mode] ?? null;
-
-    if ($variants !== null) {
-        array_unshift($variants, 'all');
-    }
-@endphp
-
 @section('ranking-header')
     <div class="osu-page osu-page--ranking-info">
         <div class="grid-items grid-items--ranking-filter">
@@ -19,6 +11,12 @@
 
             @include('rankings._user_filter')
 
+            @php
+                $variants = App\Models\Beatmap::VARIANTS[$mode] ?? null;
+                if ($variants !== null) {
+                    array_unshift($variants, 'all');
+                }
+            @endphp
             @if ($variants !== null)
                 <div class="js-react--ranking-variant-filter u-contents">
                     <div class="ranking-filter">
@@ -53,9 +51,9 @@
     <table class="ranking-page-table">
         <thead>
             <tr>
-                <th class="ranking-page-table__heading"></th>
+                <th></th>
                 @if ($showRankChange)
-                    <th colspan="2"></th>
+                    <th></th>
                 @endif
                 <th class="ranking-page-table__heading ranking-page-table__heading--main"></th>
                 <th class="ranking-page-table__heading">
@@ -79,10 +77,13 @@
             </tr>
         </thead>
         <tbody>
+            @php
+                $firstItem = $scores->firstItem();
+            @endphp
             @foreach ($scores as $index => $score)
-                <tr class="ranking-page-table__row{{$score->user->isActive() ? '' : ' ranking-page-table__row--inactive'}}">
-                    <td class="ranking-page-table__column ranking-page-table__column--rank">
-                        #{{ $scores->firstItem() + $index }}
+                <tr class="{{ class_with_modifiers('ranking-page-table__row', ['inactive' => !$score->user->isActive()]) }}">
+                    <td class="ranking-page-table__column">
+                        #{{ i18n_number_format($firstItem + $index) }}
                     </td>
                     @if ($showRankChange)
                         @php
@@ -95,18 +96,17 @@
                             };
                         @endphp
                         <td
-                            class="{{ class_with_modifiers('ranking-page-table__column', 'rank-change-icon', $modifier) }}"
+                            class="{{ class_with_modifiers('ranking-page-table__column', ['rank-change', $modifier]) }}"
                             @if ($rankChange === null)
                                 title="{{ osu_trans('rankings.performance.insufficient_history') }}"
                             @endif
-                        ></td>
-                        <td class="{{ class_with_modifiers('ranking-page-table__column', 'rank-change-value', $modifier) }}">
-                            @if ($rankChange)
+                        >
+                            @if ($rankChange !== null && $rankChange !== 0)
                                 {{ i18n_number_format(abs($rankChange)) }}
                             @endif
                         </td>
                     @endif
-                    <td class="ranking-page-table__column">
+                    <td class="ranking-page-table__column ranking-page-table__column--main">
                         <div class="ranking-page-table__user-link">
                             <span class="ranking-page-table__flags">
                                 <a
@@ -130,10 +130,11 @@
                                 @endif
                             </span>
                             <a
-                                href="{{ route('users.show', ['user' => $score->user_id, 'mode' => $mode]) }}"
-                                class="ranking-page-table__user-link-text js-usercard"
-                                data-user-id="{{ $score->user_id }}"
+                                class="u-ellipsis-overflow js-usercard"
+                                data-overflow-tooltip-disabled="1"
                                 data-tooltip-position="right center"
+                                data-user-id="{{ $score->user_id }}"
+                                href="{{ route('users.show', ['user' => $score->user_id, 'mode' => $mode]) }}"
                             >
                                 {{ $score->user->username }}
                             </a>
@@ -145,7 +146,7 @@
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ i18n_number_format($score->playcount) }}
                     </td>
-                    <td class="ranking-page-table__column ranking-page-table__column--focused">
+                    <td class="ranking-page-table__column">
                         {{ i18n_number_format(round($score->rank_score)) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">

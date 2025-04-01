@@ -5,7 +5,7 @@
 <table class="ranking-page-table">
     <thead>
         <tr>
-            <th class="ranking-page-table__heading"></th>
+            <th></th>
             <th class="ranking-page-table__heading ranking-page-table__heading--main"></th>
             <th class="ranking-page-table__heading">
                 {{ osu_trans('rankings.stat.accuracy') }}
@@ -19,21 +19,22 @@
         </tr>
     </thead>
     <tbody>
+        @php
+            // -1 due to userScore being prepended
+            $firstItem = $scores->firstItem() - 1;
+        @endphp
         @foreach ([$userScore, ...$scores] as $index => $score)
             @if ($score === null)
                 @continue
             @endif
-            @php
-                $rank = $loop->first
-                    ? $score->userRank()
-                    // -1 due to userScore being prepended
-                    : $scores->firstItem() + $index - 1;
-            @endphp
-            <tr class="ranking-page-table__row{{$score->user->isActive() ? '' : ' ranking-page-table__row--inactive'}}">
-                <td class="ranking-page-table__column ranking-page-table__column--rank">
-                    #{{ $rank }}
-                </td>
+            <tr class="{{ class_with_modifiers('ranking-page-table__row', ['inactive' => !$score->user->isActive()]) }}">
                 <td class="ranking-page-table__column">
+                    #{{ i18n_number_format($loop->first
+                        ? $score->userRank()
+                        : $firstItem + $index
+                    ) }}
+                </td>
+                <td class="ranking-page-table__column ranking-page-table__column--main">
                     <div class="ranking-page-table__user-link">
                         <span class="ranking-page-table__flags">
                             @include('objects._flag_country', [
@@ -46,10 +47,11 @@
                             @endif
                         </span>
                         <a
-                            href="{{ route('users.show', ['user' => $score->user_id, 'mode' => $mode ?? null]) }}"
-                            class="ranking-page-table__user-link-text js-usercard"
-                            data-user-id="{{ $score->user_id }}"
+                            class="u-ellipsis-overflow js-usercard"
+                            data-overflow-tooltip-disabled="1"
                             data-tooltip-position="right center"
+                            data-user-id="{{ $score->user_id }}"
+                            href="{{ route('users.show', ['user' => $score->user_id, 'mode' => $mode ?? null]) }}"
                         >
                             {{ $score->user->username }}
                         </a>
@@ -61,7 +63,7 @@
                 <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                     {{ i18n_number_format($score->attempts) }}
                 </td>
-                <td class="ranking-page-table__column ranking-page-table__column--focused">
+                <td class="ranking-page-table__column">
                     {!! i18n_number_format($score->total_score) !!}
                 </td>
             </tr>

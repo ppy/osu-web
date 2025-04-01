@@ -2,9 +2,6 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@php
-    use App\Http\Controllers\RankingController;
-@endphp
 @extends('rankings.index', ['hasFilter' => false])
 
 @section('scores-header')
@@ -16,7 +13,7 @@
             @foreach ([['performance', 'performance'], ['score', 'ranked_score']] as $newSort)
                 <a
                     class="{{ class_with_modifiers('sort__item', 'button', ['active' => $newSort[0] === $sort]) }}"
-                    href="{{ RankingController::url('team', $mode, sort: $newSort[0]) }}"
+                    href="{{ App\Http\Controllers\RankingController::url('team', $mode, sort: $newSort[0]) }}"
                 >
                     {{ osu_trans("rankings.stat.{$newSort[1]}") }}
                 </a>
@@ -28,7 +25,7 @@
     <table class="ranking-page-table">
         <thead>
             <tr>
-                <th class="ranking-page-table__heading"></th>
+                <th></th>
                 <th class="ranking-page-table__heading ranking-page-table__heading--main"></th>
                 <th class="ranking-page-table__heading">
                     {{ osu_trans('rankings.stat.members') }}
@@ -48,48 +45,43 @@
             </tr>
         </thead>
         <tbody>
+            @php
+                $firstItem = $scores->firstItem();
+            @endphp
             @foreach ($scores as $index => $score)
                 <tr class="ranking-page-table__row">
-                    <td class="ranking-page-table__column ranking-page-table__column--rank">
-                        #{{ $scores->firstItem() + $index }}
-                    </td>
                     <td class="ranking-page-table__column">
-                        <div class="ranking-page-table__user-link">
-                            @php
-                                $url = route('teams.leaderboard', [
-                                    'ruleset' => $mode,
-                                    'team' => $score->team->getKey(),
-                                ]);
-                            @endphp
-                            <div class="ranking-page-table__flags">
-                                <a class="u-contents" href="{{ $url }}">
-                                    @include('objects._flag_team', ['team' => $score->team])
-                                </a>
-                            </div>
-                            <a class="ranking-page-table__user-link-text u-ellipsis-overflow" href="{{ $url }}">
-                                {{ $score->team->name }}
-                            </a>
-                        </div>
+                        #{{ i18n_number_format($firstItem + $index) }}
                     </td>
-                    <td class="ranking-page-table__column ranking-page-table__column--value ranking-page-table__column--dimmed">
+                    <td class="ranking-page-table__column ranking-page-table__column--main">
+                        <a
+                            class="ranking-page-table__user-link"
+                            href="{{ route('teams.leaderboard', [
+                                'ruleset' => $mode,
+                                'team' => $score->team->getKey(),
+                            ]) }}"
+                        >
+                            <span class="ranking-page-table__flags">
+                                @include('objects._flag_team', ['team' => $score->team])
+                            </span>
+                            <span class="u-ellipsis-overflow">
+                                {{ $score->team->name }}
+                            </span>
+                        </a>
+                    </td>
+                    <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ i18n_number_format($score->members_count) }}
                     </td>
-                    <td class="ranking-page-table__column ranking-page-table__column--value ranking-page-table__column--dimmed">
+                    <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ i18n_number_format($score->play_count) }}
                     </td>
-                    <td class="{{ class_with_modifiers('ranking-page-table__column', [
-                        'value',
-                        $sort === 'score' ? 'focused' : 'dimmed',
-                    ]) }}">
+                    <td class="{{ class_with_modifiers('ranking-page-table__column', ['dimmed' => $sort !== 'score']) }}">
                         {{ i18n_number_format($score->ranked_score) }}
                     </td>
-                    <td class="ranking-page-table__column ranking-page-table__column--value ranking-page-table__column--dimmed">
+                    <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ i18n_number_format(round($score->ranked_score / max($score->members_count, 1))) }}
                     </td>
-                    <td class="{{ class_with_modifiers('ranking-page-table__column', [
-                        'value',
-                        $sort === 'performance' ? 'focused' : 'dimmed',
-                    ]) }}">
+                    <td class="{{ class_with_modifiers('ranking-page-table__column', ['dimmed' => $sort !== 'performance']) }}">
                         {{ i18n_number_format(round($score->performance)) }}
                     </td>
                 </tr>
