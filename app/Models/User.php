@@ -329,7 +329,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $tier = max(
             $this->usernameChangeHistory()
                 ->paid()
-                ->where('timestamp', '>', Carbon::now()->subYears(3))
+                ->where('timestamp', '>', Carbon::now()->subYearsNoOverflow(3))
                 ->count(),
             $minTier,
         );
