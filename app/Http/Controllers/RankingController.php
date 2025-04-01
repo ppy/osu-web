@@ -55,18 +55,23 @@ class RankingController extends Controller
         $this->middleware('require-scopes:public');
 
         $this->middleware(function ($request, $next) {
-            $this->params = get_params(array_merge($request->all(), $request->route()->parameters()), null, [
-                'country', // overridden later for view
-                'filter',
-                'mode',
-                'spotlight:int', // will be overriden by spotlight object for view
-                'type',
-                'variant',
-            ]);
+            $this->params = [
+                ...get_params($request->all(), null, [
+                    'country', // overridden later for view
+                    'filter',
+                    'spotlight:int', // will be overriden by spotlight object for view
+                    'variant',
+                ]),
+                ...get_params($request->route()->parameters(), null, [
+                    'mode',
+                    'sort',
+                    'type',
+                ], ['null_missing' => true]),
+            ];
 
             // these parts of the route are optional.
-            $mode = $this->params['mode'] ?? null;
-            $type = $this->params['type'] ?? null;
+            $mode = $this->params['mode'];
+            $type = $this->params['type'];
 
             $this->params['filter'] = $this->params['filter'] ?? null;
             $this->friendsOnly = auth()->check() && $this->params['filter'] === 'friends';
