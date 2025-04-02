@@ -84,6 +84,14 @@
           "playmode": {
             "type": "byte"
           },
+          "top_tags": {
+            "type": "text",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
+          },
           "total_length": {
             "type": "long"
           },

@@ -20,17 +20,17 @@ return [
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'Vytvořit tým',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => 'Jméno tvého týmu. Toto jméno je v tuto chvíli trvalé.',
+            'short_name_help' => 'Maximálně 4 znaky.',
+            'title' => "Pojďme vytvořit nový tým",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "Hraj společně s přáteli; existujícími nebo novými. V současné době nejsi v týmu. Připoj se k existujícímu týmu navštívením jejich týmové stránky nebo vytvoř svůj vlastní tým na této stránce.",
+            'title' => 'Tým!',
         ],
     ],
 
@@ -39,7 +39,7 @@ return [
     ],
 
     'edit' => [
-        'ok' => '',
+        'ok' => 'Nastavení byla úspěšně uložena.',
         'title' => 'Nastavení týmu',
 
         'description' => [
@@ -48,8 +48,8 @@ return [
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Vlajka týmu',
+            'title' => 'Nastavit vlajku týmu',
         ],
 
         'header' => [
@@ -60,8 +60,8 @@ return [
         'settings' => [
             'application_help' => 'Zdali umožnit lidem, aby mohli podávat přihlášky do týmu',
             'default_ruleset_help' => 'Ruleset, který má být automaticky vybrán při návštěvě stránky týmu',
-            'flag_help' => '',
-            'header_help' => '',
+            'flag_help' => 'Maximální velikost :width×:height',
+            'header_help' => 'Maximální velikost :width×:height',
             'title' => 'Nastavení týmu',
 
             'application_state' => [
@@ -120,7 +120,7 @@ return [
 
     'show' => [
         'bar' => [
-            'chat' => '',
+            'chat' => 'Týmový chat',
             'destroy' => 'Rozpustit tým',
             'join' => 'Požádat o připojení',
             'join_cancel' => 'Zrušit žádost',
@@ -137,12 +137,18 @@ return [
         ],
 
         'sections' => [
+            'about' => '',
             'info' => 'Info',
             'members' => 'Členové',
+        ],
+
+        'statistics' => [
+            'rank' => '',
+            'leader' => '',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'Tým vytvořen.',
     ],
 ];

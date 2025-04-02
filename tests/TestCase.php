@@ -131,7 +131,9 @@ class TestCase extends BaseTestCase
     {
         return $playlistItem->room->startPlay($user, $playlistItem, [
             'beatmap_hash' => $playlistItem->beatmap->checksum,
+            'beatmap_id' => $playlistItem->beatmap_id,
             'build_id' => 0,
+            'ruleset_id' => $playlistItem->ruleset_id,
         ]);
     }
 

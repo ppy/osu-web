@@ -201,7 +201,7 @@ return [
             'profile' => 'プロフィール',
             'scoring_mode_toggle' => 'クラシックスコアリング',
             'scoring_mode_toggle_tooltip' => 'スコア値を調整し、クラシックな無制限スコアリングに近い感覚に変える',
-            'team' => '',
+            'team' => 'チーム',
         ],
     ],
 

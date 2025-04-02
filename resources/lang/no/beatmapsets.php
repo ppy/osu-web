@@ -171,6 +171,7 @@ return [
             'global' => 'Global Rangering',
             'supporter-link' => 'Klikk <a href=":link">her</a> for å se alle de fancy funskjonene du får tildelt!',
             'supporter-only' => 'Du må være en osu!supporter for å ha tilgang til venne- og landsrangering!',
+            'team' => '',
             'title' => 'Poengliste',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Ingen av vennene dine har satt en poengsum på denne mappen enda!',
                 'global' => 'Ingen poengsummer enda. Kanskje du skulle prøve å sette noen?',
                 'loading' => 'Laster poengsummer...',
+                'team' => '',
                 'unranked' => 'Urangert beatmap.',
             ],
             'score' => [

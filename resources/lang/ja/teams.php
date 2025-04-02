@@ -20,17 +20,17 @@ return [
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'チームを作成',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => 'チーム名。現在一度決めたチーム名は変更できません。',
+            'short_name_help' => '最大 4 文字。',
+            'title' => "新しいチームを作成しましょう",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "既存のフレンドや新しいフレンドと一緒にプレイします。現在、あなたはチームに所属していません。チームページにアクセスして既存のチームに所属するか、このページからチームを作成してください。",
+            'title' => 'チーム！',
         ],
     ],
 
@@ -39,7 +39,7 @@ return [
     ],
 
     'edit' => [
-        'ok' => '',
+        'ok' => '設定が正常に保存されました。',
         'title' => 'チームの設定',
 
         'description' => [
@@ -48,8 +48,8 @@ return [
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'チームフラグ',
+            'title' => 'チームフラグを設定',
         ],
 
         'header' => [
@@ -60,8 +60,8 @@ return [
         'settings' => [
             'application_help' => 'チームへの参加申請を許可するかどうか',
             'default_ruleset_help' => 'チームのページにアクセスしたときにデフォルトで表示されるルールセット',
-            'flag_help' => '',
-            'header_help' => '',
+            'flag_help' => '最大サイズ :width×:height',
+            'header_help' => '最大サイズ :width×:height',
             'title' => 'チームの設定',
 
             'application_state' => [
@@ -120,7 +120,7 @@ return [
 
     'show' => [
         'bar' => [
-            'chat' => '',
+            'chat' => 'チームチャット',
             'destroy' => 'チームを解散',
             'join' => '参加をリクエスト',
             'join_cancel' => 'リクエストを取り消し',
@@ -137,12 +137,18 @@ return [
         ],
 
         'sections' => [
+            'about' => '',
             'info' => '情報',
             'members' => 'メンバー',
+        ],
+
+        'statistics' => [
+            'rank' => '',
+            'leader' => '',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'チームを作成しました。',
     ],
 ];

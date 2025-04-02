@@ -140,6 +140,7 @@ return [
             'description' => 'Description',
             'genre' => 'Genre',
             'language' => 'Language',
+            'mapper_tags' => 'Mapper Tags',
             'no_scores' => 'Data still being calculated...',
             'nominators' => 'Nominators',
             'nsfw' => 'Explicit content',
@@ -148,7 +149,7 @@ return [
             'source' => 'Source',
             'storyboard' => 'This beatmap contains storyboard',
             'success-rate' => 'Success Rate',
-            'tags' => 'Tags',
+            'user_tags' => 'User Tags',
             'video' => 'This beatmap contains video',
         ],
 
@@ -171,6 +172,7 @@ return [
             'global' => 'Global Ranking',
             'supporter-link' => 'Click <a href=":link">here</a> to see all the fancy features that you get!',
             'supporter-only' => 'You need to be an osu!supporter to access the friend, country, or mod-specific rankings!',
+            'team' => 'Team Ranking',
             'title' => 'Scoreboard',
 
             'headers' => [
@@ -192,6 +194,7 @@ return [
                 'friend' => 'None of your friends have set a score on this map yet!',
                 'global' => 'No scores yet. Maybe you should try setting some?',
                 'loading' => 'Loading scores...',
+                'team' => 'No one from your team has set a score on this map yet!',
                 'unranked' => 'Unranked beatmap.',
             ],
             'score' => [

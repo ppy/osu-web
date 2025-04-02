@@ -132,16 +132,16 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => 'Este :attribute contiene caracteres no válidos.',
+        'used' => 'Este :attribute ya está en uso.',
+        'word_not_allowed' => 'Este :attribute no está permitido.',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'default_ruleset_id' => 'Modo de juego predeterminado',
+            'is_open' => 'Solicitudes para unirse al equipo',
+            'name' => 'nombre',
+            'short_name' => 'Nombre abreviado',
+            'url' => 'URL',
         ],
     ],
 

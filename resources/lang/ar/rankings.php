@@ -42,6 +42,7 @@ return [
         'performance' => 'الأداء',
         'score' => 'النقاط',
         'seasons' => 'مواسم',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'المستخدمين النشطين',
         'country' => 'الدولة',
         'division' => '',
+        'members' => '',
         'play_count' => 'مرات اللعب',
         'performance' => 'الأداء',
         'total_score' => 'مجموع النقاط',

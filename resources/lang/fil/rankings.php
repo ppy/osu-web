@@ -42,6 +42,7 @@ return [
         'performance' => 'performance',
         'score' => 'iskor',
         'seasons' => 'mga panahon',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Mga Aktibong User',
         'country' => 'Bansa',
         'division' => '',
+        'members' => '',
         'play_count' => 'Bilang ng Beses na Naglaro',
         'performance' => 'Performance',
         'total_score' => 'Kabuuang Puntos',

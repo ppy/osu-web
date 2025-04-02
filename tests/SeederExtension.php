@@ -7,24 +7,16 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use App\Models\Group;
-use Database\Seeders\ModelSeeders\GroupSeeder;
-use PHPUnit\Runner\AfterLastTestHook;
-use PHPUnit\Runner\BeforeFirstTestHook;
+use PHPUnit\Runner\Extension\Extension;
+use PHPUnit\Runner\Extension\Facade;
+use PHPUnit\Runner\Extension\ParameterCollection;
+use PHPUnit\TextUI\Configuration\Configuration;
 
-class SeederExtension implements AfterLastTestHook, BeforeFirstTestHook
+final class SeederExtension implements Extension
 {
-    public function executeAfterLastTest(): void
+    public function bootstrap(Configuration $configuration, Facade $facade, ParameterCollection $parameters): void
     {
-        TestCase::withDbAccess(function () {
-            Group::truncate();
-        });
-    }
-
-    public function executeBeforeFirstTest(): void
-    {
-        TestCase::withDbAccess(function () {
-            (new GroupSeeder())->run();
-        });
+        $facade->registerSubscriber(new SeederExtension\SeederStartSubscriber());
+        $facade->registerSubscriber(new SeederExtension\SeederEndSubscriber());
     }
 }

@@ -42,6 +42,7 @@ return [
         'performance' => 'performance',
         'score' => 'score',
         'seasons' => 'seasons',
+        'team' => 'team',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Active Users',
         'country' => 'Country',
         'division' => 'Division',
+        'members' => 'Members',
         'play_count' => 'Play Count',
         'performance' => 'Performance',
         'total_score' => 'Total Score',

@@ -7,6 +7,7 @@
 @section('ranking-header')
     <div class="osu-page osu-page--ranking-info">
         <div class="grid-items grid-items--ranking-filter">
+            @include('rankings._country_filter')
             @include('rankings._user_filter')
         </div>
     </div>

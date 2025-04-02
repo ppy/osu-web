@@ -42,6 +42,7 @@ return [
         'performance' => 'па прадукцыйнасці',
         'score' => 'па ачках',
         'seasons' => 'па сезонах',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Актыўныя карыстальнікі',
         'country' => 'Краіна',
         'division' => '',
+        'members' => '',
         'play_count' => 'Колькасць гульняў',
         'performance' => 'Прадукцыйнасць',
         'total_score' => 'Агульны вынік',

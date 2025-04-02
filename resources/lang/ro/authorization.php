@@ -206,7 +206,7 @@ return [
             'not_member' => 'Nu este membru al echipei.',
         ],
         'store' => [
-            'require_supporter_tag' => '',
+            'require_supporter_tag' => 'Statusul de suporter osu! este necesar pentru a crea o echipă.',
         ],
     ],
 

@@ -171,6 +171,7 @@ return [
             'global' => 'Globale Ranking',
             'supporter-link' => 'Klik <a href=":link">hier</a> om alle chique functies die je krijgt te zien!',
             'supporter-only' => 'Je moet een osu!supporter zijn om toegang te krijgen tot land- en vriendenrankings, net als mod-specifieke ranglijsten!',
+            'team' => '',
             'title' => 'Scorebord',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Niemand van jouw vrienden heeft nog een score behaald op deze map!',
                 'global' => 'Nog geen scores. Probeer er een paar te halen?',
                 'loading' => 'Scoren aan het laden...',
+                'team' => '',
                 'unranked' => 'Ongerankte beatmap.',
             ],
             'score' => [

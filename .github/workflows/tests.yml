@@ -152,7 +152,6 @@ jobs:
 
       - name: Setup indices
         run: |
-          php artisan es:create-search-blacklist
           php artisan es:index-documents --no-interaction
           php artisan es:index-wiki --create-only --no-interaction
 

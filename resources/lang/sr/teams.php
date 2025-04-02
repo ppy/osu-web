@@ -137,8 +137,14 @@ return [
         ],
 
         'sections' => [
+            'about' => '',
             'info' => 'Инфо',
             'members' => 'Чланови',
+        ],
+
+        'statistics' => [
+            'rank' => '',
+            'leader' => '',
         ],
     ],
 

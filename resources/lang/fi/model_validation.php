@@ -132,16 +132,16 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => 'Tämä :attribute sisältää virheellisiä merkkejä.',
+        'used' => 'Tämä :attribute valinta on jo käytössä.',
+        'word_not_allowed' => 'Tämä :attribute valinta ei ole sallittu.',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'default_ruleset_id' => 'Oletussäännöt',
+            'is_open' => 'Tiimihakemus',
+            'name' => 'Nimi',
+            'short_name' => 'Lyhytnimi',
+            'url' => 'URL',
         ],
     ],
 

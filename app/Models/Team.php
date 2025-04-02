@@ -56,6 +56,11 @@ class Team extends Model
         return $this->hasMany(TeamMember::class);
     }
 
+    public function statistics(): HasMany
+    {
+        return $this->hasMany(TeamStatistics::class);
+    }
+
     public function setDefaultRulesetIdAttribute(?int $value): void
     {
         $this->attributes['default_ruleset_id'] = Beatmap::MODES[Beatmap::modeStr($value) ?? 'osu'];
@@ -134,6 +139,7 @@ class Team extends Model
                 if ($ret) {
                     $this->applications()->delete();
                     $this->members()->delete();
+                    $this->statistics()->delete();
 
                     $channel = $this->channel;
                     if ($channel !== null) {
@@ -277,6 +283,7 @@ class Team extends Model
             return $this->getConnection()->transaction(function () use ($options) {
                 return (new Chat\Channel())->getConnection()->transaction(function () use ($options) {
                     $this->channel_id ??= 0;
+                    $this->default_ruleset_id ??= $this->leader->osu_playmode;
                     $saved = parent::save($options);
 
                     if ($saved) {

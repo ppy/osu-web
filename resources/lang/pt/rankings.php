@@ -12,8 +12,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Dificuldade',
-        'top_10p' => '',
-        'top_50p' => '',
+        'top_10p' => 'Pontuação do top 10%',
+        'top_50p' => 'Pontuação do top 50%',
     ],
 
     'filter' => [
@@ -43,6 +43,7 @@ return [
         'performance' => 'Desempenho',
         'score' => 'Pontuação',
         'seasons' => 'temporadas',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -51,7 +52,7 @@ return [
         'room_count' => 'Soma das listas de reprodução',
         'url' => 'Mostrar mais informações sobre a época.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'não existem elementos de pontuação suficientes para um cálculo correto',
         ],
     ],
 
@@ -66,7 +67,8 @@ return [
         'accuracy' => 'Precisão',
         'active_users' => 'Utilizadores ativos',
         'country' => 'País',
-        'division' => '',
+        'division' => 'Divisão',
+        'members' => '',
         'play_count' => 'Nº de partidas',
         'performance' => 'Desempenho',
         'total_score' => 'Pontuação total',

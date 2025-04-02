@@ -96,6 +96,7 @@ return [
             'applications' => [
                 'empty' => 'No join requests at the moment.',
                 'empty_slots' => 'Available slots',
+                'empty_slots_overflow' => ':count_delimited user overflow|:count_delimited users overflow',
                 'title' => 'Join Requests',
                 'created_at' => 'Requested At',
             ],
@@ -137,8 +138,14 @@ return [
         ],
 
         'sections' => [
+            'about' => 'About Us!',
             'info' => 'Info',
             'members' => 'Members',
+        ],
+
+        'statistics' => [
+            'rank' => 'Rank',
+            'leader' => 'Team Leader',
         ],
     ],
 

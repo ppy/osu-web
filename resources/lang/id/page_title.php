@@ -109,7 +109,7 @@ return [
         ],
         'teams_controller' => [
             '_' => 'tim',
-            'create' => '',
+            'create' => 'buat tim',
             'edit' => 'pengaturan tim',
             'leaderboard' => 'papan peringkat tim',
             'show' => 'info tim',

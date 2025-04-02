@@ -42,6 +42,7 @@ return [
         'performance' => 'Præstation',
         'score' => 'Score',
         'seasons' => 'sæsoner',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Aktive Brugere',
         'country' => 'Land',
         'division' => '',
+        'members' => '',
         'play_count' => 'Antal Gange Spillet',
         'performance' => 'Præstation',
         'total_score' => 'Total Score',

@@ -45,6 +45,7 @@ class BeatmapsetSearchParams extends SearchParams
     public bool $showSpotlights = false;
     public ?string $source = null;
     public ?string $status = null;
+    public ?array $tags = null;
     public ?string $title = null;
     public ?array $statusRange = null;
     public ?array $totalLength = null;

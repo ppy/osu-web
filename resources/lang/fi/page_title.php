@@ -108,10 +108,10 @@ return [
             '_' => 'tilastot',
         ],
         'teams_controller' => [
-            '_' => '',
-            'create' => '',
-            'edit' => '',
-            'leaderboard' => '',
+            '_' => 'tiimit',
+            'create' => 'luo tiimi',
+            'edit' => 'tiimin asetukset',
+            'leaderboard' => 'tiimin tulostaulukko',
             'show' => '',
         ],
         'tournaments_controller' => [

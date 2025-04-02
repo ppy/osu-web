@@ -171,6 +171,7 @@ return [
             'global' => 'Globale Rangliste',
             'supporter-link' => '<a href=":link">Hier</a> klicken, um all die tollen Features zu entdecken!',
             'supporter-only' => 'Du musst osu!supporter sein, um Freundes-, Länder-, oder Mod-Ranglisten zu sehen!',
+            'team' => '',
             'title' => 'Punkte-Anzeige',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Keiner deiner Freunde hat einen Rang auf dieser Beatmap!',
                 'global' => 'Noch niemand auf der Rangliste. Wie wärs?',
                 'loading' => 'Lade Scores...',
+                'team' => '',
                 'unranked' => 'Unranked Beatmap.',
             ],
             'score' => [

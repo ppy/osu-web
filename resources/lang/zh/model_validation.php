@@ -132,16 +132,16 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => ':attribute 包含无效字符。',
+        'used' => ':attribute 已被使用。',
+        'word_not_allowed' => '不允许使用 :attribute 。',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'default_ruleset_id' => '默认游戏模式',
+            'is_open' => '战队申请',
+            'name' => '名称',
+            'short_name' => '简称',
+            'url' => '网址',
         ],
     ],
 
