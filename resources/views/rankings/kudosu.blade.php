@@ -36,28 +36,7 @@
                         #{{ i18n_number_format($firstItem + $index) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--main">
-                        <div class="ranking-page-table__user-link">
-                            <span class="ranking-page-table__flags">
-                                @include('objects._flag_country', [
-                                    'country' => $user->country_acronym,
-                                ])
-
-                                @if (($team = $user->team) !== null)
-                                    <a class="u-contents" href="{{ route('teams.show', $team) }}">
-                                        @include('objects._flag_team', compact('team'))
-                                    </a>
-                                @endif
-                            </span>
-                            <a
-                                class="u-ellipsis-overflow js-usercard"
-                                data-overflow-tooltip-disabled="1"
-                                data-tooltip-position="right center"
-                                data-user-id="{{ $user->getKey() }}"
-                                href="{{ route('users.show', ['user' => $user]) }}"
-                            >
-                                {{ $user->username }}
-                            </a>
-                        </div>
+                        @include('rankings._main_column', ['object' => $user])
                     </td>
                     <td class="ranking-page-table__column">
                         {{ i18n_number_format($user->osu_kudostotal) }}

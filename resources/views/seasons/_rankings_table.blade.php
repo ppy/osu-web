@@ -37,28 +37,8 @@
                 <td class="ranking-page-table__column">
                     #{{ i18n_number_format($rank) }}
                 </td>
-                <td class="ranking-page-table__column">
-                    <div class="ranking-page-table__user-link">
-                        <span class="ranking-page-table__flags">
-                            @include('objects._flag_country', [
-                                'country' => $score->user->country,
-                            ])
-                            @if (($team = $score->user->team) !== null)
-                                <a class="u-contents" href="{{ route('teams.show', $team) }}">
-                                    @include('objects._flag_team', compact('team'))
-                                </a>
-                            @endif
-                        </span>
-                        <a
-                            class="u-ellipsis-overflow js-usercard"
-                            data-overflow-tooltip-disabled="1"
-                            data-tooltip-position="right center"
-                            data-user-id="{{ $score->user_id }}"
-                            href="{{ route('users.show', ['user' => $score->user_id]) }}"
-                        >
-                            {{ $score->user->username }}
-                        </a>
-                    </div>
+                <td class="ranking-page-table__column ranking-page-table__column--main">
+                    @include('rankings._main_column', ['object' => $score->user])
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                     {{ i18n_number_format($score->total_score) }}

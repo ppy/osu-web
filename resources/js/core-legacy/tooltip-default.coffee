@@ -95,9 +95,6 @@ export default class TooltipDefault
     # Automagically add qtips when text becomes truncated (and auto-removes
     # them when text becomes... un-truncated)
     target = e.currentTarget
-
-    return if target.dataset.overflowTooltipDisabled == '1'
-
     $target = $(target)
     api = $target.qtip('api')
 

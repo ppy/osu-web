@@ -54,20 +54,7 @@
                         #{{ i18n_number_format($firstItem + $index) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--main">
-                        <a
-                            class="ranking-page-table__user-link"
-                            href="{{ route('teams.leaderboard', [
-                                'ruleset' => $mode,
-                                'team' => $score->team->getKey(),
-                            ]) }}"
-                        >
-                            <span class="ranking-page-table__flags">
-                                @include('objects._flag_team', ['team' => $score->team])
-                            </span>
-                            <span class="u-ellipsis-overflow">
-                                {{ $score->team->name }}
-                            </span>
-                        </a>
+                        @include('rankings._main_column', ['object' => $score->team])
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ i18n_number_format($score->members_count) }}
