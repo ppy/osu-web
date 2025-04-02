@@ -41,7 +41,7 @@ const popup = (stats: SeasonStatsJson) => (
           </div>
           <div className='season-stats-popup__threshold'>
             {trans('users.show.season_stats.division_top_percentage', {
-              value: formatNumber(Number(stats.division.threshold), 0, { style: 'percent' }),
+              value: formatNumber(stats.division.threshold, 0, { style: 'percent' }),
             })}
           </div>
         </div>
