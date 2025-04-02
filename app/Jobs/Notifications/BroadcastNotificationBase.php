@@ -242,9 +242,9 @@ abstract class BroadcastNotificationBase implements ShouldQueue
             return $userIds;
         }
 
-        $excludedReceiverIds = new Set();
+        $filteredIds = new Set($userIds);
         foreach (array_chunk($userIds, 10000) as $chunkedUserIds) {
-            $excludedReceiverIds->add(
+            $filteredIds->remove(
                 ...UserRelation
                     ::where('zebra_id', $this->source->getKey())
                     ->where('foe', true)
@@ -254,6 +254,6 @@ abstract class BroadcastNotificationBase implements ShouldQueue
             );
         }
 
-        return array_diff($userIds, $excludedReceiverIds->toArray());
+        return $filteredIds->toArray();
     }
 }
