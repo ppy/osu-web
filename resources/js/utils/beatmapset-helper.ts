@@ -34,6 +34,10 @@ export function getTitle(beatmapset: BeatmapsetJson) {
   return beatmapset.title;
 }
 
+export function makeSearchQueryOption(key: string, value: string) {
+  return `${key}=""${value.replace(/"/g, '\\"')}""`;
+}
+
 export function showVisual(beatmapset: BeatmapsetJson) {
   return !beatmapset.nsfw || core.userPreferences.get('beatmapset_show_nsfw');
 }

@@ -27,7 +27,7 @@ return [
                 'GROUP' => 'Gruppi',
                 'PM' => 'Conversazioni',
                 'PUBLIC' => 'Canali',
-                'TEAM' => '',
+                'TEAM' => 'Squadra',
             ],
         ],
     ],

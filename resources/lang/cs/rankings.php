@@ -42,6 +42,7 @@ return [
         'performance' => 'výkon',
         'score' => 'skóre',
         'seasons' => 'sezóny',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Aktivní uživatelé',
         'country' => 'Stát',
         'division' => 'Divize',
+        'members' => '',
         'play_count' => 'Počet zahrání',
         'performance' => 'Výkon',
         'total_score' => 'Celkové skóre',

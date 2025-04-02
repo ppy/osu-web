@@ -137,11 +137,11 @@ return [
         'word_not_allowed' => '',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'default_ruleset_id' => 'Quy tắc mặc định',
+            'is_open' => 'Đơn ứng tuyển của đội',
+            'name' => 'Tên',
+            'short_name' => 'Tên ngắn gọn',
+            'url' => 'URL',
         ],
     ],
 

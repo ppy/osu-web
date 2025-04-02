@@ -238,7 +238,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('password-reset', 'PasswordResetController@index')->name('password-reset');
         Route::post('password-reset', 'PasswordResetController@create');
         Route::put('password-reset', 'PasswordResetController@update');
-        Route::delete('password-reset', 'PasswordResetController@destroy');
         Route::get('password-reset/reset', 'PasswordResetController@reset')->name('password-reset.reset');
         Route::post('password-reset/resend-mail', 'PasswordResetController@resendMail')->name('password-reset.resend-mail');
 
@@ -283,7 +282,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('rankings/kudosu', 'RankingController@kudosu')->name('rankings.kudosu');
     Route::resource('rankings/daily-challenge', 'Ranking\DailyChallengeController', ['only' => ['index', 'show']]);
-    Route::get('rankings/{mode?}/{type?}', 'RankingController@index')->name('rankings');
+    Route::get('rankings/{mode?}/{type?}/{sort?}', 'RankingController@index')->name('rankings');
 
     Route::resource('reports', 'ReportsController', ['only' => ['store']]);
 
@@ -304,7 +303,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('part', 'TeamsController@part')->name('part');
         Route::resource('members', 'Teams\MembersController', ['only' => ['destroy', 'index']]);
     });
-    Route::resource('teams', 'TeamsController', ['only' => ['create', 'destroy', 'edit', 'store', 'show', 'update']]);
+    Route::resource('teams', 'TeamsController', ['only' => ['create', 'destroy', 'edit', 'store', 'update']]);
+    Route::get('teams/{team}/{ruleset?}', 'TeamsController@show')->name('teams.show');
 
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
     Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');
@@ -435,7 +435,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
                     });
                 });
 
-                Route::apiResource('tags', 'BeatmapTagsController', ['only' => ['store', 'destroy']]);
+                Route::apiResource('tags', 'BeatmapTagsController', ['only' => ['destroy', 'update']]);
             });
         });
 

@@ -122,7 +122,7 @@ class TeamsController extends Controller
         return ujs_redirect(route('teams.show', ['team' => $team]));
     }
 
-    public function show(string $id): Response
+    public function show(string $id, ?string $ruleset = null): Response
     {
         $team = Team
             ::with(array_map(
@@ -130,7 +130,18 @@ class TeamsController extends Controller
                 UserCompactTransformer::CARD_INCLUDES_PRELOAD,
             ))->findOrFail($id);
 
-        return ext_view('teams.show', compact('team'));
+        if ($ruleset === null) {
+            $rulesetId = $team->default_ruleset_id;
+        } else {
+            $rulesetId = Beatmap::MODES[$ruleset] ?? null;
+
+            if ($rulesetId === null) {
+                abort(422, 'invalid ruleset name');
+            }
+        }
+        $statistics = $team->statistics()->firstOrNew(['ruleset_id' => $rulesetId]);
+
+        return ext_view('teams.show', compact('rulesetId', 'statistics', 'team'));
     }
 
     public function store(): Response

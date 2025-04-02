@@ -27,7 +27,7 @@ return [
                 'GROUP' => 'Groupes',
                 'PM' => 'Messages privés',
                 'PUBLIC' => 'Canaux',
-                'TEAM' => '',
+                'TEAM' => 'Équipe',
             ],
         ],
     ],

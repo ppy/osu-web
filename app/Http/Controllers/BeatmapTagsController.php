@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\InvariantException;
 use App\Models\Beatmap;
 use App\Models\BeatmapTag;
 use App\Models\Tag;
@@ -19,8 +20,8 @@ class BeatmapTagsController extends Controller
 
         $this->middleware('auth', [
             'only' => [
-                'store',
                 'destroy',
+                'update',
             ],
         ]);
     }
@@ -35,20 +36,22 @@ class BeatmapTagsController extends Controller
         return response()->noContent();
     }
 
-    public function store($beatmapId)
+    public function update($beatmapId, $tagId)
     {
-        $tagId = get_int(request('tag_id'));
-
         $beatmap = Beatmap::findOrFail($beatmapId);
         priv_check('BeatmapTagStore', $beatmap)->ensureCan();
 
         $tag = Tag::findOrFail($tagId);
 
-        $user = \Auth::user();
+        if ($tag->ruleset_id !== null && $tag->ruleset_id !== $beatmap->playmode) {
+            throw new InvariantException(osu_trans('beatmap_tags.update.invalid_ruleset'));
+        }
 
         $tag
             ->beatmapTags()
-            ->firstOrCreate(['beatmap_id' => $beatmapId, 'user_id' => $user->getKey()]);
+            ->firstOrCreate(['beatmap_id' => $beatmapId, 'user_id' => \Auth::user()->getKey()]);
+
+        $beatmap->expireTopTagIds();
 
         return response()->noContent();
     }

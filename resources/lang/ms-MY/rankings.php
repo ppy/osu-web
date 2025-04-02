@@ -42,6 +42,7 @@ return [
         'performance' => 'prestasi',
         'score' => 'markah',
         'seasons' => 'musim',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Pengguna Giat',
         'country' => 'Negara',
         'division' => 'Pembahagian',
+        'members' => '',
         'play_count' => 'Jumlah Mainan',
         'performance' => 'Prestasi',
         'total_score' => 'Jumlah Markah',

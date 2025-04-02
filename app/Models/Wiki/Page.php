@@ -21,7 +21,6 @@ use App\Traits\Memoizes;
 use Carbon\Carbon;
 use Ds\Set;
 use Exception;
-use Log;
 
 class Page implements WikiObject
 {
@@ -41,6 +40,7 @@ class Page implements WikiObject
     ];
 
     public $locale;
+    public \Closure $logger;
     public $path;
     public $requestedLocale;
 
@@ -411,7 +411,7 @@ class Page implements WikiObject
             $layout = OsuMarkdown::parseYamlHeader($content)['header']['layout'] ?? null;
             $layout = $this->layout($layout);
             $rendererClass = static::RENDERERS[$layout];
-            $contentRenderer = (new $rendererClass($this, $content));
+            $contentRenderer = new $rendererClass($this, $content);
 
             $this->page = $contentRenderer->render();
             $pageIndex = $contentRenderer->renderIndexable();
@@ -459,6 +459,12 @@ class Page implements WikiObject
 
     private function log($action)
     {
-        Log::info("wiki ({$action}): {$this->pagePath()}");
+        $message = "wiki ({$action}): {$this->pagePath()}";
+
+        if (isset($this->logger)) {
+            ($this->logger)($message);
+        } else {
+            \Log::info($message);
+        }
     }
 }

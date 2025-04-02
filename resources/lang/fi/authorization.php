@@ -194,19 +194,19 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
-                'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'already_member' => "Olet jo osa joukkuetta.",
+                'already_other_member' => "Kuulut jo toiseen joukkueseen.",
+                'currently_applying' => 'Sinulla on vierillä oleva tiimiin liittymis pyyntö.',
+                'team_closed' => 'Tiimi ei hyväksy tällä hetkellä liittymispyyntöjä.',
+                'team_full' => "Tiimi on täynnä eikä voi hyväksyä enempää jäseniä.",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "Tiimin johtaja ei pysty lähtemään tiimistä.",
+            'not_member' => 'Ei ole tiimin jäsen.',
         ],
         'store' => [
-            'require_supporter_tag' => '',
+            'require_supporter_tag' => 'osu!supporter tagia tarvitaan tiimin luomiseen.',
         ],
     ],
 

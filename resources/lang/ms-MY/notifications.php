@@ -75,8 +75,8 @@ return [
 
             'beatmapset_state' => [
                 '_' => 'Taraf peta rentak diubah',
-                'beatmapset_disqualify' => 'Beatmap ":title" telah disingkirkan',
-                'beatmapset_disqualify_compact' => 'Beatmap telah disingkirkan',
+                'beatmapset_disqualify' => '":title" telah disingkirkan',
+                'beatmapset_disqualify_compact' => 'Peta rentak disingkirkan',
                 'beatmapset_love' => 'Peta rentak ":title" telah dinaikkan ke Kegemaran',
                 'beatmapset_love_compact' => 'Peta rentak telah dinaikkan ke Kegemaran',
                 'beatmapset_nominate' => '":title" telah dicalonkan',

@@ -14,13 +14,13 @@ return [
     'common' => [
         'closing' => 'Salam,',
         'hello' => 'Hai :user,',
-        'report' => 'Sila balas emel ini SEGERA sekiranya anda tidak meminta pengubahan ini.',
-        'ignore' => 'Sekiranya anda tidak meminta emel ini, anda boleh mengabai tanpa ragu.',
+        'report' => 'Sila balas e-mel ini SEGERA sekiranya anda tidak meminta pengubahan ini.',
+        'ignore' => 'Sekiranya anda tidak meminta e-mel ini, anda boleh abaikan tanpa ragu.',
     ],
 
     'donation_thanks' => [
         'benefit_more' => 'Manfaat penyokong baharu lain akan muncul seiring waktu juga!',
-        'feedback' => "Sekiranya anda mempunyai soalan atau maklum balas, janganlah teragak-agak untuk membalas emel ini. Saya akan membalas secepat mungkin!",
+        'feedback' => "Sekiranya anda mempunyai soalan atau maklum balas, janganlah teragak-agak untuk membalas e-mel ini. Saya akan membalas secepat mungkin!",
         'keep_free' => 'Orang seperti anda ialah sebab osu! dapat mengekalkan penjalanan lancar mainan dan komuniti tanpa apa-apa iklan atau bayaran paksaan.',
         'keep_running' => 'Sokongan anda ',
         'subject' => 'Terima kasih, osu meng<3i anda',
@@ -54,7 +54,7 @@ return [
     'store_payment_completed' => [
         'prepare_shipping' => 'Kami telah menerima bayaran anda dan kini menyediakan pesanan anda untuk dihantar. Bergantung kepada kuantiti, pesanan anda mungkin akan mengambil masa beberapa hari sebelum dikirim. Anda boleh mengikuti kemajuan pesanan anda di sini termasuk butiran penjejakan sekiranya tersedia:',
         'processing' => 'Kami telah menerima bayaran anda dan kini memproses pesanan anda. Anda boleh mengikuti kemajuan pesanan anda di sini:',
-        'questions' => "Sekiranya anda mempunyai soalan, janganlah teragak-agak untuk membalas emel ini.",
+        'questions' => "Sekiranya anda mempunyai soalan, janganlah teragak-agak untuk membalas e-mel ini.",
         'shipping' => 'Penghantaran',
         'subject' => 'Kami telah menerima pesanan osu!store anda!',
         'thank_you' => 'Terima kasih atas pesanan osu!store anda!',
@@ -72,10 +72,10 @@ return [
     ],
 
     'user_email_updated' => [
-        'changed_to' => 'Ini ialah emel pengesahan untuk memaklumkan bahawa alamat emel osu! anda telah diubah ke ":email".',
-        'check' => 'Sila pastikan bahawa anda menerima emel ini pada alamat baharu anda untuk mengelakkan kehilangan capaian ke akaun osu! anda kelak.',
-        'sent' => 'Untuk sebab keselamatan, emel ini telah dihantar ke alamat emel lama dan baharu anda masing-masing.',
-        'subject' => 'pengesahan pengubahan emel osu!',
+        'changed_to' => 'Ini ialah e-mel pengesahan untuk memaklumkan bahawa alamat emel osu! anda telah diubah ke ":email".',
+        'check' => 'Sila pastikan bahawa anda menerima e-mel ini pada alamat baharu anda untuk mengelakkan kehilangan capaian ke akaun osu! anda kelak.',
+        'sent' => 'Untuk sebab keselamatan, e-mel ini telah dihantar ke alamat e-mel lama dan baharu anda masing-masing.',
+        'subject' => 'pengesahan pengubahan e-mel osu!',
     ],
 
     'user_force_reactivation' => [
@@ -87,7 +87,7 @@ return [
 
     'user_notification_digest' => [
         'new' => 'Saja nak beritahu, ada pengemaskinian baru pada item-item amatanmu.',
-        'settings' => 'Ubah keutamaan pemberitahuan emel:',
+        'settings' => 'Ubah keutamaan pemberitahuan e-mel:',
         'subject' => 'Pemberitahuan osu! baharu',
     ],
 

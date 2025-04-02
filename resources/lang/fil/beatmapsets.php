@@ -171,6 +171,7 @@ return [
             'global' => 'Pandaigdigang Ranggo',
             'supporter-link' => 'I-click <a href=":link">ito</a> para makita ang mga feature na iyong matatamasa!',
             'supporter-only' => 'Kailangan mong maging osu!supporter para mabuksan ang Ranggo sa Kaibigan at Pambansang Ranggo!',
+            'team' => '',
             'title' => 'Talaan ng Iskor',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Wala pa sa iyong mga kaibigan ang nakatala ng iskor sa mapang ito!',
                 'global' => 'Wala pang mga iskor. Nais mo bang maglagay dito?',
                 'loading' => 'Nilo-load ang mga iskor...',
+                'team' => '',
                 'unranked' => 'Hindi Ranked na beatmap.',
             ],
             'score' => [

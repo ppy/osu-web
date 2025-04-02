@@ -10,9 +10,11 @@ use App\Models\Country;
 use App\Models\CountryStatistics;
 use App\Models\Model;
 use App\Models\Spotlight;
+use App\Models\TeamStatistics;
 use App\Models\User;
 use App\Models\UserStatistics;
 use App\Transformers\SelectOptionTransformer;
+use App\Transformers\TeamStatisticsTransformer;
 use App\Transformers\UserCompactTransformer;
 use App\Transformers\UserStatisticsTransformer;
 use DB;
@@ -31,13 +33,14 @@ class RankingController extends Controller
 
     const MAX_RESULTS = 10000;
     const PAGE_SIZE = Model::PER_PAGE;
-    const RANKING_TYPES = ['performance', 'charts', 'score', 'country'];
+    const RANKING_TYPES = ['performance', 'charts', 'score', 'country', 'team'];
     const SPOTLIGHT_TYPES = ['charts'];
     // in display order
     const TYPES = [
         'performance',
         'score',
         'country',
+        'team',
         'multiplayer',
         'daily_challenge',
         'seasons',
@@ -52,18 +55,23 @@ class RankingController extends Controller
         $this->middleware('require-scopes:public');
 
         $this->middleware(function ($request, $next) {
-            $this->params = get_params(array_merge($request->all(), $request->route()->parameters()), null, [
-                'country', // overridden later for view
-                'filter',
-                'mode',
-                'spotlight:int', // will be overriden by spotlight object for view
-                'type',
-                'variant',
-            ]);
+            $this->params = [
+                ...get_params($request->all(), null, [
+                    'country', // overridden later for view
+                    'filter',
+                    'spotlight:int', // will be overriden by spotlight object for view
+                    'variant',
+                ]),
+                ...get_params($request->route()->parameters(), null, [
+                    'mode',
+                    'sort',
+                    'type',
+                ], ['null_missing' => true]),
+            ];
 
             // these parts of the route are optional.
-            $mode = $this->params['mode'] ?? null;
-            $type = $this->params['type'] ?? null;
+            $mode = $this->params['mode'];
+            $type = $this->params['type'];
 
             $this->params['filter'] = $this->params['filter'] ?? null;
             $this->friendsOnly = auth()->check() && $this->params['filter'] === 'friends';
@@ -91,7 +99,7 @@ class RankingController extends Controller
                 abort(404);
             }
 
-            if (isset($this->params['country']) && $type === 'performance') {
+            if (isset($this->params['country']) && static::hasCountryFilter($type)) {
                 $this->countryStats = CountryStatistics::where('display', 1)
                     ->where('country_code', $this->params['country'])
                     ->where('mode', Beatmap::modeInt($mode))
@@ -105,7 +113,7 @@ class RankingController extends Controller
             }
 
             $this->defaultViewVars['country'] = $this->country;
-            if ($type === 'performance') {
+            if (static::hasCountryFilter($type)) {
                 $this->defaultViewVars['countries'] = json_collection(
                     Country::whereHasRuleset($mode)->get(),
                     new SelectOptionTransformer(),
@@ -121,6 +129,7 @@ class RankingController extends Controller
         string $rulesetName,
         ?Country $country = null,
         ?Spotlight $spotlight = null,
+        ?string $sort = null,
     ): string {
         return match ($type) {
             'country' => route('rankings', ['mode' => $rulesetName, 'type' => $type]),
@@ -129,12 +138,18 @@ class RankingController extends Controller
             'multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
             'seasons' => route('seasons.show', ['season' => 'latest']),
             default => route('rankings', [
-                'country' => $country !== null && $type === 'performance' ? $country->getKey() : null,
+                'country' => $country !== null && static::hasCountryFilter($type) ? $country->getKey() : null,
                 'mode' => $rulesetName,
+                'sort' => $sort,
                 'spotlight' => $spotlight !== null && $type === 'charts' ? $spotlight->getKey() : null,
                 'type' => $type,
             ]),
         };
+    }
+
+    private static function hasCountryFilter(string $type): bool
+    {
+        return $type === 'performance' || $type === 'score';
     }
 
     /**
@@ -157,7 +172,7 @@ class RankingController extends Controller
      * @queryParam spotlight The id of the spotlight if `type` is `charts`. Ranking for latest spotlight will be returned if not specified. No-example
      * @queryParam variant Filter ranking to specified mode variant. For `mode` of `mania`, it's either `4k` or `7k`. Only available for `type` of `performance`. Example: 4k
      */
-    public function index($mode, $type)
+    public function index($mode, $type, ?string $sort = null)
     {
         if ($type === 'charts') {
             return $this->spotlight($mode);
@@ -170,34 +185,49 @@ class RankingController extends Controller
                 ->with('country')
                 ->where('mode', $modeInt)
                 ->orderBy('performance', 'desc');
+        } elseif ($type === 'team') {
+            $sort = $sort === 'score' ? 'score' : 'performance';
+            $sortColumn = $sort === 'score' ? 'ranked_score' : 'performance';
+            $stats = TeamStatistics::where('ranked_score', '>', 0)
+                ->where('ruleset_id', $modeInt)
+                ->whereHas('team')
+                ->withCount('members')
+                ->with('team')
+                ->orderBy($sortColumn, 'desc');
         } else {
             $class = UserStatistics\Model::getClass($mode, $this->params['variant']);
             $table = (new $class())->getTable();
-            $ppColumn = $class::ppColumn();
             $stats = $class
                 ::with(['user', 'user.country', 'user.team'])
-                ->where($ppColumn, '>', 0)
+                ->where('rank_score', '>', 0)
                 ->whereHas('user', function ($userQuery) {
                     $userQuery->default();
                 });
 
             if ($type === 'performance') {
-                $isExperimentalRank = $GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default'];
                 if ($this->country !== null) {
                     $stats->where('country_acronym', $this->country['acronym']);
                     // preferrable to rank_score when filtering by country.
                     // On a few countries the default index is slightly better but much worse on the rest.
-                    $forceIndex = $isExperimentalRank ? 'country_acronym_exp' : 'country_acronym_2';
+                    $forceIndex = 'country_acronym_2';
                 } else {
                     // force to order by rank_score instead of sucking down entire users table first.
-                    $forceIndex = $isExperimentalRank ? 'rank_score_exp' : 'rank_score';
+                    $forceIndex = 'rank_score';
                 }
 
-                $stats->orderBy($ppColumn, 'desc');
+                $stats->orderBy('rank_score', 'desc');
             } else { // 'score'
+                if ($this->country !== null) {
+                    $stats->where('country_acronym', $this->country['acronym']);
+                    // preferrable to ranked_score when filtering by country.
+                    // On a few countries the default index is slightly better but much worse on the rest.
+                    $forceIndex = 'country_ranked_score';
+                } else {
+                    // force to order by ranked_score instead of sucking down entire users table first.
+                    $forceIndex = 'ranked_score';
+                }
+
                 $stats->orderBy('ranked_score', 'desc');
-                // force to order by ranked_score instead of sucking down entire users table first.
-                $forceIndex = 'ranked_score';
             }
 
             if ($this->friendsOnly) {
@@ -242,6 +272,10 @@ class RankingController extends Controller
                     $ranking = json_collection($stats, 'CountryStatistics', ['country']);
                     break;
 
+                case 'team':
+                    $ranking = json_collection($stats, new TeamStatisticsTransformer(), ['member_count', 'team']);
+                    break;
+
                 default:
                     $includes = UserStatisticsTransformer::RANKING_INCLUDES;
 
@@ -277,12 +311,19 @@ class RankingController extends Controller
             ['path' => route('rankings', [
                 'filter' => $this->params['filter'],
                 'mode' => $mode,
+                'sort' => $sort,
                 'type' => $type,
                 'variant' => $this->params['variant'],
             ])]
         );
 
-        return ext_view("rankings.{$type}", array_merge($this->defaultViewVars, compact('scores', 'showRankChange')));
+        return ext_view(
+            "rankings.{$type}",
+            array_merge(
+                $this->defaultViewVars,
+                compact('scores', 'sort', 'showRankChange'),
+            ),
+        );
     }
 
     /**
@@ -397,6 +438,10 @@ class RankingController extends Controller
             return CountryStatistics::where('display', 1)
                 ->where('mode', $modeInt)
                 ->count();
+        }
+
+        if ($this->params['type'] === 'team') {
+            return TeamStatistics::where('ruleset_id', $modeInt)->where('ranked_score', '>', 0)->count();
         }
 
         $maxResults = static::MAX_RESULTS;

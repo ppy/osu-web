@@ -27,7 +27,7 @@ return [
                 'GROUP' => 'Skupiny',
                 'PM' => 'Přímé zprávy',
                 'PUBLIC' => 'Kanály',
-                'TEAM' => '',
+                'TEAM' => 'Tým',
             ],
         ],
     ],

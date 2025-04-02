@@ -59,8 +59,8 @@ return [
             'password' => 'kata laluan',
             'password_confirmation' => 'sahkan kata laluan',
             'submit' => 'cipta akaun',
-            'user_email' => 'emel',
-            'user_email_confirmation' => 'sahkan emel',
+            'user_email' => 'e-mel',
+            'user_email_confirmation' => 'sahkan e-mel',
             'username' => 'nama pengguna',
 
             'tos_notice' => [
@@ -76,7 +76,7 @@ return [
 
         'if_mistake' => [
             '_' => 'Sekiranya anda berasa ini satu kesilapan, anda dialu-alukan untuk menghubungi kami (melalui :email atau dengan mengklik "?" pada bucu kanan bahagian bawah halaman ini). Sila catat bahawa kami sentiasa yakin sepenuhnya dengan tindakan kami kerana berpangkalkan data yang sangat kukuh. Kami berhak mengendah permintaan anda sekiranya kami berasa anda secara sengaja tidak jujur.',
-            'email' => 'emel',
+            'email' => 'e-mel',
         ],
 
         'reasons' => [
@@ -106,7 +106,7 @@ return [
         '_' => 'Daftar masuk',
         'button' => 'Daftar masuk',
         'button_posting' => 'Mendaftar masuk...',
-        'email_login_disabled' => 'Mendaftar masuk dengan emel kini dilumpuhkan. Sila guna nama pengguna pula.',
+        'email_login_disabled' => 'Pendaftaran masuk dengan e-mel kini dilumpuhkan. Sila guna nama pengguna pula.',
         'failed' => 'Daftar masuk yang salah',
         'forgot' => 'Lupa kata laluan?',
         'info' => 'Sila daftar masuk untuk teruskan',

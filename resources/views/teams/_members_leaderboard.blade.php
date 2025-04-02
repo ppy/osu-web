@@ -38,7 +38,7 @@
                         {{ osu_trans('rankings.stat.performance') }}
                     </div>
                     <div>
-                        {{ i18n_number_format($stats->pp()) ?? '-' }}
+                        {{ i18n_number_format($stats->rank_score) ?? '-' }}
                     </div>
                 </div>
                 <div class="team-members-leaderboard-item__number">

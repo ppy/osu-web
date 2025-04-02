@@ -171,6 +171,7 @@ return [
             'global' => '世界ランキング',
             'supporter-link' => '<a href=":link">ここ</a>をクリックする事でosu!サポーターの詳細が見れます。',
             'supporter-only' => 'フレンドランキングと国別ランキングを利用するにはosu!サポータータグが必要です！',
+            'team' => '',
             'title' => 'スコアボード',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'あなたのフレンドで記録を作った人はまだいません！',
                 'global' => 'まだ記録はありません。一番乗りを目指そう！',
                 'loading' => 'スコアの読み込み中・・・',
+                'team' => '',
                 'unranked' => 'Unrankedのビートマップです。',
             ],
             'score' => [

@@ -20,6 +20,7 @@ nominations_summary.current    | integer                      | |
 nominations_summary.required   | integer                      | |
 ranked                         | integer                      | See [Rank status](#beatmapset-rank-status) for list of possible values.
 ranked_date                    | [Timestamp](#timestamp)?     | |
+rating                         | float                        | |
 source                         | string                       | |
 storyboard                     | boolean                      | |
 submitted_date                 | [Timestamp](#timestamp)?     | |

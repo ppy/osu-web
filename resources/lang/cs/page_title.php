@@ -109,7 +109,7 @@ return [
         ],
         'teams_controller' => [
             '_' => 'týmy',
-            'create' => '',
+            'create' => 'vytvořit tým',
             'edit' => 'nastavení týmu',
             'leaderboard' => 'žebříček týmu',
             'show' => 'informace o týmu',

@@ -42,6 +42,7 @@ return [
         'performance' => 'uspešnost',
         'score' => 'rezultat',
         'seasons' => 'sezone',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Aktivni igralci',
         'country' => 'Država',
         'division' => '',
+        'members' => '',
         'play_count' => 'Število igranj',
         'performance' => 'Uspešnost',
         'total_score' => 'Skupaj točk',

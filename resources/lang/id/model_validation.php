@@ -132,16 +132,16 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => ':attribute ini mengandung karakter yang tidak valid.',
+        'used' => 'Pilihan :attribute ini telah digunakan.',
+        'word_not_allowed' => 'Pilihan :attribute ini tidak diizinkan.',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'default_ruleset_id' => 'Ruleset bawaan',
+            'is_open' => 'Pendaftaran anggota tim',
+            'name' => 'Nama',
+            'short_name' => 'Nama pendek',
+            'url' => 'URL',
         ],
     ],
 

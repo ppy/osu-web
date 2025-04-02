@@ -171,6 +171,7 @@ return [
             'global' => 'Pasauliniai Rezultatai',
             'supporter-link' => 'Spausk <a href=":link">čia</a>, kad pamatytum visus privalomus, kuriuos gausi!',
             'supporter-only' => 'Tu turi būti osu!rėmėjas, kad pasiektum draugų, šalių ar konkrečių modų rezultatus!',
+            'team' => '',
             'title' => 'Rezultatų lenta',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Niekas iš jūsų draugų dar nenustatė rezultato šiam bitmapui!',
                 'global' => 'Jokiu rezultatų. Galbūt norėtum pabandyti nustatyti koki?',
                 'loading' => 'Įkeliami rezultatai...',
+                'team' => '',
                 'unranked' => 'Nereitinguotas beatmap\'as.',
             ],
             'score' => [

@@ -42,6 +42,7 @@ return [
         'performance' => 'rendiment',
         'score' => 'puntuació',
         'seasons' => 'temporades',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Usuaris actius',
         'country' => 'País',
         'division' => '',
+        'members' => '',
         'play_count' => 'Nombre de partides',
         'performance' => 'Rendiment',
         'total_score' => 'Puntuació total',

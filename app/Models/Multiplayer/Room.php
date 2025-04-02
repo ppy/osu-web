@@ -302,17 +302,21 @@ class Room extends Model
         return $query->whereIn('category', ['featured_artist', 'spotlight']);
     }
 
-    public function scopeHasParticipated($query, User $user)
+    public function scopeHasParticipated($query, ?User $user)
     {
-        return $query->whereHas(
-            'userHighScores',
-            fn ($q) => $q->where('user_id', $user->getKey()),
-        );
+        return $user === null
+            ? $query->none()
+            : $query->whereHas(
+                'userHighScores',
+                fn ($q) => $q->where('user_id', $user->getKey()),
+            );
     }
 
-    public function scopeStartedBy($query, User $user)
+    public function scopeStartedBy($query, ?User $user)
     {
-        return $query->where('user_id', $user->user_id);
+        return $user === null
+            ? $query->none()
+            : $query->where('user_id', $user->getKey());
     }
 
     public function scopeWithRecentParticipantIds($query, ?int $limit = null)
@@ -457,6 +461,10 @@ class Room extends Model
         $this->assertValidCompletePlay();
 
         return $this->getConnection()->transaction(function () use ($params, $scoreToken) {
+            $playlistItem = $scoreToken->playlistItem()->firstOrFail();
+            $playlistItem->setRelation('room', $this);
+            $scoreToken->setRelation('playlistItem', $playlistItem);
+
             $scoreLink = ScoreLink::complete($scoreToken, $params);
             $user = $scoreLink->user;
             $agg = UserScoreAggregate::new($user, $this);
@@ -707,11 +715,6 @@ class Room extends Model
             'ruleset_id:int',
         ], ['null_missing' => true]);
 
-        if (!$playlistItem->freestyle) {
-            $params['beatmap_id'] = $playlistItem->beatmap_id;
-            $params['ruleset_id'] = $playlistItem->ruleset_id;
-        }
-
         $this->assertValidStartPlay($user, $playlistItem, $params);
 
         return $this->getConnection()->transaction(function () use ($params, $playlistItem, $user) {
@@ -802,6 +805,13 @@ class Room extends Model
         if ($playlistItem->freestyle) {
             // assert the beatmap_id is part of playlist item's beatmapset
             if ($playlistItem->beatmap->beatmapset_id !== Beatmap::find($params['beatmap_id'])?->beatmapset_id) {
+                throw new InvariantException('Specified beatmap_id is not allowed');
+            }
+        } else {
+            if ($playlistItem->ruleset_id !== $params['ruleset_id']) {
+                throw new InvariantException('Specified ruleset_id is not allowed');
+            }
+            if ($playlistItem->beatmap_id !== $params['beatmap_id']) {
                 throw new InvariantException('Specified beatmap_id is not allowed');
             }
         }

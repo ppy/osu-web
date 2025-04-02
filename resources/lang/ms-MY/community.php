@@ -56,7 +56,7 @@ return [
 
             'country_ranking' => [
                 'title' => 'Kedudukan Kebangsaan',
-                'description' => 'Jajah tanahmu sebelum menjajah jagat.',
+                'description' => 'Takluklah tanah airmu sebelum menakluki jagat.',
             ],
 
             'mod_filtering' => [

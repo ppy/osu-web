@@ -171,6 +171,7 @@ return [
             'global' => 'Clasament Global',
             'supporter-link' => 'Faceți clic <a href=":link">aici</a> pentru a vedea toate avantajele pe care le poți obține!',
             'supporter-only' => 'Trebuie să fii un suporter pentru a accesa clasamentele pentru prieteni, pe mod-uri sau național!',
+            'team' => '',
             'title' => 'Tabela de scor',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Niciunul dintre prietenii tăi nu a stabilit un scor pe acest beatmap încă!',
                 'global' => 'Niciun scor încă. Poate ar trebui să încerci să obții câteva?',
                 'loading' => 'Se încarcă scorurile...',
+                'team' => '',
                 'unranked' => 'Beatmap neclasificat.',
             ],
             'score' => [

@@ -46,6 +46,7 @@ trait BaseDbIndexable
 
         $baseQuery = static::esIndexingQuery()->where($dummy->getKeyName(), '>', $fromId);
         $count = 0;
+        $progress ??= fn ($count, $message) => \Log::info(static::class.' '.$message);
 
         $baseQuery->chunkById($batchSize, function ($models) use ($options, &$count, $progress) {
             $actions = Es::generateBulkActions($models);
@@ -60,14 +61,12 @@ trait BaseDbIndexable
                 $count += count($result['items']);
             }
 
-            Log::info(static::class." next: {$models->last()->getKey()}");
-            if ($progress) {
-                $progress($count);
-            }
+            $progress($count, "next: {$models->last()->getKey()}");
         });
 
         $duration = time() - $startTime;
-        Log::info(static::class." Indexed {$count} records in {$duration} s.");
+
+        $progress($count, $message = "Indexed {$count} records in {$duration} s.");
     }
 
     /**
@@ -83,12 +82,13 @@ trait BaseDbIndexable
 
     public function esDeleteDocument(array $options = [])
     {
-        $document = array_merge([
+        $document = [
             'index' => static::esIndexName(),
             'routing' => $this->esRouting(),
             'id' => $this->getEsId(),
             'client' => ['ignore' => 404],
-        ], $options);
+            ...$options,
+        ];
 
         return Es::getClient()->delete($document);
     }
@@ -99,12 +99,13 @@ trait BaseDbIndexable
             return $this->esDeleteDocument($options);
         }
 
-        $document = array_merge([
+        $document = [
             'index' => static::esIndexName(),
             'routing' => $this->esRouting(),
             'id' => $this->getEsId(),
             'body' => $this->toEsJson(),
-        ], $options);
+            ...$options,
+        ];
 
         return Es::getClient()->index($document);
     }

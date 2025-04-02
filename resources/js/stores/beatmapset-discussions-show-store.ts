@@ -19,10 +19,16 @@ export default class BeatmapsetDiscussionsShowStore implements BeatmapsetDiscuss
       }
     }
 
-    return mapBy(
-      this.beatmapset.beatmaps.filter((beatmap) => beatmap.deleted_at == null || hasDiscussion.has(beatmap.id)),
-      'id',
-    );
+    let visibleBeatmaps = this
+      .beatmapset
+      .beatmaps
+      .filter((beatmap) => beatmap.deleted_at == null || hasDiscussion.has(beatmap.id));
+
+    if (visibleBeatmaps.length === 0) {
+      visibleBeatmaps = [this.beatmapset.beatmaps[0]];
+    }
+
+    return mapBy(visibleBeatmaps, 'id');
   }
 
   @computed

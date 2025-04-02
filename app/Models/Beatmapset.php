@@ -10,7 +10,7 @@ use App\Exceptions\BeatmapProcessorException;
 use App\Exceptions\ImageProcessorServiceException;
 use App\Exceptions\InvariantException;
 use App\Jobs\CheckBeatmapsetCovers;
-use App\Jobs\EsDocument;
+use App\Jobs\EsDocumentUnique;
 use App\Jobs\Notifications\BeatmapsetDiscussionLock;
 use App\Jobs\Notifications\BeatmapsetDiscussionUnlock;
 use App\Jobs\Notifications\BeatmapsetDisqualify;
@@ -330,21 +330,18 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function scopeWithPackTags(Builder $query): Builder
     {
-        $idColumn = $this->qualifyColumn('beatmapset_id');
-        $packTagColumn = (new BeatmapPack())->qualifyColumn('tag');
-        $packItemBeatmapsetIdColumn = (new BeatmapPackItem())->qualifyColumn('beatmapset_id');
         $packQuery = BeatmapPack
-            ::selectRaw("GROUP_CONCAT({$packTagColumn} SEPARATOR ',')")
-            ->default()
-            ->whereRelation(
+            ::default()
+            ->whereHas(
                 'items',
-                DB::raw($packItemBeatmapsetIdColumn),
-                DB::raw($idColumn),
-            )->toRawSql();
+                fn ($q) => $q->whereColumn(
+                    $q->qualifyColumn('beatmapset_id'),
+                    $this->qualifyColumn('beatmapset_id')
+                ),
+            );
+        $packQuery->selectRaw("GROUP_CONCAT({$packQuery->qualifyColumn('tag')} SEPARATOR ',')");
 
-        return $query
-            ->select('*')
-            ->selectRaw("({$packQuery}) as pack_tags");
+        return $query->addSelect(['pack_tags' => $packQuery]);
     }
 
     public function scopeWithStates($query, $states)
@@ -850,8 +847,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         DB::transaction(function () {
             $this->events()->create(['type' => BeatmapsetEvent::RANK]);
 
-            $this->update(['play_count' => 0]);
-            $this->beatmaps()->update(['playcount' => 0, 'passcount' => 0]);
             $this->setApproved('ranked', null);
             $this->bssProcessQueues()->create();
 
@@ -1511,7 +1506,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function afterCommit()
     {
-        dispatch(new EsDocument($this));
+        dispatch(new EsDocumentUnique($this));
     }
 
     public function notificationCover()

@@ -296,24 +296,24 @@ return [
         ],
 
         'issue_tag_osulazer' => [
-            'to_0' => 'Удалить тег «osu!lazer»',
-            'to_0_done' => 'Удален тег «osu!lazer»',
-            'to_1' => 'Добавить тег «osu!lazer»',
-            'to_1_done' => 'Добавлен тег «osu!lazer»',
+            'to_0' => 'Удалить тег "osu!lazer"',
+            'to_0_done' => 'Удалён тег "osu!lazer"',
+            'to_1' => 'Добавить тег "osu!lazer"',
+            'to_1_done' => 'Добавлен тег "osu!lazer"',
         ],
 
         'issue_tag_osustable' => [
-            'to_0' => 'Удалить тег «osu!stable»',
-            'to_0_done' => 'Удален тег «osu!stable»',
-            'to_1' => 'Добавить тег «osu!stable»',
-            'to_1_done' => 'Добавлен тег «osu!stable»',
+            'to_0' => 'Удалить тег "osu!stable"',
+            'to_0_done' => 'Удалён тег "osu!stable"',
+            'to_1' => 'Добавить тег "osu!stable"',
+            'to_1_done' => 'Добавлен тег "osu!stable"',
         ],
 
         'issue_tag_osuweb' => [
-            'to_0' => 'Удалить тег «osu!web»',
-            'to_0_done' => 'Удален тег «osu!web»',
-            'to_1' => 'Добавить тег «osu!web»',
-            'to_1_done' => 'Добавлен тег «osu!web»',
+            'to_0' => 'Удалить тег "osu!web"',
+            'to_0_done' => 'Удалён тег "osu!web"',
+            'to_1' => 'Добавить тег "osu!web"',
+            'to_1_done' => 'Добавлен тег "osu!web"',
         ],
 
         'lock' => [
