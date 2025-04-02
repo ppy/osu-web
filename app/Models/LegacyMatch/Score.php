@@ -25,7 +25,7 @@ use App\Models\Traits\Scoreable;
  * @property mixed $rank
  * @property int $score
  * @property int $slot
- * @property int $team
+ * @property mixed $team
  * @property int $user_id
  */
 class Score extends Model

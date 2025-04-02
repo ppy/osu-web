@@ -847,8 +847,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         DB::transaction(function () {
             $this->events()->create(['type' => BeatmapsetEvent::RANK]);
 
-            $this->update(['play_count' => 0]);
-            $this->beatmaps()->update(['playcount' => 0, 'passcount' => 0]);
             $this->setApproved('ranked', null);
             $this->bssProcessQueues()->create();
 

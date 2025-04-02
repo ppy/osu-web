@@ -198,6 +198,9 @@ return [
         'ends_at' => env('SEASONAL_ENDS_AT'),
     ],
 
+    'sentry' => [
+        'min_log_duration' => get_float(env('OSU_SENTRY_MIN_LOG_DURATION_MS') ?? 500) / 1000,
+    ],
     'store' => [
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE') ?? '')),
     ],
