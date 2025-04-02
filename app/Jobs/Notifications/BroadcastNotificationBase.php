@@ -248,7 +248,7 @@ abstract class BroadcastNotificationBase implements ShouldQueue
                 ...UserRelation
                     ::where('zebra_id', $this->source->getKey())
                     ->where('foe', true)
-                    ->whereIn('user_id', $userIds)
+                    ->whereIn('user_id', $chunkedUserIds)
                     ->pluck('user_id')
                     ->all(),
             );
