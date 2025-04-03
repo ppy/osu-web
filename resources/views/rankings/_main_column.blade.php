@@ -34,6 +34,7 @@
         class="ranking-page-table-main"
         href="{{ route('teams.leaderboard', [
             'ruleset' => $mode,
+            'sort' => $sort,
             'team' => $object,
         ]) }}"
     >
@@ -67,7 +68,7 @@
             </a>
         </span>
 
-        @if (($team = $object->team) !== null)
+        @if (($showTeam ?? true) && ($team = $object->team) !== null)
             <span class="ranking-page-table-main__flag">
                 <a class="u-contents" href="{{ route('teams.show', $team) }}">
                     @include('objects._flag_team', compact('team'))
