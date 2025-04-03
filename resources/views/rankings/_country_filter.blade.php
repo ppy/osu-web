@@ -4,6 +4,10 @@
 --}}
 @php
     use App\Transformers\SelectOptionTransformer;
+    use App\Models\Country;
+
+    $transformer = new SelectOptionTransformer();
+    $country = $countryStats?->country;
 @endphp
 
 <div class="js-react--ranking-country-filter u-contents">
@@ -21,7 +25,10 @@
 
 <script id="json-country-filter" type="application/json">
     {!! json_encode([
-        'current' => $country === null ? null : json_item($country, new SelectOptionTransformer()),
-        'items' => $countries,
+        'current' => $country === null ? null : json_item($country, $transformer),
+        'items' => json_collection(
+            Country::whereHasRuleset($params['mode'])->get(),
+            $transformer,
+        ),
     ]) !!}
 </script>
