@@ -57,7 +57,7 @@ export default class Main extends React.Component<Props> {
 
   private renderShowJudgedToggle() {
     return (
-      <label>
+      <label className='contest-judge__switch'>
         <div className='osu-switch-v2'>
           <input
             checked={this.hideJudged}
