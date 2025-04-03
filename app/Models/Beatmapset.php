@@ -626,7 +626,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         $beatmaps->update(['approved' => $approvedState]);
 
         if ($this->isQualified() && $state === 'pending') {
-            $this->previous_queue_duration = ($this->queued_at ?? $this->approved_date)->diffinSeconds();
+            $this->previous_queue_duration = (int) ($this->queued_at ?? $this->approved_date)->diffInSeconds();
             $this->queued_at = null;
         } elseif ($this->isPending() && $state === 'qualified') {
             // Check if any beatmaps where added after most recent invalidated nomination.
@@ -647,8 +647,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
                 // additional penalty for disqualification period, 1 day per week disqualified.
                 if ($disqualifyEvent !== null) {
-                    $interval = $currentTime->diffInDays($disqualifyEvent->created_at);
-                    $penaltyDays = min($interval / 7, $GLOBALS['cfg']['osu']['beatmapset']['maximum_disqualified_rank_penalty_days']);
+                    $interval = (int) $disqualifyEvent->created_at->diffInDays($currentTime);
+                    $penaltyDays = (int) min($interval / 7, $GLOBALS['cfg']['osu']['beatmapset']['maximum_disqualified_rank_penalty_days']);
                     $this->queued_at = $this->queued_at->addDays($penaltyDays);
                 }
             }
@@ -1206,7 +1206,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             ->count();
         $days = ceil($queueSize / $GLOBALS['cfg']['osu']['beatmapset']['rank_per_day']);
 
-        $minDays = $GLOBALS['cfg']['osu']['beatmapset']['minimum_days_for_rank'] - $this->queued_at->diffInDays();
+        $minDays = $GLOBALS['cfg']['osu']['beatmapset']['minimum_days_for_rank'] - (int) $this->queued_at->diffInDays();
         $days = max($minDays, $days);
 
         return [
