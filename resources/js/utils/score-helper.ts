@@ -72,13 +72,13 @@ export function modDetails(mod: ScoreModJson) {
   };
 }
 
-interface AttributeDisplayMapping {
+interface LeaderboardStatisticMapping {
   attributes: SoloScoreStatisticsAttribute[];
   key: string;
   label: string;
 }
 
-interface AttributeDisplayTotal {
+interface LeaderboardStatistic {
   key: string;
   label: string;
   total: number;
@@ -86,7 +86,7 @@ interface AttributeDisplayTotal {
 
 const labelMiss = trans('beatmapsets.show.scoreboard.headers.miss');
 
-export const modeAttributesMap: Record<Ruleset, AttributeDisplayMapping[]> = {
+export const scoreStatisticsForLeaderboards: Record<Ruleset, LeaderboardStatisticMapping[]> = {
   fruits: [
     { attributes: ['great'], key: 'great', label: 'fruits' },
     { attributes: ['large_tick_hit'], key: 'ticks', label: 'ticks' },
@@ -115,11 +115,71 @@ export const modeAttributesMap: Record<Ruleset, AttributeDisplayMapping[]> = {
   ],
 };
 
-export function attributeDisplayTotals(ruleset: Ruleset, score: SoloScoreJson): AttributeDisplayTotal[] {
-  return modeAttributesMap[ruleset].map((mapping) => ({
+export function calculateStatisticsForLeaderboard(ruleset: Ruleset, score: SoloScoreJson): LeaderboardStatistic[] {
+  return scoreStatisticsForLeaderboards[ruleset].map((mapping) => ({
     key: mapping.key,
     label: mapping.label,
     total: mapping.attributes.reduce((sum, attribute) => sum + (score.statistics[attribute] ?? 0), 0),
+  }));
+}
+
+interface ScoreStatisticMapping {
+  attributes: SoloScoreStatisticsAttribute[];
+  basic: boolean;
+  key: string;
+  label: string;
+}
+
+interface ScoreStatistic {
+  basic: boolean;
+  key: string;
+  label: string;
+  maximum_value?: number;
+  value: number;
+}
+
+export const scoreStatisticsForSingleScore: Record<Ruleset, ScoreStatisticMapping[]> = {
+  fruits: [
+    { attributes: ['great'], basic: true, key: 'great', label: 'great' },
+    { attributes: ['miss'], basic: true, key: 'miss', label: labelMiss },
+    { attributes: ['large_tick_hit'], basic: false, key: 'large_tick', label: 'large droplet' },
+    { attributes: ['small_tick_hit'], basic: false, key: 'small_tick', label: 'small droplet' },
+    { attributes: ['large_bonus'], basic: false, key: 'banana', label: 'banana' },
+  ],
+  mania: [
+    { attributes: ['perfect'], basic: true, key: 'perfect', label: 'perfect' },
+    { attributes: ['great'], basic: true, key: 'great', label: 'great' },
+    { attributes: ['good'], basic: true, key: 'good', label: 'good' },
+    { attributes: ['ok'], basic: true, key: 'ok', label: 'ok' },
+    { attributes: ['meh'], basic: true, key: 'meh', label: 'meh' },
+    { attributes: ['miss'], basic: true, key: 'miss', label: labelMiss },
+  ],
+  osu: [
+    { attributes: ['great'], basic: true, key: 'great', label: 'great' },
+    { attributes: ['ok'], basic: true, key: 'ok', label: 'ok' },
+    { attributes: ['meh'], basic: true, key: 'meh', label: 'meh' },
+    { attributes: ['miss'], basic: true, key: 'miss', label: labelMiss },
+    { attributes: ['large_tick_hit'], basic: false, key: 'slider_tick', label: 'slider tick' },
+    { attributes: ['small_tick_hit', 'slider_tail_hit'], basic: false, key: 'slider_end', label: 'slider end' },
+    { attributes: ['small_bonus'], basic: false, key: 'spinner_spin', label: 'spinner spin' },
+    { attributes: ['large_bonus'], basic: false, key: 'spinner_bonus', label: 'spinner bonus' },
+  ],
+  taiko: [
+    { attributes: ['great'], basic: true, key: 'great', label: 'great' },
+    { attributes: ['ok'], basic: true, key: 'ok', label: 'good' },
+    { attributes: ['miss'], basic: true, key: 'miss', label: labelMiss },
+    { attributes: ['small_bonus'], basic: false, key: 'drum_tick', label: 'drum tick' },
+    { attributes: ['large_bonus'], basic: false, key: 'bonus', label: 'bonus' },
+  ],
+};
+
+export function calculateStatisticsForSingleScore(score: SoloScoreJson): ScoreStatistic[] {
+  return scoreStatisticsForSingleScore[rulesetName(score.ruleset_id)].map((mapping) => ({
+    basic: mapping.basic,
+    key: mapping.key,
+    label: mapping.label,
+    maximum_value: mapping.basic ? undefined : mapping.attributes.reduce((sum, attribute) => sum + (score.maximum_statistics[attribute] ?? 0), 0),
+    value: mapping.attributes.reduce((sum, attribute) => sum + (score.statistics[attribute] ?? 0), 0),
   }));
 }
 

@@ -21,7 +21,7 @@ import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { accuracy, filterMods, isPerfectCombo, attributeDisplayTotals, rank, scoreUrl } from 'utils/score-helper';
+import { accuracy, filterMods, isPerfectCombo, calculateStatisticsForLeaderboard, rank, scoreUrl } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;
@@ -160,7 +160,7 @@ export default class TopCard extends React.PureComponent<Props> {
             </div>
 
             <div className='beatmap-score-top__stats beatmap-score-top__stats--wrappable'>
-              {attributeDisplayTotals(ruleset, this.props.score).map((attr) => (
+              {calculateStatisticsForLeaderboard(ruleset, this.props.score).map((attr) => (
                 <div key={attr.key} className='beatmap-score-top__stat'>
                   <div className='beatmap-score-top__stat-header'>
                     {attr.label}
