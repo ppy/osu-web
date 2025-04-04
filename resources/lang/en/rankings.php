@@ -37,6 +37,7 @@ return [
         'charts' => 'spotlights (old)',
         'country' => 'country',
         'daily_challenge' => 'daily challenge',
+        'global' => 'global',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'performance' => 'performance',
