@@ -92,7 +92,7 @@ class Mods
         }
     }
 
-    public function assertValidForMultiplayer(int $rulesetId, array $ids, bool $isRealtime, bool $isRequired): void
+    public function assertValidForMultiplayer(int $rulesetId, array $ids, bool $isRealtime, bool $isRequired, bool $isFreestyle): void
     {
         $this->validateSelection($rulesetId, $ids);
 
@@ -104,6 +104,10 @@ class Mods
 
         foreach ($ids as $id) {
             $mod = $this->mods[$rulesetId][$id];
+
+            if ($isFreestyle && !$mod['ValidForFreestyle']) {
+                throw new InvariantException("mod cannot be set on freestyle items: {$id}");
+            }
 
             if (!$mod[$attr]) {
                 $messageType = $isRequired ? 'required' : 'allowed';
