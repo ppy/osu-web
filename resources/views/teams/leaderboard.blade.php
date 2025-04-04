@@ -20,11 +20,24 @@
         @endslot
     @endcomponent
 
-    <div class="osu-page osu-page--generic-compact">
-        <div class="user-profile-pages user-profile-pages--no-tabs">
-            <div class="page-extra u-fancy-scrollbar">
-                @include('teams._members_leaderboard')
+    <div class="osu-page osu-page--generic">
+        <div class="sort">
+            <div class="sort__items">
+                <div class="sort__item sort__item--title">
+                    {{ osu_trans('sort._') }}
+                </div>
+                @foreach ([['performance', 'performance'], ['score', 'ranked_score']] as $newSort)
+                    <a
+                        class="{{ class_with_modifiers('sort__item', 'button', ['active' => $newSort[0] === $sort]) }}"
+                        href="{{ route('teams.leaderboard', ['team' => $team, 'sort' => $newSort[0]]) }}"
+                    >
+                        {{ osu_trans("rankings.stat.{$newSort[1]}") }}
+                    </a>
+                @endforeach
             </div>
+        </div>
+        <div class="ranking-page">
+            @include('teams._members_leaderboard')
         </div>
     </div>
 @endsection
