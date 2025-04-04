@@ -6,11 +6,11 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import { SoloScoreJsonForShow } from 'interfaces/solo-score-json';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
-import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
+import { shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { accuracy, isPerfectCombo, calculateStatisticsForLeaderboard } from 'utils/score-helper';
+import { accuracy, isPerfectCombo, calculateStatisticsForSingleScore } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;
@@ -19,6 +19,12 @@ interface Props {
 
 export default function Stats(props: Props) {
   const scoreAccuracy = accuracy(props.score);
+
+  const statistics = calculateStatisticsForSingleScore(props.score);
+
+  const basicStats = statistics.filter((attr) => attr.basic);
+  // logic matches https://github.com/ppy/osu/blob/2df3dfb99cc867240f757c3761115b19d8595ec1/osu.Game/Scoring/ScoreInfo.cs#L373-L374
+  const extraStats = statistics.filter((attr) => !attr.basic && attr.maximum_value != null && attr.maximum_value > 0);
 
   return (
     <div className='score-stats'>
@@ -58,17 +64,34 @@ export default function Stats(props: Props) {
           )}
         </div>
         <div className='score-stats__group-row'>
-          {calculateStatisticsForLeaderboard(rulesetName(props.score.ruleset_id), props.score).map((attr) => (
-            <div key={attr.key} className='score-stats__stat'>
-              <div className='score-stats__stat-row score-stats__stat-row--label'>
-                {attr.label}
+          {basicStats
+            .map((attr) => (
+              <div key={attr.key} className='score-stats__stat'>
+                <div className='score-stats__stat-row score-stats__stat-row--label'>
+                  {attr.label}
+                </div>
+                <div className='score-stats__stat-row'>
+                  {formatNumber(attr.value)}
+                </div>
               </div>
-              <div className='score-stats__stat-row'>
-                {formatNumber(attr.total)}
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
+        {extraStats.length > 0
+          ? <div className='score-stats__group-row'>
+            {extraStats
+              .map((attr) => (
+                <div key={attr.key} className='score-stats__stat'>
+                  <div className='score-stats__stat-row score-stats__stat-row--label'>
+                    {attr.label}
+                  </div>
+                  <div className='score-stats__stat-row'>
+                    {formatNumber(attr.value)}<span className='score-stats__stat-row--maximum'>/{formatNumber(attr.maximum_value!)}</span>
+                  </div>
+                </div>
+              ))}
+          </div>
+          : null
+        }
       </div>
     </div>
   );
