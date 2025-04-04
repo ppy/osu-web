@@ -41,6 +41,7 @@ class PlaylistItemTest extends TestCase
             'owner_id' => $user->getKey(),
             'required_mods' => [],
             'allowed_mods' => [],
+            'freestyle' => false,
         ]);
 
         $this->expectNotToPerformAssertions();
@@ -61,6 +62,7 @@ class PlaylistItemTest extends TestCase
             'owner_id' => $user->getKey(),
             'required_mods' => [],
             'allowed_mods' => [],
+            'freestyle' => false,
         ]);
 
         $this->expectNotToPerformAssertions();
@@ -81,6 +83,7 @@ class PlaylistItemTest extends TestCase
             'owner_id' => $user->getKey(),
             'required_mods' => [],
             'allowed_mods' => [],
+            'freestyle' => false,
         ]);
 
         $this->expectException(InvariantException::class);
