@@ -27,6 +27,6 @@ class ContestCalculateScores extends Command
             return static::FAILURE;
         }
 
-        $contest->calculateScores();
+        $contest->calculateScoresStd();
     }
 }
