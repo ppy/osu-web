@@ -62,7 +62,7 @@ export default function Score(props: Props) {
                   break;
 
                 case 'accuracy':
-                  value = formatNumber(props.score.accuracy * 100, 2, { style: 'percent' });
+                  value = formatNumber(props.score.accuracy, 2, { style: 'percent' });
                   break;
 
                 case 'score':
