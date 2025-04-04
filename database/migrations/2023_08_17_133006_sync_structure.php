@@ -106,7 +106,7 @@ return new class extends Migration
         });
         foreach (static::RULESET_TABLE_SUFFIXES as $suffix) {
             Schema::table("osu_user_stats{$suffix}", function (Blueprint $table) {
-                $table->unsignedDouble('rank_score_exp')->nullable(false)->default(0)->change();
+                $table->double('rank_score_exp')->nullable(false)->default(0)->change();
             });
         }
         Schema::table('phpbb_users', function (Blueprint $table) {
