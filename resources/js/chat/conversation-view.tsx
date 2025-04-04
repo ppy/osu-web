@@ -46,8 +46,9 @@ export default class ConversationView extends React.Component<Props> {
     let currentGroup: Message[] = [];
     let unreadMarkerShown = false;
     let currentDay: string;
+    const messages = this.messages;
 
-    each(channel.messages, (message: Message, key: number) => {
+    each(messages, (message: Message, key: number) => {
       // check if the last read indicator needs to be shown
       if (!unreadMarkerShown
         && typeof message.messageId === 'number'
@@ -84,7 +85,7 @@ export default class ConversationView extends React.Component<Props> {
         currentGroup.push(message);
       }
 
-      if (key === channel.messages.length - 1) {
+      if (key === messages.length - 1) {
         conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
       }
     });
@@ -95,6 +96,12 @@ export default class ConversationView extends React.Component<Props> {
   @computed
   private get currentChannel() {
     return core.dataStore.chatState.selectedChannel;
+  }
+
+  private get messages() {
+    const channel = this.currentChannel;
+    if (channel == null) return [];
+    return channel.messages.filter((message) => !core.currentUserModel.blocks.has(message.senderId));
   }
 
   constructor(props: Props) {
