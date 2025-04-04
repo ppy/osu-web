@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\InvariantException;
 use App\Models\Beatmap;
 use App\Models\BeatmapTag;
 use App\Models\Tag;
@@ -41,6 +42,10 @@ class BeatmapTagsController extends Controller
         priv_check('BeatmapTagStore', $beatmap)->ensureCan();
 
         $tag = Tag::findOrFail($tagId);
+
+        if ($tag->ruleset_id !== null && $tag->ruleset_id !== $beatmap->playmode) {
+            throw new InvariantException(osu_trans('beatmap_tags.update.invalid_ruleset'));
+        }
 
         $tag
             ->beatmapTags()

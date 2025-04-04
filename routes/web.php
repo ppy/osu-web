@@ -238,7 +238,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('password-reset', 'PasswordResetController@index')->name('password-reset');
         Route::post('password-reset', 'PasswordResetController@create');
         Route::put('password-reset', 'PasswordResetController@update');
-        Route::delete('password-reset', 'PasswordResetController@destroy');
         Route::get('password-reset/reset', 'PasswordResetController@reset')->name('password-reset.reset');
         Route::post('password-reset/resend-mail', 'PasswordResetController@resendMail')->name('password-reset.resend-mail');
 
@@ -303,6 +302,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('leaderboard/{ruleset?}', 'TeamsController@leaderboard')->name('leaderboard');
         Route::post('part', 'TeamsController@part')->name('part');
         Route::resource('members', 'Teams\MembersController', ['only' => ['destroy', 'index']]);
+        Route::post('members/{member}/set-leader', 'Teams\MembersController@setLeader')->name('members.set-leader');
     });
     Route::resource('teams', 'TeamsController', ['only' => ['create', 'destroy', 'edit', 'store', 'update']]);
     Route::get('teams/{team}/{ruleset?}', 'TeamsController@show')->name('teams.show');

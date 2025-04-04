@@ -408,20 +408,29 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addTagsFilter(BoolQuery $query): void
     {
-        if ($this->params->tags === null) {
+        $tags = $this->params->tags;
+        if ($tags === null) {
             return;
         }
 
-        $tagSet = new Set(array_map('mb_strtolower', $this->params->tags));
-        $tags = Tag::whereIn('name', $this->params->tags)->limit(10)->pluck('name');
-        $tagSet->remove(...$tags->map(fn ($name) => mb_strtolower($name))->toArray());
+        // workaround multi tag parsing when there's an empty tag.
+        $tags = array_reject_null($tags);
 
-        foreach ($tagSet as $tag) {
-            $query->filter(QueryHelper::queryString($tag, ['beatmaps.top_tags'], 'and'));
+        $tagMap = [];
+        foreach ($tags as $tag) {
+            $key = mb_strtolower(mb_trim($tag, '"'));
+            $tagMap[$key] = $tag;
         }
 
-        foreach ($tags as $tag) {
+        $exactTags = Tag::whereIn('name', array_keys($tagMap))->limit(10)->pluck('name');
+
+        foreach ($exactTags as $tag) {
             $query->filter(['term' => ['beatmaps.top_tags.raw' => $tag]]);
+            unset($tagMap[mb_strtolower($tag)]);
+        }
+
+        foreach (array_values($tagMap) as $tag) {
+            $query->filter(QueryHelper::queryString($tag, ['beatmaps.top_tags'], 'and'));
         }
     }
 

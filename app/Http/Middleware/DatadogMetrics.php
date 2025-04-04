@@ -12,14 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DatadogMetrics extends LaravelDatadogMiddleware
 {
-    /**
-     * Logs the duration of a specific request through the application
-     *
-     * @param Request $request
-     * @param Response $response
-     * @param float $startTime
-     */
-    protected static function logDuration(Request $request, Response $response, $startTime)
+    public static function makeLogTags(Request $request, Response $response): array
     {
         static $hostname;
         if (!isset($hostname)) {
@@ -29,8 +22,7 @@ class DatadogMetrics extends LaravelDatadogMiddleware
             }
         }
 
-        $duration = microtime(true) - $startTime;
-        $tags = [
+        return [
             'action' => 'error_page',
             'api' => is_api_request() ? 'true' : 'false',
             'controller' => 'error',
@@ -39,9 +31,22 @@ class DatadogMetrics extends LaravelDatadogMiddleware
             'section' => 'error',
             'status_code' => $response->getStatusCode(),
             'status_code_extra' => $request->attributes->get('status_code_extra'),
+            ...app('route-section')->getOriginal(),
         ];
+    }
 
-        $tags = array_merge($tags, app('route-section')->getOriginal());
+    /**
+     * Logs the duration of a specific request through the application
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param float $startTime
+     */
+    protected static function logDuration(Request $request, Response $response, $startTime)
+    {
+        $tags = static::makeLogTags($request, $response);
+
+        $duration = microtime(true) - $startTime;
 
         Datadog::timing($GLOBALS['cfg']['datadog-helper']['prefix_web'].'.request_time', $duration, 1, $tags);
     }

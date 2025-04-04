@@ -16,53 +16,61 @@ use Tests\TestCase;
 
 class BeatmapTagsControllerTest extends TestCase
 {
-    private Tag $tag;
-    private Beatmap $beatmap;
-    private BeatmapTag $beatmapTag;
-
-    public function testStore(): void
+    public static function dataProviderForUpdate(): array
     {
-        $user = User::factory()
-            ->has(Score::factory()->state(['beatmap_id' => $this->beatmap]), 'soloScores')
-            ->create();
-
-        $this->expectCountChange(fn () => BeatmapTag::count(), 1);
-
-        $this->actAsScopedUser($user);
-        $this
-            ->put(route('api.beatmaps.tags.update', ['beatmap' => $this->beatmap->getKey(), 'tag' => $this->tag->getKey()]))
-            ->assertSuccessful();
-    }
-
-    public function testStoreNoScore(): void
-    {
-        $this->expectCountChange(fn () => BeatmapTag::count(), 0);
-
-        $this->actAsScopedUser(User::factory()->create());
-        $this
-            ->put(route('api.beatmaps.tags.update', ['beatmap' => $this->beatmap->getKey(), 'tag' => $this->tag->getKey()]))
-            ->assertForbidden();
+        return [
+            [0, null, true],
+            [0, 0, true],
+            [0, 1, false],
+        ];
     }
 
     public function testDestroy(): void
     {
+        $beatmapTag = BeatmapTag::factory()->create();
+
         $this->expectCountChange(fn () => BeatmapTag::count(), -1);
 
-        $this->actAsScopedUser($this->beatmapTag->user);
+        $this->actAsScopedUser($beatmapTag->user);
         $this
-            ->delete(route('api.beatmaps.tags.destroy', ['beatmap' => $this->beatmap->getKey(), 'tag' => $this->tag->getKey()]))
+            ->delete(route('api.beatmaps.tags.destroy', ['beatmap' => $beatmapTag->beatmap_id, 'tag' => $beatmapTag->tag_id]))
             ->assertSuccessful();
     }
 
-    protected function setUp(): void
+     /**
+      * @dataProvider dataProviderForUpdate
+      */
+    public function testUpdate(int $beatmapRulesetId, ?int $tagRulesetId, bool $successful): void
     {
-        parent::setUp();
+        $tag = Tag::factory()->state(['ruleset_id' => $tagRulesetId])->create();
+        $beatmap = Beatmap::factory()->state(['playmode' => $beatmapRulesetId])->create();
 
-        $this->tag = Tag::factory()->create();
-        $this->beatmap = Beatmap::factory()->create();
-        $this->beatmapTag = BeatmapTag::factory()->create([
-            'tag_id' => $this->tag,
-            'beatmap_id' => $this->beatmap,
-        ]);
+        $user = User::factory()
+            ->has(Score::factory()->state(['beatmap_id' => $beatmap]), 'soloScores')
+            ->create();
+
+        $this->expectCountChange(fn () => BeatmapTag::count(), $successful ? 1 : 0);
+
+        $this->actAsScopedUser($user);
+        $request = $this->put(route('api.beatmaps.tags.update', ['beatmap' => $beatmap->getKey(), 'tag' => $tag->getKey()]));
+
+        if ($successful) {
+            $request->assertSuccessful();
+        } else {
+            $request->assertStatus(422);
+        }
+    }
+
+    public function testUpdateNoScore(): void
+    {
+        $tag = Tag::factory()->create();
+        $beatmap = Beatmap::factory()->create();
+
+        $this->expectCountChange(fn () => BeatmapTag::count(), 0);
+
+        $this->actAsScopedUser(User::factory()->create());
+        $this
+            ->put(route('api.beatmaps.tags.update', ['beatmap' => $beatmap->getKey(), 'tag' => $tag->getKey()]))
+            ->assertForbidden();
     }
 }

@@ -145,7 +145,7 @@ class UserTest extends TestCase
     public function testUsernameAvailableAtForDefaultGroup()
     {
         config_set('osu.user.allowed_rename_groups', ['default']);
-        $allowedAtUpTo = now()->addYears(5);
+        $allowedAtUpTo = now()->addYearsNoOverflow(5);
         $user = User::factory()->withGroup('default')->create();
 
         $this->assertLessThanOrEqual($allowedAtUpTo, $user->getUsernameAvailableAt());
@@ -154,7 +154,7 @@ class UserTest extends TestCase
     public function testUsernameAvailableAtForNonDefaultGroup()
     {
         config_set('osu.user.allowed_rename_groups', ['default']);
-        $allowedAt = now()->addYears(10);
+        $allowedAt = now()->addYearsNoOverflow(10);
         $user = User::factory()->withGroup('gmt')->create(['group_id' => app('groups')->byIdentifier('default')]);
 
         $this->assertGreaterThanOrEqual($allowedAt, $user->getUsernameAvailableAt());
@@ -185,11 +185,11 @@ class UserTest extends TestCase
         ]);
 
         // 1 change in last 3 years
-        $this->travelTo(CarbonImmutable::now()->addYears(3));
+        $this->travelTo(CarbonImmutable::now()->addYearsNoOverflow(3));
         $this->assertSame(8, $user->usernameChangeCost());
 
         // 0 changes in last 3 years
-        $this->travelTo(CarbonImmutable::now()->addYears(1));
+        $this->travelTo(CarbonImmutable::now()->addYearsNoOverflow(1));
         $this->assertSame(8, $user->usernameChangeCost());
 
         $user->usernameChangeHistory()->create([
@@ -211,10 +211,10 @@ class UserTest extends TestCase
         $this->assertSame(16, $user->usernameChangeCost());
 
         // 1 changes in last 3 years
-        $this->travelTo(CarbonImmutable::now()->addYears(3));
+        $this->travelTo(CarbonImmutable::now()->addYearsNoOverflow(3));
         $this->assertSame(8, $user->usernameChangeCost());
         // 0 changes in last 3 years
-        $this->travelTo(CarbonImmutable::now()->addYears(1));
+        $this->travelTo(CarbonImmutable::now()->addYearsNoOverflow(1));
         $this->assertSame(8, $user->usernameChangeCost());
     }
 
@@ -236,20 +236,22 @@ class UserTest extends TestCase
     public function testUsernameChangeCostWindow(int $years, int $cost)
     {
         $now = CarbonImmutable::now();
-        $this->travelTo(CarbonImmutable::now()->subYears(3));
+        $this->travelTo($now->subYearsNoOverflow(3));
 
         $user = User::factory()->create();
-        while (CarbonImmutable::now()->isBefore($now)) {
+        // every 6 months for 3 years = 6
+        // using isBefore to setup adds too many when run at month boundaries.
+        for ($i = 0; $i < 6; $i++) {
             $user->usernameChangeHistory()->create([
                 'timestamp' => CarbonImmutable::now(),
                 'type' => 'paid',
                 'username' => 'marty',
             ]);
 
-            $this->travelTo(CarbonImmutable::now()->addMonths(6));
+            $this->travelTo(CarbonImmutable::now()->addMonthsNoOverflow(6));
         }
 
-        $this->travelTo($now->addYears($years));
+        $this->travelTo($now->addYearsNoOverflow($years));
         $this->assertSame($cost, $user->usernameChangeCost());
     }
 

@@ -55,18 +55,23 @@ class RankingController extends Controller
         $this->middleware('require-scopes:public');
 
         $this->middleware(function ($request, $next) {
-            $this->params = get_params(array_merge($request->all(), $request->route()->parameters()), null, [
-                'country', // overridden later for view
-                'filter',
-                'mode',
-                'spotlight:int', // will be overriden by spotlight object for view
-                'type',
-                'variant',
-            ]);
+            $this->params = [
+                ...get_params($request->all(), null, [
+                    'country', // overridden later for view
+                    'filter',
+                    'spotlight:int', // will be overriden by spotlight object for view
+                    'variant',
+                ]),
+                ...get_params($request->route()->parameters(), null, [
+                    'mode',
+                    'sort',
+                    'type',
+                ], ['null_missing' => true]),
+            ];
 
             // these parts of the route are optional.
-            $mode = $this->params['mode'] ?? null;
-            $type = $this->params['type'] ?? null;
+            $mode = $this->params['mode'];
+            $type = $this->params['type'];
 
             $this->params['filter'] = $this->params['filter'] ?? null;
             $this->friendsOnly = auth()->check() && $this->params['filter'] === 'friends';
@@ -94,7 +99,7 @@ class RankingController extends Controller
                 abort(404);
             }
 
-            if (isset($this->params['country']) && $type === 'performance') {
+            if (isset($this->params['country']) && static::hasCountryFilter($type)) {
                 $this->countryStats = CountryStatistics::where('display', 1)
                     ->where('country_code', $this->params['country'])
                     ->where('mode', Beatmap::modeInt($mode))
@@ -108,7 +113,7 @@ class RankingController extends Controller
             }
 
             $this->defaultViewVars['country'] = $this->country;
-            if ($type === 'performance') {
+            if (static::hasCountryFilter($type)) {
                 $this->defaultViewVars['countries'] = json_collection(
                     Country::whereHasRuleset($mode)->get(),
                     new SelectOptionTransformer(),
@@ -133,13 +138,18 @@ class RankingController extends Controller
             'multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
             'seasons' => route('seasons.show', ['season' => 'latest']),
             default => route('rankings', [
-                'country' => $country !== null && $type === 'performance' ? $country->getKey() : null,
+                'country' => $country !== null && static::hasCountryFilter($type) ? $country->getKey() : null,
                 'mode' => $rulesetName,
                 'sort' => $sort,
                 'spotlight' => $spotlight !== null && $type === 'charts' ? $spotlight->getKey() : null,
                 'type' => $type,
             ]),
         };
+    }
+
+    private static function hasCountryFilter(string $type): bool
+    {
+        return $type === 'performance' || $type === 'score';
     }
 
     /**
@@ -207,9 +217,17 @@ class RankingController extends Controller
 
                 $stats->orderBy('rank_score', 'desc');
             } else { // 'score'
+                if ($this->country !== null) {
+                    $stats->where('country_acronym', $this->country['acronym']);
+                    // preferrable to ranked_score when filtering by country.
+                    // On a few countries the default index is slightly better but much worse on the rest.
+                    $forceIndex = 'country_ranked_score';
+                } else {
+                    // force to order by ranked_score instead of sucking down entire users table first.
+                    $forceIndex = 'ranked_score';
+                }
+
                 $stats->orderBy('ranked_score', 'desc');
-                // force to order by ranked_score instead of sucking down entire users table first.
-                $forceIndex = 'ranked_score';
             }
 
             if ($this->friendsOnly) {
@@ -293,6 +311,7 @@ class RankingController extends Controller
             ['path' => route('rankings', [
                 'filter' => $this->params['filter'],
                 'mode' => $mode,
+                'sort' => $sort,
                 'type' => $type,
                 'variant' => $this->params['variant'],
             ])]
