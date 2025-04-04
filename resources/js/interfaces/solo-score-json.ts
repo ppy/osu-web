@@ -9,6 +9,7 @@ import ScoreModJson from './score-mod-json';
 import WithBeatmapOwners from './with-beatmap-owners';
 
 export type SoloScoreStatisticsAttribute =
+  | 'combo_break'
   | 'good'
   | 'great'
   | 'ignore_hit'
@@ -21,6 +22,7 @@ export type SoloScoreStatisticsAttribute =
   | 'miss'
   | 'ok'
   | 'perfect'
+  | 'slider_tail_hit'
   | 'small_bonus'
   | 'small_tick_hit'
   | 'small_tick_miss';
