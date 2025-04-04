@@ -72,115 +72,75 @@ export function modDetails(mod: ScoreModJson) {
   };
 }
 
-interface LeaderboardStatisticMapping {
-  attributes: SoloScoreStatisticsAttribute[];
-  key: string;
-  label: string;
-}
-
-interface LeaderboardStatistic {
-  key: string;
-  label: string;
-  total: number;
-}
-
-const labelMiss = trans('beatmapsets.show.scoreboard.headers.miss');
-
-export const scoreStatisticsForLeaderboards: Record<Ruleset, LeaderboardStatisticMapping[]> = {
-  fruits: [
-    { attributes: ['great'], key: 'great', label: 'fruits' },
-    { attributes: ['large_tick_hit'], key: 'ticks', label: 'ticks' },
-    { attributes: ['small_tick_miss'], key: 'drp_miss', label: 'drp miss' },
-    // legacy/stable scores merge miss and large_tick_miss into one number
-    { attributes: ['miss', 'large_tick_miss'], key: 'miss', label: labelMiss },
-  ],
-  mania: [
-    { attributes: ['perfect'], key: 'perfect', label: 'max' },
-    { attributes: ['great'], key: 'great', label: '300' },
-    { attributes: ['good'], key: 'good', label: '200' },
-    { attributes: ['ok'], key: 'ok', label: '100' },
-    { attributes: ['meh'], key: 'meh', label: '50' },
-    { attributes: ['miss'], key: 'miss', label: labelMiss },
-  ],
-  osu: [
-    { attributes: ['great'], key: 'great', label: '300' },
-    { attributes: ['ok'], key: 'ok', label: '100' },
-    { attributes: ['meh'], key: 'meh', label: '50' },
-    { attributes: ['miss'], key: 'miss', label: labelMiss },
-  ],
-  taiko: [
-    { attributes: ['great'], key: 'great', label: 'great' },
-    { attributes: ['ok'], key: 'ok', label: 'good' },
-    { attributes: ['miss'], key: 'miss', label: labelMiss },
-  ],
-};
-
-export function calculateStatisticsForLeaderboard(ruleset: Ruleset, score: SoloScoreJson): LeaderboardStatistic[] {
-  return scoreStatisticsForLeaderboards[ruleset].map((mapping) => ({
-    key: mapping.key,
-    label: mapping.label,
-    total: mapping.attributes.reduce((sum, attribute) => sum + (score.statistics[attribute] ?? 0), 0),
-  }));
-}
+type ScoreDisplayType = 'leaderboard' | 'single';
 
 interface ScoreStatisticMapping {
   attributes: SoloScoreStatisticsAttribute[];
   basic: boolean;
-  key: string;
-  label: string;
+  longLabel: string;
+  relevantTypes: ScoreDisplayType[];
+  shortLabel: string;
 }
 
 interface ScoreStatistic {
   basic: boolean;
-  key: string;
-  label: string;
-  maximum_value?: number;
+  longLabel: string;
+  maximumValue?: number;
+  shortLabel: string;
   value: number;
 }
 
-export const scoreStatisticsForSingleScore: Record<Ruleset, ScoreStatisticMapping[]> = {
+const labelMiss = trans('beatmapsets.show.scoreboard.headers.miss');
+
+export const scoreStatisticsMapping: Record<Ruleset, ScoreStatisticMapping[]> = {
   fruits: [
-    { attributes: ['great'], basic: true, key: 'great', label: 'great' },
-    { attributes: ['miss'], basic: true, key: 'miss', label: labelMiss },
-    { attributes: ['large_tick_hit'], basic: false, key: 'large_tick', label: 'large droplet' },
-    { attributes: ['small_tick_hit'], basic: false, key: 'small_tick', label: 'small droplet' },
-    { attributes: ['large_bonus'], basic: false, key: 'banana', label: 'banana' },
+    { attributes: ['great'], basic: true, longLabel: 'great', relevantTypes: ['leaderboard', 'single'], shortLabel: 'fruits' },
+    // for single score display, show miss display separately
+    { attributes: ['miss'], basic: true, longLabel: labelMiss, relevantTypes: ['single'], shortLabel: labelMiss },
+    { attributes: ['large_tick_hit'], basic: false, longLabel: 'large droplet', relevantTypes: ['leaderboard', 'single'], shortLabel: 'ticks' },
+    { attributes: ['small_tick_hit'], basic: false, longLabel: 'small droplet', relevantTypes: ['single'], shortLabel: 'ticks' },
+    { attributes: ['small_tick_miss'], basic: false, longLabel: 'small droplet miss', relevantTypes: ['leaderboard'], shortLabel: 'drp miss' },
+    // legacy/stable scores merge miss and large_tick_miss into one number, so for leaderboard display merge them together
+    { attributes: ['miss', 'large_tick_miss'], basic: false, longLabel: labelMiss, relevantTypes: ['leaderboard'], shortLabel: labelMiss },
+    { attributes: ['large_bonus'], basic: false, longLabel: 'banana', relevantTypes: ['single'], shortLabel: 'banana' },
   ],
   mania: [
-    { attributes: ['perfect'], basic: true, key: 'perfect', label: 'perfect' },
-    { attributes: ['great'], basic: true, key: 'great', label: 'great' },
-    { attributes: ['good'], basic: true, key: 'good', label: 'good' },
-    { attributes: ['ok'], basic: true, key: 'ok', label: 'ok' },
-    { attributes: ['meh'], basic: true, key: 'meh', label: 'meh' },
-    { attributes: ['miss'], basic: true, key: 'miss', label: labelMiss },
+    { attributes: ['perfect'], basic: true, longLabel: 'perfect', relevantTypes: ['leaderboard', 'single'], shortLabel: 'max' },
+    { attributes: ['great'], basic: true, longLabel: 'great', relevantTypes: ['leaderboard', 'single'], shortLabel: '300' },
+    { attributes: ['good'], basic: true, longLabel: 'good', relevantTypes: ['leaderboard', 'single'], shortLabel: '200' },
+    { attributes: ['ok'], basic: true, longLabel: 'ok', relevantTypes: ['leaderboard', 'single'], shortLabel: '100' },
+    { attributes: ['meh'], basic: true, longLabel: 'meh', relevantTypes: ['leaderboard', 'single'], shortLabel: '50' },
+    { attributes: ['miss'], basic: true, longLabel: labelMiss, relevantTypes: ['leaderboard', 'single'], shortLabel: labelMiss },
   ],
   osu: [
-    { attributes: ['great'], basic: true, key: 'great', label: 'great' },
-    { attributes: ['ok'], basic: true, key: 'ok', label: 'ok' },
-    { attributes: ['meh'], basic: true, key: 'meh', label: 'meh' },
-    { attributes: ['miss'], basic: true, key: 'miss', label: labelMiss },
-    { attributes: ['large_tick_hit'], basic: false, key: 'slider_tick', label: 'slider tick' },
-    { attributes: ['small_tick_hit', 'slider_tail_hit'], basic: false, key: 'slider_end', label: 'slider end' },
-    { attributes: ['small_bonus'], basic: false, key: 'spinner_spin', label: 'spinner spin' },
-    { attributes: ['large_bonus'], basic: false, key: 'spinner_bonus', label: 'spinner bonus' },
+    { attributes: ['great'], basic: true, longLabel: 'great', relevantTypes: ['leaderboard', 'single'], shortLabel: '300' },
+    { attributes: ['ok'], basic: true, longLabel: 'ok', relevantTypes: ['leaderboard', 'single'], shortLabel: '100' },
+    { attributes: ['meh'], basic: true, longLabel: 'meh', relevantTypes: ['leaderboard', 'single'], shortLabel: '50' },
+    { attributes: ['miss'], basic: true, longLabel: 'miss', relevantTypes: ['leaderboard', 'single'], shortLabel: labelMiss },
+    { attributes: ['large_tick_hit'], basic: false, longLabel: 'slider tick', relevantTypes: ['single'], shortLabel: 'tick' },
+    { attributes: ['small_tick_hit', 'slider_tail_hit'], basic: false, longLabel: 'slider end', relevantTypes: ['single'], shortLabel: 'end' },
+    { attributes: ['small_bonus'], basic: false, longLabel: 'spinner spin', relevantTypes: ['single'], shortLabel: 'spin' },
+    { attributes: ['large_bonus'], basic: false, longLabel: 'spinner bonus', relevantTypes: ['single'], shortLabel: 'bonus' },
   ],
   taiko: [
-    { attributes: ['great'], basic: true, key: 'great', label: 'great' },
-    { attributes: ['ok'], basic: true, key: 'ok', label: 'good' },
-    { attributes: ['miss'], basic: true, key: 'miss', label: labelMiss },
-    { attributes: ['small_bonus'], basic: false, key: 'drum_tick', label: 'drum tick' },
-    { attributes: ['large_bonus'], basic: false, key: 'bonus', label: 'bonus' },
+    { attributes: ['great'], basic: true, longLabel: 'great', relevantTypes: ['leaderboard', 'single'], shortLabel: 'great' },
+    { attributes: ['ok'], basic: true, longLabel: 'ok', relevantTypes: ['leaderboard', 'single'], shortLabel: 'ok' },
+    { attributes: ['miss'], basic: true, longLabel: labelMiss, relevantTypes: ['leaderboard', 'single'], shortLabel: labelMiss },
+    { attributes: ['small_bonus'], basic: false, longLabel: 'drum tick', relevantTypes: ['single'], shortLabel: 'drum tick' },
+    { attributes: ['large_bonus'], basic: false, longLabel: 'bonus', relevantTypes: ['single'], shortLabel: 'bonus' },
   ],
 };
 
-export function calculateStatisticsForSingleScore(score: SoloScoreJson): ScoreStatistic[] {
-  return scoreStatisticsForSingleScore[rulesetName(score.ruleset_id)].map((mapping) => ({
-    basic: mapping.basic,
-    key: mapping.key,
-    label: mapping.label,
-    maximum_value: mapping.basic ? undefined : mapping.attributes.reduce((sum, attribute) => sum + (score.maximum_statistics[attribute] ?? 0), 0),
-    value: mapping.attributes.reduce((sum, attribute) => sum + (score.statistics[attribute] ?? 0), 0),
-  }));
+export function calculateStatisticsFor(score: SoloScoreJson, type: ScoreDisplayType): ScoreStatistic[] {
+  return scoreStatisticsMapping[rulesetName(score.ruleset_id)]
+    .filter((mapping) => mapping.relevantTypes.includes(type))
+    .map((mapping) => ({
+      basic: mapping.basic,
+      longLabel: mapping.longLabel,
+      maximumValue: mapping.basic ? undefined : mapping.attributes.reduce((sum, attribute) => sum + (score.maximum_statistics[attribute] ?? 0), 0),
+      shortLabel: mapping.shortLabel,
+      value: mapping.attributes.reduce((sum, attribute) => sum + (score.statistics[attribute] ?? 0), 0),
+    }));
 }
 
 export function rank(score: SoloScoreJson) {

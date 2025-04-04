@@ -8,7 +8,7 @@ import { ContainerContext, KeyContext } from 'stateful-activation-context';
 import { shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
-import { scoreStatisticsForLeaderboards } from 'utils/score-helper';
+import { scoreStatisticsMapping } from 'utils/score-helper';
 import Controller from './controller';
 import TableRow from './table-row';
 
@@ -62,14 +62,16 @@ export default class Table extends React.Component<Props> {
                 <th className={`${bn}__header ${bn}__header--maxcombo`}>
                   {trans('beatmapsets.show.scoreboard.headers.combo')}
                 </th>
-                {scoreStatisticsForLeaderboards[this.props.controller.beatmap.mode].map((stat) => (
-                  <th
-                    key={stat.key}
-                    className={classWithModifiers(`${bn}__header`, ['hitstat', `hitstat-${stat.key}`])}
-                  >
-                    {stat.label}
-                  </th>
-                ))}
+                {scoreStatisticsMapping[this.props.controller.beatmap.mode]
+                  .filter((stat) => stat.relevantTypes.includes('leaderboard'))
+                  .map((stat) => (
+                    <th
+                      key={stat.shortLabel}
+                      className={classWithModifiers(`${bn}__header`, ['hitstat'])}
+                    >
+                      {stat.shortLabel}
+                    </th>
+                  ))}
                 {this.showPp &&
                   <th className={`${bn}__header ${bn}__header--pp`}>
                     {trans('beatmapsets.show.scoreboard.headers.pp')}

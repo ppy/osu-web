@@ -19,7 +19,7 @@ import PpValue from 'scores/pp-value';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { accuracy, filterMods, hasMenu, isPerfectCombo, calculateStatisticsForLeaderboard, rank, scoreUrl } from 'utils/score-helper';
+import { accuracy, filterMods, hasMenu, isPerfectCombo, calculateStatisticsFor, rank, scoreUrl } from 'utils/score-helper';
 
 const bn = 'beatmap-scoreboard-table';
 
@@ -135,13 +135,13 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           {`${formatNumber(score.max_combo)}x`}
         </TdLink>
 
-        {calculateStatisticsForLeaderboard(this.props.beatmap.mode, score).map((stat) => (
+        {calculateStatisticsFor(score, 'leaderboard').map((stat) => (
           <TdLink
-            key={stat.key}
+            key={stat.shortLabel}
             href={this.scoreUrl}
-            modifiers={{ zero: stat.total === 0 }}
+            modifiers={{ zero: stat.value === 0 }}
           >
-            {formatNumber(stat.total)}
+            {formatNumber(stat.value)}
           </TdLink>
         ))}
 

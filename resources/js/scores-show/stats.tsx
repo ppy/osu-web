@@ -10,7 +10,7 @@ import { shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { accuracy, isPerfectCombo, calculateStatisticsForSingleScore } from 'utils/score-helper';
+import { accuracy, isPerfectCombo, calculateStatisticsFor } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;
@@ -20,11 +20,11 @@ interface Props {
 export default function Stats(props: Props) {
   const scoreAccuracy = accuracy(props.score);
 
-  const statistics = calculateStatisticsForSingleScore(props.score);
+  const statistics = calculateStatisticsFor(props.score, 'single');
 
   const basicStats = statistics.filter((attr) => attr.basic);
   // logic matches https://github.com/ppy/osu/blob/2df3dfb99cc867240f757c3761115b19d8595ec1/osu.Game/Scoring/ScoreInfo.cs#L373-L374
-  const extraStats = statistics.filter((attr) => !attr.basic && attr.maximum_value != null && attr.maximum_value > 0);
+  const extraStats = statistics.filter((attr) => !attr.basic && attr.maximumValue != null && attr.maximumValue > 0);
 
   return (
     <div className='score-stats'>
@@ -66,9 +66,9 @@ export default function Stats(props: Props) {
         <div className='score-stats__group-row'>
           {basicStats
             .map((attr) => (
-              <div key={attr.key} className='score-stats__stat'>
+              <div key={attr.longLabel} className='score-stats__stat'>
                 <div className='score-stats__stat-row score-stats__stat-row--label'>
-                  {attr.label}
+                  {attr.longLabel}
                 </div>
                 <div className='score-stats__stat-row'>
                   {formatNumber(attr.value)}
@@ -80,12 +80,12 @@ export default function Stats(props: Props) {
           ? <div className='score-stats__group-row'>
             {extraStats
               .map((attr) => (
-                <div key={attr.key} className='score-stats__stat'>
+                <div key={attr.longLabel} className='score-stats__stat'>
                   <div className='score-stats__stat-row score-stats__stat-row--label'>
-                    {attr.label}
+                    {attr.longLabel}
                   </div>
                   <div className='score-stats__stat-row'>
-                    {formatNumber(attr.value)}<span className='score-stats__stat-row--maximum'>/{formatNumber(attr.maximum_value!)}</span>
+                    {formatNumber(attr.value)}<span className='score-stats__stat-row--maximum'>/{formatNumber(attr.maximumValue!)}</span>
                   </div>
                 </div>
               ))}
