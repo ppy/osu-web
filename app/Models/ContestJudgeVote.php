@@ -45,7 +45,7 @@ class ContestJudgeVote extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function calculateScore(): void
+    public function calculateScoreStd(): void
     {
         $judge = ContestJudge::where(['contest_id' => $this->entry->contest_id, 'user_id' => $this->user_id])->first();
 

@@ -121,12 +121,12 @@ class Contest extends Model
         }
     }
 
-    public function calculateScores(): void
+    public function calculateScoresStd(): void
     {
         $this->contestJudges->each->calculateStdDev();
 
         $judgeVotes = ContestJudgeVote::whereHas('entry', fn ($q) => $q->whereHas('contest', fn ($qq) => $qq->where('contest_id', $this->getKey())))->get();
-        $judgeVotes->each->calculateScore();
+        $judgeVotes->each->calculateScoreStd();
     }
 
     public function isBestOf(): bool
