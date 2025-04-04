@@ -82,6 +82,7 @@ export default class SocketWorker {
 
   @action
   private connected() {
+    this.retryDelay.reset();
     this.connectionStatus = 'connected';
     this.hasConnectedOnce = true;
   }
