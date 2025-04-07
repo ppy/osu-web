@@ -115,19 +115,19 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           </TdLink>
         ) : (
           <td className={`${bn}__cell u-relative`}>
-            <span className={`${classWithModifiers(`${bn}__cell-content`, 'user-link')}`}>
+            <a className={classWithModifiers(`${bn}__cell-content`, 'bg-link')} href={this.scoreUrl} />
+            <span className={`${bn}__cell-content u-hover-none`}>
               {score.user.team != null &&
-                <a className='u-contents' href={route('teams.show', { team: score.user.team.id })}>
+                <a className='u-contents u-hover' href={route('teams.show', { team: score.user.team.id })}>
                   <FlagTeam team={score.user.team} />
                 </a>
               }
               <UserLink
-                className={`${bn}__user-link`}
+                className={`${bn}__user-link u-hover`}
                 mode={this.props.beatmap.mode}
                 user={score.user}
               />
             </span>
-            <a className={`${bn}__cell-content`} href={this.scoreUrl} />
           </td>
         )}
 
