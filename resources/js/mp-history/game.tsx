@@ -4,15 +4,14 @@
 import StringWithComponent from 'components/string-with-component';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
+import LegacyMatchGameJson, { LegacyMatchScoreJson } from 'interfaces/legacy-match-game-json';
 import Ruleset from 'interfaces/ruleset';
-import ScoreJson from 'interfaces/score-json';
 import UserJson from 'interfaces/user-json';
 import _ from 'lodash';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans, transExists } from 'utils/lang';
-import LegacyMatchGameJson from '../interfaces/legacy-match-game-json';
 import GameHeader from './game-header';
 import Score from './score';
 
@@ -21,7 +20,7 @@ interface TeamScores {
   red: number;
 }
 
-type SortedScore = ScoreJson & {
+type SortedScore = LegacyMatchScoreJson & {
   teamRank: number;
 };
 
@@ -32,10 +31,6 @@ interface Props {
 }
 
 export default function Game(props: Props) {
-  if (props.game.scores.some((score) => score.match == null)) {
-    throw new Error('scores are missing match data');
-  }
-
   const showTeams = props.game.team_type === 'team-vs' || props.game.team_type === 'tag-team-vs';
 
   const winningTeam = props.teamScores.blue > props.teamScores.red ? 'blue' : 'red';
@@ -43,7 +38,7 @@ export default function Game(props: Props) {
 
   let sortedScores = props.game.scores.map((m) => {
     const sortedScore = m as SortedScore;
-    sortedScore.teamRank = m.match!.team === winningTeam ? 1 : 2;
+    sortedScore.teamRank = m.match.team === winningTeam ? 1 : 2;
     return sortedScore;
   });
 
@@ -58,7 +53,7 @@ export default function Game(props: Props) {
       <div className={classWithModifiers('mp-history-game__player-scores', { 'no-teams': showTeams })}>
         {sortedScores.map((m) => (
           <Score
-            key={m.match!.slot}
+            key={m.match.slot}
             mode={props.game.mode}
             score={m}
             users={props.users} />

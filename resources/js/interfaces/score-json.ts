@@ -18,7 +18,7 @@ interface ScoreCurrentUserAttributesJson {
   pin?: ScoreCurrentUserPinJson;
 }
 
-interface Match {
+export interface Match {
   pass: boolean;
   slot: number;
   team: 'blue' | 'none' | 'red';
