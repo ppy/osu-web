@@ -40,11 +40,11 @@ export default function Game(props: Props) {
     <div className='mp-history-game'>
       <GameHeader game={props.game} />
       <div className={classWithModifiers('mp-history-game__player-scores', { 'no-teams': showTeams })}>
-        {sortedScores.map((m) => (
+        {sortedScores.map((score) => (
           <Score
-            key={m.match.slot}
+            key={score.match.slot}
             mode={props.game.mode}
-            score={m}
+            score={score}
             users={props.users} />
         ))}
       </div>
