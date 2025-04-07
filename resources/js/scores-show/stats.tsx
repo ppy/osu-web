@@ -66,9 +66,9 @@ export default function Stats(props: Props) {
         <div className='score-stats__group-row'>
           {basicStats
             .map((attr) => (
-              <div key={attr.longLabel} className='score-stats__stat'>
+              <div key={attr.label.long} className='score-stats__stat'>
                 <div className='score-stats__stat-row score-stats__stat-row--label'>
-                  {attr.longLabel}
+                  {attr.label.long}
                 </div>
                 <div className='score-stats__stat-row'>
                   {formatNumber(attr.value)}
@@ -80,9 +80,9 @@ export default function Stats(props: Props) {
           ? <div className='score-stats__group-row'>
             {extraStats
               .map((attr) => (
-                <div key={attr.longLabel} className='score-stats__stat'>
+                <div key={attr.label.long} className='score-stats__stat'>
                   <div className='score-stats__stat-row score-stats__stat-row--label'>
-                    {attr.longLabel}
+                    {attr.label.long}
                   </div>
                   <div className='score-stats__stat-row'>
                     {formatNumber(attr.value)}<span className='score-stats__stat-row--maximum'>/{formatNumber(attr.maximumValue!)}</span>

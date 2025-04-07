@@ -77,16 +77,20 @@ type ScoreDisplayType = 'leaderboard' | 'single';
 interface ScoreStatisticMapping {
   attributes: SoloScoreStatisticsAttribute[];
   basic: boolean;
-  longLabel: string;
+  label: {
+    long: string;
+    short: string;
+  };
   relevantTypes: ScoreDisplayType[];
-  shortLabel: string;
 }
 
 interface ScoreStatistic {
   basic: boolean;
-  longLabel: string;
+  label: {
+    long: string;
+    short: string;
+  };
   maximumValue?: number;
-  shortLabel: string;
   value: number;
 }
 
@@ -94,40 +98,40 @@ const labelMiss = trans('beatmapsets.show.scoreboard.headers.miss');
 
 export const scoreStatisticsMapping: Record<Ruleset, ScoreStatisticMapping[]> = {
   fruits: [
-    { attributes: ['great'], basic: true, longLabel: 'great', relevantTypes: ['leaderboard', 'single'], shortLabel: 'fruits' },
+    { attributes: ['great'], basic: true, label: { long: 'great', short: 'fruits' }, relevantTypes: ['leaderboard', 'single'] },
     // for single score display, show miss display separately
-    { attributes: ['miss'], basic: true, longLabel: labelMiss, relevantTypes: ['single'], shortLabel: labelMiss },
-    { attributes: ['large_tick_hit'], basic: false, longLabel: 'large droplet', relevantTypes: ['leaderboard', 'single'], shortLabel: 'ticks' },
-    { attributes: ['small_tick_hit'], basic: false, longLabel: 'small droplet', relevantTypes: ['single'], shortLabel: 'ticks' },
-    { attributes: ['small_tick_miss'], basic: false, longLabel: 'small droplet miss', relevantTypes: ['leaderboard'], shortLabel: 'drp miss' },
+    { attributes: ['miss'], basic: true, label: { long: labelMiss, short: labelMiss }, relevantTypes: ['single'] },
+    { attributes: ['large_tick_hit'], basic: false, label: { long: 'large droplet', short: 'ticks' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['small_tick_hit'], basic: false, label: { long: 'small droplet', short: 'drp' }, relevantTypes: ['single'] },
+    { attributes: ['small_tick_miss'], basic: false, label: { long: 'small droplet miss', short: 'drp miss' }, relevantTypes: ['leaderboard'] },
     // legacy/stable scores merge miss and large_tick_miss into one number, so for leaderboard display merge them together
-    { attributes: ['miss', 'large_tick_miss'], basic: false, longLabel: labelMiss, relevantTypes: ['leaderboard'], shortLabel: labelMiss },
-    { attributes: ['large_bonus'], basic: false, longLabel: 'banana', relevantTypes: ['single'], shortLabel: 'banana' },
+    { attributes: ['miss', 'large_tick_miss'], basic: false, label: { long: labelMiss, short: labelMiss }, relevantTypes: ['leaderboard'] },
+    { attributes: ['large_bonus'], basic: false, label: { long: 'banana', short: 'banana' }, relevantTypes: ['single'] },
   ],
   mania: [
-    { attributes: ['perfect'], basic: true, longLabel: 'perfect', relevantTypes: ['leaderboard', 'single'], shortLabel: 'max' },
-    { attributes: ['great'], basic: true, longLabel: 'great', relevantTypes: ['leaderboard', 'single'], shortLabel: '300' },
-    { attributes: ['good'], basic: true, longLabel: 'good', relevantTypes: ['leaderboard', 'single'], shortLabel: '200' },
-    { attributes: ['ok'], basic: true, longLabel: 'ok', relevantTypes: ['leaderboard', 'single'], shortLabel: '100' },
-    { attributes: ['meh'], basic: true, longLabel: 'meh', relevantTypes: ['leaderboard', 'single'], shortLabel: '50' },
-    { attributes: ['miss'], basic: true, longLabel: labelMiss, relevantTypes: ['leaderboard', 'single'], shortLabel: labelMiss },
+    { attributes: ['perfect'], basic: true, label: { long: 'perfect', short: 'max' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['great'], basic: true, label: { long: 'great', short: '300' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['good'], basic: true, label: { long: 'good', short: '200' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['ok'], basic: true, label: { long: 'ok', short: '100' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['meh'], basic: true, label: { long: 'meh', short: '50' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['miss'], basic: true, label: { long: labelMiss, short: labelMiss }, relevantTypes: ['leaderboard', 'single'] },
   ],
   osu: [
-    { attributes: ['great'], basic: true, longLabel: 'great', relevantTypes: ['leaderboard', 'single'], shortLabel: '300' },
-    { attributes: ['ok'], basic: true, longLabel: 'ok', relevantTypes: ['leaderboard', 'single'], shortLabel: '100' },
-    { attributes: ['meh'], basic: true, longLabel: 'meh', relevantTypes: ['leaderboard', 'single'], shortLabel: '50' },
-    { attributes: ['miss'], basic: true, longLabel: 'miss', relevantTypes: ['leaderboard', 'single'], shortLabel: labelMiss },
-    { attributes: ['large_tick_hit'], basic: false, longLabel: 'slider tick', relevantTypes: ['single'], shortLabel: 'tick' },
-    { attributes: ['small_tick_hit', 'slider_tail_hit'], basic: false, longLabel: 'slider end', relevantTypes: ['single'], shortLabel: 'end' },
-    { attributes: ['small_bonus'], basic: false, longLabel: 'spinner spin', relevantTypes: ['single'], shortLabel: 'spin' },
-    { attributes: ['large_bonus'], basic: false, longLabel: 'spinner bonus', relevantTypes: ['single'], shortLabel: 'bonus' },
+    { attributes: ['great'], basic: true, label: { long: 'great', short: '300' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['ok'], basic: true, label: { long: 'ok', short: '100' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['meh'], basic: true, label: { long: 'meh', short: '50' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['miss'], basic: true, label: { long: labelMiss, short: labelMiss }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['large_tick_hit'], basic: false, label: { long: 'slider tick', short: 'tick' }, relevantTypes: ['single'] },
+    { attributes: ['small_tick_hit', 'slider_tail_hit'], basic: false, label: { long: 'slider end', short: 'end' }, relevantTypes: ['single'] },
+    { attributes: ['small_bonus'], basic: false, label: { long: 'spinner spin', short: 'spin' }, relevantTypes: ['single'] },
+    { attributes: ['large_bonus'], basic: false, label: { long: 'spinner bonus', short: 'bonus' }, relevantTypes: ['single'] },
   ],
   taiko: [
-    { attributes: ['great'], basic: true, longLabel: 'great', relevantTypes: ['leaderboard', 'single'], shortLabel: 'great' },
-    { attributes: ['ok'], basic: true, longLabel: 'ok', relevantTypes: ['leaderboard', 'single'], shortLabel: 'ok' },
-    { attributes: ['miss'], basic: true, longLabel: labelMiss, relevantTypes: ['leaderboard', 'single'], shortLabel: labelMiss },
-    { attributes: ['small_bonus'], basic: false, longLabel: 'drum tick', relevantTypes: ['single'], shortLabel: 'drum tick' },
-    { attributes: ['large_bonus'], basic: false, longLabel: 'bonus', relevantTypes: ['single'], shortLabel: 'bonus' },
+    { attributes: ['great'], basic: true, label: { long: 'great', short: 'great' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['ok'], basic: true, label: { long: 'ok', short: 'ok' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['miss'], basic: true, label: { long: labelMiss, short: labelMiss }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['small_bonus'], basic: false, label: { long: 'drum tick', short: 'tick' }, relevantTypes: ['single'] },
+    { attributes: ['large_bonus'], basic: false, label: { long: 'bonus', short: 'bonus' }, relevantTypes: ['single'] },
   ],
 };
 
@@ -136,9 +140,8 @@ export function calculateStatisticsFor(score: SoloScoreJson, type: ScoreDisplayT
     .filter((mapping) => mapping.relevantTypes.includes(type))
     .map((mapping) => ({
       basic: mapping.basic,
-      longLabel: mapping.longLabel,
+      label: mapping.label,
       maximumValue: mapping.basic ? undefined : mapping.attributes.reduce((sum, attribute) => sum + (score.maximum_statistics[attribute] ?? 0), 0),
-      shortLabel: mapping.shortLabel,
       value: mapping.attributes.reduce((sum, attribute) => sum + (score.statistics[attribute] ?? 0), 0),
     }));
 }

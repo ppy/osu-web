@@ -66,10 +66,10 @@ export default class Table extends React.Component<Props> {
                   .filter((stat) => stat.relevantTypes.includes('leaderboard'))
                   .map((stat) => (
                     <th
-                      key={stat.shortLabel}
+                      key={stat.label.short}
                       className={classWithModifiers(`${bn}__header`, ['hitstat'])}
                     >
-                      {stat.shortLabel}
+                      {stat.label.short}
                     </th>
                   ))}
                 {this.showPp &&

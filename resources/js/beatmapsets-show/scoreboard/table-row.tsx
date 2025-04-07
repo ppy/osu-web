@@ -137,7 +137,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
 
         {calculateStatisticsFor(score, 'leaderboard').map((stat) => (
           <TdLink
-            key={stat.shortLabel}
+            key={stat.label.short}
             href={this.scoreUrl}
             modifiers={{ zero: stat.value === 0 }}
           >
