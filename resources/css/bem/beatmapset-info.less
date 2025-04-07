@@ -81,5 +81,20 @@
 
   &__scrollable {
     overflow-y: auto;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background-image: linear-gradient(
+        to bottom,
+        hsla(var(--hsl-b4), 0),
+        hsl(var(--hsl-b4))
+      );
+      pointer-events: none;
+    }
   }
 }
