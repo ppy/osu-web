@@ -112,7 +112,7 @@ export default class Info extends React.Component<Props> {
         <div className='beatmapset-info__box'>
           {this.withEditDescription && this.renderEditDescriptionButton()}
           <div className='beatmapset-info__scrollable'>
-            <div className='beatmapset-info__row beatmapset-info__row--value-overflow'>
+            <div className='beatmapset-info__row'>
               <h3 className='beatmapset-info__header'>
                 {trans('beatmapsets.show.info.description')}
               </h3>
