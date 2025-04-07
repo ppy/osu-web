@@ -2,8 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import StringWithComponent from 'components/string-with-component';
-import { deletedBeatmap } from 'interfaces/beatmap-json';
-import { deletedBeatmapset } from 'interfaces/beatmapset-json';
 import LegacyMatchGameJson from 'interfaces/legacy-match-game-json';
 import UserJson from 'interfaces/user-json';
 import * as React from 'react';
@@ -40,10 +38,7 @@ export default function Game(props: Props) {
 
   return (
     <div className='mp-history-game'>
-      <GameHeader
-        beatmap={props.game.beatmap ?? deletedBeatmap(props.game.mode)}
-        beatmapset={props.game.beatmap?.beatmapset ?? deletedBeatmapset()}
-        game={props.game} />
+      <GameHeader game={props.game} />
       <div className={classWithModifiers('mp-history-game__player-scores', { 'no-teams': showTeams })}>
         {sortedScores.map((m) => (
           <Score
