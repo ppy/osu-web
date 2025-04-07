@@ -2,10 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import StringWithComponent from 'components/string-with-component';
-import BeatmapJson from 'interfaces/beatmap-json';
-import BeatmapsetJson from 'interfaces/beatmapset-json';
+import { deletedBeatmap } from 'interfaces/beatmap-json';
+import { deletedBeatmapset } from 'interfaces/beatmapset-json';
 import LegacyMatchGameJson from 'interfaces/legacy-match-game-json';
-import Ruleset from 'interfaces/ruleset';
 import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
@@ -84,48 +83,6 @@ export default function Game(props: Props) {
       }
     </div>
   );
-}
-
-function deletedBeatmap(mode: Ruleset): BeatmapJson {
-  return {
-    beatmapset_id: 0,
-    difficulty_rating: 0,
-    id: 0,
-    mode,
-    status: '',
-    total_length: 0,
-    user_id: 0,
-    version: '',
-  };
-}
-
-function deletedBeatmapset(): BeatmapsetJson {
-  return {
-    artist: '',
-    artist_unicode: '',
-    covers: {
-      card: '',
-      cover: '',
-      list: '',
-      slimcover: '',
-    },
-    creator: '',
-    favourite_count: 0,
-    hype: null,
-    id: 0,
-    nsfw: false,
-    offset: 0,
-    play_count: 0,
-    preview_url: '',
-    source: '',
-    spotlight: false,
-    status: 'graveyard',
-    title: trans('matches.match.beatmap-deleted'),
-    title_unicode: '',
-    track_id: null,
-    user_id: 0,
-    video: false,
-  };
 }
 
 // Prevent partial translation for winner_by's :winner pattern.
