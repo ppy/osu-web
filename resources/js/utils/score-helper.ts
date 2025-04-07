@@ -98,28 +98,28 @@ const labelMiss = trans('beatmapsets.show.scoreboard.headers.miss');
 
 export const scoreStatisticsMapping: Record<Ruleset, ScoreStatisticMapping[]> = {
   fruits: [
-    { attributes: ['great'], basic: true, label: { long: 'great', short: 'fruits' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['great'], basic: true, label: { long: 'great', short: 'great' }, relevantTypes: ['leaderboard', 'single'] },
     // for single score display, show miss display separately
     { attributes: ['miss'], basic: true, label: { long: labelMiss, short: labelMiss }, relevantTypes: ['single'] },
-    { attributes: ['large_tick_hit'], basic: false, label: { long: 'large droplet', short: 'ticks' }, relevantTypes: ['leaderboard', 'single'] },
-    { attributes: ['small_tick_hit'], basic: false, label: { long: 'small droplet', short: 'drp' }, relevantTypes: ['single'] },
-    { attributes: ['small_tick_miss'], basic: false, label: { long: 'small droplet miss', short: 'drp miss' }, relevantTypes: ['leaderboard'] },
+    { attributes: ['large_tick_hit'], basic: false, label: { long: 'large droplet', short: 'l drp' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['small_tick_hit'], basic: false, label: { long: 'small droplet', short: 's drp' }, relevantTypes: ['single'] },
+    { attributes: ['small_tick_miss'], basic: false, label: { long: 'small droplet miss', short: 's drp miss' }, relevantTypes: ['leaderboard'] },
     // legacy/stable scores merge miss and large_tick_miss into one number, so for leaderboard display merge them together
     { attributes: ['miss', 'large_tick_miss'], basic: false, label: { long: labelMiss, short: labelMiss }, relevantTypes: ['leaderboard'] },
     { attributes: ['large_bonus'], basic: false, label: { long: 'banana', short: 'banana' }, relevantTypes: ['single'] },
   ],
   mania: [
-    { attributes: ['perfect'], basic: true, label: { long: 'perfect', short: 'max' }, relevantTypes: ['leaderboard', 'single'] },
-    { attributes: ['great'], basic: true, label: { long: 'great', short: '300' }, relevantTypes: ['leaderboard', 'single'] },
-    { attributes: ['good'], basic: true, label: { long: 'good', short: '200' }, relevantTypes: ['leaderboard', 'single'] },
-    { attributes: ['ok'], basic: true, label: { long: 'ok', short: '100' }, relevantTypes: ['leaderboard', 'single'] },
-    { attributes: ['meh'], basic: true, label: { long: 'meh', short: '50' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['perfect'], basic: true, label: { long: 'perfect', short: 'perfect' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['great'], basic: true, label: { long: 'great', short: 'great' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['good'], basic: true, label: { long: 'good', short: 'good' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['ok'], basic: true, label: { long: 'ok', short: 'ok' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['meh'], basic: true, label: { long: 'meh', short: 'meh' }, relevantTypes: ['leaderboard', 'single'] },
     { attributes: ['miss'], basic: true, label: { long: labelMiss, short: labelMiss }, relevantTypes: ['leaderboard', 'single'] },
   ],
   osu: [
-    { attributes: ['great'], basic: true, label: { long: 'great', short: '300' }, relevantTypes: ['leaderboard', 'single'] },
-    { attributes: ['ok'], basic: true, label: { long: 'ok', short: '100' }, relevantTypes: ['leaderboard', 'single'] },
-    { attributes: ['meh'], basic: true, label: { long: 'meh', short: '50' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['great'], basic: true, label: { long: 'great', short: 'great' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['ok'], basic: true, label: { long: 'ok', short: 'ok' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['meh'], basic: true, label: { long: 'meh', short: 'meh' }, relevantTypes: ['leaderboard', 'single'] },
     { attributes: ['miss'], basic: true, label: { long: labelMiss, short: labelMiss }, relevantTypes: ['leaderboard', 'single'] },
     { attributes: ['large_tick_hit'], basic: false, label: { long: 'slider tick', short: 'tick' }, relevantTypes: ['single'] },
     { attributes: ['small_tick_hit', 'slider_tail_hit'], basic: false, label: { long: 'slider end', short: 'end' }, relevantTypes: ['single'] },
