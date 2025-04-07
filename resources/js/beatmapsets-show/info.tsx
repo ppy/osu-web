@@ -189,7 +189,7 @@ export default class Info extends React.Component<Props> {
           </div>
 
           {this.controller.tags.userTags.length > 0 &&
-            <div className='beatmapset-info__row beatmapset-info__row--value-overflow'>
+            <div className='beatmapset-info__row'>
               <h3 className='beatmapset-info__header'>
                 {trans('beatmapsets.show.info.user_tags')}
               </h3>
@@ -210,7 +210,7 @@ export default class Info extends React.Component<Props> {
           }
 
           {this.controller.tags.mapperTags.length > 0 &&
-            <div className='beatmapset-info__row beatmapset-info__row--value-overflow'>
+            <div className='beatmapset-info__row'>
               <h3 className='beatmapset-info__header'>
                 {trans('beatmapsets.show.info.mapper_tags')}
               </h3>

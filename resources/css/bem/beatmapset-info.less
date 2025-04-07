@@ -27,6 +27,7 @@
     flex-direction: column;
     position: relative;
     padding-top: 10px;
+    overflow-y: auto;
 
     @media @desktop {
       min-height: @min-height;
@@ -61,11 +62,6 @@
     &--half {
       flex-direction: row;
     }
-
-    &--value-overflow {
-      padding-bottom: 0;
-      min-height: 0;
-    }
   }
 
   &__half-entry {
@@ -74,8 +70,10 @@
   }
 
   &__header {
+    position: sticky;
+    top: 0;
     font-size: @font-size--title-small;
-    color: inherit;
+    background-color: hsl(var(--hsl-b4));
     font-weight: bold;
     font-style: normal;
     padding: 0;
