@@ -4,10 +4,9 @@
 import StringWithComponent from 'components/string-with-component';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
-import LegacyMatchGameJson, { LegacyMatchScoreJson } from 'interfaces/legacy-match-game-json';
+import LegacyMatchGameJson from 'interfaces/legacy-match-game-json';
 import Ruleset from 'interfaces/ruleset';
 import UserJson from 'interfaces/user-json';
-import _ from 'lodash';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
@@ -19,10 +18,6 @@ interface TeamScores {
   blue: number;
   red: number;
 }
-
-type SortedScore = LegacyMatchScoreJson & {
-  teamRank: number;
-};
 
 interface Props {
   game: LegacyMatchGameJson;
@@ -36,13 +31,13 @@ export default function Game(props: Props) {
   const winningTeam = props.teamScores.blue > props.teamScores.red ? 'blue' : 'red';
   const difference = Math.abs(props.teamScores.blue - props.teamScores.red);
 
-  let sortedScores = props.game.scores.map((m) => {
-    const sortedScore = m as SortedScore;
-    sortedScore.teamRank = m.match.team === winningTeam ? 1 : 2;
-    return sortedScore;
+  const sortedScores = props.game.scores.sort((first, second) => {
+    if (first.match.team !== second.match.team) {
+      return first.match.team === winningTeam ? -1 : 1;
+    } else {
+      return second.score - first.score;
+    }
   });
-
-  sortedScores = _.orderBy(sortedScores, ['teamRank', 'score'], ['asc', 'desc']);
 
   return (
     <div className='mp-history-game'>
