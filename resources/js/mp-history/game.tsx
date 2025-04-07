@@ -4,7 +4,6 @@
 import StringWithComponent from 'components/string-with-component';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
-import LegacyMatchEventJson from 'interfaces/legacy-match-event-json';
 import Ruleset from 'interfaces/ruleset';
 import ScoreJson from 'interfaces/score-json';
 import UserJson from 'interfaces/user-json';
@@ -13,6 +12,7 @@ import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans, transExists } from 'utils/lang';
+import LegacyMatchGameJson from '../interfaces/legacy-match-game-json';
 import GameHeader from './game-header';
 import Score from './score';
 
@@ -26,24 +26,22 @@ type SortedScore = ScoreJson & {
 };
 
 interface Props {
-  event: LegacyMatchEventJson;
+  game: LegacyMatchGameJson;
   teamScores: TeamScores;
   users: Partial<Record<number, UserJson>>;
 }
 
 export default function Game(props: Props) {
-  const game = props.event.game!;
-
-  if (game.scores.some((score) => score.match == null)) {
+  if (props.game.scores.some((score) => score.match == null)) {
     throw new Error('scores are missing match data');
   }
 
-  const showTeams = game.team_type === 'team-vs' || game.team_type === 'tag-team-vs';
+  const showTeams = props.game.team_type === 'team-vs' || props.game.team_type === 'tag-team-vs';
 
   const winningTeam = props.teamScores.blue > props.teamScores.red ? 'blue' : 'red';
   const difference = Math.abs(props.teamScores.blue - props.teamScores.red);
 
-  let sortedScores = game.scores.map((m) => {
+  let sortedScores = props.game.scores.map((m) => {
     const sortedScore = m as SortedScore;
     sortedScore.teamRank = m.match!.team === winningTeam ? 1 : 2;
     return sortedScore;
@@ -54,19 +52,19 @@ export default function Game(props: Props) {
   return (
     <div className='mp-history-game'>
       <GameHeader
-        beatmap={game.beatmap ?? deletedBeatmap(game.mode)}
-        beatmapset={game.beatmap?.beatmapset ?? deletedBeatmapset()}
-        game={game} />
+        beatmap={props.game.beatmap ?? deletedBeatmap(props.game.mode)}
+        beatmapset={props.game.beatmap?.beatmapset ?? deletedBeatmapset()}
+        game={props.game} />
       <div className={classWithModifiers('mp-history-game__player-scores', { 'no-teams': showTeams })}>
         {sortedScores.map((m) => (
           <Score
             key={m.match!.slot}
-            mode={game.mode}
+            mode={props.game.mode}
             score={m}
             users={props.users} />
         ))}
       </div>
-      {showTeams && props.event.game?.end_time != null &&
+      {showTeams && props.game?.end_time != null &&
         <div>
           <div className='mp-history-game__team-scores'>
             {['red', 'blue'].map((m) => (

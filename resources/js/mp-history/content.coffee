@@ -67,7 +67,7 @@ export class Content extends React.PureComponent
 
             div className: 'mp-history-content__item',
               el Game,
-                event: event
+                game: event.game
                 teamScores: @teamScores event.game
                 users: @props.users
         else
