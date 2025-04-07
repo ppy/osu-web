@@ -57,10 +57,10 @@ export default function Game(props: Props) {
       {showTeams && props.game?.end_time != null &&
         <div>
           <div className='mp-history-game__team-scores'>
-            {['red', 'blue'].map((m) => (
+            {(['red', 'blue'] as const).map((m) => (
               <div key={m} className={classWithModifiers('mp-history-game__team-score', [m])}>
                 <span className={classWithModifiers('mp-history-game__team-score-text', ['name'])}>{trans(`matches.match.teams.${m}`)}</span>
-                <span className={classWithModifiers('mp-history-game__team-score-text', ['score'])}>{formatNumber(props.teamScores[m as keyof TeamScores])}</span>
+                <span className={classWithModifiers('mp-history-game__team-score-text', ['score'])}>{formatNumber(props.teamScores[m])}</span>
               </div>
             ))}
           </div>
