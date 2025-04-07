@@ -44,7 +44,8 @@ export default class Entry extends React.Component<Props> {
 
   @computed
   private get canSubmit() {
-    return !this.commentTooLong
+    return this.store.canJudge
+      && !this.commentTooLong
       && this.currentVote.scores.size === this.store.scoringCategories.length
       && (this.currentVote.comment !== this.initialVote.comment
           || this.store.scoringCategories.some((category) => (
@@ -83,6 +84,7 @@ export default class Entry extends React.Component<Props> {
         >
           <TextareaAutosize
             className='input-text'
+            disabled={!this.store.canJudge}
             maxRows={20}
             onChange={this.handleCommentChange}
             rows={6}
@@ -133,6 +135,7 @@ export default class Entry extends React.Component<Props> {
         <input
           className='contest-judge-entry__slider'
           data-category-id={category.id}
+          disabled={!this.store.canJudge}
           max={category.max_value}
           onChange={this.handleRangeInputChange}
           type='range'
