@@ -27,15 +27,10 @@
     flex-direction: column;
     position: relative;
     padding-top: 10px;
-    overflow-y: auto;
 
     @media @desktop {
       min-height: @min-height;
       max-height: @max-height;
-    }
-
-    &--success-rate {
-      padding-top: 0;
     }
   }
 
@@ -76,20 +71,15 @@
     background-color: hsl(var(--hsl-b4));
     font-weight: bold;
     font-style: normal;
-    padding: 0;
-    margin: 0 0 5px;
+    padding: 0 0 5px;
+    margin: 0;
   }
 
   &__link {
     overflow-wrap: break-word;
   }
 
-  &__value-overflow {
-    min-height: 0;
-    max-height: @max-height;
-    flex: 1;
-
+  &__scrollable {
     overflow-y: auto;
-    padding-bottom: 10px;
   }
 }
