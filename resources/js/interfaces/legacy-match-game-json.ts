@@ -3,7 +3,7 @@
 
 import BeatmapJson from './beatmap-json';
 import Ruleset from './ruleset';
-import ScoreJson, { Match } from './score-json';
+import { LegacyMatchScoreJson } from './score-json';
 
 export default interface LegacyMatchGameJson {
   beatmap?: BeatmapJson;
@@ -19,8 +19,6 @@ export default interface LegacyMatchGameJson {
   team_type: LegacyMatchTeamType;
 }
 
-// used to ensure presence of match
-export type LegacyMatchScoreJson = ScoreJson & { match: Match };
 
 export type LegacyMatchScoringType =
   | 'accuracy'

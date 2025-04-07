@@ -3,9 +3,8 @@
 
 import FlagCountry from 'components/flag-country';
 import Mod from 'components/mod';
-import { LegacyMatchScoreJson } from 'interfaces/legacy-match-game-json';
 import Ruleset from 'interfaces/ruleset';
-import { ScoreStatisticsAttribute } from 'interfaces/score-json';
+import { LegacyMatchScoreJson, ScoreStatisticsAttribute } from 'interfaces/score-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';

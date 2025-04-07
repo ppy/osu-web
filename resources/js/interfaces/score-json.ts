@@ -18,7 +18,7 @@ interface ScoreCurrentUserAttributesJson {
   pin?: ScoreCurrentUserPinJson;
 }
 
-export interface Match {
+interface Match {
   pass: boolean;
   slot: number;
   team: 'blue' | 'none' | 'red';
@@ -66,3 +66,5 @@ interface ScoreJsonDefaultAttributes {
 type ScoreJson = ScoreJsonDefaultAttributes & ScoreJsonDefaultIncludes & Partial<ScoreJsonAvailableIncludes>;
 
 export default ScoreJson;
+
+export type LegacyMatchScoreJson = ScoreJson & Required<Pick<ScoreJson, 'match'>>;
