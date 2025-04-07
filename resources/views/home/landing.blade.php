@@ -160,4 +160,40 @@
     <script id="json-posts" type="application/json">
         {!! json_encode($news) !!}
     </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoGame",
+      "name": "osu!",
+      "url": "https://osu.ppy.sh/",
+      "image": "https://i.ppy.sh/013ed2c11b34720790e74035d9f49078d5e9aa64/68747470733a2f2f6f73752e7070792e73682f77696b692f696d616765732f4272616e645f6964656e746974795f67756964656c696e65732f696d672f75736167652d66756c6c2d636f6c6f75722e706e67",
+      "description": "rhythm is just a click away",
+      "author": {
+        "@type": "Organization",
+        "name": "ppy"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "ppy"
+      },
+      "producer": {
+        "@type": "Organization",
+        "name": "ppy"
+      },
+      "applicationCategory": "Game",
+      "operatingSystem": "Windows, macOS, Linux, Android, iOS",
+      "playMode": [
+        "SinglePlayer",
+        "Multiplayer"
+      ],
+      "genre": "Rhythm",
+      "inLanguage": "Arabic, Belarusian, Bulgarian, Catalan, Chinese, Czech, Danish, Dutch, Filipino, Finnish, French, German, Greek, Hebrew, Hungarian, Indonesian, Italian, Japanese, Korean, Latvian, Lithuanian, Malay, Norwegian, Polish, Portugese, Romanian, Russian, Serbian, Slovenian, Spanish, Swedish, Turkish, Ukranian, Vietnamese",
+      "sameAs": [
+        "https://github.com/ppy/osu",
+        "https://twitter.com/osugame"
+      ],
+      "datePublished": "2007-09-16"
+    }
+    </script>
 @endsection
