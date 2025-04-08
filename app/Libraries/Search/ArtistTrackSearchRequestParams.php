@@ -10,11 +10,11 @@ namespace App\Libraries\Search;
 use App\Libraries\Elasticsearch\Utils\ComparatorParam;
 use App\Libraries\Elasticsearch\Utils\SearchAfterParam;
 
-class ArtistTrackSearchParamsFromRequest
+class ArtistTrackSearchRequestParams extends ArtistTrackSearchParams
 {
-    public static function fromArray(array $rawParams)
+    public function __construct(array $rawParams)
     {
-        $paramsArray = get_params($rawParams, null, [
+        $params = get_params($rawParams, null, [
             'album',
             'artist',
             'bpm:array',
@@ -27,36 +27,32 @@ class ArtistTrackSearchParamsFromRequest
             'sort',
         ], ['null_missing' => true]);
 
-        $params = new ArtistTrackSearchParams();
+        $this->queryString = presence(trim($params['query'] ?? ''));
+        $this->album = $params['album'];
+        $this->artist = $params['artist'];
+        [$this->bpm, $this->bpmInput] = ComparatorParam::make($params['bpm'], 'float', 0.005);
+        $this->genre = $params['genre'];
+        [$this->length, $this->lengthInput] = ComparatorParam::make($params['length'], 'length', 0.5);
+        $this->parseSort($params['sort'], $params['is_default_sort']);
+        $this->searchAfter = SearchAfterParam::make($this, cursor_from_params($rawParams)); // TODO: enforce value types
 
-        $params->queryString = presence(trim($paramsArray['query'] ?? ''));
-        $params->album = $paramsArray['album'];
-        $params->artist = $paramsArray['artist'];
-        [$params->bpm, $params->bpmInput] = ComparatorParam::make($paramsArray['bpm'], 'float', 0.005);
-        $params->genre = $paramsArray['genre'];
-        [$params->length, $params->lengthInput] = ComparatorParam::make($paramsArray['length'], 'length', 0.5);
-        $params->parseSort($paramsArray['sort'], $paramsArray['is_default_sort']);
-        $params->searchAfter = SearchAfterParam::make($params, cursor_from_params($rawParams)); // TODO: enforce value types
-
-        if (isset($paramsArray['exclusive_only'])) {
-            $params->exclusiveOnly = $paramsArray['exclusive_only'];
+        if (isset($params['exclusive_only'])) {
+            $this->exclusiveOnly = $params['exclusive_only'];
         }
-
-        return $params;
     }
 
-    public static function toArray(ArtistTrackSearchParams $params)
+    public function toArray(): array
     {
         return array_filter([
-            'album' => $params->album,
-            'artist' => $params->artist,
-            'bpm' => $params->bpmInput,
-            'exclusive_only' => $params->exclusiveOnly,
-            'genre' => $params->genre,
-            'is_default_sort' => $params->isDefaultSort,
-            'length' => $params->lengthInput,
-            'query' => $params->queryString,
-            'sort' => "{$params->sortField}_{$params->sortOrder}",
+            'album' => $this->album,
+            'artist' => $this->artist,
+            'bpm' => $this->bpmInput,
+            'exclusive_only' => $this->exclusiveOnly,
+            'genre' => $this->genre,
+            'is_default_sort' => $this->isDefaultSort,
+            'length' => $this->lengthInput,
+            'query' => $this->queryString,
+            'sort' => "{$this->sortField}_{$this->sortOrder}",
         ], fn ($value) => $value !== null);
     }
 }
