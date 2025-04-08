@@ -4,7 +4,7 @@
 import FlagCountry from 'components/flag-country';
 import Mod from 'components/mod';
 import Ruleset from 'interfaces/ruleset';
-import ScoreJson, { ScoreStatisticsAttribute } from 'interfaces/score-json';
+import { LegacyMatchScoreJson, ScoreStatisticsAttribute } from 'interfaces/score-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
@@ -14,7 +14,7 @@ import { trans } from 'utils/lang';
 
 interface Props {
   mode: Ruleset;
-  score: ScoreJson;
+  score: LegacyMatchScoreJson;
   users: Partial<Record<number, UserJson>>;
 }
 
@@ -26,10 +26,6 @@ export default function Score(props: Props) {
 
   if (user == null) {
     throw new Error('user for score is missing');
-  }
-
-  if (props.score.match == null) {
-    throw new Error('score is missing match data');
   }
 
   return (
