@@ -35,7 +35,7 @@ return new class extends Migration
     public function up()
     {
         static::applyAll(function (Blueprint $table): void {
-            $table->unsignedFloat('rank_score_exp')->default(0)->after('rank_score_index');
+            $table->float('rank_score_exp')->default(0)->after('rank_score_index');
             $table->unsignedInteger('rank_score_index_exp')->default(0)->after('rank_score_exp');
             $table->index(['rank_score_exp'], 'rank_score_exp');
             $table->index(['country_acronym', 'rank_score_exp'], 'country_acronym_exp');
