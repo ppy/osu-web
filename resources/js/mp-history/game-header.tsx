@@ -4,8 +4,8 @@
 import BeatmapsetCover from 'components/beatmapset-cover';
 import Mod from 'components/mod';
 import TimeWithTooltip from 'components/time-with-tooltip';
-import BeatmapJson from 'interfaces/beatmap-json';
-import BeatmapsetJson from 'interfaces/beatmapset-json';
+import { deletedBeatmap } from 'interfaces/beatmap-json';
+import { deletedBeatmapset } from 'interfaces/beatmapset-json';
 import LegacyMatchGameJson from 'interfaces/legacy-match-game-json';
 import { route } from 'laroute';
 import * as React from 'react';
@@ -14,17 +14,18 @@ import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 
 interface Props {
-  beatmap: BeatmapJson;
-  beatmapset: BeatmapsetJson;
   game: LegacyMatchGameJson;
 }
 
 const timeFormat = 'LTS';
 
 export default function GameHeader(props: Props) {
-  let title = getTitle(props.beatmapset);
-  const version = props.beatmap.version;
-  if (version != null) {
+  const beatmap = props.game.beatmap ?? deletedBeatmap(props.game.mode);
+  const beatmapset = props.game.beatmap?.beatmapset ?? deletedBeatmapset();
+
+  let title = getTitle(beatmapset);
+  const version = beatmap.version;
+  if (version !== '') {
     title += ` [${version}]`;
   }
 
@@ -36,9 +37,9 @@ export default function GameHeader(props: Props) {
   return (
     <a
       className='mp-history-game__header'
-      href={props.beatmap.id != null ? route('beatmaps.show', { beatmap: props.beatmap.id }) : undefined}>
+      href={beatmap.id != null ? route('beatmaps.show', { beatmap: beatmap.id }) : undefined}>
       <BeatmapsetCover
-        beatmapset={props.beatmapset}
+        beatmapset={beatmapset}
         modifiers='full'
         size='cover' />
       <div className='mp-history-game__header-overlay' />
@@ -51,7 +52,7 @@ export default function GameHeader(props: Props) {
       </div>
       <div className='mp-history-game__metadata-box'>
         <h1 className={classWithModifiers('mp-history-game__metadata', ['title'])}>{title}</h1>
-        <h2 className={classWithModifiers('mp-history-game__metadata', ['artist'])}>{getArtist(props.beatmapset)}</h2>
+        <h2 className={classWithModifiers('mp-history-game__metadata', ['artist'])}>{getArtist(beatmapset)}</h2>
       </div>
       <div className='mp-history-game__mods'>
         {props.game.mods.map((mod) => (<Mod key={mod} mod={{ acronym: mod }} />))}

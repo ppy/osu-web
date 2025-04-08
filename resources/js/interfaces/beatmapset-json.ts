@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { trans } from 'utils/lang';
 import BeatmapExtendedJson from './beatmap-extended-json';
 import BeatmapJson from './beatmap-json';
 import BeatmapsetDiscussionJson from './beatmapset-discussion-json';
@@ -127,3 +128,32 @@ interface BeatmapsetJsonDefaultAttributes {
 
 type BeatmapsetJson = BeatmapsetJsonDefaultAttributes & Partial<BeatmapsetJsonAvailableIncludes>;
 export default BeatmapsetJson;
+
+export function deletedBeatmapset(): BeatmapsetJson {
+  return {
+    artist: '',
+    artist_unicode: '',
+    covers: {
+      card: '',
+      cover: '',
+      list: '',
+      slimcover: '',
+    },
+    creator: '',
+    favourite_count: 0,
+    hype: null,
+    id: 0,
+    nsfw: false,
+    offset: 0,
+    play_count: 0,
+    preview_url: '',
+    source: '',
+    spotlight: false,
+    status: 'graveyard',
+    title: trans('matches.match.beatmap-deleted'),
+    title_unicode: '',
+    track_id: null,
+    user_id: 0,
+    video: false,
+  };
+}
