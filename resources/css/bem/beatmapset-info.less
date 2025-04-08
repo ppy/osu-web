@@ -64,14 +64,21 @@
   }
 
   &__header {
-    position: sticky;
-    top: 0;
     font-size: @font-size--title-small;
-    background-color: hsl(var(--hsl-b4));
     font-weight: bold;
     font-style: normal;
     padding: 5px 0;
     margin: 0;
+
+    &--sticky {
+      position: sticky;
+      top: 0;
+      background-image: linear-gradient(
+        to top,
+        hsla(var(--hsl-b4), 0),
+        hsl(var(--hsl-b4)) 5px
+      );
+    }
   }
 
   &__link {

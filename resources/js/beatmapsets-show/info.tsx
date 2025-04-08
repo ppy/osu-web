@@ -113,7 +113,7 @@ export default class Info extends React.Component<Props> {
           {this.withEditDescription && this.renderEditDescriptionButton()}
           <div className='beatmapset-info__scrollable'>
             <div className='beatmapset-info__row'>
-              <h3 className='beatmapset-info__header'>
+              <h3 className='beatmapset-info__header beatmapset-info__header--sticky'>
                 {trans('beatmapsets.show.info.description')}
               </h3>
 
@@ -191,7 +191,7 @@ export default class Info extends React.Component<Props> {
 
             {this.controller.tags.userTags.length > 0 &&
               <div className='beatmapset-info__row'>
-                <h3 className='beatmapset-info__header'>
+                <h3 className='beatmapset-info__header beatmapset-info__header--sticky'>
                   {trans('beatmapsets.show.info.user_tags')}
                 </h3>
                 <div>
@@ -212,7 +212,7 @@ export default class Info extends React.Component<Props> {
 
             {this.controller.tags.mapperTags.length > 0 &&
               <div className='beatmapset-info__row'>
-                <h3 className='beatmapset-info__header'>
+                <h3 className='beatmapset-info__header beatmapset-info__header--sticky'>
                   {trans('beatmapsets.show.info.mapper_tags')}
                 </h3>
                 <div>
