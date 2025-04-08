@@ -389,9 +389,9 @@ function db_unsigned_increment($column, $count)
     return DB::raw($value);
 }
 
-function default_mode()
+function default_mode(): string
 {
-    return optional(auth()->user())->playmode ?? 'osu';
+    return Auth::user()?->playmode ?? 'osu';
 }
 
 function flag_url($countryCode)
