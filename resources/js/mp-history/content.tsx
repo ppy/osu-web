@@ -78,8 +78,19 @@ export default class Content extends React.PureComponent<Props> {
 
   render() {
     let inEvent = false;
-    const eventsGroupOpen = <div className={classWithModifiers('mp-history-content__item', ['event', 'event-open'])} />;
-    const eventsGroupClose = <div className={classWithModifiers('mp-history-content__item', ['event', 'event-close'])} />;
+
+    const openEventsGroup = () => {
+      if (!inEvent) {
+        inEvent = true;
+        return <div className={classWithModifiers('mp-history-content__item', ['event', 'event-open'])} />;
+      }
+    };
+    const closeEventsGroup= () => {
+      if (inEvent) {
+        inEvent = false;
+        return <div className={classWithModifiers('mp-history-content__item', ['event', 'event-close'])} />;
+      }
+    };
 
     return (
       <div className='mp-history-content'>
@@ -100,12 +111,7 @@ export default class Content extends React.PureComponent<Props> {
 
             return (
               <React.Fragment key={event.id}>
-                {(() => {
-                  if (inEvent) {
-                    inEvent = false;
-                    return eventsGroupClose;
-                  }
-                })()}
+                {closeEventsGroup()}
 
                 <div className='mp-history-content__item'>
                   <Game
@@ -118,12 +124,7 @@ export default class Content extends React.PureComponent<Props> {
           } else {
             return (
               <React.Fragment key={event.id}>
-                {(() => {
-                  if (!inEvent) {
-                    inEvent = true;
-                    return eventsGroupOpen;
-                  }
-                })()}
+                {openEventsGroup()}
 
                 <div className={classWithModifiers('mp-history-content__item', ['event'])}>
                   <Event
@@ -135,12 +136,7 @@ export default class Content extends React.PureComponent<Props> {
             );
           }
         })}
-        {(() => {
-          if (inEvent) {
-            inEvent = false;
-            return eventsGroupClose;
-          }
-        })()}
+        {closeEventsGroup()}
         {this.props.hasNext &&
           <div className={classWithModifiers('mp-history-content__item', ['more'])}>
             {this.props.isAutoloading && <div className='mp-history-content__autoload-label'>{trans('matches.match.in_progress_spinner_label')}</div>}
