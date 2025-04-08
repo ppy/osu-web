@@ -182,17 +182,11 @@
         "name": "ppy"
       },
       "applicationCategory": "Game",
-      "operatingSystem": "Windows, macOS, Linux, Android, iOS",
-      "playMode": [
-        "SinglePlayer",
-        "Multiplayer"
-      ],
+      "gamePlatform": ["Windows", "macOS", "Linux", "Android", "iOS"],
+      "playMode": ["SinglePlayer","MultiPlayer"],
       "genre": "Rhythm",
-      "inLanguage": "Arabic, Belarusian, Bulgarian, Catalan, Chinese, Czech, Danish, Dutch, Filipino, Finnish, French, German, Greek, Hebrew, Hungarian, Indonesian, Italian, Japanese, Korean, Latvian, Lithuanian, Malay, Norwegian, Polish, Portugese, Romanian, Russian, Serbian, Slovenian, Spanish, Swedish, Turkish, Ukranian, Vietnamese",
-      "sameAs": [
-        "https://github.com/ppy/osu",
-        "https://twitter.com/osugame"
-      ],
+      "inLanguage": ["ar", "be", "bg", "ca", "cs", "da", "de", "el", "en", "es", "fi", "fil", "fr", "he", "hu", "id", "it", "ja", "ko", "lt", "lv", "ms", "nb", "nl", "pl", "pt", "ro", "ru", "sk", "sl", "sr", "sv", "th", "tr", "uk", "vi", "zh-Hans", "zh-Hant"],
+      "sameAs": ["https://github.com/ppy/osu", "https://twitter.com/osugame"],
       "datePublished": "2007-09-16"
     }
     </script>
