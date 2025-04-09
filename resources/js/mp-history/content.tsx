@@ -21,8 +21,8 @@ interface Props {
   isAutoloading: boolean;
   loadingNext: boolean;
   loadingPrevious: boolean;
-  loadNext: (state: any) => void; // TODO: type is temporary, will be specified better when `main.coffee` is converted to TS
-  loadPrevious: (state: any) => void; // TODO: type is temporary, will be specified better when `main.coffee` is converted to TS
+  loadNext: () => void;
+  loadPrevious: () => void;
   match: LegacyMatch;
   users: Partial<Record<number, UserJson>>;
 }
@@ -39,9 +39,10 @@ export interface TeamScores {
 }
 
 export default class Content extends React.PureComponent<Props> {
+  inEvent = false;
   scoresCache: Partial<Record<number, TeamScores>> = {};
 
-  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<any>, snapshot?: Snapshot) {
+  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<unknown>, snapshot?: Snapshot) {
     if (snapshot?.scrollToLastEvent) {
       $(window).stop().scrollTo(document.body.scrollHeight, 500);
     } else if (snapshot?.referenceFunc) {
@@ -52,7 +53,7 @@ export default class Content extends React.PureComponent<Props> {
     }
   }
 
-  getSnapshotBeforeUpdate(prevProps: Readonly<Props>, _: Readonly<any>): Snapshot {
+  getSnapshotBeforeUpdate(prevProps: Readonly<Props>): Snapshot {
     const snapshot: Snapshot = {
       scrollToLastEvent: prevProps.isAutoloading && this.props.isAutoloading && bottomPageDistance() < 10,
     };
@@ -77,20 +78,7 @@ export default class Content extends React.PureComponent<Props> {
   }
 
   render() {
-    let inEvent = false;
-
-    const openEventsGroup = () => {
-      if (!inEvent) {
-        inEvent = true;
-        return <div className={classWithModifiers('mp-history-content__item', ['event', 'event-open'])} />;
-      }
-    };
-    const closeEventsGroup= () => {
-      if (inEvent) {
-        inEvent = false;
-        return <div className={classWithModifiers('mp-history-content__item', ['event', 'event-close'])} />;
-      }
-    };
+    this.inEvent = false;
 
     return (
       <div className='mp-history-content'>
@@ -111,7 +99,7 @@ export default class Content extends React.PureComponent<Props> {
 
             return (
               <React.Fragment key={event.id}>
-                {closeEventsGroup()}
+                {this.closeEventsGroup()}
 
                 <div className='mp-history-content__item'>
                   <Game
@@ -124,7 +112,7 @@ export default class Content extends React.PureComponent<Props> {
           } else {
             return (
               <React.Fragment key={event.id}>
-                {openEventsGroup()}
+                {this.openEventsGroup()}
 
                 <div className={classWithModifiers('mp-history-content__item', ['event'])}>
                   <Event
@@ -136,7 +124,7 @@ export default class Content extends React.PureComponent<Props> {
             );
           }
         })}
-        {closeEventsGroup()}
+        {this.closeEventsGroup()}
         {this.props.hasNext &&
           <div className={classWithModifiers('mp-history-content__item', ['more'])}>
             {this.props.isAutoloading && <div className='mp-history-content__autoload-label'>{trans('matches.match.in_progress_spinner_label')}</div>}
@@ -149,7 +137,21 @@ export default class Content extends React.PureComponent<Props> {
     );
   }
 
-  teamScores(game: LegacyMatchGame): TeamScores {
+  private closeEventsGroup() {
+    if (this.inEvent) {
+      this.inEvent = false;
+      return <div className={classWithModifiers('mp-history-content__item', ['event', 'event-close'])} />;
+    }
+  }
+
+  private openEventsGroup() {
+    if (!this.inEvent) {
+      this.inEvent = true;
+      return <div className={classWithModifiers('mp-history-content__item', ['event', 'event-open'])} />;
+    }
+  }
+
+  private teamScores(game: LegacyMatchGame): TeamScores {
     // this only caches ended games which scores shouldn't change ever.
     const cachedScore = this.scoresCache[game.id];
 
