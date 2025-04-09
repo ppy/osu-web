@@ -68,13 +68,18 @@ class ForceReactivation
     private function addHistoryNote()
     {
         $message = match ($this->reason) {
-            static::INACTIVE => "First login after {$this->user->user_lastvisit->diffInDays()} days. Forcing password reset.",
-            static::INACTIVE_DIFFERENT_COUNTRY => "First login after {$this->user->user_lastvisit->diffInDays()} days from {$this->country}. Forcing password reset.",
+            static::INACTIVE => "First login after {$this->daysSinceLastLogin()} days. Forcing password reset.",
+            static::INACTIVE_DIFFERENT_COUNTRY => "First login after {$this->daysSinceLastLogin()} days from {$this->country}. Forcing password reset.",
             default => null,
         };
 
         if ($message !== null) {
             UserAccountHistory::addNote($this->user, $message);
         }
+    }
+
+    private function daysSinceLastLogin(): int
+    {
+        return (int) $this->user->user_lastvisit->diffInDays();
     }
 }

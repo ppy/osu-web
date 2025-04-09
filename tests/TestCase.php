@@ -228,7 +228,7 @@ class TestCase extends BaseTestCase
 
     protected function assertEqualsUpToOneSecond(CarbonInterface $expected, CarbonInterface $actual): void
     {
-        $this->assertTrue($expected->diffInSeconds($actual) < 2);
+        $this->assertTrue($expected->diffInSeconds($actual, true) < 2);
     }
 
     protected function createAllowedScopesDataProvider(array $allowedScopes)
