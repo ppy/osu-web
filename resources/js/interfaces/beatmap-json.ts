@@ -35,3 +35,16 @@ interface BeatmapJsonDefaultAttributes {
 type BeatmapJson = BeatmapJsonDefaultAttributes & Partial<BeatmapJsonAvailableIncludes>;
 
 export default BeatmapJson;
+
+export function deletedBeatmap(mode: Ruleset): BeatmapJson {
+  return {
+    beatmapset_id: 0,
+    difficulty_rating: 0,
+    id: 0,
+    mode,
+    status: '',
+    total_length: 0,
+    user_id: 0,
+    version: '',
+  };
+}

@@ -13,8 +13,13 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
 class ChatChannelEvent extends BroadcastableEventBase implements ShouldBroadcastNow
 {
-    public function __construct(public ChatChannel $channel, public User $user, public string $action)
+    private ChatChannel $channel;
+    private User $user;
+
+    public function __construct(ChatChannel $channel, User $user, public string $action)
     {
+        $this->channel = clone $channel;
+        $this->user = clone $user;
     }
 
     public function broadcastAs()

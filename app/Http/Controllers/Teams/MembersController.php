@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Teams;
 use App\Http\Controllers\Controller;
 use App\Models\Team;
 use App\Models\TeamMember;
+use App\Models\User;
 use Symfony\Component\HttpFoundation\Response;
 
 class MembersController extends Controller
@@ -47,5 +48,26 @@ class MembersController extends Controller
         $team->load('members.user');
 
         return ext_view('teams.members.index', compact('team'));
+    }
+
+    public function setLeader(string $teamId, string $userId): Response
+    {
+        $newLeader = User::default()->findOrFail($userId);
+        $team = Team::findOrFail($teamId);
+        $teamMember = TeamMember::where([
+            'team_id' => $team->getKey(),
+            'user_id' => $newLeader->getKey(),
+        ])->firstOrFail();
+
+        priv_check('TeamUpdate', $team)->ensureCan();
+
+        $team->update(['leader_id' => $newLeader->getKey()]);
+
+        \Session::flash('popup', osu_trans(
+            'teams.members.set_leader.success',
+            ['user' => $newLeader->username],
+        ));
+
+        return ujs_redirect(route('teams.show', $team));
     }
 }
