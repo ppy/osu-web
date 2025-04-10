@@ -37,6 +37,7 @@ class ContestsController extends Controller
         priv_check('ContestJudgeShow', $contest)->ensureCan();
 
         $contestJson = json_item($contest, new ContestTransformer(), [
+            'current_user_attributes',
             'entries.current_user_judge_vote.scores',
             'scoring_categories',
         ]);

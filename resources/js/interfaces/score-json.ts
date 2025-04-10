@@ -66,3 +66,5 @@ interface ScoreJsonDefaultAttributes {
 type ScoreJson = ScoreJsonDefaultAttributes & ScoreJsonDefaultIncludes & Partial<ScoreJsonAvailableIncludes>;
 
 export default ScoreJson;
+
+export type LegacyMatchScoreJson = ScoreJson & Required<Pick<ScoreJson, 'match'>>;

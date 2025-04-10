@@ -32,10 +32,6 @@
       min-height: @min-height;
       max-height: @max-height;
     }
-
-    &--success-rate {
-      padding-top: 0;
-    }
   }
 
   &__edit-button {
@@ -55,16 +51,10 @@
   &__row {
     display: flex;
     flex-direction: column;
-    padding-top: 5px;
     padding-bottom: 10px;
 
     &--half {
       flex-direction: row;
-    }
-
-    &--value-overflow {
-      padding-bottom: 0;
-      min-height: 0;
     }
   }
 
@@ -75,23 +65,42 @@
 
   &__header {
     font-size: @font-size--title-small;
-    color: inherit;
     font-weight: bold;
     font-style: normal;
-    padding: 0;
-    margin: 0 0 5px;
+    padding: 5px 0;
+    margin: 0;
+
+    &--sticky {
+      position: sticky;
+      top: 0;
+      background-image: linear-gradient(
+        to top,
+        hsla(var(--hsl-b4), 0),
+        hsl(var(--hsl-b4)) 5px
+      );
+    }
   }
 
   &__link {
     overflow-wrap: break-word;
   }
 
-  &__value-overflow {
-    min-height: 0;
-    max-height: @max-height;
-    flex: 1;
-
+  &__scrollable {
     overflow-y: auto;
-    padding-bottom: 10px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background-image: linear-gradient(
+        to bottom,
+        hsla(var(--hsl-b4), 0),
+        hsl(var(--hsl-b4))
+      );
+      pointer-events: none;
+    }
   }
 }

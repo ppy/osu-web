@@ -16,6 +16,7 @@ class TagTransformer extends TransformerAbstract
         return [
             'id' => $item->getKey(),
             'name' => $item->name,
+            'ruleset_id' => $item->ruleset_id,
             'description' => $item->description,
         ];
     }

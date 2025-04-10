@@ -14,6 +14,7 @@ use App\Models\UserNotification;
 use App\Models\UserNotificationOption;
 use App\Models\UserRelation;
 use App\Traits\NotificationQueue;
+use Ds\Set;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
@@ -241,13 +242,18 @@ abstract class BroadcastNotificationBase implements ShouldQueue
             return $userIds;
         }
 
-        $excludedReceiverIds = UserRelation
-            ::where('zebra_id', $this->source->getKey())
-            ->where('foe', true)
-            ->whereIn('user_id', $userIds)
-            ->pluck('user_id')
-            ->all();
+        $filteredIds = new Set($userIds);
+        foreach (array_chunk($userIds, 10000) as $chunkedUserIds) {
+            $filteredIds->remove(
+                ...UserRelation
+                    ::where('zebra_id', $this->source->getKey())
+                    ->where('foe', true)
+                    ->whereIn('user_id', $chunkedUserIds)
+                    ->pluck('user_id')
+                    ->all(),
+            );
+        }
 
-        return array_diff($userIds, $excludedReceiverIds);
+        return $filteredIds->toArray();
     }
 }

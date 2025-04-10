@@ -3,7 +3,7 @@
 
 import BeatmapJson from './beatmap-json';
 import Ruleset from './ruleset';
-import ScoreJson from './score-json';
+import { LegacyMatchScoreJson } from './score-json';
 
 export default interface LegacyMatchGameJson {
   beatmap?: BeatmapJson;
@@ -13,11 +13,12 @@ export default interface LegacyMatchGameJson {
   mode: Ruleset;
   mode_int: number;
   mods: string[]; // TODO: use ModJson
-  scores: ScoreJson[]; // TODO: use SoloScoreJson
+  scores: LegacyMatchScoreJson[]; // TODO: use SoloScoreJson
   scoring_type: LegacyMatchScoringType;
   start_time: string;
   team_type: LegacyMatchTeamType;
 }
+
 
 export type LegacyMatchScoringType =
   | 'accuracy'
