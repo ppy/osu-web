@@ -21,6 +21,5 @@ return [
         | E_CORE_ERROR
         | E_CORE_WARNING
         | E_COMPILE_ERROR
-        | E_COMPILE_WARNING
-        | E_STRICT,
+        | E_COMPILE_WARNING,
 ];
