@@ -14,7 +14,7 @@ trait BaseIndexable
 
     abstract public static function esSchemaFile();
 
-    public static function esCreateIndex(string $name = null)
+    public static function esCreateIndex(?string $name = null)
     {
         // TODO: allow overriding of certain settings (shards, replicas, etc)?
         $params = [
