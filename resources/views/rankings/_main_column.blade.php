@@ -23,10 +23,8 @@
                 'country' => $object->acronym,
             ])
         </span>
-        <span class="ranking-page-table-main__link">
-            <span class="ranking-page-table-main__link-text">
-                {{ $object->name }}
-            </span>
+        <span class="ranking-page-table-main__link-text">
+            {{ $object->name }}
         </span>
     </a>
 @elseif ($object instanceof App\Models\Team)
@@ -40,10 +38,8 @@
         <span class="ranking-page-table-main__flag">
             @include('objects._flag_team', ['team' => $object])
         </span>
-        <span class="ranking-page-table-main__link">
-            <span class="ranking-page-table-main__link-text">
-                {{ $object->name }}
-            </span>
+        <span class="ranking-page-table-main__link-text">
+            {{ $object->name }}
         </span>
     </a>
 @elseif ($object instanceof App\Models\User)
