@@ -101,8 +101,8 @@ class UserScoreAggregate extends Model
         foreach ($playlistItemAggs as $agg) {
             $ret[] = [
                 'attempts' => $agg->attempts,
-                'completed' => $agg->score?->passed ?? false,
                 'id' => $agg->playlist_item_id,
+                'passed' => $agg->score?->passed ?? false,
             ];
         }
 
