@@ -205,7 +205,7 @@ class UserScoreAggregate extends Model
     {
         $agg = PlaylistItemUserHighScore
             ::whereHas('playlistItem', fn ($q) => $q->where('room_id', $this->room_id))
-            ->whereNotNull('score_id')
+            ->whereHas('score', fn ($q) => $q->where('passed', true))
             ->selectRaw('
                 SUM(accuracy) AS accuracy_sum,
                 SUM(total_score) AS total_score_sum,
