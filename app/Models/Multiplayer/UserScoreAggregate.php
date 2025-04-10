@@ -94,12 +94,14 @@ class UserScoreAggregate extends Model
         $playlistItemAggs = PlaylistItemUserHighScore
             ::whereHas('playlistItem', fn ($q) => $q->where('room_id', $this->room_id))
             ->where('user_id', $this->user_id)
+            ->with('score')
             ->get();
 
         $ret = [];
         foreach ($playlistItemAggs as $agg) {
             $ret[] = [
                 'attempts' => $agg->attempts,
+                'completed' => $agg->score?->passed ?? false,
                 'id' => $agg->playlist_item_id,
             ];
         }
