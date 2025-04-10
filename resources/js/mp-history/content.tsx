@@ -3,6 +3,7 @@
 
 import ShowMoreLink from 'components/show-more-link';
 import LegacyMatchEvent from 'interfaces/legacy-match-event-json';
+import LegacyMatchEventJson from 'interfaces/legacy-match-event-json';
 import LegacyMatchGame from 'interfaces/legacy-match-game-json';
 import LegacyMatch from 'interfaces/legacy-match-json';
 import * as React from 'react';
@@ -28,8 +29,10 @@ interface Props {
 }
 
 interface Snapshot {
-  referenceFunc?: () => number;
-  referencePrev?: number;
+  reference?: {
+    fn: () => number;
+    prev: number;
+  };
   scrollToLastEvent: boolean;
 }
 
@@ -39,16 +42,16 @@ export interface TeamScores {
 }
 
 export default class Content extends React.PureComponent<Props> {
-  inEvent = false;
-  scoresCache: Partial<Record<number, TeamScores>> = {};
+  private inEvent = false;
+  private scoresCache: Partial<Record<number, TeamScores>> = {};
 
   componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<unknown>, snapshot?: Snapshot) {
     if (snapshot?.scrollToLastEvent) {
       $(window).stop().scrollTo(document.body.scrollHeight, 500);
-    } else if (snapshot?.referenceFunc) {
-      const referenceCurrent = snapshot.referenceFunc();
+    } else if (snapshot?.reference) {
+      const referenceCurrent = snapshot.reference.fn();
       const documentScrollTopCurrent = window.scrollY;
-      const documentScrollTopTarget = documentScrollTopCurrent + referenceCurrent - snapshot.referencePrev!;
+      const documentScrollTopTarget = documentScrollTopCurrent + referenceCurrent - snapshot.reference.prev;
       window.scrollTo(window.scrollX, documentScrollTopTarget);
     }
   }
@@ -62,15 +65,20 @@ export default class Content extends React.PureComponent<Props> {
       const hadEvents = prevProps.events != null && prevProps.events.length > 0;
       const hasEvents = this.props.events != null && this.props.events.length > 0;
       if (hadEvents && hasEvents) {
+        let referenceFn: () => number;
+
         // This is to allow events to be added without moving currently
         // visible events on viewport.
         if (prevProps.events[0].id > this.props.events[0].id) {
-          snapshot.referenceFunc = () => document.body.scrollHeight;
+          referenceFn = () => document.body.scrollHeight;
         } else {
-          snapshot.referenceFunc = () => 0;
+          referenceFn = () => 0;
         }
 
-        snapshot.referencePrev = snapshot.referenceFunc();
+        snapshot.reference = {
+          fn: referenceFn,
+          prev: referenceFn(),
+        };
       }
     }
 
@@ -91,39 +99,7 @@ export default class Content extends React.PureComponent<Props> {
               hasMore
               loading={this.props.loadingPrevious} />
           </div>}
-        {this.props.events?.map((event) => {
-          if (event.detail.type === 'other') {
-            if (event.game == null || (event.game.end_time == null && event.game.id !== this.props.currentGameId)) {
-              return null;
-            }
-
-            return (
-              <React.Fragment key={event.id}>
-                {this.closeEventsGroup()}
-
-                <div className='mp-history-content__item'>
-                  <Game
-                    game={event.game}
-                    teamScores={this.teamScores(event.game)}
-                    users={this.props.users} />
-                </div>
-              </React.Fragment>
-            );
-          } else {
-            return (
-              <React.Fragment key={event.id}>
-                {this.openEventsGroup()}
-
-                <div className={classWithModifiers('mp-history-content__item', ['event'])}>
-                  <Event
-                    key={event.id}
-                    event={event}
-                    users={this.props.users} />
-                </div>
-              </React.Fragment>
-            );
-          }
-        })}
+        {this.props.events?.map((event) => this.renderEvent(event))}
         {this.closeEventsGroup()}
         {this.props.hasNext &&
           <div className={classWithModifiers('mp-history-content__item', ['more'])}>
@@ -148,6 +124,40 @@ export default class Content extends React.PureComponent<Props> {
     if (!this.inEvent) {
       this.inEvent = true;
       return <div className={classWithModifiers('mp-history-content__item', ['event', 'event-open'])} />;
+    }
+  }
+
+  private renderEvent(event: LegacyMatchEventJson) {
+    if (event.detail.type === 'other') {
+      if (event.game == null || (event.game.end_time == null && event.game.id !== this.props.currentGameId)) {
+        return null;
+      }
+
+      return (
+        <React.Fragment key={event.id}>
+          {this.closeEventsGroup()}
+
+          <div className="mp-history-content__item">
+            <Game
+              game={event.game}
+              teamScores={this.teamScores(event.game)}
+              users={this.props.users} />
+          </div>
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <React.Fragment key={event.id}>
+          {this.openEventsGroup()}
+
+          <div className={classWithModifiers('mp-history-content__item', ['event'])}>
+            <Event
+              key={event.id}
+              event={event}
+              users={this.props.users} />
+          </div>
+        </React.Fragment>
+      );
     }
   }
 
