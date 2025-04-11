@@ -134,7 +134,7 @@ class BeatmapDiscussionsController extends Controller
         priv_check('BeatmapsetDiscussionReviewStore', $beatmapset)->ensureCan();
 
         try {
-            $document = json_decode(request()->all()['document'] ?? '[]', true);
+            $document = get_arr(json_decode(get_string(request('document')) ?? '[]', true)) ?? [];
             Review::create($beatmapset, $document, Auth::user());
         } catch (\Exception $e) {
             return error_popup($e->getMessage(), 422);
