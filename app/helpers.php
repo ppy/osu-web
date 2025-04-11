@@ -344,7 +344,7 @@ function cursor_from_params($params): ?array
     return null;
 }
 
-function datadog_increment(string $stat, array|string $tags = null, int $value = 1)
+function datadog_increment(string $stat, array|string|null $tags = null, int $value = 1)
 {
     Datadog::increment(
         stats: $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.'.$stat,
@@ -353,7 +353,7 @@ function datadog_increment(string $stat, array|string $tags = null, int $value =
     );
 }
 
-function datadog_timing(callable $callable, $stat, array $tag = null)
+function datadog_timing(callable $callable, $stat, ?array $tag = null)
 {
     $startTime = microtime(true);
 
