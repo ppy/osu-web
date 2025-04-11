@@ -6,7 +6,7 @@ import LegacyMatchEventJson from 'interfaces/legacy-match-event-json';
 import LegacyMatchJson from 'interfaces/legacy-match-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import _ from 'lodash';
+import { keyBy, dropRightWhile } from 'lodash';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import Content from './content';
@@ -34,22 +34,20 @@ interface State {
   users: Partial<Record<number, UserJson>>;
 }
 
+const FETCH_LIMIT = 100;
+const MAXIMUM_EVENTS = 500;
+const REFRESH_TIMEOUT = 10000;
+
 export default class Main extends React.Component<Props, State> {
-  private static readonly FETCH_LIMIT = 100;
-  private static readonly MAXIMUM_EVENTS = 500;
-  private static readonly REFRESH_TIMEOUT = 10000;
+  private readonly loadNext: () => void;
+  private readonly loadPrevious: () => void;
 
-  private readonly loadNextBound: () => void;
-  private readonly loadPreviousBound: () => void;
-
-  private readonly timeouts: Partial<Record<string, number>>;
+  private readonly timeouts: Partial<Record<string, number>> = {};
 
   constructor(props: Props) {
     super(props);
 
     const events = props.events.events;
-
-    this.timeouts = {};
 
     this.state = {
       currentGameId: props.events.current_game_id,
@@ -58,10 +56,90 @@ export default class Main extends React.Component<Props, State> {
       loadingNext: false,
       loadingPrevious: false,
       match: props.events.match,
-      users: _.keyBy(props.events.users, 'id'),
+      users: keyBy(props.events.users, 'id'),
     };
-    this.loadNextBound = this.loadNext.bind(this);
-    this.loadPreviousBound = this.loadPrevious.bind(this);
+
+    this.loadNext = () => {
+      if (!this.hasNext()) {
+        return;
+      }
+
+      clearTimeout(this.timeouts.autoload);
+      this.setState({ loadingNext: true });
+
+      $.ajax(
+        route('matches.show', { match: this.state.match.id }),
+        {
+          data: {
+            after: this.minNextEventId(),
+            limit: FETCH_LIMIT,
+          },
+          dataType: 'JSON',
+          method: 'GET',
+        })
+        .done((data: LegacyMultiplayerHistoryJson) => {
+          if (data.events.length === 0) {
+            return;
+          }
+
+          const startEventId = data.events[0]?.id ?? 0;
+
+          const newEvents = dropRightWhile(this.state.events, (e) => e.id >= startEventId)
+            .concat(data.events)
+            .slice(-MAXIMUM_EVENTS);
+          const newUsers = this.newUsersHash(data.users);
+
+          this.setState({
+            currentGameId: data.current_game_id,
+            events: newEvents,
+            latestEventId: data.latest_event_id,
+            match: data.match,
+            users: newUsers,
+          });
+        })
+        .always(() => {
+          this.setState({ loadingNext: false });
+          this.delayedAutoload();
+        });
+    };
+
+    this.loadPrevious = () => {
+      if (!this.hasPrevious()) {
+        return;
+      }
+
+      this.setState({ loadingPrevious: true });
+
+      $.ajax(
+        route('matches.show', { match: this.state.match.id }),
+        {
+          data: {
+            before: this.state.events[0]?.id,
+            limit: FETCH_LIMIT,
+          },
+          dataType: 'JSON',
+          method: 'GET',
+        })
+        .done((data: LegacyMultiplayerHistoryJson) => {
+          if (data.events.length === 0) {
+            return;
+          }
+
+          const newEvents = data.events.concat(this.state.events)
+            .slice(0, MAXIMUM_EVENTS);
+          const newUsers = this.newUsersHash(data.users);
+
+          this.setState({
+            currentGameId: data.current_game_id,
+            events: newEvents,
+            latestEventId: data.latest_event_id,
+            users: newUsers,
+          });
+        })
+        .always(() => {
+          this.setState({ loadingPrevious: false });
+        });
+    };
   }
 
   componentDidMount() {
@@ -76,7 +154,7 @@ export default class Main extends React.Component<Props, State> {
 
   render() {
     return (
-      <React.Fragment key={null}>
+      <React.Fragment>
         <HeaderV4 theme='mp-history' />
         <div className={classWithModifiers('osu-page', ['generic'])}>
           <Content
@@ -85,8 +163,8 @@ export default class Main extends React.Component<Props, State> {
             hasNext={this.hasNext()}
             hasPrevious={this.hasPrevious()}
             isAutoloading={this.isAutoloading()}
-            loadNext={this.loadNextBound}
-            loadPrevious={this.loadPreviousBound}
+            loadNext={this.loadNext}
+            loadPrevious={this.loadPrevious}
             loadingNext={this.state.loadingNext}
             loadingPrevious={this.state.loadingPrevious}
             match={this.state.match}
@@ -105,11 +183,11 @@ export default class Main extends React.Component<Props, State> {
   }
 
   private delayedAutoload() {
-    this.timeouts.autoload = setTimeout(() => this.autoload(), Main.REFRESH_TIMEOUT);
+    this.timeouts.autoload = setTimeout(() => this.autoload(), REFRESH_TIMEOUT);
   }
 
   private hasLatest(): boolean {
-    const lastEvent = _.last(this.state.events);
+    const lastEvent = this.state.events[this.state.events.length - 1];
 
     return lastEvent != null && lastEvent.id === this.state.latestEventId;
   }
@@ -132,105 +210,18 @@ export default class Main extends React.Component<Props, State> {
     return this.state.match.end_time == null;
   }
 
-  private loadNext() {
-    if (!this.hasNext()) {
-      return;
-    }
-
-    clearTimeout(this.timeouts.autoload);
-    this.setState({ loadingNext: true });
-
-    $.ajax(
-      route('matches.show', { match: this.state.match.id }),
-      {
-        data: {
-          after: this.minNextEventId(),
-          limit: Main.FETCH_LIMIT,
-        },
-        dataType: 'JSON',
-        method: 'GET',
-      })
-      .done((data: LegacyMultiplayerHistoryJson) => {
-        if (_.isEmpty(data.events)) {
-          return;
-        }
-
-        const startEventId = data.events[0]?.id ?? 0;
-
-        const newEvents = _.dropRightWhile(this.state.events, (e) => e.id >= startEventId)
-          .concat(data.events)
-          .slice(-Main.MAXIMUM_EVENTS);
-        const newUsers = this.newUsersHash(data.users);
-
-        this.setState({
-          currentGameId: data.current_game_id,
-          events: newEvents,
-          latestEventId: data.latest_event_id,
-          match: data.match,
-          users: newUsers,
-        });
-      })
-      .always(() => {
-        this.setState({ loadingNext: false });
-        this.delayedAutoload();
-      });
-  }
-
-  private loadPrevious() {
-    if (!this.hasPrevious()) {
-      return;
-    }
-
-    this.setState({ loadingPrevious: true });
-
-    $.ajax(
-      route('matches.show', { match: this.state.match.id }),
-      {
-        data: {
-          before: this.state.events[0]?.id,
-          limit: Main.FETCH_LIMIT,
-        },
-        dataType: 'JSON',
-        method: 'GET',
-      })
-      .done((data: LegacyMultiplayerHistoryJson) => {
-        if (_.isEmpty(data.events)) {
-          return;
-        }
-
-        const newEvents = data.events.concat(this.state.events)
-          .slice(0, Main.MAXIMUM_EVENTS);
-        const newUsers = this.newUsersHash(data.users);
-
-        this.setState({
-          currentGameId: data.current_game_id,
-          events: newEvents,
-          latestEventId: data.latest_event_id,
-          users: newUsers,
-        });
-      })
-      .always(() => {
-        this.setState({ loadingPrevious: false });
-      });
-  }
-
   private minNextEventId(): number | undefined {
-    let id: number | undefined;
-
     if (this.state.currentGameId != null) {
-      const currentGame = _.find(this.state.events, (e) => e.game?.id === this.state.currentGameId);
+      const currentGame = this.state.events.find((e) => e.game?.id === this.state.currentGameId);
       if (currentGame != null) {
-        id = currentGame.id - 1;
+        return currentGame.id - 1;
       }
     }
 
-    return id ?? _.last(this.state.events)?.id;
+    return this.state.events[this.state.events.length - 1]?.id;
   }
 
   private newUsersHash(users: UserJson[]): Partial<Record<number, UserJson>> {
-    return _({})
-      .assign(this.state.users)
-      .assign(_.keyBy(users, 'id'))
-      .value();
+    return { ...this.state.users, ...keyBy(users, 'id') };
   }
 }
