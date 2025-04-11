@@ -5,33 +5,28 @@
 @php
     use App\Http\Controllers\RankingController;
 
-    $mode ??= default_mode();
-    $country ??= null;
-    $sort ??= null;
-    $spotlight ??= null;
-    $rankingUrl = fn (string $type, string $rulesetName) =>
-        RankingController::url($type, $rulesetName, $country, $spotlight, $sort);
-
     $links = [];
     foreach (RankingController::TYPES as $tab) {
         $links[] = [
-            'active' => $tab === $type,
+            'active' => $tab === $params['type'],
             'title' => osu_trans("rankings.type.{$tab}"),
-            'url' => $rankingUrl($tab, $mode),
+            'url' => RankingController::url([...$params, 'type' => $tab]),
         ];
     }
 
+    $hasFilter ??= true;
     $hasMode ??= true;
+    $hasPager ??= true;
     $hasScores ??= true;
 @endphp
 
-@extends('master', ['titlePrepend' => $titlePrepend ?? osu_trans("rankings.type.{$type}")])
+@extends('master', ['titlePrepend' => $titlePrepend ?? osu_trans("rankings.type.{$params['type']}")])
 
 @if ($hasMode)
     @section('rulesetSelector')
         @include('objects._ruleset_selector', [
-            'currentRuleset' => $mode,
-            'urlFn' => fn ($r) => $rankingUrl($type, $r),
+            'currentRuleset' => $params['mode'],
+            'urlFn' => fn (string $r): string => route('rankings', [...$params, 'mode' => $r]),
         ])
     @endsection
 @endif
@@ -66,9 +61,7 @@
             <div id="scores"></div>
             @if ($hasPager)
                 @include('objects._pagination_v2', [
-                    'object' => $scores
-                        ->appends(['country' => $country['acronym'] ?? null])
-                        ->fragment('scores')
+                    'object' => $scores->fragment('scores')
                 ])
             @endif
 
@@ -78,9 +71,7 @@
 
             @if ($hasPager)
                 @include('objects._pagination_v2', [
-                    'object' => $scores
-                        ->appends(['country' => $country['acronym'] ?? null])
-                        ->fragment('scores')
+                    'object' => $scores->fragment('scores')
                 ])
             @endif
 
