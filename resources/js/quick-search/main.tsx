@@ -11,6 +11,7 @@ import { formatNumber, htmlElementOrNull } from 'utils/html';
 import { trans } from 'utils/lang';
 import { navigate } from 'utils/turbolinks';
 import Beatmapset from './beatmapset';
+import Team from './team';
 import User from './user';
 import { ResultMode, Section } from './worker';
 import Worker from './worker';
@@ -188,6 +189,11 @@ const otherModes: ResultMode[] = ['artist_track', 'forum_post', 'wiki_page'];
         </div>
 
         <div className='quick-search-result__item'>
+          {this.renderTitle('team')}
+          {this.renderTeams()}
+        </div>
+
+        <div className='quick-search-result__item'>
           {this.renderTitle('beatmapset')}
           {this.renderBeatmapsets()}
         </div>
@@ -225,6 +231,41 @@ const otherModes: ResultMode[] = ['artist_track', 'forum_post', 'wiki_page'];
           <span className='fas fa-angle-right' />
         </div>
       </a>
+    );
+  }
+
+  private renderTeams() {
+    if (this.props.worker.searchResult === null) {
+      return null;
+    }
+
+    return (
+      <div className='quick-search-items'>
+        {this.props.worker.searchResult.team.items.map((team, idx) => (
+          <div
+            key={team.id}
+            className='quick-search-items__item'
+            data-index={idx}
+            data-section='team'
+            onMouseEnter={this.onMouseEnter}
+            onMouseLeave={this.onMouseLeave}
+          >
+            <Team
+              modifiers={{ active: this.boxIsActive('team', idx) }}
+              team={team}
+            />
+          </div>
+        ))}
+
+        <div
+          className='quick-search-items__item'
+          data-section='team_others'
+          onMouseEnter={this.onMouseEnter}
+          onMouseLeave={this.onMouseLeave}
+        >
+          {this.renderResultLink('team', this.boxIsActive('team_others', 0))}
+        </div>
+      </div>
     );
   }
 

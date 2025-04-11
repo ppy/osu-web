@@ -14,6 +14,11 @@ class MultiSearch
             'paramsType' => UserSearchRequestParams::class,
             'size' => 6,
         ],
+        'team' => [
+            'type' => TeamSearch::class,
+            'paramsType' => TeamSearchRequestParams::class,
+            'size' => 6,
+        ],
         'beatmapset' => [
             'type' => BeatmapsetSearch::class,
             'paramsType' => BeatmapsetSearchRequestParams::class,

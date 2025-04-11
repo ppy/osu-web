@@ -6,6 +6,7 @@
 namespace App\Libraries\Search;
 
 use App\Transformers\BeatmapsetCompactTransformer;
+use App\Transformers\TeamTransformer;
 use App\Transformers\UserCompactTransformer;
 
 class QuickSearch extends MultiSearch
@@ -29,6 +30,15 @@ class QuickSearch extends MultiSearch
             'paramsType' => ForumSearchRequestParams::class,
             'size' => 0,
             'type' => ForumSearch::class,
+        ],
+        'team' => [
+            'paramsType' => TeamSearchRequestParams::class,
+            'size' => 5,
+            'transformer' => [
+                'class' => TeamTransformer::class,
+                'includes' => [],
+            ],
+            'type' => TeamSearch::class,
         ],
         'user' => [
             'paramsType' => UserSearchRequestParams::class,
