@@ -142,6 +142,10 @@
       border-bottom-right-radius: 5px;
       width: 1%; // don't let the column expand unless required
     }
+
+    &--player {
+      max-width: 200px;
+    }
   }
 
   &__cell-content {
@@ -221,6 +225,7 @@
   }
 
   &__user-link {
+    .u-ellipsis-overflow();
     .link-inverted();
     .link-hover({
       text-decoration: underline;

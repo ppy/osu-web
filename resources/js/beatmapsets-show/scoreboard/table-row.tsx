@@ -114,7 +114,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
             {trans('users.deleted')}
           </TdLink>
         ) : (
-          <td className={`${bn}__cell u-relative`}>
+          <td className={`${bn}__cell ${bn}__cell--player u-relative`}>
             <a className={classWithModifiers(`${bn}__cell-content`, 'bg-link')} href={this.scoreUrl} />
             <span className={`${bn}__cell-content u-hover-none`}>
               {score.user.team != null &&
