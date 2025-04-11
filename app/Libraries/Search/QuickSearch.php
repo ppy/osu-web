@@ -23,6 +23,11 @@ class QuickSearch extends MultiSearch
             'paramsType' => ForumSearchRequestParams::class,
             'size' => 0,
         ],
+        'team' => [
+            'type' => TeamSearch::class,
+            'paramsType' => TeamSearchRequestParams::class,
+            'size' => 5,
+        ],
         'user' => [
             'type' => UserSearch::class,
             'paramsType' => UserSearchRequestParams::class,

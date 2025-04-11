@@ -2,30 +2,34 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetJson from 'interfaces/beatmapset-json';
+import TeamJson from 'interfaces/team-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 
-export type Section = 'user' | 'user_others' | 'beatmapset' | 'beatmapset_others' | 'others';
-const SECTIONS: Section[] = [
+const SECTIONS = [
   'user',
   'user_others',
+  'team',
+  'team_others',
   'beatmapset',
   'beatmapset_others',
   'others',
-];
+] as const;
+export type Section = typeof SECTIONS[number];
 
 interface SelectedItem {
   index: number;
   section: number;
 }
 
-export type ResultMode = 'artist_track' | 'beatmapset' | 'forum_post' | 'user' | 'wiki_page';
+export type ResultMode = 'artist_track' | 'beatmapset' | 'forum_post' | 'team' | 'user' | 'wiki_page';
 interface SearchResult {
   artist_track: SearchResultSummary;
   beatmapset: SearchResultBeatmapset;
   forum_post: SearchResultSummary;
+  team: SearchResultTeam;
   user: SearchResultUser;
   wiki_page: SearchResultSummary;
 }
@@ -36,6 +40,10 @@ interface SearchResultSummary {
 
 interface SearchResultBeatmapset extends SearchResultSummary {
   beatmapsets: BeatmapsetJson[];
+}
+
+interface SearchResultTeam extends SearchResultSummary {
+  teams: TeamJson[];
 }
 
 interface SearchResultUser extends SearchResultSummary {
@@ -107,6 +115,12 @@ export default class Worker {
     }
 
     switch (SECTIONS[this.selected.section]) {
+      case 'team': {
+        const teamId = searchResult.team.teams[this.selected.index]?.id;
+        return teamId == null ? undefined : route('teams.show', { team: teamId });
+      }
+      case 'team_others':
+        return route('search', { mode: 'team', query: this.query });
       case 'user': {
         const userId = searchResult.user.users[this.selected.index]?.id;
         return userId ? route('users.show', { user: userId }) : undefined;
@@ -177,6 +191,10 @@ export default class Worker {
       return 0;
     }
     switch (section) {
+      case 'team':
+        return searchResult.team.teams.length;
+      case 'team_others':
+        return 1;
       case 'user':
         return searchResult.user.users.length;
       case 'user_others':
