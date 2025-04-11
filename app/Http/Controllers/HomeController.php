@@ -184,8 +184,11 @@ class HomeController extends Controller
         $currentUser = Auth::user();
         $allSearch = new AllSearch(Request::all(), ['user' => $currentUser]);
 
-        if ($allSearch->getMode() === 'beatmapset') {
-            return ujs_redirect(route('beatmapsets.index', ['q' => $allSearch->getRawQuery()]));
+        switch ($allSearch->getMode()) {
+            case 'artist_track':
+                return ujs_redirect(route('artists.tracks.index', ['query' => $allSearch->getRawQuery()]));
+            case 'beatmapset':
+                return ujs_redirect(route('beatmapsets.index', ['q' => $allSearch->getRawQuery()]));
         }
 
         $isSearchPage = true;

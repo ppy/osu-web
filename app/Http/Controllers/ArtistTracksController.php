@@ -6,7 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Libraries\Search\ArtistTrackSearch;
-use App\Libraries\Search\ArtistTrackSearchParamsFromRequest;
+use App\Libraries\Search\ArtistTrackSearchRequestParams;
 use App\Models\ArtistTrack;
 use App\Transformers\ArtistTrackTransformer;
 
@@ -14,13 +14,17 @@ class ArtistTracksController extends Controller
 {
     public function index()
     {
-        $params = ArtistTrackSearchParamsFromRequest::fromArray(request()->all());
+        $params = new ArtistTrackSearchRequestParams(\Request::all());
         $search = new ArtistTrackSearch($params);
 
         $tracks = $search->records();
         $index = [
-            'artist_tracks' => json_collection($tracks, new ArtistTrackTransformer(), ['artist', 'album']),
-            'search' => ArtistTrackSearchParamsFromRequest::toArray($params),
+            'artist_tracks' => json_collection(
+                $tracks,
+                new ArtistTrackTransformer(),
+                ArtistTrackTransformer::CARD_INCLUDES,
+            ),
+            'search' => $params->toArray(),
             ...cursor_for_response($search->getSortCursor()),
         ];
 

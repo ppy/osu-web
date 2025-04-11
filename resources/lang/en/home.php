@@ -26,6 +26,9 @@ return [
         'placeholder' => 'type to search',
         'title' => 'search',
 
+        'artist_track' => [
+            'more_simple' => 'See more featured artist track search results',
+        ],
         'beatmapset' => [
             'login_required' => 'Sign in to search beatmaps',
             'more' => ':count more beatmap search results',
@@ -51,6 +54,7 @@ return [
 
         'mode' => [
             'all' => 'all',
+            'artist_track' => 'featured artist track',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
             'user' => 'player',
