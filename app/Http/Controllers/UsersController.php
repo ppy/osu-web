@@ -532,7 +532,7 @@ class UsersController extends Controller
 
         $perPage = $this->perPage;
 
-        if ($type === 'firsts' || $type === 'pinned') {
+        if (in_array($type, ['best', 'firsts', 'pinned'], true)) {
             // Override per page restriction in parsePaginationParams to allow infinite paging
             $perPage = $this->sanitizedLimitParam();
         }
