@@ -359,7 +359,7 @@ class SanityTest extends DuskTestCase
 
             $routeName = $route->getName() ?? $uri;
             foreach ($types as $type) {
-                $data[] = ["{$routeName}:{$type}", $type, $uri];
+                $data["{$routeName}:{$type}"] = [$type, $uri];
             }
         }
 
@@ -369,7 +369,7 @@ class SanityTest extends DuskTestCase
     /**
      * @dataProvider routesDataProvider
      */
-    public function testPageLoadCheck($testName, $type, $uri)
+    public function testPageLoadCheck($type, $uri)
     {
         $route = app()->routes->get('GET')[$uri];
 
