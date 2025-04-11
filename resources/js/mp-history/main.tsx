@@ -39,9 +39,6 @@ const MAXIMUM_EVENTS = 500;
 const REFRESH_TIMEOUT = 10000;
 
 export default class Main extends React.Component<Props, State> {
-  private readonly loadNext: () => void;
-  private readonly loadPrevious: () => void;
-
   private readonly timeouts: Partial<Record<string, number>> = {};
 
   constructor(props: Props) {
@@ -57,88 +54,6 @@ export default class Main extends React.Component<Props, State> {
       loadingPrevious: false,
       match: props.events.match,
       users: keyBy(props.events.users, 'id'),
-    };
-
-    this.loadNext = () => {
-      if (!this.hasNext()) {
-        return;
-      }
-
-      clearTimeout(this.timeouts.autoload);
-      this.setState({ loadingNext: true });
-
-      $.ajax(
-        route('matches.show', { match: this.state.match.id }),
-        {
-          data: {
-            after: this.minNextEventId(),
-            limit: FETCH_LIMIT,
-          },
-          dataType: 'JSON',
-          method: 'GET',
-        })
-        .done((data: LegacyMultiplayerHistoryJson) => {
-          if (data.events.length === 0) {
-            return;
-          }
-
-          const startEventId = data.events[0]?.id ?? 0;
-
-          const newEvents = dropRightWhile(this.state.events, (e) => e.id >= startEventId)
-            .concat(data.events)
-            .slice(-MAXIMUM_EVENTS);
-          const newUsers = this.newUsersHash(data.users);
-
-          this.setState({
-            currentGameId: data.current_game_id,
-            events: newEvents,
-            latestEventId: data.latest_event_id,
-            match: data.match,
-            users: newUsers,
-          });
-        })
-        .always(() => {
-          this.setState({ loadingNext: false });
-          this.delayedAutoload();
-        });
-    };
-
-    this.loadPrevious = () => {
-      if (!this.hasPrevious()) {
-        return;
-      }
-
-      this.setState({ loadingPrevious: true });
-
-      $.ajax(
-        route('matches.show', { match: this.state.match.id }),
-        {
-          data: {
-            before: this.state.events[0]?.id,
-            limit: FETCH_LIMIT,
-          },
-          dataType: 'JSON',
-          method: 'GET',
-        })
-        .done((data: LegacyMultiplayerHistoryJson) => {
-          if (data.events.length === 0) {
-            return;
-          }
-
-          const newEvents = data.events.concat(this.state.events)
-            .slice(0, MAXIMUM_EVENTS);
-          const newUsers = this.newUsersHash(data.users);
-
-          this.setState({
-            currentGameId: data.current_game_id,
-            events: newEvents,
-            latestEventId: data.latest_event_id,
-            users: newUsers,
-          });
-        })
-        .always(() => {
-          this.setState({ loadingPrevious: false });
-        });
     };
   }
 
@@ -209,6 +124,88 @@ export default class Main extends React.Component<Props, State> {
   private isOngoing(): boolean {
     return this.state.match.end_time == null;
   }
+
+  private readonly loadNext = () => {
+    if (!this.hasNext()) {
+      return;
+    }
+
+    clearTimeout(this.timeouts.autoload);
+    this.setState({ loadingNext: true });
+
+    $.ajax(
+      route('matches.show', { match: this.state.match.id }),
+      {
+        data: {
+          after: this.minNextEventId(),
+          limit: FETCH_LIMIT,
+        },
+        dataType: 'JSON',
+        method: 'GET',
+      })
+      .done((data: LegacyMultiplayerHistoryJson) => {
+        if (data.events.length === 0) {
+          return;
+        }
+
+        const startEventId = data.events[0]?.id ?? 0;
+
+        const newEvents = dropRightWhile(this.state.events, (e) => e.id >= startEventId)
+          .concat(data.events)
+          .slice(-MAXIMUM_EVENTS);
+        const newUsers = this.newUsersHash(data.users);
+
+        this.setState({
+          currentGameId: data.current_game_id,
+          events: newEvents,
+          latestEventId: data.latest_event_id,
+          match: data.match,
+          users: newUsers,
+        });
+      })
+      .always(() => {
+        this.setState({ loadingNext: false });
+        this.delayedAutoload();
+      });
+  };
+
+  private readonly loadPrevious = () => {
+    if (!this.hasPrevious()) {
+      return;
+    }
+
+    this.setState({ loadingPrevious: true });
+
+    $.ajax(
+      route('matches.show', { match: this.state.match.id }),
+      {
+        data: {
+          before: this.state.events[0]?.id,
+          limit: FETCH_LIMIT,
+        },
+        dataType: 'JSON',
+        method: 'GET',
+      })
+      .done((data: LegacyMultiplayerHistoryJson) => {
+        if (data.events.length === 0) {
+          return;
+        }
+
+        const newEvents = data.events.concat(this.state.events)
+          .slice(0, MAXIMUM_EVENTS);
+        const newUsers = this.newUsersHash(data.users);
+
+        this.setState({
+          currentGameId: data.current_game_id,
+          events: newEvents,
+          latestEventId: data.latest_event_id,
+          users: newUsers,
+        });
+      })
+      .always(() => {
+        this.setState({ loadingPrevious: false });
+      });
+  };
 
   private minNextEventId(): number | undefined {
     if (this.state.currentGameId != null) {
