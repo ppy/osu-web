@@ -142,6 +142,10 @@
       border-bottom-right-radius: 5px;
       width: 1%; // don't let the column expand unless required
     }
+
+    &--player {
+      max-width: 200px;
+    }
   }
 
   &__cell-content {
@@ -155,6 +159,13 @@
     align-items: center;
     color: var(--default-color);
     padding: 0 var(--padding-h);
+    gap: 5px;
+    position: relative;
+
+    &--bg-link {
+      position: absolute;
+      inset: 0;
+    }
 
     &--grade {
       justify-content: center;
@@ -181,12 +192,6 @@
 
     &--time {
       white-space: nowrap;
-    }
-
-    &--user-link {
-      position: absolute;
-      display: flex;
-      gap: 5px;
     }
 
     &--zero {
@@ -220,6 +225,7 @@
   }
 
   &__user-link {
+    .u-ellipsis-overflow();
     .link-inverted();
     .link-hover({
       text-decoration: underline;
