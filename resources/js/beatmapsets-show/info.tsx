@@ -110,7 +110,6 @@ export default class Info extends React.Component<Props> {
         }
 
         <div className='beatmapset-info__box'>
-          {this.withEditDescription && this.renderEditDescriptionButton()}
           <div className='beatmapset-info__scrollable'>
             <div className='beatmapset-info__row'>
               <h3 className='beatmapset-info__header beatmapset-info__header--sticky'>
@@ -125,10 +124,10 @@ export default class Info extends React.Component<Props> {
               />
             </div>
           </div>
+          {this.withEditDescription && this.renderEditDescriptionButton()}
         </div>
 
         <div className='beatmapset-info__box'>
-          {this.withEditMetadata && this.renderEditMetadataButton()}
           <div className='beatmapset-info__scrollable'>
             {this.nominators.length > 0 &&
               <div className='beatmapset-info__row'>
@@ -231,6 +230,7 @@ export default class Info extends React.Component<Props> {
               </div>
             }
           </div>
+          {this.withEditMetadata && this.renderEditMetadataButton()}
         </div>
 
         <div className='beatmapset-info__box'>
