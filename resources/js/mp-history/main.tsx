@@ -34,9 +34,9 @@ interface State {
   users: Partial<Record<number, UserJson>>;
 }
 
-const FETCH_LIMIT = 100;
-const MAXIMUM_EVENTS = 500;
-const REFRESH_TIMEOUT = 10000;
+const fetchLimit = 100;
+const maximumEvents = 500;
+const refreshTimeout = 10000;
 
 export default class Main extends React.Component<Props, State> {
   private readonly timeouts: Partial<Record<string, number>> = {};
@@ -44,11 +44,9 @@ export default class Main extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    const events = props.events.events;
-
     this.state = {
       currentGameId: props.events.current_game_id,
-      events,
+      events: props.events.events,
       latestEventId: props.events.latest_event_id,
       loadingNext: false,
       loadingPrevious: false,
@@ -69,15 +67,15 @@ export default class Main extends React.Component<Props, State> {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <HeaderV4 theme='mp-history' />
         <div className={classWithModifiers('osu-page', ['generic'])}>
           <Content
             currentGameId={this.state.currentGameId}
             events={this.state.events}
-            hasNext={this.hasNext()}
-            hasPrevious={this.hasPrevious()}
-            isAutoloading={this.isAutoloading()}
+            hasNext={this.hasNext}
+            hasPrevious={this.hasPrevious}
+            isAutoloading={this.isAutoloading}
             loadNext={this.loadNext}
             loadPrevious={this.loadPrevious}
             loadingNext={this.state.loadingNext}
@@ -85,12 +83,12 @@ export default class Main extends React.Component<Props, State> {
             match={this.state.match}
             users={this.state.users} />
         </div>
-      </React.Fragment>
+      </>
     );
   }
 
   private autoload() {
-    if (!this.isAutoloading()) {
+    if (!this.isAutoloading) {
       return;
     }
 
@@ -98,35 +96,35 @@ export default class Main extends React.Component<Props, State> {
   }
 
   private delayedAutoload() {
-    this.timeouts.autoload = setTimeout(() => this.autoload(), REFRESH_TIMEOUT);
+    this.timeouts.autoload = setTimeout(() => this.autoload(), refreshTimeout);
   }
 
-  private hasLatest(): boolean {
+  private get hasLatest(): boolean {
     const lastEvent = this.state.events[this.state.events.length - 1];
 
     return lastEvent != null && lastEvent.id === this.state.latestEventId;
   }
 
-  private hasNext(): boolean {
-    return this.isOngoing() || !this.hasLatest();
+  private get hasNext(): boolean {
+    return this.isOngoing || !this.hasLatest;
   }
 
-  private hasPrevious(): boolean {
+  private get hasPrevious(): boolean {
     const firstEvent = this.state.events[0];
 
     return firstEvent != null && firstEvent.id !== this.props.events.first_event_id;
   }
 
-  private isAutoloading(): boolean {
-    return this.isOngoing() && this.hasLatest();
+  private get isAutoloading(): boolean {
+    return this.isOngoing && this.hasLatest;
   }
 
-  private isOngoing(): boolean {
+  private get isOngoing(): boolean {
     return this.state.match.end_time == null;
   }
 
   private readonly loadNext = () => {
-    if (!this.hasNext()) {
+    if (!this.hasNext) {
       return;
     }
 
@@ -138,7 +136,7 @@ export default class Main extends React.Component<Props, State> {
       {
         data: {
           after: this.minNextEventId(),
-          limit: FETCH_LIMIT,
+          limit: fetchLimit,
         },
         dataType: 'JSON',
         method: 'GET',
@@ -152,7 +150,7 @@ export default class Main extends React.Component<Props, State> {
 
         const newEvents = dropRightWhile(this.state.events, (e) => e.id >= startEventId)
           .concat(data.events)
-          .slice(-MAXIMUM_EVENTS);
+          .slice(-maximumEvents);
         const newUsers = this.newUsersHash(data.users);
 
         this.setState({
@@ -170,7 +168,7 @@ export default class Main extends React.Component<Props, State> {
   };
 
   private readonly loadPrevious = () => {
-    if (!this.hasPrevious()) {
+    if (!this.hasPrevious) {
       return;
     }
 
@@ -181,7 +179,7 @@ export default class Main extends React.Component<Props, State> {
       {
         data: {
           before: this.state.events[0]?.id,
-          limit: FETCH_LIMIT,
+          limit: fetchLimit,
         },
         dataType: 'JSON',
         method: 'GET',
@@ -192,7 +190,7 @@ export default class Main extends React.Component<Props, State> {
         }
 
         const newEvents = data.events.concat(this.state.events)
-          .slice(0, MAXIMUM_EVENTS);
+          .slice(0, maximumEvents);
         const newUsers = this.newUsersHash(data.users);
 
         this.setState({
