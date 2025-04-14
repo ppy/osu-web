@@ -105,8 +105,8 @@ class Mods
         foreach ($ids as $id) {
             $mod = $this->mods[$rulesetId][$id];
 
-            if ($isFreestyle && !$mod['ValidForFreestyle']) {
-                throw new InvariantException("mod cannot be set on freestyle items: {$id}");
+            if ($isFreestyle && $isRequired && !$mod['ValidForFreestyleAsRequiredMod']) {
+                throw new InvariantException("mod cannot be set as required on freestyle items: {$id}");
             }
 
             if (!$mod[$attr]) {

@@ -172,6 +172,11 @@ class PlaylistItem extends Model
 
     private function assertValidMods()
     {
+        // Freestyle unconditionally allows all freemods, so we'll expect them to not be specified.
+        if ($this->freestyle && count($this->allowed_mods) !== 0) {
+            throw new InvariantException('allowed mods cannot be specified on freestyle items');
+        }
+
         $allowedModIds = array_column($this->allowed_mods, 'acronym');
         $requiredModIds = array_column($this->required_mods, 'acronym');
 
