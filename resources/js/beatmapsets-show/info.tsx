@@ -120,7 +120,6 @@ export default class Info extends React.Component<Props> {
                 dangerouslySetInnerHTML={{
                   __html: this.controller.beatmapset.description.description ?? '',
                 }}
-                className='beatmapset-info__value-overflow'
               />
             </div>
           </div>
