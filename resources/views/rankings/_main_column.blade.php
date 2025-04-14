@@ -78,12 +78,14 @@
             data-user-id="{{ $object->getKey() }}"
             href="{{ route('users.show', ['user' => $object->getKey(), 'mode' => $mode]) }}"
         >
-            <span class="ranking-page-table-main__flag">
-                <span
-                    class="avatar avatar--dynamic-size"
-                    {!! background_image($object->user_avatar) !!}
-                ></span>
-            </span>
+            @if ($showAvatar ?? false)
+                <span class="ranking-page-table-main__flag">
+                    <span
+                        class="avatar avatar--dynamic-size"
+                        {!! background_image($object->user_avatar) !!}
+                    ></span>
+                </span>
+            @endif
             <span class="ranking-page-table-main__link-text">
                 {{ $object->username }}
             </span>
