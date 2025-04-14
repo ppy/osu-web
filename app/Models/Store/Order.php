@@ -662,7 +662,7 @@ class Order extends Model
         };
     }
 
-    private function lockForReserve(array $productIds = null)
+    private function lockForReserve(?array $productIds = null)
     {
         $query = $this->items()->with('product')->lockForUpdate();
         if ($productIds) {
