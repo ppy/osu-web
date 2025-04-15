@@ -2,10 +2,7 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@php
-    $hasPager = false;
-@endphp
-@extends('rankings.index')
+@extends('rankings.index', ['hasPager' => false])
 
 @section('ranking-header')
     <div class="osu-page osu-page--ranking-info">
