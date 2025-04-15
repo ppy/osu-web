@@ -255,7 +255,7 @@ class HomeController extends Controller
 
                 $lastTagPurchaseDate ??= $expiration->copy()->subMonths(1);
 
-                $total = max(1, $expiration->diffInDays($lastTagPurchaseDate));
+                $total = max(1, $lastTagPurchaseDate->diffInDays($expiration));
                 $used = $lastTagPurchaseDate->diffInDays();
 
                 $supporterStatus['remainingPercent'] = 100 - round($used / $total * 100, 2);
