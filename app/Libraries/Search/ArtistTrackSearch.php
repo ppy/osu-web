@@ -41,7 +41,7 @@ class ArtistTrackSearch extends RecordSearch
 
     public function records()
     {
-        return $this->response()->records()->with(ArtistTrackTransformer::CARD_INCLUDES_PRELOAD)->get();
+        return parent::records()->load(ArtistTrackTransformer::CARD_INCLUDES_PRELOAD);
     }
 
     private function addExclusiveOnlyFilter(BoolQuery $query): void
