@@ -14,7 +14,7 @@ class TransactionState
     private $commits = [];
     private $rollbacks = [];
 
-    public function __construct(ConnectionInterface $connection = null)
+    public function __construct(?ConnectionInterface $connection = null)
     {
         $this->connection = $connection;
     }

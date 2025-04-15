@@ -157,7 +157,7 @@ class OrderCheckoutTest extends TestCase
         $this->assertSame([Order::PROVIDER_FREE], $result);
     }
 
-    private function createTournamentProduct(Tournament $tournament, Carbon $availableUntil = null)
+    private function createTournamentProduct(Tournament $tournament, ?Carbon $availableUntil = null)
     {
         $country = Country::inRandomOrder()->first() ?? Country::factory()->create();
 
