@@ -14,7 +14,7 @@
         class="ranking-page-table-main"
         href="{{ route('rankings', [
             'mode' => $params['mode'],
-            'type' => 'performance',
+            'type' => 'global',
             'country' => $object->acronym,
         ]) }}"
     >
