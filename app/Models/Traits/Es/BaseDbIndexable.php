@@ -14,7 +14,7 @@ trait BaseDbIndexable
 
     abstract public static function esIndexingQuery();
 
-    public static function esIndexIntoNew($batchSize = 1000, $name = null, callable $progress = null)
+    public static function esIndexIntoNew($batchSize = 1000, $name = null, ?callable $progress = null)
     {
         $newIndex = $name ?? static::esTimestampedIndexName();
         Log::info("Creating new index {$newIndex}");
@@ -39,7 +39,7 @@ trait BaseDbIndexable
         return config_path('schemas/'.(new static())->getTable().'.json');
     }
 
-    public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [], callable $progress = null)
+    public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [], ?callable $progress = null)
     {
         $dummy = new static();
         $startTime = time();

@@ -96,6 +96,11 @@ class TeamsController extends Controller
         if ($statisticsRelationName === null) {
             throw new InvariantException(osu_trans('beatmaps.invalid_ruleset'));
         }
+        $sort = get_string(\Request::input('sort'));
+        if ($sort !== 'score') {
+            $sort = 'performance';
+        }
+
         $leaderboard = $team
             ->members
             ->loadMissing("user.{$statisticsRelationName}")
@@ -104,10 +109,10 @@ class TeamsController extends Controller
                     $member->user->$statisticsRelationName
                     ?? $member->user->$statisticsRelationName()->make()
                 )->setRelation('user', $member->user))
-            ->sortByDesc(['rank_score', 'ranked_score'])
+            ->sortByDesc($sort === 'score' ? 'ranked_score' : 'rank_score')
             ->values();
 
-        return ext_view('teams.leaderboard', compact('leaderboard', 'ruleset', 'team'));
+        return ext_view('teams.leaderboard', compact('leaderboard', 'ruleset', 'sort', 'team'));
     }
 
     public function part(string $id): Response
