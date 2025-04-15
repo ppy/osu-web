@@ -3,8 +3,8 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    use App\Transformers\SelectOptionTransformer;
     use App\Models\Country;
+    use App\Transformers\SelectOptionTransformer;
 
     $transformer = new SelectOptionTransformer();
     $country = $countryStats?->country;
