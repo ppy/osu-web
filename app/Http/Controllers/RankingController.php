@@ -172,7 +172,7 @@ class RankingController extends Controller
                 return ujs_redirect(route('rankings', [...$rawParams, ...$params]));
             }
         }
-        if (!in_array($params['type'], ['chart', 'country', 'global', 'team'], true)) {
+        if (!in_array($params['type'], ['charts', 'country', 'global', 'team'], true)) {
             abort(404, 'invalid type specified');
         }
 
