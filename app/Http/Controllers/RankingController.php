@@ -89,10 +89,14 @@ class RankingController extends Controller
         return $filter;
     }
 
-    private static function getSort(?string $sort, string $type): string
+    private static function getSort(?string $sort, string $type): ?string
     {
-        if (!in_array($type, ['global', 'team'], true) && $sort !== null) {
-            abort(404, "sort option isn't available for {$type} ranking page");
+        if (!in_array($type, ['global', 'team'], true)) {
+            if ($sort !== null) {
+                abort(404, "sort option isn't available for {$type} ranking page");
+            } else {
+                return null;
+            }
         }
 
         $sort ??= 'performance';
