@@ -12,7 +12,7 @@
             </div>
             @foreach ([['performance', 'performance'], ['score', 'ranked_score']] as $newSort)
                 <a
-                    class="{{ class_with_modifiers('sort__item', 'button', ['active' => $newSort[0] === $sort]) }}"
+                    class="{{ class_with_modifiers('sort__item', 'button', ['active' => $newSort[0] === $params['sort']]) }}"
                     href="{{ route('rankings', [...$params, 'sort' => $newSort[0]]) }}"
                 >
                     {{ osu_trans("rankings.stat.{$newSort[1]}") }}
@@ -33,13 +33,13 @@
                 <th class="ranking-page-table__heading">
                     {{ osu_trans('rankings.stat.play_count') }}
                 </th>
-                <th class="{{ class_with_modifiers('ranking-page-table__heading', ['focused' => $sort === 'score']) }}">
+                <th class="{{ class_with_modifiers('ranking-page-table__heading', ['focused' => $params['sort'] === 'score']) }}">
                     {{ osu_trans('rankings.stat.ranked_score') }}
                 </th>
                 <th class="ranking-page-table__heading">
                     {{ osu_trans('rankings.stat.average_score') }}
                 </th>
-                <th class="{{ class_with_modifiers('ranking-page-table__heading', ['focused' => $sort === 'performance']) }}">
+                <th class="{{ class_with_modifiers('ranking-page-table__heading', ['focused' => $params['sort'] === 'performance']) }}">
                     {{ osu_trans('rankings.stat.performance') }}
                 </th>
             </tr>
@@ -62,13 +62,13 @@
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ i18n_number_format($score->play_count) }}
                     </td>
-                    <td class="{{ class_with_modifiers('ranking-page-table__column', ['dimmed' => $sort !== 'score']) }}">
+                    <td class="{{ class_with_modifiers('ranking-page-table__column', ['dimmed' => $params['sort'] !== 'score']) }}">
                         {{ i18n_number_format($score->ranked_score) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ i18n_number_format(round($score->ranked_score / max($score->members_count, 1))) }}
                     </td>
-                    <td class="{{ class_with_modifiers('ranking-page-table__column', ['dimmed' => $sort !== 'performance']) }}">
+                    <td class="{{ class_with_modifiers('ranking-page-table__column', ['dimmed' => $params['sort'] !== 'performance']) }}">
                         {{ i18n_number_format(round($score->performance)) }}
                     </td>
                 </tr>

@@ -82,13 +82,13 @@
                 </th>
                 <th class="{{ class_with_modifiers(
                     'ranking-page-table__heading',
-                    ['focused' => $sort === 'score'],
+                    ['focused' => $params['sort'] === 'score'],
                 ) }}">
                     {{ osu_trans('rankings.stat.ranked_score') }}
                 </th>
                 <th class="{{ class_with_modifiers(
                     'ranking-page-table__heading',
-                    ['focused' => $sort === 'performance'],
+                    ['focused' => $params['sort'] === 'performance'],
                 ) }}">
                     {{ osu_trans('rankings.stat.performance') }}
                 </th>

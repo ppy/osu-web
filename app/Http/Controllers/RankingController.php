@@ -336,7 +336,7 @@ class RankingController extends Controller
 
         return ext_view(
             "rankings.{$params['type']}",
-            compact('countryStats', 'params', 'scores', 'sort', 'showRankChange'),
+            compact('countryStats', 'params', 'scores', 'showRankChange'),
         );
     }
 
