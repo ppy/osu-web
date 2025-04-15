@@ -36,6 +36,9 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2025-04-10
+- `/beatmaps/{beatmap}/solo-scores` endpoint has been deprecated. Use `/beatmaps/{beatmap}/scores` instead.
+
 ### 2024-07-30
 - `key` parameter for Get User endpoint has been deprecated. Prefix username with `@` to lookup by username instead.
 
