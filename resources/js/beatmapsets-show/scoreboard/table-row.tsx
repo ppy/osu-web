@@ -19,7 +19,7 @@ import PpValue from 'scores/pp-value';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { accuracy, filterMods, hasMenu, isPerfectCombo, attributeDisplayTotals, rank, scoreUrl } from 'utils/score-helper';
+import { accuracy, filterMods, hasMenu, isPerfectCombo, calculateStatisticsFor, rank, scoreUrl } from 'utils/score-helper';
 
 const bn = 'beatmap-scoreboard-table';
 
@@ -114,20 +114,20 @@ export default class ScoreboardTableRow extends React.Component<Props> {
             {trans('users.deleted')}
           </TdLink>
         ) : (
-          <td className={`${bn}__cell u-relative`}>
-            <span className={`${classWithModifiers(`${bn}__cell-content`, 'user-link')}`}>
+          <td className={`${bn}__cell ${bn}__cell--player u-relative`}>
+            <a className={classWithModifiers(`${bn}__cell-content`, 'bg-link')} href={this.scoreUrl} />
+            <span className={`${bn}__cell-content u-hover-none`}>
               {score.user.team != null &&
-                <a className='u-contents' href={route('teams.show', { team: score.user.team.id })}>
+                <a className='u-contents u-hover' href={route('teams.show', { team: score.user.team.id })}>
                   <FlagTeam team={score.user.team} />
                 </a>
               }
               <UserLink
-                className={`${bn}__user-link`}
+                className={`${bn}__user-link u-hover`}
                 mode={this.props.beatmap.mode}
                 user={score.user}
               />
             </span>
-            <a className={`${bn}__cell-content`} href={this.scoreUrl} />
           </td>
         )}
 
@@ -135,13 +135,13 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           {`${formatNumber(score.max_combo)}x`}
         </TdLink>
 
-        {attributeDisplayTotals(this.props.beatmap.mode, score).map((stat) => (
+        {calculateStatisticsFor(score, 'leaderboard').map((stat) => (
           <TdLink
-            key={stat.key}
+            key={stat.label.short}
             href={this.scoreUrl}
-            modifiers={{ zero: stat.total === 0 }}
+            modifiers={{ zero: stat.value === 0 }}
           >
-            {formatNumber(stat.total)}
+            {formatNumber(stat.value)}
           </TdLink>
         ))}
 

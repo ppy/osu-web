@@ -23,10 +23,8 @@
                 'country' => $object->acronym,
             ])
         </span>
-        <span class="ranking-page-table-main__link">
-            <span class="ranking-page-table-main__link-text">
-                {{ $object->name }}
-            </span>
+        <span class="ranking-page-table-main__link-text">
+            {{ $object->name }}
         </span>
     </a>
 @elseif ($object instanceof App\Models\Team)
@@ -34,16 +32,15 @@
         class="ranking-page-table-main"
         href="{{ route('teams.leaderboard', [
             'ruleset' => $mode,
+            'sort' => $sort,
             'team' => $object,
         ]) }}"
     >
         <span class="ranking-page-table-main__flag">
             @include('objects._flag_team', ['team' => $object])
         </span>
-        <span class="ranking-page-table-main__link">
-            <span class="ranking-page-table-main__link-text">
-                {{ $object->name }}
-            </span>
+        <span class="ranking-page-table-main__link-text">
+            {{ $object->name }}
         </span>
     </a>
 @elseif ($object instanceof App\Models\User)
@@ -67,7 +64,7 @@
             </a>
         </span>
 
-        @if (($team = $object->team) !== null)
+        @if (($showTeam ?? true) && ($team = $object->team) !== null)
             <span class="ranking-page-table-main__flag">
                 <a class="u-contents" href="{{ route('teams.show', $team) }}">
                     @include('objects._flag_team', compact('team'))
@@ -81,17 +78,17 @@
             data-user-id="{{ $object->getKey() }}"
             href="{{ route('users.show', ['user' => $object->getKey(), 'mode' => $mode]) }}"
         >
-            <span class="ranking-page-table-main__flag">
-                <span
-                    class="avatar avatar--dynamic-size"
-                    {!! background_image($object->user_avatar) !!}
-                ></span>
-            </span>
+            @if ($showAvatar ?? false)
+                <span class="ranking-page-table-main__flag">
+                    <span
+                        class="avatar avatar--dynamic-size"
+                        {!! background_image($object->user_avatar) !!}
+                    ></span>
+                </span>
+            @endif
             <span class="ranking-page-table-main__link-text">
                 {{ $object->username }}
             </span>
         </a>
     </div>
-@else
-    ???
 @endif

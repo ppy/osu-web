@@ -160,4 +160,34 @@
     <script id="json-posts" type="application/json">
         {!! json_encode($news) !!}
     </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoGame",
+      "name": "osu!",
+      "url": "https://osu.ppy.sh/",
+      "image": "https://assets.ppy.sh/logo-with-background.png",
+      "description": "rhythm is just a click away",
+      "author": {
+        "@type": "Organization",
+        "name": "ppy"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "ppy"
+      },
+      "producer": {
+        "@type": "Organization",
+        "name": "ppy"
+      },
+      "applicationCategory": "Game",
+      "gamePlatform": ["Windows", "macOS", "Linux", "Android", "iOS"],
+      "playMode": ["SinglePlayer","MultiPlayer"],
+      "genre": "Rhythm",
+      "inLanguage": ["en", "be", "bg", "ca", "cs", "da", "de", "el", "es", "fi", "fr", "hr-hr", "hu", "id", "it", "ja", "ko", "lt", "lv-lv", "ms-my", "nl", "no", "pl", "pt", "pt-br", "ro", "ru", "sk", "sl", "sr", "sv", "th", "tr", "uk", "vi", "zh", "zh_hant"],
+      "sameAs": "https://github.com/ppy/osu",
+      "datePublished": "2007-09-16"
+    }
+    </script>
 @endsection

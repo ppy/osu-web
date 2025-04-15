@@ -5,7 +5,7 @@ import HeaderV4 from 'components/header-v4'
 import { route } from 'laroute'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
-import { Content } from './content'
+import Content from './content'
 
 el = React.createElement
 

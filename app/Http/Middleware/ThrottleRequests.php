@@ -37,7 +37,7 @@ class ThrottleRequests extends ThrottleRequestsBase
             // hit moved to after request is processed to be able to get the cost assigned by the controller action,
             // in constrast to the original function. This works fine since $next will handle exceptions
             // thrown by the controller so the rest of the function still runs.
-            $this->limiter->hit($limit->key, $limit->decayMinutes * 60, $cost);
+            $this->limiter->hit($limit->key, $limit->decaySeconds, $cost);
 
             $response = $this->addHeaders(
                 $response,
