@@ -47,6 +47,7 @@ class LoginTest extends DuskTestCase
             $browser->loginAs($user)
                 ->visit('/')
                 ->click('.js-user-login--menu') // bring up user menu
+                ->waitFor('.js-user-header-popup .js-logout-link')
                 ->click('.js-user-header-popup .js-logout-link') // click the logout 'button'
                 ->acceptDialog()
                 ->waitFor('.landing-hero__bg-container')
