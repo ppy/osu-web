@@ -40,8 +40,6 @@ return [
         'global' => 'global',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
-        'performance' => 'performance',
-        'score' => 'score',
         'seasons' => 'seasons',
         'team' => 'team',
     ],
