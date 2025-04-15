@@ -56,6 +56,11 @@ class Team extends Model
         return $this->hasMany(TeamMember::class);
     }
 
+    public function statistics(): HasMany
+    {
+        return $this->hasMany(TeamStatistics::class);
+    }
+
     public function setDefaultRulesetIdAttribute(?int $value): void
     {
         $this->attributes['default_ruleset_id'] = Beatmap::MODES[Beatmap::modeStr($value) ?? 'osu'];
@@ -128,17 +133,23 @@ class Team extends Model
         $this->flag()->delete();
 
         return $this->getConnection()->transaction(function () {
-            return \DB::connection('mysql-chat')->transaction(function () {
+            return (new Chat\Channel())->getConnection()->transaction(function () {
                 $ret = parent::delete();
 
                 if ($ret) {
                     $this->applications()->delete();
                     $this->members()->delete();
+                    $this->statistics()->delete();
 
                     $channel = $this->channel;
                     if ($channel !== null) {
-                        $channel->update(['name' => "#DeletedTeam_{$this->getKey()}"]);
                         $channel->close();
+
+                        if ($channel->messages()->count() === 0) {
+                            $channel->delete();
+                        } else {
+                            $channel->update(['name' => "#DeletedTeam_{$this->getKey()}"]);
+                        }
                     }
                 }
 
@@ -253,22 +264,32 @@ class Team extends Model
         });
     }
 
-    public function resetChannelUsers(): void
-    {
-        $channel = $this->channel;
-        $this->loadMissing('members.user');
-
-        foreach ($this->members->pluck('user') as $user) {
-            if ($user !== null) {
-                $channel->addUser($user);
-            }
-        }
-    }
-
     public function save(array $options = [])
     {
         if (!$this->isValid()) {
             return false;
+        }
+
+        if (!$this->exists) {
+            return $this->getConnection()->transaction(function () use ($options) {
+                return (new Chat\Channel())->getConnection()->transaction(function () use ($options) {
+                    $this->channel_id ??= 0;
+                    $this->default_ruleset_id ??= $this->leader->osu_playmode;
+                    $saved = parent::save($options);
+
+                    if ($saved) {
+                        $this->members()->create(['user_id' => $this->leader_id]);
+
+                        $channel = $this->createChannel();
+                        $channel->addUser($this->leader);
+
+                        $this->flag()->updateFile();
+                        $this->header()->updateFile();
+                    }
+
+                    return parent::save($options);
+                });
+            });
         }
 
         $this->flag()->updateFile();

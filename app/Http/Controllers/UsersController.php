@@ -532,7 +532,7 @@ class UsersController extends Controller
 
         $perPage = $this->perPage;
 
-        if ($type === 'firsts' || $type === 'pinned') {
+        if (in_array($type, ['best', 'firsts', 'pinned'], true)) {
             // Override per page restriction in parsePaginationParams to allow infinite paging
             $perPage = $this->sanitizedLimitParam();
         }
@@ -922,6 +922,7 @@ class UsersController extends Controller
         $userIncludes = [
             ...UserTransformer::PROFILE_HEADER_INCLUDES,
             'account_history',
+            'current_season_stats',
             'daily_challenge_user_stats',
             'page',
             'pending_beatmapset_count',

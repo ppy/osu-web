@@ -92,7 +92,6 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 
     public function includeBeatmaps(Beatmapset $beatmapset, Fractal\ParamBag $params)
     {
-
         return $this->collection($this->beatmaps($beatmapset, $params), new $this->beatmapTransformer());
     }
 
@@ -231,7 +230,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     public function includeUser(Beatmapset $beatmapset)
     {
         return $this->item(
-            $beatmapset->user ?? (new DeletedUser()),
+            $beatmapset->user ?? new DeletedUser(),
             new UserCompactTransformer()
         );
     }

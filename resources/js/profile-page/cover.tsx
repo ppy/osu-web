@@ -16,6 +16,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
 import { trans } from 'utils/lang';
+import SeasonStats from './season-stats';
 
 interface Props {
   coverUrl: string | null;
@@ -98,7 +99,7 @@ export default class Cover extends React.Component<Props> {
                   href={route('teams.show', { team: this.props.user.team.id })}
                 >
                   <FlagTeam team={this.props.user.team} />
-                  <span className='profile-info__flag-text'>{this.props.user.team.name}</span>
+                  <span className='profile-info__flag-text u-ellipsis-overflow'>{this.props.user.team.name}</span>
                 </a>
               }
               <div className='profile-info__icons profile-info__icons--flag-inline'>
@@ -106,6 +107,8 @@ export default class Cover extends React.Component<Props> {
               </div>
             </div>
           </div>
+
+          {this.props.user.current_season_stats && <SeasonStats stats={this.props.user.current_season_stats} />}
 
           <div className='profile-info__cover-toggle'>
             <button

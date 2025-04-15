@@ -13,6 +13,7 @@ import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onErrorWithClick } from 'utils/ajax';
+import { makeSearchQueryOption } from 'utils/beatmapset-helper';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
 import { present } from 'utils/string';
@@ -65,15 +66,6 @@ export default class Info extends React.Component<Props> {
     return ret;
   }
 
-  private get tags() {
-    const tags = this.controller.tags;
-
-    return [
-      ...tags.userTags.map((tag) => tag.name),
-      ...tags.mapperTags,
-    ];
-  }
-
   private get withEditDescription() {
     return this.controller.beatmapset.description.bbcode != null;
   }
@@ -118,107 +110,129 @@ export default class Info extends React.Component<Props> {
         }
 
         <div className='beatmapset-info__box'>
-          {this.withEditDescription && this.renderEditDescriptionButton()}
+          <div className='beatmapset-info__scrollable'>
+            <div className='beatmapset-info__row'>
+              <h3 className='beatmapset-info__header beatmapset-info__header--sticky'>
+                {trans('beatmapsets.show.info.description')}
+              </h3>
 
-          <div className='beatmapset-info__row beatmapset-info__row--value-overflow'>
-            <h3 className='beatmapset-info__header'>
-              {trans('beatmapsets.show.info.description')}
-            </h3>
-
-            <div
-              dangerouslySetInnerHTML={{
-                __html: this.controller.beatmapset.description.description ?? '',
-              }}
-              className='beatmapset-info__value-overflow'
-            />
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: this.controller.beatmapset.description.description ?? '',
+                }}
+              />
+            </div>
           </div>
+          {this.withEditDescription && this.renderEditDescriptionButton()}
         </div>
 
         <div className='beatmapset-info__box'>
-          {this.withEditMetadata && this.renderEditMetadataButton()}
+          <div className='beatmapset-info__scrollable'>
+            {this.nominators.length > 0 &&
+              <div className='beatmapset-info__row'>
+                <h3 className='beatmapset-info__header'>
+                  {trans('beatmapsets.show.info.nominators')}
+                </h3>
+                <div>
+                  {this.nominators.map((user, i) => (
+                    <React.Fragment key={user.id}>
+                      <UserLink
+                        className='beatmapset-info__link'
+                        user={user}
+                      />
+                      {i < this.nominators.length - 1 && ', '}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+            }
 
-          {this.nominators.length > 0 &&
-            <div className='beatmapset-info__row'>
-              <h3 className='beatmapset-info__header'>
-                {trans('beatmapsets.show.info.nominators')}
-              </h3>
-              <div>
-                {this.nominators.map((user, i) => (
-                  <React.Fragment key={user.id}>
-                    <UserLink
-                      className='beatmapset-info__link'
-                      user={user}
-                    />
-                    {i < this.nominators.length - 1 && ', '}
-                  </React.Fragment>
-                ))}
+            {present(this.controller.beatmapset.source) &&
+              <div className='beatmapset-info__row'>
+                <h3 className='beatmapset-info__header'>
+                  {trans('beatmapsets.show.info.source')}
+                </h3>
+                <a
+                  className='beatmapset-info__link'
+                  href={route('beatmapsets.index', { q: makeSearchQueryOption('source', this.controller.beatmapset.source) })}
+                >
+                  {this.controller.beatmapset.source}
+                </a>
+              </div>
+            }
+
+            <div className='beatmapset-info__row beatmapset-info__row--half'>
+              <div className='beatmapset-info__half-entry'>
+                <h3 className='beatmapset-info__header'>
+                  {trans('beatmapsets.show.info.genre')}
+                </h3>
+                <a
+                  className='beatmapset-info__link'
+                  href={route('beatmapsets.index', { g: this.controller.beatmapset.genre.id })}
+                >
+                  {this.controller.beatmapset.genre.name}
+                </a>
+              </div>
+
+              <div className='beatmapset-info__half-entry'>
+                <h3 className='beatmapset-info__header'>
+                  {trans('beatmapsets.show.info.language')}
+                </h3>
+                <a
+                  className='beatmapset-info__link'
+                  href={route('beatmapsets.index', { l: this.controller.beatmapset.language.id })}
+                >
+                  {this.controller.beatmapset.language.name}
+                </a>
               </div>
             </div>
-          }
 
-          {present(this.controller.beatmapset.source) &&
-            <div className='beatmapset-info__row'>
-              <h3 className='beatmapset-info__header'>
-                {trans('beatmapsets.show.info.source')}
-              </h3>
-              <a
-                className='beatmapset-info__link'
-                href={route('beatmapsets.index', { q: `source=""${this.controller.beatmapset.source}""` })}
-              >
-                {this.controller.beatmapset.source}
-              </a>
-            </div>
-          }
+            {this.controller.tags.userTags.length > 0 &&
+              <div className='beatmapset-info__row'>
+                <h3 className='beatmapset-info__header beatmapset-info__header--sticky'>
+                  {trans('beatmapsets.show.info.user_tags')}
+                </h3>
+                <div>
+                  {this.controller.tags.userTags.map((tag) => (
+                    <React.Fragment key={tag.name}>
+                      <a
+                        className='beatmapset-info__link'
+                        href={route('beatmapsets.index', { q: makeSearchQueryOption('tag', tag.name) })}
+                      >
+                        {tag.name}
+                      </a>
+                      {' '}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+            }
 
-          <div className='beatmapset-info__row beatmapset-info__row--half'>
-            <div className='beatmapset-info__half-entry'>
-              <h3 className='beatmapset-info__header'>
-                {trans('beatmapsets.show.info.genre')}
-              </h3>
-              <a
-                className='beatmapset-info__link'
-                href={route('beatmapsets.index', { g: this.controller.beatmapset.genre.id })}
-              >
-                {this.controller.beatmapset.genre.name}
-              </a>
-            </div>
-
-            <div className='beatmapset-info__half-entry'>
-              <h3 className='beatmapset-info__header'>
-                {trans('beatmapsets.show.info.language')}
-              </h3>
-              <a
-                className='beatmapset-info__link'
-                href={route('beatmapsets.index', { l: this.controller.beatmapset.language.id })}
-              >
-                {this.controller.beatmapset.language.name}
-              </a>
-            </div>
+            {this.controller.tags.mapperTags.length > 0 &&
+              <div className='beatmapset-info__row'>
+                <h3 className='beatmapset-info__header beatmapset-info__header--sticky'>
+                  {trans('beatmapsets.show.info.mapper_tags')}
+                </h3>
+                <div>
+                  {this.controller.tags.mapperTags.map((tag, i) => (
+                    <React.Fragment key={`${tag}-${i}`}>
+                      <a
+                        className='beatmapset-info__link'
+                        href={route('beatmapsets.index', { q: tag })}
+                      >
+                        {tag}
+                      </a>
+                      {' '}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+            }
           </div>
-
-          {this.tags.length > 0 &&
-            <div className='beatmapset-info__row beatmapset-info__row--value-overflow'>
-              <h3 className='beatmapset-info__header'>
-                {trans('beatmapsets.show.info.tags')}
-              </h3>
-              <div className='beatmapset-info__value-overflow'>
-                {this.tags.map((tag, i) => (
-                  <React.Fragment key={`${tag}-${i}`}>
-                    <a
-                      className='beatmapset-info__link'
-                      href={route('beatmapsets.index', { q: tag })}
-                    >
-                      {tag}
-                    </a>
-                    {' '}
-                  </React.Fragment>
-                ))}
-              </div>
-            </div>
-          }
+          {this.withEditMetadata && this.renderEditMetadataButton()}
         </div>
 
-        <div className='beatmapset-info__box beatmapset-info__box--success-rate'>
+        <div className='beatmapset-info__box'>
           {this.renderPlaycountInfo()}
         </div>
       </div>

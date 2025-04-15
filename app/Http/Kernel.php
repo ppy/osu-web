@@ -16,6 +16,7 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         Middleware\DatadogMetrics::class,
+        Middleware\SentryMetrics::class,
     ];
 
     protected $middlewareGroups = [

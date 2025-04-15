@@ -109,7 +109,7 @@ return [
         ],
         'teams_controller' => [
             '_' => 'echipe',
-            'create' => '',
+            'create' => 'creează echipă',
             'edit' => 'setări echipă',
             'leaderboard' => 'clasament echipă',
             'show' => 'informații echipă',

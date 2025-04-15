@@ -62,7 +62,7 @@ return [
 
     'beatmap_tag' => [
         'store' => [
-            'no_score' => '',
+            'no_score' => 'Devi fare un punteggio su una beatmap per aggiungere un tag.',
         ],
     ],
 
@@ -206,7 +206,7 @@ return [
             'not_member' => 'Non un membro della squadra.',
         ],
         'store' => [
-            'require_supporter_tag' => '',
+            'require_supporter_tag' => 'È necessario un tag osu!supporter per creare una squadra.',
         ],
     ],
 

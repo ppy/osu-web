@@ -109,7 +109,7 @@ return [
         ],
         'teams_controller' => [
             '_' => '战队',
-            'create' => '',
+            'create' => '创建战队',
             'edit' => '战队设置',
             'leaderboard' => '战队排行',
             'show' => '战队信息',

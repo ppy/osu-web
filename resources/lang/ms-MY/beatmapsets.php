@@ -126,7 +126,7 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Sekiranya anda menemui masalah pada peta rentak ini, sila singkirkan :link.',
+                '_' => 'Sekiranya anda menemui isu pada peta rentak ini, sila singkirkan :link.',
             ],
 
             'report' => [
@@ -171,6 +171,7 @@ return [
             'global' => 'Kedudukan Dunia',
             'supporter-link' => 'Klik di <a href=":link">sini</a> untuk lihat semua ciri menarik yang anda dapat!',
             'supporter-only' => 'Anda perlu menjadi osu!supporter untuk mencapai kedudukan penyesuai tertentu, kebangsaan atau kawan!',
+            'team' => '',
             'title' => 'Papan Markah',
 
             'headers' => [
@@ -192,6 +193,7 @@ return [
                 'friend' => 'Kawan-kawan anda belum mencapai apa-apa markah pada peta ini lagi!',
                 'global' => 'Tiada markah lagi. Mungkin anda patut mencapai yang baharu!',
                 'loading' => 'Memuatkan markah...',
+                'team' => '',
                 'unranked' => 'Peta rentak tanpa peringkat.',
             ],
             'score' => [

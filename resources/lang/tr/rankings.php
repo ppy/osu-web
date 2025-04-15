@@ -42,6 +42,7 @@ return [
         'performance' => 'Performans',
         'score' => 'Skor',
         'seasons' => 'sezonlar',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Aktif Kullanıcılar',
         'country' => 'Ülke',
         'division' => '',
+        'members' => '',
         'play_count' => 'Oynama Sayısı',
         'performance' => 'Performans',
         'total_score' => 'Toplam Skor',

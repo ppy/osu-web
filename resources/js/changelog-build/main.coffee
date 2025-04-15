@@ -6,6 +6,7 @@ import { ChangelogHeaderStreams } from 'components/changelog-header-streams'
 import Comments from 'components/comments'
 import HeaderV4 from 'components/header-v4'
 import { route } from 'laroute'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, div, h1, h2, i, li, ol, p, span } from 'react-dom-factories'
 import { trans } from 'utils/lang'
@@ -15,7 +16,7 @@ el = React.createElement
 
 export class Main extends React.PureComponent
   componentDidMount: =>
-    changelogChartLoader.initialize()
+    core.changelogChartLoader.initialize()
 
 
   render: =>

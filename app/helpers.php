@@ -344,7 +344,7 @@ function cursor_from_params($params): ?array
     return null;
 }
 
-function datadog_increment(string $stat, array|string $tags = null, int $value = 1)
+function datadog_increment(string $stat, array|string|null $tags = null, int $value = 1)
 {
     Datadog::increment(
         stats: $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.'.$stat,
@@ -353,7 +353,7 @@ function datadog_increment(string $stat, array|string $tags = null, int $value =
     );
 }
 
-function datadog_timing(callable $callable, $stat, array $tag = null)
+function datadog_timing(callable $callable, $stat, ?array $tag = null)
 {
     $startTime = microtime(true);
 
@@ -389,9 +389,9 @@ function db_unsigned_increment($column, $count)
     return DB::raw($value);
 }
 
-function default_mode()
+function default_mode(): string
 {
-    return optional(auth()->user())->playmode ?? 'osu';
+    return Auth::user()?->playmode ?? 'osu';
 }
 
 function flag_url($countryCode)
@@ -852,6 +852,13 @@ function is_json_request(): bool
     return is_api_request() || Request::expectsJson();
 }
 
+function is_turbo_request(?HttpRequest $request = null): bool
+{
+    $request ??= Request::instance();
+
+    return $request->headers->get('x-turbo-request-id') !== null;
+}
+
 function is_valid_email_format(?string $email): bool
 {
     if ($email === null) {
@@ -938,14 +945,14 @@ function ujs_redirect($url, $status = 200)
     $request = Request::instance();
     // This is done mainly to work around fetch ignoring/removing anchor from page redirect.
     // Reference: https://github.com/hotwired/turbo/issues/211
-    if ($request->headers->get('x-turbo-request-id') !== null) {
+    if (is_turbo_request($request)) {
         if ($status === 200 && $request->getMethod() !== 'GET') {
             // Turbo doesn't like 200 response on non-GET requests.
             // Reference: https://github.com/hotwired/turbo/issues/22
             $status = 201;
         }
 
-        return response($url, $status, ['content-type' => 'text/osu-turbo-redirect']);
+        return response($url, $status, ['x-turbo-action' => 'redirect']);
     } elseif ($request->ajax() && $request->getMethod() !== 'GET') {
         return ext_view('layout.ujs-redirect', compact('url'), 'js', $status);
     } else {

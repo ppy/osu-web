@@ -131,7 +131,9 @@ class TestCase extends BaseTestCase
     {
         return $playlistItem->room->startPlay($user, $playlistItem, [
             'beatmap_hash' => $playlistItem->beatmap->checksum,
+            'beatmap_id' => $playlistItem->beatmap_id,
             'build_id' => 0,
+            'ruleset_id' => $playlistItem->ruleset_id,
         ]);
     }
 
@@ -226,7 +228,7 @@ class TestCase extends BaseTestCase
 
     protected function assertEqualsUpToOneSecond(CarbonInterface $expected, CarbonInterface $actual): void
     {
-        $this->assertTrue($expected->diffInSeconds($actual) < 2);
+        $this->assertTrue($expected->diffInSeconds($actual, true) < 2);
     }
 
     protected function createAllowedScopesDataProvider(array $allowedScopes)

@@ -8,7 +8,7 @@
     <table class="ranking-page-table">
         <thead>
             <tr>
-                <th class="ranking-page-table__heading"></th>
+                <th></th>
                 <th class="ranking-page-table__heading ranking-page-table__heading--main"></th>
                 <th class="ranking-page-table__heading">
                     {{ osu_trans('rankings.stat.active_users') }}
@@ -28,28 +28,16 @@
             </tr>
         </thead>
         <tbody>
+            @php
+                $firstItem = $scores->firstItem();
+            @endphp
             @foreach ($scores as $index => $score)
                 <tr class="ranking-page-table__row">
-                    <td class="ranking-page-table__column ranking-page-table__column--rank">
-                        #{{ $scores->firstItem() + $index }}
-                    </td>
                     <td class="ranking-page-table__column">
-                        <div class="ranking-page-table__user-link">
-                            <a class="ranking-page-table__country-link"
-                                href="{{route('rankings', [
-                                    'mode' => $mode,
-                                    'type' => 'performance',
-                                    'country' => $score->country->acronym,
-                            ])}}">
-                                @include('objects._flag_country', [
-                                    'country' => $score->country->acronym,
-                                    'modifiers' => 'medium',
-                                ])
-                                <span class="ranking-page-table__country-link-text">
-                                    {{ $score->country->name }}
-                                </span>
-                            </a>
-                        </div>
+                        #{{ i18n_number_format($firstItem + $index) }}
+                    </td>
+                    <td class="ranking-page-table__column ranking-page-table__column--main">
+                        @include('rankings._main_column', ['object' => $score->country])
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ i18n_number_format($score->user_count) }}
@@ -63,7 +51,7 @@
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {!! suffixed_number_format_tag(round($score->ranked_score / max($score->user_count, 1))) !!}
                     </td>
-                    <td class="ranking-page-table__column ranking-page-table__column--focused">
+                    <td class="ranking-page-table__column">
                         {!! suffixed_number_format_tag(round($score->performance)) !!}
                     </td>
                 </tr>

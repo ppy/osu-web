@@ -212,8 +212,8 @@ CAPTCHA認証を成功させてから再試行してください。
             'weekly_streak_current' => '現在の週間連続記録',
 
             'unit' => [
-                'day' => '',
-                'week' => '',
+                'day' => ':valued',
+                'week' => ':valuew',
             ],
         ],
         'edit' => [

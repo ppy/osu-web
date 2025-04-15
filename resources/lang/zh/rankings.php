@@ -42,6 +42,7 @@ return [
         'performance' => '表现',
         'score' => '总分',
         'seasons' => '季赛',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => '活跃用户',
         'country' => '国家/地区',
         'division' => '排位',
+        'members' => '',
         'play_count' => '游戏次数',
         'performance' => '表现',
         'total_score' => '总分',

@@ -43,6 +43,7 @@ const ColumnDescription = ({ history }: ColumnProps) => (
 
     {history.actor != null && (
       <span className={`${bn}__actor`}>
+        {' '}
         <StringWithComponent
           mappings={{ username: <UserLink user={history.actor} /> }}
           pattern={trans('users.show.extra.account_standing.recent_infringements.actor')}

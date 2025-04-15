@@ -163,7 +163,7 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Richiesta di partecipazione squadra',
 
                 'team_application_accept' => "Sei diventato un membro della squadra :title",
                 'team_application_accept_compact' => "Sei diventato un membro della squadra :title",

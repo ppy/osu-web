@@ -109,7 +109,7 @@ return [
         ],
         'teams_controller' => [
             '_' => '隊伍',
-            'create' => '',
+            'create' => '建立隊伍',
             'edit' => '團隊設定',
             'leaderboard' => '團隊排行榜',
             'show' => '隊伍資訊',

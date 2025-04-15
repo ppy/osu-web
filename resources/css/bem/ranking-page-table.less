@@ -14,45 +14,12 @@
     --grade-min-width: 120px;
   }
 
-  &__heading {
-    font-weight: normal;
-    color: @osu-colour-f1;
-    padding: 5px 10px;
-    text-align: center;
-
-    &--main {
-      width: 100%;
-    }
-
-    &--focused {
-      color: white;
-    }
-
-    &--grade {
-      padding: 5px 20px;
-
-      @media @desktop {
-        min-width: var(--grade-min-width);
-      }
-    }
-  }
-
   &__column {
     background: var(--bg);
-    padding: 6px 0px;
+    padding: 6px 5px;
 
     &--dimmed {
       color: @osu-colour-f1;
-    }
-
-    &--division {
-      padding: 0px 10px;
-    }
-
-    &--rank {
-      text-align: center;
-      padding: 0px 10px;
-      opacity: 1;
     }
 
     each({
@@ -67,24 +34,55 @@
       }
     });
 
-    &--rank-change-icon::before {
-      .fas();
-      content: var(--icon);
+    &--rank-change {
+      text-align: start;
+
+      &::before {
+        .fas();
+        .fa-fw();
+        content: var(--icon);
+      }
     }
 
-    &--rank-change-value {
-      padding-left: 5px;
-      padding-right: 10px;
+    &--main {
+      max-width: 500px;
+      min-width: 180px;
     }
 
     &:first-child {
       border-top-left-radius: @border-radius-base;
       border-bottom-left-radius: @border-radius-base;
+      padding-left: 10px;
     }
 
     &:last-child {
       border-top-right-radius: @border-radius-base;
       border-bottom-right-radius: @border-radius-base;
+      padding-right: 10px;
+    }
+  }
+
+  &__heading {
+    font-weight: normal;
+    color: hsl(var(--hsl-f1));
+    padding: 5px 10px;
+    text-align: center;
+
+    &--focused {
+      color: hsl(var(--hsl-c1));
+    }
+
+    &--grade {
+      padding-left: 20px;
+      padding-right: $padding-left;
+
+      @media @desktop {
+        min-width: var(--grade-min-width);
+      }
+    }
+
+    &--main {
+      width: 100%;
     }
   }
 
@@ -98,29 +96,5 @@
     &:hover {
       --bg: hsl(var(--hsl-b3));
     }
-  }
-
-  &__country-link {
-    display: flex;
-    align-items: center;
-  }
-
-  &__country-link-text {
-    margin-left: 10px;
-  }
-
-  &__flags {
-    display: inline-flex;
-    gap: 10px;
-    font-size: @flag-size-medium; // icon size
-  }
-
-  &__user-link {
-    display: flex;
-    align-items: center;
-  }
-
-  &__user-link-text {
-    margin-left: 10px;
   }
 }

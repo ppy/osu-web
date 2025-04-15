@@ -91,7 +91,7 @@ class ImageProcessor
             }
 
             $newHeight = $this->inputDim[0] * $this->targetDim[1] / $this->targetDim[0];
-            $this->targetDim = $newHeight <= $this->inputDim[1]
+            $targetDim = $newHeight <= $this->inputDim[1]
                 ? [
                     $this->inputDim[0],
                     $newHeight,
@@ -99,6 +99,7 @@ class ImageProcessor
                     $this->inputDim[1] * $this->targetDim[0] / $this->targetDim[1],
                     $this->inputDim[1],
                 ];
+            $this->targetDim = array_map(fn ($d) => max(1, $d), $targetDim);
         }
 
         $start = [0, 0];

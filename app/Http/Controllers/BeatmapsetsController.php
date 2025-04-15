@@ -112,6 +112,8 @@ class BeatmapsetsController extends Controller
     }
 
     /**
+     * Search Beatmapset
+     *
      * TODO: documentation
      *
      * @usesCursor
@@ -351,7 +353,7 @@ class BeatmapsetsController extends Controller
     private function getSearchResponse(?array $params = null)
     {
         $params = new BeatmapsetSearchRequestParams($params ?? request()->all(), auth()->user());
-        $search = (new BeatmapsetSearchCached($params));
+        $search = new BeatmapsetSearchCached($params);
 
         $records = datadog_timing(function () use ($search) {
             return $search->records();
@@ -392,6 +394,7 @@ class BeatmapsetsController extends Controller
             ? 'allBeatmaps'
             : 'beatmaps';
         $beatmapset->load([
+            "{$beatmapRelation}" => fn ($q) => $q->withUserTagIds(\Auth::id()),
             "{$beatmapRelation}.baseDifficultyRatings",
             "{$beatmapRelation}.baseMaxCombo",
             "{$beatmapRelation}.failtimes",
@@ -409,6 +412,7 @@ class BeatmapsetsController extends Controller
             'beatmaps.failtimes',
             'beatmaps.max_combo',
             'beatmaps.owners',
+            'beatmaps.current_user_tag_ids',
             'beatmaps.top_tag_ids',
             'converts',
             'converts.failtimes',

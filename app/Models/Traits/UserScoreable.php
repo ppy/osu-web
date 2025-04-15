@@ -34,13 +34,13 @@ trait UserScoreable
 
         if (!isset($this->beatmapBestScoreIds[$key])) {
             // aggregations do not support regular pagination.
-            // always fetching 100 to cache; we're not supporting beyond 100, either.
+            // always fetching 200 to cache; we're not supporting beyond 200, either.
             $this->beatmapBestScoreIds[$key] = cache_remember_mutexed(
-                "search-cache:beatmapBestScoresSolo:{$this->getKey()}:{$key}",
+                "search-cache:beatmapBestScoresSolo-v2:{$this->getKey()}:{$key}",
                 $GLOBALS['cfg']['osu']['scores']['es_cache_duration'],
                 [],
                 function () use ($key, $legacyOnly, $mode) {
-                    $this->beatmapBestScores[$key] = $this->aggregatedScoresBest($mode, $legacyOnly, 100);
+                    $this->beatmapBestScores[$key] = $this->aggregatedScoresBest($mode, $legacyOnly, 200);
 
                     return array_column($this->beatmapBestScores[$key], 'id');
                 },
@@ -68,6 +68,8 @@ trait UserScoreable
         }
 
         $results->load($with);
+        // make outdated index less obvious
+        $results = $results->sortByDesc('pp');
 
         // fill in positions for weighting
         // also preload the user relation

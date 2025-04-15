@@ -15,13 +15,14 @@ version           | string                | |
 
 Optional attributes:
 
-Field       | Type                                                                       | Description
------------ | -------------------------------------------------------------------------- | -----------
-beatmapset  | [Beatmapset](#beatmapset)\|[BeatmapsetExtended](#beatmapsetextended)\|null | `Beatmapset` for `Beatmap` object, `BeatmapsetExtended` for `BeatmapExtended` object. `null` if the beatmap doesn't have associated beatmapset (e.g. deleted).
-checksum    | string?                                                                    | |
-failtimes   | [Failtimes](#beatmap-failtimes)                                            | |
-max_combo   | integer                                                                    | |
-owners      | [BeatmapOwner](#beatmapowner)[]                                            | List of owners (mappers) for the Beatmap.
+Field                  | Type                                                                       | Description
+---------------------- | -------------------------------------------------------------------------- | -----------
+beatmapset             | [Beatmapset](#beatmapset)\|[BeatmapsetExtended](#beatmapsetextended)\|null | `Beatmapset` for `Beatmap` object, `BeatmapsetExtended` for `BeatmapExtended` object. `null` if the beatmap doesn't have associated beatmapset (e.g. deleted).
+checksum               | string?                                                                    | |
+current_user_playcount | integer                                                                    | |
+failtimes              | [Failtimes](#beatmap-failtimes)                                            | |
+max_combo              | integer                                                                    | |
+owners                 | [BeatmapOwner](#beatmapowner)[]                                            | List of owners (mappers) for the Beatmap.
 
 <div id="beatmap-failtimes" data-unique="beatmap-failtimes"></div>
 

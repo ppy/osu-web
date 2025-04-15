@@ -23,13 +23,13 @@ return [
         'submit' => '팀 만들기',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
+            'name_help' => '당신의 팀 이름입니다. 아직까지는 이름을 변경할 수 없어요.',
+            'short_name_help' => '최대 4자.',
             'title' => "팀을 만들어 볼까요?",
         ],
 
         'intro' => [
-            'description' => "",
+            'description' => "현재 팀에 속해 있지 않습니다. 팀에 참가하거나 새로 만들어 친구와 함께 플레이해 보세요. 팀 페이지에 방문하여 팀에 가입하거나 이 페이지에서 팀을 새로 만들 수 있습니다.",
             'title' => '팀!',
         ],
     ],
@@ -60,8 +60,8 @@ return [
         'settings' => [
             'application_help' => '사람들이 팀에 가입 요청을 보낼 수 있을지에 대한 여부',
             'default_ruleset_help' => '팀 페이지를 방문할 때 기본적으로 선택될 룰셋을 정합니다.',
-            'flag_help' => '',
-            'header_help' => '',
+            'flag_help' => '최대 :widthx:height',
+            'header_help' => '최대 :widthx:height',
             'title' => '팀 설정',
 
             'application_state' => [
@@ -137,12 +137,18 @@ return [
         ],
 
         'sections' => [
+            'about' => '',
             'info' => '정보',
             'members' => '멤버',
+        ],
+
+        'statistics' => [
+            'rank' => '',
+            'leader' => '',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => '팀이 만들어졌습니다.',
     ],
 ];

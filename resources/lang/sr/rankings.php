@@ -42,6 +42,7 @@ return [
         'performance' => 'перформансе',
         'score' => 'резултат',
         'seasons' => 'сезоне',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -66,6 +67,7 @@ return [
         'active_users' => 'Активни Корисници',
         'country' => 'Држава',
         'division' => '',
+        'members' => '',
         'play_count' => 'Број играња',
         'performance' => 'Перформансе',
         'total_score' => 'Укупан резултат',

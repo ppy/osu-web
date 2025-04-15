@@ -5,7 +5,7 @@
 
 return [
     'button' => [
-        'resend' => 'Kirim semula emel pengesahan',
+        'resend' => 'Kirim semula e-mel pengesahan',
         'set' => 'Tetap kata laluan',
         'start' => 'Mula',
     ],
@@ -22,7 +22,7 @@ return [
     ],
 
     'notice' => [
-        'sent' => 'Sila semak emel anda untuk kod pengesahan.',
+        'sent' => 'Sila semak e-mel anda untuk kod pengesahan.',
         'saved' => 'Kata laluan baharu disimpan!',
     ],
 
@@ -34,14 +34,14 @@ return [
     ],
 
     'starting' => [
-        'username' => 'Masukkan alamat emel atau nama pengguna',
+        'username' => 'Masukkan alamat e-mel atau nama pengguna',
 
         'reason' => [
             'inactive_different_country' => "Akaun anda telah lama tidak digunakan. Untuk memastikan keselamatan akaun anda, sila set semula kata laluan anda.",
         ],
         'support' => [
             '_' => 'Perlukan bantuan lanjut? Hubungi melalui :button kami.',
-            'button' => 'layanan dukungan',
+            'button' => 'tatanan sokongan',
         ],
     ],
 ];

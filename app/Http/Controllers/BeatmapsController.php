@@ -23,7 +23,7 @@ use App\Transformers\ScoreTransformer;
  */
 class BeatmapsController extends Controller
 {
-    const DEFAULT_API_INCLUDES = ['beatmapset.ratings', 'failtimes', 'max_combo', 'owners'];
+    const DEFAULT_API_INCLUDES = ['beatmapset.ratings', 'current_user_playcount', 'failtimes', 'max_combo', 'owners'];
     const DEFAULT_SCORE_INCLUDES = ['user', 'user.country', 'user.cover', 'user.team'];
 
     public function __construct()
@@ -36,7 +36,7 @@ class BeatmapsController extends Controller
     private static function assertSupporterOnlyOptions(?User $currentUser, string $type, array $mods): void
     {
         $isSupporter = $currentUser !== null && $currentUser->isSupporter();
-        if ($type !== 'global' && !$isSupporter) {
+        if (in_array($type, ScoreSearchParams::SUPPORTER_TYPES, true) && !$isSupporter) {
             throw new InvariantException(osu_trans('errors.supporter_only'));
         }
         if (!empty($mods) && !is_api_request() && !$isSupporter) {
@@ -44,6 +44,7 @@ class BeatmapsController extends Controller
         }
     }
 
+    // TODO: move this to scores() and remove soloScores(). Probably sometime after October 2025.
     private static function beatmapScores(string $id, ?string $scoreTransformerType, ?bool $isLegacy): array
     {
         $beatmap = Beatmap::findOrFail($id);
@@ -79,6 +80,7 @@ class BeatmapsController extends Controller
         $scoreTransformer = new ScoreTransformer($scoreTransformerType);
 
         $results = [
+            'score_count' => UserRank::getCount($esFetch->baseParams),
             'scores' => json_collection(
                 $scores,
                 $scoreTransformer,
@@ -215,6 +217,7 @@ class BeatmapsController extends Controller
             $beatmaps = Beatmap
                 ::whereIn('beatmap_id', $ids)
                 ->whereHas('beatmapset')
+                ->withUserPlaycount(\Auth::id())
                 ->with([
                     'beatmapOwners.user',
                     'beatmapset',
@@ -258,7 +261,10 @@ class BeatmapsController extends Controller
         $params = get_params(request()->all(), null, ['checksum:string', 'filename:string', 'id:int']);
 
         foreach ($params as $key => $value) {
-            $beatmap = Beatmap::whereHas('beatmapset')->firstWhere($keyMap[$key], $value);
+            $beatmap = Beatmap
+                ::whereHas('beatmapset')
+                ->withUserPlaycount(\Auth::id())
+                ->firstWhere($keyMap[$key], $value);
 
             if ($beatmap !== null) {
                 break;
@@ -296,7 +302,10 @@ class BeatmapsController extends Controller
      */
     public function show($id)
     {
-        $beatmap = Beatmap::whereHas('beatmapset')->findOrFail($id);
+        $beatmap = Beatmap
+            ::whereHas('beatmapset')
+            ->withUserPlaycount(\Auth::id())
+            ->findOrFail($id);
 
         if (is_api_request()) {
             return json_item($beatmap, new BeatmapTransformer(), static::DEFAULT_API_INCLUDES);
@@ -360,6 +369,8 @@ class BeatmapsController extends Controller
      * Get Beatmap scores (non-legacy)
      *
      * Returns the top scores for a beatmap.
+     *
+     * This endpoint is deprecated. Use [Get Beatmap scores](#get-beatmap-scores) with appropriate api version header instead.
      *
      * ---
      *
