@@ -69,13 +69,7 @@ class OsuAuthorize
         request()->attributes->remove(static::REQUEST_ATTRIBUTE_KEY);
     }
 
-    /**
-     * @param User|null $user
-     * @param string $ability
-     * @param object|null $object
-     * @return AuthorizationResult
-     */
-    public function doCheckUser(?User $user, string $ability, object $object = null): AuthorizationResult
+    public function doCheckUser(?User $user, string $ability, ?object $object = null): AuthorizationResult
     {
         $cacheKey = serialize([
             $ability,
