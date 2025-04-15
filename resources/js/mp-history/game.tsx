@@ -8,13 +8,9 @@ import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans, transExists } from 'utils/lang';
+import { TeamScores } from './content';
 import GameHeader from './game-header';
 import Score from './score';
-
-interface TeamScores {
-  blue: number;
-  red: number;
-}
 
 interface Props {
   game: LegacyMatchGameJson;
