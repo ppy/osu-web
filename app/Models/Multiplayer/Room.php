@@ -433,7 +433,7 @@ class Room extends Model
     {
         return $this->memoize(
             __FUNCTION__,
-            fn () => json_decode($this->attributes['recent_participant_ids'], true) ?? []
+            fn () => json_decode($this->attributes['recent_participant_ids'] ?? '', true) ?? []
         );
     }
 
