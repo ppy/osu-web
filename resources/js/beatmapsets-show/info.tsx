@@ -193,12 +193,9 @@ export default class Info extends React.Component<Props> {
                 <h3 className='beatmapset-info__header beatmapset-info__header--sticky'>
                   {trans('beatmapsets.show.info.user_tags')}
                 </h3>
-                <div>
+                <div className='beatmapset-info__tags'>
                   {this.controller.tags.userTags.map((tag) => (
-                    <React.Fragment key={tag.name}>
-                      <UserTag tag={tag} />
-                      {' '}
-                    </React.Fragment>
+                    <UserTag key={tag.name} tag={tag} />
                   ))}
                 </div>
               </div>
