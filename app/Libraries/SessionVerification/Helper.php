@@ -59,7 +59,7 @@ class Helper
             ));
     }
 
-    public static function logAttempt(string $source, string $type, string $reason = null): void
+    public static function logAttempt(string $source, string $type, ?string $reason = null): void
     {
         datadog_increment(
             'verification.attempts',
