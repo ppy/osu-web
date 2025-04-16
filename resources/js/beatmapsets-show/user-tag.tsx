@@ -3,7 +3,6 @@
 
 import { TagJsonWithCount } from 'interfaces/tag-json';
 import { route } from 'laroute';
-import { observer } from 'mobx-react';
 import * as React from 'react';
 import { makeSearchQueryOption } from 'utils/beatmapset-helper';
 
@@ -11,7 +10,6 @@ interface Props {
   tag: TagJsonWithCount;
 }
 
-@observer
 export default class UserTag extends React.PureComponent<Props> {
   private readonly category;
   private readonly name;
