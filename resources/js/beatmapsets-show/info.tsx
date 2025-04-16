@@ -19,6 +19,7 @@ import { trans } from 'utils/lang';
 import { present } from 'utils/string';
 import Controller from './controller';
 import MetadataEditor from './metadata-editor';
+import UserTag from './user-tag';
 
 interface Props {
   controller: Controller;
@@ -195,12 +196,7 @@ export default class Info extends React.Component<Props> {
                 <div>
                   {this.controller.tags.userTags.map((tag) => (
                     <React.Fragment key={tag.name}>
-                      <a
-                        className='beatmapset-info__link'
-                        href={route('beatmapsets.index', { q: makeSearchQueryOption('tag', tag.name) })}
-                      >
-                        {tag.name}
-                      </a>
+                      <UserTag tag={tag} />
                       {' '}
                     </React.Fragment>
                   ))}
