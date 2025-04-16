@@ -35,6 +35,7 @@ type GroupKey =
   | 'forum_post'
   | 'message'
   | 'scores'
+  | 'team'
   | 'user';
 export const reportableTypeToGroupKey: Record<ReportableType, GroupKey> = {
   beatmapset: 'beatmapset',
@@ -47,6 +48,7 @@ export const reportableTypeToGroupKey: Record<ReportableType, GroupKey> = {
   score_best_osu: 'scores',
   score_best_taiko: 'scores',
   solo_score: 'scores',
+  team: 'team',
   user: 'user',
 } as const;
 
@@ -67,6 +69,7 @@ const reasons = {
   beatmapset: ['UnwantedContent', 'Other'],
   post: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
   score: ['Cheating', 'MultipleAccounts', 'Other'],
+  team: ['UnwantedContent', 'Other'],
 } as const;
 
 const availableOptionsByGroupKey: Partial<Record<GroupKey, readonly (keyof typeof availableOptions)[]>> = {
@@ -76,6 +79,7 @@ const availableOptionsByGroupKey: Partial<Record<GroupKey, readonly (keyof typeo
   forum_post: reasons.post,
   message: reasons.post,
   scores: reasons.score,
+  team: reasons.team,
 };
 
 interface Props {

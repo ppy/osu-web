@@ -51,6 +51,7 @@ class UserReport extends Model
         MorphMap::MAP[Comment::class] => self::POST_TYPE_REASONS,
         MorphMap::MAP[Forum\Post::class] => self::POST_TYPE_REASONS,
         MorphMap::MAP[Solo\Score::class] => self::SCORE_TYPE_REASONS,
+        MorphMap::MAP[Team::class] => ['UnwantedContent', 'Other'],
     ];
 
     const CREATED_AT = 'timestamp';
@@ -91,6 +92,7 @@ class UserReport extends Model
                 Comment::class => 'comment',
                 Forum\Post::class => 'forum',
                 User::class => 'user',
+                Team::class => 'team',
             };
 
             return $GLOBALS['cfg']['osu']['user_report_notification']['endpoint'][$type]
