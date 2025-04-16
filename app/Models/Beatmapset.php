@@ -529,7 +529,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         }
     }
 
-    public function regenerateCovers(array $sizesToRegenerate = null)
+    public function regenerateCovers(?array $sizesToRegenerate = null)
     {
         if (empty($sizesToRegenerate)) {
             $sizesToRegenerate = static::coverSizes();
