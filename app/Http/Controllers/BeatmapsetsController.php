@@ -409,14 +409,16 @@ class BeatmapsetsController extends Controller
 
         return json_item($beatmapset, $transformer, [
             'beatmaps',
+            'beatmaps.current_user_tag_ids',
             'beatmaps.failtimes',
             'beatmaps.max_combo',
             'beatmaps.owners',
-            'beatmaps.current_user_tag_ids',
             'beatmaps.top_tag_ids',
             'converts',
+            'converts.current_user_tag_ids',
             'converts.failtimes',
             'converts.owners',
+            'converts.top_tag_ids',
             'current_nominations',
             'current_user_attributes',
             'description',
