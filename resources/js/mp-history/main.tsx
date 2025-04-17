@@ -41,6 +41,41 @@ const refreshTimeout = 10000;
 export default class Main extends React.Component<Props, State> {
   private readonly timeouts: Partial<Record<string, number>> = {};
 
+  private get hasLatest(): boolean {
+    const lastEvent = this.state.events[this.state.events.length - 1];
+
+    return lastEvent != null && lastEvent.id === this.state.latestEventId;
+  }
+
+  private get hasNext(): boolean {
+    return this.isOngoing || !this.hasLatest;
+  }
+
+  private get hasPrevious(): boolean {
+    const firstEvent = this.state.events[0];
+
+    return firstEvent != null && firstEvent.id !== this.props.events.first_event_id;
+  }
+
+  private get isAutoloading(): boolean {
+    return this.isOngoing && this.hasLatest;
+  }
+
+  private get isOngoing(): boolean {
+    return this.state.match.end_time == null;
+  }
+
+  private get minNextEventId(): number | undefined {
+    if (this.state.currentGameId != null) {
+      const currentGame = this.state.events.find((e) => e.game?.id === this.state.currentGameId);
+      if (currentGame != null) {
+        return currentGame.id - 1;
+      }
+    }
+
+    return this.state.events[this.state.events.length - 1]?.id;
+  }
+
   constructor(props: Props) {
     super(props);
 
@@ -99,30 +134,6 @@ export default class Main extends React.Component<Props, State> {
     this.timeouts.autoload = setTimeout(() => this.autoload(), refreshTimeout);
   }
 
-  private get hasLatest(): boolean {
-    const lastEvent = this.state.events[this.state.events.length - 1];
-
-    return lastEvent != null && lastEvent.id === this.state.latestEventId;
-  }
-
-  private get hasNext(): boolean {
-    return this.isOngoing || !this.hasLatest;
-  }
-
-  private get hasPrevious(): boolean {
-    const firstEvent = this.state.events[0];
-
-    return firstEvent != null && firstEvent.id !== this.props.events.first_event_id;
-  }
-
-  private get isAutoloading(): boolean {
-    return this.isOngoing && this.hasLatest;
-  }
-
-  private get isOngoing(): boolean {
-    return this.state.match.end_time == null;
-  }
-
   private readonly loadNext = () => {
     if (!this.hasNext) {
       return;
@@ -135,7 +146,7 @@ export default class Main extends React.Component<Props, State> {
       route('matches.show', { match: this.state.match.id }),
       {
         data: {
-          after: this.minNextEventId(),
+          after: this.minNextEventId,
           limit: fetchLimit,
         },
         dataType: 'JSON',
@@ -204,17 +215,6 @@ export default class Main extends React.Component<Props, State> {
         this.setState({ loadingPrevious: false });
       });
   };
-
-  private minNextEventId(): number | undefined {
-    if (this.state.currentGameId != null) {
-      const currentGame = this.state.events.find((e) => e.game?.id === this.state.currentGameId);
-      if (currentGame != null) {
-        return currentGame.id - 1;
-      }
-    }
-
-    return this.state.events[this.state.events.length - 1]?.id;
-  }
 
   private newUsersHash(users: UserJson[]): Partial<Record<number, UserJson>> {
     return { ...this.state.users, ...keyBy(users, 'id') };
