@@ -4,24 +4,23 @@
 .user-tag {
   .default-border-radius();
   .link-plain();
-  .link-white();
   display: flex;
   overflow: hidden;
+  color: hsl(var(--hsl-c1));
 
   &__item {
     padding: 3px 6px;
 
     &--category {
-      background: #444;
-      color: #aaa;
+      background: hsl(var(--hsl-b3));
     }
 
     &--count {
-      background: #222;
+      background: hsl(var(--hsl-b5));
     }
 
     &--name {
-      background: #555;
+      background: hsl(var(--hsl-b2));
     }
   }
 }
