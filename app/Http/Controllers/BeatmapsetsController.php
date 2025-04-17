@@ -408,7 +408,6 @@ class BeatmapsetsController extends Controller
         $transformer->relatedUsersType = 'show';
 
         static $sharedIncludes = [
-            'current_user_tag_ids',
             'failtimes',
             'owners',
             'top_tag_ids',
@@ -416,6 +415,7 @@ class BeatmapsetsController extends Controller
 
         return json_item($beatmapset, $transformer, [
             ...array_map(fn ($include) => "beatmaps.{$include}", $sharedIncludes),
+            'beatmaps.current_user_tag_ids',
             'beatmaps.max_combo',
             ...array_map(fn ($include) => "converts.{$include}", $sharedIncludes),
             'current_nominations',
