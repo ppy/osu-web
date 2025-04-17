@@ -43,6 +43,7 @@
                     @include('rankings._main_column', [
                         'mode' => $ruleset,
                         'object' => $stats->user,
+                        'showAvatar' => true,
                         'showTeam' => false,
                         'sort' => null,
                         'type' => $sort,

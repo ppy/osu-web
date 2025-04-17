@@ -102,6 +102,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # otherwise docker compose will create .env directory
+      - name: Create blank env file
+        run: '> .env'
+
       - name: Services
         run: 'docker compose up --quiet-pull --wait
           beatmap-difficulty-lookup-cache
