@@ -187,8 +187,8 @@ class PlaylistItem extends Model
 
         $isRealtimeRoom = $this->room->isRealtime();
         $modsHelper = app('mods');
-        $modsHelper->assertValidForMultiplayer($this->ruleset_id, $allowedModIds, $isRealtimeRoom, false, $this->freestyle);
-        $modsHelper->assertValidForMultiplayer($this->ruleset_id, $requiredModIds, $isRealtimeRoom, true, $this->freestyle);
+        $modsHelper->assertValidForMultiplayer($this->ruleset_id, $allowedModIds, false, $isRealtimeRoom, $this->freestyle);
+        $modsHelper->assertValidForMultiplayer($this->ruleset_id, $requiredModIds, true, $isRealtimeRoom, $this->freestyle);
         $modsHelper->assertValidMultiplayerExclusivity($this->ruleset_id, $requiredModIds, $allowedModIds);
     }
 }
