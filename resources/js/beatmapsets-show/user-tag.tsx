@@ -5,12 +5,18 @@ import { TagJsonWithCount } from 'interfaces/tag-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { makeSearchQueryOption } from 'utils/beatmapset-helper';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   tag: TagJsonWithCount;
+  voted: boolean;
 }
 
 export default class UserTag extends React.PureComponent<Props> {
+  static defaultProps = {
+    voted: false,
+  };
+
   private readonly category;
   private readonly name;
 
@@ -35,7 +41,9 @@ export default class UserTag extends React.PureComponent<Props> {
       >
         <span className='user-tag__item user-tag__item--category'>{this.category}</span>
         <span className='user-tag__item user-tag__item--name'>{this.name}</span>
-        <span className='user-tag__item user-tag__item--count'>{this.props.tag.count}</span>
+        <span className={classWithModifiers('user-tag__item', 'count', { voted: this.props.voted })}>
+          {this.props.tag.count}
+        </span>
       </a>
     );
   }

@@ -73,6 +73,11 @@ export default class Controller {
   }
 
   @computed
+  get currentUserTagIds() {
+    return new Set(this.currentBeatmap.current_user_tag_ids);
+  }
+
+  @computed
   get relatedTags() {
     const map = new Map<number, TagJson>();
 

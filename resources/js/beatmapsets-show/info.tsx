@@ -195,7 +195,7 @@ export default class Info extends React.Component<Props> {
                 </h3>
                 <div className='beatmapset-info__tags'>
                   {this.controller.tags.userTags.map((tag) => (
-                    <UserTag key={tag.name} tag={tag} />
+                    <UserTag key={tag.name} tag={tag} voted={this.controller.currentUserTagIds.has(tag.id)} />
                   ))}
                 </div>
               </div>
