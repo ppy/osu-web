@@ -157,6 +157,17 @@ class UserReport extends Model
             );
         }
 
+        if (
+            $this->reportable instanceof Team
+            && $this->reportable->members()->where('user_id', $this->reporter_id)->exists()
+        ) {
+            $this->validationErrors()->add(
+                'reportable',
+                '.in_team'
+            );
+        }
+
+
         $this->validateDbFieldLengths();
 
         return $this->validationErrors()->isEmpty();

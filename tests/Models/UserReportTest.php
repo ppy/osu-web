@@ -131,6 +131,16 @@ class UserReportTest extends TestCase
         $message->reportBy($reporter, static::reportParams());
     }
 
+    public function testCannotReportIfInTeam(): void
+    {
+        $team = Team::factory()->create();
+        $reporter = User::factory()->create();
+        $team->addMember($team->applications()->create(['user_id' => $reporter->getKey()]));
+
+        $this->expectException(ValidationException::class);
+        $team->reportBy($reporter, static::reportParams());
+    }
+
     /**
      * @dataProvider reportableClasses
      */
