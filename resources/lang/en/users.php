@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Cheating',
-            'multiple_accounts' => 'Using multiple accounts',
+            'inappropriate_chat' => 'Inappropriate chat behaviour',
             'insults' => 'Insulting me / others',
-            'spam' => 'Spamming',
-            'unwanted_content' => 'Linking inappropriate content',
+            'multiple_accounts' => 'Using multiple accounts',
             'nonsense' => 'Nonsense',
             'other' => 'Other (type below)',
+            'spam' => 'Spamming',
+            'unwanted_content' => 'Inappropriate content',
         ],
     ],
     'restricted_banner' => [

@@ -52,6 +52,7 @@ class UserReport extends Model
         MorphMap::MAP[Forum\Post::class] => self::POST_TYPE_REASONS,
         MorphMap::MAP[Solo\Score::class] => self::SCORE_TYPE_REASONS,
         MorphMap::MAP[Team::class] => ['UnwantedContent', 'Other'],
+        MorphMap::MAP[User::class] => ['Cheating', 'MultipleAccounts', 'InappropriateChat', 'UnwantedContent', 'Other'],
     ];
 
     const CREATED_AT = 'timestamp';
