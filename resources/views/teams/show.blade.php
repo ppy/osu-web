@@ -94,40 +94,55 @@
                         {{ osu_trans('teams.show.bar.part') }}
                     </button>
                 </form>
-            @elseif ($currentUser?->teamApplication?->team_id === $team->getKey())
-                <form
-                    action="{{ route('teams.applications.destroy', ['team' => $team, 'application' => $currentUser->getKey()]) }}"
-                    data-turbo-confirm="{{ osu_trans('common.confirmation') }}"
-                    data-reload-on-success="1"
-                    method="POST"
-                >
-                    <input type="hidden" name="_method" value="DELETE" />
-                    <button
-                        class="team-action-button team-action-button--join-cancel"
-                    >
-                        {{ osu_trans('teams.show.bar.join_cancel') }}
-                    </button>
-                </form>
             @else
-                @php
-                    $joinPriv = priv_check('TeamApplicationStore', $team);
-                @endphp
-                <form
-                    action="{{ route('teams.applications.store', ['team' => $team]) }}"
-                    data-turbo-confirm="{{ osu_trans('common.confirmation') }}"
-                    data-reload-on-success="1"
-                    method="POST"
-                    title="{{ $joinPriv->message() }}"
-                >
-                    <button
-                        class="team-action-button team-action-button--join js-login-required--click"
-                        @if (!$joinPriv->can() && $currentUser !== null)
-                            disabled
-                        @endif
+                @if ($currentUser?->teamApplication?->team_id === $team->getKey())
+                    <form
+                        action="{{ route('teams.applications.destroy', ['team' => $team, 'application' => $currentUser->getKey()]) }}"
+                        data-turbo-confirm="{{ osu_trans('common.confirmation') }}"
+                        data-reload-on-success="1"
+                        method="POST"
                     >
-                        {{ osu_trans('teams.show.bar.join') }}
-                    </button>
-                </form>
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <button
+                            class="team-action-button team-action-button--join-cancel"
+                        >
+                            {{ osu_trans('teams.show.bar.join_cancel') }}
+                        </button>
+                    </form>
+                @else
+                    @php
+                        $joinPriv = priv_check('TeamApplicationStore', $team);
+                    @endphp
+                    <form
+                        action="{{ route('teams.applications.store', ['team' => $team]) }}"
+                        data-turbo-confirm="{{ osu_trans('common.confirmation') }}"
+                        data-reload-on-success="1"
+                        method="POST"
+                        title="{{ $joinPriv->message() }}"
+                    >
+                        <button
+                            class="team-action-button team-action-button--join js-login-required--click"
+                            @if (!$joinPriv->can() && $currentUser !== null)
+                                disabled
+                            @endif
+                        >
+                            {{ osu_trans('teams.show.bar.join') }}
+                        </button>
+                    </form>
+                @endif
+                <div
+                    class="js-react--team-extra-menu u-contents"
+                    data-props="{{ json_encode([
+                        'leaderUsername' => $leader['username'],
+                        'teamId' => $team->getKey(),
+                    ]) }}"
+                >
+                    <div class="btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail">
+                        <button class="popup-menu" type="button">
+                            <span class="fas fa-ellipsis-v"></span>
+                        </button>
+                    </div>
+                </div>
             @endif
         </div>
         <div class="user-profile-pages user-profile-pages--no-tabs">
