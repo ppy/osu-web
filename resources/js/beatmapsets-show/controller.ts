@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
-import TagJson from 'interfaces/tag-json';
+import TagJson, { TagJsonWithCount } from 'interfaces/tag-json';
 import UserJson from 'interfaces/user-json';
 import { keyBy } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
@@ -24,8 +24,6 @@ interface State {
   playmode?: BeatmapJsonForBeatmapsetShow['mode'];
   showingNsfwWarning: boolean;
 }
-
-type TagJsonWithCount = TagJson & { count: number };
 
 export default class Controller {
   @observable hoveredBeatmap: null | BeatmapJsonForBeatmapsetShow = null;
@@ -72,6 +70,11 @@ export default class Controller {
   @computed
   get currentBeatmaps() {
     return this.beatmaps.get(this.currentBeatmap.mode) ?? [];
+  }
+
+  @computed
+  get currentUserTagIds() {
+    return new Set(this.currentBeatmap.current_user_tag_ids);
   }
 
   @computed
