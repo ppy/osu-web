@@ -16,7 +16,7 @@ class RankingControllerTest extends TestCase
     public function testIndex()
     {
         $this
-            ->get(route('rankings', ['mode' => 'osu', 'type' => 'performance']))
+            ->get(route('rankings', ['mode' => 'osu', 'type' => 'global']))
             ->assertSuccessful();
     }
 
@@ -24,13 +24,13 @@ class RankingControllerTest extends TestCase
     {
         $this
             ->get(route('rankings', ['mode' => 'osu']))
-            ->assertRedirect(route('rankings', ['mode' => 'osu', 'type' => 'performance']));
+            ->assertRedirect(route('rankings', ['mode' => 'osu', 'type' => 'global']));
     }
 
     public function testIndexInvalidMode()
     {
         $this
-            ->get(route('rankings', ['mode' => 'nope', 'type' => 'performance']))
+            ->get(route('rankings', ['mode' => 'nope', 'type' => 'global']))
             ->assertStatus(404);
     }
 

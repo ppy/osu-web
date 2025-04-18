@@ -12,7 +12,7 @@
             @include('rankings._user_filter')
 
             @php
-                $variants = App\Models\Beatmap::VARIANTS[$mode] ?? null;
+                $variants = App\Models\Beatmap::VARIANTS[$params['mode']] ?? null;
                 if ($variants !== null) {
                     array_unshift($variants, 'all');
                 }
@@ -27,7 +27,7 @@
                             <div class="sort__items">
                                 @foreach ($variants as $v)
                                     <button class="sort__item sort__item--button">
-                                        {{ osu_trans("beatmaps.variant.{$mode}.{$v}") }}
+                                        {{ osu_trans("beatmaps.variant.{$params['mode']}.{$v}") }}
                                     </button>
                                 @endforeach
                             </div>
@@ -37,12 +37,30 @@
 
                 <script id="json-variant-filter" type="application/json">
                     {!! json_encode([
-                        'current' => $variant,
-                        'current_ruleset' => $mode,
+                        'current' => $params['variant'],
+                        'current_ruleset' => $params['mode'],
                         'items' => $variants,
                     ]) !!}
                 </script>
             @endif
+        </div>
+    </div>
+@endsection
+
+@section('scores-header')
+    <div class="sort">
+        <div class="sort__items">
+            <div class="sort__item sort__item--title">
+                {{ osu_trans('sort._') }}
+            </div>
+            @foreach ([['performance', 'performance'], ['score', 'ranked_score']] as $newSort)
+                <a
+                    class="{{ class_with_modifiers('sort__item', 'button', ['active' => $newSort[0] === $params['sort']]) }}"
+                    href="{{ route('rankings', [...$params, 'sort' => $newSort[0]]) }}"
+                >
+                    {{ osu_trans("rankings.stat.{$newSort[1]}") }}
+                </a>
+            @endforeach
         </div>
     </div>
 @endsection
@@ -62,7 +80,16 @@
                 <th class="ranking-page-table__heading">
                     {{ osu_trans('rankings.stat.play_count') }}
                 </th>
-                <th class="ranking-page-table__heading ranking-page-table__heading--focused">
+                <th class="{{ class_with_modifiers(
+                    'ranking-page-table__heading',
+                    ['focused' => $params['sort'] === 'score'],
+                ) }}">
+                    {{ osu_trans('rankings.stat.ranked_score') }}
+                </th>
+                <th class="{{ class_with_modifiers(
+                    'ranking-page-table__heading',
+                    ['focused' => $params['sort'] === 'performance'],
+                ) }}">
                     {{ osu_trans('rankings.stat.performance') }}
                 </th>
                 <th class="ranking-page-table__heading ranking-page-table__heading--grade">
@@ -115,7 +142,16 @@
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ i18n_number_format($score->playcount) }}
                     </td>
-                    <td class="ranking-page-table__column">
+                    <td class="{{ class_with_modifiers(
+                        'ranking-page-table__column',
+                        ['dimmed' => $params['sort'] !== 'score'],
+                    ) }}">
+                        {{ i18n_number_format(round($score->ranked_score)) }}
+                    </td>
+                    <td class="{{ class_with_modifiers(
+                        'ranking-page-table__column',
+                        ['dimmed' => $params['sort'] !== 'performance'],
+                    ) }}">
                         {{ i18n_number_format(round($score->rank_score)) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">

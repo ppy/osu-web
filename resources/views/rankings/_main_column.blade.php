@@ -3,18 +3,18 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    $filter ??= null;
-    $mode ??= default_mode();
-    $sort ??= null;
-    $type ??= 'performance';
-    $variant ??= null;
+    $params['filter'] ??= null;
+    $params['mode'] ??= default_mode();
+    $params['sort'] ??= null;
+    $params['type'] ??= 'global';
+    $params['variant'] ??= null;
 @endphp
 @if ($object instanceof App\Models\Country)
     <a
         class="ranking-page-table-main"
         href="{{ route('rankings', [
-            'mode' => $mode,
-            'type' => 'performance',
+            'mode' => $params['mode'],
+            'type' => 'global',
             'country' => $object->acronym,
         ]) }}"
     >
@@ -31,8 +31,8 @@
     <a
         class="ranking-page-table-main"
         href="{{ route('teams.leaderboard', [
-            'ruleset' => $mode,
-            'sort' => $sort,
+            'ruleset' => $params['mode'],
+            'sort' => $params['sort'],
             'team' => $object,
         ]) }}"
     >
@@ -49,13 +49,13 @@
             <a
                 class="u-contents"
                 href="{{ route('rankings', [
-                    'mode' => $mode,
-                    'sort' => $sort,
-                    'type' => $type,
+                    'mode' => $params['mode'],
+                    'sort' => $params['sort'],
+                    'type' => $params['type'],
 
                     'country' => $object->country->acronym,
-                    'filter' => $filter,
-                    'variant' => $variant,
+                    'filter' => $params['filter'],
+                    'variant' => $params['variant'],
                 ]) }}"
             >
                 @include('objects._flag_country', [
@@ -76,7 +76,7 @@
             class="ranking-page-table-main__link js-usercard"
             data-tooltip-position="right center"
             data-user-id="{{ $object->getKey() }}"
-            href="{{ route('users.show', ['user' => $object->getKey(), 'mode' => $mode]) }}"
+            href="{{ route('users.show', ['user' => $object->getKey(), 'mode' => $params['mode']]) }}"
         >
             @if ($showAvatar ?? false)
                 <span class="ranking-page-table-main__flag">
