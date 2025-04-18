@@ -56,7 +56,7 @@
             @foreach ([['performance', 'performance'], ['score', 'ranked_score']] as $newSort)
                 <a
                     class="{{ class_with_modifiers('sort__item', 'button', ['active' => $newSort[0] === $params['sort']]) }}"
-                    href="{{ App\Http\Controllers\RankingController::url([...$params, 'sort' => $newSort[0]]) }}"
+                    href="{{ route('rankings', [...$params, 'sort' => $newSort[0]]) }}"
                 >
                     {{ osu_trans("rankings.stat.{$newSort[1]}") }}
                 </a>
