@@ -6,41 +6,46 @@
 declare(strict_types=1);
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 return new class extends Migration
 {
     public function up(): void
     {
-        DB::statement("ALTER TABLE osu_user_reports MODIFY COLUMN reportable_type ENUM(
-            'user',
-            'comment',
-            'score_best_osu',
-            'score_best_taiko',
-            'score_best_fruits',
-            'score_best_mania',
-            'beatmapset_discussion_post',
-            'forum_post',
-            'beatmapset',
-            'solo_score',
-            'message',
-            'team'
-        )");
+        Schema::table('osu_user_reports', function (Blueprint $table) {
+            $table->enum('reportable_type', [
+                'user',
+                'comment',
+                'score_best_osu',
+                'score_best_taiko',
+                'score_best_fruits',
+                'score_best_mania',
+                'beatmapset_discussion_post',
+                'forum_post',
+                'beatmapset',
+                'solo_score',
+                'message',
+                'team',
+            ])->nullable()->change();
+        });
     }
 
     public function down(): void
     {
-        DB::statement("ALTER TABLE osu_user_reports MODIFY COLUMN reportable_type ENUM(
-            'user',
-            'comment',
-            'score_best_osu',
-            'score_best_taiko',
-            'score_best_fruits',
-            'score_best_mania',
-            'beatmapset_discussion_post',
-            'forum_post',
-            'beatmapset',
-            'solo_score',
-            'message'
-        )");
+        Schema::table('osu_user_reports', function (Blueprint $table) {
+            $table->enum('reportable_type', [
+                'user',
+                'comment',
+                'score_best_osu',
+                'score_best_taiko',
+                'score_best_fruits',
+                'score_best_mania',
+                'beatmapset_discussion_post',
+                'forum_post',
+                'beatmapset',
+                'solo_score',
+                'message',
+            ])->nullable()->change();
+        });
     }
 };
