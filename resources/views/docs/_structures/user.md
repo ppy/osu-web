@@ -60,6 +60,7 @@ kudosu                     | [User.Kudosu](#user-kudosu) | |
 loved_beatmapset_count     | integer | |
 mapping_follower_count     | integer | |
 monthly_playcounts         | [UserMonthlyPlaycount](#usermonthlyplaycount)[] | |
+nominated_beatmapset_count | integer | |
 page                       | | |
 pending_beatmapset_count   | | |
 previous_usernames         | | |
