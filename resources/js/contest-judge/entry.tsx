@@ -125,7 +125,7 @@ export default class Entry extends React.Component<Props> {
     return (
       <div key={category.id} className='contest-judge-entry__category'>
         <div className='contest-judge-entry__label'>
-          <div className='contest-judge-entry__description-icon' title={category.description}>
+          <div title={category.description}>
             <i className='fas fa-question-circle' />
           </div>
 
