@@ -21,8 +21,9 @@ interface SelectedItem {
   section: number;
 }
 
-export type ResultMode = 'beatmapset' | 'forum_post' | 'user' | 'wiki_page';
+export type ResultMode = 'artist_track' | 'beatmapset' | 'forum_post' | 'user' | 'wiki_page';
 interface SearchResult {
+  artist_track: SearchResultSummary;
   beatmapset: SearchResultBeatmapset;
   forum_post: SearchResultSummary;
   user: SearchResultUser;
@@ -179,13 +180,13 @@ export default class Worker {
       case 'user':
         return searchResult.user.users.length;
       case 'user_others':
-        return searchResult.user.total > searchResult.user.users.length ? 1 : 0;
+        return 1;
       case 'beatmapset':
         return searchResult.beatmapset.beatmapsets.length;
       case 'beatmapset_others':
         return 1;
       case 'others':
-        return otherModes.filter((mode) => searchResult[mode].total > 0).length;
+        return otherModes.length;
     }
 
     return 0;
