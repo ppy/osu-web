@@ -138,10 +138,10 @@ return [
 
         'attributes' => [
             'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'is_open' => 'Takım başvurusu',
+            'name' => 'İsim',
+            'short_name' => 'Kısa isim',
+            'url' => 'URL',
         ],
     ],
 
@@ -190,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Dereceli beatmapler bildirilemez',
         'not_in_channel' => 'Bu kanalda değilsiniz.',
+        'in_team' => '',
         'reason_not_valid' => ':reason sebebi bu rapor türü için geçerli değil.',
         'self' => "Kendinizi raporlayamazsınız!",
     ],

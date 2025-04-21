@@ -59,7 +59,7 @@ return [
 
         'settings' => [
             'application_help' => 'Si permetre que la gent sol·liciti unir-se a l\'equip',
-            'default_ruleset_help' => 'El Mode de joc a ser seleccionat per defecte quan visites la pàgina de l\'equip',
+            'default_ruleset_help' => 'El mode de joc a ser seleccionat per defecte quan visites la pàgina de l\'equip',
             'flag_help' => '',
             'header_help' => '',
             'title' => 'Configuració de l\'Equip',
@@ -94,16 +94,22 @@ return [
             'title' => 'Gestionar els Membres',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => 'Sol·licitat a',
                 'empty' => '',
                 'empty_slots' => 'Places disponibles',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => 'Sol·licituds d\'accés',
-                'created_at' => 'Sol·licitat a',
             ],
 
             'table' => [
-                'status' => 'Estatus',
                 'joined_at' => 'Data d\'Unió',
                 'remove' => 'Eliminar',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => 'Estatus',
                 'title' => 'Membres Actuals',
             ],
 
@@ -111,6 +117,10 @@ return [
                 'status_0' => 'Inactiu',
                 'status_1' => 'Actiu',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 

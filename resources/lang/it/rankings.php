@@ -37,12 +37,11 @@ return [
         'charts' => 'spotlight (archivio)',
         'country' => 'paese',
         'daily_challenge' => 'sfida giornaliera',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multigiocatore',
-        'performance' => 'performance',
-        'score' => 'punteggio',
         'seasons' => 'stagioni',
-        'team' => '',
+        'team' => 'squadra',
     ],
 
     'seasons' => [
@@ -67,7 +66,7 @@ return [
         'active_users' => 'Utenti Attivi',
         'country' => 'Paese',
         'division' => 'Divisione',
-        'members' => '',
+        'members' => 'Membri',
         'play_count' => 'Partite Giocate',
         'performance' => 'Performance',
         'total_score' => 'Punteggio Totale',

@@ -34,6 +34,11 @@ return [
         'title' => '要檢舉 :username 的成績嗎？',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => '檢舉',
         'title' => '要檢舉 :username 嗎？',

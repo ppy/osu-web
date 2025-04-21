@@ -133,7 +133,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Peta Rentak Berperingkat Baharu',
+            'new' => 'Peta Rentak Berkedudukan Baharu',
             'popular' => 'Peta Rentak Sohor Kini',
             'by_user' => 'oleh :user',
         ],

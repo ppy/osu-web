@@ -190,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Novērtējamas ritma-mapes nevar tikt nosūdzētas',
         'not_in_channel' => 'Tu neesi šajā kanālā.',
+        'in_team' => '',
         'reason_not_valid' => ':reason nav saistīts ar šīs sūdzības tipu.',
         'self' => "Tu nevari nosūdzēt pats sevi!",
     ],

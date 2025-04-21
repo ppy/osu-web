@@ -140,6 +140,7 @@ return [
             'description' => 'Περιγραφή',
             'genre' => 'Είδος',
             'language' => 'Γλώσσα',
+            'mapper_tags' => '',
             'no_scores' => 'Τα δεδομένα ακόμα υπολογίζονται...',
             'nominators' => '',
             'nsfw' => '',
@@ -148,7 +149,7 @@ return [
             'source' => 'Προέλευση',
             'storyboard' => '',
             'success-rate' => 'Ποσοστό Επιτυχίας',
-            'tags' => 'Ετικέτες',
+            'user_tags' => '',
             'video' => '',
         ],
 

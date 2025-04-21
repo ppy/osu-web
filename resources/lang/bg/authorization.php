@@ -194,19 +194,19 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
-                'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'already_member' => "Вие вече сте част от този отбор.",
+                'already_other_member' => "Вие вече сте част от друг отбор.",
+                'currently_applying' => 'Вече имате друга заявка, чакаща одобрение.',
+                'team_closed' => 'Отборът в момента не приема нови членове.',
+                'team_full' => "Отборът е препълнен и не може да приеме повече членове.",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "Лидера на отбора не може да го напуска.",
+            'not_member' => 'Не е член на отбора.',
         ],
         'store' => [
-            'require_supporter_tag' => '',
+            'require_supporter_tag' => 'osu!supporter е необходим за да създадете отбор.',
         ],
     ],
 

@@ -23,7 +23,7 @@ return [
         'approved' => 'lulus',
         'loved' => 'kegemaran',
         'qualified' => 'layak',
-        'ranked' => 'berperingkat',
+        'ranked' => 'berkedudukan',
     ],
 
     'value' => [

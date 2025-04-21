@@ -108,11 +108,11 @@ return [
             '_' => 'рангови',
         ],
         'teams_controller' => [
-            '_' => '',
-            'create' => '',
-            'edit' => '',
-            'leaderboard' => '',
-            'show' => '',
+            '_' => 'тимови',
+            'create' => 'направите тим',
+            'edit' => 'подешавање тима',
+            'leaderboard' => 'тимска ранг листа',
+            'show' => 'информације тима',
         ],
         'tournaments_controller' => [
             '_' => 'турнири',
@@ -139,7 +139,7 @@ return [
     ],
     'teams' => [
         'members_controller' => [
-            'index' => '',
+            'index' => 'чланови тима',
         ],
     ],
     'users' => [

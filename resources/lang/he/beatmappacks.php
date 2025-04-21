@@ -17,7 +17,7 @@ return [
     ],
 
     'show' => [
-        'created_by' => '',
+        'created_by' => 'נוצר על ידי :author',
         'download' => 'הורד',
         'item' => [
             'cleared' => 'סוים בהצלחה',
@@ -36,7 +36,7 @@ return [
         'loved' => '',
         'standard' => 'רגיל',
         'theme' => 'ערכת נושא',
-        'tournament' => '',
+        'tournament' => 'טורניר',
     ],
 
     'require_login' => [

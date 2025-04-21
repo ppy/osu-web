@@ -32,7 +32,7 @@ return [
         'nomination_reset_received_profile' => 'Pencalonan diset semula oleh :user (:text)',
         'offset_edit' => 'Imbangan dalam talian diubah dari :old ke :new.',
         'qualify' => 'Peta rentak ini telah mencapai jumlah pencalonan yang diperlukan dan telah dilayakkan.',
-        'rank' => 'Berperingkat.',
+        'rank' => 'Berkedudukan.',
         'remove_from_loved' => 'Dipadam dari Kegemaran oleh :user. (:text)',
         'tags_edit' => 'Tag diubah dari ":old" ke ":new".',
 
@@ -81,7 +81,7 @@ return [
         'nsfw_toggle' => 'Tanda tidak senonoh',
         'offset_edit' => 'Sunting imbangan',
         'qualify' => 'Kelayakan',
-        'rank' => 'Pemeringkatan',
+        'rank' => 'Berkedudukan',
         'remove_from_loved' => 'Pemadaman Kegemaran',
     ],
 ];

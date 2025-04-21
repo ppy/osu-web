@@ -37,12 +37,11 @@ return [
         'charts' => 'โดดเด่น',
         'country' => 'ประเทศ',
         'daily_challenge' => 'ชาเลนจ์ประจำวัน',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'โหมดผู้เล่นหลายคน',
-        'performance' => 'ประสิทธิภาพ',
-        'score' => 'คะแนน',
         'seasons' => 'ซีซั่น',
-        'team' => '',
+        'team' => 'ทีม',
     ],
 
     'seasons' => [

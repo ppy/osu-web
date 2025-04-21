@@ -194,15 +194,15 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
+                'already_member' => "Már a csapat tagja vagy.",
+                'already_other_member' => "Már egy másik csapat tagja vagy.",
                 'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'team_closed' => 'A csapat jelenleg nem fogad új jelentkezőket.',
+                'team_full' => "A csapat tele van és nem fogad új jelentkezőket.",
             ],
         ],
         'part' => [
-            'is_leader' => "",
+            'is_leader' => "A csapatvezető nem léphet ki a csapatból.",
             'not_member' => '',
         ],
         'store' => [

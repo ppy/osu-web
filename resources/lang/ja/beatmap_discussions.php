@@ -67,10 +67,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
-        'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'checking' => 'アップデートの確認中...',
+        'has_updates' => '議論の更新があります。クリックして更新してください。',
+        'no_updates' => '更新はありません。',
+        'updating' => '更新中…',
     ],
 
     'reply' => [

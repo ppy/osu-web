@@ -188,8 +188,9 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => 'Peta rentak berperingkat tidak boleh dilapor',
+        'no_ranked_beatmapset' => 'Peta rentak berkedudukan tidak boleh dilaporkan',
         'not_in_channel' => 'Anda tiada dalam saluran ini.',
+        'in_team' => '',
         'reason_not_valid' => ':reason tidak sah untuk jenis laporan.',
         'self' => "Anda tidak boleh melaporkan diri sendiri!",
     ],

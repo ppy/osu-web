@@ -139,9 +139,9 @@ return [
         'attributes' => [
             'default_ruleset_id' => '',
             'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'name' => 'Име',
+            'short_name' => 'Кратко име',
+            'url' => 'URL',
         ],
     ],
 
@@ -191,6 +191,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Није могуће пријавити рангиране мапе',
         'not_in_channel' => 'Нисте на овом каналу.',
+        'in_team' => '',
         'reason_not_valid' => ':reason није важећи за овај тип извештаја.',
         'self' => "Не можете сами да се пријавите!",
     ],

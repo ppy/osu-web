@@ -24,7 +24,7 @@ return [
         'kudosu_lost' => ':user kehilangan suara dari topik diskusi :discussion dan kudosu yang sebelumnya diberikan telah dianulir.',
         'kudosu_recalculate' => 'Perolehan kudosu pada topik diskusi :discussion telah dihitung ulang.',
         'language_edit' => 'Bahasa beatmap diubah dari :old menjadi :new.',
-        'love' => 'Di-love oleh :user',
+        'love' => 'Diangkat ke Loved oleh :user.',
         'nominate' => 'Dinominasikan oleh :user.',
         'nominate_modes' => 'Dinominasikan oleh :user (:modes).',
         'nomination_reset' => 'Masalah baru pada topik diskusi :discussion (:text) memicu penganuliran nominasi.',

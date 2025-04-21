@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Poziom trudności',
-        'top_10p' => '',
-        'top_50p' => '',
+        'top_10p' => 'Wynik Najlepszych 10%',
+        'top_50p' => 'Wynik Najlepszych 50%',
     ],
 
     'filter' => [
@@ -37,12 +37,11 @@ return [
         'charts' => 'Wyróżnionych',
         'country' => 'krajowy',
         'daily_challenge' => 'wyzwanie dnia',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'wieloosobowy',
-        'performance' => 'globalny',
-        'score' => 'punktowy',
         'seasons' => 'sezony',
-        'team' => '',
+        'team' => 'zespołów',
     ],
 
     'seasons' => [
@@ -51,7 +50,7 @@ return [
         'room_count' => 'Liczba gier',
         'url' => 'Dowiedz się więcej o tym sezonie.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'wynik nie ma wystarczającej liczby czynników dla poprawnych obliczeń',
         ],
     ],
 
@@ -66,8 +65,8 @@ return [
         'accuracy' => 'Celność',
         'active_users' => 'Aktywni użytkownicy',
         'country' => 'Kraj',
-        'division' => '',
-        'members' => '',
+        'division' => 'Podział',
+        'members' => 'Liczba członków',
         'play_count' => 'Liczba zagrań',
         'performance' => 'Liczba pp',
         'total_score' => 'Łączna liczba punktów',

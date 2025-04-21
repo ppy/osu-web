@@ -67,10 +67,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
-        'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'checking' => 'Letar efter uppdateringar...',
+        'has_updates' => 'Diskussionen har uppdateringar, klicka för att uppdatera.',
+        'no_updates' => 'Inga uppdateringar.',
+        'updating' => 'Uppdaterar...',
     ],
 
     'reply' => [

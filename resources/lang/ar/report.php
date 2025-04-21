@@ -34,6 +34,11 @@ return [
         'title' => 'الاِبلاغ عن نتيجة :username ؟',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'إبلاغ',
         'title' => 'الاِبلاغ عن :username؟',

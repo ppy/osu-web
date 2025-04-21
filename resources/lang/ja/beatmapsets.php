@@ -17,7 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'スピードを落として、もっと遊ぼう。',
-        'no_mirrors' => '',
+        'no_mirrors' => 'ダウンロードサーバーがありません。',
     ],
 
     'featured_artist_badge' => [
@@ -45,14 +45,14 @@ return [
         'full_nomination_required' => 'このゲームモードの最後のノミネートを行うには、フルノミネーターである必要があります。',
         'hybrid_requires_modes' => 'ハイブリッドビートマップセットでは、少なくとも1つのモードを選択してノミネートする必要があります。',
         'incorrect_mode' => 'モード:modeでノミネートする権限がありません。',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'このビートマップには無効なノミネーターが含まれており、この状態では qualified することができません。',
+        'invalid_ruleset' => 'このノミネートには無効なルールセットがあります。',
         'too_many' => 'ノミネーションの要件を満たしています',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'メインではないルールセットのノミネート条件はすでに満たされています。',
 
         'dialog' => [
             'confirmation' => 'このビートマップを本当にノミネートしますか？',
-            'different_nominator_warning' => '',
+            'different_nominator_warning' => 'このビートマップを異なるノミネーターで認定すると、認定待ちキューの位置がリセットされます。',
             'header' => 'ビートマップをノミネート',
             'hybrid_warning' => '注意: 一度しかノミネートできないので、ノミネートするゲームモードの全てにノミネートするようにしてください。',
             'current_main_ruleset' => '現在のメインゲームモードは :ruleset です',
@@ -140,6 +140,7 @@ return [
             'description' => '概要',
             'genre' => 'ジャンル',
             'language' => '言語',
+            'mapper_tags' => '',
             'no_scores' => 'データはまだ計算中です・・・',
             'nominators' => 'ノミネーター',
             'nsfw' => '過激な表現を含むコンテンツ',
@@ -148,7 +149,7 @@ return [
             'source' => 'ソース',
             'storyboard' => 'このビートマップにはストーリーボードが含まれています',
             'success-rate' => 'クリア率',
-            'tags' => 'タグ',
+            'user_tags' => '',
             'video' => 'このビートマップには動画が含まれています',
         ],
 
@@ -171,7 +172,7 @@ return [
             'global' => '世界ランキング',
             'supporter-link' => '<a href=":link">ここ</a>をクリックする事でosu!サポーターの詳細が見れます。',
             'supporter-only' => 'フレンドランキングと国別ランキングを利用するにはosu!サポータータグが必要です！',
-            'team' => '',
+            'team' => 'チームランキング',
             'title' => 'スコアボード',
 
             'headers' => [
@@ -193,7 +194,7 @@ return [
                 'friend' => 'あなたのフレンドで記録を作った人はまだいません！',
                 'global' => 'まだ記録はありません。一番乗りを目指そう！',
                 'loading' => 'スコアの読み込み中・・・',
-                'team' => '',
+                'team' => 'あなたのチームのプレイヤーで記録を作った人はまだいません！',
                 'unranked' => 'Unrankedのビートマップです。',
             ],
             'score' => [

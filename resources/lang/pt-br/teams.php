@@ -94,16 +94,22 @@ return [
             'title' => 'Gerenciar Membros',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => 'Solicitado em',
                 'empty' => 'Nenhum pedido de adesão no momento.',
                 'empty_slots' => 'Espaços disponíveis',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => 'Pedidos de Adesão',
-                'created_at' => 'Solicitado em',
             ],
 
             'table' => [
-                'status' => 'Situação',
                 'joined_at' => 'Data de Registro',
                 'remove' => 'Remover',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => 'Situação',
                 'title' => 'Membros atuais',
             ],
 
@@ -111,6 +117,10 @@ return [
                 'status_0' => 'Inativo',
                 'status_1' => 'Ativo',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 

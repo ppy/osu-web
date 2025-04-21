@@ -34,6 +34,11 @@ return [
         'title' => 'Raportezi scorul lui :username?',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'Raportează',
         'title' => 'Raportează :username?',

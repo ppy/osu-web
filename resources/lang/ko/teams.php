@@ -94,16 +94,22 @@ return [
             'title' => '멤버 관리',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => '요청 일시',
                 'empty' => '현재 가입 요청이 없습니다.',
                 'empty_slots' => '빈 슬롯',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => '가입 요청',
-                'created_at' => '요청 일시',
             ],
 
             'table' => [
-                'status' => '상태',
                 'joined_at' => '가입일자',
                 'remove' => '제거',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => '상태',
                 'title' => '현재 멤버',
             ],
 
@@ -111,6 +117,10 @@ return [
                 'status_0' => '비활성',
                 'status_1' => '활성',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 
@@ -137,14 +147,14 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => '소개',
             'info' => '정보',
             'members' => '멤버',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => '순위',
+            'leader' => '팀장',
         ],
     ],
 

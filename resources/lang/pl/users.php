@@ -162,12 +162,13 @@ return [
 
         'options' => [
             'cheating' => 'Oszukiwanie',
-            'multiple_accounts' => 'Korzystanie z wielu kont',
+            'inappropriate_chat' => '',
             'insults' => 'Obrażanie mnie lub innych',
-            'spam' => 'Spamowanie',
-            'unwanted_content' => 'Zamieszczanie nieodpowiednich treści',
+            'multiple_accounts' => 'Korzystanie z wielu kont',
             'nonsense' => 'Pisanie bez sensu',
             'other' => 'Inny (napisz poniżej)',
+            'spam' => 'Spamowanie',
+            'unwanted_content' => 'Zamieszczanie nieodpowiednich treści',
         ],
     ],
     'restricted_banner' => [
@@ -479,6 +480,10 @@ return [
             'global' => 'Pozycja w rankingu globalnym dla :mode',
             'global_simple' => 'Ranking globalny',
             'highest' => 'Najwyższa pozycja: :rank (osiągnięta :date)',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Celność',

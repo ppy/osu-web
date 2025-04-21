@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Kuraldışı oyun / Hile',
-            'multiple_accounts' => 'Birden fazla hesap kullanımı',
+            'inappropriate_chat' => '',
             'insults' => 'Bana / başkalarına hakaret',
-            'spam' => 'Spam yapmak',
-            'unwanted_content' => 'Uygunsuz içerik paylaşma',
+            'multiple_accounts' => 'Birden fazla hesap kullanımı',
             'nonsense' => 'Saçmalık',
             'other' => 'Diğer (aşağıda belirtin)',
+            'spam' => 'Spam yapmak',
+            'unwanted_content' => 'Uygunsuz içerik paylaşma',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => ':mode için Dünya sıralaması',
             'global_simple' => 'Küresel Sıralama',
             'highest' => ':date tarihinde en yüksek rank: :rank',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Vuruş İsabeti',

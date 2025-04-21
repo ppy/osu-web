@@ -140,6 +140,7 @@ return [
             'description' => 'คำอธิบาย',
             'genre' => 'ประเภท',
             'language' => 'ภาษา',
+            'mapper_tags' => '',
             'no_scores' => 'ข้อมูลกำลังถูกคำนวณ...',
             'nominators' => 'ผู้เสนอชื่อ',
             'nsfw' => 'เนื้อหาไม่เหมาะสม',
@@ -148,7 +149,7 @@ return [
             'source' => 'แหล่งที่มา',
             'storyboard' => 'บีทแมพนี้มี storyboard',
             'success-rate' => 'อัตราการผ่าน',
-            'tags' => 'แท็ก',
+            'user_tags' => '',
             'video' => 'บีทแมพนี้มีวิดีโอ',
         ],
 

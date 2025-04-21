@@ -117,7 +117,7 @@ return [
         'details' => [
             'order_number' => 'Ordine #',
             'payment_terms' => 'Termini di Pagamento',
-            'salesperson' => '',
+            'salesperson' => 'Addetto alle Vendite',
             'shipping_method' => 'Metodo di Spedizione',
             'shipping_terms' => 'Termini di Spedizione',
             'title' => 'Dettagli Ordine',

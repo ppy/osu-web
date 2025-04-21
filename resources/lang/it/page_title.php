@@ -118,7 +118,7 @@ return [
             '_' => 'tornei',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'copertine predefinite dall\'utente',
         ],
         'users_controller' => [
             '_' => 'dettagli giocatore',

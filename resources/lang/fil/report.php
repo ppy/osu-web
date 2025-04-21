@@ -34,6 +34,11 @@ return [
         'title' => 'Isumbong ang iskor ni :username?',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'Isumbong',
         'title' => 'Isumbong si :username?',

@@ -20,7 +20,7 @@ return [
         'channel' => 'sohbet',
         'forum_topic' => 'forum',
         'news_post' => 'haberler',
-        'team' => '',
+        'team' => 'takım',
         'user' => 'profil',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'sohbet',
         'forum_topic' => 'forum',
         'news_post' => 'gelişmeler',
-        'team' => '',
+        'team' => 'takım',
         'user' => 'profil',
     ],
 
@@ -163,12 +163,12 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Takım katılım isteği',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "Artık :title takımının bir üyesisin",
+                'team_application_accept_compact' => "Artık :title takımının bir üyesisin",
+                'team_application_reject' => ':title takıma giriş isteğin reddedildi',
+                'team_application_reject_compact' => ':title takıma giriş isteğiniz reddedildi',
             ],
         ],
 
@@ -258,8 +258,8 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "Artık :title takımının bir üyesisin",
+                'team_application_reject' => ':title takımına giriş isteğiniz reddedildi',
             ],
         ],
 

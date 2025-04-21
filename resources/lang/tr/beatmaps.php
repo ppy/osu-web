@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid_ruleset' => '',
+    'invalid_ruleset' => 'Geçersiz kural seti belirtildi.',
 
     'change_owner' => [
-        'too_many' => '',
+        'too_many' => 'Çok fazla misafir mapper var.',
     ],
 
     'discussion-votes' => [

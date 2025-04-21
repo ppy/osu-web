@@ -140,6 +140,7 @@ return [
             'description' => 'Açıklama',
             'genre' => 'Tür',
             'language' => 'Dil',
+            'mapper_tags' => '',
             'no_scores' => 'Veriler hala hesaplanıyor...',
             'nominators' => 'Nominator\'ler',
             'nsfw' => 'Müstehcen içerik',
@@ -148,7 +149,7 @@ return [
             'source' => 'Kaynak',
             'storyboard' => 'Bu beatmap storyboard içeriyor',
             'success-rate' => 'Başarı Oranı',
-            'tags' => 'Etiketler',
+            'user_tags' => '',
             'video' => 'Bu beatmap video içeriyor',
         ],
 
@@ -171,7 +172,7 @@ return [
             'global' => 'Dünya Sıralaması',
             'supporter-link' => 'Aldığınız tüm süslü özellikleri görmek için buraya <a href=":link">tıklayın</a>!',
             'supporter-only' => 'Arkadaş ve ülke sıralamasına erişebilmek için osu!supporter olman gerekiyor!',
-            'team' => '',
+            'team' => 'Takım Sıralaması',
             'title' => 'Skor tahtası',
 
             'headers' => [
@@ -193,7 +194,7 @@ return [
                 'friend' => 'Hiçbir arkadaşın henüz bu mapte bir skora sahip değil!',
                 'global' => 'Henüz skor yok. Biraz skor yapmaya ne dersin?',
                 'loading' => 'Skorlar yükleniyor...',
-                'team' => '',
+                'team' => 'Takımınızdan hiç kimse henüz bu beatmapde bir skor elde etmedi!',
                 'unranked' => 'Derecelendirilmemiş beatmap.',
             ],
             'score' => [

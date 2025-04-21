@@ -31,7 +31,7 @@ return [
             'username' => 'Käyttäjänimi',
 
             'beatmapset_status' => [
-                '_' => 'Rytmikartan tila',
+                '_' => 'Beatmapin tila',
                 'all' => 'Kaikki',
                 'disqualified' => 'Hylätty',
                 'never_qualified' => 'Ei koskaan kelpuutettu',

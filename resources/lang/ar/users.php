@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'لعب مؤذي/ غش',
-            'multiple_accounts' => 'استخدام حسابات متعددة',
+            'inappropriate_chat' => '',
             'insults' => 'اهانتي / اهانة الاخرين',
-            'spam' => 'سبام',
-            'unwanted_content' => 'ربط عن محتوى غير لائق',
+            'multiple_accounts' => 'استخدام حسابات متعددة',
             'nonsense' => 'هُراء',
             'other' => 'أخرى (اكتب أدناه)',
+            'spam' => 'سبام',
+            'unwanted_content' => 'ربط عن محتوى غير لائق',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'الترتيب العالمي لـ :mode',
             'global_simple' => 'الترتيب العالمي',
             'highest' => 'أعلى ترتيب: :rank في :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'دقة التصويب',

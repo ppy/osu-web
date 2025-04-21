@@ -190,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Reitinguoti beatmap\'ai negali būti pranešti',
         'not_in_channel' => 'Jūs neesate šiame kanale.',
+        'in_team' => '',
         'reason_not_valid' => ':reason negalioja šiam pranešimo tipui.',
         'self' => "Negalite pranešti savęs!",
     ],

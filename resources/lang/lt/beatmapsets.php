@@ -140,6 +140,7 @@ return [
             'description' => 'Aprašymas',
             'genre' => 'Žanras',
             'language' => 'Kalba',
+            'mapper_tags' => '',
             'no_scores' => 'Duomenys dar apskaičiuojami...',
             'nominators' => 'Nominatoriai',
             'nsfw' => 'Eksplicitinis turinys',
@@ -148,7 +149,7 @@ return [
             'source' => 'Šaltinis',
             'storyboard' => 'Šis beatmap\'as turi foninę animaciją',
             'success-rate' => 'Įveikimų Rodiklis',
-            'tags' => 'Žymos',
+            'user_tags' => '',
             'video' => 'Šis beatmap\'as turi vaizdo įrašą',
         ],
 

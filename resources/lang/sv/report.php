@@ -34,6 +34,11 @@ return [
         'title' => 'Anmäl resultat från :username?',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'Anmäl',
         'title' => 'Anmäl :username?',

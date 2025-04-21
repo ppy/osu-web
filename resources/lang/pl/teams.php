@@ -6,13 +6,13 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Dodano użytkownika do drużyny.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Anulowano prośbę o dołączenie.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Odrzucono prośbę o dołączenie.',
         ],
         'store' => [
             'ok' => 'Przesłano prośbę o dołączenie do zespołu.',
@@ -20,22 +20,22 @@ return [
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'Stwórz Drużynę',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => 'Nazwa twojej drużyny. Jest ona stała na tę chwilę.',
+            'short_name_help' => 'Maksymalnie 4 znaki.',
+            'title' => "Stwórzmy nową drużynę",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "Graj razem z przyjaciółmi; obecnymi lub nowymi. Nie jesteś aktualnie w drużynie. Dołącz do istniejącej drużyny, odwiedzając jej stronę lub stwórz swoją własną tutaj.",
+            'title' => 'Drużyna!',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Usunięto drużynę.',
     ],
 
     'edit' => [
@@ -94,16 +94,22 @@ return [
             'title' => 'Zarządzaj członkami zespołu',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => 'Data przesłania',
                 'empty' => 'Brak próśb o dołączenie do zespołu.',
                 'empty_slots' => 'Dostępnych miejsc',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => 'Prośby o dołączenie',
-                'created_at' => 'Data przesłania',
             ],
 
             'table' => [
-                'status' => 'Status',
                 'joined_at' => 'Data dołączenia',
                 'remove' => 'Usuń',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => 'Status',
                 'title' => 'Aktualni członkowie',
             ],
 
@@ -112,10 +118,14 @@ return [
                 'status_1' => 'Aktywny',
             ],
         ],
+
+        'set_leader' => [
+            'success' => '',
+        ],
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Opuścił drużynę ;_;',
     ],
 
     'show' => [
@@ -137,14 +147,14 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => 'O nas',
             'info' => 'Informacje',
             'members' => 'Członkowie',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => 'Pozycja w rankingu',
+            'leader' => 'Lider zespołu',
         ],
     ],
 

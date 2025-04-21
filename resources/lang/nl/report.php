@@ -34,6 +34,11 @@ return [
         'title' => 'Rapporteer :username\'s score?',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'Rapporteer',
         'title' => 'Rapporteer :username?',

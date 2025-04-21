@@ -45,7 +45,7 @@ return [
             'before_registration' => 'Pendaftaran kejohanan ini belum dibuka.',
             'ended' => 'Kejohanan telah tamat. Semak halaman maklumat untuk keputusan.',
             'registration_closed' => 'Pendaftaran kejohanan ini telah tutup. Semak halaman maklumat untuk pengemaskinian terkini.',
-            'running' => 'Kejohanan kini sedang berjalan. Semak halaman maklumat untuk butiran lanjut.',
+            'running' => 'Kejohanan kini berjalan. Semak halaman maklumat untuk butiran lanjut.',
         ],
     ],
     'tournament_period' => ':start hingga :end',

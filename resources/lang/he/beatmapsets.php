@@ -140,6 +140,7 @@ return [
             'description' => 'תיאור',
             'genre' => 'ז\'אנר',
             'language' => 'שפה',
+            'mapper_tags' => '',
             'no_scores' => 'נתונים עדיין מחושבים...',
             'nominators' => '',
             'nsfw' => '',
@@ -148,7 +149,7 @@ return [
             'source' => 'מקור',
             'storyboard' => '',
             'success-rate' => 'אחוז הצלחה',
-            'tags' => 'תגים',
+            'user_tags' => '',
             'video' => '',
         ],
 

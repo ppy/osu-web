@@ -20,7 +20,7 @@ return [
         'channel' => 'csevegés',
         'forum_topic' => 'fórum',
         'news_post' => 'újdonságok',
-        'team' => '',
+        'team' => 'csapat',
         'user' => 'profil',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'csevegés',
         'forum_topic' => 'fórum',
         'news_post' => 'újdonságok',
-        'team' => '',
+        'team' => 'csapat',
         'user' => 'profil',
     ],
 
@@ -166,10 +166,10 @@ return [
             'team_application' => [
                 '_' => '',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "Mostantól a :title csapat tagja vagy",
+                'team_application_accept_compact' => "Mostantól a :title csapat tagja vagy",
+                'team_application_reject' => 'A :title csapatba való jelentkezésedet elutasították',
+                'team_application_reject_compact' => 'A :title csapatba való jelentkezésedet elutasították',
             ],
         ],
 
@@ -259,8 +259,8 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "Mostantól a :title csapat tagja vagy",
+                'team_application_reject' => 'A :title csapatba való jelentkezésedet elutasították',
             ],
         ],
 

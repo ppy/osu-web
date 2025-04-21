@@ -59,7 +59,7 @@ return [
 
     'gallery' => [
         'close' => 'Tutup (Keluar)',
-        'fullscreen' => 'Togol skrin penuh',
+        'fullscreen' => 'Togol layar penuh',
         'zoom' => 'Luru ke dalam/luar',
         'previous' => 'Undur (anak panah kiri)',
         'next' => 'Maju (anak panah kanan)',
@@ -178,7 +178,7 @@ return [
             'username' => 'nama pengguna',
 
             'error' => [
-                'email' => "Nama pengguna atau alamat e-mel tidak wujud",
+                'email' => "Nama pengguna atau alamat e-mel tidak ada",
                 'password' => 'Kata laluan tidak betul',
             ],
         ],
@@ -193,7 +193,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Tetapan',
-            'follows' => 'Senarai Amatan',
+            'follows' => 'Senarai Ikutan',
             'friends' => 'Kawan',
             'legacy_score_only_toggle' => 'Mod lazer',
             'legacy_score_only_toggle_tooltip' => 'Mod lazer menunjukkan markah yang dicapai dari lazer dengan algoritma baharu',

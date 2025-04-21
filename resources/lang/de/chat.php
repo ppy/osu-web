@@ -4,9 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'loading_users' => 'lade User...',
+    'loading_users' => 'User laden...',
     'talking_in' => 'in :channel reden',
-    'talking_with' => 'im Gespräch mit :name',
+    'talking_with' => 'Chat mit :name',
     'title_compact' => 'Chat',
     'unread_messages' => 'ungelesene Nachrichten',
 
@@ -18,8 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Möchtest du diesen Channel ausblenden? Du erhältst weiterhin Nachrichten aus diesem Channel.',
         'create' => 'Ankündigung erstellen',
-        'join' => 'Kanal beitreten',
-        'none' => 'Kein Kanal',
+        'join' => 'Channel beitreten',
+        'none' => 'Keine Channel',
 
         'list' => [
             'title' => [
@@ -65,6 +65,6 @@ return [
     ],
 
     'join_channels' => [
-        'loading' => 'Kanäle werden geladen...',
+        'loading' => 'Channel werden geladen...',
     ],
 ];

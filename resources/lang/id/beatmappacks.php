@@ -34,7 +34,7 @@ return [
         'chart' => 'Spotlights',
         'featured' => 'Featured Artist',
         'loved' => 'Project Loved',
-        'standard' => 'Standar',
+        'standard' => 'Reguler',
         'theme' => 'Tematik',
         'tournament' => 'Turnamen',
     ],

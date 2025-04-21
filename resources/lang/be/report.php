@@ -34,6 +34,11 @@ return [
         'title' => 'Паскардзіцца на скор :username?',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'Паскардзіцца',
         'title' => 'Паскардзіцца на :username?',

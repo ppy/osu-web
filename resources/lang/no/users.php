@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Juksing',
-            'multiple_accounts' => 'Bruker flere kontoer',
+            'inappropriate_chat' => '',
             'insults' => 'Fornærmer meg / andre',
-            'spam' => 'Spamming',
-            'unwanted_content' => 'Deling av upassende innhold',
+            'multiple_accounts' => 'Bruker flere kontoer',
             'nonsense' => 'Tull',
             'other' => 'Annet (skriv under)',
+            'spam' => 'Spamming',
+            'unwanted_content' => 'Deling av upassende innhold',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Global rangering for :mode',
             'global_simple' => 'Global Rangering',
             'highest' => 'Høyeste rangering: :rank den :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Presisjon',
