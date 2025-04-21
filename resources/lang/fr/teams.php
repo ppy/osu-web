@@ -94,16 +94,22 @@ return [
             'title' => 'Gestion des membres',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => 'Date',
                 'empty' => 'Aucune candidature pour le moment.',
                 'empty_slots' => 'Places disponibles ',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => 'Candidatures',
-                'created_at' => 'Date',
             ],
 
             'table' => [
-                'status' => 'Statut',
                 'joined_at' => 'Date d\'adhésion',
                 'remove' => 'Exclure',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => 'Statut',
                 'title' => 'Liste des membres',
             ],
 
@@ -111,6 +117,10 @@ return [
                 'status_0' => 'Inactif',
                 'status_1' => 'Actif',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 
@@ -137,14 +147,14 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => 'À propos de nous !',
             'info' => 'Infos',
             'members' => 'Membres',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => 'Classement',
+            'leader' => 'Chef d\'équipe',
         ],
     ],
 

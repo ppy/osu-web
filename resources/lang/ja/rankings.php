@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => '難易度',
-        'top_10p' => '',
-        'top_50p' => '',
+        'top_10p' => '上位10%スコア',
+        'top_50p' => '上位50%スコア',
     ],
 
     'filter' => [
@@ -30,28 +30,27 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'このユーザーの最近のランキング履歴は30日未満です。',
     ],
 
     'type' => [
         'charts' => 'スポットライト',
         'country' => '国別',
         'daily_challenge' => 'デイリーチャレンジ',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'マルチプレイ',
-        'performance' => 'パフォーマンス',
-        'score' => 'スコア',
-        'seasons' => '',
-        'team' => '',
+        'seasons' => 'シーズン',
+        'team' => 'チーム',
     ],
 
     'seasons' => [
-        'empty' => '',
-        'ongoing' => '',
+        'empty' => '今シーズンはまだルームがありません。',
+        'ongoing' => '今シーズンはまだ継続中です（プレイリストはさらに追加される予定）。',
         'room_count' => 'プレイリスト数',
-        'url' => '',
+        'url' => 'そのシーズンに関する詳細情報を表示する。',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => '適切に計算するためのスコア要素が不足しています',
         ],
     ],
 
@@ -66,8 +65,8 @@ return [
         'accuracy' => '精度',
         'active_users' => 'アクティブユーザー数',
         'country' => '所在国',
-        'division' => '',
-        'members' => '',
+        'division' => '階級',
+        'members' => 'メンバー',
         'play_count' => 'プレイ回数',
         'performance' => 'パフォーマンス',
         'total_score' => '合計スコア',

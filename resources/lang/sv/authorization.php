@@ -71,7 +71,7 @@ return [
         'friends_only' => 'Användaren blockerar meddelanden från personer som inte finns på sin vänlista.',
         'moderated' => 'Den kanalen är för närvarande modererad.',
         'no_access' => 'Du har ingen behörighet till denna kanalen.',
-        'no_announce' => '',
+        'no_announce' => 'Du har inte behörighet för att lägga upp meddelande.',
         'receive_friends_only' => 'Användaren kanske inte kan svara eftersom du bara accepterar meddelanden från personer på din vänlista.',
         'restricted' => 'Du kan inte skicka meddelanden medan du är tystad, begränsad eller bannad.',
         'silenced' => 'Du kan inte skicka meddelanden medan du är tystad, begränsad eller bannad.',
@@ -178,7 +178,7 @@ return [
 
     'room' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'Bara rum ägare kan stänga det.',
         ],
     ],
 
@@ -194,19 +194,19 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
-                'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'already_member' => "Du är redan med i laget.",
+                'already_other_member' => "Du är redan med i ett annat lag.",
+                'currently_applying' => 'Du har en väntande lag inbjudan.',
+                'team_closed' => 'Laget accepterar inte några anslutningsbegäranden just nu.',
+                'team_full' => "Laget är fullt och kan inte acceptera flera medlemmar.",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "Lagledare kan inte lämna laget.",
+            'not_member' => 'Inte en medlem i laget.',
         ],
         'store' => [
-            'require_supporter_tag' => '',
+            'require_supporter_tag' => 'osu!supporter tag krävs för att skapa ett lag.',
         ],
     ],
 

@@ -190,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => '',
         'not_in_channel' => '',
+        'in_team' => '',
         'reason_not_valid' => '',
         'self' => "",
     ],

@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Melakukan kecurangan',
-            'multiple_accounts' => 'Menggunakan lebih dari satu akun',
+            'inappropriate_chat' => '',
             'insults' => 'Menghina saya / orang lain',
-            'spam' => 'Spam',
-            'unwanted_content' => 'Menautkan konten yang tidak pantas',
+            'multiple_accounts' => 'Menggunakan lebih dari satu akun',
             'nonsense' => 'Beromong kosong',
             'other' => 'Lainnya (ketik di bawah)',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Menautkan konten yang tidak pantas',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Peringkat global untuk :mode',
             'global_simple' => 'Peringkat Global',
             'highest' => 'Peringkat tertinggi: :rank pada :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Akurasi Hit',

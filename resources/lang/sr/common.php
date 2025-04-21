@@ -22,7 +22,7 @@ return [
         'admin' => 'Aдмин',
         'authorise' => 'Ауторизуј',
         'authorising' => 'Ауторизује се...',
-        'back' => '',
+        'back' => 'Назад',
         'back_to_previous' => 'Повратак на претходни приказ',
         'back_to_top' => 'Назад на врх',
         'cancel' => 'Откажите',

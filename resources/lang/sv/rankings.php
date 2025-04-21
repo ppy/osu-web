@@ -10,7 +10,7 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
+        'beatmap' => 'Svårighetsgrad',
         'top_10p' => 'Topp 10% resultat',
         'top_50p' => 'Topp 50% resultat',
     ],
@@ -37,12 +37,11 @@ return [
         'charts' => 'i rampljuset',
         'country' => 'land',
         'daily_challenge' => 'daglig utmaning',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'flerspelarläge',
-        'performance' => 'prestation',
-        'score' => 'poäng',
         'seasons' => 'säsonger',
-        'team' => '',
+        'team' => 'lag',
     ],
 
     'seasons' => [

@@ -37,12 +37,11 @@ return [
         'charts' => 'spotlights (ancien)',
         'country' => 'pays',
         'daily_challenge' => 'défi du jour',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multijoueur',
-        'performance' => 'performance',
-        'score' => 'score',
         'seasons' => 'saisons',
-        'team' => '',
+        'team' => 'équipe',
     ],
 
     'seasons' => [
@@ -67,7 +66,7 @@ return [
         'active_users' => 'Utilisateurs actifs',
         'country' => 'Pays',
         'division' => 'Division',
-        'members' => '',
+        'members' => 'Membres',
         'play_count' => 'Nombres de parties',
         'performance' => 'Performance',
         'total_score' => 'Score total',

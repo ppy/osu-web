@@ -140,6 +140,7 @@ return [
             'description' => 'Apraksts',
             'genre' => 'Žanrs',
             'language' => 'Valoda',
+            'mapper_tags' => '',
             'no_scores' => 'Rezultāti joprojām tiek aprēķināti...',
             'nominators' => 'Nominētāji',
             'nsfw' => 'Nepiemērots saturs',
@@ -148,7 +149,7 @@ return [
             'source' => 'Avots',
             'storyboard' => 'Šī ritma-mape satur vizuālo saturu',
             'success-rate' => 'Izdošanās līmenis',
-            'tags' => 'Atzīme',
+            'user_tags' => '',
             'video' => 'Šī ritma-mape satur video',
         ],
 

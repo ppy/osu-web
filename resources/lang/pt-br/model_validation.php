@@ -190,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Beatmaps ranqueados não podem ser reportados',
         'not_in_channel' => 'Você não está nesse canal.',
+        'in_team' => '',
         'reason_not_valid' => ':reason não é valido para este tipo de denúncia.',
         'self' => "Você não pode se denunciar!",
     ],

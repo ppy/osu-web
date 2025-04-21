@@ -39,7 +39,7 @@ return [
     ],
 
     'forum_new_reply' => [
-        'new' => 'Et fem saber que hi ha ha noves respostes al mapa ":title" des de la teva última visita.',
+        'new' => 'Et fem saber que hi ha noves respostes a «:title» des de la teva última visita.',
         'subject' => '[osu!] Nova resposta al tema ":title"',
         'unwatch' => 'Si ja no vols seguir aquest tema, pot clicar l\'enllaç "Deixa de seguir el tema" al final del tema de sobre, o bé des de la pàgina de gestió de suscripcions a temes:',
         'visit' => 'Ves a l\'última resposta seguint aquest enllaç:',

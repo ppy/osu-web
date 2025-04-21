@@ -10,9 +10,9 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'top_10p' => '',
-        'top_50p' => '',
+        'beatmap' => 'Тежина',
+        'top_10p' => 'Топ 10% Резултати',
+        'top_50p' => 'Топ 50% Резултати',
     ],
 
     'filter' => [
@@ -30,19 +30,18 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Овај корисник има мање од 30 дана недавне историје рангирања.',
     ],
 
     'type' => [
         'charts' => 'колекције',
         'country' => 'држава',
-        'daily_challenge' => '',
+        'daily_challenge' => 'дневни изазов',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'мултиплејер',
-        'performance' => 'перформансе',
-        'score' => 'резултат',
         'seasons' => 'сезоне',
-        'team' => '',
+        'team' => 'тим',
     ],
 
     'seasons' => [
@@ -51,12 +50,12 @@ return [
         'room_count' => 'Број плејлиста',
         'url' => 'Прикажи више информација о тој сезони.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'нема довољно резултатних фактора за правилно израчунавање',
         ],
     ],
 
     'spotlight' => [
-        'end_date' => 'Завршни датум',
+        'end_date' => 'Завршни Датум',
         'map_count' => 'Број Мапа',
         'participants' => 'Учесници',
         'start_date' => 'Почетни Датум',
@@ -66,8 +65,8 @@ return [
         'accuracy' => 'Прецизност',
         'active_users' => 'Активни Корисници',
         'country' => 'Држава',
-        'division' => '',
-        'members' => '',
+        'division' => 'Дивизија',
+        'members' => 'Чланови',
         'play_count' => 'Број играња',
         'performance' => 'Перформансе',
         'total_score' => 'Укупан резултат',

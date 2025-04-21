@@ -202,7 +202,7 @@ return [
             ],
         ],
         'part' => [
-            'is_leader' => "",
+            'is_leader' => "ראש הקבוצה אינו יכול לעזוב את הקבוצה",
             'not_member' => '',
         ],
         'store' => [
@@ -219,7 +219,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => 'כתבות האימייל נעולה',
         ],
     ],
 ];

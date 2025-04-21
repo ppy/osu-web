@@ -37,12 +37,11 @@ return [
         'charts' => '스포트라이트',
         'country' => '국가별',
         'daily_challenge' => '데일리 챌린지',
+        'global' => '',
         'kudosu' => 'Kudosu',
         'multiplayer' => '멀티플레이어',
-        'performance' => '퍼포먼스',
-        'score' => '점수',
         'seasons' => '시즌',
-        'team' => '',
+        'team' => '팀',
     ],
 
     'seasons' => [
@@ -67,7 +66,7 @@ return [
         'active_users' => '유저 수',
         'country' => '국가',
         'division' => '티어',
-        'members' => '',
+        'members' => '멤버',
         'play_count' => '플레이 횟수',
         'performance' => '퍼포먼스 점수',
         'total_score' => '총 점수',

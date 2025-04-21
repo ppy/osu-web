@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Нечестна игра / Измама',
-            'multiple_accounts' => 'Използва няколко профила',
+            'inappropriate_chat' => '',
             'insults' => 'Обижда мен / друг',
-            'spam' => 'Спам',
-            'unwanted_content' => 'Изпраща неприлично съдържание',
+            'multiple_accounts' => 'Използва няколко профила',
             'nonsense' => 'Безсмислици',
             'other' => 'Друго (посочете по-долу)',
+            'spam' => 'Спам',
+            'unwanted_content' => 'Изпраща неприлично съдържание',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Световна класация за :mode',
             'global_simple' => 'Глобално класиране',
             'highest' => 'Най-висок ранг: :rank на :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Прецизност на ударите',

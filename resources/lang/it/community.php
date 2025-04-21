@@ -61,7 +61,7 @@ return [
 
             'mod_filtering' => [
                 'title' => 'Filtra per mod',
-                'description' => 'Vuoi associare solo persone che giocano HDHR? Nessun problema!',
+                'description' => 'Cerchi solo chi gioca HDHR? Nessun problema!',
             ],
 
             'auto_downloads' => [

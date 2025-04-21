@@ -27,6 +27,6 @@ return [
         'non_best' => 'Hanya markah terbaik peribadi memberi pp',
         'no_pp' => 'pp tidak diberi untuk markah ini',
         'processing' => 'Markah ini masih dikira dan akan dipaparkan sebentar lagi',
-        'no_rank' => 'Markah ini tiada kedudukan kerana tanpa peringkat atau ditanda untuk pemadaman',
+        'no_rank' => 'Markah ini tiada kedudukan kerana tanpa kedudukan atau ditanda untuk pemadaman',
     ],
 ];

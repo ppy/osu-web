@@ -4,16 +4,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    '_' => 'Отсортировать по',
+    '_' => 'Сортировать по',
 
     'all' => 'Всех',
     'friends' => 'Друзей',
-    'last_visit' => 'Недавно активным',
+    'last_visit' => 'Последней активности',
     'new' => 'Последним',
     'old' => 'Старым',
     'rank' => 'Рейтингу',
     'top' => 'Популярным',
-    'username' => 'Имени пользователя',
+    'username' => 'Никнейму',
 
     'artist_tracks' => [
         'album' => 'Альбому',

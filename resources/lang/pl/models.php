@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'not_found' => "",
+    'not_found' => "Nie można odnaleźć określonego :model.",
 
     'name' => [
         'App\Models\Beatmap' => 'trudność beatmapy',

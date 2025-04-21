@@ -141,6 +141,7 @@ return [
             'description' => 'Опис',
             'genre' => 'Жанр',
             'language' => 'Језик',
+            'mapper_tags' => '',
             'no_scores' => 'Подаци се још израчунавају...',
             'nominators' => 'Номинатори',
             'nsfw' => 'Експлицитни садржај',
@@ -149,7 +150,7 @@ return [
             'source' => 'Извор',
             'storyboard' => 'Ова мапа садржи storyboard',
             'success-rate' => 'Стопа Успеха',
-            'tags' => 'Ознаке',
+            'user_tags' => '',
             'video' => 'Ова мапа садржи видео',
         ],
 

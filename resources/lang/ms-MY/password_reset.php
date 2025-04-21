@@ -17,7 +17,7 @@ return [
         'is_privileged' => 'Sila hubungi pentadbir bertahap tinggi untuk memulihkan akaun.',
         'missing_key' => 'Diperlukan.',
         'too_many_tries' => 'Terlalu banyak percubaan yang gagal.',
-        'user_not_found' => 'Pengguna yang diminta tidak wujud.',
+        'user_not_found' => 'Pengguna yang diminta tidak ada.',
         'wrong_key' => 'Kod salah.',
     ],
 

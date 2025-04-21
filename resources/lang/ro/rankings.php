@@ -37,12 +37,11 @@ return [
         'charts' => 'promovări',
         'country' => 'național',
         'daily_challenge' => 'provocare zilnică',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
-        'performance' => 'performanță',
-        'score' => 'scor',
         'seasons' => 'sezoane',
-        'team' => '',
+        'team' => 'echipă',
     ],
 
     'seasons' => [
@@ -67,7 +66,7 @@ return [
         'active_users' => 'Utilizatori activi',
         'country' => 'Țară',
         'division' => 'Divizie',
-        'members' => '',
+        'members' => 'Membri',
         'play_count' => 'Număr de Încercări',
         'performance' => 'Performanță',
         'total_score' => 'Scor total',

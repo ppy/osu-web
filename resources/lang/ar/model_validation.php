@@ -190,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'الخرائط الـ Ranked لا يمكن الإبلاغ عنها',
         'not_in_channel' => 'أنت لست في هذه القناة.',
+        'in_team' => '',
         'reason_not_valid' => ':reason ليس مقبولا لنوع الأبلاغ هذا.',
         'self' => "لا يمكنك الإبلاغ عن نفسك!",
     ],

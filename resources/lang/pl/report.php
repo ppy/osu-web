@@ -34,6 +34,11 @@ return [
         'title' => 'Zgłosić wynik gracza :username?',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'Zgłoś',
         'title' => 'Zgłosić użytkownika :username?',

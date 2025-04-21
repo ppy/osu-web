@@ -206,7 +206,7 @@ return [
             'not_member' => 'Không phải thành viên của một đội.',
         ],
         'store' => [
-            'require_supporter_tag' => '',
+            'require_supporter_tag' => 'cần tag osu!supporter để tạo đội.',
         ],
     ],
 

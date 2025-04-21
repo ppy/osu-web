@@ -23,19 +23,19 @@ return [
         'submit' => 'Tạo đội',
 
         'form' => [
-            'name_help' => '',
+            'name_help' => 'Tên đội của bạn. Tên đội sẽ trở nên vĩnh viễn ở thời điểm hiện tại.',
             'short_name_help' => 'Tối đa 4 kí tự.',
             'title' => "Hãy thành lập một đội mới nào",
         ],
 
         'intro' => [
-            'description' => "",
+            'description' => "Chơi cùng với bạn; bạn cũ hay mới. Bạn đang không có đội. Truy cập vào trang của một nhóm bất kỳ để tham gia nhóm ấy hoặc tự tạo nhóm của mình từ trang này.",
             'title' => 'Đội!',
         ],
     ],
 
     'destroy' => [
-        'ok' => 'Nhóm đã bị xóa',
+        'ok' => 'Nhóm đã bị xóa.',
     ],
 
     'edit' => [
@@ -94,16 +94,22 @@ return [
             'title' => 'Quản lý thành viên',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => 'Yêu cầu vào lúc',
                 'empty' => 'Hiện nay không có yêu cầu gia nhập.',
                 'empty_slots' => 'Số chỗ còn trống',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => 'Yêu cầu gia nhập',
-                'created_at' => 'Yêu cầu vào lúc',
             ],
 
             'table' => [
-                'status' => 'Trạng thái',
                 'joined_at' => 'Ngày tham gia',
                 'remove' => 'Loại',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => 'Trạng thái',
                 'title' => 'Thành viên hiện tại',
             ],
 
@@ -111,6 +117,10 @@ return [
                 'status_0' => 'Không hoạt động',
                 'status_1' => 'Hoạt động',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 
@@ -137,14 +147,14 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => 'Về chúng tôi!',
             'info' => 'Thông tin',
             'members' => 'Thành viên',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => 'Hạng',
+            'leader' => 'Trưởng đội',
         ],
     ],
 

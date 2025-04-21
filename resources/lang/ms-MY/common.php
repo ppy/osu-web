@@ -62,8 +62,8 @@ return [
         'upload_image' => 'muat naik gambar',
 
         'watch' => [
-            'to_0' => 'Tarik amatan',
-            'to_1' => 'Amati',
+            'to_0' => 'Nyahikut',
+            'to_1' => 'Ikut',
         ],
     ],
 

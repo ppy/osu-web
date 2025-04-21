@@ -165,10 +165,10 @@ return [
             'team_application' => [
                 '_' => '',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "คุณได้เป็นสมาชิกของทีม :title แล้ว",
+                'team_application_accept_compact' => "คุณได้เป็นสมาชิกของทีม :title แล้ว",
+                'team_application_reject' => 'คำของร้องเข้าร่วมทีม :title ของคุณถูกปฏิเสธ',
+                'team_application_reject_compact' => 'คำของร้องเข้าร่วมทีม :title ของคุณถูกปฏิเสธ',
             ],
         ],
 
@@ -258,8 +258,8 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "คุณได้เป็นสมาชิกของทีม :title แล้ว",
+                'team_application_reject' => 'คำของร้องเข้าร่วมทีม :title ของคุณถูกปฏิเสธ',
             ],
         ],
 

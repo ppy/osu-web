@@ -23,7 +23,7 @@ return [
         'button' => 'Hledat',
         'empty_result' => 'Nebylo nic nenalezeno!',
         'keyword_required' => 'Je vyžadováno hledané slovo',
-        'placeholder' => 'zadejte hledaný výraz',
+        'placeholder' => 'zadej hledaný výraz',
         'title' => 'hledat',
 
         'beatmapset' => [

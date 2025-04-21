@@ -51,7 +51,7 @@ return [
 
         'mode' => [
             'all' => 'tots',
-            'beatmapset' => 'mapa',
+            'beatmapset' => 'beatmap',
             'forum_post' => 'fòrum',
             'user' => 'jugador',
             'wiki_page' => 'wiki',

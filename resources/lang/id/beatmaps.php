@@ -38,7 +38,7 @@ return [
         'restore' => 'pulihkan',
         'show_deleted' => 'Tampilkan yang telah dihapus',
         'title' => 'Diskusi',
-        'unresolved_count' => ':count_delimited isu yang terbuka',
+        'unresolved_count' => ':count_delimited masalah yang belum terjawab|:count_delimited masalah yang belum terjawab',
 
         'collapse' => [
             'all-collapse' => 'Ciutkan semua',
@@ -236,7 +236,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Apakah kamu yakin? Tindakan ini akan melepas beatmap ini dari kategori Qualified dan mengulang proses nominasi dari awal.',
             'nomination_reset' => 'Apakah kamu yakin? Memposting masalah baru akan mengulang proses nominasi.',
-            'problem_warning' => 'Apakah kamu yakin untuk melaporkan masalah yang terdapat pada beatmap ini? Tindakan ini akan memperingatkan seluruh anggota Beatmap Nominator.',
+            'problem_warning' => 'Apakah kamu yakin untuk melaporkan masalah pada beatmap ini? Tindakan ini akan memperingatkan seluruh anggota Beatmap Nominator.',
         ],
     ],
 
@@ -301,7 +301,7 @@ return [
         'leaderboard' => 'Memiliki Leaderboard',
         'loved' => 'Loved',
         'mine' => 'Map Saya',
-        'pending' => 'Pending & WIP',
+        'pending' => 'Pending',
         'wip' => 'WIP',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',

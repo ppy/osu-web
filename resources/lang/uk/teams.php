@@ -94,16 +94,22 @@ return [
             'title' => 'Керувати учасниками',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => 'Запитано',
                 'empty' => 'Наразі немає запитів на вступ.',
                 'empty_slots' => 'Доступні слоти',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => 'Запити на вступ',
-                'created_at' => 'Запитано',
             ],
 
             'table' => [
-                'status' => 'Статус',
                 'joined_at' => 'Дата приєднання',
                 'remove' => 'Видалити',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => 'Статус',
                 'title' => 'Наявні учасники',
             ],
 
@@ -111,6 +117,10 @@ return [
                 'status_0' => 'Неактивний',
                 'status_1' => 'Активний',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 
@@ -137,14 +147,14 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => 'Про нас!',
             'info' => 'Інформація',
             'members' => 'Учасники',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => 'Ранг',
+            'leader' => 'Лідер команди',
         ],
     ],
 

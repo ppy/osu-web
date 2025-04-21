@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => '作弊',
-            'multiple_accounts' => '使用多账号（开小号）',
+            'inappropriate_chat' => '',
             'insults' => '侮辱 我/其他人',
-            'spam' => '刷屏/垃圾广告',
-            'unwanted_content' => '发布包含不当内容的链接',
+            'multiple_accounts' => '使用多账号（开小号）',
             'nonsense' => '无意义内容',
             'other' => '其他（在下方输入原因）',
+            'spam' => '刷屏/垃圾广告',
+            'unwanted_content' => '发布包含不当内容的链接',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => ':mode 模式的全球排名',
             'global_simple' => '全球排名',
             'highest' => ':date 达成生涯最高排名 :rank',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => '准确率',

@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => '違規 / 作弊',
-            'multiple_accounts' => '使用多個帳號',
+            'inappropriate_chat' => '',
             'insults' => '侮辱我 / 其他人',
-            'spam' => '垃圾訊息',
-            'unwanted_content' => '連結不適當的內容',
+            'multiple_accounts' => '使用多個帳號',
             'nonsense' => '無意義內容',
             'other' => '其他（在下方輸入原因）',
+            'spam' => '垃圾訊息',
+            'unwanted_content' => '連結不適當的內容',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => ':mode 模式的全球排名',
             'global_simple' => '全球排名',
             'highest' => '最高排名:rank於:date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => '準確率',

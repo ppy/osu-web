@@ -118,7 +118,7 @@ return [
             '_' => 'torneos',
         ],
         'user_cover_presets_controller' => [
-            '_' => 'portadas preestablecidas para el usuario',
+            '_' => 'portadas preestablecidas',
         ],
         'users_controller' => [
             '_' => 'información del jugador',

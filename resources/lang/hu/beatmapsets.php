@@ -140,6 +140,7 @@ return [
             'description' => 'Leírás',
             'genre' => 'Műfaj',
             'language' => 'Nyelv',
+            'mapper_tags' => '',
             'no_scores' => 'Az adatok még számítás alatt...',
             'nominators' => 'Nominálók',
             'nsfw' => 'Felnőtt tartalom',
@@ -148,7 +149,7 @@ return [
             'source' => 'Forrás',
             'storyboard' => 'Ez a beatmap storyboard-ot tartalmaz',
             'success-rate' => 'Teljesítési arány',
-            'tags' => 'Címkék',
+            'user_tags' => '',
             'video' => 'Ez a beatmap videót tartalmaz',
         ],
 

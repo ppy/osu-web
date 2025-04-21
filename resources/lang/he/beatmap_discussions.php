@@ -63,13 +63,13 @@ return [
         'button' => '',
         'reset_confirm' => '',
         'user' => '',
-        'version' => '',
+        'version' => 'רמת קושי',
     ],
 
     'refresh' => [
         'checking' => '',
         'has_updates' => '',
-        'no_updates' => '',
+        'no_updates' => 'אין עדכונים',
         'updating' => '',
     ],
 

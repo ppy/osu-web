@@ -140,6 +140,7 @@ return [
             'description' => 'Beskrivelse',
             'genre' => 'Genre',
             'language' => 'Sprog',
+            'mapper_tags' => '',
             'no_scores' => 'Data er stadig ved at blive beregnet...',
             'nominators' => '',
             'nsfw' => 'Eksplicit indhold',
@@ -148,7 +149,7 @@ return [
             'source' => 'Kilde',
             'storyboard' => 'Dette beatmap indeholder storyboard',
             'success-rate' => 'Succesrate',
-            'tags' => 'Tags',
+            'user_tags' => '',
             'video' => 'Dette beatmap indeholder video',
         ],
 

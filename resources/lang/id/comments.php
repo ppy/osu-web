@@ -20,7 +20,7 @@ return [
         'beatmapset' => 'Beatmap',
         'build' => 'Riwayat Perubahan',
         'news_post' => 'Berita',
-        '_deleted' => 'Item yang dihapus',
+        '_deleted' => 'Item yang Dihapus',
     ],
 
     'editor' => [

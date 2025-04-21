@@ -41,6 +41,6 @@ return [
 
     'require_login' => [
         '_' => 'Anda perlu :link untuk muat turun',
-        'link_text' => 'telah daftar masuk',
+        'link_text' => 'didaftar masuk',
     ],
 ];

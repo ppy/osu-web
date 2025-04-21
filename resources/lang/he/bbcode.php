@@ -6,7 +6,7 @@
 return [
     'bold' => 'מודגש',
     'heading' => 'כותרת',
-    'help' => '',
+    'help' => 'עזרה',
     'image' => 'תמונה',
     'imagemap' => '',
     'italic' => 'נטוי',

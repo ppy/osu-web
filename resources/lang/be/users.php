@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Несумленная гульня / Чыты',
-            'multiple_accounts' => 'Выкарыстанне некалькіх акаўнтаў',
+            'inappropriate_chat' => '',
             'insults' => 'Абраза мяне / іншых',
-            'spam' => 'Спам',
-            'unwanted_content' => 'Неадпаведна звязанае змесціва',
+            'multiple_accounts' => 'Выкарыстанне некалькіх акаўнтаў',
             'nonsense' => 'Лухта',
             'other' => 'Іншы (пішыце ніжэй)',
+            'spam' => 'Спам',
+            'unwanted_content' => 'Неадпаведна звязанае змесціва',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Глабальны рэйтынг для :mode',
             'global_simple' => 'Глабальны рэйтынг',
             'highest' => 'Найвышэйшы ранг: :rank, :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Дакладнасць трапленняў',

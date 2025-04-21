@@ -34,6 +34,11 @@ return [
         'title' => 'Pranešti :username rezultatą?',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'Pranešti',
         'title' => 'Pranešti :username?',

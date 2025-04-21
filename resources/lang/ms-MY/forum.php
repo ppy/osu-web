@@ -186,7 +186,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'senarai amatan tajuk forum',
+            'title_compact' => 'senarai ikutan tajuk forum',
 
             'box' => [
                 'total' => 'Tajuk ikutan',

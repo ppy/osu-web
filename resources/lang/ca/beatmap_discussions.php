@@ -19,19 +19,19 @@ return [
     'index' => [
         'deleted_beatmap' => 'eliminat',
         'none_found' => 'No s\'ha trobat cap discussió que coincideixi amb aquests criteris de cerca.',
-        'title' => 'Discussions del mapa',
+        'title' => 'Discussions del beatmap',
 
         'form' => [
             '_' => 'Cerca',
             'deleted' => 'Incloure discussions eliminades',
-            'mode' => 'Mode del mapa',
+            'mode' => 'Mode del beatmap',
             'only_unresolved' => 'Mostra només discussions no resoltes',
             'show_review_embeds' => 'Mostra publicacions de revisió',
             'types' => 'Tipus de missatges',
             'username' => 'Nom d\'usuari',
 
             'beatmapset_status' => [
-                '_' => 'Estat del mapa',
+                '_' => 'Estat del beatmap',
                 'all' => 'Tots',
                 'disqualified' => 'Desqualificat',
                 'never_qualified' => 'Mai qualificat',

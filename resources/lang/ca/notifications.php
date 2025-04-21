@@ -20,7 +20,7 @@ return [
         'channel' => 'xat',
         'forum_topic' => 'fòrum',
         'news_post' => 'novetats',
-        'team' => '',
+        'team' => 'equip',
         'user' => 'perfil',
     ],
 
@@ -31,13 +31,13 @@ return [
         'channel' => 'xat',
         'forum_topic' => 'fòrum',
         'news_post' => 'novetats',
-        'team' => '',
+        'team' => 'equip',
         'user' => 'perfil',
     ],
 
     'item' => [
         'beatmapset' => [
-            '_' => 'Mapa',
+            '_' => 'Beatmap',
 
             'beatmap_owner_change' => [
                 '_' => 'Dificultat de convidat',
@@ -66,7 +66,7 @@ return [
             ],
 
             'beatmapset_problem' => [
-                '_' => 'Problema amb un mapa qualificat',
+                '_' => 'Problema amb un beatmap qualificat',
                 'beatmapset_discussion_qualified_problem' => 'Informe de :username sobre ":title": ":content"',
                 'beatmapset_discussion_qualified_problem_empty' => 'Informe de :username sobre ":title"',
                 'beatmapset_discussion_qualified_problem_compact' => 'Informe de :username: ":content"',
@@ -74,7 +74,7 @@ return [
             ],
 
             'beatmapset_state' => [
-                '_' => 'L\'estat del mapa ha canviat',
+                '_' => 'L\'estat del beatmap ha canviat',
                 'beatmapset_disqualify' => '":title" ha estat desqualificat',
                 'beatmapset_disqualify_compact' => 'El mapa ha estat desqualificat',
                 'beatmapset_love' => 's\'ha promogut ":title" a "amats"',
@@ -180,7 +180,7 @@ return [
                 'user_beatmapset_new_compact' => 'Nou mapa ":title"',
                 'user_beatmapset_new_group' => 'Nous mapes de :username',
 
-                'user_beatmapset_revive' => ':username ha restaurat el mapa ":title"',
+                'user_beatmapset_revive' => ':username ha restaurat el beatmap «:title»',
                 'user_beatmapset_revive_compact' => 'S\'ha restaurat el mapa ":title"',
             ],
         ],
