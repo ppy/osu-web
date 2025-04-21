@@ -16,8 +16,10 @@ use App\Libraries\UsernameValidation;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Team extends Model
+class Team extends Model implements Traits\ReportableInterface
 {
+    use Traits\Reportable;
+
     const FLAG_MAX_DIMENSIONS = [512, 256];
 
     const MAX_FIELD_LENGTHS = [
@@ -307,8 +309,26 @@ class Team extends Model
         return parent::save($options);
     }
 
+    public function trashed(): bool
+    {
+        return false;
+    }
+
+    public function url(): string
+    {
+        return route('teams.show', ['team' => $this->getKey()]);
+    }
+
     public function validationErrorsTranslationPrefix(): string
     {
         return 'team';
+    }
+
+    protected function newReportableExtraParams(): array
+    {
+        return [
+            'reason' => 'UnwantedContent',
+            'user_id' => $this->leader_id,
+        ];
     }
 }

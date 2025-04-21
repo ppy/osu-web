@@ -61,7 +61,7 @@ class UserStatisticsTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeCountryRank(UserStatistics\Model $stats = null)
+    public function includeCountryRank(?UserStatistics\Model $stats = null)
     {
         if ($stats !== null) {
             return $this->primitive($stats->countryRank());
@@ -69,7 +69,7 @@ class UserStatisticsTransformer extends TransformerAbstract
     }
 
     // TODO: remove this after country_rank is deployed
-    public function includeRank(UserStatistics\Model $stats = null)
+    public function includeRank(?UserStatistics\Model $stats = null)
     {
         if ($stats === null) {
             $stats = new UserStatistics\Osu();
@@ -83,7 +83,7 @@ class UserStatisticsTransformer extends TransformerAbstract
         return $this->primitive($stats->rankHistory?->rankChangeSince30Days());
     }
 
-    public function includeUser(UserStatistics\Model $stats = null)
+    public function includeUser(?UserStatistics\Model $stats = null)
     {
         if ($stats === null) {
             $stats = new UserStatistics\Osu();
@@ -92,7 +92,7 @@ class UserStatisticsTransformer extends TransformerAbstract
         return $this->item($stats->user, new UserCompactTransformer());
     }
 
-    public function includeVariants(UserStatistics\Model $stats = null)
+    public function includeVariants(?UserStatistics\Model $stats = null)
     {
         if ($stats === null) {
             return;

@@ -35,7 +35,7 @@ class RegenerateBeatmapsetCover implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Beatmapset $beatmapset, array $sizesToRegenerate = null)
+    public function __construct(Beatmapset $beatmapset, ?array $sizesToRegenerate = null)
     {
         $this->beatmapset = $beatmapset;
         $this->sizesToRegenerate = $sizesToRegenerate;
