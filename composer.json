@@ -13,7 +13,7 @@
     "ext-redis": "*",
     "chaseconey/laravel-datadog-helper": ">=1.2.0",
     "egulias/email-validator": "*",
-    "elasticsearch/elasticsearch": "^7.12.0",
+    "elasticsearch/elasticsearch": "^7.17.x-dev",
     "ezyang/htmlpurifier": "*",
     "firebase/php-jwt": "*",
     "graham-campbell/github": "*",
