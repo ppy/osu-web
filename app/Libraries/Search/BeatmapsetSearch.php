@@ -20,36 +20,6 @@ use Ds\Set;
 
 class BeatmapsetSearch extends RecordSearch
 {
-    const EXCLUDE_QUOTED_REGEX = '/-(")(?<value>(\\"|.)*?)"/';
-    const EXCLUDE_REGEX = '/-(?<value>\S+)/';
-    const QUOTED_REGEX = '/(")(?<value>(\\"|.)*?)"/';
-
-    private function parseQuerystring(string $queryString)
-    {
-        $includes = [];
-        $excludes = [];
-
-        $keywords = preg_replace_callback_array([
-            static::EXCLUDE_QUOTED_REGEX => function ($m) use (&$excludes) {
-                $excludes[] = $m['value'];
-                return '';
-            },
-            static::QUOTED_REGEX => function ($m)  use (&$includes) {
-                $includes[] = $m['value'];
-                return '';
-            },
-            static::EXCLUDE_REGEX => function ($m)  use (&$excludes) {
-                $excludes[] = $m['value'];
-                return '';
-            },
-
-        ], $queryString);
-
-        $keywords = trim($keywords);
-
-        return compact('keywords', 'includes', 'excludes');
-    }
-
     public function __construct(?BeatmapsetSearchParams $params = null)
     {
         parent::__construct(
@@ -79,31 +49,31 @@ class BeatmapsetSearch extends RecordSearch
 
         $query = new BoolQuery();
 
-        $options = static::parseQuerystring($this->params->queryString ?? '');
+        $parsed = new QueryStringParser($this->params->queryString ?? '');
+        $includes = $parsed->includesForQueryString();
+        $excludes = $parsed->excludesForQueryString();
 
         if (present($this->params->queryString)) {
-            $terms = explode(' ', $this->params->queryString);
-
             // the subscoping is not necessary but prevents unintentional accidents when combining other matchers
             $query->must(
                 (new BoolQuery())
                     // results must contain at least one of the terms and boosted by containing all of them,
                     // or match the id of the beatmapset.
                     ->shouldMatch(1)
-                    ->should(['term' => ['_id' => ['value' => $this->params->queryString, 'boost' => 100]]])
-                    ->should(QueryHelper::queryString($this->params->queryString, $partialMatchFields, 'or', 1 / count($terms)))
-                    ->should(QueryHelper::queryString($this->params->queryString, [], 'and'))
+                    ->should(['term' => ['_id' => ['value' => $includes, 'boost' => 100]]])
+                    ->should(QueryHelper::queryString($includes, $partialMatchFields, 'or', 1 / count($parsed->includes)))
+                    ->should(QueryHelper::queryString($includes, [], 'and'))
                     ->should([
                         'nested' => [
                             'path' => 'beatmaps',
-                            'query' => QueryHelper::queryString($this->params->queryString, ['beatmaps.top_tags'], 'or', 0.5 / count($terms)),
+                            'query' => QueryHelper::queryString($includes, ['beatmaps.top_tags'], 'or', 0.5 / count($parsed->includes)),
                         ],
                     ])
-                    ->mustNot(QueryHelper::queryString(implode(' ', $options['excludes']), [], 'or'))
+                    ->mustNot(QueryHelper::queryString($excludes, [], 'or'))
                     ->mustNot([
                         'nested' => [
                             'path' => 'beatmaps',
-                            'query' => QueryHelper::queryString(implode(' ', $options['excludes']), ['beatmaps.top_tags'], 'or'),
+                            'query' => QueryHelper::queryString($excludes, ['beatmaps.top_tags'], 'or'),
                         ],
                     ])
             );
