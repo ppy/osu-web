@@ -7,9 +7,9 @@ namespace App\Libraries\Search;
 
 class QueryStringParser
 {
-    const EXCLUDE_QUOTED_REGEX = '/-(")(?<value>(\\"|.)*?)"/';
+    const EXCLUDE_QUOTED_REGEX = '/-(")(?<value>(\\\"|.)*?)"/';
     const EXCLUDE_REGEX = '/-(?<value>\S+)/';
-    const QUOTED_REGEX = '/(")(?<value>(\\"|.)*?)"/';
+    const QUOTED_REGEX = '/(")(?<value>(\\\"|.)*?)"/';
 
     public array $excludes = [];
     public array $includes = [];
@@ -22,7 +22,6 @@ class QueryStringParser
                 return '';
             },
             static::QUOTED_REGEX => function ($m) {
-                \Log::debug($m);
                 $this->includes[] = $m['value'];
                 return '';
             },
