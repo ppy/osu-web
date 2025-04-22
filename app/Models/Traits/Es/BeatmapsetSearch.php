@@ -22,6 +22,7 @@ trait BeatmapsetSearch
         return static::withoutGlobalScopes()
             ->active()
             ->with('beatmaps') // note that the with query will run with the default scopes.
+            ->with(['beatmaps.beatmapTags' => fn ($q) => $q->default()])
             ->with('beatmaps.beatmapOwners')
             ->with('beatmaps.baseDifficultyRatings');
     }
@@ -38,7 +39,7 @@ trait BeatmapsetSearch
         return array_reject_null(
             array_map(
                 fn ($tagId) => $tags->get($tagId['tag_id'])?->name,
-                $beatmap->topTagIds()
+                $beatmap->slowTopTagIds()
             )
         );
     }

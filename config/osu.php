@@ -205,8 +205,9 @@ return [
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE') ?? '')),
     ],
     'tags' => [
-        'tags_cache_duration' => 60 * (get_int(env('TAGS_CACHE_DURATION')) ?? 60), // in minutes, converted to seconds
         'beatmap_tags_cache_duration' => 60 * (get_int(env('BEATMAP_TAGS_CACHE_DURATION')) ?? 60), // in minutes, converted to seconds
+        'tags_cache_duration' => 60 * (get_int(env('TAGS_CACHE_DURATION')) ?? 60), // in minutes, converted to seconds
+        'top_tag_count' => get_int(env('BEATMAP_TOP_TAG_COUNT')) ?? 50,
     ],
     'team' => [
         'create_require_supporter' => get_bool(env('TEAM_CREATE_REQUIRE_SUPPORTER')) ?? false,
