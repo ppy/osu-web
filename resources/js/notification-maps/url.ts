@@ -77,6 +77,7 @@ export function urlSingular(item: Notification) {
       return route('forum.posts.show', { post: item.details.postId });
     case 'team_application_accept':
     case 'team_application_reject':
+    case 'team_application_store':
       return route('teams.show', { team: item.objectId });
     case 'user_achievement_unlock':
       return userAchievementUrl(item);

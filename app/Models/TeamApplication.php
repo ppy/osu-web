@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Libraries\Notification\BatchIdentities;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TeamApplication extends Model
@@ -14,6 +15,11 @@ class TeamApplication extends Model
     public $incrementing = false;
 
     protected $primaryKey = 'user_id';
+
+    public function notification(): BelongsTo
+    {
+        return $this->belongsTo(Notification::class);
+    }
 
     public function team(): BelongsTo
     {
@@ -23,5 +29,22 @@ class TeamApplication extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * Removal from applicant side
+     */
+    public function cancel(): bool
+    {
+        if (($notification = $this->notification) !== null) {
+            UserNotification::batchDestroy(
+                $this->team->leader_id,
+                BatchIdentities::fromParams([
+                    'notifications' => [['id' => $notification->getKey()]],
+                ]),
+            );
+        }
+
+        return parent::delete();
     }
 }
