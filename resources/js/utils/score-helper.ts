@@ -72,55 +72,78 @@ export function modDetails(mod: ScoreModJson) {
   };
 }
 
-interface AttributeDisplayMapping {
+type ScoreDisplayType = 'leaderboard' | 'single';
+
+interface ScoreStatisticMapping {
   attributes: SoloScoreStatisticsAttribute[];
-  key: string;
-  label: string;
+  basic: boolean;
+  label: {
+    long: string;
+    short: string;
+  };
+  relevantTypes: ScoreDisplayType[];
 }
 
-interface AttributeDisplayTotal {
-  key: string;
-  label: string;
-  total: number;
+interface ScoreStatistic {
+  basic: boolean;
+  label: {
+    long: string;
+    short: string;
+  };
+  maximumValue?: number;
+  value: number;
 }
 
 const labelMiss = trans('beatmapsets.show.scoreboard.headers.miss');
 
-export const modeAttributesMap: Record<Ruleset, AttributeDisplayMapping[]> = {
+export const scoreStatisticsMapping: Record<Ruleset, ScoreStatisticMapping[]> = {
   fruits: [
-    { attributes: ['great'], key: 'great', label: 'fruits' },
-    { attributes: ['large_tick_hit'], key: 'ticks', label: 'ticks' },
-    { attributes: ['small_tick_miss'], key: 'drp_miss', label: 'drp miss' },
-    // legacy/stable scores merge miss and large_tick_miss into one number
-    { attributes: ['miss', 'large_tick_miss'], key: 'miss', label: labelMiss },
+    { attributes: ['great'], basic: true, label: { long: 'great', short: 'great' }, relevantTypes: ['leaderboard', 'single'] },
+    // for single score display, show miss display separately
+    { attributes: ['miss'], basic: true, label: { long: labelMiss, short: labelMiss }, relevantTypes: ['single'] },
+    { attributes: ['large_tick_hit'], basic: false, label: { long: 'large droplet', short: 'l drp' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['small_tick_hit'], basic: false, label: { long: 'small droplet', short: 's drp' }, relevantTypes: ['single'] },
+    { attributes: ['small_tick_miss'], basic: false, label: { long: 'small droplet miss', short: 's drp miss' }, relevantTypes: ['leaderboard'] },
+    // legacy/stable scores merge miss and large_tick_miss into one number, so for leaderboard display merge them together
+    { attributes: ['miss', 'large_tick_miss'], basic: false, label: { long: labelMiss, short: labelMiss }, relevantTypes: ['leaderboard'] },
+    { attributes: ['large_bonus'], basic: false, label: { long: 'banana', short: 'banana' }, relevantTypes: ['single'] },
   ],
   mania: [
-    { attributes: ['perfect'], key: 'perfect', label: 'max' },
-    { attributes: ['great'], key: 'great', label: '300' },
-    { attributes: ['good'], key: 'good', label: '200' },
-    { attributes: ['ok'], key: 'ok', label: '100' },
-    { attributes: ['meh'], key: 'meh', label: '50' },
-    { attributes: ['miss'], key: 'miss', label: labelMiss },
+    { attributes: ['perfect'], basic: true, label: { long: 'perfect', short: 'perfect' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['great'], basic: true, label: { long: 'great', short: 'great' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['good'], basic: true, label: { long: 'good', short: 'good' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['ok'], basic: true, label: { long: 'ok', short: 'ok' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['meh'], basic: true, label: { long: 'meh', short: 'meh' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['miss'], basic: true, label: { long: labelMiss, short: labelMiss }, relevantTypes: ['leaderboard', 'single'] },
   ],
   osu: [
-    { attributes: ['great'], key: 'great', label: '300' },
-    { attributes: ['ok'], key: 'ok', label: '100' },
-    { attributes: ['meh'], key: 'meh', label: '50' },
-    { attributes: ['miss'], key: 'miss', label: labelMiss },
+    { attributes: ['great'], basic: true, label: { long: 'great', short: 'great' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['ok'], basic: true, label: { long: 'ok', short: 'ok' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['meh'], basic: true, label: { long: 'meh', short: 'meh' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['miss'], basic: true, label: { long: labelMiss, short: labelMiss }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['large_tick_hit'], basic: false, label: { long: 'slider tick', short: 'tick' }, relevantTypes: ['single'] },
+    { attributes: ['small_tick_hit', 'slider_tail_hit'], basic: false, label: { long: 'slider end', short: 'end' }, relevantTypes: ['single'] },
+    { attributes: ['small_bonus'], basic: false, label: { long: 'spinner spin', short: 'spin' }, relevantTypes: ['single'] },
+    { attributes: ['large_bonus'], basic: false, label: { long: 'spinner bonus', short: 'bonus' }, relevantTypes: ['single'] },
   ],
   taiko: [
-    { attributes: ['great'], key: 'great', label: 'great' },
-    { attributes: ['ok'], key: 'ok', label: 'good' },
-    { attributes: ['miss'], key: 'miss', label: labelMiss },
+    { attributes: ['great'], basic: true, label: { long: 'great', short: 'great' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['ok'], basic: true, label: { long: 'ok', short: 'ok' }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['miss'], basic: true, label: { long: labelMiss, short: labelMiss }, relevantTypes: ['leaderboard', 'single'] },
+    { attributes: ['small_bonus'], basic: false, label: { long: 'drum tick', short: 'tick' }, relevantTypes: ['single'] },
+    { attributes: ['large_bonus'], basic: false, label: { long: 'bonus', short: 'bonus' }, relevantTypes: ['single'] },
   ],
 };
 
-export function attributeDisplayTotals(ruleset: Ruleset, score: SoloScoreJson): AttributeDisplayTotal[] {
-  return modeAttributesMap[ruleset].map((mapping) => ({
-    key: mapping.key,
-    label: mapping.label,
-    total: mapping.attributes.reduce((sum, attribute) => sum + (score.statistics[attribute] ?? 0), 0),
-  }));
+export function calculateStatisticsFor(score: SoloScoreJson, type: ScoreDisplayType): ScoreStatistic[] {
+  return scoreStatisticsMapping[rulesetName(score.ruleset_id)]
+    .filter((mapping) => mapping.relevantTypes.includes(type))
+    .map((mapping) => ({
+      basic: mapping.basic,
+      label: mapping.label,
+      maximumValue: mapping.basic ? undefined : mapping.attributes.reduce((sum, attribute) => sum + (score.maximum_statistics[attribute] ?? 0), 0),
+      value: mapping.attributes.reduce((sum, attribute) => sum + (score.statistics[attribute] ?? 0), 0),
+    }));
 }
 
 export function rank(score: SoloScoreJson) {

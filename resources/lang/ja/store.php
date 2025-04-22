@@ -55,10 +55,10 @@ return [
         'contact' => 'お問い合わせ先：',
         'date' => '日付:',
         'echeck_delay' => '決済方法がeCheckのため、PayPalを介した支払いが完了するまで、さらに最大10日を要します。予めご了承ください。',
-        'echeck_denied' => '',
+        'echeck_denied' => 'PayPal が eCheck によるお支払いを拒否しました。',
         'hide_from_activity' => 'osu!サポータータグは最近のアクティビティには表示されません。',
-        'sent_via' => '',
-        'shipping_to' => '',
+        'sent_via' => '発送方法：',
+        'shipping_to' => '配送先：',
         'title' => '請求書',
         'title_compact' => '請求書',
 
@@ -95,7 +95,7 @@ return [
                 'tracking_details' => '追跡情報：',
                 'no_tracking_details' => [
                     '_' => "エアメールでお送りしたため、追跡情報はございませんが、通常1〜3週間ほどでお届けできる見込みです。ヨーロッパへの発送の場合、税関の事情により配送が遅れる可能性があり、私たちでは対応が難しいこともございます。ご不明点やご不安な点がありましたら、ご注文確認メールへの返信(または :link)にてお問い合わせください。",
-                    'link_text' => '',
+                    'link_text' => 'メールでお問い合わせください',
                 ],
             ],
         ],
@@ -117,7 +117,7 @@ return [
         'details' => [
             'order_number' => '注文 #',
             'payment_terms' => '支払い条件',
-            'salesperson' => '',
+            'salesperson' => '営業担当者',
             'shipping_method' => '配送方法',
             'shipping_terms' => '配送条件',
             'title' => '注文の詳細',
@@ -158,7 +158,7 @@ return [
         'thanks' => [
             'title' => 'ご注文ありがとうございました！',
             'line_1' => [
-                '_' => '',
+                '_' => 'まもなく確認メールが届きます。ご不明な点がございましたら、:link からお問い合わせください！',
                 'link_text' => 'お問い合わせ',
             ],
         ],
@@ -194,7 +194,7 @@ return [
     'username_change' => [
         'check' => '名前を入力して使用可能か確認しましょう！',
         'checking' => ':usernameが使用可能か確認中・・・',
-        'placeholder' => '',
+        'placeholder' => 'ご希望のユーザー名',
         'label' => '新しいユーザー名',
         'current' => '現在のあなたのユーザー名は ":username" です。',
 

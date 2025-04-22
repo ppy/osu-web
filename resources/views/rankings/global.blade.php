@@ -4,14 +4,6 @@
 --}}
 @extends('rankings.index')
 
-@php
-    $variants = App\Models\Beatmap::VARIANTS[$mode] ?? null;
-
-    if ($variants !== null) {
-        array_unshift($variants, 'all');
-    }
-@endphp
-
 @section('ranking-header')
     <div class="osu-page osu-page--ranking-info">
         <div class="grid-items grid-items--ranking-filter">
@@ -19,6 +11,12 @@
 
             @include('rankings._user_filter')
 
+            @php
+                $variants = App\Models\Beatmap::VARIANTS[$params['mode']] ?? null;
+                if ($variants !== null) {
+                    array_unshift($variants, 'all');
+                }
+            @endphp
             @if ($variants !== null)
                 <div class="js-react--ranking-variant-filter u-contents">
                     <div class="ranking-filter">
@@ -29,7 +27,7 @@
                             <div class="sort__items">
                                 @foreach ($variants as $v)
                                     <button class="sort__item sort__item--button">
-                                        {{ osu_trans("beatmaps.variant.{$mode}.{$v}") }}
+                                        {{ osu_trans("beatmaps.variant.{$params['mode']}.{$v}") }}
                                     </button>
                                 @endforeach
                             </div>
@@ -39,8 +37,8 @@
 
                 <script id="json-variant-filter" type="application/json">
                     {!! json_encode([
-                        'current' => $variant,
-                        'current_ruleset' => $mode,
+                        'current' => $params['variant'],
+                        'current_ruleset' => $params['mode'],
                         'items' => $variants,
                     ]) !!}
                 </script>
@@ -49,13 +47,31 @@
     </div>
 @endsection
 
+@section('scores-header')
+    <div class="sort">
+        <div class="sort__items">
+            <div class="sort__item sort__item--title">
+                {{ osu_trans('sort._') }}
+            </div>
+            @foreach ([['performance', 'performance'], ['score', 'ranked_score']] as $newSort)
+                <a
+                    class="{{ class_with_modifiers('sort__item', 'button', ['active' => $newSort[0] === $params['sort']]) }}"
+                    href="{{ route('rankings', [...$params, 'sort' => $newSort[0]]) }}"
+                >
+                    {{ osu_trans("rankings.stat.{$newSort[1]}") }}
+                </a>
+            @endforeach
+        </div>
+    </div>
+@endsection
+
 @section('scores')
     <table class="ranking-page-table">
         <thead>
             <tr>
-                <th class="ranking-page-table__heading"></th>
+                <th></th>
                 @if ($showRankChange)
-                    <th colspan="2"></th>
+                    <th></th>
                 @endif
                 <th class="ranking-page-table__heading ranking-page-table__heading--main"></th>
                 <th class="ranking-page-table__heading">
@@ -64,7 +80,16 @@
                 <th class="ranking-page-table__heading">
                     {{ osu_trans('rankings.stat.play_count') }}
                 </th>
-                <th class="ranking-page-table__heading ranking-page-table__heading--focused">
+                <th class="{{ class_with_modifiers(
+                    'ranking-page-table__heading',
+                    ['focused' => $params['sort'] === 'score'],
+                ) }}">
+                    {{ osu_trans('rankings.stat.ranked_score') }}
+                </th>
+                <th class="{{ class_with_modifiers(
+                    'ranking-page-table__heading',
+                    ['focused' => $params['sort'] === 'performance'],
+                ) }}">
                     {{ osu_trans('rankings.stat.performance') }}
                 </th>
                 <th class="ranking-page-table__heading ranking-page-table__heading--grade">
@@ -79,10 +104,13 @@
             </tr>
         </thead>
         <tbody>
+            @php
+                $firstItem = $scores->firstItem();
+            @endphp
             @foreach ($scores as $index => $score)
-                <tr class="ranking-page-table__row{{$score->user->isActive() ? '' : ' ranking-page-table__row--inactive'}}">
-                    <td class="ranking-page-table__column ranking-page-table__column--rank">
-                        #{{ $scores->firstItem() + $index }}
+                <tr class="{{ class_with_modifiers('ranking-page-table__row', ['inactive' => !$score->user->isActive()]) }}">
+                    <td class="ranking-page-table__column">
+                        #{{ i18n_number_format($firstItem + $index) }}
                     </td>
                     @if ($showRankChange)
                         @php
@@ -95,49 +123,18 @@
                             };
                         @endphp
                         <td
-                            class="{{ class_with_modifiers('ranking-page-table__column', 'rank-change-icon', $modifier) }}"
+                            class="{{ class_with_modifiers('ranking-page-table__column', ['rank-change', $modifier]) }}"
                             @if ($rankChange === null)
                                 title="{{ osu_trans('rankings.performance.insufficient_history') }}"
                             @endif
-                        ></td>
-                        <td class="{{ class_with_modifiers('ranking-page-table__column', 'rank-change-value', $modifier) }}">
-                            @if ($rankChange)
+                        >
+                            @if ($rankChange !== null && $rankChange !== 0)
                                 {{ i18n_number_format(abs($rankChange)) }}
                             @endif
                         </td>
                     @endif
-                    <td class="ranking-page-table__column">
-                        <div class="ranking-page-table__user-link">
-                            <span class="ranking-page-table__flags">
-                                <a
-                                    class="u-contents"
-                                    href="{{ route('rankings', [
-                                        'mode' => $mode,
-                                        'type' => 'performance',
-                                        'country' => $score->user->country->acronym,
-                                        'variant' => $variant,
-                                    ]) }}"
-                                >
-                                    @include('objects._flag_country', [
-                                        'country' => $score->user->country,
-                                    ])
-                                </a>
-
-                                @if (($team = $score->user->team) !== null)
-                                    <a class="u-contents" href="{{ route('teams.show', $team) }}">
-                                        @include('objects._flag_team', compact('team'))
-                                    </a>
-                                @endif
-                            </span>
-                            <a
-                                href="{{ route('users.show', ['user' => $score->user_id, 'mode' => $mode]) }}"
-                                class="ranking-page-table__user-link-text js-usercard"
-                                data-user-id="{{ $score->user_id }}"
-                                data-tooltip-position="right center"
-                            >
-                                {{ $score->user->username }}
-                            </a>
-                        </div>
+                    <td class="ranking-page-table__column ranking-page-table__column--main">
+                        @include('rankings._main_column', ['object' => $score->user])
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ format_percentage($score->accuracy_new / 100) }}
@@ -145,7 +142,16 @@
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ i18n_number_format($score->playcount) }}
                     </td>
-                    <td class="ranking-page-table__column ranking-page-table__column--focused">
+                    <td class="{{ class_with_modifiers(
+                        'ranking-page-table__column',
+                        ['dimmed' => $params['sort'] !== 'score'],
+                    ) }}">
+                        {{ i18n_number_format(round($score->ranked_score)) }}
+                    </td>
+                    <td class="{{ class_with_modifiers(
+                        'ranking-page-table__column',
+                        ['dimmed' => $params['sort'] !== 'performance'],
+                    ) }}">
                         {{ i18n_number_format(round($score->rank_score)) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">

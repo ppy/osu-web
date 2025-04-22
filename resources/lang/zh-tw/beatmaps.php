@@ -69,7 +69,7 @@ return [
 
         'message_placeholder' => [
             'general' => '在這裡輸入以發表至整體 (:version)',
-            'generalAll' => '在這裡輸入以發表至整體(所有難度)',
+            'generalAll' => '在這裡輸入以發表至整體（所有難度）',
             'review' => '在這裡輸入以發表審核',
             'timeline' => '在這裡輸入以發表至時間軸 (:version)',
         ],
@@ -121,7 +121,7 @@ return [
             'new' => '新的審核',
             'embed' => [
                 'delete' => '刪除',
-                'missing' => '[該討論已移除]',
+                'missing' => '[該討論已刪除]',
                 'unlink' => '取消連結',
                 'unsaved' => '尚未儲存',
                 'timestamp' => [
@@ -247,7 +247,7 @@ return [
             'options' => '更多搜尋選項',
             'supporter_filter' => '使用 :filters 進行篩選需要有效的 osu!supporter 標籤',
             'not-found' => '沒有結果',
-            'not-found-quote' => '… 呃，什麼都沒找到。',
+            'not-found-quote' => '...呃，什麼都沒找到。',
             'filters' => [
                 'extra' => '其他資訊',
                 'general' => '一般',

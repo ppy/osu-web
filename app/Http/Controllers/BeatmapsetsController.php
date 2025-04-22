@@ -407,16 +407,17 @@ class BeatmapsetsController extends Controller
         $transformer = new BeatmapsetTransformer();
         $transformer->relatedUsersType = 'show';
 
+        static $sharedIncludes = [
+            'failtimes',
+            'owners',
+            'top_tag_ids',
+        ];
+
         return json_item($beatmapset, $transformer, [
-            'beatmaps',
-            'beatmaps.failtimes',
-            'beatmaps.max_combo',
-            'beatmaps.owners',
+            ...array_map(fn ($include) => "beatmaps.{$include}", $sharedIncludes),
             'beatmaps.current_user_tag_ids',
-            'beatmaps.top_tag_ids',
-            'converts',
-            'converts.failtimes',
-            'converts.owners',
+            'beatmaps.max_combo',
+            ...array_map(fn ($include) => "converts.{$include}", $sharedIncludes),
             'current_nominations',
             'current_user_attributes',
             'description',

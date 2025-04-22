@@ -94,16 +94,22 @@ return [
             'title' => 'Spravovat členy',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => 'Žádost vytvořena',
                 'empty' => 'Momentálně nemáte žádné žádosti o připojení.',
                 'empty_slots' => 'Dostupná místa',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => 'Žádosti o připojení',
-                'created_at' => 'Žádost vytvořena',
             ],
 
             'table' => [
-                'status' => 'Stav',
                 'joined_at' => 'Členem od',
                 'remove' => 'Odebrat',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => 'Stav',
                 'title' => 'Aktuální členové',
             ],
 
@@ -111,6 +117,10 @@ return [
                 'status_0' => 'Neaktivní',
                 'status_1' => 'Aktivní',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 
@@ -137,14 +147,14 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => 'O nás!',
             'info' => 'Info',
             'members' => 'Členové',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => 'Umístění',
+            'leader' => 'Vedoucí týmu',
         ],
     ],
 

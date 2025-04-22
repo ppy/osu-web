@@ -34,6 +34,11 @@ return [
         'title' => 'Prijavi rezultat igralca :username?',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'Prijavi',
         'title' => 'Prijavi :username?',

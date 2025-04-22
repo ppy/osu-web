@@ -14,7 +14,7 @@ return [
     'common' => [
         'closing' => 'Salam,',
         'hello' => 'Hai :user,',
-        'report' => 'Mohon balas email ini DENGAN SEGERA apabila kamu tidak merasa meminta perubahan ini.',
+        'report' => 'Mohon balas email ini DENGAN SEGERA apabila kamu tidak meminta perubahan ini.',
         'ignore' => 'Apabila kamu tidak mengirim permintaan ini, kamu dapat mengabaikan email ini.',
     ],
 
@@ -86,7 +86,7 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => 'Kami ingin memberitahukan kamu bahwa telah terdapat perkembangan baru pada berbagai hal yang kamu ikuti.',
+        'new' => 'Kami ingin memberitahukan kamu bahwa telah terdapat perkembangan baru pada item yang kamu ikuti.',
         'settings' => 'Ubah preferensi penerimaan notifikasi:',
         'subject' => 'Notifikasi osu! baru',
     ],

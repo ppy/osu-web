@@ -67,10 +67,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
-        'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'checking' => 'Güncellemeler kontrol ediliyor...',
+        'has_updates' => 'Bu tartışma güncellendi, yenilemek için tıkla.',
+        'no_updates' => 'Güncelleme yok.',
+        'updating' => 'Güncelleniyor...',
     ],
 
     'reply' => [

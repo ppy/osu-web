@@ -108,11 +108,11 @@ return [
             '_' => 'sıralamalar',
         ],
         'teams_controller' => [
-            '_' => '',
-            'create' => '',
-            'edit' => '',
-            'leaderboard' => '',
-            'show' => '',
+            '_' => 'takımlar',
+            'create' => 'takım oluştur',
+            'edit' => 'takım ayarları',
+            'leaderboard' => 'takım sıralaması',
+            'show' => 'takım bilgisi',
         ],
         'tournaments_controller' => [
             '_' => 'turnuvalar',
@@ -139,7 +139,7 @@ return [
     ],
     'teams' => [
         'members_controller' => [
-            'index' => '',
+            'index' => 'takım üyeleri',
         ],
     ],
     'users' => [

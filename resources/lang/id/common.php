@@ -5,7 +5,7 @@
 
 return [
     'confirmation' => 'Apakah kamu yakin?',
-    'confirmation_unsaved' => 'Seluruh perubahan yang belum disimpan akan hilang. Apakah kamu yakin?',
+    'confirmation_unsaved' => 'Segala perubahan yang belum disimpan akan hilang. Apakah kamu yakin?',
     'saved' => 'Tersimpan',
 
     'array_and' => [
@@ -28,13 +28,13 @@ return [
         'cancel' => 'Batal',
         'change' => 'ubah',
         'clear' => 'Hapus',
-        'click_to_copy' => 'klik untuk menyalin',
+        'click_to_copy' => 'klik untuk menyalin ke papan klip',
         'click_to_copy_copied' => 'tersalin!',
         'close' => 'Tutup',
         'collapse' => 'tutup',
         'delete' => 'Hapus',
         'edit' => 'Sunting',
-        'expand' => 'perluas',
+        'expand' => 'lebarkan',
         'hide' => 'sembunyikan',
         'permalink' => 'tautan',
         'pin' => 'sematkan',
@@ -44,7 +44,7 @@ return [
         'reply' => 'Balas',
         'reply_reopen' => 'Balas dan Buka Kembali',
         'reply_resolve' => 'Balas dan Tutup',
-        'reset' => 'Atur Ulang',
+        'reset' => 'Atur ulang',
         'restore' => 'Pulihkan',
         'retry' => 'Coba lagi',
         'save' => 'Simpan',
@@ -159,7 +159,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => 'Kamu terdaftar masuk sebagai :user. :logout_link.',
+        '_' => 'Kamu terhubung masuk sebagai :user. :logout_link.',
         'logout_link' => 'Klik di sini untuk masuk sebagai pengguna lain',
     ],
 ];

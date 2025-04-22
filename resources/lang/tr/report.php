@@ -34,6 +34,11 @@ return [
         'title' => ':username kullanıcısının skoru bildirilsin mi?',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'Bildir',
         'title' => ':username kullanıcısı bildirilsin mi?',

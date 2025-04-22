@@ -108,11 +108,11 @@ return [
             '_' => 'rangsorok',
         ],
         'teams_controller' => [
-            '_' => '',
-            'create' => '',
-            'edit' => '',
-            'leaderboard' => '',
-            'show' => '',
+            '_' => 'csapatok',
+            'create' => 'csapat létrehozása',
+            'edit' => 'csapat beállításai',
+            'leaderboard' => 'csapat ranglista',
+            'show' => 'csapat info',
         ],
         'tournaments_controller' => [
             '_' => 'bajnokságok',
@@ -139,7 +139,7 @@ return [
     ],
     'teams' => [
         'members_controller' => [
-            'index' => '',
+            'index' => 'csapattagok',
         ],
     ],
     'users' => [

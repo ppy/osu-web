@@ -81,7 +81,7 @@ return [
             'favourite' => 'suka peta rentak ini',
             'favourite_login' => 'daftar masuk untuk menyukai peta rentak ini',
             'logged-out' => 'anda perlu mendaftar masuk sebelum memuat turun peta rentak!',
-            'mapped_by' => 'dipeta oleh :mapper',
+            'mapped_by' => 'petaan :mapper',
             'mapped_by_guest' => 'kesukaran tamu oleh :mapper',
             'unfavourite' => 'nyahsuka peta rentak ini',
             'updated_timeago' => 'terakhir dikemas kini :timeago',
@@ -103,7 +103,7 @@ return [
             'approved' => 'lulus :timeago',
             'loved' => 'digemari :timeago',
             'qualified' => 'dilayakkan :timeago',
-            'ranked' => 'diperingkatkan :timeago',
+            'ranked' => 'berkedudukan :timeago',
             'submitted' => 'diserahkan :timeago',
             'updated' => 'terakhir dikemas kini :timeago',
         ],
@@ -113,7 +113,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Gembarkan peta ini jika dinikmati untuk membantu peta ini maju ke taraf <strong>Berperingkat</strong>.',
+            'action' => 'Gembarkan peta ini jika dinikmati untuk membantu peta ini maju ke taraf <strong>Berkedudukan</strong>.',
 
             'current' => [
                 '_' => 'Peta ini kini :status.',
@@ -140,6 +140,7 @@ return [
             'description' => 'Keterangan',
             'genre' => 'Genre',
             'language' => 'Bahasa',
+            'mapper_tags' => '',
             'no_scores' => 'Data masih lagi dikira...',
             'nominators' => 'Pencalon',
             'nsfw' => 'Kandungan tidak senonoh',
@@ -148,7 +149,7 @@ return [
             'source' => 'Sumber',
             'storyboard' => 'Papan rentak ini mengandungi papan cerita',
             'success-rate' => 'Kadar Kejayaan',
-            'tags' => 'Tag',
+            'user_tags' => '',
             'video' => 'Peta rentak ini mengandungi video',
         ],
 
@@ -171,7 +172,7 @@ return [
             'global' => 'Kedudukan Dunia',
             'supporter-link' => 'Klik di <a href=":link">sini</a> untuk lihat semua ciri menarik yang anda dapat!',
             'supporter-only' => 'Anda perlu menjadi osu!supporter untuk mencapai kedudukan penyesuai tertentu, kebangsaan atau kawan!',
-            'team' => '',
+            'team' => 'Kedudukan Pasukan',
             'title' => 'Papan Markah',
 
             'headers' => [
@@ -182,7 +183,7 @@ return [
                 'pin' => 'Semat',
                 'player' => 'Pemain',
                 'pp' => '',
-                'rank' => 'Peringkat',
+                'rank' => 'Kedudukan',
                 'score' => 'Markah',
                 'score_total' => 'Jumlah Markah',
                 'time' => 'Masa',
@@ -193,8 +194,8 @@ return [
                 'friend' => 'Kawan-kawan anda belum mencapai apa-apa markah pada peta ini lagi!',
                 'global' => 'Tiada markah lagi. Mungkin anda patut mencapai yang baharu!',
                 'loading' => 'Memuatkan markah...',
-                'team' => '',
-                'unranked' => 'Peta rentak tanpa peringkat.',
+                'team' => 'Ahli pasukan anda belum mencapai apa-apa markah pada peta ini lagi!',
+                'unranked' => 'Peta rentak tanpa kedudukan.',
             ],
             'score' => [
                 'first' => 'Sedang Mendahului',
@@ -207,11 +208,11 @@ return [
         ],
 
         'stats' => [
-            'cs' => 'Besar Bulatan',
+            'cs' => 'Ukuran Bulatan',
             'cs-mania' => 'Jumlah Kekunci',
             'drain' => 'Aliran Nyawa',
             'accuracy' => 'Ketepatan',
-            'ar' => 'Kadar Pendekatan',
+            'ar' => 'Kadar Mendekat',
             'stars' => 'Nilai Bintang',
             'total_length' => 'Tempoh (Tempoh Aliran: :hit_length)',
             'bpm' => 'BPM',
@@ -225,7 +226,7 @@ return [
         ],
 
         'status' => [
-            'ranked' => 'Berperingkat',
+            'ranked' => 'Berkedudukan',
             'approved' => 'Lulus',
             'loved' => 'Kegemaran',
             'qualified' => 'Layak',

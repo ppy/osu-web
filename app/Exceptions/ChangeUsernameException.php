@@ -12,7 +12,7 @@ class ChangeUsernameException extends Exception
 {
     private $errors;
 
-    public function __construct($errors, Exception $previous = null)
+    public function __construct($errors, ?Exception $previous = null)
     {
         if ($errors instanceof ValidationErrors) {
             $message = $errors->toSentence();

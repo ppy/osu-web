@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid_ruleset' => '',
+    'invalid_ruleset' => '無効なルールセットが指定されています。',
 
     'change_owner' => [
-        'too_many' => '',
+        'too_many' => 'ゲストマッパーの数が多すぎます。',
     ],
 
     'discussion-votes' => [
@@ -38,7 +38,7 @@ return [
         'restore' => '復元',
         'show_deleted' => '削除済みを表示',
         'title' => 'ディスカッション',
-        'unresolved_count' => '',
+        'unresolved_count' => ':count_delimited 個の未解決問題|:count_delimited 個の未解決問題',
 
         'collapse' => [
             'all-collapse' => '全てを折りたたむ',
@@ -87,10 +87,10 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
+            'disqualify' => '失格を投稿',
             'hype' => 'Hypeを投稿',
             'mapper_note' => 'メモを投稿',
-            'nomination_reset' => '',
+            'nomination_reset' => 'すべてのノミネートを削除する',
             'praise' => '称賛を投稿',
             'problem' => '問題を投稿',
             'problem_warning' => '問題を投稿',

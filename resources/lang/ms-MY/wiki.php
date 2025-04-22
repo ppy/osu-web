@@ -9,7 +9,7 @@ return [
         'incomplete_or_outdated' => 'Kandungan pada halaman ini tidak lengkap atau usang. Sekiranya anda boleh membantu, sila kemas kini rencana ini!',
         'missing' => 'Halaman yang diminta ":keyword" tidak boleh ditemui.',
         'missing_title' => 'Tidak Ditemui',
-        'missing_translation' => 'Halaman yang diminta tidak boleh ditemui untuk bahasa yang dipilih kini.',
+        'missing_translation' => 'Halaman yang diminta tidak boleh ditemui untuk bahasa yang kini dipilih.',
         'needs_cleanup_or_rewrite' => 'Halaman ini tidak memenuhi piawaian wiki osu! dan perlu dibersihkan atau ditulis semula. Sekiranya anda boleh membantu, sila kemas kini rencana ini!',
         'search' => 'Mencari halaman yang ada untuk :link.',
         'stub' => 'Rencana ini tidak lengkap dan perlu dikembangkan lagi.',

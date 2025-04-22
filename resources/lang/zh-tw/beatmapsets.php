@@ -140,6 +140,7 @@ return [
             'description' => '詳情',
             'genre' => '曲風',
             'language' => '語言',
+            'mapper_tags' => '',
             'no_scores' => '資料還在計算中...',
             'nominators' => '提名者',
             'nsfw' => '成人內容',
@@ -148,7 +149,7 @@ return [
             'source' => '來源',
             'storyboard' => '這張圖譜包含 Storyboard',
             'success-rate' => '成功率',
-            'tags' => '標籤',
+            'user_tags' => '',
             'video' => '此圖譜包含背景影片',
         ],
 
@@ -171,7 +172,7 @@ return [
             'global' => '全球排名',
             'supporter-link' => '按<a href=":link">這裡</a>來查看你可以得到的精彩功能！',
             'supporter-only' => '你需要成為贊助者才能查看國內與好友排名！',
-            'team' => '',
+            'team' => '隊伍排名',
             'title' => '排行榜',
 
             'headers' => [
@@ -193,7 +194,7 @@ return [
                 'friend' => '您的好友尚未上傳成績！',
                 'global' => '沒有任何玩家上傳過成績，來挑戰嗎？',
                 'loading' => '正在載入分數...',
-                'team' => '',
+                'team' => '您的隊員尚未在此圖譜上傳任何分數！',
                 'unranked' => 'Unranked 譜面',
             ],
             'score' => [

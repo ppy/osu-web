@@ -28,7 +28,7 @@ return [
         '_' => 'alle',
         'beatmapset' => 'Beatmaps',
         'build' => 'Versionen',
-        'channel' => 'chat',
+        'channel' => 'Chat',
         'forum_topic' => 'Forum',
         'news_post' => 'Neuigkeiten',
         'team' => 'Team',

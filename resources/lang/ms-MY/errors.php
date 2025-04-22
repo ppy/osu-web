@@ -26,7 +26,7 @@ return [
         'standard_converts_only' => 'Tiada markah tersedia untuk mod yang diminta pada kesukaran peta rentak ini.',
     ],
     'checkout' => [
-        'generic' => 'Ralat berlaku ketika penyediaan semak keluar anda.',
+        'generic' => 'Ralat berlaku ketika penyiapan semak keluar anda.',
     ],
     'scores' => [
         'invalid_id' => 'ID markah tidak sah.',

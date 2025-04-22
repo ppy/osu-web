@@ -34,6 +34,11 @@ return [
         'title' => 'Jelented :username eredményét?',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'Jelentés',
         'title' => ':username jelentése?',

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid_ruleset' => '',
+    'invalid_ruleset' => 'Quy tắc đã chỉ định không hợp lệ.',
 
     'change_owner' => [
         'too_many' => 'Quá nhiều mapper khách.',

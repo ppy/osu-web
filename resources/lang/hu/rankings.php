@@ -37,12 +37,11 @@ return [
         'charts' => 'Reflektorfény',
         'country' => 'Ország',
         'daily_challenge' => 'napi kihívás',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'többjátékos',
-        'performance' => 'Teljesítmény',
-        'score' => 'Pontszám',
         'seasons' => 'szezonok',
-        'team' => '',
+        'team' => 'csapat',
     ],
 
     'seasons' => [
@@ -67,7 +66,7 @@ return [
         'active_users' => 'Aktív Felhasználók',
         'country' => 'Ország',
         'division' => '',
-        'members' => '',
+        'members' => 'Tagok',
         'play_count' => 'Játékszám',
         'performance' => 'Teljesítmény',
         'total_score' => 'Összpontszám',

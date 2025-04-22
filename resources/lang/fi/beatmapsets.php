@@ -25,12 +25,12 @@ return [
     ],
 
     'index' => [
-        'title' => 'Rytmikarttojen listaus',
-        'guest_title' => 'Rytmikartat',
+        'title' => 'Beatmappien Listaus',
+        'guest_title' => 'Beatmapit',
     ],
 
     'panel' => [
-        'empty' => 'ei rytmikarttoja',
+        'empty' => 'ei beatmappeja',
 
         'download' => [
             'all' => 'lataa',
@@ -140,6 +140,7 @@ return [
             'description' => 'Kuvaus',
             'genre' => 'Genre',
             'language' => 'Kieli',
+            'mapper_tags' => '',
             'no_scores' => 'Dataa lasketaan...',
             'nominators' => 'Ehdollepanijat',
             'nsfw' => 'Sopimaton sisältö',
@@ -148,7 +149,7 @@ return [
             'source' => 'Lähde',
             'storyboard' => 'Tämä rytmikartta sisältää taustaesityksen',
             'success-rate' => 'Läpäisyprosentti',
-            'tags' => 'Tunnisteet',
+            'user_tags' => '',
             'video' => 'Tämä rytmikartta sisältää videon',
         ],
 

@@ -194,9 +194,9 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
-                'currently_applying' => '',
+                'already_member' => "Ikaw ay nakaparte na sa team.",
+                'already_other_member' => "Ikaw ay nakaparte na sa ibang team.",
+                'currently_applying' => 'Ikaw ay mayroong naka-pending na team join request.',
                 'team_closed' => '',
                 'team_full' => "",
             ],

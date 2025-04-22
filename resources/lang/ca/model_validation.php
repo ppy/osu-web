@@ -12,11 +12,11 @@ return [
     'wrong_confirmation' => 'La confirmació no coincideix.',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'La marca de temps s\'ha especificat però falta la dificultat del mapa. ',
+        'beatmap_missing' => 'La marca de temps s\'ha especificat però falta la dificultat del beatmap. ',
         'beatmapset_no_hype' => "El mapa no pot rebre més eufòria.",
         'hype_requires_null_beatmap' => 'Mostrar eufòria s\'ha de fer a la secció General (totes les dificultats).',
         'invalid_beatmap_id' => 'Dificultat no vàlida.',
-        'invalid_beatmapset_id' => 'Mapa no vàlid.',
+        'invalid_beatmapset_id' => 'Beatmap no vàlid.',
         'locked' => 'La discussió està tancada.',
 
         'attributes' => [
@@ -25,12 +25,12 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Aquest mapa està tancat per discussió i no pot mostrar més eufòria",
+            'discussion_locked' => "Aquest beatmap està tancat per discussió i no pot mostrar més eufòria",
             'guest' => 'Has d\'haver iniciat la sessió per mostrar eufòria.',
-            'hyped' => 'Ja has mostrat eufòria a aquest mapa.',
+            'hyped' => 'Ja has mostrat eufòria a aquest beatmap.',
             'limit_exceeded' => 'Ja has fet servir totes les teves mostres d\'eufòria.',
-            'not_hypeable' => 'No es pot mostrar més eufòria a aquest mapa',
-            'owner' => 'No pots mostrar eufòria al teu propi mapa.',
+            'not_hypeable' => 'No es pot mostrar més eufòria a aquest beatmap',
+            'owner' => 'No pots mostrar eufòria al teu propi beatmap.',
         ],
 
         'timestamp' => [
@@ -190,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Els beatmaps classificatoris no es poden denunciar',
         'not_in_channel' => 'No ets en aquest canal.',
+        'in_team' => '',
         'reason_not_valid' => ':reason no és vàlida per aquest tipus d\'informe.',
         'self' => "No et pots denunciar a tu mateix!",
     ],

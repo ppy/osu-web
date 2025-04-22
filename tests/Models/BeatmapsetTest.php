@@ -863,7 +863,7 @@ class BeatmapsetTest extends TestCase
         return Beatmapset::factory()->owner()->pending();
     }
 
-    private function createHybridBeatmapset(string $mainRuleset = null, array $rulesets = ['osu', 'taiko']): Beatmapset
+    private function createHybridBeatmapset(?string $mainRuleset = null, array $rulesets = ['osu', 'taiko']): Beatmapset
     {
         $factory = $this->beatmapsetFactory();
 

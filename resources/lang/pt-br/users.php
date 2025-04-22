@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Jogando sujo / Trapaceando',
-            'multiple_accounts' => 'Usando diversas contas',
+            'inappropriate_chat' => '',
             'insults' => 'Me insultando / outros',
-            'spam' => 'Spam',
-            'unwanted_content' => 'Enviando links com conteúdo inapropriado',
+            'multiple_accounts' => 'Usando diversas contas',
             'nonsense' => 'Sem sentido',
             'other' => 'Outro (escreva abaixo)',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Enviando links com conteúdo inapropriado',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Ranking global de :mode',
             'global_simple' => 'Ranking Global',
             'highest' => 'Maior classificação: :rank em :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisão',

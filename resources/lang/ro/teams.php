@@ -94,16 +94,22 @@ return [
             'title' => 'Gestionare Membri',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => 'Solicitat La',
                 'empty' => 'Nici o cerere de înscriere în acest moment.',
                 'empty_slots' => 'Locuri disponibile',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => 'Cereri de Înscriere',
-                'created_at' => 'Solicitat La',
             ],
 
             'table' => [
-                'status' => 'Status',
                 'joined_at' => 'Data Înscrierii',
                 'remove' => 'Elimină',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => 'Status',
                 'title' => 'Membrii Actuali',
             ],
 
@@ -111,6 +117,10 @@ return [
                 'status_0' => 'Inactiv',
                 'status_1' => 'Activ',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 
@@ -137,14 +147,14 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => 'Despre Noi!',
             'info' => 'Info',
             'members' => 'Membri',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => 'Rang',
+            'leader' => 'Liderul Echipei',
         ],
     ],
 

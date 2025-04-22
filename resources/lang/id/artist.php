@@ -12,7 +12,7 @@ return [
     ],
 
     'beatmaps' => [
-        '_' => 'Beatmaps',
+        '_' => 'Beatmap',
         'download' => 'unduh template beatmap',
         'download-na' => 'template beatmap belum tersedia',
     ],
@@ -29,7 +29,7 @@ return [
 
     'songs' => [
         '_' => 'Lagu',
-        'count' => ':count lagu',
+        'count' => ':count_delimited lagu|:count_delimited lagu',
         'original' => 'osu! original',
         'original_badge' => 'ORIGINAL',
     ],

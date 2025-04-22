@@ -140,6 +140,7 @@ return [
             'description' => 'Opis',
             'genre' => 'Žanr',
             'language' => 'Jezik',
+            'mapper_tags' => '',
             'no_scores' => 'Podaci se još kalkuliraju...',
             'nominators' => 'Nominatori',
             'nsfw' => 'Eksplicitni sadržaj',
@@ -148,7 +149,7 @@ return [
             'source' => 'Izvor',
             'storyboard' => 'Ova beatmapa sadrži storyboard',
             'success-rate' => 'Stopa uspjeha',
-            'tags' => 'Oznake',
+            'user_tags' => '',
             'video' => 'Ova beatmapa sadrži video',
         ],
 

@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Anti-jeu / Triche',
-            'multiple_accounts' => 'Utilisation de plusieurs comptes',
+            'inappropriate_chat' => '',
             'insults' => 'M’insulte / insulte les autres',
-            'spam' => 'Spam',
-            'unwanted_content' => 'Envoi de contenu inapproprié',
+            'multiple_accounts' => 'Utilisation de plusieurs comptes',
             'nonsense' => 'Absurdités répétées',
             'other' => 'Autre (détaillez ci-dessous)',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Envoi de contenu inapproprié',
         ],
     ],
     'restricted_banner' => [
@@ -225,7 +226,7 @@ return [
                     'button' => 'Mettre en ligne une image',
                     'dropzone' => 'Déplacez ici pour mettre en ligne',
                     'dropzone_info' => 'Vous pouvez aussi déplacer l\'image ici pour la mettre en ligne',
-                    'size_info' => 'La taille de la bannière devrait être de 2400x640',
+                    'size_info' => 'La taille de la bannière devrait être de 2000x500',
                     'too_large' => 'Le fichier est trop volumineux.',
                     'unsupported_format' => 'Format non pris en charge.',
 
@@ -478,6 +479,10 @@ return [
             'global' => 'Classement global en :mode',
             'global_simple' => 'Classement global',
             'highest' => 'Meilleur rang : :rank le :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Précision',

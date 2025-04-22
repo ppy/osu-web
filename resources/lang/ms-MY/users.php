@@ -75,7 +75,7 @@ return [
         'warning' => "Sekiranya anda telah melanggar peraturan, sila catat bahawa terdapat tempoh bertenang selama sebulan yang mana kami tidak akan pertimbangkan sebarang permintaan pengampunan. Setelah tempoh ini, anda dipersilakan untuk menghubungi kami jika perlu. Sila catat bahawa jika anda mencipta akaun baru selepas pelumpuhan akaun sebelumnya, <strong>tempoh bertenang sebulan akan dilanjutkan</strong>. Sila catat juga <strong>anda terus melanggar peraturan bagi setiap akaun yang dicipta</strong>. Kami sarankan anda tidak membuat demikian!",
 
         'if_mistake' => [
-            '_' => 'Sekiranya anda berasa ini satu kesilapan, anda dialu-alukan untuk menghubungi kami (melalui :email atau dengan mengklik "?" pada bucu kanan bahagian bawah halaman ini). Sila catat bahawa kami sentiasa yakin sepenuhnya dengan tindakan kami kerana berpangkalkan data yang sangat kukuh. Kami berhak mengendah permintaan anda sekiranya kami berasa anda secara sengaja tidak jujur.',
+            '_' => 'Sekiranya anda berasa ini satu kesilapan, anda dialu-alukan untuk menghubungi kami (melalui :email atau dengan mengklik "?" pada bucu kanan bahagian bawah halaman ini). Sila catat bahawa kami selalu yakin sepenuhnya dengan tindakan kami kerana berpangkalkan data yang sangat kukuh. Kami berhak mengendah permintaan anda sekiranya kami berasa anda secara sengaja tidak jujur.',
             'email' => 'e-mel',
         ],
 
@@ -129,7 +129,7 @@ return [
         'modding_description_empty' => 'Pengguna ini tidak mempunyai apa-apa peta rentak...',
 
         'description' => [
-            '_' => 'Peringkat (:ruleset): :global | :country',
+            '_' => 'Kedudukan (:ruleset): :global | :country',
             'country' => 'Negara :rank',
             'global' => 'Global :rank',
         ],
@@ -161,17 +161,18 @@ return [
 
         'options' => [
             'cheating' => 'Menipu',
-            'multiple_accounts' => 'Menggunakan lebih daripada satu akaun',
+            'inappropriate_chat' => '',
             'insults' => 'Menghina saya / orang lain',
-            'spam' => 'Spam',
-            'unwanted_content' => 'Memaut kandungan tidak enak',
+            'multiple_accounts' => 'Menggunakan lebih daripada satu akaun',
             'nonsense' => 'Mengarut',
             'other' => 'Lain-lain (taip di bawah)',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Memaut kandungan tidak enak',
         ],
     ],
     'restricted_banner' => [
         'title' => 'Akaun anda telah dihadkan!',
-        'message' => 'Ketika dihadkan, anda tidak boleh berinteraksi dengan pemain lain dan markah anda tampak bagi anda sahaja. Hal ini biasanya hasil proses automatik dan akan ditarik balik dalam masa 24 jam. :link',
+        'message' => 'Ketika dihadkan, anda tidak boleh berinteraksi dengan pemain lain dan markah anda akan tampak bagi anda sahaja. Hal ini biasanya hasil proses automatik dan akan ditarik balik dalam masa 24 jam. :link',
         'message_link' => 'Semak halaman ini untuk belajar lebih lanjut.',
     ],
     'show' => [
@@ -204,9 +205,9 @@ return [
             'title' => 'Cabaran\nHarian',
             'top_10p_placements' => 'Kedudukan 10% Teratas',
             'top_50p_placements' => 'Kedudukan 50% Teratas',
-            'weekly' => 'Perturutan Mingguan',
-            'weekly_streak_best' => 'Perturutan Mingguan Terbaik',
-            'weekly_streak_current' => 'Perturutan Mingguan Semasa',
+            'weekly' => 'Turutan Mingguan',
+            'weekly_streak_best' => 'Turutan Mingguan Terbaik',
+            'weekly_streak_current' => 'Turutan Mingguan Semasa',
 
             'unit' => [
                 'day' => ':valued',
@@ -278,13 +279,13 @@ return [
                     'title' => 'Peta Rentak Kegemaran',
                 ],
                 'nominated' => [
-                    'title' => 'Calon Peta Rentak Berperingkat',
+                    'title' => 'Calon Peta Rentak Berkedudukan',
                 ],
                 'pending' => [
                     'title' => 'Peta Rentak Tergantung',
                 ],
                 'ranked' => [
-                    'title' => 'Peta Rentak Berperingkat',
+                    'title' => 'Peta Rentak Berkedudukan',
                 ],
             ],
             'discussions' => [
@@ -313,8 +314,8 @@ return [
                     'title' => 'Mainan Semasa (24 jam)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Sejarah Ulangan Ditonton',
-                    'count_label' => 'Ulangan Ditonton',
+                    'title' => 'Sejarah Tontonan Ulangan',
+                    'count_label' => 'Tontonan Ulangan',
                 ],
             ],
             'kudosu' => [
@@ -390,7 +391,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Muat Turun Ulangan',
-                'not_ranked' => 'Hanya peta rentak berperingkat memberi pp',
+                'not_ranked' => 'Hanya peta rentak berkedudukan memberi pp',
                 'pp_weight' => 'terwajar :percentage',
                 'view_details' => 'Lihat Butiran',
                 'title' => 'Gred',
@@ -403,9 +404,9 @@ return [
                 ],
                 'pin' => [
                     'to_0' => 'Nyahsemat',
-                    'to_0_done' => 'Markah yang dinyahsemat',
+                    'to_0_done' => 'Markah dinyahsemat',
                     'to_1' => 'Semat',
-                    'to_1_done' => 'Markah yang disemat',
+                    'to_1_done' => 'Markah disemat',
                 ],
                 'pinned' => [
                     'title' => 'Markah yang Disemat',
@@ -479,6 +480,10 @@ return [
             'global_simple' => 'Kedudukan Dunia',
             'highest' => 'Peringkat tertinggi: :rank pada :date',
         ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
+        ],
         'stats' => [
             'hit_accuracy' => 'Ketepatan Pukulan',
             'level' => 'Level :level',
@@ -487,16 +492,16 @@ return [
             'medals' => 'Pingat',
             'play_count' => 'Jumlah Mainan',
             'play_time' => 'Jumlah Masa Permainan',
-            'ranked_score' => 'Markah Berperingkat',
-            'replays_watched_by_others' => 'Ulangan yang Ditonton Orang Lain',
-            'score_ranks' => 'Kedudukan Skor',
+            'ranked_score' => 'Markah Berkedudukan',
+            'replays_watched_by_others' => 'Ulangan Tontonan Orang Lain',
+            'score_ranks' => 'Kedudukan Markah',
             'total_hits' => 'Jumlah Pukulan',
             'total_score' => 'Jumlah Markah',
             // modding stats
             'graveyard_beatmapset_count' => 'Peta Rentak di Kubur',
             'loved_beatmapset_count' => 'Peta Rentak Kegemaran',
             'pending_beatmapset_count' => 'Peta Rentak Tergantung',
-            'ranked_beatmapset_count' => 'Peta Rentak Berperingkat',
+            'ranked_beatmapset_count' => 'Peta Rentak Berkedudukan',
         ],
     ],
 
@@ -512,7 +517,7 @@ return [
     ],
     'store' => [
         'from_client' => 'sila mendaftar dari pelanggan mainan!',
-        'from_web' => 'sila selesaikan pendaftaran melalui laman web osu!',
+        'from_web' => 'sila selesaikan pendaftaran melalui laman sesawang osu!',
         'saved' => 'Pengguna dicipta',
     ],
     'verify' => [

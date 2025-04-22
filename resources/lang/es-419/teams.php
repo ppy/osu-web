@@ -94,16 +94,22 @@ return [
             'title' => 'Gestionar miembros',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => 'Solicitud realizada',
                 'empty' => 'No hay solicitudes para unirse al equipo por el momento.',
                 'empty_slots' => 'Espacios disponibles',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => 'Solicitudes para unirse al equipo',
-                'created_at' => 'Solicitud realizada',
             ],
 
             'table' => [
-                'status' => 'Estado',
                 'joined_at' => 'Fecha de ingreso',
                 'remove' => 'Eliminar',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => 'Estado',
                 'title' => 'Miembros actuales',
             ],
 
@@ -111,6 +117,10 @@ return [
                 'status_0' => 'Inactivo',
                 'status_1' => 'Activo',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 
@@ -137,14 +147,14 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => '¡Acerca de nosotros!',
             'info' => 'Información',
             'members' => 'Miembros',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => 'Rango',
+            'leader' => 'Líder del equipo',
         ],
     ],
 

@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Варање',
-            'multiple_accounts' => 'Коришћење више налога',
+            'inappropriate_chat' => '',
             'insults' => 'Вређа мене / друге',
-            'spam' => 'Спамовање',
-            'unwanted_content' => 'Линковање неприкладног садржаја',
+            'multiple_accounts' => 'Коришћење више налога',
             'nonsense' => 'Глупости',
             'other' => 'Друго (напишите испод)',
+            'spam' => 'Спамовање',
+            'unwanted_content' => 'Линковање неприкладног садржаја',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Глобални ранг за :mode',
             'global_simple' => 'Глобални ранг',
             'highest' => 'Највиши ранг: :rank на :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Прецизност',

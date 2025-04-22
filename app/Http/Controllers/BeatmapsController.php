@@ -44,6 +44,7 @@ class BeatmapsController extends Controller
         }
     }
 
+    // TODO: move this to scores() and remove soloScores(). Probably sometime after October 2025.
     private static function beatmapScores(string $id, ?string $scoreTransformerType, ?bool $isLegacy): array
     {
         $beatmap = Beatmap::findOrFail($id);
@@ -368,6 +369,8 @@ class BeatmapsController extends Controller
      * Get Beatmap scores (non-legacy)
      *
      * Returns the top scores for a beatmap.
+     *
+     * This endpoint is deprecated. Use [Get Beatmap scores](#get-beatmap-scores) with appropriate api version header instead.
      *
      * ---
      *

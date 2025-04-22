@@ -37,12 +37,11 @@ return [
         'charts' => '月賽',
         'country' => '國家',
         'daily_challenge' => '每日挑戰',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => '多人遊戲',
-        'performance' => '成績',
-        'score' => '總分',
         'seasons' => '季',
-        'team' => '',
+        'team' => '隊伍',
     ],
 
     'seasons' => [
@@ -67,7 +66,7 @@ return [
         'active_users' => '活躍的使用者',
         'country' => '國家',
         'division' => '組別',
-        'members' => '',
+        'members' => '隊員',
         'play_count' => '遊戲次數',
         'performance' => '成績',
         'total_score' => '總分',

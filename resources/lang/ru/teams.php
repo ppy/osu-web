@@ -58,7 +58,7 @@ return [
         ],
 
         'settings' => [
-            'application_help' => 'Разрешить ли игрокам подавать запросы на вступление в команду',
+            'application_help' => 'Разрешить ли всем желающим подавать запросы на вступление в команду',
             'default_ruleset_help' => 'Режим игры, отображаемый на главной странице команды',
             'flag_help' => 'Максимальный размер: :width×:height',
             'header_help' => 'Максимальный размер: :width×:height',
@@ -74,7 +74,7 @@ return [
     'header_links' => [
         'edit' => 'настройки',
         'leaderboard' => 'рейтинг',
-        'show' => 'основная',
+        'show' => 'главная',
 
         'members' => [
             'index' => 'управление участниками',
@@ -94,16 +94,22 @@ return [
             'title' => 'Управление участниками',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => 'Запрос отправлен',
                 'empty' => 'Нет запросов на вступление.',
                 'empty_slots' => 'Свободных мест',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => 'Запросы на вступление',
-                'created_at' => 'Запрос отправлен',
             ],
 
             'table' => [
-                'status' => 'Статус',
                 'joined_at' => 'Дата вступления',
                 'remove' => 'Исключить',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => 'Статус',
                 'title' => 'Текущие участники',
             ],
 
@@ -111,6 +117,10 @@ return [
                 'status_0' => 'Неактивный',
                 'status_1' => 'Активный',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 
@@ -137,14 +147,14 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => 'О нас!',
             'info' => 'Общее',
             'members' => 'Участники',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => 'Рейтинг в мире',
+            'leader' => 'Капитан команды',
         ],
     ],
 

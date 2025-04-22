@@ -31,7 +31,7 @@ return [
         'cart_problems' => 'Alamak, ada masalah dengan troli anda!',
         'cart_problems_edit' => 'Tekan di sini untuk sunting.',
         'declined' => 'Bayaran dibatalkan.',
-        'delayed_shipping' => 'Kami kini dilandai banyak pesanan! Anda dialu-alukan meletak pesanan anda tetapi sila jangkakan **kelewatan 1-2 minggu** sambil kami mengurus pesanan semasa.',
+        'delayed_shipping' => 'Kami kini dilandai banyak pesanan! Anda dialu-alukan meletak pesanan anda tetapi sila jangkakan **kelewatan 1-2 minggu** sambil kami mengurus pesanan yang ada.',
         'hide_from_activity' => 'Sorok semua tag osu!supporter dalam pesanan ini dari aktivitiku',
         'old_cart' => 'Troli anda nampaknya usang dan sudah dimuat semula, sila cuba lagi.',
         'pay' => 'Semak keluar dengan Paypal',
@@ -78,7 +78,7 @@ return [
                 ],
             ],
             'prepared' => [
-                'title' => 'Pesanan anda kini disediakan!',
+                'title' => 'Pesanan anda kini disiapkan!',
                 'line_1' => 'Sila tunggu sebentar lagi untuk penghantaran. Maklumat penjejakan akan muncul di sini setelah pesanan telah diproses dan dihantar yang akan mengambil masa hingga 5 hari (tetapi biasanya kurang!) bergantung kepada kesibukan kami.',
                 'line_2' => 'Kami mengirim semua pesanan dari Jepun menggunakan pelbagai perkhidmatan penghantaran bergantung kepada nilai dan berat. Kawasan ini akan kemas kini dengan tentuan setelah pesanan dihantar.',
             ],
@@ -147,7 +147,7 @@ return [
 
         'status' => [
             'cancelled' => 'Dibatalkan',
-            'checkout' => 'Menyediakan',
+            'checkout' => 'Menyiapkan',
             'delivered' => 'Dihantar',
             'paid' => 'Dibayar',
             'processing' => 'Menunggu pengesahan',
@@ -168,17 +168,17 @@ return [
         'name' => 'Nama',
 
         'stock' => [
-            'out' => 'Barang ini kini tiada dalam stok. Semak semula nanti!',
-            'out_with_alternative' => 'Malangnya barang ini tiada dalam stok. Gunakan menu ke bawah untuk memilih jenis yang lain atau semak semula nanti!',
+            'out' => 'Barang ini kini tiada dalam simpanan. Semak semula nanti!',
+            'out_with_alternative' => 'Malangnya barang ini tiada dalam simpanan. Gunakan menu ke bawah untuk memilih jenis yang lain atau semak semula nanti!',
         ],
 
         'add_to_cart' => 'Masukkan ke Troli',
         'notify' => 'Beritahu saya ketika telah tersedia!',
 
-        'notification_success' => 'anda akan diberitahu ketika kami mempunyai stok baharu. klik :link untuk batal',
+        'notification_success' => 'anda akan diberitahu ketika kami mempunyai simpanan baharu. klik :link untuk batal',
         'notification_remove_text' => 'di sini',
 
-        'notification_in_stock' => 'Barangan ini sudah dalam stok!',
+        'notification_in_stock' => 'Barangan ini telah ada dalam simpanan!',
     ],
 
     'supporter_tag' => [

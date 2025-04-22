@@ -34,6 +34,11 @@ return [
         'title' => 'Voleu informar de la puntuació de :username?',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'Informe',
         'title' => 'Informar :username?',

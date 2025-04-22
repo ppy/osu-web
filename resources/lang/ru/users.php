@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Нечестная игра / читы',
-            'multiple_accounts' => 'Использование нескольких аккаунтов',
+            'inappropriate_chat' => '',
             'insults' => 'Оскорбление меня / других',
-            'spam' => 'Спам',
-            'unwanted_content' => 'Ссылки на неприемлемое содержимое',
+            'multiple_accounts' => 'Использование нескольких аккаунтов',
             'nonsense' => 'Вздор',
             'other' => 'Другая (напишите ниже)',
+            'spam' => 'Спам',
+            'unwanted_content' => 'Ссылки на неприемлемое содержимое',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Мировой рейтинг для :mode',
             'global_simple' => 'Рейтинг в мире',
             'highest' => 'Наивысший: :rank от :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Точность попаданий',

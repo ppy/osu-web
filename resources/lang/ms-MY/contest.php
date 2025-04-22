@@ -65,7 +65,7 @@ return [
         '_' => 'penyertaan',
         'login_required' => 'Sila daftar masuk untuk menyertai peraduan.',
         'silenced_or_restricted' => 'Anda tidak boleh menyertai peraduan ketika dihadkan atau didiamkan.',
-        'preparation' => 'Kami kini menyediakan peraduan ini. Mohon bersabar!',
+        'preparation' => 'Kami kini menyiapkan peraduan ini. Mohon bersabar!',
         'drop_here' => 'Lepaskan penyertaan di sini',
         'download' => 'Muat turun .osz',
 

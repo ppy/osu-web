@@ -41,7 +41,7 @@ return [
         'show_voted_only' => 'Mostra els votats',
 
         'best_of' => [
-            'none_played' => "No sembla que hagis jugat cap mapa per a qualificar-te per al torneig!",
+            'none_played' => "No sembla que hagis jugat cap beatmap per a qualificar-te per al torneig!",
         ],
 
         'button' => [

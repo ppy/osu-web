@@ -37,12 +37,11 @@ return [
         'charts' => '季赛（旧版）',
         'country' => '国家/地区',
         'daily_challenge' => '每日挑战',
+        'global' => '',
         'kudosu' => 'Kudosu',
         'multiplayer' => '多人游戏',
-        'performance' => '表现',
-        'score' => '总分',
         'seasons' => '季赛',
-        'team' => '',
+        'team' => '战队',
     ],
 
     'seasons' => [
@@ -67,7 +66,7 @@ return [
         'active_users' => '活跃用户',
         'country' => '国家/地区',
         'division' => '排位',
-        'members' => '',
+        'members' => '队员',
         'play_count' => '游戏次数',
         'performance' => '表现',
         'total_score' => '总分',

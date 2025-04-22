@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Παράτυπος τρόπος παιχνιδιού / Κλέψιμο',
-            'multiple_accounts' => 'Χρήση πολλαπλών λογαριασμών',
+            'inappropriate_chat' => '',
             'insults' => 'Προσβάλει εμένα / άλλους',
-            'spam' => 'Spamming',
-            'unwanted_content' => 'Δημοσίευση links με ακατάλληλο περιεχόμενο',
+            'multiple_accounts' => 'Χρήση πολλαπλών λογαριασμών',
             'nonsense' => 'Ανοησίες',
             'other' => 'Άλλο (γράψτε παρακάτω)',
+            'spam' => 'Spamming',
+            'unwanted_content' => 'Δημοσίευση links με ακατάλληλο περιεχόμενο',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Παγκόσμια κατάταξη για το :mode',
             'global_simple' => 'Παγκόσμια Κατάταξη',
             'highest' => 'Υψηλότερη κατάταξη: :rank στο :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Ακρίβεια Ευστοχίας',

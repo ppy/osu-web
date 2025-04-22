@@ -18,7 +18,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'salli kudosu',
-        'beatmap_information' => 'Rytmikarttasivu',
+        'beatmap_information' => 'Beatmap-sivu',
         'delete' => 'poista',
         'deleted' => 'Poistanut :editor :delete_time.',
         'deny_kudosu' => 'hylkää kudosu',
@@ -27,7 +27,7 @@ return [
         'guest' => 'Vieraileva vaikeustaso - :user',
         'kudosu_denied' => 'Evätty saamasta kudosua.',
         'message_placeholder_deleted_beatmap' => 'Tämä vaikeustaso on poistettu, joten siitä ei voi enää keskustella.',
-        'message_placeholder_locked' => 'Tämän rytmikartan keskustelu on poistettu käytöstä.',
+        'message_placeholder_locked' => 'Keskustelu tälle beatmapille on poistettu käytöstä.',
         'message_placeholder_silenced' => "Keskusteluun ei voi osallistua mykistettynä.",
         'message_type_select' => 'Valitse kommentin tyyppi',
         'reply_notice' => 'Vastaa painamalla enter-näppäintä.',

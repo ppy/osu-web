@@ -51,6 +51,8 @@ class UserReport extends Model
         MorphMap::MAP[Comment::class] => self::POST_TYPE_REASONS,
         MorphMap::MAP[Forum\Post::class] => self::POST_TYPE_REASONS,
         MorphMap::MAP[Solo\Score::class] => self::SCORE_TYPE_REASONS,
+        MorphMap::MAP[Team::class] => ['UnwantedContent', 'Other'],
+        MorphMap::MAP[User::class] => ['Cheating', 'MultipleAccounts', 'InappropriateChat', 'UnwantedContent', 'Other'],
     ];
 
     const CREATED_AT = 'timestamp';
@@ -91,6 +93,7 @@ class UserReport extends Model
                 Comment::class => 'comment',
                 Forum\Post::class => 'forum',
                 User::class => 'user',
+                Team::class => 'team',
             };
 
             return $GLOBALS['cfg']['osu']['user_report_notification']['endpoint'][$type]
@@ -154,6 +157,17 @@ class UserReport extends Model
                 '.not_in_channel'
             );
         }
+
+        if (
+            $this->reportable instanceof Team
+            && $this->reportable->members()->where('user_id', $this->reporter_id)->exists()
+        ) {
+            $this->validationErrors()->add(
+                'reportable',
+                '.in_team'
+            );
+        }
+
 
         $this->validateDbFieldLengths();
 

@@ -55,8 +55,8 @@ return [
                 'general' => '',
 
                 'users' => [
-                    'header' => '',
-                    'cover_presets' => '',
+                    'header' => 'User',
+                    'cover_presets' => 'Mga Preset ng Profile Cover',
                 ],
             ],
         ],

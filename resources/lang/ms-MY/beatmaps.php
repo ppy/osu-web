@@ -138,7 +138,7 @@ return [
         ],
 
         'show' => [
-            'title' => ':title dipeta oleh :mapper',
+            'title' => ':title petaan :mapper',
         ],
 
         'sort' => [
@@ -161,7 +161,7 @@ return [
             'approved' => 'Peta rentak ini lulus pada :date!',
             'graveyard' => "Peta rentak ini dikuburkan kerana tidak dikemas kini sejak :date...",
             'loved' => 'Peta rentak ini ditambah ke Kegemaran pada :date!',
-            'ranked' => 'Beatmap ini diperingkatkan pada :date!',
+            'ranked' => 'Beatmap ini berkedudukan pada :date!',
             'wip' => 'Catatan: Peta rentak ini ditanda selaku kerja sedang berjalan oleh pencipta.',
         ],
 
@@ -181,8 +181,8 @@ return [
         'button' => 'Gembarkan Peta Rentak!',
         'button_done' => 'Telah Digembarkan!',
         'confirm' => "Adakah anda pasti? Tindakan ini akan menggunakan satu daripada :n gembaran anda dan tidak boleh dibuat asal.",
-        'explanation' => 'Gembarkan peta rentak ini agar lebih tampak untuk pencalonan dan pemeringkatan!',
-        'explanation_guest' => 'Daftar masuk dan gembarkan peta rentak ini agar lebih tampak untuk pencalonan dan pemeringkatan!',
+        'explanation' => 'Gembarkan peta rentak ini agar lebih tampak untuk pencalonan dan penarafan Berkedudukan!',
+        'explanation_guest' => 'Daftar masuk dan gembarkan peta rentak ini agar lebih tampak untuk pencalonan dan penarafan Berkedudukan!',
         'new_time' => "Anda akan mendapat gembaran lagi :new_time.",
         'remaining' => 'Anda mempunyai :remaining gembaran lagi.',
         'required_text' => 'Gembaran: :current/:required',
@@ -220,11 +220,11 @@ return [
         'unresolved_issues' => 'Masih terdapat isu tidak selesai yang mesti diberi perhatian dahulu.',
 
         'rank_estimate' => [
-            '_' => 'Pemeringkatan peta ini dianggarkan pada :date sekiranya tiada isu ditemui. Peta ini bergiliran #:position pada :queue.',
+            '_' => 'Peta ini dianggarkan berkedudukan pada :date sekiranya tiada isu ditemui. Peta ini bergiliran #:position pada :queue.',
             'unresolved_problems' => 'Peta ini disekat dari meninggalkan bahagian Layak hingga :problems diselesaikan.',
             'problems' => 'masalah-masalah ini',
             'on' => 'pada :date',
-            'queue' => 'giliran peringkat',
+            'queue' => 'giliran penarafan Berkedudukan',
             'soon' => 'nanti',
         ],
 
@@ -263,9 +263,9 @@ return [
                 'title' => 'Judul',
                 'artist' => 'Artis',
                 'difficulty' => 'Kesukaran',
-                'favourites' => 'Kegemaran',
+                'favourites' => 'Sukaan',
                 'updated' => 'Kemas kini',
-                'ranked' => 'Berperingkat',
+                'ranked' => 'Berkedudukan',
                 'rating' => 'Nilai',
                 'plays' => 'Mainan',
                 'relevance' => 'Kaitan',
@@ -286,7 +286,7 @@ return [
     ],
     'mode' => [
         'all' => 'Semua',
-        'any' => 'Mana-Mana',
+        'any' => 'Semua',
         'osu' => '',
         'taiko' => '',
         'fruits' => '',
@@ -294,9 +294,9 @@ return [
         'undefined' => 'tidak tetap',
     ],
     'status' => [
-        'any' => 'Mana-Mana',
+        'any' => 'Semua',
         'approved' => 'Lulus',
-        'favourites' => 'Kegemaran',
+        'favourites' => 'Sukaan',
         'graveyard' => 'Kubur',
         'leaderboard' => 'Mempunyai Carta Kedudukan',
         'loved' => 'Kegemaran',
@@ -304,7 +304,7 @@ return [
         'pending' => 'Tergantung',
         'wip' => 'WIP',
         'qualified' => 'Layak',
-        'ranked' => 'Berperingkat',
+        'ranked' => 'Berkedudukan',
     ],
     'genre' => [
         'any' => 'Semua',
@@ -323,7 +323,7 @@ return [
         'jazz' => 'Jaz',
     ],
     'language' => [
-        'any' => 'Mana-Mana',
+        'any' => 'Semua',
         'english' => 'Inggeris',
         'chinese' => 'Cina',
         'french' => 'Perancis',
@@ -346,7 +346,7 @@ return [
     ],
 
     'played' => [
-        'any' => 'Mana-Mana',
+        'any' => 'Semua',
         'played' => 'Telah Main',
         'unplayed' => 'Belum Main',
     ],

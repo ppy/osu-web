@@ -3,7 +3,11 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    use App\Models\Country;
     use App\Transformers\SelectOptionTransformer;
+
+    $transformer = new SelectOptionTransformer();
+    $country = $countryStats?->country;
 @endphp
 
 <div class="js-react--ranking-country-filter u-contents">
@@ -21,7 +25,10 @@
 
 <script id="json-country-filter" type="application/json">
     {!! json_encode([
-        'current' => $country === null ? null : json_item($country, new SelectOptionTransformer()),
-        'items' => $countries,
+        'current' => $country === null ? null : json_item($country, $transformer),
+        'items' => json_collection(
+            Country::whereHasRuleset($params['mode'])->get(),
+            $transformer,
+        ),
     ]) !!}
 </script>

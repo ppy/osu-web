@@ -67,10 +67,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
+        'checking' => 'Frissítések keresése...',
         'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'no_updates' => 'Nincsenek frissítések.',
+        'updating' => 'Frissítés...',
     ],
 
     'reply' => [

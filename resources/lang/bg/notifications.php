@@ -20,7 +20,7 @@ return [
         'channel' => 'чат',
         'forum_topic' => 'форум',
         'news_post' => 'новини',
-        'team' => '',
+        'team' => 'отбор',
         'user' => 'профил',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'чат',
         'forum_topic' => 'форум',
         'news_post' => 'новини',
-        'team' => '',
+        'team' => 'отбор',
         'user' => 'профил',
     ],
 

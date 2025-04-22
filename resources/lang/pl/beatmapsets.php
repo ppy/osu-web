@@ -140,6 +140,7 @@ return [
             'description' => 'Opis',
             'genre' => 'Gatunek',
             'language' => 'Język',
+            'mapper_tags' => '',
             'no_scores' => 'Dane są nadal ładowane...',
             'nominators' => 'Nominatorzy',
             'nsfw' => 'Treść dla pełnoletnich',
@@ -148,7 +149,7 @@ return [
             'source' => 'Źródło',
             'storyboard' => 'Ta beatmapa zawiera scenorys',
             'success-rate' => 'Wskaźnik ukończonych zagrań',
-            'tags' => 'Tagi',
+            'user_tags' => '',
             'video' => 'Ta beatmapa zawiera wideo w tle',
         ],
 
@@ -171,7 +172,7 @@ return [
             'global' => 'Ranking globalny',
             'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, jakie jeszcze funkcje otrzymasz w zamian za zakup statusu donatora!',
             'supporter-only' => 'Musisz posiadać status donatora, by uzyskać dostęp do rankingu krajowego, znajomych i odrębnych dla modyfikatorów!',
-            'team' => '',
+            'team' => 'Ranking zespołowy',
             'title' => 'Tabela wyników',
 
             'headers' => [
@@ -193,7 +194,7 @@ return [
                 'friend' => 'Żaden z twoich znajomych nie ustanowił jeszcze wyniku na tej beatmapie!',
                 'global' => 'Brak wyników. Może czas jakieś ustanowić?',
                 'loading' => 'Ładowanie wyników...',
-                'team' => '',
+                'team' => 'Żaden z członków twojego zespołu nie ustanowił jeszcze wyniku na tej beatmapie!',
                 'unranked' => 'Nierankingowa beatmapa.',
             ],
             'score' => [

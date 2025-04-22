@@ -190,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => '无法报告上架 (Ranked) 谱面中的问题',
         'not_in_channel' => '你不在这个频道中。',
+        'in_team' => '',
         'reason_not_valid' => ':reason 不符合此报告类型。',
         'self' => "你不能举报你自己！",
     ],

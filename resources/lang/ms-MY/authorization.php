@@ -69,7 +69,7 @@ return [
     'chat' => [
         'blocked' => 'Pengguna yang menyekat atau disekat anda tidak boleh dikirim pesanan.',
         'friends_only' => 'Pengguna menyekat pesanan daripada orang yang tiada dalam senarai kawan.',
-        'moderated' => 'Saluran ini sedang dimoderasi.',
+        'moderated' => 'Saluran ini kini dimoderasi.',
         'no_access' => 'Anda tidak boleh mencapai saluran itu.',
         'no_announce' => 'Anda tidak diizinkan untuk menghantar pengumuman.',
         'receive_friends_only' => 'Pengguna ini mungkin tidak boleh membalas kerana anda hanya menerima pesanan daripada orang dalam senarai kawan.',

@@ -46,7 +46,7 @@ return [
     ],
 
     'not_found' => [
-        'message' => 'Tiada apa-apa di sini. Saluran mungkin ditinggalkan atau tidak wujud...',
+        'message' => 'Tiada apa-apa di sini. Saluran mungkin ditinggalkan atau tidak ada...',
         'title' => 'saluran tidak ditemui',
     ],
 

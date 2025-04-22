@@ -6,6 +6,7 @@
 namespace App\Models\Multiplayer;
 
 use App\Models\Model;
+use App\Models\Solo\Score;
 use App\Models\Traits\WithDbCursorHelper;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -101,6 +102,11 @@ class PlaylistItemUserHighScore extends Model
     public function playlistItem(): BelongsTo
     {
         return $this->belongsTo(PlaylistItem::class);
+    }
+
+    public function score(): BelongsTo
+    {
+        return $this->belongsTo(Score::class, 'score_id');
     }
 
     public function scoreLink()

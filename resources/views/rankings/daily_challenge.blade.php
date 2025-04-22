@@ -4,8 +4,7 @@
 --}}
 @extends('rankings.index', [
     'hasMode' => false,
-    'hasPager' => true,
-    'type' => 'daily_challenge',
+    'params' => ['type' => 'daily_challenge'],
     'titlePrepend' => osu_trans('rankings.type.daily_challenge').': '.$currentRoomOption['text'],
 ])
 

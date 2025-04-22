@@ -23,7 +23,7 @@ return [
     ],
 
     'warning' => [
-        'line1' => 'Jangan beri kekunci ini kepada sesiapa.',
+        'line1' => 'Jangan berikan kepada sesiapa.',
         'line2' => "Tindakan itu setara dengan mengongsikan kata laluan anda.",
         'line3' => 'Akaun anda mungkin akan terjejas.',
     ],

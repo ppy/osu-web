@@ -190,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Beatmaps mit dem Ranked-Status können nicht gemeldet werden',
         'not_in_channel' => 'Du bist nicht in diesem Kanal.',
+        'in_team' => '',
         'reason_not_valid' => ':reason ist für diesen Meldungstyp nicht gültig.',
         'self' => "Du kannst dich nicht selbst melden!",
     ],

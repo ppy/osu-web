@@ -94,16 +94,22 @@ return [
             'title' => '管理成員',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => '申請日期：',
                 'empty' => '目前沒有加入請求。',
                 'empty_slots' => '剩餘名額',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => '加入請求',
-                'created_at' => '申請日期：',
             ],
 
             'table' => [
-                'status' => '狀態',
                 'joined_at' => '加入日期',
                 'remove' => '移除',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => '狀態',
                 'title' => '目前的成員',
             ],
 
@@ -111,6 +117,10 @@ return [
                 'status_0' => '不活躍',
                 'status_1' => '活躍中',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 
@@ -137,18 +147,18 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => '關於我們！',
             'info' => '資訊',
             'members' => '成員',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => '排名',
+            'leader' => '隊長',
         ],
     ],
 
     'store' => [
-        'ok' => '團隊已創建。',
+        'ok' => '已建立團隊。',
     ],
 ];
