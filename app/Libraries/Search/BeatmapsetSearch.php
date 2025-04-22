@@ -20,6 +20,36 @@ use Ds\Set;
 
 class BeatmapsetSearch extends RecordSearch
 {
+    const EXCLUDE_QUOTED_REGEX = '/-(")(?<value>(\\"|.)*?)"/';
+    const EXCLUDE_REGEX = '/-(?<value>\S+)/';
+    const QUOTED_REGEX = '/(")(?<value>(\\"|.)*?)"/';
+
+    private function parseQuerystring(string $queryString)
+    {
+        $includes = [];
+        $excludes = [];
+
+        $keywords = preg_replace_callback_array([
+            static::EXCLUDE_QUOTED_REGEX => function ($m) use (&$excludes) {
+                $excludes[] = $m['value'];
+                return '';
+            },
+            static::QUOTED_REGEX => function ($m)  use (&$includes) {
+                $includes[] = $m['value'];
+                return '';
+            },
+            static::EXCLUDE_REGEX => function ($m)  use (&$excludes) {
+                $excludes[] = $m['value'];
+                return '';
+            },
+
+        ], $queryString);
+
+        $keywords = trim($keywords);
+
+        return compact('keywords', 'includes', 'excludes');
+    }
+
     public function __construct(?BeatmapsetSearchParams $params = null)
     {
         parent::__construct(
@@ -49,6 +79,8 @@ class BeatmapsetSearch extends RecordSearch
 
         $query = new BoolQuery();
 
+        $options = static::parseQuerystring($this->params->queryString ?? '');
+
         if (present($this->params->queryString)) {
             $terms = explode(' ', $this->params->queryString);
 
@@ -65,6 +97,13 @@ class BeatmapsetSearch extends RecordSearch
                         'nested' => [
                             'path' => 'beatmaps',
                             'query' => QueryHelper::queryString($this->params->queryString, ['beatmaps.top_tags'], 'or', 0.5 / count($terms)),
+                        ],
+                    ])
+                    ->mustNot(QueryHelper::queryString(implode(' ', $options['excludes']), [], 'or'))
+                    ->mustNot([
+                        'nested' => [
+                            'path' => 'beatmaps',
+                            'query' => QueryHelper::queryString(implode(' ', $options['excludes']), ['beatmaps.top_tags'], 'or'),
                         ],
                     ])
             );
