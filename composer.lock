@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "305652bc35e21e46c0b4bb638c845821",
+    "content-hash": "d8cc0943767c43acc84a97e3da31957f",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -931,16 +931,16 @@
         },
         {
             "name": "elasticsearch/elasticsearch",
-            "version": "v7.17.2",
+            "version": "7.17.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elastic/elasticsearch-php.git",
-                "reference": "2d302233f2bb0926812d82823bb820d405e130fc"
+                "reference": "4c58149028c447a86550615e270977c2a1adb3bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/2d302233f2bb0926812d82823bb820d405e130fc",
-                "reference": "2d302233f2bb0926812d82823bb820d405e130fc",
+                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/4c58149028c447a86550615e270977c2a1adb3bc",
+                "reference": "4c58149028c447a86550615e270977c2a1adb3bc",
                 "shasum": ""
             },
             "require": {
@@ -992,9 +992,9 @@
             ],
             "support": {
                 "issues": "https://github.com/elastic/elasticsearch-php/issues",
-                "source": "https://github.com/elastic/elasticsearch-php/tree/v7.17.2"
+                "source": "https://github.com/elastic/elasticsearch-php/tree/7.17"
             },
-            "time": "2023-04-21T15:31:12+00:00"
+            "time": "2025-03-17T16:04:39+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -13692,7 +13692,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "elasticsearch/elasticsearch": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
