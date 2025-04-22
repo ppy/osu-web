@@ -55,28 +55,38 @@ class BeatmapsetSearch extends RecordSearch
 
         if (present($this->params->queryString)) {
             // the subscoping is not necessary but prevents unintentional accidents when combining other matchers
-            $query->must(
-                (new BoolQuery())
-                    // results must contain at least one of the terms and boosted by containing all of them,
-                    // or match the id of the beatmapset.
-                    ->shouldMatch(1)
+            $bool = (new BoolQuery())
+                // results must contain at least one of the terms and boosted by containing all of them,
+                // or match the id of the beatmapset.
+                ->shouldMatch(1);
+
+            if (present($includes)) {
+                $base = max(1, count($parsed->includes));
+
+                $bool
                     ->should(['term' => ['_id' => ['value' => $includes, 'boost' => 100]]])
-                    ->should(QueryHelper::queryString($includes, $partialMatchFields, 'or', 1 / count($parsed->includes)))
+                    ->should(QueryHelper::queryString($includes, $partialMatchFields, 'or', 1 / $base))
                     ->should(QueryHelper::queryString($includes, [], 'and'))
                     ->should([
                         'nested' => [
                             'path' => 'beatmaps',
-                            'query' => QueryHelper::queryString($includes, ['beatmaps.top_tags'], 'or', 0.5 / count($parsed->includes)),
+                            'query' => QueryHelper::queryString($includes, ['beatmaps.top_tags'], 'or', 0.5 / $base),
                         ],
-                    ])
+                    ]);
+            }
+
+            if (present($excludes)) {
+                $bool
                     ->mustNot(QueryHelper::queryString($excludes, [], 'or'))
                     ->mustNot([
                         'nested' => [
                             'path' => 'beatmaps',
                             'query' => QueryHelper::queryString($excludes, ['beatmaps.top_tags'], 'or'),
                         ],
-                    ])
-            );
+                    ]);
+            }
+
+            $query->must($bool);
         }
 
         $this->addBlockedUsersFilter($query);
