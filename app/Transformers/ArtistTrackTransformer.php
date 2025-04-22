@@ -9,6 +9,14 @@ use App\Models\ArtistTrack;
 
 class ArtistTrackTransformer extends TransformerAbstract
 {
+    const CARD_INCLUDES_PRELOAD = [
+        'album', 'artist',
+    ];
+
+    const CARD_INCLUDES = [
+        'album', 'artist',
+    ];
+
     protected array $availableIncludes = [
         'album',
         'artist',

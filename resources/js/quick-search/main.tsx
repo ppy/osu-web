@@ -8,7 +8,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber, htmlElementOrNull } from 'utils/html';
-import { trans, transArray } from 'utils/lang';
+import { trans } from 'utils/lang';
 import { navigate } from 'utils/turbolinks';
 import Beatmapset from './beatmapset';
 import User from './user';
@@ -22,7 +22,7 @@ interface Props {
   worker: Worker;
 }
 
-const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
+const otherModes: ResultMode[] = ['artist_track', 'forum_post', 'wiki_page'];
 
 @observer export default class QuickSearch extends React.Component<Props> {
   private readonly inputRef = React.createRef<HTMLInputElement>();
@@ -156,16 +156,10 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     );
   }
 
-  private renderMoreOtherResultLink() {
-    const modes = otherModes.filter((mode) => this.count(mode) > 0);
-
-    if (modes.length === 0) {
-      return null;
-    }
-
+  private renderOthers() {
     return (
       <div className='quick-search-items'>
-        {modes.map((mode, idx) => (
+        {otherModes.map((mode, idx) => (
           <div
             key={mode}
             className='quick-search-items__item'
@@ -178,46 +172,6 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
           </div>
         ))}
       </div>
-    );
-  }
-
-  private renderNoMoreOtherResultLink() {
-    const modes = otherModes.filter((mode) => this.count(mode) === 0);
-
-    if (modes.length === 0) {
-      return null;
-    }
-
-    return (
-      <div className='quick-search-items quick-search-items--empty'>
-        {modes.map((mode) => (
-          <div key={mode} className='quick-search-items__item'>
-            {trans('quick_search.result.empty_for', { modes: trans(`quick_search.mode.${mode}`) })}
-          </div>
-        ))}
-      </div>
-    );
-  }
-
-  private renderOthers() {
-    if (this.count('forum_post') === 0 && this.count('wiki_page') === 0) {
-      return (
-        <span className='quick-search-items quick-search-items--empty'>
-          {trans('quick_search.result.empty_for', {
-            modes: transArray([
-              trans('quick_search.mode.forum_post'),
-              trans('quick_search.mode.wiki_page'),
-            ]),
-          })}
-        </span>
-      );
-    }
-
-    return (
-      <>
-        {this.renderMoreOtherResultLink()}
-        {this.renderNoMoreOtherResultLink()}
-      </>
     );
   }
 
@@ -247,9 +201,14 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
   }
 
   private renderResultLink(mode: ResultMode, active = false) {
-    let key = 'quick_search.result.';
+    const count = this.count(mode);
 
-    key += otherModes.includes(mode) ? 'title' : 'more';
+    let key = 'quick_search.result.';
+    key += count === 0
+      ? 'empty_for'
+      : otherModes.includes(mode)
+        ? 'title'
+        : 'more';
 
     return (
       <a
@@ -259,7 +218,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
         <div className='search-result-more__content'>
           {trans(key, { mode: trans(`quick_search.mode.${mode}`) })}
           <span className='search-result-more__count'>
-            {formatNumber(this.count(mode))}
+            {formatNumber(count)}
           </span>
         </div>
         <div className='search-result-more__arrow'>
@@ -285,14 +244,6 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
       return null;
     }
 
-    if (this.count('user') === 0) {
-      return (
-        <span className='quick-search-items quick-search-items--empty'>
-          {trans('quick_search.result.empty', { mode: trans('quick_search.mode.beatmapset') })}
-        </span>
-      );
-    }
-
     return (
       <div className='quick-search-items'>
         {this.props.worker.searchResult.user.users.map((user, idx) => (
@@ -311,16 +262,14 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
           </div>
         ))}
 
-        {this.count('user') > this.props.worker.searchResult.user.users.length && (
-          <div
-            className='quick-search-items__item'
-            data-section='user_others'
-            onMouseEnter={this.onMouseEnter}
-            onMouseLeave={this.onMouseLeave}
-          >
-            {this.renderResultLink('user', this.boxIsActive('user_others', 0))}
-          </div>
-        )}
+        <div
+          className='quick-search-items__item'
+          data-section='user_others'
+          onMouseEnter={this.onMouseEnter}
+          onMouseLeave={this.onMouseLeave}
+        >
+          {this.renderResultLink('user', this.boxIsActive('user_others', 0))}
+        </div>
       </div>
     );
   }
