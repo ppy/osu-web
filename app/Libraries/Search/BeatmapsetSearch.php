@@ -14,7 +14,6 @@ use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Follow;
 use App\Models\Solo;
-use App\Models\Tag;
 use App\Models\User;
 use Ds\Set;
 
@@ -435,21 +434,20 @@ class BeatmapsetSearch extends RecordSearch
         // workaround multi tag parsing when there's an empty tag.
         $tags = array_reject_null($tags);
 
-        $tagMap = [];
+        // require exact match for full tags, partial otherwise.
         foreach ($tags as $tag) {
-            $key = mb_strtolower(mb_trim($tag, '"'));
-            $tagMap[$key] = $tag;
-        }
-
-        $exactTags = Tag::whereIn('name', array_keys($tagMap))->limit(10)->pluck('name');
-
-        foreach ($exactTags as $tag) {
-            $query->filter(['term' => ['beatmaps.top_tags.raw' => $tag]]);
-            unset($tagMap[mb_strtolower($tag)]);
-        }
-
-        foreach (array_values($tagMap) as $tag) {
-            $query->filter(QueryHelper::queryString($tag, ['beatmaps.top_tags'], 'and'));
+            if (mb_strpos($tag, '/') !== false) {
+                $query->filter([
+                    'term' => [
+                        'beatmaps.top_tags.raw' => [
+                            'case_insensitive' => true,
+                            'value' => mb_trim($tag, '"'),
+                        ],
+                    ],
+                ]);
+            } else {
+                $query->filter(QueryHelper::queryString($tag, ['beatmaps.top_tags'], 'and'));
+            }
         }
     }
 
