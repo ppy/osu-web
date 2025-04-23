@@ -29,7 +29,7 @@
             'urlFn' => fn (string $r): string => route('rankings', [
                 ...$params,
                 'mode' => $r,
-                'variant' => $r === $params['mode'] ? $params['variant'] : null,
+                'variant' => $r === $params['mode'] ? ($params['variant'] ?? null) : null,
             ]),
         ])
     @endsection
