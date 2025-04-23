@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Fusk',
-            'multiple_accounts' => 'Använder flera konton',
+            'inappropriate_chat' => '',
             'insults' => 'Förolämpar mig / andra',
-            'spam' => 'Spammning',
-            'unwanted_content' => 'Länkar olämpligt innehåll',
+            'multiple_accounts' => 'Använder flera konton',
             'nonsense' => 'Dumheter',
             'other' => 'Andra (skriv nedan)',
+            'spam' => 'Spammning',
+            'unwanted_content' => 'Länkar olämpligt innehåll',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Global rank för :mode',
             'global_simple' => 'Global rankning',
             'highest' => 'Högsta rank: :rank den :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Träffsäkerhet',

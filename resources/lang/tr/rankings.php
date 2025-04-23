@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Zorluk',
-        'top_10p' => '',
-        'top_50p' => '',
+        'top_10p' => 'İlk %10 Skor',
+        'top_50p' => 'İlk %50 Skor',
     ],
 
     'filter' => [
@@ -37,12 +37,11 @@ return [
         'charts' => 'Öne Çıkanlar',
         'country' => 'Ülke',
         'daily_challenge' => 'günlük meydan okuma',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'çok oyunculu',
-        'performance' => 'Performans',
-        'score' => 'Skor',
         'seasons' => 'sezonlar',
-        'team' => '',
+        'team' => 'takım',
     ],
 
     'seasons' => [
@@ -51,7 +50,7 @@ return [
         'room_count' => 'Oynatma listesi sayısı',
         'url' => 'Bu sezon hakkında daha fazla bilgi görüntüleyin.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'düzgün hesaplama için yeterince skor faktörü yok',
         ],
     ],
 
@@ -66,8 +65,8 @@ return [
         'accuracy' => 'İsabetlilik',
         'active_users' => 'Aktif Kullanıcılar',
         'country' => 'Ülke',
-        'division' => '',
-        'members' => '',
+        'division' => 'Bölüm',
+        'members' => 'Üyeler',
         'play_count' => 'Oynama Sayısı',
         'performance' => 'Performans',
         'total_score' => 'Toplam Skor',

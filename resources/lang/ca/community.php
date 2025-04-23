@@ -51,7 +51,7 @@ return [
 
             'friend_ranking' => [
                 'title' => 'Classificació entre amics',
-                'description' => "Mira com et compares amb els teus amics a la taula de classificació d'un mapa,  tant al joc com al lloc web.",
+                'description' => "Mira com et compares amb els teus amics a la taula de classificació d'un beatmap, tant al joc com al lloc web.",
             ],
 
             'country_ranking' => [
@@ -71,7 +71,7 @@ return [
 
             'upload_more' => [
                 'title' => 'Més espai per pujades',
-                'description' => 'Tindràs espais pendents per a  (per mapa classificat) fins a un màxim de 10.',
+                'description' => 'Tindràs espais pendents per a beatmaps (per beatmap classificat) fins a un màxim de 10.',
             ],
 
             'early_access' => [
@@ -85,7 +85,7 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => 'Filtres de mapa',
+                'title' => 'Filtres de beatmaps',
                 'description' => 'Filtra les cerques de mapes per jugats i no jugats, o per rang obtingut.',
             ],
 
@@ -120,8 +120,8 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => 'Més favorits',
-                'description' => 'El nombre màxim de beatmaps que pods marcar com a favorit augmenta de :normally &rarr; :supporter',
+                'title' => 'Més preferits',
+                'description' => 'El nombre màxim de beatmaps que pods marcar com preferits augmenta de :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => 'Més amics',

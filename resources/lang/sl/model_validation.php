@@ -190,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Rankiranih beatmap ni možno prijaviti ',
         'not_in_channel' => 'Nisi v tem kanalu.',
+        'in_team' => '',
         'reason_not_valid' => ':reason ni veljaven tip prijave.',
         'self' => "Ne moreš prijaviti samega sebe!",
     ],

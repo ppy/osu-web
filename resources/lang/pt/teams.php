@@ -94,16 +94,22 @@ return [
             'title' => 'Gerir membros',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => 'Pedido em',
                 'empty' => 'Não há pedidos de adesão de momento.',
                 'empty_slots' => 'Espaços disponíveis',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => 'Pedidos de adesão',
-                'created_at' => 'Pedido em',
             ],
 
             'table' => [
-                'status' => 'Estado',
                 'joined_at' => 'Data de adesão',
                 'remove' => 'Remover',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => 'Estado',
                 'title' => 'Membros atuais',
             ],
 
@@ -111,6 +117,10 @@ return [
                 'status_0' => 'Inativos',
                 'status_1' => 'Ativos',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 
@@ -137,14 +147,14 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => 'Sobre nós!',
             'info' => 'Informações',
             'members' => 'Membros',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => 'Classificação',
+            'leader' => 'Líder da equipa',
         ],
     ],
 

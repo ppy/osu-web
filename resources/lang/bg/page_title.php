@@ -109,9 +109,9 @@ return [
         ],
         'teams_controller' => [
             '_' => 'отбори',
-            'create' => '',
-            'edit' => '',
-            'leaderboard' => '',
+            'create' => 'създаване на отбор',
+            'edit' => 'настройки на отбора',
+            'leaderboard' => 'класации на отбора',
             'show' => 'инфо за отбор',
         ],
         'tournaments_controller' => [
@@ -139,7 +139,7 @@ return [
     ],
     'teams' => [
         'members_controller' => [
-            'index' => '',
+            'index' => 'членове на отбора',
         ],
     ],
     'users' => [

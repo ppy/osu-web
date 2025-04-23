@@ -36,7 +36,7 @@ return [
                 'disqualified' => 'Tersingkar',
                 'never_qualified' => 'Tidak Pernah Layak',
                 'qualified' => 'Layak',
-                'ranked' => 'Berperingkat',
+                'ranked' => 'Berkedudukan',
             ],
 
             'user' => [
@@ -92,7 +92,7 @@ return [
             'invalid_discussion_type' => 'jenis perbincangan tidak sah',
             'minimum_issues' => 'ulasan mesti mengandungi minimum :count isu',
             'missing_text' => 'blok tiada teks',
-            'too_many_blocks' => 'ulasan hanya boleh mengandungi :count perenggan/isu |ulasan hanya boleh mengandungi hingga :count perenggan/isu',
+            'too_many_blocks' => 'ulasan hanya boleh mengandungi :count perenggan/isu',
         ],
     ],
 

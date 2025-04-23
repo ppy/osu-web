@@ -1180,7 +1180,7 @@ function nav_links()
         'page_title.main.beatmap_packs_controller._' => route('packs.index'),
     ];
     foreach (RankingController::TYPES as $rankingType) {
-        $links['rankings']["rankings.type.{$rankingType}"] = RankingController::url($rankingType, $defaultMode);
+        $links['rankings']["rankings.type.{$rankingType}"] = RankingController::url(['type' => $rankingType]);
     }
     $links['community'] = [
         'page_title.forum._' => route('forum.forums.index'),

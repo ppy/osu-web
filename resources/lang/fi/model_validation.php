@@ -190,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Rankattuja rytmikarttoja ei voi ilmiantaa',
         'not_in_channel' => 'Et ole tällä kanavalla.',
+        'in_team' => '',
         'reason_not_valid' => ':reason ei kelpaa tälle ilmoitustyypille.',
         'self' => "Et voi ilmiantaa itseäsi!",
     ],

@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Sukčiavimas',
-            'multiple_accounts' => 'Naudoja kelias paskyras',
+            'inappropriate_chat' => '',
             'insults' => 'Įžeidinėja manę / kitus',
-            'spam' => 'Siuntinėja šlamštą',
-            'unwanted_content' => 'Nuorodos į netinkamą turinį',
+            'multiple_accounts' => 'Naudoja kelias paskyras',
             'nonsense' => 'Nesąmonės',
             'other' => 'Kita (nurodykite žemiau)',
+            'spam' => 'Siuntinėja šlamštą',
+            'unwanted_content' => 'Nuorodos į netinkamą turinį',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Pasaulinis reitingas tarp :mode',
             'global_simple' => 'Pasaulinis Reitingas',
             'highest' => 'Aukščiausias reitingas: :rank kada: :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Paspaudimų Tikslumas',

@@ -19,7 +19,7 @@ return [
         'nominate' => [
             'exhausted' => 'Olet saavuttanut päivän ehdollepanorajan, yritä uudelleen huomenna.',
             'incorrect_state' => 'Virhe toiminnon suorittamisessa, kokeile päivittää sivu.',
-            'owner' => "Omaa rytmikarttaa ei voi asettaa ehdolle.",
+            'owner' => "Omaa beatmappia ei voi asettaa ehdolle.",
             'set_metadata' => 'Sinun täytyy määrittää tyylilaji ja kieli ennen ehdolle asettamista.',
         ],
         'resolve' => [
@@ -34,13 +34,13 @@ return [
             'bot' => "Et voi äänestää botin tekemässä keskustelussa",
             'limit_exceeded' => 'Odota hetki ennen uusien äänien antamista',
             'owner' => "Omia keskusteluja ei voi äänestää.",
-            'wrong_beatmapset_state' => 'Vain vireillä olevien rytmikarttojen keskusteluja voi äänestää.',
+            'wrong_beatmapset_state' => 'Voit äänestää vain vireillä olevien beatmappien keskusteluissa.',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => 'Voit poistaa vaan omia postauksiasi.',
+            'not_owner' => 'Voit poistaa ainoastaan omia viestejäsi.',
             'resolved' => 'Et voi poistaa ratkaistun keskustelun viestiä.',
             'system_generated' => 'Automaattisesti luotua viestiä ei voi poistaa.',
         ],

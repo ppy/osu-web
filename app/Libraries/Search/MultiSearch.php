@@ -19,6 +19,11 @@ class MultiSearch
             'paramsType' => BeatmapsetSearchRequestParams::class,
             'size' => 8,
         ],
+        'artist_track' => [
+            'type' => ArtistTrackSearch::class,
+            'paramsType' => ArtistTrackSearchRequestParams::class,
+            'size' => 8,
+        ],
         'wiki_page' => [
             'type' => WikiSearch::class,
             'paramsType' => WikiSearchRequestParams::class,

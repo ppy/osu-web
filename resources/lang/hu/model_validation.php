@@ -139,9 +139,9 @@ return [
         'attributes' => [
             'default_ruleset_id' => '',
             'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'name' => 'Név',
+            'short_name' => 'Rövid név',
+            'url' => 'Webcím',
         ],
     ],
 
@@ -190,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Rangsorolt beatmapokat nem lehet jelenteni',
         'not_in_channel' => 'Nem vagy ebben a csatornában.',
+        'in_team' => '',
         'reason_not_valid' => 'ez a jelentés nem megfelelő, ehhez a jelentés fajtához.:reason.',
         'self' => "Nem jelentheted magadat!",
     ],

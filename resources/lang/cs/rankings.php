@@ -37,12 +37,11 @@ return [
         'charts' => 'výběry (staré)',
         'country' => 'stát',
         'daily_challenge' => 'denní výzva',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'hra pro více hráčů',
-        'performance' => 'výkon',
-        'score' => 'skóre',
         'seasons' => 'sezóny',
-        'team' => '',
+        'team' => 'týmy',
     ],
 
     'seasons' => [
@@ -67,7 +66,7 @@ return [
         'active_users' => 'Aktivní uživatelé',
         'country' => 'Stát',
         'division' => 'Divize',
-        'members' => '',
+        'members' => 'Členové',
         'play_count' => 'Počet zahrání',
         'performance' => 'Výkon',
         'total_score' => 'Celkové skóre',

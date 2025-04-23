@@ -86,12 +86,12 @@ return [
         'options' => [
             '_' => 'toimitusvaihtoehdot',
             'beatmap_owner_change' => 'vieraileva vaikeustaso',
-            'beatmapset:modding' => 'rytmikartan modaus',
+            'beatmapset:modding' => 'beatmapin modaus',
             'channel_message' => 'yksityisviestit',
             'comment_new' => 'uudet kommentit',
             'forum_topic_reply' => 'aihevastaus',
             'mail' => 'posti',
-            'mapping' => 'rytmikartan kartoittaja',
+            'mapping' => 'mappaaja',
             'push' => 'push',
         ],
     ],
@@ -103,8 +103,8 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'piilota varoitukset sopimattomasta sisällöstä rytmikartoissa',
-        'beatmapset_title_show_original' => 'näytä rytmikarttojen kuvailutiedot alkuperäisellä kielellä',
+        'beatmapset_show_nsfw' => 'piilota varoitukset sopimattomasta sisällöstä beatmapeissa',
+        'beatmapset_title_show_original' => 'näytä beatmappien metadata alkuperäisellä kielellä',
         'title' => 'Asetukset',
 
         'beatmapset_download' => [

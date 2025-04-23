@@ -6,30 +6,30 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Lietotājs pievienots komandai.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Atcelts pievienošanās lūgums.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Atteikts pievienošanās lūgums.',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Pieprasīts pievienoties komandai.',
         ],
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'Izveidot Komandu',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => 'Jūsu komandas nosaukums. Nosaukums pašreiz ir pastāvīgs.',
+            'short_name_help' => 'Maksimums 4 rakstzīmes.',
+            'title' => "Izveidojam jaunu komandu",
         ],
 
         'intro' => [
-            'description' => "",
+            'description' => "Spēlē kopā ar draugiem; esošiem vai jauniem. Jūs pašlaik neesat komandā. Pievienojies jau esošai komandai ieejot komandas lapā, vai izveido savu komandu šeit.",
             'title' => '',
         ],
     ],
@@ -39,7 +39,7 @@ return [
     ],
 
     'edit' => [
-        'ok' => '',
+        'ok' => 'Iestatījumi veiksmīgi saglabāti.',
         'title' => 'Komandas Iestatījumi',
 
         'description' => [
@@ -48,8 +48,8 @@ return [
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Komandas Karogs',
+            'title' => 'Uzstādīt Komandas Karogu',
         ],
 
         'header' => [
@@ -60,8 +60,8 @@ return [
         'settings' => [
             'application_help' => 'Vai atļaut cilvēkiem pieteikties komandai',
             'default_ruleset_help' => 'Pamatlikums, kurš būs izvēlēts standarti, apmeklējot komandas lapu',
-            'flag_help' => '',
-            'header_help' => '',
+            'flag_help' => 'Maksimālais izmērs: :width×:height',
+            'header_help' => 'Maksimālais izmērs: :width×:height',
             'title' => 'Komandas Iestatījumi',
 
             'application_state' => [
@@ -72,12 +72,12 @@ return [
     ],
 
     'header_links' => [
-        'edit' => '',
+        'edit' => 'iestatījumi',
         'leaderboard' => '',
         'show' => '',
 
         'members' => [
-            'index' => '',
+            'index' => 'pārvaldīt biedrus',
         ],
     ],
 
@@ -94,16 +94,22 @@ return [
             'title' => 'Menedžēt Dalībniekus',
 
             'applications' => [
-                'empty' => '',
-                'empty_slots' => '',
-                'title' => '',
+                'accept_confirm' => '',
                 'created_at' => '',
+                'empty' => 'Pašreiz nav pieprasījumi pievienoties.',
+                'empty_slots' => 'Brīvās vietas',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
+                'title' => '',
             ],
 
             'table' => [
-                'status' => 'Status ',
                 'joined_at' => 'Pievienošanās Datums',
                 'remove' => 'Noņemt',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => 'Status ',
                 'title' => 'Dalībnieku Patreizējais Skaits',
             ],
 
@@ -112,10 +118,14 @@ return [
                 'status_1' => 'Aktīvi',
             ],
         ],
+
+        'set_leader' => [
+            'success' => '',
+        ],
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Komanda pamesta ;_;',
     ],
 
     'show' => [
@@ -124,7 +134,7 @@ return [
             'destroy' => '',
             'join' => '',
             'join_cancel' => '',
-            'part' => '',
+            'part' => 'Pamest komandu',
         ],
 
         'info' => [

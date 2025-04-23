@@ -10,9 +10,8 @@
 @extends('rankings.index', [
     'hasFilter' => false,
     'hasMode' => false,
-    'hasPager' => true,
+    'params' => ['type' => 'multiplayer'],
     'titlePrepend' => osu_trans('rankings.type.multiplayer').': '.$room->name,
-    'type' => 'multiplayer',
 ])
 
 @section('ranking-header')

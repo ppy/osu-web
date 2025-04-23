@@ -20,7 +20,7 @@ return [
         'channel' => 'czat',
         'forum_topic' => 'forum',
         'news_post' => 'aktualności',
-        'team' => '',
+        'team' => 'drużyna',
         'user' => 'profil',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'czat',
         'forum_topic' => 'forum',
         'news_post' => 'aktualności',
-        'team' => '',
+        'team' => 'drużyna',
         'user' => 'profil',
     ],
 
@@ -163,12 +163,12 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Prośba o dołączenie do drużyny',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "Jesteś teraz członkiem drużyny :title",
+                'team_application_accept_compact' => "Jesteś teraz członkiem drużyny :title",
+                'team_application_reject' => 'Twoja prośba o dołączenie do drużyny :title została odrzucona',
+                'team_application_reject_compact' => 'Twoja prośba o dołączenie do drużyny :title została odrzucona',
             ],
         ],
 
@@ -258,8 +258,8 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "Jesteś teraz członkiem drużyny :title",
+                'team_application_reject' => 'Jesteś teraz członkiem drużyny :title',
             ],
         ],
 

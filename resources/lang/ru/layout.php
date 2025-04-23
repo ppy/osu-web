@@ -26,7 +26,7 @@ return [
         ],
 
         'beatmapsets' => [
-            'show' => 'основная',
+            'show' => 'главная',
             'discussions' => 'обсуждение',
         ],
 
@@ -53,7 +53,7 @@ return [
             'modding' => 'моддинг',
             'playlists' => 'плейлисты',
             'realtime' => 'мультиплеер',
-            'show' => 'основная',
+            'show' => 'главная',
         ],
     ],
 

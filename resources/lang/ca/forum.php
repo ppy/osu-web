@@ -296,10 +296,10 @@ return [
         ],
 
         'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Eliminar l\'etiqueta «osu!lazer»',
+            'to_0_done' => 'Etiqueta «osu!lazer» eliminada',
+            'to_1' => 'Afegir l\'etiqueta «osu!lazer»',
+            'to_1_done' => 'Etiqueta «osu!lazer» afegida',
         ],
 
         'issue_tag_osustable' => [

@@ -55,8 +55,8 @@ return [
                 'general' => '',
 
                 'users' => [
-                    'header' => '',
-                    'cover_presets' => '',
+                    'header' => 'Kullanıcı',
+                    'cover_presets' => 'Profil Kapağı Ön Ayarları',
                 ],
             ],
         ],

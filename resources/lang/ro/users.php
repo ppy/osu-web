@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Trișat',
-            'multiple_accounts' => 'Utilizarea mai multor conturi',
+            'inappropriate_chat' => '',
             'insults' => 'M-a insultat pe mine / pe alții',
-            'spam' => 'Spam',
-            'unwanted_content' => 'Partajarea unui conținut nepotrivit',
+            'multiple_accounts' => 'Utilizarea mai multor conturi',
             'nonsense' => 'Nonsens',
             'other' => 'Altele (scrie mai jos)',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Partajarea unui conținut nepotrivit',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Rang global pentru :mode',
             'global_simple' => 'Rang Global',
             'highest' => 'Rang maxim :rank atins pe :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Precizie',

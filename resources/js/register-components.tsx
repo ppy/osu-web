@@ -15,6 +15,8 @@ import RankingCountryFilter from 'components/ranking-country-filter';
 import RankingUserFilter from 'components/ranking-user-filter';
 import RankingVariantFilter from 'components/ranking-variant-filter';
 import ScoringModeToggle from 'components/scoring-mode-toggle';
+import TeamExtraMenu from 'components/team-extra-menu';
+import TracklistTrack from 'components/tracklist-track';
 import { UserCard } from 'components/user-card';
 import { startListening, UserCardTooltip } from 'components/user-card-tooltip';
 import { UserCards } from 'components/user-cards';
@@ -42,6 +44,10 @@ function reqStr(input: string|undefined) {
 
   return input;
 }
+
+core.reactTurbolinks.register('artist-track', (container) => (
+  <TracklistTrack {...reqJson(container.dataset.props)} />
+));
 
 core.reactTurbolinks.register('countdownTimer', (container) => (
   <CountdownTimer deadline={reqStr(container.dataset.deadline)} />
@@ -120,6 +126,10 @@ core.reactTurbolinks.register('store-supporter-tag', (container) => {
 
   return <StoreSupporterTag maxMessageLength={maxMessageLength} />;
 });
+
+core.reactTurbolinks.register('team-extra-menu', (container) => (
+  <TeamExtraMenu {...reqJson(container.dataset.props)} />
+));
 
 core.reactTurbolinks.register('user-card', (container) => (
   <UserCard

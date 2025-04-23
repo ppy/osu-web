@@ -23,19 +23,19 @@ return [
         'submit' => 'Buat Tim',
 
         'form' => [
-            'name_help' => 'Nama tim kamu. Nama ini bersifat permanen untuk saat ini.',
+            'name_help' => 'Nama tim kamu. Nama ini akan bersifat permanen untuk saat ini.',
             'short_name_help' => 'Maksimum 4 karakter.',
             'title' => "Mari bentuk tim baru",
         ],
 
         'intro' => [
-            'description' => "Bermainlah bersama teman-temanmu; baik itu yang sudah akrab denganmu atau yang baru kamu kenal. Kamu saat ini tidak tergabung di dalam tim. Bergabunglah dengan tim yang sudah ada dengan mengunjungi halaman tim mereka atau buat tim kamu sendiri dari halaman ini.",
+            'description' => "Bermainlah bersama teman-temanmu; baik yang sudah akrab atau yang baru kamu kenal. Kamu saat ini tidak tergabung di dalam tim. Bergabunglah dengan tim yang sudah ada dengan mengunjungi halaman tim mereka atau buat tim kamu sendiri dari halaman ini.",
             'title' => 'Tim!',
         ],
     ],
 
     'destroy' => [
-        'ok' => 'Tim dihapus',
+        'ok' => 'Tim dihapus.',
     ],
 
     'edit' => [
@@ -49,7 +49,7 @@ return [
 
         'flag' => [
             'label' => 'Bendera Tim',
-            'title' => 'Atur Bendera Tim',
+            'title' => 'Pasang Bendera Tim',
         ],
 
         'header' => [
@@ -94,16 +94,22 @@ return [
             'title' => 'Kelola Anggota',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => 'Diminta Pada',
                 'empty' => 'Tidak ada permintaan untuk bergabung pada saat ini.',
                 'empty_slots' => 'Slot yang tersedia',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => 'Permintaan Bergabung',
-                'created_at' => 'Diminta Pada',
             ],
 
             'table' => [
-                'status' => 'Status',
                 'joined_at' => 'Tanggal Bergabung',
                 'remove' => 'Keluarkan',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => 'Status',
                 'title' => 'Anggota Saat Ini',
             ],
 
@@ -111,6 +117,10 @@ return [
                 'status_0' => 'Tidak aktif',
                 'status_1' => 'Aktif',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 
@@ -137,14 +147,14 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => 'Tentang Kami!',
             'info' => 'Info',
             'members' => 'Anggota',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => 'Peringkat',
+            'leader' => 'Ketua Tim',
         ],
     ],
 

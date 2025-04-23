@@ -106,7 +106,7 @@ return [
                 'only_last_post' => '只有最後一篇貼文可以刪除。',
                 'locked' => '無法刪除已鎖定主題的貼文。',
                 'no_forum_access' => '沒有權限進入該子板。',
-                'not_owner' => '只有發文作者才能刪除貼文。',
+                'not_owner' => '只有發文者才能刪除貼文。',
             ],
 
             'edit' => [
@@ -178,7 +178,7 @@ return [
 
     'room' => [
         'destroy' => [
-            'not_owner' => '只有房間主人才能關閉。',
+            'not_owner' => '只有房主才能關閉。',
         ],
     ],
 
@@ -206,7 +206,7 @@ return [
             'not_member' => '不是此團隊成員。',
         ],
         'store' => [
-            'require_supporter_tag' => '只有有osu! 贊助者才能建立隊伍。',
+            'require_supporter_tag' => '只有 osu!supporter 才能建立隊伍。',
         ],
     ],
 

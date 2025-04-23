@@ -94,16 +94,22 @@ return [
             'title' => '',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => '',
                 'empty' => '',
                 'empty_slots' => '',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => '',
-                'created_at' => '',
             ],
 
             'table' => [
-                'status' => '',
                 'joined_at' => '',
                 'remove' => '',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => '',
                 'title' => '',
             ],
 
@@ -111,6 +117,10 @@ return [
                 'status_0' => '',
                 'status_1' => '',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 

@@ -80,7 +80,7 @@ return [
         'confirm_restore' => 'Konu gerçekten geri yüklensin mi?',
         'deleted' => 'silinmiş konu',
         'go_to_latest' => 'son gönderiyi görüntüle',
-        'go_to_unread' => '',
+        'go_to_unread' => 'okunmamış ilk gönderiyi görüntüle',
         'has_replied' => 'Bu konuyu yanıtladınız',
         'in_forum' => ':forum forumunda',
         'latest_post' => ':user tarafından :when',
@@ -296,24 +296,24 @@ return [
         ],
 
         'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => '"osu!lazer" etiketini kaldır',
+            'to_0_done' => '"osu!lazer" etiketi kaldırıldı',
+            'to_1' => '"osu!lazer" etiketi ekle',
+            'to_1_done' => '"osu!lazer" etiketi eklendi',
         ],
 
         'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => '"osu!stable" etiketini kaldır',
+            'to_0_done' => '"osu!stable" etiketi kaldırıldı',
+            'to_1' => '"osu!stable" etiketini ekle',
+            'to_1_done' => '"osu!stable" etiketi eklendi',
         ],
 
         'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => '"osu!web" etiketini kaldır',
+            'to_0_done' => '"osu!web" etiketi kaldırıldı',
+            'to_1' => '"osu!web" etiketini ekle',
+            'to_1_done' => '"osu!web" etiketi eklendi',
         ],
 
         'lock' => [

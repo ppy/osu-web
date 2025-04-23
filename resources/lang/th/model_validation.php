@@ -137,10 +137,10 @@ return [
         'word_not_allowed' => 'ตัวเลือก :attribute นี้ใช้ไม่ได้',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
+            'default_ruleset_id' => 'รูล์เซตหลัก',
+            'is_open' => 'การสมัครเข้าร่วมทีม',
+            'name' => 'ชื่อ',
+            'short_name' => 'ชื่อย่อ',
             'url' => '',
         ],
     ],
@@ -190,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'ไม่สามารถรายงานบีทแมพที่จัดอันดับแล้วได้',
         'not_in_channel' => 'คุณไม่ได้อยู่ในช่องนี้',
+        'in_team' => '',
         'reason_not_valid' => ':reason ไม่สามารถใช้ได้กับการรายงานประเภทนี้',
         'self' => "เดี๋ยว คุณรายงานตัวเองไม่ได้",
     ],

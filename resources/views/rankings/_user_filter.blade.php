@@ -19,7 +19,7 @@
 
     <script id="json-user-filter" type="application/json">
         {!! json_encode([
-            'current' => $filter,
+            'current' => $params['filter'],
         ]) !!}
     </script>
 @endif

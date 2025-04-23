@@ -27,7 +27,7 @@ return [
                 'GROUP' => 'Csoportok',
                 'PM' => 'Közvetlen üzenetek',
                 'PUBLIC' => 'Csatornák',
-                'TEAM' => '',
+                'TEAM' => 'Csapat',
             ],
         ],
     ],

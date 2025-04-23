@@ -55,7 +55,7 @@ return [
         'contact' => 'Liên hệ:',
         'date' => 'Ngày:',
         'echeck_delay' => 'Vì bạn thanh toán bằng eCheck, hãy chờ thêm tối đa 10 ngày để thanh toán qua khỏi PayPal!',
-        'echeck_denied' => '',
+        'echeck_denied' => 'Thanh toán eCheck đã bị PayPal từ chối.',
         'hide_from_activity' => 'thẻ osu!supporter ở trong đơn hàng này sẽ không được hiện lên ở trong hoạt động gần đây của bạn.',
         'sent_via' => 'Đã gửi qua:',
         'shipping_to' => 'Vận chuyển đến:',

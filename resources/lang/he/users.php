@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'אי הוגנות / רמאות',
-            'multiple_accounts' => '',
+            'inappropriate_chat' => '',
             'insults' => 'העליב אותי / אחרים',
-            'spam' => 'ספאם',
-            'unwanted_content' => 'שולחים קישורים לתוכן לא הולם',
+            'multiple_accounts' => '',
             'nonsense' => 'שטויות',
             'other' => 'אחר (הקלד למטה)',
+            'spam' => 'ספאם',
+            'unwanted_content' => 'שולחים קישורים לתוכן לא הולם',
         ],
     ],
     'restricted_banner' => [
@@ -480,6 +481,10 @@ return [
             'global' => 'דירוג עולמי ל- :mode',
             'global_simple' => 'דירוג עולמי',
             'highest' => '',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'דיוק פגיעה',

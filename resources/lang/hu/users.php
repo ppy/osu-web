@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Tisztességtelen játék / Csalás',
-            'multiple_accounts' => 'Több fiók használata',
+            'inappropriate_chat' => '',
             'insults' => 'Engem / másokat sérteget',
-            'spam' => 'Spam',
-            'unwanted_content' => 'Nem megfelelő tartalom linkelése',
+            'multiple_accounts' => 'Több fiók használata',
             'nonsense' => 'Nonszensz',
             'other' => 'Egyéb (alá írd)',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Nem megfelelő tartalom linkelése',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Globális rank a :mode-ra/re',
             'global_simple' => 'Globális Rangsor',
             'highest' => 'Legnagyobb rank: :rank elérve :date dátumkor',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Találati Pontosság',

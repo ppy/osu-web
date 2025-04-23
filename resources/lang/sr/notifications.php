@@ -20,7 +20,7 @@ return [
         'channel' => 'ћаскање',
         'forum_topic' => 'форум',
         'news_post' => 'новости',
-        'team' => '',
+        'team' => 'тим',
         'user' => 'профил',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'чет',
         'forum_topic' => 'форум',
         'news_post' => 'новости',
-        'team' => '',
+        'team' => 'тим',
         'user' => 'профил',
     ],
 
@@ -163,12 +163,12 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Захтев придруживање тима',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "Ви сте сада члан тима :title",
+                'team_application_accept_compact' => "Ви сте сада члан тима :title",
+                'team_application_reject' => 'Ваш захтев за придруживање тима :title је одбијен',
+                'team_application_reject_compact' => 'Ваш захтев за придруживање тима :title је одбијен',
             ],
         ],
 
@@ -258,8 +258,8 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "Сада сте члан тима :title",
+                'team_application_reject' => 'Ваш захтев да се придружите тиму :title је одбијен',
             ],
         ],
 

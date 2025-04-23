@@ -5,8 +5,7 @@
 @extends('rankings.index', [
     'hasFilter' => false,
     'hasMode' => false,
-    'hasPager' => true,
-    'type' => 'kudosu',
+    'params' => ['type' => 'kudosu'],
 ])
 
 @section('scores')

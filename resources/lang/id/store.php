@@ -6,8 +6,8 @@
 return [
     'cart' => [
         'checkout' => 'Checkout',
-        'empty_cart' => 'Hapus semua barang dari keranjang',
-        'info' => ':count_delimited barang dalam keranjang ($:subtotal)|:count_delimited barang dalam keranjang ($:subtotal)',
+        'empty_cart' => 'Hapus seluruh item dari keranjang',
+        'info' => ':count_delimited item dalam keranjang ($:subtotal)|:count_delimited item dalam keranjang ($:subtotal)',
         'more_goodies' => 'Saya ingin melihat produk lainnya sebelum merampungkan pesanan',
         'shipping_fees' => 'biaya pengiriman',
         'title' => 'Keranjang Belanja',
@@ -15,11 +15,11 @@ return [
 
         'errors_no_checkout' => [
             'line_1' => 'Uh-oh, terdapat masalah dengan keranjang belanjamu yang menghalangi proses checkout!',
-            'line_2' => 'Hapus atau perbarui rangkaian item di atas untuk melanjutkan.',
+            'line_2' => 'Hapus atau perbarui item di atas untuk melanjutkan.',
         ],
 
         'empty' => [
-            'text' => 'Keranjang belanjamu masih kosong.',
+            'text' => 'Keranjang belanjamu kosong.',
             'return_link' => [
                 '_' => 'Kembalilah ke halaman :link untuk menelusuri berbagai cendera mata yang tersedia!',
                 'link_text' => 'etalase toko',
@@ -31,7 +31,7 @@ return [
         'cart_problems' => 'Uh oh, terdapat masalah dengan keranjang belanjamu!',
         'cart_problems_edit' => 'Klik di sini untuk menyuntingnya.',
         'declined' => 'Pembayaran dibatalkan.',
-        'delayed_shipping' => 'Kami sedang kebanjiran pesanan! Apabila kamu memesan sekarang, mohon beri kami waktu tambahan **selama 1-2 minggu** untuk memproses pesananmu karena kami saat ini masih harus mengurus pesanan yang ada.',
+        'delayed_shipping' => 'Kami sedang kebanjiran pesanan! Apabila kamu memesan sekarang, mohon beri kami waktu tambahan **selama 1-2 minggu** untuk memproses pesananmu selagi kami mengurus pesanan yang telah masuk.',
         'hide_from_activity' => 'Sembunyikan seluruh tag osu!supporter pada pesanan ini dari aktivitas saya',
         'old_cart' => 'Keranjang belanjamu sepertinya telah kedaluwarsa dan telah dimuat ulang. Silakan coba lagi.',
         'pay' => 'Checkout melalui Paypal',
@@ -59,7 +59,7 @@ return [
         'hide_from_activity' => 'Tag osu!supporter yang dipesan melalui pesanan ini tidak akan ditampilkan pada riwayat aktivitas terkini milikmu.',
         'sent_via' => 'Dikirim Melalui:',
         'shipping_to' => 'Dikirim Ke:',
-        'title' => 'Tagihan',
+        'title' => 'Faktur',
         'title_compact' => 'faktur',
 
         'status' => [
@@ -71,7 +71,7 @@ return [
                 ],
             ],
             'delivered' => [
-                'title' => 'Pesananmu sudah dikirim! Kami harap kamu menikmatinya!',
+                'title' => 'Pesananmu telah dikirim! Kami harap kamu menikmatinya!',
                 'line_1' => [
                     '_' => 'Apabila kamu menemui masalah dengan pembelianmu, silakan hubungi :link.',
                     'link_text' => 'layanan dukungan osu!store',
@@ -79,7 +79,7 @@ return [
             ],
             'prepared' => [
                 'title' => 'Pesananmu sedang dipersiapkan!',
-                'line_1' => 'Harap tunggu sedikit lebih lama untuk pengiriman. Informasi pelacakan akan muncul di sini setelah pesanan telah diolah dan dikirim. Ini bisa perlu sampai 5 hari (tetapi biasanya lebih cepat!) tergantung kesibukan kami.',
+                'line_1' => 'Mohon tunggu sedikit lebih lama sebelum pesanan kamu dikirim. Informasi pelacakan kamu akan muncul pada halaman ini setelah pesananmu diproses dan dikirim. Hal ini dapat memakan waktu hingga 5 hari (namun biasanya akan lebih cepat!) tergantung dari kesibukan kami.',
                 'line_2' => 'Kami mengirim seluruh pesanan dari Jepang dengan berbagai macam layanan pengiriman tergantung berat dan nilai. Bagian ini akan diperbarui dengan perincian setelah kami mengirimkan pesanan.',
             ],
             'processing' => [
@@ -91,10 +91,10 @@ return [
                 ],
             ],
             'shipped' => [
-                'title' => 'Pesananmu sudah dikirim!',
+                'title' => 'Pesananmu telah dikirim!',
                 'tracking_details' => 'Berikut rincian pelacakan yang terkait:',
                 'no_tracking_details' => [
-                    '_' => "Kami tidak memiliki perincian pelacakan karena kami mengirim paketmu via Air Mail, tetapi kamu bisa mendapatkannya dalam 1-3 pekan. Untuk Eropa, terkadang bea cukai dapat menunda pesanan di luar kendali kami. Jika kamu punya kekhawatiran, silakan balas email konfirmasi pesanan yang kamu terima :link.",
+                    '_' => "Kami tidak memiliki rincian pelacakan apa pun karena kami mengirim paketmu via Air Mail, namun pesananmu seharusnya akan dapat kamu terima dalam 1-3 pekan. Untuk pengiriman yang tertuju ke Eropa, terkadang bea cukai setempat dapat menunda pesananmu di luar kendali kami. Apabila kamu memiliki sesuatu yang ingin ditanyakan, silakan balas email konfirmasi pesanan yang kamu terima (atau :link).",
                     'link_text' => 'kirimi kami email',
                 ],
             ],
@@ -124,7 +124,7 @@ return [
         ],
 
         'item' => [
-            'quantity' => 'Jumlah',
+            'quantity' => 'jumlah',
 
             'display_name' => [
                 'supporter_tag' => ':name untuk :username (:duration)',
@@ -136,22 +136,22 @@ return [
         ],
 
         'not_modifiable_exception' => [
-            'cancelled' => 'Kamu tidak dapat menyunting pesananmu karena pesanan ini telah dibatalkan.',
-            'checkout' => 'Kamu tidak dapat menyunting pesananmu pada saat pesanan sedang diproses.', // checkout and processing should have the same message.
+            'cancelled' => 'Kamu tidak dapat mengubah pesananmu karena pesanan ini telah dibatalkan.',
+            'checkout' => 'Kamu tidak dapat mengubah pesananmu pada saat pesanan sedang diproses.', // checkout and processing should have the same message.
             'default' => 'Pesanan tidak dapat diubah',
-            'delivered' => 'Kamu tidak dapat menyunting pesananmu karena pesanan ini telah dikirim.',
-            'paid' => 'Kamu tidak dapat menyunting pesananmu karena pesanan ini telah dibayar lunas.',
-            'processing' => 'Kamu tidak dapat menyunting pesananmu pada saat pesanan sedang diproses.',
-            'shipped' => 'Kamu tidak dapat menyunting pesananmu karena pesanan ini telah dikirim.',
+            'delivered' => 'Kamu tidak dapat mengubah pesananmu karena pesanan ini telah dikirim.',
+            'paid' => 'Kamu tidak dapat mengubah pesananmu karena pesanan ini telah dibayar.',
+            'processing' => 'Kamu tidak dapat mengubah pesananmu pada saat pesanan sedang diproses.',
+            'shipped' => 'Kamu tidak dapat mengubah pesananmu karena pesanan ini telah dikirim.',
         ],
 
         'status' => [
             'cancelled' => 'Dibatalkan',
             'checkout' => 'Mempersiapkan',
-            'delivered' => 'Terkirim',
+            'delivered' => 'Sampai Tujuan',
             'paid' => 'Lunas',
             'processing' => 'Menunggu konfirmasi',
-            'shipped' => 'Terkirim',
+            'shipped' => 'Dalam Perjalanan',
             'title' => 'Status Pesanan',
         ],
 
@@ -182,7 +182,7 @@ return [
     ],
 
     'supporter_tag' => [
-        'gift' => 'hadiahkan ke pengguna lain',
+        'gift' => 'hadiahkan ke pemain lain',
         'gift_message' => 'tambahkan pesan untuk melengkapi hadiahmu! (maksimal :length karakter)',
 
         'require_login' => [

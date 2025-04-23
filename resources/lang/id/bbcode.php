@@ -5,7 +5,7 @@
 
 return [
     'bold' => 'Cetak Tebal',
-    'heading' => 'Header',
+    'heading' => 'Tajuk',
     'help' => 'Bantuan',
     'image' => 'Gambar',
     'imagemap' => 'Peta Gambar',

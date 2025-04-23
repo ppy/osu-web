@@ -64,11 +64,11 @@ return [
             '_' => 'コメント',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'コンテストの審査結果',
         ],
         'contests_controller' => [
             '_' => 'コンテスト',
-            'judge' => '',
+            'judge' => 'コンテストの審査',
         ],
         'groups_controller' => [
             'show' => 'グループ',
@@ -118,7 +118,7 @@ return [
             '_' => 'トーナメント',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'ユーザーカバープリセット',
         ],
         'users_controller' => [
             '_' => 'プレイヤー情報',

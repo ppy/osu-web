@@ -94,16 +94,22 @@ return [
             'title' => 'Mitglieder verwalten',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => 'Anfrage am',
                 'empty' => 'Keine Beitrittsanfragen zurzeit.',
                 'empty_slots' => 'Verfügbare Plätze',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => 'Beitrittsanfragen',
-                'created_at' => 'Anfrage am',
             ],
 
             'table' => [
-                'status' => 'Status',
                 'joined_at' => 'Beitrittsdatum',
                 'remove' => 'Entfernen',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => 'Status',
                 'title' => 'Aktuelle Mitglieder',
             ],
 
@@ -111,6 +117,10 @@ return [
                 'status_0' => 'Inaktiv',
                 'status_1' => 'Aktiv',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 
@@ -137,14 +147,14 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => 'Über uns!',
             'info' => 'Info',
             'members' => 'Mitglieder',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => 'Rang',
+            'leader' => 'Teamleiter',
         ],
     ],
 

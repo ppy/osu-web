@@ -140,6 +140,7 @@ return [
             'description' => 'Descriere',
             'genre' => 'Gen',
             'language' => 'Limbă',
+            'mapper_tags' => '',
             'no_scores' => 'Încă se calculează datele...',
             'nominators' => 'Nominalizatori',
             'nsfw' => 'Conținut obscen',
@@ -148,7 +149,7 @@ return [
             'source' => 'Sursă',
             'storyboard' => 'Acest beatmap conține un storyboard',
             'success-rate' => 'Rată de succes',
-            'tags' => 'Etichete',
+            'user_tags' => '',
             'video' => 'Acest beatmap conține un video',
         ],
 
@@ -171,7 +172,7 @@ return [
             'global' => 'Clasament Global',
             'supporter-link' => 'Faceți clic <a href=":link">aici</a> pentru a vedea toate avantajele pe care le poți obține!',
             'supporter-only' => 'Trebuie să fii un suporter pentru a accesa clasamentele pentru prieteni, pe mod-uri sau național!',
-            'team' => '',
+            'team' => 'Clasament Echipă',
             'title' => 'Tabela de scor',
 
             'headers' => [
@@ -193,7 +194,7 @@ return [
                 'friend' => 'Niciunul dintre prietenii tăi nu a stabilit un scor pe acest beatmap încă!',
                 'global' => 'Niciun scor încă. Poate ar trebui să încerci să obții câteva?',
                 'loading' => 'Se încarcă scorurile...',
-                'team' => '',
+                'team' => 'Nimeni din echipa ta nu a stabilit un scor pe acest beatmap încă!',
                 'unranked' => 'Beatmap neclasificat.',
             ],
             'score' => [

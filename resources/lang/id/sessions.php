@@ -7,6 +7,6 @@ return [
     'create' => [
         'download' => 'Klik di sini untuk mengunduh osu! dan membuat akun',
         'label' => 'Pertama-tama, mari masuk ke dalam akunmu!',
-        'title' => 'Sign-in Akun',
+        'title' => 'Masuk ke Akun',
     ],
 ];

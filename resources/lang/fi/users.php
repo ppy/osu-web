@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Huijaaminen',
-            'multiple_accounts' => 'Käyttää useita tilejä',
+            'inappropriate_chat' => '',
             'insults' => 'Loukkaa minua / muita',
-            'spam' => 'Spämmii',
-            'unwanted_content' => 'Sopimattoman sisällön jakaminen',
+            'multiple_accounts' => 'Käyttää useita tilejä',
             'nonsense' => 'Hölynpölyä',
             'other' => 'Muu (kirjoita alle)',
+            'spam' => 'Spämmii',
+            'unwanted_content' => 'Sopimattoman sisällön jakaminen',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Maailmanlaajuinen sijoitus pelimuodossa :mode',
             'global_simple' => 'Maailmanlaajuinen sijoitus',
             'highest' => 'Korkein sija :rank oli :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Iskutarkkuus',

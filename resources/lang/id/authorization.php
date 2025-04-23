@@ -13,7 +13,7 @@ return [
 
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Tidak dapat membatalkan pemberian hype.',
+            'is_hype' => 'Pemberian hype tidak dapat diurungkan.',
             'has_reply' => 'Tidak dapat menghapus topik diskusi yang mempunyai balasan',
         ],
         'nominate' => [
@@ -46,7 +46,7 @@ return [
         ],
 
         'edit' => [
-            'not_owner' => 'Postingan ini hanya dapat disunting oleh pengirimnya.',
+            'not_owner' => 'Postingan hanya dapat disunting oleh pengirim.',
             'resolved' => 'Kamu tidak dapat menyunting postingan pada topik diskusi yang telah terjawab.',
             'system_generated' => 'Postingan yang dihasilkan secara otomatis tidak dapat disunting.',
         ],
@@ -145,7 +145,7 @@ return [
 
             'vote' => [
                 'no_forum_access' => 'Kamu tidak memiliki akses ke forum yang dituju.',
-                'over' => 'Polling selesai dan tidak dapat dipilih lagi.',
+                'over' => 'Jajak pendapat ini telah berakhir dan tidak lagi dapat dipilih.',
                 'play_more' => 'Kamu harus lebih banyak bermain sebelum kamu dapat memberikan suara pada forum.',
                 'voted' => 'Pengubahan suara tidak diizinkan.',
 
@@ -213,7 +213,7 @@ return [
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'Laman pengguna terkunci.',
+                'locked' => 'Halaman pengguna terkunci.',
                 'not_owner' => 'Hanya dapat menyunting laman pengguna sendiri.',
                 'require_supporter_tag' => 'tag osu!supporter dibutuhkan.',
             ],
