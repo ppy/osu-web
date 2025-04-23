@@ -40,7 +40,7 @@ class TeamApplication extends Model
             UserNotification::batchDestroy(
                 $this->team->leader_id,
                 BatchIdentities::fromParams([
-                    'notifications' => [['id' => $notification->getKey()]],
+                    'notifications' => [$notification->toIdentityJson()],
                 ]),
             );
         }
