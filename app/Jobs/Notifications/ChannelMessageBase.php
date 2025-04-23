@@ -3,18 +3,16 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Jobs\Notifications;
 
 use App\Models\Chat\Message;
 use App\Models\Notification;
 use App\Models\User;
 
-class ChannelMessage extends BroadcastNotificationBase
+abstract class ChannelMessageBase extends BroadcastNotificationBase
 {
-    const NOTIFICATION_OPTION_NAME = Notification::CHANNEL_MESSAGE;
-
-    protected $message;
-
     public static function getBaseKey(Notification $notification): string
     {
         return "channel.channel.{$notification->details['type']}";
@@ -22,15 +20,12 @@ class ChannelMessage extends BroadcastNotificationBase
 
     public static function getMailLink(Notification $notification): string
     {
-        // TODO: probably should enable linking to a channel directly...
-        return route('chat.index', ['sendto' => $notification->source_user_id]);
+        return route('chat.index', ['channel_id' => $notification->notifiable_id]);
     }
 
-    public function __construct(Message $message, User $source)
+    public function __construct(protected Message $message, User $source)
     {
         parent::__construct($source);
-
-        $this->message = $message;
     }
 
     public function getDetails(): array
