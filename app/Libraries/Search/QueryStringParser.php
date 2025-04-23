@@ -14,6 +14,9 @@ class QueryStringParser
     public array $excludes = [];
     public array $includes = [];
 
+    private ?string $excludesQueryString;
+    private ?string $includesQueryString;
+
     public function __construct(public string $queryString)
     {
         $remainder = preg_replace_callback_array([
@@ -41,11 +44,11 @@ class QueryStringParser
 
     public function includesForQueryString()
     {
-        return implode(' ', $this->includes);
+        return $this->includesQueryString ??= implode(' ', $this->includes);
     }
 
     public function excludesForQueryString()
     {
-        return implode(' ', $this->excludes);
+        return $this->excludesQueryString ??= implode(' ', $this->excludes);
     }
 }
