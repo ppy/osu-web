@@ -132,16 +132,16 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => 'Ten :attribute zawiera nieprawidłowe znaki.',
+        'used' => 'Ten wybór :attribute jest już używany.',
+        'word_not_allowed' => 'Ten wybór :attribute nie jest dozwolony.',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'default_ruleset_id' => 'Domyślny zestaw reguł',
+            'is_open' => 'Aplikacja do zespołu',
+            'name' => 'Nazwa',
+            'short_name' => 'Krótka nazwa',
+            'url' => 'Adres URL',
         ],
     ],
 
@@ -190,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Nie można zgłosić rankingowych beatmap.',
         'not_in_channel' => 'Nie jesteś na tym kanale.',
+        'in_team' => '',
         'reason_not_valid' => 'Powód „:reason” nie jest właściwy dla tego typu zgłoszenia.',
         'self' => "Nie możesz zgłosić swojego konta!",
     ],

@@ -94,16 +94,22 @@ return [
             'title' => 'Gestisci Membri',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => 'Data',
                 'empty' => 'Nessuna richiesta di partecipazione per ora.',
                 'empty_slots' => 'Posti disponibili',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => 'Richieste di partecipazione',
-                'created_at' => 'Data',
             ],
 
             'table' => [
-                'status' => 'Stato',
                 'joined_at' => 'Data Iscrizione',
                 'remove' => 'Espelli',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => 'Stato',
                 'title' => 'Membri Attuali',
             ],
 
@@ -111,6 +117,10 @@ return [
                 'status_0' => 'Inattivo',
                 'status_1' => 'Attivo',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 
@@ -128,7 +138,7 @@ return [
         ],
 
         'info' => [
-            'created' => 'Fondazione squadra',
+            'created' => 'Creata',
         ],
 
         'members' => [
@@ -137,14 +147,14 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => 'Su di noi!',
             'info' => 'Dettagli',
             'members' => 'Membri',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => 'Posizione',
+            'leader' => 'Capitano',
         ],
     ],
 

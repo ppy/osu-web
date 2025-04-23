@@ -34,6 +34,11 @@ return [
         'title' => 'Pasūdzēties par :username rezultātu?',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'Nosūdzēt',
         'title' => 'Pasūdzēties par :username?',

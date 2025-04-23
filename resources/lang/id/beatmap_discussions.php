@@ -86,13 +86,13 @@ return [
         'go_to_child' => 'Lihat Topik Diskusi',
         'validation' => [
             'block_too_large' => 'masing-masing blok kajian terbatas pada :limit karakter',
-            'external_references' => 'kajian mengandung poin yang merujuk pada isu yang tidak berasal dari kajian ini',
+            'external_references' => 'kajian mengandung rujukan yang tertuju pada masalah yang tidak berasal dari kajian ini',
             'invalid_block_type' => 'tipe blok tidak valid',
             'invalid_document' => 'kajian tidak valid',
             'invalid_discussion_type' => 'tipe diskusi tidak valid',
-            'minimum_issues' => 'kajian harus mengandung setidaknya :count isu|kajian harus mengandung setidaknya :count isu',
+            'minimum_issues' => 'kajian harus mengandung setidaknya :count masalah|kajian harus mengandung setidaknya :count masalah',
             'missing_text' => 'blok tidak mengandung teks',
-            'too_many_blocks' => 'kajian hanya dapat mengandung :count paragraf/isu|kajian hanya dapat mengandung hingga :count paragraf/isu',
+            'too_many_blocks' => 'kajian hanya dapat mengandung :count paragraf/masalah|kajian hanya dapat mengandung hingga :count paragraf/masalah',
         ],
     ],
 

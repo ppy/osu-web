@@ -8,7 +8,7 @@ return [
     'missing_route' => 'URL tidak valid atau metode permintaan tidak tepat.',
     'no_restricted_access' => 'Kamu tidak dapat melakukan tindakan ini ketika akunmu sedang di-restrict.',
     'supporter_only' => 'Kamu harus menjadi osu!supporter untuk menggunakan fitur ini.',
-    'unknown' => 'Terdapat masalah yang tidak diketahui.',
+    'unknown' => 'Terjadi kesalahan yang tidak diketahui.',
 
     'codes' => [
         'http-401' => 'Silakan masuk untuk melanjutkan.',
@@ -26,7 +26,7 @@ return [
         'standard_converts_only' => 'Tidak ada skor yang tersedia untuk mode permainan yang diminta pada tingkat kesulitan ini.',
     ],
     'checkout' => [
-        'generic' => 'Terjadi kesalahan dalam mempersiapkan proses checkout.',
+        'generic' => 'Terjadi kesalahan pada saat mempersiapkan proses checkout.',
     ],
     'scores' => [
         'invalid_id' => 'ID skor tidak valid.',

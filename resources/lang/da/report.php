@@ -34,6 +34,11 @@ return [
         'title' => 'Vil du anmelde :username\'s score?',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'Anmeld',
         'title' => 'Anmeld :username?',

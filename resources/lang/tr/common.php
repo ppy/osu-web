@@ -22,7 +22,7 @@ return [
         'admin' => 'Yönetici',
         'authorise' => 'Yetki ver',
         'authorising' => 'İzin Veriliyor...',
-        'back' => '',
+        'back' => 'Geri',
         'back_to_previous' => 'Bir önceki pozisyona dön',
         'back_to_top' => 'Yukarıya geri dön',
         'cancel' => 'İptal',

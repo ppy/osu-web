@@ -73,7 +73,7 @@ return [
 
         'deleted_banner' => [
             'title' => 'Beatmap ini telah dihapus.',
-            'message' => '(hanya moderator yang dapat melihat ini)',
+            'message' => '(hanya moderator yang dapat melihat pesan ini)',
         ],
 
         'details' => [
@@ -140,6 +140,7 @@ return [
             'description' => 'Deskripsi',
             'genre' => 'Aliran',
             'language' => 'Bahasa',
+            'mapper_tags' => '',
             'no_scores' => 'Data sedang diproses...',
             'nominators' => 'Nominator',
             'nsfw' => 'Konten eksplisit',
@@ -148,7 +149,7 @@ return [
             'source' => 'Sumber',
             'storyboard' => 'Beatmap ini menyertakan storyboard',
             'success-rate' => 'Tingkat Keberhasilan',
-            'tags' => 'Tag',
+            'user_tags' => '',
             'video' => 'Beatmap ini menyertakan video',
         ],
 
@@ -171,7 +172,7 @@ return [
             'global' => 'Peringkat Global',
             'supporter-link' => 'Klik <a href=":link">di sini</a> untuk melihat seluruh fitur menarik yang akan kamu peroleh!',
             'supporter-only' => 'Kamu harus menjadi osu!supporter untuk mengakses papan peringkat teman, negara, atau mod!',
-            'team' => '',
+            'team' => 'Peringkat Tim',
             'title' => 'Papan Skor',
 
             'headers' => [
@@ -189,11 +190,11 @@ return [
             ],
 
             'no_scores' => [
-                'country' => 'Tidak seorang pun dari negara Anda yang memiliki skor di map ini!',
+                'country' => 'Belum ada seorang pun dari negaramu yang telah mencetak skor pada map ini!',
                 'friend' => 'Belum ada seorang pun dari daftar temanmu yang telah mencetak skor pada map ini!',
                 'global' => 'Belum ada skor yang tercatat. Mungkin kamu tertarik untuk mencetak skormu sendiri?',
                 'loading' => 'Memuat skor...',
-                'team' => '',
+                'team' => 'Belum ada seorang pun dari tim kamu yang telah mencetak skor pada map ini!',
                 'unranked' => 'Beatmap ini tidak berstatus Ranked.',
             ],
             'score' => [

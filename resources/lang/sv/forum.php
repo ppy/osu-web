@@ -80,7 +80,7 @@ return [
         'confirm_restore' => 'Vill du verkligen återställa ämnet?',
         'deleted' => 'raderat ämne',
         'go_to_latest' => 'visa senaste inlägg',
-        'go_to_unread' => '',
+        'go_to_unread' => 'se första olästa inlägg',
         'has_replied' => 'Du har svarat på detta ämne',
         'in_forum' => 'i :forum',
         'latest_post' => ':when av :user',
@@ -296,24 +296,24 @@ return [
         ],
 
         'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Ta bort "osu!lazer" tag',
+            'to_0_done' => 'Tog bort "osu!lazer" tag',
+            'to_1' => 'Lägg till "osu!lazer" tag',
+            'to_1_done' => 'La till "osu!lazer" tag',
         ],
 
         'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Ta bort "osu!stable" tag',
+            'to_0_done' => 'Tog bort "osu!stable" tag',
+            'to_1' => 'Lägg till "osu!stable" tag',
+            'to_1_done' => 'La till "osu!stable" tag',
         ],
 
         'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Ta bort "osu!web" tag',
+            'to_0_done' => 'Tog bort "osu!web" tag',
+            'to_1' => 'Lägg till "osu!web" tag',
+            'to_1_done' => 'La till "osu!web" tag',
         ],
 
         'lock' => [

@@ -34,6 +34,11 @@ return [
         'title' => 'รรายงานผลคะแนนของ :username?',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'รายงาน',
         'title' => 'รายงาน :username?',

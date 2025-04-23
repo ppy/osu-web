@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Podvádění',
-            'multiple_accounts' => 'Používání více účtů',
+            'inappropriate_chat' => '',
             'insults' => 'Uráží mě / ostatní',
-            'spam' => 'Spamování',
-            'unwanted_content' => 'Odkazování na nevhodný obsah',
+            'multiple_accounts' => 'Používání více účtů',
             'nonsense' => 'Nesmysl',
             'other' => 'Jiný (napište níže)',
+            'spam' => 'Spamování',
+            'unwanted_content' => 'Odkazování na nevhodný obsah',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Globální pozice pro :mode',
             'global_simple' => 'Světové hodnocení',
             'highest' => 'Nejvyšší rank :rank v :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Přesnost zásahů',

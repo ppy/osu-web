@@ -140,6 +140,7 @@ return [
             'description' => '',
             'genre' => '',
             'language' => '',
+            'mapper_tags' => '',
             'no_scores' => '',
             'nominators' => '',
             'nsfw' => '',
@@ -148,7 +149,7 @@ return [
             'source' => '',
             'storyboard' => '',
             'success-rate' => '',
-            'tags' => '',
+            'user_tags' => '',
             'video' => '',
         ],
 

@@ -3,14 +3,10 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('rankings.index', [
-    'country' => null,
     'hasFilter' => false,
     'hasMode' => false,
-    'hasPager' => true,
-    'hasScores' => true,
-    'spotlight' => null,
+    'params' => ['type' => 'seasons'],
     'titlePrepend' => osu_trans('rankings.type.seasons').': '.$season->name,
-    'type' => 'seasons',
 ])
 
 @if ($season->url !== null)

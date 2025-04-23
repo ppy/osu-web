@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Hindi tamang gawain / Pandaraya',
-            'multiple_accounts' => 'Gumagamit ng maraming account',
+            'inappropriate_chat' => '',
             'insults' => 'Iniinsulto ako o ang iba',
-            'spam' => 'Nag-iispam',
-            'unwanted_content' => 'Paglink ng hindi pwedeng content',
+            'multiple_accounts' => 'Gumagamit ng maraming account',
             'nonsense' => 'Bagay na walang kapararakan',
             'other' => 'Iba( i type sa baba)',
+            'spam' => 'Nag-iispam',
+            'unwanted_content' => 'Paglink ng hindi pwedeng content',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Pandaigdigang ranggo para sa :mode',
             'global_simple' => 'Pandaigdigang Ranggo',
             'highest' => 'Pinakamataas na ranggo: :rank sa :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Katumpakan sa Pagtama',

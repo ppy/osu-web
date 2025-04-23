@@ -206,7 +206,7 @@ return [
     ],
 
     'popup_search' => [
-        'initial' => 'Zadejte hledaný výraz!',
+        'initial' => 'Zadej hledaný výraz!',
         'retry' => 'Hledání se nezdařilo. Klepněte na tlačítko Opakovat.',
     ],
 ];

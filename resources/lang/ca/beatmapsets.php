@@ -5,14 +5,14 @@
 
 return [
     'availability' => [
-        'disabled' => 'Aquest mapa no està actualment disponible per a baixar.',
-        'parts-removed' => 'S\'han eliminat parts d\'aquest mapa a petició del creador o d\'un tercer titular dels drets.',
+        'disabled' => 'Aquest beatmap no es pot baixar actualment.',
+        'parts-removed' => 'S\'han eliminat parts d\'aquest beatmap a petició del creador o d\'un tercer titular dels drets.',
         'more-info' => 'Fes clic aquí per a més informació.',
-        'rule_violation' => 'Alguns continguts d\'aquest mapa han estat eliminats després de ser considerats no aptes pel seu ús a l\'osu!.',
+        'rule_violation' => 'Alguns continguts d\'aquest mapa han estat eliminats després de ser considerats no aptes pel seu ús a osu!.',
     ],
 
     'cover' => [
-        'deleted' => 'Mapa eliminat',
+        'deleted' => 'Beatmap eliminat',
     ],
 
     'download' => [
@@ -43,17 +43,17 @@ return [
     'nominate' => [
         'bng_limited_too_many_rulesets' => 'Els nominadors provisionals no poden nominar diferents modes de joc.',
         'full_nomination_required' => 'Heu de ser nominador complet per a establir la nominació final d\'un mode de joc.',
-        'hybrid_requires_modes' => 'Un mapa híbrid requereix que seleccioneu almenys un mode de joc per nominar.',
+        'hybrid_requires_modes' => 'Un beatmap híbrid requereix que seleccionis almenys un mode de joc per nominar.',
         'incorrect_mode' => 'No tens permís per nominar per al mode: :mode',
-        'invalid_limited_nomination' => 'Aquest mapa té nominacions no vàlides i, en aquest estat, no es pot nominar.',
+        'invalid_limited_nomination' => 'Aquest beatmap té nominacions no vàlides i, en aquest estat, no es pot nominar.',
         'invalid_ruleset' => 'Aquesta nominació té regles no vàlides.',
         'too_many' => 'Requisit de nominació ja complert.',
         'too_many_non_main_ruleset' => 'El requisit de nominació per a regles no bàsiques ja s\'ha complit.',
 
         'dialog' => [
-            'confirmation' => 'Esteu segur que voleu nominar aquest mapa?',
-            'different_nominator_warning' => 'Si es qualifica aquest mapa amb nominadors diferents farà que es restableixi la seva posició a la cua de qualificacions.',
-            'header' => 'Nominar mapa',
+            'confirmation' => 'Estàs segur que vols nominar aquest beatmap?',
+            'different_nominator_warning' => 'Si es qualifica aquest beatmap amb nominadors diferents farà que es restableixi la seva posició a la cua de qualificacions.',
+            'header' => 'Nominar beatmap',
             'hybrid_warning' => 'nota: només pot nominar una vegada, així que assegureu-vos que està nominant per a totes els modes de joc que desitgi',
             'current_main_ruleset' => 'Les regles principals actuals són :ruleset.',
             'which_modes' => 'Nominar per a quins modes?',
@@ -72,18 +72,18 @@ return [
         ],
 
         'deleted_banner' => [
-            'title' => 'Aquest mapa ha sigut esborrat.',
+            'title' => 'Aquest beatmap ha sigut esborrat.',
             'message' => '(només els moderadors poden veure això)',
         ],
 
         'details' => [
             'by_artist' => 'per :artist',
-            'favourite' => 'Marcar com a favorit',
-            'favourite_login' => 'Inicia sessió per a guardar el mapa a favorits',
-            'logged-out' => 'Necessites iniciar sessió abans de descarregar qualsevol mapa!',
+            'favourite' => 'marcar com a preferit',
+            'favourite_login' => 'inicia sessió per a guardar el beatmap a preferits',
+            'logged-out' => 'necessites iniciar sessió abans de descarregar qualsevol beatmap!',
             'mapped_by' => 'mapejat per :mapper',
             'mapped_by_guest' => 'dificultat de convidat per :mapper',
-            'unfavourite' => 'Desmarcar com a favorit',
+            'unfavourite' => 'desmarcar com a favorit',
             'updated_timeago' => 'actualitzat per últim cop :timeago',
 
             'download' => [
@@ -109,11 +109,11 @@ return [
         ],
 
         'favourites' => [
-            'limit_reached' => 'Has guardat massa beatmaps a favorits! Sisplau, esborra\'n alguns abans de tornar-ho a intentar.',
+            'limit_reached' => 'Has guardat masses beatmaps a preferits! Si us plau, esborra\'n alguns abans de tornar-ho a intentar.',
         ],
 
         'hype' => [
-            'action' => 'Hypeja aquest mapa per ajudar al seu progrés a l\'estat <strong>Classificat</strong>.',
+            'action' => 'Mostra eufòria a aquest mapa per ajudar al seu progrés a l\'estat <strong>classificat</strong>.',
 
             'current' => [
                 '_' => 'Aquest mapa està actualment :status.',
@@ -126,11 +126,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Si trobeu algun problema amb aquest beatmap, sisplau desqualifiqueu-lo :link.',
+                '_' => 'Si trobeu algun problema amb aquest beatmap, si us plau desqualifiqueu-lo :link.',
             ],
 
             'report' => [
-                '_' => 'Si trobeu un problema amb aquest beatmap, sisplau reporteu-lo :link per alertar l\'equip.',
+                '_' => 'Si trobeu un problema amb aquest beatmap, si us plau reporteu-lo :link per alertar l\'equip.',
                 'button' => 'Informar un problema',
                 'link' => 'aquí',
             ],
@@ -140,6 +140,7 @@ return [
             'description' => 'Descripció',
             'genre' => 'Gènere',
             'language' => 'Idioma',
+            'mapper_tags' => '',
             'no_scores' => 'Les dades encara s\'estan calculant...',
             'nominators' => 'Nominadors',
             'nsfw' => 'Contingut explícit',
@@ -148,7 +149,7 @@ return [
             'source' => 'Font',
             'storyboard' => 'Aquest beatmap conté una storyboard',
             'success-rate' => 'Percentatge d\'èxit',
-            'tags' => 'Etiquetes',
+            'user_tags' => '',
             'video' => 'Aquest beatmap conté vídeo',
         ],
 
@@ -171,7 +172,7 @@ return [
             'global' => 'Classificació Global',
             'supporter-link' => 'Feu clic <a href=":link">aquí</a> per veure totes les funcions de luxe que teniu!',
             'supporter-only' => 'Has de ser un osu!supporter per accedir a les classificacions per amics, països o mods!',
-            'team' => '',
+            'team' => 'Classificació per equips',
             'title' => 'Tauler de puntuació',
 
             'headers' => [
@@ -193,7 +194,7 @@ return [
                 'friend' => 'Cap dels teus amics ha marcat cap puntuació en aquest beatmap encara!',
                 'global' => 'Sense puntuacions encara. Potser hauries d\'intentar-ne establir alguna?',
                 'loading' => 'Carregant puntuacions...',
-                'team' => '',
+                'team' => 'Ningú del teu equip ha establert una puntuació en aquest beatmap!',
                 'unranked' => 'Beatmap no classificat.',
             ],
             'score' => [

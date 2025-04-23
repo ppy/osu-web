@@ -75,7 +75,7 @@ return [
         ],
         'home_controller' => [
             'get_download' => '下載',
-            'index' => '主控台',
+            'index' => '儀表板',
             'search' => '搜尋',
             'support_the_game' => '贊助 osu!',
             'testflight' => 'testflight 測試',

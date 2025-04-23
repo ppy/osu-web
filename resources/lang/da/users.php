@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Uærligt spil / Snyd',
-            'multiple_accounts' => 'Bruger flere konti',
+            'inappropriate_chat' => '',
             'insults' => 'Fornærmede mig / andre',
-            'spam' => 'Spamming',
-            'unwanted_content' => 'Sender links med upassende indhold',
+            'multiple_accounts' => 'Bruger flere konti',
             'nonsense' => 'Nonsens',
             'other' => 'Andet (Skriv under)',
+            'spam' => 'Spamming',
+            'unwanted_content' => 'Sender links med upassende indhold',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Global rang for :mode',
             'global_simple' => 'Global Rang',
             'highest' => '',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Præcision',

@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Netīra spēle / Krāpšanās',
-            'multiple_accounts' => 'Izmanto vairākus kontus',
+            'inappropriate_chat' => '',
             'insults' => 'Mani / citus apvainoja',
-            'spam' => 'Spams',
-            'unwanted_content' => 'Pievieno neatbilstošu saturu',
+            'multiple_accounts' => 'Izmanto vairākus kontus',
             'nonsense' => 'Bezsakars',
             'other' => 'Cits (norādīt zemāk)',
+            'spam' => 'Spams',
+            'unwanted_content' => 'Pievieno neatbilstošu saturu',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Globālais ranks pēc :mode',
             'global_simple' => 'Globālās Pozīcijas',
             'highest' => 'Augstākais novietojums: :rank :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Trāpījuma Precizitāte',

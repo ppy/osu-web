@@ -94,16 +94,22 @@ return [
             'title' => 'メンバーの管理',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => '申請日',
                 'empty' => '現在参加申請はありません。',
                 'empty_slots' => '空きスロット',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => '参加リクエスト',
-                'created_at' => '申請日',
             ],
 
             'table' => [
-                'status' => 'ステータス',
                 'joined_at' => '参加日',
                 'remove' => '削除',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => 'ステータス',
                 'title' => '現在参加しているメンバー',
             ],
 
@@ -111,6 +117,10 @@ return [
                 'status_0' => '非アクティブ',
                 'status_1' => 'アクティブ',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 
@@ -137,14 +147,14 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => '私たちについて！',
             'info' => '情報',
             'members' => 'メンバー',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => 'ランキング',
+            'leader' => 'チームリーダー',
         ],
     ],
 

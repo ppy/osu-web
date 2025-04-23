@@ -11,7 +11,7 @@ return [
         'batch_confirm' => [
             '_' => '',
             'disable' => '',
-            'enable' => '',
+            'enable' => 'Омогући',
             'items' => '',
         ],
 
@@ -27,7 +27,7 @@ return [
             'enabled' => 'Омогућено',
             'disabled' => 'Онемогућено',
             'image_store' => '',
-            'image_update' => '',
+            'image_update' => 'Замени Слику',
         ],
     ],
     'store' => [

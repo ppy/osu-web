@@ -296,24 +296,24 @@ return [
         ],
 
         'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => '"osu!lazer" címke eltávolítása',
+            'to_0_done' => '"osu!lazer" címke eltávolítva',
+            'to_1' => '"osu!lazer" címke hozzáadása',
+            'to_1_done' => '"osu!lazer" címke hozzáadva',
         ],
 
         'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => '"osu!stable" címke eltávolítása',
+            'to_0_done' => '"osu!stable" címke eltávolítva',
+            'to_1' => '"osu!stable" címke hozzáadása',
+            'to_1_done' => '"osu!stable" címke hozzáadva',
         ],
 
         'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => '"osu!web" címke eltávolítása',
+            'to_0_done' => '"osu!web" címke eltávolítva',
+            'to_1' => '"osu!web" címke hozzáadása',
+            'to_1_done' => '"osu!web" címke hozzáadva',
         ],
 
         'lock' => [

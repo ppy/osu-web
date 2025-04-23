@@ -15,7 +15,7 @@ return [
             'ok' => '',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'ขอร้องขอเข้าร่วมทีมแล้ว',
         ],
     ],
 
@@ -25,12 +25,12 @@ return [
         'form' => [
             'name_help' => '',
             'short_name_help' => '',
-            'title' => "",
+            'title' => "ตั้งทีมใหม่กันเถอะ!",
         ],
 
         'intro' => [
             'description' => "",
-            'title' => '',
+            'title' => 'ทีม!',
         ],
     ],
 
@@ -40,7 +40,7 @@ return [
 
     'edit' => [
         'ok' => '',
-        'title' => '',
+        'title' => 'การตั้งค่าทีม',
 
         'description' => [
             'label' => '',
@@ -48,8 +48,8 @@ return [
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'ธงทีม',
+            'title' => 'ตั้งธงทีม',
         ],
 
         'header' => [
@@ -94,16 +94,22 @@ return [
             'title' => '',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => '',
                 'empty' => '',
                 'empty_slots' => '',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => '',
-                'created_at' => '',
             ],
 
             'table' => [
-                'status' => '',
                 'joined_at' => '',
                 'remove' => '',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => '',
                 'title' => '',
             ],
 
@@ -111,6 +117,10 @@ return [
                 'status_0' => '',
                 'status_1' => '',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 
@@ -120,11 +130,11 @@ return [
 
     'show' => [
         'bar' => [
-            'chat' => '',
-            'destroy' => '',
+            'chat' => 'แชททีม',
+            'destroy' => 'ยุบทีม',
             'join' => '',
             'join_cancel' => '',
-            'part' => '',
+            'part' => 'ออกจากทีม',
         ],
 
         'info' => [
@@ -132,8 +142,8 @@ return [
         ],
 
         'members' => [
-            'members' => '',
-            'owner' => '',
+            'members' => 'สมาชิกทีม',
+            'owner' => 'หัวหน้าทีม',
         ],
 
         'sections' => [
@@ -144,11 +154,11 @@ return [
 
         'statistics' => [
             'rank' => '',
-            'leader' => '',
+            'leader' => 'หัวหน้าทีม',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'สร้างทีมเรียบร้อย',
     ],
 ];

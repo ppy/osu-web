@@ -34,15 +34,14 @@ return [
     ],
 
     'type' => [
-        'charts' => 'spotlights',
+        'charts' => 'spotlight (tidak lagi aktif)',
         'country' => 'negara',
         'daily_challenge' => 'tantangan harian',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
-        'performance' => 'performa',
-        'score' => 'skor',
         'seasons' => 'musim',
-        'team' => '',
+        'team' => 'tim',
     ],
 
     'seasons' => [
@@ -67,15 +66,15 @@ return [
         'active_users' => 'Pengguna Aktif',
         'country' => 'Negara',
         'division' => 'Divisi',
-        'members' => '',
+        'members' => 'Anggota',
         'play_count' => 'Jml. Permainan',
         'performance' => 'Total pp',
         'total_score' => 'Total Skor',
         'ranked_score' => 'Skor Ranked',
         'average_score' => 'Skor Rata-Rata',
         'average_performance' => 'pp Rata-Rata',
-        'ss' => '',
-        's' => '',
-        'a' => '',
+        'ss' => 'SS',
+        's' => 'S',
+        'a' => 'A',
     ],
 ];

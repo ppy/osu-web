@@ -140,7 +140,7 @@ return [
     ],
     'teams' => [
         'members_controller' => [
-            'index' => '',
+            'index' => 'สมาชิกทีม',
         ],
     ],
     'users' => [

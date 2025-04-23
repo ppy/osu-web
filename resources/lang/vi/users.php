@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Chơi xấu / Gian lận',
-            'multiple_accounts' => 'Sử dụng nhiều tài khoản',
+            'inappropriate_chat' => '',
             'insults' => 'Xúc phạm tôi / những người khác',
-            'spam' => 'Spamming',
-            'unwanted_content' => 'Có những nội dung không phù hợp',
+            'multiple_accounts' => 'Sử dụng nhiều tài khoản',
             'nonsense' => 'Phi lý',
             'other' => 'Khác (nhập dưới đây)',
+            'spam' => 'Spamming',
+            'unwanted_content' => 'Có những nội dung không phù hợp',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Hạng quốc tế cho :mode',
             'global_simple' => 'Hạng Toàn Cầu',
             'highest' => 'Hạng cao nhất: :rank vào :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Độ Chính Xác',

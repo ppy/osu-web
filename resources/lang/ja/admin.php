@@ -55,8 +55,8 @@ return [
                 'general' => '',
 
                 'users' => [
-                    'header' => '',
-                    'cover_presets' => '',
+                    'header' => 'ユーザー',
+                    'cover_presets' => 'プロフィールカバープリセット',
                 ],
             ],
         ],

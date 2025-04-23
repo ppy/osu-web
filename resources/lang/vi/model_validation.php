@@ -132,9 +132,9 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => ':attribute này chứa ký tự không hợp lệ.',
+        'used' => 'Lựa chọn :attribute này đã được sử dụng.',
+        'word_not_allowed' => 'Lựa chọn :attribute này không được phép.',
 
         'attributes' => [
             'default_ruleset_id' => 'Quy tắc mặc định',
@@ -190,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Beatmap đã Được Xếp hạng không thể bị báo cáo',
         'not_in_channel' => 'Bạn không ở trong kênh này.',
+        'in_team' => '',
         'reason_not_valid' => ':reason không phù hợp cho kiểu báo cáo này.',
         'self' => "Bạn không thể báo cáo chính mình!",
     ],

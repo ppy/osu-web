@@ -20,135 +20,145 @@ return [
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'Csapat létrehozása',
 
         'form' => [
             'name_help' => '',
-            'short_name_help' => '',
+            'short_name_help' => 'Legfeljebb 4 karakter.',
             'title' => "",
         ],
 
         'intro' => [
             'description' => "",
-            'title' => '',
+            'title' => 'Csapat!',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Csapat eltávolítva.',
     ],
 
     'edit' => [
-        'ok' => '',
-        'title' => '',
+        'ok' => 'A beállítások mentése sikeresen megtörtént.',
+        'title' => 'Csapat beállításai',
 
         'description' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Leírás',
+            'title' => 'Csapatleírás',
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Csapatzászló',
+            'title' => 'Csapatzászló beállítása',
         ],
 
         'header' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Fejléc kép',
+            'title' => 'Fejléc kép beállítása',
         ],
 
         'settings' => [
             'application_help' => '',
             'default_ruleset_help' => '',
-            'flag_help' => '',
-            'header_help' => '',
-            'title' => '',
+            'flag_help' => 'Legfeljebb :width×:height méretű',
+            'header_help' => 'Legfeljebb :width×:height méretű',
+            'title' => 'Csapat beállításai',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => 'Zárt',
+                'state_1' => 'Nyílt',
             ],
         ],
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'beállítások',
+        'leaderboard' => 'ranglista',
+        'show' => 'információ',
 
         'members' => [
-            'index' => '',
+            'index' => 'tagok kezelése',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
+        'global_rank' => 'Globális rang',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '',
+            'success' => 'Csapattag eltávolítva',
         ],
 
         'index' => [
-            'title' => '',
+            'title' => 'Tagok kezelése',
 
             'applications' => [
-                'empty' => '',
-                'empty_slots' => '',
-                'title' => '',
-                'created_at' => '',
+                'accept_confirm' => '',
+                'created_at' => 'Kérelem ideje',
+                'empty' => 'Nincs csatlakozási kérelem.',
+                'empty_slots' => 'Szabad helyek',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
+                'title' => 'Csatlakozási kérelmek',
             ],
 
             'table' => [
-                'status' => '',
-                'joined_at' => '',
-                'remove' => '',
-                'title' => '',
+                'joined_at' => 'Csatlakozás ideje',
+                'remove' => 'Eltávolítás',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => 'Állapot',
+                'title' => 'Jelenlegi tagok',
             ],
 
             'status' => [
-                'status_0' => '',
-                'status_1' => '',
+                'status_0' => 'Inaktív',
+                'status_1' => 'Aktív',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Kilépett a csapatból ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'chat' => '',
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'chat' => 'Csapat chat',
+            'destroy' => 'Csapat feloszlatása',
+            'join' => 'Jelentkezés',
+            'join_cancel' => 'Jelentkezés visszavonása',
+            'part' => 'Kilépés a csapatból',
         ],
 
         'info' => [
-            'created' => '',
+            'created' => 'Létrehozva',
         ],
 
         'members' => [
-            'members' => '',
-            'owner' => '',
+            'members' => 'Csapattagok',
+            'owner' => 'Csapatvezető',
         ],
 
         'sections' => [
-            'about' => '',
-            'info' => '',
-            'members' => '',
+            'about' => 'Rólunk!',
+            'info' => 'Információ',
+            'members' => 'Tagok',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => 'Rang',
+            'leader' => 'Csapatvezető',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'Csapat létrehozva.',
     ],
 ];

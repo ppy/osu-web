@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Profilbillede',
-            'reset' => '',
+            'reset' => 'genstart',
             'rules' => 'Vær sikker på at din avatar overholder :link.<br/>Dette betyder at den skal være <strong>passende for alle aldre</strong>. Det betyder ingen nøgenhed, skælsord eller suggestivt indhold.',
             'rules_link' => 'fællesskabs-reglerne',
         ],
@@ -20,8 +20,8 @@ return [
             'new_confirmation' => 'email bekræftelse',
             'title' => 'Email',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Venligst kontakt :accounts his du har brug for at opdatere din email.',
+                'accounts' => 'kontohjælp',
             ],
         ],
 
@@ -39,12 +39,12 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'land',
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "",
-                'update_link' => '',
+                '_' => "Det ser ud til at dit konto-land ikke er det samme som dit bopælslands. :update_link.",
+                'update_link' => 'Opdater til :country',
             ],
 
             'user' => [
@@ -65,14 +65,14 @@ return [
 
     'github_user' => [
         'info' => "",
-        'link' => '',
-        'title' => '',
-        'unlink' => '',
+        'link' => 'Tilknyt GitHub konto',
+        'title' => 'GitHub',
+        'unlink' => 'Fjern GitHub konto',
 
         'error' => [
-            'already_linked' => '',
+            'already_linked' => 'Denne GitHub konto er allerede tilknyttet en anden bruger.',
             'no_contribution' => '',
-            'unverified_email' => '',
+            'unverified_email' => 'Venligst bekræft din primære email på GitHub, og efterfølgende prøv at tilknytte din konto igen.',
         ],
     ],
 

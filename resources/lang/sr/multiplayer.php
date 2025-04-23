@@ -19,7 +19,7 @@ return [
 
         'errors' => [
             'duration_too_long' => 'Трајање је предугачко.',
-            'name_too_long' => '',
+            'name_too_long' => 'Име собе је предугачко.',
         ],
 
         'status' => [

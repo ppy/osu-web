@@ -17,7 +17,7 @@ return [
     'title' => 'Comentaris',
 
     'commentable_name' => [
-        'beatmapset' => 'Mapa',
+        'beatmapset' => 'Beatmap',
         'build' => 'Registre de canvis',
         'news_post' => 'Notícies',
         '_deleted' => 'Element eliminat',

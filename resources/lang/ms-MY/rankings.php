@@ -30,19 +30,18 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => 'Pengguna ini mempunyai kurang daripada 30 hari bagi sejarah pemeringkatan terkini.',
+        'insufficient_history' => 'Pengguna ini mempunyai sejarah kedudukan terkini kurang daripada 30 hari.',
     ],
 
     'type' => [
         'charts' => 'sorotan (lama)',
         'country' => 'negara',
         'daily_challenge' => 'cabaran harian',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'pemain ramai',
-        'performance' => 'prestasi',
-        'score' => 'markah',
         'seasons' => 'musim',
-        'team' => '',
+        'team' => 'pasukan',
     ],
 
     'seasons' => [
@@ -67,11 +66,11 @@ return [
         'active_users' => 'Pengguna Giat',
         'country' => 'Negara',
         'division' => 'Pembahagian',
-        'members' => '',
+        'members' => 'Ahli',
         'play_count' => 'Jumlah Mainan',
         'performance' => 'Prestasi',
         'total_score' => 'Jumlah Markah',
-        'ranked_score' => 'Markah Berperingkat',
+        'ranked_score' => 'Markah Berkedudukan',
         'average_score' => 'Markah Purata',
         'average_performance' => 'Prestasi Purata',
         'ss' => '',

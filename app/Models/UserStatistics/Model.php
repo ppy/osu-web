@@ -198,8 +198,12 @@ abstract class Model extends BaseModel
 
     public function scopeFriendsOf($query, $user)
     {
-        $userIds = $user->friends()->allRelatedIds();
-        $userIds[] = $user->getKey();
+        if ($user === null) {
+            $userIds = [];
+        } else {
+            $userIds = $user->friends()->allRelatedIds();
+            $userIds[] = $user->getKey();
+        }
 
         return $query->whereIn('user_id', $userIds);
     }

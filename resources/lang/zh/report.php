@@ -34,6 +34,11 @@ return [
         'title' => '举报 :username 的成绩？',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => '举报',
         'title' => '举报 :username ？',

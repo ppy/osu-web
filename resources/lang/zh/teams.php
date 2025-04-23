@@ -94,16 +94,22 @@ return [
             'title' => '管理战队成员',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => '请求于',
                 'empty' => '目前没有加入战队请求。',
                 'empty_slots' => '剩余名额',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => '加入战队申请',
-                'created_at' => '请求于',
             ],
 
             'table' => [
-                'status' => '状态',
                 'joined_at' => '加入日期',
                 'remove' => '移除',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => '状态',
                 'title' => '当前战队成员',
             ],
 
@@ -111,6 +117,10 @@ return [
                 'status_0' => '不活跃',
                 'status_1' => '活跃',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 
@@ -137,14 +147,14 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => '关于我们！',
             'info' => '信息',
             'members' => '成员',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => '排名',
+            'leader' => '队长',
         ],
     ],
 

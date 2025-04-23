@@ -190,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Rangerede beatmaps kan ikke rapporteres',
         'not_in_channel' => 'Du er ikke i denne kanal.',
+        'in_team' => '',
         'reason_not_valid' => ':reason er ikke gyldt for denne type anmeldelse.',
         'self' => "Du kan ikke rapportere dig selv!",
     ],

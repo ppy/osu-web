@@ -71,12 +71,12 @@ return [
 
             'upload_more' => [
                 'title' => 'Muat Naik Lebih Banyak',
-                'description' => 'Slot peta rentak tergantung tambahan (setiap peta rentak berperingkat) hingga maksimum 10 slot.',
+                'description' => 'Slot peta rentak tergantung tambahan (setiap peta rentak berkedudukan) hingga maksimum 10 slot.',
             ],
 
             'early_access' => [
                 'title' => 'Capaian Awal',
-                'description' => 'Peroleh capaian awal ke keluaran baharu dengan ciri-ciri baharu sebelum diumumkan!<br/><br/>Capaian awal termasuk ciri-ciri pada laman sesawang juga!',
+                'description' => 'Peroleh capaian awal ke edaran baharu dengan ciri-ciri baharu sebelum diumumkan!<br/><br/>Capaian awal termasuk ciri-ciri pada laman sesawang juga!',
             ],
 
             'customisation' => [
@@ -105,8 +105,8 @@ return [
             ],
 
             'skinnables' => [
-                'title' => 'Tetapan kulit',
-                'description' => 'Tetapan kulit tambahan dalam mainan seperti latar menu utama.',
+                'title' => 'Tetapan rupa',
+                'description' => 'Tetapan rupa tambahan dalam mainan seperti latar menu utama.',
             ],
 
             'feature_votes' => [
@@ -120,7 +120,7 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => 'Kegemaran Lain',
+                'title' => 'Sukaan Lain',
                 'description' => 'Jumlah maksimum peta rentak sukaan ditingkatkan dari :normally &rarr; :supporter',
             ],
             'more_friends' => [
@@ -129,7 +129,7 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Muat Naik Lebih Banyak Peta Rentak',
-                'description' => 'Jumlah peta rentak tergantung yang anda boleh miliki dikira dari nilai pangkal ditambah dengan bonus tambahan bagi setiap peta rentak berperingkat yang anda kini miliki (terhad).<br/><br/>Biasanya jumlah ini adalah :base + :bonus setiap peta rentak berperingkat (hingga :bonus_max). Sekiranya anda penyokong, jumlah ini naik ke :supporter_base + :supporter_bonus setiap peta rentak berperingkat (hingga :supporter_bonus_max).',
+                'description' => 'Jumlah peta rentak tergantung yang anda boleh miliki dikira dari nilai pangkal ditambah dengan bonus tambahan bagi setiap peta rentak berkedudukan yang anda kini miliki (terhad).<br/><br/>Biasanya jumlah ini adalah :base + :bonus setiap peta rentak berperingkat (hingga :bonus_max). Sekiranya anda penyokong, jumlah ini naik ke :supporter_base + :supporter_bonus setiap peta rentak berperingkat (hingga :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => 'Carta Kedudukan Kawan',

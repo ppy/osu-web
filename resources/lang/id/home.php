@@ -22,7 +22,7 @@ return [
         'advanced_link' => 'Pencarian lanjutan',
         'button' => 'Cari',
         'empty_result' => 'Tidak ada hasil yang ditemukan!',
-        'keyword_required' => 'Kata kunci pencarian diperlukan',
+        'keyword_required' => 'Kata kunci pencarian dibutuhkan',
         'placeholder' => 'ketik untuk mulai mencari',
         'title' => 'pencarian',
 
@@ -45,7 +45,7 @@ return [
                 'forum_children' => 'sertakan subforum',
                 'include_deleted' => 'sertakan postingan yang telah dihapus',
                 'topic_id' => 'topik #',
-                'username' => 'pembuat post',
+                'username' => 'pengirim',
             ],
         ],
 
@@ -112,7 +112,7 @@ return [
             'beatmaps' => [
                 'title' => 'dapatkan beatmapnya',
                 'description' => [
-                    '_' => ':browse berbagai beatmap buatan pengguna yang tersedia pada pustaka beatmap kami dan mulailah bermain!',
+                    '_' => ':browse berbagai beatmap buatan pengguna pada pustaka beatmap kami dan mulailah bermain!',
                     'browse' => 'telusuri',
                 ],
             ],

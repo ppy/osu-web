@@ -37,12 +37,11 @@ return [
         'charts' => 'чарти',
         'country' => 'країни',
         'daily_challenge' => 'щоденний виклик',
+        'global' => '',
         'kudosu' => 'кудосу',
         'multiplayer' => 'мультиплеєр',
-        'performance' => 'продуктивність',
-        'score' => 'очки',
         'seasons' => 'сезонні',
-        'team' => '',
+        'team' => 'команда',
     ],
 
     'seasons' => [
@@ -67,7 +66,7 @@ return [
         'active_users' => 'Активні гравці',
         'country' => 'Країна',
         'division' => 'Дивізіон',
-        'members' => '',
+        'members' => 'Учасники',
         'play_count' => 'Кількість ігор',
         'performance' => 'Продуктивність',
         'total_score' => 'Всього очок',

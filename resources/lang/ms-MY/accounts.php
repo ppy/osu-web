@@ -53,7 +53,7 @@ return [
                 'user_interests' => 'minat',
                 'user_occ' => 'pekerjaan',
                 'user_twitter' => '',
-                'user_website' => 'laman web',
+                'user_website' => 'laman sesawang',
             ],
         ],
 
@@ -64,23 +64,23 @@ return [
     ],
 
     'github_user' => [
-        'info' => "Sekiranya anda penyumbang kepada gedung-gedung sumber terbuka osu!, anda akan mengaitkan entri log perubahan anda dengan profil osu! anda jika anda memaut akain GitHub anda ke sini. Akaun GitHub tanpa sejarah sumbangan kepada osu! tidak boleh dipaut.",
+        'info' => "Sekiranya anda penyumbang kepada gedung-gedung sumber terbuka osu!, anda akan mengaitkan entri log perubahan anda dengan profil osu! anda jika anda memaut akaun GitHub anda ke sini. Akaun GitHub tanpa sejarah sumbangan kepada osu! tidak boleh dipaut.",
         'link' => 'Pautkan Akaun Github',
         'title' => 'GitHub',
         'unlink' => 'Nyahpautkan Akaun Github',
 
         'error' => [
             'already_linked' => 'Akaun Github ini telah dipautkan dengan pengguna lain.',
-            'no_contribution' => 'Tidak boleh pautkan akaun Github tanpa sebarang sejarah sumbangan dalam gedung osu!.',
+            'no_contribution' => 'Tidak boleh pautkan akaun Github tanpa sejarah sumbangan dalam gedung osu!.',
             'unverified_email' => 'Sila sahkan e-mel utama anda di GitHub kemudian cuba pautkan akaun anda sekali lagi.',
         ],
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'terima pemberitahuan untuk masalah baru pada peta rentak layak pada mod berikut',
+        'beatmapset_discussion_qualified_problem' => 'terima pemberitahuan masalah baharu pada peta rentak layak untuk mod berikut',
         'beatmapset_disqualify' => 'terima pemberitahuan ketika peta rentak mod berikut tersingkir',
         'comment_reply' => 'terima pemberitahuan untuk balasan pada komen',
-        'title' => 'Notifications',
+        'title' => 'Pemberitahuan',
         'topic_auto_subscribe' => 'upayakan pemberitahuan automatik pada tajuk forum baharu yang anda cipta atau balas',
 
         'options' => [
@@ -92,7 +92,7 @@ return [
             'forum_topic_reply' => 'balasan tajuk',
             'mail' => 'e-mel',
             'mapping' => 'pemeta rentak',
-            'push' => 'web',
+            'push' => 'push',
         ],
     ],
 
@@ -105,7 +105,7 @@ return [
     'options' => [
         'beatmapset_show_nsfw' => 'sorok amaran untuk kandungan tidak senonoh dalam peta rentak',
         'beatmapset_title_show_original' => 'paparkan metadata beatmap dalam bahasa aslinya',
-        'title' => 'Pengaturan',
+        'title' => 'Pilihan',
 
         'beatmapset_download' => [
             '_' => 'jenis pemuatan turun peta rentak asal',
@@ -135,7 +135,7 @@ return [
         'end_session_confirmation' => 'Tindakan ini akan langsung menamatkan sesi anda pada peranti itu. Adakah anda pasti?',
         'last_active' => 'Terakhir aktif:',
         'title' => 'Keselamatan',
-        'web_sessions' => 'sesi web',
+        'web_sessions' => 'sesi sesawang',
     ],
 
     'update_email' => [

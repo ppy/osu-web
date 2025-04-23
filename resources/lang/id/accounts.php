@@ -21,7 +21,7 @@ return [
             'title' => 'Email',
             'locked' => [
                 '_' => 'Silakan hubungi :accounts apabila kamu perlu untuk memperbarui alamat emailmu.',
-                'accounts' => 'tim bantuan akun',
+                'accounts' => 'tim dukungan akun',
             ],
         ],
 
@@ -64,7 +64,7 @@ return [
     ],
 
     'github_user' => [
-        'info' => "Apabila kamu merupakan kontributor repositori open-source osu!, kamu dapat menautkan akun GitHub kamu di sini untuk menghubungkan entrimu pada riwayat perubahan dengan profil osu! milikmu. Akun GitHub yang tidak memiliki riwayat kontribusi terhadap osu! tidak dapat ditautkan.",
+        'info' => "Apabila kamu merupakan kontributor repositori open-source osu!, kamu dapat menautkan akun GitHub kamu di sini untuk menghubungkan entri riwayat perubahanmu dengan profil osu! kamu. Akun GitHub yang tidak memiliki riwayat kontribusi terhadap osu! tidak dapat ditautkan.",
         'link' => 'Tautkan Akun GitHub',
         'title' => 'GitHub',
         'unlink' => 'Lepas Tautan Akun GitHub',
@@ -89,7 +89,7 @@ return [
             'beatmapset:modding' => 'modding',
             'channel_message' => 'pesan pribadi',
             'comment_new' => 'komentar baru',
-            'forum_topic_reply' => 'balasan pada topik',
+            'forum_topic_reply' => 'balasan topik',
             'mail' => 'email',
             'mapping' => 'mapper',
             'push' => 'push (web)',
@@ -98,7 +98,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'klien diizinkan',
-        'own_clients' => 'klien dimiliki',
+        'own_clients' => 'klien yang dimiliki',
         'title' => 'OAuth',
     ],
 
@@ -110,7 +110,7 @@ return [
         'beatmapset_download' => [
             '_' => 'tipe pengunduhan beatmap bawaan',
             'all' => 'dengan video (apabila tersedia)',
-            'direct' => 'buka melalui osu!direct',
+            'direct' => 'buka di osu!direct',
             'no_video' => 'tanpa video',
         ],
     ],

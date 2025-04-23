@@ -34,6 +34,11 @@ return [
         'title' => 'Reportar pontuação de :username ?',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'Denunciar',
         'title' => 'Denunciar :username?',

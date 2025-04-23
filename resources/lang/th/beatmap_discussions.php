@@ -69,7 +69,7 @@ return [
     'refresh' => [
         'checking' => 'กำลังตรวจสอบการอัปเดต…',
         'has_updates' => '',
-        'no_updates' => '',
+        'no_updates' => 'ไม่มีการอัปเดท',
         'updating' => 'กำลังอัปเดต',
     ],
 

@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'title' => 'Rytmikarttojen keskustelujen viestit',
+        'title' => 'Beatmapkeskustelut',
     ],
 
     'item' => [

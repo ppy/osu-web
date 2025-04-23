@@ -230,7 +230,7 @@ return [
 
         'reset_at' => [
             'nomination_reset' => 'Nominierungsprozess zurückgesetzt vor :time_ago von :user mit dem Problem :discussion (:message).',
-            'disqualify' => 'Vor :time_ago disqualifiziert von :user mit einem neuen Problem :discussion (:message).',
+            'disqualify' => 'Wegen eines neuen Problems :discussion (:message) :time_ago von :user disqualifiziert.',
         ],
 
         'reset_confirm' => [

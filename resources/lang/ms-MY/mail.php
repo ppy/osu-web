@@ -7,7 +7,7 @@ return [
     'beatmapset_update_notice' => [
         'new' => 'Saja nak beritahu, ada pengemaskinian baharu pada peta rentak ":title" sejak lawatan terakhirmu.',
         'subject' => 'Pengemaskinian baharu untuk peta rentak ":title"',
-        'unwatch' => 'Sekiranya anda tidak ingin mengamati peta rentak ini lagi, anda boleh klik pautan "Tarik amatan" pada halaman di atas atau dari halaman senarai amatan penyelarasan:',
+        'unwatch' => 'Sekiranya anda tidak ingin mengikut peta rentak ini lagi, anda boleh klik pautan "Nyahikut" pada halaman di atas atau dari halaman senarai ikutan penyelarasan:',
         'visit' => 'Lawati halaman perbincangan di sini:',
     ],
 
@@ -41,7 +41,7 @@ return [
     'forum_new_reply' => [
         'new' => 'Saja nak beritahu, ada balasan baru pada ":title" sejak lawatan terakhirmu.',
         'subject' => '[osu!] Balasan baru bagi tajuk ":title"',
-        'unwatch' => 'Sekiranya anda tidak ingin mengikut tajuk ini lagi, anda boleh mengklik pautan "Nyahikut tajuk" pada bahagian bawah tajuk di atas atau dari halaman pengurusan tajuk ikutan:',
+        'unwatch' => 'Sekiranya anda tidak ingin mengikut tajuk ini lagi, anda boleh klik pautan "Nyahikut tajuk" pada bahagian bawah tajuk di atas atau dari halaman pengurusan tajuk ikutan:',
         'visit' => 'Lompat terus ke balasan terkini menggunakan pautan berikut:',
     ],
 
@@ -52,7 +52,7 @@ return [
     ],
 
     'store_payment_completed' => [
-        'prepare_shipping' => 'Kami telah menerima bayaran anda dan kini menyediakan pesanan anda untuk dihantar. Bergantung kepada kuantiti, pesanan anda mungkin akan mengambil masa beberapa hari sebelum dikirim. Anda boleh mengikuti kemajuan pesanan anda di sini termasuk butiran penjejakan sekiranya tersedia:',
+        'prepare_shipping' => 'Kami telah menerima bayaran anda dan kini menyiapkan pesanan anda untuk dihantar. Bergantung kepada kuantiti, pesanan anda mungkin akan mengambil masa beberapa hari sebelum dikirim. Anda boleh mengikuti kemajuan pesanan anda di sini termasuk butiran penjejakan sekiranya tersedia:',
         'processing' => 'Kami telah menerima bayaran anda dan kini memproses pesanan anda. Anda boleh mengikuti kemajuan pesanan anda di sini:',
         'questions' => "Sekiranya anda mempunyai soalan, janganlah teragak-agak untuk membalas e-mel ini.",
         'shipping' => 'Penghantaran',
@@ -86,7 +86,7 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => 'Saja nak beritahu, ada pengemaskinian baru pada item-item amatanmu.',
+        'new' => 'Saja nak beritahu, ada pengemaskinian baru pada butir-butir ikutanmu.',
         'settings' => 'Ubah keutamaan pemberitahuan e-mel:',
         'subject' => 'Pemberitahuan osu! baharu',
     ],

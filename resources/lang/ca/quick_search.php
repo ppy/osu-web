@@ -5,7 +5,7 @@
 
 return [
     'mode' => [
-        'beatmapset' => 'Mapa',
+        'beatmapset' => 'Beatmap',
         'forum_post' => 'Fòrum',
         'other' => 'Altre',
         'user' => 'Jugador',

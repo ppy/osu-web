@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Joc brut/trampes',
-            'multiple_accounts' => 'Fa servir diversos comptes',
+            'inappropriate_chat' => '',
             'insults' => 'Insultant-me/insultant als altres',
-            'spam' => 'Envia spam',
-            'unwanted_content' => 'Enllaça contingut inapropiat',
+            'multiple_accounts' => 'Fa servir diversos comptes',
             'nonsense' => 'Ximpleries',
             'other' => 'Altres (escriu a sota)',
+            'spam' => 'Envia spam',
+            'unwanted_content' => 'Enllaça contingut inapropiat',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Classifació global per :mode',
             'global_simple' => 'Classificació global',
             'highest' => 'Classificació més alta: :rank el :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisió',

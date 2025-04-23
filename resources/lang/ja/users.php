@@ -163,12 +163,13 @@ CAPTCHA認証を成功させてから再試行してください。
 
         'options' => [
             'cheating' => 'チート',
-            'multiple_accounts' => '複数のアカウントを管理している',
+            'inappropriate_chat' => '',
             'insults' => 'あなた/他の人への侮辱',
-            'spam' => 'スパム',
-            'unwanted_content' => '不適切なコンテンツへのリンク',
+            'multiple_accounts' => '複数のアカウントを管理している',
             'nonsense' => 'ナンセンスな行為',
             'other' => 'その他（下記に入力）',
+            'spam' => 'スパム',
+            'unwanted_content' => '不適切なコンテンツへのリンク',
         ],
     ],
     'restricted_banner' => [
@@ -220,7 +221,7 @@ CAPTCHA認証を成功させてから再試行してください。
             'cover' => [
                 'button' => 'カバー画像の変更',
                 'defaults_info' => 'カバー画像の選択肢は増える予定です',
-                'holdover_remove_confirm' => "",
+                'holdover_remove_confirm' => "以前に選択したカバーは選択できなくなります。別のカバーに切り替えた後、再び選択することはできません。続行しますか？",
                 'title' => 'カバー画像',
 
                 'upload' => [
@@ -228,7 +229,7 @@ CAPTCHA認証を成功させてから再試行してください。
                     'button' => '画像のアップロード',
                     'dropzone' => 'ここにドロップしてアップロード',
                     'dropzone_info' => 'ここにドラッグ＆ドロップでアップロードが可能です。',
-                    'size_info' => '推奨の画像サイズは2400x620です',
+                    'size_info' => '推奨の画像サイズは2000x500です',
                     'too_large' => 'アップロードファイルが大きすぎます。',
                     'unsupported_format' => 'サポートされていないフォーマットです。',
 
@@ -245,7 +246,7 @@ CAPTCHA認証を成功させてから再試行してください。
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
+                'reset_no_supporter' => 'カラーをデフォルトに戻しますか？別の色に変更するにはサポータータグが必要です。',
                 'title' => 'カラー',
 
                 'supporter' => [
@@ -481,6 +482,10 @@ CAPTCHA認証を成功させてから再試行してください。
             'global' => ':modeの世界ランク',
             'global_simple' => '世界ランキング',
             'highest' => '最高ランク: :rank (:dateに取得)',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => '精度',

@@ -140,6 +140,7 @@ return [
             'description' => 'Beschrijving',
             'genre' => 'Genre',
             'language' => 'Taal',
+            'mapper_tags' => '',
             'no_scores' => 'Data nog aan het berekenen...',
             'nominators' => 'Nominatoren',
             'nsfw' => 'Expliciete inhoud',
@@ -148,7 +149,7 @@ return [
             'source' => 'Bron',
             'storyboard' => 'Deze beatmap bevat verhaalborden',
             'success-rate' => 'Slagingspercentage',
-            'tags' => 'Tags',
+            'user_tags' => '',
             'video' => 'Deze beatmap bevat een video',
         ],
 

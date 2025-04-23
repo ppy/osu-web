@@ -25,7 +25,7 @@ return [
 
     'kudosu' => [
         'total' => 'Получено',
-        'available' => 'Осталось',
+        'available' => 'Доступно',
         'used' => 'Потрачено',
     ],
 
@@ -36,13 +36,12 @@ return [
     'type' => [
         'charts' => 'по чартам (устар.)',
         'country' => 'по странам',
-        'daily_challenge' => 'карта дня',
+        'daily_challenge' => 'по картам дня',
+        'global' => '',
         'kudosu' => 'по кудосу',
         'multiplayer' => 'в мультиплеере',
-        'performance' => 'по производительности',
-        'score' => 'по очкам',
         'seasons' => 'по сезонам',
-        'team' => '',
+        'team' => 'по командам',
     ],
 
     'seasons' => [
@@ -67,13 +66,13 @@ return [
         'active_users' => 'Активные игроки',
         'country' => 'Страна',
         'division' => 'Ранг',
-        'members' => '',
+        'members' => 'Участники',
         'play_count' => 'Количество игр',
         'performance' => 'Производительность',
         'total_score' => 'Всего очков',
-        'ranked_score' => 'Рейтинговых очков',
-        'average_score' => 'Сред. очки',
-        'average_performance' => 'Сред. произв.',
+        'ranked_score' => 'Рейтинговые очки',
+        'average_score' => 'Средн. кол. очков',
+        'average_performance' => 'Средн. произв.',
         'ss' => '',
         's' => '',
         'a' => '',

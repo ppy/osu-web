@@ -5,8 +5,8 @@
 
 return [
     'index' => [
-        'description' => 'Aquestes són les discussions de mapes que estàs seguint. Se\'t notificarà quan hi hagi noves publicacions o actualitzacions.',
-        'title_compact' => 'llista de seguiment de moding',
+        'description' => 'Aquestes són les discussions de beatmaps que estàs seguint. Se\'t notificarà quan hi hagi noves publicacions o actualitzacions.',
+        'title_compact' => 'llista de seguiment de modding',
 
         'counts' => [
             'total' => 'Mapes vistos',
@@ -14,7 +14,7 @@ return [
         ],
 
         'table' => [
-            'empty' => 'No estàs veient cap discussió de mapa.',
+            'empty' => 'No estàs veient cap discussió de beatmap.',
             'last_update' => 'Última actualització',
             'open_issues' => 'Incidències obertes',
             'state' => 'Estat',

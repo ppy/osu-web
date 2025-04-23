@@ -17,7 +17,7 @@ return [
     ],
 
     'show' => [
-        'created_by' => '',
+        'created_by' => ':author által',
         'download' => 'Letöltés',
         'item' => [
             'cleared' => 'lejátszott',

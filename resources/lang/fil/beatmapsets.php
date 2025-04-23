@@ -140,6 +140,7 @@ return [
             'description' => 'Deskripsyon',
             'genre' => 'Dyanre',
             'language' => 'Wika',
+            'mapper_tags' => '',
             'no_scores' => 'Kinakalkula pa ang mga datos...',
             'nominators' => 'Mga nominador',
             'nsfw' => 'Maselang nilalaman',
@@ -148,7 +149,7 @@ return [
             'source' => 'Pinagmulan',
             'storyboard' => 'Ang beatmap na ito ay may storyboard',
             'success-rate' => 'Rate ng Pagkakapasa',
-            'tags' => 'Mga Tag',
+            'user_tags' => '',
             'video' => 'Ang beatmap na ito ay may bidyo',
         ],
 

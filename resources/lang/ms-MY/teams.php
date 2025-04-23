@@ -94,16 +94,22 @@ return [
             'title' => 'Urus Ahli',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => 'Diminta pada',
                 'empty' => 'Tiada permintaan masuk pada masa ini.',
                 'empty_slots' => 'Slot tersedia',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => 'Permintaan Masuk',
-                'created_at' => 'Diminta pada',
             ],
 
             'table' => [
-                'status' => 'Taraf',
                 'joined_at' => 'Tarikh Masuk',
                 'remove' => 'Keluarkan',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => 'Taraf',
                 'title' => 'Ahli Semasa',
             ],
 
@@ -111,6 +117,10 @@ return [
                 'status_0' => 'Lengai',
                 'status_1' => 'Giat',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 
@@ -137,14 +147,14 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => 'Mengenai Kami!',
             'info' => 'Maklumat',
             'members' => 'Ahli',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => 'Kedudukan',
+            'leader' => 'Ketua Pasukan',
         ],
     ],
 

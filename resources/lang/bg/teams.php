@@ -94,16 +94,22 @@ return [
             'title' => 'Управление на членове',
 
             'applications' => [
+                'accept_confirm' => '',
+                'created_at' => '',
                 'empty' => '',
                 'empty_slots' => '',
+                'empty_slots_overflow' => '',
+                'reject_confirm' => '',
                 'title' => '',
-                'created_at' => '',
             ],
 
             'table' => [
-                'status' => 'Състояние',
                 'joined_at' => 'Дата на присъединяване',
                 'remove' => 'Премахване',
+                'remove_confirm' => '',
+                'set_leader' => '',
+                'set_leader_confirm' => '',
+                'status' => 'Състояние',
                 'title' => 'Текущи членове',
             ],
 
@@ -111,6 +117,10 @@ return [
                 'status_0' => 'Неактивни',
                 'status_1' => 'Активни',
             ],
+        ],
+
+        'set_leader' => [
+            'success' => '',
         ],
     ],
 
