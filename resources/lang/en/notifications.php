@@ -122,6 +122,12 @@ return [
                     'channel_message_compact' => ':title',
                     'channel_message_group' => 'from :username',
                 ],
+
+                'team' => [
+                    'channel_team' => ':username says ":title" on team chat',
+                    'channel_team_compact' => ':username says ":title"',
+                    'channel_team_group' => 'team chat',
+                ],
             ],
         ],
 
@@ -240,6 +246,10 @@ return [
 
             'channel' => [
                 'pm' => 'You\'ve received a new message from :username',
+            ],
+
+            'channel' => [
+                'team' => 'There is a new message in team ":name"',
             ],
         ],
 
