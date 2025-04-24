@@ -307,6 +307,7 @@ class Beatmap extends Model implements AfterCommit
             'baseMaxCombo',
             'beatmapDiscussions',
             'beatmapOwners',
+            'beatmapTags',
             'beatmapset',
             'difficulty',
             'difficultyAttribs',
@@ -392,6 +393,22 @@ class Beatmap extends Model implements AfterCommit
         return $maxCombo?->value;
     }
 
+    public function slowTopTagIds(): array
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            $countById = [];
+            foreach ($this->beatmapTags as $vote) {
+                $countById[$vote->tag_id] ??= ['tag_id' => $vote->tag_id, 'count' => 0];
+                $countById[$vote->tag_id]['count']++;
+            }
+            usort($countById, fn ($a, $b) => $a['count'] === $b['count']
+                ? $a['tag_id'] - $b['tag_id']
+                : $b['count'] - $a['count']);
+
+            return array_slice($countById, 0, $GLOBALS['cfg']['osu']['tags']['top_tag_count']);
+        });
+    }
+
     public function status()
     {
         return array_search($this->approved, Beatmapset::STATES, true);
@@ -405,7 +422,7 @@ class Beatmap extends Model implements AfterCommit
             fn () => \Cache::remember(
                 "beatmap_top_tag_ids:{$this->getKey()}",
                 $GLOBALS['cfg']['osu']['tags']['beatmap_tags_cache_duration'],
-                fn () => $this->beatmapTags()->topTagIds()->limit(50)->get()->toArray(),
+                fn () => $this->beatmapTags()->topTagIds()->limit($GLOBALS['cfg']['osu']['tags']['top_tag_count'])->get()->toArray(),
             ),
         );
     }
