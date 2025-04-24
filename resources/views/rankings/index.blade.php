@@ -26,7 +26,11 @@
     @section('rulesetSelector')
         @include('objects._ruleset_selector', [
             'currentRuleset' => $params['mode'],
-            'urlFn' => fn (string $r): string => route('rankings', [...$params, 'mode' => $r]),
+            'urlFn' => fn (string $r): string => route('rankings', [
+                ...$params,
+                'mode' => $r,
+                'variant' => $r === $params['mode'] ? ($params['variant'] ?? null) : null,
+            ]),
         ])
     @endsection
 @endif
