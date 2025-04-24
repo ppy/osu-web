@@ -20,7 +20,6 @@ abstract class VariantModel extends Model
     public float $level;
     public int $max_combo;
     public int $rank;
-    public int $ranked_score;
     public int $replay_popularity;
     public int $total_score;
     public int $total_seconds_played;
@@ -84,11 +83,6 @@ abstract class VariantModel extends Model
     public function setRankAttribute($value)
     {
         $this->rank = $value;
-    }
-
-    public function setRankedScoreAttribute($value)
-    {
-        $this->ranked_score = $value;
     }
 
     public function setReplayPopularityAttribute($value)

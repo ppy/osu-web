@@ -90,6 +90,8 @@ export function formatMessageGroup(item: Notification) {
     };
 
     return trans(`notifications.item.${item.displayType}.${item.category}.${item.category}_group`, replacements);
+  } else if (item.category === 'team_application') {
+    return trans('notifications.item.team.team_application.team_application_group');
   }
 
   return item.title;

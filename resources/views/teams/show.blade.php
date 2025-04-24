@@ -155,7 +155,13 @@
                         <div class="team-info-entry">
                             <div class="team-info-entry__title">{{ osu_trans('teams.show.info.created') }}</div>
                             <div class="team-info-entry__value">
-                                {{ i18n_date($team->created_at, pattern: 'year_month') }}
+                                <time
+                                    class="js-tooltip-time"
+                                    data-tooltip-position="bottom center"
+                                    title="{{ json_time($team->created_at) }}"
+                                >
+                                    {{ i18n_date($team->created_at, pattern: 'year_month') }}
+                                </time>
                             </div>
                         </div>
                         @if (present($team->url))

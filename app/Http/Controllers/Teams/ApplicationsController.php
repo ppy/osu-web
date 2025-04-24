@@ -9,6 +9,7 @@ namespace App\Http\Controllers\Teams;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\Notifications\TeamApplicationReject;
+use App\Jobs\Notifications\TeamApplicationStore;
 use App\Models\Team;
 use App\Models\TeamApplication;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,7 +40,7 @@ class ApplicationsController extends Controller
     public function destroy(string $teamId, string $id): Response
     {
         $currentUser = \Auth::user();
-        TeamApplication::where('team_id', $teamId)->findOrFail($currentUser->getKey())->delete();
+        TeamApplication::where('team_id', $teamId)->findOrFail($currentUser->getKey())->cancel();
 
         \Session::flash('popup', osu_trans('teams.applications.destroy.ok'));
 
@@ -65,7 +66,9 @@ class ApplicationsController extends Controller
         $team = Team::findOrFail($teamId);
         priv_check('TeamApplicationStore', $team)->ensureCan();
 
-        $team->applications()->createOrFirst(['user_id' => \Auth::id()]);
+        $user = \Auth::user();
+        $application = $team->applications()->createOrFirst(['user_id' => $user->getKey()]);
+        (new TeamApplicationStore($application, $user))->dispatch();
         \Session::flash('popup', osu_trans('teams.applications.store.ok'));
 
         return response(null, 204);

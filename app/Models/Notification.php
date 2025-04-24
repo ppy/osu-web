@@ -45,6 +45,7 @@ class Notification extends Model
     const FORUM_TOPIC_REPLY = 'forum_topic_reply';
     const TEAM_APPLICATION_ACCEPT = 'team_application_accept';
     const TEAM_APPLICATION_REJECT = 'team_application_reject';
+    const TEAM_APPLICATION_STORE = 'team_application_store';
     const USER_ACHIEVEMENT_UNLOCK = 'user_achievement_unlock';
     const USER_BEATMAPSET_NEW = 'user_beatmapset_new';
     const USER_BEATMAPSET_REVIVE = 'user_beatmapset_revive';
@@ -70,6 +71,7 @@ class Notification extends Model
         self::FORUM_TOPIC_REPLY => 'forum_topic_reply',
         self::TEAM_APPLICATION_ACCEPT => 'team_application',
         self::TEAM_APPLICATION_REJECT => 'team_application',
+        self::TEAM_APPLICATION_STORE => 'team_application',
         self::USER_ACHIEVEMENT_UNLOCK => 'user_achievement_unlock',
         self::USER_BEATMAPSET_NEW => 'user_beatmapset_new',
         self::USER_BEATMAPSET_REVIVE => 'user_beatmapset_new',

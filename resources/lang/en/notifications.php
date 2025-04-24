@@ -167,8 +167,13 @@ return [
 
                 'team_application_accept' => "You're now member of team :title",
                 'team_application_accept_compact' => "You're now member of team :title",
+
+                'team_application_group' => 'Team join request updates',
+
                 'team_application_reject' => 'Your request to join team :title has been declined',
                 'team_application_reject_compact' => 'Your request to join team :title has been declined',
+                'team_application_store' => ':title requested to join your team',
+                'team_application_store_compact' => ':title requested to join your team',
             ],
         ],
 
@@ -260,6 +265,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "You're now member of team :title",
                 'team_application_reject' => 'Your request to join team :title has been declined',
+                'team_application_store' => ':title requested to join your team',
             ],
         ],
 

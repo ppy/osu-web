@@ -39,6 +39,7 @@ export const nameToIcons: IconsMap = {
   forum_topic_reply: ['fas fa-comment-medical'],
   team_application_accept: ['fas fa-users', 'fas fa-check'],
   team_application_reject: ['fas fa-users', 'fas fa-times'],
+  team_application_store: ['fas fa-users', 'fas fa-scroll'],
   user_achievement_unlock: ['fas fa-trophy'],
   user_beatmapset_new: ['fas fa-music'],
   user_beatmapset_revive: ['fas fa-trash-restore'],
@@ -64,6 +65,7 @@ export const nameToIconsCompact: IconsMap = {
   forum_topic_reply: ['fas fa-comment-medical'],
   team_application_accept: ['fas fa-check'],
   team_application_reject: ['fas fa-times'],
+  team_application_store: ['fas fa-scroll'],
   user_beatmapset_new: ['fas fa-music'],
   user_beatmapset_revive: ['fas fa-trash-restore'],
 };

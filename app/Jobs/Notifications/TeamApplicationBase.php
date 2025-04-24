@@ -34,7 +34,6 @@ abstract class TeamApplicationBase extends BroadcastNotificationBase
     {
         return [
             'cover_url' => $this->team->flag()->url(),
-            'team_id' => $this->team->getKey(),
             'title' => $this->team->name,
         ];
     }

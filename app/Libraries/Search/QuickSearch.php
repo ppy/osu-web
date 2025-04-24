@@ -8,6 +8,11 @@ namespace App\Libraries\Search;
 class QuickSearch extends MultiSearch
 {
     const MODES = [
+        'artist_track' => [
+            'type' => ArtistTrackSearch::class,
+            'paramsType' => ArtistTrackSearchRequestParams::class,
+            'size' => 0,
+        ],
         'beatmapset' => [
             'type' => BeatmapsetSearch::class,
             'paramsType' => BeatmapsetSearchRequestParams::class,

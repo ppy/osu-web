@@ -12,6 +12,32 @@ use Log;
 
 class Ip2AsnUpdater
 {
+    public static function fetch(Ip $version): string
+    {
+        static $baseUrls = [
+            'https://iptoasn.com/data',
+            'https://assets.ppy.sh',
+        ];
+
+        foreach ($baseUrls as $baseUrl) {
+            try {
+                $gz = file_get_contents("{$baseUrl}/ip2asn-{$version->value}.tsv.gz");
+
+                if ($gz !== false) {
+                    break;
+                }
+            } catch (\Throwable) {
+                // retry
+            }
+        }
+
+        if (!isset($gz) || !is_string($gz)) {
+            throw new \Exception('failed downloading source database');
+        }
+
+        return gzdecode($gz);
+    }
+
     public static function getDbPath(Ip $version): string
     {
         return database_path("ip2asn/{$version->value}.tsv");
@@ -60,7 +86,7 @@ class Ip2AsnUpdater
 
         if ($newDb) {
             $logger('Db file is outdated. Downloading');
-            $tsv = gzdecode(file_get_contents("https://iptoasn.com/data/ip2asn-{$version->value}.tsv.gz"));
+            $tsv = static::fetch($version);
         } else {
             $tsv = file_get_contents($dbPath);
         }
