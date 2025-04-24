@@ -9,6 +9,7 @@ namespace Tests\Controllers\Teams;
 
 use App\Jobs\Notifications\TeamApplicationAccept;
 use App\Jobs\Notifications\TeamApplicationReject;
+use App\Jobs\Notifications\TeamApplicationStore;
 use App\Models\Team;
 use App\Models\TeamMember;
 use App\Models\User;
@@ -67,6 +68,8 @@ class ApplicationsControllerTest extends TestCase
 
     public function testStore()
     {
+        \Queue::fake();
+
         $user = User::factory()->create();
         $team = Team::factory()->create();
 
@@ -76,10 +79,14 @@ class ApplicationsControllerTest extends TestCase
             ->actingAsVerified($user)
             ->post(route('teams.applications.store', ['team' => $team->getKey()]))
             ->assertStatus(204);
+
+        \Queue::assertPushed(TeamApplicationStore::class);
     }
 
     public function testStoreAlreadyApplying()
     {
+        \Queue::fake();
+
         $user = User::factory()->create();
         $team = Team::factory()->create();
         $team->applications()->create(['user_id' => $user->getKey()]);
@@ -91,6 +98,8 @@ class ApplicationsControllerTest extends TestCase
             ->actingAsVerified($user)
             ->post(route('teams.applications.store', ['team' => $otherTeam->getKey()]))
             ->assertStatus(403);
+
+        \Queue::assertNotPushed(TeamApplicationStore::class);
     }
 
     public function testStoreAlreadyTeamMember()

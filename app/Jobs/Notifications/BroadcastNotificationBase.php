@@ -177,7 +177,7 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         $deliverySettings = static::applyDeliverySettings($receiverIds);
 
         if (empty($deliverySettings)) {
-            return;
+            return null;
         }
 
         $notification = $this->makeNotification();
@@ -215,6 +215,11 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         if (!empty($pushReceiverIds)) {
             (new NewPrivateNotificationEvent($notification, $pushReceiverIds))->broadcast();
         }
+
+        return [
+            'notification' => $notification,
+            'receiverIds' => $receiverIds,
+        ];
     }
 
     public function makeNotification(): Notification

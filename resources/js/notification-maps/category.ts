@@ -41,6 +41,7 @@ export const nameToCategory: Partial<Record<string, string>> = {
   forum_topic_reply: 'forum_topic_reply',
   team_application_accept: 'team_application',
   team_application_reject: 'team_application',
+  team_application_store: 'team_application',
   user_achievement_unlock: 'user_achievement_unlock',
   user_beatmapset_new: 'user_beatmapset_new',
   user_beatmapset_revive: 'user_beatmapset_new',
