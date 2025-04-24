@@ -25,9 +25,14 @@ class BeatmapTag extends Model
     protected $primaryKey = ':composite';
     protected $primaryKeys = ['beatmap_id', 'tag_id', 'user_id'];
 
+    public function scopeDefault(Builder $query): Builder
+    {
+        return $query->whereHas('user', fn ($userQuery) => $userQuery->default());
+    }
+
     public function scopeTopTagIds(Builder $query)
     {
-        return $query->whereHas('user', fn ($userQuery) => $userQuery->default())
+        return $query->default()
             ->groupBy('tag_id')
             ->select('tag_id')
             ->selectRaw('COUNT(*) as count')
