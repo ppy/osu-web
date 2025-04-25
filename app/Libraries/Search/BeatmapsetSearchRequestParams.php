@@ -231,15 +231,23 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             'updated' => 'updated',
         ];
 
-        $parsed = BeatmapsetQueryParser::parse($this->requestQuery);
+        $parser = new BeatmapsetQueryParser($this->requestQuery);
 
-        $this->queryString = $parsed['keywords'];
+        $this->queryString = $parser->keywords;
 
-        foreach ($parsed['options'] as $optionKey => $optionValue) {
+        foreach ($parser->includes as $optionKey => $optionValue) {
             $propName = $optionMap[$optionKey] ?? null;
 
             if ($propName !== null) {
-                $this->$propName = $optionValue;
+                $this->includes->$propName = $optionValue;
+            }
+        }
+
+        foreach ($parser->excludes as $optionKey => $optionValue) {
+            $propName = $optionMap[$optionKey] ?? null;
+
+            if ($propName !== null) {
+                $this->excludes->$propName = $optionValue;
             }
         }
     }
