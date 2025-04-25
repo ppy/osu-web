@@ -10,112 +10,17 @@ use Carbon\CarbonImmutable;
 
 class BeatmapsetQueryParser
 {
+    public array $options = [];
+    public array $excludeOptions = [];
+    public ?string $keywords;
+
     public static function parse(?string $query): array
     {
-        $options = [];
-
-        // reference: https://github.com/ppy/osu/blob/f6baf49ad6b42c662a729ad05e18bd99bc48b4c7/osu.Game/Screens/Select/FilterQueryParser.cs
-        // adjusted for multiple quoted options (with side effect of inner quotes must be escaped)
-        $keywords = preg_replace_callback('#(?<!\S)(?<key>-?\w+)(?<op>(:|=|(>|<)(:|=)?))(?<value>("{1,2})(?:\\\"|.)*?\7|\S*)#i', function ($m) use (&$options) {
-            $key = strtolower($m['key']);
-            $op = str_replace(':', '=', $m['op']);
-            switch ($key) {
-                case 'star':
-                case 'stars':
-                    $key = 'stars';
-                    $option = static::makeFloatRangeOption($op, $m['value'], 0.01 / 2);
-                    break;
-                case 'ar':
-                    $option = static::makeFloatRangeOption($op, $m['value'], 0.1 / 2);
-                    break;
-                case 'dr':
-                case 'hp':
-                    $key = 'dr';
-                    $option = static::makeFloatRangeOption($op, $m['value'], 0.1 / 2);
-                    break;
-                case 'cs':
-                    $option = static::makeFloatRangeOption($op, $m['value'], 0.1 / 2);
-                    break;
-                case 'od':
-                    $option = static::makeFloatRangeOption($op, $m['value'], 0.1 / 2);
-                    break;
-                case 'bpm':
-                    $option = static::makeFloatRangeOption($op, $m['value'], 0.01 / 2);
-                    break;
-                case 'circles':
-                    $option = static::makeIntRangeOption($op, $m['value']);
-                    break;
-                case 'sliders':
-                    $option = static::makeIntRangeOption($op, $m['value']);
-                    break;
-                case 'length':
-                    $parsed = get_length_seconds($m['value']);
-                    if ($parsed !== null) {
-                        $option = static::makeFloatRangeOption($op, $parsed['value'], $parsed['min_scale'] / 2);
-                    }
-                    break;
-                case 'featured_artist':
-                    $option = static::makeIntOption($op, $m['value']);
-                    break;
-                case 'key':
-                case 'keys':
-                    $key = 'keys';
-                    $option = static::makeIntRangeOption($op, $m['value']);
-                    break;
-                case 'divisor':
-                    $option = static::makeIntRangeOption($op, $m['value']);
-                    break;
-                case 'status':
-                    $option = static::makeIntRangeOption($op, static::statePrefixSearch($m['value']));
-                    break;
-                case 'creator':
-                    $option = static::makeTextOption($op, $m['value']);
-                    break;
-                case 'difficulty':
-                    $option = static::makeTextOption($op, $m['value']);
-                    break;
-                case 'favourites':
-                    $option = static::makeIntRangeOption($op, $m['value']);
-                    break;
-                case 'artist':
-                    $option = static::makeTextOption($op, $m['value']);
-                    break;
-                case 'source':
-                    $option = static::makeTextOption($op, $m['value']);
-                    break;
-                case 'tag':
-                    $option = [static::makeTextOption($op, $m['value'])];
-                    break;
-                case 'title':
-                    $option = static::makeTextOption($op, $m['value']);
-                    break;
-                case 'created':
-                    $option = static::makeDateRangeOption($op, $m['value']);
-                    break;
-                case 'ranked':
-                    $option = static::makeDateRangeOption($op, $m['value']);
-                    break;
-                case 'updated':
-                    $option = static::makeDateRangeOption($op, $m['value']);
-                    break;
-            }
-
-            if (isset($option)) {
-                if (is_array($option)) {
-                    $options[$key] = array_merge($options[$key] ?? [], $option);
-                } else {
-                    $options[$key] = $option;
-                }
-
-                return '';
-            }
-
-            return $m[0];
-        }, $query ?? '');
+        $parser = new static($query);
 
         return [
-            'keywords' => presence(trim($keywords)),
-            'options' => $options,
+            'keywords' => $parser->keywords,
+            'options' => $parser->options,
         ];
     }
 
@@ -262,5 +167,119 @@ class BeatmapsetQueryParser
         }
 
         return null;
+    }
+
+    public function __construct(?string $query)
+    {
+        // reference: https://github.com/ppy/osu/blob/f6baf49ad6b42c662a729ad05e18bd99bc48b4c7/osu.Game/Screens/Select/FilterQueryParser.cs
+        // adjusted for negative and multiple quoted options (with side effect of inner quotes must be escaped)
+        static $regex = '#(?<!\S)(?<key>-?\w+)(?<op>(:|=|(>|<)(:|=)?))(?<value>("{1,2})(?:\\\"|.)*?\7|\S*)#i';
+
+        $keywords = preg_replace_callback($regex, function ($m) {
+            $op = str_replace(':', '=', $m['op']);
+
+            $exclude = false;
+            $key = strtolower($m['key']);
+            if (str_starts_with($key, '-')) {
+                $exclude = true;
+                $key = substr($key, 1);
+            }
+
+            switch ($key) {
+                case 'star':
+                case 'stars':
+                    $key = 'stars';
+                    $option = static::makeFloatRangeOption($op, $m['value'], 0.01 / 2);
+                    break;
+                case 'ar':
+                    $option = static::makeFloatRangeOption($op, $m['value'], 0.1 / 2);
+                    break;
+                case 'dr':
+                case 'hp':
+                    $key = 'dr';
+                    $option = static::makeFloatRangeOption($op, $m['value'], 0.1 / 2);
+                    break;
+                case 'cs':
+                    $option = static::makeFloatRangeOption($op, $m['value'], 0.1 / 2);
+                    break;
+                case 'od':
+                    $option = static::makeFloatRangeOption($op, $m['value'], 0.1 / 2);
+                    break;
+                case 'bpm':
+                    $option = static::makeFloatRangeOption($op, $m['value'], 0.01 / 2);
+                    break;
+                case 'circles':
+                    $option = static::makeIntRangeOption($op, $m['value']);
+                    break;
+                case 'sliders':
+                    $option = static::makeIntRangeOption($op, $m['value']);
+                    break;
+                case 'length':
+                    $parsed = get_length_seconds($m['value']);
+                    if ($parsed !== null) {
+                        $option = static::makeFloatRangeOption($op, $parsed['value'], $parsed['min_scale'] / 2);
+                    }
+                    break;
+                case 'featured_artist':
+                    $option = static::makeIntOption($op, $m['value']);
+                    break;
+                case 'key':
+                case 'keys':
+                    $key = 'keys';
+                    $option = static::makeIntRangeOption($op, $m['value']);
+                    break;
+                case 'divisor':
+                    $option = static::makeIntRangeOption($op, $m['value']);
+                    break;
+                case 'status':
+                    $option = static::makeIntRangeOption($op, static::statePrefixSearch($m['value']));
+                    break;
+                case 'creator':
+                    $option = static::makeTextOption($op, $m['value']);
+                    break;
+                case 'difficulty':
+                    $option = static::makeTextOption($op, $m['value']);
+                    break;
+                case 'favourites':
+                    $option = static::makeIntRangeOption($op, $m['value']);
+                    break;
+                case 'artist':
+                    $option = static::makeTextOption($op, $m['value']);
+                    break;
+                case 'source':
+                    $option = static::makeTextOption($op, $m['value']);
+                    break;
+                case 'tag':
+                    $option = [static::makeTextOption($op, $m['value'])];
+                    break;
+                case 'title':
+                    $option = static::makeTextOption($op, $m['value']);
+                    break;
+                case 'created':
+                    $option = static::makeDateRangeOption($op, $m['value']);
+                    break;
+                case 'ranked':
+                    $option = static::makeDateRangeOption($op, $m['value']);
+                    break;
+                case 'updated':
+                    $option = static::makeDateRangeOption($op, $m['value']);
+                    break;
+            }
+
+            if (isset($option)) {
+                $var = $exclude ? 'excludeOptions' : 'options';
+                if (is_array($option)) {
+                    $this->{$var}[$key] = array_merge($this->{$var}[$key] ?? [], $option);
+                } else {
+                    $this->{$var}[$key] = $option;
+                }
+
+                return '';
+            }
+
+            return $m[0];
+        }, $query ?? '');
+
+        $this->keywords = presence(trim($keywords));
     }
 }
