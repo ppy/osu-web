@@ -116,7 +116,7 @@ class BeatmapsetQueryParserTest extends TestCase
     {
         $parser = new BeatmapsetQueryParser($query);
         $this->assertSame(json_encode($expected['keywords']), json_encode($parser->keywords));
-        $this->assertSame(json_encode($expected['options']), json_encode($parser->options));
-        $this->assertSame(json_encode($excludes), json_encode($parser->excludeOptions));
+        $this->assertSame(json_encode($expected['options']), json_encode($parser->includes));
+        $this->assertSame(json_encode($excludes), json_encode($parser->excludes));
     }
 }
