@@ -12,8 +12,8 @@ use Carbon\CarbonImmutable;
 
 class BeatmapsetQueryParser
 {
-    public array $options = [];
-    public array $excludeOptions = [];
+    public array $includes = [];
+    public array $excludes = [];
     public ?string $keywords;
 
     public static function parse(?string $query): array
@@ -22,7 +22,7 @@ class BeatmapsetQueryParser
 
         return [
             'keywords' => $parser->keywords,
-            'options' => $parser->options,
+            'options' => $parser->includes,
         ];
     }
 
@@ -186,10 +186,10 @@ class BeatmapsetQueryParser
         $keywords = preg_replace_callback($regex, function ($m) {
             $op = str_replace(':', '=', $m['op']);
 
-            $exclude = false;
+            $type = 'includes';
             $key = strtolower($m['key']);
             if (str_starts_with($key, '-')) {
-                $exclude = true;
+                $type = 'excludes';
                 $key = substr($key, 1);
             }
 
@@ -275,11 +275,10 @@ class BeatmapsetQueryParser
             }
 
             if (isset($option)) {
-                $var = $exclude ? 'excludeOptions' : 'options';
                 if (is_array($option)) {
-                    $this->{$var}[$key] = array_merge($this->{$var}[$key] ?? [], $option);
+                    $this->{$type}[$key] = array_merge($this->{$type}[$key] ?? [], $option);
                 } else {
-                    $this->{$var}[$key] = $option;
+                    $this->{$type}[$key] = $option;
                 }
 
                 return '';
