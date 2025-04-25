@@ -18,8 +18,13 @@ use App\Models\Tag;
 use App\Models\User;
 use Ds\Set;
 
+/**
+ * @property-read BeatmapsetSearchParams $params TODO: this should be protected
+ */
 class BeatmapsetSearch extends RecordSearch
 {
+    private BeatmapsetSearchOptions $excludes;
+    private BeatmapsetSearchOptions $includes;
     private array $tokens;
 
     private static function isQuoted(string $value): bool
@@ -36,6 +41,8 @@ class BeatmapsetSearch extends RecordSearch
         );
 
         $this->tokens = QueryHelper::tokenise($params->queryString ?? '');
+        $this->excludes = $this->params->excludes;
+        $this->includes = $this->params->includes;
     }
 
     /**
@@ -192,7 +199,7 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addCreatorFilter(BoolQuery $query, BoolQuery $nested): void
     {
-        $value = $this->params->creator;
+        $value = $this->includes->creator;
 
         if (!present($value)) {
             return;
@@ -209,8 +216,8 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addDifficultyFilter(BoolQuery $nested)
     {
-        if ($this->params->difficulty !== null) {
-            $nested->must(['match' => ['beatmaps.version' => ['query' => $this->params->difficulty, 'operator' => 'and']]]);
+        if ($this->includes->difficulty !== null) {
+            $nested->must(['match' => ['beatmaps.version' => ['query' => $this->includes->difficulty, 'operator' => 'and']]]);
         }
     }
 
@@ -223,8 +230,8 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addFeaturedArtistFilter($query)
     {
-        if ($this->params->featuredArtist !== null) {
-            $trackIds = ArtistTrack::where('artist_id', $this->params->featuredArtist)->pluck('id');
+        if ($this->includes->featuredArtist !== null) {
+            $trackIds = ArtistTrack::where('artist_id', $this->includes->featuredArtist)->pluck('id');
             $query->filter(['terms' => ['track_id' => $trackIds]]);
         }
     }
@@ -261,12 +268,12 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addManiaKeysFilter(BoolQuery $nestedQuery): void
     {
-        if ($this->params->keys === null) {
+        if ($this->includes->keys === null) {
             return;
         }
 
         $nestedQuery
-            ->filter(['range' => ['beatmaps.diff_size' => $this->params->keys]])
+            ->filter(['range' => ['beatmaps.diff_size' => $this->includes->keys]])
             ->filter(['term' => ['beatmaps.playmode' => Beatmap::MODES['mania']]]);
     }
 
@@ -358,13 +365,13 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addRankedFilter(BoolQuery $query): void
     {
-        if ($this->params->ranked !== null) {
+        if ($this->includes->ranked !== null) {
             $query
                 ->filter(['terms' => ['approved' => [
                     Beatmapset::STATES['ranked'],
                     Beatmapset::STATES['approved'],
                     Beatmapset::STATES['loved'],
-                ]]])->filter(['range' => ['approved_date' => $this->params->ranked]]);
+                ]]])->filter(['range' => ['approved_date' => $this->includes->ranked]]);
         }
     }
 
@@ -391,12 +398,12 @@ class BeatmapsetSearch extends RecordSearch
         $nestedPrefixLength = strlen($nestedPrefix);
 
         foreach ($filters as $prop => $options) {
-            if ($this->params->$prop === null) {
+            if ($this->includes->$prop === null) {
                 continue;
             }
 
             $q = substr($options['field'], 0, $nestedPrefixLength) === $nestedPrefix ? $nested : $query;
-            $q->filter([$options['type'] => [$options['field'] => $this->params->$prop]]);
+            $q->filter([$options['type'] => [$options['field'] => $this->includes->$prop]]);
         }
     }
 
@@ -460,7 +467,7 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addTextFilter(BoolQuery $query, string $paramField, array $fields): void
     {
-        $value = $this->params->$paramField;
+        $value = $this->includes->$paramField;
 
         if (!present($value)) {
             return;
@@ -491,7 +498,7 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addTagsFilter(BoolQuery $query): void
     {
-        $tags = $this->params->tags;
+        $tags = $this->includes->tags;
         if ($tags === null) {
             return;
         }
