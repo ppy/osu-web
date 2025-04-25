@@ -49,6 +49,7 @@ class BeatmapsetQueryParserTest extends TestCase
             ['ranked="invalid date format"', ['keywords' => 'ranked="invalid date format"', 'options' => []]],
             ['tag=hello', ['keywords' => null, 'options' => ['tag' => ['hello']]]],
             ['tag=hello tag=world', ['keywords' => null, 'options' => ['tag' => ['hello', 'world']]]],
+            ['tag=hello -tag=world', ['keywords' => null, 'options' => ['tag' => ['hello']]], ['tag' => ['world']]],
             ['tag="hello world"', ['keywords' => null, 'options' => ['tag' => ['hello world']]]],
             ['tag="hello world" tag="foo bar"', ['keywords' => null, 'options' => ['tag' => ['hello world', 'foo bar']]]],
             ['tag="hello world"aa tag="foo bar"', ['keywords' => 'aa', 'options' => ['tag' => ['hello world', 'foo bar']]]],
@@ -111,10 +112,11 @@ class BeatmapsetQueryParserTest extends TestCase
     /**
      * @dataProvider queryDataProvider
      */
-    public function testParse(?string $query, ?array $expected)
+    public function testParse(?string $query, ?array $expected, ?array $excludes = [])
     {
         $parser = new BeatmapsetQueryParser($query);
         $this->assertSame(json_encode($expected['keywords']), json_encode($parser->keywords));
         $this->assertSame(json_encode($expected['options']), json_encode($parser->options));
+        $this->assertSame(json_encode($excludes), json_encode($parser->excludeOptions));
     }
 }
