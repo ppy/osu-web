@@ -16,7 +16,7 @@ class BeatmapsetQueryParser
 
         // reference: https://github.com/ppy/osu/blob/f6baf49ad6b42c662a729ad05e18bd99bc48b4c7/osu.Game/Screens/Select/FilterQueryParser.cs
         // adjusted for multiple quoted options (with side effect of inner quotes must be escaped)
-        $keywords = preg_replace_callback('#\b(?<key>\w+)(?<op>(:|=|(>|<)(:|=)?))(?<value>("{1,2})(?:\\\"|.)*?\7|\S*)#i', function ($m) use (&$options) {
+        $keywords = preg_replace_callback('#(?<!\S)(?<key>-?\w+)(?<op>(:|=|(>|<)(:|=)?))(?<value>("{1,2})(?:\\\"|.)*?\7|\S*)#i', function ($m) use (&$options) {
             $key = strtolower($m['key']);
             $op = str_replace(':', '=', $m['op']);
             switch ($key) {
