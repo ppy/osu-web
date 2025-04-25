@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Libraries\Search;
 
 use App\Models\Beatmapset;
@@ -32,10 +34,10 @@ class BeatmapsetQueryParser
             $startTime = CarbonImmutable::create($value, 1, 1, 0, 0, 0, 'UTC');
             $endTime = $startTime->addYears(1);
         } elseif (preg_match('#^(?<year>\d{4})[-./]?(?<month>\d{1,2})$#', $value, $m) === 1) {
-            $startTime = CarbonImmutable::create($m['year'], $m['month'], 1, 0, 0, 0, 'UTC');
+            $startTime = CarbonImmutable::create(get_int($m['year']), get_int($m['month']), 1, 0, 0, 0, 'UTC');
             $endTime = $startTime->addMonths(1);
         } elseif (preg_match('#^(?<year>\d{4})[-./]?(?<month>\d{1,2})[-./]?(?<day>\d{1,2})$#', $value, $m) === 1) {
-            $startTime = CarbonImmutable::create($m['year'], $m['month'], $m['day'], 0, 0, 0, 'UTC');
+            $startTime = CarbonImmutable::create(get_int($m['year']), get_int($m['month']), get_int($m['day']), 0, 0, 0, 'UTC');
             $endTime = $startTime->addDays(1);
         } else {
             $startTime = parse_time_to_carbon($value)?->toImmutable()->utc();
@@ -66,14 +68,14 @@ class BeatmapsetQueryParser
         return null;
     }
 
-    private static function makeFloatRangeOption($operator, $value, $tolerance)
+    private static function makeFloatRangeOption(string $operator, float|string $value, float $tolerance): ?array
     {
         // Some locales have `,` as decimal separator.
         // Note that thousand separator is not (yet?) supported.
-        $value = str_replace(',', '.', $value);
+        $value = str_replace(',', '.', (string) $value);
 
         if (!is_numeric($value)) {
-            return;
+            return null;
         }
 
         $value = get_float($value);
@@ -101,19 +103,23 @@ class BeatmapsetQueryParser
                     'gte' => $value - $tolerance,
                 ];
         }
+
+        return null;
     }
 
-    private static function makeIntOption($operator, $value)
+    private static function makeIntOption(string $operator, string $value): ?int
     {
         if (is_numeric($value) && $operator === '=') {
             return get_int($value);
         }
+
+        return null;
     }
 
-    private static function makeIntRangeOption($operator, $value)
+    private static function makeIntRangeOption(string $operator, int|string|null $value): ?array
     {
         if (!is_numeric($value)) {
-            return;
+            return null;
         }
 
         $value = get_int($value);
@@ -141,6 +147,8 @@ class BeatmapsetQueryParser
                     'gte' => $value,
                 ];
         }
+
+        return null;
     }
 
     private static function makeTextOption(string $operator, string $value): ?string
