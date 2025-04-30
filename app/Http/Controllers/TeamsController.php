@@ -128,11 +128,7 @@ class TeamsController extends Controller
             ? ['short_name' => substr($id, 1)]
             : ['id' => $id];
 
-        $team = Team
-            ::with(array_map(
-                fn (string $preload): string => "members.user.{$preload}",
-                UserCompactTransformer::CARD_INCLUDES_PRELOAD,
-            ))->where($params)->firstOrFail();
+        $team = Team::where($params)->firstOrFail();
 
         if ($id !== (string) $team->getKey()) {
             return ujs_redirect(route('teams.show', compact('team', 'ruleset')));
@@ -148,6 +144,11 @@ class TeamsController extends Controller
             }
         }
         $statistics = $team->statistics()->firstOrNew(['ruleset_id' => $rulesetId]);
+
+        $team->loadMissing(array_map(
+            fn (string $preload): string => "members.user.{$preload}",
+            UserCompactTransformer::CARD_INCLUDES_PRELOAD,
+        ));
 
         return ext_view('teams.show', compact('rulesetId', 'statistics', 'team'));
     }
