@@ -151,10 +151,7 @@ class TeamsController extends Controller
 
         $statistics = $team->statistics()->firstOrNew(['ruleset_id' => $rulesetId]);
 
-        $team->loadMissing(array_map(
-            fn (string $preload): string => "members.user.{$preload}",
-            UserCompactTransformer::CARD_INCLUDES_PRELOAD,
-        ));
+        $team->loadMissing(prefix_strings('members.user.', UserCompactTransformer::CARD_INCLUDES_PRELOAD));
 
         return ext_view('teams.show', compact('rulesetId', 'statistics', 'team'));
     }
