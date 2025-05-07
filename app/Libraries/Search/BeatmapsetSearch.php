@@ -290,7 +290,7 @@ class BeatmapsetSearch extends RecordSearch
         static $filters = [
             'accuracy' => ['field' => 'beatmaps.diff_overall', 'type' => 'range'],
             'ar' => ['field' => 'beatmaps.diff_approach', 'type' => 'range'],
-            'bpm' => ['field' => 'bpm', 'type' => 'range'],
+            'bpm' => ['field' => 'beatmaps.bpm', 'type' => 'range'],
             'countNormal' => ['field' => 'beatmaps.countNormal', 'type' => 'range'],
             'countSlider' => ['field' => 'beatmaps.countSlider', 'type' => 'range'],
             'created' => ['field' => 'submit_date', 'type' => 'range'],
