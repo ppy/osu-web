@@ -12,6 +12,7 @@ export const categoryToIcons: IconsMap = {
   beatmapset_problem: ['fas fa-drafting-compass', 'fas fa-exclamation-circle'],
   beatmapset_state: ['fas fa-drafting-compass'],
   channel: ['fas fa-comments'],
+  channel_team: ['fas fa-comments'],
   comment: ['fas fa-comment'],
   forum_topic_reply: ['fas fa-comment-medical'],
   team_application: ['fas fa-users'],

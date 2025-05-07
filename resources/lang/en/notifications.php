@@ -122,11 +122,15 @@ return [
                     'channel_message_compact' => ':title',
                     'channel_message_group' => 'from :username',
                 ],
+            ],
+
+            'channel_team' => [
+                '_' => 'New team message',
 
                 'team' => [
-                    'channel_team' => ':username says ":title" on team chat',
+                    'channel_team' => ':username says ":title"',
                     'channel_team_compact' => ':username says ":title"',
-                    'channel_team_group' => 'team chat',
+                    'channel_team_group' => ':username says ":title"',
                 ],
             ],
         ],

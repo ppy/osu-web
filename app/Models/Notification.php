@@ -68,7 +68,7 @@ class Notification extends Model
         self::BEATMAPSET_RESET_NOMINATIONS => 'beatmapset_state',
         self::CHANNEL_ANNOUNCEMENT => 'announcement',
         self::CHANNEL_MESSAGE => 'channel',
-        self::CHANNEL_TEAM => 'channel',
+        self::CHANNEL_TEAM => 'channel_team',
         self::COMMENT_NEW => 'comment',
         self::FORUM_TOPIC_REPLY => 'forum_topic_reply',
         self::TEAM_APPLICATION_ACCEPT => 'team_application',
