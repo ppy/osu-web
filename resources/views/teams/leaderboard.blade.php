@@ -6,6 +6,14 @@
     'titlePrepend' => $team->name,
 ])
 
+@php
+    $params = [
+        'ruleset' => $ruleset,
+        'sort' => $sort,
+        'team' => $team->getKey(),
+    ];
+@endphp
+
 @section('content')
     @component('layout._page_header_v4', ['params' => [
         'backgroundImage' => $team->header()->url(),
@@ -15,7 +23,7 @@
         @slot('linksAppend')
             @include('objects._ruleset_selector', [
                 'currentRuleset' => $ruleset,
-                'urlFn' => fn ($r) => route('teams.leaderboard', ['team' => $team->getKey(), 'ruleset' => $r]),
+                'urlFn' => fn ($r) => route('teams.leaderboard', [...$params, 'ruleset' => $r]),
             ])
         @endslot
     @endcomponent
@@ -29,7 +37,7 @@
                 @foreach ([['performance', 'performance'], ['score', 'ranked_score']] as $newSort)
                     <a
                         class="{{ class_with_modifiers('sort__item', 'button', ['active' => $newSort[0] === $sort]) }}"
-                        href="{{ route('teams.leaderboard', ['team' => $team, 'sort' => $newSort[0]]) }}"
+                        href="{{ route('teams.leaderboard', [...$params, 'sort' => $newSort[0]]) }}"
                     >
                         {{ osu_trans("rankings.stat.{$newSort[1]}") }}
                     </a>

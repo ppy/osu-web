@@ -38,19 +38,11 @@
     .default-border-radius();
     margin: 7px 0;
 
-    --saturation: var(--c-saturation-3);
-    --lightness: var(--c-lightness-3);
-    // TODO: replace with this simpler alternative once supported by the next Firefox ESR (>127):
-    // background: linear-gradient(to right in hsl longer hue, var(--start-colour), var(--end-colour));
+    --start-colour: hsl(0, var(--c-saturation-3), var(--c-lightness-3));
     background: linear-gradient(
-      to right,
-      hsl(0, var(--saturation), var(--lightness)) 0%,
-      hsl(60, var(--saturation), var(--lightness)) 16.67%,
-      hsl(120, var(--saturation), var(--lightness)) 33.33%,
-      hsl(180, var(--saturation), var(--lightness)) 50%,
-      hsl(240, var(--saturation), var(--lightness)) 66.67%,
-      hsl(300, var(--saturation), var(--lightness)) 83.33%,
-      hsl(360, var(--saturation), var(--lightness)) 100%
+      to right in hsl longer hue,
+      var(--start-colour),
+      var(--start-colour)
     );
   }
 }
