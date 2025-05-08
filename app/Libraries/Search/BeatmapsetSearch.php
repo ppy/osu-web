@@ -144,9 +144,12 @@ class BeatmapsetSearch extends RecordSearch
 
         $this->addSimpleFilters($query, $nested);
         $this->addCreatorFilter($query, $nested);
-        $this->addTextFilter($query, 'artist', ['artist', 'artist_unicode']);
-        $this->addTextFilter($query, 'source', ['source']);
-        $this->addTextFilter($query, 'title', ['title', 'title_unicode']);
+
+        foreach ([true, false] as $include) {
+            $this->addTextFilter($query, 'artist', ['artist', 'artist_unicode'], $include);
+            $this->addTextFilter($query, 'source', ['source'], $include);
+            $this->addTextFilter($query, 'title', ['title', 'title_unicode'], $include);
+        }
 
         $query->filter([
             'nested' => [
@@ -201,16 +204,26 @@ class BeatmapsetSearch extends RecordSearch
     {
         $value = $this->includes->creator;
 
-        if (!present($value)) {
-            return;
+        if (present($value)) {
+            $user = User::lookup($value);
+
+            if ($user === null) {
+                $this->addTextFilter($query, 'creator', ['creator']);
+            } else {
+                $nested->filter(['term' => ['beatmaps.user_id' => $user->getKey()]]);
+            }
         }
 
-        $user = User::lookup($value);
+        $value = $this->excludes->creator;
 
-        if ($user === null) {
-            $this->addTextFilter($query, 'creator', ['creator']);
-        } else {
-            $nested->filter(['term' => ['beatmaps.user_id' => $user->getKey()]]);
+        if (present($value)) {
+            $user = User::lookup($value);
+
+            if ($user === null) {
+                $this->addTextFilter($query, 'creator', ['creator'], false);
+            } else {
+                $nested->mustNot(['term' => ['beatmaps.user_id' => $user->getKey()]]);
+            }
         }
     }
 
@@ -465,9 +478,10 @@ class BeatmapsetSearch extends RecordSearch
         $queryForFilter->filter($query);
     }
 
-    private function addTextFilter(BoolQuery $query, string $paramField, array $fields): void
+    private function addTextFilter(BoolQuery $query, string $paramField, array $fields, bool $include = true): void
     {
-        $value = $this->includes->$paramField;
+        $options = $include ? $this->includes : $this->excludes;
+        $value = $options->$paramField;
 
         if (!present($value)) {
             return;
@@ -493,7 +507,11 @@ class BeatmapsetSearch extends RecordSearch
             ],
         ]);
 
-        $query->must($subQuery);
+        if ($include) {
+            $query->must($subQuery);
+        } else {
+            $query->mustNot($subQuery);
+        }
     }
 
     private function addTagsFilter(BoolQuery $query): void
