@@ -32,6 +32,8 @@ class BeatmapsetSearch extends RecordSearch
         return str_starts_with($value, '"') && str_ends_with($value, '"');
     }
 
+    private BoolQuery $nestedMustNot;
+
     public function __construct(?BeatmapsetSearchParams $params = null)
     {
         parent::__construct(
@@ -133,6 +135,8 @@ class BeatmapsetSearch extends RecordSearch
         $this->addSpotlightsFilter($query);
 
         $nested = new BoolQuery();
+        $this->nestedMustNot = new BoolQuery();
+
         $this->addDifficultyFilter($nested);
         $this->addStatusFilter($query, $nested);
         $this->addManiaKeysFilter($nested);
@@ -168,6 +172,17 @@ class BeatmapsetSearch extends RecordSearch
                     'negative_boost' => 0.5,
                 ],
             ];
+        }
+
+        // The inverse of nested:filter/must is must_not:nested, not nested:must_not
+        // https://github.com/elastic/elasticsearch/issues/26264#issuecomment-323668358
+        if (!$this->nestedMustNot->isEmpty()) {
+            $query->mustNot([
+                'nested' => [
+                    'path' => 'beatmaps',
+                    'query' => $this->nestedMustNot->toArray(),
+                ],
+            ]);
         }
 
         if (present($this->params->queryString)) {
@@ -234,7 +249,7 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         if ($this->excludes->difficulty !== null) {
-            $nested->mustNot(['match' => ['beatmaps.version' => ['query' => $this->includes->difficulty, 'operator' => 'or']]]);
+            $this->nestedMustNot->should(['match' => ['beatmaps.version' => ['query' => $this->excludes->difficulty, 'operator' => 'or']]]);
         }
     }
 
@@ -552,7 +567,7 @@ class BeatmapsetSearch extends RecordSearch
 
             foreach ($tags as $tag) {
                 if (mb_strpos($tag, '/') !== false) {
-                    $query->mustNot([
+                    $this->nestedMustNot->should([
                         'term' => [
                             'beatmaps.top_tags.raw' => [
                                 'case_insensitive' => true,
@@ -561,7 +576,7 @@ class BeatmapsetSearch extends RecordSearch
                         ],
                     ]);
                 } else {
-                    $query->mustNot(['match' => ['beatmaps.top_tags' => ['query' => $tags, 'operator' => 'or']]]);
+                    $this->nestedMustNot->should(['match' => ['beatmaps.top_tags' => ['query' => $tags, 'operator' => 'or']]]);
                 }
             }
         }
