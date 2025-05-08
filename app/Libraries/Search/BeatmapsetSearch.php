@@ -14,7 +14,6 @@ use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Follow;
 use App\Models\Solo;
-use App\Models\Tag;
 use App\Models\User;
 use Ds\Set;
 
@@ -181,7 +180,7 @@ class BeatmapsetSearch extends RecordSearch
             if ($user === null) {
                 $this->addTextFilter($query, 'creator', ['creator'], false);
             } else {
-                $nested->mustNot(['term' => ['beatmaps.user_id' => $user->getKey()]]);
+                $this->nestedMustNot->should(['term' => ['beatmaps.user_id' => $user->getKey()]]);
             }
         }
     }
