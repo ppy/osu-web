@@ -26,6 +26,8 @@ class BeatmapsetSearch extends RecordSearch
     private BeatmapsetSearchOptions $excludes;
     private BeatmapsetSearchOptions $includes;
 
+    private BoolQuery $nestedMustNot;
+
     public function __construct(?BeatmapsetSearchParams $params = null)
     {
         parent::__construct(
@@ -91,6 +93,8 @@ class BeatmapsetSearch extends RecordSearch
         $this->addSpotlightsFilter($query);
 
         $nested = new BoolQuery();
+        $this->nestedMustNot = new BoolQuery();
+
         $this->addDifficultyFilter($nested);
         $this->addStatusFilter($query, $nested);
         $this->addManiaKeysFilter($nested);
@@ -115,6 +119,15 @@ class BeatmapsetSearch extends RecordSearch
                 'query' => $nested->toArray(),
             ],
         ]);
+
+        if (!$this->nestedMustNot->isEmpty()) {
+            $query->mustNot([
+                'nested' => [
+                    'path' => 'beatmaps',
+                    'query' => $this->nestedMustNot->toArray(),
+                ],
+            ]);
+        }
 
         if (present($this->params->queryString)) {
             $query = (new FunctionScore($query))
@@ -180,7 +193,7 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         if ($this->excludes->difficulty !== null) {
-            $nested->mustNot(QueryHelper::queryString($this->excludes->difficulty, ['beatmaps.version'], 'or'));
+            $this->nestedMustNot->should(QueryHelper::queryString($this->excludes->difficulty, ['beatmaps.version'], 'or'));
         }
     }
 
@@ -471,7 +484,7 @@ class BeatmapsetSearch extends RecordSearch
 
             foreach ($tags as $tag) {
                 if (mb_strpos($tag, '/') !== false) {
-                    $query->mustNot([
+                    $this->nestedMustNot->should([
                         'term' => [
                             'beatmaps.top_tags.raw' => [
                                 'case_insensitive' => true,
@@ -480,7 +493,7 @@ class BeatmapsetSearch extends RecordSearch
                         ],
                     ]);
                 } else {
-                    $query->mustNot(QueryHelper::queryString($tag, ['beatmaps.top_tags'], 'or'));
+                    $this->nestedMustNot->should(QueryHelper::queryString($tag, ['beatmaps.top_tags'], 'or'));
                 }
             }
         }
