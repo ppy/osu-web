@@ -176,7 +176,11 @@ class BeatmapsetSearch extends RecordSearch
     private function addDifficultyFilter(BoolQuery $nested)
     {
         if ($this->includes->difficulty !== null) {
-            $nested->must(QueryHelper::queryString($this->includes->difficulty, ['beatmaps.version'], 'and'));
+            $nested->filter(QueryHelper::queryString($this->includes->difficulty, ['beatmaps.version'], 'and'));
+        }
+
+        if ($this->excludes->difficulty !== null) {
+            $nested->mustNot(QueryHelper::queryString($this->excludes->difficulty, ['beatmaps.version'], 'or'));
         }
     }
 
