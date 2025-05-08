@@ -7,6 +7,7 @@ namespace App\Models\Traits\Es;
 
 use App\Models\Beatmap;
 use Carbon\Carbon;
+use Ds\Set;
 
 trait BeatmapsetSearch
 {
@@ -68,8 +69,14 @@ trait BeatmapsetSearch
                 continue;
             }
 
+            $userTags = new Set();
+            foreach ($this->beatmaps as $beatmap) {
+                $userTags->add(...$this->esBeatmapTags($beatmap));
+            }
+
             $value = match ($field) {
                 'id' => $this->getKey(),
+                'user_tags' => $userTags,
                 default => $this->$field,
             };
 
