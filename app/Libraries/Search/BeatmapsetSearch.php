@@ -232,6 +232,10 @@ class BeatmapsetSearch extends RecordSearch
         if ($this->includes->difficulty !== null) {
             $nested->must(['match' => ['beatmaps.version' => ['query' => $this->includes->difficulty, 'operator' => 'and']]]);
         }
+
+        if ($this->excludes->difficulty !== null) {
+            $nested->mustNot(['match' => ['beatmaps.version' => ['query' => $this->includes->difficulty, 'operator' => 'or']]]);
+        }
     }
 
     private function addExtraFilter($query)
