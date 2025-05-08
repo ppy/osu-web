@@ -498,29 +498,50 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addTagsFilter(BoolQuery $query): void
     {
-        $tags = $this->includes->tags;
-        if ($tags === null) {
-            return;
+        $includeTags = $this->includes->tags;
+        $excludeTags = $this->excludes->tags;
+
+        if ($includeTags !== null) {
+            // workaround multi tag parsing when there's an empty tag.
+            $tags = array_reject_null($includeTags);
+
+            // require exact match for full tags, partial otherwise.
+            // "grid snap" - match grid AND snap in any order. e.g. snap/grid is allowed.
+            // ""grid snap"" - match anything with "grid snap".
+            // "geometric/grid snap" - explicitly match the tag.
+            foreach ($tags as $tag) {
+                if (mb_strpos($tag, '/') !== false) {
+                    $query->filter([
+                        'term' => [
+                            'beatmaps.top_tags.raw' => [
+                                'case_insensitive' => true,
+                                'value' => mb_trim($tag, '"'),
+                            ],
+                        ],
+                    ]);
+                } else {
+                    $query->filter(['match' => ['beatmaps.top_tags' => ['query' => $tags, 'operator' => 'and']]]);
+                }
+            }
         }
 
-        // workaround multi tag parsing when there's an empty tag.
-        $tags = array_reject_null($tags);
+        if ($excludeTags !== null) {
+            $tags = array_reject_null($excludeTags);
 
-        $tagMap = [];
-        foreach ($tags as $tag) {
-            $key = mb_strtolower(mb_trim($tag, '"'));
-            $tagMap[$key] = $tag;
-        }
-
-        $exactTags = Tag::whereIn('name', array_keys($tagMap))->limit(10)->pluck('name');
-
-        foreach ($exactTags as $tag) {
-            $query->filter(['term' => ['beatmaps.top_tags.raw' => $tag]]);
-            unset($tagMap[mb_strtolower($tag)]);
-        }
-
-        foreach (array_values($tagMap) as $tag) {
-            $query->filter(['match' => ['beatmaps.top_tags' => ['query' => $tags, 'operator' => 'and']]]);
+            foreach ($tags as $tag) {
+                if (mb_strpos($tag, '/') !== false) {
+                    $query->mustNot([
+                        'term' => [
+                            'beatmaps.top_tags.raw' => [
+                                'case_insensitive' => true,
+                                'value' => mb_trim($tag, '"'),
+                            ],
+                        ],
+                    ]);
+                } else {
+                    $query->mustNot(['match' => ['beatmaps.top_tags' => ['query' => $tags, 'operator' => 'or']]]);
+                }
+            }
         }
     }
 
