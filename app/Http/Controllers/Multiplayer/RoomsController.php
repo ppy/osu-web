@@ -8,15 +8,20 @@ namespace App\Http\Controllers\Multiplayer;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Ranking\DailyChallengeController;
 use App\Models\Model;
+use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
+use App\Models\User;
+use App\Transformers\Multiplayer\PlaylistItemTransformer;
+use App\Transformers\Multiplayer\RealtimeRoomEventTransformer;
 use App\Transformers\Multiplayer\RoomTransformer;
+use App\Transformers\UserCompactTransformer;
 
 class RoomsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
-        $this->middleware('require-scopes:public', ['only' => ['index', 'leaderboard', 'show']]);
+        $this->middleware('auth', ['except' => ['events', 'index', 'show']]);
+        $this->middleware('require-scopes:public', ['only' => ['events', 'index', 'leaderboard', 'show']]);
     }
 
     public function destroy($id)
@@ -24,6 +29,92 @@ class RoomsController extends Controller
         Room::findOrFail($id)->endGame(\Auth::user());
 
         return response(null, 204);
+    }
+
+    public function events($id)
+    {
+        $room = Room::findOrFail($id);
+
+        if (!$room->isRealtime()) {
+            return response([], 204);
+        }
+
+        $params = request()->all();
+        $after = $params['after'] ?? null;
+        $before = $params['before'] ?? null;
+        $limit = \Number::clamp($params['limit'] ?? 100, 1, 101);
+
+        $events = $room->events()->with('playlistItem.scoreLinks.score')->limit($limit);
+
+        if (isset($after)) {
+            $events
+                ->where('id', '>', $after)
+                ->orderBy('id', 'ASC');
+        } else {
+            if (isset($before)) {
+                $events->where('id', '<', $before);
+            }
+
+            $events->orderBy('id', 'DESC');
+            $reverseOrder = true;
+        }
+
+        $userIds = [];
+        $playlistItemIds = [];
+
+        $events = $events->get();
+        foreach ($events as $event) {
+            if ($event->user_id) {
+                $userIds[] = $event->user_id;
+            }
+
+            $playlistItem = $event->playlistItem;
+            if ($playlistItem !== null) {
+                $playlistItemIds[] = $event->playlistItem->getKey();
+
+                foreach ($playlistItem->scoreLinks as $scoreLink) {
+                    $scoreLink->setRelation('playlistItem', $playlistItem);
+                    $userIds[] = $scoreLink->user_id;
+                }
+            }
+        }
+
+        if ($reverseOrder ?? false) {
+            $events = $events->reverse();
+        }
+
+        $users = User::with('country')->whereIn('user_id', array_unique($userIds))->get();
+        $users = json_collection(
+            $users,
+            new UserCompactTransformer(),
+            'country'
+        );
+
+        $playlistItems = PlaylistItem::whereIn('id', array_unique($playlistItemIds))->get();
+        $playlistItems = json_collection(
+            $playlistItems,
+            new PlaylistItemTransformer(),
+            ['beatmap.beatmapset', 'scores']
+        );
+
+        $events = json_collection(
+            $events,
+            new RealtimeRoomEventTransformer(),
+        );
+
+        $eventEndIds = $room
+            ->events()
+            ->selectRaw('MIN(id) first_event_id, MAX(id) last_event_id')
+            ->first();
+
+        return [
+            'events' => $events,
+            'users' => $users,
+            'first_event_id' => $eventEndIds->first_event_id ?? 0,
+            'last_event_id' => $eventEndIds->last_event_id ?? 0,
+            'playlist_items' => $playlistItems,
+            'current_playlist_item_id' => $room->current_playlist_item_id,
+        ];
     }
 
     /**
