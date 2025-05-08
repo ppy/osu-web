@@ -259,6 +259,11 @@ class BeatmapsetSearch extends RecordSearch
             $trackIds = ArtistTrack::where('artist_id', $this->includes->featuredArtist)->pluck('id');
             $query->filter(['terms' => ['track_id' => $trackIds]]);
         }
+
+        if ($this->excludes->featuredArtist !== null) {
+            $trackIds = ArtistTrack::where('artist_id', $this->excludes->featuredArtist)->pluck('id');
+            $this->nestedMustNot->should(['terms' => ['track_id' => $trackIds]]);
+        }
     }
 
     private function addFeaturedArtistsFilter($query)
@@ -293,13 +298,21 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addManiaKeysFilter(BoolQuery $nestedQuery): void
     {
-        if ($this->includes->keys === null) {
-            return;
+        if ($this->includes->keys !== null) {
+            $nestedQuery
+                ->filter(['range' => ['beatmaps.diff_size' => $this->includes->keys]])
+                ->filter(['term' => ['beatmaps.playmode' => Beatmap::MODES['mania']]]);
         }
 
-        $nestedQuery
-            ->filter(['range' => ['beatmaps.diff_size' => $this->includes->keys]])
-            ->filter(['term' => ['beatmaps.playmode' => Beatmap::MODES['mania']]]);
+        if ($this->excludes->keys !== null) {
+            // TODO: needs checking; exclude keys but only on mania maps
+            // TODO: this seems to make no sense to apply across a whole set?
+            $this->nestedMustNot->should(
+                (new BoolQuery())
+                    ->filter(['range' => ['beatmaps.diff_size' => $this->excludes->keys]])
+                    ->filter(['term' => ['beatmaps.playmode' => Beatmap::MODES['mania']]])
+            );
+        }
     }
 
     private function addModeFilter($query)
@@ -398,6 +411,8 @@ class BeatmapsetSearch extends RecordSearch
                     Beatmapset::STATES['loved'],
                 ]]])->filter(['range' => ['approved_date' => $this->includes->ranked]]);
         }
+
+        // TODO: add ranked exclusion
     }
 
     private function addSimpleFilters(BoolQuery $query, BoolQuery $nested): void
