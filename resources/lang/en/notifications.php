@@ -123,6 +123,16 @@ return [
                     'channel_message_group' => 'from :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => 'New team message',
+
+                'team' => [
+                    'channel_team' => ':username says ":title"',
+                    'channel_team_compact' => ':username says ":title"',
+                    'channel_team_group' => ':username says ":title"',
+                ],
+            ],
         ],
 
         'build' => [
@@ -240,6 +250,10 @@ return [
 
             'channel' => [
                 'pm' => 'You\'ve received a new message from :username',
+            ],
+
+            'channel' => [
+                'team' => 'There is a new message in team ":name"',
             ],
         ],
 
