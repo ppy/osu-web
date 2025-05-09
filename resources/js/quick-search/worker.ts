@@ -42,7 +42,7 @@ interface SearchResultUser extends SearchResultSummary {
   users: UserJson[];
 }
 
-const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
+export const otherModes: ResultMode[] = ['artist_track', 'forum_post', 'wiki_page'];
 
 export default class Worker {
   debouncedSearch = debounce(() => this.search(), 500);
