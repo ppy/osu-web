@@ -412,16 +412,24 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addRankedFilter(): void
     {
+        static $approvedStates = [
+            Beatmapset::STATES['ranked'],
+            Beatmapset::STATES['approved'],
+            Beatmapset::STATES['loved'],
+        ];
+
         if ($this->includes->ranked !== null) {
             $this->query
-                ->filter(['terms' => ['approved' => [
-                    Beatmapset::STATES['ranked'],
-                    Beatmapset::STATES['approved'],
-                    Beatmapset::STATES['loved'],
-                ]]])->filter(['range' => ['approved_date' => $this->includes->ranked]]);
+                ->filter(['terms' => ['approved' => $approvedStates]])
+                ->filter(['range' => ['approved_date' => $this->includes->ranked]]);
         }
 
-        // TODO: add ranked exclusion
+        // ranked date exclusion assumes we're still looking for ranked maps.
+        if ($this->excludes->ranked !== null) {
+            $this->query
+                ->filter(['terms' => ['approved' => $approvedStates]])
+                ->mustNot(['range' => ['approved_date' => $this->excludes->ranked]]);
+        }
     }
 
     private function addSimpleFilters(): void
