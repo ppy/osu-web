@@ -365,12 +365,7 @@ class BeatmapsetSearch extends RecordSearch
             // The inverse of nested:filter/must is must_not:nested, not nested:must_not
             // https://github.com/elastic/elasticsearch/issues/26264#issuecomment-323668358
             foreach ($chunks as $chunk) {
-                $this->query->mustNot([
-                    'nested' => [
-                        'path' => 'beatmaps',
-                        'query' => ['terms' => ['beatmaps.beatmap_id' => $chunk]],
-                    ],
-                ]);
+                $this->nestedMustNot->should(['terms' => ['beatmaps.beatmap_id' => $chunk]]);
             }
         }
     }
