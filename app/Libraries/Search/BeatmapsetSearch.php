@@ -447,12 +447,18 @@ class BeatmapsetSearch extends RecordSearch
         $nestedPrefixLength = strlen($nestedPrefix);
 
         foreach ($filters as $prop => $options) {
-            if ($this->includes->$prop === null) {
-                continue;
+            if ($this->includes->$prop !== null) {
+                $q = substr($options['field'], 0, $nestedPrefixLength) === $nestedPrefix ? $this->nested : $this->query;
+                $q->filter([$options['type'] => [$options['field'] => $this->includes->$prop]]);
             }
 
-            $q = substr($options['field'], 0, $nestedPrefixLength) === $nestedPrefix ? $this->nested : $this->query;
-            $q->filter([$options['type'] => [$options['field'] => $this->includes->$prop]]);
+            if ($this->excludes->$prop !== null) {
+                if (substr($options['field'], 0, $nestedPrefixLength) === $nestedPrefix) {
+                    $this->nestedMustNot->should([$options['type'] => [$options['field'] => $this->excludes->$prop]]);
+                } else {
+                    $this->query->mustNot([$options['type'] => [$options['field'] => $this->excludes->$prop]]);
+                }
+            }
         }
     }
 
