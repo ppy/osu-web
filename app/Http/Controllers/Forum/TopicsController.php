@@ -309,7 +309,8 @@ class TopicsController extends Controller
      */
     public function index()
     {
-        $params = get_params(request()->all(), null, [
+        $rawParams = \Request::all();
+        $params = get_params($rawParams, null, [
             'limit:int',
             'sort',
             'forum_id:int',
@@ -318,7 +319,7 @@ class TopicsController extends Controller
         $limit = \Number::clamp($params['limit'] ?? Topic::PER_PAGE, 1, Topic::PER_PAGE);
         $cursorHelper = Topic::makeDbCursorHelper($params['sort']);
 
-        $topics = Topic::cursorSort($cursorHelper, cursor_from_params($params))
+        $topics = Topic::cursorSort($cursorHelper, cursor_from_params($rawParams))
             ->limit($limit);
 
         $forum_id = $params['forum_id'];
