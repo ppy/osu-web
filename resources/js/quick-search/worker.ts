@@ -24,9 +24,9 @@ interface SelectedItem {
 export type ResultMode = 'artist_track' | 'beatmapset' | 'forum_post' | 'user' | 'wiki_page';
 interface SearchResult {
   artist_track: SearchResultSummary;
-  beatmapset: SearchResultBeatmapset;
+  beatmapset: SearchResultItems<BeatmapsetJson>;
   forum_post: SearchResultSummary;
-  user: SearchResultUser;
+  user: SearchResultItems<UserJson>;
   wiki_page: SearchResultSummary;
 }
 
@@ -34,12 +34,8 @@ interface SearchResultSummary {
   total: number;
 }
 
-interface SearchResultBeatmapset extends SearchResultSummary {
-  beatmapsets: BeatmapsetJson[];
-}
-
-interface SearchResultUser extends SearchResultSummary {
-  users: UserJson[];
+interface SearchResultItems<T> extends SearchResultSummary {
+  items: T[];
 }
 
 const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
@@ -108,13 +104,13 @@ export default class Worker {
 
     switch (SECTIONS[this.selected.section]) {
       case 'user': {
-        const userId = searchResult.user.users[this.selected.index]?.id;
+        const userId = searchResult.user.items[this.selected.index]?.id;
         return userId ? route('users.show', { user: userId }) : undefined;
       }
       case 'user_others':
         return route('search', { mode: 'user', query: this.query });
       case 'beatmapset': {
-        const id = searchResult.beatmapset.beatmapsets[this.selected.index]?.id;
+        const id = searchResult.beatmapset.items[this.selected.index]?.id;
         return id ? route('beatmapsets.show', { beatmapset: id }) : undefined;
       }
       case 'beatmapset_others':
@@ -178,11 +174,11 @@ export default class Worker {
     }
     switch (section) {
       case 'user':
-        return searchResult.user.users.length;
+        return searchResult.user.items.length;
       case 'user_others':
         return 1;
       case 'beatmapset':
-        return searchResult.beatmapset.beatmapsets.length;
+        return searchResult.beatmapset.items.length;
       case 'beatmapset_others':
         return 1;
       case 'others':
