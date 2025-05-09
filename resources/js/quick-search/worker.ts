@@ -9,12 +9,12 @@ import { debounce } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 
 const SECTIONS = [
+  'beatmapset',
+  'beatmapset_others',
   'user',
   'user_others',
   'team',
   'team_others',
-  'beatmapset',
-  'beatmapset_others',
   'others',
 ] as const;
 export type Section = typeof SECTIONS[number];
