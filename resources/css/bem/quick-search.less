@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .quick-search {
-  .page-width-default();
+  .page-width();
   color: @osu-colour-c1;
   overflow: hidden;
   max-height: 100%;
@@ -11,6 +11,7 @@
   background-color: @osu-colour-b5;
 
   @media @desktop {
+    .page-width-desktop(10px);
     border-radius: @border-radius-large;
     max-height: calc(100% - 40px);
   }
