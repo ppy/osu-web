@@ -9,15 +9,20 @@ class MultiSearch
 {
     const MODES = [
         'all' => null,
+        'beatmapset' => [
+            'type' => BeatmapsetSearch::class,
+            'paramsType' => BeatmapsetSearchRequestParams::class,
+            'size' => 8,
+        ],
         'user' => [
             'type' => UserSearch::class,
             'paramsType' => UserSearchRequestParams::class,
             'size' => 6,
         ],
-        'beatmapset' => [
-            'type' => BeatmapsetSearch::class,
-            'paramsType' => BeatmapsetSearchRequestParams::class,
-            'size' => 8,
+        'team' => [
+            'type' => TeamSearch::class,
+            'paramsType' => TeamSearchRequestParams::class,
+            'size' => 6,
         ],
         'artist_track' => [
             'type' => ArtistTrackSearch::class,

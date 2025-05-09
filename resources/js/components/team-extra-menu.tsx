@@ -5,19 +5,23 @@ import PopupMenu from 'components/popup-menu';
 import { ReportReportable } from 'components/report-reportable';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { classWithModifiers, Modifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 
 interface Props {
   leaderUsername: string;
+  modifiers?: Modifiers;
   teamId: number;
 }
 
 export default function TeamExtraMenu(props: Props) {
   if (core.currentUser?.team?.id === props.teamId) return null;
 
+  const modifiers = props.modifiers ?? ['page-toggle', 'page-toggle-detail'];
+
   return (
     <div
-      className='btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail'
+      className={classWithModifiers('btn-circle', modifiers)}
       title={trans('common.buttons.show_more_options')}
     >
       <PopupMenu>

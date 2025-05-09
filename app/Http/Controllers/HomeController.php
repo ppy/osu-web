@@ -16,6 +16,7 @@ use App\Models\Forum\Post;
 use App\Models\NewsPost;
 use App\Models\UserDonation;
 use App\Transformers\MenuImageTransformer;
+use App\Transformers\TeamTransformer;
 use App\Transformers\UserCompactTransformer;
 use Auth;
 use Jenssegers\Agent\Agent;
@@ -149,6 +150,7 @@ class HomeController extends Controller
                 [...UserCompactTransformer::CARD_INCLUDES, 'support_level'],
             );
             $result['beatmapset']['beatmapsets'] = json_collection($searches['beatmapset']->data(), 'Beatmapset', ['beatmaps']);
+            $result['team']['teams'] = json_collection($searches['team']->data(), new TeamTransformer());
         }
 
         return $result;

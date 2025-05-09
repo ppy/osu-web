@@ -1,0 +1,95 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.team-card {
+  border-radius: @border-radius--large;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding: 4px;
+  gap: 10px;
+
+  &::before {
+    .full-size();
+    content: "";
+    background: hsla(var(--hsl-b6), 0.75);
+  }
+
+  &--search {
+    outline: 2px solid transparent;
+
+    &:hover {
+      outline-color: var(--search-accent);
+    }
+  }
+
+  &__col {
+    position: relative;
+    pointer-events: none;
+
+    &--content {
+      display: grid;
+
+      color: hsl(var(--hsl-c2));
+      font-size: @font-size--normal;
+    }
+
+    &--flag {
+      font-size: 64px; // icon size
+      display: flex;
+    }
+
+    &--sidebar {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+  }
+
+  &__default-ruleset {
+    font-size: 24px; // font size
+  }
+
+  &__leader-box {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 5px;
+    align-items: center;
+    width: max-content;
+    color: inherit;
+
+    .link-hover({
+      color: inherit;
+    });
+  }
+
+  &__leader-icon {
+    font-size: 20px; // icon size
+    line-height: 0;
+  }
+
+  &__link-bg {
+    .full-size();
+  }
+
+  &__name {
+    padding: 0;
+    margin: 0;
+    font-size: @font-size--title-small-3;
+    color: hsl(var(--hsl-c1));
+    display: grid;
+    align-items: baseline;
+    grid-template-columns: auto 1fr;
+    gap: 5px;
+  }
+
+  &__name-short {
+    font-size: @font-size--normal;
+    color: inherit;
+  }
+}

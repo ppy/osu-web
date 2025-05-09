@@ -10,6 +10,7 @@ use App\Libraries\Elasticsearch\Indexing;
 use App\Models\ArtistTrack;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Console\Command;
 
@@ -19,6 +20,7 @@ class EsIndexDocuments extends Command
         'artist_tracks' => [ArtistTrack::class],
         'beatmapsets' => [Beatmapset::class],
         'posts' => [Post::class],
+        'teams' => [Team::class],
         'users' => [User::class],
     ];
 

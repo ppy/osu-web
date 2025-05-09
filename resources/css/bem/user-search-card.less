@@ -2,20 +2,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .user-search-card {
+  --avatar-aspect: 1;
+  --height: 40px;
   .fade-element(120ms);
   position: relative;
   border-radius: @border-radius-large;
   background-color: @osu-colour-b4;
   font-size: @font-size--normal;
-  min-height: 40px;
+  min-height: var(--height);
   line-height: normal;
 
   &--active {
     background-color: @osu-colour-b2;
   }
 
+  &--team {
+    --avatar-aspect: 2;
+  }
+
   &__avatar-container {
-    width: 40px;
+    aspect-ratio: var(--avatar-aspect);
+    height: var(--height);
     flex: none;
     border-radius: @border-radius-large;
     overflow: hidden;
