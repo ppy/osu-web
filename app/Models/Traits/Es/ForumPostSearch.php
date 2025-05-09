@@ -6,7 +6,6 @@
 namespace App\Models\Traits\Es;
 
 use App\Models\Forum\Forum;
-use Carbon\Carbon;
 
 trait ForumPostSearch
 {
@@ -45,34 +44,14 @@ trait ForumPostSearch
         return "post-{$this->post_id}";
     }
 
-    public function toEsJson()
+    protected function getEsFieldValue(string $field)
     {
-        $mappings = static::esMappings();
-
-        $document = [];
-        foreach ($mappings as $field => $mapping) {
-            switch ($field) {
-                case 'is_deleted':
-                    $value = $this->trashed() || $this->topic->trashed();
-                    break;
-                case 'topic_title':
-                    if ($this->topic !== null && $this->topic->topic_first_post_id === $this->getKey()) {
-                        $value = $this->topic->topic_title;
-                    } else {
-                        $value = null;
-                    }
-                    break;
-                default:
-                    $value = $this[$field];
-            }
-
-            if ($value instanceof Carbon) {
-                $value = $value->toIso8601String();
-            }
-
-            $document[$field] = $value;
-        }
-
-        return $document;
+        return match ($field) {
+            'is_deleted' => $this->trashed() || $this->topic->trashed(),
+            'topic_title' => $this->topic !== null && $this->topic->topic_first_post_id === $this->getKey()
+                    ? $this->topic->topic_title
+                    : null,
+            default => $this->$field,
+        };
     }
 }
