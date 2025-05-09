@@ -7,6 +7,7 @@ namespace App\Libraries\Search;
 
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\FunctionScore;
+use App\Libraries\Elasticsearch\Queryable;
 use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\ArtistTrack;
@@ -25,6 +26,7 @@ class BeatmapsetSearch extends RecordSearch
     private BeatmapsetSearchOptions $excludes;
     private BeatmapsetSearchOptions $includes;
 
+    private BoolQuery $nested;
     private BoolQuery $nestedMustNot;
 
     public function __construct(?BeatmapsetSearchParams $params = null)
@@ -42,7 +44,7 @@ class BeatmapsetSearch extends RecordSearch
     /**
      * {@inheritdoc}
      */
-    public function getQuery()
+    public function getQuery(): Queryable
     {
         static $partialMatchFields = [
             'artist',
@@ -57,13 +59,15 @@ class BeatmapsetSearch extends RecordSearch
             'tags^0.5',
         ];
 
-        $query = new BoolQuery();
+        $this->query = new BoolQuery();
+        $this->nested = new BoolQuery();
+        $this->nestedMustNot = new BoolQuery()->shouldMatch(1);
 
         if (present($this->params->queryString)) {
             $terms = explode(' ', $this->params->queryString);
 
             // the subscoping is not necessary but prevents unintentional accidents when combining other matchers
-            $query->must(
+            $this->query->must(
                 (new BoolQuery())
                     // results must contain at least one of the terms and boosted by containing all of them,
                     // or match the id of the beatmapset.
@@ -80,47 +84,46 @@ class BeatmapsetSearch extends RecordSearch
             );
         }
 
-        $this->addBlockedUsersFilter($query);
-        $this->addFeaturedArtistFilter($query);
-        $this->addFeaturedArtistsFilter($query);
-        $this->addFollowsFilter($query);
-        $this->addGenreFilter($query);
-        $this->addLanguageFilter($query);
-        $this->addExtraFilter($query);
-        $this->addNsfwFilter($query);
-        $this->addRankedFilter($query);
-        $this->addSpotlightsFilter($query);
+        // top level
+        $this->addBlockedUsersFilter();
+        $this->addFeaturedArtistFilter();
+        $this->addFeaturedArtistsFilter();
+        $this->addFollowsFilter();
+        $this->addGenreFilter();
+        $this->addLanguageFilter();
+        $this->addExtraFilter();
+        $this->addNsfwFilter();
+        $this->addRankedFilter();
+        $this->addSpotlightsFilter();
 
-        $nested = new BoolQuery();
-        $this->nestedMustNot = new BoolQuery();
+        // nested
+        $this->addDifficultyFilter();
+        $this->addStatusFilter();
+        $this->addManiaKeysFilter();
+        $this->addModeFilter();
+        $this->addPlayedFilter();
+        $this->addRankFilter();
+        $this->addRecommendedFilter();
+        $this->addTagsFilter();
 
-        $this->addDifficultyFilter($nested);
-        $this->addStatusFilter($query, $nested);
-        $this->addManiaKeysFilter($nested);
-        $this->addModeFilter($nested);
-        $this->addPlayedFilter($query, $nested);
-        $this->addRankFilter($nested);
-        $this->addRecommendedFilter($nested);
-        $this->addTagsFilter($nested);
-
-        $this->addSimpleFilters($query, $nested);
-        $this->addCreatorFilter($query, $nested);
+        $this->addSimpleFilters();
+        $this->addCreatorFilter();
 
         foreach ([true, false] as $include) {
-            $this->addTextFilter($query, 'artist', ['artist', 'artist_unicode'], $include);
-            $this->addTextFilter($query, 'source', ['source'], $include);
-            $this->addTextFilter($query, 'title', ['title', 'title_unicode'], $include);
+            $this->addTextFilter('artist', ['artist', 'artist_unicode'], $include);
+            $this->addTextFilter('source', ['source'], $include);
+            $this->addTextFilter('title', ['title', 'title_unicode'], $include);
         }
 
-        $query->filter([
+        $this->query->filter([
             'nested' => [
                 'path' => 'beatmaps',
-                'query' => $nested->toArray(),
+                'query' => $this->nested->toArray(),
             ],
         ]);
 
         if (!$this->nestedMustNot->isEmpty()) {
-            $query->mustNot([
+            $this->query->mustNot([
                 'nested' => [
                     'path' => 'beatmaps',
                     'query' => $this->nestedMustNot->toArray(),
@@ -129,7 +132,7 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         if (present($this->params->queryString)) {
-            $query = (new FunctionScore($query))
+            $this->query = (new FunctionScore($this->query))
                 ->applyFunction([
                     'field_value_factor' => [
                         'field' => 'favourite_count',
@@ -139,7 +142,7 @@ class BeatmapsetSearch extends RecordSearch
                 ]);
         }
 
-        return $query;
+        return $this->query;
     }
 
     public function records()
@@ -153,12 +156,12 @@ class BeatmapsetSearch extends RecordSearch
             }])->get();
     }
 
-    private function addBlockedUsersFilter($query)
+    private function addBlockedUsersFilter()
     {
-        $query->mustNot(['terms' => ['user_id' => $this->params->blockedUserIds()]]);
+        $this->query->mustNot(['terms' => ['user_id' => $this->params->blockedUserIds()]]);
     }
 
-    private function addCreatorFilter(BoolQuery $query, BoolQuery $nested): void
+    private function addCreatorFilter(): void
     {
         $value = $this->includes->creator;
 
@@ -166,9 +169,9 @@ class BeatmapsetSearch extends RecordSearch
             $user = User::lookup($value);
 
             if ($user === null) {
-                $this->addTextFilter($query, 'creator', ['creator']);
+                $this->addTextFilter('creator', ['creator']);
             } else {
-                $nested->filter(['term' => ['beatmaps.user_id' => $user->getKey()]]);
+                $this->nested->filter(['term' => ['beatmaps.user_id' => $user->getKey()]]);
             }
         }
 
@@ -178,17 +181,17 @@ class BeatmapsetSearch extends RecordSearch
             $user = User::lookup($value);
 
             if ($user === null) {
-                $this->addTextFilter($query, 'creator', ['creator'], false);
+                $this->addTextFilter('creator', ['creator'], false);
             } else {
                 $this->nestedMustNot->should(['term' => ['beatmaps.user_id' => $user->getKey()]]);
             }
         }
     }
 
-    private function addDifficultyFilter(BoolQuery $nested)
+    private function addDifficultyFilter()
     {
         if ($this->includes->difficulty !== null) {
-            $nested->filter(QueryHelper::queryString($this->includes->difficulty, ['beatmaps.version'], 'and'));
+            $this->nested->filter(QueryHelper::queryString($this->includes->difficulty, ['beatmaps.version'], 'and'));
         }
 
         if ($this->excludes->difficulty !== null) {
@@ -196,18 +199,18 @@ class BeatmapsetSearch extends RecordSearch
         }
     }
 
-    private function addExtraFilter($query)
+    private function addExtraFilter()
     {
         foreach ($this->params->extra as $val) {
-            $query->filter(['term' => [$val => true]]);
+            $this->query->filter(['term' => [$val => true]]);
         }
     }
 
-    private function addFeaturedArtistFilter($query)
+    private function addFeaturedArtistFilter()
     {
         if ($this->includes->featuredArtist !== null) {
             $trackIds = ArtistTrack::where('artist_id', $this->includes->featuredArtist)->pluck('id');
-            $query->filter(['terms' => ['track_id' => $trackIds]]);
+            $this->query->filter(['terms' => ['track_id' => $trackIds]]);
         }
 
         if ($this->excludes->featuredArtist !== null) {
@@ -216,40 +219,40 @@ class BeatmapsetSearch extends RecordSearch
         }
     }
 
-    private function addFeaturedArtistsFilter($query)
+    private function addFeaturedArtistsFilter()
     {
         if ($this->params->showFeaturedArtists) {
-            $query->filter(['exists' => ['field' => 'track_id']]);
+            $this->query->filter(['exists' => ['field' => 'track_id']]);
         }
     }
 
-    private function addFollowsFilter($query)
+    private function addFollowsFilter()
     {
         if ($this->params->showFollows && $this->params->user !== null) {
             $followIds = Follow::where(['subtype' => 'mapping', 'user_id' => $this->params->user->getKey()])->pluck('notifiable_id')->all();
 
-            $query->filter(['terms' => ['user_id' => $followIds]]);
+            $this->query->filter(['terms' => ['user_id' => $followIds]]);
         }
     }
 
-    private function addGenreFilter($query)
+    private function addGenreFilter()
     {
         if ($this->params->genre !== null) {
-            $query->filter(['term' => ['genre_id' => $this->params->genre]]);
+            $this->query->filter(['term' => ['genre_id' => $this->params->genre]]);
         }
     }
 
-    private function addLanguageFilter($query)
+    private function addLanguageFilter()
     {
         if ($this->params->language !== null) {
-            $query->filter(['term' => ['language_id' => $this->params->language]]);
+            $this->query->filter(['term' => ['language_id' => $this->params->language]]);
         }
     }
 
-    private function addManiaKeysFilter(BoolQuery $nestedQuery): void
+    private function addManiaKeysFilter(): void
     {
         if ($this->includes->keys !== null) {
-            $nestedQuery
+            $this->nested
                 ->filter(['range' => ['beatmaps.diff_size' => $this->includes->keys]])
                 ->filter(['term' => ['beatmaps.playmode' => Beatmap::MODES['mania']]]);
         }
@@ -265,32 +268,32 @@ class BeatmapsetSearch extends RecordSearch
         }
     }
 
-    private function addModeFilter($query)
+    private function addModeFilter()
     {
         if (!$this->params->includeConverts) {
-            $query->filter(['term' => ['beatmaps.convert' => false]]);
+            $this->nested->filter(['term' => ['beatmaps.convert' => false]]);
         }
 
         if ($this->params->mode !== null) {
-            $query->filter(['term' => ['beatmaps.playmode' => $this->params->mode]]);
+            $this->nested->filter(['term' => ['beatmaps.playmode' => $this->params->mode]]);
         }
     }
 
-    private function addNsfwFilter($query)
+    private function addNsfwFilter()
     {
         if (!$this->params->includeNsfw) {
-            $query->filter(['term' => ['nsfw' => false]]);
+            $this->query->filter(['term' => ['nsfw' => false]]);
         }
     }
 
-    private function addPlayedFilter($query, $nested)
+    private function addPlayedFilter()
     {
         if ($this->params->playedFilter === 'played') {
-            $nested->filter(['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds()]]);
+            $this->nested->filter(['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds()]]);
         } elseif ($this->params->playedFilter === 'unplayed') {
             // The inverse of nested:filter/must is must_not:nested, not nested:must_not
             // https://github.com/elastic/elasticsearch/issues/26264#issuecomment-323668358
-            $query->mustNot([
+            $this->query->mustNot([
                 'nested' => [
                     'path' => 'beatmaps',
                     'query' => ['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds()]],
@@ -299,21 +302,21 @@ class BeatmapsetSearch extends RecordSearch
         }
     }
 
-    private function addRankFilter($query)
+    private function addRankFilter()
     {
         if (empty($this->params->rank)) {
             return;
         }
 
-        $query->filter(['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds($this->params->rank)]]);
+        $this->nested->filter(['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds($this->params->rank)]]);
     }
 
-    private function addRecommendedFilter($query)
+    private function addRecommendedFilter()
     {
         if ($this->params->showRecommended && $this->params->user !== null) {
             // TODO: index convert difficulties and handle them.
             $difficulty = $this->params->getRecommendedDifficulty();
-            $query->filter([
+            $this->nested->filter([
                 'range' => [
                     'beatmaps.difficultyrating' => [
                         'gte' => $difficulty - 0.5,
@@ -324,10 +327,10 @@ class BeatmapsetSearch extends RecordSearch
         }
     }
 
-    private function addRankedFilter(BoolQuery $query): void
+    private function addRankedFilter(): void
     {
         if ($this->includes->ranked !== null) {
-            $query
+            $this->query
                 ->filter(['terms' => ['approved' => [
                     Beatmapset::STATES['ranked'],
                     Beatmapset::STATES['approved'],
@@ -338,7 +341,7 @@ class BeatmapsetSearch extends RecordSearch
         // TODO: add ranked exclusion
     }
 
-    private function addSimpleFilters(BoolQuery $query, BoolQuery $nested): void
+    private function addSimpleFilters(): void
     {
         static $filters = [
             'accuracy' => ['field' => 'beatmaps.diff_overall', 'type' => 'range'],
@@ -365,22 +368,22 @@ class BeatmapsetSearch extends RecordSearch
                 continue;
             }
 
-            $q = substr($options['field'], 0, $nestedPrefixLength) === $nestedPrefix ? $nested : $query;
+            $q = substr($options['field'], 0, $nestedPrefixLength) === $nestedPrefix ? $this->nested : $this->query;
             $q->filter([$options['type'] => [$options['field'] => $this->includes->$prop]]);
         }
     }
 
-    private function addSpotlightsFilter($query)
+    private function addSpotlightsFilter()
     {
         if ($this->params->showSpotlights) {
-            $query->filter(['term' => ['spotlight' => true]]);
+            $this->query->filter(['term' => ['spotlight' => true]]);
         }
     }
 
     // statuses are non scoring for the query context.
-    private function addStatusFilter($mainQuery, $beatmapQuery)
+    private function addStatusFilter()
     {
-        $queryForFilter = $beatmapQuery;
+        $queryForFilter = $this->nested;
         $query = new BoolQuery();
 
         switch ($this->params->status) {
@@ -399,7 +402,7 @@ class BeatmapsetSearch extends RecordSearch
                     $favs = model_pluck($this->params->user->favouriteBeatmapsets(), 'beatmapset_id', Beatmapset::class);
                 }
                 $query->must(['ids' => ['values' => $favs ?? []]]);
-                $queryForFilter = $mainQuery;
+                $queryForFilter = $this->query;
                 break;
             case 'qualified':
                 $query->should(['match' => ['beatmaps.approved' => Beatmapset::STATES['qualified']]]);
@@ -423,7 +426,7 @@ class BeatmapsetSearch extends RecordSearch
                         ->all();
                 }
                 $query->must(['ids' => ['values' => $maps ?? []]]);
-                $queryForFilter = $mainQuery;
+                $queryForFilter = $this->query;
                 break;
             default: // null, etc
                 $query
@@ -436,7 +439,7 @@ class BeatmapsetSearch extends RecordSearch
         $queryForFilter->filter($query);
     }
 
-    private function addTextFilter(BoolQuery $query, string $paramField, array $fields, bool $include = true): void
+    private function addTextFilter(string $paramField, array $fields, bool $include = true): void
     {
         $options = $include ? $this->includes : $this->excludes;
         $value = $options->$paramField;
@@ -458,13 +461,13 @@ class BeatmapsetSearch extends RecordSearch
         $subQuery->should(QueryHelper::queryString($value, $searchFields, 'and'));
 
         if ($include) {
-            $query->must($subQuery);
+            $this->query->must($subQuery);
         } else {
-            $query->mustNot($subQuery);
+            $this->nestedMustNot->should($subQuery);
         }
     }
 
-    private function addTagsFilter(BoolQuery $query): void
+    private function addTagsFilter(): void
     {
         $includeTags = $this->includes->tags;
         $excludeTags = $this->excludes->tags;
@@ -479,7 +482,7 @@ class BeatmapsetSearch extends RecordSearch
             // "geometric/grid snap" - explicitly match the tag.
             foreach ($tags as $tag) {
                 if (mb_strpos($tag, '/') !== false) {
-                    $query->filter([
+                    $this->nested->filter([
                         'term' => [
                             'beatmaps.top_tags.raw' => [
                                 'case_insensitive' => true,
@@ -488,7 +491,7 @@ class BeatmapsetSearch extends RecordSearch
                         ],
                     ]);
                 } else {
-                    $query->filter(QueryHelper::queryString($tag, ['beatmaps.top_tags'], 'and'));
+                    $this->nested->filter(QueryHelper::queryString($tag, ['beatmaps.top_tags'], 'and'));
                 }
             }
         }
