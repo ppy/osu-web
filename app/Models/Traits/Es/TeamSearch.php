@@ -18,16 +18,11 @@ trait TeamSearch
         return static::query();
     }
 
-    public function toEsJson()
+    public function getEsFieldValue(string $field)
     {
-        $document = [];
-        foreach (static::esMappings() as $field => $mapping) {
-            $document[$field] = match ($field) {
-                'description' => BBCodeFromDB::removeBBCodeTags($this->description),
-                default => $this->$field,
-            };
-        }
-
-        return $document;
+        return match ($field) {
+            'description' => BBCodeFromDB::removeBBCodeTags($this->description),
+            default => $this->$field,
+        };
     }
 }
