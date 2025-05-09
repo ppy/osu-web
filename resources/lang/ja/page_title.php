@@ -64,11 +64,11 @@ return [
             '_' => 'コメント',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'コンテストの審査結果',
         ],
         'contests_controller' => [
             '_' => 'コンテスト',
-            'judge' => '',
+            'judge' => 'コンテストの審査',
         ],
         'groups_controller' => [
             'show' => 'グループ',
@@ -107,11 +107,18 @@ return [
         'seasons_controller' => [
             '_' => 'ランキング',
         ],
+        'teams_controller' => [
+            '_' => 'チーム',
+            'create' => 'チームの作成',
+            'edit' => 'チームの設定',
+            'leaderboard' => 'チームリーダーボード',
+            'show' => 'チーム情報',
+        ],
         'tournaments_controller' => [
             '_' => 'トーナメント',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'ユーザーカバープリセット',
         ],
         'users_controller' => [
             '_' => 'プレイヤー情報',
@@ -129,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'ストア',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'チームメンバー',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

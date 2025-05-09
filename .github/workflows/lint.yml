@@ -27,7 +27,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           tools: composer:v2, cs2pr
-          php-version: '8.3'
+          php-version: '8.4'
           coverage: none
 
       - name: Get composer cache directory
@@ -49,7 +49,7 @@ jobs:
       - name: Install js dependencies
         run: yarn --frozen-lockfile
 
-      - run: 'yarn lint --max-warnings 87 > /dev/null'
+      - run: 'yarn lint --max-warnings 57 > /dev/null'
 
       - run: yarn pretty
 

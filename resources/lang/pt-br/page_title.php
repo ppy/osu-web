@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => 'colocações',
         ],
+        'teams_controller' => [
+            '_' => 'equipes',
+            'create' => '',
+            'edit' => 'configurações de equipe',
+            'leaderboard' => 'classificação da equipe',
+            'show' => 'informações da equipe',
+        ],
         'tournaments_controller' => [
             '_' => 'torneios',
         ],
@@ -129,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'loja',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'membros da equipe',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

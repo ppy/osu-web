@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Cheating',
-            'multiple_accounts' => 'Using multiple accounts',
+            'inappropriate_chat' => 'Inappropriate chat behaviour',
             'insults' => 'Insulting me / others',
-            'spam' => 'Spamming',
-            'unwanted_content' => 'Linking inappropriate content',
+            'multiple_accounts' => 'Using multiple accounts',
             'nonsense' => 'Nonsense',
             'other' => 'Other (type below)',
+            'spam' => 'Spamming',
+            'unwanted_content' => 'Inappropriate content',
         ],
     ],
     'restricted_banner' => [
@@ -225,7 +226,7 @@ return [
                     'button' => 'Upload image',
                     'dropzone' => 'Drop here to upload',
                     'dropzone_info' => 'You can also drop your image here to upload',
-                    'size_info' => 'Cover size should be 2400x640',
+                    'size_info' => 'Cover size should be 2000x500',
                     'too_large' => 'Uploaded file is too large.',
                     'unsupported_format' => 'Unsupported format.',
 
@@ -478,6 +479,10 @@ return [
             'global' => 'Global rank for :mode',
             'global_simple' => 'Global Ranking',
             'highest' => 'Highest rank: :rank on :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Total score',
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Accuracy',

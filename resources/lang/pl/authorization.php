@@ -23,18 +23,18 @@ return [
             'set_metadata' => 'Musisz ustawić gatunek i język przed nominowaniem beatmapy.',
         ],
         'resolve' => [
-            'not_owner' => 'Tylko autor wątku i autor beatmapy mogą zakończyć dyskusję.',
+            'not_owner' => 'Tylko autor wątku i twórca beatmapy mogą zakończyć dyskusję.',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Adnotacje mogą być dodawane tylko przez twórcę mapy, nominatora lub członka NAT.',
+            'mapper_note_wrong_user' => 'Adnotacje mogą być dodawane tylko przez twórcę beatmapy, nominatora lub członka NAT.',
         ],
 
         'vote' => [
             'bot' => "Nie możesz głosować w dyskusji utworzonej przez bota",
             'limit_exceeded' => 'Zaczekaj, zanim zagłosujesz ponownie',
-            'owner' => "Nie możesz głosować we własnej dyskusji!",
-            'wrong_beatmapset_state' => 'Możesz głosować tylko przy oczekujących beatmapach.',
+            'owner' => "Nie możesz głosować we własnej dyskusji.",
+            'wrong_beatmapset_state' => 'Możesz głosować tylko w dyskusjach do oczekujących beatmap.',
         ],
     ],
 
@@ -56,7 +56,13 @@ return [
         'discussion_locked' => 'Tworzenie dyskusji dla tej beatmapy zostało zablokowane.',
 
         'metadata' => [
-            'nominated' => 'Nie możesz zmienić metadanych nominowanej mapy. Skontaktuj się z członkiem BN lub NAT, jeśli uważasz, że są one ustawione nieprawidłowo.',
+            'nominated' => 'Nie możesz zmienić metadanych nominowanej beatmapy. Skontaktuj się z członkiem BN lub NAT, jeśli uważasz, że są one ustawione nieprawidłowo.',
+        ],
+    ],
+
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Musisz ustanowić wynik na beatmapie, aby dodać do niej tag.',
         ],
     ],
 
@@ -65,7 +71,7 @@ return [
         'friends_only' => 'Ten użytkownik blokuje wiadomości od osób spoza listy znajomych.',
         'moderated' => 'Ten kanał jest obecnie w trybie tylko dla moderatorów.',
         'no_access' => 'Nie masz dostępu do tego kanału.',
-        'no_announce' => '',
+        'no_announce' => 'Nie posiadasz uprawnień do zamieszczania ogłoszeń.',
         'receive_friends_only' => 'Ten użytkownik może nie być w stanie odpowiedzieć, ponieważ blokujesz prywatne wiadomości od osób spoza listy znajomych.',
         'restricted' => 'Nie możesz wysyłać wiadomości po tym, jak twoje konto zostało uciszone, ograniczone lub zablokowane.',
         'silenced' => 'Nie możesz wysyłać wiadomości po tym, jak twoje konto zostało uciszone, ograniczone lub zablokowane.',
@@ -81,8 +87,8 @@ return [
     ],
 
     'contest' => [
-        'judging_not_active' => 'Ocenianie dla tego konkursu nie jest aktywne.',
-        'voting_over' => 'Nie możesz zmieniać swojego głosu po zakończeniu głosowania.',
+        'judging_not_active' => 'Faza oceniania prac w tym konkursie nie jest aktywna.',
+        'voting_over' => 'Nie możesz zmienić swojego głosu po zakończeniu głosowania.',
 
         'entry' => [
             'limit_reached' => 'Osiągnięto limit zgłoszeń dla tego konkursu',
@@ -170,12 +176,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Tylko właściciel pokoju może go zamknąć.',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Nie możesz przypiąć tego typu wyników",
-            'failed' => "Nie można przypiąć nieprzekazanego wyniku.",
+            'failed' => "Nie możesz przypiąć wyniku zakończonego porażką.",
             'not_owner' => 'Nie możesz przypiąć czyjegoś wyniku.',
             'too_many' => 'Przypięto zbyt wiele wyników.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "Jesteś już członkiem tego zespołu.",
+                'already_other_member' => "Jesteś już członkiem innego zespołu.",
+                'currently_applying' => 'Twoja prośba o dołączenie do drużyny oczekuje już na rozpatrzenie.',
+                'team_closed' => 'Ten zespół nie przyjmuje aktualnie próśb o dołączenie.',
+                'team_full' => "Ten zespół jest już pełny i nie może przyjąć więcej członków.",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "Nie możesz opuścić zespołu jako jego lider.",
+            'not_member' => 'Nie jesteś członkiem tego zespołu.',
+        ],
+        'store' => [
+            'require_supporter_tag' => 'Wymagany jest osu!supporter, aby stworzyć drużynę.',
         ],
     ],
 

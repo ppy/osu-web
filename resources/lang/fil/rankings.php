@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [
@@ -35,13 +35,13 @@ return [
 
     'type' => [
         'charts' => 'Mga Spotlight',
-        'country' => 'Bansa',
+        'country' => 'bansa',
         'daily_challenge' => '',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
-        'performance' => 'Performance',
-        'score' => 'Iskor',
-        'seasons' => 'Mga panahon',
+        'seasons' => 'mga panahon',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Ang season na ito ay nagpapatuloy pa rin (magkakaroon pa ng mga playlist na idaragdag).',
         'room_count' => 'Bilang ng playlist',
         'url' => 'Magpakita ng higit pang mga impormasyon sa season na iyon.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -60,8 +63,10 @@ return [
 
     'stat' => [
         'accuracy' => 'Accuracy',
-        'active_users' => 'Mga Aktib na User',
+        'active_users' => 'Mga Aktibong User',
         'country' => 'Bansa',
+        'division' => '',
+        'members' => '',
         'play_count' => 'Bilang ng Beses na Naglaro',
         'performance' => 'Performance',
         'total_score' => 'Kabuuang Puntos',

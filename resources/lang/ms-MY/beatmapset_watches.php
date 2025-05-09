@@ -5,25 +5,25 @@
 
 return [
     'index' => [
-        'description' => '',
-        'title_compact' => '',
+        'description' => 'Ini ialah perbincangan peta rentak yang anda ikuti. Anda akan diberitahu ketika terdapat hantaran atau pengemaskinian baharu.',
+        'title_compact' => 'senarai ikutan perbincangan peta rentak',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Peta rentak ikutan',
+            'unread' => 'Peta rentak dengan kegiatan baharu',
         ],
 
         'table' => [
-            'empty' => '',
-            'last_update' => '',
-            'open_issues' => '',
-            'state' => '',
-            'title' => '',
+            'empty' => 'Tiada perbincangan peta rentak diikuti.',
+            'last_update' => 'Pengemaskinian terakhir',
+            'open_issues' => 'Isu terbuka',
+            'state' => 'Keadaan',
+            'title' => 'Judul',
         ],
     ],
 
     'status' => [
-        'read' => '',
-        'unread' => '',
+        'read' => 'Dibaca',
+        'unread' => 'Belum dibaca',
     ],
 ];

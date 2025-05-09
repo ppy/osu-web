@@ -34,6 +34,11 @@ return [
         'title' => 'Ilmiannetaanko käyttäjän :username pisteet?',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'Ilmianna',
         'title' => 'Ilmiannetaanko :username?',

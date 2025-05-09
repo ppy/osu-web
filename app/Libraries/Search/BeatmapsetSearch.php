@@ -14,6 +14,7 @@ use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Follow;
 use App\Models\Solo;
+use App\Models\Tag;
 use App\Models\User;
 use Ds\Set;
 
@@ -60,10 +61,15 @@ class BeatmapsetSearch extends RecordSearch
                     ->should(['term' => ['_id' => ['value' => $this->params->queryString, 'boost' => 100]]])
                     ->should(QueryHelper::queryString($this->params->queryString, $partialMatchFields, 'or', 1 / count($terms)))
                     ->should(QueryHelper::queryString($this->params->queryString, [], 'and'))
+                    ->should([
+                        'nested' => [
+                            'path' => 'beatmaps',
+                            'query' => QueryHelper::queryString($this->params->queryString, ['beatmaps.top_tags'], 'or', 0.5 / count($terms)),
+                        ],
+                    ])
             );
         }
 
-        $this->addBlacklistFilter($query);
         $this->addBlockedUsersFilter($query);
         $this->addFeaturedArtistFilter($query);
         $this->addFeaturedArtistsFilter($query);
@@ -83,6 +89,7 @@ class BeatmapsetSearch extends RecordSearch
         $this->addPlayedFilter($query, $nested);
         $this->addRankFilter($nested);
         $this->addRecommendedFilter($nested);
+        $this->addTagsFilter($nested);
 
         $this->addSimpleFilters($query, $nested);
         $this->addCreatorFilter($query, $nested);
@@ -120,29 +127,6 @@ class BeatmapsetSearch extends RecordSearch
             ->with(['beatmaps' => function ($q) {
                 return $q->withMaxCombo();
             }])->get();
-    }
-
-    private function addBlacklistFilter($query)
-    {
-        static $fields = ['artist', 'source', 'tags'];
-        $params = [
-            'index' => $GLOBALS['cfg']['osu']['elasticsearch']['prefix'].'blacklist',
-            'id' => 'beatmapsets',
-            // can be changed to per-field blacklist as different fields should probably have different restrictions.
-            'path' => 'keywords',
-        ];
-
-        $bool = new BoolQuery();
-
-        foreach ($fields as $field) {
-            $bool->mustNot([
-                'terms' => [
-                    $field => $params,
-                ],
-            ]);
-        }
-
-        $query->filter($bool);
     }
 
     private function addBlockedUsersFilter($query)
@@ -306,7 +290,9 @@ class BeatmapsetSearch extends RecordSearch
         static $filters = [
             'accuracy' => ['field' => 'beatmaps.diff_overall', 'type' => 'range'],
             'ar' => ['field' => 'beatmaps.diff_approach', 'type' => 'range'],
-            'bpm' => ['field' => 'bpm', 'type' => 'range'],
+            'bpm' => ['field' => 'beatmaps.bpm', 'type' => 'range'],
+            'countNormal' => ['field' => 'beatmaps.countNormal', 'type' => 'range'],
+            'countSlider' => ['field' => 'beatmaps.countSlider', 'type' => 'range'],
             'created' => ['field' => 'submit_date', 'type' => 'range'],
             'cs' => ['field' => 'beatmaps.diff_size', 'type' => 'range'],
             'difficultyRating' => ['field' => 'beatmaps.difficultyrating', 'type' => 'range'],
@@ -418,6 +404,34 @@ class BeatmapsetSearch extends RecordSearch
         $subQuery->should(QueryHelper::queryString($value, $searchFields, 'and'));
 
         $query->must($subQuery);
+    }
+
+    private function addTagsFilter(BoolQuery $query): void
+    {
+        $tags = $this->params->tags;
+        if ($tags === null) {
+            return;
+        }
+
+        // workaround multi tag parsing when there's an empty tag.
+        $tags = array_reject_null($tags);
+
+        $tagMap = [];
+        foreach ($tags as $tag) {
+            $key = mb_strtolower(mb_trim($tag, '"'));
+            $tagMap[$key] = $tag;
+        }
+
+        $exactTags = Tag::whereIn('name', array_keys($tagMap))->limit(10)->pluck('name');
+
+        foreach ($exactTags as $tag) {
+            $query->filter(['term' => ['beatmaps.top_tags.raw' => $tag]]);
+            unset($tagMap[mb_strtolower($tag)]);
+        }
+
+        foreach (array_values($tagMap) as $tag) {
+            $query->filter(QueryHelper::queryString($tag, ['beatmaps.top_tags'], 'and'));
+        }
     }
 
     private function getPlayedBeatmapIds(?array $rank = null)

@@ -20,7 +20,7 @@ return [
             'new_confirmation' => 'conferma email',
             'title' => 'Email',
             'locked' => [
-                '_' => 'Per favore contatta il :accounts se hai bisogno di aggiornare il tuo indirizzo email.',
+                '_' => 'Per favore contatta il :accounts se devi aggiornare il tuo indirizzo email.',
                 'accounts' => 'team di supporto account',
             ],
         ],

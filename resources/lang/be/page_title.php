@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => 'рэйтынг',
         ],
+        'teams_controller' => [
+            '_' => '',
+            'create' => '',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'турніры',
         ],
@@ -129,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'крама',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

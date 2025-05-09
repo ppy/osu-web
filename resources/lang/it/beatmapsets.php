@@ -7,7 +7,7 @@ return [
     'availability' => [
         'disabled' => 'Questa beatmap non è al momento disponibile per il download.',
         'parts-removed' => 'Porzioni di questa beatmap sono state rimosse su richiesta del creatore o di un titolare di copyright di terze parti.',
-        'more-info' => 'Controlla qui per maggiori informazioni.',
+        'more-info' => 'Controlla qui per maggiori dettagli.',
         'rule_violation' => 'Alcuni elementi contenuti in questa mappa sono stati rimossi dopo che sono stati giudicati non idonei per l\'uso in osu!.',
     ],
 
@@ -41,8 +41,8 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'I proponenti in prova non possono nominare più set di regole.',
+        'full_nomination_required' => 'Devi essere un proponente a pieno titolo per effettuare la nomina definitiva di un set di regole.',
         'hybrid_requires_modes' => 'Un beatmapset ibrido richiede che venga selezionata almeno una modalità di gioco per poterla nominare.',
         'incorrect_mode' => 'Non hai il permesso di nominare per la modalità: :mode',
         'invalid_limited_nomination' => 'Questa beatmap contiene nomine non valide e non può essere qualificata in questo stato.',
@@ -80,7 +80,7 @@ return [
             'by_artist' => 'di :artist',
             'favourite' => 'Mi piace questa beatmap',
             'favourite_login' => 'Accedi per aggiungere questa beatmap ai preferiti',
-            'logged-out' => 'hai bisogno di accedere per scaricare le beatmap!',
+            'logged-out' => 'devi accedere se vuoi scaricare le beatmap!',
             'mapped_by' => 'mappata da :mapper',
             'mapped_by_guest' => 'difficoltà guest di :mapper',
             'unfavourite' => 'Non mi piace questa beatmap',
@@ -94,7 +94,7 @@ return [
             ],
 
             'login_required' => [
-                'bottom' => 'per accedere a maggiori funzionalità',
+                'bottom' => 'per vedere altre funzioni',
                 'top' => 'Accedi',
             ],
         ],
@@ -140,6 +140,7 @@ return [
             'description' => 'Descrizione',
             'genre' => 'Genere',
             'language' => 'Lingua',
+            'mapper_tags' => '',
             'no_scores' => 'Dati ancora in elaborazione...',
             'nominators' => 'Nominatori',
             'nsfw' => 'Contenuto esplicito',
@@ -148,7 +149,7 @@ return [
             'source' => 'Sorgente',
             'storyboard' => 'Questa beatmap contiene storyboard',
             'success-rate' => 'Rateo di Successo',
-            'tags' => 'Tag',
+            'user_tags' => '',
             'video' => 'Questa beatmap contiene video',
         ],
 
@@ -171,6 +172,7 @@ return [
             'global' => 'Classifica Globale',
             'supporter-link' => 'Clicca <a href=":link">qui</a> per vedere tutte le fantastiche funzionalità che otterrai!',
             'supporter-only' => 'Devi essere un osu!supporter per vedere la classifica nazionale, degli amici, o con mod specifiche!',
+            'team' => 'Classifica Squadra',
             'title' => 'Classifica',
 
             'headers' => [
@@ -188,10 +190,11 @@ return [
             ],
 
             'no_scores' => [
-                'country' => 'Nessuno dal tuo paese ha fatto un punteggio in questa mappa!',
-                'friend' => 'Nessuno dei tuoi amici ha ancora fatto un punteggio su questa mappa!',
+                'country' => 'Nessuno dal tuo paese ha un punteggio in questa mappa!',
+                'friend' => 'Nessuno dei tuoi amici ha un punteggio su questa mappa!',
                 'global' => 'Ancora nessun punteggio. Perché non provi a farne uno?',
                 'loading' => 'Caricamento punteggi...',
+                'team' => 'Nessuno della tua squadra ha un punteggio su questa mappa!',
                 'unranked' => 'Beatmap non classificata.',
             ],
             'score' => [

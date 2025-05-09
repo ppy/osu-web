@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => 'مناقشة الخريطة',
     ],
+
+    'store' => [
+        'too_many' => '',
+    ],
 ];

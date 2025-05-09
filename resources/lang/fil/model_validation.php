@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => '',
+        'used' => '',
+        'word_not_allowed' => '',
+
+        'attributes' => [
+            'default_ruleset_id' => '',
+            'is_open' => '',
+            'name' => '',
+            'short_name' => '',
+            'url' => '',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Ang password ay hindi dapat naglalaman ng username.',
         'email_already_used' => 'Nagamit na ang email address.',
@@ -176,7 +190,8 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Hindi pwede i-report ang mga Ranked beatmaps',
         'not_in_channel' => 'Wala ka sa channel na ito.',
-        'reason_not_valid' => 'Ang rason na:reason ay hindi akma sa ganitong uri ng report.',
+        'in_team' => '',
+        'reason_not_valid' => 'Ang rason na :reason ay hindi akma sa ganitong uri ng report.',
         'self' => "Hindi mo maaaring i-report ang sarili mo!",
     ],
 

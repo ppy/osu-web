@@ -17,6 +17,7 @@ return [
     ],
 
     'show' => [
+        'created_by' => 'od :author',
         'download' => 'Stáhnout',
         'item' => [
             'cleared' => 'splněno',
@@ -31,7 +32,7 @@ return [
     'mode' => [
         'artist' => 'Interpret/Album',
         'chart' => 'V záři reflektorů',
-        'featured' => 'Featured Artist',
+        'featured' => 'Oficiální umělec',
         'loved' => 'Projekt Oblíbené',
         'standard' => 'Klasické',
         'theme' => 'Tématické',

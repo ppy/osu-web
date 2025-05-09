@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Valsspelen',
-            'multiple_accounts' => 'Meerdere accounts gebruiken',
+            'inappropriate_chat' => '',
             'insults' => 'Beledigen van mij / anderen',
-            'spam' => 'Spammen',
-            'unwanted_content' => 'Linken van ongepaste inhoud',
+            'multiple_accounts' => 'Meerdere accounts gebruiken',
             'nonsense' => 'Nonsense',
             'other' => 'Anders (type hieronder)',
+            'spam' => 'Spammen',
+            'unwanted_content' => 'Linken van ongepaste inhoud',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Globale rank voor :mode',
             'global_simple' => 'Wereldwijde Ranking',
             'highest' => 'Hoogste rank: :rank op :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Precisie',

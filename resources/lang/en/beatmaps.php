@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'Invalid ruleset specified.',
+
+    'change_owner' => [
+        'too_many' => 'Too many guest mappers.',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Failed updating vote',

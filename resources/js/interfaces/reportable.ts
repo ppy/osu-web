@@ -12,6 +12,7 @@ export type ReportableType =
   | 'score_best_osu'
   | 'score_best_taiko'
   | 'solo_score'
+  | 'team'
   | 'user';
 
 export default interface Reportable {

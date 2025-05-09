@@ -23,7 +23,8 @@ class ScoreTokenFactory extends Factory
             'build_id' => Build::factory(),
             'user_id' => User::factory(),
 
-            // depends on beatmap_id
+            // depend on beatmap_id
+            'beatmap_hash' => fn (array $attr) => Beatmap::find($attr['beatmap_id'])->checksum,
             'ruleset_id' => fn (array $attr) => Beatmap::find($attr['beatmap_id'])->playmode,
         ];
     }

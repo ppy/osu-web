@@ -60,6 +60,12 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'Нельга адправіць паведамленне карыстальніку, які заблакаваў вас або якога заблакавалі вы.',
         'friends_only' => 'Карыстальнік заблакаваў паведамленні ад людзей, якіх няма ў спісе сяброў.',
@@ -170,12 +176,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Немагчыма замацаваць гэты тып выніку",
             'failed' => "Нельга замацаваць гэты вынік.",
             'not_owner' => 'Толькі ўладальнік выніку можа яго замацаваць.',
             'too_many' => 'Замацавана вельмі шмат вынікаў.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "",
+                'already_other_member' => "",
+                'currently_applying' => '',
+                'team_closed' => '',
+                'team_full' => "",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "",
+            'not_member' => '',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

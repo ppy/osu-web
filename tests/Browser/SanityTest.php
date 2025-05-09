@@ -44,6 +44,7 @@ use App\Models\Notification;
 use App\Models\Score;
 use App\Models\Season;
 use App\Models\Store;
+use App\Models\Team;
 use App\Models\Tournament;
 use App\Models\UpdateStream;
 use App\Models\User;
@@ -87,7 +88,7 @@ class SanityTest extends DuskTestCase
         $nukingOrder = array_reverse(self::$scaffolding);
 
         foreach ($nukingOrder as $name => $scaffold) {
-            static::output("TEARDOWN: $name (".get_class($scaffold).")\n");
+            static::echo("TEARDOWN: $name (".get_class($scaffold).")\n");
 
             if ($name === 'order' || $name === 'invoice') {
                 // we need to perform custom deletion for orders to bypass their immutability protections
@@ -183,7 +184,7 @@ class SanityTest extends DuskTestCase
 
         // factories for /store/*
         self::$scaffolding['product'] = Store\Product::factory()->masterTshirt()->create();
-        self::$scaffolding['order'] = Store\Order::factory()->checkout()->create([
+        self::$scaffolding['order'] = Store\Order::factory()->paymentApproved()->create([
             'user_id' => self::$scaffolding['user'],
         ]);
         self::$scaffolding['checkout'] = new ScaffoldDummy(self::$scaffolding['order']->getKey());
@@ -274,6 +275,16 @@ class SanityTest extends DuskTestCase
 
         self::$scaffolding['daily_challenge_room'] = Room::factory()->create(['category' => 'daily_challenge']);
         PlaylistItem::factory()->create(['room_id' => self::$scaffolding['daily_challenge_room']]);
+
+        self::$scaffolding['team'] = Team::factory()->create(['leader_id' => self::$scaffolding['user']]);
+    }
+
+    private static function echo($text): void
+    {
+        // apparently there's no phpunit api to do this...
+        if (in_array('--verbose', $_SERVER['argv'], true)) {
+            echo $text;
+        }
     }
 
     private static function filterLog(array $log)
@@ -325,14 +336,6 @@ class SanityTest extends DuskTestCase
         return SessionVerification\State::fromSession($session)->key;
     }
 
-    private static function output($text)
-    {
-        // apparently there's no phpunit api to do this...
-        if (in_array('--verbose', $_SERVER['argv'], true)) {
-            echo $text;
-        }
-    }
-
     public static function routesDataProvider()
     {
         static $bypass = [
@@ -356,7 +359,7 @@ class SanityTest extends DuskTestCase
 
             $routeName = $route->getName() ?? $uri;
             foreach ($types as $type) {
-                $data[] = ["{$routeName}:{$type}", $type, $uri];
+                $data["{$routeName}:{$type}"] = [$type, $uri];
             }
         }
 
@@ -366,11 +369,11 @@ class SanityTest extends DuskTestCase
     /**
      * @dataProvider routesDataProvider
      */
-    public function testPageLoadCheck($testName, $type, $uri)
+    public function testPageLoadCheck($type, $uri)
     {
         $route = app()->routes->get('GET')[$uri];
 
-        static::output("\n  [{$type}] /{$route->uri} (".(presence($route->getName()) ?? '???').')');
+        static::echo("\n  [{$type}] /{$route->uri} (".(presence($route->getName()) ?? '???').')');
 
         if ($route->getName() === null) {
             $this->markTestSkipped("Route name missing ({$route->uri})");
@@ -409,7 +412,7 @@ class SanityTest extends DuskTestCase
 
         $this->checkJavascriptErrors($browser, $route);
 
-        static::output("\e[0;32m    ✓\e[0m\n");
+        static::echo("\e[0;32m    ✓\e[0m\n");
     }
 
     private function bindParams(LaravelRoute $route)
@@ -475,20 +478,20 @@ class SanityTest extends DuskTestCase
 
         $params = [];
         $paramNames = $route->parameterNames();
-        static::output("\n");
+        static::echo("\n");
 
         // Go through each parameter referenced in the route and either use the value from $paramOverrides (if present) or use the scaffolding prepared in setUp()
         foreach ($paramNames as $paramName) {
-            static::output("    {$paramName} => ");
+            static::echo("    {$paramName} => ");
             if (isset($paramOverrides[$route->getName()]) && isset($paramOverrides[$route->getName()][$paramName])) {
                 $params[$paramName] = $paramOverrides[$route->getName()][$paramName];
-                static::output($params[$paramName]." \e[30;1m(override)\e[0m\n");
+                static::echo($params[$paramName]." \e[30;1m(override)\e[0m\n");
             } else {
                 if (isset(self::$scaffolding[$paramName])) {
                     $params[$paramName] = self::$scaffolding[$paramName]->getRouteKey();
-                    static::output($params[$paramName]."\n");
+                    static::echo($params[$paramName]."\n");
                 } else {
-                    static::output("\e[30;1m¯\_(ツ)_/¯\e[0m\n");
+                    static::echo("\e[30;1m¯\_(ツ)_/¯\e[0m\n");
                 }
             }
         }
@@ -497,7 +500,7 @@ class SanityTest extends DuskTestCase
             foreach ($paramOverrides[$route->getName()] as $paramName => $paramValue) {
                 if (!in_array($paramName, $paramNames, true)) {
                     $params[$paramName] = $paramValue;
-                    static::output("    {$paramName} => {$paramValue} \e[30;1m(extra param from override)\e[0m\n");
+                    static::echo("    {$paramName} => {$paramValue} \e[30;1m(extra param from override)\e[0m\n");
                 }
             }
         }
@@ -512,9 +515,9 @@ class SanityTest extends DuskTestCase
         $filename = "tests/Browser/screenshots/fail-{$route->getName()}-{$type}.png";
         $browser->driver->takeScreenshot($filename);
 
-        static::output('  '.$err->getMessage()."\n");
-        static::output("  screenshot saved to: {$filename}\n");
-        static::output("\e[1;37;41m\e[2K    x ({$type})\e[0m\n");
+        static::echo('  '.$err->getMessage()."\n");
+        static::echo("  screenshot saved to: {$filename}\n");
+        static::echo("\e[1;37;41m\e[2K    x ({$type})\e[0m\n");
     }
 
     private function checkAdminPermission(Browser $browser, LaravelRoute $route)

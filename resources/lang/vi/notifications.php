@@ -20,17 +20,19 @@ return [
         'channel' => 'trò chuyện',
         'forum_topic' => 'diễn đàn',
         'news_post' => 'tin tức',
+        'team' => 'đội',
         'user' => 'hồ sơ',
     ],
 
     'filters' => [
         '_' => 'tất cả',
-        'user' => 'trang cá nhân',
         'beatmapset' => 'beatmap',
-        'forum_topic' => 'diễn đàn',
-        'news_post' => 'tin tức',
         'build' => 'xây dựng',
         'channel' => 'chat',
+        'forum_topic' => 'diễn đàn',
+        'news_post' => 'tin tức',
+        'team' => 'đội',
+        'user' => 'trang cá nhân',
     ],
 
     'item' => [
@@ -160,6 +162,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => 'Yêu cầu gia nhập đội',
+
+                'team_application_accept' => "Bạn vừa trở thành thành viên của đội :title",
+                'team_application_accept_compact' => "Bây giờ bạn là thành viên của đội :title",
+                'team_application_reject' => 'Yêu cầu gia nhập đội :title của bạn đã bị từ chối',
+                'team_application_reject_compact' => 'Yêu cầu gia nhập đội :title của bạn đã bị từ chối',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Beatmap mới',
@@ -242,6 +255,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Có câu trả lời mới trong ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Bây giờ bạn là thành viên của đội :title",
+                'team_application_reject' => 'Yêu cầu gia nhập đội :title của bạn đã bị từ chối',
             ],
         ],
 

@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [
@@ -37,11 +37,11 @@ return [
         'charts' => 'Spotlights',
         'country' => 'Χώρας',
         'daily_challenge' => '',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
-        'performance' => 'Επίδοσης',
-        'score' => 'Σκορ',
         'seasons' => 'εποχές',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Αυτή η σεζόν βρίσκεται ακόμα σε εξέλιξη (θα υπάρξουν περισσότερες λίστες αναπαραγωγής).',
         'room_count' => 'Πλήθος λίστας αναπαραγωγής',
         'url' => 'Εμφάνιση περισσότερων πληροφοριών σε εκείνη τη σεζόν.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,8 @@ return [
         'accuracy' => 'Ακρίβεια',
         'active_users' => 'Ενεργοί Χρήστες',
         'country' => 'Χώρα',
+        'division' => '',
+        'members' => '',
         'play_count' => 'Αριθμός Προσπαθειών',
         'performance' => 'Eπίδοση',
         'total_score' => 'Συνολικό Σκορ',

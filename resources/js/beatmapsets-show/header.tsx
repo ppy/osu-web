@@ -1,19 +1,20 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import UserLinkList from 'beatmap-discussions/user-link-list';
 import BeatmapsetBadge from 'components/beatmapset-badge';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import BeatmapsetMapping from 'components/beatmapset-mapping';
 import BigButton from 'components/big-button';
 import StringWithComponent from 'components/string-with-component';
-import UserLink from 'components/user-link';
 import { createTooltip } from 'components/user-list-popup';
 import { route } from 'laroute';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { downloadLimited, getArtist, getTitle, toggleFavourite } from 'utils/beatmapset-helper';
+import { hasGuestOwners } from 'utils/beatmap-helper';
+import { downloadLimited, getArtist, getTitle, makeSearchQueryOption, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
@@ -145,7 +146,7 @@ export default class Header extends React.Component<Props> {
           <span className='beatmapset-header__details-text beatmapset-header__details-text--title'>
             <a
               className='beatmapset-header__details-text-link'
-              href={route('beatmapsets.index', { q: `title=""${getTitle(this.controller.beatmapset)}""` })}
+              href={route('beatmapsets.index', { q: makeSearchQueryOption('title', getTitle(this.controller.beatmapset)) })}
             >
               {getTitle(this.controller.beatmapset)}
             </a>
@@ -162,7 +163,7 @@ export default class Header extends React.Component<Props> {
           <span className='beatmapset-header__details-text beatmapset-header__details-text--artist'>
             <a
               className='beatmapset-header__details-text-link'
-              href={route('beatmapsets.index', { q: `artist=""${getArtist(this.controller.beatmapset)}""` })}
+              href={route('beatmapsets.index', { q: makeSearchQueryOption('artist', getArtist(this.controller.beatmapset)) })}
             >
               {getArtist(this.controller.beatmapset)}
             </a>
@@ -290,11 +291,11 @@ export default class Header extends React.Component<Props> {
       <span className='beatmapset-header__diff-name'>
         {beatmap.version}
 
-        {beatmap.user_id !== this.controller.beatmapset.user_id && (
+        {hasGuestOwners(beatmap, this.controller.beatmapset) && (
           <span className='beatmapset-header__diff-extra'>
             <StringWithComponent
               mappings={{
-                mapper: <UserLink user={this.controller.mapper(beatmap)} />,
+                mapper: <UserLinkList users={this.controller.owners(beatmap)} />,
               }}
               pattern={trans('beatmapsets.show.details.mapped_by')}
             />

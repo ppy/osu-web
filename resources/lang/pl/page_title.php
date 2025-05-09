@@ -107,11 +107,18 @@ return [
         'seasons_controller' => [
             '_' => 'rankingi',
         ],
+        'teams_controller' => [
+            '_' => 'zespoły',
+            'create' => 'Utwórz drużynę',
+            'edit' => 'Ustawienia drużyny',
+            'leaderboard' => 'Tabela wyników drużyny',
+            'show' => 'informacje o zespole',
+        ],
         'tournaments_controller' => [
             '_' => 'turnieje',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'ustawienia okładki użytkownika',
         ],
         'users_controller' => [
             '_' => 'informacje o użytkowniku',
@@ -129,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'sklep',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'Członkowie drużyny',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

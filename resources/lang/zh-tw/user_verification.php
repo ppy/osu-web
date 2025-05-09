@@ -5,7 +5,7 @@
 
 return [
     'box' => [
-        'sent' => '一封包含驗證碼的電子郵件已經發送到 :mail ，請輸入該驗證碼。',
+        'sent' => '一封包含驗證碼的電子郵件已經傳送到 :mail ，請輸入該驗證碼。',
         'title' => '帳號驗證',
         'verifying' => '驗證中...',
         'issuing' => '正在產生新的驗證碼',
@@ -13,7 +13,7 @@ return [
         'info' => [
             'check_spam' => "如果找不到電子郵件，請檢查垃圾郵件箱。",
             'recover' => "如果您無法登入電子郵件或忘記電子郵件, 請點選 :link。",
-            'recover_link' => '電子郵件復原點擊此處',
+            'recover_link' => '由此找回電子郵件',
             'reissue' => '也可以 :reissue_link 或者 :logout_link.',
             'reissue_link' => '重發驗證碼',
             'logout_link' => '登出',

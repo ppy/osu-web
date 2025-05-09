@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Realmente restaurar tópico?',
         'deleted' => 'tópico excluído',
         'go_to_latest' => 'ver a ultima publicação',
+        'go_to_unread' => 'ver primeira publicação não lida',
         'has_replied' => 'Você respondeu a este tópico',
         'in_forum' => 'em :forum',
         'latest_post' => ':when por :user',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'Marcador "resolvido" removido',
             'to_1' => 'Adicionar marcador "resolvido"',
             'to_1_done' => 'Marcador "resolvido" adicionado',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => 'Remover marcador "osu!lazer"',
+            'to_0_done' => 'Marcador "osu!lazer" removido',
+            'to_1' => 'Adicionar marcador "osu!lazer"',
+            'to_1_done' => 'Marcador "osu!lazer" adicionado',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => 'Remova marcador "osu!stable"',
+            'to_0_done' => 'Marcador "osu!stable" removido',
+            'to_1' => 'Adicionar marcador "osu!stable"',
+            'to_1_done' => 'Marcador "osu!stable" adicionado',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => 'Remova o marcador "osu!web"',
+            'to_0_done' => 'Marcador "osu!web" removido',
+            'to_1' => 'Adicionar marcador "osu!web"',
+            'to_1_done' => 'Marcador "osu!web" adicionado',
         ],
 
         'lock' => [

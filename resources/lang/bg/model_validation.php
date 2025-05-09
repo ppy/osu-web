@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => '',
+        'used' => '',
+        'word_not_allowed' => '',
+
+        'attributes' => [
+            'default_ruleset_id' => '',
+            'is_open' => 'Заявки за отбора',
+            'name' => 'Име',
+            'short_name' => 'Кратко име',
+            'url' => 'Връзка',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Паролата не може да съдържа в себе си потребителското име.',
         'email_already_used' => 'Този имейл адрес вече се използва.',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Класирани бийтмапове не могат да бъдат докладвани',
         'not_in_channel' => 'Вие не сте в този канал.',
+        'in_team' => '',
         'reason_not_valid' => ':reason е невалидна причина за този вид доклад.',
         'self' => "Не може да докладвате себе си!",
     ],

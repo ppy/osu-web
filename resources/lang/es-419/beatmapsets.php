@@ -140,6 +140,7 @@ return [
             'description' => 'Descripción',
             'genre' => 'Género',
             'language' => 'Idioma',
+            'mapper_tags' => '',
             'no_scores' => 'Los datos todavía están siendo calculados...',
             'nominators' => 'Nominadores',
             'nsfw' => 'Contenido explícito',
@@ -148,7 +149,7 @@ return [
             'source' => 'Fuente',
             'storyboard' => 'Este mapa contiene storyboard',
             'success-rate' => 'Tasa de éxito',
-            'tags' => 'Etiquetas',
+            'user_tags' => '',
             'video' => 'Este mapa contiene video',
         ],
 
@@ -171,6 +172,7 @@ return [
             'global' => 'Clasificación global',
             'supporter-link' => '¡Haz clic <a href=":link">aquí</a> para ver todas las ventajas que ofrece!',
             'supporter-only' => '¡Necesitas ser osu!supporter para acceder a las clasificaciones nacionales y entre amigos!',
+            'team' => 'Clasificación por equipos',
             'title' => 'Tabla de puntuaciones',
 
             'headers' => [
@@ -192,6 +194,7 @@ return [
                 'friend' => '¡Ninguno de tus amigos ha establecido una puntuación en este mapa aún!',
                 'global' => 'Aún no hay puntuaciones. ¿Tal vez deberías intentar establecer alguna?',
                 'loading' => 'Cargando puntuaciones...',
+                'team' => '¡Nadie de tu equipo ha establecido una puntuación en este mapa aún!',
                 'unranked' => 'Mapa no clasificado.',
             ],
             'score' => [

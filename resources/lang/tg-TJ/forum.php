@@ -80,6 +80,7 @@ return [
         'confirm_restore' => '',
         'deleted' => '',
         'go_to_latest' => '',
+        'go_to_unread' => '',
         'has_replied' => '',
         'in_forum' => '',
         'latest_post' => '',
@@ -288,6 +289,27 @@ return [
         ],
 
         'issue_tag_resolved' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
             'to_0' => '',
             'to_0_done' => '',
             'to_1' => '',

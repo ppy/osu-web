@@ -107,11 +107,18 @@ return [
         'seasons_controller' => [
             '_' => 'clasificaciones',
         ],
+        'teams_controller' => [
+            '_' => 'equipos',
+            'create' => 'crear equipo',
+            'edit' => 'configuración del equipo',
+            'leaderboard' => 'tabla de clasificación del equipo',
+            'show' => 'información del equipo',
+        ],
         'tournaments_controller' => [
             '_' => 'torneos',
         ],
         'user_cover_presets_controller' => [
-            '_' => 'preselecciones de portadas de usuario',
+            '_' => 'portadas preestablecidas',
         ],
         'users_controller' => [
             '_' => 'información del jugador',
@@ -129,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'tienda',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'miembros del equipo',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

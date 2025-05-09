@@ -3,14 +3,10 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('rankings.index', [
-    'country' => null,
     'hasFilter' => false,
     'hasMode' => false,
-    'hasPager' => false,
-    'hasScores' => false,
-    'spotlight' => null,
+    'params' => ['type' => 'seasons'],
     'titlePrepend' => osu_trans('rankings.type.seasons').': '.$season->name,
-    'type' => 'seasons',
 ])
 
 @if ($season->url !== null)
@@ -32,6 +28,10 @@
 
 @section('ranking-header')
     <div class="js-react--seasons-show"></div>
+@endsection
+
+@section('scores')
+    @include('seasons._rankings_table', compact('divisions', 'scores'))
 @endsection
 
 @section ("script")

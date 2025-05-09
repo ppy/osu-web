@@ -140,6 +140,7 @@ return [
             'description' => 'Opis',
             'genre' => 'Žanr',
             'language' => 'Jezik',
+            'mapper_tags' => '',
             'no_scores' => 'Podaci se još kalkuliraju...',
             'nominators' => 'Nominatori',
             'nsfw' => 'Eksplicitni sadržaj',
@@ -148,7 +149,7 @@ return [
             'source' => 'Izvor',
             'storyboard' => 'Ova beatmapa sadrži storyboard',
             'success-rate' => 'Stopa uspjeha',
-            'tags' => 'Oznake',
+            'user_tags' => '',
             'video' => 'Ova beatmapa sadrži video',
         ],
 
@@ -171,6 +172,7 @@ return [
             'global' => 'Globalni rang',
             'supporter-link' => 'Klikni <a href=":link">ovdje</a> da vidiš sve otmjene značajke koje dobivaš!',
             'supporter-only' => 'Moraš biti osu!supporter da bi pristupio/la ljestvicama specifičnim za prijatelje, državu ili mod!',
+            'team' => '',
             'title' => 'Scoreboard',
 
             'headers' => [
@@ -192,6 +194,7 @@ return [
                 'friend' => 'Nitko od tvojih prijatelja još nije postavio rezultat na ovoj mapi!',
                 'global' => 'Još nema rezultata. Možda bi trebao/la pokušati postaviti jednog?',
                 'loading' => 'Učitavanje rezultata...',
+                'team' => '',
                 'unranked' => 'Nerangirane beatmape.',
             ],
             'score' => [

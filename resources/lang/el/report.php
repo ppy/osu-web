@@ -34,6 +34,11 @@ return [
         'title' => 'Αναφορά βαθμολογίας του :username;',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'Αναφορά',
         'title' => 'Αναφορά :username;',

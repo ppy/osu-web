@@ -21,7 +21,7 @@ interface ScoreCurrentUserAttributesJson {
 interface Match {
   pass: boolean;
   slot: number;
-  team: number;
+  team: 'blue' | 'none' | 'red';
 }
 
 interface PpWeight {
@@ -59,10 +59,12 @@ interface ScoreJsonDefaultAttributes {
   replay: boolean;
   score: number;
   statistics: Record<ScoreStatisticsAttribute, number>;
-  type: 'solo_score' | `score_best_${Ruleset}` | `score_${Ruleset}`;
+  type: 'legacy_match_score' | 'solo_score' | `score_best_${Ruleset}` | `score_${Ruleset}`;
   user_id: number;
 }
 
 type ScoreJson = ScoreJsonDefaultAttributes & ScoreJsonDefaultIncludes & Partial<ScoreJsonAvailableIncludes>;
 
 export default ScoreJson;
+
+export type LegacyMatchScoreJson = ScoreJson & Required<Pick<ScoreJson, 'match'>>;

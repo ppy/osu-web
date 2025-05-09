@@ -5,156 +5,157 @@
 
 return [
     'availability' => [
-        'disabled' => 'Beatmap ini tidak tersedia untuk muat turun ketika ini.',
-        'parts-removed' => 'Beberapa bahagian beatmap ini telah dibuang atas permintaan pencipta atau pemegang pihak ketiga.',
-        'more-info' => 'Periksa sini untuk lebih maklumat.',
-        'rule_violation' => 'Beberapa aset dalam peta ini telah dibuang selepas dipertimbangkan sebagai tidak sesuai untuk kegunaan dalam osu!.',
+        'disabled' => 'Peta rentak ini kini tidak tersedia untuk dimuat turun.',
+        'parts-removed' => 'Sebahagian peta rentak ini telah dipadam atas permintaan pencipta atau pemegang hak pihak ketiga.',
+        'more-info' => 'Semak sini untuk maklumat lanjut.',
+        'rule_violation' => 'Beberapa aset dalam peta ini telah dipadam setelah dipertimbangkan tidak sesuai digunakan dalam osu!.',
     ],
 
     'cover' => [
-        'deleted' => 'Beatmap yang dipadam',
+        'deleted' => 'Peta rentak yang dipadam',
     ],
 
     'download' => [
-        'limit_exceeded' => 'Sabar, main yang dah ada dulu.',
-        'no_mirrors' => '',
+        'limit_exceeded' => 'Sabar, main lagi dulu.',
+        'no_mirrors' => 'Pelayan muat turun tidak tersedia.',
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Artis yang Ditampilkan',
+        'label' => 'Artis Sorotan',
     ],
 
     'index' => [
-        'title' => 'Senarai Beatmap',
-        'guest_title' => 'Beatmap',
+        'title' => 'Senarai Peta Rentak',
+        'guest_title' => 'Peta Rentak',
     ],
 
     'panel' => [
-        'empty' => 'tiada beatmap',
+        'empty' => 'tiada peta rentak',
 
         'download' => [
             'all' => 'muat turun',
-            'video' => 'muat turun berserta video',
+            'video' => 'muat turun dengan video',
             'no_video' => 'muat turun tanpa video',
             'direct' => 'buka di osu!direct',
         ],
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => 'Pencalon percubaan tidak boleh mencalonkan banyak set peraturan.',
-        'full_nomination_required' => 'Anda mesti menjadi pencalon penuh untuk melakukan pencalonan terakhir sesebuah set peraturan.',
-        'hybrid_requires_modes' => 'Satu beatmap hibrid memerlukan anda untuk memilih sekurang-kurangnya satu mod permainan untuk pencalonan.',
-        'incorrect_mode' => 'Anda tiada kebenaran untuk mencalonkan mod :mode',
-        'invalid_limited_nomination' => 'Beatmap ini mempunyai pencalonan tidak sah dan tidak boleh layak dalam keadaan ini.',
-        'invalid_ruleset' => 'Pencalonan ini mempunyai set peraturan tidak sah.',
-        'too_many' => 'Keperluan pencalonan telah dikabulkan.',
-        'too_many_non_main_ruleset' => '',
+        'bng_limited_too_many_rulesets' => 'Pencalon percubaan tidak boleh mencalonkan lebih daripada satu ruleset.',
+        'full_nomination_required' => 'Anda mesti menjadi pencalon penuh untuk melakukan pencalonan terakhir sesebuah ruleset.',
+        'hybrid_requires_modes' => 'Peta rentak kacukan memerlukan anda untuk memilih sekurang-kurangnya satu mod permainan untuk dicalonkan.',
+        'incorrect_mode' => 'Anda tidak diizinkan mencalonkan untuk mod: :mode',
+        'invalid_limited_nomination' => 'Peta rentak ini mempunyai pencalonan tidak sah dan tidak boleh dilayakkan dalam keadaan ini.',
+        'invalid_ruleset' => 'Pencalonan ini mempunyai ruleset tidak sah.',
+        'too_many' => 'Keperluan pencalonan telah dipenuhi.',
+        'too_many_non_main_ruleset' => 'Keperluan pencalonan ruleset bukan utama telah dipenuhi.',
 
         'dialog' => [
-            'confirmation' => 'Anda pasti mahu mencalonkan beatmap ini?',
-            'different_nominator_warning' => '',
-            'header' => 'Calonkan Beatmap',
-            'hybrid_warning' => '',
-            'current_main_ruleset' => '',
-            'which_modes' => 'Calonkan untuk mod apa?',
+            'confirmation' => 'Adakah anda pasti ingin mencalonkan peta rentak ini?',
+            'different_nominator_warning' => 'Pelayakan peta rentak ini dengan pencalon berbeza akan mengeset semula giliran kelayakkannya.',
+            'header' => 'Calonkan Peta Rentak',
+            'hybrid_warning' => 'catatan: anda hanya boleh mencalon sekali jadi sila pastikan anda mencalon bagi semua mod mainan yang dikehendaki',
+            'current_main_ruleset' => 'Ruleset utama semasa: :ruleset',
+            'which_modes' => 'Mod yang mana dicalonkan?',
         ],
     ],
 
     'nsfw_badge' => [
-        'label' => 'Sensitif',
+        'label' => 'Tidak senonoh',
     ],
 
     'show' => [
         'discussion' => 'Perbincangan',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Lihat gambar kulit ukuran penuh',
         ],
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Peta rentak ini telah dipadam.',
+            'message' => '(hanya moderator boleh lihat)',
         ],
 
         'details' => [
-            'by_artist' => '',
-            'favourite' => '',
-            'favourite_login' => '',
-            'logged-out' => '',
-            'mapped_by' => '',
-            'mapped_by_guest' => '',
-            'unfavourite' => '',
-            'updated_timeago' => '',
+            'by_artist' => 'oleh :artist',
+            'favourite' => 'suka peta rentak ini',
+            'favourite_login' => 'daftar masuk untuk menyukai peta rentak ini',
+            'logged-out' => 'anda perlu mendaftar masuk sebelum memuat turun peta rentak!',
+            'mapped_by' => 'petaan :mapper',
+            'mapped_by_guest' => 'kesukaran tamu oleh :mapper',
+            'unfavourite' => 'nyahsuka peta rentak ini',
+            'updated_timeago' => 'terakhir dikemas kini :timeago',
 
             'download' => [
                 '_' => 'Muat Turun',
                 'direct' => '',
                 'no-video' => 'tanpa Video',
-                'video' => 'berserta Video',
+                'video' => 'dengan Video',
             ],
 
             'login_required' => [
-                'bottom' => 'untuk akses lebih ciri-ciri',
+                'bottom' => 'untuk mencapai ciri-ciri lain',
                 'top' => 'Daftar Masuk',
             ],
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'lulus :timeago',
+            'loved' => 'digemari :timeago',
+            'qualified' => 'dilayakkan :timeago',
+            'ranked' => 'berkedudukan :timeago',
+            'submitted' => 'diserahkan :timeago',
+            'updated' => 'terakhir dikemas kini :timeago',
         ],
 
         'favourites' => [
-            'limit_reached' => '',
+            'limit_reached' => 'Anda mempunyai terlalu banyak peta rentak yang disukai! Sila nyahsuka beberapa peta rentak dahulu.',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => 'Gembarkan peta ini jika dinikmati untuk membantu peta ini maju ke taraf <strong>Berkedudukan</strong>.',
 
             'current' => [
-                '_' => 'Peta ini mempunyai status :status.',
+                '_' => 'Peta ini kini :status.',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => 'tergantung',
+                    'qualified' => 'layak',
+                    'wip' => 'kerja sedang berjalan',
                 ],
             ],
 
             'disqualify' => [
-                '_' => '',
+                '_' => 'Sekiranya anda menemui isu pada peta rentak ini, sila singkirkan :link.',
             ],
 
             'report' => [
-                '_' => '',
+                '_' => 'Sekiranya anda menemukan isu dengan peta rentak ini, sila laporkan :link untuk menyedarkan pasukan kami.',
                 'button' => 'Laporkan Masalah',
-                'link' => 'sini',
+                'link' => 'di sini',
             ],
         ],
 
         'info' => [
-            'description' => 'Perihal',
+            'description' => 'Keterangan',
             'genre' => 'Genre',
             'language' => 'Bahasa',
+            'mapper_tags' => '',
             'no_scores' => 'Data masih lagi dikira...',
             'nominators' => 'Pencalon',
-            'nsfw' => 'Kandungan sensitif',
-            'offset' => '',
+            'nsfw' => 'Kandungan tidak senonoh',
+            'offset' => 'Imbangan dalam talian',
             'points-of-failure' => 'Titik Kegagalan',
             'source' => 'Sumber',
-            'storyboard' => 'Beatmap ini mengandungi papan cerita',
-            'success-rate' => 'Kadar Berjaya',
-            'tags' => 'Tag',
-            'video' => 'Beatmap ini mengandungi video',
+            'storyboard' => 'Papan rentak ini mengandungi papan cerita',
+            'success-rate' => 'Kadar Kejayaan',
+            'user_tags' => '',
+            'video' => 'Peta rentak ini mengandungi video',
         ],
 
         'nsfw_warning' => [
-            'details' => 'Beatmap ini mengandungi unsur sensitif, menyinggung perasaan dan tidak enak. Anda pasti mahu melihatnya?',
-            'title' => 'Kandungan Sensitif',
+            'details' => 'Peta rentak ini mengandungi kandungan tidak senonoh, menyinggung atau tidak sesuai untuk pemain tertentu. Adakah anda kekal ingin melihatnya?',
+            'title' => 'Kandungan Tidak Senonoh',
 
             'buttons' => [
                 'disable' => 'Lumpuhkan amaran',
@@ -165,19 +166,20 @@ return [
 
         'scoreboard' => [
             'achieved' => 'dicapai :when',
-            'country' => 'Peringkat Kebangsaan',
-            'error' => 'Peringkat gagal dimuat',
-            'friend' => 'Peringkat Rakan-Rakan',
-            'global' => 'Peringkat Dunia',
-            'supporter-link' => 'Tekan <a href=":link">sini</a> untuk lihat ciri-ciri menaik yang anda boleh dapat!',
-            'supporter-only' => '',
+            'country' => 'Kedudukan Kebangsaan',
+            'error' => 'Kedudukan gagal dimuat',
+            'friend' => 'Kedudukan Kawan',
+            'global' => 'Kedudukan Dunia',
+            'supporter-link' => 'Klik di <a href=":link">sini</a> untuk lihat semua ciri menarik yang anda dapat!',
+            'supporter-only' => 'Anda perlu menjadi osu!supporter untuk mencapai kedudukan penyesuai tertentu, kebangsaan atau kawan!',
+            'team' => 'Kedudukan Pasukan',
             'title' => 'Papan Markah',
 
             'headers' => [
-                'accuracy' => 'Ketepatan',
-                'combo' => 'Kombo Maksima',
+                'accuracy' => 'Kejituan',
+                'combo' => 'Kombo Maks',
                 'miss' => 'Terlepas',
-                'mods' => 'Mod',
+                'mods' => 'P\'suai',
                 'pin' => 'Semat',
                 'player' => 'Pemain',
                 'pp' => '',
@@ -188,48 +190,49 @@ return [
             ],
 
             'no_scores' => [
-                'country' => 'Tiada orang dari negara anda telah menetapkan markah di peta ini!',
-                'friend' => 'Tiada kawan-kawan anda yang telah menetapkan markah di peta ini!',
-                'global' => 'Tiada markah. Mungkin kamu boleh cuba?',
+                'country' => 'Pemain dari negara anda belum mencapai apa-apa markah pada peta ini lagi!',
+                'friend' => 'Kawan-kawan anda belum mencapai apa-apa markah pada peta ini lagi!',
+                'global' => 'Tiada markah lagi. Mungkin anda patut mencapai yang baharu!',
                 'loading' => 'Memuatkan markah...',
-                'unranked' => '',
+                'team' => 'Ahli pasukan anda belum mencapai apa-apa markah pada peta ini lagi!',
+                'unranked' => 'Peta rentak tanpa kedudukan.',
             ],
             'score' => [
                 'first' => 'Sedang Mendahului',
-                'own' => '',
+                'own' => 'Markah Terbaikku',
             ],
             'supporter_link' => [
-                '_' => '',
+                '_' => 'Klik :here untuk melihat semua ciri menarik yang anda dapat!',
                 'here' => 'sini',
             ],
         ],
 
         'stats' => [
-            'cs' => 'Besar Bulatan',
-            'cs-mania' => 'Kiraan Kekunci',
+            'cs' => 'Ukuran Bulatan',
+            'cs-mania' => 'Jumlah Kekunci',
             'drain' => 'Aliran Nyawa',
             'accuracy' => 'Ketepatan',
-            'ar' => 'Kadar Penghampiran',
+            'ar' => 'Kadar Mendekat',
             'stars' => 'Nilai Bintang',
             'total_length' => 'Tempoh (Tempoh Aliran: :hit_length)',
             'bpm' => 'BPM',
-            'count_circles' => 'Kiraan Bulatan',
-            'count_sliders' => 'Kiraan Peluncur',
-            'offset' => '',
-            'user-rating' => 'Penilaian Pengguna',
-            'rating-spread' => 'Sebaran Penilaian',
+            'count_circles' => 'Jumlah Bulatan',
+            'count_sliders' => 'Jumlah Gelangsar',
+            'offset' => 'Imbangan dalam talian: :offset',
+            'user-rating' => 'Nilai Pengguna',
+            'rating-spread' => 'Sebaran Nilai',
             'nominations' => 'Pencalonan',
-            'playcount' => 'Kiraan Mainan',
+            'playcount' => 'Jumlah Mainan',
         ],
 
         'status' => [
-            'ranked' => 'Diperingkat',
-            'approved' => 'Diluluskan',
-            'loved' => 'Dicintai',
+            'ranked' => 'Berkedudukan',
+            'approved' => 'Lulus',
+            'loved' => 'Kegemaran',
             'qualified' => 'Layak',
             'wip' => 'WIP',
-            'pending' => 'Menunggu',
-            'graveyard' => 'Dikuburkan',
+            'pending' => 'Tergantung',
+            'graveyard' => 'Kubur',
         ],
     ],
 

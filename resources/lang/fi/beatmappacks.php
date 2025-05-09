@@ -12,11 +12,12 @@ return [
 
         'blurb' => [
             'important' => 'LUE TÄMÄ ENNEN LATAAMISTA',
-            'install_instruction' => 'Asennus: Kun paketti on latautunut, pura sen sisältö osu!n "Songs"-tiedostohakemistoon ja osu! hoitaa loput.',
+            'install_instruction' => 'Asennus: Kun paketti on latautunut, pura sen sisältö osu!:n "Songs"-tiedostohakemistoon ja osu! hoitaa loput.',
         ],
     ],
 
     'show' => [
+        'created_by' => 'tehnyt :author',
         'download' => 'Lataa',
         'item' => [
             'cleared' => 'läpäisty',

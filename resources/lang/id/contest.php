@@ -21,7 +21,7 @@ return [
         'update' => 'perbarui',
         'validation' => [
             'missing_score' => 'skor hilang',
-            'contest_vote_judged' => 'tidak dapat memilih dalam kontes berjuri',
+            'contest_vote_judged' => 'kamu tidak dapat memberikan suara pada kontes yang dinilai oleh juri',
         ],
         'voted' => 'Kamu telah memberikan suara untuk entri ini.',
     ],
@@ -46,12 +46,12 @@ return [
 
         'button' => [
             'add' => 'Pilih',
-            'remove' => 'Hapus pilihan',
+            'remove' => 'Lepas pilihan',
             'used_up' => 'Kamu telah menggunakan seluruh hak suaramu',
         ],
 
         'progress' => [
-            '_' => ':used / :max suara telah dipergunakan',
+            '_' => ':used / :max suara telah digunakan',
         ],
 
         'requirement' => [

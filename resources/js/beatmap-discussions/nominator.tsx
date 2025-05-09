@@ -14,6 +14,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
+import { isOwner } from 'utils/beatmap-helper';
 import { isUserFullNominator } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
@@ -103,7 +104,7 @@ export class Nominator extends React.Component<Props> {
     const userId = core.currentUserOrFail.id;
 
     return userId === this.beatmapset.user_id
-      || this.beatmapset.beatmaps.some((beatmap) => beatmap.deleted_at == null && userId === beatmap.user_id);
+      || this.beatmapset.beatmaps.some((beatmap) => beatmap.deleted_at == null && isOwner(userId, beatmap));
   }
 
   private get userNominatableModes() {

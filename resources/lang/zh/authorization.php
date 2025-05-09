@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '要添加标签，必须先在谱面内留下成绩。',
+        ],
+    ],
+
     'chat' => [
         'blocked' => '无法向你已拉黑的用户发消息，或者你已经被对方拉黑了。',
         'friends_only' => '用户拒收了来自陌生人的消息。',
         'moderated' => '该频道现在正在被管制中。',
         'no_access' => '你没有权限访问该频道。',
-        'no_announce' => '',
+        'no_announce' => '您没有发布公告的权限。',
         'receive_friends_only' => '此用户可能无法回复你，因为你设置了只接受来自好友的消息。',
         'restricted' => '账户被禁言、受限或封禁期间不能发消息。',
         'silenced' => '账户被禁言、受限或封禁期间不能发消息。',
@@ -170,12 +176,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => '只有房主可以关闭它。',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "无法置顶这类分数",
             'failed' => "无法置顶未通过的分数。",
             'not_owner' => '只有获得此成绩的玩家才可以置顶它。',
             'too_many' => '已置顶的成绩过多',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "你已经是战队成员了。",
+                'already_other_member' => "你已经是其他战队的成员了。",
+                'currently_applying' => '你有待处理的加入战队请求。',
+                'team_closed' => '这个战队暂不接受任何加入战队请求。',
+                'team_full' => "这个战队已满，无法容纳更多成员。",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "队长无法离开战队。",
+            'not_member' => '不是战队成员。',
+        ],
+        'store' => [
+            'require_supporter_tag' => '只有支持者才能创建战队。',
         ],
     ],
 

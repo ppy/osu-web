@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Gendan opslag?',
         'deleted' => 'slettede emne',
         'go_to_latest' => 'vis det seneste opslag',
+        'go_to_unread' => '',
         'has_replied' => 'Du har besvaret dette emne',
         'in_forum' => 'i :forum',
         'latest_post' => ':when af :user',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'Fjern "løst" tag',
             'to_1' => 'Tilføj "løst" tag',
             'to_1_done' => 'Tilføj "løst" tag',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'lock' => [

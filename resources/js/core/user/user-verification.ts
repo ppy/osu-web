@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { type FetchResponse, type TurboSubmitEndEvent } from '@hotwired/turbo';
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import { xhrErrorMessage } from 'utils/ajax';
@@ -77,6 +78,8 @@ export default class UserVerification {
       .on('click', '.js-user-verification--reissue', this.reissue);
     $.subscribe('user-verification:success', this.success);
 
+    document.addEventListener('turbo:submit-end', this.onErrorTurbo);
+
     $(window).on('resize scroll', this.reposition);
   }
 
@@ -139,6 +142,27 @@ export default class UserVerification {
   private readonly onError = (e: { target: unknown }, xhr: JQuery.jqXHR) => (
     this.showOnError(xhr, createClickCallback(e.target))
   );
+
+  private readonly onErrorTurbo = (e: TurboSubmitEndEvent) => {
+    // Workaround wrong definition (the field always exists).
+    if (!('fetchResponse' in e.detail)) {
+      return;
+    }
+
+    const fetchResponse = e.detail.fetchResponse as FetchResponse | undefined;
+    if (fetchResponse == null || fetchResponse.header('x-turbo-action') !== 'session-verification') {
+      return;
+    }
+
+    e.preventDefault();
+    const form = e.detail.formSubmission.formElement;
+    fetchResponse.responseText.then((jsonString: string) => {
+      const json = JSON.parse(jsonString) as UserVerificationJson;
+      this.show(json.box, () => {
+        form.requestSubmit();
+      });
+    });
+  };
 
   private readonly prepareForRequest = (type: string) => {
     this.request?.abort();

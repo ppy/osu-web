@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => '対戦中',
         'loading-events' => 'イベントの読み込み中・・・',
         'winner' => ':teamの勝利',
-        'winner_by' => '',
+        'winner_by' => ':winner by :difference',
 
         'events' => [
             'player-left' => ':userが退室しました',

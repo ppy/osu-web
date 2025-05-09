@@ -21,7 +21,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Featured Artist',
+        'label' => 'Oficiální umělec',
     ],
 
     'index' => [
@@ -140,6 +140,7 @@ return [
             'description' => 'Popis',
             'genre' => 'Žánr',
             'language' => 'Jazyk',
+            'mapper_tags' => '',
             'no_scores' => 'Data se vypočítávají...',
             'nominators' => 'Nominátoři',
             'nsfw' => 'Explicitní obsah',
@@ -148,7 +149,7 @@ return [
             'source' => 'Zdroj',
             'storyboard' => 'Tato beatmapa obsahuje storyboard',
             'success-rate' => 'Úspěšnost',
-            'tags' => 'Tagy',
+            'user_tags' => '',
             'video' => 'Tato beatmapa obsahuje video',
         ],
 
@@ -171,6 +172,7 @@ return [
             'global' => 'Celosvětové žebříčky',
             'supporter-link' => 'Klikněte <a href=":link">zde</a> pro zobrazení všech výhod, které dostanete!',
             'supporter-only' => 'Pro zobrazení národních žebříčků a žebříčků přátel potřebujete funkci Supportera!',
+            'team' => 'Žebříček týmu',
             'title' => 'Tabulka výsledků',
 
             'headers' => [
@@ -192,6 +194,7 @@ return [
                 'friend' => 'Nikdo z vašich přátel na této mapě zatím žádné skóre nenahrál!',
                 'global' => 'Zatím žádné skóre. Možná by ses o to měl pokusit!',
                 'loading' => 'Načítání skóre...',
+                'team' => 'Nikdo z tvého týmu na této mapě zatím žádné skóre nenahrál!',
                 'unranked' => 'Neschválená beatmapa.',
             ],
             'score' => [

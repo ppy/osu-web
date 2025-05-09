@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [
@@ -37,11 +37,11 @@ return [
         'charts' => 'منطقة ألأضواء',
         'country' => 'الدولة',
         'daily_challenge' => '',
+        'global' => '',
         'kudosu' => 'كودوسو',
         'multiplayer' => 'متعدد اللاعبين',
-        'performance' => 'الأداء',
-        'score' => 'النقاط',
         'seasons' => 'مواسم',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -49,6 +49,9 @@ return [
         'ongoing' => 'هذا الموسم لا يزال جاريا (سيتم إضافة المزيد من قوائم التشغيل).',
         'room_count' => 'عدد قوائم التشغيل',
         'url' => 'عرض المزيد من المعلومات عن هذا الموسم.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,8 @@ return [
         'accuracy' => 'ألدِقة',
         'active_users' => 'المستخدمين النشطين',
         'country' => 'الدولة',
+        'division' => '',
+        'members' => '',
         'play_count' => 'مرات اللعب',
         'performance' => 'الأداء',
         'total_score' => 'مجموع النقاط',

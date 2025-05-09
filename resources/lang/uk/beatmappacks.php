@@ -17,6 +17,7 @@ return [
     ],
 
     'show' => [
+        'created_by' => 'від :author',
         'download' => 'Завантажити',
         'item' => [
             'cleared' => 'завершено',

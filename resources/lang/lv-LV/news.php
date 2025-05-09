@@ -27,18 +27,18 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'jaunumi',
+            'info' => 'raksts',
         ],
     ],
 
     'sidebar' => [
-        'archive' => '',
+        'archive' => 'Jaunumu Arhīvs',
     ],
 
     'store' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'Atjauninājums',
+        'ok' => 'Preču saraksts atjaunināts.',
     ],
 
     'update' => [

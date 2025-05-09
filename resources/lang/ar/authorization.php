@@ -60,6 +60,12 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'لا يمكن مراسلة شخص قام بحظرك او قمت بحظره.',
         'friends_only' => 'المستخدم يحظر الرسائل من الاشخاص الذين ليسو على قائمة اصدقاءه.',
@@ -170,12 +176,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "لا يمكن تثبيت هذا النوع من النقاط",
             'failed' => "لا يمكن تثبيت سكور غير ناجح.",
             'not_owner' => 'يمكن لمالك النتيجة فقط تثبيتها.',
             'too_many' => 'قمت بتثبيت نتائج كثيرة.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "",
+                'already_other_member' => "",
+                'currently_applying' => '',
+                'team_closed' => '',
+                'team_full' => "",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "",
+            'not_member' => '',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'רמת קושי',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [
@@ -37,11 +37,11 @@ return [
         'charts' => 'זרקורים',
         'country' => 'מדינה',
         'daily_challenge' => '',
+        'global' => '',
         'kudosu' => '',
         'multiplayer' => 'רב משתתפים',
-        'performance' => 'ביצועים',
-        'score' => 'תוצאה',
         'seasons' => '',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -49,6 +49,9 @@ return [
         'ongoing' => '',
         'room_count' => '',
         'url' => '',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,8 @@ return [
         'accuracy' => 'דיוק',
         'active_users' => 'משתמשים פעילים',
         'country' => 'מדינה',
+        'division' => '',
+        'members' => '',
         'play_count' => 'מספר משחקים',
         'performance' => 'ביצועים',
         'total_score' => 'תוצאה סופית',

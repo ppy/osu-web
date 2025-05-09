@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => '',
+
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Kunne ikke afgive stemme',
@@ -81,12 +87,12 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
+            'disqualify' => 'Post Diskvalifikation',
+            'hype' => 'Post Hype!',
+            'mapper_note' => 'Post Notat',
+            'nomination_reset' => 'Fjern alle nominationer',
+            'praise' => 'Post Ros',
+            'problem' => 'Post Problem',
             'problem_warning' => '',
             'review' => '',
             'suggestion' => '',

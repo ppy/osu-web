@@ -34,6 +34,11 @@ return [
         'title' => 'Báo cáo điểm của :username?',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'Báo cáo',
         'title' => 'Báo cáo :username?',

@@ -29,7 +29,7 @@ return [
         'generic' => 'S\'ha produït un error mentre preparàvem la teva compra.',
     ],
     'scores' => [
-        'invalid_id' => 'Id de puntuació no vàlid.',
+        'invalid_id' => 'Id de la puntuació no vàlida.',
     ],
     'search' => [
         'default' => 'No s\'ha pogut trobar cap resultat. Torna-ho a provar més tard.',

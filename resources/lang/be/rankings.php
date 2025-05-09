@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [
@@ -37,11 +37,11 @@ return [
         'charts' => 'па чартам',
         'country' => 'па краінам',
         'daily_challenge' => '',
+        'global' => '',
         'kudosu' => 'кудосу',
         'multiplayer' => 'мультыплэер',
-        'performance' => 'па прадукцыйнасці',
-        'score' => 'па ачках',
         'seasons' => 'па сезонах',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Гэты сезон яшчэ працягваецца (будуць дададзены яшчэ плэйлісты).',
         'room_count' => 'Колькасць плэйлістоў',
         'url' => 'Паказаць больш даведак пра гэты сезон.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,8 @@ return [
         'accuracy' => 'Дакладнасць',
         'active_users' => 'Актыўныя карыстальнікі',
         'country' => 'Краіна',
+        'division' => '',
+        'members' => '',
         'play_count' => 'Колькасць гульняў',
         'performance' => 'Прадукцыйнасць',
         'total_score' => 'Агульны вынік',

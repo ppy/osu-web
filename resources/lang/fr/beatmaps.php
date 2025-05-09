@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'Le mode de jeu spécifié est invalide.',
+
+    'change_owner' => [
+        'too_many' => 'Vous avez ajouté trop de participants à cette beatmap.',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Impossible de modifier le vote',

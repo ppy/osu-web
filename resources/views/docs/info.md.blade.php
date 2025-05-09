@@ -27,6 +27,7 @@ Below is a list of some language-specific wrappers maintained by the community. 
 - [osu.py](https://github.com/sheppsu/osu.py) (python)
 - [rosu-v2](https://github.com/MaxOhn/rosu-v2) (rust)
 - [osu.js](https://github.com/L-Mario564/osu.js) (javascript/typescript)
+- [osu-api-v2-js](https://github.com/TTTaevas/osu-api-v2-js) (javascript/typescript)
 
 # Changelog
 
@@ -34,6 +35,9 @@ For a full list of changes, see the
 [Changelog on the site]({{ route('changelog.show', ['changelog' => 'web']) }}).
 
 ## Breaking Changes
+
+### 2025-04-10
+- `/beatmaps/{beatmap}/solo-scores` endpoint has been deprecated. Use `/beatmaps/{beatmap}/scores` instead.
 
 ### 2024-07-30
 - `key` parameter for Get User endpoint has been deprecated. Prefix username with `@` to lookup by username instead.

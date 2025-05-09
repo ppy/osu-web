@@ -6,8 +6,10 @@
 namespace App\Console\Commands;
 
 use Illuminate\Database\Console\Migrations\FreshCommand;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
+#[AsCommand(name: 'migrate:fresh')]
 class MigrateFreshAllCommand extends FreshCommand
 {
     public function handle()
@@ -56,8 +58,6 @@ class MigrateFreshAllCommand extends FreshCommand
             '--create-only' => true,
             '--no-interaction' => $this->option('no-interaction'),
         ]);
-
-        $this->call('es:create-search-blacklist');
 
         if ($this->needsSeeding()) {
             $this->runSeeder(null);

@@ -66,6 +66,13 @@ return [
         'version' => '难度',
     ],
 
+    'refresh' => [
+        'checking' => '正在检查更新......',
+        'has_updates' => '讨论有更新，点击刷新。',
+        'no_updates' => '没有更新。',
+        'updating' => '更新中...',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => '登录以回复',

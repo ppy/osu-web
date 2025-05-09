@@ -10,9 +10,9 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'beatmap' => 'Svårighetsgrad',
+        'top_10p' => 'Topp 10% resultat',
+        'top_50p' => 'Topp 50% resultat',
     ],
 
     'filter' => [
@@ -36,12 +36,12 @@ return [
     'type' => [
         'charts' => 'i rampljuset',
         'country' => 'land',
-        'daily_challenge' => '',
+        'daily_challenge' => 'daglig utmaning',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'flerspelarläge',
-        'performance' => 'prestation',
-        'score' => 'poäng',
         'seasons' => 'säsonger',
+        'team' => 'lag',
     ],
 
     'seasons' => [
@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Denna säsong pågår fortfarande (det kommer läggas till fler spellistor).',
         'room_count' => 'Antal spellistor',
         'url' => 'Visa mer information om den säsongen.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,8 @@ return [
         'accuracy' => 'Träffsäkerhet',
         'active_users' => 'Aktiva Användare',
         'country' => 'Land',
+        'division' => '',
+        'members' => '',
         'play_count' => 'Antal gånger spelat',
         'performance' => 'Prestation',
         'total_score' => 'Total Poäng',

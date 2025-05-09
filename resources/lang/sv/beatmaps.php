@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'Ogiltigt regelset specificerat.',
+
+    'change_owner' => [
+        'too_many' => 'För många gäst mappare.',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Kunde ej uppdatera röst',

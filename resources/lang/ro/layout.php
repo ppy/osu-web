@@ -201,6 +201,7 @@ return [
             'profile' => 'Profilul Meu',
             'scoring_mode_toggle' => 'Mod scor clasic',
             'scoring_mode_toggle_tooltip' => 'Ajustează valorile pentru o experiența mai apropiată de modul clasic de scor fără standardizare',
+            'team' => 'Echipa Mea',
         ],
     ],
 

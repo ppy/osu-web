@@ -25,12 +25,12 @@ return [
     ],
 
     'index' => [
-        'title' => 'Rytmikarttojen listaus',
-        'guest_title' => 'Rytmikartat',
+        'title' => 'Beatmappien Listaus',
+        'guest_title' => 'Beatmapit',
     ],
 
     'panel' => [
-        'empty' => 'ei rytmikarttoja',
+        'empty' => 'ei beatmappeja',
 
         'download' => [
             'all' => 'lataa',
@@ -52,7 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Oletko varma, että haluat asettaa tämän rytmikartan ehdolle?',
-            'different_nominator_warning' => '',
+            'different_nominator_warning' => 'Tämän rytmikartan kelpuuttaminen eri nimittäjillä nollaa sen kelpuuttamisjonon sijainnin.',
             'header' => 'Ehdollepane rytmikartta',
             'hybrid_warning' => 'huomaa: voit tehdä ehdollepanon vain kerran, joten varmista, että asetat todella ehdolle kaikki tarkoittamasi pelimuodot',
             'current_main_ruleset' => 'Ensisijainen pelimuoto on tällä hetkellä: :ruleset',
@@ -138,8 +138,9 @@ return [
 
         'info' => [
             'description' => 'Kuvaus',
-            'genre' => 'Tyylilaji',
+            'genre' => 'Genre',
             'language' => 'Kieli',
+            'mapper_tags' => '',
             'no_scores' => 'Dataa lasketaan...',
             'nominators' => 'Ehdollepanijat',
             'nsfw' => 'Sopimaton sisältö',
@@ -148,7 +149,7 @@ return [
             'source' => 'Lähde',
             'storyboard' => 'Tämä rytmikartta sisältää taustaesityksen',
             'success-rate' => 'Läpäisyprosentti',
-            'tags' => 'Tunnisteet',
+            'user_tags' => '',
             'video' => 'Tämä rytmikartta sisältää videon',
         ],
 
@@ -171,6 +172,7 @@ return [
             'global' => 'Maailmanlaajuiset sijoitukset',
             'supporter-link' => 'Klikkaa <a href=":link">tästä</a> nähdäksesi kaikki hienot ominaisuudet mitä saat!',
             'supporter-only' => 'Sinun täytyy olla osu!n tukija nähdäksesi kaveri-, maa- ja muunnelmakohtaiset sijoitukset!',
+            'team' => '',
             'title' => 'Tulokset',
 
             'headers' => [
@@ -192,6 +194,7 @@ return [
                 'friend' => 'Kukaan kavereistasi ei vielä ole saanut tulosta tässä kartassa!',
                 'global' => 'Tuloksia ei ole. Voisit hankkia niitä.',
                 'loading' => 'Ladataan tuloksia...',
+                'team' => '',
                 'unranked' => 'Rankkaamaton rytmikartta.',
             ],
             'score' => [

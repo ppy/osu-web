@@ -20,17 +20,19 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'foorumit',
         'news_post' => 'uutiset',
+        'team' => 'tiimi',
         'user' => 'profiili',
     ],
 
     'filters' => [
         '_' => 'kaikki',
-        'user' => 'profiili',
         'beatmapset' => 'rytmikartat',
-        'forum_topic' => 'foorumi',
-        'news_post' => 'uutiset',
         'build' => 'rakennukset',
         'channel' => 'chatti',
+        'forum_topic' => 'foorumi',
+        'news_post' => 'uutiset',
+        'team' => 'tiimi',
+        'user' => 'profiili',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => 'Tiimiin liittymispyyntö',
+
+                'team_application_accept' => "Olet nyt tiimin :title jäsen",
+                'team_application_accept_compact' => "Olet nyt tiimin :title jäsen",
+                'team_application_reject' => 'Sinun pyyntösi tiimiin :title on hylätty',
+                'team_application_reject_compact' => 'Sinun pyyntösi tiimiin :title on hylätty',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Uusi rytmikartta',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Aihe ":title" on saanut uusia vastauksia',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Olet nyt tiimin :title jäsen",
+                'team_application_reject' => 'Pyyntösi tiimiin :title on hylätty',
             ],
         ],
 

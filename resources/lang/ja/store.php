@@ -6,7 +6,7 @@
 return [
     'cart' => [
         'checkout' => '支払いをする',
-        'empty_cart' => '',
+        'empty_cart' => 'カートからすべてのアイテムを削除',
         'info' => ':count_delimited 個がカート内にあります($:subtotal)',
         'more_goodies' => '精算の前に他のグッズをチェックする。',
         'shipping_fees' => '配送料',
@@ -52,34 +52,35 @@ return [
     'free' => '無料',
 
     'invoice' => [
-        'contact' => '',
+        'contact' => 'お問い合わせ先：',
         'date' => '日付:',
         'echeck_delay' => '決済方法がeCheckのため、PayPalを介した支払いが完了するまで、さらに最大10日を要します。予めご了承ください。',
+        'echeck_denied' => 'PayPal が eCheck によるお支払いを拒否しました。',
         'hide_from_activity' => 'osu!サポータータグは最近のアクティビティには表示されません。',
-        'sent_via' => '',
-        'shipping_to' => '',
-        'title' => '',
+        'sent_via' => '発送方法：',
+        'shipping_to' => '配送先：',
+        'title' => '請求書',
         'title_compact' => '請求書',
 
         'status' => [
             'cancelled' => [
-                'title' => '',
+                'title' => 'この注文はキャンセルされました',
                 'line_1' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "キャンセルを希望されない場合は、注文番号 (#:order_number) を明記の上、:link までご連絡ください。",
+                    'link_text' => 'osu!store support',
                 ],
             ],
             'delivered' => [
-                'title' => '',
+                'title' => 'ご注文の商品が届きました！どうぞ存分にお楽しみください！',
                 'line_1' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => 'ご購入に問題がある場合は、 :link までご連絡ください。',
+                    'link_text' => 'osu!store support',
                 ],
             ],
             'prepared' => [
-                'title' => '',
-                'line_1' => '',
-                'line_2' => '',
+                'title' => 'ご注文は準備中です！',
+                'line_1' => '発送まで、もう少々お待ちください。ご注文の処理・発送が完了次第、追跡情報がこちらに表示されます。混雑状況によっては最大５日ほどかかる場合があります（ただし通常はもっと早いです！）ので、何卒ご了承ください。',
+                'line_2' => '私たちはすべてのご注文を日本から、重量や商品の価値に応じてさまざまな配送サービスを使ってお送りしています。ご注文を発送次第、こちらに詳細が反映されますのでご確認ください。',
             ],
             'processing' => [
                 'title' => 'お支払いはまだ確認されていません。',
@@ -90,11 +91,11 @@ return [
                 ],
             ],
             'shipped' => [
-                'title' => '',
-                'tracking_details' => '',
+                'title' => 'ご注文は発送されました！',
+                'tracking_details' => '追跡情報：',
                 'no_tracking_details' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "エアメールでお送りしたため、追跡情報はございませんが、通常1〜3週間ほどでお届けできる見込みです。ヨーロッパへの発送の場合、税関の事情により配送が遅れる可能性があり、私たちでは対応が難しいこともございます。ご不明点やご不安な点がありましたら、ご注文確認メールへの返信(または :link)にてお問い合わせください。",
+                    'link_text' => 'メールでお問い合わせください',
                 ],
             ],
         ],
@@ -108,7 +109,7 @@ return [
         'no_orders' => '表示できる注文がありません。',
         'paid_on' => '注文済み :date',
         'resume' => '支払いを再開',
-        'shipping_and_handling' => '',
+        'shipping_and_handling' => '配送と手数料',
         'shopify_expired' => 'この注文の決済リンクは期限切れとなりました。',
         'subtotal' => '小計',
         'total' => '合計',
@@ -116,7 +117,7 @@ return [
         'details' => [
             'order_number' => '注文 #',
             'payment_terms' => '支払い条件',
-            'salesperson' => '',
+            'salesperson' => '営業担当者',
             'shipping_method' => '配送方法',
             'shipping_terms' => '配送条件',
             'title' => '注文の詳細',
@@ -157,8 +158,8 @@ return [
         'thanks' => [
             'title' => 'ご注文ありがとうございました！',
             'line_1' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'まもなく確認メールが届きます。ご不明な点がございましたら、:link からお問い合わせください！',
+                'link_text' => 'お問い合わせ',
             ],
         ],
     ],
@@ -193,7 +194,7 @@ return [
     'username_change' => [
         'check' => '名前を入力して使用可能か確認しましょう！',
         'checking' => ':usernameが使用可能か確認中・・・',
-        'placeholder' => '',
+        'placeholder' => 'ご希望のユーザー名',
         'label' => '新しいユーザー名',
         'current' => '現在のあなたのユーザー名は ":username" です。',
 

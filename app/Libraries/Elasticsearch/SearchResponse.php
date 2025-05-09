@@ -23,7 +23,7 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
         $this->index = 0;
     }
 
-    public function aggregations(string $name = null)
+    public function aggregations(?string $name = null)
     {
         return $name === null
             ? $this->raw['aggregations'] ?? []
@@ -61,7 +61,7 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
      *
      * @return array
      */
-    public function ids(string $field = null)
+    public function ids(?string $field = null)
     {
         $field = $field ?? $this->idField;
 
@@ -76,7 +76,7 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
         }
     }
 
-    public function innerHitsIds(string $name, string $field = null)
+    public function innerHitsIds(string $name, ?string $field = null)
     {
         $ids = array_map(function ($hit) use ($name, $field) {
             return $hit->innerHits($name)->ids($field ?? $this->idField);

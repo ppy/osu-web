@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Jūsų paskyra nenaudojama jau ilgą laiką.",
             'inactive_different_country' => "Jūsų paskyra buvo nenaudojama ilga laiką.",
         ],
     ],
@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Sukčiavimas',
-            'multiple_accounts' => 'Naudoja kelias paskyras',
+            'inappropriate_chat' => '',
             'insults' => 'Įžeidinėja manę / kitus',
-            'spam' => 'Siuntinėja šlamštą',
-            'unwanted_content' => 'Nuorodos į netinkamą turinį',
+            'multiple_accounts' => 'Naudoja kelias paskyras',
             'nonsense' => 'Nesąmonės',
             'other' => 'Kita (nurodykite žemiau)',
+            'spam' => 'Siuntinėja šlamštą',
+            'unwanted_content' => 'Nuorodos į netinkamą turinį',
         ],
     ],
     'restricted_banner' => [
@@ -197,20 +198,20 @@ return [
             'to_1' => 'Rodyti viršelį',
         ],
         'daily_challenge' => [
-            'daily' => '',
-            'daily_streak_best' => '',
-            'daily_streak_current' => '',
-            'playcount' => '',
-            'title' => '',
-            'top_10p_placements' => '',
-            'top_50p_placements' => '',
-            'weekly' => '',
-            'weekly_streak_best' => '',
-            'weekly_streak_current' => '',
+            'daily' => 'Kasdieninių Įveikimų Serija',
+            'daily_streak_best' => 'Didžiausia Kasdieninių Įveikimų Serija',
+            'daily_streak_current' => 'Dabartinė Kasdieninių Įveikimų Serija',
+            'playcount' => 'Iš Viso Dalyvauta',
+            'title' => 'Kasdienis\nIššūkis',
+            'top_10p_placements' => 'Top 10% Pasiekimų',
+            'top_50p_placements' => 'Top 50% Pasiekimų',
+            'weekly' => 'Savaitinė Įveikimų Serija',
+            'weekly_streak_best' => 'Didžiausia Savaitinių Įveikimų Serija',
+            'weekly_streak_current' => 'Dabartinė Savaitinių Įveikimų Serija',
 
             'unit' => [
-                'day' => '',
-                'week' => '',
+                'day' => ':valued',
+                'week' => ':valuew',
             ],
         ],
         'edit' => [
@@ -243,11 +244,11 @@ return [
 
             'hue' => [
                 'reset_no_supporter' => '',
-                'title' => '',
+                'title' => 'Spalva',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Spalvų pasirinkimas galimas tik :link',
+                    'link' => 'osu!rėmėjai',
                 ],
             ],
         ],
@@ -478,6 +479,10 @@ return [
             'global' => 'Pasaulinis reitingas tarp :mode',
             'global_simple' => 'Pasaulinis Reitingas',
             'highest' => 'Aukščiausias reitingas: :rank kada: :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Paspaudimų Tikslumas',

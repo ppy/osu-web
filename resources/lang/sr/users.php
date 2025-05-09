@@ -7,7 +7,7 @@ return [
     'deleted' => '[обрисан корисник]',
 
     'beatmapset_activities' => [
-        'title' => ":user's Историја Измена",
+        'title' => "Историјске Измене од :user",
         'title_compact' => 'Измене',
 
         'discussions' => [
@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Варање',
-            'multiple_accounts' => 'Коришћење више налога',
+            'inappropriate_chat' => '',
             'insults' => 'Вређа мене / друге',
-            'spam' => 'Спамовање',
-            'unwanted_content' => 'Линковање неприкладног садржаја',
+            'multiple_accounts' => 'Коришћење више налога',
             'nonsense' => 'Глупости',
             'other' => 'Друго (напишите испод)',
+            'spam' => 'Спамовање',
+            'unwanted_content' => 'Линковање неприкладног садржаја',
         ],
     ],
     'restricted_banner' => [
@@ -370,7 +371,7 @@ return [
                 'title' => 'о мени!',
             ],
             'medals' => [
-                'empty' => "Овај корисник није добио ниједно још увек. ;_;",
+                'empty' => "Овај корисник још увек нема медаље. ;_;",
                 'recent' => 'Најновије',
                 'title' => 'Медаље',
             ],
@@ -478,6 +479,10 @@ return [
             'global' => 'Глобални ранг за :mode',
             'global_simple' => 'Глобални ранг',
             'highest' => 'Највиши ранг: :rank на :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Прецизност',

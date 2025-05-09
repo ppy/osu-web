@@ -10,9 +10,9 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'beatmap' => 'Grūtība',
+        'top_10p' => 'Top 10% Rezultāti',
+        'top_50p' => 'Top 50% Rezultāti',
     ],
 
     'filter' => [
@@ -30,44 +30,49 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Šim lietotājam ir mazāk nekā 30 dienas ar neseno novietojuma vēsturi.',
     ],
 
     'type' => [
-        'charts' => 'Uzmanības centrā',
-        'country' => 'Valsts',
-        'daily_challenge' => '',
+        'charts' => 'prožektoru gaismā (vecs)',
+        'country' => 'valsts',
+        'daily_challenge' => 'dienas izaicinājums',
+        'global' => '',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'Daudzspēlētāju režīms',
-        'performance' => 'Veiktspēja',
-        'score' => 'Punktu skaits',
-        'seasons' => '',
+        'multiplayer' => 'daudzspēlētāju režīms',
+        'seasons' => 'sezonas',
+        'team' => '',
     ],
 
     'seasons' => [
-        'empty' => '',
-        'ongoing' => '',
-        'room_count' => '',
-        'url' => '',
+        'empty' => 'Šajā sezonā pašlaik vēl nav istabu.',
+        'ongoing' => 'Šī sezona vēl notiek (tiks pievienoti vairāk dziesmu saraksti).',
+        'room_count' => 'Dziesmu sarakstu skaits',
+        'url' => 'Parādīt vairāk informāciju par to sezonu.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
         'end_date' => 'Beigu datums',
-        'map_count' => 'Mapu skaits',
+        'map_count' => 'Izveidošanas? skaits',
         'participants' => 'Dalībnieki',
         'start_date' => 'Sākuma datums',
     ],
 
     'stat' => [
-        'accuracy' => 'Precizināte',
+        'accuracy' => 'Precizitāte',
         'active_users' => 'Aktīvie lietotāji',
         'country' => 'Valsts',
+        'division' => '',
+        'members' => '',
         'play_count' => 'Spēļu skaits',
         'performance' => 'Veiktspēja',
         'total_score' => 'Kopējais punktu skaits',
-        'ranked_score' => '',
+        'ranked_score' => 'Novērtējamais Rezultāts',
         'average_score' => 'Vidējais punktu skaits',
-        'average_performance' => 'Vid. Veikt.',
+        'average_performance' => 'Vid. Veik.',
         'ss' => '',
         's' => '',
         'a' => '',

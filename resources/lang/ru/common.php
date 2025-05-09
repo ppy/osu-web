@@ -5,7 +5,7 @@
 
 return [
     'confirmation' => 'Вы уверены?',
-    'confirmation_unsaved' => 'Несохраненные изменения будет утеряны. Вы уверены?',
+    'confirmation_unsaved' => 'Несохранённые изменения будет утеряны. Вы уверены?',
     'saved' => 'Сохранено',
 
     'array_and' => [
@@ -22,6 +22,7 @@ return [
         'admin' => 'Администратор',
         'authorise' => 'Авторизовать',
         'authorising' => 'Авторизация...',
+        'back' => 'Назад',
         'back_to_previous' => 'Вернуться',
         'back_to_top' => 'В начало',
         'cancel' => 'Отмена',

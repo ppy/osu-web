@@ -53,6 +53,11 @@ return [
                 'beatmapsets' => '',
                 'forum' => '',
                 'general' => '',
+
+                'users' => [
+                    'header' => 'Người dùng',
+                    'cover_presets' => 'Thiết lập sẵn hồ sơ nền',
+                ],
             ],
         ],
     ],

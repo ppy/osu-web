@@ -52,7 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Bist du sicher, dass du diese Beatmap nominieren möchtest?',
-            'different_nominator_warning' => '',
+            'different_nominator_warning' => 'Das Qualifizieren dieser Beatmap mit anderen Nominatoren wird dessen Position in der Qualifikationswarteschlange zurücksetzen.',
             'header' => 'Beatmap nominieren',
             'hybrid_warning' => 'Hinweis: du kannst nur einmalig nominieren, also stelle bitte sicher, dass du für alle Spielmodi nominierst, die du beabsichtigst',
             'current_main_ruleset' => 'Der Hauptspielmodus ist derzeit: :ruleset',
@@ -140,6 +140,7 @@ return [
             'description' => 'Beschreibung',
             'genre' => 'Genre',
             'language' => 'Sprache',
+            'mapper_tags' => '',
             'no_scores' => 'Die Daten werden noch verarbeitet...',
             'nominators' => 'Nominatoren',
             'nsfw' => 'Expliziter Inhalt',
@@ -148,7 +149,7 @@ return [
             'source' => 'Quelle',
             'storyboard' => 'Diese Beatmap enthält ein Storyboard',
             'success-rate' => 'Erfolgsrate',
-            'tags' => 'Tags',
+            'user_tags' => '',
             'video' => 'Diese Beatmap enthält ein Video',
         ],
 
@@ -171,6 +172,7 @@ return [
             'global' => 'Globale Rangliste',
             'supporter-link' => '<a href=":link">Hier</a> klicken, um all die tollen Features zu entdecken!',
             'supporter-only' => 'Du musst osu!supporter sein, um Freundes-, Länder-, oder Mod-Ranglisten zu sehen!',
+            'team' => 'Team-Rangliste',
             'title' => 'Punkte-Anzeige',
 
             'headers' => [
@@ -192,6 +194,7 @@ return [
                 'friend' => 'Keiner deiner Freunde hat einen Rang auf dieser Beatmap!',
                 'global' => 'Noch niemand auf der Rangliste. Wie wärs?',
                 'loading' => 'Lade Scores...',
+                'team' => 'Keiner aus deinem Team hat bisher einen Score auf dieser Beatmap erzielt!',
                 'unranked' => 'Unranked Beatmap.',
             ],
             'score' => [
@@ -210,7 +213,7 @@ return [
             'drain' => 'HP-Drain',
             'accuracy' => 'Präzision',
             'ar' => 'Approach-Rate',
-            'stars' => 'Sternebewertung',
+            'stars' => 'Sterne',
             'total_length' => 'Länge (Drain length: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Anzahl der Circles',

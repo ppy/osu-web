@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => 'Este :attribute contiene caracteres no válidos.',
+        'used' => 'Este :attribute ya está en uso.',
+        'word_not_allowed' => 'Este :attribute no está permitido.',
+
+        'attributes' => [
+            'default_ruleset_id' => 'Modo de juego predeterminado',
+            'is_open' => 'Solicitudes para unirse al equipo',
+            'name' => 'nombre',
+            'short_name' => 'Nombre abreviado',
+            'url' => 'URL',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'La contraseña no puede contener el nombre de usuario.',
         'email_already_used' => 'Dirección de correo ya usada.',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'No se pueden reportar mapas clasificados',
         'not_in_channel' => 'No estás en este canal.',
+        'in_team' => '',
         'reason_not_valid' => ':reason no válido para este tipo de reporte.',
         'self' => "¡No puedes reportarte a ti mismo!",
     ],

@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => 'рангови',
         ],
+        'teams_controller' => [
+            '_' => 'тимови',
+            'create' => 'направите тим',
+            'edit' => 'подешавање тима',
+            'leaderboard' => 'тимска ранг листа',
+            'show' => 'информације тима',
+        ],
         'tournaments_controller' => [
             '_' => 'турнири',
         ],
@@ -129,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'продавница',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'чланови тима',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

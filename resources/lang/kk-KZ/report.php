@@ -34,6 +34,11 @@ return [
         'title' => '',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => '',
         'title' => '',

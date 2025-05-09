@@ -5,37 +5,42 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Nosūdzēt',
+        'title' => 'Pasūdzēties par :username ritma-mapi?',
     ],
 
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Nosūdzēt',
+        'title' => 'Pasūdzēties par :username rakstu?',
     ],
 
     'comment' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Nosūdzēt',
+        'title' => 'Pasūdzēties par :username komentāru?',
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Nosūdzēt',
+        'title' => 'Pasūdzēties par :username rakstu?',
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Pasūdzēties Ziņu',
+        'title' => 'Pasūdzēties par :username ziņu?',
     ],
 
     'scores' => [
+        'button' => 'Pasūdzēties par Rezultātu',
+        'title' => 'Pasūdzēties par :username rezultātu?',
+    ],
+
+    'team' => [
         'button' => '',
         'title' => '',
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Nosūdzēt',
+        'title' => 'Pasūdzēties par :username?',
     ],
 ];

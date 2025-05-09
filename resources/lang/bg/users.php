@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Нечестна игра / Измама',
-            'multiple_accounts' => 'Използва няколко профила',
+            'inappropriate_chat' => '',
             'insults' => 'Обижда мен / друг',
-            'spam' => 'Спам',
-            'unwanted_content' => 'Изпраща неприлично съдържание',
+            'multiple_accounts' => 'Използва няколко профила',
             'nonsense' => 'Безсмислици',
             'other' => 'Друго (посочете по-долу)',
+            'spam' => 'Спам',
+            'unwanted_content' => 'Изпраща неприлично съдържание',
         ],
     ],
     'restricted_banner' => [
@@ -197,20 +198,20 @@ return [
             'to_1' => 'показване на корицата',
         ],
         'daily_challenge' => [
-            'daily' => '',
-            'daily_streak_best' => '',
-            'daily_streak_current' => '',
-            'playcount' => '',
-            'title' => '',
-            'top_10p_placements' => '',
-            'top_50p_placements' => '',
+            'daily' => 'Ежедневна серия',
+            'daily_streak_best' => 'Най-добра ежедневна серия ',
+            'daily_streak_current' => 'Сегашна ежедневна серия ',
+            'playcount' => 'Общо участия',
+            'title' => 'Дневно\nПредизвикателство',
+            'top_10p_placements' => 'Топ 10% резултати ',
+            'top_50p_placements' => 'Топ 50% резултати',
             'weekly' => 'Седмична поредица',
             'weekly_streak_best' => 'Най-добра седмична поредица',
             'weekly_streak_current' => 'Текуща седмична поредица',
 
             'unit' => [
-                'day' => '',
-                'week' => '',
+                'day' => ':valueд',
+                'week' => ':valueседм',
             ],
         ],
         'edit' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Световна класация за :mode',
             'global_simple' => 'Глобално класиране',
             'highest' => 'Най-висок ранг: :rank на :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Прецизност на ударите',

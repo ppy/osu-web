@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => 'Această alegere pentru :attribute conține caractere invalide.',
+        'used' => 'Această alegere pentru :attribute este deja utilizată.',
+        'word_not_allowed' => 'Această alegere pentru :attribute nu este permisă.',
+
+        'attributes' => [
+            'default_ruleset_id' => 'Ruleset implicit',
+            'is_open' => 'Cereri înscriere echipă',
+            'name' => 'Nume',
+            'short_name' => 'Nume scurt',
+            'url' => 'URL',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Parola nu poate conține numele de utilizator.',
         'email_already_used' => 'Adresa de e-mail este deja folosită.',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Beatmap-urile clasate nu pot fi raportate',
         'not_in_channel' => 'Nu ești în acest canal.',
+        'in_team' => '',
         'reason_not_valid' => ':reason nu este valid pentru acest tip de raportare.',
         'self' => "Nu te poți raporta pe tine însuți!",
     ],

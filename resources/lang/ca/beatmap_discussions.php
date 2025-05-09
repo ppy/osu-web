@@ -66,6 +66,13 @@ return [
         'version' => 'Dificultat',
     ],
 
+    'refresh' => [
+        'checking' => 'Cercant actualitzacions...',
+        'has_updates' => 'La discussió té actualitzacions, clica per refrescar.',
+        'no_updates' => 'No hi ha actualitzacions.',
+        'updating' => 'Actualitzant...',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Inicia sessió per respondre',

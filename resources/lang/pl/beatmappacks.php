@@ -17,6 +17,7 @@ return [
     ],
 
     'show' => [
+        'created_by' => 'autorstwa :author',
         'download' => 'Pobierz',
         'item' => [
             'cleared' => 'ukończona',

@@ -11,6 +11,12 @@ use League\Fractal\Resource\ResourceInterface;
 
 class UserStatisticsTransformer extends TransformerAbstract
 {
+    const RANKING_INCLUDES = [
+        'user.country',
+        'user.cover',
+        'user.team',
+    ];
+
     protected array $availableIncludes = [
         'country_rank',
         'rank',
@@ -19,16 +25,9 @@ class UserStatisticsTransformer extends TransformerAbstract
         'variants',
     ];
 
-    public function transform(UserStatistics\Model $stats = null)
+    public function transform(?UserStatistics\Model $stats = null)
     {
-        if ($stats === null) {
-            $stats = new UserStatistics\Osu();
-        }
-
-        if (!$GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default'] && $GLOBALS['cfg']['osu']['scores']['experimental_rank_as_extra']) {
-            $globalRankExp = $stats->globalRankExp();
-            $ppExp = $stats->rank_score_exp;
-        }
+        $stats ??= new UserStatistics\Osu();
 
         return [
             'count_100' => $stats->count100,
@@ -40,9 +39,9 @@ class UserStatisticsTransformer extends TransformerAbstract
                 'progress' => $stats->currentLevelProgressPercent(),
             ],
             'global_rank' => $stats->globalRank(),
-            'global_rank_exp' => $globalRankExp ?? null,
-            'pp' => $stats->pp(),
-            'pp_exp' => $ppExp ?? 0,
+            'global_rank_exp' => null,
+            'pp' => $stats->rank_score,
+            'pp_exp' => 0,
             'ranked_score' => $stats->ranked_score,
             'hit_accuracy' => $stats->hit_accuracy,
             'play_count' => $stats->playcount,
@@ -62,7 +61,7 @@ class UserStatisticsTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeCountryRank(UserStatistics\Model $stats = null)
+    public function includeCountryRank(?UserStatistics\Model $stats = null)
     {
         if ($stats !== null) {
             return $this->primitive($stats->countryRank());
@@ -70,7 +69,7 @@ class UserStatisticsTransformer extends TransformerAbstract
     }
 
     // TODO: remove this after country_rank is deployed
-    public function includeRank(UserStatistics\Model $stats = null)
+    public function includeRank(?UserStatistics\Model $stats = null)
     {
         if ($stats === null) {
             $stats = new UserStatistics\Osu();
@@ -84,7 +83,7 @@ class UserStatisticsTransformer extends TransformerAbstract
         return $this->primitive($stats->rankHistory?->rankChangeSince30Days());
     }
 
-    public function includeUser(UserStatistics\Model $stats = null)
+    public function includeUser(?UserStatistics\Model $stats = null)
     {
         if ($stats === null) {
             $stats = new UserStatistics\Osu();
@@ -93,7 +92,7 @@ class UserStatisticsTransformer extends TransformerAbstract
         return $this->item($stats->user, new UserCompactTransformer());
     }
 
-    public function includeVariants(UserStatistics\Model $stats = null)
+    public function includeVariants(?UserStatistics\Model $stats = null)
     {
         if ($stats === null) {
             return;

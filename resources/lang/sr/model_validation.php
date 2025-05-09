@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => '',
+        'used' => '',
+        'word_not_allowed' => '',
+
+        'attributes' => [
+            'default_ruleset_id' => '',
+            'is_open' => '',
+            'name' => 'Име',
+            'short_name' => 'Кратко име',
+            'url' => 'URL',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Лозинка не сме да садржи корисничко име.',
         'email_already_used' => 'Адреса е-поште је већ коришћена.',
@@ -177,6 +191,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Није могуће пријавити рангиране мапе',
         'not_in_channel' => 'Нисте на овом каналу.',
+        'in_team' => '',
         'reason_not_valid' => ':reason није важећи за овај тип извештаја.',
         'self' => "Не можете сами да се пријавите!",
     ],

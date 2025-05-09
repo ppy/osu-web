@@ -17,10 +17,11 @@ return [
     ],
 
     'show' => [
+        'created_by' => 'oleh :author',
         'download' => 'Unduh',
         'item' => [
-            'cleared' => 'telah dimainkan',
-            'not_cleared' => 'belum dimainkan',
+            'cleared' => 'telah dituntaskan',
+            'not_cleared' => 'belum dituntaskan',
         ],
         'no_diff_reduction' => [
             '_' => ':link tidak dapat digunakan untuk menuntaskan paket ini.',
@@ -33,7 +34,7 @@ return [
         'chart' => 'Spotlights',
         'featured' => 'Featured Artist',
         'loved' => 'Project Loved',
-        'standard' => 'Standar',
+        'standard' => 'Reguler',
         'theme' => 'Tematik',
         'tournament' => 'Turnamen',
     ],

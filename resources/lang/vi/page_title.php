@@ -108,6 +108,13 @@ return [
         'seasons_controller' => [
             '_' => 'xếp hạng',
         ],
+        'teams_controller' => [
+            '_' => 'đội',
+            'create' => 'tạo đội',
+            'edit' => 'cài đặt đội',
+            'leaderboard' => 'bảng xếp hạng đội',
+            'show' => 'thông tin về đội',
+        ],
         'tournaments_controller' => [
             '_' => 'giải đấu',
         ],
@@ -130,6 +137,11 @@ return [
     ],
     'store' => [
         '_' => 'cửa hàng',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'thành viên trong đội',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

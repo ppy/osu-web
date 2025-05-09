@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'Modo de juego especificado no válido.',
+
+    'change_owner' => [
+        'too_many' => 'Demasiados mappers invitados.',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Error al actualizar los votos',

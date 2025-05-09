@@ -18,8 +18,9 @@
   &__arrow {
     .reset-input();
     .fade-element(@hover-transition-duration);
+    --padding: 10px;
     height: 100%;
-    padding: 10px;
+    padding: var(--padding) calc(var(--page-gutter) + var(--padding));
     position: absolute;
     top: 0;
 
@@ -33,12 +34,14 @@
 
     &--left {
       --icon: @fa-var-chevron-left;
-      left: var(--page-gutter);
+      left: 0;
+      padding-right: var(--padding);
     }
 
     &--right {
       --icon: @fa-var-chevron-right;
-      right: var(--page-gutter);
+      right: 0;
+      padding-left: var(--padding);
     }
 
     &::before {
@@ -97,8 +100,8 @@
     display: flex;
 
     width: 40px;
-    height: 11px;
-    padding: 0 5px 5px;
+    height: 16px;
+    padding: 5px;
 
     --content-height: 2px;
     --content-opacity: 0.5;
@@ -128,12 +131,15 @@
   }
 
   &__indicators {
-    position: relative;
     align-items: center;
+    bottom: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 0 var(--page-gutter);
     opacity: var(--indicators-opacity);
+    padding: 0 var(--page-gutter);
+    position: absolute;
+    transform: translateY(50%);
+    width: 100%;
   }
 }

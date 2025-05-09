@@ -7,9 +7,8 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 /**
+ * @property string|null $group_indicator
  * @property int $id
  * @property int $room_id
  * @property int $season_id

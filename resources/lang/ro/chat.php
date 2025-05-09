@@ -27,6 +27,7 @@ return [
                 'GROUP' => 'Grupuri',
                 'PM' => 'Mesaje directe ',
                 'PUBLIC' => 'Canale',
+                'TEAM' => 'Echipă',
             ],
         ],
     ],

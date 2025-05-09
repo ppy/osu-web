@@ -80,6 +80,7 @@ return [
         'confirm_restore' => '¿Realmente desea restaurar el tema?',
         'deleted' => 'tema eliminado',
         'go_to_latest' => 'ver la última publicación',
+        'go_to_unread' => 'ver la primera publicación no leída',
         'has_replied' => 'Has respondido a este tema',
         'in_forum' => 'en :forum',
         'latest_post' => ':when por :user',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'Etiqueta «resolved» eliminada',
             'to_1' => 'Añadir etiqueta «resolved»',
             'to_1_done' => 'Etiqueta «resolved» añadida',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => 'Eliminar la etiqueta «osu!lazer»',
+            'to_0_done' => 'Etiqueta «osu!lazer» eliminada',
+            'to_1' => 'Añadir la etiqueta «osu!lazer»',
+            'to_1_done' => 'Etiqueta «osu!lazer» añadida',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => 'Eliminar la etiqueta «osu!stable»',
+            'to_0_done' => 'Etiqueta «osu!stable» eliminada',
+            'to_1' => 'Añadir la etiqueta «osu!stable»',
+            'to_1_done' => 'Etiqueta «osu!stable» añadida',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => 'Eliminar la etiqueta «osu!web»',
+            'to_0_done' => 'Etiqueta «osu!web» eliminada',
+            'to_1' => 'Añadir la etiqueta «osu!web»',
+            'to_1_done' => 'Etiqueta «osu!web» añadida',
         ],
 
         'lock' => [

@@ -5,12 +5,12 @@ import { NotificationStackJson } from 'interfaces/notification-json';
 import { action, computed, makeObservable, observable } from 'mobx';
 import Notification from 'models/notification';
 import { Name } from 'models/notification-type';
-import { NotificationContextData } from 'notifications-context';
 import { NotificationCursor } from 'notifications/notification-cursor';
 import NotificationDeletable from 'notifications/notification-deletable';
 import { NotificationIdentity } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
 import { NotificationResolver } from 'notifications/notification-resolver';
+import { NotificationContextData } from 'notifications-context';
 
 export default class NotificationStack implements NotificationReadable, NotificationDeletable {
   @observable cursor: NotificationCursor | null = null;

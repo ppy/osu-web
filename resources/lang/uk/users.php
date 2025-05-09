@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Нечесна гра / чітерство',
-            'multiple_accounts' => 'Використання кількох облікових записів',
+            'inappropriate_chat' => '',
             'insults' => 'Образа мене / інших',
-            'spam' => 'Спам',
-            'unwanted_content' => 'Посилання на неприйнятний контент',
+            'multiple_accounts' => 'Використання кількох облікових записів',
             'nonsense' => 'Нісенітниця',
             'other' => 'Інше (вкажіть нижче)',
+            'spam' => 'Спам',
+            'unwanted_content' => 'Посилання на неприйнятний контент',
         ],
     ],
     'restricted_banner' => [
@@ -190,7 +191,7 @@ return [
 
         'comments_count' => [
             '_' => 'Опубліковано :link',
-            'count' => ':count_delimited коментар|:count_delimited коментарі|:count_delimited коментарів',
+            'count' => ':count_delimited коментар|:count_delimited коментаря|:count_delimited коментарів',
         ],
         'cover' => [
             'to_0' => 'Згорнути обкладинку профілю',
@@ -225,7 +226,7 @@ return [
                     'button' => 'Завантажити зображення',
                     'dropzone' => 'Для завантаження файлу перетягніть його сюди',
                     'dropzone_info' => 'Ви також можете перетягнути зображення сюди для завантаження',
-                    'size_info' => 'Розмір обкладинки повинен бути 2400x640',
+                    'size_info' => 'Розмір обкладинки повинен бути 2000x500',
                     'too_large' => 'Завантажуваний файл завеликий.',
                     'unsupported_format' => 'Непідтримуваний формат.',
 
@@ -278,7 +279,7 @@ return [
                     'title' => 'Улюблені бітмапи',
                 ],
                 'nominated' => [
-                    'title' => 'Номіновні рейтингові бітмапи',
+                    'title' => 'Номіновані рейтингові бітмапи',
                 ],
                 'pending' => [
                     'title' => 'На розгляді',
@@ -390,7 +391,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Завантажити повтор',
-                'not_ranked' => 'Очки продуктивності видаються тільки за рейтингові карти',
+                'not_ranked' => 'Тільки рейтингові мапи надають pp',
                 'pp_weight' => 'зважено: :percentage',
                 'view_details' => 'Детальніше',
                 'title' => 'Рейтинги',
@@ -479,6 +480,10 @@ return [
             'global_simple' => 'Рейтинг в світі',
             'highest' => 'Найвищий ранг :rank було досягнуто :date ',
         ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
+        ],
         'stats' => [
             'hit_accuracy' => 'Точність',
             'level' => 'Рівень :level',
@@ -491,7 +496,7 @@ return [
             'replays_watched_by_others' => 'Переглянутих повторів іншими',
             'score_ranks' => 'Рейтинг по очках',
             'total_hits' => 'Всього попадань',
-            'total_score' => 'Всього очків',
+            'total_score' => 'Всього очок',
             // modding stats
             'graveyard_beatmapset_count' => 'Покинуті мапи',
             'loved_beatmapset_count' => 'Улюблені мапи',

@@ -60,6 +60,12 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'Αδυναμία αποστολής σε χρήστη που σας έχει ή έχετε αποκλείσει.',
         'friends_only' => 'Ο χρήστης αποκλείει μηνύματα απο άτομα εκτός της λίστας φίλων του.',
@@ -170,12 +176,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Αδυναμία καρφιτσώματος αυτού του τύπου βαθμολογίας",
             'failed' => "",
             'not_owner' => 'Μόνο ο ιδιοκτήτης της βαθμολογίας μπορεί να καρφιτσώσει βαθμολογία.',
             'too_many' => 'Καρφιτσωμένο πάρα πολλές βαθμολογίες.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "",
+                'already_other_member' => "",
+                'currently_applying' => '',
+                'team_closed' => '',
+                'team_full' => "",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "",
+            'not_member' => '',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

@@ -22,6 +22,7 @@ return [
         'admin' => 'Admin',
         'authorise' => 'Auktorisera',
         'authorising' => 'Auktoriserar...',
+        'back' => 'Tillbaka',
         'back_to_previous' => 'Återgå till tidigare position',
         'back_to_top' => 'Tillbaka till toppen',
         'cancel' => 'Avbryt',

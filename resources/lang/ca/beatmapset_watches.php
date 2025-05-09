@@ -9,8 +9,8 @@ return [
         'title_compact' => 'llista de seguiment de modding',
 
         'counts' => [
-            'total' => 'Beatmaps vistos',
-            'unread' => 'Beatmaps amb nova activitat',
+            'total' => 'Mapes vistos',
+            'unread' => 'Mapes amb nova activitat',
         ],
 
         'table' => [

@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Dificultate',
-        'percentile_10' => 'Scor din top 10%',
-        'percentile_50' => 'Scor din top 50%',
+        'top_10p' => 'Scor Top 10%',
+        'top_50p' => 'Scor Top 50%',
     ],
 
     'filter' => [
@@ -37,11 +37,11 @@ return [
         'charts' => 'promovări',
         'country' => 'național',
         'daily_challenge' => 'provocare zilnică',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
-        'performance' => 'performanță',
-        'score' => 'scor',
         'seasons' => 'sezoane',
+        'team' => 'echipă',
     ],
 
     'seasons' => [
@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Acest sezon este în curs de desfășurare (vor fi adăugate mai multe playlist-uri).',
         'room_count' => 'Număr playlist-uri',
         'url' => 'Afișează mai multe informații despre acel sezon.',
+        'validation' => [
+            'not_enough_factors' => 'nu există suficienți factori de evaluare a scorului pentru un calcul corect',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,8 @@ return [
         'accuracy' => 'Precizie',
         'active_users' => 'Utilizatori activi',
         'country' => 'Țară',
+        'division' => 'Divizie',
+        'members' => 'Membri',
         'play_count' => 'Număr de Încercări',
         'performance' => 'Performanță',
         'total_score' => 'Scor total',

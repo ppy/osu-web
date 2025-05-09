@@ -92,6 +92,16 @@ class PaypalPaymentProcessor extends PaymentProcessor
         return $this['payment_status'] ?? $this['txn_type'];
     }
 
+    public function rejected()
+    {
+        parent::rejected();
+
+        $order = $this->getOrder();
+        if ($this->params['payment_type'] === 'echeck') {
+            $order->update(['tracking_code' => Order::ECHECK_DENIED]);
+        }
+    }
+
     public function validateTransaction(): bool
     {
         $this->signature->assertValid();
@@ -139,7 +149,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
         $this->validatePendingStatus();
 
         // just check if IPN transaction id is as expected with the Paypal v2 API.
-        $capturedId = $this->getOrder()->getProviderReference();
+        $capturedId = $this->getOrder()->getTransactionId();
         $transactionId = $this->getNotificationType() === NotificationType::REFUND
             ? $this->getParentTransactionId()
             : $this->getPaymentTransactionId();

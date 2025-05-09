@@ -22,7 +22,7 @@ class BeatmapsetEventTransformer extends TransformerAbstract
         'user_id' => 'BeatmapsetEventViewUserId',
     ];
 
-    public function transform(BeatmapsetEvent $event = null)
+    public function transform(?BeatmapsetEvent $event = null)
     {
         return [
             'id' => $event->id,

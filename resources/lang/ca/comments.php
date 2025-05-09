@@ -25,7 +25,7 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Prem enter per :action. Fes servir shift+enter per canviar de línia.',
+            '_' => 'Prem retorn per :action. Fes servir mayús+retorn per canviar de línia.',
             'edit' => 'guardar',
             'new' => 'publicar',
             'reply' => 'respondre',
@@ -44,7 +44,7 @@ return [
     ],
 
     'ogp' => [
-        'title' => 'comentari per :user',
+        'title' => 'comentari de :user',
     ],
 
     'placeholder' => [

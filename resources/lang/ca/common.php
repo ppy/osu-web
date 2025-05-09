@@ -9,7 +9,7 @@ return [
     'saved' => 'Guardat',
 
     'array_and' => [
-        'words_connector' => ',',
+        'words_connector' => ', ',
         'two_words_connector' => ' i ',
         'last_word_connector' => ', i ',
     ],
@@ -22,6 +22,7 @@ return [
         'admin' => 'Administrador',
         'authorise' => 'Autoritzar',
         'authorising' => 'Autoritzant...',
+        'back' => 'Enrere',
         'back_to_previous' => 'Tornar a la posició anterior',
         'back_to_top' => 'Torna al principi',
         'cancel' => 'Cancel·la',
@@ -56,7 +57,7 @@ return [
         'show_more' => 'mostra\'n més',
         'show_more_options' => 'mostrar més opcions',
         'submit' => 'Enviar',
-        'unpin' => 'desanclar',
+        'unpin' => 'desfixar',
         'update' => 'Actualitzar',
         'upload_image' => 'pujar imatge',
 

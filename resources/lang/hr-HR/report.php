@@ -34,6 +34,11 @@ return [
         'title' => 'Prijavi :username-ovo postignuće?',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'Prijavi',
         'title' => 'Prijavi :username?',

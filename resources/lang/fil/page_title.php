@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => 'mga ranggo',
         ],
+        'teams_controller' => [
+            '_' => '',
+            'create' => '',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'tournaments',
         ],
@@ -129,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'osu!store',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

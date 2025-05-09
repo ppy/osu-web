@@ -10,27 +10,29 @@ return [
     'mark_read' => 'Esborra :type ',
     'none' => 'No hi ha notificacions',
     'see_all' => 'veure totes les notificacions',
-    'see_channel' => 'vés al xat',
+    'see_channel' => 'ves al xat',
     'verifying' => 'Verifica la sessió per a veure les notificacions',
 
     'action_type' => [
         '_' => 'totes',
-        'beatmapset' => 'beatmaps',
+        'beatmapset' => 'mapes',
         'build' => 'versions',
         'channel' => 'xat',
         'forum_topic' => 'fòrum',
         'news_post' => 'novetats',
+        'team' => 'equip',
         'user' => 'perfil',
     ],
 
     'filters' => [
         '_' => 'totes',
-        'user' => 'perfil',
-        'beatmapset' => 'beatmaps',
-        'forum_topic' => 'fòrum',
-        'news_post' => 'novetats',
+        'beatmapset' => 'mapes',
         'build' => 'versions',
         'channel' => 'xat',
+        'forum_topic' => 'fòrum',
+        'news_post' => 'novetats',
+        'team' => 'equip',
+        'user' => 'perfil',
     ],
 
     'item' => [
@@ -39,22 +41,22 @@ return [
 
             'beatmap_owner_change' => [
                 '_' => 'Dificultat de convidat',
-                'beatmap_owner_change' => 'Ara ets propietari de la dificultat ":beatmap" per al beatmap ":title"',
+                'beatmap_owner_change' => 'Ara ets propietari de la dificultat ":beatmap" del mapa ":title"',
                 'beatmap_owner_change_compact' => 'Ara ets el propietari de la dificultat ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
-                '_' => 'Discussió de beatmaps',
+                '_' => 'Discussió de mapes',
                 'beatmapset_discussion_lock' => 'La discussió a ":title" s\'ha tancat',
                 'beatmapset_discussion_lock_compact' => 'La discussió s\'ha tancat',
                 'beatmapset_discussion_post_new' => 'Nova publicació a ":title" per :username: ":content"',
                 'beatmapset_discussion_post_new_empty' => 'Nova publicació a ":title" per :username',
                 'beatmapset_discussion_post_new_compact' => 'Nova publicació de :username: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nova publicació per :username',
-                'beatmapset_discussion_review_new' => 'Nova revisió de ":title" per :username que conté problemes: :problems, suggeriments :suggestions, elogis: :praises',
-                'beatmapset_discussion_review_new_compact' => 'Nova revisió per :username que conté problemes: :problems, suggeriments :suggestions, elogis: :praises',
-                'beatmapset_discussion_unlock' => 'La discussió de ":title" s\'ha obert',
-                'beatmapset_discussion_unlock_compact' => 'La discussió s\'ha obert',
+                'beatmapset_discussion_review_new' => 'Nova revisió de ":title" per :username que conté :review_counts',
+                'beatmapset_discussion_review_new_compact' => 'Nova revisió per :username que conté :review_counts',
+                'beatmapset_discussion_unlock' => 'La discussió de ":title" s\'ha desbloquejat',
+                'beatmapset_discussion_unlock_compact' => 'La discussió s\'ha desbloquejat',
 
                 'review_count' => [
                     'praises' => ':count_delimited elogi|:count_delimited elogis',
@@ -74,17 +76,17 @@ return [
             'beatmapset_state' => [
                 '_' => 'L\'estat del beatmap ha canviat',
                 'beatmapset_disqualify' => '":title" ha estat desqualificat',
-                'beatmapset_disqualify_compact' => 'El beatmap ha estat desqualificat',
-                'beatmapset_love' => 's\'ha promogut ":title" a "estimats"',
-                'beatmapset_love_compact' => 'El beatmap s\'ha promocionat a "estimats"',
+                'beatmapset_disqualify_compact' => 'El mapa ha estat desqualificat',
+                'beatmapset_love' => 's\'ha promogut ":title" a "amats"',
+                'beatmapset_love_compact' => 'El mapa s\'ha promocionat a "estimats"',
                 'beatmapset_nominate' => '":title" ha estat nominat',
-                'beatmapset_nominate_compact' => 'El beatmap ha estat nominat',
+                'beatmapset_nominate_compact' => 'El mapa ha estat nominat',
                 'beatmapset_qualify' => '":title" ha obtingut suficients nominacions i ha entrat a la cua per a classificatoris',
-                'beatmapset_qualify_compact' => 'El beatmap ha entrat a la cua per a classificatoris',
+                'beatmapset_qualify_compact' => 'El mapa ha entrat a la cua per a classificatoris',
                 'beatmapset_rank' => '":title" s\'ha classificat',
-                'beatmapset_rank_compact' => 'El beatmap s\'ha classificat',
-                'beatmapset_remove_from_loved' => 's\'ha esborrat ":title" de "estimats"',
-                'beatmapset_remove_from_loved_compact' => 'El beatmap s\'ha esborrat de "estimats"',
+                'beatmapset_rank_compact' => 'El mapa s\'ha classificat',
+                'beatmapset_remove_from_loved' => 's\'ha esborrat ":title" d\'"amats"',
+                'beatmapset_remove_from_loved_compact' => 'El mapa s\'ha esborrat d\'"amats"',
                 'beatmapset_reset_nominations' => 'La nominació de ":title" s\'ha reiniciat',
                 'beatmapset_reset_nominations_compact' => 'La nominació s\'ha reiniciat',
             ],
@@ -159,16 +161,27 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
-                '_' => 'Nou beatmap',
+                '_' => 'Nou mapa',
 
-                'user_beatmapset_new' => 'Nou beatmap ":title" per :username',
-                'user_beatmapset_new_compact' => 'Nou beatmap ":title"',
-                'user_beatmapset_new_group' => 'Nous beatmaps de :username',
+                'user_beatmapset_new' => 'Nou mapa ":title" per :username',
+                'user_beatmapset_new_compact' => 'Nou mapa ":title"',
+                'user_beatmapset_new_group' => 'Nous mapes de :username',
 
-                'user_beatmapset_revive' => ':username ha restaurat el beatmap ":title"',
-                'user_beatmapset_revive_compact' => 'S\'ha restaurat el beatmap ":title"',
+                'user_beatmapset_revive' => ':username ha restaurat el beatmap «:title»',
+                'user_beatmapset_revive_compact' => 'S\'ha restaurat el mapa ":title"',
             ],
         ],
 
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Hi ha noves respostes a ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
             ],
         ],
 

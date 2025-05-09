@@ -22,6 +22,7 @@ return [
         'admin' => 'Aдмин',
         'authorise' => 'Ауторизуј',
         'authorising' => 'Ауторизује се...',
+        'back' => 'Назад',
         'back_to_previous' => 'Повратак на претходни приказ',
         'back_to_top' => 'Назад на врх',
         'cancel' => 'Откажите',
@@ -69,7 +70,7 @@ return [
     'count' => [
         'badges' => ':count_delimited беџ|:count_delimited беџева',
         'days' => ':count_delimited дан|:count_delimited дана',
-        'hour_short_unit' => 'сат|сати',
+        'hour_short_unit' => 'сата|сати',
         'hours' => ':count_delimited сат|:count_delimited сати',
         'item' => ':count_delimited ствар|:count_delimited ствари',
         'minute_short_unit' => 'минут|минута',
@@ -82,7 +83,7 @@ return [
         'star_priority' => ':count_delimited приоритет звезде|:count_delimited приоритети звезде',
         'update' => ':count_delimited ажурирања|:count_delimited ажурирања',
         'view' => ':count_delimited преглед|:count_delimited прегледа',
-        'years' => ':count_delimited година|:count_delimited година',
+        'years' => ':count_delimited година|:count_delimited године',
     ],
 
     'countdown' => [

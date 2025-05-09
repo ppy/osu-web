@@ -5,137 +5,149 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => 'administrātors',
     ],
     'error' => [
         'error' => [
-            '400' => '',
-            '404' => '',
-            '403' => '',
-            '401' => '',
-            '401-verification' => '',
-            '405' => '',
-            '422' => '',
-            '429' => '',
-            '500' => '',
-            '503' => '',
+            '400' => 'nepareizs pieprasījums',
+            '404' => 'trūkst',
+            '403' => 'aizliegts',
+            '401' => 'nav autorizēts',
+            '401-verification' => 'konta verifikācija',
+            '405' => 'trūkst',
+            '422' => 'nepareizs pieprasījums',
+            '429' => 'pārāk daudz pieprasījumu',
+            '500' => 'kaut kas salūza',
+            '503' => 'remonti',
         ],
     ],
     'forum' => [
-        '_' => '',
+        '_' => 'foruma',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'tēmu pieraksts',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'verify_link' => '',
+            'verify_link' => 'konta verifikācija',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'iemīļotie mākslinieki',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'ritma-mapju diskusijas raksts',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'ritma-mapju diskusijas',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'ritma-mapju pakas',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'ritma-mapju diskusiju balsis',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => 'ritma-mapju vēsture',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'discussion' => 'ritma-mapes diskusija',
+            'index' => 'ritma-mapju saraksts',
+            'show' => 'ritma-mapes info',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'izmaiņu pieraksts',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'saraksti',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => 'komentāri',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'konkursa vērtēšanas rezultāti',
         ],
         'contests_controller' => [
-            '_' => '',
-            'judge' => '',
+            '_' => 'konkurs',
+            'judge' => 'konkursa tiesāšana',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'grupas',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
-            'support_the_game' => '',
-            'testflight' => '',
+            'get_download' => 'lejupielādēt',
+            'index' => 'panelis',
+            'search' => 'meklē',
+            'support_the_game' => 'atbalsti spēli',
+            'testflight' => 'testa lidojums',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'informācija',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'tiešraides straumes',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'cīņas',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'jaunumi',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'paziņojumu vēsture',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'paroles attiestatījums',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'novietojums',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'veiktspēja',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => 'novietojums',
+        ],
+        'teams_controller' => [
+            '_' => 'komandas',
+            'create' => '',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => 'komandas info',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => 'turnīri',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'lietotāja standarta pārklājums',
         ],
         'users_controller' => [
-            '_' => '',
-            'create' => '',
-            'disabled' => '',
+            '_' => 'spēlētāja info',
+            'create' => 'izveidot kontu',
+            'disabled' => 'paziņojums',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'vikipēdija',
         ],
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'autorizēt aplikāciju',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'veikals',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'moderācijas info',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'daudzspēlētāju vēsture',
         ],
     ],
 ];

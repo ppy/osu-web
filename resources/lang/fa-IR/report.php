@@ -34,6 +34,11 @@ return [
         'title' => 'گزارش امتیاز :username؟',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'گزارش',
         'title' => 'گزارش :username؟',

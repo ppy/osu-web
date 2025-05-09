@@ -140,6 +140,7 @@ return [
             'description' => '谱面介绍',
             'genre' => '流派',
             'language' => '语言',
+            'mapper_tags' => '',
             'no_scores' => '数据还在计算中……',
             'nominators' => '提名者',
             'nsfw' => '不良内容',
@@ -148,7 +149,7 @@ return [
             'source' => '来源',
             'storyboard' => '此谱面包含故事板',
             'success-rate' => '成功率',
-            'tags' => '标签',
+            'user_tags' => '',
             'video' => '此谱面包含视频',
         ],
 
@@ -171,6 +172,7 @@ return [
             'global' => '全球排名',
             'supporter-link' => '点击 <a href=":link">这里</a> 来查看你得到的精彩功能！',
             'supporter-only' => '你需要成为 osu! 支持者才能查看地区/好友/特定 Mod 排名！',
+            'team' => '战队排名',
             'title' => '排行榜',
 
             'headers' => [
@@ -191,11 +193,12 @@ return [
                 'country' => '您所在的国家/地区中还没有玩家上传过成绩！',
                 'friend' => '还没有好友上传成绩！',
                 'global' => '还没有玩家上传过成绩，来玩一把？',
-                'loading' => '加载分数中...',
+                'loading' => '加载成绩中...',
+                'team' => '您所在的战队中还没有玩家上传过成绩！',
                 'unranked' => '未上架 (Unranked) 谱面',
             ],
             'score' => [
-                'first' => '领衔者',
+                'first' => '领先',
                 'own' => '个人最佳成绩',
             ],
             'supporter_link' => [
@@ -223,13 +226,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => 'Ranked',
-            'approved' => 'Approved',
-            'loved' => 'Loved',
-            'qualified' => 'Qualified',
-            'wip' => 'WIP',
-            'pending' => 'Pending',
-            'graveyard' => 'Graveyard',
+            'ranked' => '上架',
+            'approved' => '达标',
+            'loved' => '社区喜爱',
+            'qualified' => '过审',
+            'wip' => '制作中',
+            'pending' => '待定',
+            'graveyard' => '坟场',
         ],
     ],
 

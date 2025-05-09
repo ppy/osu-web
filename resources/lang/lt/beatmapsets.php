@@ -140,6 +140,7 @@ return [
             'description' => 'Aprašymas',
             'genre' => 'Žanras',
             'language' => 'Kalba',
+            'mapper_tags' => '',
             'no_scores' => 'Duomenys dar apskaičiuojami...',
             'nominators' => 'Nominatoriai',
             'nsfw' => 'Eksplicitinis turinys',
@@ -148,7 +149,7 @@ return [
             'source' => 'Šaltinis',
             'storyboard' => 'Šis beatmap\'as turi foninę animaciją',
             'success-rate' => 'Įveikimų Rodiklis',
-            'tags' => 'Žymos',
+            'user_tags' => '',
             'video' => 'Šis beatmap\'as turi vaizdo įrašą',
         ],
 
@@ -171,6 +172,7 @@ return [
             'global' => 'Pasauliniai Rezultatai',
             'supporter-link' => 'Spausk <a href=":link">čia</a>, kad pamatytum visus privalomus, kuriuos gausi!',
             'supporter-only' => 'Tu turi būti osu!rėmėjas, kad pasiektum draugų, šalių ar konkrečių modų rezultatus!',
+            'team' => '',
             'title' => 'Rezultatų lenta',
 
             'headers' => [
@@ -192,6 +194,7 @@ return [
                 'friend' => 'Niekas iš jūsų draugų dar nenustatė rezultato šiam bitmapui!',
                 'global' => 'Jokiu rezultatų. Galbūt norėtum pabandyti nustatyti koki?',
                 'loading' => 'Įkeliami rezultatai...',
+                'team' => '',
                 'unranked' => 'Nereitinguotas beatmap\'as.',
             ],
             'score' => [

@@ -8,24 +8,24 @@ return [
         'convinced' => [
             'title' => '可以可以，買買買！',
             'support' => '贊助 osu!',
-            'gift' => '或者以禮物方式贈送給其它玩家',
-            'instructions' => '點擊愛心前往 osu! 商店',
+            'gift' => '或者以禮物方式贈送給其他玩家',
+            'instructions' => '點選愛心前往 osu! 商店',
         ],
         'why-support' => [
-            'title' => '我為什麼要贊助 osu! ？錢都花到哪兒了？',
+            'title' => '我為什麼要贊助 osu!？錢都花到哪裡了？',
 
             'team' => [
-                'title' => '資助團隊',
-                'description' => 'osu! 是由一個小團隊進行開發和營運。您的贊助可以幫助團隊...你知道的，維持生計。',
+                'title' => '支持團隊',
+                'description' => 'osu! 是一個小團隊在開發和經營的。你的支持能讓他們，你知道的... 活下去。',
             ],
             'infra' => [
                 'title' => '伺服器基礎設施',
-                'description' => '捐款用於網站營運，多人連線服務，在線排行榜...等等。',
+                'description' => '捐款將用於網站伺服器營運、多人遊戲服務、線上排行榜等。',
             ],
             'featured-artists' => [
                 'title' => '精選藝術家',
                 'description' => '在你的支持下，我們可以與更多優秀的藝術家合作，並為 osu! 帶來更多出色的音樂',
-                'link_text' => '查看當前列表 &raquo;',
+                'link_text' => '查看目前清單 &raquo;',
             ],
             'ads' => [
                 'title' => '維持 osu! 自給自足',
@@ -33,7 +33,7 @@ return [
             ],
             'tournaments' => [
                 'title' => '官方比賽',
-                'description' => '為官方 osu! 世界杯籌備營運資金（及獎勵）。',
+                'description' => '為官方 osu! 世界盃籌備營運資金（及獎勵）。',
                 'link_text' => '探索比賽 &raquo;',
             ],
             'bounty-program' => [
@@ -43,7 +43,7 @@ return [
             ],
         ],
         'perks' => [
-            'title' => '我能得到什麼？',
+            'title' => '酷欸！我能得到什麼？',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => '在遊戲內提供圖譜快速下載與搜尋。',
@@ -60,18 +60,18 @@ return [
             ],
 
             'mod_filtering' => [
-                'title' => '按 Mods 篩選',
+                'title' => '依 Mod 篩選',
                 'description' => '只想和 HDHR 玩家一起玩？沒問題！',
             ],
 
             'auto_downloads' => [
                 'title' => '自動下載',
-                'description' => '本地沒有需要的譜面時，osu! 會自動下載！',
+                'description' => '本機沒有需要的圖譜時，osu! 會自動下載！',
             ],
 
             'upload_more' => [
                 'title' => '上傳更多圖譜',
-                'description' => '做圖者上傳待處理的圖譜上限增加到 10 張。',
+                'description' => '譜師能額外上傳待處理的圖譜上限增加至 10 張圖譜。',
             ],
 
             'early_access' => [
@@ -86,12 +86,12 @@ return [
 
             'beatmap_filters' => [
                 'title' => '圖譜篩選器',
-                'description' => '更多角度的去篩選圖譜。',
+                'description' => '篩選圖譜搜尋結果，可依據已遊玩或未遊玩地圖，或依據達成的排名進行篩選。',
             ],
 
             'yellow_fellow' => [
-                'title' => '高亮使用者名稱',
-                'description' => '聊天時，用戶名會變成亮黃色。',
+                'title' => '突顯使用者名稱',
+                'description' => '聊天時，使用者名稱會變成亮黃色。',
             ],
 
             'speedy_downloads' => [
@@ -100,32 +100,32 @@ return [
             ],
 
             'change_username' => [
-                'title' => '修改用戶名',
-                'description' => '修改用戶名而不需要支付費用（最多 1 次）。',
+                'title' => '修改使用者名稱',
+                'description' => '您的首次購買贊助者將包含一次免費的修改名稱機會。',
             ],
 
             'skinnables' => [
-                'title' => '更多的定製',
-                'description' => '自定義更多的遊戲界面元素，例如主畫面的背景。',
+                'title' => '更多的訂製外觀元素',
+                'description' => '可自訂更多外觀元素，例如主選單背景。',
             ],
 
             'feature_votes' => [
-                'title' => '新特性投票',
-                'description' => '為新特性請求投票（每月 2 票）。',
+                'title' => '新功能投票',
+                'description' => '為新功能請求投票（每月 2 票）。',
             ],
 
             'sort_options' => [
-                'title' => '排名',
-                'description' => '可以查看圖譜的 國內／好友／所選 MOD 排名。',
+                'title' => '排序選項',
+                'description' => '能夠在遊戲內查看譜面依國家／好友／特定 mod 的排行榜',
             ],
 
             'more_favourites' => [
-                'title' => '更多收藏',
+                'title' => '收藏更多圖譜',
                 'description' => '你可收藏的圖譜上限將從 :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => '更多好友',
-                'description' => '你的好友上限將從 :normally &rarr; :supporter',
+                'description' => '您可擁有的好友上限從 :normally 提升至 :supporter',
             ],
             'more_beatmaps' => [
                 'title' => '上傳更多圖譜',
@@ -139,7 +139,7 @@ return [
         ],
         'supporter_status' => [
             'contribution' => '感謝您一直以來的支持！您已經捐贈了 :dollars 並購買了 :tags 次贊助者標籤！',
-            'gifted' => "您已經捐贈了 :giftedTags 次贊助者標籤（花費了 :giftedDollars ），真慷慨啊！",
+            'gifted' => "您已經捐贈了 :giftedTags 次贊助者標籤（花費了 :giftedDollars），真慷慨啊！",
             'not_yet' => "您還沒有贊助者標籤 :(",
             'valid_until' => '您的贊助者標籤將在 :date 到期',
             'was_valid_until' => '您的贊助者標籤已於 :date 到期',

@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => 'discusión del mapa',
     ],
+
+    'store' => [
+        'too_many' => 'Has alcanzado el límite de personas a las que puedes seguir.',
+    ],
 ];

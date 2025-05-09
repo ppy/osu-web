@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Độ khó',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'top_10p' => 'Điểm thuộc top 10%',
+        'top_50p' => 'Điểm thuộc top 50%',
     ],
 
     'filter' => [
@@ -37,11 +37,11 @@ return [
         'charts' => 'tiêu điểm',
         'country' => 'quốc gia',
         'daily_challenge' => 'thử thách hằng ngày',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'nhiều người chơi',
-        'performance' => 'thành tích',
-        'score' => 'số điểm',
         'seasons' => 'mùa',
+        'team' => 'đội',
     ],
 
     'seasons' => [
@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Mùa đang diễn ra (sẽ có nhiều playlist được thêm vào).',
         'room_count' => 'Số danh sách phát',
         'url' => 'Hiện thêm thông tin về mùa đó.',
+        'validation' => [
+            'not_enough_factors' => 'không có đủ các hệ số điểm để tính toán một cách bình thường',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,8 @@ return [
         'accuracy' => 'Độ chính xác',
         'active_users' => 'Số người đang hoạt động',
         'country' => 'Quốc gia',
+        'division' => 'Phân hạng',
+        'members' => 'Thành viên',
         'play_count' => 'Số lần chơi',
         'performance' => 'Thành tích',
         'total_score' => 'Tổng số điểm',

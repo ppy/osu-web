@@ -6,15 +6,15 @@
 return [
     'bold' => '粗體',
     'heading' => '標題',
-    'help' => '幫助',
+    'help' => '說明',
     'image' => '圖片',
-    'imagemap' => '圖片地圖',
+    'imagemap' => '影像圖',
     'italic' => '斜體',
     'link' => '超連結',
     'list' => '無序列表',
     'list_numbered' => '編號清單',
     'size' => [
-        '_' => '字體大小',
+        '_' => '字型大小',
         'tiny' => '極小',
         'small' => '小',
         'normal' => '普通',

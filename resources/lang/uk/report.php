@@ -34,6 +34,11 @@ return [
         'title' => 'Поскаржитись на гру :username?',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'Поскаржитись',
         'title' => 'Поскаржитись на :username?',

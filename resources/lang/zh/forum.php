@@ -80,6 +80,7 @@ return [
         'confirm_restore' => '恢复此主题？',
         'deleted' => '已删除的主题',
         'go_to_latest' => '查看最新的帖子',
+        'go_to_unread' => '查看第一条未读贴',
         'has_replied' => '你已回复过此主题',
         'in_forum' => '在 :forum',
         'latest_post' => ':when :user',
@@ -294,6 +295,27 @@ return [
             'to_1_done' => '已添加 "已解决" 标签',
         ],
 
+        'issue_tag_osulazer' => [
+            'to_0' => '删除 "osu!lazer" 标签',
+            'to_0_done' => '已删除 "osu!lazer" 标签',
+            'to_1' => '添加 "osu!lazer" 标签',
+            'to_1_done' => '已添加 "osu!lazer" 标签',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '删除 "osu!stable" 标签',
+            'to_0_done' => '已删除 "osu!stable" 标签',
+            'to_1' => '添加 "osu!stable" 标签',
+            'to_1_done' => '已添加 "osu!stable" 标签',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '删除 "osu!web" 标签',
+            'to_0_done' => '已删除 "osu!web" 标签',
+            'to_1' => '添加 "osu!web" 标签',
+            'to_1_done' => '已添加 "osu!web" 标签',
+        ],
+
         'lock' => [
             'is_locked' => '主题已被锁定，不能回复',
             'to_0' => '解锁主题',
@@ -368,7 +390,7 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching' => '未订阅',
+            'to_not_watching' => '不订阅',
             'to_watching' => '订阅',
             'to_watching_mail' => '订阅并启用邮件通知',
             'tooltip_mail_disable' => '通知已启用。点击禁用',

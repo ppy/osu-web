@@ -13,7 +13,7 @@ return [
 
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Tidak dapat membatalkan pemberian hype.',
+            'is_hype' => 'Pemberian hype tidak dapat diurungkan.',
             'has_reply' => 'Tidak dapat menghapus topik diskusi yang mempunyai balasan',
         ],
         'nominate' => [
@@ -46,7 +46,7 @@ return [
         ],
 
         'edit' => [
-            'not_owner' => 'Postingan ini hanya dapat disunting oleh pengirimnya.',
+            'not_owner' => 'Postingan hanya dapat disunting oleh pengirim.',
             'resolved' => 'Kamu tidak dapat menyunting postingan pada topik diskusi yang telah terjawab.',
             'system_generated' => 'Postingan yang dihasilkan secara otomatis tidak dapat disunting.',
         ],
@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Kamu harus mencetak skor pada beatmap ini untuk menambahkan tag.',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'Kamu tidak dapat mengirim pesan kepada pengguna yang kamu blokir atau memblokir dirimu.',
         'friends_only' => 'Pengguna ini memblokir pesan dari pengguna lain yang tidak berada dalam daftar temannya.',
         'moderated' => 'Kanal percakapan ini sedang dimoderasi.',
         'no_access' => 'Kamu tidak memiliki akses ke kanal percakapan ini.',
-        'no_announce' => '',
+        'no_announce' => 'Kamu tidak memiliki izin untuk membuat pengumuman.',
         'receive_friends_only' => 'Pengguna ini mungkin tidak akan dapat membalas karena kamu hanya menerima pesan dari pengguna lain yang berada dalam daftar temanmu.',
         'restricted' => 'Kamu tidak dapat mengirim pesan pada saat kamu sedang di-silence, di-restrict, atau di-ban.',
         'silenced' => 'Kamu tidak dapat mengirim pesan pada saat kamu sedang di-silence, di-restrict, atau di-ban.',
@@ -139,7 +145,7 @@ return [
 
             'vote' => [
                 'no_forum_access' => 'Kamu tidak memiliki akses ke forum yang dituju.',
-                'over' => 'Polling selesai dan tidak dapat dipilih lagi.',
+                'over' => 'Jajak pendapat ini telah berakhir dan tidak lagi dapat dipilih.',
                 'play_more' => 'Kamu harus lebih banyak bermain sebelum kamu dapat memberikan suara pada forum.',
                 'voted' => 'Pengubahan suara tidak diizinkan.',
 
@@ -170,6 +176,12 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Hanya pemilik ruangan yang dapat menutup ruang permainan.',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Tipe skor ini tidak dapat disematkan",
@@ -179,10 +191,29 @@ return [
         ],
     ],
 
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "Kamu sudah menjadi bagian dari tim ini.",
+                'already_other_member' => "Kamu sudah menjadi bagian dari tim yang berbeda.",
+                'currently_applying' => 'Kamu memiliki permintaan untuk bergabung ke tim yang belum dijawab.',
+                'team_closed' => 'Tim ini saat ini tidak menerima permintaan untuk bergabung.',
+                'team_full' => "Tim ini sudah penuh dan tidak lagi dapat menerima lebih banyak anggota.",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "Ketua tim tidak dapat meninggalkan tim.",
+            'not_member' => 'Kamu bukan merupakan anggota dari tim ini.',
+        ],
+        'store' => [
+            'require_supporter_tag' => 'Tag osu!supporter diperlukan untuk membuat tim.',
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'Laman pengguna terkunci.',
+                'locked' => 'Halaman pengguna terkunci.',
                 'not_owner' => 'Hanya dapat menyunting laman pengguna sendiri.',
                 'require_supporter_tag' => 'tag osu!supporter dibutuhkan.',
             ],

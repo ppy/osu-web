@@ -5,6 +5,9 @@
 
 namespace App\Models\Chat;
 
+use App\Jobs\Notifications\ChannelAnnouncement;
+use App\Jobs\Notifications\ChannelMessage;
+use App\Jobs\Notifications\ChannelTeam;
 use App\Models\Traits\Reportable;
 use App\Models\Traits\ReportableInterface;
 use App\Models\User;
@@ -85,6 +88,20 @@ class Message extends Model implements ReportableInterface
             'reportedIn',
             'sender' => $this->getRelationValue($key),
         };
+    }
+
+    public function dispatchNotification(): void
+    {
+        $class = match ($this->channel->type) {
+            Channel::TYPES['announce'] => ChannelAnnouncement::class,
+            Channel::TYPES['pm'] => ChannelMessage::class,
+            Channel::TYPES['team'] => ChannelTeam::class,
+            default => null,
+        };
+
+        if ($class !== null) {
+            new $class($this, $this->sender)->dispatch();
+        }
     }
 
     public function reportableAdditionalInfo(): ?string

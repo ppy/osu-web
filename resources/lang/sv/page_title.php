@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => 'rankningar',
         ],
+        'teams_controller' => [
+            '_' => '',
+            'create' => '',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'turneringar',
         ],
@@ -129,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'butik',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

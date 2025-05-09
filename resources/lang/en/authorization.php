@@ -191,6 +191,25 @@ return [
         ],
     ],
 
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "You're already part of the team.",
+                'already_other_member' => "You're already part of a different team.",
+                'currently_applying' => 'You have a pending team join request.',
+                'team_closed' => 'The team is currently not accepting any join requests.',
+                'team_full' => "The team is full and can't accept any more members.",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "Team leader can't leave the team.",
+            'not_member' => 'Not a member of the team.',
+        ],
+        'store' => [
+            'require_supporter_tag' => 'osu!supporter tag is required to create team.',
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [

@@ -10,9 +10,9 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'beatmap' => 'Vaikeustaso',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [
@@ -36,12 +36,12 @@ return [
     'type' => [
         'charts' => 'kohdevalot (vanha)',
         'country' => 'maat',
-        'daily_challenge' => '',
+        'daily_challenge' => 'päivittäinen haaste',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'moninpelit',
-        'performance' => 'suorituskyky',
-        'score' => 'pisteet',
         'seasons' => 'kaudet',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Tämä kausi on edelleen käynnissä (lisää soittolistoja tullaan lisäämään).',
         'room_count' => 'Soittolistojen määrä',
         'url' => 'Lisätietoja tästä kaudesta.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,8 @@ return [
         'accuracy' => 'Tarkkuus',
         'active_users' => 'Aktiiviset käyttäjät',
         'country' => 'Maa',
+        'division' => '',
+        'members' => '',
         'play_count' => 'Pelikerrat',
         'performance' => 'Suorituskyky',
         'total_score' => 'Kokonaispisteet',

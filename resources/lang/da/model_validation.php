@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => '',
+        'used' => '',
+        'word_not_allowed' => '',
+
+        'attributes' => [
+            'default_ruleset_id' => '',
+            'is_open' => '',
+            'name' => '',
+            'short_name' => '',
+            'url' => '',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Adgangskoden må ikke indholde et brugernavn.',
         'email_already_used' => 'Email-adressen er allerede i brug.',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Rangerede beatmaps kan ikke rapporteres',
         'not_in_channel' => 'Du er ikke i denne kanal.',
+        'in_team' => '',
         'reason_not_valid' => ':reason er ikke gyldt for denne type anmeldelse.',
         'self' => "Du kan ikke rapportere dig selv!",
     ],

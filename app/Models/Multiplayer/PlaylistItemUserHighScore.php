@@ -6,6 +6,7 @@
 namespace App\Models\Multiplayer;
 
 use App\Models\Model;
+use App\Models\Solo\Score;
 use App\Models\Traits\WithDbCursorHelper;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -103,6 +104,11 @@ class PlaylistItemUserHighScore extends Model
         return $this->belongsTo(PlaylistItem::class);
     }
 
+    public function score(): BelongsTo
+    {
+        return $this->belongsTo(Score::class, 'score_id');
+    }
+
     public function scoreLink()
     {
         return $this->belongsTo(ScoreLink::class, 'score_id');
@@ -127,7 +133,11 @@ class PlaylistItemUserHighScore extends Model
     {
         $score = $scoreLink->score;
 
-        if ($score === null || !$score->passed || $score->total_score <= $this->total_score) {
+        if ($score === null || $score->total_score <= $this->total_score) {
+            return false;
+        }
+
+        if (!$score->passed && !$scoreLink->playlistItem->room->isRealtime()) {
             return false;
         }
 

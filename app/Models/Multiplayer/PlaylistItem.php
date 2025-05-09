@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $owner_id
  * @property int|null $playlist_order
  * @property json|null $required_mods
+ * @property bool $freestyle
  * @property Room $room
  * @property int $room_id
  * @property int|null $ruleset_id
@@ -35,6 +36,7 @@ class PlaylistItem extends Model
     protected $casts = [
         'allowed_mods' => 'object',
         'expired' => 'boolean',
+        'freestyle' => 'boolean',
         'required_mods' => 'object',
     ];
 
@@ -64,6 +66,7 @@ class PlaylistItem extends Model
             $obj->$field = $value;
         }
 
+        $obj->freestyle = get_bool($json['freestyle'] ?? false);
         $obj->max_attempts = get_int($json['max_attempts'] ?? null);
 
         $modsHelper = app('mods');
@@ -169,6 +172,13 @@ class PlaylistItem extends Model
 
     private function assertValidMods()
     {
+        if ($this->freestyle) {
+            if (count($this->allowed_mods) !== 0 || count($this->required_mods) !== 0) {
+                throw new InvariantException("mod isn't allowed in freestyle");
+            }
+            return;
+        }
+
         $allowedModIds = array_column($this->allowed_mods, 'acronym');
         $requiredModIds = array_column($this->required_mods, 'acronym');
 
@@ -181,6 +191,6 @@ class PlaylistItem extends Model
         $modsHelper = app('mods');
         $modsHelper->assertValidForMultiplayer($this->ruleset_id, $allowedModIds, $isRealtimeRoom, false);
         $modsHelper->assertValidForMultiplayer($this->ruleset_id, $requiredModIds, $isRealtimeRoom, true);
-        $modsHelper->assertValidExclusivity($this->ruleset_id, $requiredModIds, $allowedModIds);
+        $modsHelper->assertValidMultiplayerExclusivity($this->ruleset_id, $requiredModIds, $allowedModIds);
     }
 }

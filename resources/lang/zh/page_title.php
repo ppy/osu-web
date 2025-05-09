@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => '排名',
         ],
+        'teams_controller' => [
+            '_' => '战队',
+            'create' => '创建战队',
+            'edit' => '战队设置',
+            'leaderboard' => '战队排行',
+            'show' => '战队信息',
+        ],
         'tournaments_controller' => [
             '_' => '比赛',
         ],
@@ -129,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => '商店',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '战队成员',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

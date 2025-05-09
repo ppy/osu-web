@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => 'Esta :attribute contém caracteres inválidos.',
+        'used' => 'Esta escolha :attribute já foi utilizada.',
+        'word_not_allowed' => 'Esta escolha :attribute não é permitida.',
+
+        'attributes' => [
+            'default_ruleset_id' => 'Regras padrão',
+            'is_open' => 'Candidatura à equipa',
+            'name' => 'Nome',
+            'short_name' => 'Nome abreviado',
+            'url' => 'Hiperligação',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'A palavra-passe não pode conter o nome de utilizador.',
         'email_already_used' => 'Endereço de email já usado.',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Os beatmaps classificados não podem ser denunciados',
         'not_in_channel' => 'Não estás neste canal.',
+        'in_team' => '',
         'reason_not_valid' => ':reason não é valida para este tipo de denúncia.',
         'self' => "Não te podes denunciar a ti mesmo!",
     ],

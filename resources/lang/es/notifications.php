@@ -20,17 +20,19 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'foro',
         'news_post' => 'noticias',
+        'team' => 'equipo',
         'user' => 'perfil',
     ],
 
     'filters' => [
         '_' => 'todas',
-        'user' => 'perfil',
         'beatmapset' => 'mapas',
-        'forum_topic' => 'foro',
-        'news_post' => 'noticias',
         'build' => 'versiones',
         'channel' => 'chat',
+        'forum_topic' => 'foro',
+        'news_post' => 'noticias',
+        'team' => 'equipo',
+        'user' => 'perfil',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => 'Solicitud de unirse al equipo',
+
+                'team_application_accept' => "Ahora eres miembro del equipo :title",
+                'team_application_accept_compact' => "Ahora eres miembro del equipo :title",
+                'team_application_reject' => 'Tu solicitud para unirte al equipo :title ha sido rechazada',
+                'team_application_reject_compact' => 'Tu solicitud para unirte al equipo :title ha sido rechazada',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Nuevo mapa',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Hay nuevas respuestas en «:title»',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Ahora eres miembro del equipo :title",
+                'team_application_reject' => 'Tu solicitud para unirte al equipo :title ha sido rechazada',
             ],
         ],
 

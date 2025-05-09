@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Vil du virkelig gjenopprette emnet?',
         'deleted' => 'slettet emne',
         'go_to_latest' => 'vis nyeste innlegg',
+        'go_to_unread' => '',
         'has_replied' => 'Du har svart på dette emnet',
         'in_forum' => 'i :forum',
         'latest_post' => ':when av :user',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'Fjernet "løst" merknaden',
             'to_1' => 'Legg til "løst" merknad',
             'to_1_done' => 'Lagt til "løst" merknad',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'lock' => [

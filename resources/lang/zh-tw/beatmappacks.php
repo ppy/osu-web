@@ -5,34 +5,35 @@
 
 return [
     'index' => [
-        'description' => '相同主題的圖譜合集壓縮檔',
-        'empty' => '敬請期待!',
-        'nav_title' => '列表',
-        'title' => '曲包',
+        'description' => '圍繞相同主題的圖譜合集壓縮檔',
+        'empty' => '敬請期待！',
+        'nav_title' => '清單',
+        'title' => '圖譜壓縮檔',
 
         'blurb' => [
             'important' => '下載前必讀',
-            'install_instruction' => '如何安裝：下載完成後，請將圖譜包解壓縮到 osu! 的 Songs 資料夾。osu! 會處理後續流程。',
+            'install_instruction' => '如何安裝：下載完成後，請將圖譜壓縮檔解壓縮到 osu! 的 Songs 資料夾。osu! 會處理後續流程。',
         ],
     ],
 
     'show' => [
+        'created_by' => '作者：:author',
         'download' => '下載',
         'item' => [
-            'cleared' => '玩過',
-            'not_cleared' => '未玩',
+            'cleared' => '已通過',
+            'not_cleared' => '未通過',
         ],
         'no_diff_reduction' => [
-            '_' => '使用:link將無法解鎖這個曲包的成就。',
+            '_' => '使用:link將無法解鎖這個圖譜壓縮檔的成就。',
             'link' => '降低難度的 mod',
         ],
     ],
 
     'mode' => [
         'artist' => '藝術家/專輯',
-        'chart' => '頭條',
+        'chart' => '聚光燈',
         'featured' => '精選藝術家',
-        'loved' => '社群喜愛計劃',
+        'loved' => '社群喜愛計畫',
         'standard' => '標準',
         'theme' => '主題',
         'tournament' => '錦標賽',

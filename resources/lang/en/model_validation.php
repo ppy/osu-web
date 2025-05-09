@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => 'This :attribute contains invalid characters.',
+        'used' => 'This :attribute choice is already used.',
+        'word_not_allowed' => 'This :attribute choice is not allowed.',
+
+        'attributes' => [
+            'default_ruleset_id' => 'Default ruleset',
+            'is_open' => 'Team application',
+            'name' => 'Name',
+            'short_name' => 'Short name',
+            'url' => 'URL',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Password may not contain username.',
         'email_already_used' => 'Email address already used.',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Ranked beatmaps cannot be reported',
         'not_in_channel' => 'You\'re not in this channel.',
+        'in_team' => 'You\'re part of the team.',
         'reason_not_valid' => ':reason is not valid for this report type.',
         'self' => "You can't report yourself!",
     ],

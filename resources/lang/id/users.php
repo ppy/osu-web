@@ -72,10 +72,10 @@ return [
 
     'disabled' => [
         'title' => 'Uh-oh! Sepertinya akunmu telah dinonaktifkan.',
-        'warning' => "Apabila kamu melanggar peraturan, akunmu akan ditempatkan pada masa percobaan selama satu bulan, di mana dalam rentang waktu ini kami tidak akan menanggapi permintaan apa pun yang terkait dengan akun Anda. Setelah masa ini berakhir, Anda baru akan dapat menghubungi kami untuk mengembalikan akunmu. Mohon diperhatikan bahwa membuat akun baru <strong>hanya akan menambah masa hukumanmu</strong>, dan <strong>masa hukumanmu akan bertambah panjang untuk setiap akun baru yang kamu buat</strong>. Kami harap kamu dapat belajar dari kesalahanmu!",
+        'warning' => "Apabila kamu melanggar peraturan, akunmu akan ditempatkan pada masa tenggang selama satu bulan, di mana dalam rentang waktu ini kami tidak akan menanggapi permintaan banding apa pun yang terkait dengan akun kamu. Setelah masa ini berakhir, kamu baru akan dapat menghubungi kami untuk mengembalikan akunmu. Mohon diperhatikan bahwa membuat akun baru setelah akun utamamu dinonaktifkan <strong>hanya akan memperpanjang masa hukumanmu selama satu bulan</strong>, dan <strong>pelanggaranmu akan semakin berat untuk setiap akun baru yang kamu buat</strong>. Kami harap kamu dapat belajar dari kesalahanmu!",
 
         'if_mistake' => [
-            '_' => 'Apabila kamu merasa bahwa hal ini merupakan sebuah kesalahan, kamu dapat menghubungi kami (baik melalui :email atau tombol "?" yang terletak pada pojok kanan bawah layar) sesegera mungkin. Mohon diperhatikan bahwa segala keputusan yang kami ambil selalu berdasar pada data dan diambil dengan penuh keyakinan. Di samping itu, kami juga berhak untuk tidak menindaklanjuti aduanmu apabila kami merasa kamu dengan sengaja telah berbohong kepada kami.',
+            '_' => 'Apabila kamu merasa bahwa hal ini merupakan sebuah kesalahan, kamu dipersilakan untuk menghubungi kami (baik melalui :email atau tombol "?" yang terletak pada pojok kanan bawah halaman ini) secara langsung. Mohon diperhatikan bahwa kami selalu sepenuhnya yakin akan seluruh tindakan kami, karena segala sesuatunya selalu kami dasarkan pada data yang konkrit. Kami berhak untuk tidak menindaklanjuti aduanmu apabila kami merasa kamu telah dengan sengaja berbohong kepada kami.',
             'email' => 'email',
         ],
 
@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Melakukan kecurangan',
-            'multiple_accounts' => 'Menggunakan lebih dari satu akun',
+            'inappropriate_chat' => '',
             'insults' => 'Menghina saya / orang lain',
-            'spam' => 'Spam',
-            'unwanted_content' => 'Menautkan konten yang tidak pantas',
+            'multiple_accounts' => 'Menggunakan lebih dari satu akun',
             'nonsense' => 'Beromong kosong',
             'other' => 'Lainnya (ketik di bawah)',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Menautkan konten yang tidak pantas',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Peringkat global untuk :mode',
             'global_simple' => 'Peringkat Global',
             'highest' => 'Peringkat tertinggi: :rank pada :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Akurasi Hit',

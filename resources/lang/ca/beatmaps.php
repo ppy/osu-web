@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'El conjunt de regles especificat no és vàlid.',
+
+    'change_owner' => [
+        'too_many' => 'Massa mapejadors convidats.',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Error en actualitzar el vot',
@@ -19,8 +25,8 @@ return [
         'edit' => 'editar',
         'edited' => 'Última edició per :editor :update_time.',
         'guest' => 'Dificultat de convidat per :user',
-        'kudosu_denied' => 'Negat d\'obtenir kudosu.',
-        'message_placeholder_deleted_beatmap' => 'Aquesta dificultat ha estat eliminada, per la qual cosa ja no es pot discutir.',
+        'kudosu_denied' => 'Negar l\'obtenció de kudosu.',
+        'message_placeholder_deleted_beatmap' => 'Aquesta dificultat ha estat eliminada, per tant ja no es pot discutir.',
         'message_placeholder_locked' => 'La discussió per a aquest beatmap s\'ha desactivat.',
         'message_placeholder_silenced' => "No podeu publicar una discussió mentre estigui silenciat.",
         'message_type_select' => 'Seleccionar tipus de comentari',
@@ -57,8 +63,8 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Aquest post anirà a la discussió general de beatmaps. Per modejar aquesta dificultat, comença un missatge amb una marca de temps (ex. 00:12:345).',
-            'in_timeline' => 'Per moddejar diverses marques de temps, publiqueu diverses vegades (un missatge per marca de temps).',
+            'in_general' => 'Aquest post anirà a la discussió general de mapes. Per modejar aquesta dificultat, comença un missatge amb una marca de temps (ex. 00:12:345).',
+            'in_timeline' => 'Per modejar diverses marques de temps, publiqueu diverses vegades (un missatge per marca de temps).',
         ],
 
         'message_placeholder' => [
@@ -70,7 +76,7 @@ return [
 
         'message_type' => [
             'disqualify' => 'Desqualificar',
-            'hype' => 'Hype!',
+            'hype' => 'Eufòria!',
             'mapper_note' => 'Nota',
             'nomination_reset' => 'Restableix la nominació',
             'praise' => 'Elogi',
@@ -82,7 +88,7 @@ return [
 
         'message_type_title' => [
             'disqualify' => 'Publicar desqualificació',
-            'hype' => 'Publicar Hype!',
+            'hype' => 'Publicar eufòria!',
             'mapper_note' => 'Publicar nota',
             'nomination_reset' => 'Eliminar totes les nominacions',
             'praise' => 'Publicar elogi',
@@ -172,16 +178,16 @@ return [
     ],
 
     'hype' => [
-        'button' => 'Hipejar aquest beatmap!',
-        'button_done' => 'Hypejat!',
-        'confirm' => "Segur? Això farà servir un dels seus :n hype restants i no es pot desfer.",
-        'explanation' => 'Hypeja aquest beatmap per fer-lo més visible per a la nominació i la classificació!',
-        'explanation_guest' => 'Inicia sessió i hypeja aquest beatmap per fer-lo més visible per a la nominació i la classificació!',
-        'new_time' => "Obtindràs un altre hype :new_time.",
-        'remaining' => 'Et queden :remaining hypes.',
-        'required_text' => 'Hype: :current/:required',
-        'section_title' => 'Tren de hype',
-        'title' => 'Hype',
+        'button' => 'Mostrar eufòria a aquest beatmap!',
+        'button_done' => 'Ja li has donat la teva mostra d\'eufòria!',
+        'confirm' => "Segur? Això farà servir una de les teves :n mostres d'eufòria restants i no es pot desfer.",
+        'explanation' => 'Mostra eufòria a aquest beatmap per fer-lo més visible per a la nominació i la classificació!',
+        'explanation_guest' => 'Inicia sessió i mostra eufòria a aquest beatmap per fer-lo més visible per a la nominació i la classificació!',
+        'new_time' => "Obtindràs una altra mostra d'eufòria :new_time.",
+        'remaining' => 'Et queden :remaining mostres d\'eufòria.',
+        'required_text' => 'Eufòria: :current/:required',
+        'section_title' => 'Mostres d\'eufòria',
+        'title' => 'Eufòria',
     ],
 
     'feedback' => [
@@ -201,11 +207,11 @@ return [
         'incorrect_state' => 'Error en realitzar aquesta acció, intenteu actualitzar la pàgina.',
         'love' => 'Estimar',
         'love_choose' => 'Trieu la dificultat per a l\'estimat',
-        'love_confirm' => 'Estimar aquest mapa?',
+        'love_confirm' => 'Estimar aquest beatmap?',
         'nominate' => 'Nominar',
         'nominate_confirm' => 'Nominar aquest beatmap?',
         'nominated_by' => 'nominat per :users',
-        'not_enough_hype' => "No hi ha prou hype.",
+        'not_enough_hype' => "No hi ha prou eufòria.",
         'remove_from_loved' => 'Eliminar de Estimats',
         'remove_from_loved_prompt' => 'Motiu per remoure d\'Estimats:',
         'required_text' => 'Nominacions: :current/:required',

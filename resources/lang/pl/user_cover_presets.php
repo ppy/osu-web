@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Wyłącz zaznaczone',
+        'batch_enable' => 'Włącz zaznaczone',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
+            '_' => ':action :items?',
+            'disable' => 'Wyłącz',
+            'enable' => 'Włącz',
             'items' => ':count_delimited tło|:count_delimited tła|:count_delimited teł',
         ],
 
         'create_form' => [
             'files' => 'Pliki',
             'submit' => 'Zapisz',
-            'title' => '',
+            'title' => 'Dodaj nowy',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => 'Ustaw Obraz',
-            'image_update' => '',
+            'click_to_disable' => 'Kliknij, aby wyłączyć',
+            'click_to_enable' => 'Kliknij, aby aktywować',
+            'enabled' => 'Aktywne',
+            'disabled' => 'Nieaktywne',
+            'image_store' => 'Ustaw obraz',
+            'image_update' => 'Zmień zdjęcie ',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'Wystąpił błąd podczas tworzenia okładki: :error',
+        'ok' => 'Utworzono okładkę',
     ],
 ];

@@ -134,7 +134,7 @@ return [
         ],
         '401' => [
             'error' => "Kamu tidak seharusnya berada di sini.",
-            'description' => 'Kamu dapat mencoba untuk kembali ke halaman sebelumnya. Atau mungkin coba untuk masuk terlebih dahulu.',
+            'description' => 'Kamu dapat mencoba untuk kembali ke halaman sebelumnya. Atau mungkin untuk masuk terlebih dahulu.',
         ],
         '405' => [
             'error' => 'Halaman Tidak Ditemukan',
@@ -165,7 +165,7 @@ return [
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "Untuk berjaga-jaga, berikut kode yang dapat kamu berikan kepada layanan dukungan kami!",
+        'reference' => "Untuk berjaga-jaga, berikut kode yang dapat kamu berikan kepada tim layanan dukungan kami!",
     ],
 
     'popup_login' => [
@@ -201,6 +201,7 @@ return [
             'profile' => 'Profil Saya',
             'scoring_mode_toggle' => 'Perhitungan skor klasik',
             'scoring_mode_toggle_tooltip' => 'Sesuaikan nilai skor untuk lebih menyerupai perhitungan skor klasik yang tidak memiliki batas',
+            'team' => 'Tim Saya',
         ],
     ],
 

@@ -20,17 +20,19 @@ return [
         'channel' => 'czat',
         'forum_topic' => 'forum',
         'news_post' => 'aktualności',
+        'team' => 'drużyna',
         'user' => 'profil',
     ],
 
     'filters' => [
         '_' => 'wszystkie',
-        'user' => 'profil',
         'beatmapset' => 'beatmapy',
-        'forum_topic' => 'forum',
-        'news_post' => 'aktualności',
         'build' => 'kompilacje',
         'channel' => 'czat',
+        'forum_topic' => 'forum',
+        'news_post' => 'aktualności',
+        'team' => 'drużyna',
+        'user' => 'profil',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => 'Prośba o dołączenie do drużyny',
+
+                'team_application_accept' => "Jesteś teraz członkiem drużyny :title",
+                'team_application_accept_compact' => "Jesteś teraz członkiem drużyny :title",
+                'team_application_reject' => 'Twoja prośba o dołączenie do drużyny :title została odrzucona',
+                'team_application_reject_compact' => 'Twoja prośba o dołączenie do drużyny :title została odrzucona',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Nowa beatmapa',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'W wątku „:title” pojawiły się nowe odpowiedzi',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Jesteś teraz członkiem drużyny :title",
+                'team_application_reject' => 'Jesteś teraz członkiem drużyny :title',
             ],
         ],
 

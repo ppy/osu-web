@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'Zadán neplatný ruleset.',
+
+    'change_owner' => [
+        'too_many' => 'Příliš mnoho mapper hostů.',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Nastala chyba během hlasování',
@@ -273,7 +279,7 @@ return [
     ],
     'general' => [
         'converts' => 'Zahrnout překonvertované beatmapy',
-        'featured_artists' => 'Featured Artists',
+        'featured_artists' => 'Oficiální umělci',
         'follows' => 'Odebíraní autoři map',
         'recommended' => 'Doporučená obtížnost',
         'spotlights' => 'Zvýrazněné beatmapy',

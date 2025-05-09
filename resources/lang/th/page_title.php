@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => 'การจัดอันดับ',
         ],
+        'teams_controller' => [
+            '_' => 'ทีม',
+            'create' => 'สร้างทีม',
+            'edit' => 'การตั้งค่าทีม',
+            'leaderboard' => '',
+            'show' => 'ข้อมูลทีม',
+        ],
         'tournaments_controller' => [
             '_' => '
 ทัวร์นาเมนต์',
@@ -130,6 +137,11 @@ return [
     ],
     'store' => [
         '_' => 'ร้านค้า',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'สมาชิกทีม',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

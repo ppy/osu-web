@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'تقلب',
-            'multiple_accounts' => 'استفاده از چند حساب کاربری',
+            'inappropriate_chat' => '',
             'insults' => 'توهین به من یا دیگران',
-            'spam' => 'اسپم کردن (هرز نویسی)',
-            'unwanted_content' => 'لینک کردن به محتوای نامناسب',
+            'multiple_accounts' => 'استفاده از چند حساب کاربری',
             'nonsense' => 'خارج از منطق',
             'other' => 'موارد دیگر (پایین بنویسید)',
+            'spam' => 'اسپم کردن (هرز نویسی)',
+            'unwanted_content' => 'لینک کردن به محتوای نامناسب',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'رتبه جهانی برای :mode',
             'global_simple' => 'رتبه جهانی',
             'highest' => '',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'دقت ضربات',

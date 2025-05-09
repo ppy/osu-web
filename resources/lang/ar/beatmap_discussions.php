@@ -66,6 +66,13 @@ return [
         'version' => 'الصعوبة',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'سجل الدخول للرد',

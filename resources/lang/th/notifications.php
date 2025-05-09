@@ -20,17 +20,19 @@ return [
         'channel' => 'แชท',
         'forum_topic' => 'ฟอรั่ม',
         'news_post' => 'ข่าวสาร',
+        'team' => 'ทีม',
         'user' => 'โปรไฟล์',
     ],
 
     'filters' => [
         '_' => 'ทั้งหมด',
-        'user' => 'โปรไฟล์',
         'beatmapset' => 'บีทแมพ',
-        'forum_topic' => 'บอร์ดข่าวสาร',
-        'news_post' => 'ข่าวสาร',
         'build' => 'เวอร์ชั่น',
         'channel' => 'แชท',
+        'forum_topic' => 'บอร์ดข่าวสาร',
+        'news_post' => 'ข่าวสาร',
+        'team' => 'ทีม',
+        'user' => 'โปรไฟล์',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "คุณได้เป็นสมาชิกของทีม :title แล้ว",
+                'team_application_accept_compact' => "คุณได้เป็นสมาชิกของทีม :title แล้ว",
+                'team_application_reject' => 'คำของร้องเข้าร่วมทีม :title ของคุณถูกปฏิเสธ',
+                'team_application_reject_compact' => 'คำของร้องเข้าร่วมทีม :title ของคุณถูกปฏิเสธ',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'บีทแมพใหม่',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'มีการตอบกลับใหม่ใน ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "คุณได้เป็นสมาชิกของทีม :title แล้ว",
+                'team_application_reject' => 'คำของร้องเข้าร่วมทีม :title ของคุณถูกปฏิเสธ',
             ],
         ],
 

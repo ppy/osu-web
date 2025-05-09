@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Debes establecer una puntuación en un mapa para añadir una etiqueta.',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'No puedes enviar mensajes a un usuario que bloqueaste o que te haya bloqueado.',
         'friends_only' => 'Este usuario está bloqueando los mensajes de personas que no están en su lista de amigos.',
         'moderated' => 'Este canal está actualmente siendo moderado.',
         'no_access' => 'No tienes acceso a ese canal.',
-        'no_announce' => '',
+        'no_announce' => 'No tienes permiso para publicar anuncios.',
         'receive_friends_only' => 'Es posible que el usuario no pueda responder porque solo aceptas mensajes de las personas en tu lista de amigos.',
         'restricted' => 'No puedes enviar mensajes mientras estás silenciado, restringido o baneado.',
         'silenced' => 'No puedes enviar mensajes mientras estás silenciado, restringido o baneado.',
@@ -170,12 +176,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Solo el propietario de la sala puede cerrarla.',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "No se puede anclar este tipo de puntuación",
             'failed' => "No se puede fijar una puntuación fallida.",
             'not_owner' => 'Solo el propietario puede anclar la puntuación.',
             'too_many' => 'Se han anclado demasiadas puntuaciones.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "Ya formas parte del equipo.",
+                'already_other_member' => "Ya formas parte de otro equipo.",
+                'currently_applying' => 'Tienes pendiente una solicitud para unirte a un equipo.',
+                'team_closed' => 'Por el momento, el equipo no está aceptando solicitudes para formar parte de él.',
+                'team_full' => "El equipo está completo y no puede aceptar a más miembros.",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "El líder del equipo no puede abandonar el equipo.",
+            'not_member' => 'No es miembro del equipo.',
+        ],
+        'store' => [
+            'require_supporter_tag' => 'Se requiere una etiqueta de osu!supporter para crear un equipo.',
         ],
     ],
 

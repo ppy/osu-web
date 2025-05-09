@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Exceptions\InvariantException;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Solo\Score;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int|null $build_id
  * @property \Carbon\Carbon|null $created_at
  * @property int $id
+ * @property \App\Models\Multiplayer\PlaylistItem $playlistItem
  * @property int $ruleset_id
  * @property \App\Models\Solo\Score $score
  * @property int $score_id
@@ -25,6 +27,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class ScoreToken extends Model
 {
+    public ?string $beatmapHash = null;
+
     public function beatmap()
     {
         return $this->belongsTo(Beatmap::class, 'beatmap_id');
@@ -73,5 +77,35 @@ class ScoreToken extends Model
             'score',
             'user' => $this->getRelationValue($key),
         };
+    }
+
+    public function setBeatmapHashAttribute(?string $value): void
+    {
+        $this->beatmapHash = $value;
+    }
+
+    public function assertValid(): void
+    {
+        $beatmap = $this->beatmap;
+        if ($this->beatmapHash !== $beatmap->checksum) {
+            throw new InvariantException(osu_trans('score_tokens.create.beatmap_hash_invalid'));
+        }
+
+        $rulesetId = $this->ruleset_id;
+        if ($rulesetId === null) {
+            throw new InvariantException('missing ruleset_id');
+        }
+        if (Beatmap::modeStr($rulesetId) === null || !$beatmap->canBeConvertedTo($rulesetId)) {
+            throw new InvariantException('invalid ruleset_id');
+        }
+    }
+
+    public function save(array $options = []): bool
+    {
+        if (!$this->exists) {
+            $this->assertValid();
+        }
+
+        return parent::save($options);
     }
 }

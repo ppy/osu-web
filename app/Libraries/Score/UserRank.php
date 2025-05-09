@@ -11,12 +11,9 @@ use App\Libraries\Search\ScoreSearchParams;
 
 class UserRank
 {
-    public static function getRank(ScoreSearchParams $params): int
+    public static function getCount(ScoreSearchParams $params): int
     {
-        if ($params->beforeTotalScore === null && $params->beforeScore === null) {
-            throw new InvariantException('beforeScore or beforeTotalScore must be specified');
-        }
-
+        $params->setSort(null);
         $search = new ScoreSearch($params);
 
         $search->size(0);
@@ -27,6 +24,15 @@ class UserRank
         $response = $search->response();
         $search->assertNoError();
 
-        return 1 + $response->aggregations($aggName)['value'];
+        return $response->aggregations($aggName)['value'];
+    }
+
+    public static function getRank(ScoreSearchParams $params): int
+    {
+        if ($params->beforeTotalScore === null && $params->beforeScore === null) {
+            throw new InvariantException('beforeScore or beforeTotalScore must be specified');
+        }
+
+        return 1 + static::getCount($params);
     }
 }

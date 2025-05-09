@@ -19,6 +19,7 @@ return [
 
         'errors' => [
             'duration_too_long' => 'Durata este prea lungă.',
+            'name_too_long' => 'Numele camerei este prea lung.',
         ],
 
         'status' => [

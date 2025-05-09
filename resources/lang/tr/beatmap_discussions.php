@@ -66,6 +66,13 @@ return [
         'version' => 'Zorluk',
     ],
 
+    'refresh' => [
+        'checking' => 'Güncellemeler kontrol ediliyor...',
+        'has_updates' => 'Bu tartışma güncellendi, yenilemek için tıkla.',
+        'no_updates' => 'Güncelleme yok.',
+        'updating' => 'Güncelleniyor...',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Yanıtlamak için Giriş yapın',

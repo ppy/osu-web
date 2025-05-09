@@ -79,11 +79,7 @@ class BeatmapsetsController extends Controller
 
     public function show($id)
     {
-        $beatmapset = (
-            priv_check('BeatmapsetShowDeleted')->can()
-                ? Beatmapset::withTrashed()->whereHas('allBeatmaps')
-                : Beatmapset::whereHas('beatmaps')
-        )->findOrFail($id);
+        $beatmapset = $this->findBeatmapset($id);
 
         $set = $this->showJson($beatmapset);
 
@@ -116,6 +112,8 @@ class BeatmapsetsController extends Controller
     }
 
     /**
+     * Search Beatmapset
+     *
      * TODO: documentation
      *
      * @usesCursor
@@ -129,7 +127,7 @@ class BeatmapsetsController extends Controller
 
     public function discussion($id)
     {
-        $beatmapset = Beatmapset::findOrFail($id);
+        $beatmapset = $this->findBeatmapset($id);
 
         $initialData = [
             'beatmapset' => $beatmapset->defaultDiscussionJson(),
@@ -355,7 +353,7 @@ class BeatmapsetsController extends Controller
     private function getSearchResponse(?array $params = null)
     {
         $params = new BeatmapsetSearchRequestParams($params ?? request()->all(), auth()->user());
-        $search = (new BeatmapsetSearchCached($params));
+        $search = new BeatmapsetSearchCached($params);
 
         $records = datadog_timing(function () use ($search) {
             return $search->records();
@@ -381,15 +379,26 @@ class BeatmapsetsController extends Controller
         ];
     }
 
+    private function findBeatmapset($id): Beatmapset
+    {
+        return (
+            priv_check('BeatmapsetShowDeleted')->can()
+                ? Beatmapset::withTrashed()->whereHas('allBeatmaps')
+                : Beatmapset::whereHas('beatmaps')
+        )->findOrFail($id);
+    }
+
     private function showJson($beatmapset)
     {
         $beatmapRelation = $beatmapset->trashed()
             ? 'allBeatmaps'
             : 'beatmaps';
         $beatmapset->load([
+            "{$beatmapRelation}" => fn ($q) => $q->withUserTagIds(\Auth::id()),
             "{$beatmapRelation}.baseDifficultyRatings",
             "{$beatmapRelation}.baseMaxCombo",
             "{$beatmapRelation}.failtimes",
+            "{$beatmapRelation}.beatmapOwners.user",
             'genre',
             'language',
             'user',
@@ -398,12 +407,17 @@ class BeatmapsetsController extends Controller
         $transformer = new BeatmapsetTransformer();
         $transformer->relatedUsersType = 'show';
 
+        static $sharedIncludes = [
+            'failtimes',
+            'owners',
+            'top_tag_ids',
+        ];
+
         return json_item($beatmapset, $transformer, [
-            'beatmaps',
-            'beatmaps.failtimes',
+            ...array_map(fn ($include) => "beatmaps.{$include}", $sharedIncludes),
+            'beatmaps.current_user_tag_ids',
             'beatmaps.max_combo',
-            'converts',
-            'converts.failtimes',
+            ...array_map(fn ($include) => "converts.{$include}", $sharedIncludes),
             'current_nominations',
             'current_user_attributes',
             'description',
@@ -412,6 +426,7 @@ class BeatmapsetsController extends Controller
             'pack_tags',
             'ratings',
             'recent_favourites',
+            'related_tags',
             'related_users',
             'user',
         ]);

@@ -6,10 +6,13 @@
 namespace App\Transformers;
 
 use App\Libraries\MorphMap;
+use App\Libraries\User\SeasonStats;
 use App\Models\Beatmap;
+use App\Models\Season;
 use App\Models\User;
 use App\Models\UserProfileCustomization;
 use Illuminate\Support\Arr;
+use League\Fractal\Resource\Primitive;
 use League\Fractal\Resource\ResourceInterface;
 
 class UserCompactTransformer extends TransformerAbstract
@@ -18,9 +21,11 @@ class UserCompactTransformer extends TransformerAbstract
         'country',
         'cover',
         'groups',
+        'team',
     ];
 
     const CARD_INCLUDES_PRELOAD = [
+        'team',
         'userGroups',
     ];
 
@@ -55,6 +60,7 @@ class UserCompactTransformer extends TransformerAbstract
         'comments_count',
         'country',
         'cover',
+        'current_season_stats',
         'daily_challenge_user_stats',
         'favourite_beatmapset_count',
         'follow_user_mapping',
@@ -91,6 +97,7 @@ class UserCompactTransformer extends TransformerAbstract
         'statistics',
         'statistics_rulesets',
         'support_level',
+        'team',
         'unread_pm_count',
         'user_achievements',
         'user_preferences',
@@ -221,6 +228,17 @@ class UserCompactTransformer extends TransformerAbstract
             // cast to string for backward compatibility
             'id' => get_string($user->cover_preset_id),
         ]);
+    }
+
+    public function includeCurrentSeasonStats(User $user): Primitive
+    {
+        $season = Season::active()
+            ->where('ruleset_id', Beatmap::modeInt($this->mode))
+            ->first();
+
+        return $season === null
+            ? $this->primitive(null)
+            : $this->primitive((new SeasonStats($user, $season))->get());
     }
 
     public function includeDailyChallengeUserStats(User $user)
@@ -450,6 +468,13 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeSupportLevel(User $user)
     {
         return $this->primitive($user->supportLevel());
+    }
+
+    public function includeTeam(User $user)
+    {
+        return ($team = $user->team) === null
+            ? $this->null()
+            : $this->item($team, new TeamTransformer());
     }
 
     public function includeUnreadPmCount(User $user)

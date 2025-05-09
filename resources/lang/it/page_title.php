@@ -107,14 +107,21 @@ return [
         'seasons_controller' => [
             '_' => 'classifiche',
         ],
+        'teams_controller' => [
+            '_' => 'squadre',
+            'create' => 'creazione squadra',
+            'edit' => 'impostazioni squadra',
+            'leaderboard' => 'classifica della squadra',
+            'show' => 'dettagli squadra',
+        ],
         'tournaments_controller' => [
             '_' => 'tornei',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'copertine predefinite dall\'utente',
         ],
         'users_controller' => [
-            '_' => 'informazioni giocatore',
+            '_' => 'dettagli giocatore',
             'create' => 'crea account',
             'disabled' => 'avviso',
         ],
@@ -130,9 +137,14 @@ return [
     'store' => [
         '_' => 'osu!store',
     ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'membri della squadra',
+        ],
+    ],
     'users' => [
         'modding_history_controller' => [
-            '_' => 'informazioni modder',
+            '_' => 'dettagli modder',
         ],
         'multiplayer_controller' => [
             '_' => 'cronologia multigiocatore',

@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Level',
-        'percentile_10' => 'Punktzahl im 10ten Perzentil',
-        'percentile_50' => 'Median',
+        'top_10p' => '90%-Perzentil',
+        'top_50p' => 'Median',
     ],
 
     'filter' => [
@@ -37,11 +37,11 @@ return [
         'charts' => 'Spotlights (alt)',
         'country' => 'Länder',
         'daily_challenge' => 'Tägliche Herausforderung',
+        'global' => '',
         'kudosu' => 'Kudosu',
         'multiplayer' => 'Mehrspieler',
-        'performance' => 'Performance',
-        'score' => 'Punktzahl',
         'seasons' => 'Seasons',
+        'team' => 'Teams',
     ],
 
     'seasons' => [
@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Diese Season ist noch im Gange (es werden weitere Playlists hinzugefügt).',
         'room_count' => 'Anzahl der Playlists',
         'url' => 'Weitere Informationen zu dieser Season anzeigen.',
+        'validation' => [
+            'not_enough_factors' => 'Es gibt nicht genügend Score-Faktoren für eine korrekte Berechnung',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,8 @@ return [
         'accuracy' => 'Genauigkeit',
         'active_users' => 'Aktive Nutzer',
         'country' => 'Land',
+        'division' => 'Spielklasse',
+        'members' => 'Mitglieder',
         'play_count' => 'Gespielt',
         'performance' => 'Performance',
         'total_score' => 'Gesamtpunktzahl',

@@ -53,6 +53,11 @@ return [
                 'beatmapsets' => '',
                 'forum' => '',
                 'general' => '',
+
+                'users' => [
+                    'header' => 'Pengguna',
+                    'cover_presets' => 'Preset Sampul Profil',
+                ],
             ],
         ],
     ],

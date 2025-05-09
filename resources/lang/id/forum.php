@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Apakah kamu yakin untuk memulihkan topik ini?',
         'deleted' => 'topik yang dihapus',
         'go_to_latest' => 'lihat postingan terbaru',
+        'go_to_unread' => 'lihat pos pertama yang belum dibaca',
         'has_replied' => 'Kamu telah mengirimkan balasan pada topik ini',
         'in_forum' => 'pada forum :forum',
         'latest_post' => ':when oleh :user',
@@ -228,7 +229,7 @@ return [
 
             'poll' => [
                 'hide_results' => 'Rahasiakan hasil pada saat pemungutan suara sedang berlangsung.',
-                'hide_results_info' => 'Apabila diaktifkan, hasil suara baru akan tersedia setelah jajak pendapat berakhir.',
+                'hide_results_info' => 'Apabila diaktifkan, hasil ini hanya akan ditampilkan setelah jajak pendapat berakhir.',
                 'length' => 'Jalankan jajak pendapat selama',
                 'length_days_suffix' => 'hari',
                 'length_info' => 'Kosongkan untuk jajak pendapat yang tidak pernah berakhir',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'Tag "resolved" dihapus',
             'to_1' => 'Sematkan tag "resolved"',
             'to_1_done' => 'Tag "resolved" disematkan',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => 'Hapus tag "osu!lazer"',
+            'to_0_done' => 'Tag "osu!lazer" dihapus',
+            'to_1' => 'Tambah tag "osu!lazer"',
+            'to_1_done' => 'Tag "osu!lazer" ditambahkan',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => 'Hapus tag "osu!stable"',
+            'to_0_done' => 'Tag "osu!stable" dihapus',
+            'to_1' => 'Tambah tag "osu!stable"',
+            'to_1_done' => 'Tag "osu!stable" ditambahkan',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => 'Hapus tag "osu!web"',
+            'to_0_done' => 'Tag "osu!web" dihapus',
+            'to_1' => 'Tambah tag "osu!web"',
+            'to_1_done' => 'Tag "osu!web" ditambahkan',
         ],
 
         'lock' => [
@@ -371,7 +393,7 @@ return [
             'to_not_watching' => 'Tidak dimarkahi',
             'to_watching' => 'Markahi',
             'to_watching_mail' => 'Markahi dengan notifikasi',
-            'tooltip_mail_disable' => 'Notifikasi untuk topik ini sedang tidak aktif. Klik untuk mengaktifkan notifikasi',
+            'tooltip_mail_disable' => 'Notifikasi untuk topik ini sedang aktif. Klik untuk menonaktifkan notifikasi',
             'tooltip_mail_enable' => 'Notifikasi untuk topik ini sedang tidak aktif. Klik untuk mengaktifkan notifikasi',
         ],
     ],

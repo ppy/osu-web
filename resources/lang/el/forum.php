@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Πραγματικά επαναφορά θέματος;',
         'deleted' => 'διαγραμμένο θέμα',
         'go_to_latest' => 'δείτε την πιο πρόσφατη δημοσίευση',
+        'go_to_unread' => '',
         'has_replied' => 'Έχετε απαντήσει σε αυτό το θέμα',
         'in_forum' => 'στο :forum',
         'latest_post' => ':when από τον :user',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'To tag "resolved" αφαιρέθηκε',
             'to_1' => 'Πρόσθεση του tag "resolved"',
             'to_1_done' => 'Το tag "resolved" προστέθηκε',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'lock' => [

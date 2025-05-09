@@ -20,17 +20,19 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'fórum',
         'news_post' => 'novinky',
+        'team' => 'tým',
         'user' => 'profil',
     ],
 
     'filters' => [
         '_' => 'vše',
-        'user' => 'profil',
         'beatmapset' => 'beatmapy',
-        'forum_topic' => 'fórum',
-        'news_post' => 'novinky',
         'build' => 'sestavení',
         'channel' => 'chat',
+        'forum_topic' => 'fórum',
+        'news_post' => 'novinky',
+        'team' => 'tým',
+        'user' => 'profil',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => 'Žádost o připojení k týmu',
+
+                'team_application_accept' => "Jsi nyní členem týmu :title",
+                'team_application_accept_compact' => "Jsi nyní členem týmu :title",
+                'team_application_reject' => 'Tvoje žádost o připojení k týmu :title byla zamítnuta',
+                'team_application_reject_compact' => 'Tvoje žádost o připojení k týmu :title byla zamítnuta',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Nová beatmapa',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Nové odpovědi v ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Jsi nyní členem týmu :title",
+                'team_application_reject' => 'Tvoje žádost o připojení k týmu :title byla zamítnuta',
             ],
         ],
 

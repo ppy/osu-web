@@ -9,7 +9,7 @@ return [
     ],
 
     'defaults' => [
-        'page_description' => 'osu! - Il ritmo è ad un *click* di distanza!  Con Ouendan/EBA, Taiko e originali modalità di gameplay, oltre che un editor di livelli completamente funzionale.',
+        'page_description' => 'osu! - Il ritmo è a distanza di un *click*!  Con Ouendan/EBA, Taiko e modalità di gioco originali con un editor di livelli dotato di ogni funzionalità.',
     ],
 
     'header' => [
@@ -26,7 +26,7 @@ return [
         ],
 
         'beatmapsets' => [
-            'show' => 'info',
+            'show' => 'dettagli',
             'discussions' => 'discussione',
         ],
 
@@ -53,7 +53,7 @@ return [
             'modding' => 'modding',
             'playlists' => 'playlist',
             'realtime' => 'multigiocatore',
-            'show' => 'info',
+            'show' => 'dettagli',
         ],
     ],
 
@@ -201,6 +201,7 @@ return [
             'profile' => 'Profilo',
             'scoring_mode_toggle' => 'Punteggio classico',
             'scoring_mode_toggle_tooltip' => 'Regola i valori del punteggio per farli sembrare come il punteggio classico illimitato',
+            'team' => 'Squadra',
         ],
     ],
 

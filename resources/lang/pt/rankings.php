@@ -12,8 +12,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Dificuldade',
-        'percentile_10' => '10° percentual de pontuação',
-        'percentile_50' => '50° percentual de pontuação',
+        'top_10p' => 'Pontuação do top 10%',
+        'top_50p' => 'Pontuação do top 50%',
     ],
 
     'filter' => [
@@ -38,11 +38,11 @@ return [
         'charts' => 'Em destaque',
         'country' => 'País',
         'daily_challenge' => 'desafio diário',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multijogador',
-        'performance' => 'Desempenho',
-        'score' => 'Pontuação',
         'seasons' => 'temporadas',
+        'team' => 'equipa',
     ],
 
     'seasons' => [
@@ -50,6 +50,9 @@ return [
         'ongoing' => 'Esta temporada ainda está em curso (serão acrescentadas mais listas de reprodução).',
         'room_count' => 'Soma das listas de reprodução',
         'url' => 'Mostrar mais informações sobre a época.',
+        'validation' => [
+            'not_enough_factors' => 'não existem elementos de pontuação suficientes para um cálculo correto',
+        ],
     ],
 
     'spotlight' => [
@@ -63,6 +66,8 @@ return [
         'accuracy' => 'Precisão',
         'active_users' => 'Utilizadores ativos',
         'country' => 'País',
+        'division' => 'Divisão',
+        'members' => 'Membros',
         'play_count' => 'Nº de partidas',
         'performance' => 'Desempenho',
         'total_score' => 'Pontuação total',

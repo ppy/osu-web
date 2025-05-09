@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => 'Das gewählte Attribut :attribute enthält ungültige Zeichen.',
+        'used' => 'Das gewählte Attribut :attribute wird bereits verwendet.',
+        'word_not_allowed' => 'Das gewählte Attribut :attribute ist nicht erlaubt.',
+
+        'attributes' => [
+            'default_ruleset_id' => 'Standardspielmodus',
+            'is_open' => 'Team-Bewerbungen',
+            'name' => 'Name',
+            'short_name' => 'Kürzel',
+            'url' => 'URL',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Das Passwort darf den Nutzernamen nicht enthalten.',
         'email_already_used' => 'E-Mail-Adresse wird bereits verwendet.',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Beatmaps mit dem Ranked-Status können nicht gemeldet werden',
         'not_in_channel' => 'Du bist nicht in diesem Kanal.',
+        'in_team' => '',
         'reason_not_valid' => ':reason ist für diesen Meldungstyp nicht gültig.',
         'self' => "Du kannst dich nicht selbst melden!",
     ],

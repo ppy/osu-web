@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Nečestné hranie / Podvádzanie',
-            'multiple_accounts' => '',
+            'inappropriate_chat' => '',
             'insults' => 'Urážanie mňa / iných',
-            'spam' => 'Spam',
-            'unwanted_content' => 'Posiela nevhodný obsah',
+            'multiple_accounts' => '',
             'nonsense' => 'Nezmysel',
             'other' => 'Iné (uveď nižšie)',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Posiela nevhodný obsah',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => 'Globálna pozícia pre :mode',
             'global_simple' => 'Celkové umiestnenie',
             'highest' => '',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Presnosť Zásahov',

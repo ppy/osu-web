@@ -3,7 +3,6 @@
 
 import BbcodePreview from 'core-legacy/bbcode-preview'
 import BeatmapPack from 'core-legacy/beatmap-pack'
-import ChangelogChartLoader from 'core-legacy/changelog-chart-loader'
 import CheckboxValidation from 'core-legacy/checkbox-validation'
 import FancyGraph from 'core-legacy/fancy-graph'
 import FormClear from 'core-legacy/form-clear'
@@ -24,7 +23,6 @@ import LandingGraph from 'core-legacy/landing-graph'
 import Menu from 'core-legacy/menu'
 import NavButton from 'core-legacy/nav-button'
 import Nav2 from 'core-legacy/nav2'
-import PostPreview from 'core-legacy/post-preview'
 import Search from 'core-legacy/search'
 import { StoreCheckout } from 'core-legacy/store-checkout'
 import TooltipDefault from 'core-legacy/tooltip-default'
@@ -44,7 +42,6 @@ $(document).on 'turbo:load', ->
   StoreCheckout.initialize()
 
 window.bbcodePreview ?= new BbcodePreview
-window.changelogChartLoader ?= new ChangelogChartLoader
 window.checkboxValidation ?= new CheckboxValidation
 window.fancyGraph ?= new FancyGraph
 window.formClear ?= new FormClear
@@ -60,7 +57,6 @@ window.globalDrag ?= new GlobalDrag
 window.landingGraph ?= new LandingGraph
 window.menu ?= new Menu
 window.navButton ?= new NavButton
-window.postPreview ?= new PostPreview
 window.search ?= new Search
 window.tooltipDefault ?= new TooltipDefault
 

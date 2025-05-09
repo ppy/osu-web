@@ -6,7 +6,7 @@
 return [
     'pinned_topics' => 'Piespraustās Tēmas',
     'slogan' => "ir bīstami spēlēt vienam.",
-    'subforums' => 'Subforums',
+    'subforums' => 'Apakšforuma',
     'title' => 'Forums',
 
     'covers' => [
@@ -14,7 +14,7 @@ return [
 
         'create' => [
             '_' => 'Uzstādīt pārklājuma bildi',
-            'button' => 'Augšuplādēt attēlu',
+            'button' => 'Augšupielādēt attēlu',
             'info' => 'Pārklājuma izmēram būtu jābūt ap :dimensions. Tu vari arī nomest bildi šeit, lai augšupielādētu.',
         ],
 
@@ -46,9 +46,9 @@ return [
     'post' => [
         'confirm_destroy' => 'Vai tiešām izdzēst rakstu?',
         'confirm_restore' => 'Vai tiešām atjaunot rakstu?',
-        'edited' => 'Beidzamo reizi rediģēts pēc :user :when, rediģējot :count reizes kopumā.',
+        'edited' => 'Beidzamo reizi rediģēja :user :when, rediģēts :count_delimited reizes kopā.|Pēdējo reizi rediģēja :user :when, rediģēja :count_delimited reizes kopā.',
         'posted_at' => 'publicēts :when',
-        'posted_by_in' => 'publicēja :username iekš :forum',
+        'posted_by_in' => 'publicēja :username , :forum',
 
         'actions' => [
             'destroy' => 'Izdzēst rakstu',
@@ -65,7 +65,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited raksts|:count_delimited raksti',
-            'topic_starter' => 'Tēmas Sāknētājs',
+            'topic_starter' => 'Tēmas Uzsācējs',
         ],
     ],
 
@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Vai tiešām atjaunot tēmu?',
         'deleted' => 'izdzēstā tēma',
         'go_to_latest' => 'skatīt beidzamo rakstu',
+        'go_to_unread' => 'skatīt pirmo neizlasīto rakstu',
         'has_replied' => 'Jūs atbildējāt uz šo tēmu',
         'in_forum' => 'iekš :forum',
         'latest_post' => ':when no :user',
@@ -160,20 +161,20 @@ return [
                 'fork' => 'Nokopēta tēma',
                 'issue_tag' => 'Izsniegts tags',
                 'lock' => 'Slēgta tēma',
-                'merge' => '',
+                'merge' => 'Apvienot rakstus šajā tematā',
                 'move' => 'Pārvietoja tematu',
                 'pin' => 'Piesprauda tematu',
                 'post_edited' => 'Rediģēja rakstu',
                 'restore_post' => 'Atjaunoja rakstu',
                 'restore_topic' => 'Atjaunoja tematu',
-                'split_destination' => '',
+                'split_destination' => 'Pārvietot sadalītos rakstus',
                 'split_source' => 'Sadalīt rakstus',
-                'topic_type' => '',
-                'topic_type_changed' => '',
-                'unlock' => '',
-                'unpin' => '',
-                'user_lock' => '',
-                'user_unlock' => '',
+                'topic_type' => 'Uzstādi temata tipu',
+                'topic_type_changed' => 'Izmaini temata tipu',
+                'unlock' => 'Neaizslēgts temats',
+                'unpin' => 'Nepiesprausts temats',
+                'user_lock' => 'Aizslēdzi savu tematu',
+                'user_unlock' => 'Atvēri savu tematu',
             ],
         ],
 
@@ -185,60 +186,60 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => '',
+            'title_compact' => 'foruma tematu ',
 
             'box' => [
-                'total' => '',
-                'unread' => '',
+                'total' => 'Abonētie temati',
+                'unread' => 'Temati ar jaunām atbildēm',
             ],
 
             'info' => [
-                'total' => '',
-                'unread' => '',
+                'total' => 'Tu esi abonējis :total tematus.',
+                'unread' => 'Tev ir :unread neizlasītas atbildes abonētajos tematos.',
             ],
         ],
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => '',
-                'title' => '',
+                'confirmation' => 'Izbeigt abonementu šim tematam?',
+                'title' => 'Izbeigt abonementu.',
             ],
         ],
     ],
 
     'topics' => [
-        '_' => '',
+        '_' => 'Temati',
 
         'actions' => [
-            'login_reply' => '',
-            'reply' => '',
-            'reply_with_quote' => '',
-            'search' => '',
+            'login_reply' => 'Pierakstīties lai atbildētu',
+            'reply' => 'Atbildēt',
+            'reply_with_quote' => 'Citēt rakstu priekš atbildes',
+            'search' => 'Meklēt',
         ],
 
         'create' => [
-            'create_poll' => '',
+            'create_poll' => 'Aptaujas Izveide',
 
-            'preview' => '',
+            'preview' => 'Raksta Priekšskatījums',
 
             'create_poll_button' => [
-                'add' => '',
-                'remove' => '',
+                'add' => 'Izveidot aptauju',
+                'remove' => 'Atcelt aptaujas izveidi',
             ],
 
             'poll' => [
-                'hide_results' => '',
-                'hide_results_info' => '',
-                'length' => '',
-                'length_days_suffix' => '',
-                'length_info' => '',
-                'max_options' => '',
-                'max_options_info' => '',
-                'options' => '',
-                'options_info' => '',
-                'title' => '',
-                'vote_change' => '',
-                'vote_change_info' => '',
+                'hide_results' => 'Paslēpt aptaujas rezultātus.',
+                'hide_results_info' => 'Tie tiks parādīti tikai pēc tam, kad aptauja būs beigusies.',
+                'length' => 'Publicēt aptauju uz',
+                'length_days_suffix' => 'dienas',
+                'length_info' => 'Atstāt tukšu priekš nekad nebeidzošas aptaujas',
+                'max_options' => 'Opciju daudzums lietotājam',
+                'max_options_info' => 'Šis ir cik daudz opcijas katrs lietotājs var izvēlēties kad balso.',
+                'options' => 'Opcijas',
+                'options_info' => 'Saliec katru opciju uz jaunas līnijas. Tu vari ievadīt līdz 10 opcijām.',
+                'title' => 'Jautājums',
+                'vote_change' => 'Atļaut pārbalsot.',
+                'vote_change_info' => 'Ja ieslēgts, lietotāji var izmainīt savu balsi.',
             ],
         ],
 
@@ -294,6 +295,27 @@ return [
             'to_1_done' => 'Pievienots "atrisināts" piespraudnis',
         ],
 
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
         'lock' => [
             'is_locked' => 'Šī tēma ir slēgta un nav iespējams caur to atbildēt',
             'to_0' => 'Atvērt tēmu',
@@ -342,7 +364,7 @@ return [
                 'user' => [
                     'count' => '{0} nav balsu|{1} :count_delimited balss|[2,*] :count_delimited balsis',
                     'current' => 'Jums palikušas :votes balsis.',
-                    'not_enough' => "",
+                    'not_enough' => "Tev vairs nav atlikušu balsu",
                 ],
             ],
 
@@ -359,20 +381,20 @@ return [
                 ],
 
                 'detail' => [
-                    'end_time' => '',
-                    'ended' => '',
-                    'results_hidden' => '',
-                    'total' => '',
+                    'end_time' => 'Balsošana beigsies :time',
+                    'ended' => 'Balsošana beidzās :time',
+                    'results_hidden' => 'Rezultāti tiks parādīti kad aptauja beigsies.',
+                    'total' => 'Balsis kopā: :count',
                 ],
             ],
         ],
 
         'watch' => [
-            'to_not_watching' => '',
-            'to_watching' => '',
-            'to_watching_mail' => '',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'to_not_watching' => 'Nav izcelts',
+            'to_watching' => 'Izceltie',
+            'to_watching_mail' => 'Izcelt ar paziņojumiem',
+            'tooltip_mail_disable' => 'Paziņojumi ir ieslēgti. Uzspiest lai izslēgtu',
+            'tooltip_mail_enable' => 'Paziņojumi ir izslēgti. Uzspiest lai ieslēgtu',
         ],
     ],
 ];

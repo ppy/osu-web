@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Talagang ibalik ang post na ito?',
         'deleted' => 'buradong mga paksa',
         'go_to_latest' => 'tingnan ang mga pinakabagong post',
+        'go_to_unread' => '',
         'has_replied' => 'Sumagot ka sa pag-uusap na ito',
         'in_forum' => 'sa :forum',
         'latest_post' => ':when ni :user',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'Tinanggal ang panandang "naresolba"',
             'to_1' => 'Lagyan ng panandang "naresolba"',
             'to_1_done' => 'Nilagyan ng panandang "naresolba"',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'lock' => [

@@ -5,14 +5,14 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'Laman yang diminta belum lagi diterjemah kepada bahasa yang dipilih (:language). Tunjuk versi Inggeris.',
-        'incomplete_or_outdated' => 'Kandungan di laman ini tidak lengkap atau ketinggalan zaman. Jika anda boleh membantu, sila pertimbang untuk kemaskini rencana!',
-        'missing' => 'Laman yang diminta ":keyword" tidak dapat dijumpai.',
-        'missing_title' => 'Tidak Jumpa',
-        'missing_translation' => 'Laman yang diminta tidak dapat dijumpai untuk bahasa yang dipilih ketika ini.',
-        'needs_cleanup_or_rewrite' => 'Laman ini tidak mematuhi piawai wiki osu! dan memerlukan pembersihan atau ditulis semula. Jika anda boleh membantu, sila pertimbang untuk kemaskini rencana!',
-        'search' => '',
-        'stub' => 'Rencana ini tidak habis dan menunggu seseorang untuk mengembangkannya.',
+        'fallback_translation' => 'Halaman yang diminta belum lagi diterjemah kepada bahasa pilihan (:language). Versi Bahasa Inggeris ditunjuk.',
+        'incomplete_or_outdated' => 'Kandungan pada halaman ini tidak lengkap atau usang. Sekiranya anda boleh membantu, sila kemas kini rencana ini!',
+        'missing' => 'Halaman yang diminta ":keyword" tidak boleh ditemui.',
+        'missing_title' => 'Tidak Ditemui',
+        'missing_translation' => 'Halaman yang diminta tidak boleh ditemui untuk bahasa yang kini dipilih.',
+        'needs_cleanup_or_rewrite' => 'Halaman ini tidak memenuhi piawaian wiki osu! dan perlu dibersihkan atau ditulis semula. Sekiranya anda boleh membantu, sila kemas kini rencana ini!',
+        'search' => 'Mencari halaman yang ada untuk :link.',
+        'stub' => 'Rencana ini tidak lengkap dan perlu dikembangkan lagi.',
         'toc' => 'Kandungan',
 
         'edit' => [
@@ -21,10 +21,10 @@ return [
         ],
 
         'translation' => [
-            'legal' => '',
-            'outdated' => '',
+            'legal' => 'Terjemahan ini disediakan sekadar kemudahan sahaja. Teks :default asli merupakan versi teks yang sah di sisi undang-undang secara tunggal.',
+            'outdated' => 'Halaman ini mengandungi terjemahan kandungan asal yang usang. Sila semak :default bagi maklumat paling jitu (dan silalah juga bantu mengemas kini terjemahan sekiranya anda mampu)!',
 
-            'default' => 'Versi Inggeris',
+            'default' => 'Versi Bahasa Inggeris',
         ],
     ],
 ];

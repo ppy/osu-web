@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Haluatko varmasti palauttaa aiheen?',
         'deleted' => 'poistettu aihe',
         'go_to_latest' => 'näytä viimeisin viesti',
+        'go_to_unread' => '',
         'has_replied' => 'Olet vastannut tähän aiheeseen',
         'in_forum' => ':forum -foorumissa',
         'latest_post' => ':when käyttäjältä :user',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'Tunniste "selvitetty" poistettu',
             'to_1' => 'Lisää tunniste "selvitetty"',
             'to_1_done' => 'Lisää tunniste "selvitetty"',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'lock' => [

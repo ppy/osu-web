@@ -249,6 +249,7 @@ class BeatmapDiscussion extends Model
     public function canGrantKudosu()
     {
         return in_array($this->attributes['message_type'] ?? null, static::KUDOSUABLE_TYPES, true) &&
+            $this->beatmapset !== null &&
             $this->user_id !== $this->beatmapset->user_id &&
             !$this->trashed() &&
             !$this->kudosu_denied;
@@ -632,10 +633,8 @@ class BeatmapDiscussion extends Model
 
     public function managedBy(User $user): bool
     {
-        $id = $user->getKey();
-
-        return $this->beatmapset->user_id === $id
-            || ($this->beatmap !== null && $this->beatmap->user_id === $id);
+        return $this->beatmapset->user_id === $user->getKey()
+            || ($this->beatmap !== null && $this->beatmap->isOwner($user));
     }
 
     public function userRecentVotesCount($user, $increment = false)

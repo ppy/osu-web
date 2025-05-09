@@ -18,6 +18,9 @@ $app = new Illuminate\Foundation\Application(
     realpath(__DIR__.'/../')
 );
 
+// Prevent laravel from merging in junk configurations (mainly database connections)
+$app->dontMergeFrameworkConfiguration();
+
 /*
 |--------------------------------------------------------------------------
 | Bind Important Interfaces

@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => '指定的游戏模式无效。',
+
+    'change_owner' => [
+        'too_many' => '客串谱师太多。',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => '更新投票失败',

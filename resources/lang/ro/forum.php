@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Sigur dorești să restaurezi subiectul?',
         'deleted' => 'subiect șters',
         'go_to_latest' => 'vezi cea mai recentă postare',
+        'go_to_unread' => 'vizualizează prima postare necitită',
         'has_replied' => 'Ai răspuns în acest subiect',
         'in_forum' => 'in :forum',
         'latest_post' => ':when de :user',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'A fost eliminată eticheta "resolved"',
             'to_1' => 'Adaugă eticheta "resolved"',
             'to_1_done' => 'A fost adăugată eticheta "resolved"',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => 'Elimină eticheta „osu!lazer”',
+            'to_0_done' => 'S-a eliminat eticheta „osu!lazer”',
+            'to_1' => 'Adaugă eticheta „osu!lazer”',
+            'to_1_done' => 'S-a adăugat eticheta „osu!lazer”',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => 'Elimină eticheta „osu!stable”',
+            'to_0_done' => 'S-a eliminat eticheta „osu!stable”',
+            'to_1' => 'Adaugă eticheta „osu!stable”',
+            'to_1_done' => 'S-a adăugat eticheta „osu!stable”',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => 'Elimină eticheta „osu!web”',
+            'to_0_done' => 'S-a eliminat eticheta „osu!web”',
+            'to_1' => 'Adaugă eticheta „osu!web”',
+            'to_1_done' => 'S-a adăugat eticheta „osu!web”',
         ],
 
         'lock' => [

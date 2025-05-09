@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [
@@ -37,11 +37,11 @@ return [
         'charts' => 'Výbery',
         'country' => 'Krajina',
         'daily_challenge' => '',
+        'global' => '',
         'kudosu' => '',
         'multiplayer' => '',
-        'performance' => 'Výkon',
-        'score' => 'Skóre',
         'seasons' => '',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -49,6 +49,9 @@ return [
         'ongoing' => '',
         'room_count' => '',
         'url' => '',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,8 @@ return [
         'accuracy' => 'Presnosť',
         'active_users' => 'Aktívni Užívatelia',
         'country' => 'Krajina',
+        'division' => '',
+        'members' => '',
         'play_count' => 'Počet Zahraní',
         'performance' => 'Výkon',
         'total_score' => 'Celkové Skóre',

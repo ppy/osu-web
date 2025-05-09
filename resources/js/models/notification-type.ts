@@ -4,15 +4,15 @@
 import { NotificationTypeJson } from 'interfaces/notification-json';
 import { action, computed, makeObservable, observable } from 'mobx';
 import NotificationStack from 'models/notification-stack';
-import { NotificationContextData } from 'notifications-context';
 import { NotificationCursor } from 'notifications/notification-cursor';
 import NotificationDeletable from 'notifications/notification-deletable';
 import { NotificationIdentity } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
 import { NotificationResolver } from 'notifications/notification-resolver';
+import { NotificationContextData } from 'notifications-context';
 
 // List is in the order they appear on the notification filter.
-export const typeNames = [null, 'user', 'beatmapset', 'forum_topic', 'news_post', 'build', 'channel'] as const;
+export const typeNames = [null, 'user', 'team', 'beatmapset', 'forum_topic', 'news_post', 'build', 'channel'] as const;
 export type Name = (typeof typeNames)[number];
 
 export function getValidName(value: unknown) {

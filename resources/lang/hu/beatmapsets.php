@@ -17,7 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Lassíts le, játssz többet.',
-        'no_mirrors' => '',
+        'no_mirrors' => 'Nem érhető el letöltés kiszolgáló.',
     ],
 
     'featured_artist_badge' => [
@@ -52,7 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Biztosan nominálni szeretnéd ezt a Beatmap-et?',
-            'different_nominator_warning' => '',
+            'different_nominator_warning' => 'A beatmap kvalifikálása különbözű nominálókkal a kvalifikálási várólístai helyének visszaállításával jár.',
             'header' => 'Beatmap Nominálása',
             'hybrid_warning' => 'megjegyzés: csak egyszer nominálhatsz, ezért kérlek győződj meg róla, hogy minden játékmódra nominálsz, amire szeretnél',
             'current_main_ruleset' => 'A fő ruleszet jelenleg: :ruleset',
@@ -140,6 +140,7 @@ return [
             'description' => 'Leírás',
             'genre' => 'Műfaj',
             'language' => 'Nyelv',
+            'mapper_tags' => '',
             'no_scores' => 'Az adatok még számítás alatt...',
             'nominators' => 'Nominálók',
             'nsfw' => 'Felnőtt tartalom',
@@ -148,7 +149,7 @@ return [
             'source' => 'Forrás',
             'storyboard' => 'Ez a beatmap storyboard-ot tartalmaz',
             'success-rate' => 'Teljesítési arány',
-            'tags' => 'Címkék',
+            'user_tags' => '',
             'video' => 'Ez a beatmap videót tartalmaz',
         ],
 
@@ -171,6 +172,7 @@ return [
             'global' => 'Globális Ranglista',
             'supporter-link' => 'Kattints <a href=":link">ide</a>, hogy megtekinthesd azt a sok jó funkciót amit kaphatsz!',
             'supporter-only' => 'Támogató kell legyél, hogy elérd a baráti és az országos ranglistát!',
+            'team' => '',
             'title' => 'Eredménylista',
 
             'headers' => [
@@ -192,6 +194,7 @@ return [
                 'friend' => 'Senki sem ért még el eredményt a barátaid közül ezen a map-en!',
                 'global' => 'Egyetlen eredmény sincs. Esetleg megpróbálhatnál szerezni párat?',
                 'loading' => 'Eredmények betöltése...',
+                'team' => '',
                 'unranked' => 'Rangsorolatlan beatmap.',
             ],
             'score' => [

@@ -43,7 +43,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Esdeveniments del beatmapset',
+        'title' => 'Esdeveniments de la Col·lecció de Mapes',
 
         'form' => [
             'period' => 'Període',

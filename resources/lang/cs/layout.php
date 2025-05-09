@@ -201,11 +201,12 @@ return [
             'profile' => 'Můj profil',
             'scoring_mode_toggle' => 'Klasické skórování',
             'scoring_mode_toggle_tooltip' => 'Upravit hodnoty skóre tak, aby se více podobaly klasickému neomezenému skórování',
+            'team' => 'Můj tým',
         ],
     ],
 
     'popup_search' => [
-        'initial' => 'Zadejte hledaný výraz!',
+        'initial' => 'Zadej hledaný výraz!',
         'retry' => 'Hledání se nezdařilo. Klepněte na tlačítko Opakovat.',
     ],
 ];

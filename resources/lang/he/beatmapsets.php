@@ -140,6 +140,7 @@ return [
             'description' => 'תיאור',
             'genre' => 'ז\'אנר',
             'language' => 'שפה',
+            'mapper_tags' => '',
             'no_scores' => 'נתונים עדיין מחושבים...',
             'nominators' => '',
             'nsfw' => '',
@@ -148,7 +149,7 @@ return [
             'source' => 'מקור',
             'storyboard' => '',
             'success-rate' => 'אחוז הצלחה',
-            'tags' => 'תגים',
+            'user_tags' => '',
             'video' => '',
         ],
 
@@ -171,6 +172,7 @@ return [
             'global' => 'דירוג עולמי',
             'supporter-link' => 'לחץ <a href=":link">כאן</a> כדי לראות את כל הפיצ\'רים המגניבים שאתה מקבל!',
             'supporter-only' => 'אתה צריך להיות osu!supporter כדי לגשת לדירוג חברים ומדינה!',
+            'team' => '',
             'title' => 'לוח תוצאות',
 
             'headers' => [
@@ -192,6 +194,7 @@ return [
                 'friend' => 'אף אחד מהחברים שלך השיג ציון על מפה זאת עדיין!',
                 'global' => 'אין ציונים עדיין. אולי תנסה להשיג כמה?',
                 'loading' => 'טוען ציונים...',
+                'team' => '',
                 'unranked' => 'מפה לא מדורגת.',
             ],
             'score' => [

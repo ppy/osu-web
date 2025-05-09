@@ -140,6 +140,7 @@ return [
             'description' => 'Beskrivelse',
             'genre' => 'Sjanger',
             'language' => 'Språk',
+            'mapper_tags' => '',
             'no_scores' => 'Data blir fortsatt kalkulert...',
             'nominators' => 'Nominerende',
             'nsfw' => 'Eksplisitt innhold',
@@ -148,7 +149,7 @@ return [
             'source' => 'Kilde',
             'storyboard' => 'Dette beatmappet inneholder storyboard',
             'success-rate' => 'Suksessrate',
-            'tags' => 'Stikkord',
+            'user_tags' => '',
             'video' => 'Dette beatmappet inneholder video',
         ],
 
@@ -171,6 +172,7 @@ return [
             'global' => 'Global Rangering',
             'supporter-link' => 'Klikk <a href=":link">her</a> for å se alle de fancy funskjonene du får tildelt!',
             'supporter-only' => 'Du må være en osu!supporter for å ha tilgang til venne- og landsrangering!',
+            'team' => '',
             'title' => 'Poengliste',
 
             'headers' => [
@@ -192,6 +194,7 @@ return [
                 'friend' => 'Ingen av vennene dine har satt en poengsum på denne mappen enda!',
                 'global' => 'Ingen poengsummer enda. Kanskje du skulle prøve å sette noen?',
                 'loading' => 'Laster poengsummer...',
+                'team' => '',
                 'unranked' => 'Urangert beatmap.',
             ],
             'score' => [

@@ -37,6 +37,6 @@ return [
         'operation_timeout_exception' => 'Ang paghahanap ay kasalukuyang mas abala kaysa karaniwan, subukan muli sa ibang pagkakataon.',
     ],
     'user_report' => [
-        'recently_reported' => "",
+        'recently_reported' => "Na report mo na ito.",
     ],
 ];

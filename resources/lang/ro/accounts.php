@@ -85,7 +85,7 @@ return [
 
         'options' => [
             '_' => 'opțiuni de livrare',
-            'beatmap_owner_change' => 'dificultatea oaspeților',
+            'beatmap_owner_change' => 'dificultate cu participare ca oaspete',
             'beatmapset:modding' => 'modding beatmap-uri',
             'channel_message' => 'mesaje chat private',
             'comment_new' => 'comentarii noi',

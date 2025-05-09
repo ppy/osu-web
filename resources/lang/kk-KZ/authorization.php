@@ -60,6 +60,12 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'Сізді бұғаттаған немесе сіз бұғаттаған қолданушыға жаза алмайсыз.',
         'friends_only' => 'Қолданушы достары емес адамдардан келетін хабарламаларды бұғаттауда.',
@@ -170,12 +176,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Бұндай рекордты бекітуге болмайды",
             'failed' => "",
             'not_owner' => 'Нәтиже иесі ғана ұпайды бекіте алады.',
             'too_many' => 'Тым көп нәтиже бекітілді.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "",
+                'already_other_member' => "",
+                'currently_applying' => '',
+                'team_closed' => '',
+                'team_full' => "",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "",
+            'not_member' => '',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

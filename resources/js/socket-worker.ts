@@ -81,6 +81,13 @@ export default class SocketWorker {
   }
 
   @action
+  private connected() {
+    this.retryDelay.reset();
+    this.connectionStatus = 'connected';
+    this.hasConnectedOnce = true;
+  }
+
+  @action
   private connectWebSocket() {
     if (!this.active || this.endpoint == null || this.ws != null) {
       return;
@@ -97,11 +104,6 @@ export default class SocketWorker {
 
     const token = tokenEl.getAttribute('content');
     this.ws = new WebSocket(`${this.endpoint}?csrf=${token}`);
-    this.ws.addEventListener('open', action(() => {
-      this.retryDelay.reset();
-      this.connectionStatus = 'connected';
-      this.hasConnectedOnce = true;
-    }));
     this.ws.addEventListener('close', this.reconnectWebSocket);
     this.ws.addEventListener('message', this.handleNewEvent);
   }
@@ -127,7 +129,9 @@ export default class SocketWorker {
     const eventData = this.parseMessageEvent(event);
     if (eventData == null) return;
 
-    if (isNotificationEventLogoutJson(eventData)) {
+    if (eventData.event === 'connection.ready') {
+      this.connected();
+    } else if (isNotificationEventLogoutJson(eventData)) {
       this.destroy();
       core.userLoginObserver.logout();
     } else if (isNotificationEventVerifiedJson(eventData)) {

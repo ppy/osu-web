@@ -80,6 +80,7 @@ return [
         'confirm_restore' => '',
         'deleted' => 'odstranená téma',
         'go_to_latest' => 'zobraziť najnovší príspevok',
+        'go_to_unread' => '',
         'has_replied' => '',
         'in_forum' => 'v :forum',
         'latest_post' => ':when použivateľom :user',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'Odstránenie označenia "vyriešené"',
             'to_1' => 'Pridať označenie "vyriešené"',
             'to_1_done' => 'Pridané označenie "vyriešené"',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'lock' => [

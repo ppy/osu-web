@@ -3,6 +3,7 @@
 
 export default interface ModJson {
   acronym: string;
+  index: Partial<Record<number, number>>;
   name: string;
   setting_labels: Partial<Record<string, string>>;
   type: string;

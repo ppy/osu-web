@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Goljufanje',
-            'multiple_accounts' => 'Uporaba več računov',
+            'inappropriate_chat' => '',
             'insults' => 'Žaljenje mene / drugih',
-            'spam' => 'Spammanje',
-            'unwanted_content' => 'Pošiljanje neprimerne vsebine',
+            'multiple_accounts' => 'Uporaba več računov',
             'nonsense' => 'Nesmisel',
             'other' => 'Drugo (napiši spodaj)',
+            'spam' => 'Spammanje',
+            'unwanted_content' => 'Pošiljanje neprimerne vsebine',
         ],
     ],
     'restricted_banner' => [
@@ -396,7 +397,7 @@ return [
                 'title' => 'Uvrstitve',
 
                 'best' => [
-                    'title' => 'Najboljša izvedba',
+                    'title' => 'Najboljši rezultati',
                 ],
                 'first' => [
                     'title' => 'Uvrstitve na prvo mesto',
@@ -478,6 +479,10 @@ return [
             'global' => 'Svetovna uvrstitev pri :mode',
             'global_simple' => 'Svetovna lestvica',
             'highest' => 'Najvišja uvrstitev: :rank dne :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Natančnost',

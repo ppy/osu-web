@@ -17,6 +17,7 @@ return [
     ],
 
     'show' => [
+        'created_by' => '作成者: :author',
         'download' => 'ダウンロード',
         'item' => [
             'cleared' => '削除済み',

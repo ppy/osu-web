@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => 'Erreur : caractères invalides.',
+        'used' => 'Erreur : déjà utilisé par une autre équipe.',
+        'word_not_allowed' => 'Erreur : contient un ou plusieurs mots interdits.',
+
+        'attributes' => [
+            'default_ruleset_id' => 'Mode de jeu principal',
+            'is_open' => 'Candidatures',
+            'name' => 'Nom',
+            'short_name' => 'Abréviation',
+            'url' => 'URL',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Le mot de passe ne doit pas contenir votre nom d\'utilisateur.',
         'email_already_used' => 'Adresse e-mail déjà utilisée.',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Les beatmaps classées ne peuvent pas être signalées',
         'not_in_channel' => 'Vous n\'êtes pas dans ce canal.',
+        'in_team' => '',
         'reason_not_valid' => ':reason n\'est pas valide pour ce type de signalement.',
         'self' => "Vous ne pouvez pas vous signaler vous-même !",
     ],

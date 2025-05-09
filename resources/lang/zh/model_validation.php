@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => ':attribute 包含无效字符。',
+        'used' => ':attribute 已被使用。',
+        'word_not_allowed' => '不允许使用 :attribute 。',
+
+        'attributes' => [
+            'default_ruleset_id' => '默认游戏模式',
+            'is_open' => '战队申请',
+            'name' => '名称',
+            'short_name' => '简称',
+            'url' => '网址',
+        ],
+    ],
+
     'user' => [
         'contains_username' => '密码不能包含用户名。',
         'email_already_used' => '邮箱已使用。',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => '无法报告上架 (Ranked) 谱面中的问题',
         'not_in_channel' => '你不在这个频道中。',
+        'in_team' => '',
         'reason_not_valid' => ':reason 不符合此报告类型。',
         'self' => "你不能举报你自己！",
     ],

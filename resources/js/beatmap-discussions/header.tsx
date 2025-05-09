@@ -8,16 +8,16 @@ import BeatmapsetCover from 'components/beatmapset-cover';
 import BeatmapsetMapping from 'components/beatmapset-mapping';
 import BigButton from 'components/big-button';
 import HeaderV4 from 'components/header-v4';
+import NotificationBanner from 'components/notification-banner';
 import PlaymodeTabs from 'components/playmode-tabs';
 import StringWithComponent from 'components/string-with-component';
-import UserLink from 'components/user-link';
 import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import Ruleset, { rulesets } from 'interfaces/ruleset';
 import { route } from 'laroute';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
-import { deletedUserJson } from 'models/user';
 import * as React from 'react';
+import { hasGuestOwners } from 'utils/beatmap-helper';
 import { getArtist, getTitle } from 'utils/beatmapset-helper';
 import { trans, transChoice } from 'utils/lang';
 import BeatmapList from './beatmap-list';
@@ -27,6 +27,7 @@ import { Nominations } from './nominations';
 import { Subscribe } from './subscribe';
 import TypeFilters from './type-filters';
 import { UserFilter } from './user-filter';
+import UserLinkList from './user-link-list';
 
 interface Props {
   discussionsState: DiscussionsState;
@@ -64,6 +65,13 @@ export class Header extends React.Component<Props> {
   render() {
     return (
       <>
+        {this.beatmapset.deleted_at != null && (
+          <NotificationBanner
+            message={trans('beatmapsets.show.deleted_banner.message')}
+            title={trans('beatmapsets.show.deleted_banner.title')}
+            type='info'
+          />
+        )}
         <HeaderV4
           links={headerLinks('discussions', this.beatmapset)}
           linksAppend={(
@@ -174,25 +182,25 @@ export class Header extends React.Component<Props> {
               </div>
             </div>
           </div>
-          <div className='u-relative'>
-            <Chart
-              discussions={this.timelineDiscussions}
-              duration={this.currentBeatmap.total_length * 1000}
-            />
-            <div className={`${bn}__beatmap-stats`}>
-              <div className={`${bn}__guest`}>
-                {this.currentBeatmap.user_id !== this.beatmapset.user_id && (
-                  <span>
-                    <StringWithComponent
-                      mappings={{
-                        user: <UserLink user={this.users.get(this.currentBeatmap.user_id) ?? deletedUserJson} />,
-                      }}
-                      pattern={trans('beatmaps.discussions.guest')}
-                    />
-                  </span>
-                )}
-              </div>
+          <div className={`${bn}__beatmap-stats`}>
+            <div className={`${bn}__owners`}>
+              {hasGuestOwners(this.currentBeatmap, this.beatmapset) && (
+                <StringWithComponent
+                  mappings={{
+                    user: <UserLinkList users={this.currentBeatmap.owners ?? []} />,
+                  }}
+                  pattern={trans('beatmaps.discussions.guest')}
+                />
+              )}
+            </div>
+            <div className={`${bn}__basic-stats`}>
               <BeatmapBasicStats beatmap={this.currentBeatmap} beatmapset={this.beatmapset} />
+            </div>
+            <div className={`${bn}__chart`}>
+              <Chart
+                discussions={this.timelineDiscussions}
+                duration={this.currentBeatmap.total_length * 1000}
+              />
             </div>
           </div>
         </div>

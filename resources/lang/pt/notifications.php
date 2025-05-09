@@ -20,17 +20,19 @@ return [
         'channel' => 'conversa',
         'forum_topic' => 'fórum',
         'news_post' => 'notícias',
+        'team' => 'equipa',
         'user' => 'perfil',
     ],
 
     'filters' => [
         '_' => 'todas',
-        'user' => 'perfil',
         'beatmapset' => 'beatmaps',
-        'forum_topic' => 'fórum',
-        'news_post' => 'notícias',
         'build' => 'versões',
         'channel' => 'chat',
+        'forum_topic' => 'fórum',
+        'news_post' => 'notícias',
+        'team' => 'equipa',
+        'user' => 'perfil',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => 'Pedido de adesão à equipa',
+
+                'team_application_accept' => "Agora pertences à equipa :title",
+                'team_application_accept_compact' => "Agora pertences à equipa :title",
+                'team_application_reject' => 'O teu pedido de adesão à equipa :title foi recusado',
+                'team_application_reject_compact' => 'O teu pedido de adesão à equipa :title foi recusado',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Novo beatmap',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Há novas respostas em ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Agora pertences à equipa :title",
+                'team_application_reject' => 'O teu pedido de adesão à equipa :title foi recusado',
             ],
         ],
 

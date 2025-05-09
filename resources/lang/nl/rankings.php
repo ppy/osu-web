@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [
@@ -37,11 +37,11 @@ return [
         'charts' => 'in de schijnwerpers',
         'country' => 'landelijk',
         'daily_challenge' => '',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
-        'performance' => 'prestatie',
-        'score' => 'score',
         'seasons' => 'seizoenen',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Dit seizoen is nog steeds gaande (er zullen meer afspeellijsten toegevoegd worden).',
         'room_count' => 'Aantal afspeellijsten',
         'url' => 'Geef meer informatie weer over dat seizoen.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,8 @@ return [
         'accuracy' => 'Nauwkeurigheid',
         'active_users' => 'Actieve gebruikers',
         'country' => 'Land',
+        'division' => '',
+        'members' => '',
         'play_count' => 'Aantal keer gespeeld',
         'performance' => 'Prestatie',
         'total_score' => 'Totale Score',

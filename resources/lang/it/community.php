@@ -43,39 +43,39 @@ return [
             ],
         ],
         'perks' => [
-            'title' => 'Figo! E che vantaggi ottengo?',
+            'title' => 'Figo! Che vantaggi ottengo?',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'Ottieni un accesso rapido e semplice per cercare e scaricare beatmap senza dover lasciare il gioco.',
             ],
 
             'friend_ranking' => [
-                'title' => 'Classifica Amici',
+                'title' => 'Classifiche con gli amici',
                 'description' => "Guarda quanto competi contro i tuoi amici sulla classifica di una beatmap, sia in gioco che sul sito web.",
             ],
 
             'country_ranking' => [
-                'title' => 'Classifica Nazionale',
+                'title' => 'Classifica nazionale',
                 'description' => 'Conquista il tuo paese prima di conquistare il mondo.',
             ],
 
             'mod_filtering' => [
-                'title' => 'Filtro per Mod',
-                'description' => 'Vuoi associare solo persone che giocano HDHR? Nessun problema!',
+                'title' => 'Filtra per mod',
+                'description' => 'Cerchi solo chi gioca HDHR? Nessun problema!',
             ],
 
             'auto_downloads' => [
-                'title' => 'Download Automatici',
+                'title' => 'Download automatici',
                 'description' => 'Le beatmap verranno scaricate automaticamente in partite multigiocatore, mentre guardi altri giocare, o cliccando vari link in chat!',
             ],
 
             'upload_more' => [
-                'title' => 'Carica di più',
+                'title' => 'Maggiori upload',
                 'description' => 'Spazi addizionali di beatmap in attesa (per ogni beatmap classificata) fino a un massimo di 10.',
             ],
 
             'early_access' => [
-                'title' => 'Accesso Anticipato',
+                'title' => 'Accesso anticipato',
                 'description' => 'Ottieni l\'accesso anticipato a nuove versioni con nuove funzionalità prima che vengano rilasciate!<br/><br/>Questo include l\'accesso anticipato anche a nuove funzionalità sul sito web!',
             ],
 
@@ -85,27 +85,27 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => 'Filtri Beatmap',
+                'title' => 'Filtri beatmap',
                 'description' => 'Filtra le ricerche beatmap per mappe giocate e non giocate, o per grado raggiunto (se disponibile).',
             ],
 
             'yellow_fellow' => [
-                'title' => 'Compagno Giallo',
+                'title' => 'Compagno giallo',
                 'description' => 'Fatti riconoscere in gioco con il tuo nuovo colore del nome utente giallo.',
             ],
 
             'speedy_downloads' => [
-                'title' => 'Download Rapidi',
+                'title' => 'Download rapidi',
                 'description' => 'Restrizioni più leggere sui download, specialmente quando si utilizza osu!direct.',
             ],
 
             'change_username' => [
-                'title' => 'Cambio del Nome Utente',
+                'title' => 'Modifica del nome utente',
                 'description' => 'Un cambio gratuito di nome è incluso nel tuo primo acquisto del supporter.',
             ],
 
             'skinnables' => [
-                'title' => 'Elementi Skinnabili',
+                'title' => 'Elementi skinnabili',
                 'description' => 'Maggiori elementi skinnabili in gioco, come ad esempio lo sfondo del menu.',
             ],
 
@@ -124,7 +124,7 @@ return [
                 'description' => 'Il numero massimo di beatmap che puoi aggiungere ai preferiti è aumentato da :normally &rarr; :supporter',
             ],
             'more_friends' => [
-                'title' => 'Più Amici',
+                'title' => 'Ancora più amici',
                 'description' => 'Il numero massimo di amici che puoi avere è aumentato da :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
@@ -132,7 +132,7 @@ return [
                 'description' => 'Il numero di beatmap in attesa di rank che puoi avere allo stesso tempo è calcolato da un valore base sommato ad un bonus aggiuntivo per ogni beatmap classificata che possiedi (fino ad un limite).<br/><br/>Normalmente sarebbe :base più :bonus per ogni beatmap classificata (fino a :bonus_max). Con il supporter, questo aumenta a :supporter_base più :supporter_bonus per beatmap classificata (fino a :supporter_bonus_max).',
             ],
             'friend_filtering' => [
-                'title' => 'Classifiche con Amici',
+                'title' => 'Classifiche con amici',
                 'description' => 'Competi con i tuoi amici e guarda come ti classifichi rispetto a loro!',
             ],
 

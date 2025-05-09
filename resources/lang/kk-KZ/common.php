@@ -22,6 +22,7 @@ return [
         'admin' => 'Администратор',
         'authorise' => 'Тіркелу',
         'authorising' => 'Тіркелуде...',
+        'back' => '',
         'back_to_previous' => '',
         'back_to_top' => 'Басына қайту ',
         'cancel' => 'Болдырмау',

@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => '',
+
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Hiba a szavazat frissítése közben',
@@ -25,14 +31,14 @@ return [
         'message_placeholder_silenced' => "Nem hozhatsz létre beszélgetést, amíg némítva vagy.",
         'message_type_select' => 'Komment-típus választása',
         'reply_notice' => 'Nyomj entert a válaszoláshoz.',
-        'reply_resolve_notice' => '',
+        'reply_resolve_notice' => 'Nyomj entert a válaszhoz. Nyomj ctrl+entert a válaszhoz és a megoldáshoz.',
         'reply_placeholder' => 'Ide írd a válaszod',
         'require-login' => 'Kérlek jelentkezz be a hozzászóláshoz illetve válaszoláshoz',
         'resolved' => 'Megoldott',
         'restore' => 'visszaállítás',
         'show_deleted' => 'Töröltek megjelenítése',
         'title' => 'Megbeszélések',
-        'unresolved_count' => '',
+        'unresolved_count' => ':count_delimited megoldatlan probléma|:count_delimited megoldatlan probléma',
 
         'collapse' => [
             'all-collapse' => 'Az összes becsukása',

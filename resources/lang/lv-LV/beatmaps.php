@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'Nepareizs spēļu režims specificēts.',
+
+    'change_owner' => [
+        'too_many' => 'Pārāk daudz viesu karšu veidotāju.',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Neizdevās atjaunināt balsojumu',
@@ -12,7 +18,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'atļaut kudosu',
-        'beatmap_information' => 'Bītmapes Lapa',
+        'beatmap_information' => 'Ritma-mapes Lapa',
         'delete' => 'dzēst',
         'deleted' => 'Izdzēsa: :editor :delete_time.',
         'deny_kudosu' => 'neatļaut kudosu',
@@ -21,18 +27,18 @@ return [
         'guest' => 'Viesa grūtības līmenis: :user',
         'kudosu_denied' => 'Liegts saņemt kudosu.',
         'message_placeholder_deleted_beatmap' => 'Šis grūtības līmenis ir izdzēsts, tāpēc to vairs nevar apspriest.',
-        'message_placeholder_locked' => 'Šīs bītmapes diskusijas ir atspējotas.',
+        'message_placeholder_locked' => 'Šīs ritma-mapes diskusijas ir izslēgtas.',
         'message_placeholder_silenced' => "Nevar publicēt diskusiju, kamēr apklusināts.",
         'message_type_select' => 'Atlasiet Komentāra Tipu',
         'reply_notice' => 'Nospiediet enter, lai atbildētu.',
-        'reply_resolve_notice' => '',
+        'reply_resolve_notice' => 'Uzspied enter lai atbildētu. Uzspied ctrl+enter lai atbildētu un atrisinātu.',
         'reply_placeholder' => 'Raksiet atbildi šeit',
         'require-login' => 'Lūdzu, pierakstieties, lai publicētu vai atbildētu',
         'resolved' => 'Atrisināts',
         'restore' => 'atjaunot',
         'show_deleted' => 'Rādīt dzēstos',
         'title' => 'Diskusijas',
-        'unresolved_count' => '',
+        'unresolved_count' => ':count_delimited neatrisināta problēma|:count_delimited neatrisinātas problēmas',
 
         'collapse' => [
             'all-collapse' => 'Sakļaut visu',
@@ -57,7 +63,7 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Šis raksts tiks nodots vispārējai bītmapes diskusijai. Lai modificētu šo grūtības pakāpi, sāciet ziņojumu ar laika zīmogu (piem., 00:12:345).',
+            'in_general' => 'Šis raksts tiks nodots vispārējai ritma-mapju diskusijai. Lai modificētu šo grūtības pakāpi, sāciet ziņojumu ar laika zīmogu (piem., 00:12:345).',
             'in_timeline' => 'Lai modificētu vairākus laikus, ziņojiet vairākas reizes (viens ziņojums uz vienu laika vienību).',
         ],
 
@@ -82,9 +88,9 @@ return [
 
         'message_type_title' => [
             'disqualify' => 'Publicēt diskvalifikāciju',
-            'hype' => '',
+            'hype' => 'Iesūti Uzmudinājumu!',
             'mapper_note' => 'Publicēt piezīmi',
-            'nomination_reset' => '',
+            'nomination_reset' => 'Noņemt visas nominācijas',
             'praise' => 'Publicēt slavējumu',
             'problem' => 'Publicēt problēmu',
             'problem_warning' => 'Publicēt problēmu',
@@ -215,8 +221,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Tiek paredzēts, ka šī mape tiks ierindota :date, ja netiks konstatētas problēmas. Tā ir #:position :queue.',
-            'unresolved_problems' => '',
-            'problems' => '',
+            'unresolved_problems' => 'Šī ritma-mape pašlaik ir nobloķēta no iziešanas no Kvalificēta statusa, līdz :problems tiks atrisināts.',
+            'problems' => 'šīs problēmas',
             'on' => ':date',
             'queue' => 'ierindošanas rinda',
             'soon' => 'drīz',
@@ -285,7 +291,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'nav uzstādīts',
     ],
     'status' => [
         'any' => 'Viss',

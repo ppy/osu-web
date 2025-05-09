@@ -22,6 +22,7 @@ return [
         'admin' => 'Admin',
         'authorise' => 'Autorizează',
         'authorising' => 'Se autorizează...',
+        'back' => 'Înapoi',
         'back_to_previous' => 'Revino la poziția anterioară',
         'back_to_top' => 'Înapoi sus',
         'cancel' => 'Anulează',

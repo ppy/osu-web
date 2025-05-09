@@ -2,8 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .input-container {
-  @top: input-container;
-
   --label-font-size: @font-size--normal;
   --label-line-height: 1.25;
   --label-height: calc(
@@ -51,6 +49,11 @@
     @media @desktop {
       grid-column-end: span 4;
     }
+  }
+
+  &--beatmap-owner-editor {
+    --input-bg: hsl(var(--hsl-b6));
+    --input-padding: 5px;
   }
 
   &--error {

@@ -20,17 +20,19 @@ return [
         'channel' => 'ћаскање',
         'forum_topic' => 'форум',
         'news_post' => 'новости',
+        'team' => 'тим',
         'user' => 'профил',
     ],
 
     'filters' => [
         '_' => 'све',
-        'user' => 'профил',
         'beatmapset' => 'мапе',
-        'forum_topic' => 'форум',
-        'news_post' => 'новости',
         'build' => 'верзије',
         'channel' => 'чет',
+        'forum_topic' => 'форум',
+        'news_post' => 'новости',
+        'team' => 'тим',
+        'user' => 'профил',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => 'Захтев придруживање тима',
+
+                'team_application_accept' => "Ви сте сада члан тима :title",
+                'team_application_accept_compact' => "Ви сте сада члан тима :title",
+                'team_application_reject' => 'Ваш захтев за придруживање тима :title је одбијен',
+                'team_application_reject_compact' => 'Ваш захтев за придруживање тима :title је одбијен',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Нова мапа',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Има нових одговора у ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Сада сте члан тима :title",
+                'team_application_reject' => 'Ваш захтев да се придружите тиму :title је одбијен',
             ],
         ],
 

@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => 'Kā būtu, ja tā vietā nedaudz paspēlētu osu!?',
+    'play_more' => 'Kā būtu, ja tā vietā nedaudz paspēlētu osu?',
     'require_login' => 'Lūdzu, pierakstieties, lai turpinātu.',
     'require_verification' => 'Lūdzu, verificēt, lai turpinātu.',
-    'restricted' => "Nevar veikt darbību, kamēr esat ierobežots.",
+    'restricted' => "Nevar veikt darbību, kamēr esi ierobežots.",
     'silenced' => "Nevar veikt darbību, kamēr esat apklusināts.",
     'unauthorized' => 'Piekļuve liegta.',
 
@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Tev vajag uzstādīt rezultātu uz ritma-mapi lai pievienotu atzīmi.',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'Nevar nosūtīt ziņu lietotājam, kurš nobloķējis jūs vai kuru jūs esat nobloķējis.',
         'friends_only' => 'Lietotājs bloķē ziņas no cilvēkiem, kas nav viņa draugu sarakstā.',
         'moderated' => 'Šis kanāls pašlaik tiek moderēts.',
         'no_access' => 'Jums nav piekļuves tiesības uz šo kanālu.',
-        'no_announce' => '',
+        'no_announce' => 'Tev nav atļauja publicēt paziņojumu.',
         'receive_friends_only' => 'Lietotājs nevarēs atbildēt, jo jūs pieņemat ziņas tikai no cilvēkiem, kas ir jūsu draugu sarakstā.',
         'restricted' => 'Jūs nevarat sūtīt ziņas, kamēr esat klusināts, ierobežots vai bloķēts.',
         'silenced' => 'Jūs nevarat sūtīt ziņas, kamēr esat klusināts, ierobežots vai bloķēts.',
@@ -81,7 +87,7 @@ return [
     ],
 
     'contest' => [
-        'judging_not_active' => '',
+        'judging_not_active' => 'Tiesāšana šīm sacensībām nav aktīva.',
         'voting_over' => 'Jūs nevarat mainīt savu balsojumu pēc šī konkursa balsošanas perioda beigām.',
 
         'entry' => [
@@ -170,12 +176,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Tikai istabas īpašnieks var to aizvērt.',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Nevar piespraust šāda veida rezultātu",
-            'failed' => "",
+            'failed' => "Nevar piespraust izgāzušos rezultātu.",
             'not_owner' => 'Rezultātu var piespraust tikai rezultāta īpašnieks.',
             'too_many' => 'Piesprausti pārāk daudz rezultāti.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "",
+                'already_other_member' => "",
+                'currently_applying' => '',
+                'team_closed' => '',
+                'team_full' => "",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "",
+            'not_member' => '',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

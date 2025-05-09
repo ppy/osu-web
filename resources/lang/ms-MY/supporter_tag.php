@@ -8,6 +8,6 @@ return [
 
     'user_search' => [
         'searching' => 'mencari...',
-        'not_found' => "Pemain ini tidak lagi ada",
+        'not_found' => "Pengguna ini tidak ada",
     ],
 ];

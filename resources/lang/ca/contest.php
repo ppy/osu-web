@@ -36,7 +36,7 @@ return [
     'voting' => [
         'judge_link' => 'Ets un avaluador d\'aquest concurs. Avalua les entrades aquí!',
         'judged_notice' => 'Aquest concurs està utilitzant el sistema d\'avaluació, els avaluadors actualment estan processant les entrades.',
-        'login_required' => 'Sisplau, inicia sessió per a votar.',
+        'login_required' => 'Si us plau, inicia sessió per a votar.',
         'over' => 'La votació per aquest torneig ha finalitzat',
         'show_voted_only' => 'Mostra els votats',
 
@@ -56,7 +56,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => 'Heu de jugar tots els beatmaps a les llistes de joc especificades abans de votar',
+                'incomplete_play' => 'Heu de jugar tots els mapes a les llistes de joc especificades abans de votar',
             ],
         ],
     ],
@@ -65,8 +65,8 @@ return [
         '_' => 'entrada',
         'login_required' => 'Si us plau, inicieu la sessió per participar al concurs.',
         'silenced_or_restricted' => 'No pots accedir a tornejos mentre estràs silenciat o restringit.',
-        'preparation' => 'Estem preparant aquest torneig. Sisplau, espera una mica!',
-        'drop_here' => 'Deixa anar la teva inscripció aquí',
+        'preparation' => 'Estem preparant aquest torneig. Si us plau, espera pacientment!',
+        'drop_here' => 'Posa la teva inscripció aquí',
         'download' => 'Descarregar .osz',
 
         'wrong_type' => [

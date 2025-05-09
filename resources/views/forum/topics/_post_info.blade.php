@@ -71,6 +71,17 @@
         </div>
     @endif
 
+    @if (($team = $user->team) !== null)
+        <div class="forum-post-info__row forum-post-info__row--flag">
+            <a
+                class="u-contents"
+                href="{{ route('teams.show', $team) }}"
+            >
+                @include('objects._flag_team', compact('team'))
+            </a>
+        </div>
+    @endif
+
     @if ($user->country !== null)
         <div class="forum-post-info__row forum-post-info__row--flag">
             <a href="{{route('rankings', [
@@ -78,10 +89,7 @@
                 'type' => 'performance',
                 'country' => $user->country->getKey(),
             ])}}">
-                @include('objects._flag_country', [
-                    'country' => $user->country,
-                    'modifiers' => 'medium',
-                ])
+                @include('objects._flag_country', ['country' => $user->country])
             </a>
         </div>
     @endif

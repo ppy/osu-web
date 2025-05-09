@@ -162,12 +162,13 @@ return [
 
         'options' => [
             'cheating' => 'เล่นผิดกติกา / โกง',
-            'multiple_accounts' => 'การใช้หลายบัญชี',
+            'inappropriate_chat' => '',
             'insults' => 'ดูหมิ่น เหยียดหยามตนเอง / ผู้อื่น',
-            'spam' => 'สแปม',
-            'unwanted_content' => 'ส่งลิงก์ที่มีเนื้อหาที่ไม่เหมาะสม',
+            'multiple_accounts' => 'การใช้หลายบัญชี',
             'nonsense' => 'นอกเรื่อง',
             'other' => 'อื่นๆ (พิมพ์ด้านล่าง)',
+            'spam' => 'สแปม',
+            'unwanted_content' => 'ส่งลิงก์ที่มีเนื้อหาที่ไม่เหมาะสม',
         ],
     ],
     'restricted_banner' => [
@@ -479,6 +480,10 @@ return [
             'global' => 'อันดับทั่วโลกของ :mode',
             'global_simple' => 'อันดับทั่วโลก',
             'highest' => 'อันดับสูงสุด: :rank เมื่อ :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'ความแม่นยำเฉลี่ย',

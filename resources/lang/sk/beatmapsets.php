@@ -140,6 +140,7 @@ return [
             'description' => 'Popis',
             'genre' => 'Žáner',
             'language' => 'Jazyk',
+            'mapper_tags' => '',
             'no_scores' => 'Vypočítavajú sa dáta...',
             'nominators' => 'Nominátori',
             'nsfw' => 'Explicitný obsah',
@@ -148,7 +149,7 @@ return [
             'source' => 'Zdroj',
             'storyboard' => 'Táto beatmapa obsahuje storyboard',
             'success-rate' => 'Úspešnosť',
-            'tags' => 'Tagy',
+            'user_tags' => '',
             'video' => 'Táto beatmapa obsahuje video',
         ],
 
@@ -171,6 +172,7 @@ return [
             'global' => 'Celosvetový Rebríčok',
             'supporter-link' => 'Kliknite <a href=":link">tu</a> pre zobrazenie všetkych výhod, ktoré dostanete!',
             'supporter-only' => 'Pre zobrazenie štátnych a rebriček priateľov potrebujete funkciu supportera!',
+            'team' => '',
             'title' => 'Tabuľka výsledkov',
 
             'headers' => [
@@ -192,6 +194,7 @@ return [
                 'friend' => 'Zatiaľ nikto z tvojich priateľov nedosiahol žiadne skóre na tejto mape!',
                 'global' => 'Zatiaľ žiadne skóre. Možno by si sa o to mal pokúsiť?',
                 'loading' => 'Načítava sa skóre...',
+                'team' => '',
                 'unranked' => 'Nehodnotená beatmapa.',
             ],
             'score' => [

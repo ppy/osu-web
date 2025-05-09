@@ -20,17 +20,19 @@ return [
         'channel' => 'percakapan',
         'forum_topic' => 'forum',
         'news_post' => 'berita',
+        'team' => 'tim',
         'user' => 'profil',
     ],
 
     'filters' => [
-        '_' => 'semua notifikasi',
-        'user' => 'profil',
+        '_' => 'semua',
         'beatmapset' => 'beatmap',
-        'forum_topic' => 'forum',
-        'news_post' => 'berita',
         'build' => 'build',
         'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'berita',
+        'team' => 'tim',
+        'user' => 'profil',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => 'Permintaan gabung tim',
+
+                'team_application_accept' => "Kamu kini merupakan anggota dari tim :title",
+                'team_application_accept_compact' => "Kamu kini merupakan anggota dari tim :title",
+                'team_application_reject' => 'Permintaan kamu untuk bergabung ke tim :title telah ditolak',
+                'team_application_reject_compact' => 'Permintaan kamu untuk bergabung ke tim :title telah ditolak',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Beatmap baru',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Terdapat balasan baru pada ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Kamu kini merupakan anggota dari tim :title",
+                'team_application_reject' => 'Permintaan kamu untuk bergabung ke tim :title telah ditolak',
             ],
         ],
 

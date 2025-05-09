@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [
@@ -37,11 +37,11 @@ return [
         'charts' => 'spotlights',
         'country' => 'država',
         'daily_challenge' => '',
+        'global' => '',
         'kudosu' => '',
         'multiplayer' => 'večigralski način',
-        'performance' => 'uspešnost',
-        'score' => 'rezultat',
         'seasons' => 'sezone',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Trenutna sezona je še v teku (več seznamov bo dodanih kmalu).',
         'room_count' => 'Število seznamov',
         'url' => 'Prikaži več informacij o tej sezoni.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,8 @@ return [
         'accuracy' => 'Natančnost',
         'active_users' => 'Aktivni igralci',
         'country' => 'Država',
+        'division' => '',
+        'members' => '',
         'play_count' => 'Število igranj',
         'performance' => 'Uspešnost',
         'total_score' => 'Skupaj točk',

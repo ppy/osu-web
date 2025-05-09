@@ -25,13 +25,18 @@ return [
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'メッセージを報告',
+        'title' => ':username のメッセージを報告しますか？',
     ],
 
     'scores' => [
         'button' => 'スコアを報告',
         'title' => ':username のスコアを報告しますか？',
+    ],
+
+    'team' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'user' => [

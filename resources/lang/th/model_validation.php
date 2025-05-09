@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => '',
+        'used' => 'ตัวเลือก :attribute นี้ถูกใช้ไปแล้ว',
+        'word_not_allowed' => 'ตัวเลือก :attribute นี้ใช้ไม่ได้',
+
+        'attributes' => [
+            'default_ruleset_id' => 'รูล์เซตหลัก',
+            'is_open' => 'การสมัครเข้าร่วมทีม',
+            'name' => 'ชื่อ',
+            'short_name' => 'ชื่อย่อ',
+            'url' => '',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'รหัสผ่านต้องไม่ประกอบด้วยชื่อผู้ใช้',
         'email_already_used' => 'อีเมลนี้ถูกใช้ไปแล้ว',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'ไม่สามารถรายงานบีทแมพที่จัดอันดับแล้วได้',
         'not_in_channel' => 'คุณไม่ได้อยู่ในช่องนี้',
+        'in_team' => '',
         'reason_not_valid' => ':reason ไม่สามารถใช้ได้กับการรายงานประเภทนี้',
         'self' => "เดี๋ยว คุณรายงานตัวเองไม่ได้",
     ],

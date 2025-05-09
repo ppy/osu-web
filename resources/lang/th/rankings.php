@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'ระดับความยาก',
-        'percentile_10' => 'คะแนนเปอร์เซ็นไทล์ที่ 10',
-        'percentile_50' => 'คะแนนเปอร์เซ็นไทล์ที่ 50',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [
@@ -37,11 +37,11 @@ return [
         'charts' => 'โดดเด่น',
         'country' => 'ประเทศ',
         'daily_challenge' => 'ชาเลนจ์ประจำวัน',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'โหมดผู้เล่นหลายคน',
-        'performance' => 'ประสิทธิภาพ',
-        'score' => 'คะแนน',
         'seasons' => 'ซีซั่น',
+        'team' => 'ทีม',
     ],
 
     'seasons' => [
@@ -49,6 +49,9 @@ return [
         'ongoing' => 'ซีซั่นนี้ยังคงดำเนินต่อไป (จะมีการเพิ่มเพลย์ลิสต์เพิ่มเติม)',
         'room_count' => 'จำนวนเพลย์ลิสต์',
         'url' => 'แสดงข้อมูลเพิ่มเติมในซีซั่นนั้น',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,8 @@ return [
         'accuracy' => 'ความแม่นยำ',
         'active_users' => 'จำนวนผู้เล่นที่ยังมีความเคลื่อนไหวอยู่',
         'country' => 'ประเทศ',
+        'division' => '',
+        'members' => '',
         'play_count' => 'จำนวนครั้งที่เล่น',
         'performance' => 'ประสิทธิภาพ​',
         'total_score' => 'คะแนนรวมทั้งหมด',

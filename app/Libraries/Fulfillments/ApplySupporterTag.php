@@ -133,7 +133,7 @@ class ApplySupporterTag implements Fulfillable
     {
         $previous = static::addDuration($this->target->osu_subscriptionexpiry, -$this->duration);
         $this->target->osu_subscriptionexpiry = $previous;
-        $this->target->osu_subscriber = Carbon::now()->diffInMinutes($previous, false) > 0;
+        $this->target->osu_subscriber = Carbon::now()->diffInMinutes($previous) > 0;
     }
 
     private function setup()

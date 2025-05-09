@@ -8,8 +8,6 @@ namespace App\Models\Chat;
 use App\Events\ChatChannelEvent;
 use App\Exceptions\API;
 use App\Exceptions\InvariantException;
-use App\Jobs\Notifications\ChannelAnnouncement;
-use App\Jobs\Notifications\ChannelMessage;
 use App\Libraries\AuthorizationResult;
 use App\Libraries\Chat\MessageTask;
 use App\Models\LegacyMatch\LegacyMatch;
@@ -82,6 +80,7 @@ class Channel extends Model
         'temporary' => 'TEMPORARY',
         'pm' => 'PM',
         'group' => 'GROUP',
+        'team' => 'TEAM',
     ];
 
     public static function ack(int $channelId, int $userId, ?int $timestamp = null, ?Redis $redis = null): void
@@ -366,6 +365,11 @@ class Channel extends Model
         return $this->type === static::TYPES['group'];
     }
 
+    public function isTeam(): bool
+    {
+        return $this->type === static::TYPES['team'];
+    }
+
     public function isBanchoMultiplayerChat()
     {
         return $this->type === static::TYPES['temporary'] && starts_with($this->name, ['#mp_', '#spect_']);
@@ -473,11 +477,7 @@ class Channel extends Model
 
             $this->unhide();
 
-            if ($this->isPM()) {
-                (new ChannelMessage($message, $sender))->dispatch();
-            } elseif ($this->isAnnouncement()) {
-                (new ChannelAnnouncement($message, $sender))->dispatch();
-            }
+            $message->dispatchNotification();
 
             MessageTask::dispatch($message);
         });

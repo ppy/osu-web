@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => 'clasamente',
         ],
+        'teams_controller' => [
+            '_' => 'echipe',
+            'create' => 'creează echipă',
+            'edit' => 'setări echipă',
+            'leaderboard' => 'clasament echipă',
+            'show' => 'informații echipă',
+        ],
         'tournaments_controller' => [
             '_' => 'turnee',
         ],
@@ -129,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'magazin',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'membrii echipei',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

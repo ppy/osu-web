@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => '부정 행위 / 치트 사용',
-            'multiple_accounts' => '다중 계정 사용',
+            'inappropriate_chat' => '',
             'insults' => '자신 / 다른 사람을 모욕 함',
-            'spam' => '도배',
-            'unwanted_content' => '부적절한 콘텐츠에 링크 걸기',
+            'multiple_accounts' => '다중 계정 사용',
             'nonsense' => '허튼소리',
             'other' => '기타 (아래에 입력해 주세요)',
+            'spam' => '도배',
+            'unwanted_content' => '부적절한 콘텐츠에 링크 걸기',
         ],
     ],
     'restricted_banner' => [
@@ -479,6 +480,10 @@ return [
             'global' => ':mode 세계 순위',
             'global_simple' => '세계 순위',
             'highest' => '최고 순위: :rank, :date에 달성',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => '정확도',

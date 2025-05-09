@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Thread wirklich wiederherstellen?',
         'deleted' => 'gelöschter Thread',
         'go_to_latest' => 'letzte Antwort anschauen',
+        'go_to_unread' => 'Zeige ersten ungelesenen Beitrag',
         'has_replied' => 'Du hast auf diesen Thread geantwortet',
         'in_forum' => 'in :forum',
         'latest_post' => ':when von :user',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'Tag "resolved" entfernt',
             'to_1' => 'Tag "resolved" hinzufügen',
             'to_1_done' => 'Tag "resolved" hinzugefügt',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => '"osu!lazer"-Tag entfernen',
+            'to_0_done' => '"osu!lazer" Tag entfernt',
+            'to_1' => 'Tag "osu!lazer" hinzufügen',
+            'to_1_done' => '"osu!lazer" Tag hinzugefügt',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '"osu!stable" Tag entfernen',
+            'to_0_done' => '"osu!stable"-Tag entfernt',
+            'to_1' => '"osu!stable"-Tag hinzufügen',
+            'to_1_done' => '"osu!stable"-Tag hinzugefügt',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '"osu!web"-Tag entfernen',
+            'to_0_done' => '"osu!web"-Tag entfernt',
+            'to_1' => '"osu!web"-Tag hinzufügen',
+            'to_1_done' => '"osu!web"-Tag hinzugefügt',
         ],
 
         'lock' => [

@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'استعادة الموضوع حقاً؟',
         'deleted' => 'موضوع محذوف',
         'go_to_latest' => 'عرض اخر منشور',
+        'go_to_unread' => '',
         'has_replied' => 'لقد قمت بالرد على هذا الموضوع',
         'in_forum' => 'في :forum',
         'latest_post' => ':when بواسطة :user',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'اشارة "مُصلَح" حُذِفَت',
             'to_1' => 'اضف اشارة "مُصلَح"',
             'to_1_done' => 'اشارة "مُصلَح" اضيفت',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'lock' => [

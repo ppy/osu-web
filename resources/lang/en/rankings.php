@@ -37,11 +37,11 @@ return [
         'charts' => 'spotlights (old)',
         'country' => 'country',
         'daily_challenge' => 'daily challenge',
+        'global' => 'global',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
-        'performance' => 'performance',
-        'score' => 'score',
         'seasons' => 'seasons',
+        'team' => 'team',
     ],
 
     'seasons' => [
@@ -49,6 +49,9 @@ return [
         'ongoing' => 'This season is still ongoing (there will be more playlists added).',
         'room_count' => 'Playlist count',
         'url' => 'Display more informations on that season.',
+        'validation' => [
+            'not_enough_factors' => 'there is not enough score factors for proper calculation',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,8 @@ return [
         'accuracy' => 'Accuracy',
         'active_users' => 'Active Users',
         'country' => 'Country',
+        'division' => 'Division',
+        'members' => 'Members',
         'play_count' => 'Play Count',
         'performance' => 'Performance',
         'total_score' => 'Total Score',

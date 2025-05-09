@@ -6,7 +6,7 @@
 return [
     'beatmapset' => [
         'button' => 'Reportar',
-        'title' => 'Reportar el beatmap de :username?',
+        'title' => 'Reportar el mapa de :username?',
     ],
 
     'beatmapset_discussion_post' => [
@@ -32,6 +32,11 @@ return [
     'scores' => [
         'button' => 'Puntuació de l\'informe',
         'title' => 'Voleu informar de la puntuació de :username?',
+    ],
+
+    'team' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'user' => [

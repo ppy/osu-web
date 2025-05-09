@@ -5,8 +5,8 @@
 
 return [
     'promote' => [
-        'pin' => '',
-        'unpin' => "",
+        'pin' => 'Vai tu esi drošs ka vēlies reklamēt šo tiešraidi?',
+        'unpin' => "Vai tu esi drošs ka vēlies noņem šīs tiešraides reklāmu?",
     ],
 
     'top-headers' => [

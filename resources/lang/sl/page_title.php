@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => 'uvrstitve',
         ],
+        'teams_controller' => [
+            '_' => '',
+            'create' => '',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'turnirji',
         ],
@@ -129,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'trgovina',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

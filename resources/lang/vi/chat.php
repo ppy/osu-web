@@ -27,6 +27,7 @@ return [
                 'GROUP' => 'Nhóm',
                 'PM' => 'Tin nhắn trực tiếp',
                 'PUBLIC' => 'Kênh',
+                'TEAM' => 'Đội',
             ],
         ],
     ],

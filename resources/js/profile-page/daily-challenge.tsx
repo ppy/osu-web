@@ -4,6 +4,8 @@
 import DailyChallengeUserStatsJson from 'interfaces/daily-challenge-user-stats-json';
 import { autorun } from 'mobx';
 import { observer } from 'mobx-react';
+import * as moment from 'moment';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { classWithModifiers, Modifiers } from 'utils/css';
@@ -22,7 +24,7 @@ function tier(days: number) {
     [Number.NEGATIVE_INFINITY, 'iron'],
   ] as const;
   for (const [minDays, value] of tiers) {
-    if (days > minDays) {
+    if (days >= minDays) {
       return value;
     }
   }
@@ -38,7 +40,7 @@ function tierStyle(days: number) {
 }
 
 function tierStylePlaycount(count: number) {
-  return tierStyle(count / 3);
+  return tierStyle(Math.floor(count / 3));
 }
 
 function tierStyleWeekly(weeks: number) {
@@ -122,10 +124,13 @@ export default class DailyChallenge extends React.Component<Props> {
       return null;
     }
 
+    const playedToday = this.props.stats.last_update !== null && moment.utc(this.props.stats.last_update).isSame(Date.now(), 'day');
+    const userIsOnOwnProfile = this.props.stats.user_id === core.currentUser?.id;
+
     return (
       <div
         ref={this.valueRef}
-        className='daily-challenge'
+        className={classWithModifiers('daily-challenge', { 'played-today': playedToday && userIsOnOwnProfile })}
         onMouseOver={this.onMouseOver}
       >
         <div className='daily-challenge__name'>

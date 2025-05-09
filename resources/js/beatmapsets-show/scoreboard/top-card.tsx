@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import FlagCountry from 'components/flag-country';
+import FlagTeam from 'components/flag-team';
 import Mod from 'components/mod';
 import ScorePin from 'components/score-pin';
 import ScoreValue from 'components/score-value';
@@ -20,7 +21,7 @@ import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { accuracy, filterMods, isPerfectCombo, attributeDisplayTotals, rank, scoreUrl } from 'utils/score-helper';
+import { accuracy, filterMods, isPerfectCombo, calculateStatisticsFor, rank, scoreUrl } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;
@@ -80,19 +81,30 @@ export default class TopCard extends React.PureComponent<Props> {
                 />
               </div>
 
-              <a
-                className='u-hover'
-                href={route('rankings', {
-                  country: this.props.score.user.country_code,
-                  mode: ruleset,
-                  type: 'performance',
-                })}
-              >
-                <FlagCountry
-                  country={this.props.score.user.country}
-                  modifiers='flat'
-                />
-              </a>
+              <div className='beatmap-score-top__flags'>
+                <a
+                  className='u-hover'
+                  href={route('rankings', {
+                    country: this.props.score.user.country_code,
+                    mode: ruleset,
+                    type: 'performance',
+                  })}
+                >
+                  <FlagCountry
+                    country={this.props.score.user.country}
+                    modifiers='flat'
+                  />
+                </a>
+
+                {this.props.score.user.team != null &&
+                  <a
+                    className='u-hover'
+                    href={route('teams.show', { team: this.props.score.user.team.id })}
+                  >
+                    <FlagTeam team={this.props.score.user.team} />
+                  </a>
+                }
+              </div>
             </div>
           </div>
 
@@ -148,13 +160,13 @@ export default class TopCard extends React.PureComponent<Props> {
             </div>
 
             <div className='beatmap-score-top__stats beatmap-score-top__stats--wrappable'>
-              {attributeDisplayTotals(ruleset, this.props.score).map((attr) => (
-                <div key={attr.key} className='beatmap-score-top__stat'>
+              {calculateStatisticsFor(this.props.score, 'leaderboard').map((attr) => (
+                <div key={attr.label.short} className='beatmap-score-top__stat'>
                   <div className='beatmap-score-top__stat-header'>
-                    {attr.label}
+                    {attr.label.short}
                   </div>
                   <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--smaller'>
-                    {formatNumber(attr.total)}
+                    {formatNumber(attr.value)}
                   </div>
                 </div>
               ))}

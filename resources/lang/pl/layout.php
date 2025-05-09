@@ -200,7 +200,8 @@ return [
             'logout' => 'Wyloguj się',
             'profile' => 'Mój profil',
             'scoring_mode_toggle' => 'Klasyczny wynik',
-            'scoring_mode_toggle_tooltip' => '',
+            'scoring_mode_toggle_tooltip' => 'Dostosuj wartość wyników, aby bardziej przypominała klasyczne, nielimitowane punktowanie',
+            'team' => 'Mój zespół',
         ],
     ],
 

@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => '난이도',
-        'percentile_10' => '상위 10% 점수',
-        'percentile_50' => '상위 50% 점수',
+        'top_10p' => '상위 10% 점수',
+        'top_50p' => '상위 50% 점수',
     ],
 
     'filter' => [
@@ -37,11 +37,11 @@ return [
         'charts' => '스포트라이트',
         'country' => '국가별',
         'daily_challenge' => '데일리 챌린지',
+        'global' => '',
         'kudosu' => 'Kudosu',
         'multiplayer' => '멀티플레이어',
-        'performance' => '퍼포먼스',
-        'score' => '점수',
         'seasons' => '시즌',
+        'team' => '팀',
     ],
 
     'seasons' => [
@@ -49,6 +49,9 @@ return [
         'ongoing' => '시즌이 진행 중입니다 (더 많은 플레이리스트가 추가될 예정이에요).',
         'room_count' => '플레이리스트 갯수',
         'url' => '해당 시즌의 자세한 정보를 표시합니다.',
+        'validation' => [
+            'not_enough_factors' => '적절한 계산을 수행하기에 충분한 점수 요인이 없습니다.',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,8 @@ return [
         'accuracy' => '정확도',
         'active_users' => '유저 수',
         'country' => '국가',
+        'division' => '티어',
+        'members' => '멤버',
         'play_count' => '플레이 횟수',
         'performance' => '퍼포먼스 점수',
         'total_score' => '총 점수',

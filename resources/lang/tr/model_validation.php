@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => '',
+        'used' => '',
+        'word_not_allowed' => '',
+
+        'attributes' => [
+            'default_ruleset_id' => '',
+            'is_open' => 'Takım başvurusu',
+            'name' => 'İsim',
+            'short_name' => 'Kısa isim',
+            'url' => 'URL',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Şifre kullanıcı adını içeremez.',
         'email_already_used' => 'E-posta adresi zaten kullanılıyor.',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Dereceli beatmapler bildirilemez',
         'not_in_channel' => 'Bu kanalda değilsiniz.',
+        'in_team' => '',
         'reason_not_valid' => ':reason sebebi bu rapor türü için geçerli değil.',
         'self' => "Kendinizi raporlayamazsınız!",
     ],

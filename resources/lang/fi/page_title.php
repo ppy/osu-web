@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => 'tilastot',
         ],
+        'teams_controller' => [
+            '_' => 'tiimit',
+            'create' => 'luo tiimi',
+            'edit' => 'tiimin asetukset',
+            'leaderboard' => 'tiimin tulostaulukko',
+            'show' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'turnaukset',
         ],
@@ -129,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'kauppa',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

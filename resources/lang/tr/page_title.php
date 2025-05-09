@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => 'sıralamalar',
         ],
+        'teams_controller' => [
+            '_' => 'takımlar',
+            'create' => 'takım oluştur',
+            'edit' => 'takım ayarları',
+            'leaderboard' => 'takım sıralaması',
+            'show' => 'takım bilgisi',
+        ],
         'tournaments_controller' => [
             '_' => 'turnuvalar',
         ],
@@ -129,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'mağaza',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'takım üyeleri',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

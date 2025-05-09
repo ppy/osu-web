@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Tikrai gražinti temą?',
         'deleted' => 'ištrintos temos',
         'go_to_latest' => 'peržiūrėti naujausius įrašus',
+        'go_to_unread' => '',
         'has_replied' => 'Jūs atsakėte į šią temą',
         'in_forum' => 'tarp :forum',
         'latest_post' => ':when iš :user',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'Pašalinta „išspręsta“ žyma',
             'to_1' => 'Pridėti „išspręsta“ žymą',
             'to_1_done' => 'Pridėta „išspręsta“ žyma',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'lock' => [

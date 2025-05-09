@@ -29,7 +29,7 @@ return [
         'generic' => '支払い準備中にエラーが発生しました。',
     ],
     'scores' => [
-        'invalid_id' => '',
+        'invalid_id' => '無効なスコアID。',
     ],
     'search' => [
         'default' => '結果の取得に失敗しました。もう一度お試しください。',
@@ -37,6 +37,6 @@ return [
         'operation_timeout_exception' => '検索機能が平時より混み合っています。もう一度お試しください。',
     ],
     'user_report' => [
-        'recently_reported' => "",
+        'recently_reported' => "あなたはすでに報告済みです。",
     ],
 ];

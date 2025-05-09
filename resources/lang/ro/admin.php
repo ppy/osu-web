@@ -53,6 +53,11 @@ return [
                 'beatmapsets' => '',
                 'forum' => '',
                 'general' => '',
+
+                'users' => [
+                    'header' => 'Utilizator',
+                    'cover_presets' => 'Preset-uri Coperți Profil',
+                ],
             ],
         ],
     ],

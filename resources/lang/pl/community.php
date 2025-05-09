@@ -51,7 +51,7 @@ return [
 
             'friend_ranking' => [
                 'title' => 'Ranking znajomych',
-                'description' => "Sprawdź, gdzie plasujesz się w rywalizacji ze znajomymi na liście wyników beatmapy zarówno na stronie, jak i w grze.",
+                'description' => "Sprawdź, gdzie plasujesz się w rywalizacji ze znajomymi w tabeli wyników beatmapy zarówno na stronie, jak i w grze.",
             ],
 
             'country_ranking' => [
@@ -96,11 +96,11 @@ return [
 
             'speedy_downloads' => [
                 'title' => 'Szybkie pobieranie',
-                'description' => 'Mniejsze ograniczenia prędkości pobierania, szczególnie podczas używania osu!direct.',
+                'description' => 'Mniejsze ograniczenia szybkości pobierania, szczególnie podczas korzystania z osu!direct.',
             ],
 
             'change_username' => [
-                'title' => 'Zmiana nicku',
+                'title' => 'Zmiana nazwy użytkownika',
                 'description' => 'Jednorazowa darmowa zmiana nazwy użytkownika przy pierwszym zakupie.',
             ],
 

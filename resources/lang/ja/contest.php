@@ -14,28 +14,28 @@ return [
     ],
 
     'judge' => [
-        'comments' => '',
-        'hide_judged' => '',
-        'nav_title' => '',
+        'comments' => 'コメント',
+        'hide_judged' => '判定済みのエントリーを非表示にする',
+        'nav_title' => '判定',
         'no_current_vote' => 'あなたはまだ投票していません。',
         'update' => '更新',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'スコアが欠損している',
+            'contest_vote_judged' => '判定されたコンテストに投票できません',
         ],
-        'voted' => '',
+        'voted' => 'あなたはすでにこのエントリに投票しました。',
     ],
 
     'judge_results' => [
-        '_' => '',
+        '_' => '判定結果',
         'creator' => '作成者',
         'score' => 'スコア',
         'total_score' => '合計スコア',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'あなたはこのコンテストの審査員です、ここでエントリーを審査しましょう！',
+        'judged_notice' => 'このコンテストでは審査制度を使用し、審査員が応募作品を審査しています。',
         'login_required' => '投票するにはログインが必要です。',
         'over' => 'このコンテストの投票期間は終了しました。',
         'show_voted_only' => '投票済みを表示',

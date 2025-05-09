@@ -7,7 +7,7 @@ return [
     'cart' => [
         'checkout' => 'Оплатити',
         'empty_cart' => 'Видалити всі товари з кошику',
-        'info' => ':count_delimited товар в кошику ($:subtotal)|:count_delimited товару в кошику ($:subtotal)|:count_delimited товарів в кошику ($:subtotal)',
+        'info' => ':count_delimited товар в кошику ($:subtotal)|:count_delimited товари в кошику ($:subtotal)|:count_delimited товарів в кошику ($:subtotal)',
         'more_goodies' => 'Я хочу подивитися на інші товари перед завершенням замовлення',
         'shipping_fees' => 'вартість доставки',
         'title' => 'Кошик',
@@ -55,6 +55,7 @@ return [
         'contact' => 'Контактна особа:',
         'date' => 'Дата:',
         'echeck_delay' => 'Оскільки оплата була через eCheck, очікування підтвердження оплати через Paypal може зайнятий до 10 днів!',
+        'echeck_denied' => 'Платіж eCheck було відхилено системою PayPal.',
         'hide_from_activity' => 'теги osu!supporter в цьому замовленні не показуються в недавній активності.',
         'sent_via' => 'Надіслати через:',
         'shipping_to' => 'Доставити за адресою:',

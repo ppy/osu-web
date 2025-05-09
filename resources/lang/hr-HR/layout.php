@@ -205,6 +205,7 @@ return [
             'profile' => 'Moj profil',
             'scoring_mode_toggle' => '',
             'scoring_mode_toggle_tooltip' => '',
+            'team' => '',
         ],
     ],
 

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => ':attribute specificato invalido.',
+    'invalid' => ':attribute specificato non valido.',
     'not_negative' => ':attribute non può essere negativo.',
     'required' => ':attribute è richiesto.',
     'too_long' => ':attribute ha superato la lunghezza massima - può essere solo fino a :limit caratteri.',
@@ -58,7 +58,7 @@ return [
     ],
 
     'follow' => [
-        'invalid' => ':attribute specificato invalido.',
+        'invalid' => ':attribute specificato non valido.',
     ],
 
     'forum' => [
@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => ':attribute non valido.',
+        'used' => ':attribute già in uso.',
+        'word_not_allowed' => ':attribute non utilizzabile.',
+
+        'attributes' => [
+            'default_ruleset_id' => 'Modalità di gioco principale',
+            'is_open' => 'Richieste di partecipazione',
+            'name' => 'Nome',
+            'short_name' => 'Sigla',
+            'url' => 'URL',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'La password non deve contenere il nome utente.',
         'email_already_used' => 'Indirizzo email già in uso.',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Le beatmap classificate non possono essere segnalate',
         'not_in_channel' => 'Non sei in questo canale.',
+        'in_team' => '',
         'reason_not_valid' => ':reason non è valido per questo tipo di segnalazione.',
         'self' => "Non puoi segnalare te stesso!",
     ],

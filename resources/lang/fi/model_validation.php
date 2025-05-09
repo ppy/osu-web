@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => 'Tämä :attribute sisältää virheellisiä merkkejä.',
+        'used' => 'Tämä :attribute valinta on jo käytössä.',
+        'word_not_allowed' => 'Tämä :attribute valinta ei ole sallittu.',
+
+        'attributes' => [
+            'default_ruleset_id' => 'Oletussäännöt',
+            'is_open' => 'Tiimihakemus',
+            'name' => 'Nimi',
+            'short_name' => 'Lyhytnimi',
+            'url' => 'URL',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Salasana ei saa sisältää käyttäjätunnusta.',
         'email_already_used' => 'Tämä sähköpostiosoite on jo käytössä.',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Rankattuja rytmikarttoja ei voi ilmiantaa',
         'not_in_channel' => 'Et ole tällä kanavalla.',
+        'in_team' => '',
         'reason_not_valid' => ':reason ei kelpaa tälle ilmoitustyypille.',
         'self' => "Et voi ilmiantaa itseäsi!",
     ],

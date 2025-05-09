@@ -20,8 +20,8 @@ return [
     'username_change' => '<strong>:previousUsername</strong> ha canviat el seu nom d\'usuari a  <strong><em>:user</em></strong>!',
 
     'beatmapset_status' => [
-        'approved' => 'aprobado',
-        'loved' => 'estimat',
+        'approved' => 'aprovat',
+        'loved' => 'amat',
         'qualified' => 'qualificat',
         'ranked' => 'classificat',
     ],

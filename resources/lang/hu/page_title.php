@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => 'rangsorok',
         ],
+        'teams_controller' => [
+            '_' => 'csapatok',
+            'create' => 'csapat létrehozása',
+            'edit' => 'csapat beállításai',
+            'leaderboard' => 'csapat ranglista',
+            'show' => 'csapat info',
+        ],
         'tournaments_controller' => [
             '_' => 'bajnokságok',
         ],
@@ -129,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'áruház',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'csapattagok',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

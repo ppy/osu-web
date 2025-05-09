@@ -66,6 +66,13 @@ return [
         'version' => 'Svårighetsgrad',
     ],
 
+    'refresh' => [
+        'checking' => 'Letar efter uppdateringar...',
+        'has_updates' => 'Diskussionen har uppdateringar, klicka för att uppdatera.',
+        'no_updates' => 'Inga uppdateringar.',
+        'updating' => 'Uppdaterar...',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Logga in för att svara',

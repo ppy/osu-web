@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => '谱面讨论',
     ],
+
+    'store' => [
+        'too_many' => '关注数量达到最大限制。',
+    ],
 ];

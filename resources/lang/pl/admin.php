@@ -53,6 +53,11 @@ return [
                 'beatmapsets' => '',
                 'forum' => '',
                 'general' => '',
+
+                'users' => [
+                    'header' => 'Użytkownik',
+                    'cover_presets' => 'Domyślne tła profili',
+                ],
             ],
         ],
     ],

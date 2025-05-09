@@ -30,11 +30,11 @@ export function urlGroup(item: Notification) {
     case 'beatmapset':
       return route('beatmapsets.discussion', { beatmapset: item.objectId });
     case 'channel':
-      return item.details.channelId != null
-        ? route('chat.index', { channel_id: item.details.channelId })
-        : route('chat.index', { sendto: item.sourceUserId });
+      return route('chat.index', { channel_id: item.objectId });
     case 'forum_topic':
       return route('forum.topics.show', { start: 'unread', topic: item.objectId });
+    case 'team':
+      return route('teams.show', { team: item.objectId });
   }
 }
 
@@ -65,14 +65,18 @@ export function urlSingular(item: Notification) {
     case 'beatmapset_rank':
       return route('beatmapsets.show', { beatmapset: item.objectId });
     case 'channel_announcement':
-      return route('chat.index', { channel_id: item.details.channelId });
     case 'channel_message':
-      return route('chat.index', { sendto: item.sourceUserId });
+    case 'channel_team':
+      return route('chat.index', { channel_id: item.objectId });
     case 'comment_new':
     case 'comment_reply':
       return route('comments.show', { comment: item.details.commentId });
     case 'forum_topic_reply':
       return route('forum.posts.show', { post: item.details.postId });
+    case 'team_application_accept':
+    case 'team_application_reject':
+    case 'team_application_store':
+      return route('teams.show', { team: item.objectId });
     case 'user_achievement_unlock':
       return userAchievementUrl(item);
     case 'user_beatmapset_new':

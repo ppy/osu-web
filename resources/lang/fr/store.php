@@ -55,6 +55,7 @@ return [
         'contact' => 'Contact :',
         'date' => 'Date :',
         'echeck_delay' => 'Votre paiement était en eCheck, veuillez alors prévoir jusqu\'à 10 jours supplémentaires pour que le paiement soit effectué via PayPal !',
+        'echeck_denied' => 'Le paiement eCheck a été rejeté par PayPal.',
         'hide_from_activity' => 'Les tags osu!supporter achetés dans cette commande ne sont pas affichés dans vos activités récentes.',
         'sent_via' => 'Envoyé via :',
         'shipping_to' => 'Expédition à :',
@@ -123,7 +124,7 @@ return [
         ],
 
         'item' => [
-            'quantity' => 'Quantité',
+            'quantity' => 'quantité',
 
             'display_name' => [
                 'supporter_tag' => ':name pour :username (:duration)',

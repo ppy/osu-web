@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Precisas de estabelecer uma pontuação num beatmap para adicionar uma etiqueta.',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'Não é possível enviar uma mensagem a um utilizador que te esteja a bloquear ou que o tenhas bloqueado.',
         'friends_only' => 'O utilizador está a bloquear mensagens de pessoas que não façam parte da sua lista de amigos.',
         'moderated' => 'Este canal está atualmente moderado.',
         'no_access' => 'Tu não tens acesso a esse canal.',
-        'no_announce' => '',
+        'no_announce' => 'Não tens permissão para publicar um anúncio.',
         'receive_friends_only' => 'O utilizador pode não conseguir responder porque só estás a aceitar mensagens de pessoas da tua lista de amigos.',
         'restricted' => 'Não podes enviar mensagens enquanto estiveres silenciado, restrito ou banido.',
         'silenced' => 'Não podes enviar mensagens enquanto estiveres silenciado, restringido ou banido.',
@@ -170,12 +176,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Só o dono da sala pode fechá-la.',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Não é possível afixar este tipo de pontuação",
             'failed' => "Não é possível afixar uma pontuação reprovada.",
             'not_owner' => 'Só o dono da pontuação é que a pode fixar.',
             'too_many' => 'Afixaste demasiadas pontuações.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "Já fazes parte da equipa.",
+                'already_other_member' => "Já fazes parte duma equipa diferente.",
+                'currently_applying' => 'Tens um pedido pendente de adesão à equipa.',
+                'team_closed' => 'De momento, a equipa não está a aceitar pedidos de adesão.',
+                'team_full' => "A equipa está lotada e não pode aceitar mais membros.",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "O líder não pode abandonar a equipa.",
+            'not_member' => 'Não fazes parte da equipa.',
+        ],
+        'store' => [
+            'require_supporter_tag' => 'A etiqueta osu!supporter é necessária para criar uma equipa.',
         ],
     ],
 

@@ -19,6 +19,8 @@ class BeatmapsetSearchParams extends SearchParams
     public ?array $ar = null;
     public ?string $artist = null;
     public ?array $bpm = null;
+    public ?array $countNormal = null;
+    public ?array $countSlider = null;
     public ?array $created = null;
     public ?string $creator = null;
     public ?array $cs = null;
@@ -43,6 +45,7 @@ class BeatmapsetSearchParams extends SearchParams
     public bool $showSpotlights = false;
     public ?string $source = null;
     public ?string $status = null;
+    public ?array $tags = null;
     public ?string $title = null;
     public ?array $statusRange = null;
     public ?array $totalLength = null;

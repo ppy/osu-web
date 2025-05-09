@@ -42,7 +42,7 @@ class MessageTransformer extends TransformerAbstract
     public function includeSender(Message $message)
     {
         return $this->item(
-            $message->sender ?? (new DeletedUser()),
+            $message->sender ?? new DeletedUser(),
             new UserCompactTransformer()
         );
     }

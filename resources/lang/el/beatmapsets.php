@@ -12,12 +12,12 @@ return [
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'Διαγραμμένα beatmap',
     ],
 
     'download' => [
         'limit_exceeded' => '',
-        'no_mirrors' => '',
+        'no_mirrors' => 'Κανένας διαθέσιμος server λήψης.',
     ],
 
     'featured_artist_badge' => [
@@ -30,12 +30,12 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'κανένα beatmap',
 
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
+            'all' => 'λήψη',
+            'video' => 'λήψη με βίντεο',
+            'no_video' => 'λήψη χωρίς βίντεο',
             'direct' => '',
         ],
     ],
@@ -140,6 +140,7 @@ return [
             'description' => 'Περιγραφή',
             'genre' => 'Είδος',
             'language' => 'Γλώσσα',
+            'mapper_tags' => '',
             'no_scores' => 'Τα δεδομένα ακόμα υπολογίζονται...',
             'nominators' => '',
             'nsfw' => '',
@@ -148,7 +149,7 @@ return [
             'source' => 'Προέλευση',
             'storyboard' => '',
             'success-rate' => 'Ποσοστό Επιτυχίας',
-            'tags' => 'Ετικέτες',
+            'user_tags' => '',
             'video' => '',
         ],
 
@@ -171,6 +172,7 @@ return [
             'global' => 'Παγκόσμια Κατάταξη',
             'supporter-link' => 'Κάντε κλικ <a href=":link">εδώ</a> για να δείτε όλες τις φοβερές δυνατότητες που μπορείτε να αποκτήσετε!',
             'supporter-only' => 'Χρειάζεται να είστε supporter για να έχετε πρόσβαση στις κατατάξεις χώρας και φίλων!',
+            'team' => '',
             'title' => 'Πίνακας αποτελεσμάτων',
 
             'headers' => [
@@ -192,6 +194,7 @@ return [
                 'friend' => 'Κανένας από τους φίλους σας δεν έχει σκορ σε αυτό το map ακόμα!',
                 'global' => 'Κανένα σκορ ακόμα. Μήπως να δοκιμάσετε εσείς να το πετύχετε;',
                 'loading' => 'Φόρτωση σκορ...',
+                'team' => '',
                 'unranked' => 'Unranked beatmap.',
             ],
             'score' => [

@@ -201,6 +201,7 @@ return [
             'profile' => 'O meu perfil',
             'scoring_mode_toggle' => 'Pontuação clássica',
             'scoring_mode_toggle_tooltip' => 'Definir valores de pontuação para sentir-se mais como uma pontuação ilimitada clássica',
+            'team' => 'A minha equipa',
         ],
     ],
 

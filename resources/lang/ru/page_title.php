@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => 'рейтинг',
         ],
+        'teams_controller' => [
+            '_' => 'команды',
+            'create' => 'создать команду',
+            'edit' => 'настройки команды',
+            'leaderboard' => 'командная рейтинговая таблица',
+            'show' => 'информация о команде',
+        ],
         'tournaments_controller' => [
             '_' => 'турниры',
         ],
@@ -129,6 +136,11 @@ return [
     ],
     'store' => [
         '_' => 'магазин',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'участники команды',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

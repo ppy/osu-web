@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => '',
+        'used' => '',
+        'word_not_allowed' => '',
+
+        'attributes' => [
+            'default_ruleset_id' => '',
+            'is_open' => '',
+            'name' => '',
+            'short_name' => '',
+            'url' => '',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Ο κωδικός δεν πρέπει να περιέχει το όνομα χρήστη.',
         'email_already_used' => 'Το email είναι ήδη σε χρήση.',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Δεν μπορούν να αναφερθούν βαθμολογικοί beatmaps',
         'not_in_channel' => 'Δεν βρίσκεστε σε αυτό το κανάλι.',
+        'in_team' => '',
         'reason_not_valid' => 'Το:reason δεν είναι έγκυρο για αυτόν τον τύπο αναφοράς.',
         'self' => "Δεν μπορείτε να αποκλέισετε τον εαυτό σας!",
     ],

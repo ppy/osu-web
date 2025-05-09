@@ -161,17 +161,18 @@ return [
 
         'options' => [
             'cheating' => '作弊',
-            'multiple_accounts' => '使用多账号（开小号）',
+            'inappropriate_chat' => '',
             'insults' => '侮辱 我/其他人',
-            'spam' => '刷屏/垃圾广告',
-            'unwanted_content' => '发布包含不当内容的链接',
+            'multiple_accounts' => '使用多账号（开小号）',
             'nonsense' => '无意义内容',
             'other' => '其他（在下方输入原因）',
+            'spam' => '刷屏/垃圾广告',
+            'unwanted_content' => '发布包含不当内容的链接',
         ],
     ],
     'restricted_banner' => [
         'title' => '账户进入限制模式！',
-        'message' => '处于被限制状态时，你将不能与其他玩家互动，分数只有你自己可见。限制通常是系统自动给予，通常会在 24 小时内解除。:link',
+        'message' => '处于被限制状态时，你将不能与其他玩家互动，成绩只有你自己可见。限制通常是系统自动给予，通常会在 24 小时内解除。:link',
         'message_link' => '点击此页了解更多。',
     ],
     'show' => [
@@ -200,7 +201,7 @@ return [
             'daily' => '每日连续完成数',
             'daily_streak_best' => '最佳连续完成天数',
             'daily_streak_current' => '当前连续完成天数',
-            'playcount' => '参加次数',
+            'playcount' => '总参加天数',
             'title' => '每日\n挑战',
             'top_10p_placements' => '排名达到前 10% 次数',
             'top_50p_placements' => '排名达到前 50% 次数',
@@ -435,7 +436,7 @@ return [
                     'actions' => [
                         'restriction' => '封禁',
                         'silence' => '禁言',
-                        'tournament_ban' => '锦标赛封禁',
+                        'tournament_ban' => '禁赛',
                         'note' => '注释',
                     ],
                 ],
@@ -479,6 +480,10 @@ return [
             'global_simple' => '全球排名',
             'highest' => ':date 达成生涯最高排名 :rank',
         ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
+        ],
         'stats' => [
             'hit_accuracy' => '准确率',
             'level' => '等级 :level',
@@ -487,7 +492,7 @@ return [
             'medals' => '奖章',
             'play_count' => '游戏次数',
             'play_time' => '游戏时间',
-            'ranked_score' => '进榜总分',
+            'ranked_score' => '计分成绩总分',
             'replays_watched_by_others' => '回放被观看次数',
             'score_ranks' => '得分等级',
             'total_hits' => '总命中次数',

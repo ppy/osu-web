@@ -199,8 +199,9 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Lazer стилът показва резултатите от lazer по нов точков алгоритъм',
             'logout' => 'Изход',
             'profile' => 'Моят профил',
-            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle' => 'Класически резултати',
             'scoring_mode_toggle_tooltip' => 'Коригира стойността на резултатите да се усеща като традиционното неограничено точкуване',
+            'team' => 'Моят отбор',
         ],
     ],
 

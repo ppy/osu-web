@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'Ruleset invalid specificat.',
+
+    'change_owner' => [
+        'too_many' => 'Prea mulți creatori oaspeți.',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Actualizarea votului a eșuat',

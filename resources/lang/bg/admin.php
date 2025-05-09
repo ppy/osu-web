@@ -53,6 +53,11 @@ return [
                 'beatmapsets' => '',
                 'forum' => '',
                 'general' => '',
+
+                'users' => [
+                    'header' => 'Потребител',
+                    'cover_presets' => 'Предстройки на профилна корица',
+                ],
             ],
         ],
     ],

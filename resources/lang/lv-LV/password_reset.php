@@ -14,7 +14,7 @@ return [
         'contact_support' => 'Sazinieties ar atbalsta centru, lai atgūtu kontu.',
         'expired' => 'Apstiprinājuma koda termiņš ir beidzies.',
         'invalid' => 'Negaidīta kļūme apstiprināšanas kodā.',
-        'is_privileged' => 'Sazinieties ar peppy lulz.',
+        'is_privileged' => 'Sazināties ar augstāka līmeņa administrātoru lai atgūtu savu kontu.',
         'missing_key' => 'Nepieciešams.',
         'too_many_tries' => 'Pārāk daudz neizdevušos mēģinājumu.',
         'user_not_found' => 'Pieprasītais lietotājs neeksistē.',
@@ -37,7 +37,7 @@ return [
         'username' => 'Ievadiet e-pasta adresi vai lietotājvārdu',
 
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Tavs konts nav ticis izmantots kādu laiciņu. Lai nodrošinātu tava konta drošību, lūdzam nomainīt savu paroli.",
         ],
         'support' => [
             '_' => 'Nepieciešams tālāks atbalsts? Sazinieties ar mums caur :button.',

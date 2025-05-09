@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'Ruleset yang diberikan tidak valid.',
+
+    'change_owner' => [
+        'too_many' => 'Jumlah mapper tamu terlalu banyak.',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Pilihan gagal diperbarui',
@@ -32,7 +38,7 @@ return [
         'restore' => 'pulihkan',
         'show_deleted' => 'Tampilkan yang telah dihapus',
         'title' => 'Diskusi',
-        'unresolved_count' => ':count_delimited isu yang terbuka',
+        'unresolved_count' => ':count_delimited masalah yang belum terjawab|:count_delimited masalah yang belum terjawab',
 
         'collapse' => [
             'all-collapse' => 'Ciutkan semua',
@@ -106,7 +112,7 @@ return [
         'new' => [
             'pin' => 'Sematkan',
             'timestamp' => 'Keterangan Waktu',
-            'timestamp_missing' => 'salin (ctrl+c) objek di editor dan tempelkan (ctrl+v) pada boks di atas untuk membubuhkan keterangan waktu!',
+            'timestamp_missing' => 'salin (ctrl+c) objek pada mode edit dan tempelkan (ctrl+v) pada pesanmu untuk menambahkan keterangan waktu!',
             'title' => 'Topik Diskusi Baru',
             'unpin' => 'Lepas Sematan',
         ],
@@ -119,7 +125,7 @@ return [
                 'unlink' => 'Lepas Tautan',
                 'unsaved' => 'Belum Tersimpan',
                 'timestamp' => [
-                    'all-diff' => 'Keterangan waktu tidak dapat dibubuhkan pada topik diskusi yang tertuju pada "Umum (Seluruh tingkat kesulitan)".',
+                    'all-diff' => 'Postingan yang tertuju pada "Umum (Seluruh tingkat kesulitan)" tidak dapat mengandung keterangan waktu.',
                     'diff' => 'Apabila topik diskusi ini dimulai dengan keterangan waktu, topik ini akan muncul pada tab Linimasa.',
                 ],
             ],
@@ -154,7 +160,7 @@ return [
         'status-messages' => [
             'approved' => 'Beatmap ini telah di-approve pada tanggal :date!',
             'graveyard' => "Beatmap ini belum diperbarui sejak :date dan sepertinya telah diabaikan oleh pembuatnya...",
-            'loved' => 'Beatmap ini telah ditambahkan pada kategori Loved pada tanggal :date!',
+            'loved' => 'Beatmap ini telah ditambahkan ke kategori Loved pada tanggal :date!',
             'ranked' => 'Beatmap ini telah di-rank pada tanggal :date!',
             'wip' => 'Catatan: Beatmap ini ditandai dengan status dalam pengerjaan (work-in-progress) oleh pembuatnya.',
         ],
@@ -211,10 +217,10 @@ return [
         'required_text' => 'Nominasi: :current/:required',
         'reset_message_deleted' => 'dihapus',
         'title' => 'Status Nominasi',
-        'unresolved_issues' => 'Terdapat satu atau lebih masalah yang belum terjawab dan harus ditangani terlebih dahulu.',
+        'unresolved_issues' => 'Terdapat masalah belum terjawab yang harus diselesaikan terlebih dahulu.',
 
         'rank_estimate' => [
-            '_' => 'Map ini diperkirakan akan berstatus Ranked :date apabila tidak terdapat masalah yang ditemukan. Map ini berada pada urutan ke-:position dalam :queue yang ada.',
+            '_' => 'Map ini diperkirakan akan berstatus Ranked :date apabila tidak terdapat masalah yang ditemukan. Map ini berada pada urutan ke-:position dalam :queue saat ini.',
             'unresolved_problems' => 'Beatmap ini sedang diblokir untuk dapat melewati kategori Qualified hingga :problems terselesaikan.',
             'problems' => 'masalah berikut',
             'on' => 'pada tanggal :date',
@@ -230,7 +236,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Apakah kamu yakin? Tindakan ini akan melepas beatmap ini dari kategori Qualified dan mengulang proses nominasi dari awal.',
             'nomination_reset' => 'Apakah kamu yakin? Memposting masalah baru akan mengulang proses nominasi.',
-            'problem_warning' => 'Apakah kamu yakin untuk melaporkan masalah yang terdapat pada beatmap ini? Tindakan ini akan memperingatkan seluruh anggota Beatmap Nominator.',
+            'problem_warning' => 'Apakah kamu yakin untuk melaporkan masalah pada beatmap ini? Tindakan ini akan memperingatkan seluruh anggota Beatmap Nominator.',
         ],
     ],
 
@@ -239,7 +245,7 @@ return [
             'prompt' => 'ketik kata kunci pencarian...',
             'login_required' => 'Silakan masuk untuk memulai pencarian.',
             'options' => 'Pilihan Pencarian Lebih Lanjut',
-            'supporter_filter' => 'Penyaringan berdasarkan :filters memerlukan osu!supporter tag yang aktif',
+            'supporter_filter' => 'Penyaringan berdasarkan :filters memerlukan tag osu!supporter yang aktif',
             'not-found' => 'tidak ada hasil',
             'not-found-quote' => '… enggak, tidak ada yang ditemukan.',
             'filters' => [
@@ -295,7 +301,7 @@ return [
         'leaderboard' => 'Memiliki Leaderboard',
         'loved' => 'Loved',
         'mine' => 'Map Saya',
-        'pending' => 'Pending & WIP',
+        'pending' => 'Pending',
         'wip' => 'WIP',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',

@@ -24,15 +24,19 @@ return [
     ],
 
     'mapping' => [
-        'empty' => 'Nav vērotu kartētāju.',
-        'followers' => 'kartētāju abonenti',
-        'page_title' => 'kartētāju vērošanas saraksts',
-        'title' => 'kartētājs',
-        'to_0' => 'pārtraukt paziņot man, kad šis lietotājs augšupielādē jaunu bītmapi',
-        'to_1' => 'paziņot man, kad šis lietotājs augšupielādē jaunu bītmapi',
+        'empty' => 'Nav vērotu ritma-mapju izveidotāju.',
+        'followers' => 'ritma-mapju izveidotāju abonenti',
+        'page_title' => 'ritma-mapju veidotāju vērošanas saraksts',
+        'title' => 'ritma-mapju veidotājs',
+        'to_0' => 'pārtraukt paziņot man, kad šis lietotājs augšupielādē jaunu ritma-mapi',
+        'to_1' => 'paziņot man, kad šis lietotājs augšupielādē jaunu rima-mapi',
     ],
 
     'modding' => [
-        'title' => 'bītmapes diskusija',
+        'title' => 'ritma-mapes diskusija',
+    ],
+
+    'store' => [
+        'too_many' => 'Sekošanas limits ir sasniegts.',
     ],
 ];

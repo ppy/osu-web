@@ -31,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
         'layout-cache' => Singletons\LayoutCache::class,
         'medals' => Singletons\Medals::class,
         'smilies' => Singletons\Smilies::class,
+        'tags' => Singletons\Tags::class,
         'user-cover-presets' => Singletons\UserCoverPresets::class,
     ];
 

@@ -12,8 +12,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [
@@ -39,11 +39,11 @@ return [
         'charts' => 'istaknuto',
         'country' => 'države',
         'daily_challenge' => '',
+        'global' => '',
         'kudosu' => '',
         'multiplayer' => 'multiplayer',
-        'performance' => 'izvedba',
-        'score' => 'bodovi',
         'seasons' => '',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -51,6 +51,9 @@ return [
         'ongoing' => '',
         'room_count' => '',
         'url' => '',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -64,6 +67,8 @@ return [
         'accuracy' => 'Preciznost',
         'active_users' => 'Aktivni Korisnici',
         'country' => 'Države',
+        'division' => '',
+        'members' => '',
         'play_count' => 'Broj Igranja',
         'performance' => 'Izvedba',
         'total_score' => 'Ukupni Bodovi',

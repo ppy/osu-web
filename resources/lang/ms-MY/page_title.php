@@ -5,137 +5,149 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => 'pentadbir',
     ],
     'error' => [
         'error' => [
-            '400' => '',
-            '404' => '',
-            '403' => '',
-            '401' => '',
-            '401-verification' => '',
-            '405' => '',
-            '422' => '',
-            '429' => '',
-            '500' => '',
-            '503' => '',
+            '400' => 'permintaan tidak sah',
+            '404' => 'tiada',
+            '403' => 'dilarang',
+            '401' => 'tidak berizin',
+            '401-verification' => 'pengesahan akaun',
+            '405' => 'tiada',
+            '422' => 'permintaan tidak sah',
+            '429' => 'terlalu banyak permintaan',
+            '500' => 'ada yang rosak',
+            '503' => 'penyelenggaraan',
         ],
     ],
     'forum' => [
-        '_' => '',
+        '_' => 'forum',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'log tajuk',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'verify_link' => '',
+            'verify_link' => 'pengesahan akaun',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'artis sorotan',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'hantaran perbincangan peta rentak',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'perbincangan peta rentak',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'pek peta rentak',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'undian perbincangan peta rentak',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => 'sejarah peta rentak',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'discussion' => 'perbincangan peta rentak',
+            'index' => 'senarai peta rentak',
+            'show' => 'maklumat peta rentak',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'log perubahan',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'bualan',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => 'komen',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'keputusan pengadilan peraduan',
         ],
         'contests_controller' => [
-            '_' => '',
-            'judge' => '',
+            '_' => 'peraduan',
+            'judge' => 'pengadilan peraduan',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'kumpulan',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
-            'support_the_game' => '',
-            'testflight' => '',
+            'get_download' => 'muat turun',
+            'index' => 'papan pemuka',
+            'search' => 'cari',
+            'support_the_game' => 'sokong mainan ini',
+            'testflight' => 'penerbangan ujian',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'maklumat',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'siaran langsung',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'perlawanan',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'berita',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'sejarah pemberitahuan',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'set semula kata laluan',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'kedudukan',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'prestasi',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => 'kedudukan',
+        ],
+        'teams_controller' => [
+            '_' => 'pasukan',
+            'create' => 'cipta pasukan',
+            'edit' => 'tetapan pasukan',
+            'leaderboard' => 'carta kedudukan pasukan',
+            'show' => 'maklumat pasukan',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => 'kejohanan',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'pratata kulit profil',
         ],
         'users_controller' => [
-            '_' => '',
-            'create' => '',
-            'disabled' => '',
+            '_' => 'maklumat pemain',
+            'create' => 'cipta akaun',
+            'disabled' => 'notis',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'wiki',
         ],
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'izinkan aplikasi',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'kedai',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'ahli pasukan',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'maklumat penyelaras',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'sejarah pemain ramai',
         ],
     ],
 ];

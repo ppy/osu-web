@@ -19,7 +19,7 @@ return [
         'confirm_part' => 'Apakah kamu ingin menyembunyikan kanal percakapan ini? Kamu akan tetap menerima pesan dari kanal percakapan ini.',
         'create' => 'buat pengumuman',
         'join' => 'gabung kanal baru',
-        'none' => 'tidak ada kanal percakapan',
+        'none' => 'tidak ada kanal',
 
         'list' => [
             'title' => [
@@ -27,6 +27,7 @@ return [
                 'GROUP' => 'Grup',
                 'PM' => 'Pesan pribadi',
                 'PUBLIC' => 'Kanal Percakapan',
+                'TEAM' => 'Tim',
             ],
         ],
     ],

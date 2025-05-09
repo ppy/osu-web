@@ -11,8 +11,8 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Obtížnost',
-        'percentile_10' => 'Skóre 10. percentilu',
-        'percentile_50' => 'Skóre 50. percentilu',
+        'top_10p' => 'Skóre pro Top 10%',
+        'top_50p' => 'Skóre pro Top 50%',
     ],
 
     'filter' => [
@@ -37,11 +37,11 @@ return [
         'charts' => 'výběry (staré)',
         'country' => 'stát',
         'daily_challenge' => 'denní výzva',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'hra pro více hráčů',
-        'performance' => 'výkon',
-        'score' => 'skóre',
         'seasons' => 'sezóny',
+        'team' => 'týmy',
     ],
 
     'seasons' => [
@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Tato sezóna stále probíhá (více playlistů bude přidáno průběhem času).',
         'room_count' => 'Počet playlistů',
         'url' => 'Zobrazit více informací pro tuto sezónu.',
+        'validation' => [
+            'not_enough_factors' => 'neexistuje dostatek prvků skóre pro řádný výpočet',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,8 @@ return [
         'accuracy' => 'Přesnost',
         'active_users' => 'Aktivní uživatelé',
         'country' => 'Stát',
+        'division' => 'Divize',
+        'members' => 'Členové',
         'play_count' => 'Počet zahrání',
         'performance' => 'Výkon',
         'total_score' => 'Celkové skóre',

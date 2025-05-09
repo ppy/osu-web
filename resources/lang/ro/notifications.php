@@ -20,17 +20,19 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'forum',
         'news_post' => 'știri',
+        'team' => 'echipă',
         'user' => 'profil',
     ],
 
     'filters' => [
         '_' => 'tot',
-        'user' => 'profil',
         'beatmapset' => 'beatmap-uri',
-        'forum_topic' => 'forum',
-        'news_post' => 'noutăți',
         'build' => 'versiuni',
         'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'noutăți',
+        'team' => 'echipă',
+        'user' => 'profil',
     ],
 
     'item' => [
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => 'Cerere de înscriere în echipă',
+
+                'team_application_accept' => "Acum ești membru al echipei :title",
+                'team_application_accept_compact' => "Acum ești membru al echipei :title",
+                'team_application_reject' => 'Cererea ta de înscriere în echipa :title a fost refuzată',
+                'team_application_reject_compact' => 'Cererea ta de înscriere în echipa :title a fost refuzată',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Beatmap nou',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Există răspunsuri noi în ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Acum ești membru al echipei :title",
+                'team_application_reject' => 'Cererea ta de înscriere în echipa :title a fost refuzată',
             ],
         ],
 

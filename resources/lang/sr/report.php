@@ -34,6 +34,11 @@ return [
         'title' => 'Пријавите резултат корисника :username?',
     ],
 
+    'team' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'user' => [
         'button' => 'Пријавите',
         'title' => 'Пријавите корисника :username?',

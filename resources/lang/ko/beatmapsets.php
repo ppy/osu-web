@@ -140,6 +140,7 @@ return [
             'description' => '설명',
             'genre' => '장르',
             'language' => '언어',
+            'mapper_tags' => '',
             'no_scores' => '데이터를 수집중입니다...',
             'nominators' => '노미네이터',
             'nsfw' => '부적절한 내용',
@@ -148,7 +149,7 @@ return [
             'source' => '출처',
             'storyboard' => '이 비트맵은 스토리보드를 포함합니다.',
             'success-rate' => '클리어 비율',
-            'tags' => '태그',
+            'user_tags' => '',
             'video' => '이 비트맵은 영상을 포함합니다.',
         ],
 
@@ -171,6 +172,7 @@ return [
             'global' => '전체 순위',
             'supporter-link' => '서포터로서 누릴 수 있는 다른 멋진 기능들을 확인하려면 <a href=":link">여기</a>를 클릭해주세요!',
             'supporter-only' => 'osu! 서포터가 되어야 국가 및 친구 간 순위를 확인할 수 있습니다!',
+            'team' => '팀 순위',
             'title' => '점수판',
 
             'headers' => [
@@ -192,6 +194,7 @@ return [
                 'friend' => '아직 친구들 중 점수를 기록한 사람이 없습니다!',
                 'global' => '아직 기록된 점수가 없네요. 한 번 기록해보시는 건 어때요?',
                 'loading' => '점수 불러오는 중...',
+                'team' => '이 맵에서 점수를 낸 팀원이 없어요!',
                 'unranked' => '랭크되지 않은 비트맵입니다.',
             ],
             'score' => [

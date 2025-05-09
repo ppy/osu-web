@@ -25,17 +25,17 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Beatmap ini tidak dapat di-hype karena laman diskusi beatmap ini tengah dikunci",
+            'discussion_locked' => "Beatmap ini tidak dapat di-hype karena halaman diskusi beatmap ini sedang dikunci",
             'guest' => 'Kamu harus masuk untuk memberikan hype.',
-            'hyped' => 'Kamu telah memberikan hype pada beatmap ini.',
+            'hyped' => 'Kamu telah memberikan hype kepada beatmap ini.',
             'limit_exceeded' => 'Kamu telah menggunakan seluruh hype yang kamu miliki.',
             'not_hypeable' => 'Beatmap ini tidak dapat di-hype',
-            'owner' => 'Kamu tidak dapat memberikan hype pada beatmap milik sendiri.',
+            'owner' => 'Kamu tidak dapat memberikan hype kepada beatmap milik sendiri.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Keterangan waktu yang ditentukan melebihi panjang beatmap.',
-            'negative' => "Keterangan waktu tidak dapat mengacu pada nilai waktu yang negatif.",
+            'exceeds_beatmapset_length' => 'Keterangan waktu yang ditentukan berada di luar durasi beatmap.',
+            'negative' => "Keterangan waktu tidak dapat bernilai negatif.",
         ],
     ],
 
@@ -76,7 +76,7 @@ return [
             'beatmapset_post_no_edit' => 'Postingan metadata beatmap tidak diperkenankan untuk disunting.',
             'first_post_no_delete' => 'Tidak dapat menghapus postingan awal',
             'missing_topic' => 'Postingan ini tidak memiliki topik',
-            'only_quote' => 'Balasanmu hanya berisi kutipan.',
+            'only_quote' => 'Balasan kamu hanya berisi kutipan.',
 
             'attributes' => [
                 'post_text' => 'Isi postingan',
@@ -92,14 +92,14 @@ return [
         'topic_poll' => [
             'duplicate_options' => 'Pilihan berganda tidak diizinkan.',
             'grace_period_expired' => 'Jajak pendapat tidak lagi dapat disunting setelah :limit jam.',
-            'hiding_results_forever' => 'Suara pada polling yang tidak memiliki batasan akhir waktu tidak dapat dirahasiakan.',
+            'hiding_results_forever' => 'Suara pada jajak pendapat yang tidak pernah berakhir tidak dapat dirahasiakan.',
             'invalid_max_options' => 'Pilihan per pengguna tidak boleh melebihi jumlah opsi yang tersedia.',
             'minimum_one_selection' => 'Diperlukan setidaknya satu opsi per pengguna.',
-            'minimum_two_options' => 'Diperlukan setidaknya dua opsi',
-            'too_many_options' => 'Jumlah maksimum opsi melebihi yang diizinkan.',
+            'minimum_two_options' => 'Kamu harus menyertakan setidaknya dua pilihan.',
+            'too_many_options' => 'Jumlah pilihan yang diizinkan melebihi batas.',
 
             'attributes' => [
-                'title' => 'Judul pemungutan suara',
+                'title' => 'Judul jajak pendapat',
             ],
         ],
 
@@ -122,33 +122,47 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => 'Jumlah aplikasi OAuth melebihi batas maksimal.',
-            'url' => 'Mohon masukkan URL yang valid.',
+            'url' => 'Silakan masukkan URL yang valid.',
 
             'attributes' => [
                 'name' => 'Nama Aplikasi',
-                'redirect' => 'Callback URL Aplikasi',
+                'redirect' => 'URL Callback Aplikasi',
             ],
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => ':attribute ini mengandung karakter yang tidak valid.',
+        'used' => 'Pilihan :attribute ini telah digunakan.',
+        'word_not_allowed' => 'Pilihan :attribute ini tidak diizinkan.',
+
+        'attributes' => [
+            'default_ruleset_id' => 'Ruleset bawaan',
+            'is_open' => 'Pendaftaran anggota tim',
+            'name' => 'Nama',
+            'short_name' => 'Nama pendek',
+            'url' => 'URL',
+        ],
+    ],
+
     'user' => [
-        'contains_username' => 'Nama pengguna tidak diperbolehkan untuk berada di dalam kata sandi.',
-        'email_already_used' => 'Alamat email ini sudah digunakan sebelumnya.',
-        'email_not_allowed' => 'Alamat email ini tidak diperbolehkan.',
+        'contains_username' => 'Kata sandi tidak boleh mengandung nama pengguna.',
+        'email_already_used' => 'Alamat email ini telah digunakan.',
+        'email_not_allowed' => 'Alamat email ini tidak diizinkan.',
         'invalid_country' => 'Negara tidak ada dalam basis data.',
         'invalid_discord' => 'Nama pengguna Discord tidak valid.',
-        'invalid_email' => "Tampaknya bukan alamat email yang valid.",
+        'invalid_email' => "Alamat email ini sepertinya tidak valid.",
         'invalid_twitter' => 'Nama pengguna Twitter tidak valid.',
         'too_short' => 'Kata sandi baru terlalu pendek.',
-        'unknown_duplicate' => 'Nama pengguna atau alamat email ini sudah digunakan sebelumnya.',
+        'unknown_duplicate' => 'Nama pengguna atau alamat email ini telah digunakan.',
         'username_available_in' => 'Nama pengguna ini akan tersedia untuk digunakan dalam :duration.',
-        'username_available_soon' => 'Nama pengguna ini tersedia untuk digunakan!',
+        'username_available_soon' => 'Nama pengguna ini akan segera tersedia untuk digunakan!',
         'username_invalid_characters' => 'Nama pengguna yang diminta mengandung karakter yang tidak valid.',
-        'username_in_use' => 'Nama pengguna sudah digunakan!',
+        'username_in_use' => 'Nama pengguna ini telah digunakan!',
         'username_locked' => 'Nama pengguna ini telah digunakan!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Mohon gunakan garis bawah atau spasi, jangan keduanya!',
         'username_no_spaces' => "Nama pengguna tidak dapat dimulai atau diakhiri dengan spasi!",
-        'username_not_allowed' => 'Nama pengguna ini tidak diizinkan.',
+        'username_not_allowed' => 'Pilihan nama pengguna ini tidak diizinkan.',
         'username_too_short' => 'Nama pengguna yang diminta terlalu pendek.',
         'username_too_long' => 'Nama pengguna yang diminta terlalu panjang.',
         'weak' => 'Kata sandi ini berada dalam daftar hitam.',
@@ -166,8 +180,8 @@ return [
         'change_username' => [
             'restricted' => 'Kamu tidak dapat mengubah nama pengguna pada saat akunmu sedang di-restrict.',
             'supporter_required' => [
-                '_' => 'Kamu harus memiliki :link untuk mengubah nama penggunamu!',
-                'link_text' => 'osu!supporter',
+                '_' => 'Kamu harus pernah :link untuk mengubah nama penggunamu!',
+                'link_text' => 'menjadi osu!supporter',
             ],
             'username_is_same' => 'Ini adalah nama penggunamu yang sekarang, duh!',
         ],
@@ -175,16 +189,17 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Kamu tidak dapat melaporkan beatmap yang berstatus Ranked',
-        'not_in_channel' => 'Kamu tidak tergabung dalam kanal percakapan ini.',
+        'not_in_channel' => 'Kamu tidak berada dalam kanal percakapan ini.',
+        'in_team' => '',
         'reason_not_valid' => ':reason bukan merupakan alasan yang valid untuk jenis laporan ini.',
-        'self' => "Kamu tidak dapat melaporkan diri sendiri!",
+        'self' => "Kamu tidak dapat melaporkan dirimu sendiri!",
     ],
 
     'store' => [
         'order_item' => [
             'attributes' => [
                 'quantity' => 'Jumlah',
-                'cost' => 'Biaya',
+                'cost' => 'Harga',
             ],
         ],
     ],

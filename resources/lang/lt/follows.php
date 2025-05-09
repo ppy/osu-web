@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => 'beatmap\'o diskusija',
     ],
+
+    'store' => [
+        'too_many' => 'Sekėjų limitas pasiektas.',
+    ],
 ];

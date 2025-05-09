@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => 'Denna :attribute innehåller ogiltiga karaktärer.',
+        'used' => '',
+        'word_not_allowed' => 'Detta :attribute val är inte tillåtet.',
+
+        'attributes' => [
+            'default_ruleset_id' => 'Standard regelset',
+            'is_open' => '',
+            'name' => 'Namn',
+            'short_name' => 'Kort namn',
+            'url' => 'URL',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Lösenord får inte innehålla användarnamn.',
         'email_already_used' => 'E-postadress används redan.',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Rankade beatmaps kan inte rapporteras',
         'not_in_channel' => 'Du är inte i den här kanalen.',
+        'in_team' => '',
         'reason_not_valid' => ':reason är inte giltigt för denna anmälningstyp.',
         'self' => "Du kan inte anmäla dig själv!",
     ],

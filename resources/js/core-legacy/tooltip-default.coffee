@@ -40,6 +40,7 @@ export default class TooltipDefault
       when 'left center' then 'right center'
       when 'right center' then 'left center'
       when 'bottom center' then 'top center'
+      when 'bottom left' then 'top left'
 
     isHoverable = el.dataset.tooltipHoverable == '1'
 

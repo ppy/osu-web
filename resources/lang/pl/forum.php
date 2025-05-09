@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Czy na pewno chcesz przywrócić wątek?',
         'deleted' => 'usunięty wątek',
         'go_to_latest' => 'pokaż najnowszy post',
+        'go_to_unread' => 'zobacz pierwszy nieprzeczytany wpis',
         'has_replied' => 'Twoja odpowiedź znajduje się w tym wątku',
         'in_forum' => 'forum: :forum',
         'latest_post' => ':when przez :user',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'Usunięto tag "rozwiązane"',
             'to_1' => 'Dodaj tag "rozwiązane"',
             'to_1_done' => 'Dodano tag "rozwiązane"',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => 'Usuń tag "osu!lazer"',
+            'to_0_done' => 'Usunięto tag "osu!lazer"',
+            'to_1' => 'Dodaj tag "osu!lazer"',
+            'to_1_done' => 'Dodano tag "osu!lazer"',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => 'Usuń tag "osu!stable"',
+            'to_0_done' => 'Usunięto tag "osu!stable"',
+            'to_1' => 'Dodaj tag "osu!stable"',
+            'to_1_done' => 'Dodano tag "osu!stable"',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => 'Usuń tag "osu!web"',
+            'to_0_done' => 'Usunięto tag "osu!web"',
+            'to_1' => 'Dodaj tag "osu!web"',
+            'to_1_done' => 'Dodano tag "osu!web"',
         ],
 
         'lock' => [

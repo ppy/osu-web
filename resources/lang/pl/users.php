@@ -162,12 +162,13 @@ return [
 
         'options' => [
             'cheating' => 'Oszukiwanie',
-            'multiple_accounts' => 'Korzystanie z wielu kont',
+            'inappropriate_chat' => '',
             'insults' => 'Obrażanie mnie lub innych',
-            'spam' => 'Spamowanie',
-            'unwanted_content' => 'Zamieszczanie nieodpowiednich treści',
+            'multiple_accounts' => 'Korzystanie z wielu kont',
             'nonsense' => 'Pisanie bez sensu',
             'other' => 'Inny (napisz poniżej)',
+            'spam' => 'Spamowanie',
+            'unwanted_content' => 'Zamieszczanie nieodpowiednich treści',
         ],
     ],
     'restricted_banner' => [
@@ -201,7 +202,7 @@ return [
             'daily' => 'Dzienna seria',
             'daily_streak_best' => 'Najlepsza Dzienna seria',
             'daily_streak_current' => 'Aktualna Dzienna Seria',
-            'playcount' => '',
+            'playcount' => 'Łączny udział',
             'title' => 'Wyzwanie Dnia',
             'top_10p_placements' => 'Top 10% Miejsc',
             'top_50p_placements' => 'Top 50% Miejsc',
@@ -226,7 +227,7 @@ return [
                     'button' => 'Dodaj tło',
                     'dropzone' => 'Upuść tutaj, aby dodać',
                     'dropzone_info' => 'Możesz także upuścić swoje tło tutaj, aby je dodać',
-                    'size_info' => 'Rozmiary tła powinny wynosić przynajmniej 2400x640',
+                    'size_info' => 'Rozmiary tła powinny wynosić przynajmniej 2800x620',
                     'too_large' => 'Plik jest zbyt duży.',
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
 
@@ -479,6 +480,10 @@ return [
             'global' => 'Pozycja w rankingu globalnym dla :mode',
             'global_simple' => 'Ranking globalny',
             'highest' => 'Najwyższa pozycja: :rank (osiągnięta :date)',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Celność',

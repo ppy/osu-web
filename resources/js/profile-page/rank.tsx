@@ -44,7 +44,11 @@ export default function Rank({ highest, stats, type }: Props) {
       label={trans(`users.show.rank.${type}_simple`)}
       modifiers='rank'
       value={
-        <div data-html-title={tooltip.join('')} title=''>
+        <div
+          data-html-title={tooltip.join('')}
+          data-tooltip-position='bottom left'
+          title=''
+        >
           {rank != null ? (
             `#${formatNumber(rank)}`
           ) : '-'}

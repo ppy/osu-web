@@ -6,7 +6,7 @@
       {
         "Acronym": "EZ",
         "Name": "Easy",
-        "Description": "Larger circles, more forgiving HP drain, less accuracy required, and three lives!",
+        "Description": "Larger circles, more forgiving HP drain, less accuracy required, and extra lives!",
         "Type": "DifficultyReduction",
         "Settings": [
           {
@@ -130,6 +130,12 @@
         "Description": "Miss and fail.",
         "Type": "DifficultyIncrease",
         "Settings": [
+          {
+            "Name": "fail_on_slider_tail",
+            "Type": "boolean",
+            "Label": "Also fail when missing a slider tail",
+            "Description": ""
+          },
           {
             "Name": "restart",
             "Type": "boolean",
@@ -528,8 +534,8 @@
           {
             "Name": "reflection",
             "Type": "string",
-            "Label": "Mirrored axes",
-            "Description": "Choose which axes objects are mirrored over."
+            "Label": "Flipped axes",
+            "Description": ""
           }
         ],
         "IncompatibleMods": [
@@ -1923,7 +1929,7 @@
       {
         "Acronym": "EZ",
         "Name": "Easy",
-        "Description": "Larger fruits, more forgiving HP drain, less accuracy required, and three lives!",
+        "Description": "Larger fruits, more forgiving HP drain, less accuracy required, and extra lives!",
         "Type": "DifficultyReduction",
         "Settings": [
           {
@@ -2524,7 +2530,7 @@
       {
         "Acronym": "EZ",
         "Name": "Easy",
-        "Description": "More forgiving HP drain, less accuracy required, and three lives!",
+        "Description": "More forgiving HP drain, less accuracy required, and extra lives!",
         "Type": "DifficultyReduction",
         "Settings": [
           {

@@ -13,7 +13,7 @@ return [
 
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'No es pot desfer el hyping.',
+            'is_hype' => 'No es pot desfer l\'eufòria.',
             'has_reply' => 'No es pot eliminar una discussió amb respostes',
         ],
         'nominate' => [
@@ -34,7 +34,7 @@ return [
             'bot' => "No podeu votar en una discussió feta per un bot",
             'limit_exceeded' => 'Espera una mica abans de continuar votant',
             'owner' => "No pots votar les teves discussions.",
-            'wrong_beatmapset_state' => 'Només podeu votar en discussions de beatmaps pendents.',
+            'wrong_beatmapset_state' => 'Només podeu votar en discussions de mapes pendents.',
         ],
     ],
 
@@ -56,7 +56,13 @@ return [
         'discussion_locked' => 'La discussió d\'aquest beatmap està bloquejada.',
 
         'metadata' => [
-            'nominated' => 'No podeu canviar les metadades d\'un beatmap nominat. Contacta amb un membre dels BN o NAT si creus que estan establerts incorrectament.',
+            'nominated' => 'No podeu canviar les metadades d\'un beatmap nominat. Contacta amb un membre dels BN o del NAT si creus que estan establerts incorrectament.',
+        ],
+    ],
+
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Has de tenir una puntuació al beatmap per afegir una etiqueta.',
         ],
     ],
 
@@ -65,10 +71,10 @@ return [
         'friends_only' => 'L\'usuari està bloquejant missatges de persones que no estan a la seva llista d\'amics.',
         'moderated' => 'Aquest canal està actualment moderat.',
         'no_access' => 'No tens accés a aquest canal.',
-        'no_announce' => '',
+        'no_announce' => 'No teniu permisos per a publicar anuncis.',
         'receive_friends_only' => 'És possible que l\'usuari no pugui respondre perquè només accepta missatges de persones de la llista d\'amics.',
-        'restricted' => 'No podeu enviar missatges mentre estigui silenciat, restringit o banejat.',
-        'silenced' => 'No podeu enviar missatges mentre estigui silenciat, restringit o banejat.',
+        'restricted' => 'No podeu enviar missatges mentre estigui silenciat, restringit o prohibit.',
+        'silenced' => 'No podeu enviar missatges mentre estigui silenciat, restringit o prohibit.',
     ],
 
     'comment' => [
@@ -170,12 +176,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Només el propietari de la sala pot tancar-la.',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "No es pot fixar aquest tipus de puntuació",
             'failed' => "No pots fixar una puntuació fallida.",
             'not_owner' => 'Només el propietari de la puntuació pot fixar la puntuació.',
             'too_many' => 'Has fixat massa puntuacions.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "Ja formes part de l'equip.",
+                'already_other_member' => "Ja formes part d'un altre equip.",
+                'currently_applying' => 'Tens una sol·licitud d\'unió a l\'equip pendent.',
+                'team_closed' => 'Actualment, l\'equip no accepta sol·licituds.',
+                'team_full' => "L'equip està complet i no pot acceptar més membres.",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "El líder de l'equip no pot sortir de l'equip.",
+            'not_member' => 'No ets membre de l\'equip.',
+        ],
+        'store' => [
+            'require_supporter_tag' => 'Has de tenir una etiqueta osu!supporter per crear un equip.',
         ],
     ],
 

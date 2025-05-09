@@ -55,6 +55,7 @@ return [
         'contact' => 'Kontak:',
         'date' => 'Petsa:',
         'echeck_delay' => 'Dahil ang pagbayad ay eCheck, maari pong magantay ng 10 araw para dumaan ng PayPal ang iyong bayarin!',
+        'echeck_denied' => '',
         'hide_from_activity' => 'ang mga tag ng osu!supporter sa pagkakasunud-sunod na ito ay hindi ipinapakita sa iyong kamakailang mga aktibidad.',
         'sent_via' => 'Naipadala sa pamamagitan ng:',
         'shipping_to' => 'Ipapadala sa:',

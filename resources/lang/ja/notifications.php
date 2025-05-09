@@ -15,22 +15,24 @@ return [
 
     'action_type' => [
         '_' => '全て',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        'beatmapset' => 'ビートマップ',
+        'build' => 'ビルド',
+        'channel' => 'チャット',
+        'forum_topic' => 'フォーラム',
+        'news_post' => 'ニュース',
+        'team' => 'チーム',
+        'user' => 'プロフィール',
     ],
 
     'filters' => [
         '_' => '全て',
-        'user' => 'プロフィール',
         'beatmapset' => 'ビートマップ',
-        'forum_topic' => 'フォーラム',
-        'news_post' => 'お知らせ',
         'build' => 'ビルド',
         'channel' => 'チャット',
+        'forum_topic' => 'フォーラム',
+        'news_post' => 'お知らせ',
+        'team' => 'チーム',
+        'user' => 'プロフィール',
     ],
 
     'item' => [
@@ -57,9 +59,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'ディスカッションはアンロックされました。',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited 件の称賛|:count_delimited 件の称賛',
+                    'problems' => ':count_delimited 件の問題|:count_delimited 件の問題',
+                    'suggestions' => ':count_delimited 件の提案|:count_delimited 件の提案',
                 ],
             ],
 
@@ -159,6 +161,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => 'チームへの参加リクエスト',
+
+                'team_application_accept' => "あなたは既にチーム :title に参加しています",
+                'team_application_accept_compact' => "あなたは既にチーム :title に参加しています",
+                'team_application_reject' => 'チーム :title への参加リクエストが却下されました',
+                'team_application_reject_compact' => 'チーム :title への参加リクエストが却下されました',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => '新しいビートマップ',
@@ -240,6 +253,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => '「:title」に新しい返信があります',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "あなたは既にチーム :title に参加しています",
+                'team_application_reject' => 'チーム :title への参加リクエストが却下されました',
             ],
         ],
 

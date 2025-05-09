@@ -200,7 +200,8 @@ return [
             'logout' => 'Одјавите се',
             'profile' => 'Мој профил',
             'scoring_mode_toggle' => 'Класичан изглед резултата',
-            'scoring_mode_toggle_tooltip' => '',
+            'scoring_mode_toggle_tooltip' => 'Прилагођена вредност резултата да се осећа као традиционално неограничено бодовање',
+            'team' => 'Мој Тим',
         ],
     ],
 

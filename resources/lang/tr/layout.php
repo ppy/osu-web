@@ -201,6 +201,7 @@ return [
             'profile' => 'Profilim',
             'scoring_mode_toggle' => 'Klasik skorlama',
             'scoring_mode_toggle_tooltip' => 'Skorları klasik sınırsız skorlamaya benzeyecek şekilde ayarla',
+            'team' => 'Takımım',
         ],
     ],
 

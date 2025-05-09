@@ -95,12 +95,16 @@ jobs:
   tests:
     strategy:
       matrix:
-        php: ['8.3']
+        php: ['8.4']
     name: Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      # otherwise docker compose will create .env directory
+      - name: Create blank env file
+        run: '> .env'
 
       - name: Services
         run: 'docker compose up --quiet-pull --wait
@@ -152,7 +156,6 @@ jobs:
 
       - name: Setup indices
         run: |
-          php artisan es:create-search-blacklist
           php artisan es:index-documents --no-interaction
           php artisan es:index-wiki --create-only --no-interaction
 

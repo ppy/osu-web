@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'Modalità specificata non valida.',
+
+    'change_owner' => [
+        'too_many' => 'Troppi mapper guest.',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Errore durante l\'aggiornamento del voto',
@@ -241,7 +247,7 @@ return [
             'options' => 'Più Opzioni di Ricerca',
             'supporter_filter' => 'Filtrare per :filters necessita di un tag osu!supporter attivo',
             'not-found' => 'nessun risultato',
-            'not-found-quote' => '... no, trovato niente.',
+            'not-found-quote' => '... trovato nulla.',
             'filters' => [
                 'extra' => 'Extra',
                 'general' => 'Generale',

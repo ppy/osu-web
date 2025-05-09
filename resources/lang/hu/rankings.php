@@ -10,9 +10,9 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'percentile_10' => '',
-        'percentile_50' => '',
+        'beatmap' => 'Nehézség',
+        'top_10p' => '',
+        'top_50p' => '',
     ],
 
     'filter' => [
@@ -36,12 +36,12 @@ return [
     'type' => [
         'charts' => 'Reflektorfény',
         'country' => 'Ország',
-        'daily_challenge' => '',
+        'daily_challenge' => 'napi kihívás',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'többjátékos',
-        'performance' => 'Teljesítmény',
-        'score' => 'Pontszám',
         'seasons' => 'szezonok',
+        'team' => 'csapat',
     ],
 
     'seasons' => [
@@ -49,6 +49,9 @@ return [
         'ongoing' => 'Ez a szezon még folyamatban van (lesznek még játéklisták).',
         'room_count' => 'Játéklista száma',
         'url' => 'További információk megjelenítése az adott szezonról.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -62,6 +65,8 @@ return [
         'accuracy' => 'Pontosság',
         'active_users' => 'Aktív Felhasználók',
         'country' => 'Ország',
+        'division' => '',
+        'members' => 'Tagok',
         'play_count' => 'Játékszám',
         'performance' => 'Teljesítmény',
         'total_score' => 'Összpontszám',

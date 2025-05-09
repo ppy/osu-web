@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => ':attribute obsahuje neplatné znaky.',
+        'used' => 'Toto :attribute je již používáno.',
+        'word_not_allowed' => 'Toto :attribute není povoleno.',
+
+        'attributes' => [
+            'default_ruleset_id' => 'Výchozí ruleset',
+            'is_open' => 'Přihlašování do týmu',
+            'name' => 'Jméno',
+            'short_name' => 'Krátké jméno',
+            'url' => 'URL',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Heslo nesmí obsahovat uživatelské jméno.',
         'email_already_used' => 'E-mailová adresa už byla použita.',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Hodnocené beatmapy nemohou být nahlášeny',
         'not_in_channel' => 'Nejste v tomto kanálu.',
+        'in_team' => '',
         'reason_not_valid' => ':reason není platný pro tento typ nahlášení.',
         'self' => "Nemůžete nahlásit sám sebe!",
     ],

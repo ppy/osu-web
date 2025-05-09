@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Cheating',
-            'multiple_accounts' => 'Verwendet mehrere Konten',
+            'inappropriate_chat' => '',
             'insults' => 'Beleidigt mich / andere',
-            'spam' => 'Spamming',
-            'unwanted_content' => 'Verlinkt unangemessene Inhalte',
+            'multiple_accounts' => 'Verwendet mehrere Konten',
             'nonsense' => 'Unsinn',
             'other' => 'Anderes (unten angeben)',
+            'spam' => 'Spamming',
+            'unwanted_content' => 'Verlinkt unangemessene Inhalte',
         ],
     ],
     'restricted_banner' => [
@@ -225,7 +226,7 @@ return [
                     'button' => 'Bild hochladen',
                     'dropzone' => 'Zum Hochladen hier ablegen',
                     'dropzone_info' => 'Du kannst das Bild auch hier ablegen, um es hochzuladen',
-                    'size_info' => 'Banner sollte 2400x640 groß sein',
+                    'size_info' => 'Banner sollte 2000x500 groß sein',
                     'too_large' => 'Datei ist zu groß.',
                     'unsupported_format' => 'Format wird nicht unterstützt.',
 
@@ -298,7 +299,7 @@ return [
                 'show_more' => 'mehr Events anzeigen',
             ],
             'historical' => [
-                'title' => 'Historisch',
+                'title' => 'Historie',
 
                 'monthly_playcounts' => [
                     'title' => 'Spielverlauf',
@@ -393,7 +394,7 @@ return [
                 'not_ranked' => 'Nur Ranked Beatmaps geben PP.',
                 'pp_weight' => ':percentage gewichtet',
                 'view_details' => 'Details anzeigen',
-                'title' => 'Ränge',
+                'title' => 'Scores',
 
                 'best' => [
                     'title' => 'Beste Performance',
@@ -474,10 +475,14 @@ return [
         ],
         'rank' => [
             'country' => 'Länderrang im Modus :mode',
-            'country_simple' => 'Landesrangliste',
+            'country_simple' => 'Nationaler Rang',
             'global' => 'Globaler Rang im Modus :mode',
-            'global_simple' => 'Globale Rangliste',
+            'global_simple' => 'Globaler Rang',
             'highest' => 'Höchster Rang: :rank am :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Genauigkeit',

@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Du musst einen Score auf einer Beatmap erreichen, um einen Tag hinzuzufügen.',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'Du kannst keine Nachrichten an einen Benutzer senden, der dich oder den du blockiert hast.',
         'friends_only' => 'Der Benutzer blockiert alle Nachrichten von Personen, die nicht auf seiner Freundesliste sind.',
         'moderated' => 'Dieser Kanal wird derzeit moderiert.',
         'no_access' => 'Du hast keinen Zugriff auf diesen Kanal.',
-        'no_announce' => '',
+        'no_announce' => 'Dir fehlt die Berechtigung, Ankündigungen zu veröffentlichen.',
         'receive_friends_only' => 'Der Benutzer kann möglicherweise nicht antworten, da du nur Nachrichten von Personen auf deiner Freundesliste akzeptierst.',
         'restricted' => 'Du kannst keine Nachrichten senden, während du stummgeschaltet oder gesperrt bist.',
         'silenced' => 'Du kannst keine Nachrichten senden, während du stummgeschaltet oder gesperrt bist.',
@@ -170,12 +176,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Nur der Raumeigentümer kann den Raum schließen.',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Dieser Score-Typ kann nicht angepinnt werden",
             'failed' => "Nicht abgeschlossene Scores können nicht angepinnt werden",
             'not_owner' => 'Nur der Spieler, der den Score eingereicht hat, kann ihn anpinnen.',
             'too_many' => 'Zu viele Scores angepinnt.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "Du bist bereits Teil des Teams.",
+                'already_other_member' => "Du bist bereits Teil eines anderen Teams.",
+                'currently_applying' => 'Eine Team-Beitrittsanfrage steht noch aus.',
+                'team_closed' => 'Das Team akzeptiert derzeit keine Beitrittsanfragen.',
+                'team_full' => "Das Team ist voll und kann keine weiteren Mitglieder mehr aufnehmen.",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "Der Teamleiter kann das Team nicht verlassen.",
+            'not_member' => 'Kein Mitglied des Teams.',
+        ],
+        'store' => [
+            'require_supporter_tag' => 'Um ein Team zu erstellen, wird ein osu!supporter-Tag benötigt.',
         ],
     ],
 

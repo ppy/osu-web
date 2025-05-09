@@ -222,6 +222,10 @@ interface BeatmapOwnerChangeEvent extends BaseBeatmapsetEvent {
     beatmap_version: string;
     new_user_id: number;
     new_user_username: string;
+    new_users?: {
+      id: number;
+      username: string;
+    }[];
   };
   type: 'beatmap_owner_change';
 }

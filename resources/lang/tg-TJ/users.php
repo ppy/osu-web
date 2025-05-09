@@ -161,12 +161,13 @@ return [
 
         'options' => [
             'cheating' => '',
-            'multiple_accounts' => '',
+            'inappropriate_chat' => '',
             'insults' => '',
-            'spam' => '',
-            'unwanted_content' => '',
+            'multiple_accounts' => '',
             'nonsense' => '',
             'other' => '',
+            'spam' => '',
+            'unwanted_content' => '',
         ],
     ],
     'restricted_banner' => [
@@ -478,6 +479,10 @@ return [
             'global' => '',
             'global_simple' => '',
             'highest' => '',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => '',

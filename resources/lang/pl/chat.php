@@ -18,7 +18,7 @@ return [
     'channels' => [
         'confirm_part' => 'Czy na pewno chcesz ukryć ten kanał? Wciąż będziesz otrzymywać z niego wiadomości.',
         'create' => 'utwórz ogłoszenie',
-        'join' => 'dołącz do kanału ',
+        'join' => 'dołącz do kanału',
         'none' => 'brak kanału',
 
         'list' => [
@@ -27,6 +27,7 @@ return [
                 'GROUP' => 'Grupy',
                 'PM' => 'Wiadomości prywatne',
                 'PUBLIC' => 'Kanały',
+                'TEAM' => 'Drużyna',
             ],
         ],
     ],
@@ -59,7 +60,7 @@ return [
 
     'no-conversations' => [
         'howto' => "Rozpocznij konwersację poprzez profil lub kartę użytkownika.",
-        'lazer' => 'Publiczne kanały, do których dołączysz poprzez <a href=":link">osu!lazer</a>, także będą tutaj widoczne.',
+        'lazer' => 'Publiczne kanały, do których dołączysz poprzez <a href=":link">osu!lazer</a>, również będą tutaj widoczne.',
         'title' => 'brak konwersacji',
     ],
 

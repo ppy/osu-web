@@ -20,17 +20,19 @@ return [
         'channel' => 'csevegés',
         'forum_topic' => 'fórum',
         'news_post' => 'újdonságok',
+        'team' => 'csapat',
         'user' => 'profil',
     ],
 
     'filters' => [
         '_' => 'összes',
-        'user' => 'profil',
         'beatmapset' => 'beatmapek',
-        'forum_topic' => 'fórum',
-        'news_post' => 'újdonságok',
         'build' => 'verziók',
         'channel' => 'csevegés',
+        'forum_topic' => 'fórum',
+        'news_post' => 'újdonságok',
+        'team' => 'csapat',
+        'user' => 'profil',
     ],
 
     'item' => [
@@ -160,6 +162,17 @@ return [
             ],
         ],
 
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "Mostantól a :title csapat tagja vagy",
+                'team_application_accept_compact' => "Mostantól a :title csapat tagja vagy",
+                'team_application_reject' => 'A :title csapatba való jelentkezésedet elutasították',
+                'team_application_reject_compact' => 'A :title csapatba való jelentkezésedet elutasították',
+            ],
+        ],
+
         'user' => [
             'user_beatmapset_new' => [
                 '_' => 'Új beatmap',
@@ -241,6 +254,13 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Új válaszok itt: ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Mostantól a :title csapat tagja vagy",
+                'team_application_reject' => 'A :title csapatba való jelentkezésedet elutasították',
             ],
         ],
 
