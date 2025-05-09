@@ -7,8 +7,6 @@ declare(strict_types=1);
 
 namespace App\Models\Traits\Es;
 
-use Carbon\Carbon;
-
 trait ArtistTrackSearch
 {
     use BaseDbIndexable;
@@ -24,26 +22,13 @@ trait ArtistTrackSearch
         return $this->artist->getAttribute('visible') && ($this->album === null || $this->album->getAttribute('visible'));
     }
 
-    public function toEsJson()
+    protected function getEsFieldValue(string $field)
     {
-        $mappings = static::esMappings();
-
-        $document = [];
-        foreach ($mappings as $field => $mapping) {
-            $value = match ($field) {
-                'album' => $this->album?->title,
-                'album_romanized' => $this->album?->title_romanized,
-                'artist' => $this->artist->name,
-                default => $this->$field,
-            };
-
-            if ($value instanceof Carbon) {
-                $value = $value->toIso8601String();
-            }
-
-            $document[$field] = $value;
-        }
-
-        return $document;
+        return match ($field) {
+            'album' => $this->album?->title,
+            'album_romanized' => $this->album?->title_romanized,
+            'artist' => $this->artist->name,
+            default => $this->$field,
+        };
     }
 }

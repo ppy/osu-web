@@ -5,8 +5,6 @@
 
 namespace App\Models\Traits\Es;
 
-use Carbon\Carbon;
-
 trait UserSearch
 {
     use BaseDbIndexable;
@@ -27,27 +25,14 @@ trait UserSearch
         return config_path('schemas/users.json');
     }
 
-    public function toEsJson()
+    protected function getEsFieldValue(string $field)
     {
-        $mappings = static::esMappings();
-
-        $document = [];
-        foreach ($mappings as $field => $mapping) {
-            $value = match ($field) {
-                'id' => $this->getKey(),
-                'is_old' => $this->isOld(),
-                'previous_usernames' => $this->previousUsernames(true)->unique()->values(),
-                'user_lastvisit' => $this->displayed_last_visit,
-                default => $this->$field,
-            };
-
-            if ($value instanceof Carbon) {
-                $value = $value->toIso8601String();
-            }
-
-            $document[$field] = $value;
-        }
-
-        return $document;
+        return match ($field) {
+            'id' => $this->getKey(),
+            'is_old' => $this->isOld(),
+            'previous_usernames' => $this->previousUsernames(true)->unique()->values(),
+            'user_lastvisit' => $this->displayed_last_visit,
+            default => $this->$field,
+        };
     }
 }
