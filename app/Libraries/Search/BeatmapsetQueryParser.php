@@ -29,6 +29,9 @@ class BeatmapsetQueryParser
     private static function makeDateRangeOption(string $operator, string $value): ?array
     {
         $value = presence(trim($value, '"'));
+        if ($value === null) {
+            return null;
+        }
 
         if (preg_match('#^\d{4}$#', $value) === 1) {
             $startTime = CarbonImmutable::create($value, 1, 1, 0, 0, 0, 'UTC');
