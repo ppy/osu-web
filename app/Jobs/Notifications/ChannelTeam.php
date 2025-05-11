@@ -17,4 +17,12 @@ class ChannelTeam extends ChannelMessageBase
     {
         return 'channel.channel_team.team';
     }
+
+    public function getDetails(): array
+    {
+        return [
+            ...parent::getDetails(),
+            'name' => $this->message->channel->name,
+        ];
+    }
 }
