@@ -12,4 +12,17 @@ use App\Models\Notification;
 class ChannelTeam extends ChannelMessageBase
 {
     const NOTIFICATION_OPTION_NAME = Notification::CHANNEL_TEAM;
+
+    public static function getBaseKey(Notification $notification): string
+    {
+        return 'channel.channel_team.team';
+    }
+
+    public function getDetails(): array
+    {
+        return [
+            ...parent::getDetails(),
+            'name' => $this->message->channel->name,
+        ];
+    }
 }
