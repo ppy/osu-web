@@ -75,7 +75,7 @@ class ContestsController extends Controller
                 } catch (InvariantException $e) {
                     $noVoteReason = $e->getMessage();
                 }
-            } elseif (!$contest->show_votes) {
+            } elseif ($contest->isVotingEnded() && !$contest->show_votes) {
                 $noVoteReason = osu_trans('contest.voting.over');
             }
 
