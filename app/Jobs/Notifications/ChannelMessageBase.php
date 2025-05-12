@@ -13,7 +13,7 @@ use App\Models\User;
 
 abstract class ChannelMessageBase extends BroadcastNotificationBase
 {
-    public static function getBaseKey(Notification $notification): string
+    public static function getMailBaseKey(Notification $notification): string
     {
         return "channel.channel.{$notification->details['type']}";
     }
