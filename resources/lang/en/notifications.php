@@ -244,15 +244,9 @@ return [
         ],
 
         'channel' => [
-            'announcement' => [
-                'announce' => 'There is a new announcement in ":name"',
-            ],
-
             'channel' => [
+                'announce' => 'There is a new announcement in ":name"',
                 'pm' => 'You\'ve received a new message from :username',
-            ],
-
-            'channel_team' => [
                 'team' => 'There is a new message in team ":name"',
             ],
         ],
