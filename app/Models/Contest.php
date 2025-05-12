@@ -160,6 +160,11 @@ class Contest extends Model
         return $this->voting_starts_at !== null && $this->voting_starts_at->isPast();
     }
 
+    public function isVotingEnded()
+    {
+        return $this->voting_ends_at !== null && $this->voting_ends_at->isPast();
+    }
+
     public function scoringCategories(): HasMany
     {
         return $this->hasMany(ContestScoringCategory::class);
