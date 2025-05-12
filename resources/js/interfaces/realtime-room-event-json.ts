@@ -1,18 +1,19 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-export default interface RealtimeRoomEventJson {
-  event_type: RealtimeRoomEventType;
+export default RealtimeRoomEventJson;
+export type RealtimeRoomEventJson<T = RealtimeRoomEventType> = {
+  event_type: T;
   id: number;
   playlist_item_id?: number;
   timestamp: string;
   user_id?: number;
-}
-
-export type GameStartedEventJson = RealtimeRoomEventJson & {
+} & ({
+  event_type: Exclude<RealtimeRoomEventType, 'game_started'>;
+} | {
   event_detail: GameStartedEventDetail;
   event_type: 'game_started';
-};
+});
 
 export type RealtimeRoomEventType =
   | 'game_started'

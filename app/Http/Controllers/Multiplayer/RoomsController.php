@@ -5,16 +5,17 @@
 
 namespace App\Http\Controllers\Multiplayer;
 
+use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Ranking\DailyChallengeController;
 use App\Models\Model;
-use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
 use App\Transformers\Multiplayer\PlaylistItemTransformer;
 use App\Transformers\Multiplayer\RealtimeRoomEventTransformer;
 use App\Transformers\Multiplayer\RoomTransformer;
 use App\Transformers\UserCompactTransformer;
+use Ds\Set;
 
 class RoomsController extends Controller
 {
@@ -36,15 +37,23 @@ class RoomsController extends Controller
         $room = Room::findOrFail($id);
 
         if (!$room->isRealtime()) {
-            return response([], 204);
+            throw new InvariantException('retrieving events is only supported for realtime rooms');
         }
 
-        $params = request()->all();
-        $after = $params['after'] ?? null;
-        $before = $params['before'] ?? null;
+        $params = get_params(request()->all(), null, [
+            'limit:int',
+            'after:int',
+            'before:int',
+        ], ['null_missing' => true]);
+        $after = $params['after'];
+        $before = $params['before'];
         $limit = \Number::clamp($params['limit'] ?? 100, 1, 101);
 
-        $events = $room->events()->with('playlistItem.scoreLinks.score')->limit($limit);
+        $events = $room->events()->with([
+            'playlistItem.beatmap.beatmapset',
+            'playlistItem.scoreLinks.score',
+            'playlistItem.scoreLinks.score.processHistory',
+        ])->limit($limit);
 
         if (isset($after)) {
             $events
@@ -59,22 +68,26 @@ class RoomsController extends Controller
             $reverseOrder = true;
         }
 
-        $userIds = [];
-        $playlistItemIds = [];
+        $userIds = new Set();
+        $playlistItemIds = new Set();
+        $playlistItems = [];
 
         $events = $events->get();
         foreach ($events as $event) {
             if ($event->user_id) {
-                $userIds[] = $event->user_id;
+                $userIds->add($event->user_id);
             }
 
-            $playlistItem = $event->playlistItem;
-            if ($playlistItem !== null) {
-                $playlistItemIds[] = $event->playlistItem->getKey();
+            $playlistItemId = $event->playlist_item_id;
+            if ($playlistItemId !== null && !$playlistItemIds->contains($playlistItemId)) {
+                $playlistItemIds->add($playlistItemId);
+
+                $playlistItem = $event->playlistItem;
+                $playlistItems[] = $playlistItem;
 
                 foreach ($playlistItem->scoreLinks as $scoreLink) {
                     $scoreLink->setRelation('playlistItem', $playlistItem);
-                    $userIds[] = $scoreLink->user_id;
+                    $userIds->add($scoreLink->user_id);
                 }
             }
         }
@@ -83,14 +96,13 @@ class RoomsController extends Controller
             $events = $events->reverse();
         }
 
-        $users = User::with('country')->whereIn('user_id', array_unique($userIds))->get();
+        $users = User::whereIn('user_id', $userIds->toArray())->get();
         $users = json_collection(
             $users,
             new UserCompactTransformer(),
             'country'
         );
 
-        $playlistItems = PlaylistItem::whereIn('id', array_unique($playlistItemIds))->get();
         $playlistItems = json_collection(
             $playlistItems,
             new PlaylistItemTransformer(),

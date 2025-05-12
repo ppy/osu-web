@@ -10,7 +10,7 @@ use App\Models\User;
 
 /**
  * @property \Carbon\Carbon|null $created_at
- * @property json|null $event_detail
+ * @property array|null $event_detail
  * @property string $event_type
  * @property int $id
  * @property Room $room
@@ -36,6 +36,10 @@ class RealtimeRoomEvent extends Model
     ];
 
     protected $table = 'multiplayer_realtime_room_events';
+
+    protected $casts = [
+        'event_detail' => 'array',
+    ];
 
     public function room()
     {
