@@ -252,7 +252,7 @@ return [
                 'pm' => 'You\'ve received a new message from :username',
             ],
 
-            'channel' => [
+            'channel_team' => [
                 'team' => 'There is a new message in team ":name"',
             ],
         ],

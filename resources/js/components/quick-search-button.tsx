@@ -43,6 +43,7 @@ interface State {
     return (
       <>
         <a
+          accessKey='f'
           className={className}
           href={route('search')}
           onClick={this.toggle}
