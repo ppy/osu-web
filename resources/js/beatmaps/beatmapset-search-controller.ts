@@ -1,9 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetSearch, SearchResponse } from 'beatmaps/beatmapset-search';
+import { BeatmapsetSearch } from 'beatmaps/beatmapset-search';
 import ResultSet from 'beatmaps/result-set';
 import { BeatmapsetSearchFilters, FilterKey, filtersFromUrl } from 'beatmapset-search-filters';
+import BeatmapsetSearchResponse from 'interfaces/beatmapset-search-response';
 import { route } from 'laroute';
 import { debounce, intersection } from 'lodash';
 import { action, computed, IObjectDidChange, Lambda, makeObservable, observable, observe, runInAction } from 'mobx';
@@ -100,7 +101,7 @@ export class BeatmapsetSearchController {
     return value != null ? value.split('.') : value;
   }
 
-  initialize(data: SearchResponse) {
+  initialize(data: BeatmapsetSearchResponse) {
     this.restoreStateFromUrl();
     this.beatmapsetSearch.initialize(this.filters, data);
     this.initialErrorMessage = data.error;

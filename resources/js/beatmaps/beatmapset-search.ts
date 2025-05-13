@@ -8,18 +8,10 @@ import ResultSet from 'beatmaps/result-set';
 import SearchResults from 'beatmaps/search-results';
 import { BeatmapsetSearchFilters } from 'beatmapset-search-filters';
 import DispatchListener from 'dispatch-listener';
-import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
+import BeatmapsetSearchResponse from 'interfaces/beatmapset-search-response';
 import { route } from 'laroute';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { BeatmapsetStore } from 'stores/beatmapset-store';
-
-export interface SearchResponse {
-  beatmapsets: BeatmapsetExtendedJson[];
-  cursor_string: string | null;
-  error?: string;
-  recommended_difficulty: number;
-  total: number;
-}
 
 @dispatchListener
 export class BeatmapsetSearch implements DispatchListener {
@@ -81,7 +73,7 @@ export class BeatmapsetSearch implements DispatchListener {
   }
 
   @action
-  initialize(filters: BeatmapsetSearchFilters, data: SearchResponse) {
+  initialize(filters: BeatmapsetSearchFilters, data: BeatmapsetSearchResponse) {
     this.updateBeatmapsetStore(data);
 
     const key = filters.toKeyString();
@@ -101,7 +93,7 @@ export class BeatmapsetSearch implements DispatchListener {
     this.recommendedDifficulties.clear();
   }
 
-  private fetch(filters: BeatmapsetSearchFilters, from: number): PromiseLike<SearchResponse | null> {
+  private fetch(filters: BeatmapsetSearchFilters, from: number): PromiseLike<BeatmapsetSearchResponse | null> {
     this.cancel();
 
     const params = filters.queryParams;
@@ -138,7 +130,7 @@ export class BeatmapsetSearch implements DispatchListener {
     return resultSet;
   }
 
-  private updateBeatmapsetStore(response: SearchResponse) {
+  private updateBeatmapsetStore(response: BeatmapsetSearchResponse) {
     for (const json of response.beatmapsets) {
       this.beatmapsetStore.update(json);
     }
