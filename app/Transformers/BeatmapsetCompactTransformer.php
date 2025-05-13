@@ -62,11 +62,13 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             'covers' => $beatmapset->allCoverURLs(),
             'creator' => $beatmapset->creator,
             'favourite_count' => $beatmapset->favourite_count,
+            'genre_id' => $beatmapset->genre_id,
             'hype' => $beatmapset->canBeHyped() ? [
                 'current' => $beatmapset->hype,
                 'required' => $beatmapset->requiredHype(),
             ] : null,
             'id' => $beatmapset->beatmapset_id,
+            'language_id' => $beatmapset->language_id,
             'nsfw' => $beatmapset->nsfw,
             'offset' => $beatmapset->offset,
             'play_count' => $beatmapset->play_count,
