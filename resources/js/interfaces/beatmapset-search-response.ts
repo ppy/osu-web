@@ -3,7 +3,9 @@
 
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 
-type SortField = 'artist' | 'difficulty' | 'favourites' | 'plays' | 'ranked' | 'rating' | 'relevance' | 'title';
+// order the sorters appear in.
+export const sortNames = ['title', 'artist', 'difficulty', 'updated', 'ranked', 'rating', 'plays', 'favourites', 'relevance', 'nominations'] as const;
+export type SortField = typeof sortNames[number];
 type SortOrder = 'asc' | 'desc';
 type Sort = `${SortField}_${SortOrder}`;
 
