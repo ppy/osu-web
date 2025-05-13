@@ -31,14 +31,14 @@ abstract class BroadcastNotificationBase implements ShouldQueue
     protected $source;
     protected $timestamp;
 
-    public static function getBaseKey(Notification $notification): string
+    public static function getMailBaseKey(Notification $notification): string
     {
         return "{$notification->notifiable_type}.{$notification->category}.{$notification->name}";
     }
 
     public static function getMailGroupingKey(Notification $notification): string
     {
-        $base = static::getBaseKey($notification);
+        $base = static::getMailBaseKey($notification);
 
         return "{$base}-{$notification->notifiable_type}-{$notification->notifiable_id}";
     }
