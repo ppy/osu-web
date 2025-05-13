@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { SortField, sortNames } from 'interfaces/beatmapset-search-response';
 import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
@@ -9,10 +10,6 @@ import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 
 type Props = Record<string, never>;
-
-// order the sorters appear in.
-const sortNames = ['title', 'artist', 'difficulty', 'updated', 'ranked', 'rating', 'plays', 'favourites', 'relevance', 'nominations'] as const;
-type Sort = typeof sortNames[number];
 
 @observer
 export class SearchSort extends React.Component<Props> {
@@ -71,7 +68,7 @@ export class SearchSort extends React.Component<Props> {
     );
   }
 
-  private readonly renderField = (field: Sort) => {
+  private readonly renderField = (field: SortField) => {
     const active = this.filters.searchSort.field === field;
     const arrow = active && this.filters.searchSort.order === 'asc' ? 'up' : 'down';
 
