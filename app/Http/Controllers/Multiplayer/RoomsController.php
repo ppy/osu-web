@@ -15,6 +15,7 @@ use App\Transformers\Multiplayer\PlaylistItemTransformer;
 use App\Transformers\Multiplayer\RealtimeRoomEventTransformer;
 use App\Transformers\Multiplayer\RoomTransformer;
 use App\Transformers\UserCompactTransformer;
+use Ds\Map;
 use Ds\Set;
 
 class RoomsController extends Controller
@@ -69,8 +70,7 @@ class RoomsController extends Controller
         }
 
         $userIds = new Set();
-        $playlistItemIds = new Set();
-        $playlistItems = [];
+        $playlistItems = new Map();
 
         $events = $events->get();
         foreach ($events as $event) {
@@ -79,11 +79,9 @@ class RoomsController extends Controller
             }
 
             $playlistItemId = $event->playlist_item_id;
-            if ($playlistItemId !== null && !$playlistItemIds->contains($playlistItemId)) {
-                $playlistItemIds->add($playlistItemId);
-
+            if ($playlistItemId !== null && !$playlistItems->hasKey($playlistItemId)) {
                 $playlistItem = $event->playlistItem;
-                $playlistItems[] = $playlistItem;
+                $playlistItems->put($playlistItemId, $playlistItem);
 
                 foreach ($playlistItem->scoreLinks as $scoreLink) {
                     $scoreLink->setRelation('playlistItem', $playlistItem);
@@ -104,7 +102,7 @@ class RoomsController extends Controller
         );
 
         $playlistItems = json_collection(
-            $playlistItems,
+            $playlistItems->values()->toArray(),
             new PlaylistItemTransformer(),
             ['beatmap.beatmapset', 'scores']
         );
