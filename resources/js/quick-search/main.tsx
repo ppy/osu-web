@@ -128,7 +128,7 @@ const otherModes: ResultMode[] = ['artist_track', 'forum_post', 'wiki_page'];
 
     return (
       <div className='quick-search-items'>
-        {this.props.worker.searchResult.beatmapset.beatmapsets.map((beatmapset, idx) => (
+        {this.props.worker.searchResult.beatmapset.items.map((beatmapset, idx) => (
           <div
             key={beatmapset.id}
             className='quick-search-items__item'
@@ -246,7 +246,7 @@ const otherModes: ResultMode[] = ['artist_track', 'forum_post', 'wiki_page'];
 
     return (
       <div className='quick-search-items'>
-        {this.props.worker.searchResult.user.users.map((user, idx) => (
+        {this.props.worker.searchResult.user.items.map((user, idx) => (
           <div
             key={user.id}
             className='quick-search-items__item'

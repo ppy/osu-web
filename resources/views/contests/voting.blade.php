@@ -13,9 +13,6 @@
 @section('contest-content')
     <div class="contest__description">{!! markdown($contestMeta->description_voting, 'contest') !!}</div>
     @include('contests._countdown', ['deadline' => $contestMeta->currentPhaseEndDate()])
-    @if ($contestMeta->voting_ends_at !== null && $contestMeta->voting_ends_at->isPast())
-        <div class='contest__voting-notice'>{{osu_trans('contest.voting.over')}}</div>
-    @endif
     @if ($noVoteReason === null)
         @if (count($contests) === 1)
             @include('contests._voting-entrylist', ['contest' => $contests->first()])
