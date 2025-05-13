@@ -14,7 +14,7 @@ import { action, makeObservable, observable, runInAction } from 'mobx';
 import { BeatmapsetStore } from 'stores/beatmapset-store';
 
 @dispatchListener
-export class BeatmapsetSearch implements DispatchListener {
+export default class BeatmapsetSearch implements DispatchListener {
   @observable readonly recommendedDifficulties = new Map<string|null, number>();
   @observable readonly resultSets = new Map<string, ResultSet>();
 
