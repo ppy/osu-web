@@ -7,12 +7,14 @@ namespace App\Transformers\Multiplayer;
 
 use App\Models\Multiplayer\PlaylistItem;
 use App\Transformers\BeatmapCompactTransformer;
+use App\Transformers\ScoreTransformer;
 use App\Transformers\TransformerAbstract;
 
 class PlaylistItemTransformer extends TransformerAbstract
 {
     protected array $availableIncludes = [
         'beatmap',
+        'scores',
     ];
 
     public function transform(PlaylistItem $item)
@@ -37,6 +39,14 @@ class PlaylistItemTransformer extends TransformerAbstract
         return $this->item(
             $item->beatmap,
             new BeatmapCompactTransformer()
+        );
+    }
+
+    public function includeScores(PlaylistItem $item)
+    {
+        return $this->collection(
+            $item->scoreLinks,
+            ScoreTransformer::newSolo()
         );
     }
 }

@@ -17,7 +17,7 @@ class BeatmapsetDiscussionReviewNew extends BroadcastNotificationBase
 
     protected $beatmapsetDiscussion;
 
-    public static function getBaseKey(Notification $notification): string
+    public static function getMailBaseKey(Notification $notification): string
     {
         return "{$notification->notifiable_type}.{$notification->category}.beatmapset_discussion_post_new";
     }

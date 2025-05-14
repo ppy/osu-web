@@ -13,11 +13,6 @@ use App\Models\User;
 
 abstract class ChannelMessageBase extends BroadcastNotificationBase
 {
-    public static function getBaseKey(Notification $notification): string
-    {
-        return "channel.channel.{$notification->details['type']}";
-    }
-
     public static function getMailLink(Notification $notification): string
     {
         return route('chat.index', ['channel_id' => $notification->notifiable_id]);
