@@ -261,6 +261,11 @@ class Room extends Model
         return $this->hasMany(ScoreLink::class);
     }
 
+    public function events()
+    {
+        return $this->hasMany(RealtimeRoomEvent::class);
+    }
+
     public function season(): HasOneThrough
     {
         return $this->hasOneThrough(
