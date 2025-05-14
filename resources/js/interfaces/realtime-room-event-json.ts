@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 export default RealtimeRoomEventJson;
-export type RealtimeRoomEventJson<T = RealtimeRoomEventType> = {
+type RealtimeRoomEventJson<T = RealtimeRoomEventType> = {
   event_type: T;
   id: number;
   playlist_item_id?: number;

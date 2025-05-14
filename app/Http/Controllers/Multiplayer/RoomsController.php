@@ -46,23 +46,21 @@ class RoomsController extends Controller
             'after:int',
             'before:int',
         ], ['null_missing' => true]);
-        $after = $params['after'];
-        $before = $params['before'];
-        $limit = \Number::clamp($params['limit'] ?? 100, 1, 101);
+        $params['limit'] = \Number::clamp($params['limit'] ?? 100, 1, 101);
 
         $events = $room->events()->with([
             'playlistItem.beatmap.beatmapset',
             'playlistItem.scoreLinks.score',
             'playlistItem.scoreLinks.score.processHistory',
-        ])->limit($limit);
+        ])->limit($params['limit']);
 
-        if (isset($after)) {
+        if (isset($params['after'])) {
             $events
-                ->where('id', '>', $after)
+                ->where('id', '>', $params['after'])
                 ->orderBy('id', 'ASC');
         } else {
-            if (isset($before)) {
-                $events->where('id', '<', $before);
+            if (isset($params['before'])) {
+                $events->where('id', '<', $params['before']);
             }
 
             $events->orderBy('id', 'DESC');
