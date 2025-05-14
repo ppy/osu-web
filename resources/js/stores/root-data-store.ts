@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetSearch } from 'beatmaps/beatmapset-search';
+import BeatmapsetSearch from 'beatmaps/beatmapset-search';
 import ChatStateStore from 'chat/chat-state-store';
 import { BeatmapsetStore } from './beatmapset-store';
 import ChannelStore from './channel-store';

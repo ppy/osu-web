@@ -148,6 +148,11 @@ class Contest extends Model
             $this->entry_ends_at !== null && $this->entry_ends_at->isFuture();
     }
 
+    public function isVotingEnded()
+    {
+        return $this->voting_ends_at !== null && $this->voting_ends_at->isPast();
+    }
+
     public function isVotingOpen()
     {
         return $this->isVotingStarted() &&

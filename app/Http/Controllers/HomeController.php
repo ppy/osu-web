@@ -16,7 +16,6 @@ use App\Models\Forum\Post;
 use App\Models\NewsPost;
 use App\Models\UserDonation;
 use App\Transformers\MenuImageTransformer;
-use App\Transformers\UserCompactTransformer;
 use Auth;
 use Jenssegers\Agent\Agent;
 use Request;
@@ -141,14 +140,15 @@ class HomeController extends Controller
                     continue;
                 }
                 $result[$mode]['total'] = $search->count();
+                if (QuickSearch::MODES[$mode]['size'] !== 0) {
+                    $transformer = QuickSearch::MODES[$mode]['transformer'];
+                    $result[$mode]['items'] = json_collection(
+                        $search->data(),
+                        new $transformer['class'](),
+                        $transformer['includes'],
+                    );
+                }
             }
-
-            $result['user']['users'] = json_collection(
-                $searches['user']->data(),
-                new UserCompactTransformer(),
-                [...UserCompactTransformer::CARD_INCLUDES, 'support_level'],
-            );
-            $result['beatmapset']['beatmapsets'] = json_collection($searches['beatmapset']->data(), 'Beatmapset', ['beatmaps']);
         }
 
         return $result;
