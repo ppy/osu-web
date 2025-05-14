@@ -158,13 +158,7 @@ abstract class Model extends BaseModel
             'replayViewCount',
             'user' => $this->getRelationValue($key),
 
-            default => $this->getNewScoreAttribute($key),
-        };
-    }
-
-    public function getNewScoreAttribute(string $key)
-    {
-        return match ($key) {
+            // new score model attributes
             'accuracy' => $this->accuracy(),
             'build_id' => null,
             'data' => $this->getData(),

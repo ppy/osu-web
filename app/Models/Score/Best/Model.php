@@ -59,42 +59,22 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
     public function getAttribute($key)
     {
         return match ($key) {
-            'beatmap_id',
-            'count100',
-            'count300',
-            'count50',
-            'countgeki',
-            'countkatu',
-            'countmiss',
             'country_acronym',
-            'maxcombo',
-            'pp',
-            'rank',
-            'score',
-            'score_id',
-            'user_id' => $this->getRawAttribute($key),
+            'pp' => $this->getRawAttribute($key),
 
-            'hidden',
-            'perfect',
+            'high_score_id' => $this->getKey(),
+            'pass' => true,
+
             'replay' => (bool) $this->getRawAttribute($key),
 
-            'date' => $this->getTimeFast($key),
-
-            'date_json' => $this->getJsonTimeFast($key),
-
             'best' => $this,
-            'enabled_mods' => $this->getEnabledModsAttribute($this->getRawAttribute('enabled_mods')),
-            'pass' => true,
 
             'best_id' => $this->getKey(),
             'has_replay' => $this->replay,
 
-            'beatmap',
-            'replayViewCount',
-            'reportedIn',
-            'user' => $this->getRelationValue($key),
+            'reportedIn' => $this->getRelationValue($key),
 
-            default => $this->getNewScoreAttribute($key),
+            default => parent::getAttribute($key),
         };
     }
 
