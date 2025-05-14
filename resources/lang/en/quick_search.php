@@ -9,6 +9,7 @@ return [
         'beatmapset' => 'Beatmap',
         'forum_post' => 'Forum',
         'other' => 'Other',
+        'team' => 'Team',
         'user' => 'Player',
         'wiki_page' => 'Wiki',
     ],
