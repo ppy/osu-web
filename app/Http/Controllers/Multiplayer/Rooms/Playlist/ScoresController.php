@@ -64,7 +64,7 @@ class ScoresController extends BaseController
             ->limit($limit)
             ->getWithHasMore();
 
-        $transformer = ScoreTransformer::newSolo();
+        $transformer = new ScoreTransformer(false);
         $scoresJson = json_collection(
             $highScores->pluck('scoreLink'),
             $transformer,
@@ -127,7 +127,7 @@ class ScoresController extends BaseController
 
         return json_item(
             $scoreLink,
-            ScoreTransformer::newSolo(),
+            new ScoreTransformer(false),
             [
                 ...ScoreTransformer::MULTIPLAYER_BASE_INCLUDES,
                 'position',
@@ -159,7 +159,7 @@ class ScoresController extends BaseController
 
         return json_item(
             $scoreLink,
-            ScoreTransformer::newSolo(),
+            new ScoreTransformer(false),
             [
                 ...ScoreTransformer::MULTIPLAYER_BASE_INCLUDES,
                 'position',
@@ -225,7 +225,7 @@ class ScoresController extends BaseController
 
         return json_item(
             $scoreLink,
-            ScoreTransformer::newSolo(),
+            new ScoreTransformer(false),
             [
                 ...ScoreTransformer::MULTIPLAYER_BASE_INCLUDES,
                 'position',

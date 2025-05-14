@@ -29,9 +29,6 @@ class ScoreTransformer extends TransformerAbstract
         'scoreLink.user.country',
     ];
 
-    const TYPE_LEGACY = 'legacy';
-    const TYPE_SOLO = 'solo';
-
     // TODO: user include is deprecated.
     const USER_PROFILE_INCLUDES = ['beatmap', 'beatmapset', 'user'];
     const USER_PROFILE_INCLUDES_PRELOAD = [
@@ -61,38 +58,19 @@ class ScoreTransformer extends TransformerAbstract
         'current_user_attributes',
     ];
 
-    private string $transformFunction;
+    private bool $legacyFormat;
 
-    public static function newSolo(): static
+    public function __construct(?bool $legacyFormat = null)
     {
-        return new static(static::TYPE_SOLO);
-    }
-
-    public function __construct(?string $type = null)
-    {
-        $type ??= is_api_request() && api_version() < 20220705
-            ? static::TYPE_LEGACY
-            : static::TYPE_SOLO;
-
-        switch ($type) {
-            case static::TYPE_LEGACY:
-                $this->transformFunction = 'transformLegacy';
-                break;
-            case static::TYPE_SOLO:
-                $this->transformFunction = 'transformSolo';
-                break;
-        }
+        $this->legacyFormat = $legacyFormat ?? (is_api_request() && api_version() < 20220705);
     }
 
     public function transform(LegacyMatch\Score|MultiplayerScoreLink|ScoreModel|SoloScore $score)
     {
-        $fn = $this->transformFunction;
+        if ($this->legacyFormat) {
+            return $this->transformLegacy($score);
+        }
 
-        return $this->$fn($score);
-    }
-
-    public function transformSolo(MultiplayerScoreLink|ScoreModel|SoloScore $score)
-    {
         $extraAttributes = [];
 
         if ($score instanceof MultiplayerScoreLink) {
@@ -237,8 +215,7 @@ class ScoreTransformer extends TransformerAbstract
     public function includeScoresAround(MultiplayerScoreLink $scoreLink)
     {
         static $limit = 10;
-        static $transformer;
-        $transformer ??= static::newSolo();
+        static $transformer = new static(false);
 
         return $this->primitive(array_map(
             function ($item) use ($limit, $transformer) {

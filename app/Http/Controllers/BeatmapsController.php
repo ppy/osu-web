@@ -45,7 +45,7 @@ class BeatmapsController extends Controller
     }
 
     // TODO: move this to scores() and remove soloScores(). Probably sometime after October 2025.
-    private static function beatmapScores(string $id, ?string $scoreTransformerType, ?bool $isLegacy): array
+    private static function beatmapScores(string $id, ?bool $legacyFormat, ?bool $isLegacy): array
     {
         $beatmap = Beatmap::findOrFail($id);
         if ($beatmap->approved <= 0) {
@@ -77,7 +77,7 @@ class BeatmapsController extends Controller
         ]);
         $scores = $esFetch->all()->loadMissing(['beatmap', 'user.country', 'user.team', 'processHistory']);
         $userScore = $esFetch->userBest();
-        $scoreTransformer = new ScoreTransformer($scoreTransformerType);
+        $scoreTransformer = new ScoreTransformer($legacyFormat);
 
         $results = [
             'score_count' => UserRank::getCount($esFetch->baseParams),
@@ -386,7 +386,7 @@ class BeatmapsController extends Controller
      */
     public function soloScores($id)
     {
-        return static::beatmapScores($id, ScoreTransformer::TYPE_SOLO, null);
+        return static::beatmapScores($id, false, null);
     }
 
     public function updateOwner($id)
