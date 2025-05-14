@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace App\Models\Traits\Es;
 
-use App\Libraries\BBCodeForDB;
 use App\Libraries\BBCodeFromDB;
 
 trait TeamSearch
@@ -24,7 +23,7 @@ trait TeamSearch
         $document = [];
         foreach (static::esMappings() as $field => $mapping) {
             $document[$field] = match ($field) {
-                'description' => BBCodeFromDB::removeBBCodeTags(new BBCodeForDB($this->description ?? '')->generate()),
+                'description' => BBCodeFromDB::removeBBCodeTags($this->description),
                 default => $this->$field,
             };
         }
