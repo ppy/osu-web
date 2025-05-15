@@ -1,0 +1,68 @@
+{
+  "mappings": {
+    "dynamic": false,
+    "properties": {
+      "description": {
+        "type": "text"
+      },
+      "id": {
+        "type": "long"
+      },
+      "name": {
+        "type": "text",
+        "fields": {
+          "_prefix": {
+            "type": "text",
+            "analyzer": "prefix",
+            "search_analyzer": "standard"
+          },
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      },
+      "short_name": {
+        "type": "text",
+        "fields": {
+          "_prefix": {
+            "type": "text",
+            "analyzer": "prefix",
+            "search_analyzer": "standard"
+          },
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      }
+    }
+  },
+  "settings": {
+    "index": {
+      "analysis": {
+        "analyzer": {
+          "prefix": {
+            "filter": [
+              "lowercase"
+            ],
+            "tokenizer": "prefix"
+          }
+        },
+        "tokenizer": {
+          "prefix": {
+            "type": "edge_ngram",
+            "min_gram": "2",
+            "max_gram": "20",
+            "token_chars": [
+              "digit",
+              "letter",
+              "punctuation",
+              "symbol"
+            ]
+          }
+        }
+      },
+      "number_of_shards": "1",
+      "number_of_replicas": "0"
+    }
+  }
+}

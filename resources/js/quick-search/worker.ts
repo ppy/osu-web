@@ -2,30 +2,34 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetJson from 'interfaces/beatmapset-json';
+import TeamJson from 'interfaces/team-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 
-export type Section = 'user' | 'user_others' | 'beatmapset' | 'beatmapset_others' | 'others';
-const SECTIONS: Section[] = [
-  'user',
-  'user_others',
+const SECTIONS = [
   'beatmapset',
   'beatmapset_others',
+  'user',
+  'user_others',
+  'team',
+  'team_others',
   'others',
-];
+] as const;
+export type Section = typeof SECTIONS[number];
 
 interface SelectedItem {
   index: number;
   section: number;
 }
 
-export type ResultMode = 'artist_track' | 'beatmapset' | 'forum_post' | 'user' | 'wiki_page';
+export type ResultMode = 'artist_track' | 'beatmapset' | 'forum_post' | 'team' | 'user' | 'wiki_page';
 interface SearchResult {
   artist_track: SearchResultSummary;
   beatmapset: SearchResultItems<BeatmapsetJson>;
   forum_post: SearchResultSummary;
+  team: SearchResultItems<TeamJson>;
   user: SearchResultItems<UserJson>;
   wiki_page: SearchResultSummary;
 }
@@ -38,7 +42,7 @@ interface SearchResultItems<T> extends SearchResultSummary {
   items: T[];
 }
 
-const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
+export const otherModes: ResultMode[] = ['artist_track', 'forum_post', 'wiki_page'];
 
 export default class Worker {
   debouncedSearch = debounce(() => this.search(), 500);
@@ -103,6 +107,12 @@ export default class Worker {
     }
 
     switch (SECTIONS[this.selected.section]) {
+      case 'team': {
+        const teamId = searchResult.team.items[this.selected.index]?.id;
+        return teamId == null ? undefined : route('teams.show', { team: teamId });
+      }
+      case 'team_others':
+        return route('search', { mode: 'team', query: this.query });
       case 'user': {
         const userId = searchResult.user.items[this.selected.index]?.id;
         return userId ? route('users.show', { user: userId }) : undefined;
@@ -173,6 +183,10 @@ export default class Worker {
       return 0;
     }
     switch (section) {
+      case 'team':
+        return searchResult.team.items.length;
+      case 'team_others':
+        return 1;
       case 'user':
         return searchResult.user.items.length;
       case 'user_others':

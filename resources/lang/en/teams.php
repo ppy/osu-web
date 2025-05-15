@@ -19,6 +19,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'members' => ':count_delimited member|:count_delimited members',
+    ],
+
     'create' => [
         'submit' => 'Create Team',
 
