@@ -28,7 +28,7 @@ export default function Game(props: Props) {
     if (first.match.team !== second.match.team) {
       return first.match.team === winningTeam ? -1 : 1;
     } else {
-      return second.score - first.score;
+      return second.total_score - first.total_score;
     }
   });
 
