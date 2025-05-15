@@ -11,6 +11,7 @@ import { formatNumber, htmlElementOrNull } from 'utils/html';
 import { trans } from 'utils/lang';
 import { navigate } from 'utils/turbolinks';
 import Beatmapset from './beatmapset';
+import Team from './team';
 import User from './user';
 import { otherModes, ResultMode, Section } from './worker';
 import Worker from './worker';
@@ -126,7 +127,7 @@ interface Props {
 
     return (
       <div className='quick-search-items'>
-        {this.props.worker.searchResult.beatmapset.beatmapsets.map((beatmapset, idx) => (
+        {this.props.worker.searchResult.beatmapset.items.map((beatmapset, idx) => (
           <div
             key={beatmapset.id}
             className='quick-search-items__item'
@@ -181,13 +182,18 @@ interface Props {
     return (
       <div className='quick-search-result'>
         <div className='quick-search-result__item'>
+          {this.renderTitle('beatmapset')}
+          {this.renderBeatmapsets()}
+        </div>
+
+        <div className='quick-search-result__item'>
           {this.renderTitle('user')}
           {this.renderUsers()}
         </div>
 
         <div className='quick-search-result__item'>
-          {this.renderTitle('beatmapset')}
-          {this.renderBeatmapsets()}
+          {this.renderTitle('team')}
+          {this.renderTeams()}
         </div>
 
         <div className='quick-search-result__item'>
@@ -226,6 +232,41 @@ interface Props {
     );
   }
 
+  private renderTeams() {
+    if (this.props.worker.searchResult === null) {
+      return null;
+    }
+
+    return (
+      <div className='quick-search-items'>
+        {this.props.worker.searchResult.team.items.map((team, idx) => (
+          <div
+            key={team.id}
+            className='quick-search-items__item'
+            data-index={idx}
+            data-section='team'
+            onMouseEnter={this.onMouseEnter}
+            onMouseLeave={this.onMouseLeave}
+          >
+            <Team
+              modifiers={{ active: this.boxIsActive('team', idx) }}
+              team={team}
+            />
+          </div>
+        ))}
+
+        <div
+          className='quick-search-items__item'
+          data-section='team_others'
+          onMouseEnter={this.onMouseEnter}
+          onMouseLeave={this.onMouseLeave}
+        >
+          {this.renderResultLink('team', this.boxIsActive('team_others', 0))}
+        </div>
+      </div>
+    );
+  }
+
   private renderTitle(mode: string) {
     return (
       <h2 className='title'>
@@ -244,7 +285,7 @@ interface Props {
 
     return (
       <div className='quick-search-items'>
-        {this.props.worker.searchResult.user.users.map((user, idx) => (
+        {this.props.worker.searchResult.user.items.map((user, idx) => (
           <div
             key={user.id}
             className='quick-search-items__item'

@@ -245,15 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'There is a new announcement in ":name"',
+                'channel_announcement' => 'There is a new announcement in ":name"',
             ],
-
             'channel' => [
-                'pm' => 'You\'ve received a new message from :username',
+                'channel_message' => 'You\'ve received a new message from :username',
             ],
-
-            'channel' => [
-                'team' => 'There is a new message in team ":name"',
+            'channel_team' => [
+                'channel_team' => 'There is a new message in team ":name"',
             ],
         ],
 
