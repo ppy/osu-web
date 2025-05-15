@@ -12,7 +12,7 @@ import TimeWithTooltip from 'components/time-with-tooltip';
 import UserAvatar from 'components/user-avatar';
 import UserLink from 'components/user-link';
 import BeatmapJson from 'interfaces/beatmap-json';
-import { SoloScoreJsonForBeatmap } from 'interfaces/solo-score-json';
+import { ScoreJsonForBeatmap } from 'interfaces/score-json';
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -27,7 +27,7 @@ interface Props {
   beatmap: BeatmapJson;
   modifiers?: Modifiers;
   position?: number;
-  score: SoloScoreJsonForBeatmap;
+  score: ScoreJsonForBeatmap;
 }
 
 export default class TopCard extends React.PureComponent<Props> {
