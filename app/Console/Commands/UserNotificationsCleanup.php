@@ -48,6 +48,10 @@ class UserNotificationsCleanup extends Command
                     break;
                 }
 
+                if ($n->notification === null) {
+                    $n->delete();
+                    continue;
+                }
                 $notificationIdByUserIds[$n->user_id][] = $n->notification->toIdentityJson();
             }
 
