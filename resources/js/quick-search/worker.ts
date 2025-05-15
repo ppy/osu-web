@@ -42,7 +42,7 @@ interface SearchResultItems<T> extends SearchResultSummary {
   items: T[];
 }
 
-const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
+export const otherModes: ResultMode[] = ['artist_track', 'forum_post', 'wiki_page'];
 
 export default class Worker {
   debouncedSearch = debounce(() => this.search(), 500);
