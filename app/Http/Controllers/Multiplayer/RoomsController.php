@@ -22,7 +22,7 @@ class RoomsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['events', 'index', 'show']]);
+        $this->middleware('auth', ['except' => ['events', 'index', 'leaderboard', 'show']]);
         $this->middleware('require-scopes:public', ['only' => ['events', 'index', 'leaderboard', 'show']]);
     }
 
@@ -196,8 +196,10 @@ class RoomsController extends Controller
         $limit = \Number::clamp(get_int(request('limit')) ?? Model::PER_PAGE, 1, 50);
         $room = Room::findOrFail($roomId);
 
-        // leaderboard currently requires auth so auth()->check() is not required.
-        $userScore = $room->topScores()->where('user_id', auth()->id())->first();
+        $currentUser = \Auth::user();
+        $userScore = $currentUser === null
+            ? null
+            : $room->topScores()->where('user_id', $currentUser->getKey())->first();
 
         return [
             'leaderboard' => json_collection(

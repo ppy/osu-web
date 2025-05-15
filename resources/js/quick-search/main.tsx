@@ -13,7 +13,7 @@ import { navigate } from 'utils/turbolinks';
 import Beatmapset from './beatmapset';
 import Team from './team';
 import User from './user';
-import { ResultMode, Section } from './worker';
+import { otherModes, ResultMode, Section } from './worker';
 import Worker from './worker';
 
 
@@ -22,8 +22,6 @@ interface Props {
   onClose?: () => void;
   worker: Worker;
 }
-
-const otherModes: ResultMode[] = ['artist_track', 'forum_post', 'wiki_page'];
 
 @observer export default class QuickSearch extends React.Component<Props> {
   private readonly inputRef = React.createRef<HTMLInputElement>();
