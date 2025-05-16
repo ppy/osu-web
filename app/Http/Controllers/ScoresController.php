@@ -197,7 +197,7 @@ class ScoresController extends Controller
                 }
 
                 return [
-                    'scores' => json_collection($filteredScores, new ScoreTransformer(ScoreTransformer::TYPE_SOLO)),
+                    'scores' => json_collection($filteredScores, new ScoreTransformer(false)),
                     // return previous cursor if no result, assuming there's no new scores yet
                     ...cursor_for_response($cursorHelper->next($filteredScores) ?? $cursor),
                 ];
