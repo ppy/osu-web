@@ -8,6 +8,7 @@ import { deletedBeatmap } from 'interfaces/beatmap-json';
 import { deletedBeatmapset } from 'interfaces/beatmapset-json';
 import LegacyMatchGameJson from 'interfaces/legacy-match-game-json';
 import { route } from 'laroute';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
@@ -19,7 +20,7 @@ interface Props {
 
 const timeFormat = 'LTS';
 
-export default function GameHeader(props: Props) {
+export default observer(function GameHeader(props: Props) {
   const beatmap = props.game.beatmap ?? deletedBeatmap(props.game.mode);
   const beatmapset = props.game.beatmap?.beatmapset ?? deletedBeatmapset();
 
@@ -65,4 +66,4 @@ export default function GameHeader(props: Props) {
         title={trans(`matches.match.team-types.${props.game.team_type}`)} />
     </a>
   );
-}
+});

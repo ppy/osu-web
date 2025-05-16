@@ -7,6 +7,7 @@ import Ruleset from 'interfaces/ruleset';
 import { LegacyMatchScoreJson } from 'interfaces/score-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
@@ -21,7 +22,7 @@ interface Props {
 
 const firstRow = ['combo', 'accuracy', 'score'];
 
-export default function Score(props: Props) {
+export default observer(function Score(props: Props) {
   const user = props.users[props.score.user_id];
 
   if (user == null) {
@@ -91,4 +92,4 @@ export default function Score(props: Props) {
       </div>
     </div>
   );
-}
+});
