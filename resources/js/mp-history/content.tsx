@@ -179,7 +179,7 @@ export default class Content extends React.PureComponent<Props> {
       if (!score.match.pass || score.match.team === 'none') {
         continue;
       }
-      scores[score.match.team] += score.score;
+      scores[score.match.team] += score.total_score;
     }
 
     return this.scoresCache[game.id] = scores;

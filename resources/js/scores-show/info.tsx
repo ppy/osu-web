@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetCover from 'components/beatmapset-cover';
-import { SoloScoreJsonForShow } from 'interfaces/solo-score-json';
+import { ScoreJsonForShow } from 'interfaces/score-json';
 import * as React from 'react';
 import { accuracy, rank, rankCutoffs } from 'utils/score-helper';
 import Buttons from './buttons';
@@ -11,7 +11,7 @@ import Player from './player';
 import Tower from './tower';
 
 interface Props {
-  score: SoloScoreJsonForShow;
+  score: ScoreJsonForShow;
 }
 
 export default function Info({ score }: Props) {

@@ -87,14 +87,11 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
             'pass' => true,
 
             'best_id' => $this->getKey(),
-            'has_replay' => $this->replay,
 
             'beatmap',
             'replayViewCount',
             'reportedIn',
             'user' => $this->getRelationValue($key),
-
-            default => $this->getNewScoreAttribute($key),
         };
     }
 

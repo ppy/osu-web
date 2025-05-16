@@ -9,7 +9,7 @@ import EventJson from 'interfaces/event-json';
 import KudosuHistoryJson from 'interfaces/kudosu-history-json';
 import Ruleset from 'interfaces/ruleset';
 import { ScoreCurrentUserPinJson } from 'interfaces/score-json';
-import SoloScoreJson, { isSoloScoreJsonForUser, SoloScoreJsonForUser } from 'interfaces/solo-score-json';
+import ScoreJson, { isScoreJsonForUser, ScoreJsonForUser } from 'interfaces/score-json';
 import UserCoverJson from 'interfaces/user-cover-json';
 import UserCoverPresetJson from 'interfaces/user-cover-preset-json';
 import { ProfileExtraPage, profileExtraPages } from 'interfaces/user-extended-json';
@@ -49,12 +49,12 @@ type BeatmapsetsJson = Record<BeatmapsetsExtraPageKeys, PageSectionJson<Beatmaps
 interface HistoricalJson {
   beatmap_playcounts: PageSectionJson<BeatmapPlaycountJson>;
   monthly_playcounts: UserMonthlyPlaycountJson[];
-  recent: PageSectionJson<SoloScoreJsonForUser>;
+  recent: PageSectionJson<ScoreJsonForUser>;
   replays_watched_counts: UserReplaysWatchedCountJson[];
 }
 
 type TopScoresKeys = 'best' | 'firsts' | 'pinned';
-type TopScoresJson = Record<TopScoresKeys, PageSectionJson<SoloScoreJsonForUser>>;
+type TopScoresJson = Record<TopScoresKeys, PageSectionJson<ScoreJsonForUser>>;
 // #endregion
 
 export function validPage(page: unknown) {
@@ -454,10 +454,10 @@ export default class Controller {
   }
 
   @action
-  private readonly onScorePinUpdate = (event: unknown, isPinned: boolean, score: SoloScoreJson) => {
+  private readonly onScorePinUpdate = (event: unknown, isPinned: boolean, score: ScoreJson) => {
     if (this.state.lazy.top_ranks == null) return;
     // make sure the typing is correct
-    if (!isSoloScoreJsonForUser(score)) {
+    if (!isScoreJsonForUser(score)) {
       return;
     }
 

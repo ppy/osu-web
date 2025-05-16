@@ -45,7 +45,7 @@ class GameTransformer extends TransformerAbstract
     {
         return $this->collection(
             $game->scores,
-            new ScoreTransformer(ScoreTransformer::TYPE_LEGACY)
+            new ScoreTransformer()
         );
     }
 }

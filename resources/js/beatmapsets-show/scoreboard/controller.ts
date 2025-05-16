@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import { SoloScoreJsonForBeatmap } from 'interfaces/solo-score-json';
+import { ScoreJsonForBeatmap } from 'interfaces/score-json';
 import { route } from 'laroute';
 import { action, computed, makeObservable, observable, reaction, runInAction } from 'mobx';
 import core from 'osu-core-singleton';
@@ -19,12 +19,12 @@ export type ScoreLoadingState = null | 'error' | 'loading' | 'supporter_only' | 
 
 interface UserScore {
   position: number;
-  score: SoloScoreJsonForBeatmap;
+  score: ScoreJsonForBeatmap;
 }
 
 interface BeatmapScoresJson {
   blank?: true;
-  scores: SoloScoreJsonForBeatmap[];
+  scores: ScoreJsonForBeatmap[];
   user_score?: UserScore;
 }
 
