@@ -16,16 +16,6 @@ class BeatmapsetQueryParser
     public array $excludes = [];
     public ?string $keywords;
 
-    public static function parse(?string $query): array
-    {
-        $parser = new static($query);
-
-        return [
-            'keywords' => $parser->keywords,
-            'options' => $parser->includes,
-        ];
-    }
-
     private static function makeDateRangeOption(string $operator, string $value): ?array
     {
         $value = presence(trim($value, '"'));
