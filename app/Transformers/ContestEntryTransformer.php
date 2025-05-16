@@ -60,13 +60,15 @@ class ContestEntryTransformer extends TransformerAbstract
 
     public function includeResults(ContestEntry $entry)
     {
-        $votes = $entry->contest->isJudged()
+        $judged = $entry->contest->isJudged();
+        $votes = $judged
             ? $entry->scores_sum_value
             : $entry->votes_count;
 
         return $this->primitive([
             'actual_name' => $entry->name,
-            'votes' => (int) $votes,
+            'score_std' => $judged ? $entry->total_score_std : null,
+            'votes' => (int) $votes, // TODO: change to score or something else, or even better stop overloading the results value.
         ]);
     }
 
