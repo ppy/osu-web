@@ -6,6 +6,7 @@ import TimeWithTooltip from 'components/time-with-tooltip';
 import UserLink from 'components/user-link';
 import LegacyMatchEventJson from 'interfaces/legacy-match-event-json';
 import UserJson from 'interfaces/user-json';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
@@ -24,7 +25,7 @@ const icons = {
   'player-left': ['fas fa-arrow-left', 'far fa-circle'],
 };
 
-export default function Event(props: Props) {
+export default observer(function Event(props: Props) {
   const user = props.event.user_id != null ? props.users[props.event.user_id] : undefined;
 
   const eventType = props.event.detail.type;
@@ -56,4 +57,4 @@ export default function Event(props: Props) {
       </div>
     </div>
   );
-}
+});

@@ -4,6 +4,7 @@
 import StringWithComponent from 'components/string-with-component';
 import LegacyMatchGameJson from 'interfaces/legacy-match-game-json';
 import UserJson from 'interfaces/user-json';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
@@ -18,13 +19,13 @@ interface Props {
   users: Partial<Record<number, UserJson>>;
 }
 
-export default function Game(props: Props) {
+export default observer(function Game(props: Props) {
   const showTeams = props.game.team_type === 'team-vs' || props.game.team_type === 'tag-team-vs';
 
   const winningTeam = props.teamScores.blue > props.teamScores.red ? 'blue' : 'red';
   const difference = Math.abs(props.teamScores.blue - props.teamScores.red);
 
-  const sortedScores = props.game.scores.sort((first, second) => {
+  const sortedScores = props.game.scores.slice().sort((first, second) => {
     if (first.match.team !== second.match.team) {
       return first.match.team === winningTeam ? -1 : 1;
     } else {
@@ -74,7 +75,7 @@ export default function Game(props: Props) {
       }
     </div>
   );
-}
+});
 
 // Prevent partial translation for winner_by's :winner pattern.
 function winnerTrans(): string {
