@@ -14,7 +14,6 @@ use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Follow;
 use App\Models\Solo;
-use App\Models\Tag;
 use App\Models\User;
 use Ds\Set;
 
@@ -49,25 +48,37 @@ class BeatmapsetSearch extends RecordSearch
 
         $query = new BoolQuery();
 
-        if (present($this->params->queryString)) {
-            $terms = explode(' ', $this->params->queryString);
+        $parsed = new QueryStringParser($this->params->queryString ?? '');
+        $includes = $parsed->includesForQueryString();
+        $excludes = $parsed->excludesForQueryString();
 
-            // the subscoping is not necessary but prevents unintentional accidents when combining other matchers
-            $query->must(
-                (new BoolQuery())
-                    // results must contain at least one of the terms and boosted by containing all of them,
-                    // or match the id of the beatmapset.
-                    ->shouldMatch(1)
-                    ->should(['term' => ['_id' => ['value' => $this->params->queryString, 'boost' => 100]]])
-                    ->should(QueryHelper::queryString($this->params->queryString, $partialMatchFields, 'or', 1 / count($terms)))
-                    ->should(QueryHelper::queryString($this->params->queryString, [], 'and'))
-                    ->should([
-                        'nested' => [
-                            'path' => 'beatmaps',
-                            'query' => QueryHelper::queryString($this->params->queryString, ['beatmaps.top_tags'], 'or', 0.5 / count($terms)),
-                        ],
-                    ])
-            );
+        if (present($includes)) {
+            $base = max(1, count($parsed->includes));
+
+            $query->must(new BoolQuery())
+                // results must contain at least one of the terms and boosted by containing all of them,
+                // or match the id of the beatmapset.
+                ->shouldMatch(1)
+                ->should(['term' => ['_id' => ['value' => $includes, 'boost' => 100]]])
+                ->should(QueryHelper::queryString($includes, $partialMatchFields, 'or', 1 / $base))
+                ->should(QueryHelper::queryString($includes, [], 'and'))
+                ->should([
+                    'nested' => [
+                        'path' => 'beatmaps',
+                        'query' => QueryHelper::queryString($includes, ['beatmaps.top_tags'], 'or', 0.5 / $base),
+                    ],
+                ]);
+        }
+
+        if (present($excludes)) {
+            $query
+                ->mustNot(QueryHelper::queryString($excludes, [], 'or'))
+                ->mustNot([
+                    'nested' => [
+                        'path' => 'beatmaps',
+                        'query' => QueryHelper::queryString($excludes, ['beatmaps.top_tags'], 'or'),
+                    ],
+                ]);
         }
 
         $this->addBlockedUsersFilter($query);
@@ -416,21 +427,20 @@ class BeatmapsetSearch extends RecordSearch
         // workaround multi tag parsing when there's an empty tag.
         $tags = array_reject_null($tags);
 
-        $tagMap = [];
+        // require exact match for full tags, partial otherwise.
         foreach ($tags as $tag) {
-            $key = mb_strtolower(mb_trim($tag, '"'));
-            $tagMap[$key] = $tag;
-        }
-
-        $exactTags = Tag::whereIn('name', array_keys($tagMap))->limit(10)->pluck('name');
-
-        foreach ($exactTags as $tag) {
-            $query->filter(['term' => ['beatmaps.top_tags.raw' => $tag]]);
-            unset($tagMap[mb_strtolower($tag)]);
-        }
-
-        foreach (array_values($tagMap) as $tag) {
-            $query->filter(QueryHelper::queryString($tag, ['beatmaps.top_tags'], 'and'));
+            if (mb_strpos($tag, '/') !== false) {
+                $query->filter([
+                    'term' => [
+                        'beatmaps.top_tags.raw' => [
+                            'case_insensitive' => true,
+                            'value' => mb_trim($tag, '"'),
+                        ],
+                    ],
+                ]);
+            } else {
+                $query->filter(QueryHelper::queryString($tag, ['beatmaps.top_tags'], 'and'));
+            }
         }
     }
 
