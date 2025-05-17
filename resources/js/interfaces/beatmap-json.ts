@@ -14,6 +14,7 @@ interface BeatmapFailTimesArray {
 interface BeatmapJsonAvailableIncludes {
   beatmapset: BeatmapsetJson | null;
   checksum: string | null;
+  current_user_tag_ids: number[];
   failtimes: BeatmapFailTimesArray;
   max_combo: number;
   owners: BeatmapOwnerJson[];
