@@ -7,7 +7,10 @@ import LegacyMatchJson from 'interfaces/legacy-match-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { keyBy, dropRightWhile } from 'lodash';
+import { action, makeObservable, observable, runInAction } from 'mobx';
+import { observer } from 'mobx-react';
 import * as React from 'react';
+import { mobxArrayGet } from 'utils/array';
 import { classWithModifiers } from 'utils/css';
 import Content from './content';
 
@@ -28,8 +31,6 @@ interface State {
   currentGameId?: number;
   events: LegacyMatchEventJson[];
   latestEventId: number;
-  loadingNext: boolean;
-  loadingPrevious: boolean;
   match: LegacyMatchJson;
   users: Partial<Record<number, UserJson>>;
 }
@@ -38,13 +39,17 @@ const fetchLimit = 100;
 const maximumEvents = 500;
 const refreshTimeout = 10000;
 
+@observer
 export default class Main extends React.Component<Props, State> {
-  private readonly timeouts: Partial<Record<string, number>> = {};
+  private autoloadTimeout: undefined | number;
+  @observable private readonly data: State;
+  @observable private loadingNext = false;
+  @observable private loadingPrevious = false;
 
   private get hasLatest(): boolean {
-    const lastEvent = this.state.events[this.state.events.length - 1];
+    const lastEvent = mobxArrayGet(this.data.events, this.data.events.length - 1);
 
-    return lastEvent != null && lastEvent.id === this.state.latestEventId;
+    return lastEvent != null && lastEvent.id === this.data.latestEventId;
   }
 
   private get hasNext(): boolean {
@@ -52,7 +57,7 @@ export default class Main extends React.Component<Props, State> {
   }
 
   private get hasPrevious(): boolean {
-    const firstEvent = this.state.events[0];
+    const firstEvent = mobxArrayGet(this.data.events, 0);
 
     return firstEvent != null && firstEvent.id !== this.props.events.first_event_id;
   }
@@ -62,32 +67,33 @@ export default class Main extends React.Component<Props, State> {
   }
 
   private get isOngoing(): boolean {
-    return this.state.match.end_time == null;
+    return this.data.match.end_time == null;
   }
 
   private get minNextEventId(): number | undefined {
-    if (this.state.currentGameId != null) {
-      const currentGame = this.state.events.find((e) => e.game?.id === this.state.currentGameId);
+    if (this.data.currentGameId != null) {
+      const currentGame = this.data.events.find((e) => e.game?.id === this.data.currentGameId);
       if (currentGame != null) {
         return currentGame.id - 1;
       }
     }
 
-    return this.state.events[this.state.events.length - 1]?.id;
+    return this.data.events.length === 0
+      ? undefined
+      : this.data.events[this.data.events.length - 1].id;
   }
 
   constructor(props: Props) {
     super(props);
 
-    this.state = {
+    this.data = {
       currentGameId: props.events.current_game_id,
       events: props.events.events,
       latestEventId: props.events.latest_event_id,
-      loadingNext: false,
-      loadingPrevious: false,
       match: props.events.match,
       users: keyBy(props.events.users, 'id'),
     };
+    makeObservable(this);
   }
 
   componentDidMount() {
@@ -95,9 +101,7 @@ export default class Main extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    for (const timeout of Object.values(this.timeouts)) {
-      clearTimeout(timeout);
-    }
+    clearTimeout(this.autoloadTimeout);
   }
 
   render() {
@@ -106,44 +110,52 @@ export default class Main extends React.Component<Props, State> {
         <HeaderV4 theme='mp-history' />
         <div className={classWithModifiers('osu-page', ['generic'])}>
           <Content
-            currentGameId={this.state.currentGameId}
-            events={this.state.events}
+            currentGameId={this.data.currentGameId}
+            events={this.data.events}
             hasNext={this.hasNext}
             hasPrevious={this.hasPrevious}
             isAutoloading={this.isAutoloading}
             loadNext={this.loadNext}
             loadPrevious={this.loadPrevious}
-            loadingNext={this.state.loadingNext}
-            loadingPrevious={this.state.loadingPrevious}
-            match={this.state.match}
-            users={this.state.users} />
+            loadingNext={this.loadingNext}
+            loadingPrevious={this.loadingPrevious}
+            match={this.data.match}
+            users={this.data.users} />
         </div>
       </>
     );
   }
 
-  private autoload() {
+  @action
+  private readonly addUsers = (users: UserJson[]) => {
+    for (const user of users) {
+      this.data.users[user.id] = user;
+    }
+  };
+
+  private readonly autoload = () => {
     if (!this.isAutoloading) {
       return;
     }
 
     this.loadNext();
-  }
+  };
 
   private delayedAutoload() {
-    this.timeouts.autoload = setTimeout(() => this.autoload(), refreshTimeout);
+    this.autoloadTimeout = setTimeout(this.autoload, refreshTimeout);
   }
 
+  @action
   private readonly loadNext = () => {
-    if (!this.hasNext) {
+    if (!this.hasNext || this.loadingNext) {
       return;
     }
 
-    clearTimeout(this.timeouts.autoload);
-    this.setState({ loadingNext: true });
+    clearTimeout(this.autoloadTimeout);
+    this.loadingNext = true;
 
     $.ajax(
-      route('matches.show', { match: this.state.match.id }),
+      route('matches.show', { match: this.data.match.id }),
       {
         data: {
           after: this.minNextEventId,
@@ -152,71 +164,58 @@ export default class Main extends React.Component<Props, State> {
         dataType: 'JSON',
         method: 'GET',
       })
-      .done((data: LegacyMultiplayerHistoryJson) => {
+      .done((data: LegacyMultiplayerHistoryJson) => runInAction(() => {
         if (data.events.length === 0) {
           return;
         }
 
         const startEventId = data.events[0]?.id ?? 0;
 
-        const newEvents = dropRightWhile(this.state.events, (e) => e.id >= startEventId)
+        this.data.events = dropRightWhile(this.data.events, (e) => e.id >= startEventId)
           .concat(data.events)
           .slice(-maximumEvents);
-        const newUsers = this.newUsersHash(data.users);
-
-        this.setState({
-          currentGameId: data.current_game_id,
-          events: newEvents,
-          latestEventId: data.latest_event_id,
-          match: data.match,
-          users: newUsers,
-        });
-      })
-      .always(() => {
-        this.setState({ loadingNext: false });
+        this.addUsers(data.users);
+        this.data.currentGameId = data.current_game_id;
+        this.data.latestEventId = data.latest_event_id;
+        this.data.match = data.match;
+      }))
+      .always(action(() => {
+        this.loadingNext = false;
         this.delayedAutoload();
-      });
+      }));
   };
 
+  @action
   private readonly loadPrevious = () => {
     if (!this.hasPrevious) {
       return;
     }
 
-    this.setState({ loadingPrevious: true });
+    this.loadingPrevious = true;
 
     $.ajax(
-      route('matches.show', { match: this.state.match.id }),
+      route('matches.show', { match: this.data.match.id }),
       {
         data: {
-          before: this.state.events[0]?.id,
+          before: this.data.events[0]?.id,
           limit: fetchLimit,
         },
         dataType: 'JSON',
         method: 'GET',
       })
-      .done((data: LegacyMultiplayerHistoryJson) => {
+      .done((data: LegacyMultiplayerHistoryJson) => runInAction(() => {
         if (data.events.length === 0) {
           return;
         }
 
-        const newEvents = data.events.concat(this.state.events)
-          .slice(0, maximumEvents);
-        const newUsers = this.newUsersHash(data.users);
-
-        this.setState({
-          currentGameId: data.current_game_id,
-          events: newEvents,
-          latestEventId: data.latest_event_id,
-          users: newUsers,
-        });
-      })
-      .always(() => {
-        this.setState({ loadingPrevious: false });
-      });
+        this.data.events = data.events.concat(this.data.events).slice(0, maximumEvents);
+        this.addUsers(data.users);
+        this.data.currentGameId = data.current_game_id;
+        this.data.latestEventId = data.latest_event_id;
+        this.data.match = data.match;
+      }))
+      .always(action(() => {
+        this.loadingPrevious = false;
+      }));
   };
-
-  private newUsersHash(users: UserJson[]): Partial<Record<number, UserJson>> {
-    return { ...this.state.users, ...keyBy(users, 'id') };
-  }
 }

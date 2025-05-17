@@ -9,7 +9,7 @@ import ScoreValue from 'components/score-value';
 import ScoreboardTime from 'components/scoreboard-time';
 import UserLink from 'components/user-link';
 import BeatmapJson from 'interfaces/beatmap-json';
-import { SoloScoreJsonForBeatmap } from 'interfaces/solo-score-json';
+import { ScoreJsonForBeatmap } from 'interfaces/score-json';
 import { route } from 'laroute';
 import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -47,7 +47,7 @@ interface Props {
   beatmap: BeatmapJson;
   highlightFriends: boolean;
   index: number;
-  score: SoloScoreJsonForBeatmap;
+  score: ScoreJsonForBeatmap;
   showPp: boolean;
 }
 

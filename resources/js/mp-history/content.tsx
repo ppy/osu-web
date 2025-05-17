@@ -6,6 +6,7 @@ import LegacyMatchEvent from 'interfaces/legacy-match-event-json';
 import LegacyMatchEventJson from 'interfaces/legacy-match-event-json';
 import LegacyMatchGame from 'interfaces/legacy-match-game-json';
 import LegacyMatch from 'interfaces/legacy-match-json';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { bottomPageDistance } from 'utils/html';
@@ -41,6 +42,7 @@ export interface TeamScores {
   red: number;
 }
 
+@observer
 export default class Content extends React.PureComponent<Props> {
   private inEvent = false;
   private scoresCache: Partial<Record<number, TeamScores>> = {};
@@ -179,7 +181,7 @@ export default class Content extends React.PureComponent<Props> {
       if (!score.match.pass || score.match.team === 'none') {
         continue;
       }
-      scores[score.match.team] += score.score;
+      scores[score.match.team] += score.total_score;
     }
 
     return this.scoresCache[game.id] = scores;

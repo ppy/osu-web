@@ -4,13 +4,15 @@
 import FlagCountry from 'components/flag-country';
 import Mod from 'components/mod';
 import Ruleset from 'interfaces/ruleset';
-import { LegacyMatchScoreJson, ScoreStatisticsAttribute } from 'interfaces/score-json';
+import { LegacyMatchScoreJson } from 'interfaces/score-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
+import { calculateStatisticsFor } from 'utils/score-helper';
 
 interface Props {
   mode: Ruleset;
@@ -19,9 +21,8 @@ interface Props {
 }
 
 const firstRow = ['combo', 'accuracy', 'score'];
-const secondRow: ScoreStatisticsAttribute[] = ['count_geki', 'count_300', 'count_katu', 'count_100', 'count_50', 'count_miss'];
 
-export default function Score(props: Props) {
+export default observer(function Score(props: Props) {
   const user = props.users[props.score.user_id];
 
   if (user == null) {
@@ -46,7 +47,7 @@ export default function Score(props: Props) {
         <div className={classWithModifiers('mp-history-player-score__info-box', ['stats'])}>
           <div className={classWithModifiers('mp-history-player-score__stat-row', ['first'])}>
             <div className='mp-history-player-score__mods'>
-              {props.score.mods.map((mod) => <Mod key={mod} mod={{ acronym: mod }} />)}
+              {props.score.mods.map((mod) => <Mod key={mod.acronym} mod={mod} />)}
             </div>
             {firstRow.map((m) => {
               let modifier = 'medium';
@@ -63,7 +64,7 @@ export default function Score(props: Props) {
 
                 case 'score':
                   modifier = 'large';
-                  value = formatNumber(props.score.score);
+                  value = formatNumber(props.score.total_score);
                   break;
               }
 
@@ -77,21 +78,18 @@ export default function Score(props: Props) {
           </div>
 
           <div className='mp-history-player-score__stat-row'>
-            {secondRow.map((m) => {
-              if (props.mode !== 'mania' && (m === 'count_geki' || m === 'count_katu')) {
-                return null;
-              }
-
-              return (
-                <div key={m} className={classWithModifiers('mp-history-player-score__stat', ['small'])}>
-                  <span className={classWithModifiers('mp-history-player-score__stat-label', ['large'])}>{trans(`common.score_count.${m}`)}</span>
-                  <span className={classWithModifiers('mp-history-player-score__stat-number', ['small'])}>{formatNumber(props.score.statistics[m])}</span>
-                </div>
-              );
-            })}
+            {calculateStatisticsFor(props.score, 'leaderboard').map((stat) => (
+              <div
+                key={stat.label.short}
+                className={classWithModifiers('mp-history-player-score__stat', 'small')}
+              >
+                <span className={classWithModifiers('mp-history-player-score__stat-label', ['large'])}>{stat.label.short}</span>
+                <span className={classWithModifiers('mp-history-player-score__stat-number', ['small'])}>{formatNumber(stat.value)}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
     </div>
   );
-}
+});

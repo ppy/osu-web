@@ -4,7 +4,7 @@
 import Mod from 'components/mod';
 import { PlayDetailMenu } from 'components/play-detail-menu';
 import TimeWithTooltip from 'components/time-with-tooltip';
-import { SoloScoreJsonForUser } from 'interfaces/solo-score-json';
+import { ScoreJsonForUser } from 'interfaces/score-json';
 import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
@@ -20,7 +20,7 @@ const bn = 'play-detail';
 
 interface Props {
   activated: boolean;
-  score: SoloScoreJsonForUser;
+  score: ScoreJsonForUser;
   showPinSortableHandle?: boolean;
   showPpWeight?: boolean;
   user: UserJson;

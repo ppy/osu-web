@@ -2,8 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Ruleset from 'interfaces/ruleset';
+import ScoreJson, { ScoreStatisticsAttribute } from 'interfaces/score-json';
 import ScoreModJson from 'interfaces/score-mod-json';
-import SoloScoreJson, { SoloScoreStatisticsAttribute } from 'interfaces/solo-score-json';
 import { route } from 'laroute';
 import modNames from 'mod-names.json';
 import core from 'osu-core-singleton';
@@ -11,7 +11,7 @@ import { rulesetName } from './beatmap-helper';
 import { trans } from './lang';
 import { legacyAccuracyAndRank } from './legacy-score-helper';
 
-export function accuracy(score: SoloScoreJson) {
+export function accuracy(score: ScoreJson) {
   const acc = shouldReturnLegacyValue(score)
     ? legacyAccuracyAndRank(score).accuracy
     : score.accuracy;
@@ -21,7 +21,7 @@ export function accuracy(score: SoloScoreJson) {
   return Math.floor(acc * 10000) / 10000;
 }
 
-export function canBeReported(score: SoloScoreJson) {
+export function canBeReported(score: ScoreJson) {
   return (score.best_id != null || score.type === 'solo_score')
     && core.currentUser != null
     && score.user_id !== core.currentUser.id;
@@ -33,7 +33,7 @@ export function canBeReported(score: SoloScoreJson) {
  * Removes CL mod on legacy score if user has lazer mode disabled
  * and sort the mods.
  */
-export function filterMods(score: SoloScoreJson) {
+export function filterMods(score: ScoreJson) {
   const shownMods = shouldReturnLegacyValue(score)
     ? score.mods.filter((mod) => mod.acronym !== 'CL')
     : score.mods;
@@ -44,19 +44,19 @@ export function filterMods(score: SoloScoreJson) {
 }
 
 // TODO: move to application state repository thingy later
-export function hasMenu(score: SoloScoreJson) {
+export function hasMenu(score: ScoreJson) {
   return canBeReported(score) || hasReplay(score) || hasShow(score) || core.scorePins.canBePinned(score);
 }
 
-export function hasReplay(score: SoloScoreJson) {
+export function hasReplay(score: ScoreJson) {
   return score.has_replay;
 }
 
-export function hasShow(score: SoloScoreJson) {
+export function hasShow(score: ScoreJson) {
   return score.best_id != null || score.type === 'solo_score';
 }
 
-export function isPerfectCombo(score: SoloScoreJson) {
+export function isPerfectCombo(score: ScoreJson) {
   return shouldReturnLegacyValue(score)
     ? score.legacy_perfect
     : score.is_perfect_combo;
@@ -75,7 +75,7 @@ export function modDetails(mod: ScoreModJson) {
 type ScoreDisplayType = 'leaderboard' | 'single';
 
 interface ScoreStatisticMapping {
-  attributes: SoloScoreStatisticsAttribute[];
+  attributes: ScoreStatisticsAttribute[];
   basic: boolean;
   label: {
     long: string;
@@ -135,7 +135,7 @@ export const scoreStatisticsMapping: Record<Ruleset, ScoreStatisticMapping[]> = 
   ],
 };
 
-export function calculateStatisticsFor(score: SoloScoreJson, type: ScoreDisplayType): ScoreStatistic[] {
+export function calculateStatisticsFor(score: ScoreJson, type: ScoreDisplayType): ScoreStatistic[] {
   return scoreStatisticsMapping[rulesetName(score.ruleset_id)]
     .filter((mapping) => mapping.relevantTypes.includes(type))
     .map((mapping) => ({
@@ -146,13 +146,13 @@ export function calculateStatisticsFor(score: SoloScoreJson, type: ScoreDisplayT
     }));
 }
 
-export function rank(score: SoloScoreJson) {
+export function rank(score: ScoreJson) {
   return shouldReturnLegacyValue(score)
     ? legacyAccuracyAndRank(score).rank
     : score.rank;
 }
 
-export function rankCutoffs(score: SoloScoreJson): number[] {
+export function rankCutoffs(score: ScoreJson): number[] {
   // for SS, use minimum accuracy of 0.99 (any less and it's too small)
   // actual array is reversed as it's rendered from D to SS clockwise
 
@@ -212,7 +212,7 @@ function differenceBetweenConsecutiveElements(arr: number[]): number[] {
   return result;
 }
 
-export function scoreDownloadUrl(score: SoloScoreJson) {
+export function scoreDownloadUrl(score: ScoreJson) {
   if (score.type === 'solo_score') {
     return route('scores.download', { score: score.id });
   }
@@ -227,7 +227,7 @@ export function scoreDownloadUrl(score: SoloScoreJson) {
   throw new Error('score json doesn\'t have download url');
 }
 
-export function scoreUrl(score: SoloScoreJson) {
+export function scoreUrl(score: ScoreJson) {
   if (score.type === 'solo_score') {
     return route('scores.show', { rulesetOrScore: score.id });
   }
@@ -242,11 +242,11 @@ export function scoreUrl(score: SoloScoreJson) {
   throw new Error('score json doesn\'t have url');
 }
 
-function shouldReturnLegacyValue(score: SoloScoreJson) {
+function shouldReturnLegacyValue(score: ScoreJson) {
   return score.legacy_score_id !== null && core.userPreferences.get('legacy_score_only');
 }
 
-export function totalScore(score: SoloScoreJson) {
+export function totalScore(score: ScoreJson) {
   if (shouldReturnLegacyValue(score)) {
     return score.legacy_total_score;
   }

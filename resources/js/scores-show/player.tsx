@@ -3,7 +3,7 @@
 
 import Mod from 'components/mod';
 import ScoreValue from 'components/score-value';
-import { SoloScoreJsonForShow } from 'interfaces/solo-score-json';
+import { ScoreJsonForShow } from 'interfaces/score-json';
 import * as moment from 'moment';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
@@ -11,7 +11,7 @@ import { trans } from 'utils/lang';
 import { filterMods } from 'utils/score-helper';
 
 interface Props {
-  score: SoloScoreJsonForShow;
+  score: ScoreJsonForShow;
 }
 
 export default function Player(props: Props) {

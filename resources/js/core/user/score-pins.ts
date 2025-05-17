@@ -1,18 +1,18 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import SoloScoreJson from 'interfaces/solo-score-json';
+import ScoreJson from 'interfaces/score-json';
 import { route } from 'laroute';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 
 export default class ScorePins {
-  @observable pins = new Map<SoloScoreJson['id'], boolean>();
+  @observable pins = new Map<ScoreJson['id'], boolean>();
 
   constructor() {
     makeObservable(this);
   }
 
-  apiPin(score: SoloScoreJson, toPin: boolean) {
+  apiPin(score: ScoreJson, toPin: boolean) {
     const pin = score.current_user_attributes.pin;
     if (pin == null) {
       throw new Error("can't pin score without current user attributes");
@@ -28,11 +28,11 @@ export default class ScorePins {
     })) as JQuery.jqXHR<void>;
   }
 
-  canBePinned(score: SoloScoreJson) {
+  canBePinned(score: ScoreJson) {
     return score.current_user_attributes.pin != null && score.passed;
   }
 
-  isPinned(score: SoloScoreJson) {
+  isPinned(score: ScoreJson) {
     const pin = score.current_user_attributes.pin;
 
     if (pin == null) {
@@ -49,7 +49,7 @@ export default class ScorePins {
   }
 
   @action
-  markPinned(score: SoloScoreJson, isPinned: boolean) {
+  markPinned(score: ScoreJson, isPinned: boolean) {
     const pin = score.current_user_attributes.pin;
     if (pin == null) return;
 
