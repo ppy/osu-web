@@ -46,7 +46,7 @@ class PlaylistItemTransformer extends TransformerAbstract
     {
         return $this->collection(
             $item->scoreLinks,
-            ScoreTransformer::newSolo()
+            new ScoreTransformer(false)
         );
     }
 }
