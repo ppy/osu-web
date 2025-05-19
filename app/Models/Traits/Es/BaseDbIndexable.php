@@ -120,5 +120,21 @@ trait BaseDbIndexable
         return $this->getKey();
     }
 
-    abstract public function toEsJson();
+    public function toEsJson(): array
+    {
+        $mappings = static::esMappings();
+
+        $document = [];
+        foreach ($mappings as $field => $mapping) {
+            $value = $this->getEsFieldValue($field);
+
+            $document[$field] = $value instanceof \DateTimeInterface
+                ? json_time($value)
+                : $value;
+        }
+
+        return $document;
+    }
+
+    abstract protected function getEsFieldValue(string $field);
 }

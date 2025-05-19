@@ -25,22 +25,28 @@ class TeamSearch extends RecordSearch
 
     public function getQuery()
     {
-        static $partialMatchFields = [
-            'description',
-            'name',
-            'name.*',
-            'short_name',
-            'short_name.*',
-        ];
+        $query = new BoolQuery();
 
-        $value = $this->params->queryString;
-        $terms = explode(' ', $value);
+        if ($this->params->queryString !== null) {
+            static $partialMatchFields = [
+                'description',
+                'name',
+                'name.*',
+                'short_name',
+                'short_name.*',
+            ];
 
-        return new BoolQuery()
-            ->shouldMatch(1)
-            ->should(['term' => ['_id' => ['value' => $value, 'boost' => 100]]])
-            ->should(QueryHelper::queryString($value, $partialMatchFields, 'or', 1 / count($terms)))
-            ->should(QueryHelper::queryString($value, [], 'and'));
+            $value = $this->params->queryString;
+            $terms = explode(' ', $value);
+
+            $query
+                ->shouldMatch(1)
+                ->should(['term' => ['_id' => ['value' => $value, 'boost' => 100]]])
+                ->should(QueryHelper::queryString($value, $partialMatchFields, 'or', 1 / count($terms)))
+                ->should(QueryHelper::queryString($value, [], 'and'));
+        }
+
+        return $query;
     }
 
     public function records()
