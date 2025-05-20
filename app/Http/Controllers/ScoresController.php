@@ -57,20 +57,19 @@ class ScoresController extends Controller
                 return ujs_redirect(route('scores.show', ['rulesetOrScore' => $rulesetOrSoloId]));
             }
             $soloScore = SoloScore::where('has_replay', true)->findOrFail($rulesetOrSoloId);
-
-            $score = $soloScore->legacyScore() ?? $soloScore;
         } else {
             if ($shouldRedirect) {
                 return ujs_redirect(route('scores.show', ['rulesetOrScore' => $rulesetOrSoloId, 'score' => $id]));
             }
             // don't limit downloading replays of restricted users for review purpose
-            $score = ScoreBest::getClass($rulesetOrSoloId)
-                ::where('score_id', $id)
-                ->where('replay', true)
-                ->firstOrFail();
-
-            $soloScore = SoloScore::firstWhere(['legacy_score_id' => $score->getKey(), 'ruleset_id' => $score->ruleset_id]);
+            $soloScore = SoloScore::where([
+                'has_replay' => true,
+                'legacy_score_id' => $id,
+                'ruleset_id' => Beatmap::MODES[$rulesetOrSoloId],
+            ])->firstOrFail();
         }
+
+        $score = $soloScore->legacyScore() ?? $soloScore;
 
         $file = $score->getReplayFile();
         if ($file === null) {
@@ -84,7 +83,7 @@ class ScoresController extends Controller
             && ($currentUser->token()?->client->password_client ?? false)
         ) {
             $countLock = \Cache::lock(
-                "view:score_replay:{$score->getKey()}:{$currentUser->getKey()}",
+                "view:score_replay:{$soloScore->getKey()}:{$currentUser->getKey()}",
                 static::REPLAY_DOWNLOAD_COUNT_INTERVAL,
             );
 

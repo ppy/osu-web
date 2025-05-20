@@ -13,8 +13,6 @@ use App\Models\DeletedUser;
 use App\Models\LegacyMatch;
 use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\ScoreLink as MultiplayerScoreLink;
-use App\Models\Score\Best\Model as ScoreBest;
-use App\Models\Score\Model as ScoreModel;
 use App\Models\Solo\Score as SoloScore;
 use League\Fractal\Resource\Item;
 
@@ -65,7 +63,7 @@ class ScoreTransformer extends TransformerAbstract
         $this->legacyFormat = $legacyFormat ?? (is_api_request() && api_version() < 20220705);
     }
 
-    public function transform(LegacyMatch\Score|MultiplayerScoreLink|ScoreModel|SoloScore $score)
+    public function transform(LegacyMatch\Score|MultiplayerScoreLink|SoloScore $score)
     {
         if ($this->legacyFormat) {
             return $this->transformLegacy($score);
@@ -120,14 +118,11 @@ class ScoreTransformer extends TransformerAbstract
         return $ret;
     }
 
-    public function transformLegacy(LegacyMatch\Score|ScoreModel|SoloScore $score)
+    public function transformLegacy(LegacyMatch\Score|SoloScore $score)
     {
         $best = null;
 
-        if ($score instanceof ScoreModel) {
-            // this `best` relation is also used by `current_user_attributes` include.
-            $best = $score->best;
-        } elseif ($score instanceof SoloScore) {
+        if ($score instanceof SoloScore) {
             $soloScore = $score;
             $score = $soloScore->makeLegacyEntry();
             $best = $score;
@@ -168,7 +163,7 @@ class ScoreTransformer extends TransformerAbstract
             'perfect' => $perfect ?? $score->perfect,
             'pp' => $best?->pp,
             'rank' => $score->rank,
-            'replay' => $best?->has_replay ?? false,
+            'replay' => $best?->replay ?? false,
             'score' => $score->score,
             'statistics' => $statistics,
             'type' => $type ?? $score->getMorphClass(),
@@ -176,7 +171,7 @@ class ScoreTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeBeatmap(LegacyMatch\Score|ScoreModel|SoloScore $score)
+    public function includeBeatmap(LegacyMatch\Score|SoloScore $score)
     {
         $beatmap = $score->beatmap;
 
@@ -188,12 +183,12 @@ class ScoreTransformer extends TransformerAbstract
         return $this->item($beatmap, new BeatmapTransformer());
     }
 
-    public function includeBeatmapset(LegacyMatch\Score|ScoreModel|SoloScore $score)
+    public function includeBeatmapset(LegacyMatch\Score|SoloScore $score)
     {
         return $this->item($score->beatmap->beatmapset, new BeatmapsetCompactTransformer());
     }
 
-    public function includeCurrentUserAttributes(LegacyMatch\Score|MultiplayerScoreLink|ScoreModel|SoloScore $score): Item
+    public function includeCurrentUserAttributes(LegacyMatch\Score|MultiplayerScoreLink|SoloScore $score): Item
     {
         return $this->item($score, new Score\CurrentUserAttributesTransformer());
     }
@@ -234,7 +229,7 @@ class ScoreTransformer extends TransformerAbstract
         ));
     }
 
-    public function includeRankCountry(ScoreBest|SoloScore $score)
+    public function includeRankCountry(SoloScore $score)
     {
         return $this->primitive($score->userRank([
             'type' => 'country',
@@ -242,14 +237,14 @@ class ScoreTransformer extends TransformerAbstract
         ]));
     }
 
-    public function includeRankGlobal(ScoreBest|SoloScore $score)
+    public function includeRankGlobal(SoloScore $score)
     {
         return $this->primitive($score->userRank([
             'is_legacy' => ScoreSearchParams::showLegacyForUser(\Auth::user()),
         ]));
     }
 
-    public function includeUser(LegacyMatch\Score|MultiplayerScoreLink|ScoreModel|SoloScore $score)
+    public function includeUser(LegacyMatch\Score|MultiplayerScoreLink|SoloScore $score)
     {
         return $this->item(
             $score->user ?? new DeletedUser(['user_id' => $score->user_id]),
@@ -257,9 +252,9 @@ class ScoreTransformer extends TransformerAbstract
         );
     }
 
-    public function includeWeight(LegacyMatch\Score|ScoreModel|SoloScore $score)
+    public function includeWeight(LegacyMatch\Score|SoloScore $score)
     {
-        if (($score instanceof ScoreBest || $score instanceof SoloScore) && $score->weight !== null) {
+        if ($score instanceof SoloScore && $score->weight !== null) {
             return $this->primitive([
                 'percentage' => $score->weight * 100,
                 'pp' => $score->weightedPp(),

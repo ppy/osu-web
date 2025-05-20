@@ -3,7 +3,7 @@
 
 import { UserCard } from 'components/user-card';
 import BeatmapJson from 'interfaces/beatmap-json';
-import { SoloScoreJsonForShow } from 'interfaces/solo-score-json';
+import { ScoreJsonForShow } from 'interfaces/score-json';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
 import { shouldShowPp } from 'utils/beatmap-helper';
@@ -14,7 +14,7 @@ import { accuracy, isPerfectCombo, calculateStatisticsFor } from 'utils/score-he
 
 interface Props {
   beatmap: BeatmapJson;
-  score: SoloScoreJsonForShow;
+  score: ScoreJsonForShow;
 }
 
 export default function Stats(props: Props) {
