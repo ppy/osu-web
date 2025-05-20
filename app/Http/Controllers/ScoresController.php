@@ -83,7 +83,7 @@ class ScoresController extends Controller
             && ($currentUser->token()?->client->password_client ?? false)
         ) {
             $countLock = \Cache::lock(
-                "view:score_replay:{$score->getKey()}:{$currentUser->getKey()}",
+                "view:score_replay:{$soloScore->getKey()}:{$currentUser->getKey()}",
                 static::REPLAY_DOWNLOAD_COUNT_INTERVAL,
             );
 
