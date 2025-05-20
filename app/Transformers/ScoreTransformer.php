@@ -160,7 +160,7 @@ class ScoreTransformer extends TransformerAbstract
             'mode_int' => Beatmap::modeInt($mode),
             'mods' => $score->enabled_mods,
             'passed' => $score->pass,
-            'perfect' => $perfect ?? $score->perfect,
+            'perfect' => $score->perfect,
             'pp' => $best?->pp,
             'rank' => $score->rank,
             'replay' => $best?->replay ?? false,
