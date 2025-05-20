@@ -114,8 +114,6 @@ class ScoreTransformer extends TransformerAbstract
             // TODO: remove this redundant field sometime after 2024-02
             'replay' => $hasReplay,
         ];
-
-        return $ret;
     }
 
     public function transformLegacy(LegacyMatch\Score|SoloScore $score)
@@ -160,7 +158,7 @@ class ScoreTransformer extends TransformerAbstract
             'mode_int' => Beatmap::modeInt($mode),
             'mods' => $score->enabled_mods,
             'passed' => $score->pass,
-            'perfect' => $perfect ?? $score->perfect,
+            'perfect' => $score->perfect,
             'pp' => $best?->pp,
             'rank' => $score->rank,
             'replay' => $best?->replay ?? false,
