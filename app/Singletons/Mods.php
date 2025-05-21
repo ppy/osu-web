@@ -14,6 +14,7 @@ class Mods
 {
     // A => B: mod A implies mod B.
     const IMPLIED_MODS = [
+        'DC' => 'HT',
         'NC' => 'DT',
         'PF' => 'SD',
     ];
