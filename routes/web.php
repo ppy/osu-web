@@ -136,7 +136,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('livestreams/promote', 'LivestreamsController@promote')->name('livestreams.promote');
         Route::resource('livestreams', 'LivestreamsController', ['only' => ['index']]);
 
-        Route::resource('matches', 'MatchesController', ['only' => ['show']]);
+        Route::resource('matches', 'LegacyMatchesController', ['only' => ['show']]);
 
         Route::post('tournaments/{tournament}/unregister', 'TournamentsController@unregister')->name('tournaments.unregister');
         Route::post('tournaments/{tournament}/register', 'TournamentsController@register')->name('tournaments.register');
@@ -492,7 +492,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             });
             Route::resource('forums', 'ForumsController', ['only' => ['index', 'show']]);
         });
-        Route::resource('matches', 'MatchesController', ['only' => ['index', 'show']]);
+        Route::resource('matches', 'LegacyMatchesController', ['only' => ['index', 'show']]);
 
         Route::resource('reports', 'ReportsController', ['only' => ['store']]);
 

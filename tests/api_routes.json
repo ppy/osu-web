@@ -838,7 +838,7 @@
             "GET",
             "HEAD"
         ],
-        "controller": "App\\Http\\Controllers\\MatchesController@index",
+        "controller": "App\\Http\\Controllers\\LegacyMatchesController@index",
         "middlewares": [
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",
@@ -854,7 +854,7 @@
             "GET",
             "HEAD"
         ],
-        "controller": "App\\Http\\Controllers\\MatchesController@show",
+        "controller": "App\\Http\\Controllers\\LegacyMatchesController@show",
         "middlewares": [
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",

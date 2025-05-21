@@ -69,7 +69,7 @@ function dataFromJson(existingData: Data | null, json: LegacyMultiplayerHistoryJ
 
 
 @observer
-export default class Main extends React.Component<Props> {
+export default class LegacyMatch extends React.Component<Props> {
   private autoloadTimeout: undefined | number;
   @observable private data: Data;
   @observable private loadingNext = false;
