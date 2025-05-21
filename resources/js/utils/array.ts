@@ -4,6 +4,10 @@
 export function mobxArrayGet<T>(array: T[] | null | undefined, index: number): T | undefined {
   if (index < 0) {
     index += array?.length ?? 0;
+
+    if (index < 0) {
+      return undefined;
+    }
   }
 
   return array != null && array.length > index ? array[index] : undefined;
