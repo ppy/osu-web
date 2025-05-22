@@ -67,7 +67,7 @@
     "mdast-util-gfm-autolink-literal": "^1.0.3",
     "micromark-extension-gfm-autolink-literal": "^1.0.3",
     "mini-css-extract-plugin": "^2.7.6",
-    "mobx": "^6.3.3",
+    "mobx": "^6.13.7",
     "mobx-react": "^7.2.0",
     "moment": "^2.29.4",
     "normalize.css": "^8.0.1",
