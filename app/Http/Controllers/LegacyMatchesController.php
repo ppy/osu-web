@@ -13,7 +13,7 @@ use App\Transformers\UserCompactTransformer;
 /**
  * @group Matches
  */
-class MatchesController extends Controller
+class LegacyMatchesController extends Controller
 {
     public function __construct()
     {
@@ -138,7 +138,7 @@ class MatchesController extends Controller
         if (is_json_request()) {
             return $eventsJson;
         } else {
-            return ext_view('matches.index', compact('match', 'eventsJson'));
+            return ext_view('legacy_matches.show', compact('match', 'eventsJson'));
         }
     }
 
