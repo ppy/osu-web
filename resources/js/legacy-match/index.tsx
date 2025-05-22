@@ -6,11 +6,10 @@ import LegacyMatchEventJson from 'interfaces/legacy-match-event-json';
 import LegacyMatchJson from 'interfaces/legacy-match-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { dropRightWhile } from 'lodash';
+import { dropRightWhile, last } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { mobxArrayGet } from 'utils/array';
 import { classWithModifiers } from 'utils/css';
 import Content from './content';
 
@@ -76,7 +75,7 @@ export default class LegacyMatch extends React.Component<Props> {
   @observable private loadingPrevious = false;
 
   private get hasLatest(): boolean {
-    const lastEvent = mobxArrayGet(this.data.events, -1);
+    const lastEvent = last(this.data.events);
 
     return lastEvent != null && lastEvent.id === this.data.latestEventId;
   }
@@ -86,7 +85,7 @@ export default class LegacyMatch extends React.Component<Props> {
   }
 
   private get hasPrevious(): boolean {
-    const firstEvent = mobxArrayGet(this.data.events, 0);
+    const firstEvent = this.data.events[0];
 
     return firstEvent != null && firstEvent.id !== this.props.events.first_event_id;
   }
@@ -108,7 +107,7 @@ export default class LegacyMatch extends React.Component<Props> {
       }
     }
 
-    return mobxArrayGet(this.data.events, -1)?.id;
+    return last(this.data.events)?.id;
   }
 
   constructor(props: Props) {
