@@ -15,6 +15,14 @@
     grid-column: 1 / -1;
   }
 
+  &__beatmap-version {
+    font-size: @font-size--title-small;
+  }
+
+  &__country-flag {
+    align-self: center;
+  }
+
   &__shapes {
     flex: none;
     width: 10px;
@@ -33,13 +41,14 @@
   &__main {
     flex-grow: 1;
 
-    padding: 5px 20px 15px 7.5px;
+    padding: 10px 20px;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
     @media @desktop {
+      padding-left: 0;
       display: grid;
       grid-template-columns: subgrid;
       grid-column: 2 / -1;
@@ -48,24 +57,15 @@
 
   &__info-box {
     display: flex;
-    flex-direction: column;
-
-    height: 100%;
 
     &--user {
-      align-items: flex-start;
-      flex-direction: row;
-      gap: 10px;
-
-      @media @desktop {
-        flex-direction: column;
-        gap: 5px;
-      }
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
     }
 
     &--stats {
-      align-items: flex-end;
-      flex-direction: row;
+      align-items: center;
       gap: 2px;
 
       @media @desktop {
@@ -79,13 +79,7 @@
   &__username-box {
     display: flex;
     align-items: baseline;
-    flex-direction: column;
     gap: 5px;
-
-    @media @desktop {
-      flex-direction: row;
-      gap: 20px;
-    }
   }
 
   &__username {
@@ -121,6 +115,7 @@
     font-size: 15px;
     color: @osu-colour-red-1;
     font-weight: 700;
+    margin-left: 15px;
   }
 
   &__mods {
@@ -141,9 +136,7 @@
 
   &__stat-label {
     font-weight: 600;
-
     padding-right: 3px;
-
     color: @osu-colour-c2;
 
     &--small {
@@ -158,10 +151,10 @@
   &__stat-number {
     font-weight: 700;
     color: @osu-colour-c1;
+    line-height: 1;
 
     &--small {
       font-size: 12px;
-      min-width: 30px;
     }
 
     &--medium {
