@@ -18,7 +18,7 @@ export default function Team({ team, modifiers }: { modifiers?: Modifiers; team:
         </a>
 
         <div className='user-search-card__details'>
-          <a className='user-search-card__col user-search-card__col--username' href={url}>
+          <a className='user-search-card__col user-search-card__col--username u-ellipsis-pre-overflow' href={url}>
             {team.name}
           </a>
         </div>

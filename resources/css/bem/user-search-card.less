@@ -45,6 +45,7 @@
     padding: 2px 5px;
     color: @osu-colour-c1;
     line-height: normal;
+    min-width: 0;
   }
 
   &__col {
@@ -71,10 +72,12 @@
 
     &--username {
       .link-plain();
+
+      display: block;
+      flex: 1;
       font-size: @font-size--title-small-3;
       margin-right: var(--quick-search-items-badge-margin);
       color: inherit;
-      white-space: pre;
 
       .link-hover({
         color: inherit;
