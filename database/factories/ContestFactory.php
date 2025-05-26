@@ -48,8 +48,8 @@ class ContestFactory extends Factory
 
     public function judged(): static
     {
-        return $this->state([
-            'extra_options' => ['judged' => true],
+        return $this->state(fn (array $attr) => [
+            'extra_options' => [...$attr['extra_options'] ?? [], 'judged' => true],
         ]);
     }
 
