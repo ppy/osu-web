@@ -8,9 +8,12 @@ namespace App\Http\Controllers\Multiplayer;
 use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Ranking\DailyChallengeController;
+use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
+use App\Transformers\BeatmapCompactTransformer;
+use App\Transformers\BeatmapsetCompactTransformer;
 use App\Transformers\Multiplayer\PlaylistItemTransformer;
 use App\Transformers\Multiplayer\RealtimeRoomEventTransformer;
 use App\Transformers\Multiplayer\RoomTransformer;
@@ -50,6 +53,7 @@ class RoomsController extends Controller
 
         $events = $room->events()->with([
             'playlistItem.beatmap.beatmapset',
+            'playlistItem.detailEvent',
             'playlistItem.scoreLinks.score',
             'playlistItem.scoreLinks.score.processHistory',
         ])->limit($params['limit']);
@@ -69,6 +73,7 @@ class RoomsController extends Controller
 
         $userIds = new Set();
         $playlistItems = new Map();
+        $beatmapIds = new Set();
 
         $events = $events->get();
         foreach ($events as $event) {
@@ -79,11 +84,14 @@ class RoomsController extends Controller
             $playlistItemId = $event->playlist_item_id;
             if ($playlistItemId !== null && !$playlistItems->hasKey($playlistItemId)) {
                 $playlistItem = $event->playlistItem;
+                $playlistItem->setRelation('room', $room);
                 $playlistItems->put($playlistItemId, $playlistItem);
+                $beatmapIds->add($playlistItem->beatmap_id);
 
                 foreach ($playlistItem->scoreLinks as $scoreLink) {
                     $scoreLink->setRelation('playlistItem', $playlistItem);
                     $userIds->add($scoreLink->user_id);
+                    $beatmapIds->add($scoreLink->score->beatmap_id);
                 }
             }
         }
@@ -99,10 +107,13 @@ class RoomsController extends Controller
             'country'
         );
 
+        $beatmaps = Beatmap::with('beatmapset')->whereIn('beatmap_id', $beatmapIds->toArray())->get();
+        $beatmapsets = $beatmaps->map->beatmapset->unique('beatmapset_id');
+
         $playlistItems = json_collection(
             $playlistItems->values()->toArray(),
             new PlaylistItemTransformer(),
-            ['beatmap.beatmapset', 'scores']
+            ['details', 'scores']
         );
 
         $events = json_collection(
@@ -116,12 +127,15 @@ class RoomsController extends Controller
             ->first();
 
         return [
+            'beatmaps' => json_collection($beatmaps, new BeatmapCompactTransformer()),
+            'beatmapsets' => json_collection($beatmapsets, new BeatmapsetCompactTransformer()),
+            'current_playlist_item_id' => $room->current_playlist_item_id,
             'events' => $events,
-            'users' => $users,
             'first_event_id' => $eventEndIds->first_event_id ?? 0,
             'last_event_id' => $eventEndIds->last_event_id ?? 0,
             'playlist_items' => $playlistItems,
-            'current_playlist_item_id' => $room->current_playlist_item_id,
+            'room' => json_item($room, new RoomTransformer()),
+            'users' => $users,
         ];
     }
 
