@@ -74,19 +74,20 @@ class ContestEntry extends Model
         return $query->whereIn('entry_url', $beatmapsetIdsQuery);
     }
 
-    public function scopeWithScore(Builder $query, array $options): Builder
+    // TODO: switch Contest param with casted extra_options object.
+    public function scopeWithScore(Builder $query, Contest $contest): Builder
     {
         $orderValue = 'votes_count';
 
-        if (isset($options['best_of'])) {
+        if ($contest->isBestOf()) {
             $query
                 ->selectRaw('*')
                 ->selectRaw('(SELECT FLOOR(SUM(`weight`)) FROM `contest_votes` WHERE `contest_entries`.`id` = `contest_votes`.`contest_entry_id`) AS votes_count')
                 ->limit(50); // best of contests tend to have a _lot_ of entries...
-        } else if ($options['judged'] ?? false) {
+        } else if ($contest->isJudged()) {
             $query->withSum('scores', 'value');
 
-            if ($options['is_score_standardised'] ?? false) {
+            if ($contest->isScoreStandardised()) {
                 $query->withSum('judgeVotes as total_score_std', 'total_score_std');
                 $orderValue = 'total_score_std';
             } else {
