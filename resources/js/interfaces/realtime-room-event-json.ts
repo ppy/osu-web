@@ -1,6 +1,37 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import LegacyMatchEventJson, { LegacyMatchEventType } from './legacy-match-event-json';
+
+export function eventFromLegacy(event: LegacyMatchEventJson): RealtimeRoomEventJson {
+  return {
+    created_at: event.timestamp,
+    event_type: eventTypeFromLegacy(event),
+    id: event.id,
+    playlist_item_id: event.game?.id ?? null,
+    user_id: event.user_id,
+  };
+}
+
+function eventTypeFromLegacy(event: LegacyMatchEventJson) {
+  const map: Record<LegacyMatchEventType, RealtimeRoomEventType> = {
+    'host-changed': 'host_changed',
+    'match-created': 'room_created',
+    'match-disbanded': 'room_disbanded',
+    other: 'unknown',
+    'player-joined': 'player_joined',
+    'player-kicked': 'player_kicked',
+    'player-left': 'player_left',
+  };
+
+  let ret = map[event.detail.type];
+  if (ret === 'unknown' && event.game != null) {
+    ret = 'game_started';
+  }
+
+  return ret;
+}
+
 export type RealtimeRoomEventType =
   | 'game_started'
   | 'game_aborted'
