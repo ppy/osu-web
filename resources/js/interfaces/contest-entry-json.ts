@@ -8,6 +8,7 @@ interface ContestEntryJsonAvailableIncludes {
   judge_votes: ContestJudgeVoteJson[];
   results: {
     actual_name: string;
+    score_std: number | null;
     votes: number;
   };
   user: {

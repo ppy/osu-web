@@ -20,7 +20,12 @@ class ContestEntriesController extends Controller
 {
     public function judgeResults($id)
     {
-        $entry = ContestEntry::with('contest')->findOrFail($id);
+        $entry = ContestEntry
+            ::with('contest')
+            // TODO: replace with casted extra_options.
+            // Assume hitting this endpoint is always for judged contests.
+            ->withScore(new Contest(['extra_options' => ['judged' => true, 'is_score_standardised' => true]]))
+            ->findOrFail($id);
 
         abort_if(!$entry->contest->isJudged() || !$entry->contest->show_votes, 404);
 

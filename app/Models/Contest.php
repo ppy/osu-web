@@ -300,12 +300,10 @@ class Contest extends Model
         $query = $this->entries()->with(['contest', ...$preloads]);
 
         if ($this->show_votes) {
-            $options = $this->getExtraOptions();
-
             return Cache::remember(
                 "contest_entries_with_votes_{$this->id}",
                 300,
-                fn () => $query->with(['contest', ...$preloads])->withScore($options)->get()
+                fn () => $query->with(['contest', ...$preloads])->withScore($this)->get()
             );
         } elseif ($this->isBestOf()) {
             if ($user === null) {
