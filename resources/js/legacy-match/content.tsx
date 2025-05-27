@@ -2,22 +2,33 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ShowMoreLink from 'components/show-more-link';
-import LegacyMatchEvent from 'interfaces/legacy-match-event-json';
-import LegacyMatchEventJson from 'interfaces/legacy-match-event-json';
-import LegacyMatchGame from 'interfaces/legacy-match-game-json';
-import LegacyMatch from 'interfaces/legacy-match-json';
+import BeatmapJson from 'interfaces/beatmap-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
+import { PlaylistItemJsonForMultiplayerEvent } from 'interfaces/playlist-item-json';
+import RealtimeRoomEventJson from 'interfaces/realtime-room-event-json';
+import RoomJson from 'interfaces/room-json';
+import UserJson from 'interfaces/user-json';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { bottomPageDistance } from 'utils/html';
 import { trans } from 'utils/lang';
-import UserJson from '../interfaces/user-json';
 import Event from './event';
 import Game from './game';
 
+export interface Data {
+  beatmaps: Partial<Record<number, BeatmapJson>>;
+  beatmapsets: Partial<Record<number, BeatmapsetJson>>;
+  currentPlaylistItemId: null | number;
+  events: RealtimeRoomEventJson[];
+  lastEventId: number;
+  playlistItems: Partial<Record<number, PlaylistItemJsonForMultiplayerEvent>>;
+  room: RoomJson;
+  users: Partial<Record<number, UserJson>>;
+}
+
 interface Props {
-  currentGameId?: number;
-  events?: LegacyMatchEvent[];
+  data: Data;
   hasNext: boolean;
   hasPrevious: boolean;
   isAutoloading: boolean;
@@ -25,8 +36,6 @@ interface Props {
   loadingPrevious: boolean;
   loadNext: () => void;
   loadPrevious: () => void;
-  match: LegacyMatch;
-  users: Partial<Record<number, UserJson>>;
 }
 
 interface Snapshot {
@@ -64,14 +73,14 @@ export default class Content extends React.PureComponent<Props> {
     };
 
     if (!snapshot.scrollToLastEvent) {
-      const hadEvents = prevProps.events != null && prevProps.events.length > 0;
-      const hasEvents = this.props.events != null && this.props.events.length > 0;
+      const hadEvents = prevProps.data.events != null && prevProps.data.events.length > 0;
+      const hasEvents = this.props.data.events != null && this.props.data.events.length > 0;
       if (hadEvents && hasEvents) {
         let referenceFn: () => number;
 
         // This is to allow events to be added without moving currently
         // visible events on viewport.
-        if (prevProps.events[0].id > this.props.events[0].id) {
+        if (prevProps.data.events[0].id > this.props.data.events[0].id) {
           referenceFn = () => document.body.scrollHeight;
         } else {
           referenceFn = () => 0;
@@ -92,7 +101,7 @@ export default class Content extends React.PureComponent<Props> {
 
     return (
       <div className='mp-history-content'>
-        <h3 className='mp-history-content__item'>{this.props.match.name}</h3>
+        <h3 className='mp-history-content__item'>{this.props.data.room.name}</h3>
         {this.props.hasPrevious &&
           <div className={classWithModifiers('mp-history-content__item', ['more'])}>
             <ShowMoreLink
@@ -101,7 +110,7 @@ export default class Content extends React.PureComponent<Props> {
               hasMore
               loading={this.props.loadingPrevious} />
           </div>}
-        {this.props.events?.map((event) => this.renderEvent(event))}
+        {this.props.data.events.map((event) => this.renderEvent(event))}
         {this.closeEventsGroup()}
         {this.props.hasNext &&
           <div className={classWithModifiers('mp-history-content__item', ['more'])}>
@@ -129,9 +138,14 @@ export default class Content extends React.PureComponent<Props> {
     }
   }
 
-  private renderEvent(event: LegacyMatchEventJson) {
-    if (event.detail.type === 'other') {
-      if (event.game == null || (event.game.end_time == null && event.game.id !== this.props.currentGameId)) {
+  private renderEvent(event: RealtimeRoomEventJson) {
+    if (event.event_type === 'game_started') {
+      if (event.playlist_item_id == null) {
+        return null;
+      }
+
+      const playlistItem = this.props.data.playlistItems[event.playlist_item_id];
+      if (playlistItem == null || (!playlistItem.expired && playlistItem.id !== this.props.data.currentPlaylistItemId)) {
         return null;
       }
 
@@ -141,9 +155,10 @@ export default class Content extends React.PureComponent<Props> {
 
           <div className="mp-history-content__item">
             <Game
-              game={event.game}
-              teamScores={this.teamScores(event.game)}
-              users={this.props.users} />
+              data={this.props.data}
+              playlistItem={playlistItem}
+              teamScores={this.teamScores(playlistItem)}
+            />
           </div>
         </React.Fragment>
       );
@@ -156,16 +171,16 @@ export default class Content extends React.PureComponent<Props> {
             <Event
               key={event.id}
               event={event}
-              users={this.props.users} />
+              users={this.props.data.users} />
           </div>
         </React.Fragment>
       );
     }
   }
 
-  private teamScores(game: LegacyMatchGame): TeamScores {
+  private teamScores(playlistItem: PlaylistItemJsonForMultiplayerEvent): TeamScores {
     // this only caches ended games which scores shouldn't change ever.
-    const cachedScore = this.scoresCache[game.id];
+    const cachedScore = this.scoresCache[playlistItem.id];
 
     if (cachedScore != null) {
       return cachedScore;
@@ -173,17 +188,20 @@ export default class Content extends React.PureComponent<Props> {
 
     const scores: TeamScores = { blue: 0, red: 0 };
 
-    if (game.end_time == null) {
+    if (!playlistItem.expired) {
       return scores;
     }
 
-    for (const score of game.scores) {
-      if (!score.match.pass || score.match.team === 'none') {
+    for (const score of playlistItem.scores) {
+      if (!score.passed) continue;
+
+      const team = playlistItem.details.teams?.[score.user_id];
+      if (team == null) {
         continue;
       }
-      scores[score.match.team] += score.total_score;
+      scores[team] += score.total_score;
     }
 
-    return this.scoresCache[game.id] = scores;
+    return this.scoresCache[playlistItem.id] = scores;
   }
 }

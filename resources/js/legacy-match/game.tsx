@@ -2,32 +2,33 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import StringWithComponent from 'components/string-with-component';
-import LegacyMatchGameJson from 'interfaces/legacy-match-game-json';
-import UserJson from 'interfaces/user-json';
+import { PlaylistItemJsonForMultiplayerEvent } from 'interfaces/playlist-item-json';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans, transExists } from 'utils/lang';
 import { TeamScores } from './content';
+import { Data } from './content';
 import GameHeader from './game-header';
 import Score from './score';
 
 interface Props {
-  game: LegacyMatchGameJson;
+  data: Data;
+  playlistItem: PlaylistItemJsonForMultiplayerEvent;
   teamScores: TeamScores;
-  users: Partial<Record<number, UserJson>>;
 }
 
 export default observer(function Game(props: Props) {
-  const showTeams = props.game.team_type === 'team-vs' || props.game.team_type === 'tag-team-vs';
+  const showTeams = props.playlistItem.details.room_type === 'team_versus' || props.playlistItem.details.room_type === 'tag_team_versus';
 
   const winningTeam = props.teamScores.blue > props.teamScores.red ? 'blue' : 'red';
   const difference = Math.abs(props.teamScores.blue - props.teamScores.red);
 
-  const sortedScores = props.game.scores.slice().sort((first, second) => {
-    if (first.match.team !== second.match.team) {
-      return first.match.team === winningTeam ? -1 : 1;
+  const teams = props.playlistItem.details.teams ?? {};
+  const sortedScores = props.playlistItem.scores.slice().sort((first, second) => {
+    if ((teams[first.user_id] ?? '') !== (teams[second.user_id] ?? '')) {
+      return teams[first.user_id] === winningTeam ? -1 : 1;
     } else {
       return second.total_score - first.total_score;
     }
@@ -35,17 +36,17 @@ export default observer(function Game(props: Props) {
 
   return (
     <div className='mp-history-game'>
-      <GameHeader game={props.game} />
+      <GameHeader data={props.data} playlistItem={props.playlistItem} />
       <div className={classWithModifiers('mp-history-game__player-scores', { 'no-teams': showTeams })}>
         {sortedScores.map((score) => (
           <Score
-            key={score.match.slot}
-            mode={props.game.mode}
-            score={score}
-            users={props.users} />
+            key={score.match?.slot ?? score.id}
+            data={props.data}
+            playlistItem={props.playlistItem}
+            score={score} />
         ))}
       </div>
-      {showTeams && props.game?.end_time != null &&
+      {showTeams && props.playlistItem.expired &&
         <div>
           <div className='mp-history-game__team-scores'>
             {(['red', 'blue'] as const).map((m) => (
