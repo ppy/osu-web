@@ -55,7 +55,7 @@ export default function Vote(props: Props) {
                   <i className='fas fa-question-circle' />
                 </div>
 
-                <span className='u-ellipsis-overflow'>{category.name}</span>
+                <span className='u-ellipsis-overflow' data-tooltip-position='bottom left'>{category.name}</span>
               </div>
               <div className='contest-judge-results-scores__col contest-judge-results-scores__col--score'>
                 {score.value}/{category.max_value}
