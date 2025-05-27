@@ -5,21 +5,6 @@ import BeatmapJson from './beatmap-json';
 import Ruleset from './ruleset';
 import { LegacyMatchScoreJson } from './score-json';
 
-export default interface LegacyMatchGameJson {
-  beatmap?: BeatmapJson;
-  beatmap_id: number;
-  end_time?: string;
-  id: number;
-  mode: Ruleset;
-  mode_int: number;
-  mods: string[]; // TODO: use ModJson
-  scores: LegacyMatchScoreJson[]; // TODO: use SoloScoreJson
-  scoring_type: LegacyMatchScoringType;
-  start_time: string;
-  team_type: LegacyMatchTeamType;
-}
-
-
 export type LegacyMatchScoringType =
   | 'accuracy'
   | 'combo'
@@ -31,3 +16,17 @@ export type LegacyMatchTeamType =
   | 'tag-coop'
   | 'tag-team-vs'
   | 'team-vs';
+
+export default interface LegacyMatchGameJson {
+  beatmap?: BeatmapJson;
+  beatmap_id: number;
+  end_time: null | string;
+  id: number;
+  mode: Ruleset;
+  mode_int: number;
+  mods: string[];
+  scores: LegacyMatchScoreJson[];
+  scoring_type: LegacyMatchScoringType;
+  start_time: string;
+  team_type: LegacyMatchTeamType;
+}

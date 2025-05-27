@@ -23,6 +23,7 @@ class PlaylistItemTransformer extends TransformerAbstract
             'id' => $item->id,
             'room_id' => $item->room_id,
             'beatmap_id' => $item->beatmap_id,
+            'created_at' => json_time($item->created_at),
             'ruleset_id' => $item->ruleset_id,
             'allowed_mods' => $item->allowed_mods,
             'required_mods' => $item->required_mods,
@@ -30,7 +31,7 @@ class PlaylistItemTransformer extends TransformerAbstract
             'expired' => $item->expired,
             'owner_id' => $item->owner_id,
             'playlist_order' => $item->playlist_order,
-            'played_at' => $item->played_at,
+            'played_at' => json_time($item->played_at),
         ];
     }
 
