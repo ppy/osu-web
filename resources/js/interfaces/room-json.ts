@@ -6,7 +6,13 @@ import PlaylistItemJson from './playlist-item-json';
 
 export type RoomCategory = 'normal' | 'spotlight';
 
-export type RoomType = 'playlists' | 'head_to_head' | 'team_versus';
+export type RealtimeRoomType =
+  | 'head_to_head'
+  | 'tag_coop'
+  | 'tag_team_versus'
+  | 'team_versus';
+
+export type RoomType = 'playlists' | RealtimeRoomType;
 
 interface RoomJsonAvailableIncludes {
   current_playlist_item: PlaylistItemJson | null;
