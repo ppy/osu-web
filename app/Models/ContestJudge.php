@@ -26,6 +26,11 @@ class ContestJudge extends Model
     protected $primaryKey = ':composite';
     protected $primaryKeys = ['user_id', 'contest_id'];
 
+    public function contest(): BelongsTo
+    {
+        return $this->belongsTo(Contest::class, 'contest_id');
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
