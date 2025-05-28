@@ -36,16 +36,8 @@ class ContestJudge extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function calculateStdDev(): void
-    {
-        [$stdDev, $mean] = $this->stdDev();
-
-        $this->update(['mean' => $mean, 'std_dev' => $stdDev]);
-    }
-
     public function stdDev(): array
     {
-        // TODO: treat missing scores as 0?
         $entryScores = ContestJudgeScore::scoresByEntry()
             ->whereHas(
                 'vote',

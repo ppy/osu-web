@@ -123,10 +123,16 @@ class Contest extends Model
 
     public function calculateScoresStd(): void
     {
-        $this->contestJudges->each->calculateStdDev();
+        $judgeScores = [];
+        foreach ($this->contestJudges as $judge) {
+            $judgeScores[$judge->user_id] = $judge->stdDev();
+        }
 
-        $judgeVotes = ContestJudgeVote::whereHas('entry', fn ($q) => $q->whereHas('contest', fn ($qq) => $qq->where('contest_id', $this->getKey())))->get();
-        $judgeVotes->each->calculateScoreStd();
+        $judgeVotes = ContestJudgeVote::whereHas('entry', fn ($q) => $q->where('contest_id', $this->getKey()))->get();
+        foreach ($judgeVotes as $vote) {
+            [$stdDev, $mean] = $judgeScores[$vote->user_id];
+            $vote->update(['total_score_std' => $stdDev === 0.0 ? 0 : ($vote->totalScore() - $mean) / $stdDev]);
+        }
     }
 
     public function isBestOf(): bool
