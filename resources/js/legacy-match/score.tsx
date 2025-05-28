@@ -30,7 +30,7 @@ export default observer(function Score(props: Props) {
   }
 
   return (
-    <div className='mp-history-game__player-score mp-history-player-score'>
+    <div className='mp-history-player-score'>
       <div
         className='mp-history-player-score__shapes'
         style={{ backgroundImage: `url(/images/layout/mp-history/shapes-team-${props.score.match.team ?? 'none'}.svg)` }} />

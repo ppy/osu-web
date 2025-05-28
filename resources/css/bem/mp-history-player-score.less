@@ -2,9 +2,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .mp-history-player-score {
-  @width: 1000px;
+  .default-border-radius();
+  .default-box-shadow();
 
+  height: 125px;
+  background-color: @osu-colour-b2;
   display: flex;
+
+  @media @desktop {
+    height: auto;
+  }
 
   &__shapes {
     flex: none;
