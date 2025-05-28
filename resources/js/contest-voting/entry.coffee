@@ -72,17 +72,17 @@ export class Entry extends React.Component
 
 
   renderScore: ->
-    score = if @props.entry.results.score_std != null
-      formatNumber @props.entry.results.score_std, 2
-    else
-      @props.entry.results.votes
-
     if @props.contest.best_of || @props.contest.judged
+      text = if @props.entry.results.score_std?
+        trans 'contest.vote.points_float', points: formatNumber(@props.entry.results.score_std, 2)
+      else
+        transChoice 'contest.vote.points', @props.entry.results.votes
+
       div className: 'contest__vote-count contest__vote-count--no-percentages',
-        transChoice 'contest.vote.points', score
+        text
     else
       div className: 'contest__vote-count',
-        transChoice 'contest.vote.count', score
+        transChoice 'contest.vote.count', @props.entry.results.votes
         if Number.isFinite usersVotedPercentage
           " (#{formatNumber(usersVotedPercentage)}%)"
 

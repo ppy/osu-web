@@ -89,6 +89,7 @@ return [
         'list' => 'votes',
         'count' => ':count_delimited vote|:count_delimited votes',
         'points' => ':count_delimited point|:count_delimited points',
+        'points_float' => ':points points',
     ],
 
     'dates' => [
