@@ -33,7 +33,7 @@ export default observer(function Score(props: Props) {
   const team = props.playlistItem.details.teams?.[props.score.user_id] ?? 'none';
 
   return (
-    <div className='mp-history-game__player-score mp-history-player-score'>
+    <div className='mp-history-player-score'>
       <div
         className='mp-history-player-score__shapes'
         style={{ backgroundImage: `url(/images/layout/mp-history/shapes-team-${team}.svg)` }} />
