@@ -6,10 +6,13 @@
   .default-box-shadow();
 
   background-color: @osu-colour-b2;
-  display: flex;
 
   @media @desktop {
     height: auto;
+
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
   }
 
   &__shapes {
@@ -20,7 +23,7 @@
     border-radius: @border-radius-base 0 0 @border-radius-base;
 
     @media @desktop {
-      width: 50px;
+      width: auto; // follows grid
       background-size: contain;
       background-position: bottom left;
       background-repeat: no-repeat;
@@ -37,7 +40,9 @@
     justify-content: space-between;
 
     @media @desktop {
-      flex-direction: row;
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-column: 2 / -1;
     }
   }
 
@@ -64,7 +69,9 @@
       gap: 2px;
 
       @media @desktop {
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: subgrid;
+        grid-column: 2 / -1;
       }
     }
   }
@@ -97,10 +104,16 @@
     @media @desktop {
       flex-direction: row;
       gap: var(--desktop-gap);
+      grid-column: 1 / -1;
     }
 
     &--first {
       --desktop-gap: 40px;
+
+      @media @desktop {
+        display: grid;
+        grid-template-columns: subgrid;
+      }
     }
   }
 
@@ -120,13 +133,15 @@
     display: flex;
     align-items: baseline;
     justify-content: flex-end;
+
+    &--small {
+      flex: 1;
+    }
   }
 
   &__stat-label {
     font-weight: 600;
-
     padding-right: 3px;
-
     color: @osu-colour-c2;
 
     &--small {
