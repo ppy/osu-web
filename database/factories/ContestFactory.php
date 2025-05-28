@@ -63,6 +63,13 @@ class ContestFactory extends Factory
         ]);
     }
 
+    public function scoreStandardised(): static
+    {
+        return $this->state(fn (array $attr) => [
+            'extra_options' => [...$attr['extra_options'] ?? [], 'is_score_standardised' => true],
+        ]);
+    }
+
     public function voting(): static
     {
         return $this->state([
