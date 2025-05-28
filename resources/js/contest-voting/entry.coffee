@@ -3,6 +3,7 @@
 
 import TrackPreview from 'components/track-preview'
 import UserLink from 'components/user-link'
+import { includes, round } from 'lodash'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a, i, div, span } from 'react-dom-factories'
@@ -14,15 +15,19 @@ el = React.createElement
 
 export class Entry extends React.Component
   render: ->
-    selected = _.includes @props.selected, @props.entry.id
+    selected = includes @props.selected, @props.entry.id
 
     return null if @props.hideIfNotVoted && !selected
 
     link_icon = if @props.contest.type == 'external' then 'fa-external-link-alt' else 'fa-download'
 
     if @props.contest.show_votes
-      relativeVotePercentage = _.round((@props.entry.results.votes / @props.winnerVotes)*100, 2)
-      usersVotedPercentage = _.round((@props.entry.results.votes / @props.contest.users_voted_count)*100, 2)
+      relativeVotePercentage = if @props.stdRange.min? && @props.stdRange.max?
+        100 * (@props.entry.results.score_std - @props.stdRange.min) / (@props.stdRange.max - @props.stdRange.min)
+      else
+        round((@props.entry.results.votes / @props.winnerVotes)*100, 2)
+
+      usersVotedPercentage = round((@props.entry.results.votes / @props.contest.users_voted_count)*100, 2)
 
     div className: "contest-voting-list__row#{if selected && !@props.contest.show_votes then ' contest-voting-list__row--selected' else ''}",
       if @props.contest.show_votes

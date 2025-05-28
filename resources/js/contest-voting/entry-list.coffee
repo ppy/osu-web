@@ -31,6 +31,7 @@ export class EntryList extends BaseEntryList
         options: @state.options,
         contest: @state.contest,
         selected: @state.selected,
+        stdRange: @props.stdRange
         winnerVotes: if @state.contest.show_votes then _.maxBy(@state.contest.entries, (i) -> i.results.votes).results.votes
 
     div className: 'contest-voting-list__table',
