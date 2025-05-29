@@ -104,7 +104,7 @@ class RoomsController extends Controller
         $users = json_collection(
             $users,
             new UserCompactTransformer(),
-            'country'
+            ['country'],
         );
 
         $beatmaps = Beatmap::with('beatmapset')->whereIn('beatmap_id', $beatmapIds->toArray())->get();
@@ -113,7 +113,7 @@ class RoomsController extends Controller
         $playlistItems = json_collection(
             $playlistItems->values()->toArray(),
             new PlaylistItemTransformer(),
-            ['details', 'scores']
+            ['details', 'scores'],
         );
 
         $events = json_collection(
