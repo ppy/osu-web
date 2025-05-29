@@ -37,6 +37,7 @@ class PlaylistItem extends Model
         'allowed_mods' => 'object',
         'expired' => 'boolean',
         'freestyle' => 'boolean',
+        'played_at' => 'datetime',
         'required_mods' => 'object',
     ];
 

@@ -3,14 +3,6 @@
 
 import LegacyMatchGameJson from './legacy-match-game-json';
 
-export default interface LegacyMatchEventJson {
-  detail: LegacyMatchEventDetail;
-  game?: LegacyMatchGameJson;
-  id: number;
-  timestamp: string;
-  user_id?: number;
-}
-
 export type LegacyMatchEventType =
   | 'host-changed'
   | 'match-created'
@@ -23,4 +15,12 @@ export type LegacyMatchEventType =
 export interface LegacyMatchEventDetail {
   text?: string;
   type: LegacyMatchEventType;
+}
+
+export default interface LegacyMatchEventJson {
+  detail: LegacyMatchEventDetail;
+  game?: LegacyMatchGameJson;
+  id: number;
+  timestamp: string;
+  user_id: null | number;
 }
