@@ -88,6 +88,7 @@ return [
             'beatmap_owner_change' => 'dificultat de convidat',
             'beatmapset:modding' => 'modding de beatmaps',
             'channel_message' => 'missatges de xat privats',
+            'channel_team' => '',
             'comment_new' => 'comentaris nous',
             'forum_topic_reply' => 'resposta del tema',
             'mail' => 'correu',

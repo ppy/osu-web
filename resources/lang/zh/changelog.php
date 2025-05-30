@@ -11,7 +11,7 @@ return [
     ],
 
     'builds' => [
-        'users_online' => ':count_delimited 名用户在线',
+        'users_online' => ':count_delimited 名玩家在线',
     ],
 
     'entry' => [

@@ -88,6 +88,7 @@ return [
             'beatmap_owner_change' => 'gæst sværhedsgrad',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'privat beskeder',
+            'channel_team' => '',
             'comment_new' => 'nye kommentarer',
             'forum_topic_reply' => 'emne svar',
             'mail' => 'post',

@@ -26,6 +26,9 @@ return [
         'placeholder' => 'keresendő szöveg',
         'title' => 'Keresés',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Beatmapek kereséséhez jelentkezz be',
             'more' => ':count talált beatmap',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'mind',
+            'artist_track' => '',
             'beatmapset' => 'beatmap',
             'forum_post' => 'fórum',
+            'team' => '',
             'user' => 'játékos',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

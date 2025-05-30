@@ -26,6 +26,9 @@ return [
         'placeholder' => 'klik for at søge',
         'title' => 'Søg',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Log ind for at søge efter brugere
 ',
@@ -52,10 +55,16 @@ return [
 
         'mode' => [
             'all' => 'alt',
+            'artist_track' => '',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
+            'team' => '',
             'user' => 'bruger',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

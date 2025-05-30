@@ -196,7 +196,7 @@ return [
             'store' => [
                 'already_member' => "Jesteś już członkiem tego zespołu.",
                 'already_other_member' => "Jesteś już członkiem innego zespołu.",
-                'currently_applying' => 'Twoja prośba o dołączenie do drużyny oczekuje już na rozpatrzenie.',
+                'currently_applying' => 'Twoja prośba o dołączenie do zespołu oczekuje już na rozpatrzenie.',
                 'team_closed' => 'Ten zespół nie przyjmuje aktualnie próśb o dołączenie.',
                 'team_full' => "Ten zespół jest już pełny i nie może przyjąć więcej członków.",
             ],
@@ -206,7 +206,7 @@ return [
             'not_member' => 'Nie jesteś członkiem tego zespołu.',
         ],
         'store' => [
-            'require_supporter_tag' => 'Wymagany jest osu!supporter, aby stworzyć drużynę.',
+            'require_supporter_tag' => 'Do utworzenia zespołu wymagany jest aktywny status donatora osu!.',
         ],
     ],
 

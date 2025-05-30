@@ -161,7 +161,7 @@ return [
 
         'options' => [
             'cheating' => 'Juksing',
-            'inappropriate_chat' => '',
+            'inappropriate_chat' => 'Upassende chat atferd',
             'insults' => 'Fornærmer meg / andre',
             'multiple_accounts' => 'Bruker flere kontoer',
             'nonsense' => 'Tull',

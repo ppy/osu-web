@@ -161,7 +161,7 @@ return [
 
         'options' => [
             'cheating' => 'Jogando sujo / Trapaceando',
-            'inappropriate_chat' => '',
+            'inappropriate_chat' => 'Comportamento inadequado em conversa',
             'insults' => 'Me insultando / outros',
             'multiple_accounts' => 'Usando diversas contas',
             'nonsense' => 'Sem sentido',
@@ -481,8 +481,8 @@ return [
             'highest' => 'Maior classificação: :rank em :date',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Pontuação total',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisão',

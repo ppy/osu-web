@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'atbalsti spēli',
             'testflight' => 'testa lidojums',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'informācija',
         ],
         'livestreams_controller' => [
             '_' => 'tiešraides straumes',
-        ],
-        'matches_controller' => [
-            '_' => 'cīņas',
         ],
         'news_controller' => [
             '_' => 'jaunumi',

@@ -35,8 +35,8 @@ return [
     ],
 
     'team' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Laporkan Pasukan',
+        'title' => 'Laporkan pasukan :username?',
     ],
 
     'user' => [

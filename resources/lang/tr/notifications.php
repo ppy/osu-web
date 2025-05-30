@@ -123,6 +123,16 @@ return [
                     'channel_message_group' => ':username tarafından',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -167,8 +177,13 @@ return [
 
                 'team_application_accept' => "Artık :title takımının bir üyesisin",
                 'team_application_accept_compact' => "Artık :title takımının bir üyesisin",
+
+                'team_application_group' => '',
+
                 'team_application_reject' => ':title takıma giriş isteğin reddedildi',
-                'team_application_reject_compact' => ':title takıma giriş isteğiniz reddedildi',
+                'team_application_reject_compact' => ':title takımına giriş isteğiniz reddedildi',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -230,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '":name" içinde yeni bir duyuru var',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => ':username kullanıcısından yeni bir mesaj geldi',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -260,6 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Artık :title takımının bir üyesisin",
                 'team_application_reject' => ':title takımına giriş isteğiniz reddedildi',
+                'team_application_store' => '',
             ],
         ],
 

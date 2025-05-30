@@ -26,6 +26,9 @@ return [
         'placeholder' => 'skriv for å søke',
         'title' => 'Søk',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Logg inn for å søke etter beatmaps',
             'more' => ':count flere beatmap-søkeresultater',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'alt',
+            'artist_track' => '',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
+            'team' => '',
             'user' => 'spiller',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

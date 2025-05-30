@@ -37,6 +37,12 @@ return [
         'new' => 'Balasan terkini',
     ],
 
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
+    ],
+
     'users' => [
         'relevance' => 'Kaitan',
         'username' => 'Nama',

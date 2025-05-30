@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Inaktivera vald',
+        'batch_enable' => 'Aktivera vald',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':action :items?',
+            'disable' => 'Inaktivera',
+            'enable' => 'Aktivera',
+            'items' => ':count_delimited omslag|:count_delimited omslag',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Filer',
+            'submit' => 'Spara',
+            'title' => 'Lägg till ny',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'Klicka för att inaktivera',
+            'click_to_enable' => 'Klicka för att aktivera',
+            'enabled' => 'Aktiverat',
+            'disabled' => 'Inaktiverat',
+            'image_store' => 'Ställ in bild',
+            'image_update' => 'Byt bild',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'Ett fel uppstod när omslaget skapades: :error',
+        'ok' => 'Omslag skapade',
     ],
 ];

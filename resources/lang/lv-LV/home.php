@@ -27,6 +27,9 @@ return [
         'placeholder' => 'rakstiet, lai meklētu',
         'title' => 'meklēt',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Ielogojieties, lai meklētu bītmapes',
             'more' => ':count vairāk ritma-mapju meklēšanas rezultāti',
@@ -52,10 +55,16 @@ return [
 
         'mode' => [
             'all' => 'visi',
+            'artist_track' => '',
             'beatmapset' => 'bītmape',
             'forum_post' => 'forums',
+            'team' => '',
             'user' => 'spēlētājs',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

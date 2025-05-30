@@ -26,6 +26,9 @@ return [
         'placeholder' => 'digite para pesquisar',
         'title' => 'Pesquisar',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Inicie a sessão para procurar por beatmaps',
             'more' => ':count mais resultados de beatmaps',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'todos',
+            'artist_track' => '',
             'beatmapset' => 'beatmap',
             'forum_post' => 'fórum',
+            'team' => '',
             'user' => 'jogador',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

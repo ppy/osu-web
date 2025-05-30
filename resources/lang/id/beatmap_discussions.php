@@ -25,7 +25,7 @@ return [
             '_' => 'Cari',
             'deleted' => 'Sertakan diskusi yang telah dihapus',
             'mode' => 'Mode beatmap',
-            'only_unresolved' => 'Hanya tampilkan topik diskusi yang belum terjawab',
+            'only_unresolved' => 'Tampilkan hanya topik diskusi yang belum terjawab',
             'show_review_embeds' => 'Tampilkan pos ulasan',
             'types' => 'Jenis pesan',
             'username' => 'Nama Pengguna',
@@ -54,8 +54,8 @@ return [
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Saya tidak menemukan adanya postingan yang membahas isu yang ingin saya angkat',
-        'notice' => 'Terdapat postingan lain di sekitar :timestamp (:existing_timestamps). Mohon periksa apakah isu yang ingin kamu angkat telah dibahas oleh pengguna lain sebelumnya.',
+        'confirm' => 'Tidak ada satu pun dari postingan ini yang membahas masalah saya',
+        'notice' => 'Terdapat postingan lain di sekitar :timestamp (:existing_timestamps). Silakan periksa apakah masalah yang ingin kamu angkat telah dibahas oleh pengguna lain sebelumnya.',
         'unsaved' => ':count pada kajian ini',
     ],
 

@@ -26,6 +26,9 @@ return [
         'placeholder' => '請輸入以搜尋',
         'title' => '搜尋',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => '登入以搜尋圖譜',
             'more' => '搜尋到 :count 張圖譜',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => '所有',
+            'artist_track' => '',
             'beatmapset' => '圖譜',
             'forum_post' => '論壇',
+            'team' => '',
             'user' => '玩家',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

@@ -35,8 +35,8 @@ return [
     ],
 
     'team' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Takımı Bildir',
+        'title' => ':username kullanıcısının takımını bildir?',
     ],
 
     'user' => [

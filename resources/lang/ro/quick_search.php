@@ -5,15 +5,16 @@
 
 return [
     'mode' => [
+        'artist_track' => '',
         'beatmapset' => 'Beatmap',
         'forum_post' => 'Forum',
         'other' => 'Altele',
+        'team' => '',
         'user' => 'Jucător',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => 'Niciun rezultat',
         'empty_for' => 'Niciun rezultat pentru :modes',
         'more' => 'Mai multe rezultate pentru: :mode',
         'title' => 'Rezultate pentru: :mode',

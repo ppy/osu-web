@@ -71,7 +71,7 @@ return [
         'friends_only' => 'Gebruiker blokkeert berichten van mensen die niet op de vriendenlijst staan.',
         'moderated' => 'Dat kanaal wordt op dit moment gemodereerd.',
         'no_access' => 'Je hebt geen toegang tot dat kanaal.',
-        'no_announce' => '',
+        'no_announce' => 'Je hebt geen toestemming om een omroep te doen.',
         'receive_friends_only' => 'Het is mogelijk dat de gebruiker niet zal kunnen antwoorden omdat je enkel berichten van mensen op je vriendenlijst aanvaardt.',
         'restricted' => 'Je kunt geen berichten versturen wanneer je het zwijgen is opgelegd, wanneer je bent beperkt of verbannen.',
         'silenced' => 'Je kunt geen berichten verzenden als je op stil staat, bent beperkt of bent verbannen.',
@@ -194,15 +194,15 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
+                'already_member' => "Je zit al in dit team.",
+                'already_other_member' => "Je zit al in een ander team.",
                 'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'team_closed' => 'Dit team is gesloten. Op dit moment kan je niet vragen om lid te worden.',
+                'team_full' => "Dit team zit vol. Het kan geen nieuwe leden toelaten.",
             ],
         ],
         'part' => [
-            'is_leader' => "",
+            'is_leader' => "De teamcaptain kan het team niet verlaten.",
             'not_member' => '',
         ],
         'store' => [

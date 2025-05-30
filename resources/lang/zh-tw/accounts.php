@@ -43,7 +43,7 @@ return [
             'title' => '個人檔案',
 
             'country_change' => [
-                '_' => "您帳號的國家/地區似乎與您的所在地不符。:update_link。",
+                '_' => "您的帳號的國家/地區似乎與您的所在地不符。:update_link。",
                 'update_link' => '更新為 :country',
             ],
 
@@ -86,9 +86,10 @@ return [
         'options' => [
             '_' => '傳送選項',
             'beatmap_owner_change' => '客串難度',
-            'beatmapset:modding' => '圖譜模圖',
+            'beatmapset:modding' => '圖譜製作',
             'channel_message' => '私訊',
-            'comment_new' => '新留言',
+            'channel_team' => '',
+            'comment_new' => '新評論',
             'forum_topic_reply' => '主題回覆',
             'mail' => '郵件',
             'mapping' => '譜師',
@@ -97,7 +98,7 @@ return [
     ],
 
     'oauth' => [
-        'authorized_clients' => '已授權用戶端',
+        'authorized_clients' => '已授權客戶端',
         'own_clients' => '擁有的用戶端',
         'title' => 'OAuth',
     ],

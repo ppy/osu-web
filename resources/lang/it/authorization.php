@@ -62,7 +62,7 @@ return [
 
     'beatmap_tag' => [
         'store' => [
-            'no_score' => 'Devi fare un punteggio su una beatmap per aggiungere un tag.',
+            'no_score' => 'Devi fare un punteggio su una beatmap per assegnare un\'etichetta.',
         ],
     ],
 

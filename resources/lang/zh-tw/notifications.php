@@ -123,6 +123,16 @@ return [
                     'channel_message_group' => '來自 :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -167,8 +177,13 @@ return [
 
                 'team_application_accept' => "你現在是 :title 團隊的成員了",
                 'team_application_accept_compact' => "你現在是 :title 團隊的成員了",
+
+                'team_application_group' => '',
+
                 'team_application_reject' => '你加入 :title 團隊的請求已被拒絕',
                 'team_application_reject_compact' => '你加入 :title 團隊的請求已被拒絕',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -230,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '在 ":name" 中有一條新通知',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => '您收到了來自 :username 的新訊息',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -260,6 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "你現在是 :title 團隊的成員了",
                 'team_application_reject' => '你加入 :title 團隊的請求已被拒絕',
+                'team_application_store' => '',
             ],
         ],
 

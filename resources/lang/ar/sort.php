@@ -37,6 +37,12 @@ return [
         'new' => 'الرد الأخير',
     ],
 
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
+    ],
+
     'users' => [
         'relevance' => 'الصِلة',
         'username' => 'الإسم',

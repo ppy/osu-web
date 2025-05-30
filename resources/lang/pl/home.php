@@ -26,6 +26,9 @@ return [
         'placeholder' => 'wpisz, by rozpocząć wyszukiwanie',
         'title' => 'wyszukiwarka',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Zaloguj się, aby wyszukać beatmapy',
             'more' => 'Zobacz więcej wyszukanych beatmap: :count',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'wszystko',
+            'artist_track' => '',
             'beatmapset' => 'beatmapa',
             'forum_post' => 'forum',
+            'team' => '',
             'user' => 'użytkownik',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

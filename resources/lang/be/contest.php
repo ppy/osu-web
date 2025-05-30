@@ -16,7 +16,7 @@ return [
     'judge' => [
         'comments' => 'каментарыі',
         'hide_judged' => '',
-        'nav_title' => '',
+        'nav_title' => 'суддзя',
         'no_current_vote' => 'вы яшчэ не прагаласавалі.',
         'update' => 'абнавіць',
         'validation' => [

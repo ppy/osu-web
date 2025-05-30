@@ -37,6 +37,12 @@ return [
         'new' => 'Laatste antwoord',
     ],
 
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
+    ],
+
     'users' => [
         'relevance' => 'Relevantie',
         'username' => 'Naam',

@@ -314,8 +314,8 @@ return [
                     'title' => 'Recent gespeeld',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Replays Gekeken Geschiedenis',
-                    'count_label' => 'Replays Bekeken',
+                    'title' => 'Kijkgeschiedenis Replays',
+                    'count_label' => 'Aantal Replays Bekeken',
                 ],
             ],
             'kudosu' => [
@@ -390,7 +390,7 @@ return [
                 'title' => 'Multiplayerspellen',
             ],
             'top_ranks' => [
-                'download_replay' => 'Download Replay',
+                'download_replay' => 'Replay Downloaden',
                 'not_ranked' => 'Enkel gerankte beatmaps geven pp.',
                 'pp_weight' => 'gewogen :percentage',
                 'view_details' => 'Details Bekijken',

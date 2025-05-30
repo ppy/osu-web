@@ -140,7 +140,7 @@ return [
             'description' => 'Description',
             'genre' => 'Genre',
             'language' => 'Langue',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Tags du mappeur',
             'no_scores' => 'Les données sont encore en cours de calcul...',
             'nominators' => 'Nominateurs',
             'nsfw' => 'Contenu explicite',
@@ -149,7 +149,7 @@ return [
             'source' => 'Source',
             'storyboard' => 'Cette beatmap contient un storyboard',
             'success-rate' => 'Taux de réussite',
-            'user_tags' => '',
+            'user_tags' => 'Tags des joueurs',
             'video' => 'Cette beatmap contient une vidéo',
         ],
 

@@ -88,6 +88,7 @@ return [
             'beatmap_owner_change' => 'درجه سختی میهمان',
             'beatmapset:modding' => 'مودینگ بیت مپ',
             'channel_message' => 'پیام های خصوصی چت',
+            'channel_team' => '',
             'comment_new' => 'نظرات جدید',
             'forum_topic_reply' => 'پاسخ موضوع',
             'mail' => 'ایمیل',

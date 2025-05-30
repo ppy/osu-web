@@ -135,7 +135,7 @@ return [
 
             'columns' => [
                 'action' => '',
-                'date' => '',
+                'date' => 'תאריך',
                 'user' => '',
             ],
 

@@ -37,7 +37,7 @@ return [
         'charts' => 'Spotlights (alt)',
         'country' => 'Länder',
         'daily_challenge' => 'Tägliche Herausforderung',
-        'global' => '',
+        'global' => 'Global',
         'kudosu' => 'Kudosu',
         'multiplayer' => 'Mehrspieler',
         'seasons' => 'Seasons',

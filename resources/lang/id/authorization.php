@@ -14,11 +14,11 @@ return [
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Pemberian hype tidak dapat diurungkan.',
-            'has_reply' => 'Tidak dapat menghapus topik diskusi yang mempunyai balasan',
+            'has_reply' => 'Topik diskusi yang memiliki balasan tidak dapat dihapus',
         ],
         'nominate' => [
-            'exhausted' => 'Anda telah mencapai batas nominasi Anda untuk hari ini, silakan coba lagi besok.',
-            'incorrect_state' => 'Terjadi kesalahan pada saat melangsungkan tindakan. Silakan muat ulang laman.',
+            'exhausted' => 'Kamu telah mencapai batas nominasi kamu untuk hari ini. Silakan coba lagi besok.',
+            'incorrect_state' => 'Terdapat kesalahan pada saat melangsungkan tindakan ini. Cobalah untuk memuat ulang halaman.',
             'owner' => "Tidak dapat menominasikan beatmap buatan sendiri.",
             'set_metadata' => 'Kamu harus terlebih dahulu menentukan aliran dan bahasa sebelum memberikan nominasi.',
         ],
@@ -198,7 +198,7 @@ return [
                 'already_other_member' => "Kamu sudah menjadi bagian dari tim yang berbeda.",
                 'currently_applying' => 'Kamu memiliki permintaan untuk bergabung ke tim yang belum dijawab.',
                 'team_closed' => 'Tim ini saat ini tidak menerima permintaan untuk bergabung.',
-                'team_full' => "Tim ini sudah penuh dan tidak lagi dapat menerima lebih banyak anggota.",
+                'team_full' => "Tim ini sudah penuh dan tidak lagi dapat menerima anggota baru.",
             ],
         ],
         'part' => [

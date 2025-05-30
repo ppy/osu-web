@@ -37,6 +37,12 @@ return [
         'new' => 'Son yanıt',
     ],
 
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
+    ],
+
     'users' => [
         'relevance' => 'Alaka düzeyi',
         'username' => 'İsim',

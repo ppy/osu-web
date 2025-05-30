@@ -6,159 +6,163 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Gebruiker aan team toegevoegd.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Verzoek ingetrokken.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Verzoek afgewezen.',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Wilt lid worden.',
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
-        'submit' => '',
+        'submit' => 'Team Aanmaken',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => 'Hoe je team heet. Voor nu kan je het niet veranderen.',
+            'short_name_help' => 'Maximaal vier letters.',
+            'title' => "Zullen we een team opzetten? ",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "Speel samen met je vrienden; bekend of nieuw. Je bent nog niet lid van een team. Word lid van een bestaand team door hun pagina te bezoeken, of maak hier je eigen team.",
+            'title' => 'Team!',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Team verwijderd.',
     ],
 
     'edit' => [
-        'ok' => '',
-        'title' => '',
+        'ok' => 'De instellingen zijn opgeslagen.',
+        'title' => 'Teaminstellingen',
 
         'description' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Beschrijving',
+            'title' => 'Teambeschrijving',
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Teamvlag',
+            'title' => 'Teamvlag instellen',
         ],
 
         'header' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Bannerafbeelding',
+            'title' => 'Bannerafbeelding instellen',
         ],
 
         'settings' => [
-            'application_help' => '',
-            'default_ruleset_help' => '',
-            'flag_help' => '',
-            'header_help' => '',
-            'title' => '',
+            'application_help' => 'Of mensen mogen vragen om lid te worden van het team',
+            'default_ruleset_help' => 'Deze spelmodus wordt als eerste weergegeven wanneer iemand de pagina van het team bezoekt',
+            'flag_help' => 'Mag maximaal :width×:height groot zijn',
+            'header_help' => 'Mag maximaal :width×:height groot zijn',
+            'title' => 'Teaminstellingen',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => 'Gesloten',
+                'state_1' => 'Open',
             ],
         ],
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'instellingen',
+        'leaderboard' => 'ranglijst',
+        'show' => 'gegevens',
 
         'members' => [
-            'index' => '',
+            'index' => 'leden beheren',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
+        'global_rank' => 'Wereldwijde Ranking',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '',
+            'success' => 'Lidmaatschap is opgeheven',
         ],
 
         'index' => [
-            'title' => '',
+            'title' => 'Leden Beheren',
 
             'applications' => [
-                'accept_confirm' => '',
-                'created_at' => '',
-                'empty' => '',
-                'empty_slots' => '',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
-                'title' => '',
+                'accept_confirm' => 'Gebruiker :user aan het team toevoegen?',
+                'created_at' => 'Ingestuurd',
+                'empty' => 'Op dit moment heeft niemand een verzoek ingestuurd.',
+                'empty_slots' => 'Vrije plaatsen',
+                'empty_slots_overflow' => ':count_delimited te veel|:count_delimited te veel',
+                'reject_confirm' => 'Wil je het verzoek van gebruiker :user afwijzen?',
+                'title' => 'Verzoeken om lid te worden',
             ],
 
             'table' => [
-                'joined_at' => '',
-                'remove' => '',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
-                'status' => '',
-                'title' => '',
+                'joined_at' => 'Lid Geworden Op',
+                'remove' => 'Lidmaatschap Beëindigen',
+                'remove_confirm' => 'De gebruiker :user uit het team gooien?',
+                'set_leader' => 'Benoemen als teamcaptain',
+                'set_leader_confirm' => 'Wil je gebruiker :user teamcaptain maken?',
+                'status' => 'Status',
+                'title' => 'Huidige Leden',
             ],
 
             'status' => [
-                'status_0' => '',
-                'status_1' => '',
+                'status_0' => 'Niet actief',
+                'status_1' => 'Actief',
             ],
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'Gebruiker :user is nu de teamcaptain.',
         ],
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Je bent eruit ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'chat' => '',
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'chat' => 'Teamchat',
+            'destroy' => 'Team Opheffen',
+            'join' => 'Lid Worden',
+            'join_cancel' => 'Verzoek Intrekken',
+            'part' => 'Team Verlaten',
         ],
 
         'info' => [
-            'created' => '',
+            'created' => 'Gesticht',
         ],
 
         'members' => [
-            'members' => '',
-            'owner' => '',
+            'members' => 'Teamleden',
+            'owner' => 'Teamcaptain',
         ],
 
         'sections' => [
-            'about' => '',
-            'info' => '',
-            'members' => '',
+            'about' => 'Over Ons!',
+            'info' => 'Gegevens',
+            'members' => 'Leden',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => 'Ranking',
+            'leader' => 'Teamcaptain',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'Team is aangemaakt.',
     ],
 ];

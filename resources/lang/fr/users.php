@@ -161,13 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Anti-jeu / Triche',
-            'inappropriate_chat' => '',
+            'inappropriate_chat' => 'Comportement inapproprié dans le tchat',
             'insults' => 'M’insulte / insulte les autres',
             'multiple_accounts' => 'Utilisation de plusieurs comptes',
             'nonsense' => 'Absurdités répétées',
             'other' => 'Autre (détaillez ci-dessous)',
             'spam' => 'Spam',
-            'unwanted_content' => 'Envoi de contenu inapproprié',
+            'unwanted_content' => 'Contenu inapproprié',
         ],
     ],
     'restricted_banner' => [
@@ -481,8 +481,8 @@ return [
             'highest' => 'Meilleur rang : :rank le :date',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Score total',
         ],
         'stats' => [
             'hit_accuracy' => 'Précision',

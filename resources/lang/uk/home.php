@@ -26,6 +26,9 @@ return [
         'placeholder' => 'введіть текст для пошуку',
         'title' => 'Пошук',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Увійдіть для пошуку карт',
             'more' => 'більше :count результатів пошуку серед карт',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'всі',
+            'artist_track' => '',
             'beatmapset' => 'бітмапи',
             'forum_post' => 'форум',
+            'team' => '',
             'user' => 'гравці',
             'wiki_page' => 'вікі',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

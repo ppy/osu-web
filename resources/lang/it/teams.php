@@ -19,6 +19,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
         'submit' => 'Crea Squadra',
 
@@ -94,21 +98,21 @@ return [
             'title' => 'Gestisci Membri',
 
             'applications' => [
-                'accept_confirm' => '',
+                'accept_confirm' => 'Vuoi aggiungere l\'utente :user alla squadra?',
                 'created_at' => 'Data',
                 'empty' => 'Nessuna richiesta di partecipazione per ora.',
                 'empty_slots' => 'Posti disponibili',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
+                'empty_slots_overflow' => ':count_delimited utente in eccesso|:count_delimited utenti in eccesso',
+                'reject_confirm' => 'Vuoi rifiutare la richiesta di partecipazione dell\'utente :user?',
                 'title' => 'Richieste di partecipazione',
             ],
 
             'table' => [
                 'joined_at' => 'Data Iscrizione',
                 'remove' => 'Espelli',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
+                'remove_confirm' => 'Vuoi rimuovere l\'utente :user dalla squadra?',
+                'set_leader' => 'Trasferisci gestione della squadra',
+                'set_leader_confirm' => 'Vuoi trasferire la gestione della squadra all\'utente :user?',
                 'status' => 'Stato',
                 'title' => 'Membri Attuali',
             ],
@@ -120,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'L\'utente :user è ora il capitano della squadra.',
         ],
     ],
 
@@ -132,7 +136,7 @@ return [
         'bar' => [
             'chat' => 'Chat della squadra',
             'destroy' => 'Sciogli la squadra',
-            'join' => 'Richiedi Partecipazione',
+            'join' => 'Invia richiesta di partecipazione',
             'join_cancel' => 'Annulla Partecipazione',
             'part' => 'Abbandona squadra',
         ],

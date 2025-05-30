@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'ゲームを支援',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => '情報',
         ],
         'livestreams_controller' => [
             '_' => 'ライブストリーム',
-        ],
-        'matches_controller' => [
-            '_' => 'マッチ',
         ],
         'news_controller' => [
             '_' => 'ニュース',

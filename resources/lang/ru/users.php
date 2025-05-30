@@ -161,13 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Нечестная игра / читы',
-            'inappropriate_chat' => '',
+            'inappropriate_chat' => 'Неподобающее поведение в чате',
             'insults' => 'Оскорбление меня / других',
             'multiple_accounts' => 'Использование нескольких аккаунтов',
             'nonsense' => 'Вздор',
             'other' => 'Другая (напишите ниже)',
             'spam' => 'Спам',
-            'unwanted_content' => 'Ссылки на неприемлемое содержимое',
+            'unwanted_content' => 'Неприемлемый контент',
         ],
     ],
     'restricted_banner' => [
@@ -481,8 +481,8 @@ return [
             'highest' => 'Наивысший: :rank от :date',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'Топ :value',
+            'total_score' => 'Всего очков',
         ],
         'stats' => [
             'hit_accuracy' => 'Точность попаданий',

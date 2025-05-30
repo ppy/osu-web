@@ -20,7 +20,7 @@ return [
         'channel' => 'chatt',
         'forum_topic' => 'forum',
         'news_post' => 'nyheter',
-        'team' => '',
+        'team' => 'lag',
         'user' => 'profil',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'chatt',
         'forum_topic' => 'forum',
         'news_post' => 'nyheter',
-        'team' => '',
+        'team' => 'lag ',
         'user' => 'profil',
     ],
 
@@ -59,9 +59,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'Diskussionen låstes upp',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited beröm |:count_delimited beröm',
+                    'problems' => ':count_delimited problem|:count_delimited  problem',
+                    'suggestions' => ':count_delimited förslag|:count_delimited förslag ',
                 ],
             ],
 
@@ -123,6 +123,16 @@ return [
                     'channel_message_group' => 'från :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -163,12 +173,17 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Lagmedlemskapsberäran ',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
+                'team_application_accept' => "Du är nu medlem i laget :title",
+                'team_application_accept_compact' => "Du är nu medlem i laget :title",
+
+                'team_application_group' => '',
+
+                'team_application_reject' => 'Din begäran om att gå med i team :title har avböjts',
+                'team_application_reject_compact' => 'Din begäran om att gå med i team :title har avböjts',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -230,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Det finns ett nytt meddelande i ":name"',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => 'Du har fått ett nytt meddelande från :username',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -258,8 +275,9 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
+                'team_application_accept' => "Du är nu medlem i laget :title",
+                'team_application_reject' => 'Din begäran om att gå med i team :title har avböjts',
+                'team_application_store' => '',
             ],
         ],
 

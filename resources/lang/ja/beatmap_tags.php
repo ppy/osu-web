@@ -5,6 +5,6 @@
 
 return [
     'update' => [
-        'invalid_ruleset' => '',
+        'invalid_ruleset' => 'このタグはこのビートマップでは使用できません。',
     ],
 ];

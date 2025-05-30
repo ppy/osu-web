@@ -161,7 +161,7 @@ return [
 
         'options' => [
             'cheating' => '違規 / 作弊',
-            'inappropriate_chat' => '',
+            'inappropriate_chat' => '不適當的聊天行為',
             'insults' => '侮辱我 / 其他人',
             'multiple_accounts' => '使用多個帳號',
             'nonsense' => '無意義內容',
@@ -481,8 +481,8 @@ return [
             'highest' => '最高排名:rank於:date',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => '前 :value',
+            'total_score' => '總分',
         ],
         'stats' => [
             'hit_accuracy' => '準確率',

@@ -88,6 +88,7 @@ return [
             'beatmap_owner_change' => 'δυσκολία επισκέπτη',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'ιδιωτικά μηνύματα',
+            'channel_team' => '',
             'comment_new' => 'νέα σχόλια',
             'forum_topic_reply' => 'απάντηση θέματος',
             'mail' => 'mail',

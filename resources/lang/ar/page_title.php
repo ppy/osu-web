@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'أِدعَم اللعبة',
             'testflight' => 'مشروع الأختبار',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'المعلومات',
         ],
         'livestreams_controller' => [
             '_' => 'البث المباشر',
-        ],
-        'matches_controller' => [
-            '_' => 'المباريات',
         ],
         'news_controller' => [
             '_' => 'الأخبار',

@@ -5,15 +5,16 @@
 
 return [
     'mode' => [
+        'artist_track' => '',
         'beatmapset' => '圖譜',
         'forum_post' => '論壇',
         'other' => '其他',
+        'team' => '',
         'user' => '玩家',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => '沒有任何搜尋結果',
         'empty_for' => '沒有找到:modes搜尋結果',
         'more' => '更多:mode的搜尋結果',
         'title' => ':mode搜尋結果',

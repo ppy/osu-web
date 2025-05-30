@@ -123,6 +123,16 @@ return [
                     'channel_message_group' => ':username님으로 부터',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -167,8 +177,13 @@ return [
 
                 'team_application_accept' => "당신은 이제 :title 팀의 멤버입니다.",
                 'team_application_accept_compact' => "당신은 이제 :title 팀의 멤버입니다.",
+
+                'team_application_group' => '',
+
                 'team_application_reject' => '팀 :title에 보낸 가입 요청이 거부되었습니다.',
                 'team_application_reject_compact' => '팀 :title에 보낸 가입 요청이 거부되었습니다.',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -230,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '":name"에 새로운 공지가 있습니다',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => ':username님에게 새로운 메시지를 받았습니다.',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -260,6 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "당신은 이제 :title 팀의 멤버입니다.",
                 'team_application_reject' => '팀 :title에 보낸 가입 요청이 거부되었습니다.',
+                'team_application_store' => '',
             ],
         ],
 

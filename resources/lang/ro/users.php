@@ -161,7 +161,7 @@ return [
 
         'options' => [
             'cheating' => 'Trișat',
-            'inappropriate_chat' => '',
+            'inappropriate_chat' => 'Comportament necorespunzător în conversații',
             'insults' => 'M-a insultat pe mine / pe alții',
             'multiple_accounts' => 'Utilizarea mai multor conturi',
             'nonsense' => 'Nonsens',
@@ -481,8 +481,8 @@ return [
             'highest' => 'Rang maxim :rank atins pe :date',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Scor total',
         ],
         'stats' => [
             'hit_accuracy' => 'Precizie',

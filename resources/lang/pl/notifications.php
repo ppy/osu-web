@@ -123,6 +123,16 @@ return [
                     'channel_message_group' => 'od użytkownika :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -167,8 +177,13 @@ return [
 
                 'team_application_accept' => "Jesteś teraz członkiem drużyny :title",
                 'team_application_accept_compact' => "Jesteś teraz członkiem drużyny :title",
+
+                'team_application_group' => '',
+
                 'team_application_reject' => 'Twoja prośba o dołączenie do drużyny :title została odrzucona',
                 'team_application_reject_compact' => 'Twoja prośba o dołączenie do drużyny :title została odrzucona',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -230,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Nowe ogłoszenie w pokoju „:name” ',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => 'Otrzymujesz nową wiadomość od użytkownika :username',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -260,6 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Jesteś teraz członkiem drużyny :title",
                 'team_application_reject' => 'Jesteś teraz członkiem drużyny :title',
+                'team_application_store' => '',
             ],
         ],
 
