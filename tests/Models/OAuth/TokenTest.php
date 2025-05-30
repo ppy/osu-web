@@ -17,7 +17,7 @@ use Tests\TestCase;
 
 class TokenTest extends TestCase
 {
-    public static function authCodeChatWriteRequiresBotGroupDataProvider()
+    public static function dataProviderForTestAuthCodeChatWriteRequiresBotGroup()
     {
         return [
             [null, InvalidScopeException::class],
@@ -29,7 +29,7 @@ class TokenTest extends TestCase
         ];
     }
 
-    public static function delegationNotAllowedScopesDataProvider()
+    public static function dataProviderForTestDelegationNotAllowedScopes()
     {
         return Passport::scopes()
             ->pluck('id')
@@ -38,7 +38,7 @@ class TokenTest extends TestCase
             ->values();
     }
 
-    public static function delegationRequiredScopesDataProvider()
+    public static function dataProviderForTestDelegationRequiredScopes()
     {
         return [
             'chat.write requires delegation' => [['chat.write'], InvalidScopeException::class],
@@ -46,7 +46,7 @@ class TokenTest extends TestCase
         ];
     }
 
-    public static function delegationRequiresChatBotDataProvider()
+    public static function dataProviderForTestDelegationRequiresChatBot()
     {
         return [
             [null, InvalidScopeException::class],
@@ -58,7 +58,7 @@ class TokenTest extends TestCase
         ];
     }
 
-    public static function scopesDataProvider()
+    public static function dataProviderForTestScopes()
     {
         return [
             'null is not a valid scope' => [null, InvalidScopeException::class],
@@ -67,7 +67,7 @@ class TokenTest extends TestCase
         ];
     }
 
-    public static function scopesClientCredentialsDataProvider()
+    public static function dataProviderForTestScopesClientCredentials()
     {
         return [
             'null is not a valid scope' => [null, InvalidScopeException::class],
@@ -89,7 +89,7 @@ class TokenTest extends TestCase
     }
 
     /**
-     * @dataProvider authCodeChatWriteRequiresBotGroupDataProvider
+     * @dataProvider dataProviderForTestAuthCodeChatWriteRequiresBotGroup
      */
     public function testAuthCodeChatWriteRequiresBotGroup(?string $group, ?string $expectedException)
     {
@@ -142,7 +142,7 @@ class TokenTest extends TestCase
     }
 
     /**
-     * @dataProvider delegationNotAllowedScopesDataProvider
+     * @dataProvider dataProviderForTestDelegationNotAllowedScopes
      */
     public function testDelegationNotAllowedScopes(array $scopes)
     {
@@ -154,7 +154,7 @@ class TokenTest extends TestCase
     }
 
     /**
-     * @dataProvider delegationRequiredScopesDataProvider
+     * @dataProvider dataProviderForTestDelegationRequiredScopes
      */
     public function testDelegationRequiredScopes(array $scopes, ?string $expectedException)
     {
@@ -171,7 +171,7 @@ class TokenTest extends TestCase
     }
 
     /**
-     * @dataProvider delegationRequiresChatBotDataProvider
+     * @dataProvider dataProviderForTestDelegationRequiresChatBot
      */
     public function testDelegationRequiresChatBot(?string $group, ?string $expectedException)
     {
@@ -189,7 +189,7 @@ class TokenTest extends TestCase
     }
 
     /**
-     * @dataProvider scopesDataProvider
+     * @dataProvider dataProviderForTestScopes
      *
      * @return void
      */
@@ -216,7 +216,7 @@ class TokenTest extends TestCase
     }
 
     /**
-     * @dataProvider scopesClientCredentialsDataProvider
+     * @dataProvider dataProviderForTestScopesClientCredentials
      *
      * @return void
      */
