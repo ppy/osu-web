@@ -17,6 +17,65 @@ use Tests\TestCase;
 
 class TokenTest extends TestCase
 {
+    public static function authCodeChatWriteRequiresBotGroupDataProvider()
+    {
+        return [
+            [null, InvalidScopeException::class],
+            ['admin', InvalidScopeException::class],
+            ['bng', InvalidScopeException::class],
+            ['bot', null],
+            ['gmt', InvalidScopeException::class],
+            ['nat', InvalidScopeException::class],
+        ];
+    }
+
+    public static function delegationNotAllowedScopesDataProvider()
+    {
+        return Passport::scopes()
+            ->pluck('id')
+            ->filter(fn ($id) => !in_array($id, ['chat.write', 'delegate'], true))
+            ->map(fn ($id) => [['delegate', $id]])
+            ->values();
+    }
+
+    public static function delegationRequiredScopesDataProvider()
+    {
+        return [
+            'chat.write requires delegation' => [['chat.write'], InvalidScopeException::class],
+            'chat.write delegation' => [['chat.write', 'delegate'], null],
+        ];
+    }
+
+    public static function delegationRequiresChatBotDataProvider()
+    {
+        return [
+            [null, InvalidScopeException::class],
+            ['admin', InvalidScopeException::class],
+            ['bng', InvalidScopeException::class],
+            ['bot', null],
+            ['gmt', InvalidScopeException::class],
+            ['nat', InvalidScopeException::class],
+        ];
+    }
+
+    public static function scopesDataProvider()
+    {
+        return [
+            'null is not a valid scope' => [null, InvalidScopeException::class],
+            'empty scope should fail' => [[], InvalidScopeException::class],
+            'all scope is allowed' => [['*'], null],
+        ];
+    }
+
+    public static function scopesClientCredentialsDataProvider()
+    {
+        return [
+            'null is not a valid scope' => [null, InvalidScopeException::class],
+            'empty scope should fail' => [[], InvalidScopeException::class],
+            'all scope is not allowed' => [['*'], InvalidScopeException::class],
+        ];
+    }
+
     public function testAuthCodeChatWriteAllowsSelf()
     {
         $user = User::factory()->create();
@@ -190,64 +249,5 @@ class TokenTest extends TestCase
         $this->assertTrue($refreshToken->fresh()->revoked);
         $this->assertTrue($token->fresh()->revoked);
         Event::assertDispatched(UserSessionEvent::class, fn (UserSessionEvent $event) => $event->action === 'logout');
-    }
-
-    public static function authCodeChatWriteRequiresBotGroupDataProvider()
-    {
-        return [
-            [null, InvalidScopeException::class],
-            ['admin', InvalidScopeException::class],
-            ['bng', InvalidScopeException::class],
-            ['bot', null],
-            ['gmt', InvalidScopeException::class],
-            ['nat', InvalidScopeException::class],
-        ];
-    }
-
-    public static function delegationNotAllowedScopesDataProvider()
-    {
-        return Passport::scopes()
-            ->pluck('id')
-            ->filter(fn ($id) => !in_array($id, ['chat.write', 'delegate'], true))
-            ->map(fn ($id) => [['delegate', $id]])
-            ->values();
-    }
-
-    public static function delegationRequiredScopesDataProvider()
-    {
-        return [
-            'chat.write requires delegation' => [['chat.write'], InvalidScopeException::class],
-            'chat.write delegation' => [['chat.write', 'delegate'], null],
-        ];
-    }
-
-    public static function delegationRequiresChatBotDataProvider()
-    {
-        return [
-            [null, InvalidScopeException::class],
-            ['admin', InvalidScopeException::class],
-            ['bng', InvalidScopeException::class],
-            ['bot', null],
-            ['gmt', InvalidScopeException::class],
-            ['nat', InvalidScopeException::class],
-        ];
-    }
-
-    public static function scopesDataProvider()
-    {
-        return [
-            'null is not a valid scope' => [null, InvalidScopeException::class],
-            'empty scope should fail' => [[], InvalidScopeException::class],
-            'all scope is allowed' => [['*'], null],
-        ];
-    }
-
-    public static function scopesClientCredentialsDataProvider()
-    {
-        return [
-            'null is not a valid scope' => [null, InvalidScopeException::class],
-            'empty scope should fail' => [[], InvalidScopeException::class],
-            'all scope is not allowed' => [['*'], InvalidScopeException::class],
-        ];
     }
 }
