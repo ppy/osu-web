@@ -26,6 +26,9 @@ return [
         'placeholder' => 'rašykite, kad ieškoti',
         'title' => 'paieška',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Prisijunkite, kad ieškoti bitmapų',
             'more' => ':count dar beatmap\'ų paieškos rezultatų',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'visi',
+            'artist_track' => '',
             'beatmapset' => 'beatmap\'as',
             'forum_post' => 'forumas',
+            'team' => '',
             'user' => 'žaidėjas',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

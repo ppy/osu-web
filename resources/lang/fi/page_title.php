@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'tue peliä',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'tiedot',
         ],
         'livestreams_controller' => [
             '_' => 'suorat lähetykset',
-        ],
-        'matches_controller' => [
-            '_' => 'ottelut',
         ],
         'news_controller' => [
             '_' => 'uutiset',

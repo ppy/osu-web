@@ -140,7 +140,7 @@ return [
             'description' => '概要',
             'genre' => 'ジャンル',
             'language' => '言語',
-            'mapper_tags' => '',
+            'mapper_tags' => 'マッパータグ',
             'no_scores' => 'データはまだ計算中です・・・',
             'nominators' => 'ノミネーター',
             'nsfw' => '過激な表現を含むコンテンツ',
@@ -149,7 +149,7 @@ return [
             'source' => 'ソース',
             'storyboard' => 'このビートマップにはストーリーボードが含まれています',
             'success-rate' => 'クリア率',
-            'user_tags' => '',
+            'user_tags' => 'ユーザータグ',
             'video' => 'このビートマップには動画が含まれています',
         ],
 

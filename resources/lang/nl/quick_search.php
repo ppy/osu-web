@@ -5,15 +5,16 @@
 
 return [
     'mode' => [
+        'artist_track' => '',
         'beatmapset' => 'Beatmap',
         'forum_post' => 'Forum',
         'other' => 'Anders',
+        'team' => '',
         'user' => 'Speler',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => 'Geen resultaten',
         'empty_for' => 'Geen resultaten voor :modes',
         'more' => 'Meer :mode zoekresultaten',
         'title' => ':mode zoekresultaten',

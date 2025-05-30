@@ -27,7 +27,7 @@ return [
 
         'legacy_api' => [
             'api' => 'api',
-            'irc' => 'irc',
+            'irc' => 'irc,',
             'title' => 'Legacy API',
         ],
 
@@ -88,6 +88,7 @@ return [
             'beatmap_owner_change' => 'gästsvårighetsgrad',
             'beatmapset:modding' => 'beatmapmodding',
             'channel_message' => 'privata chattmeddelanden',
+            'channel_team' => '',
             'comment_new' => 'nya kommentarer',
             'forum_topic_reply' => 'ämnessvar',
             'mail' => 'e-post',

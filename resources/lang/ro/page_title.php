@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'sprijină jocul',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'informație',
         ],
         'livestreams_controller' => [
             '_' => 'fluxuri live',
-        ],
-        'matches_controller' => [
-            '_' => 'potriviri',
         ],
         'news_controller' => [
             '_' => 'noutăți',

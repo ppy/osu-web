@@ -19,6 +19,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
         'submit' => 'Vytvořit tým',
 
@@ -94,21 +98,21 @@ return [
             'title' => 'Spravovat členy',
 
             'applications' => [
-                'accept_confirm' => '',
+                'accept_confirm' => 'Přidat uživatele :user do týmu?',
                 'created_at' => 'Žádost vytvořena',
                 'empty' => 'Momentálně nemáte žádné žádosti o připojení.',
                 'empty_slots' => 'Dostupná místa',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
+                'empty_slots_overflow' => ':count_delimited uživatel nad limit|:count_delimited uživatelé nad limit|:count_delimited uživatelů nad limit',
+                'reject_confirm' => 'Odmítnout žádost o připojení od uživatele :user?',
                 'title' => 'Žádosti o připojení',
             ],
 
             'table' => [
                 'joined_at' => 'Členem od',
                 'remove' => 'Odebrat',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
+                'remove_confirm' => 'Odebrat uživatele :user z týmu?',
+                'set_leader' => 'Převést vedení týmu',
+                'set_leader_confirm' => 'Převést vedení týmu na uživatele :user?',
                 'status' => 'Stav',
                 'title' => 'Aktuální členové',
             ],
@@ -120,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'Uživatel :user je nyní vedoucím týmu.',
         ],
     ],
 

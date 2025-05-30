@@ -6,7 +6,7 @@
 return [
     'button' => [
         'resend' => '重新发送确认邮件',
-        'set' => '设置密码',
+        'set' => '重设密码',
         'start' => '开始',
     ],
 
@@ -14,7 +14,7 @@ return [
         'contact_support' => '请联系支持团队以找回账户。',
         'expired' => '验证码已过期。',
         'invalid' => '发送验证码时出现意外错误。',
-        'is_privileged' => '联系 peppy（笑）',
+        'is_privileged' => '请联系高级管理员进行账户恢复。',
         'missing_key' => '必填',
         'too_many_tries' => '重试次数过多',
         'user_not_found' => '请求的用户不存在',
@@ -23,7 +23,7 @@ return [
 
     'notice' => [
         'sent' => '检查您邮箱中的验证码',
-        'saved' => '新密码已经保存！',
+        'saved' => '密码已重设！',
     ],
 
     'started' => [

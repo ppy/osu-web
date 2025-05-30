@@ -37,6 +37,12 @@ return [
         'new' => 'Posljednji odgovor',
     ],
 
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
+    ],
+
     'users' => [
         'relevance' => 'Relevantnost',
         'username' => 'Ime',

@@ -80,14 +80,14 @@ return [
             'support_the_game' => '贊助 osu!',
             'testflight' => 'testflight 測試',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => '資訊',
         ],
         'livestreams_controller' => [
             '_' => '直播',
-        ],
-        'matches_controller' => [
-            '_' => '對戰',
         ],
         'news_controller' => [
             '_' => '新聞',

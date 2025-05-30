@@ -5,11 +5,11 @@
 
 return [
     'show' => [
-        'non_preserved' => '已标记删除此分数，不久后它将消失。',
+        'non_preserved' => '该成绩已被标记为删除，不久后它将消失。',
         'title' => ':username 在 :title [:version] 上的成绩',
 
         'beatmap' => [
-            'by' => 'by :artist',
+            'by' => '- :artist',
         ],
 
         'player' => [
@@ -24,9 +24,9 @@ return [
     ],
 
     'status' => [
-        'non_best' => '只有个人最好成绩才能获取到 pp',
-        'no_pp' => '该分数没有 pp',
-        'processing' => '此分数仍在计算中，即将显示',
-        'no_rank' => '因为此分数不参与排名或标记为删除，所以它没有排名。',
+        'non_best' => '只有个人最好成绩才能获取到表现分（PP）',
+        'no_pp' => '该分数没有表现分（PP）',
+        'processing' => '该成绩仍在计算中，即将显示',
+        'no_rank' => '该成绩未获得排名（谱面未上架或成绩已标记为删除）',
     ],
 ];

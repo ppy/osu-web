@@ -26,6 +26,9 @@ return [
         'placeholder' => 'пішыце тут',
         'title' => 'Пошук',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Увайдзіце, каб шукаць бітмапы',
             'more' => 'больш :count вынікаў пошуку бітмап',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'усе',
+            'artist_track' => '',
             'beatmapset' => 'бітмапы',
             'forum_post' => 'форум',
+            'team' => '',
             'user' => 'гульцы',
             'wiki_page' => 'вікі',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

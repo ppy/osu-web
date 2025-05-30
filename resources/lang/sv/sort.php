@@ -37,6 +37,12 @@ return [
         'new' => 'Senaste svar',
     ],
 
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
+    ],
+
     'users' => [
         'relevance' => 'Relevans',
         'username' => 'Namn',

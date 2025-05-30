@@ -19,6 +19,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
         'submit' => 'Team erstellen',
 
@@ -94,21 +98,21 @@ return [
             'title' => 'Mitglieder verwalten',
 
             'applications' => [
-                'accept_confirm' => '',
+                'accept_confirm' => ':user zum Team hinzufügen?',
                 'created_at' => 'Anfrage am',
                 'empty' => 'Keine Beitrittsanfragen zurzeit.',
                 'empty_slots' => 'Verfügbare Plätze',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
+                'empty_slots_overflow' => ':count_delimited Benutzer zu viel|:count_delimited Benutzer zu viel',
+                'reject_confirm' => 'Beitrittsanfrage von :user ablehnen?',
                 'title' => 'Beitrittsanfragen',
             ],
 
             'table' => [
                 'joined_at' => 'Beitrittsdatum',
                 'remove' => 'Entfernen',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
+                'remove_confirm' => ':user aus dem Team entfernen?',
+                'set_leader' => 'Teamleitung übertragen',
+                'set_leader_confirm' => 'Teamführung auf :user übertragen?',
                 'status' => 'Status',
                 'title' => 'Aktuelle Mitglieder',
             ],
@@ -120,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => ':user ist jetzt Teamleiter.',
         ],
     ],
 

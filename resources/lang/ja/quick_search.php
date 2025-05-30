@@ -5,15 +5,16 @@
 
 return [
     'mode' => [
+        'artist_track' => '',
         'beatmapset' => 'ビートマップ',
         'forum_post' => 'フォーラム',
         'other' => 'その他',
+        'team' => '',
         'user' => 'プレイヤー',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => '該当結果なし',
         'empty_for' => ':modes の結果なし',
         'more' => 'その他の :mode 検索結果',
         'title' => ':mode の検索結果',

@@ -26,6 +26,9 @@ return [
         'placeholder' => '输入以搜索',
         'title' => '搜索',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => '登录以搜索谱面',
             'more' => '搜索到 :count 张谱面',
@@ -51,22 +54,28 @@ return [
 
         'mode' => [
             'all' => '所有',
+            'artist_track' => '',
             'beatmapset' => '谱面',
             'forum_post' => '论坛',
+            'team' => '',
             'user' => '玩家',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [
             'login_required' => '登录以搜索玩家',
             'more' => '搜索到 :count 个玩家',
             'more_simple' => '查看更多搜索结果',
-            'more_hidden' => '玩家搜索结果超出 :max 个限制，请修改搜索内容。',
+            'more_hidden' => '玩家搜索结果上限为 :max 个，请优化搜索条件以获取更精准结果。',
             'title' => '玩家',
         ],
 
         'wiki_page' => [
-            'link' => '在 Wiki 中搜索',
+            'link' => '在 wiki 中搜索',
             'more_simple' => '查看更多搜索结果',
             'title' => 'Wiki',
         ],
@@ -76,7 +85,7 @@ return [
         'action' => '下载 osu!',
         'action_lazer' => '下载 osu!(lazer)',
         'action_lazer_description' => 'osu! 的下一个主要更新',
-        'action_lazer_info' => '详情请查阅这个页面',
+        'action_lazer_info' => '更多详情请查阅本页面',
         'action_lazer_title' => '尝试 osu!(lazer)',
         'action_title' => '下载 osu!',
         'for_os' => '适用于 :os',
@@ -86,19 +95,19 @@ return [
         'os_version_or_later' => ':os_version 或更高版本',
         'other_os' => '其他平台',
         'quick_start_guide' => '快速入门指南',
-        'tagline' => "让我们<br>开始吧！",
+        'tagline' => "准备好开始你的节奏之旅吧！",
         'video-guide' => '视频教程',
 
         'help' => [
-            '_' => '如果您在开始游戏或注册账户时遇到问题，请 :help_forum_link 或 :support_button。',
-            'help_forum_link' => '查看帮助论坛',
+            '_' => '如果您在启动游戏或注册账户时遇到问题，请 :help_forum_link 或 :support_button。',
+            'help_forum_link' => '查看论坛帮助板块',
             'support_button' => '联系支持团队',
         ],
 
         'os' => [
-            'windows' => 'Windows 版',
-            'macos' => 'macOS 版',
-            'linux' => 'Linux 版',
+            'windows' => '适用于 Windows',
+            'macos' => '适用于 macOS',
+            'linux' => '适用于 Linux',
         ],
         'steps' => [
             'register' => [
@@ -107,12 +116,12 @@ return [
             ],
             'download' => [
                 'title' => '安装游戏',
-                'description' => '点击上面的按钮下载安装器，然后运行它！',
+                'description' => '点击上方按钮下载安装程序，双击文件开启节奏宇宙！',
             ],
             'beatmaps' => [
                 'title' => '下载谱面',
                 'description' => [
-                    '_' => ':browse 玩家们创造的谱面然后开始游戏吧！',
+                    '_' => ':browse 玩家们创造的谱面然后开始你的节奏之旅吧！',
                     'browse' => '浏览',
                 ],
             ],

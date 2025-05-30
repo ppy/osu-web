@@ -123,6 +123,16 @@ return [
                     'channel_message_group' => 'od :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -167,8 +177,13 @@ return [
 
                 'team_application_accept' => "Jsi nyní členem týmu :title",
                 'team_application_accept_compact' => "Jsi nyní členem týmu :title",
+
+                'team_application_group' => '',
+
                 'team_application_reject' => 'Tvoje žádost o připojení k týmu :title byla zamítnuta',
                 'team_application_reject_compact' => 'Tvoje žádost o připojení k týmu :title byla zamítnuta',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -230,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Nové oznámení v „:name“',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => 'Obdrželi jste novou zprávu od :username',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -260,6 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Jsi nyní členem týmu :title",
                 'team_application_reject' => 'Tvoje žádost o připojení k týmu :title byla zamítnuta',
+                'team_application_store' => '',
             ],
         ],
 

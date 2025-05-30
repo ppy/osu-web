@@ -5,15 +5,16 @@
 
 return [
     'mode' => [
+        'artist_track' => '',
         'beatmapset' => 'Beatmap',
         'forum_post' => 'Φόρουμ',
         'other' => 'Άλλο',
+        'team' => '',
         'user' => 'Παίκτης',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => 'Κανένα αποτέλεσμα',
         'empty_for' => 'Δεν υπάρχουν αποτελέσματα για :modes',
         'more' => 'Περισσότερα Αποτελέσματα Αναζήτησης :mode',
         'title' => 'Αποτελέσματα Αναζήτησης:mode',

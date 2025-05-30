@@ -19,6 +19,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
         'submit' => 'Cipta Pasukan',
 
@@ -94,11 +98,11 @@ return [
             'title' => 'Urus Ahli',
 
             'applications' => [
-                'accept_confirm' => '',
+                'accept_confirm' => 'Tambah pengguna :user ke pasukan?',
                 'created_at' => 'Diminta pada',
                 'empty' => 'Tiada permintaan masuk pada masa ini.',
                 'empty_slots' => 'Slot tersedia',
-                'empty_slots_overflow' => '',
+                'empty_slots_overflow' => ':count_delimited pengguna limpahan',
                 'reject_confirm' => '',
                 'title' => 'Permintaan Masuk',
             ],

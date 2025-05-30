@@ -37,6 +37,12 @@ return [
         'new' => 'Legutóbbi válasz',
     ],
 
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
+    ],
+
     'users' => [
         'relevance' => 'Relevancia',
         'username' => 'Név',

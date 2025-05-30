@@ -37,11 +37,11 @@ return [
         'charts' => 'Destaques',
         'country' => 'país',
         'daily_challenge' => 'desafio diário',
-        'global' => '',
+        'global' => 'global',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multijogador',
         'seasons' => 'temporadas',
-        'team' => '',
+        'team' => 'equipe',
     ],
 
     'seasons' => [
@@ -66,7 +66,7 @@ return [
         'active_users' => 'Usuários Ativos',
         'country' => 'País',
         'division' => 'Divisão',
-        'members' => '',
+        'members' => 'Membros',
         'play_count' => 'Vezes Jogadas',
         'performance' => 'Desempenho',
         'total_score' => 'Pontuação Total',

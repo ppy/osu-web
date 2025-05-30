@@ -190,7 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Le beatmap classificate non possono essere segnalate',
         'not_in_channel' => 'Non sei in questo canale.',
-        'in_team' => '',
+        'in_team' => 'Fai parte della squadra.',
         'reason_not_valid' => ':reason non è valido per questo tipo di segnalazione.',
         'self' => "Non puoi segnalare te stesso!",
     ],

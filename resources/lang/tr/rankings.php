@@ -37,7 +37,7 @@ return [
         'charts' => 'Öne Çıkanlar',
         'country' => 'Ülke',
         'daily_challenge' => 'günlük meydan okuma',
-        'global' => '',
+        'global' => 'küresel',
         'kudosu' => 'kudosu',
         'multiplayer' => 'çok oyunculu',
         'seasons' => 'sezonlar',

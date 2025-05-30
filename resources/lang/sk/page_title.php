@@ -80,13 +80,13 @@ return [
             'support_the_game' => 'podporiť hru',
             'testflight' => '',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'informácie',
         ],
         'livestreams_controller' => [
-            '_' => '',
-        ],
-        'matches_controller' => [
             '_' => '',
         ],
         'news_controller' => [

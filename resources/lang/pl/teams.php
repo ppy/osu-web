@@ -6,7 +6,7 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => 'Dodano użytkownika do drużyny.',
+            'ok' => 'Dodano użytkownika do zespołu.',
         ],
         'destroy' => [
             'ok' => 'Anulowano prośbę o dołączenie.',
@@ -19,23 +19,27 @@ return [
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
-        'submit' => 'Stwórz Drużynę',
+        'submit' => 'Stwórz Zespół',
 
         'form' => [
-            'name_help' => 'Nazwa twojej drużyny. Jest ona stała na tę chwilę.',
+            'name_help' => 'Nazwa twojego zespołu. Jest ona stała na tę chwilę.',
             'short_name_help' => 'Maksymalnie 4 znaki.',
-            'title' => "Stwórzmy nową drużynę",
+            'title' => "Stwórzmy nowy zespół",
         ],
 
         'intro' => [
-            'description' => "Graj razem z przyjaciółmi; obecnymi lub nowymi. Nie jesteś aktualnie w drużynie. Dołącz do istniejącej drużyny, odwiedzając jej stronę lub stwórz swoją własną tutaj.",
-            'title' => 'Drużyna!',
+            'description' => "Graj razem z przyjaciółmi; obecnymi lub nowymi. Nie jesteś aktualnie w zespole. Dołącz do istniejącego zespołu, odwiedzając jego stronę lub stwórz swój własny tutaj.",
+            'title' => 'Zespół!',
         ],
     ],
 
     'destroy' => [
-        'ok' => 'Usunięto drużynę.',
+        'ok' => 'Usunięto zespół.',
     ],
 
     'edit' => [
@@ -94,21 +98,21 @@ return [
             'title' => 'Zarządzaj członkami zespołu',
 
             'applications' => [
-                'accept_confirm' => '',
+                'accept_confirm' => 'Dodać użytkownika :user do zespołu?',
                 'created_at' => 'Data przesłania',
                 'empty' => 'Brak próśb o dołączenie do zespołu.',
                 'empty_slots' => 'Dostępnych miejsc',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
+                'empty_slots_overflow' => ':count_delimited nadmiar użytkowników|:count_delimited nadmiar użytkowników',
+                'reject_confirm' => 'Odmówić prośby o dołączenie od użytkownika :user?',
                 'title' => 'Prośby o dołączenie',
             ],
 
             'table' => [
                 'joined_at' => 'Data dołączenia',
                 'remove' => 'Usuń',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
+                'remove_confirm' => 'Usunąć użytkownika :user z zespołu?',
+                'set_leader' => 'Przekaż dowództwo zespołu',
+                'set_leader_confirm' => 'Przekazać dowództwo zespołu użytkownikowi :user?',
                 'status' => 'Status',
                 'title' => 'Aktualni członkowie',
             ],
@@ -120,12 +124,12 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'Użytkownik :user jest teraz dowódcą zespołu.',
         ],
     ],
 
     'part' => [
-        'ok' => 'Opuścił drużynę ;_;',
+        'ok' => 'Opuścił zespół ;_;',
     ],
 
     'show' => [

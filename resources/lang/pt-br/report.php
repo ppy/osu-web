@@ -6,7 +6,7 @@
 return [
     'beatmapset' => [
         'button' => 'Denunciar',
-        'title' => 'Reportar o beatmap de :username?',
+        'title' => 'Denunciar beatmap de :username?',
     ],
 
     'beatmapset_discussion_post' => [
@@ -16,7 +16,7 @@ return [
 
     'comment' => [
         'button' => 'Reportar',
-        'title' => 'Reportar comentário de :username?',
+        'title' => 'Denunciar comentário de :username?',
     ],
 
     'forum_post' => [
@@ -35,8 +35,8 @@ return [
     ],
 
     'team' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Denunciar Equipe',
+        'title' => 'Denunciar equipe de :username?',
     ],
 
     'user' => [

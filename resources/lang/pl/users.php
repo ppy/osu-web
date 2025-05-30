@@ -162,7 +162,7 @@ return [
 
         'options' => [
             'cheating' => 'Oszukiwanie',
-            'inappropriate_chat' => '',
+            'inappropriate_chat' => 'Nieodpowiednie zachowanie na czacie',
             'insults' => 'Obrażanie mnie lub innych',
             'multiple_accounts' => 'Korzystanie z wielu kont',
             'nonsense' => 'Pisanie bez sensu',
@@ -482,8 +482,8 @@ return [
             'highest' => 'Najwyższa pozycja: :rank (osiągnięta :date)',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Całkowity wynik',
         ],
         'stats' => [
             'hit_accuracy' => 'Celność',

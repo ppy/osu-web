@@ -184,7 +184,7 @@ return [
         'explanation' => 'Berikan hype-mu untuk membawa beatmap ini lebih dekat menuju Ranked!',
         'explanation_guest' => 'Masuk dan berikan hype kepada beatmap ini agar beatmap ini dapat segera dinominasikan dan di-rank!',
         'new_time' => "Kamu akan memperoleh lebih banyak hype :new_time.",
-        'remaining' => 'Kamu memiliki :remaining hype tersisa.',
+        'remaining' => 'Kamu memiliki :remaining hype yang tersisa.',
         'required_text' => 'Hype: :current/:required',
         'section_title' => 'Perolehan Hype',
         'title' => 'Hype',
@@ -211,7 +211,7 @@ return [
         'nominate' => 'Nominasi',
         'nominate_confirm' => 'Nominasikan beatmap ini?',
         'nominated_by' => 'dinominasikan oleh :users',
-        'not_enough_hype' => "Beatmap belum memperoleh cukup hype.",
+        'not_enough_hype' => "Beatmap ini belum memperoleh cukup hype.",
         'remove_from_loved' => 'Lepas dari Loved',
         'remove_from_loved_prompt' => 'Alasan pelepasan status Loved:',
         'required_text' => 'Nominasi: :current/:required',
@@ -220,7 +220,7 @@ return [
         'unresolved_issues' => 'Terdapat masalah belum terjawab yang harus diselesaikan terlebih dahulu.',
 
         'rank_estimate' => [
-            '_' => 'Map ini diperkirakan akan berstatus Ranked :date apabila tidak terdapat masalah yang ditemukan. Map ini berada pada urutan ke-:position dalam :queue saat ini.',
+            '_' => 'Map ini diperkirakan akan di-rank :date apabila tidak terdapat masalah yang ditemukan. Map ini berada pada urutan ke-:position dalam :queue saat ini.',
             'unresolved_problems' => 'Beatmap ini sedang diblokir untuk dapat melewati kategori Qualified hingga :problems terselesaikan.',
             'problems' => 'masalah berikut',
             'on' => 'pada tanggal :date',

@@ -26,6 +26,9 @@ return [
         'placeholder' => 'escribe para buscar',
         'title' => 'buscar',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Inicia sesión para buscar mapas',
             'more' => 'Hay :count mapas más en los resultados',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'todos',
+            'artist_track' => '',
             'beatmapset' => 'mapa',
             'forum_post' => 'foro',
+            'team' => '',
             'user' => 'jugador',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

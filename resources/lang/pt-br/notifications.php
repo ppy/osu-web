@@ -123,6 +123,16 @@ return [
                     'channel_message_group' => 'de :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -167,8 +177,13 @@ return [
 
                 'team_application_accept' => "Você agora é membro da equipe :title",
                 'team_application_accept_compact' => "Você agora é membro da equipe :title",
+
+                'team_application_group' => '',
+
                 'team_application_reject' => 'Seu pedido para se juntar à equipe :title foi recusado',
                 'team_application_reject_compact' => 'Seu pedido para se juntar à equipe :title foi recusado',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -230,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Há um novo anúncio em ":name"',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => 'Você recebeu uma nova mensagem de :username',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -260,6 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Você agora é membro da equipe :title",
                 'team_application_reject' => 'Seu pedido para se juntar à equipe :title foi recusado',
+                'team_application_store' => '',
             ],
         ],
 

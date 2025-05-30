@@ -37,6 +37,12 @@ return [
         'new' => '最後の返信',
     ],
 
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
+    ],
+
     'users' => [
         'relevance' => '関連性',
         'username' => '名前',

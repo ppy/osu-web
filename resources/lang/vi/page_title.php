@@ -80,15 +80,15 @@ return [
             'support_the_game' => 'ủng hộ osu',
             'testflight' => 'thử nghệm bay',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'thông tin
 ',
         ],
         'livestreams_controller' => [
             '_' => 'nguồn trực tiếp',
-        ],
-        'matches_controller' => [
-            '_' => 'kết quả',
         ],
         'news_controller' => [
             '_' => 'tin tức',

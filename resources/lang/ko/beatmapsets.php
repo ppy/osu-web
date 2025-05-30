@@ -140,7 +140,7 @@ return [
             'description' => '설명',
             'genre' => '장르',
             'language' => '언어',
-            'mapper_tags' => '',
+            'mapper_tags' => '맵 제작자 태그',
             'no_scores' => '데이터를 수집중입니다...',
             'nominators' => '노미네이터',
             'nsfw' => '부적절한 내용',
@@ -149,7 +149,7 @@ return [
             'source' => '출처',
             'storyboard' => '이 비트맵은 스토리보드를 포함합니다.',
             'success-rate' => '클리어 비율',
-            'user_tags' => '',
+            'user_tags' => '사용자 태그',
             'video' => '이 비트맵은 영상을 포함합니다.',
         ],
 

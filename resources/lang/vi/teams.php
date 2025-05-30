@@ -19,6 +19,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
         'submit' => 'Tạo đội',
 
@@ -107,7 +111,7 @@ return [
                 'joined_at' => 'Ngày tham gia',
                 'remove' => 'Loại',
                 'remove_confirm' => '',
-                'set_leader' => '',
+                'set_leader' => 'Bàn giao quyền lãnh đạo đội',
                 'set_leader_confirm' => '',
                 'status' => 'Trạng thái',
                 'title' => 'Thành viên hiện tại',

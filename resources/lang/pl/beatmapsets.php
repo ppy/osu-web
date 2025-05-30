@@ -140,7 +140,7 @@ return [
             'description' => 'Opis',
             'genre' => 'Gatunek',
             'language' => 'Język',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Tagi twórcy',
             'no_scores' => 'Dane są nadal ładowane...',
             'nominators' => 'Nominatorzy',
             'nsfw' => 'Treść dla pełnoletnich',
@@ -149,7 +149,7 @@ return [
             'source' => 'Źródło',
             'storyboard' => 'Ta beatmapa zawiera scenorys',
             'success-rate' => 'Wskaźnik ukończonych zagrań',
-            'user_tags' => '',
+            'user_tags' => 'Tagi użytkowników',
             'video' => 'Ta beatmapa zawiera wideo w tle',
         ],
 

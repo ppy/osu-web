@@ -18,7 +18,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Featured Artist merupakan jajaran musisi yang bekerja sama dengan kami untuk menghadirkan berbagai lagu baru dan orisinal ke dalam lingkungan osu!. Para musisi berikut, beserta dengan karya-karya pilihan mereka, telah diseleksi secara seksama oleh tim osu! atas dasar lagu-lagu mereka yang kece dan cocok untuk mapping. Lebih dari itu, beberapa dari mereka bahkan juga telah menulis berbagai lagu baru yang khusus dibuat untuk osu!.<br><br>Seluruh lagu yang tertera pada halaman ini disediakan dalam bentuk berkas .osz dengan timing yang telah ditentukan sebelumnya (pre-timed) serta telah terlisensi secara resmi untuk dapat digunakan di osu! dan konten yang terkait dengan osu!.',
+        'description' => 'Featured Artist merupakan jajaran musisi yang berkolaborasi dengan kami untuk menghadirkan berbagai lagu baru dan orisinal ke osu!. Para musisi berikut, beserta dengan karya pilihan mereka, telah dipilih langsung oleh tim osu! atas dasar lagu-lagu mereka yang kece dan cocok untuk mapping. Lebih dari itu, sebagian dari Featured Artist ini bahkan juga telah menulis sejumlah lagu baru yang khusus dibuat untuk osu!.<br><br>Seluruh lagu pada halaman ini disediakan dalam bentuk berkas .osz dengan timing yang telah ditentukan sebelumnya (pre-timed) serta telah terlisensi secara resmi untuk dapat digunakan di osu! dan konten yang terkait dengan osu!.',
     ],
 
     'links' => [

@@ -37,7 +37,7 @@ return [
         'charts' => 'sorotan (lama)',
         'country' => 'negara',
         'daily_challenge' => 'cabaran harian',
-        'global' => '',
+        'global' => 'sejagat',
         'kudosu' => 'kudosu',
         'multiplayer' => 'pemain ramai',
         'seasons' => 'musim',

@@ -88,6 +88,7 @@ return [
             'beatmap_owner_change' => 'svečio sunkumas',
             'beatmapset:modding' => 'beatmap\'ų modifikacijos',
             'channel_message' => 'privatūs susirašinėjimai',
+            'channel_team' => '',
             'comment_new' => 'nauji komentarai',
             'forum_topic_reply' => 'temos atsakymas',
             'mail' => 'paštas',

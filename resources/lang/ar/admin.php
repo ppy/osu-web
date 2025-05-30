@@ -55,8 +55,8 @@ return [
                 'general' => '',
 
                 'users' => [
-                    'header' => '',
-                    'cover_presets' => '',
+                    'header' => 'المستخدم',
+                    'cover_presets' => 'الإعدادات المسبقة للغلاف الشخصي',
                 ],
             ],
         ],

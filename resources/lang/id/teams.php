@@ -19,6 +19,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
         'submit' => 'Buat Tim',
 
@@ -94,21 +98,21 @@ return [
             'title' => 'Kelola Anggota',
 
             'applications' => [
-                'accept_confirm' => '',
+                'accept_confirm' => 'Tambahkan pengguna :user ke tim?',
                 'created_at' => 'Diminta Pada',
                 'empty' => 'Tidak ada permintaan untuk bergabung pada saat ini.',
                 'empty_slots' => 'Slot yang tersedia',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
+                'empty_slots_overflow' => ':count_delimited kelebihan pengguna|:count_delimited kelebihan pengguna',
+                'reject_confirm' => 'Tolak permintaan bergabung dari pengguna :user?',
                 'title' => 'Permintaan Bergabung',
             ],
 
             'table' => [
                 'joined_at' => 'Tanggal Bergabung',
                 'remove' => 'Keluarkan',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
+                'remove_confirm' => 'Keluarkan pengguna :user dari tim?',
+                'set_leader' => 'Pindahkan kepemimpinan tim',
+                'set_leader_confirm' => 'Pindahkan kepemimpinan tim ke pengguna :user?',
                 'status' => 'Status',
                 'title' => 'Anggota Saat Ini',
             ],
@@ -120,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'Pengguna :user kini menjabat sebagai ketua tim.',
         ],
     ],
 

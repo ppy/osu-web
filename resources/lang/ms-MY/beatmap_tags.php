@@ -5,6 +5,6 @@
 
 return [
     'update' => [
-        'invalid_ruleset' => '',
+        'invalid_ruleset' => 'Tag ini tidak sah dengan Peta Rentak ini.',
     ],
 ];

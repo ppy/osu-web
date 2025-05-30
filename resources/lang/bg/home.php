@@ -26,6 +26,9 @@ return [
         'placeholder' => 'Пишете тук за търсене…',
         'title' => 'Търсене',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Моля, влез в профила си, за търсене на бийтмап',
             'more' => 'още :count бийтмап резултата от търсенето',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'всички',
+            'artist_track' => '',
             'beatmapset' => 'бийтмап',
             'forum_post' => 'форум',
+            'team' => '',
             'user' => 'играч',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

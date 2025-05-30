@@ -123,6 +123,16 @@ return [
                     'channel_message_group' => 'van :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -163,12 +173,17 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Teamlid worden',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
+                'team_application_accept' => "Je bent nu lid van het team :title",
+                'team_application_accept_compact' => "Je bent nu lid van :title",
+
+                'team_application_group' => '',
+
                 'team_application_reject' => '',
                 'team_application_reject_compact' => '',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -230,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Er is een nieuwe aankondiging in ":name"',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => 'Je hebt een nieuw bericht ontvangen van :username',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -260,6 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "",
                 'team_application_reject' => '',
+                'team_application_store' => '',
             ],
         ],
 

@@ -26,6 +26,9 @@ return [
         'placeholder' => 'unesite za pretraživanje',
         'title' => 'pretraži',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Prijavi se kako bi pretražio beatmape',
             'more' => 'Još :count rezultata u pretraživanju beatmapa',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'svi',
+            'artist_track' => '',
             'beatmapset' => 'beatmapa',
             'forum_post' => 'forum',
+            'team' => '',
             'user' => 'igrač',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

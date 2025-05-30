@@ -88,6 +88,7 @@ return [
             'beatmap_owner_change' => 'viesa grūtības līmenis',
             'beatmapset:modding' => 'ritma-karšu modifikācijas',
             'channel_message' => 'privātās čata ziņas',
+            'channel_team' => '',
             'comment_new' => 'jauni komentāri',
             'forum_topic_reply' => 'tēmas atbilde',
             'mail' => 'pasts',

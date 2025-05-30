@@ -37,6 +37,12 @@ return [
         'new' => 'תגובה אחרונה',
     ],
 
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
+    ],
+
     'users' => [
         'relevance' => 'רלוונטיות',
         'username' => 'שם',

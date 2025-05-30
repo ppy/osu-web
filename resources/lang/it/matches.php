@@ -42,7 +42,7 @@ return [
             'head-to-head' => 'Testa a Testa',
             'tag-coop' => 'Tag Co-op',
             'team-vs' => 'A Squadre',
-            'tag-team-vs' => 'Tag a Squadre',
+            'tag-team-vs' => 'Tag a squadre',
         ],
 
         'teams' => [

@@ -37,7 +37,7 @@ return [
         'charts' => 'spotlights (ancien)',
         'country' => 'pays',
         'daily_challenge' => 'défi du jour',
-        'global' => '',
+        'global' => 'global',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multijoueur',
         'seasons' => 'saisons',

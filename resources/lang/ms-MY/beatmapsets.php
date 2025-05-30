@@ -140,7 +140,7 @@ return [
             'description' => 'Keterangan',
             'genre' => 'Genre',
             'language' => 'Bahasa',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Tag Pemeta',
             'no_scores' => 'Data masih lagi dikira...',
             'nominators' => 'Pencalon',
             'nsfw' => 'Kandungan tidak senonoh',
@@ -149,7 +149,7 @@ return [
             'source' => 'Sumber',
             'storyboard' => 'Papan rentak ini mengandungi papan cerita',
             'success-rate' => 'Kadar Kejayaan',
-            'user_tags' => '',
+            'user_tags' => 'Tag Pengguna',
             'video' => 'Peta rentak ini mengandungi video',
         ],
 

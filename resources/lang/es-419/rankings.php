@@ -35,13 +35,13 @@ return [
 
     'type' => [
         'charts' => 'spotlights (viejo)',
-        'country' => 'país',
+        'country' => 'países',
         'daily_challenge' => 'desafío diario',
-        'global' => '',
+        'global' => 'global',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multijugador',
         'seasons' => 'temporadas',
-        'team' => 'equipo',
+        'team' => 'equipos',
     ],
 
     'seasons' => [

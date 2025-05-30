@@ -19,6 +19,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
         'submit' => '',
 
@@ -82,7 +86,7 @@ return [
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
+        'global_rank' => 'דירוג עולמי',
     ],
 
     'members' => [

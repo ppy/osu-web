@@ -14,7 +14,7 @@ return [
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Keterangan waktu telah ditentukan tetapi beatmap tidak ada.',
         'beatmapset_no_hype' => "Beatmap ini tidak dapat di-hype.",
-        'hype_requires_null_beatmap' => 'Hype hanya dapat diberikan pada bagian Umum (Seluruh tingkat kesulitan).',
+        'hype_requires_null_beatmap' => 'Hype harus diberikan pada bagian Umum (Seluruh tingkat kesulitan).',
         'invalid_beatmap_id' => 'Tingkat kesulitan yang ditentukan tidak valid.',
         'invalid_beatmapset_id' => 'Beatmap yang ditentukan tidak valid.',
         'locked' => 'Diskusi dikunci.',
@@ -190,7 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Kamu tidak dapat melaporkan beatmap yang berstatus Ranked',
         'not_in_channel' => 'Kamu tidak berada dalam kanal percakapan ini.',
-        'in_team' => '',
+        'in_team' => 'Kamu merupakan bagian dari tim ini.',
         'reason_not_valid' => ':reason bukan merupakan alasan yang valid untuk jenis laporan ini.',
         'self' => "Kamu tidak dapat melaporkan dirimu sendiri!",
     ],

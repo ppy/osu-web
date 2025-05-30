@@ -56,7 +56,7 @@ return [
 
                 'users' => [
                     'header' => 'Användare',
-                    'cover_presets' => '',
+                    'cover_presets' => 'Förinställda profilomslag ',
                 ],
             ],
         ],

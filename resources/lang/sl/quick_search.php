@@ -5,15 +5,16 @@
 
 return [
     'mode' => [
+        'artist_track' => '',
         'beatmapset' => 'Beatmapa',
         'forum_post' => 'Forum',
         'other' => 'Drugo',
+        'team' => '',
         'user' => 'Igralec',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => 'Ni rezultatov',
         'empty_for' => 'Ni rezultatov za :modes',
         'more' => 'Več :mode iskalnih rezultatov',
         'title' => ':mode iskalni rezultati',

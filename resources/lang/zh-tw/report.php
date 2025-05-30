@@ -35,8 +35,8 @@ return [
     ],
 
     'team' => [
-        'button' => '',
-        'title' => '',
+        'button' => '檢舉團隊',
+        'title' => '要檢舉 :username 的團隊嗎？',
     ],
 
     'user' => [

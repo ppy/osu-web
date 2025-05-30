@@ -161,7 +161,7 @@ return [
 
         'options' => [
             'cheating' => 'Juega sucio o hace trampa',
-            'inappropriate_chat' => '',
+            'inappropriate_chat' => 'Conducta inapropiada en el chat',
             'insults' => 'Insultándome/insultando a otros',
             'multiple_accounts' => 'Utiliza múltiples cuentas',
             'nonsense' => 'Sin sentido',
@@ -481,8 +481,8 @@ return [
             'highest' => 'Clasificación más alta: :rank el :date',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Puntuación total',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisión',

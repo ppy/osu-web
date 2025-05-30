@@ -37,7 +37,7 @@ return [
         'charts' => 'i rampljuset',
         'country' => 'land',
         'daily_challenge' => 'daglig utmaning',
-        'global' => '',
+        'global' => 'global ',
         'kudosu' => 'kudosu',
         'multiplayer' => 'flerspelarläge',
         'seasons' => 'säsonger',
@@ -50,7 +50,7 @@ return [
         'room_count' => 'Antal spellistor',
         'url' => 'Visa mer information om den säsongen.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'det finns inte tillräckligt med poängfaktorer för korrekt beräkning',
         ],
     ],
 
@@ -65,8 +65,8 @@ return [
         'accuracy' => 'Träffsäkerhet',
         'active_users' => 'Aktiva Användare',
         'country' => 'Land',
-        'division' => '',
-        'members' => '',
+        'division' => 'Division',
+        'members' => 'Medlemmar ',
         'play_count' => 'Antal gånger spelat',
         'performance' => 'Prestation',
         'total_score' => 'Total Poäng',

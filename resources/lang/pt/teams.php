@@ -6,7 +6,7 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => 'Utilizador adicionado à equipa.',
+            'ok' => 'Jogador adicionado à equipa.',
         ],
         'destroy' => [
             'ok' => 'Pedido de adesão cancelado.',
@@ -17,6 +17,10 @@ return [
         'store' => [
             'ok' => 'Pediste para te juntares à equipa.',
         ],
+    ],
+
+    'card' => [
+        'members' => '',
     ],
 
     'create' => [
@@ -94,21 +98,21 @@ return [
             'title' => 'Gerir membros',
 
             'applications' => [
-                'accept_confirm' => '',
+                'accept_confirm' => 'Adicionar o jogador :user à equipa?',
                 'created_at' => 'Pedido em',
                 'empty' => 'Não há pedidos de adesão de momento.',
                 'empty_slots' => 'Espaços disponíveis',
                 'empty_slots_overflow' => '',
-                'reject_confirm' => '',
+                'reject_confirm' => 'Negar o pedido de adesão do jogador :user?',
                 'title' => 'Pedidos de adesão',
             ],
 
             'table' => [
                 'joined_at' => 'Data de adesão',
                 'remove' => 'Remover',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
+                'remove_confirm' => 'Eliminar o jogador :user da equipa?',
+                'set_leader' => 'Transferir a liderança da equipa',
+                'set_leader_confirm' => 'Transferir a liderança da equipa ao jogador :user?',
                 'status' => 'Estado',
                 'title' => 'Membros atuais',
             ],
@@ -120,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'Jogador :user é agora o líder da equipa.',
         ],
     ],
 

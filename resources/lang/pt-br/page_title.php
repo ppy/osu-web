@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'apoie o jogo',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'informação',
         ],
         'livestreams_controller' => [
             '_' => 'transmissões ao vivo',
-        ],
-        'matches_controller' => [
-            '_' => 'partidas',
         ],
         'news_controller' => [
             '_' => 'notícias',
@@ -109,7 +109,7 @@ return [
         ],
         'teams_controller' => [
             '_' => 'equipes',
-            'create' => '',
+            'create' => 'criar equipe',
             'edit' => 'configurações de equipe',
             'leaderboard' => 'classificação da equipe',
             'show' => 'informações da equipe',

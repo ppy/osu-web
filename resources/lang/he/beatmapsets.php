@@ -160,7 +160,7 @@ return [
             'buttons' => [
                 'disable' => '',
                 'listing' => '',
-                'show' => '',
+                'show' => 'הצג',
             ],
         ],
 

@@ -123,6 +123,16 @@ return [
                     'channel_message_group' => 'de :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -167,8 +177,13 @@ return [
 
                 'team_application_accept' => "Agora pertences à equipa :title",
                 'team_application_accept_compact' => "Agora pertences à equipa :title",
+
+                'team_application_group' => '',
+
                 'team_application_reject' => 'O teu pedido de adesão à equipa :title foi recusado',
                 'team_application_reject_compact' => 'O teu pedido de adesão à equipa :title foi recusado',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -230,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Há um novo comunicado em ":name"',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => 'Tu recebeste uma nova mensagem de :username',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -260,6 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Agora pertences à equipa :title",
                 'team_application_reject' => 'O teu pedido de adesão à equipa :title foi recusado',
+                'team_application_store' => '',
             ],
         ],
 

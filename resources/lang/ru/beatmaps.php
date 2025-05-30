@@ -296,7 +296,7 @@ return [
     'status' => [
         'any' => 'Все',
         'approved' => 'Одобренные',
-        'favourites' => 'Избранные',
+        'favourites' => 'В избранном',
         'graveyard' => 'Заброшенные',
         'leaderboard' => 'С таблицей рекордов',
         'loved' => 'Любимые',

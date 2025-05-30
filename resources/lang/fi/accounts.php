@@ -88,6 +88,7 @@ return [
             'beatmap_owner_change' => 'vieraileva vaikeustaso',
             'beatmapset:modding' => 'beatmapin modaus',
             'channel_message' => 'yksityisviestit',
+            'channel_team' => '',
             'comment_new' => 'uudet kommentit',
             'forum_topic_reply' => 'aihevastaus',
             'mail' => 'posti',

@@ -190,7 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Hodnocené beatmapy nemohou být nahlášeny',
         'not_in_channel' => 'Nejste v tomto kanálu.',
-        'in_team' => '',
+        'in_team' => 'Jsi součástí tohoto týmu.',
         'reason_not_valid' => ':reason není platný pro tento typ nahlášení.',
         'self' => "Nemůžete nahlásit sám sebe!",
     ],

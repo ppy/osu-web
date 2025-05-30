@@ -190,7 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'No se pueden reportar mapas clasificados',
         'not_in_channel' => 'No estás en este canal.',
-        'in_team' => '',
+        'in_team' => 'Eres parte del equipo.',
         'reason_not_valid' => ':reason no válido para este tipo de reporte.',
         'self' => "¡No puedes reportarte a ti mismo!",
     ],
