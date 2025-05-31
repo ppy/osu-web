@@ -129,11 +129,15 @@ class TeamsController extends Controller
 
     public function show(string $id, ?string $ruleset = null): Response
     {
-        $team = Team
-            ::with(array_map(
-                fn (string $preload): string => "members.user.{$preload}",
-                UserCompactTransformer::CARD_INCLUDES_PRELOAD,
-            ))->findOrFail($id);
+        $params = str_starts_with($id, '@')
+            ? ['short_name' => substr($id, 1)]
+            : ['id' => $id];
+
+        $team = Team::where($params)->firstOrFail();
+
+        if ($id !== (string) $team->getKey()) {
+            return ujs_redirect(route('teams.show', compact('team', 'ruleset')));
+        }
 
         if ($ruleset === null) {
             $rulesetId = $team->default_ruleset_id;
@@ -145,6 +149,8 @@ class TeamsController extends Controller
             }
         }
         $statistics = $team->statistics()->firstOrNew(['ruleset_id' => $rulesetId]);
+
+        $team->loadMissing(prefix_strings('members.user.', UserCompactTransformer::CARD_INCLUDES_PRELOAD));
 
         return ext_view('teams.show', compact('rulesetId', 'statistics', 'team'));
     }
