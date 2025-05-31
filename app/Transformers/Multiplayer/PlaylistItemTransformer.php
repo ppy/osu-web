@@ -14,6 +14,7 @@ class PlaylistItemTransformer extends TransformerAbstract
 {
     protected array $availableIncludes = [
         'beatmap',
+        'details',
         'scores',
     ];
 
@@ -41,6 +42,13 @@ class PlaylistItemTransformer extends TransformerAbstract
             $item->beatmap,
             new BeatmapCompactTransformer()
         );
+    }
+
+    public function includeDetails(PlaylistItem $item)
+    {
+        return $this->primitive($item->detailEvent->event_detail ?? [
+            'room_type' => $item->room->type,
+        ]);
     }
 
     public function includeScores(PlaylistItem $item)

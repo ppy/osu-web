@@ -11,12 +11,14 @@ use App\Models\Model;
 use App\Models\ScoreToken;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property json|null $allowed_mods
  * @property Beatmap $beatmap
  * @property int $beatmap_id
  * @property \Carbon\Carbon|null $created_at
+ * @property Event|null $detailEvent
  * @property int $id
  * @property int $owner_id
  * @property int|null $playlist_order
@@ -84,6 +86,11 @@ class PlaylistItem extends Model
         $obj->owner_id = $owner->getKey();
 
         return $obj;
+    }
+
+    public function detailEvent(): HasOne
+    {
+        return $this->hasOne(RealtimeRoomEvent::class)->where('event_type', 'game_started');
     }
 
     public function room()

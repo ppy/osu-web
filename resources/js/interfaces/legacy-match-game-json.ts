@@ -22,6 +22,7 @@ export default interface LegacyMatchGameJson {
   beatmap_id: number;
   end_time: null | string;
   id: number;
+  match_id: number;
   mode: Ruleset;
   mode_int: number;
   mods: string[];
