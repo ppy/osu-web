@@ -2,85 +2,71 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import HeaderV4 from 'components/header-v4';
-import LegacyMatchEventJson from 'interfaces/legacy-match-event-json';
-import LegacyMatchJson from 'interfaces/legacy-match-json';
-import { playlistItemFromLegacy } from 'interfaces/playlist-item-json';
-import { eventFromLegacy } from 'interfaces/realtime-room-event-json';
-import { roomJsonFromLegacy } from 'interfaces/room-json';
+import BeatmapJson from 'interfaces/beatmap-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
+import { PlaylistItemJsonForMultiplayerEvent } from 'interfaces/playlist-item-json';
+import RealtimeRoomEventJson from 'interfaces/realtime-room-event-json';
+import RoomJson from 'interfaces/room-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { dropRightWhile, keyBy, last } from 'lodash';
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import Content, { Data } from 'legacy-match/content';
+import { keyBy, last } from 'lodash';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import Content, { Data } from './content';
+import { trans } from 'utils/lang';
 
-interface LegacyMultiplayerHistoryJson {
-  current_game_id: null | number;
-  events: LegacyMatchEventJson[];
+interface MultiplayerRoomEventsJson {
+  beatmaps: BeatmapJson[];
+  beatmapsets: BeatmapsetJson[];
+  current_playlist_item_id: null | number;
+  events: RealtimeRoomEventJson[];
   first_event_id: number;
-  latest_event_id: number;
-  match: LegacyMatchJson;
+  last_event_id: number;
+  playlist_items: PlaylistItemJsonForMultiplayerEvent[];
+  room: RoomJson;
   users: UserJson[];
 }
 
 interface Props {
-  events: LegacyMultiplayerHistoryJson;
+  events: MultiplayerRoomEventsJson;
 }
 
 const fetchLimit = 100;
 const maximumEvents = 500;
 const refreshTimeout = 10000;
 
-function dataFromJson(existingData: Data | null, json: LegacyMultiplayerHistoryJson, prepend: boolean): Data {
+function dataFromJson(existingData: Data | null, json: MultiplayerRoomEventsJson, prepend: boolean): Data {
   let events = existingData?.events ?? [];
   if (json.events.length > 0) {
-    const convertedEvents = json.events.map(eventFromLegacy);
     if (prepend) {
-      events = convertedEvents.concat(events).slice(0, maximumEvents);
+      events = json.events.concat(events).slice(0, maximumEvents);
     } else {
-      const startEventId = json.events[0].id;
-
-      events = dropRightWhile(events, (e) => e.id >= startEventId)
-        .concat(convertedEvents)
-        .slice(-maximumEvents);
+      events = events.concat(json.events).slice(-maximumEvents);
     }
   }
 
-  const beatmaps = existingData?.beatmaps ?? {};
-  const beatmapsets = existingData?.beatmapsets ?? {};
-  const playlistItems = existingData?.playlistItems ?? {};
-  for (const event of json.events) {
-    if (event.game != null) {
-      playlistItems[event.game.id] = playlistItemFromLegacy(event.game);
-      if (event.game.beatmap != null) {
-        beatmaps[event.game.beatmap.id] = event.game.beatmap;
-        if (event.game.beatmap.beatmapset != null) {
-          beatmapsets[event.game.beatmap.beatmapset.id] = event.game.beatmap.beatmapset;
-        }
-      }
-    }
-  }
-
-  const room = roomJsonFromLegacy(json.match);
+  const beatmaps = Object.assign(existingData?.beatmaps ?? {}, keyBy(json.beatmaps, 'id'));
+  const beatmapsets = Object.assign(existingData?.beatmapsets ?? {}, keyBy(json.beatmapsets, 'id'));
+  const playlistItems = Object.assign(existingData?.playlistItems ?? {}, keyBy(json.playlist_items, 'id'));
   const users = Object.assign(existingData?.users ?? {}, keyBy(json.users, 'id'));
 
   return {
     beatmaps,
     beatmapsets,
-    currentPlaylistItemId: json.current_game_id,
+    currentPlaylistItemId: json.current_playlist_item_id,
     events,
-    lastEventId: json.latest_event_id,
+    lastEventId: json.last_event_id,
     playlistItems,
-    room,
+    room: json.room,
     users,
   };
 }
 
 
 @observer
-export default class LegacyMatch extends React.Component<Props> {
+export default class MultiplayerRoomEvents extends React.Component<Props> {
   private autoloadTimeout: undefined | number;
   @observable private data: Data;
   @observable private loadingNext = false;
@@ -110,18 +96,6 @@ export default class LegacyMatch extends React.Component<Props> {
     return this.data.room.ends_at == null;
   }
 
-  @computed
-  private get minNextEventId(): number | undefined {
-    if (this.data.currentPlaylistItemId != null) {
-      const currentGame = this.data.events.find((e) => e.playlist_item_id === this.data.currentPlaylistItemId);
-      if (currentGame != null) {
-        return currentGame.id - 1;
-      }
-    }
-
-    return last(this.data.events)?.id;
-  }
-
   constructor(props: Props) {
     super(props);
 
@@ -142,6 +116,14 @@ export default class LegacyMatch extends React.Component<Props> {
       <>
         <HeaderV4 theme='mp-history' />
         <div className={classWithModifiers('osu-page', 'generic')}>
+          <p>
+            <a
+              className='btn-osu-big btn-osu-big--rounded-thin'
+              href={route('multiplayer.rooms.show', { room: this.data.room.id })}
+            >
+              <span className='fas fa-arrow-left' /> {trans('multiplayer.room.view_summary')}
+            </a>
+          </p>
           <Content
             data={this.data}
             hasNext={this.hasNext}
@@ -179,16 +161,16 @@ export default class LegacyMatch extends React.Component<Props> {
     this.loadingNext = true;
 
     $.ajax(
-      route('matches.show', { match: this.data.room.id }),
+      route('multiplayer.rooms.events', { room: this.data.room.id }),
       {
         data: {
-          after: this.minNextEventId,
+          after: last(this.data.events)?.id,
           limit: fetchLimit,
         },
         dataType: 'JSON',
         method: 'GET',
       })
-      .done((json: LegacyMultiplayerHistoryJson) => runInAction(() => {
+      .done((json: MultiplayerRoomEventsJson) => runInAction(() => {
         this.data = dataFromJson(this.data, json, false);
       }))
       .always(action(() => {
@@ -206,7 +188,7 @@ export default class LegacyMatch extends React.Component<Props> {
     this.loadingPrevious = true;
 
     $.ajax(
-      route('matches.show', { match: this.data.room.id }),
+      route('multiplayer.rooms.events', { room: this.data.room.id }),
       {
         data: {
           before: this.data.events[0]?.id,
@@ -215,7 +197,7 @@ export default class LegacyMatch extends React.Component<Props> {
         dataType: 'JSON',
         method: 'GET',
       })
-      .done((json: LegacyMultiplayerHistoryJson) => runInAction(() => {
+      .done((json: MultiplayerRoomEventsJson) => runInAction(() => {
         this.data = dataFromJson(this.data, json, true);
       }))
       .always(action(() => {
