@@ -26,6 +26,9 @@ return [
         'placeholder' => 'tastează pentru a căuta',
         'title' => 'Caută',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Conectați-vă pentru a căuta beatmap-uri',
             'more' => 'Încă :count beatmap-uri rezultate pentru această căutare',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'tot',
+            'artist_track' => '',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
+            'team' => '',
             'user' => 'jucător',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

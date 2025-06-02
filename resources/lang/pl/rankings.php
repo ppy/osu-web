@@ -34,10 +34,10 @@ return [
     ],
 
     'type' => [
-        'charts' => 'Wyróżnionych',
+        'charts' => 'wyróżnionych',
         'country' => 'krajowy',
         'daily_challenge' => 'wyzwanie dnia',
-        'global' => '',
+        'global' => 'globalny',
         'kudosu' => 'kudosu',
         'multiplayer' => 'wieloosobowy',
         'seasons' => 'sezony',

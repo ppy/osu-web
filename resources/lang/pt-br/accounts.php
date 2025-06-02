@@ -10,8 +10,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'reset' => 'reiniciar',
-            'rules' => 'Por favor tenha certeza que seu avatar respeite :link.<br/>Isso significa que deve ser <strong>adequado para todas as idades</strong>. ou seja, sem nudez, palavrões ou conteúdo sugestivo.',
+            'reset' => 'redefinir',
+            'rules' => 'Por favor, tenha certeza que seu avatar respeite :link.<br/>Isso significa que deve ser <strong>adequado para todas as idades</strong>, ou seja, sem nudez, palavrões ou conteúdo sugestivo.',
             'rules_link' => 'as regras da comunidade',
         ],
 
@@ -70,9 +70,9 @@ return [
         'unlink' => 'Desconectar conta do GitHub',
 
         'error' => [
-            'already_linked' => 'Esta conta do GitHub já está conectada a um usuário diferente.',
+            'already_linked' => 'Esta conta do GitHub já está vinculada a um usuário diferente.',
             'no_contribution' => 'Não é possível vincular a conta GitHub sem qualquer histórico de contribuição nos repositórios do osu!.',
-            'unverified_email' => 'Por favor, verifique seu e-mail principal no GitHub e tente vincular sua conta novamente.',
+            'unverified_email' => 'Por favor, verifique seu e-mail principal no GitHub e, após isso, tente vincular sua conta novamente.',
         ],
     ],
 
@@ -88,9 +88,10 @@ return [
             'beatmap_owner_change' => 'dificuldade do convidado',
             'beatmapset:modding' => 'modding em beatmap',
             'channel_message' => 'mensagens privadas',
+            'channel_team' => '',
             'comment_new' => 'novos comentários',
             'forum_topic_reply' => 'resposta em tópico',
-            'mail' => 'email',
+            'mail' => 'Caixa de Entrada',
             'mapping' => 'mapper do beatmap',
             'push' => 'push',
         ],
@@ -135,7 +136,7 @@ return [
         'end_session_confirmation' => 'Isso vai encerrar imediatamente sua sessão neste dispositivo. Você tem certeza?',
         'last_active' => 'Última atividade:',
         'title' => 'Segurança',
-        'web_sessions' => 'web sessão',
+        'web_sessions' => 'sessões web',
     ],
 
     'update_email' => [

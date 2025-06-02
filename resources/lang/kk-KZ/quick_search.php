@@ -5,15 +5,16 @@
 
 return [
     'mode' => [
+        'artist_track' => '',
         'beatmapset' => 'Карта',
         'forum_post' => '',
         'other' => 'Басқалар',
+        'team' => '',
         'user' => 'Ойыншы',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => 'Нәтиже жоқ',
         'empty_for' => '',
         'more' => '',
         'title' => '',

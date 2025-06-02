@@ -140,7 +140,7 @@ return [
             'description' => 'Descrição',
             'genre' => 'Gênero',
             'language' => 'Idioma',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Tags de Mapeadores',
             'no_scores' => 'Dados ainda sendo calculados...',
             'nominators' => 'Nominadores',
             'nsfw' => 'Conteúdo explícito',
@@ -149,7 +149,7 @@ return [
             'source' => 'Fonte',
             'storyboard' => 'Este beatmap contém storyboard',
             'success-rate' => 'Taxa de Sucesso',
-            'user_tags' => '',
+            'user_tags' => 'Tags de Usuários',
             'video' => 'Esse beatmap contém vídeo',
         ],
 
@@ -172,7 +172,7 @@ return [
             'global' => 'Ranking Global',
             'supporter-link' => 'Clique <a href=":link">aqui</a> para ver todas as novas funções às quais você ganha acesso!',
             'supporter-only' => 'Você precisa ser um osu!supporter para acessar rankings de amigos e de países!',
-            'team' => '',
+            'team' => 'Classificação dos equipes',
             'title' => 'Placar',
 
             'headers' => [
@@ -194,7 +194,7 @@ return [
                 'friend' => 'Nenhum de seus amigos fez uma pontuação nesse beatmap ainda!',
                 'global' => 'Nenhuma pontuação ainda. Não quer tentar fazer uma?',
                 'loading' => 'Carregando pontuações...',
-                'team' => '',
+                'team' => 'Ninguém da sua equipe definiu uma pontuação neste beatmap ainda!',
                 'unranked' => 'Beatmap não ranqueado.',
             ],
             'score' => [

@@ -163,13 +163,13 @@ CAPTCHA認証を成功させてから再試行してください。
 
         'options' => [
             'cheating' => 'チート',
-            'inappropriate_chat' => '',
+            'inappropriate_chat' => '不適切なチャット行為',
             'insults' => 'あなた/他の人への侮辱',
             'multiple_accounts' => '複数のアカウントを管理している',
             'nonsense' => 'ナンセンスな行為',
             'other' => 'その他（下記に入力）',
             'spam' => 'スパム',
-            'unwanted_content' => '不適切なコンテンツへのリンク',
+            'unwanted_content' => '不適切なコンテンツ',
         ],
     ],
     'restricted_banner' => [
@@ -484,8 +484,8 @@ CAPTCHA認証を成功させてから再試行してください。
             'highest' => '最高ランク: :rank (:dateに取得)',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'トップ :value',
+            'total_score' => '合計スコア',
         ],
         'stats' => [
             'hit_accuracy' => '精度',

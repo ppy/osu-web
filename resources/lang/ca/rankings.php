@@ -37,11 +37,11 @@ return [
         'charts' => 'en el focus (vell)',
         'country' => 'país',
         'daily_challenge' => 'repte diari',
-        'global' => '',
+        'global' => 'global',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multijugador',
         'seasons' => 'temporades',
-        'team' => '',
+        'team' => 'equip',
     ],
 
     'seasons' => [
@@ -66,7 +66,7 @@ return [
         'active_users' => 'Usuaris actius',
         'country' => 'País',
         'division' => '',
-        'members' => '',
+        'members' => 'Membres',
         'play_count' => 'Nombre de partides',
         'performance' => 'Rendiment',
         'total_score' => 'Puntuació total',

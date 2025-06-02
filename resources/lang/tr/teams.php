@@ -19,6 +19,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
         'submit' => 'Takım Oluştur',
 
@@ -29,7 +33,7 @@ return [
         ],
 
         'intro' => [
-            'description' => "",
+            'description' => "Mevcut ya da yeni arkadaşlarınla birlikte oyna. Şu anda bir takımda değilsiniz. Takım sayfalarını ziyaret ederek mevcut bir takıma katılın veya bu sayfadan kendi takımınızı oluşturun.",
             'title' => 'Takım!',
         ],
     ],
@@ -58,8 +62,10 @@ return [
         ],
 
         'settings' => [
-            'application_help' => '',
-            'default_ruleset_help' => '',
+            'application_help' => 'İnsanların takıma başvuru yapmasına izin verilsin mi
+
+',
+            'default_ruleset_help' => 'Takım sayfası ziyaret edildiğinde varsayılan olarak seçilecek kural seti',
             'flag_help' => 'Maksimum boyut :width×:height',
             'header_help' => 'Maksimum boyut :width×:height',
             'title' => 'Takım Ayarları',
@@ -94,21 +100,21 @@ return [
             'title' => 'Üyeleri Yönet',
 
             'applications' => [
-                'accept_confirm' => '',
-                'created_at' => '',
+                'accept_confirm' => 'Kullanıcı :user takıma eklensin mi?',
+                'created_at' => 'İstek Zamanı',
                 'empty' => 'Şu anda katılma isteği yok.',
                 'empty_slots' => 'Kullanılabilir alan',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
+                'empty_slots_overflow' => ':count_delimited kullanıcı fazlas|:count_delimited kullanıcı fazlası',
+                'reject_confirm' => ':user kullanıcısının katılma isteğini reddet?',
                 'title' => 'Katılma İstekleri',
             ],
 
             'table' => [
                 'joined_at' => 'Katılma Tarihi',
                 'remove' => 'Kaldır',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
+                'remove_confirm' => ':user kullanıcısını takımdan çıkar?',
+                'set_leader' => 'Takım liderliğini devret',
+                'set_leader_confirm' => 'Takım liderliğini :user kullanıcısına devret?',
                 'status' => 'Durum',
                 'title' => 'Şu anki üyeler',
             ],
@@ -120,19 +126,19 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => ':user kullanıcısı artık takım lideri.',
         ],
     ],
 
     'part' => [
-        'ok' => ';_; takımdan ayrıldı',
+        'ok' => 'Takımdan ayrıldı ;_;',
     ],
 
     'show' => [
         'bar' => [
             'chat' => 'Takım Sohbeti',
-            'destroy' => 'Takımı dağıt',
-            'join' => 'Katılmak İste',
+            'destroy' => 'Takımı Dağıt',
+            'join' => 'Katılma isteği gönder',
             'join_cancel' => 'Katılmayı İptal Et',
             'part' => 'Takımdan Ayrıl',
         ],

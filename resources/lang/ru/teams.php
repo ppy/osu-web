@@ -19,6 +19,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
         'submit' => 'Создать команду!',
 
@@ -94,21 +98,21 @@ return [
             'title' => 'Управление участниками',
 
             'applications' => [
-                'accept_confirm' => '',
+                'accept_confirm' => 'Принять игрока :user в команду?',
                 'created_at' => 'Запрос отправлен',
                 'empty' => 'Нет запросов на вступление.',
                 'empty_slots' => 'Свободных мест',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
+                'empty_slots_overflow' => 'переполнена на :count_delimited игрока|переполнена на :count_delimited игроков',
+                'reject_confirm' => 'Отклонить запрос на вступление игрока :user?',
                 'title' => 'Запросы на вступление',
             ],
 
             'table' => [
                 'joined_at' => 'Дата вступления',
                 'remove' => 'Исключить',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
+                'remove_confirm' => 'Исключить игрока :user из команды?',
+                'set_leader' => 'Передать права управления',
+                'set_leader_confirm' => 'Передать титул капитана команды игроку :user?',
                 'status' => 'Статус',
                 'title' => 'Текущие участники',
             ],
@@ -120,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'Теперь игрок :user — новый капитан команды.',
         ],
     ],
 

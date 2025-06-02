@@ -5,6 +5,6 @@
 
 return [
     'update' => [
-        'invalid_ruleset' => '',
+        'invalid_ruleset' => 'Цей тег не є дійсним для цієї бітмапи.',
     ],
 ];

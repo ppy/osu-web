@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'สนับสนุนเกมนี้',
             'testflight' => 'บินเที่ยว',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'ข้อมูล',
         ],
         'livestreams_controller' => [
             '_' => 'การถ่ายทอดสด',
-        ],
-        'matches_controller' => [
-            '_' => 'แมตซ์',
         ],
         'news_controller' => [
             '_' => 'ข่าวสาร',

@@ -161,7 +161,7 @@ return [
 
         'options' => [
             'cheating' => 'Menipu',
-            'inappropriate_chat' => '',
+            'inappropriate_chat' => 'Perilaku perbualan tidak senonoh',
             'insults' => 'Menghina saya / orang lain',
             'multiple_accounts' => 'Menggunakan lebih daripada satu akaun',
             'nonsense' => 'Mengarut',
@@ -481,8 +481,8 @@ return [
             'highest' => 'Peringkat tertinggi: :rank pada :date',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => ':value tertinggi',
+            'total_score' => 'Jumlah markah',
         ],
         'stats' => [
             'hit_accuracy' => 'Ketepatan Pukulan',

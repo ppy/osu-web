@@ -37,7 +37,7 @@ return [
         'charts' => 'スポットライト',
         'country' => '国別',
         'daily_challenge' => 'デイリーチャレンジ',
-        'global' => '',
+        'global' => 'グローバル',
         'kudosu' => 'kudosu',
         'multiplayer' => 'マルチプレイ',
         'seasons' => 'シーズン',

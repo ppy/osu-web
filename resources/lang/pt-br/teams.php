@@ -6,7 +6,7 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => 'Adicionado usuário à equipe.',
+            'ok' => 'Usuário adicionado à equipe.',
         ],
         'destroy' => [
             'ok' => 'Pedido de adesão cancelado.',
@@ -19,18 +19,22 @@ return [
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
-        'submit' => '',
+        'submit' => 'Criar Equipe',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => 'O nome da sua equipe. O nome é permanente no momento.',
+            'short_name_help' => 'Máximo de 4 caracteres.',
+            'title' => "Vamos criar uma equipe",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "Jogue com seus amigos; atuais ou novos. Você não está em uma equipe no momento. Junte-se a uma equipe existente ao visitar a sua página ou crie sua própria equipe a partir dessa página.",
+            'title' => 'Equipe!',
         ],
     ],
 
@@ -39,7 +43,7 @@ return [
     ],
 
     'edit' => [
-        'ok' => '',
+        'ok' => 'Configurações salvas com sucesso.',
         'title' => 'Configurações da Equipe',
 
         'description' => [
@@ -48,8 +52,8 @@ return [
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Tag da Equipe',
+            'title' => 'Definir Bandeira da Equipe',
         ],
 
         'header' => [
@@ -60,13 +64,13 @@ return [
         'settings' => [
             'application_help' => 'Se deve permitir que as pessoas se inscrevam para a equipe',
             'default_ruleset_help' => 'O conjunto de regras a ser selecionado por padrão quando visitar a página da equipe',
-            'flag_help' => '',
-            'header_help' => '',
+            'flag_help' => 'Tamanho máximo de :width×:height',
+            'header_help' => 'Tamanho máximo de :width×:height',
             'title' => 'Configurações da Equipe',
 
             'application_state' => [
                 'state_0' => 'Fechado',
-                'state_1' => 'Abrir',
+                'state_1' => 'Aberto',
             ],
         ],
     ],
@@ -82,7 +86,7 @@ return [
     ],
 
     'leaderboard' => [
-        'global_rank' => 'Ranking Global',
+        'global_rank' => 'Classificação Global',
     ],
 
     'members' => [
@@ -94,21 +98,21 @@ return [
             'title' => 'Gerenciar Membros',
 
             'applications' => [
-                'accept_confirm' => '',
+                'accept_confirm' => 'Adicionar usuário :user para a equipe?',
                 'created_at' => 'Solicitado em',
                 'empty' => 'Nenhum pedido de adesão no momento.',
-                'empty_slots' => 'Espaços disponíveis',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
+                'empty_slots' => 'Vagas disponíveis',
+                'empty_slots_overflow' => ':count_delimited excedente de usuário|:count_delimited excedente de usuários',
+                'reject_confirm' => 'Recusar solicitação de adesão do usuário :user?',
                 'title' => 'Pedidos de Adesão',
             ],
 
             'table' => [
                 'joined_at' => 'Data de Registro',
                 'remove' => 'Remover',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
+                'remove_confirm' => 'Remover usuário :user da equipe?',
+                'set_leader' => 'Transferir liderança da equipe',
+                'set_leader_confirm' => 'Transferir liderança da equipe para usuário :user?',
                 'status' => 'Situação',
                 'title' => 'Membros atuais',
             ],
@@ -120,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'O usuário :user agora é o líder da equipe.',
         ],
     ],
 
@@ -130,11 +134,11 @@ return [
 
     'show' => [
         'bar' => [
-            'chat' => '',
+            'chat' => 'Chat da Equipe',
             'destroy' => 'Dispensar Equipe',
             'join' => 'Pedir para juntar-se',
             'join_cancel' => 'Cancelar Entrada',
-            'part' => 'Deixe a equipe',
+            'part' => 'Deixar a equipe',
         ],
 
         'info' => [
@@ -143,22 +147,22 @@ return [
 
         'members' => [
             'members' => 'Membros da equipe',
-            'owner' => 'Líder de Equipe',
+            'owner' => 'Líder da Equipe',
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => 'Sobre Nós!',
             'info' => 'Info',
             'members' => 'Membros',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => 'Classificação',
+            'leader' => 'Líder da Equipe',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'Equipe criada.',
     ],
 ];

@@ -123,6 +123,16 @@ return [
                     'channel_message_group' => 'no :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -167,8 +177,13 @@ return [
 
                 'team_application_accept' => "",
                 'team_application_accept_compact' => "",
+
+                'team_application_group' => '',
+
                 'team_application_reject' => '',
                 'team_application_reject_compact' => '',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -230,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Ir jauns paziņojums ":name"',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => 'Te esi saņēmis jauni ziņu no :username',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -260,6 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "",
                 'team_application_reject' => '',
+                'team_application_store' => '',
             ],
         ],
 

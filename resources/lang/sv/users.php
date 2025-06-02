@@ -161,7 +161,7 @@ return [
 
         'options' => [
             'cheating' => 'Fusk',
-            'inappropriate_chat' => '',
+            'inappropriate_chat' => 'Olämpligt chattbeteende',
             'insults' => 'Förolämpar mig / andra',
             'multiple_accounts' => 'Använder flera konton',
             'nonsense' => 'Dumheter',
@@ -201,8 +201,8 @@ return [
             'daily' => 'Daglig Streak',
             'daily_streak_best' => 'Bästa Dagliga Streak',
             'daily_streak_current' => 'Nuvarande Dagliga Streak',
-            'playcount' => '',
-            'title' => '',
+            'playcount' => 'Totalt deltagande',
+            'title' => 'Daglig\nUtmaning',
             'top_10p_placements' => 'Topp 10% Placeringar',
             'top_50p_placements' => 'Topp 50% Placeringar',
             'weekly' => 'Vecko Streak',
@@ -210,15 +210,15 @@ return [
             'weekly_streak_current' => 'Nuvarande Vecko Streak',
 
             'unit' => [
-                'day' => '',
-                'week' => '',
+                'day' => ':valued',
+                'week' => ':valuew',
             ],
         ],
         'edit' => [
             'cover' => [
                 'button' => 'Ändra Profilomslag',
                 'defaults_info' => 'Fler omslagsalternativ kommer finnas i framtiden',
-                'holdover_remove_confirm' => "",
+                'holdover_remove_confirm' => "Det tidigare valda omslaget kan inte längre väljas. Du kan inte välja tillbaka det efter att du har bytt till ett annat omslag. Vill du fortsätta?",
                 'title' => 'Omslag',
 
                 'upload' => [
@@ -481,8 +481,8 @@ return [
             'highest' => 'Högsta rank: :rank den :date',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'Topp :value',
+            'total_score' => 'Totalpoäng',
         ],
         'stats' => [
             'hit_accuracy' => 'Träffsäkerhet',

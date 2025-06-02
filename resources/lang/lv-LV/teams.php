@@ -19,6 +19,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
         'submit' => 'Izveidot Komandu',
 

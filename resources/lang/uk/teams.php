@@ -19,6 +19,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
         'submit' => 'Створити команду',
 
@@ -94,21 +98,21 @@ return [
             'title' => 'Керувати учасниками',
 
             'applications' => [
-                'accept_confirm' => '',
+                'accept_confirm' => 'Додати користувача :user до команди?',
                 'created_at' => 'Запитано',
                 'empty' => 'Наразі немає запитів на вступ.',
                 'empty_slots' => 'Доступні слоти',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
+                'empty_slots_overflow' => 'Переповнення на :count_delimited гравця|Переповнення на :count_delimited гравців',
+                'reject_confirm' => 'Відхилити запит на приєднання від користувача :user?',
                 'title' => 'Запити на вступ',
             ],
 
             'table' => [
                 'joined_at' => 'Дата приєднання',
                 'remove' => 'Видалити',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
+                'remove_confirm' => 'Виключити користувача :user з команди?',
+                'set_leader' => 'Передати права керування командою',
+                'set_leader_confirm' => 'Передати права керування командою користувачу :user?',
                 'status' => 'Статус',
                 'title' => 'Наявні учасники',
             ],
@@ -120,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'Користувач :user тепер керівник команди.',
         ],
     ],
 

@@ -139,9 +139,9 @@ return [
         'attributes' => [
             'default_ruleset_id' => '',
             'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'name' => 'Nom',
+            'short_name' => 'Nom curt',
+            'url' => 'URL',
         ],
     ],
 
@@ -190,7 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Els beatmaps classificatoris no es poden denunciar',
         'not_in_channel' => 'No ets en aquest canal.',
-        'in_team' => '',
+        'in_team' => 'Ets part de l\'equip.',
         'reason_not_valid' => ':reason no és vàlida per aquest tipus d\'informe.',
         'self' => "No et pots denunciar a tu mateix!",
     ],

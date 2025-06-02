@@ -37,6 +37,12 @@ return [
         'new' => 'Τελευταία απάντηση',
     ],
 
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
+    ],
+
     'users' => [
         'relevance' => 'Συνάφεια',
         'username' => 'Όνομα',

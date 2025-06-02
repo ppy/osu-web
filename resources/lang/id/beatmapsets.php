@@ -140,7 +140,7 @@ return [
             'description' => 'Deskripsi',
             'genre' => 'Aliran',
             'language' => 'Bahasa',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Tag Mapper',
             'no_scores' => 'Data sedang diproses...',
             'nominators' => 'Nominator',
             'nsfw' => 'Konten eksplisit',
@@ -149,7 +149,7 @@ return [
             'source' => 'Sumber',
             'storyboard' => 'Beatmap ini menyertakan storyboard',
             'success-rate' => 'Tingkat Keberhasilan',
-            'user_tags' => '',
+            'user_tags' => 'Tag Pengguna',
             'video' => 'Beatmap ini menyertakan video',
         ],
 

@@ -37,7 +37,7 @@ return [
         'charts' => 'spotlight (archivio)',
         'country' => 'paese',
         'daily_challenge' => 'sfida giornaliera',
-        'global' => '',
+        'global' => 'globale',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multigiocatore',
         'seasons' => 'stagioni',
@@ -45,7 +45,7 @@ return [
     ],
 
     'seasons' => [
-        'empty' => 'Non ci sono ancora posti per questa stagione.',
+        'empty' => 'Non ci sono ancora partite per questa stagione.',
         'ongoing' => 'Questa stagione è ancora in corso (verranno aggiunte altre playlist).',
         'room_count' => 'Conteggio playlist',
         'url' => 'Mostra ulteriori informazioni su quella stagione.',

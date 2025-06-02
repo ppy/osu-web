@@ -161,13 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Cheating',
-            'inappropriate_chat' => '',
+            'inappropriate_chat' => 'Unangemessenes Verhalten im Chat',
             'insults' => 'Beleidigt mich / andere',
             'multiple_accounts' => 'Verwendet mehrere Konten',
             'nonsense' => 'Unsinn',
             'other' => 'Anderes (unten angeben)',
             'spam' => 'Spamming',
-            'unwanted_content' => 'Verlinkt unangemessene Inhalte',
+            'unwanted_content' => 'Unangemessene Inhalte',
         ],
     ],
     'restricted_banner' => [
@@ -310,7 +310,7 @@ return [
                     'title' => 'Meistgespielte Beatmaps',
                 ],
                 'recent_plays' => [
-                    'accuracy' => 'genauigkeit: :percentage',
+                    'accuracy' => 'Genauigkeit: :percentage',
                     'title' => 'Zuletzt gespielt (24h)',
                 ],
                 'replays_watched_counts' => [
@@ -481,8 +481,8 @@ return [
             'highest' => 'Höchster Rang: :rank am :date',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Gesamtpunktzahl',
         ],
         'stats' => [
             'hit_accuracy' => 'Genauigkeit',

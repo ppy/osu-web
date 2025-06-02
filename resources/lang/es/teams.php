@@ -19,6 +19,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
         'submit' => 'Crear equipo',
 
@@ -94,21 +98,21 @@ return [
             'title' => 'Gestionar miembros',
 
             'applications' => [
-                'accept_confirm' => '',
+                'accept_confirm' => '¿Añadir a :user al equipo?',
                 'created_at' => 'Solicitud realizada',
                 'empty' => 'No hay solicitudes para unirse al equipo por el momento.',
                 'empty_slots' => 'Espacios disponibles',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
+                'empty_slots_overflow' => 'Exceso de :count_delimited usuario|Exceso de :count_delimited usuarios',
+                'reject_confirm' => '¿Rechazar la solicitud para unirse de :user?',
                 'title' => 'Solicitudes para unirse al equipo',
             ],
 
             'table' => [
                 'joined_at' => 'Fecha de ingreso',
                 'remove' => 'Eliminar',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
+                'remove_confirm' => '¿Expulsar a :user del equipo?',
+                'set_leader' => 'Transferir el liderazgo del equipo',
+                'set_leader_confirm' => '¿Transferir el liderazgo del equipo a :user?',
                 'status' => 'Estado',
                 'title' => 'Miembros actuales',
             ],
@@ -120,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => ':user es ahora el líder del equipo.',
         ],
     ],
 

@@ -37,7 +37,7 @@ return [
         'charts' => 'по чартам (устар.)',
         'country' => 'по странам',
         'daily_challenge' => 'по картам дня',
-        'global' => '',
+        'global' => 'мировой',
         'kudosu' => 'по кудосу',
         'multiplayer' => 'в мультиплеере',
         'seasons' => 'по сезонам',

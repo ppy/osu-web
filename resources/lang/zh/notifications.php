@@ -4,11 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => '已经阅读所有通知！',
+    'all_read' => '无未读通知',
     'delete' => '删除 :type',
     'loading' => '正在加载未读通知……',
-    'mark_read' => '清除 :type 类型的通知',
-    'none' => '没有新通知',
+    'mark_read' => '将 :type 通知设为已读',
+    'none' => '没有新消息',
     'see_all' => '显示所有通知',
     'see_channel' => '前往聊天',
     'verifying' => '查看通知前请验证会话',
@@ -55,8 +55,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => ':username 发布了主题为 ":title" 的新帖子',
                 'beatmapset_discussion_post_new_compact' => ':username 发布了新主题：":content"',
                 'beatmapset_discussion_post_new_compact_empty' => ':username 发布了新帖子',
-                'beatmapset_discussion_review_new' => ':username 在 ":title" 内发表了新审阅：问题：:problems，建议：:suggestions，赞：:praises',
-                'beatmapset_discussion_review_new_compact' => ':username 发表了新审阅，问题：:problems，建议：:suggestions，赞：:praises',
+                'beatmapset_discussion_review_new' => '来自 :username 在 ":title" 内的新审阅，包含 :review_counts',
+                'beatmapset_discussion_review_new_compact' => '来自 :username 的新审阅，包含 :review_counts',
                 'beatmapset_discussion_unlock' => '谱面 ":title" 的讨论已解锁。',
                 'beatmapset_discussion_unlock_compact' => '讨论已解锁',
 
@@ -125,6 +125,16 @@ return [
                     'channel_message_group' => '来自 :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -169,8 +179,13 @@ return [
 
                 'team_application_accept' => "您现在是战队 :title 的成员",
                 'team_application_accept_compact' => "您现在是战队 :title 的成员",
+
+                'team_application_group' => '',
+
                 'team_application_reject' => '您加入战队 :title 的请求已被拒绝',
                 'team_application_reject_compact' => '您加入战队 :title 的请求已被拒绝',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -233,11 +248,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '":name" 中有一条新通知',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => '您收到了 :username 的新消息',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -263,6 +280,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "您现在是战队 :title 的成员",
                 'team_application_reject' => '您加入战队 :title 的请求已被拒绝',
+                'team_application_store' => '',
             ],
         ],
 

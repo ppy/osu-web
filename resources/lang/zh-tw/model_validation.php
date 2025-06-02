@@ -190,7 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => '無法檢舉已進榜的圖譜',
         'not_in_channel' => '您不在這個頻道中。',
-        'in_team' => '',
+        'in_team' => '你是團隊成員。',
         'reason_not_valid' => ':reason 不符合此報告類型。',
         'self' => "您不能檢舉你自己！",
     ],

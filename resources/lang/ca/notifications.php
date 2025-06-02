@@ -123,6 +123,16 @@ return [
                     'channel_message_group' => 'de :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -165,10 +175,15 @@ return [
             'team_application' => [
                 '_' => '',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
+                'team_application_accept' => "T'has unit a l'equip :title",
+                'team_application_accept_compact' => "T'has unit a l'equip :title",
+
+                'team_application_group' => '',
+
                 'team_application_reject' => '',
                 'team_application_reject_compact' => '',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -230,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Hi ha un nou anunci a ":name"',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => 'Has rebut un nou missatge de :username',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -258,8 +275,9 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
+                'team_application_accept' => "T'has unit a l'equip :title",
                 'team_application_reject' => '',
+                'team_application_store' => '',
             ],
         ],
 

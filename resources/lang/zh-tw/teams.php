@@ -19,6 +19,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
         'submit' => '建立隊伍',
 
@@ -35,11 +39,11 @@ return [
     ],
 
     'destroy' => [
-        'ok' => '團隊已移除',
+        'ok' => '團隊已移除。',
     ],
 
     'edit' => [
-        'ok' => '設定儲存成功',
+        'ok' => '設定儲存成功。',
         'title' => '隊伍設定',
 
         'description' => [
@@ -94,21 +98,21 @@ return [
             'title' => '管理成員',
 
             'applications' => [
-                'accept_confirm' => '',
-                'created_at' => '申請日期：',
+                'accept_confirm' => '是否將玩家 :user 加入團隊？',
+                'created_at' => '申請於',
                 'empty' => '目前沒有加入請求。',
                 'empty_slots' => '剩餘名額',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
+                'empty_slots_overflow' => ':count_delimited 位玩家超過上限',
+                'reject_confirm' => '是否拒絕玩家 :user 的加入請求？',
                 'title' => '加入請求',
             ],
 
             'table' => [
                 'joined_at' => '加入日期',
                 'remove' => '移除',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
+                'remove_confirm' => '是否將 :user 移出團隊？',
+                'set_leader' => '轉讓隊長',
+                'set_leader_confirm' => '是否轉讓隊長給玩家 :user？',
                 'status' => '狀態',
                 'title' => '目前的成員',
             ],
@@ -120,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => '玩家 :user 現在是隊長。',
         ],
     ],
 

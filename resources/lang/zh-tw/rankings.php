@@ -37,7 +37,7 @@ return [
         'charts' => '月賽',
         'country' => '國家',
         'daily_challenge' => '每日挑戰',
-        'global' => '',
+        'global' => '全球',
         'kudosu' => 'kudosu',
         'multiplayer' => '多人遊戲',
         'seasons' => '季',

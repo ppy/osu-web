@@ -37,6 +37,12 @@ return [
         'new' => 'Paskutinis atsakymas',
     ],
 
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
+    ],
+
     'users' => [
         'relevance' => 'Aktualumas',
         'username' => 'Pavadinimas',

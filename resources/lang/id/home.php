@@ -26,6 +26,9 @@ return [
         'placeholder' => 'ketik untuk mulai mencari',
         'title' => 'pencarian',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Masuk untuk mencari beatmap',
             'more' => ':count hasil pencarian beatmap lainnya',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'semua',
+            'artist_track' => '',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
+            'team' => '',
             'user' => 'pemain',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

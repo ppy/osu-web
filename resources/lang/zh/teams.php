@@ -6,7 +6,7 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '将玩家添加进战队。',
+            'ok' => '已将玩家添加进战队。',
         ],
         'destroy' => [
             'ok' => '已取消加入战队请求。',
@@ -19,6 +19,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
         'submit' => '创建战队',
 
@@ -29,7 +33,7 @@ return [
         ],
 
         'intro' => [
-            'description' => "与新老朋友一起游戏吧。你目前并未加入战队，但你可以在这一页内，访问其他战队的主页并加入，或是直接创建你自己的战队。",
+            'description' => "与新老朋友一起游戏吧。你目前并未加入任何战队，但你可以在这一页内，访问其他战队的主页并加入，或是直接创建你自己的战队。",
             'title' => '战队！',
         ],
     ],
@@ -39,7 +43,7 @@ return [
     ],
 
     'edit' => [
-        'ok' => '成功保存设置。',
+        'ok' => '设置已成功保存。',
         'title' => '战队设置',
 
         'description' => [
@@ -59,7 +63,7 @@ return [
 
         'settings' => [
             'application_help' => '是否允许其他人申请加入战队',
-            'default_ruleset_help' => '第一次进入组队界面时默认选择的游戏模式',
+            'default_ruleset_help' => '第一次进入战队界面时默认选择的游戏模式',
             'flag_help' => '最大尺寸 :width×:height',
             'header_help' => '最大尺寸 :width×:height',
             'title' => '战队设置',
@@ -94,21 +98,21 @@ return [
             'title' => '管理战队成员',
 
             'applications' => [
-                'accept_confirm' => '',
-                'created_at' => '请求于',
-                'empty' => '目前没有加入战队请求。',
+                'accept_confirm' => '确定将玩家 :user 添加进战队吗？',
+                'created_at' => '申请日期：',
+                'empty' => '目前没有加入请求。',
                 'empty_slots' => '剩余名额',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
+                'empty_slots_overflow' => ':count_delimited 名玩家超限',
+                'reject_confirm' => '确定拒绝玩家 :user 的加入请求吗？',
                 'title' => '加入战队申请',
             ],
 
             'table' => [
                 'joined_at' => '加入日期',
                 'remove' => '移除',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
+                'remove_confirm' => '确定将玩家 :user 移出战队吗？',
+                'set_leader' => '转让队长',
+                'set_leader_confirm' => '确定将队长转让给玩家 :user 吗？',
                 'status' => '状态',
                 'title' => '当前战队成员',
             ],
@@ -120,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => '玩家 :user 现在是战队队长。',
         ],
     ],
 

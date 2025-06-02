@@ -37,7 +37,7 @@ return [
         'charts' => 'чарти',
         'country' => 'країни',
         'daily_challenge' => 'щоденний виклик',
-        'global' => '',
+        'global' => 'глобальний',
         'kudosu' => 'кудосу',
         'multiplayer' => 'мультиплеєр',
         'seasons' => 'сезонні',

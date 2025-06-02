@@ -62,7 +62,7 @@ return [
 
     'beatmap_tag' => [
         'store' => [
-            'no_score' => 'Du musst einen Score auf einer Beatmap erreichen, um einen Tag hinzuzufügen.',
+            'no_score' => 'Du musst einen Score auf einer Beatmap erreichen, um ein Tag hinzuzufügen.',
         ],
     ],
 

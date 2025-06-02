@@ -140,7 +140,7 @@ return [
             'description' => '谱面介绍',
             'genre' => '流派',
             'language' => '语言',
-            'mapper_tags' => '',
+            'mapper_tags' => '谱师标签',
             'no_scores' => '数据还在计算中……',
             'nominators' => '提名者',
             'nsfw' => '不良内容',
@@ -149,7 +149,7 @@ return [
             'source' => '来源',
             'storyboard' => '此谱面包含故事板',
             'success-rate' => '成功率',
-            'user_tags' => '',
+            'user_tags' => '玩家标签',
             'video' => '此谱面包含视频',
         ],
 

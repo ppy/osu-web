@@ -190,7 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Beatmap-urile clasate nu pot fi raportate',
         'not_in_channel' => 'Nu ești în acest canal.',
-        'in_team' => '',
+        'in_team' => 'Faci parte din echipă.',
         'reason_not_valid' => ':reason nu este valid pentru acest tip de raportare.',
         'self' => "Nu te poți raporta pe tine însuți!",
     ],

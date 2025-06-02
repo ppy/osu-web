@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'υποστήριξη του παιχνιδιού',
             'testflight' => 'δοκιμή',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'πληροφορίες',
         ],
         'livestreams_controller' => [
             '_' => 'ζωντανές ροές',
-        ],
-        'matches_controller' => [
-            '_' => 'matches',
         ],
         'news_controller' => [
             '_' => 'ειδήσεις',

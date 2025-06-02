@@ -6,40 +6,44 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Usuari afegit a l\'equip.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Petició d\'unió cancel·lada.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Petició d\'unió rebutjada.',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Petició per unir-se a l\'equip.',
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
-        'submit' => '',
+        'submit' => 'Crear equip',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => 'Nom del teu equip. El nom serà permanent.',
+            'short_name_help' => 'Màxim 4 lletres.',
+            'title' => "Creem un nou equip",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "Juga amb els teus amics; veterans o principiants. Actualment no pertanys a cap equip. Uneix-te a un visitant la nostra pàgina d'equips, o crea el teu propi des d'aquesta pàgina.",
+            'title' => 'Equip!',
         ],
     ],
 
     'destroy' => [
-        'ok' => 'Equip eliminat',
+        'ok' => 'Equip eliminat.',
     ],
 
     'edit' => [
-        'ok' => '',
+        'ok' => 'Configuració guardada correctament.',
         'title' => 'Configuracions de l\'Equip',
 
         'description' => [
@@ -48,8 +52,8 @@ return [
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Bandera de l\'equip',
+            'title' => 'Estableix una bandera per a l\'equip',
         ],
 
         'header' => [
@@ -60,8 +64,8 @@ return [
         'settings' => [
             'application_help' => 'Si permetre que la gent sol·liciti unir-se a l\'equip',
             'default_ruleset_help' => 'El mode de joc a ser seleccionat per defecte quan visites la pàgina de l\'equip',
-            'flag_help' => '',
-            'header_help' => '',
+            'flag_help' => 'Mida màxima :width×:height',
+            'header_help' => 'Mida màxima :width×:height',
             'title' => 'Configuració de l\'Equip',
 
             'application_state' => [
@@ -73,11 +77,11 @@ return [
 
     'header_links' => [
         'edit' => 'configuració',
-        'leaderboard' => '',
-        'show' => '',
+        'leaderboard' => 'puntuacions',
+        'show' => 'info',
 
         'members' => [
-            'index' => '',
+            'index' => 'editar els membres',
         ],
     ],
 
@@ -94,21 +98,21 @@ return [
             'title' => 'Gestionar els Membres',
 
             'applications' => [
-                'accept_confirm' => '',
+                'accept_confirm' => 'Afegir jugador :user a l\'equip?',
                 'created_at' => 'Sol·licitat a',
-                'empty' => '',
+                'empty' => 'Sense peticions d\'unió en aquests moments.',
                 'empty_slots' => 'Places disponibles',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
+                'empty_slots_overflow' => ':count_delimited límit d\'usuaris|:count_delimited límit d\'usuaris',
+                'reject_confirm' => 'Rebutjar la petició d\'unió del jugador :user?',
                 'title' => 'Sol·licituds d\'accés',
             ],
 
             'table' => [
                 'joined_at' => 'Data d\'Unió',
                 'remove' => 'Eliminar',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
+                'remove_confirm' => 'Eliminar el jugador :user de l\'equip?',
+                'set_leader' => 'Transferir el lideratge de l\'equip',
+                'set_leader_confirm' => 'Transferir el lideratge de l\'equip al jugador :user?',
                 'status' => 'Estatus',
                 'title' => 'Membres Actuals',
             ],
@@ -120,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'Jugador :user és el líder de l\'equip.',
         ],
     ],
 
@@ -130,7 +134,7 @@ return [
 
     'show' => [
         'bar' => [
-            'chat' => '',
+            'chat' => 'Xat de l\'equip',
             'destroy' => 'Dissol l\'Equip',
             'join' => 'Sol·licitar accés',
             'join_cancel' => 'Cancel·la la sol·licitud d\'accés',
@@ -147,18 +151,18 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => 'Sobre nosaltres!',
             'info' => 'Info',
             'members' => 'Membres',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => 'Posició',
+            'leader' => 'Líder de l\'equip',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'Equip creat.',
     ],
 ];

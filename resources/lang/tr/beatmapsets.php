@@ -140,7 +140,7 @@ return [
             'description' => 'Açıklama',
             'genre' => 'Tür',
             'language' => 'Dil',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Mapper Etiketleri',
             'no_scores' => 'Veriler hala hesaplanıyor...',
             'nominators' => 'Nominator\'ler',
             'nsfw' => 'Müstehcen içerik',
@@ -149,7 +149,7 @@ return [
             'source' => 'Kaynak',
             'storyboard' => 'Bu beatmap storyboard içeriyor',
             'success-rate' => 'Başarı Oranı',
-            'user_tags' => '',
+            'user_tags' => 'Kullanıcı Etiketleri',
             'video' => 'Bu beatmap video içeriyor',
         ],
 

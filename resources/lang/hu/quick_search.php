@@ -5,15 +5,16 @@
 
 return [
     'mode' => [
+        'artist_track' => '',
         'beatmapset' => 'Beatmap',
         'forum_post' => 'Fórum',
         'other' => 'Egyéb',
+        'team' => '',
         'user' => 'Játékos',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => 'Nincs találat',
         'empty_for' => 'Nincs találat erre a modra/modokra :modes',
         'more' => 'További keresési eredmények :mode',
         'title' => ':mode keresési eredmények',

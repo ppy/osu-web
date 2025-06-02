@@ -37,6 +37,12 @@ return [
         'new' => 'Pēdējā atbilde',
     ],
 
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
+    ],
+
     'users' => [
         'relevance' => 'Aktualitāte',
         'username' => 'Vārds',

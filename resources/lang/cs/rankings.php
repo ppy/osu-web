@@ -37,7 +37,7 @@ return [
         'charts' => 'výběry (staré)',
         'country' => 'stát',
         'daily_challenge' => 'denní výzva',
-        'global' => '',
+        'global' => 'svět',
         'kudosu' => 'kudosu',
         'multiplayer' => 'hra pro více hráčů',
         'seasons' => 'sezóny',

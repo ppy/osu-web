@@ -26,6 +26,9 @@ return [
         'placeholder' => 'اكتب للبحث',
         'title' => 'البحث',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'سجل الدخول للبحث عن الخرائط',
             'more' => ':count المزيد من نتائج بحث الخرائط',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'الكل',
+            'artist_track' => '',
             'beatmapset' => 'خريطة',
             'forum_post' => 'منتدى',
+            'team' => '',
             'user' => 'لاعب',
             'wiki_page' => 'ويكي',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

@@ -140,7 +140,7 @@ return [
             'description' => 'Descripción',
             'genre' => 'Género',
             'language' => 'Idioma',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Etiquetas del mapper',
             'no_scores' => 'Los datos todavía están siendo calculados...',
             'nominators' => 'Nominadores',
             'nsfw' => 'Contenido explícito',
@@ -149,7 +149,7 @@ return [
             'source' => 'Fuente',
             'storyboard' => 'Este mapa contiene storyboard',
             'success-rate' => 'Tasa de éxito',
-            'user_tags' => '',
+            'user_tags' => 'Etiquetas de los usuarios',
             'video' => 'Este mapa contiene video',
         ],
 

@@ -88,6 +88,7 @@ return [
             'beatmap_owner_change' => 'vendég nehézség',
             'beatmapset:modding' => 'beatmap modolás',
             'channel_message' => 'Privát üzenetek',
+            'channel_team' => '',
             'comment_new' => 'Új megjegyzések',
             'forum_topic_reply' => 'Válaszolj erre a témára',
             'mail' => 'e-mail',

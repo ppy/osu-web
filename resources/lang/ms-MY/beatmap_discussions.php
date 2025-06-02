@@ -19,7 +19,7 @@ return [
     'index' => [
         'deleted_beatmap' => 'dipadam',
         'none_found' => 'Tiada perbincangan sepadan dengan ukur tara carian ditemui.',
-        'title' => 'Perbincangan Beatmap',
+        'title' => 'Perbincangan Peta Rentak',
 
         'form' => [
             '_' => 'Cari',

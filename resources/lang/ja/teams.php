@@ -19,6 +19,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
         'submit' => 'チームを作成',
 
@@ -94,21 +98,21 @@ return [
             'title' => 'メンバーの管理',
 
             'applications' => [
-                'accept_confirm' => '',
+                'accept_confirm' => 'ユーザー :user をチームに追加しますか？',
                 'created_at' => '申請日',
                 'empty' => '現在参加申請はありません。',
                 'empty_slots' => '空きスロット',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
+                'empty_slots_overflow' => ':count_delimited 人のユーザーが超過|:count_delimited人のユーザーが超過',
+                'reject_confirm' => 'ユーザー :user からの参加リクエストを拒否しますか？',
                 'title' => '参加リクエスト',
             ],
 
             'table' => [
                 'joined_at' => '参加日',
                 'remove' => '削除',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
+                'remove_confirm' => 'ユーザー :user をチームから削除しますか？',
+                'set_leader' => 'チームリーダーを移譲',
+                'set_leader_confirm' => 'チームリーダーをユーザー :user に移譲しますか？',
                 'status' => 'ステータス',
                 'title' => '現在参加しているメンバー',
             ],
@@ -120,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'ユーザー :user が新しいチームリーダーになりました。',
         ],
     ],
 

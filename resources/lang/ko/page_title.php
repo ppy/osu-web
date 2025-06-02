@@ -80,14 +80,14 @@ return [
             'support_the_game' => '게임 지원하기',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => '정보',
         ],
         'livestreams_controller' => [
             '_' => '라이브 스트림',
-        ],
-        'matches_controller' => [
-            '_' => '경기',
         ],
         'news_controller' => [
             '_' => '뉴스',

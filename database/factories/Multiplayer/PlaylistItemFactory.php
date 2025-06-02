@@ -26,6 +26,7 @@ class PlaylistItemFactory extends Factory
             'allowed_mods' => [],
             'required_mods' => [],
             'owner_id' => User::factory(),
+            'freestyle' => false,
         ];
     }
 }

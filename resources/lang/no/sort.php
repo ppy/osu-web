@@ -37,6 +37,12 @@ return [
         'new' => 'Siste svar',
     ],
 
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
+    ],
+
     'users' => [
         'relevance' => 'Relevans',
         'username' => 'Navn',

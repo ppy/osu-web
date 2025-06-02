@@ -19,6 +19,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
         'submit' => 'Creează Echipă',
 
@@ -94,21 +98,21 @@ return [
             'title' => 'Gestionare Membri',
 
             'applications' => [
-                'accept_confirm' => '',
+                'accept_confirm' => 'Adăugați utilizatorul :user la echipă?',
                 'created_at' => 'Solicitat La',
                 'empty' => 'Nici o cerere de înscriere în acest moment.',
                 'empty_slots' => 'Locuri disponibile',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
+                'empty_slots_overflow' => 'un utilizator în plus|:count_delimited utilizatori în plus|:count_delimited de utilizatori în plus',
+                'reject_confirm' => 'Refuzați cererea de înscriere de la utilizatorul :user?',
                 'title' => 'Cereri de Înscriere',
             ],
 
             'table' => [
                 'joined_at' => 'Data Înscrierii',
                 'remove' => 'Elimină',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
+                'remove_confirm' => 'Eliminați utilizatorul :user din echipă?',
+                'set_leader' => 'Transferați conducerea echipei',
+                'set_leader_confirm' => 'Transferați conducerea echipei către utilizatorul :user?',
                 'status' => 'Status',
                 'title' => 'Membrii Actuali',
             ],
@@ -120,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'Utilizatorul :user este acum liderul echipei.',
         ],
     ],
 

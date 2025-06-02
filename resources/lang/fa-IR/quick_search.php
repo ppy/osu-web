@@ -5,15 +5,16 @@
 
 return [
     'mode' => [
+        'artist_track' => '',
         'beatmapset' => 'بیت مپ',
         'forum_post' => 'انجمن',
         'other' => 'دیگر',
+        'team' => '',
         'user' => 'بازیکن',
         'wiki_page' => 'ویکی',
     ],
 
     'result' => [
-        'empty' => 'بدون نتیجه',
         'empty_for' => 'نتیجه ای برای :modes وجود نداشت',
         'more' => 'نتایج جستجو :mode بیشتر',
         'title' => 'نتایج جستجو :mode',

@@ -88,6 +88,7 @@ return [
             'beatmap_owner_change' => 'гостојућа тежина',
             'beatmapset:modding' => 'модовање мапа',
             'channel_message' => 'приватне чет поруке',
+            'channel_team' => '',
             'comment_new' => 'нови коментари',
             'forum_topic_reply' => 'одговор на тему',
             'mail' => 'пошта',

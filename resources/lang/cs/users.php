@@ -161,13 +161,13 @@ return [
 
         'options' => [
             'cheating' => 'Podvádění',
-            'inappropriate_chat' => '',
+            'inappropriate_chat' => 'Nevhodné chování v chatu',
             'insults' => 'Uráží mě / ostatní',
             'multiple_accounts' => 'Používání více účtů',
             'nonsense' => 'Nesmysl',
             'other' => 'Jiný (napište níže)',
             'spam' => 'Spamování',
-            'unwanted_content' => 'Odkazování na nevhodný obsah',
+            'unwanted_content' => 'Nevhodný obsah',
         ],
     ],
     'restricted_banner' => [
@@ -481,8 +481,8 @@ return [
             'highest' => 'Nejvyšší rank :rank v :date',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Celkové skóre',
         ],
         'stats' => [
             'hit_accuracy' => 'Přesnost zásahů',

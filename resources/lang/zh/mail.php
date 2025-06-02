@@ -20,15 +20,15 @@ return [
 
     'donation_thanks' => [
         'benefit_more' => '将来还会有更多的支持者独有功能！',
-        'feedback' => "如果有任何问题或者意见的话，您可以直接回复这封邮件。我会尽快回应的！",
-        'keep_free' => '正是因为您这样的人，osu! 和 osu! 社区才能够在没有讨厌的广告和强制消费的环境中稳定运行。感谢您的支持！',
+        'feedback' => "如有任何疑问或反馈，欢迎直接回复此邮件，我将尽快为您解答！",
+        'keep_free' => '正是有您这样的玩家支持，osu! 才能在无广告干扰、无强制消费的情况下维持游戏与社区的良性运作！',
         'keep_running' => '您的捐赠能够维持 osu! 服务器继续运行 :minutes！虽然看起来不多，但是江海来源于小流，不是么。:)',
         'subject' => '非常感谢， osu! 爱你哦~',
         'translation' => '以下是社区提供的翻译，仅供参考：',
 
         'benefit' => [
-            'gift' => '您的受赠者将会享受到 osu!direct 等其他 osu! 支持者所享有的的特权。',
-            'self' => '您现在可以享受 :duration 的 osu!direct 和其他支持者特权。',
+            'gift' => '您的好友赠礼对象将会享受到 osu!direct 及更多 osu! 支持者专属福利。',
+            'self' => '您将会享受到 :duration 的 osu!direct 及更多 osu! 支持者专属福利。',
         ],
 
         'support' => [
@@ -54,21 +54,21 @@ return [
     'store_payment_completed' => [
         'prepare_shipping' => '我们收到了您的付款，正在准备发货。这可能需要几天时间，发货日期取决于订单的数量。您可以在这里查阅您的订单详情：',
         'processing' => '我们已收到您的付款，目前正在处理您的订单。您可以在这里关注您的订单进度：',
-        'questions' => "如果有任何问题的话，您可以直接回复这封邮件。",
+        'questions' => "如有任何疑问，欢迎随时回复本邮件。",
         'shipping' => '配送',
-        'subject' => '我们已收到你的 osu!商店 订单！',
+        'subject' => '我们已收到您的 osu! 商店订单！',
         'thank_you' => '感谢您在 osu! 商店的购买！',
         'total' => '总计',
     ],
 
     'supporter_gift' => [
-        'anonymous_gift' => '赠予您支持者标签的人想要保持匿名，所以在这封邮件中并没有提到他（们）。',
+        'anonymous_gift' => '赠予您支持者标签的人想要保持匿名，在这封邮件中将不会显示其信息。',
         'anonymous_gift_maybe_not' => '话虽如此，不过您可能已经猜到是谁啦嘿嘿嘿~',
-        'duration' => '因此，您可以在接下来的 :duration 内享受到 osu!direct 等 osu! 支持者所享有的特权。',
-        'features' => '您可以在此处找到更多关于特权的信息：',
+        'duration' => '因此，您可以在接下来的 :duration 内享受到 osu!direct 及更多 osu! 支持者专属福利。',
+        'features' => '您可以在此处找到更多关于专属福利的信息：',
         'gifted' => '有人刚刚赠予您 osu! 支持者标签！',
-        'gift_message' => '把这份支持者标签赠送给你的人还附上了以下留言：',
-        'subject' => '你收到了一个 osu! 支持者标签。',
+        'gift_message' => '赠礼者为您留下了一条留言：',
+        'subject' => '您收到了一个 osu! 支持者标签！',
     ],
 
     'user_email_updated' => [
@@ -79,7 +79,7 @@ return [
     ],
 
     'user_force_reactivation' => [
-        'main' => '您的账户可能已经被盗，我们检测到了最近发生的可疑活动或非常简单的密码。因此，我们非常需要您更新密码，请确保新密码足够安全。',
+        'main' => '您的账户存在安全风险（检测到近期异常活动或密码强度过低）。必须立即设置新密码以确保账户安全，请务必选择高强度密码。',
         'perform_reset' => '您可以点击该链接来重置密码：:url',
         'reason' => '原因：',
         'subject' => '您需要重新激活您的 osu! 账户',
@@ -88,7 +88,7 @@ return [
     'user_notification_digest' => [
         'new' => '您关注的项目有新的更新。',
         'settings' => '更改邮件通知设置：',
-        'subject' => '新 osu! 通知',
+        'subject' => '来自 osu! 的新通知',
     ],
 
     'user_password_updated' => [

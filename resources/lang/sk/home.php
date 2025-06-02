@@ -26,6 +26,9 @@ return [
         'placeholder' => 'zadajte pre vyhľadávanie',
         'title' => 'Hľadať',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => '',
             'more' => ':count ďalších výsledkov vyhladávaní máp',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'všetko',
+            'artist_track' => '',
             'beatmapset' => 'beatmapy',
             'forum_post' => 'fórum',
+            'team' => '',
             'user' => 'hráč',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

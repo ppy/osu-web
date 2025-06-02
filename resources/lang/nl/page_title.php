@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'ondersteun het spel',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'informatie',
         ],
         'livestreams_controller' => [
             '_' => 'live streams',
-        ],
-        'matches_controller' => [
-            '_' => 'matches',
         ],
         'news_controller' => [
             '_' => 'nieuws',

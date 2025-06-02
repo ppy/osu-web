@@ -191,7 +191,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'ランク付けされたビートマップは報告できません。',
         'not_in_channel' => 'あなたはこのチャンネルに参加していません。',
-        'in_team' => '',
+        'in_team' => 'あなたはチームの一員です。',
         'reason_not_valid' => ':reason はこの報告タイプでは無効です。',
         'self' => "自分自身を報告することはできません！",
     ],

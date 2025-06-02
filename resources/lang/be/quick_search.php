@@ -5,15 +5,16 @@
 
 return [
     'mode' => [
+        'artist_track' => '',
         'beatmapset' => 'Карта',
         'forum_post' => 'Форум',
         'other' => 'Iншае',
+        'team' => '',
         'user' => 'Гулец',
         'wiki_page' => 'Вікі',
     ],
 
     'result' => [
-        'empty' => 'Няма вынікаў',
         'empty_for' => 'Няма вынікаў па :modes',
         'more' => 'Больш вынікаў пошуку па :mode',
         'title' => 'Вынікі пошуку па :mode',

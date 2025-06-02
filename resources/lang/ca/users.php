@@ -482,7 +482,7 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => '',
-            'total_score' => '',
+            'total_score' => 'Puntuació total',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisió',

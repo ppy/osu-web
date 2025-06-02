@@ -35,8 +35,8 @@ return [
     ],
 
     'team' => [
-        'button' => '',
-        'title' => '',
+        'button' => '举报战队',
+        'title' => '举报 :username 的战队？',
     ],
 
     'user' => [

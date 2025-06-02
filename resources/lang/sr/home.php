@@ -26,6 +26,9 @@ return [
         'placeholder' => 'куцајте за претрагу',
         'title' => 'претрага',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Пријавите се да тражите мапе',
             'more' => ':count додатних резултата за мапе',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'све',
+            'artist_track' => '',
             'beatmapset' => 'мапа',
             'forum_post' => 'форум',
+            'team' => '',
             'user' => 'играч',
             'wiki_page' => 'вики',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

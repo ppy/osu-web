@@ -123,6 +123,16 @@ return [
                     'channel_message_group' => 'de la :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -167,8 +177,13 @@ return [
 
                 'team_application_accept' => "Acum ești membru al echipei :title",
                 'team_application_accept_compact' => "Acum ești membru al echipei :title",
+
+                'team_application_group' => '',
+
                 'team_application_reject' => 'Cererea ta de înscriere în echipa :title a fost refuzată',
                 'team_application_reject_compact' => 'Cererea ta de înscriere în echipa :title a fost refuzată',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -230,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Există un anunț nou în „:name”',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => 'Ai primit un mesaj nou de la :username',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -260,6 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Acum ești membru al echipei :title",
                 'team_application_reject' => 'Cererea ta de înscriere în echipa :title a fost refuzată',
+                'team_application_store' => '',
             ],
         ],
 
