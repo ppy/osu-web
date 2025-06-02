@@ -20,7 +20,7 @@ class Token extends PassportToken implements SessionVerificationInterface
     // PassportToken doesn't have factory
     use HasFactory, FasterAttributes;
 
-    const SCOPES_REQUIRE_DELEGATION = ['chat.write', 'chat.write_manage', 'delegate'];
+    const SCOPES_REQUIRE_DELEGATION = ['chat.write', 'chat.write_manage', 'delegate', 'forum.write_manage', 'forum.write'];
 
     protected $casts = [
         'expires_at' => 'datetime',

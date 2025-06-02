@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Database\Eloquent\Collection;
 use Laravel\Passport\Client as PassportClient;
 use Laravel\Passport\RefreshToken;
 
@@ -21,10 +22,10 @@ use Laravel\Passport\RefreshToken;
  * @property bool $personal_access_client
  * @property string $provider
  * @property string $redirect
- * @property-read Collection<RefreshToken> refreshTokens
+ * @property-read Collection<RefreshToken> $refreshTokens
  * @property bool $revoked
  * @property string $secret
- * @property-read Collection<Token> tokens
+ * @property-read Collection<Token> $tokens
  * @property Carbon|null $updated_at
  * @property-read User|null $user
  * @property int|null $user_id
