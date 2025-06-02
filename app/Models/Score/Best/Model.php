@@ -33,14 +33,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
 
     const DEFAULT_SORT = 'score_asc';
 
-    const RANK_TO_STATS_COLUMN_MAPPING = [
-        'A' => 'a_rank_count',
-        'S' => 's_rank_count',
-        'SH' => 'sh_rank_count',
-        'X' => 'x_rank_count',
-        'XH' => 'xh_rank_count',
-    ];
-
     public function getAttribute($key)
     {
         return match ($key) {
@@ -177,18 +169,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         return $query->whereIn('user_id', $userIds);
     }
 
-    public function isPersonalBest(): bool
-    {
-        return $this->getKey() === (static
-            ::where([
-                'user_id' => $this->user_id,
-                'beatmap_id' => $this->beatmap_id,
-            ])->default()
-            ->limit(1)
-            ->pluck('score_id')
-            ->first() ?? $this->getKey());
-    }
-
     public function replayViewCount()
     {
         $class = ReplayViewCount::class.'\\'.get_class_basename(static::class);
@@ -212,32 +192,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
     public function delete()
     {
         $result = $this->getConnection()->transaction(function () {
-            $statsColumn = static::RANK_TO_STATS_COLUMN_MAPPING[$this->rank] ?? null;
-
-            if ($statsColumn !== null && $this->isPersonalBest()) {
-                $userStats = $this->user?->statistics($this->getMode());
-
-                if ($userStats !== null) {
-                    $userStats->decrementInstance($statsColumn);
-
-                    $nextBest = static::where([
-                        'beatmap_id' => $this->beatmap_id,
-                        'user_id' => $this->user_id,
-                    ])->where($this->getKeyName(), '<>', $this->getKey())
-                    ->orderBy('score', 'DESC')
-                    ->orderBy($this->getKeyName(), 'ASC')
-                    ->first();
-
-                    if ($nextBest !== null) {
-                        $nextBestStatsColumn = static::RANK_TO_STATS_COLUMN_MAPPING[$nextBest->rank] ?? null;
-
-                        if ($nextBestStatsColumn !== null) {
-                            $userStats->incrementInstance($nextBestStatsColumn);
-                        }
-                    }
-                }
-            }
-
             $this->replayViewCount?->delete();
 
             return parent::delete();
