@@ -23,7 +23,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
     use Traits\Reportable, Traits\WithDbCursorHelper, Traits\WithWeightedPp;
 
     protected array $macros = [
-        'accurateRankCounts',
         'forListing',
         'userBest',
     ];
@@ -192,53 +191,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
             }
 
             return array_slice($results, $offset);
-        };
-    }
-
-    /**
-     * Gets up-to-date User score rank counts.
-     *
-     * This can be relatively slow for large numbers of scores, so
-     *  prefer getting the cached counts from one of the UserStatistics objects instead.
-     *
-     * @return array [user_id => [rank => count]]
-     */
-    public function macroAccurateRankCounts(): \Closure
-    {
-        return function ($query) {
-            $scores = (clone $query)
-                ->select(['user_id', 'beatmap_id', 'score', 'rank'])
-                ->get();
-
-            $result = [];
-            $counted = [];
-
-            foreach ($scores as $score) {
-                if (!isset($result[$score->user_id])) {
-                    $result[$score->user_id] = [];
-                }
-
-                $countedKey = "{$score->user_id}:{$score->beatmap_id}";
-
-                if (isset($counted[$countedKey])) {
-                    $countedScore = $counted[$countedKey];
-                    if ($countedScore->score < $score->score) {
-                        $result[$score->user_id][$countedScore->rank] -= 1;
-                        $counted[$countedKey] = $score;
-                    } else {
-                        continue;
-                    }
-                }
-                $counted[$countedKey] = $score;
-
-                if (!isset($result[$score->user_id][$score->rank])) {
-                    $result[$score->user_id][$score->rank] = 0;
-                }
-
-                $result[$score->user_id][$score->rank] += 1;
-            }
-
-            return $result;
         };
     }
 
