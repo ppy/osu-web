@@ -44,17 +44,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         'XH' => 'xh_rank_count',
     ];
 
-    public static function queueIndexingForUser(User $user)
-    {
-        $instance = new static();
-        $table = $instance->getTable();
-        $modeId = Beatmap::MODES[$instance->getMode()];
-
-        $instance->getConnection()->insert(
-            "INSERT INTO score_process_queue (score_id, mode, status) SELECT score_id, {$modeId}, 1 FROM {$table} WHERE user_id = {$user->getKey()}"
-        );
-    }
-
     public function getAttribute($key)
     {
         return match ($key) {
