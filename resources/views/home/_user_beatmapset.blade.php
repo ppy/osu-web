@@ -41,7 +41,7 @@
                     <span class="fa fa-heart"></span>
                     {{ i18n_number_format($beatmapset->favourite_count) }}
                 @elseif ($type === 'daily_challenge')
-                    resets {!! timeago($dailyChallenge->ends_at) !!}
+                    {!! osu_trans('home.user.beatmaps.resets', ['ends' => timeago($dailyChallenge->ends_at)]) !!}
                 @endif
             </span>
         </div>

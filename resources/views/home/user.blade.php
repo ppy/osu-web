@@ -99,7 +99,7 @@
                 @if ($dailyChallenge)
                     <h3 class="user-home__beatmap-list-title">
                         <a href="/wiki/Gameplay/Daily_challenge">
-                            Daily Challenge Beatmap
+                            {{ osu_trans('home.user.beatmaps.daily_challenge') }}
                         </a>
                     </h3>
 
