@@ -13,7 +13,7 @@ import { getArtist, getTitle } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { accuracy, filterMods, hasMenu, rank } from 'utils/score-helper';
+import { accuracy, hasMenu, rank } from 'utils/score-helper';
 import { beatmapUrl } from 'utils/url';
 
 const bn = 'play-detail';
@@ -112,7 +112,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
           </div>
 
           <div className={`${bn}__score-detail ${bn}__score-detail--mods`}>
-            {filterMods(score).map((mod) => <Mod key={mod.acronym} mod={mod} />)}
+            {score.mods.map((mod) => <Mod key={mod.acronym} mod={mod} />)}
           </div>
 
           <div className={`${bn}__pp`}>
