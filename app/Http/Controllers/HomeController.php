@@ -13,10 +13,12 @@ use App\Libraries\Search\QuickSearch;
 use App\Models\BeatmapDownload;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
+use App\Models\Multiplayer\Room;
 use App\Models\NewsPost;
 use App\Models\UserDonation;
 use App\Transformers\MenuImageTransformer;
 use Auth;
+use Carbon\CarbonImmutable;
 use Jenssegers\Agent\Agent;
 use Request;
 
@@ -104,11 +106,14 @@ class HomeController extends Controller
             $newBeatmapsets = Beatmapset::latestRanked();
             $popularBeatmapsets = Beatmapset::popular()->get();
 
+            $dailyChallenge = Room::dailyChallengeFor(CarbonImmutable::now());
+
             return ext_view('home.user', compact(
                 'menuImages',
                 'newBeatmapsets',
                 'news',
-                'popularBeatmapsets'
+                'popularBeatmapsets',
+                'dailyChallenge',
             ));
         } else {
             $news = json_collection($news, 'NewsPost');
