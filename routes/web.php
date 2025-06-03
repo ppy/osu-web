@@ -110,9 +110,11 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
     });
 
-    Route::delete('score-pins', 'ScorePinsController@destroy')->name('score-pins.destroy');
-    Route::put('score-pins', 'ScorePinsController@reorder')->name('score-pins.reorder');
-    Route::resource('score-pins', 'ScorePinsController', ['only' => ['store']]);
+    Route::group(['prefix' => 'score-pins/{score}', 'as' => 'score-pins.'], function () {
+        Route::put('reorder', 'ScorePinsController@reorder')->name('reorder');
+        Route::delete('/', 'ScorePinsController@destroy')->name('destroy');
+        Route::post('/', 'ScorePinsController@store')->name('store');
+    });
 
     Route::resource('client-verifications', 'ClientVerificationsController', ['only' => ['create', 'store']]);
 

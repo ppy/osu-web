@@ -19,33 +19,29 @@ class ScorePinsController extends Controller
         parent::__construct();
     }
 
-    public function destroy()
+    public function destroy($scoreId)
     {
-        \Auth::user()->scorePins()->whereKey(get_int(request('score_id')))->delete();
+        \Auth::user()->scorePins()->whereKey($scoreId)->delete();
 
         return response()->noContent();
     }
 
-    public function reorder()
+    public function reorder($scoreId)
     {
-        $rawParams = \Request::all();
-        $targetId = get_int($rawParams['score_id'] ?? null);
+        $params = get_params(\Request::all(), null, [
+            'order1_score_id:int',
+            'order3_score_id:int',
+        ]);
 
         $pinsQuery = \Auth::user()->scorePins();
-        $target = $pinsQuery->clone()->findOrFail($targetId);
-        $rulesetId = $target->ruleset_id;
-        $pinsQuery->where('ruleset_id', $rulesetId);
+        $target = $pinsQuery->clone()->findOrFail(get_int($scoreId));
+        $pinsQuery->where('ruleset_id', $target->ruleset_id);
 
-        $adjacentScores = [];
-        foreach (['order1', 'order3'] as $position) {
-            $adjacentScoreIds[$position] = get_int($rawParams[$position]['score_id'] ?? null);
-        }
-
-        $order1Item = isset($adjacentScoreIds['order1'])
-            ? $pinsQuery->clone()->find($adjacentScoreIds['order1'])
+        $order1Item = isset($params['order1_score_id'])
+            ? $pinsQuery->clone()->find($params['order1_score_id'])
             : null;
-        $order3Item = $order1Item === null && isset($adjacentScoreIds['order3'])
-            ? $pinsQuery->clone()->find($adjacentScoreIds['order3'])
+        $order3Item = $order1Item === null && isset($params['order3_score_id'])
+            ? $pinsQuery->clone()->find($params['order3_score_id'])
             : null;
 
         abort_if($order1Item === null && $order3Item === null, 422, 'no valid pinned score reference is specified');
@@ -71,16 +67,15 @@ class ScorePinsController extends Controller
         return response()->noContent();
     }
 
-    public function store()
+    public function store($scoreId)
     {
-        $id = get_int(request('score_id'));
-        $score = Solo\Score::find($id);
+        $score = Solo\Score::find($scoreId);
 
         abort_if($score === null, 422, "specified score couldn't be found");
 
         $user = \Auth::user();
 
-        $pin = $user->scorePins()->find($id);
+        $pin = $user->scorePins()->find($scoreId);
 
         if ($pin === null) {
             priv_check('ScorePin', $score)->ensureCan();

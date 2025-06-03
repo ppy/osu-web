@@ -13,13 +13,11 @@ export default class ScorePins {
   }
 
   apiPin(score: ScoreJson, toPin: boolean) {
-    const pin = score.current_user_attributes.pin;
-    if (pin == null) {
+    if (score.current_user_attributes.pin == null) {
       throw new Error("can't pin score without current user attributes");
     }
 
-    return $.ajax(route('score-pins.store'), {
-      data: pin,
+    return $.ajax(route('score-pins.store', { score: score.id }), {
       dataType: 'json',
       method: toPin ? 'POST' : 'DELETE',
     }).done(action(() => {
