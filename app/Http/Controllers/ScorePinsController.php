@@ -29,19 +29,19 @@ class ScorePinsController extends Controller
     public function reorder($scoreId)
     {
         $params = get_params(\Request::all(), null, [
-            'order1_score_id:int',
-            'order3_score_id:int',
+            'after_score_id:int',
+            'before_score_id:int',
         ]);
 
         $pinsQuery = \Auth::user()->scorePins();
         $target = $pinsQuery->clone()->findOrFail(get_int($scoreId));
         $pinsQuery->where('ruleset_id', $target->ruleset_id);
 
-        $order1Item = isset($params['order1_score_id'])
-            ? $pinsQuery->clone()->find($params['order1_score_id'])
+        $order1Item = isset($params['after_score_id'])
+            ? $pinsQuery->clone()->find($params['after_score_id'])
             : null;
-        $order3Item = $order1Item === null && isset($params['order3_score_id'])
-            ? $pinsQuery->clone()->find($params['order3_score_id'])
+        $order3Item = $order1Item === null && isset($params['before_score_id'])
+            ? $pinsQuery->clone()->find($params['before_score_id'])
             : null;
 
         abort_if($order1Item === null && $order3Item === null, 422, 'no valid pinned score reference is specified');

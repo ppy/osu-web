@@ -85,7 +85,7 @@ class ScorePinsControllerTest extends TestCase
         $this->actAsUser($user, true);
         $this
             ->put(route('score-pins.reorder', $pins[0]->score), [
-                'order1_score_id' => $pins[1]->score->getKey(),
+                'after_score_id' => $pins[1]->score->getKey(),
             ])->assertSuccessful();
 
         $pins->map->refresh();
@@ -104,7 +104,7 @@ class ScorePinsControllerTest extends TestCase
         $this->actAsUser($user, true);
         $this
             ->put(route('score-pins.reorder', $pins[0]->score), [
-                'order1_score_id' => $pins[1]->score->getKey(),
+                'after_score_id' => $pins[1]->score->getKey(),
             ])->assertSuccessful();
 
         $pins->map->refresh();
@@ -124,7 +124,7 @@ class ScorePinsControllerTest extends TestCase
         $this->actAsUser($user, true);
         $this
             ->put(route('score-pins.reorder', $pins[1]->score), [
-                'order3_score_id' => $pins[0]->score->getKey(),
+                'before_score_id' => $pins[0]->score->getKey(),
             ])->assertSuccessful();
 
         $pins->map->refresh();
@@ -143,7 +143,7 @@ class ScorePinsControllerTest extends TestCase
         $this->actAsUser($user, true);
         $this
             ->put(route('score-pins.reorder', $pins[2]->score), [
-                'order1_score_id' => $pins[0]->score->getKey(),
+                'after_score_id' => $pins[0]->score->getKey(),
             ])->assertSuccessful();
 
         $pins->map->refresh();

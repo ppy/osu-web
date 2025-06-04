@@ -190,9 +190,9 @@ export default class Controller {
 
     const params = currentIndex > newIndex
       // target will be above existing item at index
-      ? { order3_score_id: adjacentScore.id }
+      ? { before_score_id: adjacentScore.id }
       // target will be below existing item at index
-      : { order1_score_id: adjacentScore.id };
+      : { after_score_id: adjacentScore.id };
 
     showLoadingOverlay();
     $.ajax(route('score-pins.reorder', { score: target.id }), {
