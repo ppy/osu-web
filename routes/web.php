@@ -111,9 +111,9 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::group(['prefix' => 'score-pins/{score}', 'as' => 'score-pins.'], function () {
-        Route::put('reorder', 'ScorePinsController@reorder')->name('reorder');
+        Route::post('reorder', 'ScorePinsController@reorder')->name('reorder');
         Route::delete('/', 'ScorePinsController@destroy')->name('destroy');
-        Route::post('/', 'ScorePinsController@store')->name('store');
+        Route::put('/', 'ScorePinsController@store')->name('store');
     });
 
     Route::resource('client-verifications', 'ClientVerificationsController', ['only' => ['create', 'store']]);

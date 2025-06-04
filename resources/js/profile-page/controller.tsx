@@ -198,7 +198,7 @@ export default class Controller {
     $.ajax(route('score-pins.reorder', { score: target.id }), {
       data: params,
       dataType: 'json',
-      method: 'PUT',
+      method: 'POST',
     }).fail(action((xhr: JQuery.jqXHR, status: string) => {
       error(xhr, status);
       if (this.state.lazy.top_ranks != null) {

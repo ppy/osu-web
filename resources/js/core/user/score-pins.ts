@@ -19,7 +19,7 @@ export default class ScorePins {
 
     return $.ajax(route('score-pins.store', { score: score.id }), {
       dataType: 'json',
-      method: toPin ? 'POST' : 'DELETE',
+      method: toPin ? 'PUT' : 'DELETE',
     }).done(action(() => {
       this.markPinned(score, toPin);
       $.publish('score:pin', [toPin, score]);

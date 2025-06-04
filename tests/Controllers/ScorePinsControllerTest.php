@@ -84,7 +84,7 @@ class ScorePinsControllerTest extends TestCase
 
         $this->actAsUser($user, true);
         $this
-            ->put(route('score-pins.reorder', $pins[0]->score), [
+            ->post(route('score-pins.reorder', $pins[0]->score), [
                 'after_score_id' => $pins[1]->score->getKey(),
             ])->assertSuccessful();
 
@@ -103,7 +103,7 @@ class ScorePinsControllerTest extends TestCase
 
         $this->actAsUser($user, true);
         $this
-            ->put(route('score-pins.reorder', $pins[0]->score), [
+            ->post(route('score-pins.reorder', $pins[0]->score), [
                 'after_score_id' => $pins[1]->score->getKey(),
             ])->assertSuccessful();
 
@@ -123,7 +123,7 @@ class ScorePinsControllerTest extends TestCase
 
         $this->actAsUser($user, true);
         $this
-            ->put(route('score-pins.reorder', $pins[1]->score), [
+            ->post(route('score-pins.reorder', $pins[1]->score), [
                 'before_score_id' => $pins[0]->score->getKey(),
             ])->assertSuccessful();
 
@@ -142,7 +142,7 @@ class ScorePinsControllerTest extends TestCase
 
         $this->actAsUser($user, true);
         $this
-            ->put(route('score-pins.reorder', $pins[2]->score), [
+            ->post(route('score-pins.reorder', $pins[2]->score), [
                 'after_score_id' => $pins[0]->score->getKey(),
             ])->assertSuccessful();
 
@@ -160,7 +160,7 @@ class ScorePinsControllerTest extends TestCase
         $this->actAsUser($score->user, true);
 
         $this
-            ->post(route('score-pins.store', $score))
+            ->put(route('score-pins.store', $score))
             ->assertSuccessful();
     }
 
@@ -171,7 +171,7 @@ class ScorePinsControllerTest extends TestCase
         $this->expectCountChange(fn () => ScorePin::count(), 0);
 
         $this
-            ->post(route('score-pins.store', $score))
+            ->put(route('score-pins.store', $score))
             ->assertStatus(401);
     }
 
@@ -185,7 +185,7 @@ class ScorePinsControllerTest extends TestCase
         $this->actAsUser($otherUser, true);
 
         $this
-            ->post(route('score-pins.store', $score))
+            ->put(route('score-pins.store', $score))
             ->assertStatus(403);
     }
 
@@ -202,7 +202,7 @@ class ScorePinsControllerTest extends TestCase
         $this->actAsUser($user, true);
 
         $this
-            ->post(route('score-pins.store', $score2))
+            ->put(route('score-pins.store', $score2))
             ->assertSuccessful();
 
         $pin2 = $user->scorePins()->find($score2->getKey());
@@ -219,7 +219,7 @@ class ScorePinsControllerTest extends TestCase
         $this->actAsUser($score->user, true);
 
         $this
-            ->post(route('score-pins.store', $score))
+            ->put(route('score-pins.store', $score))
             ->assertSuccessful();
     }
 
@@ -232,7 +232,7 @@ class ScorePinsControllerTest extends TestCase
         $this->actAsUser(User::factory()->create(), true);
 
         $this
-            ->post(route('score-pins.store', ['score' => 1]))
+            ->put(route('score-pins.store', ['score' => 1]))
             ->assertStatus(422);
     }
 
@@ -252,7 +252,7 @@ class ScorePinsControllerTest extends TestCase
         $this->actAsUser($user, true);
 
         $this
-            ->post(route('score-pins.store', $score2))
+            ->put(route('score-pins.store', $score2))
             ->assertStatus(403);
     }
 
@@ -272,7 +272,7 @@ class ScorePinsControllerTest extends TestCase
         $this->actAsUser($user, true);
 
         $this
-            ->post(route('score-pins.store', $score2))
+            ->put(route('score-pins.store', $score2))
             ->assertSuccessful();
     }
 }
