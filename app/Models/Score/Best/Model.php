@@ -188,15 +188,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         return $query->whereIn('user_id', $userIds);
     }
 
-    /**
-     * Override parent scope with a noop as only passed scores go in here.
-     * And the `pass` column doesn't exist.
-     */
-    public function scopeIncludeFails($query, bool $include)
-    {
-        return $query;
-    }
-
     public function isPersonalBest(): bool
     {
         return $this->getKey() === (static
