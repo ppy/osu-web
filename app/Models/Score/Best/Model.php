@@ -6,8 +6,6 @@
 namespace App\Models\Score\Best;
 
 use App\Libraries\ReplayFile;
-use App\Libraries\Score\UserRank;
-use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\ReplayViewCount;
@@ -24,7 +22,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
 
     protected array $macros = [
         'forListing',
-        'userBest',
     ];
 
     const SORTS = [
@@ -138,51 +135,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         return route('scores.show', ['rulesetOrScore' => $this->getMode(), 'score' => $this->getKey()]);
     }
 
-    public function userRank(?array $params = null): int
-    {
-        // laravel model has a $hidden property
-        if ($this->getAttribute('hidden')) {
-            return 0;
-        }
-
-        return UserRank::getRank(ScoreSearchParams::fromArray([
-            ...($params ?? []),
-            'beatmap_ids' => [$this->beatmap_id],
-            'before_total_score' => $this->score,
-            'is_legacy' => true,
-            'ruleset_id' => $this->ruleset_id,
-            'user' => $this->user,
-        ]));
-    }
-
-    public function macroUserBest(): \Closure
-    {
-        return function ($query, $limit, $offset = 0, $includes = []) {
-            $baseResult = (clone $query)
-                ->with($includes)
-                ->limit(($limit + $offset) * 2)
-                ->get();
-
-            $results = [];
-            $beatmaps = [];
-
-            foreach ($baseResult as $entry) {
-                if (count($results) >= $limit + $offset) {
-                    break;
-                }
-
-                if (isset($beatmaps[$entry->beatmap_id])) {
-                    continue;
-                }
-
-                $beatmaps[$entry->beatmap_id] = true;
-                $results[] = $entry;
-            }
-
-            return array_slice($results, $offset);
-        };
-    }
-
     public function scopeDefault($query)
     {
         return $query
@@ -223,15 +175,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         }
 
         return $query->whereIn('user_id', $userIds);
-    }
-
-    /**
-     * Override parent scope with a noop as only passed scores go in here.
-     * And the `pass` column doesn't exist.
-     */
-    public function scopeIncludeFails($query, bool $include)
-    {
-        return $query;
     }
 
     public function isPersonalBest(): bool
