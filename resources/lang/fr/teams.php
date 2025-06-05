@@ -19,6 +19,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
         'submit' => 'Créer une équipe',
 
@@ -94,21 +98,21 @@ return [
             'title' => 'Gestion des membres',
 
             'applications' => [
-                'accept_confirm' => '',
+                'accept_confirm' => 'Êtes-vous sûr de vouloir accepter la candidature de :user ?',
                 'created_at' => 'Date',
                 'empty' => 'Aucune candidature pour le moment.',
                 'empty_slots' => 'Places disponibles ',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
+                'empty_slots_overflow' => ':count_delimited membre en trop|:count_delimited membres en trop',
+                'reject_confirm' => 'Êtes-vous sûr de vouloir refuser la candidature de :user ?',
                 'title' => 'Candidatures',
             ],
 
             'table' => [
                 'joined_at' => 'Date d\'adhésion',
                 'remove' => 'Exclure',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
+                'remove_confirm' => 'Êtes-vous sûr de vouloir expulser :user de votre équipe ?',
+                'set_leader' => 'Nommer chef d\'équipe',
+                'set_leader_confirm' => 'Êtes-vous sûr de vouloir nommer :user en tant que chef de l\'équipe ?',
                 'status' => 'Statut',
                 'title' => 'Liste des membres',
             ],
@@ -120,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => ':user est désormais le chef de l\'équipe.',
         ],
     ],
 

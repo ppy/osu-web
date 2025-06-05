@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'dona suport al joc',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'informació',
         ],
         'livestreams_controller' => [
             '_' => 'transmissions en directe',
-        ],
-        'matches_controller' => [
-            '_' => 'coincidències',
         ],
         'news_controller' => [
             '_' => 'notícies',
@@ -109,9 +109,9 @@ return [
         ],
         'teams_controller' => [
             '_' => 'equips',
-            'create' => '',
-            'edit' => '',
-            'leaderboard' => '',
+            'create' => 'Crea un equip',
+            'edit' => 'configuració de l\'equip',
+            'leaderboard' => 'Taula de puntuacions de l\'equip',
             'show' => 'info de l\'equip',
         ],
         'tournaments_controller' => [
@@ -139,7 +139,7 @@ return [
     ],
     'teams' => [
         'members_controller' => [
-            'index' => '',
+            'index' => 'Membres de l\'equip',
         ],
     ],
     'users' => [

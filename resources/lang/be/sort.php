@@ -37,6 +37,12 @@ return [
         'new' => 'Апошні адказ',
     ],
 
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
+    ],
+
     'users' => [
         'relevance' => 'Рэлевантнасці',
         'username' => 'Назве',

@@ -123,6 +123,16 @@ return [
                     'channel_message_group' => 'от :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -167,8 +177,13 @@ return [
 
                 'team_application_accept' => "Вы стали участником команды :title",
                 'team_application_accept_compact' => "Вы стали участником команды :title",
+
+                'team_application_group' => '',
+
                 'team_application_reject' => 'Отклонён запрос на вступление в команду :title',
                 'team_application_reject_compact' => 'Отклонён запрос на вступление в команду :title',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -230,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Новое объявление в канале ":name"',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => 'Вы получили новое сообщение от :username',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -260,6 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Вы стали участником команды :title",
                 'team_application_reject' => 'Ваш запрос на вступление в команду :title отклонён',
+                'team_application_store' => '',
             ],
         ],
 

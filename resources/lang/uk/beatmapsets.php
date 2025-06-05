@@ -140,7 +140,7 @@ return [
             'description' => 'Опис',
             'genre' => 'Жанр',
             'language' => 'Мова',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Теги мапера',
             'no_scores' => 'Дані все ще обробляються...',
             'nominators' => 'Номінатори',
             'nsfw' => ' Непристойний вміст',
@@ -149,7 +149,7 @@ return [
             'source' => 'Джерело',
             'storyboard' => 'Бітмапа містить сторіборд',
             'success-rate' => 'Шанс успіху',
-            'user_tags' => '',
+            'user_tags' => 'Теги користувача',
             'video' => 'Бітмапа містить відео',
         ],
 

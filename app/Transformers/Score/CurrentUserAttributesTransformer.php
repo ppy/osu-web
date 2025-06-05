@@ -9,13 +9,12 @@ namespace App\Transformers\Score;
 
 use App\Models\LegacyMatch;
 use App\Models\Multiplayer\ScoreLink as MultiplayerScoreLink;
-use App\Models\Score\Model as ScoreModel;
 use App\Models\Solo\Score as SoloScore;
 use App\Transformers\TransformerAbstract;
 
 class CurrentUserAttributesTransformer extends TransformerAbstract
 {
-    public function transform(LegacyMatch\Score|MultiplayerScoreLink|ScoreModel|SoloScore $score): array
+    public function transform(LegacyMatch\Score|MultiplayerScoreLink|SoloScore $score): array
     {
         if ($score instanceof SoloScore) {
             $pinnable = $score;
@@ -34,7 +33,7 @@ class CurrentUserAttributesTransformer extends TransformerAbstract
         ];
     }
 
-    private function isOwnScore(LegacyMatch\Score|MultiplayerScoreLink|ScoreModel|SoloScore $score): bool
+    private function isOwnScore(LegacyMatch\Score|MultiplayerScoreLink|SoloScore $score): bool
     {
         return $score->user_id === \Auth::user()?->getKey();
     }

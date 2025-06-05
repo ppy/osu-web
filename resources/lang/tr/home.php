@@ -26,6 +26,9 @@ return [
         'placeholder' => 'aramak için yaz',
         'title' => 'Ara',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Beatmapleri aramak için giriş yapın',
             'more' => ':count tane daha beatmap arama sonucu',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'hepsi',
+            'artist_track' => '',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
+            'team' => '',
             'user' => 'oyuncu',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

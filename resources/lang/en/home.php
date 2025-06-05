@@ -57,8 +57,13 @@ return [
             'artist_track' => 'featured artist track',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
+            'team' => 'team',
             'user' => 'player',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => 'See more team search results',
         ],
 
         'user' => [
@@ -137,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => 'Daily Challenge Beatmap',
             'new' => 'New Ranked Beatmaps',
             'popular' => 'Popular Beatmaps',
             'by_user' => 'by :user',
+            'resets' => 'resets :ends',
         ],
         'buttons' => [
             'download' => 'Download osu!',

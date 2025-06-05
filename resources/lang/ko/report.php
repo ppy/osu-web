@@ -35,8 +35,8 @@ return [
     ],
 
     'team' => [
-        'button' => '',
-        'title' => '',
+        'button' => '팀 신고하기',
+        'title' => ':username님의 팀을 신고하겠습니까?',
     ],
 
     'user' => [

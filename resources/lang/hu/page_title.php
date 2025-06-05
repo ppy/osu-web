@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'játék támogatása',
             'testflight' => 'teszt',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'információ',
         ],
         'livestreams_controller' => [
             '_' => 'élő közvetítések',
-        ],
-        'matches_controller' => [
-            '_' => 'találatok',
         ],
         'news_controller' => [
             '_' => 'újdonságok',

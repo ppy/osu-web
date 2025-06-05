@@ -37,7 +37,7 @@ return [
         'charts' => 'זרקורים',
         'country' => 'מדינה',
         'daily_challenge' => '',
-        'global' => '',
+        'global' => 'גלובלי',
         'kudosu' => '',
         'multiplayer' => 'רב משתתפים',
         'seasons' => '',

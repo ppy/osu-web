@@ -5,6 +5,6 @@
 
 return [
     'update' => [
-        'invalid_ruleset' => '',
+        'invalid_ruleset' => 'Dieses Tag kann dieser Beatmap nicht zugeordnet werden.',
     ],
 ];

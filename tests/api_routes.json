@@ -838,7 +838,7 @@
             "GET",
             "HEAD"
         ],
-        "controller": "App\\Http\\Controllers\\MatchesController@index",
+        "controller": "App\\Http\\Controllers\\LegacyMatchesController@index",
         "middlewares": [
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",
@@ -854,7 +854,7 @@
             "GET",
             "HEAD"
         ],
-        "controller": "App\\Http\\Controllers\\MatchesController@show",
+        "controller": "App\\Http\\Controllers\\LegacyMatchesController@show",
         "middlewares": [
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",
@@ -913,7 +913,22 @@
         "middlewares": [
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",
-            "Illuminate\\Auth\\Middleware\\Authenticate",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/rooms/{room}/events",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@events",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
             "App\\Http\\Middleware\\RequireScopes:public"
         ],
         "scopes": [
@@ -1127,6 +1142,45 @@
         "scopes": [
             "public"
         ]
+    },
+    {
+        "uri": "api/v2/score-pins/{score}/reorder",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\ScorePinsController@reorder",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/score-pins/{score}",
+        "methods": [
+            "DELETE"
+        ],
+        "controller": "App\\Http\\Controllers\\ScorePinsController@destroy",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/score-pins/{score}",
+        "methods": [
+            "PUT"
+        ],
+        "controller": "App\\Http\\Controllers\\ScorePinsController@store",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate"
+        ],
+        "scopes": []
     },
     {
         "uri": "api/v2/beatmapsets/search",

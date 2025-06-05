@@ -19,6 +19,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'members' => '',
+    ],
+
     'create' => [
         'submit' => '팀 만들기',
 
@@ -94,21 +98,21 @@ return [
             'title' => '멤버 관리',
 
             'applications' => [
-                'accept_confirm' => '',
+                'accept_confirm' => '유저 :user 님을 팀에 추가할까요?',
                 'created_at' => '요청 일시',
                 'empty' => '현재 가입 요청이 없습니다.',
                 'empty_slots' => '빈 슬롯',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
+                'empty_slots_overflow' => ':count_delimited 명 초과|:count_delimited 명 초과',
+                'reject_confirm' => ':user 님의 참가 신청을 거절할까요?',
                 'title' => '가입 요청',
             ],
 
             'table' => [
                 'joined_at' => '가입일자',
                 'remove' => '제거',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
+                'remove_confirm' => ':user 님을 팀으로부터 추방할까요?',
+                'set_leader' => '팀 대표 이관',
+                'set_leader_confirm' => ':user 님에게 팀 대표 자격을 이관할까요?',
                 'status' => '상태',
                 'title' => '현재 멤버',
             ],
@@ -120,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => ':user 님이 팀의 리더가 되었어요.',
         ],
     ],
 

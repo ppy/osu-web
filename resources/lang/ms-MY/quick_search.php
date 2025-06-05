@@ -5,15 +5,16 @@
 
 return [
     'mode' => [
+        'artist_track' => '',
         'beatmapset' => 'Beatmap',
         'forum_post' => 'Forum',
         'other' => 'Lainnya',
+        'team' => '',
         'user' => 'Pemain',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => 'Tiada hasil',
         'empty_for' => 'Tiada hasil bagi :modes',
         'more' => 'Hasil Carian :mode Lain',
         'title' => 'Hasil Carian :mode',

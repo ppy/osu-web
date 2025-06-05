@@ -5,6 +5,6 @@
 
 return [
     'update' => [
-        'invalid_ruleset' => '',
+        'invalid_ruleset' => 'Ten tag nie jest prawidłowy dla tej Beatmapy.',
     ],
 ];

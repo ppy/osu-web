@@ -26,6 +26,9 @@ return [
         'placeholder' => 'mag-type para makapag-search',
         'title' => 'Hanapin',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Mag sign-in para maka-search ng beatmaps',
             'more' => ':count pang resulta ng beatmap search',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'lahat',
+            'artist_track' => '',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
+            'team' => '',
             'user' => 'manlalaro',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

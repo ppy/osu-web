@@ -35,8 +35,8 @@ return [
     ],
 
     'team' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Segnala squadra',
+        'title' => 'Vuoi segnalare la squadra di :username?',
     ],
 
     'user' => [

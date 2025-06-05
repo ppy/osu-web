@@ -33,7 +33,7 @@ export default function User({ user, modifiers = [] }: { modifiers?: string[]; u
             </div>
           }
 
-          <a className='user-search-card__col user-search-card__col--username' href={url}>
+          <a className='user-search-card__col user-search-card__col--username u-ellipsis-pre-overflow' href={url}>
             {user.username}
           </a>
 

@@ -123,6 +123,16 @@ return [
                     'channel_message_group' => ':username より',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -167,8 +177,13 @@ return [
 
                 'team_application_accept' => "あなたは既にチーム :title に参加しています",
                 'team_application_accept_compact' => "あなたは既にチーム :title に参加しています",
+
+                'team_application_group' => '',
+
                 'team_application_reject' => 'チーム :title への参加リクエストが却下されました',
                 'team_application_reject_compact' => 'チーム :title への参加リクエストが却下されました',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -230,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => ':name に新しいお知らせがあります',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => ':usernameから新しいメッセージを受信しました',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -260,6 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "あなたは既にチーム :title に参加しています",
                 'team_application_reject' => 'チーム :title への参加リクエストが却下されました',
+                'team_application_store' => '',
             ],
         ],
 

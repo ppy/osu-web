@@ -15,11 +15,11 @@ return [
         ],
 
         'events' => [
-            'title_recent' => 'Peristiwa terbaru',
+            'title_recent' => 'Peristiwa terkini',
         ],
 
         'posts' => [
-            'title_recent' => 'Postingan terbaru',
+            'title_recent' => 'Postingan terkini',
         ],
 
         'votes_received' => [
@@ -64,7 +64,7 @@ return [
             'username' => 'nama pengguna',
 
             'tos_notice' => [
-                '_' => 'dengan membuat akun, anda menyatakan diri setuju dengan :link yang berlaku',
+                '_' => 'dengan membuat akun, kamu menyatakan diri setuju dengan :link yang berlaku',
                 'link' => 'ketentuan layanan',
             ],
         ],
@@ -161,7 +161,7 @@ return [
 
         'options' => [
             'cheating' => 'Melakukan kecurangan',
-            'inappropriate_chat' => '',
+            'inappropriate_chat' => 'Berperilaku tidak pantas dalam chat',
             'insults' => 'Menghina saya / orang lain',
             'multiple_accounts' => 'Menggunakan lebih dari satu akun',
             'nonsense' => 'Beromong kosong',
@@ -198,16 +198,16 @@ return [
             'to_1' => 'Tampilkan sampul',
         ],
         'daily_challenge' => [
-            'daily' => 'Rantai Permainan Harian',
-            'daily_streak_best' => 'Rantai Permainan Harian Terbaik',
-            'daily_streak_current' => 'Rantai Permainan Harian Saat Ini',
-            'playcount' => 'Kontribusi Total',
+            'daily' => 'Rantai Harian',
+            'daily_streak_best' => 'Rantai Harian Terlama',
+            'daily_streak_current' => 'Rantai Harian Saat Ini',
+            'playcount' => 'Jumlah Keikutsertaan',
             'title' => 'Tantangan\nHarian',
             'top_10p_placements' => 'Penempatan 10% Teratas',
             'top_50p_placements' => 'Penempatan 50% Teratas',
-            'weekly' => 'Rantai Permainan Mingguan',
-            'weekly_streak_best' => 'Rantai Permainan Mingguan Terbaik',
-            'weekly_streak_current' => 'Rantai Permainan Mingguan Saat Ini',
+            'weekly' => 'Rantai Mingguan',
+            'weekly_streak_best' => 'Rantai Mingguan Terlama',
+            'weekly_streak_current' => 'Rantai Mingguan Saat Ini',
 
             'unit' => [
                 'day' => ':valuehr',
@@ -218,7 +218,7 @@ return [
             'cover' => [
                 'button' => 'Ubah Sampul Profil',
                 'defaults_info' => 'Pilihan sampul lainnya akan tersedia di masa mendatang',
-                'holdover_remove_confirm' => "Gambar sampul yang sebelumnya dipilih kini sudah tidak lagi tersedia untuk dipilih. Kamu tidak akan dapat memilih kembali gambar ini setelah kamu beralih ke gambar sampul lain. Lanjut?",
+                'holdover_remove_confirm' => "Gambar sampul yang sebelumnya dipilih kini sudah tidak lagi tersedia. Kamu tidak lagi akan dapat memilih gambar ini setelah kamu beralih ke gambar sampul lain. Lanjut?",
                 'title' => 'Sampul',
 
                 'upload' => [
@@ -255,7 +255,7 @@ return [
 
         'extra' => [
             'none' => 'kosong',
-            'unranked' => 'Tidak ada rekam jejak permainan yang tercatat dalam beberapa waktu ke belakang',
+            'unranked' => 'Tidak ada riwayat permainan terkini',
 
             'achievements' => [
                 'achieved-on' => 'Diraih pada :date',
@@ -285,7 +285,7 @@ return [
                     'title' => 'Beatmap Pending',
                 ],
                 'ranked' => [
-                    'title' => 'Beatmap Ranked & Approved',
+                    'title' => 'Beatmap Ranked',
                 ],
             ],
             'discussions' => [
@@ -294,9 +294,9 @@ return [
                 'show_more' => 'lihat lebih banyak diskusi',
             ],
             'events' => [
-                'title' => 'Aktivitas',
-                'title_longer' => 'Aktivitas Terkini',
-                'show_more' => 'lihat lebih banyak aktivitas',
+                'title' => 'Peristiwa',
+                'title_longer' => 'Peristiwa Terkini',
+                'show_more' => 'lihat lebih banyak peristiwa',
             ],
             'historical' => [
                 'title' => 'Historis',
@@ -363,7 +363,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Berdasarkan seberapa besar kontribusi yang telah diberikan oleh pengguna ini dalam hal moderasi beatmap. Kunjungi :link untuk informasi lebih lanjut.',
+                    '_' => 'Berdasarkan seberapa banyak kontribusi yang telah diberikan oleh pengguna ini terhadap moderasi beatmap. Kunjungi :link untuk informasi lebih lanjut.',
                     'link' => 'halaman ini',
                 ],
             ],
@@ -481,8 +481,8 @@ return [
             'highest' => 'Peringkat tertinggi: :rank pada :date',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => ':value teratas',
+            'total_score' => 'Jumlah skor',
         ],
         'stats' => [
             'hit_accuracy' => 'Akurasi Hit',
@@ -501,7 +501,7 @@ return [
             'graveyard_beatmapset_count' => 'Beatmap Graveyard',
             'loved_beatmapset_count' => 'Beatmap Loved',
             'pending_beatmapset_count' => 'Beatmap Pending',
-            'ranked_beatmapset_count' => 'Beatmap Ranked & Approved',
+            'ranked_beatmapset_count' => 'Beatmap Ranked',
         ],
     ],
 

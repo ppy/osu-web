@@ -13,11 +13,12 @@ use App\Libraries\Search\QuickSearch;
 use App\Models\BeatmapDownload;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
+use App\Models\Multiplayer\Room;
 use App\Models\NewsPost;
 use App\Models\UserDonation;
 use App\Transformers\MenuImageTransformer;
-use App\Transformers\UserCompactTransformer;
 use Auth;
+use Carbon\CarbonImmutable;
 use Jenssegers\Agent\Agent;
 use Request;
 
@@ -105,11 +106,14 @@ class HomeController extends Controller
             $newBeatmapsets = Beatmapset::latestRanked();
             $popularBeatmapsets = Beatmapset::popular()->get();
 
+            $dailyChallenge = Room::dailyChallengeFor(CarbonImmutable::now());
+
             return ext_view('home.user', compact(
                 'menuImages',
                 'newBeatmapsets',
                 'news',
-                'popularBeatmapsets'
+                'popularBeatmapsets',
+                'dailyChallenge',
             ));
         } else {
             $news = json_collection($news, 'NewsPost');
@@ -141,14 +145,15 @@ class HomeController extends Controller
                     continue;
                 }
                 $result[$mode]['total'] = $search->count();
+                if (QuickSearch::MODES[$mode]['size'] !== 0) {
+                    $transformer = QuickSearch::MODES[$mode]['transformer'];
+                    $result[$mode]['items'] = json_collection(
+                        $search->data(),
+                        new $transformer['class'](),
+                        $transformer['includes'],
+                    );
+                }
             }
-
-            $result['user']['users'] = json_collection(
-                $searches['user']->data(),
-                new UserCompactTransformer(),
-                [...UserCompactTransformer::CARD_INCLUDES, 'support_level'],
-            );
-            $result['beatmapset']['beatmapsets'] = json_collection($searches['beatmapset']->data(), 'Beatmapset', ['beatmaps']);
         }
 
         return $result;

@@ -5,15 +5,16 @@
 
 return [
     'mode' => [
+        'artist_track' => '',
         'beatmapset' => 'Beatmap\'as',
         'forum_post' => 'Forumas',
         'other' => 'Kiti',
+        'team' => '',
         'user' => 'Žaidėjas',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => 'Nerasta',
         'empty_for' => 'Nerasta tarp :modes',
         'more' => 'Daugiau :mode Paieškos Rezultatų',
         'title' => ':mode Paieškos Rezultatai',

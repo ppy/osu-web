@@ -26,6 +26,9 @@ return [
         'placeholder' => '검색어를 입력하세요',
         'title' => '검색',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => '비트맵을 검색하기 위해서 로그인',
             'more' => ':count개의 비트맵 검색 결과 더 보기',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => '모두',
+            'artist_track' => '',
             'beatmapset' => '비트맵',
             'forum_post' => '포럼',
+            'team' => '',
             'user' => '플레이어',
             'wiki_page' => '위키',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

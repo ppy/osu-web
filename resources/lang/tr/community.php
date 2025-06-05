@@ -129,7 +129,7 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Daha Fazla Beatmap Yükle',
-                'description' => 'Ne kadar ranked olmayan beatmaplere sahip olabileceğin, temel bir değere ek olarak, ne kadar ranked beatmap sahip olmuşluğun varsa eklenerek belirlenir (bir sınıra kadar).<br/>Normalde bu her bir ranked map için fazladan 4 tane daha fazla ranked olmayan beatmap hakkına erişirsin (2\'ye kadar). Destekçilik ile bu 1 ranked beatmap için 8 e çıkar (12\'ye kadar).<br/>',
+                'description' => 'Aynı anda sahip olabileceğiniz beklemedeki beatmap sayısı, bir temel değerin üzerine mevcut dereceli beatmap\'lerinizin her biri için ek bir bonus eklenerek hesaplanır (belirli bir limite kadar).<br/><br/>Normalde bu, :base artı her dereceli beatmap için :bonus (en fazla :bonus_max). Supporter ile, bu :supporter_base artı her dereceli beatmap için :supporter_bonus  (en fazla :supporter_bonus_max) olarak artar.',
             ],
             'friend_filtering' => [
                 'title' => 'Arkadaş Sıralamaları',

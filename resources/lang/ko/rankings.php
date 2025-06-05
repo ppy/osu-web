@@ -37,7 +37,7 @@ return [
         'charts' => '스포트라이트',
         'country' => '국가별',
         'daily_challenge' => '데일리 챌린지',
-        'global' => '',
+        'global' => '전세계',
         'kudosu' => 'Kudosu',
         'multiplayer' => '멀티플레이어',
         'seasons' => '시즌',

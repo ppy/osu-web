@@ -64,11 +64,11 @@ return [
             '_' => 'kommentarer',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'tävlingsbedömnings resultat',
         ],
         'contests_controller' => [
             '_' => 'tävlingar',
-            'judge' => '',
+            'judge' => 'tävlingsbedömning',
         ],
         'groups_controller' => [
             'show' => 'grupper',
@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'stötta spelet',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'information',
         ],
         'livestreams_controller' => [
             '_' => 'direktsändningar',
-        ],
-        'matches_controller' => [
-            '_' => 'matcher',
         ],
         'news_controller' => [
             '_' => 'nyheter',
@@ -108,17 +108,17 @@ return [
             '_' => 'rankningar',
         ],
         'teams_controller' => [
-            '_' => '',
-            'create' => '',
-            'edit' => '',
-            'leaderboard' => '',
-            'show' => '',
+            '_' => 'lag',
+            'create' => 'skapa lag',
+            'edit' => 'lag inställningar ',
+            'leaderboard' => 'lag topplista',
+            'show' => 'lag info',
         ],
         'tournaments_controller' => [
             '_' => 'turneringar',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'användarens omslagsförinställningar',
         ],
         'users_controller' => [
             '_' => 'spelarinformation',
@@ -139,7 +139,7 @@ return [
     ],
     'teams' => [
         'members_controller' => [
-            'index' => '',
+            'index' => 'lag medlemmar ',
         ],
     ],
     'users' => [

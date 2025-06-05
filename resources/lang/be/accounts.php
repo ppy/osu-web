@@ -88,6 +88,7 @@ return [
             'beatmap_owner_change' => 'гасцявая складанасць',
             'beatmapset:modding' => 'модынг карт',
             'channel_message' => 'асабістыя паведамленні',
+            'channel_team' => '',
             'comment_new' => 'новыя каментарыі',
             'forum_topic_reply' => 'адказы да тэмы',
             'mail' => 'пошта',

@@ -88,6 +88,7 @@ return [
             'beatmap_owner_change' => 'obtiažnosť hosťa',
             'beatmapset:modding' => 'módovanie beatmáp',
             'channel_message' => 'správy súkromného chatu',
+            'channel_team' => '',
             'comment_new' => 'nové komentáre
 ',
             'forum_topic_reply' => 'odpoveď na tému',

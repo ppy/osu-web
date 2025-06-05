@@ -161,7 +161,7 @@ return [
 
         'options' => [
             'cheating' => '부정 행위 / 치트 사용',
-            'inappropriate_chat' => '',
+            'inappropriate_chat' => '부적절한 언행',
             'insults' => '자신 / 다른 사람을 모욕 함',
             'multiple_accounts' => '다중 계정 사용',
             'nonsense' => '허튼소리',
@@ -482,8 +482,8 @@ return [
             'highest' => '최고 순위: :rank, :date에 달성',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => '상위 :value',
+            'total_score' => '총 점수',
         ],
         'stats' => [
             'hit_accuracy' => '정확도',

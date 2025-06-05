@@ -5,6 +5,6 @@
 
 return [
     'update' => [
-        'invalid_ruleset' => '',
+        'invalid_ruleset' => '이 비트맵에 작성할 수 있는 태그가 아니네요.',
     ],
 ];

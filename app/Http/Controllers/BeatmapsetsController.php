@@ -393,8 +393,9 @@ class BeatmapsetsController extends Controller
         $beatmapRelation = $beatmapset->trashed()
             ? 'allBeatmaps'
             : 'beatmaps';
+        $userId = \Auth::id();
         $beatmapset->load([
-            "{$beatmapRelation}" => fn ($q) => $q->withUserTagIds(\Auth::id()),
+            "{$beatmapRelation}" => fn ($q) => $q->withUserPlaycount($userId)->withUserTagIds($userId),
             "{$beatmapRelation}.baseDifficultyRatings",
             "{$beatmapRelation}.baseMaxCombo",
             "{$beatmapRelation}.failtimes",
@@ -415,6 +416,7 @@ class BeatmapsetsController extends Controller
 
         return json_item($beatmapset, $transformer, [
             ...array_map(fn ($include) => "beatmaps.{$include}", $sharedIncludes),
+            'beatmaps.current_user_playcount',
             'beatmaps.current_user_tag_ids',
             'beatmaps.max_combo',
             ...array_map(fn ($include) => "converts.{$include}", $sharedIncludes),

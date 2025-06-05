@@ -37,6 +37,12 @@ return [
         'new' => 'Ultimul răspuns',
     ],
 
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
+    ],
+
     'users' => [
         'relevance' => 'Relevanţă',
         'username' => 'Nume',

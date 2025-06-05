@@ -88,6 +88,7 @@ return [
             'beatmap_owner_change' => 'gościnny poziom trudności',
             'beatmapset:modding' => 'dyskusje beatmap',
             'channel_message' => 'wiadomości prywatne na czacie',
+            'channel_team' => '',
             'comment_new' => 'nowe komentarze',
             'forum_topic_reply' => 'odpowiedzi do wątków',
             'mail' => 'e-mail',

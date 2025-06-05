@@ -7,16 +7,9 @@ declare(strict_types=1);
 
 namespace App\Jobs\Notifications;
 
-use App\Models\Notification;
-
 class ChannelAnnouncement extends ChannelMessageBase
 {
     const DELIVERY_MODE_DEFAULTS = ['mail' => true, 'push' => true];
-
-    public static function getBaseKey(Notification $notification): string
-    {
-        return 'channel.announcement.announce';
-    }
 
     public function getDetails(): array
     {

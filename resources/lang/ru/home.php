@@ -26,6 +26,9 @@ return [
         'placeholder' => 'начните печатать',
         'title' => 'поиск',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Войдите в аккаунт для поиска по картам',
             'more' => 'больше :count результатов поиска среди карт',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'все',
+            'artist_track' => '',
             'beatmapset' => 'карты',
             'forum_post' => 'форум',
+            'team' => '',
             'user' => 'игроки',
             'wiki_page' => 'вики',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

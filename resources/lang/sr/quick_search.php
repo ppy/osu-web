@@ -5,15 +5,16 @@
 
 return [
     'mode' => [
+        'artist_track' => '',
         'beatmapset' => 'Мапа',
         'forum_post' => 'Форум',
         'other' => 'Остало',
+        'team' => '',
         'user' => 'Играч',
         'wiki_page' => 'Вики',
     ],
 
     'result' => [
-        'empty' => 'Нема резултата',
         'empty_for' => 'Нема резултата за :modes',
         'more' => 'Више :mode резултата претраге',
         'title' => ':mode Резултати Претраге',

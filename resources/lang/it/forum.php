@@ -140,13 +140,13 @@ return [
             ],
 
             'data' => [
-                'add_tag' => 'aggiunto il tag ":tag"',
+                'add_tag' => 'aggiunta l\'etichetta ":tag"',
                 'announcement' => 'argomento fissato e segnato come annuncio',
                 'edit_topic' => 'a :title',
                 'fork' => 'da :topic',
                 'pin' => 'argomento fissato',
                 'post_operation' => 'postato da :username',
-                'remove_tag' => 'rimosso il tag ":tag"',
+                'remove_tag' => 'rimossa l\'etichetta ":tag"',
                 'source_forum_operation' => 'da :forum',
                 'unpin' => 'topic non fissato',
             ],

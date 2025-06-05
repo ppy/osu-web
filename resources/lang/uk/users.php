@@ -161,7 +161,7 @@ return [
 
         'options' => [
             'cheating' => 'Нечесна гра / чітерство',
-            'inappropriate_chat' => '',
+            'inappropriate_chat' => 'Неприйнятна поведінка в чаті',
             'insults' => 'Образа мене / інших',
             'multiple_accounts' => 'Використання кількох облікових записів',
             'nonsense' => 'Нісенітниця',
@@ -481,8 +481,8 @@ return [
             'highest' => 'Найвищий ранг :rank було досягнуто :date ',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'Топ :value',
+            'total_score' => 'Всього очок',
         ],
         'stats' => [
             'hit_accuracy' => 'Точність',

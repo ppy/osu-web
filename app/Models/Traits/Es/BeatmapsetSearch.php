@@ -6,7 +6,6 @@
 namespace App\Models\Traits\Es;
 
 use App\Models\Beatmap;
-use Carbon\Carbon;
 
 trait BeatmapsetSearch
 {
@@ -49,38 +48,14 @@ trait BeatmapsetSearch
         return !$this->trashed() && !present($this->download_disabled_url);
     }
 
-    public function toEsJson()
+    protected function getEsFieldValue(string $field)
     {
-        return [
-            ...$this->esBeatmapsetValues(),
+        return match ($field) {
             'beatmaps' => $this->esBeatmapsValues(),
             'difficulties' => $this->esDifficultiesValues(),
-        ];
-    }
-
-    private function esBeatmapsetValues()
-    {
-        $mappings = static::esMappings();
-
-        $values = [];
-        foreach ($mappings as $field => $mapping) {
-            if ($field === 'beatmaps' || $field === 'difficulties') {
-                continue;
-            }
-
-            $value = match ($field) {
-                'id' => $this->getKey(),
-                default => $this->$field,
-            };
-
-            if ($value instanceof Carbon) {
-                $value = $value->toIso8601String();
-            }
-
-            $values[$field] = $value;
-        }
-
-        return $values;
+            'id' => $this->getKey(),
+            default => $this->$field,
+        };
     }
 
     private function esBeatmapsValues()

@@ -123,6 +123,16 @@ return [
                     'channel_message_group' => 'dari :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -167,8 +177,13 @@ return [
 
                 'team_application_accept' => "Anda kini ahli pasukan :title",
                 'team_application_accept_compact' => "Anda kini ahli pasukan :title",
+
+                'team_application_group' => '',
+
                 'team_application_reject' => 'Permintaan anda untuk memasuki pasukan :title ditolak',
                 'team_application_reject_compact' => 'Permintaan anda untuk memasuki pasukan :title ditolak',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -230,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Terdapat pengumuman baharu pada ":name"',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => 'Kamu menerima pesanan baharu dari :username',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -260,6 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Anda kini ahli pasukan :title",
                 'team_application_reject' => 'Permintaan anda untuk memasuki pasukan :title ditolak',
+                'team_application_store' => '',
             ],
         ],
 

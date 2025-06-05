@@ -5,18 +5,28 @@
 
 namespace App\Http\Controllers\Multiplayer;
 
+use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Ranking\DailyChallengeController;
+use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\Multiplayer\Room;
+use App\Models\User;
+use App\Transformers\BeatmapCompactTransformer;
+use App\Transformers\BeatmapsetCompactTransformer;
+use App\Transformers\Multiplayer\PlaylistItemTransformer;
+use App\Transformers\Multiplayer\RealtimeRoomEventTransformer;
 use App\Transformers\Multiplayer\RoomTransformer;
+use App\Transformers\UserCompactTransformer;
+use Ds\Map;
+use Ds\Set;
 
 class RoomsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
-        $this->middleware('require-scopes:public', ['only' => ['index', 'leaderboard', 'show']]);
+        $this->middleware('auth', ['except' => ['events', 'index', 'leaderboard', 'show']]);
+        $this->middleware('require-scopes:public', ['only' => ['events', 'index', 'leaderboard', 'show']]);
     }
 
     public function destroy($id)
@@ -24,6 +34,109 @@ class RoomsController extends Controller
         Room::findOrFail($id)->endGame(\Auth::user());
 
         return response(null, 204);
+    }
+
+    public function events($id)
+    {
+        $room = Room::findOrFail($id);
+
+        if (!$room->isRealtime()) {
+            throw new InvariantException('retrieving events is only supported for realtime rooms');
+        }
+
+        $params = get_params(request()->all(), null, [
+            'limit:int',
+            'after:int',
+            'before:int',
+        ], ['null_missing' => true]);
+        $params['limit'] = \Number::clamp($params['limit'] ?? 100, 1, 101);
+
+        $events = $room->events()->with([
+            'playlistItem.beatmap.beatmapset',
+            'playlistItem.detailEvent',
+            'playlistItem.scoreLinks.score',
+            'playlistItem.scoreLinks.score.processHistory',
+        ])->limit($params['limit']);
+
+        if (isset($params['after'])) {
+            $events
+                ->where('id', '>', $params['after'])
+                ->orderBy('id', 'ASC');
+        } else {
+            if (isset($params['before'])) {
+                $events->where('id', '<', $params['before']);
+            }
+
+            $events->orderBy('id', 'DESC');
+            $reverseOrder = true;
+        }
+
+        $userIds = new Set();
+        $playlistItems = new Map();
+        $beatmapIds = new Set();
+
+        $events = $events->get();
+        foreach ($events as $event) {
+            if ($event->user_id) {
+                $userIds->add($event->user_id);
+            }
+
+            $playlistItemId = $event->playlist_item_id;
+            if ($playlistItemId !== null && !$playlistItems->hasKey($playlistItemId)) {
+                $playlistItem = $event->playlistItem;
+                $playlistItem->setRelation('room', $room);
+                $playlistItems->put($playlistItemId, $playlistItem);
+                $beatmapIds->add($playlistItem->beatmap_id);
+
+                foreach ($playlistItem->scoreLinks as $scoreLink) {
+                    $scoreLink->setRelation('playlistItem', $playlistItem);
+                    $userIds->add($scoreLink->user_id);
+                    $beatmapIds->add($scoreLink->score->beatmap_id);
+                }
+            }
+        }
+
+        if ($reverseOrder ?? false) {
+            $events = $events->reverse();
+        }
+
+        $users = User::whereIn('user_id', $userIds->toArray())->get();
+        $users = json_collection(
+            $users,
+            new UserCompactTransformer(),
+            ['country'],
+        );
+
+        $beatmaps = Beatmap::with('beatmapset')->whereIn('beatmap_id', $beatmapIds->toArray())->get();
+        $beatmapsets = $beatmaps->map->beatmapset->unique('beatmapset_id');
+
+        $playlistItems = json_collection(
+            $playlistItems->values()->toArray(),
+            new PlaylistItemTransformer(),
+            ['details', 'scores'],
+        );
+
+        $events = json_collection(
+            $events,
+            new RealtimeRoomEventTransformer(),
+        );
+
+        $eventEndIds = $room
+            ->events()
+            ->selectRaw('MIN(id) first_event_id, MAX(id) last_event_id')
+            ->first();
+
+        return [
+            'beatmaps' => json_collection($beatmaps, new BeatmapCompactTransformer()),
+            'beatmapsets' => json_collection($beatmapsets, new BeatmapsetCompactTransformer()),
+            'current_playlist_item_id' => $room->current_playlist_item_id,
+            'events' => $events,
+            'first_event_id' => $eventEndIds->first_event_id ?? 0,
+            'last_event_id' => $eventEndIds->last_event_id ?? 0,
+            'playlist_items' => $playlistItems,
+            'room' => json_item($room, new RoomTransformer()),
+            'users' => $users,
+        ];
     }
 
     /**
@@ -97,8 +210,10 @@ class RoomsController extends Controller
         $limit = \Number::clamp(get_int(request('limit')) ?? Model::PER_PAGE, 1, 50);
         $room = Room::findOrFail($roomId);
 
-        // leaderboard currently requires auth so auth()->check() is not required.
-        $userScore = $room->topScores()->where('user_id', auth()->id())->first();
+        $currentUser = \Auth::user();
+        $userScore = $currentUser === null
+            ? null
+            : $room->topScores()->where('user_id', $currentUser->getKey())->first();
 
         return [
             'leaderboard' => json_collection(

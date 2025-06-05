@@ -5,6 +5,6 @@
 
 return [
     'update' => [
-        'invalid_ruleset' => '',
+        'invalid_ruleset' => 'Această etichetă nu este valabilă pentru acest beatmap.',
     ],
 ];

@@ -5,6 +5,7 @@
   @top: search-result;
   .default-border-radius();
   .thicker-box-shadow();
+  --search-accent: transparent;
   background-color: @osu-colour-b4;
   padding: 10px 20px;
   padding-right: 0;
@@ -17,26 +18,31 @@
     width: 5px;
     border-top-left-radius: @border-radius-base;
     border-bottom-left-radius: @border-radius-base;
+    background-color: var(--search-accent);
   }
 
-  &--artist_track::before {
-    background-color: hsl(var(--hsl-lime-1));
+  &--artist_track {
+    --search-accent: hsl(var(--hsl-lime-1));
   }
 
-  &--beatmapset::before {
-    background-color: @pink-dark;
+  &--beatmapset {
+    --search-accent: @pink-dark;
   }
 
-  &--forum_post::before {
-    background-color: @yellow-dark;
+  &--forum_post {
+    --search-accent: @yellow-dark;
   }
 
-  &--user::before {
-    background-color: @blue-dark;
+  &--team {
+    --search-accent: hsl(var(--hsl-green-1));
   }
 
-  &--wiki_page::before {
-    background-color: @purple-dark;
+  &--user {
+    --search-accent: @blue-dark;
+  }
+
+  &--wiki_page {
+    --search-accent: @purple-dark;
   }
 
   &__entries {
@@ -46,6 +52,12 @@
     gap: 10px;
 
     .@{top}--beatmapset & {
+      @media @desktop {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .@{top}--team & {
       @media @desktop {
         grid-template-columns: 1fr 1fr;
       }

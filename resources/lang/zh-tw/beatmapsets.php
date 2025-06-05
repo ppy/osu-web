@@ -140,7 +140,7 @@ return [
             'description' => '詳情',
             'genre' => '曲風',
             'language' => '語言',
-            'mapper_tags' => '',
+            'mapper_tags' => '譜師標籤',
             'no_scores' => '資料還在計算中...',
             'nominators' => '提名者',
             'nsfw' => '成人內容',
@@ -149,7 +149,7 @@ return [
             'source' => '來源',
             'storyboard' => '這張圖譜包含 Storyboard',
             'success-rate' => '成功率',
-            'user_tags' => '',
+            'user_tags' => '玩家標籤',
             'video' => '此圖譜包含背景影片',
         ],
 

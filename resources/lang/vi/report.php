@@ -35,8 +35,8 @@ return [
     ],
 
     'team' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Báo cáo đội',
+        'title' => 'Báo cáo đội của :username nhé?',
     ],
 
     'user' => [

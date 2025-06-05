@@ -34,10 +34,10 @@ return [
     ],
 
     'type' => [
-        'charts' => 'spotlight (tidak lagi aktif)',
+        'charts' => 'spotlight (versi lawas)',
         'country' => 'negara',
         'daily_challenge' => 'tantangan harian',
-        'global' => '',
+        'global' => 'global',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'seasons' => 'musim',
@@ -50,7 +50,7 @@ return [
         'room_count' => 'Jumlah playlist',
         'url' => 'Menampilkan informasi lebih lanjut seputar musim yang dipilih.',
         'validation' => [
-            'not_enough_factors' => 'faktor skor yang ada tidak cukup untuk dapat dihitung secara layak',
+            'not_enough_factors' => 'faktor skor yang ada tidak cukup untuk perhitungan yang layak',
         ],
     ],
 

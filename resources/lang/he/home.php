@@ -13,7 +13,7 @@ return [
         'see_more_news' => 'הצג עוד חדשות',
 
         'slogan' => [
-            'main' => 'משחק הקצב החינמי הכי טוב',
+            'main' => 'משחק הקצב החינמי הטוב ביותר',
             'sub' => 'קצב הוא רק במרחק לחיצה',
         ],
     ],
@@ -26,6 +26,9 @@ return [
         'placeholder' => 'הקלד לחיפוש',
         'title' => 'חיפוש',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'התחבר כדי לחפש מפות משחק',
             'more' => ':count יותר תוצאות חיפוש מפה',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'הכל',
+            'artist_track' => '',
             'beatmapset' => 'ביטמאפ',
             'forum_post' => 'פורום',
+            'team' => '',
             'user' => 'שחקן',
             'wiki_page' => 'וויקי',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [
@@ -82,7 +91,7 @@ return [
         'for_os' => '',
         'macos-fallback' => 'משתמשי macOS',
         'mirror' => 'מראה',
-        'or' => '',
+        'or' => 'או',
         'os_version_or_later' => '',
         'other_os' => '',
         'quick_start_guide' => '',

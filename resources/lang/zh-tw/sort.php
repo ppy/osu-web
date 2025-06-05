@@ -37,6 +37,12 @@ return [
         'new' => '最新回覆',
     ],
 
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
+    ],
+
     'users' => [
         'relevance' => '相關度',
         'username' => '名稱',

@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'الصورة الشخصية',
-            'reset' => '',
+            'reset' => 'إعادة تعيين',
             'rules' => 'يرجى التأكد من ان صورتك تلتزم بـ:link<br/>هذا يعني انه يجب ان تكون <strong>مناسبة لجميع الأعمار</strong>. أي بلا تعري أو الفاظ نابية أو محتوى عنيف.',
             'rules_link' => 'قوانين المجتمع',
         ],
@@ -88,6 +88,7 @@ return [
             'beatmap_owner_change' => 'صعوبة ضيف',
             'beatmapset:modding' => 'اقتراحات الخريطة',
             'channel_message' => 'الرسائل الخاصة',
+            'channel_team' => '',
             'comment_new' => 'تعليقات جديدة',
             'forum_topic_reply' => 'رد الموضوع',
             'mail' => 'البريد',

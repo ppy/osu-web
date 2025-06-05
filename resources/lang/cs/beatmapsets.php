@@ -140,7 +140,7 @@ return [
             'description' => 'Popis',
             'genre' => 'Žánr',
             'language' => 'Jazyk',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Označení od autora',
             'no_scores' => 'Data se vypočítávají...',
             'nominators' => 'Nominátoři',
             'nsfw' => 'Explicitní obsah',
@@ -149,7 +149,7 @@ return [
             'source' => 'Zdroj',
             'storyboard' => 'Tato beatmapa obsahuje storyboard',
             'success-rate' => 'Úspěšnost',
-            'user_tags' => '',
+            'user_tags' => 'Označení od uživatelů',
             'video' => 'Tato beatmapa obsahuje video',
         ],
 

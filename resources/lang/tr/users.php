@@ -161,7 +161,7 @@ return [
 
         'options' => [
             'cheating' => 'Kuraldışı oyun / Hile',
-            'inappropriate_chat' => '',
+            'inappropriate_chat' => 'Uygunsuz sohbet davranışı',
             'insults' => 'Bana / başkalarına hakaret',
             'multiple_accounts' => 'Birden fazla hesap kullanımı',
             'nonsense' => 'Saçmalık',
@@ -481,8 +481,8 @@ return [
             'highest' => ':date tarihinde en yüksek rank: :rank',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'İlk :value',
+            'total_score' => 'Toplam skor',
         ],
         'stats' => [
             'hit_accuracy' => 'Vuruş İsabeti',

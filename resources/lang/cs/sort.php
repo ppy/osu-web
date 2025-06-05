@@ -37,6 +37,12 @@ return [
         'new' => 'Poslední odpověď',
     ],
 
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
+    ],
+
     'users' => [
         'relevance' => 'Relevance',
         'username' => 'Jméno',

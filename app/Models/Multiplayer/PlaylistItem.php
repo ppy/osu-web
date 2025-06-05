@@ -11,12 +11,14 @@ use App\Models\Model;
 use App\Models\ScoreToken;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property json|null $allowed_mods
  * @property Beatmap $beatmap
  * @property int $beatmap_id
  * @property \Carbon\Carbon|null $created_at
+ * @property Event|null $detailEvent
  * @property int $id
  * @property int $owner_id
  * @property int|null $playlist_order
@@ -37,6 +39,7 @@ class PlaylistItem extends Model
         'allowed_mods' => 'object',
         'expired' => 'boolean',
         'freestyle' => 'boolean',
+        'played_at' => 'datetime',
         'required_mods' => 'object',
     ];
 
@@ -83,6 +86,11 @@ class PlaylistItem extends Model
         $obj->owner_id = $owner->getKey();
 
         return $obj;
+    }
+
+    public function detailEvent(): HasOne
+    {
+        return $this->hasOne(RealtimeRoomEvent::class)->where('event_type', 'game_started');
     }
 
     public function room()
@@ -172,11 +180,9 @@ class PlaylistItem extends Model
 
     private function assertValidMods()
     {
-        if ($this->freestyle) {
-            if (count($this->allowed_mods) !== 0 || count($this->required_mods) !== 0) {
-                throw new InvariantException("mod isn't allowed in freestyle");
-            }
-            return;
+        // Freestyle unconditionally allows all freemods, so we'll expect them to not be specified.
+        if ($this->freestyle && count($this->allowed_mods) !== 0) {
+            throw new InvariantException('allowed mods cannot be specified on freestyle items');
         }
 
         $allowedModIds = array_column($this->allowed_mods, 'acronym');
@@ -189,8 +195,8 @@ class PlaylistItem extends Model
 
         $isRealtimeRoom = $this->room->isRealtime();
         $modsHelper = app('mods');
-        $modsHelper->assertValidForMultiplayer($this->ruleset_id, $allowedModIds, $isRealtimeRoom, false);
-        $modsHelper->assertValidForMultiplayer($this->ruleset_id, $requiredModIds, $isRealtimeRoom, true);
+        $modsHelper->assertValidForMultiplayer($this->ruleset_id, $allowedModIds, false, $isRealtimeRoom, $this->freestyle);
+        $modsHelper->assertValidForMultiplayer($this->ruleset_id, $requiredModIds, true, $isRealtimeRoom, $this->freestyle);
         $modsHelper->assertValidMultiplayerExclusivity($this->ruleset_id, $requiredModIds, $allowedModIds);
     }
 }

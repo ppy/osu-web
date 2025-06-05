@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'podrži igricu',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'informacije',
         ],
         'livestreams_controller' => [
             '_' => 'strujanja Uživo',
-        ],
-        'matches_controller' => [
-            '_' => 'utakmice',
         ],
         'news_controller' => [
             '_' => 'vijesti',

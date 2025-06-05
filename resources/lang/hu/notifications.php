@@ -124,6 +124,16 @@ return [
                     'channel_message_group' => 'tőle: :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -168,8 +178,13 @@ return [
 
                 'team_application_accept' => "Mostantól a :title csapat tagja vagy",
                 'team_application_accept_compact' => "Mostantól a :title csapat tagja vagy",
+
+                'team_application_group' => '',
+
                 'team_application_reject' => 'A :title csapatba való jelentkezésedet elutasították',
                 'team_application_reject_compact' => 'A :title csapatba való jelentkezésedet elutasították',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -231,11 +246,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Új hirdetmény van ":name" csatornában',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => 'Új üzenetet kaptál tőle::username',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -261,6 +278,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Mostantól a :title csapat tagja vagy",
                 'team_application_reject' => 'A :title csapatba való jelentkezésedet elutasították',
+                'team_application_store' => '',
             ],
         ],
 

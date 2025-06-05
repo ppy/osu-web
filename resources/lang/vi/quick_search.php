@@ -5,15 +5,16 @@
 
 return [
     'mode' => [
+        'artist_track' => '',
         'beatmapset' => 'Beatmap',
         'forum_post' => 'Diễn đàn',
         'other' => 'Khác',
+        'team' => '',
         'user' => 'Người chơi',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => 'Không có kết quả',
         'empty_for' => 'Không có kết quả cho chế độ :modes',
         'more' => 'Thêm :mode Kết quả Tìm kiếm',
         'title' => ':mode Kết quả tìm kiếm',

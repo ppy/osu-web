@@ -26,6 +26,9 @@ return [
         'placeholder' => 'typ hier om te zoeken',
         'title' => 'Zoek',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Log in om beatmaps te zoeken',
             'more' => ':count andere beatmap zoekresultaten',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'alle',
+            'artist_track' => '',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
+            'team' => '',
             'user' => 'speler',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

@@ -26,6 +26,9 @@ return [
         'placeholder' => 'nhập để tìm kiếm',
         'title' => 'Tìm Kiếm',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Đăng nhập để tìm beatmap',
             'more' => 'còn :count kết quả tìm kiếm beatmap khác',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'tất cả',
+            'artist_track' => '',
             'beatmapset' => 'beatmap',
             'forum_post' => 'diễn đàn',
+            'team' => '',
             'user' => 'người chơi',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [

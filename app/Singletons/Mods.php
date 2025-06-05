@@ -14,6 +14,7 @@ class Mods
 {
     // A => B: mod A implies mod B.
     const IMPLIED_MODS = [
+        'DC' => 'HT',
         'NC' => 'DT',
         'PF' => 'SD',
     ];
@@ -92,12 +93,22 @@ class Mods
         }
     }
 
-    public function assertValidForMultiplayer(int $rulesetId, array $ids, bool $isRealtime, bool $isRequired): void
+    /**
+     * Determines whether the given mods are valid for a playlist item.
+     *
+     * @param int $rulesetId The ruleset from which the mods originate.
+     * @param array $ids An array containing the mod acronyms to test.
+     * @param bool $required True if the mods are intended as "required" mods on the target playlist item. False if they're intended as "allowed" mods.
+     * @param bool $realtime Whether the room is a realtime match.
+     * @param bool $freestyle Whether the target playlist item enables freestyle mode.
+     * @throws InvariantException When any of the given mods are not valid.
+     */
+    public function assertValidForMultiplayer(int $rulesetId, array $ids, bool $required, bool $realtime, bool $freestyle): void
     {
         $this->validateSelection($rulesetId, $ids);
 
-        if ($isRealtime) {
-            $attr = $isRequired ? 'ValidForMultiplayer' : 'ValidForMultiplayerAsFreeMod';
+        if ($realtime) {
+            $attr = $required ? 'ValidForMultiplayer' : 'ValidForMultiplayerAsFreeMod';
         } else {
             $attr = 'UserPlayable';
         }
@@ -105,8 +116,12 @@ class Mods
         foreach ($ids as $id) {
             $mod = $this->mods[$rulesetId][$id];
 
+            if ($freestyle && $required && !$mod['ValidForFreestyleAsRequiredMod']) {
+                throw new InvariantException("mod cannot be set as required on freestyle items: {$id}");
+            }
+
             if (!$mod[$attr]) {
-                $messageType = $isRequired ? 'required' : 'allowed';
+                $messageType = $required ? 'required' : 'allowed';
                 throw new InvariantException("mod cannot be set as {$messageType}: {$id}");
             }
         }

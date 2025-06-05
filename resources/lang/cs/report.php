@@ -35,8 +35,8 @@ return [
     ],
 
     'team' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Nahlásit tým',
+        'title' => 'Nahlásit tým uživatele :username?',
     ],
 
     'user' => [

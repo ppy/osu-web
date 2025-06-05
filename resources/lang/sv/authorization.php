@@ -62,7 +62,7 @@ return [
 
     'beatmap_tag' => [
         'store' => [
-            'no_score' => '',
+            'no_score' => 'Du måste ange en poäng på en beatmap för att lägga till en tagg.',
         ],
     ],
 

@@ -8,17 +8,19 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Exceptions\InvariantException;
+use App\Jobs\EsDocument;
 use App\Jobs\Notifications\TeamApplicationAccept;
 use App\Libraries\BBCodeForDB;
+use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\Uploader;
 use App\Libraries\User\Cover as UserCover;
 use App\Libraries\UsernameValidation;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Team extends Model implements Traits\ReportableInterface
+class Team extends Model implements AfterCommit, Traits\ReportableInterface
 {
-    use Traits\Reportable;
+    use Traits\Es\TeamSearch, Traits\Reportable;
 
     const FLAG_MAX_DIMENSIONS = [512, 256];
 
@@ -111,6 +113,11 @@ class Team extends Model implements Traits\ReportableInterface
         });
 
         (new TeamApplicationAccept($application, $this->leader))->dispatch();
+    }
+
+    public function afterCommit(): void
+    {
+        dispatch(new EsDocument($this));
     }
 
     public function createChannel(): Chat\Channel
@@ -249,6 +256,15 @@ class Team extends Model implements Traits\ReportableInterface
         }
 
         return $this->validationErrors()->isEmpty();
+    }
+
+    public function leaderOrDeleted(): User
+    {
+        $leader = $this->leader;
+
+        return $leader === null || $leader->isRestricted()
+            ? new DeletedUser(['user_id' => $this->leader_id])
+            : $leader;
     }
 
     public function maxMembers(): int

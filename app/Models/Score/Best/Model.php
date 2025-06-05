@@ -6,8 +6,6 @@
 namespace App\Models\Score\Best;
 
 use App\Libraries\ReplayFile;
-use App\Libraries\Score\UserRank;
-use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\ReplayViewCount;
@@ -23,9 +21,7 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
     use Traits\Reportable, Traits\WithDbCursorHelper, Traits\WithWeightedPp;
 
     protected array $macros = [
-        'accurateRankCounts',
         'forListing',
-        'userBest',
     ];
 
     const SORTS = [
@@ -44,17 +40,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         'X' => 'x_rank_count',
         'XH' => 'xh_rank_count',
     ];
-
-    public static function queueIndexingForUser(User $user)
-    {
-        $instance = new static();
-        $table = $instance->getTable();
-        $modeId = Beatmap::MODES[$instance->getMode()];
-
-        $instance->getConnection()->insert(
-            "INSERT INTO score_process_queue (score_id, mode, status) SELECT score_id, {$modeId}, 1 FROM {$table} WHERE user_id = {$user->getKey()}"
-        );
-    }
 
     public function getAttribute($key)
     {
@@ -87,14 +72,11 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
             'pass' => true,
 
             'best_id' => $this->getKey(),
-            'has_replay' => $this->replay,
 
             'beatmap',
             'replayViewCount',
             'reportedIn',
             'user' => $this->getRelationValue($key),
-
-            default => $this->getNewScoreAttribute($key),
         };
     }
 
@@ -153,98 +135,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         return route('scores.show', ['rulesetOrScore' => $this->getMode(), 'score' => $this->getKey()]);
     }
 
-    public function userRank(?array $params = null): int
-    {
-        // laravel model has a $hidden property
-        if ($this->getAttribute('hidden')) {
-            return 0;
-        }
-
-        return UserRank::getRank(ScoreSearchParams::fromArray([
-            ...($params ?? []),
-            'beatmap_ids' => [$this->beatmap_id],
-            'before_total_score' => $this->score,
-            'is_legacy' => true,
-            'ruleset_id' => $this->ruleset_id,
-            'user' => $this->user,
-        ]));
-    }
-
-    public function macroUserBest(): \Closure
-    {
-        return function ($query, $limit, $offset = 0, $includes = []) {
-            $baseResult = (clone $query)
-                ->with($includes)
-                ->limit(($limit + $offset) * 2)
-                ->get();
-
-            $results = [];
-            $beatmaps = [];
-
-            foreach ($baseResult as $entry) {
-                if (count($results) >= $limit + $offset) {
-                    break;
-                }
-
-                if (isset($beatmaps[$entry->beatmap_id])) {
-                    continue;
-                }
-
-                $beatmaps[$entry->beatmap_id] = true;
-                $results[] = $entry;
-            }
-
-            return array_slice($results, $offset);
-        };
-    }
-
-    /**
-     * Gets up-to-date User score rank counts.
-     *
-     * This can be relatively slow for large numbers of scores, so
-     *  prefer getting the cached counts from one of the UserStatistics objects instead.
-     *
-     * @return array [user_id => [rank => count]]
-     */
-    public function macroAccurateRankCounts(): \Closure
-    {
-        return function ($query) {
-            $scores = (clone $query)
-                ->select(['user_id', 'beatmap_id', 'score', 'rank'])
-                ->get();
-
-            $result = [];
-            $counted = [];
-
-            foreach ($scores as $score) {
-                if (!isset($result[$score->user_id])) {
-                    $result[$score->user_id] = [];
-                }
-
-                $countedKey = "{$score->user_id}:{$score->beatmap_id}";
-
-                if (isset($counted[$countedKey])) {
-                    $countedScore = $counted[$countedKey];
-                    if ($countedScore->score < $score->score) {
-                        $result[$score->user_id][$countedScore->rank] -= 1;
-                        $counted[$countedKey] = $score;
-                    } else {
-                        continue;
-                    }
-                }
-                $counted[$countedKey] = $score;
-
-                if (!isset($result[$score->user_id][$score->rank])) {
-                    $result[$score->user_id][$score->rank] = 0;
-                }
-
-                $result[$score->user_id][$score->rank] += 1;
-            }
-
-            return $result;
-        };
-    }
-
     public function scopeDefault($query)
     {
         return $query
@@ -285,15 +175,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         }
 
         return $query->whereIn('user_id', $userIds);
-    }
-
-    /**
-     * Override parent scope with a noop as only passed scores go in here.
-     * And the `pass` column doesn't exist.
-     */
-    public function scopeIncludeFails($query, bool $include)
-    {
-        return $query;
     }
 
     public function isPersonalBest(): bool

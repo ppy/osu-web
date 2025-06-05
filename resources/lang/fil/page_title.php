@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'suportahan ang laro',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'impormasyon',
         ],
         'livestreams_controller' => [
             '_' => 'mga live stream',
-        ],
-        'matches_controller' => [
-            '_' => 'matches',
         ],
         'news_controller' => [
             '_' => 'news',

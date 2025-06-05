@@ -88,6 +88,7 @@ return [
             'beatmap_owner_change' => 'Guest-Difficulty',
             'beatmapset:modding' => 'Beatmap-Modding',
             'channel_message' => 'Private Chat-Nachrichten',
+            'channel_team' => '',
             'comment_new' => 'Neue Kommentare',
             'forum_topic_reply' => 'Antwort auf Forenthema',
             'mail' => 'Mail',

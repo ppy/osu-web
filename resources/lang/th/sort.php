@@ -37,6 +37,12 @@ return [
         'new' => 'ตอบกลับครั้งล่าสุด',
     ],
 
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
+    ],
+
     'users' => [
         'relevance' => 'ความเกี่ยวข้อง',
         'username' => 'ชื่อ',

@@ -140,7 +140,7 @@ return [
             'description' => 'Descriere',
             'genre' => 'Gen',
             'language' => 'Limbă',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Etichete Creator',
             'no_scores' => 'Încă se calculează datele...',
             'nominators' => 'Nominalizatori',
             'nsfw' => 'Conținut obscen',
@@ -149,7 +149,7 @@ return [
             'source' => 'Sursă',
             'storyboard' => 'Acest beatmap conține un storyboard',
             'success-rate' => 'Rată de succes',
-            'user_tags' => '',
+            'user_tags' => 'Etichete Utilizatori',
             'video' => 'Acest beatmap conține un video',
         ],
 

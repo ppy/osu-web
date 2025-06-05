@@ -10,7 +10,7 @@ use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\User;
 use Tests\TestCase;
 
-class MatchesControllerTest extends TestCase
+class LegacyMatchesControllerTest extends TestCase
 {
     private $privateMatch;
     private $privateMatchRoute;

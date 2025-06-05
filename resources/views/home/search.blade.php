@@ -59,10 +59,10 @@
                 @foreach ($allSearch->visibleSearches() as $mode => $search)
                     @if ($searchMode === 'forum_post')
                         @include('objects.search._forum_sort', compact('search'))
-                    @endif
-
-                    @if ($searchMode === 'user')
+                    @elseif ($searchMode === 'user')
                         @include('objects.search._user_sort', compact('search'))
+                    @elseif ($searchMode === 'team')
+                        @include('objects.search._team_sort', compact('search'))
                     @endif
 
                     @include('home._search_results', compact('mode', 'search', 'showMore'))
