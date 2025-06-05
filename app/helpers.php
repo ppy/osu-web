@@ -1230,6 +1230,7 @@ function footer_legal_links(): array
     $locale = app()->getLocale();
 
     $ret = [];
+    $ret['rules'] = wiki_url('Rules');
     $ret['terms'] = route('legal', ['locale' => $locale, 'path' => 'Terms']);
     if ($locale === 'ja') {
         $ret['jp_sctl'] = route('legal', ['locale' => $locale, 'path' => 'SCTL']);
