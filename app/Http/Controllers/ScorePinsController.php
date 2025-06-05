@@ -10,6 +10,9 @@ use App\Models\ScorePin;
 use App\Models\Solo;
 use Exception;
 
+/**
+ * @group Scores
+ */
 class ScorePinsController extends Controller
 {
     public function __construct()
@@ -19,33 +22,62 @@ class ScorePinsController extends Controller
         parent::__construct();
     }
 
-    public function destroy()
+    /**
+     * Unpin Score
+     *
+     * Unpins a score from the user's profile.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * _empty response_
+     *
+     * @urlParam score integer required The id of the [Score](#score) to unpin.
+     *
+     * @response 204
+     */
+    public function destroy($scoreId)
     {
-        \Auth::user()->scorePins()->whereKey(get_int(request('score_id')))->delete();
+        \Auth::user()->scorePins()->whereKey($scoreId)->delete();
 
         return response()->noContent();
     }
 
-    public function reorder()
+    /**
+     * Reorder Pinned Score
+     *
+     * Changes pinned position of a score on the user's profile.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * _empty response_
+     *
+     * @urlParam score integer required The id of the [Score](#score) to move.
+     *
+     * @bodyParam after_score_id integer The id of the [Score](#score) to move the score after. At least one of `after_score_id` or `before_score_id` is required.
+     * @bodyParam before_score_id integer The id of the [Score](#score) to move the score before. No-example
+     *
+     * @response 204
+     */
+    public function reorder($scoreId)
     {
-        $rawParams = \Request::all();
-        $targetId = get_int($rawParams['score_id'] ?? null);
+        $params = get_params(\Request::all(), null, [
+            'after_score_id:int',
+            'before_score_id:int',
+        ]);
 
         $pinsQuery = \Auth::user()->scorePins();
-        $target = $pinsQuery->clone()->findOrFail($targetId);
-        $rulesetId = $target->ruleset_id;
-        $pinsQuery->where('ruleset_id', $rulesetId);
+        $target = $pinsQuery->clone()->findOrFail(get_int($scoreId));
+        $pinsQuery->where('ruleset_id', $target->ruleset_id);
 
-        $adjacentScores = [];
-        foreach (['order1', 'order3'] as $position) {
-            $adjacentScoreIds[$position] = get_int($rawParams[$position]['score_id'] ?? null);
-        }
-
-        $order1Item = isset($adjacentScoreIds['order1'])
-            ? $pinsQuery->clone()->find($adjacentScoreIds['order1'])
+        $order1Item = isset($params['after_score_id'])
+            ? $pinsQuery->clone()->find($params['after_score_id'])
             : null;
-        $order3Item = $order1Item === null && isset($adjacentScoreIds['order3'])
-            ? $pinsQuery->clone()->find($adjacentScoreIds['order3'])
+        $order3Item = $order1Item === null && isset($params['before_score_id'])
+            ? $pinsQuery->clone()->find($params['before_score_id'])
             : null;
 
         abort_if($order1Item === null && $order3Item === null, 422, 'no valid pinned score reference is specified');
@@ -71,16 +103,30 @@ class ScorePinsController extends Controller
         return response()->noContent();
     }
 
-    public function store()
+    /**
+     * Pin Score
+     *
+     * Pins a score to the user's profile.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * _empty response_
+     *
+     * @urlParam score integer required The id of the [Score](#score) to pin.
+     *
+     * @response 204
+     */
+    public function store($scoreId)
     {
-        $id = get_int(request('score_id'));
-        $score = Solo\Score::find($id);
+        $score = Solo\Score::find($scoreId);
 
         abort_if($score === null, 422, "specified score couldn't be found");
 
         $user = \Auth::user();
 
-        $pin = $user->scorePins()->find($id);
+        $pin = $user->scorePins()->find($scoreId);
 
         if ($pin === null) {
             priv_check('ScorePin', $score)->ensureCan();

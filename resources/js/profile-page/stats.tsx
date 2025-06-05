@@ -14,6 +14,7 @@ const entryKeys = [
   'play_count',
   'total_score',
   'total_hits',
+  'hits_per_play',
   'maximum_combo',
   'replays_watched_by_others',
 ] as const;
@@ -24,13 +25,21 @@ interface Props {
   stats: UserStatisticsJson;
 }
 
+function getHitsPerPlay(stats: UserStatisticsJson) {
+  return stats.play_count === 0
+    ? 0
+    : Math.floor(stats.total_hits / stats.play_count);
+}
+
 export default class Stats extends React.PureComponent<Props> {
   render() {
     return <div className='profile-stats'>{entryKeys.map(this.renderEntry)}</div>;
   }
 
   private formatValue(key: EntryKey) {
-    const val = this.props.stats[key];
+    const val = key === 'hits_per_play'
+      ? getHitsPerPlay(this.props.stats)
+      : this.props.stats[key];
 
     if (key === 'hit_accuracy') {
       return `${formatNumber(val, 2)}%`;

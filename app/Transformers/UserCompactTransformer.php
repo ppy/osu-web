@@ -6,7 +6,6 @@
 namespace App\Transformers;
 
 use App\Libraries\MorphMap;
-use App\Libraries\Search\ScoreSearchParams;
 use App\Libraries\User\SeasonStats;
 use App\Models\Beatmap;
 use App\Models\Season;
@@ -430,8 +429,7 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeScoresBestCount(User $user)
     {
         return $this->primitive(count($user->beatmapBestScoreIds(
-            $this->mode,
-            ScoreSearchParams::showLegacyForUser(\Auth::user()),
+            $this->mode
         )));
     }
 

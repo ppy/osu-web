@@ -40,6 +40,8 @@
                 @elseif ($type === 'popular')
                     <span class="fa fa-heart"></span>
                     {{ i18n_number_format($beatmapset->favourite_count) }}
+                @elseif ($type === 'daily_challenge')
+                    {!! osu_trans('home.user.beatmaps.resets', ['ends' => timeago($dailyChallenge->ends_at)]) !!}
                 @endif
             </span>
         </div>
