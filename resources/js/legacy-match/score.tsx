@@ -12,7 +12,7 @@ import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { calculateStatisticsFor } from 'utils/score-helper';
+import { calculateStatisticsFor, rank } from 'utils/score-helper';
 import { Data } from './content';
 
 interface Props {
@@ -91,6 +91,9 @@ export default observer(function Score(props: Props) {
               </div>
             ))}
           </div>
+        </div>
+        <div className={classWithModifiers('mp-history-player-score__info-box', 'rank')}>
+          <div className={classWithModifiers('score-rank', 'profile-page', rank(props.score))} />
         </div>
       </div>
     </div>
