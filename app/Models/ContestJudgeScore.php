@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property-read ContestScoringCategory $category
- * @property int $contest_judge_category_id
+ * @property int $contest_scoring_category_id
  * @property int $contest_judge_vote_id
  * @property \Carbon\Carbon|null $created_at
  * @property int $id
