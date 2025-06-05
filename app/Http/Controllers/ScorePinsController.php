@@ -10,6 +10,9 @@ use App\Models\ScorePin;
 use App\Models\Solo;
 use Exception;
 
+/**
+ * @group Scores
+ */
 class ScorePinsController extends Controller
 {
     public function __construct()
@@ -19,6 +22,21 @@ class ScorePinsController extends Controller
         parent::__construct();
     }
 
+    /**
+     * Unpin Score
+     *
+     * Unpins a score from the user's profile.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * _empty response_
+     *
+     * @urlParam score integer required The id of the [Score](#score) to unpin.
+     *
+     * @response 204
+     */
     public function destroy($scoreId)
     {
         \Auth::user()->scorePins()->whereKey($scoreId)->delete();
@@ -26,6 +44,24 @@ class ScorePinsController extends Controller
         return response()->noContent();
     }
 
+    /**
+     * Reorder Pinned Score
+     *
+     * Changes pinned position of a score on the user's profile.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * _empty response_
+     *
+     * @urlParam score integer required The id of the [Score](#score) to move.
+     *
+     * @bodyParam after_score_id integer The id of the [Score](#score) to move the score after. At least one of `after_score_id` or `before_score_id` is required.
+     * @bodyParam before_score_id integer The id of the [Score](#score) to move the score before. No-example
+     *
+     * @response 204
+     */
     public function reorder($scoreId)
     {
         $params = get_params(\Request::all(), null, [
@@ -67,6 +103,21 @@ class ScorePinsController extends Controller
         return response()->noContent();
     }
 
+    /**
+     * Pin Score
+     *
+     * Pins a score to the user's profile.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * _empty response_
+     *
+     * @urlParam score integer required The id of the [Score](#score) to pin.
+     *
+     * @response 204
+     */
     public function store($scoreId)
     {
         $score = Solo\Score::find($scoreId);

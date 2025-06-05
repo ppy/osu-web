@@ -522,6 +522,12 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             Route::get('/', 'ScoresController@index');
         });
 
+        Route::group(['prefix' => 'score-pins/{score}', 'as' => 'score-pins.'], function () {
+            Route::post('reorder', 'ScorePinsController@reorder')->name('reorder');
+            Route::delete('/', 'ScorePinsController@destroy')->name('destroy');
+            Route::put('/', 'ScorePinsController@store')->name('store');
+        });
+
         // Beatmapsets
         //   GET /api/v2/beatmapsets/search/:filters
         Route::get('beatmapsets/search', 'BeatmapsetsController@search');
