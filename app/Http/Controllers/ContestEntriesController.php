@@ -9,6 +9,7 @@ use App\Exceptions\InvariantException;
 use App\Models\Contest;
 use App\Models\ContestEntry;
 use App\Models\UserContestEntry;
+use App\Transformers\ContestEntryTransformer;
 use App\Transformers\ContestTransformer;
 use Auth;
 use Ds\Set;
@@ -19,7 +20,12 @@ class ContestEntriesController extends Controller
 {
     public function judgeResults($id)
     {
-        $entry = ContestEntry::with('contest')->findOrFail($id);
+        $entry = ContestEntry
+            ::with('contest')
+            // TODO: replace with casted extra_options.
+            // Assume hitting this endpoint is always for judged contests.
+            ->withScore(new Contest(['extra_options' => ['judged' => true, 'is_score_standardised' => true]]))
+            ->findOrFail($id);
 
         abort_if(!$entry->contest->isJudged() || !$entry->contest->show_votes, 404);
 
@@ -45,15 +51,16 @@ class ContestEntriesController extends Controller
             ],
         );
 
-        $entryJson = json_item($entry, 'ContestEntry', [
+        $entryJson = json_item($entry, new ContestEntryTransformer(), [
             'judge_votes.scores',
             'judge_votes.total_score',
+            'judge_votes.total_score_std',
             'judge_votes.user',
             'results',
             'user',
         ]);
 
-        $entriesJson = json_collection($entry->contest->entries, 'ContestEntry');
+        $entriesJson = json_collection($entry->contest->entries, new ContestEntryTransformer());
 
         return ext_view('contest_entries.judge-results', [
             'contestJson' => $contestJson,
@@ -100,7 +107,7 @@ class ContestEntriesController extends Controller
 
         $updatedEntry = $entry->refresh()->load('judgeVotes.scores');
 
-        return json_item($updatedEntry, 'ContestEntry', ['current_user_judge_vote.scores']);
+        return json_item($updatedEntry, new ContestEntryTransformer(), ['current_user_judge_vote.scores']);
     }
 
     public function vote($id)

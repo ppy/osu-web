@@ -30,7 +30,9 @@ return [
         '_' => 'Judging results',
         'creator' => 'creator',
         'score' => 'Score',
+        'score_std' => 'Standardised Score',
         'total_score' => 'total score',
+        'total_score_std' => 'total standardised score',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'votes',
         'count' => ':count_delimited vote|:count_delimited votes',
         'points' => ':count_delimited point|:count_delimited points',
+        'points_float' => ':points points',
     ],
 
     'dates' => [

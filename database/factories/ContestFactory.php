@@ -48,8 +48,8 @@ class ContestFactory extends Factory
 
     public function judged(): static
     {
-        return $this->state([
-            'extra_options' => ['judged' => true],
+        return $this->state(fn (array $attr) => [
+            'extra_options' => [...$attr['extra_options'] ?? [], 'judged' => true],
         ]);
     }
 
@@ -60,6 +60,13 @@ class ContestFactory extends Factory
             'entry_ends_at' => fn() => Carbon::now()->addMonths(2),
             'voting_starts_at' => fn() => Carbon::now()->addMonths(3),
             'voting_ends_at' => fn() => Carbon::now()->addMonths(4),
+        ]);
+    }
+
+    public function scoreStandardised(): static
+    {
+        return $this->state(fn (array $attr) => [
+            'extra_options' => [...$attr['extra_options'] ?? [], 'is_score_standardised' => true],
         ]);
     }
 
