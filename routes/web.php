@@ -15,7 +15,10 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/beatmapsets/{beatmapset}/covers/remove', 'BeatmapsetsController@removeCovers')->name('beatmapsets.covers.remove');
         Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['show', 'update']]);
 
-        Route::post('contests/{contest}/zip', 'ContestsController@gimmeZip')->name('contests.get-zip');
+        Route::group(['as' => 'contests.', 'prefix' => 'contests/{contest}'], function () {
+            Route::post('calculate', 'ContestsController@calculate')->name('calculate');
+            Route::post('zip', 'ContestsController@gimmeZip')->name('get-zip');
+        });
         Route::resource('contests', 'ContestsController', ['only' => ['index', 'show']]);
 
         Route::resource('user-contest-entries', 'UserContestEntriesController', ['only' => ['destroy']]);
