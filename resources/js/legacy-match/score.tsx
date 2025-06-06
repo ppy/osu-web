@@ -39,9 +39,8 @@ export default observer(function Score(props: Props) {
         style={{ backgroundImage: `url(/images/layout/mp-history/shapes-team-${team}.svg)` }} />
       <div className='mp-history-player-score__main'>
         <div className={classWithModifiers('mp-history-player-score__info-box', ['user'])}>
-          <div className='mp-history-player-score__username-box'>
+          <div>
             <a className='mp-history-player-score__username' href={route('users.show', { user: user.id })}>{user.username}</a>
-            {!props.score.passed && <span className='mp-history-player-score__failed'>{trans('matches.match.failed')}</span>}
           </div>
           <a href={route('rankings', { country: user.country?.code, mode: rulesets[props.score.ruleset_id], type: 'performance' })}>
             <FlagCountry country={user.country} modifiers={'medium'} />
