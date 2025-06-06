@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserRelationJson from 'interfaces/user-relation-json';
-import { pull } from 'lodash';
+import { pull, remove } from 'lodash';
 import { action, computed, makeObservable } from 'mobx';
 import OsuCore from 'osu-core';
 import { fail } from 'utils/fail';
@@ -61,12 +61,12 @@ export default class UserModel {
     const relations = currentUser[relationType];
 
     if (userRelation == null) {
-      relations.splice(relations.findIndex((relation) => relation.target_id === userId), 1);
+      remove(relations, (relation) => relation.target_id === userId);
     } else {
       relations.push(userRelation);
     }
 
     const otherRelations = currentUser[relationType === 'blocks' ? 'friends' : 'blocks'];
-    otherRelations.splice(otherRelations.findIndex((relation) => relation.target_id === userId), 1);
+    remove(otherRelations, (relation) => relation.target_id === userId);
   }
 }
