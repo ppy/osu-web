@@ -12,7 +12,7 @@ import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { calculateStatisticsFor } from 'utils/score-helper';
+import { calculateStatisticsFor, rank } from 'utils/score-helper';
 
 interface Props {
   mode: Ruleset;
@@ -30,15 +30,14 @@ export default observer(function Score(props: Props) {
   }
 
   return (
-    <div className='mp-history-game__player-score mp-history-player-score'>
+    <div className='mp-history-player-score'>
       <div
         className='mp-history-player-score__shapes'
         style={{ backgroundImage: `url(/images/layout/mp-history/shapes-team-${props.score.match.team ?? 'none'}.svg)` }} />
       <div className='mp-history-player-score__main'>
         <div className={classWithModifiers('mp-history-player-score__info-box', ['user'])}>
-          <div className='mp-history-player-score__username-box'>
+          <div>
             <a className='mp-history-player-score__username' href={route('users.show', { user: user.id })}>{user.username}</a>
-            {!props.score.match.pass && <span className='mp-history-player-score__failed'>{trans('matches.match.failed')}</span>}
           </div>
           <a href={route('rankings', { country: user.country?.code, mode: props.mode, type: 'performance' })}>
             <FlagCountry country={user.country} modifiers={'medium'} />
@@ -88,6 +87,9 @@ export default observer(function Score(props: Props) {
               </div>
             ))}
           </div>
+        </div>
+        <div className={classWithModifiers('mp-history-player-score__info-box', 'rank')}>
+          <div className={classWithModifiers('score-rank', 'profile-page', rank(props.score))} />
         </div>
       </div>
     </div>
