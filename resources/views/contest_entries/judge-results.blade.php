@@ -10,7 +10,7 @@
         'links' => [
             ['url' => route('contests.index'), 'title' => osu_trans('contest.index.nav_title')],
             ['url' => route('contests.show', $contestJson['id']), 'title' => $contestJson['name']],
-            ['url' => route('contest-entries.judge-results', $entryJson['id']), 'title' => $entryJson['title']],
+            ['url' => route('contests.entries.judge-results', ['contest' => $contestJson['id'], 'contest_entry' => $entryJson['id']]), 'title' => $entryJson['title']],
         ],
         'linksBreadcrumb' => true,
         'theme' => 'contests',

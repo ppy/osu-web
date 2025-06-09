@@ -71,7 +71,7 @@ export class Entry extends React.Component
         div className: 'contest-voting-list__icon contest-voting-list__icon--bg',
           a
             className: 'contest-voting-list__link'
-            href: route('contest-entries.judge-results', @props.entry.id)
+            href: route('contests.entries.judge-results', contest: @props.entry.contest_id, contest_entry: @props.entry.id)
             target: '_blank'
             i className: 'fas fa-fw fa-lg fa-external-link-alt'
 

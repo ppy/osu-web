@@ -157,7 +157,7 @@ export default class Entry extends React.Component<Props> {
   private readonly submitVote = () => {
     if (this.xhr != null || !this.canSubmit) return;
 
-    this.xhr = $.ajax(route('contest-entries.judge-vote', { contest_entry: this.props.entry.id }), {
+    this.xhr = $.ajax(route('contests.entries.judge-vote', { contest: this.props.entry.contest_id, contest_entry: this.props.entry.id }), {
       data: {
         comment: this.currentVote.comment,
         scores: [...this.currentVote.scores.values()],
