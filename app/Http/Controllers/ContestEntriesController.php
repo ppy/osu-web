@@ -28,8 +28,6 @@ class ContestEntriesController extends Controller
 
         $entry = ContestEntry
             ::with([
-                'contest.entries',
-                'contest.scoringCategories',
                 'judgeVotes.scores',
                 'judgeVotes.user',
                 'user',
