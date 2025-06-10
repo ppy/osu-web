@@ -2,9 +2,40 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapJson from './beatmap-json';
-import { RealtimeRoomType } from './room-json';
+import LegacyMatchGameJson, { LegacyMatchScoringType } from './legacy-match-game-json';
+import { RealtimeRoomType, roomTypeFromLegacy } from './room-json';
 import ScoreJson from './score-json';
 import ScoreModJson from './score-mod-json';
+
+export function playlistItemFromLegacy(game: LegacyMatchGameJson): PlaylistItemJsonForMultiplayerEvent {
+  const teams: Details['teams'] = {};
+  for (const score of game.scores) {
+    const team = score.match.team;
+    if (team === 'blue' || team === 'red') {
+      teams[score.user_id] = team;
+    }
+  }
+
+  return {
+    allowed_mods: [],
+    beatmap: game.beatmap,
+    beatmap_id: game.beatmap_id,
+    created_at: game.start_time,
+    details: {
+      room_type: roomTypeFromLegacy[game.team_type],
+      teams,
+    },
+    expired: game.end_time != null,
+    freestyle: false,
+    id: game.id,
+    legacy_scoring_type: game.scoring_type,
+    played_at: game.end_time,
+    required_mods: game.mods.map((m) => ({ acronym: m })),
+    room_id: game.match_id,
+    ruleset_id: game.mode_int,
+    scores: game.scores,
+  };
+}
 
 export interface Details {
   room_type: RealtimeRoomType;
@@ -27,5 +58,6 @@ export default interface PlaylistItemJson {
 
 export interface PlaylistItemJsonForMultiplayerEvent extends PlaylistItemJson {
   details: Details;
+  legacy_scoring_type?: LegacyMatchScoringType;
   scores: ScoreJson[];
 }
