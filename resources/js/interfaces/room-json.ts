@@ -2,7 +2,34 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserJson from 'interfaces/user-json';
+import { LegacyMatchTeamType } from './legacy-match-game-json';
+import LegacyMatchJson from './legacy-match-json';
 import PlaylistItemJson from './playlist-item-json';
+
+export const roomTypeFromLegacy: Record<LegacyMatchTeamType, RealtimeRoomType> = {
+  'head-to-head': 'head_to_head',
+  'tag-coop': 'tag_coop',
+  'tag-team-vs': 'tag_team_versus',
+  'team-vs': 'team_versus',
+};
+
+export function roomJsonFromLegacy(match: LegacyMatchJson): RoomJson {
+  return {
+    active: match.end_time == null,
+    category: 'normal',
+    channel_id: null,
+    ends_at: match.end_time,
+    has_password: false,
+    id: match.id,
+    max_attempts: 1,
+    name: match.name,
+    participant_count: 1,
+    queue_mode: 'host_only',
+    starts_at: match.start_time,
+    type: 'head_to_head',
+    user_id: 0,
+  };
+}
 
 export type RoomCategory = 'normal' | 'spotlight';
 
