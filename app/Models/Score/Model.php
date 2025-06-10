@@ -62,15 +62,6 @@ abstract class Model extends BaseModel
         return $query->where('user_id', $user->user_id);
     }
 
-    public function scopeIncludeFails($query, bool $include)
-    {
-        if ($include) {
-            return $query;
-        }
-
-        return $query->where('pass', true);
-    }
-
     public function scopeVisibleUsers($query)
     {
         return $query->whereHas('user', function ($userQuery) {

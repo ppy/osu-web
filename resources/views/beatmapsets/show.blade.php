@@ -2,21 +2,21 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@if (optional(Auth::user())->isAdmin())
-    @php
-        $extraFooterLinks = [
+@php
+    $currentUser ??= Auth::user();
+    $extraFooterLinks = $currentUser?->isAdmin()
+        ? [
             osu_trans('common.buttons.admin') => route('admin.beatmapsets.show', $beatmapset->getKey()),
-        ];
-    @endphp
-@endif
+        ] : [];
+@endphp
 @extends('master', [
-    'titlePrepend' => "{$beatmapset->getDisplayArtist(auth()->user())} - {$beatmapset->getDisplayTitle(auth()->user())}",
-    'extraFooterLinks' => $extraFooterLinks ?? [],
+    'titlePrepend' => "{$beatmapset->getDisplayArtist($currentUser)} - {$beatmapset->getDisplayTitle($currentUser)}",
+    'extraFooterLinks' => $extraFooterLinks,
 ])
 
 @section('content')
     <div class="js-react--beatmapset-page u-contents"></div>
-    @if (Auth::user()?->isModerator() ?? false)
+    @if ($currentUser?->isModerator() ?? false)
         <div class="admin-menu">
             <button class="admin-menu__button js-menu" data-menu-target="admin-beatmapset" type="button">
                 <span class="fas fa-angle-up"></span>

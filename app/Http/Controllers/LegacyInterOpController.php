@@ -18,7 +18,6 @@ use App\Models\Chat\UserChannel;
 use App\Models\Forum;
 use App\Models\NewsPost;
 use App\Models\Notification;
-use App\Models\Score\Best;
 use App\Models\User;
 use App\Models\UserStatistics;
 use App\Transformers\Chat\MessageTransformer;
@@ -302,10 +301,6 @@ class LegacyInterOpController extends Controller
 
         dispatch(new EsDocument($user));
 
-        foreach (Beatmap::MODES as $modeStr => $modeId) {
-            $class = Best\Model::getClass($modeStr);
-            $class::queueIndexingForUser($user);
-        }
         Artisan::queue('es:index-scores:queue', [
             '--all' => true,
             '--no-interaction' => true,
