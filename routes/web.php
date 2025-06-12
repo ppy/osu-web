@@ -15,7 +15,10 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/beatmapsets/{beatmapset}/covers/remove', 'BeatmapsetsController@removeCovers')->name('beatmapsets.covers.remove');
         Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['show', 'update']]);
 
-        Route::post('contests/{contest}/zip', 'ContestsController@gimmeZip')->name('contests.get-zip');
+        Route::group(['as' => 'contests.', 'prefix' => 'contests/{contest}'], function () {
+            Route::post('calculate', 'ContestsController@calculate')->name('calculate');
+            Route::post('zip', 'ContestsController@gimmeZip')->name('get-zip');
+        });
         Route::resource('contests', 'ContestsController', ['only' => ['index', 'show']]);
 
         Route::resource('user-contest-entries', 'UserContestEntriesController', ['only' => ['destroy']]);
@@ -127,11 +130,13 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => 'community'], function () {
         Route::resource('contests', 'ContestsController', ['only' => ['index', 'show']]);
-        Route::get('contests/{contest}/judge', 'ContestsController@judge')->name('contests.judge');
 
+        Route::group(['as' => 'contests.', 'prefix' => 'contests/{contest}'], function () {
+            Route::get('judge', 'ContestsController@judge')->name('judge');
+            Route::get('entries/{contest_entry}/results', 'ContestEntriesController@judgeResults')->name('entries.judge-results');
+            Route::put('entries/{contest_entry}/judge-vote', 'ContestEntriesController@judgeVote')->name('entries.judge-vote');
+        });
 
-        Route::get('contest-entries/{contest_entry}/results', 'ContestEntriesController@judgeResults')->name('contest-entries.judge-results');
-        Route::put('contest-entries/{contest_entry}/judge-vote', 'ContestEntriesController@judgeVote')->name('contest-entries.judge-vote');
         Route::put('contest-entries/{contest_entry}/vote', 'ContestEntriesController@vote')->name('contest-entries.vote');
         Route::resource('contest-entries', 'ContestEntriesController', ['only' => ['store', 'destroy']]);
 

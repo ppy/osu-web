@@ -12,7 +12,7 @@ import { updateQueryString } from 'utils/url';
 interface Props {
   currentItem: SelectOptionJson;
   items: SelectOptionJson[];
-  type: 'daily_challenge' | 'judge_results' | 'multiplayer' | 'seasons' | 'spotlight';
+  type: 'daily_challenge' | 'multiplayer' | 'seasons' | 'spotlight';
 }
 
 export default class BasicSelectOptions extends React.PureComponent<Props> {
@@ -35,8 +35,6 @@ export default class BasicSelectOptions extends React.PureComponent<Props> {
     switch (this.props.type) {
       case 'daily_challenge':
         return route('daily-challenge.show', { daily_challenge: id ?? fail('missing id parameter') });
-      case 'judge_results':
-        return route('contest-entries.judge-results', { contest_entry: id ?? 0 });
       case 'multiplayer':
         return route('multiplayer.rooms.show', { room: id ?? 'latest' });
       case 'seasons':

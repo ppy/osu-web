@@ -4,14 +4,17 @@
 .contest-judge-results-scores {
   display: grid;
   align-items: center;
-  grid-gap: 5px;
+  gap: 5px;
   // category-name value
-  grid-template-columns: minmax(auto, 120px) auto;
+  grid-template-columns: minmax(auto, max-content) auto;
   margin-top: 10px;
 
   &__col {
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
+    gap: 5px;
+    min-width: 0;
 
     &--score {
       color: hsl(var(--hsl-c2));
