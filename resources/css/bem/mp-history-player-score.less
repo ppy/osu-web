@@ -6,22 +6,19 @@
   .default-box-shadow();
 
   background-color: @osu-colour-b2;
+  display: grid;
+  grid-template-columns: 10px 1fr;
 
   @media @desktop {
-    display: grid;
     grid-template-columns: subgrid;
     grid-column: 1 / -1;
   }
 
   &__shapes {
-    flex: none;
-    width: 10px;
     background-size: cover;
-
     border-radius: @border-radius-base 0 0 @border-radius-base;
 
     @media @desktop {
-      width: auto; // follows grid
       background-size: contain;
       background-position: bottom left;
       background-repeat: no-repeat;
