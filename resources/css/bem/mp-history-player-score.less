@@ -89,7 +89,6 @@
   }
 
   &__stat-row {
-    --desktop-gap: 20px;
     display: flex;
     justify-content: flex-end;
     align-items: baseline;
@@ -98,16 +97,15 @@
 
     @media @desktop {
       flex-direction: row;
-      gap: var(--desktop-gap);
+      gap: 20px;
       grid-column: 1 / -1;
     }
 
     &--first {
-      --desktop-gap: 40px;
-
       @media @desktop {
         display: grid;
         grid-template-columns: subgrid;
+        gap: 40px;
       }
     }
   }
