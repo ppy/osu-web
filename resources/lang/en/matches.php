@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner by :difference',
 
         'events' => [
-            'player-left' => ':user left the match',
-            'player-joined' => ':user joined the match',
-            'player-kicked' => ':user has been kicked from the match',
-            'match-created' => ':user created the match',
-            'match-disbanded' => 'the match was disbanded',
-            'host-changed' => ':user became the host',
-
-            'player-left-no-user' => 'a player left the match',
-            'player-joined-no-user' => 'a player joined the match',
-            'player-kicked-no-user' => 'a player has been kicked from the match',
-            'match-created-no-user' => 'the match was created',
-            'match-disbanded-no-user' => 'the match was disbanded',
-            'host-changed-no-user' => 'the host was changed',
+            'game_aborted' => 'the game was canceled',
+            'game_aborted_no_user' => 'the game was canceled',
+            'game_completed' => 'the game has ended',
+            'game_completed_no_user' => 'the game has ended',
+            'host_changed' => ':user became the host',
+            'host_changed_no_user' => 'the host was changed',
+            'player_joined' => ':user joined the match',
+            'player_joined_no_user' => 'a player joined the match',
+            'player_kicked' => ':user has been kicked from the match',
+            'player_kicked_no_user' => 'a player has been kicked from the match',
+            'player_left' => ':user left the match',
+            'player_left_no_user' => 'a player left the match',
+            'room_created' => ':user created the match',
+            'room_created_no_user' => 'the match was created',
+            'room_disbanded' => 'the match was disbanded',
+            'room_disbanded_no_user' => 'the match was disbanded',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+        'team_types' => [
+            'head_to_head' => 'Head-to-head',
+            'tag_coop' => 'Tag Co-op',
+            'tag_team_versus' => 'Tag Team VS',
+            'team_versus' => 'Team VS',
         ],
 
         'teams' => [
