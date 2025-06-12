@@ -73,7 +73,7 @@ export default observer(function Score(props: Props) {
 
               return (
                 <div key={m} className={classWithModifiers('mp-history-player-score__stat', [m])}>
-                  <span className={classWithModifiers('mp-history-player-score__stat-label', ['small'])}>{trans(`matches.match.score.stats.${m}`)}</span>
+                  <span className='mp-history-player-score__stat-label'>{trans(`matches.match.score.stats.${m}`)}</span>
                   <span className={classWithModifiers('mp-history-player-score__stat-number', [modifier])}>{value}</span>
                 </div>
               );
@@ -86,7 +86,7 @@ export default observer(function Score(props: Props) {
                 key={stat.label.short}
                 className={classWithModifiers('mp-history-player-score__stat', 'small')}
               >
-                <span className={classWithModifiers('mp-history-player-score__stat-label', ['large'])}>{stat.label.short}</span>
+                <span className='mp-history-player-score__stat-label'>{stat.label.long}</span>
                 <span className={classWithModifiers('mp-history-player-score__stat-number', ['small'])}>{formatNumber(stat.value)}</span>
               </div>
             ))}
