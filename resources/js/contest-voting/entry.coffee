@@ -3,9 +3,10 @@
 
 import TrackPreview from 'components/track-preview'
 import UserLink from 'components/user-link'
+import { includes, round } from 'lodash'
 import { route } from 'laroute'
 import * as React from 'react'
-import { a,i,div,span } from 'react-dom-factories'
+import { a, i, div, span } from 'react-dom-factories'
 import { formatNumber } from 'utils/html'
 import { trans, transChoice } from 'utils/lang'
 import { Voter } from './voter'
@@ -14,15 +15,19 @@ el = React.createElement
 
 export class Entry extends React.Component
   render: ->
-    selected = _.includes @props.selected, @props.entry.id
+    selected = includes @props.selected, @props.entry.id
 
     return null if @props.hideIfNotVoted && !selected
 
     link_icon = if @props.contest.type == 'external' then 'fa-external-link-alt' else 'fa-download'
 
     if @props.contest.show_votes
-      relativeVotePercentage = _.round((@props.entry.results.votes / @props.winnerVotes)*100, 2)
-      usersVotedPercentage = _.round((@props.entry.results.votes / @props.contest.users_voted_count)*100, 2)
+      relativeVotePercentage = if @props.stdRange.min? && @props.stdRange.max?
+        100 * (@props.entry.results.score_std - @props.stdRange.min) / (@props.stdRange.max - @props.stdRange.min)
+      else
+        round((@props.entry.results.votes / @props.winnerVotes)*100, 2)
+
+      usersVotedPercentage = round((@props.entry.results.votes / @props.contest.users_voted_count)*100, 2)
 
     div className: "contest-voting-list__row#{if selected && !@props.contest.show_votes then ' contest-voting-list__row--selected' else ''}",
       if @props.contest.show_votes
@@ -60,22 +65,32 @@ export class Entry extends React.Component
           el Voter, key: @props.entry.id, entry: @props.entry, waitingForResponse: @props.waitingForResponse, selected: @props.selected, contest: @props.contest
 
       if @props.contest.show_votes
-        if @props.contest.best_of || @props.contest.judged
-          div className:'contest__vote-count contest__vote-count--no-percentages',
-            transChoice 'contest.vote.points', @props.entry.results.votes
-        else
-          div className:'contest__vote-count',
-            transChoice 'contest.vote.count', @props.entry.results.votes
-            if Number.isFinite usersVotedPercentage
-              " (#{formatNumber(usersVotedPercentage)}%)"
+        @renderScore()
 
       if @props.contest.judged
         div className: 'contest-voting-list__icon contest-voting-list__icon--bg',
           a
             className: 'contest-voting-list__link'
-            href: route('contest-entries.judge-results', @props.entry.id)
+            href: route('contests.entries.judge-results', contest: @props.entry.contest_id, contest_entry: @props.entry.id)
             target: '_blank'
             i className: 'fas fa-fw fa-lg fa-external-link-alt'
+
+
+  renderScore: ->
+    if @props.contest.best_of || @props.contest.judged
+      text = if @props.entry.results.score_std?
+        trans 'contest.vote.points_float', points: formatNumber(@props.entry.results.score_std, 2)
+      else
+        transChoice 'contest.vote.points', @props.entry.results.votes
+
+      div className: 'contest__vote-count contest__vote-count--no-percentages',
+        text
+    else
+      div className: 'contest__vote-count',
+        transChoice 'contest.vote.count', @props.entry.results.votes
+        if Number.isFinite usersVotedPercentage
+          " (#{formatNumber(usersVotedPercentage)}%)"
+
 
   renderTitle: ->
     el React.Fragment, null,

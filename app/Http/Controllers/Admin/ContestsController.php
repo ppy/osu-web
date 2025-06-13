@@ -13,6 +13,15 @@ use ZipStream\ZipStream;
 
 class ContestsController extends Controller
 {
+    public function calculate($contestId)
+    {
+        Contest::findOrFail($contestId)->calculateScoresStd();
+
+        \Session::flash('popup', 'Standardised scores calculated.');
+
+        return response()->noContent();
+    }
+
     public function index()
     {
         return ext_view('admin.contests.index', [

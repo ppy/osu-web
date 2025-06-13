@@ -9,6 +9,7 @@ export default interface ContestJudgeVoteJson {
   id: number;
   scores?: ContestJudgeScoreJson[];
   total_score?: number;
+  total_score_std?: number;
   user?: UserJson;
 }
 

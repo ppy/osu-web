@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property \Carbon\Carbon|null $created_at
  * @property-read ContestEntry $entry
  * @property int $id
+ * @property float $total_score_std
  * @property \Carbon\Carbon|null $updated_at
  * @property-read User $user
  * @property int $user_id

@@ -2,6 +2,17 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    $entriesCount = $contest->entries_count;
+    $hasMissingVotes = false;
+
+    if ($contest->isJudged()) {
+        foreach ($contest->judges as $judge) {
+            $hasMissingVotes |= $judgeVoteCounts[$judge->getKey()]->judge_vote_count ?? 0 !== $entriesCount;
+        }
+    }
+@endphp
+
 @extends('master', ['titlePrepend' => osu_trans('layout.header.admin.contest').' / '.$contest->name])
 
 @section('content')
@@ -15,7 +26,7 @@
         <div class="admin-contest">
             <div class="admin-contest__toolbar">
                 <form
-                    action="{{ route('admin.contests.get-zip', $contest->id) }}"
+                    action="{{ route('admin.contests.get-zip', $contest) }}"
                     data-loading-overlay="0"
                     data-turbo="false"
                     method="POST"
@@ -26,6 +37,19 @@
                         Download all entries as ZIP
                     </button>
                 </form>
+                @if ($contest->isScoreStandardised())
+                    <form
+                        action="{{ route('admin.contests.calculate', $contest) }}"
+                        data-confirm="{{ $hasMissingVotes ? 'Not all entries have been scored, scores will be inaccurate.' : '' }}"
+                        data-reload-on-success="1"
+                        method="POST"
+                    >
+                        <button class="btn-osu-big">
+                            <i class="fas fa-calculator"></i>
+                            Calculate standardised scores
+                        </button>
+                    </form>
+                @endif
             </div>
             <div class="admin-contest__meta">
                 <div class="admin-contest__meta-title">Contest Visible</div>
@@ -66,17 +90,19 @@
             @if ($contest->isJudged())
                 <div>
                     <div class="admin-contest__title">Judge Participation</div>
-                    <div class="admin-contest__description">
+                    <div class="admin-contest__description admin-contest__description--judges">
                         @foreach ($contest->judges as $judge)
                             @php
                                 $judgeVoteCount = $judgeVoteCounts[$judge->getKey()]->judge_vote_count ?? 0;
                             @endphp
-                            <div>
-                                <a
-                                    class="js-usercard"
-                                    data-user-id="{{$judge->getKey()}}"
-                                    href="{{ route('users.show', $judge) }}"
-                                >{{ $judge->username }}</a>:
+                            <a
+                                class="js-usercard"
+                                data-user-id="{{$judge->getKey()}}"
+                                href="{{ route('users.show', $judge) }}"
+                            >
+                                {{ $judge->username }}
+                            </a>
+                            <div class="{{ class_with_modifiers('admin-contest__vote-count', ['complete' => $judgeVoteCount === $contest->entries_count]) }}">
                                 {{ $judgeVoteCount }}/{{ $contest->entries_count }}
                             </div>
                         @endforeach

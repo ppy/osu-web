@@ -11,6 +11,12 @@
     font-size: @font-size--title-small;
     padding: 10px;
 
+    &--judges {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 5px;
+    }
+
     @media @narrow-up {
       padding: 20px;
     }
@@ -63,5 +69,13 @@
     flex-wrap: wrap;
     gap: 5px;
     justify-content: flex-end;
+  }
+
+  &__vote-count {
+    color: hsl(var(--hsl-red-2));
+
+    &--complete {
+      color: hsl(var(--hsl-green-2));
+    }
   }
 }

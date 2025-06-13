@@ -190,7 +190,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
             Language::truncate();
             OAuth\Client::truncate();
             OAuth\Token::truncate();
-            SoloScore::select()->delete(); // TODO: revert to truncate after the table is actually renamed
+            SoloScore::truncate();
             User::truncate();
             UserGroup::truncate();
             UserGroupEvent::truncate();
