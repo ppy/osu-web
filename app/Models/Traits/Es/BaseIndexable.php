@@ -6,7 +6,6 @@
 namespace App\Models\Traits\Es;
 
 use App\Libraries\Elasticsearch\Es;
-use DateTime;
 
 trait BaseIndexable
 {
@@ -40,7 +39,7 @@ trait BaseIndexable
         return $schema;
     }
 
-    public static function esTimestampedIndexName(?DateTime $time = null)
+    public static function esTimestampedIndexName(?\DateTimeInterface $time = null)
     {
         return static::esIndexName().'_'.($time ?? now())->format('YmdHis');
     }
