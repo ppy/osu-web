@@ -18,13 +18,10 @@ export class ChangelogHeaderStreams extends React.PureComponent
 
 
   renderHeaderStream: ({stream}) =>
-    streamNameClass = _.kebabCase(stream.display_name)
-    mainClass = classWithModifiers 'update-streams-v2__item', [
-      streamNameClass
-      'featured' if stream.is_featured
-      'active' if @props.currentStreamId == stream.id
-    ]
-    mainClass += " t-changelog-stream--#{streamNameClass}"
+    mainClass = classWithModifiers 'update-streams-v2__item', stream.name,
+      active: @props.currentStreamId == stream.id
+      featured: stream.is_featured
+    mainClass += " t-changelog-stream--#{stream.name}"
 
     a
       href: changelogBuild stream.latest_build
