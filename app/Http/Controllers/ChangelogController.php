@@ -17,6 +17,7 @@ use Cache;
  */
 class ChangelogController extends Controller
 {
+    private const CACHE_VERSION = 'v4';
     private $updateStreams = null;
 
     private static function changelogEntryMessageIncludes(?array $formats): array
@@ -190,7 +191,7 @@ class ChangelogController extends Controller
             return $indexJson;
         } else {
             $chartConfig = Cache::remember(
-                'chart_config_global',
+                'chart_config_global:'.static::CACHE_VERSION,
                 $GLOBALS['cfg']['osu']['changelog']['build_history_interval'],
                 function () {
                     return $this->chartConfig(null);
@@ -370,7 +371,7 @@ class ChangelogController extends Controller
         $commentBundle = CommentBundle::forEmbed($build);
 
         $chartConfig = Cache::remember(
-            "chart_config:v2:{$build->updateStream->getKey()}",
+            'chart_config:'.static::CACHE_VERSION.':'.$build->updateStream->getKey(),
             $GLOBALS['cfg']['osu']['changelog']['build_history_interval'],
             function () use ($build) {
                 return $this->chartConfig($build->updateStream);
@@ -415,18 +416,22 @@ class ChangelogController extends Controller
         $history = BuildPropagationHistory::changelog(optional($stream)->getKey(), $GLOBALS['cfg']['osu']['changelog']['chart_days'])->get();
 
         if ($stream === null) {
-            $chartOrder = array_map(function ($b) {
-                return $b['display_name'];
-            }, $this->getUpdateStreams());
+            $streams = [];
+            foreach ($this->getUpdateStreams() as $updateStream) {
+                // mapping from label (for id and css class) to pretty name (for tooltip label)
+                $streams[$updateStream['name']] = $updateStream['display_name'];
+            }
+            $chartOrder = array_keys($streams);
         } else {
             $chartOrder = $this->buildChartOrder($history);
-            $streamName = kebab_case($stream->pretty_name);
+            $streamName = $stream->name;
         }
 
         return [
             'build_history' => json_collection($history, 'BuildHistoryChart'),
             'order' => $chartOrder,
             'stream_name' => $streamName ?? null,
+            'streams' => $streams ?? null,
         ];
     }
 

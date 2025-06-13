@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as d3 from 'd3';
-import { first, groupBy, kebabCase, keyBy, last, map } from 'lodash';
+import { first, groupBy, keyBy, last, map } from 'lodash';
 import moment from 'moment';
 import { fadeIn, fadeOut } from 'utils/fade';
 import { formatNumber } from 'utils/html';
@@ -17,7 +17,8 @@ interface BuildHistory {
 interface ChartData {
   build_history: BuildHistory[];
   order: string[];
-  stream_name: string | null;
+  stream_name: null | string;
+  streams: Partial<Record<string, string>> | null;
 }
 
 interface DataObj {
@@ -197,14 +198,15 @@ export default class ChangelogChart {
 
     this.scales.y.range([0, this.height]).domain([0, 1]);
 
+    const singleStreamName = this.chartData.stream_name;
     this.scales.class.range(
-      this.chartData.order.map((d, i) =>
-        // rotate over available build ids (0-6) when the amount of builds
-        // exceeds the available amount of colors
-        this.chartData?.stream_name != null
-          ? `${this.chartData.stream_name}-build-${i % 7}`
-          : kebabCase(d),
-      ),
+      singleStreamName == null
+        ? this.chartData.order
+        : this.chartData.order.map((d, i) =>
+          // rotate over available build ids (0-6) when the amount of builds
+          // exceeds the available amount of colors
+          `${singleStreamName}-build-${i % 7}`,
+        ),
     ).domain(this.chartData.order);
   }
 
@@ -256,7 +258,10 @@ export default class ChangelogChart {
         'class',
         `changelog-chart__text changelog-chart__text--name changelog-chart__text--${labelModifier}`,
       )
-      .text(currentLabel);
+      .text(this.chartData?.streams == null
+        ? currentLabel
+        : this.chartData.streams[currentLabel] ?? '',
+      );
     this.tooltipUserCount.text(formatNumber(tooltipData?.builds[currentLabel].user_count ?? 0));
     this.tooltipDate.text(tooltipData?.date_formatted ?? '');
 
