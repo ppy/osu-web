@@ -14,8 +14,20 @@
     grid-column: 1 / -1;
   }
 
+  &__beatmap-version {
+    font-size: @font-size--title-small;
+    // forces the link to be a block and applies overflow truncation
+    display: flex;
+  }
+
+  &__country-flag {
+    align-self: center;
+  }
+
   &__shapes {
+    width: auto; // follows grid
     background-size: cover;
+
     border-radius: @border-radius-base 0 0 @border-radius-base;
 
     @media @desktop {
@@ -26,57 +38,72 @@
   }
 
   &__main {
-    flex-grow: 1;
-
-    padding: 5px 20px 15px 7.5px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    padding: 10px 20px;
+    display: grid;
+    // for mods and rank element (in mobile), using order and grid-column combination
+    grid-template-columns: 1fr auto;
+    gap: 5px;
 
     @media @desktop {
+      padding-left: 0;
+      padding-right: 20px;
       display: grid;
       grid-template-columns: subgrid;
       grid-column: 2 / -1;
+      gap: 0; // TODO: using "0 20px" here causes overflow in stats area in firefox
+      align-items: center;
     }
   }
 
   &__info-box {
     display: flex;
-    flex-direction: column;
+    grid-column: 1 / -1;
 
-    height: 100%;
+    @media @desktop {
+      padding: 0 10px; // TODO: replace with gap at __main if fixed in firefox
+      grid-column: initial;
+    }
 
-    &--user {
-      align-items: flex-start;
-      flex-direction: row;
-      gap: 10px;
-
+    &--mods {
+      order: 1;
+      grid-column: 1 / 2;
       @media @desktop {
-        flex-direction: column;
-        gap: 5px;
+        order: 0;
+        grid-column: initial;
       }
     }
 
     &--rank {
-      margin-top: 10px;
-
+      order: 1;
+      grid-column: 2 / 3;
       @media @desktop {
-        margin-top: 5px; // balances out row margin
-        margin-left: 15px; // matches 20px margin right
-        justify-content: center;
+        padding-right: 0; // TODO: replace with gap at __main if fixed in firefox
+        order: 0;
+        grid-column: initial;
       }
     }
 
     &--stats {
-      align-items: flex-end;
-      flex-direction: row;
+      flex-direction: row-reverse;
+      align-items: baseline;
       gap: 2px;
 
       @media @desktop {
+        align-items: center;
         display: grid;
         grid-template-columns: subgrid;
-        grid-column: 2 / 6;
+        grid-column: 3 / 6;
+        gap: 3px 0;
+      }
+    }
+
+    &--user {
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      min-width: 0;
+      @media @desktop {
+        padding-left: 0; // TODO: replace with gap at __main if fixed in firefox
       }
     }
   }
@@ -86,13 +113,18 @@
     font-size: 18px;
   }
 
+  &__username-box {
+    display: flex;
+    gap: 5px;
+  }
+
   &__stat-row {
     display: flex;
     justify-content: flex-end;
     align-items: baseline;
     flex-direction: column;
     flex: 1;
-    gap: 0 10px;
+    gap: 3px;
 
     @media @desktop {
       flex-direction: row;
@@ -101,6 +133,8 @@
     }
 
     &--first {
+      flex-direction: column-reverse;
+
       @media @desktop {
         display: grid;
         grid-template-columns: subgrid;
@@ -128,13 +162,15 @@
   &__stat-label {
     padding-right: 3px;
     color: @osu-colour-c2;
-    font-size: @font-size--small;
+
+    font-size: 10px;
     text-transform: uppercase;
   }
 
   &__stat-number {
     font-weight: 700;
     color: @osu-colour-c1;
+    line-height: 1;
 
     &--small {
       font-size: 12px;

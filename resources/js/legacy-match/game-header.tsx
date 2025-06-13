@@ -28,9 +28,20 @@ export default observer(function GameHeader(props: Props) {
   const beatmapset = props.data.beatmapsets[beatmap.beatmapset_id] ?? deletedBeatmapset();
 
   let title = getTitle(beatmapset);
-  const version = beatmap.version;
-  if (version !== '') {
-    title += ` [${version}]`;
+  let url: string | undefined;
+  if (props.playlistItem.freestyle) {
+    if (beatmapset.id !== 0) {
+      url = route('beatmapsets.show', { beatmapset: beatmapset.id });
+    }
+  } else {
+    if (beatmap.id !== 0) {
+      url = route('beatmaps.show', { beatmap: beatmap.id });
+    }
+
+    const version = beatmap.version;
+    if (version !== '') {
+      title += ` [${version}]`;
+    }
   }
 
   const startTime = <TimeWithTooltip dateTime={props.playlistItem.created_at} format={timeFormat} />;
@@ -41,7 +52,7 @@ export default observer(function GameHeader(props: Props) {
   return (
     <a
       className='mp-history-game__header'
-      href={beatmap.id != null ? route('beatmaps.show', { beatmap: beatmap.id }) : undefined}>
+      href={url}>
       <BeatmapsetCover
         beatmapset={beatmapset}
         modifiers='full'
@@ -51,7 +62,11 @@ export default observer(function GameHeader(props: Props) {
         {endTime != null
           ? <span className='mp-history-game__stat'>{startTime} - {endTime}</span>
           : <span className='mp-history-game__stat'>{startTime} {trans('matches.match.in-progress')}</span>}
-        <span className='mp-history-game__stat'>{trans(`beatmaps.mode.${rulesets[props.playlistItem.ruleset_id]}`)}</span>
+        <span className='mp-history-game__stat'>
+          {props.playlistItem.freestyle
+            ? trans('matches.game.freestyle')
+            : trans(`beatmaps.mode.${rulesets[props.playlistItem.ruleset_id]}`)}
+        </span>
         <span className='mp-history-game__stat'>{trans(`matches.game.scoring-type.${props.playlistItem.legacy_scoring_type ?? 'score'}`)}</span>
       </div>
       <div className='mp-history-game__metadata-box'>

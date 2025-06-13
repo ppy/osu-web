@@ -126,7 +126,7 @@ class RoomsController extends Controller
             ->selectRaw('MIN(id) first_event_id, MAX(id) last_event_id')
             ->first();
 
-        return [
+        $json = [
             'beatmaps' => json_collection($beatmaps, new BeatmapCompactTransformer()),
             'beatmapsets' => json_collection($beatmapsets, new BeatmapsetCompactTransformer()),
             'current_playlist_item_id' => $room->current_playlist_item_id,
@@ -137,6 +137,8 @@ class RoomsController extends Controller
             'room' => json_item($room, new RoomTransformer()),
             'users' => $users,
         ];
+
+        return is_json_request() ? $json : ext_view('multiplayer.rooms.events', ['json' => $json]);
     }
 
     /**

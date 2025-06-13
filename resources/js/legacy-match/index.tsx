@@ -10,11 +10,11 @@ import { roomJsonFromLegacy } from 'interfaces/room-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { dropRightWhile, keyBy, last } from 'lodash';
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import Content, { Data } from './content';
+import Content, { Data, fetchLimit, maximumEvents } from './content';
 
 interface LegacyMultiplayerHistoryJson {
   current_game_id: null | number;
@@ -28,10 +28,6 @@ interface LegacyMultiplayerHistoryJson {
 interface Props {
   events: LegacyMultiplayerHistoryJson;
 }
-
-const fetchLimit = 100;
-const maximumEvents = 500;
-const refreshTimeout = 10000;
 
 function dataFromJson(existingData: Data | null, json: LegacyMultiplayerHistoryJson, prepend: boolean): Data {
   let events = existingData?.events ?? [];
@@ -71,6 +67,7 @@ function dataFromJson(existingData: Data | null, json: LegacyMultiplayerHistoryJ
     beatmapsets,
     currentPlaylistItemId: json.current_game_id,
     events,
+    firstEventId: json.first_event_id,
     lastEventId: json.latest_event_id,
     playlistItems,
     room,
@@ -81,34 +78,7 @@ function dataFromJson(existingData: Data | null, json: LegacyMultiplayerHistoryJ
 
 @observer
 export default class LegacyMatch extends React.Component<Props> {
-  private autoloadTimeout: undefined | number;
   @observable private data: Data;
-  @observable private loadingNext = false;
-  @observable private loadingPrevious = false;
-
-  private get hasLatest(): boolean {
-    const lastEvent = last(this.data.events);
-
-    return lastEvent != null && lastEvent.id === this.data.lastEventId;
-  }
-
-  private get hasNext(): boolean {
-    return this.isOngoing || !this.hasLatest;
-  }
-
-  private get hasPrevious(): boolean {
-    const firstEvent = this.data.events[0];
-
-    return firstEvent != null && firstEvent.id !== this.props.events.first_event_id;
-  }
-
-  private get isAutoloading(): boolean {
-    return this.isOngoing && this.hasLatest;
-  }
-
-  private get isOngoing(): boolean {
-    return this.data.room.ends_at == null;
-  }
 
   @computed
   private get minNextEventId(): number | undefined {
@@ -129,14 +99,6 @@ export default class LegacyMatch extends React.Component<Props> {
     makeObservable(this);
   }
 
-  componentDidMount() {
-    this.delayedAutoload();
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.autoloadTimeout);
-  }
-
   render() {
     return (
       <>
@@ -144,82 +106,39 @@ export default class LegacyMatch extends React.Component<Props> {
         <div className={classWithModifiers('osu-page', 'generic')}>
           <Content
             data={this.data}
-            hasNext={this.hasNext}
-            hasPrevious={this.hasPrevious}
-            isAutoloading={this.isAutoloading}
             loadNext={this.loadNext}
             loadPrevious={this.loadPrevious}
-            loadingNext={this.loadingNext}
-            loadingPrevious={this.loadingPrevious}
           />
         </div>
       </>
     );
   }
 
-  private readonly autoload = () => {
-    if (!this.isAutoloading) {
-      return;
-    }
+  private readonly loadNext = (): JQuery.jqXHR<void> => $.ajax(
+    route('matches.show', { match: this.data.room.id }),
+    {
+      data: {
+        after: this.minNextEventId,
+        limit: fetchLimit,
+      },
+      dataType: 'JSON',
+      method: 'GET',
+    })
+    .done((json: LegacyMultiplayerHistoryJson) => runInAction(() => {
+      this.data = dataFromJson(this.data, json, false);
+    }));
 
-    this.loadNext();
-  };
-
-  private delayedAutoload() {
-    this.autoloadTimeout = setTimeout(this.autoload, refreshTimeout);
-  }
-
-  @action
-  private readonly loadNext = () => {
-    if (!this.hasNext || this.loadingNext) {
-      return;
-    }
-
-    clearTimeout(this.autoloadTimeout);
-    this.loadingNext = true;
-
-    $.ajax(
-      route('matches.show', { match: this.data.room.id }),
-      {
-        data: {
-          after: this.minNextEventId,
-          limit: fetchLimit,
-        },
-        dataType: 'JSON',
-        method: 'GET',
-      })
-      .done((json: LegacyMultiplayerHistoryJson) => runInAction(() => {
-        this.data = dataFromJson(this.data, json, false);
-      }))
-      .always(action(() => {
-        this.loadingNext = false;
-        this.delayedAutoload();
-      }));
-  };
-
-  @action
-  private readonly loadPrevious = () => {
-    if (!this.hasPrevious || this.loadingPrevious) {
-      return;
-    }
-
-    this.loadingPrevious = true;
-
-    $.ajax(
-      route('matches.show', { match: this.data.room.id }),
-      {
-        data: {
-          before: this.data.events[0]?.id,
-          limit: fetchLimit,
-        },
-        dataType: 'JSON',
-        method: 'GET',
-      })
-      .done((json: LegacyMultiplayerHistoryJson) => runInAction(() => {
-        this.data = dataFromJson(this.data, json, true);
-      }))
-      .always(action(() => {
-        this.loadingPrevious = false;
-      }));
-  };
+  private readonly loadPrevious = (): JQuery.jqXHR<void> => $.ajax(
+    route('matches.show', { match: this.data.room.id }),
+    {
+      data: {
+        before: this.data.events[0]?.id,
+        limit: fetchLimit,
+      },
+      dataType: 'JSON',
+      method: 'GET',
+    })
+    .done((json: LegacyMultiplayerHistoryJson) => runInAction(() => {
+      this.data = dataFromJson(this.data, json, true);
+    }));
 }
