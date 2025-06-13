@@ -45,9 +45,9 @@ class BuildPropagationHistory extends Model
         } else {
             $query->join($streamsTable, "{$streamsTable}.stream_id", '=', "{$buildsTable}.stream_id")
                 // casting to integer here as the sum aggregate returns a string
-                ->addSelect(DB::raw('cast(sum(user_count) as signed) as user_count, pretty_name as label'))
+                ->addSelect(DB::raw('cast(sum(user_count) as signed) as user_count, name as label'))
                 ->whereIn("{$buildsTable}.stream_id", $GLOBALS['cfg']['osu']['changelog']['update_streams'])
-                ->groupBy(['created_at', 'pretty_name']);
+                ->groupBy(['created_at', 'name']);
         }
     }
 }
