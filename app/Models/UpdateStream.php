@@ -11,6 +11,7 @@ use Carbon\Carbon;
  * @property \Illuminate\Database\Eloquent\Collection $builds Build
  * @property \Illuminate\Database\Eloquent\Collection $changelogEntries ChangelogEntry
  * @property \Illuminate\Database\Eloquent\Collection $changelogs Changelog
+ * @property bool $default_allow_bancho
  * @property string $name
  * @property string|null $pretty_name
  * @property string|null $repository
@@ -20,6 +21,9 @@ class UpdateStream extends Model
 {
     public $timestamps = false;
 
+    protected $casts = [
+        'default_allow_bancho' => 'boolean',
+    ];
     protected $connection = 'mysql-updates';
     protected $table = 'streams';
     protected $primaryKey = 'stream_id';

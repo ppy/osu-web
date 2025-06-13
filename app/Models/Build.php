@@ -72,6 +72,8 @@ class Build extends Model implements Commentable
 
         $build = $stream->builds()->firstOrCreate([
             'version' => $version,
+        ], [
+            'allow_bancho' => $stream->default_allow_bancho,
         ]);
 
         $lastChange = Carbon::parse($data['release']['created_at']);
