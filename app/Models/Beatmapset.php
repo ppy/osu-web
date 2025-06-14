@@ -601,6 +601,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         $currentTime = Carbon::now();
         $oldScoreable = $this->isScoreable();
         $approvedState = static::STATES[$state];
+        $shouldRecalculateUserRankCounts = $this->isScoreable() && !$this->isQualified() && $approvedState <= 0;
         $beatmaps = $this->beatmaps();
 
         if ($beatmapIds !== null) {
@@ -670,7 +671,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
         if ($this->isScoreable() !== $oldScoreable || $this->isRanked()) {
             dispatch(new RemoveBeatmapsetBestScores($this));
-            dispatch(new RemoveBeatmapsetSoloScores($this));
+            dispatch(new RemoveBeatmapsetSoloScores($this, $shouldRecalculateUserRankCounts));
         }
 
         if ($this->isScoreable() !== $oldScoreable) {
