@@ -40,7 +40,14 @@ class UpdateStream extends Model
 
     public function changelogEntries()
     {
-        return $this->hasManyThrough(ChangelogEntry::class, Repository::class);
+        return $this->belongsToMany(
+            ChangelogEntry::class,
+            Repository::updateStreamBridgeTable(),
+            null,
+            'repository_id',
+            'stream_id',
+            'repository_id',
+        );
     }
 
     public function scopeWhereHasBuilds($query)
