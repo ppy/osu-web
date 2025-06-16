@@ -266,7 +266,7 @@ function cleanup_cookies()
     }
 
     // remove duplicates and current session domain
-    $sessionDomain = presence(ltrim($GLOBALS['cfg']['session']['domain'], '.')) ?? '';
+    $sessionDomain = presence(ltrim($GLOBALS['cfg']['session']['domain'] ?? '', '.')) ?? '';
     $domains = array_diff(array_unique($domains), [$sessionDomain]);
 
     foreach (['locale', 'osu_session', 'XSRF-TOKEN'] as $key) {
