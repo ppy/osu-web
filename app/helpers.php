@@ -266,7 +266,7 @@ function cleanup_cookies()
     }
 
     // remove duplicates and current session domain
-    $sessionDomain = presence(ltrim($GLOBALS['cfg']['session']['domain'], '.')) ?? '';
+    $sessionDomain = presence(ltrim($GLOBALS['cfg']['session']['domain'] ?? '', '.')) ?? '';
     $domains = array_diff(array_unique($domains), [$sessionDomain]);
 
     foreach (['locale', 'osu_session', 'XSRF-TOKEN'] as $key) {
@@ -404,7 +404,7 @@ function flag_url($countryCode)
     return "/assets/images/flags/{$baseFileName}.svg";
 }
 
-function format_month_column(\DateTimeInterface $date): string
+function format_month_column(DateTimeInterface $date): string
 {
     return $date->format('ym');
 }
@@ -496,12 +496,12 @@ function truncate_inclusive(string $text, int $limit): string
     return $text;
 }
 
-function json_date(?DateTime $date): ?string
+function json_date(?DateTimeInterface $date): ?string
 {
     return $date === null ? null : $date->format('Y-m-d');
 }
 
-function json_time(?DateTime $time): ?string
+function json_time(?DateTimeInterface $time): ?string
 {
     return $time === null ? null : $time->format(DateTime::ATOM);
 }
@@ -1748,7 +1748,7 @@ function parse_time_to_carbon($value)
         return $value;
     }
 
-    if ($value instanceof DateTime) {
+    if ($value instanceof DateTimeInterface) {
         return Carbon\Carbon::instance($value);
     }
 
