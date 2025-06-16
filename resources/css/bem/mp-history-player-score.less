@@ -2,19 +2,26 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .mp-history-player-score {
-  @width: 1000px;
+  .default-border-radius();
+  .default-box-shadow();
 
-  display: flex;
+  background-color: @osu-colour-b2;
+  display: grid;
+  grid-template-columns: 10px 1fr;
+
+  @media @desktop {
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+  }
 
   &__shapes {
-    flex: none;
-    width: 10px;
     background-size: cover;
-
     border-radius: @border-radius-base 0 0 @border-radius-base;
 
     @media @desktop {
-      width: 50px;
+      background-size: contain;
+      background-position: bottom left;
+      background-repeat: no-repeat;
     }
   }
 
@@ -28,7 +35,9 @@
     justify-content: space-between;
 
     @media @desktop {
-      flex-direction: row;
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-column: 2 / -1;
     }
   }
 
@@ -41,79 +50,69 @@
     &--user {
       align-items: flex-start;
       flex-direction: row;
+      gap: 10px;
 
       @media @desktop {
         flex-direction: column;
+        gap: 5px;
+      }
+    }
+
+    &--rank {
+      margin-top: 10px;
+
+      @media @desktop {
+        margin-top: 5px; // balances out row margin
+        margin-left: 15px; // matches 20px margin right
+        justify-content: center;
       }
     }
 
     &--stats {
       align-items: flex-end;
       flex-direction: row;
+      gap: 2px;
 
       @media @desktop {
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: subgrid;
+        grid-column: 2 / 6;
       }
-    }
-  }
-
-  &__username-box {
-    display: flex;
-    align-items: baseline;
-    flex-direction: column;
-
-    padding-bottom: 5px;
-
-    @media @desktop {
-      flex-direction: row;
     }
   }
 
   &__username {
     font-weight: 700;
     font-size: 18px;
-
-    padding-right: 5px;
-
-    @media @desktop {
-      padding-right: 20px;
-    }
   }
 
   &__stat-row {
-    &--first {
-      margin-right: 10px;
-      @media @desktop {
-        margin: 2px;
-      }
-      @media (min-width: @width) {
-        width: 530px;
-      }
-    }
-
-    margin: 2px;
     display: flex;
     justify-content: flex-end;
     align-items: baseline;
     flex-direction: column;
-    flex-grow: 1;
+    flex: 1;
+    gap: 0 10px;
 
     @media @desktop {
       flex-direction: row;
+      gap: 20px;
+      grid-column: 1 / -1;
+    }
+
+    &--first {
+      @media @desktop {
+        display: grid;
+        grid-template-columns: subgrid;
+        gap: 40px;
+      }
     }
   }
 
-  &__failed {
-    font-size: 15px;
-    color: @osu-colour-red-1;
-    font-weight: 700;
-
-    padding-right: 20px;
-  }
-
   &__mods {
-    padding-right: 20px;
+    --mod-height: @mod-height-normal;
     display: flex;
+    height: var(--mod-height);
   }
 
   &__stat {
@@ -121,35 +120,16 @@
     align-items: baseline;
     justify-content: flex-end;
 
-    padding-right: 40px;
-
     &--small {
-      padding-right: 20px;
-    }
-
-    &--combo {
-      margin-right: auto;
-    }
-
-    &:last-child {
-      padding: 0;
+      flex: none;
     }
   }
 
   &__stat-label {
-    font-weight: 600;
-
     padding-right: 3px;
-
     color: @osu-colour-c2;
-
-    &--small {
-      font-size: 10px;
-    }
-
-    &--large {
-      font-size: 12px;
-    }
+    font-size: @font-size--small;
+    text-transform: uppercase;
   }
 
   &__stat-number {
