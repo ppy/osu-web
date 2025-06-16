@@ -82,8 +82,7 @@ class Build extends Model implements Commentable
         $changelogEntry = new ChangelogEntry();
 
         $newChangelogEntryIds = $stream
-            ->changelogEntries()
-            ->orphans($stream->getKey())
+            ->orphanChangelogEntries()
             ->where($changelogEntry->qualifyColumn('created_at'), '<=', $lastChange)
             ->pluck($changelogEntry->qualifyColumn('id'));
 

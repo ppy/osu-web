@@ -6,6 +6,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 /**
  * @property \Illuminate\Database\Eloquent\Collection $builds Build
@@ -65,7 +66,7 @@ class UpdateStream extends Model
     public function createBuild()
     {
         $entryIds = model_pluck(
-            $this->changelogEntries()->orphans($this->getKey()),
+            $this->orphanChangelogEntries(),
             'id',
             ChangelogEntry::class
         );
@@ -79,6 +80,17 @@ class UpdateStream extends Model
         $build->changelogEntries()->attach($entryIds);
 
         return $build;
+    }
+
+    public function orphanChangelogEntries(): Builder
+    {
+        $query = $this->changelogEntries()->orphans($this->getKey());
+
+        if ($this->parent_id !== null) {
+            $query->orphans($this->parent_id);
+        }
+
+        return $query;
     }
 
     public function latestBuild()
