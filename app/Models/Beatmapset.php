@@ -626,7 +626,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
         $beatmaps->update(['approved' => $approvedState]);
 
-        if ($this->isQualified() && $state === 'pending') {
+        if ($this->isRanked() && $state === 'pending') {
+            $this->previous_queue_duration = 0;
+            $this->queued_at = null;
+        } elseif ($this->isQualified() && $state === 'pending') {
             $this->previous_queue_duration = (int) ($this->queued_at ?? $this->approved_date)->diffInSeconds();
             $this->queued_at = null;
         } elseif ($this->isPending() && $state === 'qualified') {
@@ -707,14 +710,15 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         });
     }
 
-    public function disqualifyOrResetNominations(User $user, BeatmapDiscussion $discussion)
+    public function disqualifyOrResetNominations(User $user, BeatmapDiscussion $discussion, bool $allowUnrank = false)
     {
-        $event = BeatmapsetEvent::DISQUALIFY;
-        $notificationClass = BeatmapsetDisqualify::class;
-        if ($this->isPending()) {
+        if ($this->isQualified() || ($allowUnrank && $this->isRanked())) {
+            $event = BeatmapsetEvent::DISQUALIFY;
+            $notificationClass = BeatmapsetDisqualify::class;
+        } elseif ($this->isPending()) {
             $event = BeatmapsetEvent::NOMINATION_RESET;
             $notificationClass = BeatmapsetResetNominations::class;
-        } else if (!$this->isQualified()) {
+        } else {
             throw new InvariantException('invalid state');
         }
 
