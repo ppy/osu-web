@@ -1312,6 +1312,21 @@ class OsuAuthorize
         return $this->checkContestJudge($user, $contest);
     }
 
+    public function checkContestResultsShow(?User $user, Contest $contest): string
+    {
+        if ($contest->show_votes) {
+            return 'ok';
+        }
+
+        $this->ensureLoggedIn($user);
+
+        if ($contest->isHostUserId($user->getKey())) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
     /**
      * @param User|null $user
      * @param Contest $contest
