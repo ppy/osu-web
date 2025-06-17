@@ -128,7 +128,7 @@ class Room extends Model
         [$rooms, $hasMore] = $search['query']->with([
             'playlist.beatmap',
             'host',
-        ])->getWithHasMore();
+        ])->whereHas('playlist.beatmap')->getWithHasMore();
 
         $rooms->each->findAndSetCurrentPlaylistItem();
         $rooms->loadMissing('currentPlaylistItem.beatmap.beatmapset');

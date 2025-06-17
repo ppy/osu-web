@@ -38,6 +38,7 @@ class Build extends Model implements Commentable
     protected $casts = [
         'allow_bancho' => 'boolean',
         'date' => 'datetime',
+        'private' => 'boolean',
     ];
 
     private $cache = [];
@@ -81,8 +82,7 @@ class Build extends Model implements Commentable
         $changelogEntry = new ChangelogEntry();
 
         $newChangelogEntryIds = $stream
-            ->changelogEntries()
-            ->orphans($stream->getKey())
+            ->orphanChangelogEntries()
             ->where($changelogEntry->qualifyColumn('created_at'), '<=', $lastChange)
             ->pluck($changelogEntry->qualifyColumn('id'));
 
@@ -119,7 +119,7 @@ class Build extends Model implements Commentable
 
     public function scopeDefault($query)
     {
-        $query->whereIn('stream_id', $GLOBALS['cfg']['osu']['changelog']['update_streams']);
+        $query->where('private', false)->whereIn('stream_id', $GLOBALS['cfg']['osu']['changelog']['update_streams']);
     }
 
     public function propagationHistories()
