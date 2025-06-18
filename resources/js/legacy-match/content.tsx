@@ -191,6 +191,7 @@ export default class Content extends React.PureComponent<Props> {
     this.autoloadTimeout = setTimeout(this.autoload, refreshTimeout);
   }
 
+  @action
   private readonly loadNext = () => {
     if (!this.hasNext || this.loadingNext) {
       return;
@@ -205,6 +206,7 @@ export default class Content extends React.PureComponent<Props> {
     }));
   };
 
+  @action
   private readonly loadPrevious = () => {
     if (!this.hasPrevious || this.loadingPrevious) {
       return;
