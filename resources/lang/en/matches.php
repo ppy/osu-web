@@ -54,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => 'Frestyle',
+
         'scoring-type' => [
             'score' => 'Highest Score',
             'accuracy' => 'Highest Accuracy',

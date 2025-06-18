@@ -65,6 +65,17 @@
     @include('multiplayer.rooms._rankings_table', compact('scores'))
 @endsection
 
+@section('scores-header')
+    @if ($room->isRealtime())
+        <a
+            class="btn-osu-big btn-osu-big--rounded-thin"
+            href="{{ route('multiplayer.rooms.events', ['room' => $room->getKey()]) }}"
+        >
+            {{ osu_trans('multiplayer.room.view_history') }}
+        </a>
+    @endif
+@endsection
+
 @section('ranking-footer')
     @include('rankings._beatmapsets', compact('beatmapsets'))
 @endsection
