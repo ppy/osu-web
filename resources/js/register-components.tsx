@@ -73,8 +73,8 @@ core.reactTurbolinks.register('beatmapset-panel', (container) => {
   return <BeatmapsetPanel {...observable(props)} />;
 });
 
-core.reactTurbolinks.register('basic-select-options', () => (
-  <BasicSelectOptions {...parseJson('json-basic-select-options')} />
+core.reactTurbolinks.register('basic-select-options', (container) => (
+  <BasicSelectOptions {...reqJson(container.dataset.basicSelectOptions)} />
 ));
 
 core.reactTurbolinks.register('chat-icon', (container) => (

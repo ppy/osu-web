@@ -40,7 +40,7 @@ class RemoveBeatmapsetSoloScoresTest extends TestCase
             $scores,
         );
 
-        $job = new RemoveBeatmapsetSoloScores($beatmapset);
+        $job = new RemoveBeatmapsetSoloScores($beatmapset, true);
 
         // These scores shouldn't be deleted
         for ($i = 0; $i < 10; $i++) {

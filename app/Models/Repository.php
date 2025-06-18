@@ -27,6 +27,11 @@ class Repository extends Model
         return static::firstOrCreate(['name' => $data['full_name']]);
     }
 
+    public static function updateStreamBridgeTable(): string
+    {
+        return $GLOBALS['cfg']['database']['connections']['mysql']['database'].'.repository_update_stream';
+    }
+
     public function mainUpdateStream()
     {
         return $this->belongsTo(UpdateStream::class, 'stream_id');
@@ -34,9 +39,12 @@ class Repository extends Model
 
     public function updateStreams()
     {
-        $bridgeTable = $GLOBALS['cfg']['database']['connections']['mysql']['database'].'.repository_update_stream';
-
-        return $this->belongsToMany(UpdateStream::class, $bridgeTable, null, 'stream_id');
+        return $this->belongsToMany(
+            UpdateStream::class,
+            static::updateStreamBridgeTable(),
+            null,
+            'stream_id',
+        );
     }
 
     public function changelogEntries()
