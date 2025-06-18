@@ -15,7 +15,7 @@ import { bottomPage } from 'utils/html';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { nextVal } from 'utils/seq';
 import { present } from 'utils/string';
-import { switchNever } from 'utils/switch-never';
+import { SwitchError } from 'utils/switch-never';
 import { currentUrl } from 'utils/turbolinks';
 import AccountStanding from './account-standing';
 import Beatmapsets from './beatmapsets';
@@ -269,8 +269,7 @@ export default class Main extends React.Component<Props> {
         return <AccountStanding {...baseProps} />;
 
       default:
-        switchNever(name);
-        throw new Error('unsupported extra page');
+        throw new SwitchError(name);
     }
   };
 

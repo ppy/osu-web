@@ -19,7 +19,7 @@ import * as React from 'react';
 import BeatmapsetDiscussionsBundleForModdingProfileStore from 'stores/beatmapset-discussions-for-modding-profile-store';
 import { bottomPage } from 'utils/html';
 import { nextVal } from 'utils/seq';
-import { switchNever } from 'utils/switch-never';
+import { SwitchError } from 'utils/switch-never';
 import { currentUrl } from 'utils/turbolinks';
 import Discussions from './discussions';
 import Events from './events';
@@ -192,8 +192,7 @@ export default class Main extends React.Component<BeatmapsetDiscussionsBundleJso
       case 'votes':
         return <Votes users={this.store.users} votes={this.props.votes} />;
       default:
-        switchNever(name);
-        throw new Error('unsupported extra page');
+        throw new SwitchError(name);
     }
   };
 
