@@ -7,6 +7,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property \Illuminate\Database\Eloquent\Collection $builds Build
@@ -63,6 +64,27 @@ class UpdateStream extends Model
         });
     }
 
+    public function scopeWithLatestBuild(Builder $query): Builder
+    {
+        $buildQuery = Build::selectRaw('MAX(build_id)')
+            ->from(new Build()->tableName(true))
+            ->default()
+            ->whereColumn(['stream_id' => $query->qualifyColumn('stream_id')]);
+
+        return $query->addSelect(['latest_build_id' => $buildQuery])->with('latestBuild');
+    }
+
+    public function scopeWithUserCount(Builder $query): Builder
+    {
+        return $query->withSum(
+            ['builds' => fn ($b) => $b
+                ->from((new Build())->tableName(true))
+                ->where('allow_bancho', true),
+            ],
+            'users',
+        );
+    }
+
     public function createBuild()
     {
         $entryIds = model_pluck(
@@ -93,14 +115,17 @@ class UpdateStream extends Model
         return $query;
     }
 
-    public function latestBuild()
+    public function latestBuild(): BelongsTo
     {
-        return $this->builds()->orderBy('build_id', 'DESC')->first();
+        return $this->belongsTo(Build::class, 'latest_build_id');
     }
 
     public function userCount()
     {
-        return (int) $this->builds()->where('allow_bancho', '=', true)->sum('users');
+        return (int) (array_key_exists('builds_sum_users', $this->attributes)
+            ? $this->attributes['builds_sum_users']
+            : $this->builds()->where('allow_bancho', true)->sum('users')
+        );
     }
 
     public function isFeatured()
