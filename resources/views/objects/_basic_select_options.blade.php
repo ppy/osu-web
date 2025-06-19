@@ -9,7 +9,12 @@
     <div class="select-options">
         <div class="select-options__select">
             <span class="select-options__option">
-                {{ $selectOptions['currentItem']['text'] }}
+                <div class="u-ellipsis-overflow">
+                    {{ $selectOptions['currentItem']['text'] }}
+                </div>
+                <div class="select-options__decoration">
+                    <span class="fas fa-chevron-down"></span>
+                </div>
             </span>
         </div>
     </div>

@@ -58,10 +58,6 @@ trait FasterAttributes
      */
     protected function getTimeFast(string $key): ?Carbon
     {
-        $value = $this->getRawAttribute($key);
-
-        return $value === null
-            ? null
-            : Carbon::createFromFormat('Y-m-d H:i:s', $value);
+        return parse_db_time($this->getRawAttribute($key));
     }
 }
