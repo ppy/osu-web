@@ -81,7 +81,7 @@ class RemoveBeatmapsetSoloScores implements ShouldQueue
         $ids = $scores->pluck('id')->all();
 
         Score::whereKey($ids)->update(['ranked' => false]);
-        $this->scoreSearch->queueForIndex($this->schemas, $ids);
+        ScoreSearch::queueForIndex($this->schemas, $ids);
     }
 
     private function getScoreVariants(Score $score): array
