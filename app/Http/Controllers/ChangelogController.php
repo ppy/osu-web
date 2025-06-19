@@ -10,6 +10,7 @@ use App\Libraries\GithubImporter;
 use App\Models\Build;
 use App\Models\BuildPropagationHistory;
 use App\Models\UpdateStream;
+use App\Transformers\UpdateStreamTransformer;
 use Cache;
 
 /**
@@ -399,16 +400,25 @@ class ChangelogController extends Controller
 
     private function getUpdateStreams()
     {
-        return $this->updateStreams ??= json_collection(
-            UpdateStream::whereHasBuilds()
+        if ($this->updateStreams === null) {
+            $streams = UpdateStream::whereHasBuilds()
+                ->withLatestBuild()
+                ->withUserCount()
                 ->orderByField('stream_id', $GLOBALS['cfg']['osu']['changelog']['update_streams'])
                 ->find($GLOBALS['cfg']['osu']['changelog']['update_streams'])
-                ->sortBy(function ($i) {
-                    return $i->isFeatured() ? 0 : 1;
-                }),
-            'UpdateStream',
-            ['latest_build', 'user_count']
-        );
+                ->sortBy(fn ($i) => $i->isFeatured() ? 0 : 1);
+            foreach ($streams as $stream) {
+                $stream->latestBuild->setRelation('updateStream', $stream);
+            }
+
+            $this->updateStreams = json_collection(
+                $streams,
+                new UpdateStreamTransformer(),
+                ['latest_build', 'user_count']
+            );
+        }
+
+        return $this->updateStreams;
     }
 
     private function chartConfig($stream)
