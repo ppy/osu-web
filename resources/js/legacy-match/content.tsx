@@ -57,6 +57,7 @@ export interface TeamScores {
 export default class Content extends React.PureComponent<Props> {
   private autoloadTimeout: undefined | number;
   private inEvent = false;
+  private lastRenderedGame: number | undefined;
   @observable private loadingNext = false;
   @observable private loadingPrevious = false;
   private scoresCache: Partial<Record<number, TeamScores>> = {};
@@ -148,6 +149,7 @@ export default class Content extends React.PureComponent<Props> {
 
   render() {
     this.inEvent = false;
+    this.lastRenderedGame = undefined;
 
     return (
       <div className='mp-history-content'>
@@ -228,31 +230,17 @@ export default class Content extends React.PureComponent<Props> {
 
   private renderEvent(event: RealtimeRoomEventJson) {
     if (event.event_type === 'game_started') {
-      if (event.playlist_item_id == null) {
-        return null;
-      }
-
-      const playlistItem = this.props.data.playlistItems[event.playlist_item_id];
-      if (playlistItem == null || (!playlistItem.expired && playlistItem.id !== this.props.data.currentPlaylistItemId)) {
-        return null;
-      }
-
-      return (
-        <React.Fragment key={event.id}>
-          {this.closeEventsGroup()}
-
-          <div className="mp-history-content__item">
-            <Game
-              data={this.props.data}
-              playlistItem={playlistItem}
-              teamScores={this.teamScores(playlistItem)}
-            />
-          </div>
-        </React.Fragment>
-      );
+      return this.renderGame(event);
     } else {
+      const shouldRenderGame = event.event_type === 'game_completed'
+        && (
+          (this.lastRenderedGame == null && !this.hasPrevious)
+          || (this.lastRenderedGame != null && this.lastRenderedGame !== event.playlist_item_id)
+        );
+
       return (
         <React.Fragment key={event.id}>
+          {shouldRenderGame && this.renderGame(event)}
           {this.openEventsGroup()}
 
           <div className={classWithModifiers('mp-history-content__item', ['event'])}>
@@ -264,6 +252,33 @@ export default class Content extends React.PureComponent<Props> {
         </React.Fragment>
       );
     }
+  }
+
+  private renderGame(event: RealtimeRoomEventJson) {
+    if (event.playlist_item_id == null) {
+      return null;
+    }
+
+    const playlistItem = this.props.data.playlistItems[event.playlist_item_id];
+    if (playlistItem == null || (!playlistItem.expired && playlistItem.id !== this.props.data.currentPlaylistItemId)) {
+      return null;
+    }
+
+    this.lastRenderedGame = playlistItem.id;
+
+    return (
+      <React.Fragment key={event.id}>
+        {this.closeEventsGroup()}
+
+        <div className="mp-history-content__item">
+          <Game
+            data={this.props.data}
+            playlistItem={playlistItem}
+            teamScores={this.teamScores(playlistItem)}
+          />
+        </div>
+      </React.Fragment>
+    );
   }
 
   private teamScores(playlistItem: PlaylistItemJsonForMultiplayerEvent): TeamScores {
