@@ -45,7 +45,7 @@ export default observer(function Score(props: Props) {
     throw new Error('user for score is missing');
   }
 
-  const team = props.playlistItem.details.teams?.[props.score.user_id] ?? 'none';
+  const team = props.playlistItem.details.teams?.[props.score.user_id] ?? 'blue';
 
   return (
     <div className={classWithModifiers('mp-history-player-score', { team: props.showTeam })}>
