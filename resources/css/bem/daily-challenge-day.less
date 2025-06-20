@@ -1,0 +1,40 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.daily-challenge-day {
+  --border-colour: transparent;
+  --completed-opacity: 0;
+  display: grid;
+  background-color: hsla(var(--hsl-b6), 0.6);
+  border-radius: @border-radius-large;
+  padding: 4px;
+  gap: 4px;
+  text-align: center;
+  border: 2px solid var(--border-colour);
+  line-height: 1;
+
+  .link-hover({
+    --border-colour: currentColor;
+    text-decoration: none;
+  });
+
+  &--active {
+    --border-colour: currentColor;
+  }
+
+  &--completed {
+    --completed-opacity: 1;
+  }
+
+  &--extra {
+    opacity: 0.6;
+  }
+
+  &__completed {
+    background-color: hsl(var(--hsl-b3));
+    border-radius: inherit;
+    opacity: var(--completed-opacity);
+    padding: 2px;
+    font-size: 0.6em;
+  }
+}

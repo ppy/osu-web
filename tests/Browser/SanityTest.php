@@ -5,7 +5,7 @@
 
 namespace Tests\Browser;
 
-use App\Http\Controllers\Ranking\DailyChallengeController;
+use App\Libraries\DailyChallengeDateHelper;
 use App\Libraries\Session;
 use App\Libraries\SessionVerification;
 use App\Models\Artist;
@@ -454,7 +454,7 @@ class SanityTest extends DuskTestCase
                 'changelog' => self::$scaffolding['build']->version,
             ],
             'daily-challenge.show' => [
-                'daily_challenge' => DailyChallengeController::roomId(self::$scaffolding['daily_challenge_room']),
+                'daily_challenge' => DailyChallengeDateHelper::roomId(self::$scaffolding['daily_challenge_room']),
             ],
             'scores.download-legacy' => [
                 'rulesetOrScore' => static::$scaffolding['score']->getMode(),
