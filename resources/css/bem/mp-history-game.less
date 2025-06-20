@@ -105,6 +105,7 @@
   }
 
   &__player-scores {
+    --shape-size: 0;
     padding: 10px;
     background-color: @osu-colour-b3;
     display: grid;
@@ -113,11 +114,12 @@
 
     @media @desktop {
       // shape name mods combo acc score rank
-      grid-template-columns: 50px 1fr auto auto auto auto auto;
+      grid-template-columns: var(--shape-size) 1fr auto auto auto auto auto;
       column-gap: 0;
     }
 
-    &--no-teams {
+    &--teams {
+      --shape-size: 50px;
       border-radius: 0;
     }
   }

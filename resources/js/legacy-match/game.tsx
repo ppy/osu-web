@@ -37,13 +37,15 @@ export default observer(function Game(props: Props) {
   return (
     <div className='mp-history-game'>
       <GameHeader data={props.data} playlistItem={props.playlistItem} />
-      <div className={classWithModifiers('mp-history-game__player-scores', { 'no-teams': showTeams })}>
+      <div className={classWithModifiers('mp-history-game__player-scores', { teams: showTeams })}>
         {sortedScores.map((score) => (
           <Score
             key={score.match?.slot ?? score.id}
             data={props.data}
             playlistItem={props.playlistItem}
-            score={score} />
+            score={score}
+            showTeam={showTeams}
+          />
         ))}
       </div>
       {showTeams && props.playlistItem.expired &&
