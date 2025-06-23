@@ -1,0 +1,43 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.daily-challenge-date {
+  padding: 10px;
+  display: grid;
+  gap: 10px;
+  border-radius: @border-radius-large;
+  background-color: hsl(var(--hsl-d4));
+
+  &__header {
+    display: grid;
+    // Manual adjustment for month selector so the dropdown content
+    // still fits.
+    grid-template-columns: auto auto auto minmax(100px, 150px) auto auto;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__header-arrow {
+    font-size: 1.5em;
+    padding: 5px;
+    color: hsl(var(--hsl-l1));
+
+    .link-hover({
+      text-decoration: none;
+      color: hsl(var(--hsl-l3));
+    });
+
+    &--disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
+
+  &__days {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 40px);
+    gap: 10px;
+    justify-content: center;
+  }
+}
