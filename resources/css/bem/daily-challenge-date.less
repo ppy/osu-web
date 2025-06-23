@@ -10,7 +10,9 @@
 
   &__header {
     display: grid;
-    grid-template-columns: auto auto auto 150px auto auto;
+    // Manual adjustment for month selector so the dropdown content
+    // still fits.
+    grid-template-columns: auto auto auto minmax(100px, 150px) auto auto;
     gap: 10px;
     align-items: center;
     justify-content: center;
