@@ -259,14 +259,16 @@ class Product extends Model
         $currentMapping = $mappings[strval($this->product_id)];
         $this->types = [];
 
-        foreach ($mappings as $product_id => $mapping) {
+        $productById = collect([...static::whereKey(array_keys($mappings))->get(), $this])->keyBy('product_id');
+
+        foreach ($mappings as $productId => $mapping) {
             foreach ($mapping as $type => $value) {
                 if (!isset($this->types[$type])) {
                     $this->types[$type] = [];
                 }
                 $mappingDiff = array_diff_assoc($mapping, $currentMapping);
                 if ((count($mappingDiff) === 0) || (count($mappingDiff) === 1 && isset($mappingDiff[$type]))) {
-                    $this->types[$type][$value] = intval($product_id);
+                    $this->types[$type][$value] = $productById[$productId];
                 }
             }
         }
