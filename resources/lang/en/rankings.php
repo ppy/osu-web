@@ -13,6 +13,10 @@ return [
         'beatmap' => 'Difficulty',
         'top_10p' => 'Top 10% Score',
         'top_50p' => 'Top 50% Score',
+        'unavailable' => [
+            'future' => 'No daily challenge at the specified date yet!',
+            'past' => 'No daily challenge at the specified date!',
+        ],
     ],
 
     'filter' => [
