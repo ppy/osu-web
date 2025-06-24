@@ -78,12 +78,15 @@
                                             <div class="input-container__label">{{ $type }}</div>
 
                                             <select id="select-product-{{ $type }}" class="input-text js-url-selector" data-keep-scroll="1">
-                                                @foreach ($values as $value => $product_id)
+                                                @foreach ($values as $value => $variant)
                                                     <option
-                                                        {{ $product_id === $product->product_id ? 'selected' : '' }}
-                                                        value="{{ route('store.products.show', $product_id) }}"
+                                                        {{ $variant->getKey() === $product->getKey() ? 'selected' : '' }}
+                                                        value="{{ route('store.products.show', $variant) }}"
                                                     >
                                                         {{ $value }}
+                                                        @if ($type === 'size' && !$variant->inStock())
+                                                            ({{ osu_trans('store.product.out_of_stock') }})
+                                                        @endif
                                                     </option>
                                                 @endforeach
                                             </select>
