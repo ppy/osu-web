@@ -66,7 +66,7 @@ export default observer(function Score(props: Props) {
               <FlagCountry country={user.country} modifiers={'medium'} />
             </a>
 
-            <UserLink className='mp-history-player-score__username u-ellipsis-overflow' user={user} />
+            <UserLink className='mp-history-player-score__username' user={user} />
           </div>
 
           {props.playlistItem.freestyle && (
