@@ -160,7 +160,7 @@
                                     data-tooltip-position="bottom center"
                                     title="{{ json_time($team->created_at) }}"
                                 >
-                                    {{ i18n_date($team->created_at, pattern: 'year_month') }}
+                                    {{ i18n_date($team->created_at, transPattern: 'year_month') }}
                                 </time>
                             </div>
                         </div>
