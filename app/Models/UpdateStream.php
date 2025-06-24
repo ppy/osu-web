@@ -115,6 +115,14 @@ class UpdateStream extends Model
         return $query;
     }
 
+    /**
+     * Latest build of the stream
+     *
+     * This relies on the model being queried with `withLatestBuild` scope
+     * so the relation attribute (`latest_build_id`) is included.
+     *
+     * Only read operation is directly possible with this relation.
+     */
     public function latestBuild(): BelongsTo
     {
         return $this->belongsTo(Build::class, 'latest_build_id');

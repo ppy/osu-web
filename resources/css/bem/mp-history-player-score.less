@@ -76,6 +76,9 @@
     }
 
     &--mods {
+      // TODO: replace with proper compact mod display
+      max-width: 144px; // 4x31px (4x mod size) + 10px (padding both sides)
+      flex-wrap: wrap;
       order: 1;
       grid-column: 1 / 2;
       @media @desktop {
