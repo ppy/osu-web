@@ -1286,7 +1286,7 @@ function display_regdate($user)
 
     $tooltipDate = i18n_date($user->user_regdate);
 
-    $formattedDate = i18n_date($user->user_regdate, pattern: 'year_month');
+    $formattedDate = i18n_date($user->user_regdate, transPattern: 'year_month');
 
     if ($user->user_regdate < Carbon\Carbon::createFromDate(2008, 1, 1)) {
         return '<div title="'.$tooltipDate.'">'.osu_trans('users.show.first_members').'</div>';
