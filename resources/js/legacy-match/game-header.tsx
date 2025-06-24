@@ -44,7 +44,7 @@ export default observer(function GameHeader(props: Props) {
     }
   }
 
-  const startTime = <TimeWithTooltip dateTime={props.playlistItem.created_at} format={timeFormat} />;
+  const startTime = <TimeWithTooltip dateTime={props.playlistItem.details.started_at} format={timeFormat} />;
   const endTime = !props.playlistItem.expired || props.playlistItem.played_at == null
     ? null
     : <TimeWithTooltip dateTime={props.playlistItem.played_at} format={timeFormat} />;
