@@ -16,23 +16,11 @@
 
 @section('ranking-header')
     <div class="osu-page osu-page--ranking-info">
-        <div class="js-react--basic-select-options">
-            <div class="select-options">
-                <div class="select-options__select">
-                    <span class="select-options__option">
-                        {{ $room->name }}
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        <script id="json-basic-select-options" type="application/json">
-            {!! json_encode([
-                'currentItem' => json_item($room, $selectOptionTransformer),
-                'items' => json_collection($rooms, $selectOptionTransformer),
-                'type' => 'multiplayer',
-            ]) !!}
-        </script>
+        @include('objects._basic_select_options', ['selectOptions' => [
+            'currentItem' => json_item($room, $selectOptionTransformer),
+            'items' => json_collection($rooms, $selectOptionTransformer),
+            'type' => 'multiplayer',
+        ]])
 
         <div class="grid-items grid-items--ranking-info-bar">
             <div class="counter-box counter-box--ranking">
@@ -75,6 +63,17 @@
 
 @section('scores')
     @include('multiplayer.rooms._rankings_table', compact('scores'))
+@endsection
+
+@section('scores-header')
+    @if ($room->isRealtime())
+        <a
+            class="btn-osu-big btn-osu-big--rounded-thin"
+            href="{{ route('multiplayer.rooms.events', ['room' => $room->getKey()]) }}"
+        >
+            {{ osu_trans('multiplayer.room.view_history') }}
+        </a>
+    @endif
 @endsection
 
 @section('ranking-footer')

@@ -154,7 +154,7 @@ class EsIndexScoresQueue extends Command
 
     private function queueIds(array $ids): void
     {
-        $this->search->queueForIndex($this->schemas, $ids);
+        ScoreSearch::queueForIndex($this->schemas, $ids);
 
         $this->bar->setProgress(array_last($ids) ?? 0);
         $this->total += count($ids);

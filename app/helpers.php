@@ -1286,7 +1286,7 @@ function display_regdate($user)
 
     $tooltipDate = i18n_date($user->user_regdate);
 
-    $formattedDate = i18n_date($user->user_regdate, pattern: 'year_month');
+    $formattedDate = i18n_date($user->user_regdate, transPattern: 'year_month');
 
     if ($user->user_regdate < Carbon\Carbon::createFromDate(2008, 1, 1)) {
         return '<div title="'.$tooltipDate.'">'.osu_trans('users.show.first_members').'</div>';
@@ -1297,16 +1297,22 @@ function display_regdate($user)
     ]);
 }
 
-function i18n_date($datetime, int $format = IntlDateFormatter::LONG, $pattern = null)
-{
+function i18n_date(
+    DateTimeInterface $datetime,
+    int $format = IntlDateFormatter::LONG,
+    ?string $transPattern = null,
+    ?string $pattern = null,
+) {
     $formatter = IntlDateFormatter::create(
         App::getLocale(),
         $format,
         IntlDateFormatter::NONE
     );
 
-    if ($pattern !== null) {
-        $formatter->setPattern(osu_trans("common.datetime.{$pattern}.php"));
+    if ($transPattern !== null) {
+        $formatter->setPattern(osu_trans("common.datetime.{$transPattern}.php"));
+    } elseif ($pattern !== null) {
+        $formatter->setPattern($pattern);
     }
 
     return $formatter->format($datetime);
@@ -1720,6 +1726,15 @@ function model_pluck($builder, $key, $class = null)
 function null_if_false($value)
 {
     return $value === false ? null : $value;
+}
+
+// TODO: more specific argument type
+// This sometimes receives Carbon\Carbon instance instead of string
+function parse_db_time(mixed $value): ?Carbon\Carbon
+{
+    return $value === null
+        ? null
+        : Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value);
 }
 
 function parse_time_to_carbon($value)
