@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Multiplayer;
 
 use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Ranking\DailyChallengeController;
+use App\Libraries\DailyChallengeDateHelper;
 use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\Multiplayer\Room;
@@ -262,7 +262,7 @@ class RoomsController extends Controller
         }
 
         if ($room->category === 'daily_challenge') {
-            return ujs_redirect(route('daily-challenge.show', DailyChallengeController::roomId($room)));
+            return ujs_redirect(route('daily-challenge.show', DailyChallengeDateHelper::roomId($room)));
         }
 
         $playlistItemsQuery = $room->playlist();
