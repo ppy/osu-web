@@ -98,7 +98,11 @@ class UpdateStream extends Model
         }
 
         $version = Carbon::now()->format('Y.nd.0');
-        $build = $this->builds()->firstOrCreate(compact('version'));
+        $build = $this->builds()->firstOrCreate([
+            'version' => $version,
+        ], [
+            'allow_bancho' => $this->default_allow_bancho,
+        ]);
         $build->changelogEntries()->attach($entryIds);
 
         return $build;
