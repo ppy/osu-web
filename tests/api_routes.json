@@ -1183,6 +1183,135 @@
         "scopes": []
     },
     {
+        "uri": "api/v2/users/lookup",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\Users\\LookupController@index",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/users/{user}/kudosu",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\UsersController@kudosu",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/users/{user}/scores/{type}",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\UsersController@scores",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/users/{user}/beatmapsets/{type}",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\UsersController@beatmapsets",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/users/{user}/recent_activity",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\UsersController@recentActivity",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/users/{user}/beatmapset-completion",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\Users\\ScoresController@beatmapsetCompletion",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/users/{user}/{mode?}",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\UsersController@show",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/users",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\UsersController@index",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
         "uri": "api/v2/beatmapsets/search",
         "methods": [
             "GET",
@@ -1429,119 +1558,6 @@
             "HEAD"
         ],
         "controller": "App\\Http\\Controllers\\HomeController@search",
-        "middlewares": [
-            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
-            "App\\Http\\Middleware\\RequireScopes",
-            "App\\Http\\Middleware\\RequireScopes:public"
-        ],
-        "scopes": [
-            "public"
-        ]
-    },
-    {
-        "uri": "api/v2/users/lookup",
-        "methods": [
-            "GET",
-            "HEAD"
-        ],
-        "controller": "App\\Http\\Controllers\\Users\\LookupController@index",
-        "middlewares": [
-            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
-            "App\\Http\\Middleware\\RequireScopes",
-            "App\\Http\\Middleware\\ThrottleRequests:1200,1",
-            "App\\Http\\Middleware\\RequireScopes:public"
-        ],
-        "scopes": [
-            "public"
-        ]
-    },
-    {
-        "uri": "api/v2/users/{user}/kudosu",
-        "methods": [
-            "GET",
-            "HEAD"
-        ],
-        "controller": "App\\Http\\Controllers\\UsersController@kudosu",
-        "middlewares": [
-            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
-            "App\\Http\\Middleware\\RequireScopes",
-            "App\\Http\\Middleware\\RequireScopes:public"
-        ],
-        "scopes": [
-            "public"
-        ]
-    },
-    {
-        "uri": "api/v2/users/{user}/scores/{type}",
-        "methods": [
-            "GET",
-            "HEAD"
-        ],
-        "controller": "App\\Http\\Controllers\\UsersController@scores",
-        "middlewares": [
-            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
-            "App\\Http\\Middleware\\RequireScopes",
-            "App\\Http\\Middleware\\RequireScopes:public"
-        ],
-        "scopes": [
-            "public"
-        ]
-    },
-    {
-        "uri": "api/v2/users/{user}/beatmapsets/{type}",
-        "methods": [
-            "GET",
-            "HEAD"
-        ],
-        "controller": "App\\Http\\Controllers\\UsersController@beatmapsets",
-        "middlewares": [
-            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
-            "App\\Http\\Middleware\\RequireScopes",
-            "App\\Http\\Middleware\\RequireScopes:public"
-        ],
-        "scopes": [
-            "public"
-        ]
-    },
-    {
-        "uri": "api/v2/users/{user}/recent_activity",
-        "methods": [
-            "GET",
-            "HEAD"
-        ],
-        "controller": "App\\Http\\Controllers\\UsersController@recentActivity",
-        "middlewares": [
-            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
-            "App\\Http\\Middleware\\RequireScopes",
-            "App\\Http\\Middleware\\RequireScopes:public"
-        ],
-        "scopes": [
-            "public"
-        ]
-    },
-    {
-        "uri": "api/v2/users/{user}/{mode?}",
-        "methods": [
-            "GET",
-            "HEAD"
-        ],
-        "controller": "App\\Http\\Controllers\\UsersController@show",
-        "middlewares": [
-            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
-            "App\\Http\\Middleware\\RequireScopes",
-            "App\\Http\\Middleware\\RequireScopes:public"
-        ],
-        "scopes": [
-            "public"
-        ]
-    },
-    {
-        "uri": "api/v2/users",
-        "methods": [
-            "GET",
-            "HEAD"
-        ],
-        "controller": "App\\Http\\Controllers\\UsersController@index",
         "middlewares": [
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",
