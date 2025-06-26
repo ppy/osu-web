@@ -544,6 +544,11 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             Route::get('beatmapsets/{type}', 'UsersController@beatmapsets');
             // GET /api/v2/users/:user_id/recent_activity
             Route::get('recent_activity', 'UsersController@recentActivity');
+
+            Route::group(['namespace' => 'Users'], function () {
+                Route::get('beatmapset-completion', 'ScoresController@beatmapsetCompletion');
+            });
+
             //  GET /api/v2/users/:user_id/:mode [osu, taiko, fruits, mania]
             Route::get('{mode?}', 'UsersController@show')->name('show');
         });
