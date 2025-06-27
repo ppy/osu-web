@@ -4,8 +4,13 @@
 --}}
 @php
     $user = Auth::user();
+    $href = $type === 'daily_challenge' && isset($dailyChallenge) 
+        ? route('daily-challenge.show', [
+            'daily_challenge' => \App\Libraries\DailyChallengeDateHelper::roomId($dailyChallenge)
+        ])
+        : route('beatmapsets.show', $beatmapset->beatmapset_id);
 @endphp
-<a class='user-home-beatmapset' href="{{route('beatmapsets.show', $beatmapset->beatmapset_id)}}">
+<a class='user-home-beatmapset' href="{{$href}}">
     @include('objects._beatmapset_cover', [
         'beatmapset' => $beatmapset,
         'modifiers' => 'home',
