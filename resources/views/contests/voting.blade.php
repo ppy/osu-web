@@ -36,6 +36,14 @@
             {{ $noVoteReason }}
         </div>
 
+        @if ($contestMeta->isHostUserId(\Auth::id()))
+            <div class='contest__voting-notice'>
+                <a href="{{ route('contests.entries.judge-results', ['contest' => $contestMeta, 'contest_entry' => $contestMeta->entries()->first()]) }}">
+                    {{osu_trans('contest.voting.host_link')}}
+                </a>
+            </div>
+        @endif
+
         @if ($contestMeta->isJudged() && priv_check('ContestJudge', $contestMeta)->can())
             <div class='contest__voting-notice'>
                 <a href="{{ route('contests.judge', $contestMeta) }}" target="_blank">{{osu_trans('contest.voting.judge_link')}}</a>
