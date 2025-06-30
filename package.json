@@ -39,7 +39,7 @@
     "bootstrap": "^3.3.6",
     "chokidar": "^3.5.2",
     "clipboard-polyfill": "^2.3.0",
-    "coffee-loader": "^0.9.0",
+    "coffee-loader": "^5.0.0",
     "coffeescript": "^1.12.6",
     "copy-webpack-plugin": "^11.0.0",
     "cross-env": "^5.2.0",
