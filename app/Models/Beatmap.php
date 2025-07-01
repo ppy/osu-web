@@ -40,6 +40,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon $last_update
  * @property int $max_combo
  * @property mixed $mode
+ * @property int $osu_file_version
  * @property-read Collection<User> $owners
  * @property int $passcount
  * @property int $playcount
