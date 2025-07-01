@@ -8,8 +8,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
-use App\Libraries\Search\ScoreSearch;
-use App\Libraries\Search\ScoreSearchParams;
+use App\Libraries\Search\BeatmapsPassedSearch;
 use App\Models\Beatmap;
 use App\Models\User;
 use App\Transformers\BeatmapCompactTransformer;
@@ -27,7 +26,7 @@ class ScoresController extends Controller
             'beatmapset_ids:int[]',
         ], ['null_missing' => true]);
 
-        User::findOrFail($userId);
+        $user = User::findOrFail($userId);
 
         if ($params['beatmapset_ids'] === null || count($params['beatmapset_ids']) === 0) {
             return response()->noContent();
@@ -35,44 +34,11 @@ class ScoresController extends Controller
 
         $beatmaps = Beatmap::whereIn('beatmapset_id', array_slice($params['beatmapset_ids'], 0, 10))->get();
 
-        // TODO: combine with pack completion
-        static $aggName = 'by_beatmap';
-
-        $searchParams = ScoreSearchParams::fromArray([
-            'beatmap_ids' => $beatmaps->pluck('beatmap_id')->all(),
-            'exclude_mods' => app('mods')->difficultyReductionIds->toArray(),
-            'exclude_without_pp' => true,
-            'is_legacy' => false,
-            'limit' => 0,
-            'user_id' => intval($userId),
-        ]);
-
-        $search = new ScoreSearch($searchParams);
-        $search->size(0);
-        $search->setAggregations([$aggName => [
-            'terms' => [
-                'field' => 'beatmap_id',
-                'size' => max(1, $beatmaps->count()),
-            ],
-            'aggs' => [
-                'scores' => [
-                    'top_hits' => [
-                        'size' => 1,
-                    ],
-                ],
-            ],
-        ]]);
-
-        $response = $search->response();
-        $search->assertNoError();
-
-        $beatmapsById = $beatmaps->keyBy('beatmap_id');
-        $completedBeatmapIds = array_map(
-            fn (array $hit): int => (int) $hit['key'],
-            $response->aggregations($aggName)['buckets'],
-        );
+        $completedBeatmapIds = new BeatmapsPassedSearch($user->getKey(), $beatmaps->pluck('beatmap_id')->all())
+            ->completedBeatmapIds();
 
         $completedBeatmaps = [];
+        $beatmapsById = $beatmaps->keyBy('beatmap_id');
         foreach ($completedBeatmapIds as $beatmapId) {
             $completedBeatmaps[] = $beatmapsById[$beatmapId];
         }
