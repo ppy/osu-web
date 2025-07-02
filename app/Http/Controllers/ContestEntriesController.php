@@ -68,7 +68,7 @@ class ContestEntriesController extends Controller
         ]);
     }
 
-    public function judgeVote($id)
+    public function judgeVote($contestId, $id)
     {
         $entry = ContestEntry::with('contest.scoringCategories')->findOrFail($id);
 
