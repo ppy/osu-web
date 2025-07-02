@@ -7,7 +7,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Users;
 
+use App\Exceptions\RequestTooLargeException;
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\RequestCost;
 use App\Libraries\Search\BeatmapsPassedSearch;
 use App\Models\Beatmap;
 use App\Models\User;
@@ -15,6 +17,8 @@ use App\Transformers\BeatmapCompactTransformer;
 
 class ScoresController extends Controller
 {
+    private const LIMIT = 50;
+
     public function __construct()
     {
         $this->middleware('require-scopes:public');
@@ -28,9 +32,16 @@ class ScoresController extends Controller
             'beatmapset_ids:int[]',
         ], ['null_missing' => true]);
 
-        if ($params['beatmapset_ids'] === null || count($params['beatmapset_ids']) === 0) {
+        $count = count($params['beatmapset_ids'] ?? []);
+
+        if ($count === 0) {
             return response()->noContent();
         }
+        if ($count > self::LIMIT) {
+            throw new RequestTooLargeException('beatmapset_ids', self::LIMIT);
+        }
+
+        RequestCost::setCost($count);
 
         $beatmaps = Beatmap::whereIn('beatmapset_id', array_slice($params['beatmapset_ids'], 0, 10))->get();
         $completedBeatmapIds = new BeatmapsPassedSearch($user->getKey(), $beatmaps->pluck('beatmap_id')->all())
