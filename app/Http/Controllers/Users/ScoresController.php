@@ -22,18 +22,17 @@ class ScoresController extends Controller
 
     public function beatmapsetCompletion($userId)
     {
+        $user = User::findOrFail($userId);
+
         $params = get_params(\Request::all(), null, [
             'beatmapset_ids:int[]',
         ], ['null_missing' => true]);
-
-        $user = User::findOrFail($userId);
 
         if ($params['beatmapset_ids'] === null || count($params['beatmapset_ids']) === 0) {
             return response()->noContent();
         }
 
         $beatmaps = Beatmap::whereIn('beatmapset_id', array_slice($params['beatmapset_ids'], 0, 10))->get();
-
         $completedBeatmapIds = new BeatmapsPassedSearch($user->getKey(), $beatmaps->pluck('beatmap_id')->all())
             ->completedBeatmapIds();
 
