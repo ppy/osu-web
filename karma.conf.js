@@ -1,6 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+'use strict';
+
 // karma-webpack doesn't exit on compile error.
 // This plugin makes it exit on compile error.
 class ExitOnErrorWebpackPlugin {
@@ -20,7 +22,8 @@ class ExitOnErrorWebpackPlugin {
  * Blocks until the webpack config is read.
  */
 function readWebpackConfig() {
-  const { argv } = require('yargs');
+  const yargs = require('yargs');
+  const argv = yargs(process.argv).parse();
 
   if (!argv.singleRun) {
     argv.watch = true;

@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import HeaderV4 from 'components/header-v4';
-import { action, autorun, makeObservable, runInAction } from 'mobx';
+import { autorun, makeObservable, runInAction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -42,9 +42,10 @@ export default class MainView extends React.Component<Record<string, never>> {
     );
   }
 
-  @action
   componentDidMount() {
-    core.dataStore.chatState.viewsMounted.add(this);
+    runInAction(() => {
+      core.dataStore.chatState.viewsMounted.add(this);
+    });
   }
 
   componentWillUnmount() {

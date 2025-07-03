@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { type FetchResponse, type TurboSubmitEndEvent } from '@hotwired/turbo';
+import { type TurboSubmitEndEvent } from '@hotwired/turbo';
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import { xhrErrorMessage } from 'utils/ajax';
@@ -144,12 +144,7 @@ export default class UserVerification {
   );
 
   private readonly onErrorTurbo = (e: TurboSubmitEndEvent) => {
-    // Workaround wrong definition (the field always exists).
-    if (!('fetchResponse' in e.detail)) {
-      return;
-    }
-
-    const fetchResponse = e.detail.fetchResponse as FetchResponse | undefined;
+    const fetchResponse = e.detail.fetchResponse;
     if (fetchResponse == null || fetchResponse.header('x-turbo-action') !== 'session-verification') {
       return;
     }
