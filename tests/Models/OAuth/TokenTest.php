@@ -33,7 +33,7 @@ class TokenTest extends TestCase
     {
         return Passport::scopes()
             ->pluck('id')
-            ->filter(fn ($id) => !in_array($id, ['chat.write', 'delegate'], true))
+            ->filter(fn ($id) => !in_array($id, ['chat.write', 'chat.write_manage', 'delegate'], true))
             ->map(fn ($id) => [['delegate', $id]])
             ->values();
     }
@@ -43,6 +43,8 @@ class TokenTest extends TestCase
         return [
             'chat.write requires delegation' => [['chat.write'], InvalidScopeException::class],
             'chat.write delegation' => [['chat.write', 'delegate'], null],
+            'chat.write_manage requires delegation' => [['chat.write_manage'], InvalidScopeException::class],
+            'chat.write_manage delegation' => [['chat.write_manage', 'delegate'], null],
         ];
     }
 
@@ -146,7 +148,7 @@ class TokenTest extends TestCase
      */
     public function testDelegationNotAllowedScopes(array $scopes)
     {
-        $user = User::factory()->create();
+        $user = User::factory()->withGroup('bot')->create();
         $client = Client::factory()->create(['user_id' => $user]);
 
         $this->expectException(InvalidScopeException::class);
