@@ -25,6 +25,14 @@ class BoolQuery implements Queryable
         return $this;
     }
 
+    public function isEmpty()
+    {
+        return $this->filters === []
+            && $this->musts === []
+            && $this->mustNots === []
+            && $this->shoulds === [];
+    }
+
     /**
      * @param array|Queryable $clause
      *
