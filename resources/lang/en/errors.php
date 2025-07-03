@@ -7,6 +7,7 @@ return [
     'load_failed' => 'Failed to load data.',
     'missing_route' => 'Invalid url or incorrect request method.',
     'no_restricted_access' => 'You are not able to perform this action while your account is in a restricted state.',
+    'param_too_large' => ':name parameter has a maximum of :count_delimited item|:name parameter has a maximum of :count_delimited items',
     'supporter_only' => 'You must be an osu!supporter to use this feature.',
     'unknown' => 'Unknown error occurred.',
 
