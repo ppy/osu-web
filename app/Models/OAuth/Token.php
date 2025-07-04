@@ -20,6 +20,8 @@ class Token extends PassportToken implements SessionVerificationInterface
     // PassportToken doesn't have factory
     use HasFactory, FasterAttributes;
 
+    const SCOPES_REQUIRE_DELEGATION = ['chat.write', 'chat.write_manage', 'delegate'];
+
     protected $casts = [
         'expires_at' => 'datetime',
         'revoked' => 'boolean',
@@ -161,7 +163,7 @@ class Token extends PassportToken implements SessionVerificationInterface
 
     public function validate(): void
     {
-        static $scopesRequireDelegation = new Set(['chat.write', 'chat.write_manage', 'delegate']);
+        static $scopesRequireDelegation = new Set(static::SCOPES_REQUIRE_DELEGATION);
 
         $scopes = $this->scopeSet();
         if ($scopes->isEmpty()) {
