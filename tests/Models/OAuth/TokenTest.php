@@ -107,13 +107,15 @@ class TokenTest extends TestCase
 
         $allScopes = new Set(Passport::scopeIds());
 
-        if (!$allScopes->diff(self::$scopesTestedWithDelegation)->isEmpty()) {
-            throw new \Exception('not all scopes tested for delegation');
+        $missingWithDelegationScopes = $allScopes->diff(self::$scopesTestedWithDelegation);
+        if (!$missingWithDelegationScopes->isEmpty()) {
+            throw new \Exception('not all scopes tested for delegation: '.json_encode($missingWithDelegationScopes));
         }
 
         $allScopes->remove('delegate');
-        if (!$allScopes->diff(self::$scopesTestedWithoutDelegation)->isEmpty()) {
-            throw new \Exception('not all scopes tested for no delegation');
+        $missingWithoutDelegationScopes = $allScopes->diff(self::$scopesTestedWithoutDelegation);
+        if (!$missingWithoutDelegationScopes->isEmpty()) {
+            throw new \Exception('not all scopes tested for no delegation: '.json_encode($missingWithoutDelegationScopes));
         }
 
         parent::tearDownAfterClass();
@@ -189,26 +191,7 @@ class TokenTest extends TestCase
      */
     public function testDelegationRequiredScopes(array $scopes, ?string $expectedException)
     {
-        self::$delegationTestRun = true;
-
-        $scopeSet = new Set($scopes);
-        if ($scopeSet->contains('delegate')) {
-            if ($scopeSet->count() === 1) {
-                // this is the test with just 'delegate'.
-                self::$scopesTestedWithDelegation->add(...$scopeSet->toArray());
-            } else {
-                $scopeSet->remove('delegate');
-                if ($scopeSet->count() > 1) {
-                    throw new \Exception('Test 1 scope at a time.');
-                }
-                self::$scopesTestedWithDelegation->add(...$scopeSet->toArray());
-            }
-        } else {
-            if ($scopeSet->count() > 1) {
-                throw new \Exception('Test 1 scope at a time.');
-            }
-            self::$scopesTestedWithoutDelegation->add(...$scopeSet->toArray());
-        }
+        $this->scopesTested($scopes);
 
         $user = User::factory()->withGroup('bot')->create();
         $client = Client::factory()->create(['user_id' => $user]);
@@ -301,5 +284,26 @@ class TokenTest extends TestCase
         $this->assertTrue($refreshToken->fresh()->revoked);
         $this->assertTrue($token->fresh()->revoked);
         Event::assertDispatched(UserSessionEvent::class, fn (UserSessionEvent $event) => $event->action === 'logout');
+    }
+
+    private function scopesTested(array $scopes)
+    {
+        self::$delegationTestRun = true;
+
+        $scopeSet = new Set($scopes);
+        if ($scopeSet->count() > 1) {
+            $scopeSet->remove('delegate');
+            if ($scopeSet->count() > 1) {
+                throw new \Exception('Test 1 scope at a time.');
+            }
+            self::$scopesTestedWithDelegation->add(...$scopeSet);
+        } else {
+            if ($scopeSet->contains('delegate')) {
+                // this is the test with just 'delegate'.
+                self::$scopesTestedWithDelegation->add(...$scopeSet);
+            } else {
+                self::$scopesTestedWithoutDelegation->add(...$scopeSet);
+            }
+        }
     }
 }
