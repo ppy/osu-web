@@ -473,6 +473,16 @@ function locale_meta(string $locale): LocaleMeta
     return LocaleMeta::find($locale);
 }
 
+function prefix_strings(string $prefix, array $strings): array
+{
+    $ret = [];
+    foreach ($strings as $string) {
+        $ret[] = $prefix.$string;
+    }
+
+    return $ret;
+}
+
 function trim_unicode(?string $value)
 {
     return preg_replace('/(^\s+|\s+$)/u', '', $value);
