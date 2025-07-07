@@ -30,7 +30,9 @@ return [
         '_' => 'Kết quả đánh giá',
         'creator' => 'tác giả',
         'score' => 'Điểm',
+        'score_std' => '',
         'total_score' => 'tổng điểm',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'phiếu',
         'count' => ':count phiếu',
         'points' => ':count điểm',
+        'points_float' => '',
     ],
 
     'dates' => [

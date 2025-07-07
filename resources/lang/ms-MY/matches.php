@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner dengan :difference',
 
         'events' => [
-            'player-left' => ':user meninggalkan perlawanan',
-            'player-joined' => ':user menyertai perlawanan',
-            'player-kicked' => ':user dibuang dari perlawanan',
-            'match-created' => ':user mencipta perlawanan',
-            'match-disbanded' => 'perlawanan dibubarkan',
-            'host-changed' => ':user menjadi juruacara',
-
-            'player-left-no-user' => 'seorang pemain meninggalkan perlawanan',
-            'player-joined-no-user' => 'seorang pemain menyertai perlawanan',
-            'player-kicked-no-user' => 'seorang pemain dibuang dari perlawanan',
-            'match-created-no-user' => 'perlawanan dicipta',
-            'match-disbanded-no-user' => 'perlawanan dibubarkan',
-            'host-changed-no-user' => 'juruacara diubah',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Bergilir',
-            'team-vs' => 'LWN Pasukan',
-            'tag-team-vs' => 'LWN Bergilir',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => 'Markah Tertinggi',
             'accuracy' => 'Kejituan Tertinggi',

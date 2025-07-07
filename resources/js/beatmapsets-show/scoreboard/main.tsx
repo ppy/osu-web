@@ -9,7 +9,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
-import { switchNever } from 'utils/switch-never';
+import { SwitchError } from 'utils/switch-never';
 import Controller from './controller';
 import Mod from './mod';
 import { scoreboardTypes } from './scoreboard-type';
@@ -134,8 +134,7 @@ export default class Main extends React.Component<Props> {
         return this.renderSupporterOnlyMessage();
 
       default:
-        switchNever(this.controller.loadingState);
-        throw new Error('unsupported loading state');
+        throw new SwitchError(this.controller.loadingState);
     }
   }
 

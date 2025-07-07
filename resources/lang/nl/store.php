@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'Voeg toe aan winkelwagen',
         'notify' => 'Laat me weten wanneer het beschikbaar is!',
+        'out_of_stock' => '',
 
         'notification_success' => 'we zullen het je laten weten wanneer het weer op voorraad is. klik :link om te annuleren',
         'notification_remove_text' => 'hier',

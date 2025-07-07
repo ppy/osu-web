@@ -105,14 +105,14 @@ return [
             'delete' => [
                 'only_last_post' => 'Hanya hantaran terakhir boleh dipadam.',
                 'locked' => 'Hantaran pada tajuk terkunci tidak boleh dipadam.',
-                'no_forum_access' => 'Capaian ke forum yang diminta diperlukan.',
+                'no_forum_access' => 'Capaian ke forum pintaan diperlukan.',
                 'not_owner' => 'Hanya penghantar boleh memadam hantaran ini.',
             ],
 
             'edit' => [
                 'deleted' => 'Tidak boleh sunting hantaran yang dipadam.',
                 'locked' => 'Hantaran ini dikunci daripada disunting.',
-                'no_forum_access' => 'Capaian ke forum yang diminta diperlukan.',
+                'no_forum_access' => 'Capaian ke forum pintaan diperlukan.',
                 'not_owner' => 'Hanya penghantar boleh menyunting hantaran ini.',
                 'topic_locked' => 'Hantaran pada tajuk terkunci tidak boleh disunting.',
             ],
@@ -127,7 +127,7 @@ return [
             'reply' => [
                 'double_post' => 'Sila sunting hantaran sebelumnya daripada menghantar semula.',
                 'locked' => 'Tidak boleh membalas bebenang yang dikunci.',
-                'no_forum_access' => 'Capaian ke forum yang diminta diperlukan.',
+                'no_forum_access' => 'Capaian ke forum pintaan diperlukan.',
                 'no_permission' => 'Tidak diizinkan untuk membalas.',
 
                 'user' => [
@@ -138,13 +138,13 @@ return [
             ],
 
             'store' => [
-                'no_forum_access' => 'Capaian ke forum yang diminta diperlukan.',
+                'no_forum_access' => 'Capaian ke forum pintaan diperlukan.',
                 'no_permission' => 'Tidak diizinkan untuk memulakan tajuk baharu.',
                 'forum_closed' => 'Forum ini ditutup dan tidak boleh dibuat hantaran.',
             ],
 
             'vote' => [
-                'no_forum_access' => 'Capaian ke forum yang diminta diperlukan.',
+                'no_forum_access' => 'Capaian ke forum pintaan diperlukan.',
                 'over' => 'Tinjauan telah tamat dan tidak boleh diundi lagi.',
                 'play_more' => 'Anda perlu bermain lagi sebelum mengundi pada forum.',
                 'voted' => 'Pengubahan undian tidak dibenarkan.',
@@ -157,7 +157,7 @@ return [
             ],
 
             'watch' => [
-                'no_forum_access' => 'Capaian ke forum yang diminta diperlukan.',
+                'no_forum_access' => 'Capaian ke forum pintaan diperlukan.',
             ],
         ],
 

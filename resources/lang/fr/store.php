@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'Ajouter au panier',
         'notify' => 'Prévenez-moi quand cet article sera disponible !',
+        'out_of_stock' => '',
 
         'notification_success' => 'vous serez prévenu quand cet article sera de nouveau en stock. cliquez :link pour annuler',
         'notification_remove_text' => 'ici',

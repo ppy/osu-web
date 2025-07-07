@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner :difference pisteellä',
 
         'events' => [
-            'player-left' => ':user poistui pelistä',
-            'player-joined' => ':user liittyi peliin',
-            'player-kicked' => ':user potkittiin pelistä',
-            'match-created' => ':user loi pelin',
-            'match-disbanded' => 'peli lakkautettiin',
-            'host-changed' => ':user on nyt isäntä',
-
-            'player-left-no-user' => 'pelaaja poistui pelistä',
-            'player-joined-no-user' => 'pelaaja liittyi peliin',
-            'player-kicked-no-user' => 'pelaaja potkittiin pelistä',
-            'match-created-no-user' => 'peli luotiin',
-            'match-disbanded-no-user' => 'peli lakkautettiin',
-            'host-changed-no-user' => 'isäntä vaihtui',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Kaikki vastakkain',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Tiimi VS',
-            'tag-team-vs' => 'Tag Tiimi VS',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => 'Korkeimmat Pisteet',
             'accuracy' => 'Korkein tarkkuus',

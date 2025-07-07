@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => 'Odtwarzaj następny utwór automatycznie',
+        'autoplay' => 'Odtwórz następny utwór automatycznie',
     ],
 
     'defaults' => [
@@ -14,8 +14,8 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => 'zestaw beatmap',
-            'beatmapset_covers' => 'tła zestawów beatmap',
+            'beatmapset' => 'beatmapa',
+            'beatmapset_covers' => 'tła beatmap',
             'contest' => 'konkurs',
             'contests' => 'konkursy',
             'root' => 'konsola',
@@ -113,6 +113,7 @@ return [
             'copyright' => 'Prawa Autorskie (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Prywatność',
+            'rules' => '',
             'server_status' => 'Status serwera',
             'source_code' => 'Kod źródłowy',
             'terms' => 'Warunki świadczenia usług',
@@ -121,7 +122,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => 'Nieprawidłowy parametr żądania',
+            'error' => 'Nieprawidłowy parametr zapytania',
             'description' => '',
         ],
         '404' => [
@@ -141,7 +142,7 @@ return [
             'description' => "Przepraszamy, ale poszukiwana strona nie istnieje!",
         ],
         '422' => [
-            'error' => 'Nieprawidłowy parametr żądania',
+            'error' => 'Nieprawidłowy parametr zapytania',
             'description' => '',
         ],
         '429' => [
@@ -158,7 +159,7 @@ return [
         ],
         '503' => [
             'error' => 'Przerwa techniczna!',
-            'description' => "Przerwa techniczna zajmuje od 5 sekund do 10 minut. Jeżeli jesteśmy niedostępni na dłużej, sprawdź :link, aby dowiedzieć się więcej.",
+            'description' => "Przerwa techniczna zajmuje zwykle od 5 sekund do 10 minut. Jeżeli jesteśmy niedostępni na dłużej, sprawdź :link, aby dowiedzieć się więcej.",
             'link' => [
                 'text' => '',
                 'href' => '',
@@ -178,7 +179,7 @@ return [
             'username' => 'nazwa użytkownika',
 
             'error' => [
-                'email' => "Nazwa użytkownika bądź adres e-mail nie istnieją",
+                'email' => "Użytkownik o podanej nazwie lub adresie e-mail nie istnieje",
                 'password' => 'Nieprawidłowe hasło',
             ],
         ],
@@ -195,12 +196,12 @@ return [
             'account-edit' => 'Ustawienia',
             'follows' => 'Listy obserwowanych',
             'friends' => 'Znajomi',
-            'legacy_score_only_toggle' => 'Tryb lazer',
-            'legacy_score_only_toggle_tooltip' => 'Tryb Lazer pokazuje wyniki ustalone z lazera z nowym algorytmem punktacji',
+            'legacy_score_only_toggle' => 'Tryb „lazer”',
+            'legacy_score_only_toggle_tooltip' => 'Tryb „lazer” uwzględnia wyniki ustanowione w osu!lazer, które wykorzystują nowy algorytm punktacji',
             'logout' => 'Wyloguj się',
             'profile' => 'Mój profil',
-            'scoring_mode_toggle' => 'Klasyczny wynik',
-            'scoring_mode_toggle_tooltip' => 'Dostosuj wartość wyników, aby bardziej przypominała klasyczne, nielimitowane punktowanie',
+            'scoring_mode_toggle' => 'Klasyczna punktacja',
+            'scoring_mode_toggle_tooltip' => 'Dostosowuje punktację wyników, aby przyjmowały klasyczne, nieograniczone wartości',
             'team' => 'Mój zespół',
         ],
     ],

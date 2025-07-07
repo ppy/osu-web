@@ -8,26 +8,29 @@ return [
         'beatmap-deleted' => 'usunięta beatmapa',
         'failed' => 'PRZEGRANA',
         'header' => 'Mecz',
-        'in-progress' => '(mecz trwa)',
+        'in-progress' => '(mecz w trakcie)',
         'in_progress_spinner_label' => 'mecz w trakcie',
         'loading-events' => 'Ładowanie zdarzeń...',
         'winner' => ':team wygrywa',
         'winner_by' => ':winner różnicą :difference punktów',
 
         'events' => [
-            'player-left' => 'gracz :user wyszedł z meczu',
-            'player-joined' => 'gracz :user dołączył do meczu',
-            'player-kicked' => 'gracz :user został wyrzucony z meczu',
-            'match-created' => 'gracz :user stworzył mecz',
-            'match-disbanded' => 'mecz został rozwiązany ',
-            'host-changed' => 'gracz :user został hostem',
-
-            'player-left-no-user' => 'gracz opuścił mecz',
-            'player-joined-no-user' => 'gracz dołączył do meczu',
-            'player-kicked-no-user' => 'gracz został wyrzucony z meczu',
-            'match-created-no-user' => 'mecz został utworzony',
-            'match-disbanded-no-user' => 'mecz został zakończony',
-            'host-changed-no-user' => 'host został zmieniony',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => 'Najlepszy wynik',
             'accuracy' => 'Najwyższa celność',

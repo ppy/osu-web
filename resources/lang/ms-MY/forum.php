@@ -117,7 +117,7 @@ return [
 
             'placeholder' => [
                 'body' => 'Taip kandungan hantaran di sini',
-                'title' => 'Klik sini untuk menetapkan judul',
+                'title' => 'Klik sini untuk tetapkan judul',
             ],
         ],
 
@@ -169,7 +169,7 @@ return [
                 'restore_topic' => 'Tajuk dipulihkan',
                 'split_destination' => 'Hantaran pisah dipindahkan',
                 'split_source' => 'Pisahkan hantaran',
-                'topic_type' => 'Jenis tajuk ditetapkan',
+                'topic_type' => 'Tetapkan jenis tajuk',
                 'topic_type_changed' => 'Jenis tajuk diubah',
                 'unlock' => 'Tajuk dibuka kunci',
                 'unpin' => 'Tajuk dinyahsemat',
@@ -228,15 +228,15 @@ return [
             ],
 
             'poll' => [
-                'hide_results' => 'Sorok keputusan tinjauan.',
-                'hide_results_info' => 'Keputusan akan ditunjukkan hanya setelah tinjauan tamat.',
+                'hide_results' => 'Sorok hasil tinjauan.',
+                'hide_results_info' => 'Hasil akan ditunjukkan hanya setelah tinjauan tamat.',
                 'length' => 'Jalankan tinjauan selama',
                 'length_days_suffix' => 'hari',
                 'length_info' => 'Kosongkan untuk tinjauan tanpa tamat',
                 'max_options' => 'Pilihan setiap pengguna',
                 'max_options_info' => 'Ini jumlah pilihan bagi setiap pengguna ketika mengundi.',
                 'options' => 'Tetapan',
-                'options_info' => 'Letakkan setiap pilihan pada baris baru. Anda boleh masukkan',
+                'options_info' => 'Letakkan setiap pilihan pada baris baru. Anda boleh masukkan hingga 10 pilihan.',
                 'title' => 'Soalan',
                 'vote_change' => 'Benarkan undian semula.',
                 'vote_change_info' => 'Sekiranya diupayakan, pengguna boleh mengubah undian mereka.',
@@ -370,20 +370,20 @@ return [
 
             'poll' => [
                 'edit' => 'Sunting Tinjauan',
-                'edit_warning' => 'Keputusan semasa akan dipadam sekiranya tinjauan disunting!',
+                'edit_warning' => 'Hasil semasa akan dipadam sekiranya tinjauan disunting!',
                 'vote' => 'Undi',
 
                 'button' => [
                     'change_vote' => 'Ubah undian',
                     'edit' => 'Sunting tinjauan',
-                    'view_results' => 'Langkau ke keputusan',
+                    'view_results' => 'Langkau ke hasil',
                     'vote' => 'Undi',
                 ],
 
                 'detail' => [
                     'end_time' => 'Akhir tinjauan pada :time',
                     'ended' => 'Akhir tinjauan pada :time',
-                    'results_hidden' => 'Keputusan akan ditunjukkan pada akhir tinjauan.',
+                    'results_hidden' => 'Hasil akan ditunjukkan pada akhir tinjauan.',
                     'total' => 'Jumlah undian: :count',
                 ],
             ],

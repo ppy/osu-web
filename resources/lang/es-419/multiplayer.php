@@ -16,6 +16,8 @@ return [
         'map_count' => ':count_delimited mapa|:count_delimited mapas',
         'player_count' => ':count_delimited jugador|:count_delimited jugadores',
         'time_left' => 'quedan :time',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => 'La duración es demasiado larga.',

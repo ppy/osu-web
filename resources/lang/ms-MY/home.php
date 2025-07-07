@@ -27,13 +27,13 @@ return [
         'title' => 'cari',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'Lihat hasil carian runut artis sorotan lain',
         ],
         'beatmapset' => [
             'login_required' => 'Log masuk untuk mencari peta rentak',
             'more' => ':count lagi hasil carian peta rentak',
             'more_simple' => 'Lihat hasil carian peta rentak lain',
-            'title' => 'Beatmap',
+            'title' => 'Peta Rentak',
         ],
 
         'forum_post' => [
@@ -54,16 +54,16 @@ return [
 
         'mode' => [
             'all' => 'semua',
-            'artist_track' => '',
-            'beatmapset' => 'beatmap',
+            'artist_track' => 'runut artis sorotan',
+            'beatmapset' => 'peta rentak',
             'forum_post' => 'forum',
-            'team' => '',
+            'team' => 'pasukan',
             'user' => 'pemain',
             'wiki_page' => 'wiki',
         ],
 
         'team' => [
-            'more_simple' => '',
+            'more_simple' => 'Lihat hasil carian pasukan lain',
         ],
 
         'user' => [
@@ -84,7 +84,7 @@ return [
     'download' => [
         'action' => 'Muat turun osu!',
         'action_lazer' => 'Muat turun osu!(lazer)',
-        'action_lazer_description' => 'pengemaskinian besar seterusnya bagi osu!',
+        'action_lazer_description' => 'pengemaskinian besar seterusnya osu!',
         'action_lazer_info' => 'semak halaman ini untuk maklumat lanjut',
         'action_lazer_title' => 'cuba osu!(lazer)',
         'action_title' => 'muat turun osu!',
@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Peta Rentak Berkedudukan Baharu',
+            'daily_challenge' => '',
+            'new' => 'Peta Rentak Berpangkat Baharu',
             'popular' => 'Peta Rentak Sohor Kini',
             'by_user' => 'oleh :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'Muat turun osu!',

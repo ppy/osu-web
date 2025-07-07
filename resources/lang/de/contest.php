@@ -30,7 +30,9 @@ return [
         '_' => 'Jury-Ergebnisse',
         'creator' => 'Ersteller',
         'score' => 'Ergebnis',
+        'score_std' => '',
         'total_score' => 'Gesamtergebnis',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'Stimmen',
         'count' => ':count_delimited Stimme|:count_delimited Stimmen',
         'points' => ':count_delimited Punkt|:count_delimited Punkte',
+        'points_float' => '',
     ],
 
     'dates' => [

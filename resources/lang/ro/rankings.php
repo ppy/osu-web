@@ -13,6 +13,10 @@ return [
         'beatmap' => 'Dificultate',
         'top_10p' => 'Scor Top 10%',
         'top_50p' => 'Scor Top 50%',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
     ],
 
     'filter' => [

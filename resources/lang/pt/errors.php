@@ -11,7 +11,7 @@ return [
     'unknown' => 'Ocorreu um erro desconhecido.',
 
     'codes' => [
-        'http-401' => 'Por favor inicia sessão para proceder.',
+        'http-401' => 'Inicia sessão para proceder.',
         'http-403' => 'Acesso negado.',
         'http-404' => 'Não encontrado.',
         'http-429' => 'Demasiadas tentativas. Tenta novamente mais tarde.',

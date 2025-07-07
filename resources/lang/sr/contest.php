@@ -30,7 +30,9 @@ return [
         '_' => '',
         'creator' => 'аутор',
         'score' => 'Резултат',
+        'score_std' => '',
         'total_score' => 'укупан резултат',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'гласови',
         'count' => ':count_delimited глас|:count_delimited гласова',
         'points' => ':count_delimited поен|:count_delimited поени',
+        'points_float' => '',
     ],
 
     'dates' => [

@@ -27,12 +27,12 @@ return [
         'title' => '搜索',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => '查看更多精选艺术家曲目搜索结果',
         ],
         'beatmapset' => [
             'login_required' => '登录以搜索谱面',
             'more' => '搜索到 :count 张谱面',
-            'more_simple' => '查看更多搜索结果',
+            'more_simple' => '查看更多谱面搜索结果',
             'title' => '谱面',
         ],
 
@@ -40,7 +40,7 @@ return [
             'all' => '所有论坛',
             'link' => '在论坛中搜索',
             'login_required' => '登录以搜索论坛帖',
-            'more_simple' => '查看更多搜索结果',
+            'more_simple' => '查看更多论坛搜索结果',
             'title' => '论坛',
 
             'label' => [
@@ -54,29 +54,29 @@ return [
 
         'mode' => [
             'all' => '所有',
-            'artist_track' => '',
+            'artist_track' => '精选艺术家曲目',
             'beatmapset' => '谱面',
             'forum_post' => '论坛',
-            'team' => '',
+            'team' => '战队',
             'user' => '玩家',
             'wiki_page' => 'wiki',
         ],
 
         'team' => [
-            'more_simple' => '',
+            'more_simple' => '查看更多战队搜索结果',
         ],
 
         'user' => [
             'login_required' => '登录以搜索玩家',
             'more' => '搜索到 :count 个玩家',
-            'more_simple' => '查看更多搜索结果',
+            'more_simple' => '查看更多玩家搜索结果',
             'more_hidden' => '玩家搜索结果上限为 :max 个，请优化搜索条件以获取更精准结果。',
             'title' => '玩家',
         ],
 
         'wiki_page' => [
             'link' => '在 wiki 中搜索',
-            'more_simple' => '查看更多搜索结果',
+            'more_simple' => '查看更多维基搜索结果',
             'title' => 'Wiki',
         ],
     ],
@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => '新上架 (Ranked) 谱面',
             'popular' => '热门谱面',
             'by_user' => '作者：:user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => '下载 osu!',

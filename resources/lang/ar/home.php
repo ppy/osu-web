@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'خرائط Ranked جديدة',
             'popular' => 'خرائط شعبية',
             'by_user' => 'بواسطة :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'حَمِل osu!',

@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'הוסף לעגלה',
         'notify' => 'נא להודיע ​​לי כאשר המוצר זמין!',
+        'out_of_stock' => '',
 
         'notification_success' => 'אנחנו ניידע אותך כאשר יהיה לנו מלאי חדש. לחץ :link כדי לבטל',
         'notification_remove_text' => 'כאן',

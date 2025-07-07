@@ -80,7 +80,7 @@ return [
         'confirm_restore' => 'Czy na pewno chcesz przywrócić wątek?',
         'deleted' => 'usunięty wątek',
         'go_to_latest' => 'pokaż najnowszy post',
-        'go_to_unread' => 'zobacz pierwszy nieprzeczytany wpis',
+        'go_to_unread' => 'pokaż najstarszy nieprzeczytany post',
         'has_replied' => 'Twoja odpowiedź znajduje się w tym wątku',
         'in_forum' => 'forum: :forum',
         'latest_post' => ':when przez :user',
@@ -122,7 +122,7 @@ return [
         ],
 
         'jump' => [
-            'enter' => 'kliknij, aby przejść do specyficznego posta',
+            'enter' => 'kliknij, aby przejść do wybranego posta',
             'first' => 'przejdź do pierwszego posta',
             'last' => 'przejdź do ostatniego posta',
             'next' => 'pomiń następne 10 postów',
@@ -171,10 +171,10 @@ return [
                 'split_source' => 'Rozdzielono posty',
                 'topic_type' => 'Ustawiono typ wątku',
                 'topic_type_changed' => 'Zmieniono typ wątku',
-                'unlock' => 'Odblokowano wątek',
+                'unlock' => 'Otwarto wątek',
                 'unpin' => 'Odpięto wątek',
                 'user_lock' => 'Zamknięto własny wątek',
-                'user_unlock' => 'Odblokowano własny wątek',
+                'user_unlock' => 'Otwarto własny wątek',
             ],
         ],
 
@@ -254,75 +254,75 @@ return [
         ],
 
         'issue_tag_added' => [
-            'to_0' => 'Usuń tag "dodane"',
-            'to_0_done' => 'Usunięto tag "dodane"',
-            'to_1' => 'Dodaj tag "dodane"',
-            'to_1_done' => 'Dodano tag "dodane"',
+            'to_0' => 'Usuń tag „dodane”',
+            'to_0_done' => 'Usunięto tag „dodane”',
+            'to_1' => 'Dodaj tag „dodane”',
+            'to_1_done' => 'Dodano tag „dodane”',
         ],
 
         'issue_tag_assigned' => [
-            'to_0' => 'Usuń tag "przypisane"',
-            'to_0_done' => 'Usunięto tag "przypisane"',
-            'to_1' => 'Dodaj tag "przypisane"',
-            'to_1_done' => 'Dodano tag "przypisane"',
+            'to_0' => 'Usuń tag „przypisane”',
+            'to_0_done' => 'Usunięto tag „przypisane”',
+            'to_1' => 'Dodaj tag „przypisane”',
+            'to_1_done' => 'Dodano tag „przypisane”',
         ],
 
         'issue_tag_confirmed' => [
-            'to_0' => 'Usuń tag "potwierdzone"',
-            'to_0_done' => 'Usunięto tag "potwierdzone"',
-            'to_1' => 'Dodaj tag "potwierdzone"',
-            'to_1_done' => 'Dodano tag "potwierdzone"',
+            'to_0' => 'Usuń tag „potwierdzone”',
+            'to_0_done' => 'Usunięto tag „potwierdzone”',
+            'to_1' => 'Dodaj tag „potwierdzone”',
+            'to_1_done' => 'Dodano tag „potwierdzone”',
         ],
 
         'issue_tag_duplicate' => [
-            'to_0' => 'Usuń tag "duplikat"',
-            'to_0_done' => 'Usunięto tag "duplikat"',
-            'to_1' => 'Dodaj tag "duplikat"',
-            'to_1_done' => 'Dodano tag "duplikat"',
+            'to_0' => 'Usuń tag „duplikat”',
+            'to_0_done' => 'Usunięto tag „duplikat”',
+            'to_1' => 'Dodaj tag „duplikat”',
+            'to_1_done' => 'Dodano tag „duplikat”',
         ],
 
         'issue_tag_invalid' => [
-            'to_0' => 'Usuń tag "nieprawidłowe"',
-            'to_0_done' => 'Usunięto tag "nieprawidłowe"',
-            'to_1' => 'Dodaj tag "nieprawidłowe"',
-            'to_1_done' => 'Dodano tag "nieprawidłowe"',
+            'to_0' => 'Usuń tag „nieprawidłowe”',
+            'to_0_done' => 'Usunięto tag „nieprawidłowe”',
+            'to_1' => 'Dodaj tag „nieprawidłowe”',
+            'to_1_done' => 'Dodano tag „nieprawidłowe”',
         ],
 
         'issue_tag_resolved' => [
-            'to_0' => 'Usuń tag "rozwiązane"',
-            'to_0_done' => 'Usunięto tag "rozwiązane"',
-            'to_1' => 'Dodaj tag "rozwiązane"',
-            'to_1_done' => 'Dodano tag "rozwiązane"',
+            'to_0' => 'Usuń tag „rozwiązane”',
+            'to_0_done' => 'Usunięto tag „rozwiązane”',
+            'to_1' => 'Dodaj tag „rozwiązane”',
+            'to_1_done' => 'Dodano tag „rozwiązane”',
         ],
 
         'issue_tag_osulazer' => [
-            'to_0' => 'Usuń tag "osu!lazer"',
-            'to_0_done' => 'Usunięto tag "osu!lazer"',
-            'to_1' => 'Dodaj tag "osu!lazer"',
-            'to_1_done' => 'Dodano tag "osu!lazer"',
+            'to_0' => 'Usuń tag „osu!lazer”',
+            'to_0_done' => 'Usunięto tag „osu!lazer”',
+            'to_1' => 'Dodaj tag „osu!lazer”',
+            'to_1_done' => 'Dodano tag „osu!lazer”',
         ],
 
         'issue_tag_osustable' => [
-            'to_0' => 'Usuń tag "osu!stable"',
-            'to_0_done' => 'Usunięto tag "osu!stable"',
-            'to_1' => 'Dodaj tag "osu!stable"',
-            'to_1_done' => 'Dodano tag "osu!stable"',
+            'to_0' => 'Usuń tag „osu!stable”',
+            'to_0_done' => 'Usunięto tag „osu!stable”',
+            'to_1' => 'Dodaj tag „osu!stable”',
+            'to_1_done' => 'Dodano tag „osu!stable”',
         ],
 
         'issue_tag_osuweb' => [
-            'to_0' => 'Usuń tag "osu!web"',
-            'to_0_done' => 'Usunięto tag "osu!web"',
-            'to_1' => 'Dodaj tag "osu!web"',
-            'to_1_done' => 'Dodano tag "osu!web"',
+            'to_0' => 'Usuń tag „strona osu!”',
+            'to_0_done' => 'Usunięto tag „strona osu!”',
+            'to_1' => 'Dodaj tag „strona osu!”',
+            'to_1_done' => 'Dodano tag „strona osu!”',
         ],
 
         'lock' => [
             'is_locked' => 'Ten wątek został zamknięty i nie możesz w nim odpowiadać',
             'to_0' => 'Otwórz wątek',
-            'to_0_confirm' => 'Odblokować wątek?',
+            'to_0_confirm' => 'Czy na pewno chcesz otworzyć wątek?',
             'to_0_done' => 'Wątek został otworzony',
             'to_1' => 'Zamknij wątek',
-            'to_1_confirm' => 'Zablokować wątek?',
+            'to_1_confirm' => 'Czy na pewno chcesz zamknąć wątek?',
             'to_1_done' => 'Wątek został zamknięty',
         ],
 
@@ -331,14 +331,14 @@ return [
         ],
 
         'moderate_pin' => [
-            'to_0' => 'Odepnij ten wątek',
-            'to_0_confirm' => 'Odpiąć wątek?',
+            'to_0' => 'Odepnij wątek',
+            'to_0_confirm' => 'Czy na pewno chcesz odpiąć wątek?',
             'to_0_done' => 'Wątek został odpięty',
-            'to_1' => 'Przypnij ten wątek',
-            'to_1_confirm' => 'Przypiąć wątek?',
+            'to_1' => 'Przypnij wątek',
+            'to_1_confirm' => 'Czy na pewno chcesz przypiąć wątek?',
             'to_1_done' => 'Wątek został przypięty',
-            'to_2' => 'Przypnij ten wątek i oznacz jako ogłoszenie',
-            'to_2_confirm' => 'Przypiąć wątek i oznaczyć go jako ogłoszenie?',
+            'to_2' => 'Przypnij wątek i oznacz jako ogłoszenie',
+            'to_2_confirm' => 'Czy na pewno chcesz przypiąć wątek i oznaczyć go jako ogłoszenie?',
             'to_2_done' => 'Wątek został przypięty i oznaczony jako ogłoszenie',
         ],
 
@@ -356,14 +356,14 @@ return [
                 'do' => 'Nagłośnij tę prośbę',
 
                 'info' => [
-                    '_' => 'To jest :feature_request. Na prośby o funkcję mogą głosować tylko :supporters.',
-                    'feature_request' => 'prośba o funkcję',
-                    'supporters' => 'donatorzy',
+                    '_' => 'Ten wątek jest :feature_request - mogą na nie głosować wyłącznie :supporters.',
+                    'feature_request' => 'prośbą o nową funkcjonalność',
+                    'supporters' => 'donatorzy osu!',
                 ],
 
                 'user' => [
                     'count' => '{0} 0 głosów|{1} :count_delimited głos|[2,4] :count_delimited głosy|{5,*} :count_delimited głosów',
-                    'current' => 'Pozostało ci :votes głosów.',
+                    'current' => 'Pozostało ci :votes.',
                     'not_enough' => "Nie posiadasz żadnych głosów",
                 ],
             ],

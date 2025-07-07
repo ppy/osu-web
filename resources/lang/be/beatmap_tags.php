@@ -5,6 +5,6 @@
 
 return [
     'update' => [
-        'invalid_ruleset' => '',
+        'invalid_ruleset' => 'Гэты тэг недапушчальны для гэтай карты.',
     ],
 ];

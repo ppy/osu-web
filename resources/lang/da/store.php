@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'Lig i Indkøbskurven',
         'notify' => 'Giv mig besked, når varen er tilgængelig igen!',
+        'out_of_stock' => '',
 
         'notification_success' => 'du vil modtage en besked når varen er på lager igen. klik :link for at annullere',
         'notification_remove_text' => 'here',

@@ -5,9 +5,19 @@
   .default-border-radius();
   .default-box-shadow();
 
+  --padding-h: 20px;
+  --padding-left-desktop: var(--padding-h);
+  --shapes-display: none;
+  --shapes-size: 0;
   background-color: @osu-colour-b2;
   display: grid;
-  grid-template-columns: 10px 1fr;
+  grid-template-columns: var(--shapes-size) 1fr;
+
+  &--team {
+    --padding-left-desktop: 0;
+    --shapes-display: block;
+    --shapes-size: 10px;
+  }
 
   @media @desktop {
     grid-template-columns: subgrid;
@@ -27,6 +37,7 @@
   &__shapes {
     width: auto; // follows grid
     background-size: cover;
+    display: var(--shapes-display);
 
     border-radius: @border-radius-base 0 0 @border-radius-base;
 
@@ -43,13 +54,13 @@
     // for mods and rank element (in mobile), using order and grid-column combination
     grid-template-columns: 1fr auto;
     gap: 5px;
+    grid-column: 2 / -1;
 
     @media @desktop {
-      padding-left: 0;
-      padding-right: 20px;
+      padding-left: var(--padding-left-desktop);
+      padding-right: var(--padding-h);
       display: grid;
       grid-template-columns: subgrid;
-      grid-column: 2 / -1;
       gap: 0; // TODO: using "0 20px" here causes overflow in stats area in firefox
       align-items: center;
     }
@@ -65,6 +76,9 @@
     }
 
     &--mods {
+      // TODO: replace with proper compact mod display
+      max-width: 144px; // 4x31px (4x mod size) + 10px (padding both sides)
+      flex-wrap: wrap;
       order: 1;
       grid-column: 1 / 2;
       @media @desktop {
@@ -109,6 +123,7 @@
   }
 
   &__username {
+    .ellipsis-overflow();
     font-weight: 700;
     font-size: 18px;
   }

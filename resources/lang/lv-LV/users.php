@@ -161,8 +161,8 @@ return [
 
         'options' => [
             'cheating' => 'Netīra spēle / Krāpšanās',
-            'inappropriate_chat' => '',
-            'insults' => 'Mani / citus apvainoja',
+            'inappropriate_chat' => 'Nepiedienīga uzvedība tērzētavā',
+            'insults' => 'Mani / Citus aizvainoja',
             'multiple_accounts' => 'Izmanto vairākus kontus',
             'nonsense' => 'Bezsakars',
             'other' => 'Cits (norādīt zemāk)',
@@ -177,7 +177,7 @@ return [
     ],
     'show' => [
         'age' => ':age gadus vecs',
-        'change_avatar' => 'mainīt profila attēlu!',
+        'change_avatar' => 'mainīt sava profila attēlu!',
         'first_members' => 'Šeit kopš paša sākuma',
         'is_developer' => 'osu!izstrādātājs',
         'is_supporter' => 'osu!atbalstītājs',
@@ -481,11 +481,12 @@ return [
             'highest' => 'Augstākais novietojums: :rank :date',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Kopējais punktu skaits',
         ],
         'stats' => [
             'hit_accuracy' => 'Trāpījuma Precizitāte',
+            'hits_per_play' => '',
             'level' => 'Līmenis :level',
             'level_progress' => 'progress uz nākamo līmeni',
             'maximum_combo' => 'Maksimālā Kombinācija',

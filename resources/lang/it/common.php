@@ -50,7 +50,7 @@ return [
         'save' => 'Salva',
         'saving' => 'Salvataggio in corso...',
         'search' => 'Cerca',
-        'see_more' => 'mostra altro',
+        'see_more' => 'vedi altro',
         'show' => 'mostra',
         'show_deleted' => 'Mostra eliminati',
         'show_less' => 'mostra meno',
@@ -94,6 +94,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => '',
+        ],
+        'year' => [
+            'php' => '',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

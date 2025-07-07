@@ -28,7 +28,7 @@ return [
         'info_page' => 'Halaman Maklumat',
         'login_to_register' => 'Sila :login untuk lihat butiran pendaftaran!',
         'not_yet_entered' => 'Anda tidak didaftar untuk kejohanan ini.',
-        'rank_too_low' => 'Maaf, anda tidak memenuhi kelayakan kedudukan bagi kejohanan ini!',
+        'rank_too_low' => 'Maaf, anda tidak memenuhi kelayakan pangkat bagi kejohanan ini!',
         'registration_ends' => 'Pendaftaran tutup pada :date',
 
         'button' => [
@@ -43,7 +43,7 @@ return [
 
         'state' => [
             'before_registration' => 'Pendaftaran kejohanan ini belum dibuka.',
-            'ended' => 'Kejohanan telah tamat. Semak halaman maklumat untuk keputusan.',
+            'ended' => 'Kejohanan telah tamat. Semak halaman maklumat untuk hasil.',
             'registration_closed' => 'Pendaftaran kejohanan ini telah tutup. Semak halaman maklumat untuk pengemaskinian terkini.',
             'running' => 'Kejohanan kini berjalan. Semak halaman maklumat untuk butiran lanjut.',
         ],

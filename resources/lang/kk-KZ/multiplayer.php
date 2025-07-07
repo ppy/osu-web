@@ -16,6 +16,8 @@ return [
         'map_count' => ':count_delimited карта',
         'player_count' => ':count_delimited ойыншы',
         'time_left' => ':time қалды',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => '',

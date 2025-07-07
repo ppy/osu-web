@@ -38,9 +38,9 @@ return [
     ],
 
     'teams' => [
-        'relevance' => '',
-        'name' => '',
-        'short-name' => '',
+        'relevance' => '연관성',
+        'name' => '이름',
+        'short-name' => '짧은 이름',
     ],
 
     'users' => [

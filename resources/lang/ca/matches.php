@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner per :difference',
 
         'events' => [
-            'player-left' => ':user ha abandonat la partida',
-            'player-joined' => ':user s\'ha unit',
-            'player-kicked' => ':user ha estat expulsat',
-            'match-created' => ':user ha creat la partida',
-            'match-disbanded' => 'la partida ha estat dissolta',
-            'host-changed' => ':user és ara l\'amfitrió',
-
-            'player-left-no-user' => 'un jugador ha abandonat la partida',
-            'player-joined-no-user' => 'un jugador s\'ha unit',
-            'player-kicked-no-user' => 'un jugador ha estat expulsat',
-            'match-created-no-user' => 's\'ha creat la partida',
-            'match-disbanded-no-user' => 'la partida s\'ha dissolt',
-            'host-changed-no-user' => 'l\'amfitrió ha canviat',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Cara a cara',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Etiqueta de l\'Equip VS',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => 'Puntuació més alta',
             'accuracy' => 'Precisió més alta',

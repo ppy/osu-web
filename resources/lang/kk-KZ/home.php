@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => '',
             'popular' => '',
             'by_user' => '',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => '',

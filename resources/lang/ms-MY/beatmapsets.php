@@ -41,21 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => 'Pencalon percubaan tidak boleh mencalonkan lebih daripada satu ruleset.',
-        'full_nomination_required' => 'Anda mesti menjadi pencalon penuh untuk melakukan pencalonan terakhir sesebuah ruleset.',
+        'bng_limited_too_many_rulesets' => 'Pencalon percubaan tidak boleh mencalonkan lebih daripada satu cara main.',
+        'full_nomination_required' => 'Anda mesti menjadi pencalon penuh untuk melakukan pencalonan terakhir sesebuah cara main.',
         'hybrid_requires_modes' => 'Peta rentak kacukan memerlukan anda untuk memilih sekurang-kurangnya satu mod permainan untuk dicalonkan.',
         'incorrect_mode' => 'Anda tidak diizinkan mencalonkan untuk mod: :mode',
         'invalid_limited_nomination' => 'Peta rentak ini mempunyai pencalonan tidak sah dan tidak boleh dilayakkan dalam keadaan ini.',
-        'invalid_ruleset' => 'Pencalonan ini mempunyai ruleset tidak sah.',
+        'invalid_ruleset' => 'Pencalonan ini mempunyai cara main tidak sah.',
         'too_many' => 'Keperluan pencalonan telah dipenuhi.',
-        'too_many_non_main_ruleset' => 'Keperluan pencalonan ruleset bukan utama telah dipenuhi.',
+        'too_many_non_main_ruleset' => 'Keperluan pencalonan cara main bukan utama telah dipenuhi.',
 
         'dialog' => [
             'confirmation' => 'Adakah anda pasti ingin mencalonkan peta rentak ini?',
-            'different_nominator_warning' => 'Pelayakan peta rentak ini dengan pencalon berbeza akan mengeset semula giliran kelayakkannya.',
+            'different_nominator_warning' => 'Pelayakan peta rentak ini dengan pencalon berbeza akan menetap semula giliran kelayakkannya.',
             'header' => 'Calonkan Peta Rentak',
             'hybrid_warning' => 'catatan: anda hanya boleh mencalon sekali jadi sila pastikan anda mencalon bagi semua mod mainan yang dikehendaki',
-            'current_main_ruleset' => 'Ruleset utama semasa: :ruleset',
+            'current_main_ruleset' => 'Cara main utama semasa: :ruleset',
             'which_modes' => 'Mod yang mana dicalonkan?',
         ],
     ],
@@ -103,7 +103,7 @@ return [
             'approved' => 'lulus :timeago',
             'loved' => 'digemari :timeago',
             'qualified' => 'dilayakkan :timeago',
-            'ranked' => 'berkedudukan :timeago',
+            'ranked' => 'berpangkat :timeago',
             'submitted' => 'diserahkan :timeago',
             'updated' => 'terakhir dikemas kini :timeago',
         ],
@@ -113,7 +113,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Gembarkan peta ini jika dinikmati untuk membantu peta ini maju ke taraf <strong>Berkedudukan</strong>.',
+            'action' => 'Gembarkan peta ini jika dinikmati untuk membantu peta ini maju ke taraf <strong>Berpangkat</strong>.',
 
             'current' => [
                 '_' => 'Peta ini kini :status.',
@@ -154,25 +154,25 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => 'Peta rentak ini mengandungi kandungan tidak senonoh, menyinggung atau tidak sesuai untuk pemain tertentu. Adakah anda kekal ingin melihatnya?',
+            'details' => 'Peta rentak ini mengandungi kandungan tidak senonoh, menyinggung atau tidak sesuai untuk pemain tertentu. Adakah anda masih ingin melihatnya?',
             'title' => 'Kandungan Tidak Senonoh',
 
             'buttons' => [
                 'disable' => 'Lumpuhkan amaran',
-                'listing' => 'Senarai Beatmap',
+                'listing' => 'Senarai peta rentak',
                 'show' => 'Tunjuk',
             ],
         ],
 
         'scoreboard' => [
             'achieved' => 'dicapai :when',
-            'country' => 'Kedudukan Kebangsaan',
-            'error' => 'Kedudukan gagal dimuat',
-            'friend' => 'Kedudukan Kawan',
-            'global' => 'Kedudukan Dunia',
+            'country' => 'Pangkat Kebangsaan',
+            'error' => 'Pangkat gagal dimuat',
+            'friend' => 'Pangkat Kawan',
+            'global' => 'Pangkat Dunia',
             'supporter-link' => 'Klik di <a href=":link">sini</a> untuk lihat semua ciri menarik yang anda dapat!',
             'supporter-only' => 'Anda perlu menjadi osu!supporter untuk mencapai kedudukan penyesuai tertentu, kebangsaan atau kawan!',
-            'team' => 'Kedudukan Pasukan',
+            'team' => 'Pangkat Pasukan',
             'title' => 'Papan Markah',
 
             'headers' => [
@@ -183,7 +183,7 @@ return [
                 'pin' => 'Semat',
                 'player' => 'Pemain',
                 'pp' => '',
-                'rank' => 'Kedudukan',
+                'rank' => 'Pangkat',
                 'score' => 'Markah',
                 'score_total' => 'Jumlah Markah',
                 'time' => 'Masa',
@@ -195,7 +195,7 @@ return [
                 'global' => 'Tiada markah lagi. Mungkin anda patut mencapai yang baharu!',
                 'loading' => 'Memuatkan markah...',
                 'team' => 'Ahli pasukan anda belum mencapai apa-apa markah pada peta ini lagi!',
-                'unranked' => 'Peta rentak tanpa kedudukan.',
+                'unranked' => 'Peta rentak tanpa pangkat.',
             ],
             'score' => [
                 'first' => 'Sedang Mendahului',
@@ -226,7 +226,7 @@ return [
         ],
 
         'status' => [
-            'ranked' => 'Berkedudukan',
+            'ranked' => 'Berpangkat',
             'approved' => 'Lulus',
             'loved' => 'Kegemaran',
             'qualified' => 'Layak',

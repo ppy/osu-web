@@ -81,7 +81,7 @@ return [
             'testflight' => 'testflight',
         ],
         'legacy_matches_controller' => [
-            '_' => '',
+            '_' => 'Spiele',
         ],
         'legal_controller' => [
             '_' => 'informationen',
@@ -127,6 +127,11 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'Wiki',
+        ],
+    ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '',
         ],
     ],
     'passport' => [

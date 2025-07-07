@@ -30,7 +30,9 @@ return [
         '_' => 'Hasil penjurian',
         'creator' => 'pembuat',
         'score' => 'Skor',
+        'score_std' => '',
         'total_score' => 'jumlah skor',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'suara',
         'count' => ':count_delimited suara|:count_delimited suara',
         'points' => ':count_delimited poin|:count_delimited poin',
+        'points_float' => '',
     ],
 
     'dates' => [

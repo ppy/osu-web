@@ -161,7 +161,7 @@ return [
 
         'options' => [
             'cheating' => 'Нечестна игра / Измама',
-            'inappropriate_chat' => '',
+            'inappropriate_chat' => 'Неприлично поведение в чат',
             'insults' => 'Обижда мен / друг',
             'multiple_accounts' => 'Използва няколко профила',
             'nonsense' => 'Безсмислици',
@@ -182,7 +182,7 @@ return [
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Потребител от :date',
-        'lastvisit' => 'Последно видян :date',
+        'lastvisit' => 'Последно видяни на :date',
         'lastvisit_online' => 'В момента онлайн',
         'missingtext' => 'Вероятно сте допуснали правописна грешка! (или потребителят е бил баннат)',
         'origin_country' => 'От :country',
@@ -263,7 +263,7 @@ return [
                 'title' => 'Постижения',
             ],
             'beatmaps' => [
-                'by_artist' => '- :artist',
+                'by_artist' => 'от :artist',
                 'title' => 'Бийтмапове',
 
                 'favourite' => [
@@ -363,7 +363,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Основано на колко е допринесъл потребителят за редактиране на бийтмапове. Вижте :link за повече информация.',
+                    '_' => 'Въз основа на това колко този потребител е помогнал с редактирането на бийтмапове. Вижте :link за повече информация.',
                     'link' => 'тази страница',
                 ],
             ],
@@ -481,11 +481,12 @@ return [
             'highest' => 'Най-висок ранг: :rank на :date',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'Топ :value',
+            'total_score' => 'Общ резултат',
         ],
         'stats' => [
             'hit_accuracy' => 'Прецизност на ударите',
+            'hits_per_play' => '',
             'level' => 'Ниво :level',
             'level_progress' => 'Прогрес до следващо ниво',
             'maximum_combo' => 'Максимално комбо',

@@ -132,16 +132,16 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => ':attribute змяшчае недапушчальныя сімвалы.',
+        'used' => ':attribute ўжо занята.',
+        'word_not_allowed' => 'Такое :attribute забаронена.',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'default_ruleset_id' => 'Асноўны рэжым гульні',
+            'is_open' => 'Падача заявак',
+            'name' => 'Назва',
+            'short_name' => 'Кароткая назва',
+            'url' => 'URL',
         ],
     ],
 
@@ -190,7 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Нельга скардзіцца на ранкаваныя бітмапы',
         'not_in_channel' => 'Вы няма ў гэтым канале.',
-        'in_team' => '',
+        'in_team' => 'Вы з\'яўляецеся часткай каманды.',
         'reason_not_valid' => ':reason не падыходзіць для дадзенага тыпу дакладу.',
         'self' => "Вы не можаце паскардзіцца на самога сябе!",
     ],

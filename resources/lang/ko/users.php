@@ -487,6 +487,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => '정확도',
+            'hits_per_play' => '',
             'level' => '레벨 :level',
             'level_progress' => '다음 레벨까지의 진척도',
             'maximum_combo' => '최대 콤보',

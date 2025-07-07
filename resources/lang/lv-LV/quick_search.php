@@ -5,11 +5,11 @@
 
 return [
     'mode' => [
-        'artist_track' => '',
+        'artist_track' => 'Iemīļoto Mākslinieku Dziesmas',
         'beatmapset' => 'Bītmapes',
         'forum_post' => 'Forums',
         'other' => 'Cits',
-        'team' => '',
+        'team' => 'Komanda',
         'user' => 'Spēlētājs',
         'wiki_page' => 'Wiki',
     ],

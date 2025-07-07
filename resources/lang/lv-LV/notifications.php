@@ -20,7 +20,7 @@ return [
         'channel' => 'čats',
         'forum_topic' => 'forums',
         'news_post' => 'jaunumi',
-        'team' => '',
+        'team' => 'komanda',
         'user' => 'profils',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'čats',
         'forum_topic' => 'forums',
         'news_post' => 'jaunumi',
-        'team' => '',
+        'team' => 'komanda',
         'user' => 'profils',
     ],
 
@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => 'Jaunas komandas ziņas',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username saka ":title"',
+                    'channel_team_compact' => ':username saka ":title"',
+                    'channel_team_group' => ':username saka ":title"',
                 ],
             ],
         ],
@@ -173,17 +173,17 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Komandas pievienošanās pieprasījums',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
+                'team_application_accept' => "Tu tagad esi daļa no komandas :title",
+                'team_application_accept_compact' => "Tu tagad esi daļa no komandas :title",
 
-                'team_application_group' => '',
+                'team_application_group' => 'Komandas pievienošanās pieprasījuma atjaunojumi',
 
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_reject' => 'Tavs pieprasījums pievienoties komandai :title ir noraidīts',
+                'team_application_reject_compact' => 'Tavs pieprasījums pievienoties komandai :title ir noraidīts',
+                'team_application_store' => ':title pieprasīja pievienoties tavai komandai',
+                'team_application_store_compact' => ':title pieprasīja pievienoties tavai komandai',
             ],
         ],
 
@@ -245,13 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => 'Ir jauns paziņojums ":name"',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => 'Tu saņēmi jaunu ziņu no :username',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'Ir jauna ziņa komandā ":name"',
             ],
         ],
 
@@ -275,9 +275,9 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
-                'team_application_store' => '',
+                'team_application_accept' => "Tu tagad esi komandas :title dalībnieks",
+                'team_application_reject' => 'Tavs pieprasījums pievienoties komandai :title ir ticis noliegts',
+                'team_application_store' => ':title pievienojās tavai komandai',
             ],
         ],
 

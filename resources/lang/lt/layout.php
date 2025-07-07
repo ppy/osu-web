@@ -113,6 +113,7 @@ return [
             'copyright' => 'Autorinės teisės (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Privatumas',
+            'rules' => '',
             'server_status' => 'Serverio būsena',
             'source_code' => 'Pirminis Kodas',
             'terms' => 'Sąlygos',

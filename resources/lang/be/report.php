@@ -25,8 +25,8 @@ return [
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Паскардзіцца',
+        'title' => 'Паскардзіцца на паведамленне :username?',
     ],
 
     'scores' => [
@@ -35,8 +35,8 @@ return [
     ],
 
     'team' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Паскардзіцца на каманду',
+        'title' => 'Паскардзіцца на каманду :username?',
     ],
 
     'user' => [

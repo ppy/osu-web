@@ -44,7 +44,7 @@ return [
     ],
 
     'ogp' => [
-        'title' => '',
+        'title' => 'σχόλιο από :user',
     ],
 
     'placeholder' => [

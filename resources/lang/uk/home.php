@@ -27,7 +27,7 @@ return [
         'title' => 'Пошук',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'Переглянути додаткові результати пошуку пісень обраних виконавців',
         ],
         'beatmapset' => [
             'login_required' => 'Увійдіть для пошуку карт',
@@ -54,16 +54,16 @@ return [
 
         'mode' => [
             'all' => 'всі',
-            'artist_track' => '',
+            'artist_track' => 'пісні обраних виконавців',
             'beatmapset' => 'бітмапи',
             'forum_post' => 'форум',
-            'team' => '',
+            'team' => 'команди',
             'user' => 'гравці',
             'wiki_page' => 'вікі',
         ],
 
         'team' => [
-            'more_simple' => '',
+            'more_simple' => 'Переглянути інші результати пошуку команд',
         ],
 
         'user' => [
@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Нові рейтингові мапи',
             'popular' => 'Популярні мапи',
             'by_user' => 'від :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'Завантажити osu!',

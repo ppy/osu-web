@@ -5,11 +5,11 @@
 
 return [
     'mode' => [
-        'artist_track' => '',
+        'artist_track' => 'Melodie Artist Oficial',
         'beatmapset' => 'Beatmap',
         'forum_post' => 'Forum',
         'other' => 'Altele',
-        'team' => '',
+        'team' => 'Echipă',
         'user' => 'Jucător',
         'wiki_page' => 'Wiki',
     ],

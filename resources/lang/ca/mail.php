@@ -5,7 +5,7 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => 'Et fem saber que hi ha hagut una actualització al beatmap ":title" des de la teva última visita!',
+        'new' => 'Et fem saber que hi ha hagut una actualització al mapa «:title» des de la teva última visita.',
         'subject' => 'Nova actualització al mapa ":title"',
         'unwatch' => 'Si ja no vols seguir aquest mapa, pots clicar a l\'enllaç "Deixa de seguir" que es troba a la pàgina de sobre, o bé des de la pàgina de seguiment de moding: ',
         'visit' => 'Visita la pàgina de discussió aquí:',

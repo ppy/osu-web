@@ -9,3 +9,12 @@
 export function switchNever(_never: never) {
   // just exist.
 }
+
+/**
+ * Error exception class for exhaustive check in switch statements by trying to assign the predicate to never.
+ */
+export class SwitchError extends Error {
+  constructor(item: never) {
+    super(`unhandled switch value: ${JSON.stringify(item as unknown)}`);
+  }
+}

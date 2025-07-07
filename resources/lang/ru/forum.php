@@ -81,7 +81,7 @@ return [
         'deleted' => 'удалённая тема',
         'go_to_latest' => 'перейти к последнему ответу',
         'go_to_unread' => 'перейти к первому непрочитанному ответу',
-        'has_replied' => 'Вы отвечали на эту тему',
+        'has_replied' => 'Вы отвечали в этой теме',
         'in_forum' => 'в :forum',
         'latest_post' => ':when от :user',
         'latest_reply_by' => 'последний ответ от :user',

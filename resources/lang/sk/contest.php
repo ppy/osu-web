@@ -30,7 +30,9 @@ return [
         '_' => '',
         'creator' => '',
         'score' => '',
+        'score_std' => '',
         'total_score' => '',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'hlasy',
         'count' => ':count hlas|:count hlasov',
         'points' => ':count bod|:count body',
+        'points_float' => '',
     ],
 
     'dates' => [

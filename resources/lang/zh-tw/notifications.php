@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => '新的團隊訊息',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username 説 ":title"',
+                    'channel_team_compact' => ':username 説 ":title"',
+                    'channel_team_group' => ':username 説 ":title"',
                 ],
             ],
         ],
@@ -178,12 +178,12 @@ return [
                 'team_application_accept' => "你現在是 :title 團隊的成員了",
                 'team_application_accept_compact' => "你現在是 :title 團隊的成員了",
 
-                'team_application_group' => '',
+                'team_application_group' => '隊伍邀請紀錄',
 
                 'team_application_reject' => '你加入 :title 團隊的請求已被拒絕',
                 'team_application_reject_compact' => '你加入 :title 團隊的請求已被拒絕',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_store' => ':title 想要加入你的團隊',
+                'team_application_store_compact' => ':title 想要加入你的團隊',
             ],
         ],
 
@@ -245,13 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => '「:name」裡有新的公告',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => '你已收到來自 :username 的訊息',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => '有一個來自隊伍 「:name」的訊息',
             ],
         ],
 
@@ -277,7 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "你現在是 :title 團隊的成員了",
                 'team_application_reject' => '你加入 :title 團隊的請求已被拒絕',
-                'team_application_store' => '',
+                'team_application_store' => ':title 請求加入你的團隊',
             ],
         ],
 

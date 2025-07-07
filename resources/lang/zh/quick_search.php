@@ -5,11 +5,11 @@
 
 return [
     'mode' => [
-        'artist_track' => '',
+        'artist_track' => '精选艺术家曲目',
         'beatmapset' => '谱面',
         'forum_post' => '论坛',
         'other' => '其他',
-        'team' => '',
+        'team' => '战队',
         'user' => '玩家',
         'wiki_page' => '维基',
     ],

@@ -30,7 +30,9 @@ return [
         '_' => 'ผลการตัดสิน',
         'creator' => 'ผู้สร้าง',
         'score' => 'คะแนน',
+        'score_std' => '',
         'total_score' => 'คะแนนรวมทั้งหมด',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'โหวต',
         'count' => ':count_delimited โหวต|:count_delimited โหวตทั้งหมด',
         'points' => ':count_delimited แต้ม|:count_delimited แต้มทั้งหมด',
+        'points_float' => '',
     ],
 
     'dates' => [

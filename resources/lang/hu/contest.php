@@ -30,7 +30,9 @@ return [
         '_' => 'Eredmények elbírálása',
         'creator' => 'készítő',
         'score' => 'Pontszám',
+        'score_std' => '',
         'total_score' => 'összpontszám',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'szavazatok',
         'count' => ':count szavazat|:count szavazatok',
         'points' => ':count pont|:count pontok',
+        'points_float' => '',
     ],
 
     'dates' => [

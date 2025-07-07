@@ -14,8 +14,8 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => 'peta rentak',
-            'beatmapset_covers' => 'kulit peta rentak',
+            'beatmapset' => 'peranggu peta rentak',
+            'beatmapset_covers' => 'rupa peranggu peta rentak',
             'contest' => 'peraduan',
             'contests' => 'peraduan',
             'root' => 'konsol',
@@ -85,7 +85,7 @@ return [
             'team' => 'pasukan',
         ],
         'rankings' => [
-            '_' => 'kedudukan',
+            '_' => 'pangkat',
         ],
         'store' => [
             '_' => 'kedai',
@@ -113,6 +113,7 @@ return [
             'copyright' => 'Hak Cipta (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Kebersendirian',
+            'rules' => '',
             'server_status' => 'Taraf Pelayan',
             'source_code' => 'Kod Sumber',
             'terms' => 'Syarat',
@@ -126,7 +127,7 @@ return [
         ],
         '404' => [
             'error' => 'Halaman Tiada',
-            'description' => "Maaf tetapi halaman permintaan tiada di sini!",
+            'description' => "Maaf tetapi halaman pintaan tiada di sini!",
         ],
         '403' => [
             'error' => "Anda sepatutnya tidak berada di sini.",
@@ -138,7 +139,7 @@ return [
         ],
         '405' => [
             'error' => 'Halaman Tiada',
-            'description' => "Maaf tetapi halaman permintaan tiada di sini!",
+            'description' => "Maaf tetapi halaman pintaan tiada di sini!",
         ],
         '422' => [
             'error' => 'Parameter permintaan tidak sah',

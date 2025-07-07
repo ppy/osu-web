@@ -6,11 +6,11 @@
 return [
     'show' => [
         'fallback_translation' => 'A página solicitada ainda não foi traduzida para a língua selecionada (:language). A exibir versão em inglês.',
-        'incomplete_or_outdated' => 'O conteúdo nesta página está incompleto ou desatualizado. Se és capaz de ajudar, por favor considera atualizar o artigo!',
+        'incomplete_or_outdated' => 'O conteúdo nesta página está incompleto ou desatualizado. Se és capaz de ajudar, considera atualizar o artigo!',
         'missing' => 'A página requisitada ":keyword" não pôde ser encontrada.',
         'missing_title' => 'Não encontrada',
         'missing_translation' => 'A página solicitada não pôde ser encontrada para a língua selecionada.',
-        'needs_cleanup_or_rewrite' => 'Esta página não cumpre os padrões da wiki do osu! e precisa de ser limpa ou rescrita. Se puderes ajudar, por favor considera atualizar o artigo!',
+        'needs_cleanup_or_rewrite' => 'Esta página não cumpre os padrões da wiki do osu! e precisa de ser limpa ou rescrita. Se puderes ajudar, considera atualizar o artigo!',
         'search' => 'Pesquisar páginas existentes para :link.',
         'stub' => 'Este artigo está incompleto e à espera de alguém para o expandir.',
         'toc' => 'Conteúdos',
@@ -22,7 +22,7 @@ return [
 
         'translation' => [
             'legal' => 'Esta tradução é fornecida apenas para conveniência. A original :default será a única versão juridicamente vinculativa deste texto.',
-            'outdated' => 'Esta página contém uma tradução desatualizada do conteúdo original. Por favor, verifica a :default para as informações mais precisas.',
+            'outdated' => 'Esta página contém uma tradução desatualizada do conteúdo original. Consulta a :default para teres as informações mais exatas.',
 
             'default' => 'versão em inglês',
         ],

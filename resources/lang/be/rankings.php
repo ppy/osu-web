@@ -10,9 +10,13 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'top_10p' => '',
-        'top_50p' => '',
+        'beatmap' => 'Складанасць',
+        'top_10p' => 'Мінімальнае значэнне ачкоў у топ 10%',
+        'top_50p' => 'Мінімальнае значэнне ачкоў у топ 50%',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
     ],
 
     'filter' => [
@@ -30,18 +34,18 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Гэты карыстальнік пачаў гуляць рэйтынгавыя карты менш за 30 дзён таму.',
     ],
 
     'type' => [
         'charts' => 'па чартам',
         'country' => 'па краінам',
-        'daily_challenge' => '',
-        'global' => '',
+        'daily_challenge' => 'па картах дня',
+        'global' => 'глабальны',
         'kudosu' => 'кудосу',
         'multiplayer' => 'мультыплэер',
         'seasons' => 'па сезонах',
-        'team' => '',
+        'team' => 'па камандах',
     ],
 
     'seasons' => [
@@ -50,7 +54,7 @@ return [
         'room_count' => 'Колькасць плэйлістоў',
         'url' => 'Паказаць больш даведак пра гэты сезон.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'не набрана дастаткова крытэрыяў для карэктнага падліку ачкоў',
         ],
     ],
 
@@ -65,8 +69,8 @@ return [
         'accuracy' => 'Дакладнасць',
         'active_users' => 'Актыўныя карыстальнікі',
         'country' => 'Краіна',
-        'division' => '',
-        'members' => '',
+        'division' => 'Ранг',
+        'members' => 'Удзельнікі',
         'play_count' => 'Колькасць гульняў',
         'performance' => 'Прадукцыйнасць',
         'total_score' => 'Агульны вынік',

@@ -15,12 +15,12 @@ return [
             'ok' => 'Permintaan masuk ditolak.',
         ],
         'store' => [
-            'ok' => 'Kemasukan ke pasukan diminta.',
+            'ok' => 'Kemasukan ke pasukan dipinta.',
         ],
     ],
 
     'card' => [
-        'members' => '',
+        'members' => ':count_delimited ahli',
     ],
 
     'create' => [
@@ -63,7 +63,7 @@ return [
 
         'settings' => [
             'application_help' => 'Membenarkan pemain lain memohon masuk pasukan',
-            'default_ruleset_help' => 'Ruleset yang dipilih secara asal ketika melawat halaman pasukan',
+            'default_ruleset_help' => 'Cara main yang dipilih secara asal ketika melawat halaman pasukan',
             'flag_help' => 'Ukuran maksimum :width×:height',
             'header_help' => 'Ukuran maksimum :width×:height',
             'title' => 'Tetapan Pasukan',
@@ -77,7 +77,7 @@ return [
 
     'header_links' => [
         'edit' => 'tetapan',
-        'leaderboard' => 'carta kedudukan',
+        'leaderboard' => 'papan pendahulu',
         'show' => 'maklumat',
 
         'members' => [
@@ -86,7 +86,7 @@ return [
     ],
 
     'leaderboard' => [
-        'global_rank' => 'Kedudukan Dunia',
+        'global_rank' => 'Pangkat Dunia',
     ],
 
     'members' => [
@@ -99,20 +99,20 @@ return [
 
             'applications' => [
                 'accept_confirm' => 'Tambah pengguna :user ke pasukan?',
-                'created_at' => 'Diminta pada',
+                'created_at' => 'Dipinta Pada',
                 'empty' => 'Tiada permintaan masuk pada masa ini.',
                 'empty_slots' => 'Slot tersedia',
                 'empty_slots_overflow' => ':count_delimited pengguna limpahan',
-                'reject_confirm' => '',
+                'reject_confirm' => 'Tolak permintaan masuk dari pengguna :user?',
                 'title' => 'Permintaan Masuk',
             ],
 
             'table' => [
                 'joined_at' => 'Tarikh Masuk',
                 'remove' => 'Keluarkan',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
+                'remove_confirm' => 'Keluarkan pengguna :user dari pasukan?',
+                'set_leader' => 'Pindahkan kepimpinan pasukan',
+                'set_leader_confirm' => 'Pindahkan kepimpinan pasukan kepada pengguna :user?',
                 'status' => 'Taraf',
                 'title' => 'Ahli Semasa',
             ],
@@ -124,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'Pengguna :user kini ketua pasukan.',
         ],
     ],
 
@@ -157,7 +157,7 @@ return [
         ],
 
         'statistics' => [
-            'rank' => 'Kedudukan',
+            'rank' => 'Pangkat',
             'leader' => 'Ketua Pasukan',
         ],
     ],

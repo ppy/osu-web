@@ -16,6 +16,8 @@ return [
         'map_count' => ':count_delimited χάρτες:count_delimited',
         'player_count' => ':count_delimited παίκτης|:count_delimited παίκτες',
         'time_left' => 'απέμειναν :time',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => 'Η διάρκεια είναι πολύ μεγάλη.',

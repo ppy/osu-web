@@ -113,6 +113,7 @@ return [
             'copyright' => 'Авторлық құқық (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Құпиялық',
+            'rules' => '',
             'server_status' => '',
             'source_code' => '',
             'terms' => '',

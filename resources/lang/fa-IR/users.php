@@ -486,6 +486,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'دقت ضربات',
+            'hits_per_play' => '',
             'level' => 'سطح :level',
             'level_progress' => 'پیشروی تا سطح بعدی',
             'maximum_combo' => 'بیشترین کمبو',

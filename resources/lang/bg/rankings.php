@@ -6,13 +6,17 @@
 return [
     'countries' => [
         'all' => 'Всички',
-        'title' => 'Държава',
+        'title' => 'Държавно',
     ],
 
     'daily_challenge' => [
         'beatmap' => 'Трудност',
         'top_10p' => 'Топ 10% резултати ',
         'top_50p' => 'Топ 50% резултати ',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
     ],
 
     'filter' => [
@@ -37,7 +41,7 @@ return [
         'charts' => 'под прожекторите',
         'country' => 'държава',
         'daily_challenge' => 'предизвикателство',
-        'global' => '',
+        'global' => 'Глобално',
         'kudosu' => 'kudosu',
         'multiplayer' => 'мултиплейър',
         'seasons' => 'сезони',

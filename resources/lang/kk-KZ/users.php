@@ -486,6 +486,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => '',
+            'hits_per_play' => '',
             'level' => '',
             'level_progress' => '',
             'maximum_combo' => '',

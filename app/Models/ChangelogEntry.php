@@ -48,6 +48,9 @@ class ChangelogEntry extends Model
             $message = null;
         }
 
+        $githubUser = new GithubUser(['user_id' => $changelog->user_id]);
+        $githubUser->setRelation('user', $changelog->user);
+
         return new static([
             'title' => $title,
             'message' => $message,
@@ -57,10 +60,7 @@ class ChangelogEntry extends Model
             'private' => $changelog->private,
             'major' => $changelog->major,
             'created_at' => $changelog->date,
-            'githubUser' => new GithubUser([
-                'user_id' => $changelog->user_id,
-                'user' => $changelog->user,
-            ]),
+            'githubUser' => $githubUser,
             'repository' => null,
         ]);
     }

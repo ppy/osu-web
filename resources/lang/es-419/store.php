@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'Añadir al carrito',
         'notify' => '¡Notificarme cuando esté disponible!',
+        'out_of_stock' => '',
 
         'notification_success' => 'recibirás una notificación cuando tengamos nuevas unidades. Haz clic :link para cancelar',
         'notification_remove_text' => 'aquí',

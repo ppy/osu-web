@@ -34,7 +34,7 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => 'Crea Nuovo Annuncio',
+            'announcement' => 'Crea nuovo annuncio',
         ],
 
         'labels' => [

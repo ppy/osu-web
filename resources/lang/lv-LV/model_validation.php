@@ -132,16 +132,16 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => 'Šī :attribute satur nepieņemamas rakszīmes.',
+        'used' => 'Šī :attribute izvēle jau tiek izmantota.',
+        'word_not_allowed' => 'Šī :attribute izvēle nav atļauta.',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'default_ruleset_id' => 'Standarta noteikumi',
+            'is_open' => 'Komandas pieteikums',
+            'name' => 'Nosaukums',
+            'short_name' => 'Īss nosaukums',
+            'url' => 'URL',
         ],
     ],
 
@@ -190,7 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Novērtējamas ritma-mapes nevar tikt nosūdzētas',
         'not_in_channel' => 'Tu neesi šajā kanālā.',
-        'in_team' => '',
+        'in_team' => 'Tu esi daļa no komandas.',
         'reason_not_valid' => ':reason nav saistīts ar šīs sūdzības tipu.',
         'self' => "Tu nevari nosūdzēt pats sevi!",
     ],

@@ -487,6 +487,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'ความแม่นยำเฉลี่ย',
+            'hits_per_play' => '',
             'level' => 'เลเวล :level',
             'level_progress' => 'ความคืบหน้าในการอัพเลเวล',
             'maximum_combo' => 'คอมโบสูงสุด',

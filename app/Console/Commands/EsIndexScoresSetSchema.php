@@ -38,7 +38,7 @@ class EsIndexScoresSetSchema extends Command
             return $this->error('Index schema must be specified');
         }
 
-        (new ScoreSearch())->setSchema($schema);
+        ScoreSearch::setSchema($schema);
 
         $this->info("Set score index schema version to {$schema}");
     }

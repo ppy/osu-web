@@ -13,6 +13,10 @@ return [
         'beatmap' => 'Level',
         'top_10p' => '90%-Perzentil',
         'top_50p' => 'Median',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
     ],
 
     'filter' => [

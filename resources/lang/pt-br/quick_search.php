@@ -5,11 +5,11 @@
 
 return [
     'mode' => [
-        'artist_track' => '',
+        'artist_track' => 'Faixa de Artista em Destaque',
         'beatmapset' => 'Beatmap',
         'forum_post' => 'Fórum',
         'other' => 'Outros',
-        'team' => '',
+        'team' => 'Time',
         'user' => 'Jogador',
         'wiki_page' => 'Wiki',
     ],

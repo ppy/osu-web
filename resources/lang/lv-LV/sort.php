@@ -38,9 +38,9 @@ return [
     ],
 
     'teams' => [
-        'relevance' => '',
-        'name' => '',
-        'short-name' => '',
+        'relevance' => 'Aktualitāte',
+        'name' => 'Vārds',
+        'short-name' => 'Īsais vārds',
     ],
 
     'users' => [

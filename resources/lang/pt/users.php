@@ -72,10 +72,10 @@ return [
 
     'disabled' => [
         'title' => 'Oh não! Parece que a tua conta foi desativada.',
-        'warning' => "No caso de teres desrespeitado uma regra, por favor nota que geralmente há um período de espera de 1 mês durante o qual não iremos considerar nenhum pedido de amnistia. Após este período, podes entrar em contacto connosco caso aches necessário. Por favor nota que a criação de novas contas após teres tido uma desativada resultará numa <strong>extensão deste período de espera de 1 mês </strong>. Por favor nota também que para <strong>cada conta que cries, estás a violar ainda mais as regras</strong>. Sugerimos muito que não sigas este caminho!",
+        'warning' => "No caso de teres desrespeitado uma regra, nota que há geralmente um período de espera de um mês durante o qual não iremos considerar nenhum pedido de amnistia. Após este período, poderás entrar em contacto connosco caso aches necessário. Nota que a criação de novas contas, após teres tido uma desativada, resultará numa <strong>extensão deste período de espera de um mês </strong>. Recorda também que para <strong>cada conta que cries, estás a violar ainda mais as regras</strong>. Instamos que não sigas este caminho!",
 
         'if_mistake' => [
-            '_' => 'Se achas que isto é um engano, poderás entrar em contacto connosco (via :email ou ao clicar em "?" no canto inferior direito desta página). Por favor nota que estamos sempre totalmente confiantes com as nossas ações, uma vez que se baseiam em dados fidedignos. Nós reservamo-nos ao direito de ignorar o teu pedido se sentirmos que estás a ser intencionalmente desonesto.',
+            '_' => 'Se achares que isto é um engano, poderás entrar em contacto connosco (por :email ou ao clicar em "?" no canto inferior direito desta página). Recorda que estamos sempre confiantes com as nossas ações, uma vez que se baseiam em dados fidedignos. Reservamo-nos ao direito de ignorar o teu pedido se sentirmos que estejas a ser intencionalmente desonesto.',
             'email' => 'email',
         ],
 
@@ -106,16 +106,16 @@ return [
         '_' => 'Iniciar sessão',
         'button' => 'Iniciar sessão',
         'button_posting' => 'A iniciar sessão...',
-        'email_login_disabled' => 'Neste momento, a autenticação por email está desativada. Por favor usa o nome de utilizador como alternativa.',
+        'email_login_disabled' => 'Neste momento, a autenticação por email está desativada. Usa o nome de utilizador como alternativa.',
         'failed' => 'Início de sessão incorreto',
         'forgot' => 'Esqueceste-te da palavra-passe?',
-        'info' => 'Por favor inicia sessão para continuar',
+        'info' => 'Inicia sessão para continuar',
         'invalid_captcha' => 'Demasiadas tentativas falhadas de início de sessão, termina o captcha e tenta novamente. (Atualiza a página se o captcha não estiver visível)',
-        'locked_ip' => 'o teu endereço de IP foi bloqueado. Por favor espera uns minutos.',
+        'locked_ip' => 'O teu endereço de IP foi bloqueado. Espera uns minutos.',
         'password' => 'Palavra-passe',
         'register' => "Não tens uma conta osu? Cria uma nova",
         'remember' => 'Lembrar este computador',
-        'title' => 'Por favor inicia sessão para proceder',
+        'title' => 'Inicia sessão para proceder',
         'username' => 'Nome de utilizador',
 
         'beta' => [
@@ -149,7 +149,7 @@ return [
     'report' => [
         'button_text' => 'denunciar',
         'comments' => 'Comentários adicionais',
-        'placeholder' => 'Por favor fornece qualquer informação que acredites ser útil.',
+        'placeholder' => 'Fornece qualquer informação que acredites ser útil.',
         'reason' => 'Motivo',
         'thanks' => 'Obrigado pela tua denúncia!',
         'title' => 'Queres denunciar :username?',
@@ -161,7 +161,7 @@ return [
 
         'options' => [
             'cheating' => 'Jogada suja / Fazer batota',
-            'inappropriate_chat' => '',
+            'inappropriate_chat' => 'Comportamento inadequado na conversa',
             'insults' => 'Insulto a mim ou a outros',
             'multiple_accounts' => 'Utilização de contas múltiplas',
             'nonsense' => 'Disparate',
@@ -172,7 +172,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'A tua conta foi restrita!',
-        'message' => 'Enquanto restrito(a), estarás incapaz de interagir com outros jogadores e as tuas pontuações só serão visíveis para ti. Isto é habitualmente o resultado dum processo automático e irá ser levantado geralmente em 24 horas. Se quiseres apelar a tua restrição, por favor <a href="mailto:accounts@ppy.sh">contacta a assistência</a>.',
+        'message' => 'Enquanto estiveres restrito(a), estarás incapaz de interagir com outros jogadores e as tuas pontuações só serão visíveis para ti. Isto é o resultado dum processo automático e será levantado geralmente em 24 horas. Se quiseres apelar a tua restrição, <a href="mailto:accounts@ppy.sh">contacta a assistência</a>.',
         'message_link' => 'Consulta esta página para saberes mais.',
     ],
     'show' => [
@@ -481,11 +481,12 @@ return [
             'highest' => 'Classificação mais alta: :rank em :date',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'Topo :value',
+            'total_score' => 'Pontuação total',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisão de acertos',
+            'hits_per_play' => '',
             'level' => 'Nível :level',
             'level_progress' => 'Progresso ao próximo nível',
             'maximum_combo' => 'Combo máximo',
@@ -516,8 +517,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'from_client' => 'por favor regista-te através do cliente do jogo!',
-        'from_web' => 'por favor regista-te através do sítio web',
+        'from_client' => 'Regista-te através do cliente do jogo!',
+        'from_web' => 'Regista-te através do sítio web.',
         'saved' => 'Criado por utilizadores',
     ],
     'verify' => [

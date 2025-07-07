@@ -6,13 +6,13 @@
 return [
     'availability' => [
         'disabled' => 'Aquest beatmap no es pot baixar actualment.',
-        'parts-removed' => 'S\'han eliminat parts d\'aquest beatmap a petició del creador o d\'un tercer titular dels drets.',
+        'parts-removed' => 'S\'han eliminat parts d\'aquest mapa a petició del creador o d\'un tercer titular dels drets.',
         'more-info' => 'Fes clic aquí per a més informació.',
         'rule_violation' => 'Alguns continguts d\'aquest mapa han estat eliminats després de ser considerats no aptes pel seu ús a osu!.',
     ],
 
     'cover' => [
-        'deleted' => 'Beatmap eliminat',
+        'deleted' => 'Mapa eliminat',
     ],
 
     'download' => [
@@ -51,9 +51,9 @@ return [
         'too_many_non_main_ruleset' => 'El requisit de nominació per a regles no bàsiques ja s\'ha complit.',
 
         'dialog' => [
-            'confirmation' => 'Estàs segur que vols nominar aquest beatmap?',
-            'different_nominator_warning' => 'Si es qualifica aquest beatmap amb nominadors diferents farà que es restableixi la seva posició a la cua de qualificacions.',
-            'header' => 'Nominar beatmap',
+            'confirmation' => 'Esteu segur que voleu nominar aquest mapa?',
+            'different_nominator_warning' => 'Si es qualifica aquest mapa amb nominadors diferents farà que es restableixi la seva posició a la cua de qualificacions.',
+            'header' => 'Nomina el mapa',
             'hybrid_warning' => 'nota: només pot nominar una vegada, així que assegureu-vos que està nominant per a totes els modes de joc que desitgi',
             'current_main_ruleset' => 'Les regles principals actuals són :ruleset.',
             'which_modes' => 'Nominar per a quins modes?',
@@ -72,15 +72,15 @@ return [
         ],
 
         'deleted_banner' => [
-            'title' => 'Aquest beatmap ha sigut esborrat.',
+            'title' => 'Aquest mapa s\'ha esborrat.',
             'message' => '(només els moderadors poden veure això)',
         ],
 
         'details' => [
             'by_artist' => 'per :artist',
             'favourite' => 'marcar com a preferit',
-            'favourite_login' => 'inicia sessió per a guardar el beatmap a preferits',
-            'logged-out' => 'necessites iniciar sessió abans de descarregar qualsevol beatmap!',
+            'favourite_login' => 'inicia sessió per a guardar el mapa a preferits',
+            'logged-out' => 'necessites iniciar sessió abans de descarregar mapes!',
             'mapped_by' => 'mapejat per :mapper',
             'mapped_by_guest' => 'dificultat de convidat per :mapper',
             'unfavourite' => 'desmarcar com a favorit',
@@ -109,7 +109,7 @@ return [
         ],
 
         'favourites' => [
-            'limit_reached' => 'Has guardat masses beatmaps a preferits! Si us plau, esborra\'n alguns abans de tornar-ho a intentar.',
+            'limit_reached' => 'Has guardat masses mapes a preferits! Esborra\'n alguns abans de tornar-ho a intentar.',
         ],
 
         'hype' => [
@@ -126,11 +126,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Si trobeu algun problema amb aquest beatmap, si us plau desqualifiqueu-lo :link.',
+                '_' => 'Si trobeu algun problema amb aquest mapa, desqualifiqueu-lo :link.',
             ],
 
             'report' => [
-                '_' => 'Si trobeu un problema amb aquest beatmap, si us plau reporteu-lo :link per alertar l\'equip.',
+                '_' => 'Si trobeu un problema amb aquest mapa, informeu a l\'enllaç :link per a alertar l\'equip.',
                 'button' => 'Informar un problema',
                 'link' => 'aquí',
             ],
@@ -140,27 +140,27 @@ return [
             'description' => 'Descripció',
             'genre' => 'Gènere',
             'language' => 'Idioma',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Etiquetes de mapejadors',
             'no_scores' => 'Les dades encara s\'estan calculant...',
             'nominators' => 'Nominadors',
             'nsfw' => 'Contingut explícit',
             'offset' => 'Compensació en línia',
             'points-of-failure' => 'Punts de fracàs',
             'source' => 'Font',
-            'storyboard' => 'Aquest beatmap conté una storyboard',
+            'storyboard' => 'Aquest mapa conté un storyboard',
             'success-rate' => 'Percentatge d\'èxit',
-            'user_tags' => '',
-            'video' => 'Aquest beatmap conté vídeo',
+            'user_tags' => 'Etiquetes d\'usuari',
+            'video' => 'Aquest mapa conté vídeo',
         ],
 
         'nsfw_warning' => [
-            'details' => 'Aquest beatmap conté llenguatge explícit o ofensiu. Tot i això voleu veure\'l?',
+            'details' => 'Aquest mapa conté llenguatge explícit o ofensiu. Tot i això voleu veure\'l?',
             'title' => 'Contingut explícit',
 
             'buttons' => [
                 'disable' => 'Deshabilitar l\'advertència',
-                'listing' => 'Llistat de beatmaps',
-                'show' => 'Mostrar',
+                'listing' => 'Llistat de mapes',
+                'show' => 'Mostra',
             ],
         ],
 
@@ -190,12 +190,12 @@ return [
             ],
 
             'no_scores' => [
-                'country' => 'Ningú del teu país ha establert una puntuació en aquest beatmap encara!',
-                'friend' => 'Cap dels teus amics ha marcat cap puntuació en aquest beatmap encara!',
+                'country' => 'Ningú del vostre país ha establert una puntuació en aquest mapa!',
+                'friend' => 'Cap dels teus amics ha marcat cap puntuació en aquest mapa!',
                 'global' => 'Sense puntuacions encara. Potser hauries d\'intentar-ne establir alguna?',
                 'loading' => 'Carregant puntuacions...',
                 'team' => 'Ningú del teu equip ha establert una puntuació en aquest beatmap!',
-                'unranked' => 'Beatmap no classificat.',
+                'unranked' => 'Mapa sense classificar',
             ],
             'score' => [
                 'first' => 'Liderant',

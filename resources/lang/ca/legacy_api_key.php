@@ -18,7 +18,7 @@ return [
 
     'view' => [
         'hide' => 'Amagar clau',
-        'show' => 'Mostrar clau',
+        'show' => 'Mostra la clau',
         'delete' => 'Eliminar',
     ],
 

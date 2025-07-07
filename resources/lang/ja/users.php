@@ -489,6 +489,7 @@ CAPTCHA認証を成功させてから再試行してください。
         ],
         'stats' => [
             'hit_accuracy' => '精度',
+            'hits_per_play' => '',
             'level' => 'レベル :level',
             'level_progress' => '次のレベルまで',
             'maximum_combo' => '最大コンボ',

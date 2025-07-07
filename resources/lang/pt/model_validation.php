@@ -8,7 +8,7 @@ return [
     'not_negative' => ':attribute não pode ser negativo.',
     'required' => ':attribute é necessário.',
     'too_long' => ':attribute limite máximo excedido - só pode ser até :limit caracteres.',
-    'url' => 'Por favor insere um URL válido.',
+    'url' => 'Insere um URL válido.',
     'wrong_confirmation' => 'A confirmação não corresponde.',
 
     'beatmapset_discussion' => [
@@ -122,7 +122,7 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => 'Excedeste o n.º máximo de aplicações OAuth autorizadas.',
-            'url' => 'Por favor insere um URL válido.',
+            'url' => 'Insere um URL válido.',
 
             'attributes' => [
                 'name' => 'Nome da aplicação',
@@ -160,7 +160,7 @@ return [
         'username_invalid_characters' => 'O nome de utilizador solicitado contém caracteres inválidos.',
         'username_in_use' => 'Este nome de utilizador já está a ser usado!',
         'username_locked' => 'Este nome de utilizador já está a ser usado!', // TODO: language for this should be slightly different.
-        'username_no_space_userscore_mix' => 'Por favor usa underscores ou espaços, não ambos!',
+        'username_no_space_userscore_mix' => 'Só podes usar underscores ou espaços. Não podes usar ambos!',
         'username_no_spaces' => "O nome de utilizador não pode começar ou acabar com espaços!",
         'username_not_allowed' => 'Esta escolha para nome de utilizador não é permitida.',
         'username_too_short' => 'O nome de utilizador solicitado é demasiado curto.',
@@ -190,7 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Os beatmaps classificados não podem ser denunciados',
         'not_in_channel' => 'Não estás neste canal.',
-        'in_team' => '',
+        'in_team' => 'Fazes parte da equipa.',
         'reason_not_valid' => ':reason não é valida para este tipo de denúncia.',
         'self' => "Não te podes denunciar a ti mesmo!",
     ],

@@ -7,7 +7,7 @@ return [
     'months' => '월(달)',
 
     'user_search' => [
-        'searching' => '찾는 중...',
+        'searching' => '검색 중...',
         'not_found' => "유저가 존재하지 않습니다.",
     ],
 ];

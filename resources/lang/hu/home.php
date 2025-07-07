@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Új rangsorolt beatmapek',
             'popular' => 'Népszerű beatmapek',
             'by_user' => ':user által',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'osu! letöltése',

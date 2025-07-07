@@ -486,6 +486,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Natančnost',
+            'hits_per_play' => '',
             'level' => 'Raven: :level',
             'level_progress' => 'Do napredovanja na naslednjo raven',
             'maximum_combo' => 'Največji combo',

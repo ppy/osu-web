@@ -30,7 +30,9 @@ return [
         '_' => '심사 결과',
         'creator' => '제작자',
         'score' => '점수',
+        'score_std' => '',
         'total_score' => '총 점수',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => '투표',
         'count' => ':count표',
         'points' => ':count포인트',
+        'points_float' => '',
     ],
 
     'dates' => [

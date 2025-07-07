@@ -88,7 +88,7 @@ return [
             'beatmap_owner_change' => 'guest difficulty',
             'beatmapset:modding' => 'modding',
             'channel_message' => 'pesan pribadi',
-            'channel_team' => '',
+            'channel_team' => 'pesan percakapan tim',
             'comment_new' => 'komentar baru',
             'forum_topic_reply' => 'balasan topik',
             'mail' => 'email',

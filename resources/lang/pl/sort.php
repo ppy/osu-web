@@ -27,7 +27,7 @@ return [
     ],
 
     'forum_posts' => [
-        'created' => 'Czas publikacji',
+        'created' => 'Data publikacji',
         'relevance' => 'Trafność',
     ],
 
@@ -38,9 +38,9 @@ return [
     ],
 
     'teams' => [
-        'relevance' => '',
-        'name' => '',
-        'short-name' => '',
+        'relevance' => 'Trafność',
+        'name' => 'Nazwa',
+        'short-name' => 'Krótka nazwa',
     ],
 
     'users' => [

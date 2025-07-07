@@ -30,7 +30,9 @@ return [
         '_' => 'Результаты судейства',
         'creator' => 'создатель',
         'score' => 'Баллы',
+        'score_std' => '',
         'total_score' => 'суммарный балл',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'голоса',
         'count' => ':count_delimited голос|:count_delimited голоса|:count_delimited голосов',
         'points' => ':count_delimited очко|:count_delimited очка|:count_delimited очков',
+        'points_float' => '',
     ],
 
     'dates' => [

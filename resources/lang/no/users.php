@@ -486,6 +486,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Presisjon',
+            'hits_per_play' => '',
             'level' => 'Nivå :level',
             'level_progress' => 'Fremgang til neste nivå',
             'maximum_combo' => 'Maks kombo nådd',

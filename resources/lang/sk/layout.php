@@ -113,6 +113,7 @@ return [
             'copyright' => 'Autorské práva (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Súkromie',
+            'rules' => '',
             'server_status' => 'Stav Serveru',
             'source_code' => 'Zdrojový Kód',
             'terms' => 'Podmienky',

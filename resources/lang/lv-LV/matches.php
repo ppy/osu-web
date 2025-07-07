@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner ar starpību :difference',
 
         'events' => [
-            'player-left' => ':user pameta maču',
-            'player-joined' => ':user pievienojās mačam',
-            'player-kicked' => ':user tika izraidīts no mača',
-            'match-created' => ':user izveidoja maču',
-            'match-disbanded' => 'šis mačs bija izbeigts',
-            'host-changed' => ':user kļuva par vadītāju',
-
-            'player-left-no-user' => 'spēlētājs pameta maču',
-            'player-joined-no-user' => 'spēlētājs pievienojās mačam',
-            'player-kicked-no-user' => 'spēlētājs tika izraidīts no mača',
-            'match-created-no-user' => 'mačs tika izveidots',
-            'match-disbanded-no-user' => 'šis mačs bija pamests',
-            'host-changed-no-user' => 'vadītājs tika izmainīts',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Visi-pret-Visiem',
-            'tag-coop' => 'Stafetes ',
-            'team-vs' => 'Komandas VS',
-            'tag-team-vs' => 'Stafešu Komanda pret',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => 'Visaugstākais Rezultāts',
             'accuracy' => 'Augstākā Precizitāte',

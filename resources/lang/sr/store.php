@@ -175,6 +175,7 @@ return [
 
         'add_to_cart' => 'Додај у Корпу',
         'notify' => 'Обавести ме када буде доступан/на!',
+        'out_of_stock' => '',
 
         'notification_success' => 'бићете обавештени када производ буде био на лагеру. Кликните :link да откажете ',
         'notification_remove_text' => 'овде',

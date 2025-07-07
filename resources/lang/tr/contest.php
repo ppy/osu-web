@@ -30,7 +30,9 @@ return [
         '_' => 'Sonuçlar değerlendiriliyor',
         'creator' => 'yapımcı',
         'score' => 'Skor',
+        'score_std' => '',
         'total_score' => 'toplam skor',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'oylar',
         'count' => ':count_delimited oy|:count_delimited oy',
         'points' => ':count_delimited puan|:count_delimited puan',
+        'points_float' => '',
     ],
 
     'dates' => [

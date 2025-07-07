@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'Legg til i Handlekurv',
         'notify' => 'Varsle meg når det blir tilgjengelig!',
+        'out_of_stock' => '',
 
         'notification_success' => 'du vil bli varslet når vi får mer på lager. klikk :link for å avbryte',
         'notification_remove_text' => 'her',

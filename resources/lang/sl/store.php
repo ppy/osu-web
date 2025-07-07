@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'Dodaj v košarico',
         'notify' => 'Obvesti me, ko bo na voljo!',
+        'out_of_stock' => '',
 
         'notification_success' => 'obveščen boš, ko bo nova zaloga. za preklic klikni :link',
         'notification_remove_text' => 'tukaj',

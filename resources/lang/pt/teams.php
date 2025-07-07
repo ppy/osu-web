@@ -20,7 +20,7 @@ return [
     ],
 
     'card' => [
-        'members' => '',
+        'members' => ':count_delimited membro|:count_delimited membros',
     ],
 
     'create' => [
@@ -102,7 +102,7 @@ return [
                 'created_at' => 'Pedido em',
                 'empty' => 'Não há pedidos de adesão de momento.',
                 'empty_slots' => 'Espaços disponíveis',
-                'empty_slots_overflow' => '',
+                'empty_slots_overflow' => ':count_delimited utilizador em excesso|:count_delimited utilizadores em excesso',
                 'reject_confirm' => 'Negar o pedido de adesão do jogador :user?',
                 'title' => 'Pedidos de adesão',
             ],

@@ -363,7 +363,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '取决于你对制谱的贡献如何。查看 :link 获得更多信息。',
+                    '_' => '取决于你对作图的贡献如何。查看 :link 获得更多信息。',
                     'link' => '此页面',
                 ],
             ],
@@ -486,6 +486,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => '准确率',
+            'hits_per_play' => '',
             'level' => '等级 :level',
             'level_progress' => '距下一等级进度',
             'maximum_combo' => '最大连击',

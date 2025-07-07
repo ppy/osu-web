@@ -23,6 +23,7 @@ export function playlistItemFromLegacy(game: LegacyMatchGameJson): PlaylistItemJ
     created_at: game.start_time,
     details: {
       room_type: roomTypeFromLegacy[game.team_type],
+      started_at: game.start_time,
       teams,
     },
     expired: game.end_time != null,
@@ -39,6 +40,7 @@ export function playlistItemFromLegacy(game: LegacyMatchGameJson): PlaylistItemJ
 
 export interface Details {
   room_type: RealtimeRoomType;
+  started_at: string;
   teams?: Partial<Record<number, 'red' | 'blue'>>;
 }
 

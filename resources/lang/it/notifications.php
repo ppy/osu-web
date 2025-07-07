@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => 'Nuovo messaggio di squadra',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username ha scritto ":title"',
+                    'channel_team_compact' => ':username ha scritto ":title"',
+                    'channel_team_group' => ':username ha scritto ":title"',
                 ],
             ],
         ],
@@ -178,12 +178,12 @@ return [
                 'team_application_accept' => "Sei diventato un membro della squadra :title",
                 'team_application_accept_compact' => "Sei diventato un membro della squadra :title",
 
-                'team_application_group' => '',
+                'team_application_group' => 'Aggiornamenti di richiesta unione al team',
 
                 'team_application_reject' => 'La tua richiesta di unirsi alla squadra :title è stata rifiutata',
                 'team_application_reject_compact' => 'La tua richiesta di unirsi alla squadra :title è stata rifiutata',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_store' => ':title ha richiesto di unirsi alla tua squadra',
+                'team_application_store_compact' => ':title ha richiesto di unirsi alla tua squadra',
             ],
         ],
 
@@ -245,13 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => 'C\'è un nuovo annuncio su ":name"',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => 'Hai ricevuto un nuovo messaggio da :username',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'C\'è un nuovo messaggio sulla squadra ":name"',
             ],
         ],
 
@@ -277,7 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Sei diventato un membro della squadra :title",
                 'team_application_reject' => 'La tua richiesta di unirsi alla squadra :title è stata rifiutata',
-                'team_application_store' => '',
+                'team_application_store' => ':title ha richiesto di unirsi alla tua squadra',
             ],
         ],
 

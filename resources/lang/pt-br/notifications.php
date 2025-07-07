@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => 'Nova mensagem do time',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username diz ":title"',
+                    'channel_team_compact' => ':username diz ":title"',
+                    'channel_team_group' => ':username diz ":title"',
                 ],
             ],
         ],
@@ -178,12 +178,12 @@ return [
                 'team_application_accept' => "Você agora é membro da equipe :title",
                 'team_application_accept_compact' => "Você agora é membro da equipe :title",
 
-                'team_application_group' => '',
+                'team_application_group' => 'Atualizações de solicitações para se juntar ao time',
 
                 'team_application_reject' => 'Seu pedido para se juntar à equipe :title foi recusado',
                 'team_application_reject_compact' => 'Seu pedido para se juntar à equipe :title foi recusado',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_store' => ':title pediu para se juntar ao seu time',
+                'team_application_store_compact' => ':title pediu para se juntar ao seu time',
             ],
         ],
 
@@ -245,13 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => 'Há um novo anúncio em ":name"',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => 'Você recebeu uma nova mensagem de :username',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'Há uma nova mensagem no time ":name"',
             ],
         ],
 
@@ -277,7 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Você agora é membro da equipe :title",
                 'team_application_reject' => 'Seu pedido para se juntar à equipe :title foi recusado',
-                'team_application_store' => '',
+                'team_application_store' => ':title pediu para se juntar ao seu time',
             ],
         ],
 

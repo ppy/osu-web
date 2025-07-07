@@ -64,7 +64,7 @@ return [
             '_' => 'komen',
         ],
         'contest_entries_controller' => [
-            'judge_results' => 'keputusan pengadilan peraduan',
+            'judge_results' => 'hasil pengadilan peraduan',
         ],
         'contests_controller' => [
             '_' => 'peraduan',
@@ -81,7 +81,7 @@ return [
             'testflight' => 'penerbangan ujian',
         ],
         'legacy_matches_controller' => [
-            '_' => '',
+            '_' => 'perlawanan',
         ],
         'legal_controller' => [
             '_' => 'maklumat',
@@ -96,22 +96,22 @@ return [
             '_' => 'sejarah pemberitahuan',
         ],
         'password_reset_controller' => [
-            '_' => 'set semula kata laluan',
+            '_' => 'tetap semula kata laluan',
         ],
         'ranking_controller' => [
-            '_' => 'kedudukan',
+            '_' => 'pangkat',
         ],
         'scores_controller' => [
             '_' => 'prestasi',
         ],
         'seasons_controller' => [
-            '_' => 'kedudukan',
+            '_' => 'pangkat',
         ],
         'teams_controller' => [
             '_' => 'pasukan',
             'create' => 'cipta pasukan',
             'edit' => 'tetapan pasukan',
-            'leaderboard' => 'carta kedudukan pasukan',
+            'leaderboard' => 'papan pendahulu pasukan',
             'show' => 'maklumat pasukan',
         ],
         'tournaments_controller' => [
@@ -127,6 +127,11 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'wiki',
+        ],
+    ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '',
         ],
     ],
     'passport' => [

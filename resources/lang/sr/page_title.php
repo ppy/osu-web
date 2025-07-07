@@ -129,6 +129,11 @@ return [
             '_' => 'вики',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'ауторизујте апликацију',

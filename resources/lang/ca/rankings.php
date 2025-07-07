@@ -13,6 +13,10 @@ return [
         'beatmap' => 'Dificultat',
         'top_10p' => 'Puntuació top 10%',
         'top_50p' => 'Puntuació top 50%',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
     ],
 
     'filter' => [
@@ -50,7 +54,7 @@ return [
         'room_count' => 'Nombre de llistes de reproducció',
         'url' => 'Mostra més informació sobre la temporada.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'no hi ha prou factors de puntuació per a un càlcul adequat',
         ],
     ],
 
@@ -65,7 +69,7 @@ return [
         'accuracy' => 'Precisió',
         'active_users' => 'Usuaris actius',
         'country' => 'País',
-        'division' => '',
+        'division' => 'Divisió',
         'members' => 'Membres',
         'play_count' => 'Nombre de partides',
         'performance' => 'Rendiment',

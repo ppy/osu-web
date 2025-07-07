@@ -10,7 +10,7 @@ import Comment from 'models/comment';
 import core from 'osu-core-singleton';
 import { onError } from 'utils/ajax';
 import { trans } from 'utils/lang';
-import { switchNever } from 'utils/switch-never';
+import { SwitchError } from 'utils/switch-never';
 
 export interface BaseCommentableMeta {
   id: number;
@@ -109,8 +109,7 @@ function postXhrKeyId(postParams: PostParams) {
     case 'reply':
       return postParams.parentId ?? 0;
     default:
-      switchNever(postParams.mode);
-      throw new Error('unsupported mode');
+      throw new SwitchError(postParams.mode);
   }
 }
 
@@ -247,8 +246,7 @@ export default class CommentsController {
         break;
 
       default:
-        switchNever(postParams.mode);
-        throw new Error('unsupported mode');
+        throw new SwitchError(postParams.mode);
     }
 
     const xhrKey = `${postParams.mode}-${postXhrKeyId(postParams)}` as const;

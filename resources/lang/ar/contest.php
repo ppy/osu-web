@@ -30,7 +30,9 @@ return [
         '_' => 'تحكيم النتائج',
         'creator' => 'المنشئ',
         'score' => 'درجة',
+        'score_std' => '',
         'total_score' => 'مجموع الدرجات',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'الأصوات',
         'count' => ':count_delimited تصويت|:count_delimited الاصوات',
         'points' => ':count_delimited نقطة|:count_delimited نقاط',
+        'points_float' => '',
     ],
 
     'dates' => [

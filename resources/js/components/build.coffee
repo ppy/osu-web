@@ -15,7 +15,7 @@ export class Build extends React.PureComponent
     entries = _.groupBy(@props.build.changelog_entries, 'category')
     categories = _(entries).keys().sort().value()
 
-    div className: "#{blockClass} t-changelog-stream--#{_.kebabCase @props.build.update_stream.display_name}",
+    div className: "#{blockClass} t-changelog-stream--#{@props.build.update_stream.name}",
       div className: 'build__version',
         @renderNav version: 'previous', icon: 'fas fa-chevron-left'
 

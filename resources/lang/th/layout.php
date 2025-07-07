@@ -113,6 +113,7 @@ return [
             'copyright' => 'ลิขสิทธิ์ (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'ความเป็นส่วนตัว',
+            'rules' => '',
             'server_status' => 'สถานะของเซิร์ฟเวอร์',
             'source_code' => 'ซอร์สโค้ด',
             'terms' => 'เงื่อนไข',

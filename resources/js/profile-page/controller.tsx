@@ -23,7 +23,7 @@ import { jsonClone } from 'utils/json';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { getInt } from 'utils/math';
 import { apiShowMore } from 'utils/offset-paginator';
-import { switchNever } from 'utils/switch-never';
+import { SwitchError } from 'utils/switch-never';
 import getPage, { PageSectionJson, PageSectionWithoutCountJson } from './extra-page';
 import { ProfilePageSection, ProfilePageUserJson } from './extra-page-props';
 
@@ -387,8 +387,7 @@ export default class Controller {
       }
 
       default:
-        switchNever(section);
-        throw new Error('trying to show more unexpected section');
+        throw new SwitchError(section);
     }
 
     this.xhr[section]?.done(this.saveState);

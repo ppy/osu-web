@@ -15,19 +15,22 @@ return [
         'winner_by' => '',
 
         'events' => [
-            'player-left' => ':user עזב את המשחק',
-            'player-joined' => ':user הצטרף למשחק',
-            'player-kicked' => ':user נבעט מהמשחק',
-            'match-created' => ':user יצר את המשחק',
-            'match-disbanded' => 'המשחק פורק',
-            'host-changed' => ':user נהיה המארח',
-
-            'player-left-no-user' => 'שחקן עזב את המשחק',
-            'player-joined-no-user' => 'שחקן הצטרף למשחק',
-            'player-kicked-no-user' => 'שחקן נבעט מהמשחק',
-            'match-created-no-user' => 'המשחק נוצר',
-            'match-disbanded-no-user' => 'המשחק פורק',
-            'host-changed-no-user' => 'המארח השתנה',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'ראש בראש',
-            'tag-coop' => 'משחק משותף',
-            'team-vs' => 'קבוצות',
-            'tag-team-vs' => 'משחק משותף קבוצות',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => 'התוצאה הכי גבוהה',
             'accuracy' => 'הדיוק הכי גבוה',

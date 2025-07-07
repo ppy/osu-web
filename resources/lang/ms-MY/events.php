@@ -23,10 +23,10 @@ return [
         'approved' => 'lulus',
         'loved' => 'kegemaran',
         'qualified' => 'layak',
-        'ranked' => 'berkedudukan',
+        'ranked' => 'berpangkat',
     ],
 
     'value' => [
-        'rank' => 'kedudukan #:rank',
+        'rank' => 'pangkat #:rank',
     ],
 ];

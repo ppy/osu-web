@@ -30,7 +30,9 @@ return [
         '_' => '',
         'creator' => '',
         'score' => 'Ұпай',
+        'score_std' => '',
         'total_score' => '',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'дауыс',
         'count' => ':count_delimited дауыс|:count_delimited дауыс',
         'points' => ':count_delimited ұпай|:count_delimited ұпай',
+        'points_float' => '',
     ],
 
     'dates' => [

@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'Sepete Ekle',
         'notify' => 'Mevcut olduğundan bana bildir!',
+        'out_of_stock' => '',
 
         'notification_success' => 'yeni ürün geldiğinde size haber vereceğiz. iptal etmek için :link tıklayın',
         'notification_remove_text' => 'buraya',

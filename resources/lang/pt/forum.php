@@ -110,7 +110,7 @@ return [
                 'default' => 'Este tópico tem estado inativo há já algum tempo. Publica aqui só se tiveres uma razão específica para o fazer.',
 
                 'new_topic' => [
-                    '_' => "Este tópico tem estado inativo há já algum tempo. Se não tiveres uma razão específica para publicar aqui, por favor :create como alternativa.",
+                    '_' => "Este tópico tem estado inativo há já algum tempo. Se não tiveres uma razão específica para publicar aqui, :create como alternativa.",
                     'create' => 'criar um novo tópico',
                 ],
             ],

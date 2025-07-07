@@ -6,6 +6,7 @@
 namespace App\Transformers\Multiplayer;
 
 use App\Models\Multiplayer\PlaylistItem;
+use App\Models\Multiplayer\Room;
 use App\Transformers\BeatmapCompactTransformer;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\TransformerAbstract;
@@ -46,9 +47,13 @@ class PlaylistItemTransformer extends TransformerAbstract
 
     public function includeDetails(PlaylistItem $item)
     {
-        return $this->primitive($item->detailEvent->event_detail ?? [
-            'room_type' => $item->room->type,
-        ]);
+        $detailEvent = $item->detailEvent;
+        $details = $item->detailEvent->event_detail ?? [
+            'room_type' => Room::REALTIME_DEFAULT_TYPE,
+        ];
+        $details['started_at'] = json_time(($detailEvent ?? $item)->created_at);
+
+        return $this->primitive($details);
     }
 
     public function includeScores(PlaylistItem $item)

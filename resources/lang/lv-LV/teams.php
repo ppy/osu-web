@@ -6,40 +6,40 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => 'Lietotājs pievienots komandai.',
+            'ok' => 'Pievienoji lietotāju komandai.',
         ],
         'destroy' => [
-            'ok' => 'Atcelts pievienošanās lūgums.',
+            'ok' => 'Atcēli pieprasīšanās pieprasījumu.',
         ],
         'reject' => [
-            'ok' => 'Atteikts pievienošanās lūgums.',
+            'ok' => 'Pievienošanās pieprasījums tika noliegts.',
         ],
         'store' => [
-            'ok' => 'Pieprasīts pievienoties komandai.',
+            'ok' => 'Tu pieprasīji pievienoties komandai.',
         ],
     ],
 
     'card' => [
-        'members' => '',
+        'members' => ':count_delimited lietotājs|:count_delimited lietotāji',
     ],
 
     'create' => [
         'submit' => 'Izveidot Komandu',
 
         'form' => [
-            'name_help' => 'Jūsu komandas nosaukums. Nosaukums pašreiz ir pastāvīgs.',
+            'name_help' => 'Jūsu komandas nosaukums. Nosaukums pašreiz ir neizmaināms.',
             'short_name_help' => 'Maksimums 4 rakstzīmes.',
-            'title' => "Izveidojam jaunu komandu",
+            'title' => "Uzstādam jaunu komandu",
         ],
 
         'intro' => [
-            'description' => "Spēlē kopā ar draugiem; esošiem vai jauniem. Jūs pašlaik neesat komandā. Pievienojies jau esošai komandai ieejot komandas lapā, vai izveido savu komandu šeit.",
-            'title' => '',
+            'description' => "Spēlē kopā ar draugiem; esošajiem vai jauniem. Tu pašlaik neesi komandā. Pievienojies esoša komandā, apmeklējot komandas lapu, vai izveido savu komandu šeit.",
+            'title' => 'Komanda!',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Komanda noņemta.',
     ],
 
     'edit' => [
@@ -77,16 +77,16 @@ return [
 
     'header_links' => [
         'edit' => 'iestatījumi',
-        'leaderboard' => '',
-        'show' => '',
+        'leaderboard' => 'līderu saraksts',
+        'show' => 'info',
 
         'members' => [
-            'index' => 'pārvaldīt biedrus',
+            'index' => 'pārvaldīt dalībniekus',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
+        'global_rank' => 'Globālais rangs',
     ],
 
     'members' => [
@@ -95,24 +95,24 @@ return [
         ],
 
         'index' => [
-            'title' => 'Menedžēt Dalībniekus',
+            'title' => 'Pārvaldīt Dalībniekus',
 
             'applications' => [
-                'accept_confirm' => '',
-                'created_at' => '',
-                'empty' => 'Pašreiz nav pieprasījumi pievienoties.',
+                'accept_confirm' => 'Pievienot lietotāju :user komandai?',
+                'created_at' => 'Pieprasīts Vietnē',
+                'empty' => 'Pašreiz nav jauni pieprasījumi pievienoties.',
                 'empty_slots' => 'Brīvās vietas',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
-                'title' => '',
+                'empty_slots_overflow' => ':count_delimited lietotāja pārplūde|:count_delimited lietotāju pārplūde',
+                'reject_confirm' => 'Noliegt pievienošanās pieprasījumu no lietotāja :user?',
+                'title' => 'Pievienošanās Pieprasījumi',
             ],
 
             'table' => [
                 'joined_at' => 'Pievienošanās Datums',
                 'remove' => 'Noņemt',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
+                'remove_confirm' => 'Noņemt lietotāju :user no komandas?',
+                'set_leader' => 'Iedot komandas līdera pozīciju',
+                'set_leader_confirm' => 'Pārslēgt komandas līdera pozīciju uz lietotāju :user?',
                 'status' => 'Status ',
                 'title' => 'Dalībnieku Patreizējais Skaits',
             ],
@@ -124,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'Lietotājs :user tagad ir komandas līderis',
         ],
     ],
 
@@ -134,11 +134,11 @@ return [
 
     'show' => [
         'bar' => [
-            'chat' => '',
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => 'Pamest komandu',
+            'chat' => 'Komandas Tērzētava',
+            'destroy' => 'Izjaukt Komandu',
+            'join' => 'Paprasīt Pievienoties',
+            'join_cancel' => 'Atcelt Pievienošanos',
+            'part' => 'Pamest Komandu',
         ],
 
         'info' => [
@@ -151,18 +151,18 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => 'Par Mums!',
             'info' => 'Info',
             'members' => 'Dalībnieki',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => 'Rangs',
+            'leader' => 'Komandas Līderis',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'Komanda izveidota.',
     ],
 ];

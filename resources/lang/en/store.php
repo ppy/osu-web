@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'Add to Cart',
         'notify' => 'Notify me when available!',
+        'out_of_stock' => 'Out of stock',
 
         'notification_success' => 'you will be notified when we have new stock. click :link to cancel',
         'notification_remove_text' => 'here',

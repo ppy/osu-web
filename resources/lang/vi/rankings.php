@@ -13,6 +13,10 @@ return [
         'beatmap' => 'Độ khó',
         'top_10p' => 'Điểm thuộc top 10%',
         'top_50p' => 'Điểm thuộc top 50%',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
     ],
 
     'filter' => [

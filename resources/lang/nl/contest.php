@@ -30,7 +30,9 @@ return [
         '_' => 'Beoordelingsresultaten',
         'creator' => 'maker',
         'score' => 'Score',
+        'score_std' => '',
         'total_score' => 'totale score',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'stemmen',
         'count' => ':count_delimited stem|:count_delimited stemmen',
         'points' => ':count_delimited punt|:count_delimited punten',
+        'points_float' => '',
     ],
 
     'dates' => [

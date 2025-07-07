@@ -88,7 +88,7 @@ return [
             'beatmap_owner_change' => 'konuk zorluk',
             'beatmapset:modding' => 'beatmap modlama',
             'channel_message' => 'özel sohbet mesajları',
-            'channel_team' => '',
+            'channel_team' => 'takım sohbet mesajları',
             'comment_new' => 'yeni yorumlar',
             'forum_topic_reply' => 'konu yanıtı',
             'mail' => 'posta',

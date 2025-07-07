@@ -113,6 +113,7 @@ return [
             'copyright' => 'Copyright (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Confidentialité',
+            'rules' => '',
             'server_status' => 'État du serveur',
             'source_code' => 'Code source',
             'terms' => 'Conditions d\'utilisation',
@@ -201,7 +202,7 @@ return [
             'profile' => 'Mon profil',
             'scoring_mode_toggle' => 'Score classique',
             'scoring_mode_toggle_tooltip' => 'Le score classique utilise un calcul du score qui n\'a pas de limites fixes, similaire à la version stable d\'osu!.',
-            'team' => 'Mon Équipe',
+            'team' => 'Mon équipe',
         ],
     ],
 

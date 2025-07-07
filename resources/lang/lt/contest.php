@@ -30,7 +30,9 @@ return [
         '_' => '',
         'creator' => '',
         'score' => '',
+        'score_std' => '',
         'total_score' => '',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'balsai',
         'count' => ':count_delimited balsas|:count_delimited balsų',
         'points' => ':count_delimited taškas|:count_delimited taškų',
+        'points_float' => '',
     ],
 
     'dates' => [
