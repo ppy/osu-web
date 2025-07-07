@@ -2,89 +2,128 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .mod {
-  height: var(--mod-height, @mod-height-normal);
-  width: calc($height * unit(@mod-width) / unit(@mod-height));
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+  zoom: calc(var(--mod-height, @mod-height-normal) / @mod-height);
+  height: unit(@mod-height, px);
   display: flex;
   position: relative;
-  --generic-display: flex;
 
-  .all(@name, @filename) {
-    &--@{name} {
-      .at2x-simple("~@images/badges/mods/mod_@{filename}.png");
-      --generic-display: none;
-    }
-  }
-
-  .type-bg(@name) {
+  .mod-type(@name, @colour) {
     &--type-@{name} {
-      .at2x-var(--type-bg, "~@images/badges/mods/blanks/@{name}.png");
+      --type-bg-colour: @colour;
+
+      // cross-reference: https://github.com/ppy/osu/blob/321707590ab51333ce86a0b1198592705603cdb4/osu.Game/Rulesets/UI/ModIcon.cs#L257
+      // using `srgb-linear` is intentional here to match https://github.com/ppy/osu-framework/blob/cfb0d7b4b673583f0cf56273e94352769aa5bc9a/osu.Framework/Utils/Interpolation.cs#L252-L258
+      --type-fg-colour: color-mix(in srgb-linear, black, @colour 10%);
+
+      // cross-reference: https://github.com/ppy/osu/blob/321707590ab51333ce86a0b1198592705603cdb4/osu.Game/Rulesets/UI/ModIcon.cs#L262
+      // and https://github.com/ppy/osu-framework/blob/cfb0d7b4b673583f0cf56273e94352769aa5bc9a/osu.Framework/Graphics/Colour4.cs#L134-L138
+      // `.Darken(2.8f)` amounts to dividing every colour component by 1 + 2.8 = 3.8
+      // which is the same thing as interpolating between black and @colour at t = 1 / 3.8 ≈ 0.2631578947
+      // using `srgb` is intentional because the `.Darken()` helper does no colourspace conversion
+      --type-extender-colour: color-mix(in srgb, black, @colour 26.3%);
     }
   }
 
-  .all(~"4K", "4K");
-  .all(~"5K", "5K");
-  .all(~"6K", "6K");
-  .all(~"7K", "7K");
-  .all(~"8K", "8K");
-  .all(~"9K", "9K");
-  .all(~"AP", "autopilot");
-  .all(~"CL", "classic");
-  .all(~"DT", "double-time");
-  .all(~"EZ", "easy");
-  .all(~"FI", "fader");
-  .all(~"FL", "flashlight");
-  .all(~"HD", "hidden");
-  .all(~"HR", "hard-rock");
-  .all(~"HT", "half");
-  .all(~"MR", "mirror");
-  .all(~"NC", "nightcore");
-  .all(~"NF", "no-fail");
-  .all(~"NM", "no-mod");
-  .all(~"PF", "perfect");
-  .all(~"RD", "random");
-  .all(~"RX", "relax");
-  .all(~"SD", "sudden-death");
-  .all(~"SO", "spun-out");
-  .all(~"TD", "touchdevice");
-  .all(~"V2", "v2");
+  .mod-type(Automation, @osu-colour-blue-1);
+  .mod-type(Conversion, @osu-colour-purple-1);
+  .mod-type(DifficultyIncrease, @osu-colour-red-1);
+  .mod-type(DifficultyReduction, @osu-colour-lime-1);
+  .mod-type(Fun, @osu-colour-pink-1);
+  .mod-type(System, @yellow);
 
-  .type-bg(Automation);
-  .type-bg(Conversion);
-  .type-bg(DifficultyIncrease);
-  .type-bg(DifficultyReduction);
-  .type-bg(Fun);
-
-  &::before {
-    .full-size();
-    background-image: var(--type-bg);
+  &__icon
+  {
+    position: relative;
+    width: @mod-width;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    content: "";
-    display: var(--generic-display);
 
-    @media @highdpi {
-      background-image: var(--type-bg-2x);
+    &::before {
+      .full-size();
+      background-color: var(--type-bg-colour);
+      mask-image: url("~@images/badges/mods/blanks/mod-icon.svg");
+      mask-size: contain;
+      mask-position: center;
+      mask-repeat: no-repeat;
+      content: "";
+      display: flex;
     }
+
+    &::after {
+      .full-size();
+      content: attr(data-acronym);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--type-fg-colour);
+      font-family: @font-grade;
+      font-weight: 900;
+      font-size: 22px;
+      margin-top: 2px;
+    }
+
+    .mod-icon-osu(@acronym, @filename) {
+      &--@{acronym}::after {
+        content: "";
+        background-color: var(--type-fg-colour);
+        mask-image: url("~@images/badges/mods/@{filename}.svg");
+        mask-position: center;
+        mask-size: contain;
+        mask-repeat: no-repeat;
+        margin: 0;
+      }
+    }
+
+    .mod-icon-fa(@acronym, @glyph) {
+      &--@{acronym}::after {
+        .fas();
+        display: flex;
+        content: @glyph;
+        font-size: 45px;
+        padding: 0 0 5px 2px; // helps a bit on small sizes
+      }
+    }
+
+    .mod-icon-osu(NC, nightcore);
+
+    .mod-icon-fa(CL, @fa-var-history);
   }
 
-  &::after {
-    .full-size();
-    content: attr(data-acronym);
-    display: var(--generic-display);
+  &__customised-indicator::after {
+    width: @mod-indicator-size;
+    height: @mod-indicator-size;
+    border-radius: 50%;
+    background-color: var(--type-fg-colour);
+    z-index: 1;
+    position: absolute;
+    left: 60px;
+    top: -7px;
+    .fas();
+    // in client this is 0.6, but that looks bad on small sizes
+    font-size: 8px;
+    .center-content();
+    content: @fa-var-cog;
+    color: var(--type-bg-colour);
+  }
+
+  &__extender {
+    width: @mod-extender-width;
+    background-color: var(--type-extender-colour);
+    mask-image: url("~@images/badges/mods/blanks/mod-icon-extender.svg");
+    mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.3));
+    margin-left: -@mod-extender-width-inset;
+    padding-left: @mod-extender-width-inset;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    font-weight: 700;
+    font-size: 28px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    color: #545454;
-    padding-top: 1px; // slightly more centered?
-    padding-right: 1px; // slightly more centered?
-    font-family: @font-grade;
-    font-size: 8px; // icon size
-
-    @media @highdpi {
-      font-size: 9px; // icon size
-    }
+    color: var(--type-bg-colour);
   }
 }
