@@ -15,27 +15,29 @@ return [
 
     'judge' => [
         'comments' => 'komentarze',
-        'hide_judged' => 'ukryj ocenione zgłoszenia',
-        'nav_title' => 'oceniać',
-        'no_current_vote' => 'jeszcze nie zagłosowałeś.',
-        'update' => 'aktualizacja',
+        'hide_judged' => 'ukryj ocenione prace',
+        'nav_title' => 'ocena prac',
+        'no_current_vote' => 'brak głosów',
+        'update' => 'zaktualizuj',
         'validation' => [
-            'missing_score' => 'brakujący wynik',
-            'contest_vote_judged' => 'nie można głosować w ocenianych konkursach',
+            'missing_score' => 'brak wyniku',
+            'contest_vote_judged' => 'nie możesz głosować w konkursach ocenianych przez jury',
         ],
-        'voted' => 'Już zagłosowałeś w tym wpisie.',
+        'voted' => 'Już zagłosowano na tę pracę.',
     ],
 
     'judge_results' => [
-        '_' => 'Wyniki oceniania',
+        '_' => 'Wyniki oceny prac',
         'creator' => 'twórca',
         'score' => 'Wynik',
-        'total_score' => 'wynik całkowity',
+        'score_std' => '',
+        'total_score' => 'całkowity wynik',
+        'total_score_std' => '',
     ],
 
     'voting' => [
-        'judge_link' => 'Jesteś sędzią tego konkursu. Oceń wpisy tutaj!',
-        'judged_notice' => 'Ten konkurs używa systemu oceniania, sędziowie obecnie sprawdzają wpisy.',
+        'judge_link' => 'Jesteś członkiem jury tego konkursu. Oceń zgłoszone prace tutaj!',
+        'judged_notice' => 'Ten konkurs jest oceniany przez jury - członkowie zespołu są w trakcie przetwarzania zgłoszonych prac.',
         'login_required' => 'Zaloguj się, aby zagłosować.',
         'over' => 'Głosowanie dla tego konkursu zostało zakończone',
         'show_voted_only' => 'Pokaż prace z moimi głosami',
@@ -87,6 +89,7 @@ return [
         'list' => 'głosy',
         'count' => ':count_delimited głos|:count_delimited głosy|:count_delimited głosów',
         'points' => ':count_delimited punkt|:count_delimited punkty|:count_delimited punktów',
+        'points_float' => '',
     ],
 
     'dates' => [

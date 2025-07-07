@@ -11,10 +11,10 @@ return [
     ],
 
     'error' => [
-        'contact_support' => 'Por favor contacta a assistência para recuperar a conta.',
+        'contact_support' => 'Contacta a assistência para recuperar a conta.',
         'expired' => 'O código de verificação expirou.',
         'invalid' => 'Erro inesperado no código de verificação.',
-        'is_privileged' => 'Por favor contacta um administrador de alto nível para recuperar a conta.',
+        'is_privileged' => 'Contacta um administrador de alto nível para recuperar a conta.',
         'missing_key' => 'Necessário.',
         'too_many_tries' => 'Demasiadas tentativas falhadas.',
         'user_not_found' => 'O utilizador solicitado não existe.',

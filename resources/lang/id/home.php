@@ -27,12 +27,12 @@ return [
         'title' => 'pencarian',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'Lihat lebih banyak hasil pencarian lagu featured artist',
         ],
         'beatmapset' => [
             'login_required' => 'Masuk untuk mencari beatmap',
             'more' => ':count hasil pencarian beatmap lainnya',
-            'more_simple' => 'Lihat hasil pencarian beatmap lainnya',
+            'more_simple' => 'Lihat lebih banyak hasil pencarian beatmap',
             'title' => 'Beatmap',
         ],
 
@@ -40,7 +40,7 @@ return [
             'all' => 'Seluruh forum',
             'link' => 'Cari di forum',
             'login_required' => 'Masuk untuk mencari forum',
-            'more_simple' => 'Lihat hasil pencarian forum lainnya',
+            'more_simple' => 'Lihat lebih banyak hasil pencarian forum',
             'title' => 'Forum',
 
             'label' => [
@@ -54,29 +54,29 @@ return [
 
         'mode' => [
             'all' => 'semua',
-            'artist_track' => '',
+            'artist_track' => 'lagu featured artist',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
-            'team' => '',
+            'team' => 'tim',
             'user' => 'pemain',
             'wiki_page' => 'wiki',
         ],
 
         'team' => [
-            'more_simple' => '',
+            'more_simple' => 'Lihat lebih banyak hasil pencarian tim',
         ],
 
         'user' => [
             'login_required' => 'Masuk untuk mencari pengguna',
             'more' => ':count hasil pencarian pengguna lainnya',
-            'more_simple' => 'Lihat hasil pencarian pengguna lainnya',
+            'more_simple' => 'Lihat lebih banyak hasil pencarian pengguna',
             'more_hidden' => 'Pencarian pengguna terbatas hanya pada :max pengguna. Cobalah untuk mempersempit kriteria pencarian.',
             'title' => 'Pengguna',
         ],
 
         'wiki_page' => [
             'link' => 'Cari di wiki',
-            'more_simple' => 'Lihat hasil pencarian wiki lainnya',
+            'more_simple' => 'Lihat lebih banyak hasil pencarian wiki',
             'title' => 'Wiki',
         ],
     ],
@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Beatmap Ranked Terbaru',
             'popular' => 'Beatmap Terpopuler Saat Ini',
             'by_user' => 'oleh :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'Unduh osu!',

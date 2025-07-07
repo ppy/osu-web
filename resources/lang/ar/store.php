@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'أضف للسلة',
         'notify' => 'أرسل إشعاراً عند توفر هذا المنتج!',
+        'out_of_stock' => '',
 
         'notification_success' => 'سيتم إعلامك عندما يكون لدينا مخزون جديد. انقر فوق :link للإلغاء',
         'notification_remove_text' => 'هتا',

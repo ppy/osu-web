@@ -488,6 +488,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'דיוק פגיעה',
+            'hits_per_play' => '',
             'level' => 'רמה :level',
             'level_progress' => 'התקדמות לרמה הבאה',
             'maximum_combo' => 'רצף מירבי',

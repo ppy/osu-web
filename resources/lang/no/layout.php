@@ -113,6 +113,7 @@ return [
             'copyright' => 'Opphavsrett (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Personvern',
+            'rules' => '',
             'server_status' => 'Serverstatus',
             'source_code' => 'Kildekode',
             'terms' => 'Vilkår for bruk',

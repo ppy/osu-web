@@ -55,7 +55,7 @@ return [
         'contact' => 'Sazinies:',
         'date' => 'Datums:',
         'echeck_delay' => 'Tā kā jūsu samakasa bija e-samaksa, lūdzu pagaidīt līdz 10 papildus dienām, lai samaksa izietu cauri PayPal!',
-        'echeck_denied' => '',
+        'echeck_denied' => 'PayPal noraidīja eČeka maksājumu.',
         'hide_from_activity' => 'osu!supporter tagi šajā pasūtījumā netiek rādīti jūsu nesenajās aktivitātēs.',
         'sent_via' => 'Aizsūtīt Caur:',
         'shipping_to' => 'Aizsūtīt Uz:',
@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'Pievienot grozam',
         'notify' => 'Paziņot man, kad pieejams!',
+        'out_of_stock' => '',
 
         'notification_success' => 'tev paziņos, kad mums būs jauns krājums. uzspied :link lai atceltu',
         'notification_remove_text' => 'šeit',

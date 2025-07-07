@@ -38,11 +38,11 @@ return [
 
     'store' => [
         'button' => 'Zaktualizuj',
-        'ok' => 'Lista zaktualizowana.',
+        'ok' => 'Zaktualizowano listę.',
     ],
 
     'update' => [
         'button' => 'Zaktualizuj',
-        'ok' => 'Wiadomość zaktualizowana.',
+        'ok' => 'Zaktualizowano wiadomość.',
     ],
 ];

@@ -14,7 +14,7 @@ return [
     'common' => [
         'closing' => 'Cumprimentos,',
         'hello' => 'Olá :user,',
-        'report' => 'Por favor responde a este email IMEDIATAMENTE se não pediste esta alteração.',
+        'report' => 'Responde a este email IMEDIATAMENTE se não pediste a alteração.',
         'ignore' => 'Se não solicitaste isto, podes ignorar este email sem riscos.',
     ],
 
@@ -73,13 +73,13 @@ return [
 
     'user_email_updated' => [
         'changed_to' => 'Isto é um email de confirmação para te informar que o teu endereço de email do osu! foi alterado para: ":email".',
-        'check' => 'Por favor assegura-te de que recebeste este email no teu novo endereço para prevenir a perda de acesso à tua conta osu! no futuro.',
+        'check' => 'Assegura-te de que recebeste este email no teu novo endereço para prevenir a perda de acesso à tua conta osu!',
         'sent' => 'Por motivos de segurança, este email foi enviado para o teu endereço de email novo e antigo.',
         'subject' => 'Confirmação da alteração de email da tua conta osu!',
     ],
 
     'user_force_reactivation' => [
-        'main' => 'A tua conta está suspeita de ter sido comprometida, possui uma atividade recente suspeita ou uma palavra-passe MUITO fraca. Como resultado, precisamos que definas uma nova passe. Assegura-te de escolher uma palavra-passe SEGURA por favor.',
+        'main' => 'A tua conta é suspeita de ter sido comprometida. Possui uma atividade recente suspeita ou uma palavra-passe MUITO fraca. Como resultado, precisamos que definas uma nova senha. Assegura-te de escolher uma palavra-passe SEGURA.',
         'perform_reset' => 'Podes efetuar o reinício a partir de :url',
         'reason' => 'Motivo:',
         'subject' => 'Reativação da conta osu! necessária',
@@ -100,7 +100,7 @@ return [
         'code' => 'O teu código de verificação é:',
         'code_hint' => 'Podes inserir o código com ou sem espaços.',
         'link' => 'Como alternativa, também podes visitar este link abaixo para concluir a verificação:',
-        'report' => 'Se não pediste isto, por favor RESPONDE IMEDIATAMENTE porque a tua conta pode estar em perigo.',
+        'report' => 'Se não pediste isto, RESPONDE IMEDIATAMENTE porque a tua conta pode estar em perigo.',
         'subject' => 'verificação da tua conta osu!',
 
         'action_from' => [

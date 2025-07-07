@@ -27,7 +27,7 @@ return [
         'title' => '검색',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => '공식 아티스트 곡 검색 결과 더 보기',
         ],
         'beatmapset' => [
             'login_required' => '비트맵을 검색하기 위해서 로그인',
@@ -54,16 +54,16 @@ return [
 
         'mode' => [
             'all' => '모두',
-            'artist_track' => '',
+            'artist_track' => '공식 아티스트 곡',
             'beatmapset' => '비트맵',
             'forum_post' => '포럼',
-            'team' => '',
+            'team' => '팀',
             'user' => '플레이어',
             'wiki_page' => '위키',
         ],
 
         'team' => [
-            'more_simple' => '',
+            'more_simple' => '팀 검색 결과 더 보기',
         ],
 
         'user' => [
@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => '새로 랭크된 비트맵',
             'popular' => '인기 비트맵',
             'by_user' => ':user님이 만듦',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'osu! 다운로드',

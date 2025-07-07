@@ -30,7 +30,9 @@ return [
         '_' => '打分结果',
         'creator' => '谱师',
         'score' => '分数',
+        'score_std' => '',
         'total_score' => '总分',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => '票数',
         'count' => ':count_delimited 票',
         'points' => ':count_delimited 分',
+        'points_float' => '',
     ],
 
     'dates' => [

@@ -11,7 +11,7 @@ return [
     'last_visit' => 'Kegiatan terkini',
     'new' => 'Terkini',
     'old' => 'Terlama',
-    'rank' => 'Kedudukan',
+    'rank' => 'Pangkat',
     'top' => 'Sohor',
     'username' => 'Nama pengguna',
 
@@ -38,9 +38,9 @@ return [
     ],
 
     'teams' => [
-        'relevance' => '',
-        'name' => '',
-        'short-name' => '',
+        'relevance' => 'Kaitan',
+        'name' => 'Nama',
+        'short-name' => 'Nama Pendek',
     ],
 
     'users' => [

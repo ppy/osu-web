@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner sa pamamagitan ng :difference',
 
         'events' => [
-            'player-left' => 'Umalis si:user sa laro',
-            'player-joined' => 'Sumali si:user sa laro',
-            'player-kicked' => 'Tinanggal si:user sa laro',
-            'match-created' => 'Gianwa ni:user ang laro',
-            'match-disbanded' => 'ang laro ay binuwag',
-            'host-changed' => 'Naging host si :user',
-
-            'player-left-no-user' => 'umalis ang isang manlalaro sa laban',
-            'player-joined-no-user' => 'sumali ang isang manlalaro sa laban',
-            'player-kicked-no-user' => 'na-kick ang isang manlalaro sa laban',
-            'match-created-no-user' => 'ang laban ay nilikha',
-            'match-disbanded-no-user' => 'ang laban ay binuwag',
-            'host-changed-no-user' => 'ang host ay pinalit',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Head-to-Head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => 'Pinakamataas na Iskor',
             'accuracy' => 'Pinakamataas na Accuracy',

@@ -486,6 +486,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Träffsäkerhet',
+            'hits_per_play' => '',
             'level' => 'Nivå :level',
             'level_progress' => 'Framsteg till nästa nivå',
             'maximum_combo' => 'Högsta kombo',

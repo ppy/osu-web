@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'До кошика',
         'notify' => 'Повідомити мене, коли буде в наявності!',
+        'out_of_stock' => '',
 
         'notification_success' => 'ви будете сповіщені коли товар буде в наявності. натисніть :link для скасування',
         'notification_remove_text' => 'сюди',

@@ -130,6 +130,11 @@ return [
             '_' => 'wiki',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'uỷ quyền ứng dụng',

@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Nove rangirane beatmape',
             'popular' => 'Popularne beatmape',
             'by_user' => 'od :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'Preuzmi osu!',

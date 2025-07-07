@@ -486,6 +486,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Прецизност',
+            'hits_per_play' => '',
             'level' => ':level ниво',
             'level_progress' => 'напредак до следећег нивоа',
             'maximum_combo' => 'Максимални комбо постигнут',

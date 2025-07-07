@@ -143,9 +143,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Mga bagong na-rank na Beatmap',
             'popular' => 'Popular na mga Beatmap',
             'by_user' => 'ni :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'I-download ang osu!',

@@ -5,8 +5,8 @@
 
 return [
     'index' => [
-        'batch_disable' => 'Desactivar la selecció',
-        'batch_enable' => 'Activar la selecció',
+        'batch_disable' => 'Desactiva la selecció',
+        'batch_enable' => 'Activa la selecció',
 
         'batch_confirm' => [
             '_' => ':action :items?',

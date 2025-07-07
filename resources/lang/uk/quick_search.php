@@ -5,11 +5,11 @@
 
 return [
     'mode' => [
-        'artist_track' => '',
+        'artist_track' => 'пісням обраних виконавців',
         'beatmapset' => 'мапах',
         'forum_post' => 'форумах',
         'other' => 'інших категоріях',
-        'team' => '',
+        'team' => 'командам',
         'user' => 'гравцях',
         'wiki_page' => 'вiкi',
     ],

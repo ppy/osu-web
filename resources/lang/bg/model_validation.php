@@ -132,12 +132,12 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => 'Това :attribute съдържа невалидни знаци.',
+        'used' => 'Това :attribute е вече използвано.',
+        'word_not_allowed' => 'Това :attribute не е разрешено.',
 
         'attributes' => [
-            'default_ruleset_id' => '',
+            'default_ruleset_id' => 'Основен режим на игра',
             'is_open' => 'Заявки за отбора',
             'name' => 'Име',
             'short_name' => 'Кратко име',
@@ -190,7 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Класирани бийтмапове не могат да бъдат докладвани',
         'not_in_channel' => 'Вие не сте в този канал.',
-        'in_team' => '',
+        'in_team' => 'Вие вече сте част от този отбор.',
         'reason_not_valid' => ':reason е невалидна причина за този вид доклад.',
         'self' => "Не може да докладвате себе си!",
     ],

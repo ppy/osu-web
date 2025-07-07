@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Nauji Reitinguoti Beatmap\'ai',
             'popular' => 'Populiarūs Beatmap\'ai',
             'by_user' => 'sukūrė :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'Atsisiųsti osu!',

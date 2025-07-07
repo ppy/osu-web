@@ -15,7 +15,7 @@ return [
 
     'action_type' => [
         '_' => 'semua',
-        'beatmapset' => 'beatmap',
+        'beatmapset' => 'peta rentak',
         'build' => 'binaan',
         'channel' => 'bualan',
         'forum_topic' => 'forum',
@@ -27,7 +27,7 @@ return [
     'filters' => [
         '_' => 'semua',
         'beatmapset' => 'peta rentak',
-        'build' => 'versi',
+        'build' => 'binaan',
         'channel' => 'bual',
         'forum_topic' => 'forum',
         'news_post' => 'berita',
@@ -81,14 +81,14 @@ return [
                 'beatmapset_love_compact' => 'Peta rentak telah dinaikkan ke Kegemaran',
                 'beatmapset_nominate' => '":title" telah dicalonkan',
                 'beatmapset_nominate_compact' => 'Peta rentak telah dicalonkan',
-                'beatmapset_qualify' => '":title" telah memperoleh jumlah pencalonan yang cukup dan memasuki giliran penarafan Berkedudukan',
-                'beatmapset_qualify_compact' => 'Peta rentak memasuki giliran penarafan Berkedudukan',
-                'beatmapset_rank' => '":title" telah berkedudukan',
-                'beatmapset_rank_compact' => 'Peta rentak telah berkedudukan',
+                'beatmapset_qualify' => '":title" telah memperoleh jumlah pencalonan yang cukup dan memasuki giliran penarafan Berpangkat',
+                'beatmapset_qualify_compact' => 'Peta rentak memasuki giliran penarafan Berpangkat',
+                'beatmapset_rank' => '":title" telah berpangkat',
+                'beatmapset_rank_compact' => 'Peta rentak telah berpangkat',
                 'beatmapset_remove_from_loved' => '":title" dipadam dari Kegemaran',
                 'beatmapset_remove_from_loved_compact' => 'Peta rentak dipadam dari Kegemaran',
-                'beatmapset_reset_nominations' => 'Pencalonan ":title" telah diset semula',
-                'beatmapset_reset_nominations_compact' => 'Pencalonan telah diset semula',
+                'beatmapset_reset_nominations' => 'Pencalonan ":title" telah ditetap semula',
+                'beatmapset_reset_nominations_compact' => 'Pencalonan telah ditetap semula',
             ],
 
             'comment' => [
@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => 'Pesanan pasukan baharu',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username berkata ":title"',
+                    'channel_team_compact' => ':username berkata ":title"',
+                    'channel_team_group' => ':username berkata ":title"',
                 ],
             ],
         ],
@@ -178,12 +178,12 @@ return [
                 'team_application_accept' => "Anda kini ahli pasukan :title",
                 'team_application_accept_compact' => "Anda kini ahli pasukan :title",
 
-                'team_application_group' => '',
+                'team_application_group' => 'Pengemaskinian permintaan masuk pasukan',
 
                 'team_application_reject' => 'Permintaan anda untuk memasuki pasukan :title ditolak',
                 'team_application_reject_compact' => 'Permintaan anda untuk memasuki pasukan :title ditolak',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_store' => ':title meminta untuk memasuki pasukan anda',
+                'team_application_store_compact' => ':title meminta untuk memasuki pasukan anda',
             ],
         ],
 
@@ -215,7 +215,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => 'Anda kini tamu beatmap ":title"',
+                'beatmap_owner_change' => 'Anda kini tamu peta rentak ":title"',
             ],
 
             'beatmapset_discussion' => [
@@ -232,10 +232,10 @@ return [
                 'beatmapset_disqualify' => '":title" telah disingkirkan',
                 'beatmapset_love' => '":title" telah dinaikkan ke Kegemaran',
                 'beatmapset_nominate' => '":title" telah diberikan status dicalonkan',
-                'beatmapset_qualify' => '":title" telah memperoleh jumlah pencalonan yang cukup dan memasuki giliran penarafan Berkedudukan',
-                'beatmapset_rank' => '":title" telah berkedudukan',
+                'beatmapset_qualify' => '":title" telah memperoleh jumlah pencalonan yang cukup dan memasuki giliran penarafan Berpangkat',
+                'beatmapset_rank' => '":title" telah berpangkat',
                 'beatmapset_remove_from_loved' => '":title" dipadam dari Kegemaran',
-                'beatmapset_reset_nominations' => 'Pencalonan ":title" telah diset semula',
+                'beatmapset_reset_nominations' => 'Pencalonan ":title" telah ditetap semula',
             ],
 
             'comment' => [
@@ -245,13 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => 'Terdapat pengumuman baharu pada ":name"',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => 'Anda telah menerima pesanan baharu dari :username',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'Terdapat pesanan baharu dalam pasukan ":name"',
             ],
         ],
 
@@ -277,14 +277,14 @@ return [
             'team_application' => [
                 'team_application_accept' => "Anda kini ahli pasukan :title",
                 'team_application_reject' => 'Permintaan anda untuk memasuki pasukan :title ditolak',
-                'team_application_store' => '',
+                'team_application_store' => ':title meminta untuk memasuki pasukan anda',
             ],
         ],
 
         'user' => [
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => ':username telah mencipta beatmap baru',
-                'user_beatmapset_revive' => ':username memiliki beatmap yang dipulihkan dari Perkuburan',
+                'user_beatmapset_new' => ':username telah mencipta peta rentak baru',
+                'user_beatmapset_revive' => ':username telah kembalikan peta rentak',
             ],
         ],
     ],

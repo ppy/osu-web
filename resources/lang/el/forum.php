@@ -80,7 +80,7 @@ return [
         'confirm_restore' => 'Πραγματικά επαναφορά θέματος;',
         'deleted' => 'διαγραμμένο θέμα',
         'go_to_latest' => 'δείτε την πιο πρόσφατη δημοσίευση',
-        'go_to_unread' => '',
+        'go_to_unread' => 'προβολή πρώτης μη αναγνωσμένης δημοσίευσης',
         'has_replied' => 'Έχετε απαντήσει σε αυτό το θέμα',
         'in_forum' => 'στο :forum',
         'latest_post' => ':when από τον :user',
@@ -296,24 +296,24 @@ return [
         ],
 
         'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Αφαίρεση ετικέτας "osu!lazer"',
+            'to_0_done' => 'Αφαιρέθηκε το η "osu!lazer" ετικέτα',
+            'to_1' => 'Προσθήκη ετικέτας "osu!lazer"',
+            'to_1_done' => 'Προστέθηκε η "osu!lazer" ετικέτα',
         ],
 
         'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Αφαίρεση του tag "osu!stable"',
+            'to_0_done' => 'Αφαιρέθηκε το tag "osu!stable"',
+            'to_1' => 'Προσθήκη ετικέτας "osu!stable"',
+            'to_1_done' => 'Προστέθηκε το tag "osu!stable"',
         ],
 
         'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Αφαίρεση του tag "osu!web"',
+            'to_0_done' => 'Το tag "osu!web" αφαιρέθηκε',
+            'to_1' => 'Προσθήκη ετικέτας "osu!web"',
+            'to_1_done' => 'Προστέθηκε το tag "osu!web"',
         ],
 
         'lock' => [

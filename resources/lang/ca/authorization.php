@@ -18,16 +18,16 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Has assolit el teu límit de nominacions diàries, si us plau torna-ho a intentar demà.',
-            'incorrect_state' => 'Error en realitzar aquesta acció, intenteu actualitzar la pàgina.',
-            'owner' => "No pots nominar el teu propi beatmap.",
+            'incorrect_state' => 'Error en realitzar aquesta acció. Intenteu actualitzar la pàgina.',
+            'owner' => "No pots nominar el teu propi mapa.",
             'set_metadata' => 'Heu d\'establir el gènere i l\'idioma abans de nominar.',
         ],
         'resolve' => [
-            'not_owner' => 'Només el creador del tema i el propietari del beatmap poden resoldre una discussió.',
+            'not_owner' => 'Només el creador del tema i el propietari del mapa poden resoldre una discussió.',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Només el propietari del beatmap o el nominador/membre del grup NAT pot publicar notes de mapatge.',
+            'mapper_note_wrong_user' => 'Només el propietari del mapa o el nominador/membre del grup NAT pot publicar notes de mapatge.',
         ],
 
         'vote' => [
@@ -53,16 +53,16 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => 'La discussió d\'aquest beatmap està bloquejada.',
+        'discussion_locked' => 'La discussió d\'aquest mapa està blocada.',
 
         'metadata' => [
-            'nominated' => 'No podeu canviar les metadades d\'un beatmap nominat. Contacta amb un membre dels BN o del NAT si creus que estan establerts incorrectament.',
+            'nominated' => 'No podeu canviar les metadades d\'un mapa nominat. Contacteu amb un membre dels BN o del NAT si creieu que són incorrectes.',
         ],
     ],
 
     'beatmap_tag' => [
         'store' => [
-            'no_score' => 'Has de tenir una puntuació al beatmap per afegir una etiqueta.',
+            'no_score' => 'Has de tenir una puntuació al mapa per afegir una etiqueta.',
         ],
     ],
 

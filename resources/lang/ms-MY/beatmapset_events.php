@@ -27,12 +27,12 @@ return [
         'love' => 'Digemari oleh :user.',
         'nominate' => 'Dicalonkan oleh :user.',
         'nominate_modes' => 'Dicalonkan oleh :user (:modes).',
-        'nomination_reset' => 'Masalah baharu :discussion (:text) mencetuskan pengesetan semula pencalonan.',
-        'nomination_reset_received' => 'Pencalonan oleh :user diset semula oleh :source_user (:text)',
-        'nomination_reset_received_profile' => 'Pencalonan diset semula oleh :user (:text)',
+        'nomination_reset' => 'Masalah baharu :discussion (:text) mencetuskan penetapan semula pencalonan.',
+        'nomination_reset_received' => 'Pencalonan oleh :user ditetap semula oleh :source_user (:text)',
+        'nomination_reset_received_profile' => 'Pencalonan ditetap semula oleh :user (:text)',
         'offset_edit' => 'Imbangan dalam talian diubah dari :old ke :new.',
         'qualify' => 'Peta rentak ini telah mencapai jumlah pencalonan yang diperlukan dan telah dilayakkan.',
-        'rank' => 'Berkedudukan.',
+        'rank' => 'Berpangkat.',
         'remove_from_loved' => 'Dipadam dari Kegemaran oleh :user. (:text)',
         'tags_edit' => 'Tag diubah dari ":old" ke ":new".',
 
@@ -43,7 +43,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Peristiwa peta rentak',
+        'title' => 'Peristiwa Peranggu Peta Rentak',
 
         'form' => [
             'period' => 'Tempoh',
@@ -76,12 +76,12 @@ return [
         'language_edit' => 'Penyuntingan bahasa',
         'love' => 'Gemar',
         'nominate' => 'Pencalonan',
-        'nomination_reset' => 'Pengesetan semula pencalonan',
-        'nomination_reset_received' => 'Pengesetan semula pencalonan diterima',
+        'nomination_reset' => 'Penetapan semula pencalonan',
+        'nomination_reset_received' => 'Penetapan semula pencalonan diterima',
         'nsfw_toggle' => 'Tanda tidak senonoh',
         'offset_edit' => 'Sunting imbangan',
         'qualify' => 'Kelayakan',
-        'rank' => 'Berkedudukan',
+        'rank' => 'Pangkat',
         'remove_from_loved' => 'Pemadaman Kegemaran',
     ],
 ];

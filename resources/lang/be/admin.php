@@ -56,7 +56,7 @@ return [
 
                 'users' => [
                     'header' => 'Карыстальнік',
-                    'cover_presets' => '',
+                    'cover_presets' => 'Шаблоны вокладак профілю',
                 ],
             ],
         ],

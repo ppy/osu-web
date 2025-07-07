@@ -81,7 +81,7 @@ return [
             'testflight' => 'testa lidojums',
         ],
         'legacy_matches_controller' => [
-            '_' => '',
+            '_' => 'spēlēs',
         ],
         'legal_controller' => [
             '_' => 'informācija',
@@ -109,9 +109,9 @@ return [
         ],
         'teams_controller' => [
             '_' => 'komandas',
-            'create' => '',
-            'edit' => '',
-            'leaderboard' => '',
+            'create' => 'izveidot komandu',
+            'edit' => 'komandas iestatījumi',
+            'leaderboard' => 'komandas līderu saraksts',
             'show' => 'komandas info',
         ],
         'tournaments_controller' => [
@@ -129,6 +129,11 @@ return [
             '_' => 'vikipēdija',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'autorizēt aplikāciju',
@@ -139,7 +144,7 @@ return [
     ],
     'teams' => [
         'members_controller' => [
-            'index' => '',
+            'index' => 'komandas dalībnieki',
         ],
     ],
     'users' => [

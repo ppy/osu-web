@@ -33,7 +33,7 @@ return [
         'reply_notice' => 'Prime ENTER para responder.',
         'reply_resolve_notice' => 'Prime enter para responder. Prime ctrl+enter para responder e resolver.',
         'reply_placeholder' => 'Escreve a tua resposta aqui',
-        'require-login' => 'Por favor inicia sessão para publicar ou responder',
+        'require-login' => 'Inicia sessão para publicar ou responder.',
         'resolved' => 'Resolvida',
         'restore' => 'restaurar',
         'show_deleted' => 'Exibir eliminados',

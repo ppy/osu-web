@@ -127,12 +127,12 @@ return [
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => '新的战队信息',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username 说：“:title”',
+                    'channel_team_compact' => ':username 说：“:title”',
+                    'channel_team_group' => ':username 说：“:title”',
                 ],
             ],
         ],
@@ -180,12 +180,12 @@ return [
                 'team_application_accept' => "您现在是战队 :title 的成员",
                 'team_application_accept_compact' => "您现在是战队 :title 的成员",
 
-                'team_application_group' => '',
+                'team_application_group' => '新的战队加入申请',
 
                 'team_application_reject' => '您加入战队 :title 的请求已被拒绝',
                 'team_application_reject_compact' => '您加入战队 :title 的请求已被拒绝',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_store' => ':title 申请加入你的战队',
+                'team_application_store_compact' => ':title 申请加入你的战队',
             ],
         ],
 
@@ -248,13 +248,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => '“:name” 中有一条新通知',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => '您收到了 :username 的新消息',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => '战队 “:name” 中有新消息',
             ],
         ],
 
@@ -280,7 +280,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "您现在是战队 :title 的成员",
                 'team_application_reject' => '您加入战队 :title 的请求已被拒绝',
-                'team_application_store' => '',
+                'team_application_store' => ':title 申请加入你的战队',
             ],
         ],
 

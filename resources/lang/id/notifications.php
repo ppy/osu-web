@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => 'Pesan tim baru',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username mengatakan ":title"',
+                    'channel_team_compact' => ':username mengatakan ":title"',
+                    'channel_team_group' => ':username mengatakan ":title"',
                 ],
             ],
         ],
@@ -178,12 +178,12 @@ return [
                 'team_application_accept' => "Kamu kini merupakan anggota dari tim :title",
                 'team_application_accept_compact' => "Kamu kini merupakan anggota dari tim :title",
 
-                'team_application_group' => '',
+                'team_application_group' => 'Pembaruan permintaan gabung tim',
 
                 'team_application_reject' => 'Permintaan kamu untuk bergabung ke tim :title telah ditolak',
                 'team_application_reject_compact' => 'Permintaan kamu untuk bergabung ke tim :title telah ditolak',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_store' => ':title meminta untuk bergabung ke tim kamu',
+                'team_application_store_compact' => ':title meminta untuk bergabung ke tim kamu',
             ],
         ],
 
@@ -245,13 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => 'Terdapat pengumuman baru pada ":name"',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => 'Kamu menerima pesan baru dari :username',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'Terdapat pesan baru pada tim ":name"',
             ],
         ],
 
@@ -277,7 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Kamu kini merupakan anggota dari tim :title",
                 'team_application_reject' => 'Permintaan kamu untuk bergabung ke tim :title telah ditolak',
-                'team_application_store' => '',
+                'team_application_store' => ':title meminta untuk bergabung ke tim kamu',
             ],
         ],
 

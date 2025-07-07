@@ -55,8 +55,8 @@ return [
                 'general' => '',
 
                 'users' => [
-                    'header' => '',
-                    'cover_presets' => '',
+                    'header' => 'Χρήστης',
+                    'cover_presets' => 'Προεπιλογές Εξώφυλλου Προφίλ',
                 ],
             ],
         ],

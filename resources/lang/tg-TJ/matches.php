@@ -15,19 +15,22 @@ return [
         'winner_by' => '',
 
         'events' => [
-            'player-left' => '',
-            'player-joined' => '',
-            'player-kicked' => '',
-            'match-created' => '',
-            'match-disbanded' => '',
-            'host-changed' => '',
-
-            'player-left-no-user' => '',
-            'player-joined-no-user' => '',
-            'player-kicked-no-user' => '',
-            'match-created-no-user' => '',
-            'match-disbanded-no-user' => '',
-            'host-changed-no-user' => '',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => '',
-            'tag-coop' => '',
-            'team-vs' => '',
-            'tag-team-vs' => '',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => '',
             'accuracy' => '',

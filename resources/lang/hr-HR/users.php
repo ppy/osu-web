@@ -486,6 +486,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Preciznost pogodaka',
+            'hits_per_play' => '',
             'level' => 'Level :level',
             'level_progress' => 'Napredak na sljedeću razinu',
             'maximum_combo' => 'Najveći combo',

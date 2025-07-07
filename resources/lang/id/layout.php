@@ -113,6 +113,7 @@ return [
             'copyright' => 'Hak Cipta (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Privasi',
+            'rules' => '',
             'server_status' => 'Status Server',
             'source_code' => 'Kode Sumber',
             'terms' => 'Ketentuan Layanan',

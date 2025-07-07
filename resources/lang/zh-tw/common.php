@@ -94,6 +94,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => '',
+        ],
+        'year' => [
+            'php' => '',
+        ],
         'year_month' => [
             'moment' => 'YYYY年 MMMM',
             'php' => 'y年 MMMM',

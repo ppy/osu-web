@@ -113,6 +113,7 @@ return [
             'copyright' => 'حقوق الطبع والنشر (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'الخصوصية',
+            'rules' => '',
             'server_status' => 'حالة الخادم',
             'source_code' => 'الشفرة المصدرية',
             'terms' => 'المفردات',

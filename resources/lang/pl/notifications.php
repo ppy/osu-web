@@ -20,18 +20,18 @@ return [
         'channel' => 'czat',
         'forum_topic' => 'forum',
         'news_post' => 'aktualności',
-        'team' => 'drużyna',
+        'team' => 'zespół',
         'user' => 'profil',
     ],
 
     'filters' => [
         '_' => 'wszystkie',
         'beatmapset' => 'beatmapy',
-        'build' => 'kompilacje',
+        'build' => 'zmiany',
         'channel' => 'czat',
         'forum_topic' => 'forum',
         'news_post' => 'aktualności',
-        'team' => 'drużyna',
+        'team' => 'zespół',
         'user' => 'profil',
     ],
 
@@ -51,10 +51,10 @@ return [
                 'beatmapset_discussion_lock_compact' => 'Dyskusja została zablokowana',
                 'beatmapset_discussion_post_new' => 'Nowy post w dyskusji „:title” od użytkownika :username: „:content”',
                 'beatmapset_discussion_post_new_empty' => 'Nowy post od użytkownika :username dla beatmapy „:title”',
-                'beatmapset_discussion_post_new_compact' => 'Nowy post od użytkownika :username',
+                'beatmapset_discussion_post_new_compact' => 'Nowy post od użytkownika :username: „:content”',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nowy post od użytkownika :username',
-                'beatmapset_discussion_review_new' => 'Nowa recenzja od :username pod beatmapą „:title” zawierająca :review_counts',
-                'beatmapset_discussion_review_new_compact' => 'Nowa recenzja od :username zawierająca :review_counts',
+                'beatmapset_discussion_review_new' => 'Nowa recenzja od użytkownika :username pod beatmapą „:title” zawierająca :review_counts',
+                'beatmapset_discussion_review_new_compact' => 'Nowa recenzja od użytkownika :username zawierająca :review_counts',
                 'beatmapset_discussion_unlock' => 'Tworzenie dyskusji dla beatmapy „:title” zostało odblokowane.',
                 'beatmapset_discussion_unlock_compact' => 'Dyskusja została odblokowana',
 
@@ -75,12 +75,12 @@ return [
 
             'beatmapset_state' => [
                 '_' => 'Status beatmapy został zmieniony',
-                'beatmapset_disqualify' => 'Beatmapa „:title” została zdyskwalifikowana przez użytkownika :username.',
+                'beatmapset_disqualify' => 'Beatmapa „:title” została zdyskwalifikowana',
                 'beatmapset_disqualify_compact' => 'Beatmapa została zdyskwalifikowana',
-                'beatmapset_love' => 'Beatmapa „:title” uzyskała status ulubionej społeczności od użytkownika :username.',
+                'beatmapset_love' => 'Beatmapa „:title” uzyskała status ulubionej społeczności',
                 'beatmapset_love_compact' => 'Beatmapa uzyskała status ulubionej społeczności',
-                'beatmapset_nominate' => 'Beatmapa „:title” została nominowana przez użytkownika :username.',
-                'beatmapset_nominate_compact' => 'Beatmapa została nominowana',
+                'beatmapset_nominate' => 'Beatmapa „:title” została nominowana do sekcji rankingowej',
+                'beatmapset_nominate_compact' => 'Beatmapa została nominowana do sekcji rankingowej',
                 'beatmapset_qualify' => 'Beatmapa „:title” uzyskała wystarczającą liczbę nominacji i została zakwalifikowana.',
                 'beatmapset_qualify_compact' => 'Beatmapa została zakwalifikowana',
                 'beatmapset_rank' => 'Beatmapa „:title” uzyskała status rankingowy',
@@ -94,10 +94,10 @@ return [
             'comment' => [
                 '_' => 'Nowy komentarz',
 
-                'comment_new' => 'Użytkownik :username napisał komentarz pod „:title”: „:content”',
-                'comment_new_compact' => 'Użytkownik :username napisał komentarz: „:content”',
-                'comment_reply' => 'Użytkownik :username odpowiedział: „:content” na „:title”',
-                'comment_reply_compact' => 'Użytkownik :username odpowiedział: „:content”',
+                'comment_new' => 'Nowy komentarz od użytkownika :username pod „:title”: „:content”',
+                'comment_new_compact' => 'Nowy komentarz od użytkownika :username: „:content”',
+                'comment_reply' => 'Nowa odpowiedź od użytkownika :username pod „:title”: „:content”',
+                'comment_reply_compact' => 'Nowa odpowiedź od użytkownika :username: „:content”',
             ],
         ],
 
@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => 'Nowa wiadomość na czacie zespołu',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username pisze „:title”',
+                    'channel_team_compact' => ':username pisze „:title”',
+                    'channel_team_group' => ':username pisze „:title”',
                 ],
             ],
         ],
@@ -141,10 +141,10 @@ return [
             'comment' => [
                 '_' => 'Nowy komentarz',
 
-                'comment_new' => 'Użytkownik :username napisał komentarz pod „:title”: „:content”',
-                'comment_new_compact' => 'Użytkownik :username napisał komentarz: „:content”',
-                'comment_reply' => 'Użytkownik :username odpowiedział: „:content” na „:title”',
-                'comment_reply_compact' => 'Użytkownik :username odpowiedział: „:content”',
+                'comment_new' => 'Nowy komentarz od użytkownika :username pod „:title”: „:content”',
+                'comment_new_compact' => 'Nowy komentarz od użytkownika :username: „:content”',
+                'comment_reply' => 'Nowa odpowiedź od użytkownika :username pod „:title”: „:content”',
+                'comment_reply_compact' => 'Nowa odpowiedź od użytkownika :username: „:content”',
             ],
         ],
 
@@ -154,10 +154,10 @@ return [
             'comment' => [
                 '_' => 'Nowy komentarz',
 
-                'comment_new' => 'Użytkownik :username napisał komentarz pod „:title”: „:content”',
-                'comment_new_compact' => 'Użytkownik :username napisał komentarz: „:content”',
-                'comment_reply' => 'Użytkownik :username odpowiedział: „:content” na „:title”',
-                'comment_reply_compact' => 'Użytkownik :username odpowiedział: „:content”',
+                'comment_new' => 'Nowy komentarz od użytkownika :username pod „:title”: „:content”',
+                'comment_new_compact' => 'Nowy komentarz od użytkownika :username: „:content”',
+                'comment_reply' => 'Nowa odpowiedź od użytkownika :username pod „:title”: „:content”',
+                'comment_reply_compact' => 'Nowa odpowiedź od użytkownika :username: „:content”',
             ],
         ],
 
@@ -166,24 +166,24 @@ return [
 
             'forum_topic_reply' => [
                 '_' => 'Nowa odpowiedź na forum',
-                'forum_topic_reply' => 'Użytkownik :username odpowiedział w wątku „:title”',
-                'forum_topic_reply_compact' => 'Użytkownik :username odpowiedział',
+                'forum_topic_reply' => 'Nowa odpowiedź od użytkownika :username w wątku „:title”',
+                'forum_topic_reply_compact' => 'Nowa odpowiedź od użytkownika :username',
             ],
         ],
 
         'team' => [
             'team_application' => [
-                '_' => 'Prośba o dołączenie do drużyny',
+                '_' => 'Prośba o dołączenie do zespołu',
 
-                'team_application_accept' => "Jesteś teraz członkiem drużyny :title",
-                'team_application_accept_compact' => "Jesteś teraz członkiem drużyny :title",
+                'team_application_accept' => "Od teraz jesteś członkiem zespołu :title",
+                'team_application_accept_compact' => "Od teraz jesteś członkiem zespołu :title",
 
-                'team_application_group' => '',
+                'team_application_group' => 'Nowe prośby o dołączenie do zespołu',
 
-                'team_application_reject' => 'Twoja prośba o dołączenie do drużyny :title została odrzucona',
-                'team_application_reject_compact' => 'Twoja prośba o dołączenie do drużyny :title została odrzucona',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_reject' => 'Twoja prośba o dołączenie do zespołu :title została odrzucona',
+                'team_application_reject_compact' => 'Twoja prośba o dołączenie do zespołu :title została odrzucona',
+                'team_application_store' => ':title prosi o dołączenie do twojego zespołu',
+                'team_application_store_compact' => ':title prosi o dołączenie do twojego zespołu',
             ],
         ],
 
@@ -245,13 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => 'Nowe ogłoszenie w pokoju „:name” ',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => 'Otrzymujesz nową wiadomość od użytkownika :username',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'Nowa wiadomość na czacie zespołu „:name” ',
             ],
         ],
 
@@ -275,9 +275,9 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "Jesteś teraz członkiem drużyny :title",
-                'team_application_reject' => 'Jesteś teraz członkiem drużyny :title',
-                'team_application_store' => '',
+                'team_application_accept' => "Od teraz jesteś członkiem zespołu :title",
+                'team_application_reject' => 'Twoja prośba o dołączenie do zespołu :title została odrzucona',
+                'team_application_store' => ':title prosi o dołączenie do twojego zespołu',
             ],
         ],
 

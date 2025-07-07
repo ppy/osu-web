@@ -30,7 +30,9 @@ return [
         '_' => 'Výsledky souzení',
         'creator' => 'autor',
         'score' => 'Skóre',
+        'score_std' => '',
         'total_score' => 'celkové skóre',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'hlasy',
         'count' => ':count_delimited hlas|:count_delimited hlasy|:count_delimited hlasů',
         'points' => ':count_delimited bod|:count_delimited body|:count_delimited bodů',
+        'points_float' => '',
     ],
 
     'dates' => [

@@ -5,11 +5,11 @@
 
 return [
     'mode' => [
-        'artist_track' => '',
+        'artist_track' => 'Lagu Featured Artist',
         'beatmapset' => 'Beatmap',
         'forum_post' => 'Forum',
         'other' => 'Lainnya',
-        'team' => '',
+        'team' => 'Tim',
         'user' => 'Pengguna',
         'wiki_page' => 'Wiki',
     ],

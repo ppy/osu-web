@@ -52,7 +52,7 @@ return [
         'beatmapsets_controller' => [
             'discussion' => 'абмеркаванне бітмапы',
             'index' => 'спіс бітмап',
-            'show' => 'інфармацыя о бітмапе',
+            'show' => 'інфармацыя пра бітмап',
         ],
         'changelog_controller' => [
             '_' => 'гісторыя змен',
@@ -64,11 +64,11 @@ return [
             '_' => 'каментарыі',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'вынікі судзейства конкурсу',
         ],
         'contests_controller' => [
             '_' => 'конкурсы',
-            'judge' => '',
+            'judge' => 'судзейства конкурсу',
         ],
         'groups_controller' => [
             'show' => 'групы',
@@ -81,7 +81,7 @@ return [
             'testflight' => 'testflight',
         ],
         'legacy_matches_controller' => [
-            '_' => '',
+            '_' => 'матчы',
         ],
         'legal_controller' => [
             '_' => 'інфармацыя',
@@ -108,17 +108,17 @@ return [
             '_' => 'рэйтынг',
         ],
         'teams_controller' => [
-            '_' => '',
-            'create' => '',
-            'edit' => '',
-            'leaderboard' => '',
-            'show' => '',
+            '_' => 'каманды',
+            'create' => 'стварыць каманду',
+            'edit' => 'налады каманды',
+            'leaderboard' => 'камандная рэйтынгавая табліца',
+            'show' => 'інфармацыя аб камандзе',
         ],
         'tournaments_controller' => [
             '_' => 'турніры',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'пресеты вокладак',
         ],
         'users_controller' => [
             '_' => 'інфармацыя пра гульца',
@@ -127,6 +127,11 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'вікі',
+        ],
+    ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '',
         ],
     ],
     'passport' => [
@@ -139,7 +144,7 @@ return [
     ],
     'teams' => [
         'members_controller' => [
-            'index' => '',
+            'index' => 'удзельнікі каманды',
         ],
     ],
     'users' => [

@@ -52,7 +52,7 @@ return [
         'search' => 'Cercar',
         'see_more' => 'veure més',
         'show' => 'mostrar',
-        'show_deleted' => 'Mostrar eliminats',
+        'show_deleted' => 'Mostra els eliminats',
         'show_less' => 'mostra\'n menys',
         'show_more' => 'mostra\'n més',
         'show_more_options' => 'mostrar més opcions',
@@ -94,6 +94,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => '',
+        ],
+        'year' => [
+            'php' => '',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

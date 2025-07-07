@@ -7,14 +7,14 @@ return [
     'load_failed' => 'Nie udało się załadować danych.',
     'missing_route' => 'Nieprawidłowy adres URL lub nieprawidłowa metoda żądania.',
     'no_restricted_access' => 'Nie możesz wykonać tej czynności podczas blokady konta.',
-    'supporter_only' => 'Potrzebujesz statusu donatora osu!, aby korzystać z tej funkcji.',
+    'supporter_only' => 'Do skorzystania z tej funkcji wymagany jest aktywny status donatora osu!.',
     'unknown' => 'Wystąpił nieoczekiwany błąd.',
 
     'codes' => [
         'http-401' => 'Zaloguj się, aby kontynuować.',
         'http-403' => 'Odmowa dostępu.',
         'http-404' => 'Nie znaleziono.',
-        'http-429' => 'Za dużo prób. Spróbuj ponownie później.',
+        'http-429' => 'Zbyt wiele prób. Spróbuj ponownie później.',
     ],
     'account' => [
         'profile-order' => [
@@ -22,14 +22,14 @@ return [
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => 'Wybrano nieprawidłowy tryb.',
-        'standard_converts_only' => 'Brak wyników dla wybranego trybu na tym poziomie trudności.',
+        'invalid_mode' => 'Wybrano nieprawidłowy tryb gry.',
+        'standard_converts_only' => 'Brak wyników na tym poziomie trudności dla wybranego trybu gry.',
     ],
     'checkout' => [
         'generic' => 'Wystąpił błąd podczas przygotowywania twojego zamówienia.',
     ],
     'scores' => [
-        'invalid_id' => 'Nieprawidłowy Identyfikator Wyniku.',
+        'invalid_id' => 'Nieprawidłowy identyfikator wyniku.',
     ],
     'search' => [
         'default' => 'Nie udało się niczego znaleźć, spróbuj ponownie później.',
@@ -37,6 +37,6 @@ return [
         'operation_timeout_exception' => 'Wyszukiwanie jest obecnie bardziej obciążone niż zwykle, spróbuj ponownie później.',
     ],
     'user_report' => [
-        'recently_reported' => "Już to niedawno zgłosiłeś.",
+        'recently_reported' => "Twoje zgłoszenie zostało już niedawno przesłane.",
     ],
 ];

@@ -113,6 +113,7 @@ return [
             'copyright' => 'Авторски права (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Поверителност',
+            'rules' => '',
             'server_status' => 'Състояние на сървърите',
             'source_code' => 'Програмен код',
             'terms' => 'Условия за ползване',

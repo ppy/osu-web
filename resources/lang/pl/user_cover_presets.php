@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => 'Wyłącz zaznaczone',
-        'batch_enable' => 'Włącz zaznaczone',
+        'batch_disable' => 'Dezaktywuj zaznaczone',
+        'batch_enable' => 'Aktywuj zaznaczone',
 
         'batch_confirm' => [
-            '_' => ':action :items?',
-            'disable' => 'Wyłącz',
-            'enable' => 'Włącz',
+            '_' => 'Czy na pewno chcesz :action :items?',
+            'disable' => 'dezaktywować',
+            'enable' => 'aktywować',
             'items' => ':count_delimited tło|:count_delimited tła|:count_delimited teł',
         ],
 
         'create_form' => [
             'files' => 'Pliki',
             'submit' => 'Zapisz',
-            'title' => 'Dodaj nowy',
+            'title' => 'Utwórz nowe tło',
         ],
 
         'item' => [
-            'click_to_disable' => 'Kliknij, aby wyłączyć',
+            'click_to_disable' => 'Kliknij, aby zdezaktywować',
             'click_to_enable' => 'Kliknij, aby aktywować',
             'enabled' => 'Aktywne',
             'disabled' => 'Nieaktywne',
-            'image_store' => 'Ustaw obraz',
-            'image_update' => 'Zmień zdjęcie ',
+            'image_store' => 'Ustaw tło',
+            'image_update' => 'Zastąp tło',
         ],
     ],
     'store' => [
-        'failed' => 'Wystąpił błąd podczas tworzenia okładki: :error',
-        'ok' => 'Utworzono okładkę',
+        'failed' => 'Wystąpił błąd podczas tworzenia tła: :error',
+        'ok' => 'Utworzono nowe tła',
     ],
 ];

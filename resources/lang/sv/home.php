@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Nya rankade beatmaps',
             'popular' => 'Populära beatmaps',
             'by_user' => 'av :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'Ladda ner osu!',

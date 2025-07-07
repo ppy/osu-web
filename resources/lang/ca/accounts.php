@@ -86,13 +86,13 @@ return [
         'options' => [
             '_' => 'opcions d\'entrega',
             'beatmap_owner_change' => 'dificultat de convidat',
-            'beatmapset:modding' => 'modding de beatmaps',
+            'beatmapset:modding' => 'moding de mapes',
             'channel_message' => 'missatges de xat privats',
-            'channel_team' => '',
+            'channel_team' => 'missatges de xat privats',
             'comment_new' => 'comentaris nous',
             'forum_topic_reply' => 'resposta del tema',
             'mail' => 'correu',
-            'mapping' => 'creador de beatmaps',
+            'mapping' => 'edició de mapes',
             'push' => 'emergent',
         ],
     ],
@@ -104,8 +104,8 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'amagar advertiments per a contingut explícit en beatmaps',
-        'beatmapset_title_show_original' => 'mostra les metadades del beatmap en l\'idioma original',
+        'beatmapset_show_nsfw' => 'oculta els avisos per al contingut explícit en mapes',
+        'beatmapset_title_show_original' => 'mostra les metadades del mapa en l\'idioma original',
         'title' => 'Opcions',
 
         'beatmapset_download' => [

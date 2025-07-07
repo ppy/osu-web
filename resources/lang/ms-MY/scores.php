@@ -17,8 +17,8 @@ return [
             'submitted_on' => 'Diserahkan pada',
 
             'rank' => [
-                'country' => 'Kedudukan Kebangsaan',
-                'global' => 'Kedudukan Dunia',
+                'country' => 'Pangkat Kebangsaan',
+                'global' => 'Pangkat Dunia',
             ],
         ],
     ],
@@ -27,6 +27,6 @@ return [
         'non_best' => 'Hanya markah terbaik peribadi memberi pp',
         'no_pp' => 'pp tidak diberi untuk markah ini',
         'processing' => 'Markah ini masih dikira dan akan dipaparkan sebentar lagi',
-        'no_rank' => 'Markah ini tiada kedudukan kerana tanpa kedudukan atau ditanda untuk pemadaman',
+        'no_rank' => 'Markah ini tiada pangkat kerana tanpa pangkat atau ditanda untuk pemadaman',
     ],
 ];

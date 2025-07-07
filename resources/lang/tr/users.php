@@ -486,6 +486,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Vuruş İsabeti',
+            'hits_per_play' => '',
             'level' => ':level Seviye',
             'level_progress' => 'Sonraki seviyeye ilerle',
             'maximum_combo' => 'Maksimum Kombo',

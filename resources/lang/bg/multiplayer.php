@@ -16,6 +16,8 @@ return [
         'map_count' => ':count_delimited бийтмап|:count_delimited бийтмапа',
         'player_count' => ':count_delimited играч|:count_delimited играча',
         'time_left' => ':time остава',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => 'Прекалено голяма продължителност.',

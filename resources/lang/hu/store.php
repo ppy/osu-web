@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'Hozzáadás a kosárhoz',
         'notify' => 'Értesíts amikor elérhető!',
+        'out_of_stock' => '',
 
         'notification_success' => 'új készlet esetén értesítve leszel. kattints :link a lemondáshoz',
         'notification_remove_text' => 'itt',

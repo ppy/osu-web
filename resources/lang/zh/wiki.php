@@ -8,7 +8,7 @@ return [
         'fallback_translation' => '当前页面尚未支持所选语言（:language），已显示英文版本。',
         'incomplete_or_outdated' => '此页内容尚不完整或已过时。如果你能协助完善，欢迎对本文内容进行修缮！',
         'missing' => '请求访问的页面“:keyword”无法找到。',
-        'missing_title' => '内容不存在',
+        'missing_title' => '未找到',
         'missing_translation' => '请求的页面没有当前语言的版本。',
         'needs_cleanup_or_rewrite' => '此页面不符合 osu! wiki 标准，需进行清理或重新编写。如果你能协助完善，欢迎对本文内容进行修缮！',
         'search' => '在 wiki 中搜索 :link 。',

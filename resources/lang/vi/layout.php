@@ -113,6 +113,7 @@ return [
             'copyright' => 'Bản Quyền (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Quyền Riêng Tư',
+            'rules' => '',
             'server_status' => 'Trạng thái máy chủ',
             'source_code' => 'Mã Nguồn',
             'terms' => 'Điều Khoản Và Điều Kiện',

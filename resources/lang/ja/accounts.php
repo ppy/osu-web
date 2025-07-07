@@ -88,7 +88,7 @@ return [
             'beatmap_owner_change' => 'ゲスト難易度',
             'beatmapset:modding' => 'ビートマップmodding',
             'channel_message' => 'プライベートチャットメッセージ',
-            'channel_team' => '',
+            'channel_team' => 'チームチャットメッセージ',
             'comment_new' => '新しいコメント',
             'forum_topic_reply' => 'トピックへの返信',
             'mail' => 'メール',

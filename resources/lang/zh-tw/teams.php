@@ -20,7 +20,7 @@ return [
     ],
 
     'card' => [
-        'members' => '',
+        'members' => ':count_delimited 位玩家|:count_delimited 位玩家',
     ],
 
     'create' => [

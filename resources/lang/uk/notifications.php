@@ -108,7 +108,7 @@ return [
                 '_' => 'Нове оголошення',
 
                 'announce' => [
-                    'channel_announcement' => ':username сказав ":title"',
+                    'channel_announcement' => ':username каже ":title"',
                     'channel_announcement_compact' => ':title',
                     'channel_announcement_group' => 'Оголошення від :username',
                 ],
@@ -118,19 +118,19 @@ return [
                 '_' => 'Нове повідомлення',
 
                 'pm' => [
-                    'channel_message' => ':username сказав ":title"',
+                    'channel_message' => ':username каже ":title"',
                     'channel_message_compact' => ':title',
                     'channel_message_group' => 'від :username',
                 ],
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => 'Нове повідомлення команди',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username каже ":title"',
+                    'channel_team_compact' => ':username каже ":title"',
+                    'channel_team_group' => ':username каже ":title"',
                 ],
             ],
         ],
@@ -178,12 +178,12 @@ return [
                 'team_application_accept' => "Тепер ви член команди :title",
                 'team_application_accept_compact' => "Тепер ви член команди :title",
 
-                'team_application_group' => '',
+                'team_application_group' => 'Оновлення запитів до команди',
 
                 'team_application_reject' => 'Ваш запит на вступ до команди :title був відхилений',
                 'team_application_reject_compact' => 'Ваш запит на вступ до команди :title був відхилений',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_store' => ':title запросив приєднання до вашої команди',
+                'team_application_store_compact' => ':title запросив приєднання до вашої команди',
             ],
         ],
 
@@ -245,13 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => 'Нове оголошення в ":name"',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => 'Ви отримали нове повідомлення від :username ',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'Нове повідомлення в команді ":name"',
             ],
         ],
 
@@ -277,7 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Тепер ви член команди :title",
                 'team_application_reject' => 'Ваш запит на вступ до команди :title був відхилений',
-                'team_application_store' => '',
+                'team_application_store' => ':title запросив приєднання до вашої команди',
             ],
         ],
 

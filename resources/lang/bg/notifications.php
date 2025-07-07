@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => 'Ново отборно съобщение',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username каза ":title"',
+                    'channel_team_compact' => ':username каза ":title"',
+                    'channel_team_group' => ':username каза ":title"',
                 ],
             ],
         ],
@@ -173,17 +173,17 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Заявка за влизане в отбор',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
+                'team_application_accept' => "Вече сте член на :title",
+                'team_application_accept_compact' => "Вече сте член на :title",
 
                 'team_application_group' => '',
 
                 'team_application_reject' => '',
                 'team_application_reject_compact' => '',
                 'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_store_compact' => ':title заяви да влезе в отбора Ви',
             ],
         ],
 
@@ -245,10 +245,10 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => 'Има ново съобщение в ":name"',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => 'Получихте съобщение от :username',
             ],
             'channel_team' => [
                 'channel_team' => '',

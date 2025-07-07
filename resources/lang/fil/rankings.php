@@ -13,6 +13,10 @@ return [
         'beatmap' => '',
         'top_10p' => '',
         'top_50p' => '',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
     ],
 
     'filter' => [

@@ -113,6 +113,7 @@ return [
             'copyright' => 'Drepturi de autor (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Confidențialitate',
+            'rules' => '',
             'server_status' => 'Starea server-ului',
             'source_code' => 'Cod Sursă',
             'terms' => 'Termeni și Condiții',

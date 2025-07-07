@@ -486,6 +486,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'دقة التصويب',
+            'hits_per_play' => '',
             'level' => 'المستوى :level',
             'level_progress' => 'التقدم للمستوى التالي',
             'maximum_combo' => 'اقصى كومبو',

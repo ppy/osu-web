@@ -5,11 +5,11 @@
 
 return [
     'mode' => [
-        'artist_track' => '',
+        'artist_track' => '注目アーティストトラック',
         'beatmapset' => 'ビートマップ',
         'forum_post' => 'フォーラム',
         'other' => 'その他',
-        'team' => '',
+        'team' => 'チーム',
         'user' => 'プレイヤー',
         'wiki_page' => 'Wiki',
     ],

@@ -14,6 +14,10 @@ return [
         'beatmap' => 'Dificuldade',
         'top_10p' => 'Pontuação do top 10%',
         'top_50p' => 'Pontuação do top 50%',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
     ],
 
     'filter' => [
@@ -38,7 +42,7 @@ return [
         'charts' => 'Em destaque',
         'country' => 'País',
         'daily_challenge' => 'desafio diário',
-        'global' => '',
+        'global' => 'global',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multijogador',
         'seasons' => 'temporadas',

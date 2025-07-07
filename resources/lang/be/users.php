@@ -125,13 +125,13 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => '',
+        'modding_description' => 'Карты карыстальніка: :counts',
         'modding_description_empty' => 'Карыстальнік не мае бітмапаў...',
 
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'Рэйтынг (:ruleset): :global | :country',
+            'country' => 'У краіне :rank',
+            'global' => 'Глабальны :rank',
         ],
     ],
 
@@ -161,7 +161,7 @@ return [
 
         'options' => [
             'cheating' => 'Несумленная гульня / Чыты',
-            'inappropriate_chat' => '',
+            'inappropriate_chat' => 'Непрыстойныя паводзіны ў чаце',
             'insults' => 'Абраза мяне / іншых',
             'multiple_accounts' => 'Выкарыстанне некалькіх акаўнтаў',
             'nonsense' => 'Лухта',
@@ -198,28 +198,28 @@ return [
             'to_1' => 'Паказаць вокладку',
         ],
         'daily_challenge' => [
-            'daily' => '',
-            'daily_streak_best' => '',
-            'daily_streak_current' => '',
-            'playcount' => '',
-            'title' => '',
-            'top_10p_placements' => '',
-            'top_50p_placements' => '',
-            'weekly' => '',
-            'weekly_streak_best' => '',
-            'weekly_streak_current' => '',
+            'daily' => 'Штодзённая серыя',
+            'daily_streak_best' => 'Лепшая штодзённая серыя',
+            'daily_streak_current' => 'Цяперашняя штодзённая серыя',
+            'playcount' => 'Усяго згуляна',
+            'title' => 'Карта\nдня',
+            'top_10p_placements' => 'Топ 10% пазіцый',
+            'top_50p_placements' => 'Топ 50% пазіцый',
+            'weekly' => 'Тыднёвая серыя',
+            'weekly_streak_best' => 'Лепшая тыднёвая серыя',
+            'weekly_streak_current' => 'Цяперашняя тыднёвая серыя',
 
             'unit' => [
-                'day' => '',
-                'week' => '',
+                'day' => ':valued',
+                'week' => ':valuew',
             ],
         ],
         'edit' => [
             'cover' => [
                 'button' => 'Змяніць фон профілю',
                 'defaults_info' => 'Больш параметраў фону будуць доступны ў будучыні',
-                'holdover_remove_confirm' => "",
-                'title' => '',
+                'holdover_remove_confirm' => "Раней абраная вокладка больш недаступная. Вы не зможаце яе выбраць пасля змены на іншую. Працягнуць?",
+                'title' => 'Вокладка',
 
                 'upload' => [
                     'broken_file' => 'Не атрымалася апрацаваць выяву. Паспрабуйце яшчэ раз.',
@@ -243,12 +243,12 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
-                'title' => '',
+                'reset_no_supporter' => 'Вы ўпэўненыя, што хочаце скінуць колер профілю да стандартнага? Змяняць колер можна толькі з тэгам osu!supporter.',
+                'title' => 'Колер',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Змяненне колеру профілю даступна толькі з тэгам :link',
+                    'link' => 'osu!supporter',
                 ],
             ],
         ],
@@ -481,11 +481,12 @@ return [
             'highest' => 'Найвышэйшы ранг: :rank, :date',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'Топ :value',
+            'total_score' => 'Усяго ачкоў',
         ],
         'stats' => [
             'hit_accuracy' => 'Дакладнасць трапленняў',
+            'hits_per_play' => '',
             'level' => 'Узровень :level',
             'level_progress' => 'Прагрэс да новага ўзроўню',
             'maximum_combo' => 'Максімальнае комба',

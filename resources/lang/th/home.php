@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'บีทแมพจัดอันดับใหม่ล่าสุด',
             'popular' => 'บีทแมพยอดฮิต',
             'by_user' => 'โดย :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'ดาวน์โหลด osu!',

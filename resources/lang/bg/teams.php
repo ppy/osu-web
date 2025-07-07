@@ -20,30 +20,30 @@ return [
     ],
 
     'card' => [
-        'members' => '',
+        'members' => ':count_delimited играч|:count_delimited играча',
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'Създай отбор',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
+            'name_help' => 'Името на вашият отбор. Името е перманентно за момента.',
+            'short_name_help' => 'Максимум 4 символа.',
             'title' => "",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "Играй заедно с приятели; стари или нови. Ти не си в отбор за момента. Влез в вече съществуващ отбор като отидеш на страницата на отбора им или създай твой собствен отбор от тази страница.",
+            'title' => 'Отбор!',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Отборът е премахнат.',
     ],
 
     'edit' => [
-        'ok' => '',
+        'ok' => 'Настройките са запазени успешно.',
         'title' => 'Отборни настройки',
 
         'description' => [
@@ -52,8 +52,8 @@ return [
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Знаме на отбора',
+            'title' => 'Задай отборно знаме',
         ],
 
         'header' => [
@@ -64,7 +64,7 @@ return [
         'settings' => [
             'application_help' => 'Дали да е разрешено за потребители да заявяват отбор',
             'default_ruleset_help' => 'Правилата да се избират подразбиране при посещение на отборната страница',
-            'flag_help' => '',
+            'flag_help' => 'Максимален размер от :width×:height',
             'header_help' => '',
             'title' => 'Отборни настройки',
 
@@ -76,17 +76,17 @@ return [
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'настройки',
+        'leaderboard' => 'класация',
+        'show' => 'информация',
 
         'members' => [
-            'index' => '',
+            'index' => 'управление на участниците',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
+        'global_rank' => 'Глобално класиране',
     ],
 
     'members' => [
@@ -99,19 +99,19 @@ return [
 
             'applications' => [
                 'accept_confirm' => '',
-                'created_at' => '',
-                'empty' => '',
-                'empty_slots' => '',
+                'created_at' => 'Заявено на',
+                'empty' => 'Няма заявки за влизане за момента.',
+                'empty_slots' => 'Налични места',
                 'empty_slots_overflow' => '',
-                'reject_confirm' => '',
-                'title' => '',
+                'reject_confirm' => 'Откажи заявката за влизане от потребител :user?',
+                'title' => 'Заявки за присъединяване',
             ],
 
             'table' => [
                 'joined_at' => 'Дата на присъединяване',
                 'remove' => 'Премахване',
-                'remove_confirm' => '',
-                'set_leader' => '',
+                'remove_confirm' => 'Премахни потребител :user от отбора?',
+                'set_leader' => 'Пренасяне на отборното лидерство',
                 'set_leader_confirm' => '',
                 'status' => 'Състояние',
                 'title' => 'Текущи членове',
@@ -124,18 +124,18 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'Потребител :user вече е лидер на отбора.',
         ],
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Напусна отбора ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'chat' => '',
-            'destroy' => '',
+            'chat' => 'Чат на отбора',
+            'destroy' => 'Разпусни отбора',
             'join' => '',
             'join_cancel' => '',
             'part' => '',
@@ -151,18 +151,18 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => 'Относто нас!',
             'info' => 'Инфо',
             'members' => 'Членове',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => 'Ранг',
+            'leader' => 'Лидер на отбора',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'Отборът е създаден.',
     ],
 ];

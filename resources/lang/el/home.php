@@ -10,7 +10,7 @@ return [
         'peak' => 'Κορύφωση, :count συνδεδεμένοι χρήστες',
         'players' => '<strong>:count</strong> εγγεγραμμένοι παίκτες',
         'title' => 'καλώς ήρθατε',
-        'see_more_news' => 'δείτε περισσότερα νέα',
+        'see_more_news' => 'εμφάνιση περισσότερων νέων',
 
         'slogan' => [
             'main' => 'το καλυτερότερο free-to-win ρυθμικό παιχνίδι',
@@ -27,7 +27,7 @@ return [
         'title' => 'Αναζήτηση',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'Εμφάνιση περισσότερων αποτελεσμάτων κομματιών καλλιτέχνη ',
         ],
         'beatmapset' => [
             'login_required' => 'Συνδεθείτε για να αναζητήσετε beatmaps',
@@ -54,16 +54,16 @@ return [
 
         'mode' => [
             'all' => 'όλα',
-            'artist_track' => '',
+            'artist_track' => 'επιλεγμένοι καλλιτέχνες',
             'beatmapset' => 'beatmap',
             'forum_post' => 'φόρουμ',
-            'team' => '',
+            'team' => 'ομάδα',
             'user' => 'παίκτης',
             'wiki_page' => 'wiki',
         ],
 
         'team' => [
-            'more_simple' => '',
+            'more_simple' => 'Εμφάνιση περισσότερων αποτελεσμάτων ομάδων',
         ],
 
         'user' => [
@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Νέα Ranked Beatmaps',
             'popular' => 'Δημοφιλή Beatmaps',
             'by_user' => 'από :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'Λήψη osu!',

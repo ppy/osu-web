@@ -486,6 +486,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => '準確率',
+            'hits_per_play' => '',
             'level' => '等級 :level',
             'level_progress' => '距離下一級的進度',
             'maximum_combo' => '最大連擊',

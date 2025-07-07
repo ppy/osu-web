@@ -36,7 +36,7 @@ return [
                 'disqualified' => 'Tersingkar',
                 'never_qualified' => 'Tidak Pernah Layak',
                 'qualified' => 'Layak',
-                'ranked' => 'Berkedudukan',
+                'ranked' => 'Berpangkat',
             ],
 
             'user' => [
@@ -61,7 +61,7 @@ return [
 
     'owner_editor' => [
         'button' => 'Pemilik Kesukaran',
-        'reset_confirm' => 'Set semula pemilik kesukaran ini?',
+        'reset_confirm' => 'Tetap semula pemilik kesukaran ini?',
         'user' => 'Pemilik',
         'version' => 'Kesukaran',
     ],

@@ -140,7 +140,7 @@ return [
             'description' => 'Apraksts',
             'genre' => 'Žanrs',
             'language' => 'Valoda',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Kartētāju Piekariņš',
             'no_scores' => 'Rezultāti joprojām tiek aprēķināti...',
             'nominators' => 'Nominētāji',
             'nsfw' => 'Nepiemērots saturs',
@@ -149,7 +149,7 @@ return [
             'source' => 'Avots',
             'storyboard' => 'Šī ritma-mape satur vizuālo saturu',
             'success-rate' => 'Izdošanās līmenis',
-            'user_tags' => '',
+            'user_tags' => 'Lietotāju Piekariņš',
             'video' => 'Šī ritma-mape satur video',
         ],
 
@@ -172,7 +172,7 @@ return [
             'global' => 'Pasaules rangi',
             'supporter-link' => 'Klikšķiniet <a href=":link">šeit</a>, lai redzētu visas modernās funkcijas, ko saņemat!',
             'supporter-only' => 'Jums nepieciešams būt atbalstītājam, lai redzētu draugu un valsts rangus!',
-            'team' => '',
+            'team' => 'Komandas Novietojums',
             'title' => 'Rezultātu apkopojums',
 
             'headers' => [
@@ -194,7 +194,7 @@ return [
                 'friend' => 'Neviens no jūsu draugiem vēl nav uzstādījis rezultātu šajā mapē!',
                 'global' => 'Pagaidām nav rezultātu. Varbūt pamēģināt kādu uzstādīt?',
                 'loading' => 'Ielādē rezultātus...',
-                'team' => '',
+                'team' => 'Neviens no tavas komandas pagaidām nav uzstādījis rezultātu uz šīs ritma-kartes!',
                 'unranked' => 'Nevērtējama ritma-mape.',
             ],
             'score' => [

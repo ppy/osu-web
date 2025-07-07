@@ -37,6 +37,6 @@ return [
     ],
 
     'store' => [
-        'too_many' => 'Osiągnięto limit śledzenia.',
+        'too_many' => 'Osiągnięto limit możliwych do zaobserwowania treści.',
     ],
 ];

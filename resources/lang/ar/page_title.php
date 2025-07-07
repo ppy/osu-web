@@ -129,6 +129,11 @@ return [
             '_' => 'ويكي',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'صادِق التطبيق',

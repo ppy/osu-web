@@ -30,7 +30,9 @@ return [
         '_' => '',
         'creator' => '',
         'score' => '',
+        'score_std' => '',
         'total_score' => '',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'glasovi',
         'count' => ':count_delimited glas|:count_delimited glasov',
         'points' => ':count_delimited točka|:count_delimited točk',
+        'points_float' => '',
     ],
 
     'dates' => [

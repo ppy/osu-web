@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner di :difference',
 
         'events' => [
-            'player-left' => ':user ha lasciato la partita',
-            'player-joined' => ':user si è unito alla partita',
-            'player-kicked' => ':user è stato cacciato dalla partita',
-            'match-created' => ':user ha creato la partita',
-            'match-disbanded' => 'la partita è stata terminata',
-            'host-changed' => ':user è diventato l\'host',
-
-            'player-left-no-user' => 'un giocatore ha lasciato la partita',
-            'player-joined-no-user' => 'un giocatore si è unito alla partita',
-            'player-kicked-no-user' => 'un giocatore è stato cacciato dalla partita',
-            'match-created-no-user' => 'la partita è stata creata',
-            'match-disbanded-no-user' => 'la partita è stata terminata',
-            'host-changed-no-user' => 'l\'host è cambiato',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Testa a Testa',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'A Squadre',
-            'tag-team-vs' => 'Tag a squadre',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => 'Punteggio più alto',
             'accuracy' => 'Precisione più alta',

@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'Lisää kärryihin',
         'notify' => 'Ilmoita minulle, kun saatavilla!',
+        'out_of_stock' => '',
 
         'notification_success' => 'saat ilmoituksen, kun meillä on täydennystä. klikkaa :link peruuttaaksesi',
         'notification_remove_text' => 'tässä',

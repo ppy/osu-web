@@ -13,6 +13,10 @@ return [
         'beatmap' => 'Dificuldade',
         'top_10p' => 'Pontuações dos Melhores 10%',
         'top_50p' => 'Pontuações dos Melhores 50%',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
     ],
 
     'filter' => [

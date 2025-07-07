@@ -5,17 +5,17 @@
 
 return [
     'beatmapset' => [
-        'button' => 'Denunciar',
-        'title' => 'Denunciar el mapa de :username?',
+        'button' => 'Denuncia',
+        'title' => 'Denuncia el mapa de :username?',
     ],
 
     'beatmapset_discussion_post' => [
-        'button' => 'Denunciar',
+        'button' => 'Denuncia',
         'title' => 'Denunciar la publicació de :username?',
     ],
 
     'comment' => [
-        'button' => 'Informar',
+        'button' => 'Denuncia',
         'title' => 'Voleu informar del comentari de :username?',
     ],
 

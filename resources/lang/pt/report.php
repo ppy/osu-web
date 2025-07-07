@@ -36,7 +36,7 @@ return [
 
     'team' => [
         'button' => 'Denunciar Equipa',
-        'title' => '',
+        'title' => 'Queres denunciar a equipa de :username?',
     ],
 
     'user' => [

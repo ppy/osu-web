@@ -38,9 +38,9 @@ return [
     ],
 
     'teams' => [
-        'relevance' => '',
-        'name' => '',
-        'short-name' => '',
+        'relevance' => '相關度',
+        'name' => '名稱',
+        'short-name' => '代號',
     ],
 
     'users' => [

@@ -14,28 +14,30 @@ return [
     ],
 
     'judge' => [
-        'comments' => '',
-        'hide_judged' => '',
+        'comments' => 'σχόλια',
+        'hide_judged' => 'απόκρυψη κρίσιμων καταχωρήσεων',
         'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'no_current_vote' => 'δεν έχεις ψηφίσει ακόμα.',
+        'update' => 'ενημέρωση',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'χαμένο σκορ',
+            'contest_vote_judged' => 'δεν μπορείς να ψηφίσει σε κρίσιμους διαγωνισμούς',
         ],
-        'voted' => '',
+        'voted' => 'Έχεις υποβάλει ήδη μια ψηφοφορία για αυτή την καταχώρηση.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'Αποτέλεσμα κρίσης',
+        'creator' => 'δημιουργός',
+        'score' => 'Σκορ',
+        'score_std' => '',
+        'total_score' => 'συνολικό σκορ',
+        'total_score_std' => '',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Είσαι κριτής αυτού του διαγωνισμού. Κρίνε τις συμμετοχές εδώ!',
+        'judged_notice' => 'Αυτός ο διαγωνισμός χρησιμοποιεί το σύστημα αξιολόγησης, οι κριτές επεξεργάζονται επί του παρόντος τις εγγραφές.',
         'login_required' => 'Παρακαλώ συνδεθείτε για να ψηφίσετε.',
         'over' => 'Η ψηφοφορία για αυτόν τον διαγωνισμό έχει λήξει',
         'show_voted_only' => 'Εμφάνιση ψήφων',
@@ -87,6 +89,7 @@ return [
         'list' => 'ψήφοι',
         'count' => ':count ψήφος|:count ψήφοι',
         'points' => ':count πόντος|:count πόντοι',
+        'points_float' => '',
     ],
 
     'dates' => [

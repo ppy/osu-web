@@ -37,12 +37,12 @@ return [
 
     'item' => [
         'beatmapset' => [
-            '_' => 'Beatmap',
+            '_' => 'Mapa',
 
             'beatmap_owner_change' => [
                 '_' => 'Dificultat de convidat',
-                'beatmap_owner_change' => 'Ara ets propietari de la dificultat ":beatmap" del mapa ":title"',
-                'beatmap_owner_change_compact' => 'Ara ets el propietari de la dificultat ":beatmap"',
+                'beatmap_owner_change' => 'Ara ets propietari de la dificultat «:beatmap» del mapa «:title»',
+                'beatmap_owner_change_compact' => 'Ara ets el propietari de la dificultat «:beatmap»',
             ],
 
             'beatmapset_discussion' => [
@@ -74,19 +74,19 @@ return [
             ],
 
             'beatmapset_state' => [
-                '_' => 'L\'estat del beatmap ha canviat',
+                '_' => 'L\'estat del mapa ha canviat',
                 'beatmapset_disqualify' => '":title" ha estat desqualificat',
                 'beatmapset_disqualify_compact' => 'El mapa ha estat desqualificat',
-                'beatmapset_love' => 's\'ha promogut ":title" a "amats"',
-                'beatmapset_love_compact' => 'El mapa s\'ha promocionat a "estimats"',
+                'beatmapset_love' => 's\'ha promogut «:title» a «estimats»',
+                'beatmapset_love_compact' => 'El mapa s\'ha promogut a «estimats»',
                 'beatmapset_nominate' => '":title" ha estat nominat',
                 'beatmapset_nominate_compact' => 'El mapa ha estat nominat',
                 'beatmapset_qualify' => '":title" ha obtingut suficients nominacions i ha entrat a la cua per a classificatoris',
                 'beatmapset_qualify_compact' => 'El mapa ha entrat a la cua per a classificatoris',
                 'beatmapset_rank' => '":title" s\'ha classificat',
                 'beatmapset_rank_compact' => 'El mapa s\'ha classificat',
-                'beatmapset_remove_from_loved' => 's\'ha esborrat ":title" d\'"amats"',
-                'beatmapset_remove_from_loved_compact' => 'El mapa s\'ha esborrat d\'"amats"',
+                'beatmapset_remove_from_loved' => 's\'ha esborrat «:title» d\'«estimats»',
+                'beatmapset_remove_from_loved_compact' => 'El mapa s\'ha esborrat d\'«estimats»',
                 'beatmapset_reset_nominations' => 'La nominació de ":title" s\'ha reiniciat',
                 'beatmapset_reset_nominations_compact' => 'La nominació s\'ha reiniciat',
             ],
@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => 'Missatge d\'equip nou',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username diu «:title»',
+                    'channel_team_compact' => ':username diu «:title»',
+                    'channel_team_group' => ':username diu «:title»',
                 ],
             ],
         ],
@@ -173,29 +173,29 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Sol·licitud d\'unió a l\'equip',
 
                 'team_application_accept' => "T'has unit a l'equip :title",
                 'team_application_accept_compact' => "T'has unit a l'equip :title",
 
-                'team_application_group' => '',
+                'team_application_group' => 'Actualitzacions de sol·licituds d\'unió a l\'equip',
 
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_reject' => 'La vostra sol·licitud per a unir-vos a l\'equip :title s\'ha desestimat.',
+                'team_application_reject_compact' => 'La vostra sol·licitud per a unir-vos a l\'equip :title s\'ha desestimat.',
+                'team_application_store' => ':title sol·licita unir-se al vostre equip.',
+                'team_application_store_compact' => ':title sol·licita unir-se al vostre equip.',
             ],
         ],
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => 'Nou mapa',
+                '_' => 'Mapa nou',
 
-                'user_beatmapset_new' => 'Nou mapa ":title" per :username',
-                'user_beatmapset_new_compact' => 'Nou mapa ":title"',
-                'user_beatmapset_new_group' => 'Nous mapes de :username',
+                'user_beatmapset_new' => 'Mapa «:title» de :username nou',
+                'user_beatmapset_new_compact' => 'Mapa «:title» nou',
+                'user_beatmapset_new_group' => 'Mapes nous de :username',
 
-                'user_beatmapset_revive' => ':username ha restaurat el beatmap «:title»',
+                'user_beatmapset_revive' => ':username ha restaurat el mapa ":title"',
                 'user_beatmapset_revive_compact' => 'S\'ha restaurat el mapa ":title"',
             ],
         ],
@@ -215,7 +215,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => 'Ara ets un convidat del beatmap ":title"',
+                'beatmap_owner_change' => 'Ara ets un convidat del mapa «:title»',
             ],
 
             'beatmapset_discussion' => [
@@ -230,28 +230,28 @@ return [
 
             'beatmapset_state' => [
                 'beatmapset_disqualify' => '":title" ha estat desqualificat',
-                'beatmapset_love' => 's\'ha promogut ":title" a "estimats"',
+                'beatmapset_love' => 's\'ha promogut «:title» a «estimats»',
                 'beatmapset_nominate' => '":title" ha estat nominat',
                 'beatmapset_qualify' => '":title" ha obtingut suficients nominacions i ha entrat a la cua per a classificatoris',
                 'beatmapset_rank' => '":title" s\'ha classificat',
-                'beatmapset_remove_from_loved' => 's\'ha esborrat ":title" de "estimats"',
+                'beatmapset_remove_from_loved' => 's\'ha esborrat «:title» d\'«estimats»',
                 'beatmapset_reset_nominations' => 'La nominació de ":title" s\'ha reiniciat',
             ],
 
             'comment' => [
-                'comment_new' => 'El beatmap ":title" té nous comentaris',
+                'comment_new' => 'El mapa «:title» té comentaris nous',
             ],
         ],
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => 'Hi ha un anunci nou a «:name».',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => 'Has rebut un nou missatge de :username',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'Hi ha un missatge a l\'equip «:name».',
             ],
         ],
 
@@ -276,15 +276,15 @@ return [
         'team' => [
             'team_application' => [
                 'team_application_accept' => "T'has unit a l'equip :title",
-                'team_application_reject' => '',
-                'team_application_store' => '',
+                'team_application_reject' => 'La vostra sol·licitud per a unir-vos a l\'equip :title s\'ha desestimat.',
+                'team_application_store' => ':title sol·licita unir-se al vostre equip.',
             ],
         ],
 
         'user' => [
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => ':username ha creat nous beatmaps',
-                'user_beatmapset_revive' => ':username ha restaurat beatmaps',
+                'user_beatmapset_new' => ':username ha creat mapes nous',
+                'user_beatmapset_revive' => ':username ha restaurat mapes',
             ],
         ],
     ],

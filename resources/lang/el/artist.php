@@ -46,8 +46,8 @@ return [
             '_' => 'αναζήτηση κομματιών',
 
             'exclusive_only' => [
-                'all' => '',
-                'exclusive_only' => '',
+                'all' => 'Όλα',
+                'exclusive_only' => 'osu! original',
             ],
 
             'form' => [
@@ -57,7 +57,7 @@ return [
                 'bpm_gte' => 'Ελάχιστο BPM',
                 'bpm_lte' => 'Μέγιστο BPM',
                 'empty' => 'Δεν βρέθηκαν κομμάτια που να ταιριάζουν με τα κριτήρια αναζήτησης.',
-                'exclusive_only' => '',
+                'exclusive_only' => 'Τύπος',
                 'genre' => 'Είδος',
                 'genre_all' => 'Όλα',
                 'length_gte' => 'Ελάχιστο Μήκος',

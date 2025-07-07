@@ -5,7 +5,7 @@
 
 return [
     'title_compact' => 'znajomi',
-    'too_many' => 'Limit znajomych został osiągnięty.',
+    'too_many' => 'Osiągnięto limit znajomych',
 
     'buttons' => [
         'add' => 'dodaj znajomego',

@@ -113,6 +113,7 @@ return [
             'copyright' => 'Szerzői jog (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Adatvédelem',
+            'rules' => '',
             'server_status' => 'Szerver Állapot',
             'source_code' => 'Forráskód',
             'terms' => 'Felhasználási Feltételek',

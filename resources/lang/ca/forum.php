@@ -303,17 +303,17 @@ return [
         ],
 
         'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Trau l\'etiqueta «osu!stable»',
+            'to_0_done' => 'S\'ha tret l\'etiqueta «osu!stable».',
+            'to_1' => 'Afegeix l\'etiqueta «osu!stable»',
+            'to_1_done' => 'S\'ha afegit l\'etiqueta «osu!stable».',
         ],
 
         'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Trau l\'etiqueta «osu!web»',
+            'to_0_done' => 'S\'ha tret l\'etiqueta «osu!web».',
+            'to_1' => 'Afegeix l\'etiqueta «osu!web»',
+            'to_1_done' => 'S\'ha afegit l\'etiqueta «osu!web».',
         ],
 
         'lock' => [

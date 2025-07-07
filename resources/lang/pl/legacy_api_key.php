@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => 'Nowy klucz starszego API',
+    'new' => 'Nowy klucz API',
     'none' => 'Brak klucza.',
 
     'docs' => [

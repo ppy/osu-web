@@ -486,6 +486,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Paspaudimų Tikslumas',
+            'hits_per_play' => '',
             'level' => 'Lygis :level',
             'level_progress' => 'Progresas į kitą lygį',
             'maximum_combo' => 'Didžiausias Kombo',

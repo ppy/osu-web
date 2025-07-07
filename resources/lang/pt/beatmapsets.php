@@ -109,7 +109,7 @@ return [
         ],
 
         'favourites' => [
-            'limit_reached' => 'Tens demasiados beatmaps como favoritos! Por favor remove alguns antes de tentares novamente.',
+            'limit_reached' => 'Tens demasiados beatmaps como favoritos! Remove alguns antes de tentares novamente.',
         ],
 
         'hype' => [
@@ -126,11 +126,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Se encontrares um problema com este beatmap, por favor desqualifica-o :link.',
+                '_' => 'Se encontrares um problema com este beatmap, desqualifica-o :link.',
             ],
 
             'report' => [
-                '_' => 'Se encontrares um problema com este beatmap, por favor transmite-o :link para avisar a equipa.',
+                '_' => 'Se encontrares um problema com este beatmap, denuncia-o :link para avisar a equipa.',
                 'button' => 'Relatar problema',
                 'link' => 'aqui',
             ],
@@ -140,7 +140,7 @@ return [
             'description' => 'Descrição',
             'genre' => 'Género',
             'language' => 'Língua',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Etiquetas do mapeador',
             'no_scores' => 'Os dados ainda estão a ser calculados...',
             'nominators' => 'Nomeadores',
             'nsfw' => 'Conteúdo explícito',
@@ -149,7 +149,7 @@ return [
             'source' => 'Fonte',
             'storyboard' => 'Este beatmap contém um cenário',
             'success-rate' => 'Taxa de sucesso',
-            'user_tags' => '',
+            'user_tags' => 'Etiquetas do utilizador',
             'video' => 'Este beatmap contém vídeo',
         ],
 

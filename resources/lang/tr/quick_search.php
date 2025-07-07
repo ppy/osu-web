@@ -5,11 +5,11 @@
 
 return [
     'mode' => [
-        'artist_track' => '',
+        'artist_track' => 'Öne çıkan artist parçası',
         'beatmapset' => 'Beatmap',
         'forum_post' => 'Forum',
         'other' => 'Diğer',
-        'team' => '',
+        'team' => 'Takım',
         'user' => 'Oyuncu',
         'wiki_page' => 'Wiki',
     ],

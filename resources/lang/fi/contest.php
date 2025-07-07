@@ -30,7 +30,9 @@ return [
         '_' => 'Tuomaroinnin tulokset',
         'creator' => 'tekijä',
         'score' => 'Pisteet',
+        'score_std' => '',
         'total_score' => 'yhteispisteet',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'äänet',
         'count' => ':count_delimited ääni|:count_delimited ääntä',
         'points' => ':count piste|:count pistettä',
+        'points_float' => '',
     ],
 
     'dates' => [

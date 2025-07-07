@@ -6,7 +6,7 @@
 return [
     'beatmapset' => [
         'button' => 'Lapor',
-        'title' => 'Laporkan beatmap :username?',
+        'title' => 'Laporkan peta rentak :username?',
     ],
 
     'beatmapset_discussion_post' => [

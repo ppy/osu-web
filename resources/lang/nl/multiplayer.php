@@ -16,6 +16,8 @@ return [
         'map_count' => ':count_delimited map|:count_delimited maps',
         'player_count' => ':count_delimited speler|:count_delimited spelers',
         'time_left' => ':time resterend',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => 'Tijdsduur te lang.',

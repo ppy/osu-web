@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'Pridať do košíka',
         'notify' => 'Informujte ma, ak je k dispozícii!',
+        'out_of_stock' => '',
 
         'notification_success' => 'budeš informovaný, keď budeme mať nové zásoby. kliknite :link pre zrušenie',
         'notification_remove_text' => 'tu',

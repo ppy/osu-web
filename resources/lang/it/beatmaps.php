@@ -244,7 +244,7 @@ return [
         'search' => [
             'prompt' => 'scrivi le parole chiave...',
             'login_required' => 'Accedi per effettuare una ricerca.',
-            'options' => 'Più Opzioni di Ricerca',
+            'options' => 'Più opzioni di ricerca',
             'supporter_filter' => 'Filtrare per :filters necessita di un tag osu!supporter attivo',
             'not-found' => 'nessun risultato',
             'not-found-quote' => '... trovato nulla.',

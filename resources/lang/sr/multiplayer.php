@@ -16,6 +16,8 @@ return [
         'map_count' => ':count_delimited мапа|:count_delimited мапе',
         'player_count' => ':count_delimited мапа|:count_delimited мапе',
         'time_left' => ':time је преостало',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => 'Трајање је предугачко.',

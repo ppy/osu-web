@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => 'Neue Teamnachricht',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username: ":title"',
+                    'channel_team_compact' => ':username: ":title"',
+                    'channel_team_group' => ':username: ":title"',
                 ],
             ],
         ],
@@ -178,12 +178,12 @@ return [
                 'team_application_accept' => "Du bist jetzt Mitglied des Teams :title",
                 'team_application_accept_compact' => "Du bist jetzt Mitglied des Teams :title",
 
-                'team_application_group' => '',
+                'team_application_group' => 'Akualisierungen zu Team-Beitrittsanfragen',
 
                 'team_application_reject' => 'Deine Beitrittsanfrage für das Team :title wurde abgelehnt',
                 'team_application_reject_compact' => 'Deine Beitrittsanfrage für das Team :title wurde abgelehnt',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_store' => ':title möchte deinem Team beitreten',
+                'team_application_store_compact' => ':title möchte deinem Team beitreten',
             ],
         ],
 
@@ -245,13 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => 'Es gibt eine neue Ankündigung in ":name"',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => 'Du hast eine neue Nachricht von :username erhalten',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'Es gibt eine neue Nachricht im Team ":name"',
             ],
         ],
 
@@ -277,7 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Du bist jetzt Mitglied des Teams :title",
                 'team_application_reject' => 'Deine Beitrittsanfrage für das Team :title wurde abgelehnt',
-                'team_application_store' => '',
+                'team_application_store' => ':title möchte deinem Team beitreten',
             ],
         ],
 

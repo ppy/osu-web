@@ -28,7 +28,7 @@ return [
         'title' => 'meklēt',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'Apskatīt vēl iemīļotā mākslinieka dziesmas meklēšanas rezultātus',
         ],
         'beatmapset' => [
             'login_required' => 'Ielogojieties, lai meklētu bītmapes',
@@ -55,16 +55,16 @@ return [
 
         'mode' => [
             'all' => 'visi',
-            'artist_track' => '',
+            'artist_track' => 'iemīļotā mākslinieka dziesmas',
             'beatmapset' => 'bītmape',
             'forum_post' => 'forums',
-            'team' => '',
+            'team' => 'komanda',
             'user' => 'spēlētājs',
             'wiki_page' => 'wiki',
         ],
 
         'team' => [
-            'more_simple' => '',
+            'more_simple' => 'Apskatīt vēl komandas meklēšanas rezultātus',
         ],
 
         'user' => [
@@ -143,9 +143,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Jaunās Rankotās Bītmapes',
             'popular' => 'Populārās Bītmapes',
             'by_user' => 'pēc :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'Lejupielādēt osu!',

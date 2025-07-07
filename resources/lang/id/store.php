@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'Tambahkan ke Keranjang',
         'notify' => 'Beri tahu saya ketika telah tersedia!',
+        'out_of_stock' => '',
 
         'notification_success' => 'kamu akan menerima notifikasi pada saat kami memiliki stok baru. klik :link untuk membatalkan',
         'notification_remove_text' => 'di sini',

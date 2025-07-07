@@ -13,6 +13,10 @@ return [
         'beatmap' => '難度',
         'top_10p' => '前 10% 的分數',
         'top_50p' => '前 50% 的分數',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
     ],
 
     'filter' => [

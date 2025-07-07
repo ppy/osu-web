@@ -5,6 +5,6 @@
 
 return [
     'update' => [
-        'invalid_ruleset' => '',
+        'invalid_ruleset' => 'Aquesta etiqueta no és vàlida amb el mapa.',
     ],
 ];

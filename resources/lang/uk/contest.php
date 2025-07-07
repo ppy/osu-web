@@ -30,7 +30,9 @@ return [
         '_' => 'Судові результати',
         'creator' => 'автор',
         'score' => 'Бали',
+        'score_std' => '',
         'total_score' => 'всього очок',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'голосів',
         'count' => ':count_delimited голос|:count_delimited голоси|:count_delimited голосів',
         'points' => ':count_delimited очко|:count_delimited очка|:count_delimited очків',
+        'points_float' => '',
     ],
 
     'dates' => [

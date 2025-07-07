@@ -16,7 +16,7 @@ return [
 
     'comment' => [
         'button' => 'Zgłoś',
-        'title' => 'Zgłosić komentarz gracza :username?',
+        'title' => 'Zgłosić komentarz użytkownika :username?',
     ],
 
     'forum_post' => [
@@ -26,17 +26,17 @@ return [
 
     'message' => [
         'button' => 'Zgłoś wiadomość',
-        'title' => 'Zgłosić wiadomość :username?',
+        'title' => 'Zgłosić wiadomość użytkownika :username?',
     ],
 
     'scores' => [
         'button' => 'Zgłoś wynik',
-        'title' => 'Zgłosić wynik gracza :username?',
+        'title' => 'Zgłosić wynik użytkownika :username?',
     ],
 
     'team' => [
-        'button' => 'Zgłoś Drużynę',
-        'title' => 'Zgłosić drużynę :username?',
+        'button' => 'Zgłoś zespół',
+        'title' => 'Zgłosić zespół użytkownika :username?',
     ],
 
     'user' => [

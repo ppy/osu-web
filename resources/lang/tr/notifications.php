@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => 'Yeni takım mesajı',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username ":title" diyor',
+                    'channel_team_compact' => ':username ":title" diyor',
+                    'channel_team_group' => ':username ":title" diyor',
                 ],
             ],
         ],
@@ -178,12 +178,12 @@ return [
                 'team_application_accept' => "Artık :title takımının bir üyesisin",
                 'team_application_accept_compact' => "Artık :title takımının bir üyesisin",
 
-                'team_application_group' => '',
+                'team_application_group' => 'Takıma katılma isteği güncellemeleri',
 
                 'team_application_reject' => ':title takıma giriş isteğin reddedildi',
                 'team_application_reject_compact' => ':title takımına giriş isteğiniz reddedildi',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_store' => ':title takımına katılmak için istek gönderdi',
+                'team_application_store_compact' => ':title takımına katılmak için istek gönderdi',
             ],
         ],
 
@@ -245,13 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => '":name"da yeni bir duyuru var',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => ':username\'dan yeni bir mesaj aldın',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => '":name" takımından yeni bir mesaj var',
             ],
         ],
 
@@ -277,7 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Artık :title takımının bir üyesisin",
                 'team_application_reject' => ':title takımına giriş isteğiniz reddedildi',
-                'team_application_store' => '',
+                'team_application_store' => ':title takımına katılmak için istek gönderdi',
             ],
         ],
 

@@ -486,6 +486,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Precisión',
+            'hits_per_play' => '',
             'level' => 'Nivel :level',
             'level_progress' => 'progreso al siguiente nivel',
             'maximum_combo' => 'Combo máximo',

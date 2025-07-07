@@ -296,24 +296,24 @@ return [
         ],
 
         'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Noņemt "osu!lazer" piekariņu',
+            'to_0_done' => 'Noņemts "osu!lazer" piekariņš',
+            'to_1' => 'Pievienot "osu!lazer" piekariņu',
+            'to_1_done' => 'Pievienots "osu!lazer" piekariņš',
         ],
 
         'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Noņemt "osu!stabils" piekariņu',
+            'to_0_done' => 'Noņemts "osu!stable" piekariņš',
+            'to_1' => 'Pievienot "osu!stable" piekariņu',
+            'to_1_done' => 'Pievienots "osu!stable" piekariņš',
         ],
 
         'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Noņemt "osu!web" piekariņu',
+            'to_0_done' => 'Noņemts "osu!web" piekariņš',
+            'to_1' => 'Pievienot "osu!web" piekariņu',
+            'to_1_done' => 'Pievienots "osu!web" piekariņš',
         ],
 
         'lock' => [

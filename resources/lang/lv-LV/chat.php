@@ -27,7 +27,7 @@ return [
                 'GROUP' => 'Grupas',
                 'PM' => 'Privātās ziņas',
                 'PUBLIC' => 'Kanāli',
-                'TEAM' => '',
+                'TEAM' => 'Komanda',
             ],
         ],
     ],

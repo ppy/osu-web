@@ -486,6 +486,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Találati Pontosság',
+            'hits_per_play' => '',
             'level' => 'Szint: :level',
             'level_progress' => 'Haladás a következő szintre',
             'maximum_combo' => 'Legmagasabb Kombó',

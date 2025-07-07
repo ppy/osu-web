@@ -21,7 +21,7 @@ return [
     'donation_thanks' => [
         'benefit_more' => 'Di samping itu, para pemilik supporter tag juga akan mendapatkan berbagai keutamaan baru seiring waktunya!',
         'feedback' => "Apabila kamu memiliki pertanyaan atau saran lebih lanjut, jangan sungkan untuk membalas email ini; Saya akan menghubungimu kembali sesegera mungkin!",
-        'keep_free' => 'Berkat orang-orang sepertimu, osu! dapat mewujudkan lingkungan permainan dan komunitas yang terbebas dari iklan dan sistem pembayaran yang mengganggu.',
+        'keep_free' => 'Berkat orang-orang seperti kamu, osu! dapat menjaga permainan dan komunitasnya bebas dari iklan serta sistem pembayaran yang mengganggu.',
         'keep_running' => 'Dukunganmu membuat osu! terus berjalan selama sekitar :minutes! Angka ini mungkin tidak terlihat besar, namun dukungan sekecil apa pun akan tetap berarti bagi kami :).',
         'subject' => 'Terima kasih, osu! mencintaimu',
         'translation' => 'Sebagai bahan rujukan, tersedia terjemahan dari komunitas di bawah ini:',

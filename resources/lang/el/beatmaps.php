@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid_ruleset' => '',
+    'invalid_ruleset' => 'Προσδιορίστηκε μη έγκυρο beatmap.',
 
     'change_owner' => [
-        'too_many' => '',
+        'too_many' => 'Πάρα πολλοί φιλοξενούμενοι mappers.',
     ],
 
     'discussion-votes' => [
@@ -31,14 +31,14 @@ return [
         'message_placeholder_silenced' => "Δεν είναι δυνατή η δημοσίευση συζήτησης ενώ σιγασμένη.",
         'message_type_select' => 'Επιλέξτε Τύπο Σχολίου',
         'reply_notice' => 'Πατήστε enter για να απαντήσετε.',
-        'reply_resolve_notice' => '',
+        'reply_resolve_notice' => 'Πάτα enter για να απαντήσεις. Πάτα ctrl+enter για να απαντήσεις και να επιλύσεις',
         'reply_placeholder' => 'Πληκτρολογήστε την απάντησή σας εδώ',
         'require-login' => 'Παρακαλώ συνδεθείτε για να δημοσιεύσετε ή να απαντήσετε',
         'resolved' => 'Επιλύθηκε',
         'restore' => 'επαναφορά',
         'show_deleted' => 'Εμφάνιση διαγραμμένου',
         'title' => 'Συζητήσεις',
-        'unresolved_count' => '',
+        'unresolved_count' => ':count_delimited ανεπίλυτο πρόβλημα|:count_delimited ανεπίλυτα προβλήματα',
 
         'collapse' => [
             'all-collapse' => 'Σύμπτηξη όλων',
@@ -87,15 +87,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => 'Ανάρτηση Ανικανότητας',
+            'hype' => 'Δημοσίευση Hype!',
+            'mapper_note' => 'Σημείωση Δημοσίευσης ',
+            'nomination_reset' => 'Αφαίρεση όλων των Υποψηφιοτήτων',
+            'praise' => 'Ζήτημα Ανάρτησης',
+            'problem' => 'Αναφορά Προβλήματος',
+            'problem_warning' => 'Αναφορά Προβλήματος',
+            'review' => 'Δημοσίευση Αξιολόγησης',
+            'suggestion' => 'Πρόταση Ανάρτησης',
         ],
 
         'mode' => [
@@ -221,8 +221,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Ο χάρτης υπολογίζεται σε κατάταξη :date εάν δεν βρεθούν προβλήματα. Είναι #:position στο :queue.',
-            'unresolved_problems' => '',
-            'problems' => '',
+            'unresolved_problems' => 'Αυτή τη στιγμή το map είναι αποκλεισμένο από την έξοδο από το τμήμα με τα κριτήρια μέχρι να επιλυθεί το :problems.',
+            'problems' => 'αυτά τα προβλήματα',
             'on' => 'στο :date',
             'queue' => 'ουρά κατάταξης',
             'soon' => 'σύντομα',

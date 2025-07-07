@@ -130,6 +130,11 @@ return [
             '_' => 'วิกิ',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'อนุญาตแอป',

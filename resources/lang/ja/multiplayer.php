@@ -16,6 +16,8 @@ return [
         'map_count' => ':count_delimited マップ',
         'player_count' => ':count_delimited プレイヤー',
         'time_left' => '残り :time',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => '時間が長すぎます。',

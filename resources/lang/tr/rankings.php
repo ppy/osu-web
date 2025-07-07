@@ -13,6 +13,10 @@ return [
         'beatmap' => 'Zorluk',
         'top_10p' => 'İlk %10 Skor',
         'top_50p' => 'İlk %50 Skor',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
     ],
 
     'filter' => [

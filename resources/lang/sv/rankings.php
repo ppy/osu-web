@@ -13,6 +13,10 @@ return [
         'beatmap' => 'Svårighetsgrad',
         'top_10p' => 'Topp 10% resultat',
         'top_50p' => 'Topp 50% resultat',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
     ],
 
     'filter' => [

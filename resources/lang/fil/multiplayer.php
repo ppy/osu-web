@@ -16,6 +16,8 @@ return [
         'map_count' => ':count_delimited map|:count_delimited maps',
         'player_count' => ':count_delimited player|:count_delimited players',
         'time_left' => ':time natira',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => 'Masyadong matagal.',

@@ -16,7 +16,7 @@ return [
         'beatmapset_no_hype' => "El mapa no pot rebre més eufòria.",
         'hype_requires_null_beatmap' => 'Mostrar eufòria s\'ha de fer a la secció General (totes les dificultats).',
         'invalid_beatmap_id' => 'Dificultat no vàlida.',
-        'invalid_beatmapset_id' => 'Beatmap no vàlid.',
+        'invalid_beatmapset_id' => 'Mapa no vàlid.',
         'locked' => 'La discussió està tancada.',
 
         'attributes' => [
@@ -25,12 +25,12 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Aquest beatmap està tancat per discussió i no pot mostrar més eufòria",
+            'discussion_locked' => "Aquest mapa està tancat per discussió i no pot mostrar més eufòria",
             'guest' => 'Has d\'haver iniciat la sessió per mostrar eufòria.',
-            'hyped' => 'Ja has mostrat eufòria a aquest beatmap.',
+            'hyped' => 'Ja has mostrat eufòria a aquest mapa.',
             'limit_exceeded' => 'Ja has fet servir totes les teves mostres d\'eufòria.',
-            'not_hypeable' => 'No es pot mostrar més eufòria a aquest beatmap',
-            'owner' => 'No pots mostrar eufòria al teu propi beatmap.',
+            'not_hypeable' => 'No es pot mostrar més eufòria a aquest mapa',
+            'owner' => 'No pots mostrar eufòria al teu propi mapa.',
         ],
 
         'timestamp' => [
@@ -132,13 +132,13 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => 'Aquest :attribute conté caràcters no vàlids.',
+        'used' => 'Aquesta elecció de :attribute ja s\'ha fet servir.',
+        'word_not_allowed' => 'Aquesta elecció de :attribute no es permet.',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
+            'default_ruleset_id' => 'Regles per defecte',
+            'is_open' => 'Sol·licitud per a unir-se a l\'equip',
             'name' => 'Nom',
             'short_name' => 'Nom curt',
             'url' => 'URL',
@@ -188,7 +188,7 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => 'Els beatmaps classificatoris no es poden denunciar',
+        'no_ranked_beatmapset' => 'Els mapes classificatoris no es poden denunciar',
         'not_in_channel' => 'No ets en aquest canal.',
         'in_team' => 'Ets part de l\'equip.',
         'reason_not_valid' => ':reason no és vàlida per aquest tipus d\'informe.',

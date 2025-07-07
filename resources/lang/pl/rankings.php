@@ -11,8 +11,12 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Poziom trudności',
-        'top_10p' => 'Wynik Najlepszych 10%',
-        'top_50p' => 'Wynik Najlepszych 50%',
+        'top_10p' => 'Wynik 90. percentyla',
+        'top_50p' => 'Wynik 50. percentyla',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
     ],
 
     'filter' => [
@@ -30,7 +34,7 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => 'Ten użytkownik ma mniej niż 30 dni najnowszej historii rankingu.',
+        'insufficient_history' => 'Ten użytkownik jest pozycjonowany w rankingu globalnym przez okres krótszy niż 30 dni.',
     ],
 
     'type' => [
@@ -50,7 +54,7 @@ return [
         'room_count' => 'Liczba gier',
         'url' => 'Dowiedz się więcej o tym sezonie.',
         'validation' => [
-            'not_enough_factors' => 'wynik nie ma wystarczającej liczby czynników dla poprawnych obliczeń',
+            'not_enough_factors' => 'brak wystarczającej liczby parametrów do przeprowadzenia obliczeń',
         ],
     ],
 
@@ -65,7 +69,7 @@ return [
         'accuracy' => 'Celność',
         'active_users' => 'Aktywni użytkownicy',
         'country' => 'Kraj',
-        'division' => 'Podział',
+        'division' => 'Ranga',
         'members' => 'Liczba członków',
         'play_count' => 'Liczba zagrań',
         'performance' => 'Liczba pp',
