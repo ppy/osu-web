@@ -113,6 +113,7 @@ return [
             'copyright' => 'Copyright (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Palihim',
+            'rules' => '',
             'server_status' => 'Katayuan ng server',
             'source_code' => 'Source Code',
             'terms' => 'Terms',

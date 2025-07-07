@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'Lägg till i varukorgen',
         'notify' => 'Notifiera mig när den är tillgänglig!',
+        'out_of_stock' => '',
 
         'notification_success' => 'du kommer bli notifierad när vi har mer i lager. klicka :link för att avbryta',
         'notification_remove_text' => 'här',

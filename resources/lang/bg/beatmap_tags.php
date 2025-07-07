@@ -5,6 +5,6 @@
 
 return [
     'update' => [
-        'invalid_ruleset' => '',
+        'invalid_ruleset' => 'Този таг не е валиден с този бийтмап.',
     ],
 ];

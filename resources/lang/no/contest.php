@@ -30,7 +30,9 @@ return [
         '_' => 'Resultatene fra juryen',
         'creator' => 'skaper',
         'score' => 'Score',
+        'score_std' => '',
         'total_score' => 'total score',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'stemmer',
         'count' => ':count_delimited stemme|:count_delimited stemmer',
         'points' => ':count_delimited poeng|:count_delimited poeng',
+        'points_float' => '',
     ],
 
     'dates' => [

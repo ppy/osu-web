@@ -5,11 +5,11 @@
 
 return [
     'mode' => [
-        'artist_track' => '',
-        'beatmapset' => 'Beatmap',
+        'artist_track' => 'Runut Artis Sorotan',
+        'beatmapset' => 'Peta rentak',
         'forum_post' => 'Forum',
         'other' => 'Lainnya',
-        'team' => '',
+        'team' => 'Pasukan',
         'user' => 'Pemain',
         'wiki_page' => 'Wiki',
     ],

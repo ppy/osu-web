@@ -13,6 +13,10 @@ return [
         'beatmap' => '難易度',
         'top_10p' => '上位10%スコア',
         'top_50p' => '上位50%スコア',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
     ],
 
     'filter' => [

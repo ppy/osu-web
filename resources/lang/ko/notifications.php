@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => '새 팀 메시지',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username 님의 대화 ":title"',
+                    'channel_team_compact' => ':username 님의 대화 ":title"',
+                    'channel_team_group' => ':username 님의 대화 ":title"',
                 ],
             ],
         ],
@@ -178,12 +178,12 @@ return [
                 'team_application_accept' => "당신은 이제 :title 팀의 멤버입니다.",
                 'team_application_accept_compact' => "당신은 이제 :title 팀의 멤버입니다.",
 
-                'team_application_group' => '',
+                'team_application_group' => '팀 참가 요청이 있어요',
 
                 'team_application_reject' => '팀 :title에 보낸 가입 요청이 거부되었습니다.',
                 'team_application_reject_compact' => '팀 :title에 보낸 가입 요청이 거부되었습니다.',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_store' => ':title 님이 팀에 참가하고 싶어해요',
+                'team_application_store_compact' => ':title 님이 팀에 참가하고 싶어해요',
             ],
         ],
 
@@ -245,13 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => '":name"에 새로운 공지가 있습니다.',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => ':username 님에게 새로운 메시지를 받았습니다.',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => '팀 ":name"에 새로운 메시지가 있습니다.',
             ],
         ],
 
@@ -277,7 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "당신은 이제 :title 팀의 멤버입니다.",
                 'team_application_reject' => '팀 :title에 보낸 가입 요청이 거부되었습니다.',
-                'team_application_store' => '',
+                'team_application_store' => ':title 님이 팀에 참가하고 싶어해요',
             ],
         ],
 

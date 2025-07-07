@@ -51,7 +51,7 @@ return [
 
             'friend_ranking' => [
                 'title' => 'Classificació entre amics',
-                'description' => "Mira com et compares amb els teus amics a la taula de classificació d'un beatmap, tant al joc com al lloc web.",
+                'description' => "Compareu resultats amb els amics a la taula de classificació d'un mapa, tant al joc com al lloc web.",
             ],
 
             'country_ranking' => [
@@ -71,7 +71,7 @@ return [
 
             'upload_more' => [
                 'title' => 'Més espai per pujades',
-                'description' => 'Tindràs espais pendents per a beatmaps (per beatmap classificat) fins a un màxim de 10.',
+                'description' => 'Tindràs espais pendents per a mapes (per mapa classificat) fins a un màxim de 10.',
             ],
 
             'early_access' => [
@@ -121,15 +121,15 @@ return [
 
             'more_favourites' => [
                 'title' => 'Més preferits',
-                'description' => 'El nombre màxim de beatmaps que pods marcar com preferits augmenta de :normally &rarr; :supporter',
+                'description' => 'El nombre màxim de mapes que pots marcar com a preferits augmenta de :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => 'Més amics',
                 'description' => 'El nombre màxim d\'amics que podeu tenir augmenta de :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
-                'title' => 'Penja més beatmaps',
-                'description' => 'El nombre de beatmaps pendents que pots tenir alhora es calcula a partir d\'un valor base més una bonificació addicional per cada beatmap classificat que tinguis actualment (fins a un límit).<br/><br/>Normalment això és :base més :bonus per beatmap classificat (fins a :bonus_max). Amb supporter, això augmenta a :supporter_base més :supporter_bonus per cada beatmap classificat (fins a :supporter_bonus_max).',
+                'title' => 'Penja més mapes',
+                'description' => 'El nombre de mapes pendents que pots tenir alhora es calcula a partir d\'un valor base més una bonificació addicional per cada mapa classificat que tinguis actualment (fins a un límit).<br/><br/>Normalment això és :base més :bonus per beatmap classificat (fins a :bonus_max). Amb supporter, això augmenta a :supporter_base més :supporter_bonus per cada mapa classificat (fins a :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => 'Classificacions per amics',

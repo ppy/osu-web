@@ -17,7 +17,7 @@ return [
 
     'view' => [
         'hide' => 'Amagar contrasenya',
-        'show' => 'Mostrar contrasenya',
+        'show' => 'Mostra la contrasenya',
         'delete' => 'Eliminar',
     ],
 ];

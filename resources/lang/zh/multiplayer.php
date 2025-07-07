@@ -16,6 +16,8 @@ return [
         'map_count' => ':count_delimited 张图',
         'player_count' => ':count_delimited 位玩家',
         'time_left' => '剩余 :time',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => '持续时间过长。',

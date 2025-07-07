@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'reset' => 'set semula',
+            'reset' => 'tetap semula',
             'rules' => 'Sila pastikan avatar anda akur pada :link.<br/>Hal ini bermakna avatar anda mesti <strong>sesuai bagi penglihatan umum,</strong> iaitu senonoh serta tidak menyinggung.',
             'rules_link' => 'Pertimbangan kandungan visual',
         ],
@@ -88,7 +88,7 @@ return [
             'beatmap_owner_change' => 'kesukaran tamu',
             'beatmapset:modding' => 'penyelarasan peta rentak',
             'channel_message' => 'pesanan bualan peribadi',
-            'channel_team' => '',
+            'channel_team' => 'pesanan bualan pasukan',
             'comment_new' => 'komen baharu',
             'forum_topic_reply' => 'balasan tajuk',
             'mail' => 'e-mel',
@@ -105,7 +105,7 @@ return [
 
     'options' => [
         'beatmapset_show_nsfw' => 'sorok amaran untuk kandungan tidak senonoh dalam peta rentak',
-        'beatmapset_title_show_original' => 'paparkan metadata peta rentak dalam bahasa aslinya',
+        'beatmapset_title_show_original' => 'paparkan metadata peta rentak dalam bahasa asli',
         'title' => 'Pilihan',
 
         'beatmapset_download' => [

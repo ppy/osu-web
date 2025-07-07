@@ -17,7 +17,7 @@ return [
         'is_privileged' => 'Sila hubungi pentadbir bertahap tinggi untuk memulihkan akaun.',
         'missing_key' => 'Diperlukan.',
         'too_many_tries' => 'Terlalu banyak percubaan yang gagal.',
-        'user_not_found' => 'Pengguna yang diminta tidak ada.',
+        'user_not_found' => 'Pengguna pintaan tidak ada.',
         'wrong_key' => 'Kod salah.',
     ],
 
@@ -29,7 +29,7 @@ return [
     'started' => [
         'password' => 'Kata laluan baharu',
         'password_confirmation' => 'Pengesahan kata laluan',
-        'title' => 'Mengeset semula kata laluan akaun <strong>:username</strong>.',
+        'title' => 'Menetap semula kata laluan akaun <strong>:username</strong>.',
         'verification_key' => 'Kod pengesahan',
     ],
 
@@ -37,7 +37,7 @@ return [
         'username' => 'Masukkan alamat e-mel atau nama pengguna',
 
         'reason' => [
-            'inactive_different_country' => "Akaun anda telah lama tidak digunakan. Untuk memastikan keselamatan akaun anda, sila set semula kata laluan anda.",
+            'inactive_different_country' => "Akaun anda telah lama tidak digunakan. Untuk memastikan keselamatan akaun anda, sila tetap semula kata laluan anda.",
         ],
         'support' => [
             '_' => 'Perlukan bantuan lanjut? Hubungi melalui :button kami.',

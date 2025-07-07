@@ -35,8 +35,8 @@ return [
     ],
 
     'team' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Nosūdzēt Komandu',
+        'title' => 'Pasūdzēties par :username komandu?',
     ],
 
     'user' => [

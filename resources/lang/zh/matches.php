@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner，分差 :difference',
 
         'events' => [
-            'player-left' => ':user 离开房间',
-            'player-joined' => ':user 加入房间',
-            'player-kicked' => ':user 被踢出房间',
-            'match-created' => ':user 创建房间',
-            'match-disbanded' => '房间关闭',
-            'host-changed' => ':user 成为房主',
-
-            'player-left-no-user' => '有玩家离开了房间',
-            'player-joined-no-user' => '有玩家加入了房间',
-            'player-kicked-no-user' => '有玩家被踢出房间',
-            'match-created-no-user' => '创建了房间',
-            'match-disbanded-no-user' => '房间关闭',
-            'host-changed-no-user' => '房主已被更改',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => '个人',
-            'tag-coop' => '接力',
-            'team-vs' => '组队',
-            'tag-team-vs' => '组队接力',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => '最高分',
             'accuracy' => '最高准确率',

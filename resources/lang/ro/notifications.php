@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => 'Mesaj de echipă nou',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username spune ":title"',
+                    'channel_team_compact' => ':username spune ":title"',
+                    'channel_team_group' => ':username spune ":title"',
                 ],
             ],
         ],
@@ -178,12 +178,12 @@ return [
                 'team_application_accept' => "Acum ești membru al echipei :title",
                 'team_application_accept_compact' => "Acum ești membru al echipei :title",
 
-                'team_application_group' => '',
+                'team_application_group' => 'Actualizări la cererile de înscriere în echipă',
 
                 'team_application_reject' => 'Cererea ta de înscriere în echipa :title a fost refuzată',
                 'team_application_reject_compact' => 'Cererea ta de înscriere în echipa :title a fost refuzată',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_store' => ':title a solicitat să se înscrie echipei tale',
+                'team_application_store_compact' => ':title a solicitat să se înscrie echipei tale',
             ],
         ],
 
@@ -245,13 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => 'Există un anunț nou în „:name”',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => 'Ai primit un mesaj nou de la :username',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'Există un mesaj nou în echipa ":name"',
             ],
         ],
 
@@ -277,7 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Acum ești membru al echipei :title",
                 'team_application_reject' => 'Cererea ta de înscriere în echipa :title a fost refuzată',
-                'team_application_store' => '',
+                'team_application_store' => ':title a solicitat să se înscrie echipei tale',
             ],
         ],
 

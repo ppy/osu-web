@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'Įdėti į krepšelį',
         'notify' => 'Informuokite mane kai bus!',
+        'out_of_stock' => '',
 
         'notification_success' => 'kai prekė atsiras mes jums pranešime. Atšaukimui spausk :link',
         'notification_remove_text' => 'čia',

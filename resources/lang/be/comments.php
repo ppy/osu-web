@@ -44,7 +44,7 @@ return [
     ],
 
     'ogp' => [
-        'title' => '',
+        'title' => 'каментар ад :user',
     ],
 
     'placeholder' => [

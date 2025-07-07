@@ -486,6 +486,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Iskutarkkuus',
+            'hits_per_play' => '',
             'level' => 'Taso :level',
             'level_progress' => 'edistyminen seuraavalle tasolle',
             'maximum_combo' => 'Suurin iskuputki',

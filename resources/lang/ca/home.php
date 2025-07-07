@@ -27,7 +27,7 @@ return [
         'title' => 'cerca',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'Mostra més resultats de cerca de pistes d\'artista destacat',
         ],
         'beatmapset' => [
             'login_required' => 'Inicieu sessió per cercar mapes',
@@ -54,16 +54,16 @@ return [
 
         'mode' => [
             'all' => 'tots',
-            'artist_track' => '',
-            'beatmapset' => 'beatmap',
+            'artist_track' => 'pista d\'artista destacat',
+            'beatmapset' => 'mapa',
             'forum_post' => 'fòrum',
-            'team' => '',
+            'team' => 'equip',
             'user' => 'jugador',
             'wiki_page' => 'wiki',
         ],
 
         'team' => [
-            'more_simple' => '',
+            'more_simple' => 'Mostra més resultats de la cerca d\'equip',
         ],
 
         'user' => [
@@ -119,10 +119,10 @@ return [
                 'description' => 'fes clic al botó de dalt per descarregar l\'instal·lador, després executa-ho!',
             ],
             'beatmaps' => [
-                'title' => 'obtenir beatmaps',
+                'title' => 'obtén mapes',
                 'description' => [
-                    '_' => ':browse la enorme biblioteca de beatmaps creats pels usuaris i comença a jugar!',
-                    'browse' => 'fes una ullada',
+                    '_' => ':browse l\'enorme biblioteca de mapes creats pels usuaris i comença a jugar!',
+                    'browse' => 'cerca',
                 ],
             ],
         ],
@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nous Beatmaps Classificatoris',
-            'popular' => 'Beatmaps populars',
+            'daily_challenge' => '',
+            'new' => 'Mapes Classificats Nous',
+            'popular' => 'Mapes Populars',
             'by_user' => 'per :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'Descarrega l\'osu!',

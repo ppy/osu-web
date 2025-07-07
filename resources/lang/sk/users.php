@@ -486,6 +486,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Presnosť Zásahov',
+            'hits_per_play' => '',
             'level' => 'Úroveň :level',
             'level_progress' => 'Percentá do ďalšieho levelu',
             'maximum_combo' => 'Maximálne Kombo',

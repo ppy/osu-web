@@ -14,7 +14,7 @@ return [
     'beatmaps' => [
         '_' => 'Peta rentak',
         'download' => 'muat turun templat peta rentak',
-        'download-na' => 'templat peta rentak belum lagi tersedia',
+        'download-na' => 'templat peta rentak belum tersedia',
     ],
 
     'index' => [

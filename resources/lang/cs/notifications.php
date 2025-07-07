@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => 'Nová týmová zpráva',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username říká ":title"',
+                    'channel_team_compact' => ':username říká ":title"',
+                    'channel_team_group' => ':username říká ":title"',
                 ],
             ],
         ],
@@ -178,12 +178,12 @@ return [
                 'team_application_accept' => "Jsi nyní členem týmu :title",
                 'team_application_accept_compact' => "Jsi nyní členem týmu :title",
 
-                'team_application_group' => '',
+                'team_application_group' => 'Novinky pro žádosti o připojení k týmu',
 
                 'team_application_reject' => 'Tvoje žádost o připojení k týmu :title byla zamítnuta',
                 'team_application_reject_compact' => 'Tvoje žádost o připojení k týmu :title byla zamítnuta',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_store' => ':title požádal o připojení k tvému týmu',
+                'team_application_store_compact' => ':title požádal o připojení k tvému týmu',
             ],
         ],
 
@@ -245,13 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => 'Nové oznámení v ":name"',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => 'Obdržel jsi novou zprávu od :username',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'Nová zpráva v týmu ":name"',
             ],
         ],
 
@@ -277,7 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Jsi nyní členem týmu :title",
                 'team_application_reject' => 'Tvoje žádost o připojení k týmu :title byla zamítnuta',
-                'team_application_store' => '',
+                'team_application_store' => ':title požádal o připojení k tvému týmu',
             ],
         ],
 

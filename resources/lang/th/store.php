@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'เพิ่มไปยังตะกร้า',
         'notify' => 'แจ้งเตือนฉันเมื่อมีสินค้า!',
+        'out_of_stock' => '',
 
         'notification_success' => 'เราจะแจ้งเตือนคุณทันทีเมื่อมีสินค้าเข้า คลิก :link เพื่อยกเลิก',
         'notification_remove_text' => 'ที่นี่',

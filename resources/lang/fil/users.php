@@ -486,6 +486,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Katumpakan sa Pagtama',
+            'hits_per_play' => '',
             'level' => 'Antas :level',
             'level_progress' => 'Progreso sa susunod na antas',
             'maximum_combo' => 'Pinakamataas na Combo',

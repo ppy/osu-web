@@ -27,7 +27,7 @@ return [
         'title' => 'Suche',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'Mehr Suchergebnisse von Featured-Artist-Songs anzeigen',
         ],
         'beatmapset' => [
             'login_required' => 'Melde dich an, um Beatmaps zu suchen',
@@ -54,20 +54,20 @@ return [
 
         'mode' => [
             'all' => 'alle',
-            'artist_track' => '',
+            'artist_track' => 'Song eines Featured Artist',
             'beatmapset' => 'Beatmap',
             'forum_post' => 'Forum',
-            'team' => '',
+            'team' => 'Team',
             'user' => 'Spieler',
             'wiki_page' => 'Wiki',
         ],
 
         'team' => [
-            'more_simple' => '',
+            'more_simple' => 'Weitere Team-Ergebnisse anzeigen',
         ],
 
         'user' => [
-            'login_required' => 'Melde Dich an, um Benutzer zu suchen',
+            'login_required' => 'Melde dich an, um Benutzer zu suchen',
             'more' => ':count weitere Spieler-Ergebnisse',
             'more_simple' => 'Siehe mehr Spieler-Ergebnisse',
             'more_hidden' => 'Die Spielersuche ist auf :max Spieler limitiert. Versuche deine Suchanfrage zu verfeinern.',
@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Neue Ranked Beatmaps',
             'popular' => 'Beliebte Beatmaps',
             'by_user' => 'von :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'osu! herunterladen',

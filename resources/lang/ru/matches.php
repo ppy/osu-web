@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner с разницей в :difference очков',
 
         'events' => [
-            'player-left' => ':user покинул комнату',
-            'player-joined' => ':user зашёл в комнату',
-            'player-kicked' => ':user был выгнан из комнаты',
-            'match-created' => ':user создал комнату',
-            'match-disbanded' => 'комната была распущена',
-            'host-changed' => ':user стал хостом',
-
-            'player-left-no-user' => 'игрок покинул комнату',
-            'player-joined-no-user' => 'игрок зашёл в комнату',
-            'player-kicked-no-user' => 'игрок был выгнан из комнаты',
-            'match-created-no-user' => 'комната была создана',
-            'match-disbanded-no-user' => 'комната была распущена',
-            'host-changed-no-user' => 'хост поменялся',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Каждый сам за себя',
-            'tag-coop' => 'Совместное прохождение',
-            'team-vs' => 'Противостояние команд',
-            'tag-team-vs' => 'Совместное прохождение по командам',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => 'Наибольшее кол-во очков',
             'accuracy' => 'Наилучшая точность',

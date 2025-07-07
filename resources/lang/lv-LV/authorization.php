@@ -194,19 +194,19 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
-                'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'already_member' => "Tu jau esi komandā.",
+                'already_other_member' => "Tu jau esi citā komandā.",
+                'currently_applying' => 'Tev ir esošs komandas pievienošanās pieprasījums.',
+                'team_closed' => 'Šī komanda pašlaik nepieņem vēl pievienošanās pieprasījumus.',
+                'team_full' => "Komanda ir pilna un nevar pieņemt vēl vairāk dalībniekus.",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "Komandas galvenais nevar pamest komandu.",
+            'not_member' => 'Nav komandas dalībnieks.',
         ],
         'store' => [
-            'require_supporter_tag' => '',
+            'require_supporter_tag' => 'osu!atbalsītājs ir nepieciešams, lai izveidotu komandu.',
         ],
     ],
 

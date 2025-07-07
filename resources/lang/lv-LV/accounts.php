@@ -20,7 +20,7 @@ return [
             'new_confirmation' => 'e-pasta apstiprinājums',
             'title' => 'E-pasts',
             'locked' => [
-                '_' => 'Lūdzu, sazinieties ar :accounts ja nepieciešams atjaunināt jūsu e-pasta adresi.',
+                '_' => 'Lūdzu, sazinieties ar :accounts, ja vēlies atjaunināt savu e-pasta adresi.',
                 'accounts' => 'kontu atbalsta komanda',
             ],
         ],
@@ -88,7 +88,7 @@ return [
             'beatmap_owner_change' => 'viesa grūtības līmenis',
             'beatmapset:modding' => 'ritma-karšu modifikācijas',
             'channel_message' => 'privātās čata ziņas',
-            'channel_team' => '',
+            'channel_team' => 'komandas tērzētavas ziņas',
             'comment_new' => 'jauni komentāri',
             'forum_topic_reply' => 'tēmas atbilde',
             'mail' => 'pasts',

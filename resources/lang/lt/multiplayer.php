@@ -16,6 +16,8 @@ return [
         'map_count' => ':count_delimited bitmapas|:count_delimited bitmapai',
         'player_count' => ':count_delimited žaidėjas|:count_delimited žaidėjų',
         'time_left' => ':time liko',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => 'Per ilga trūkmė.',

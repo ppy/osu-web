@@ -27,7 +27,7 @@ return [
         'title' => 'Pesquisar',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'Ver mais resultados de busca de trilhas de artistas em destaque',
         ],
         'beatmapset' => [
             'login_required' => 'Inicie a sessão para procurar por beatmaps',
@@ -54,16 +54,16 @@ return [
 
         'mode' => [
             'all' => 'todos',
-            'artist_track' => '',
+            'artist_track' => 'trilha de artista em destaque',
             'beatmapset' => 'beatmap',
             'forum_post' => 'fórum',
-            'team' => '',
+            'team' => 'equipe',
             'user' => 'jogador',
             'wiki_page' => 'wiki',
         ],
 
         'team' => [
-            'more_simple' => '',
+            'more_simple' => 'Ver mais resultados de busca de equipes',
         ],
 
         'user' => [
@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Novos beatmaps ranqueados',
             'popular' => 'Beatmaps Populares',
             'by_user' => 'por :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'Baixar osu!',

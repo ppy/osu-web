@@ -16,6 +16,8 @@ return [
         'map_count' => ':count_delimited kartta|:count_delimited karttaa',
         'player_count' => ':count_delimited pelaaja|:count_delimited pelaajaa',
         'time_left' => ':time jäljellä',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => 'Liian pitkä aika.',

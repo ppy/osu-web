@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'non_preserved' => 'Ten wynik jest oznaczony do usunięcia i wkrótce zniknie.',
+        'non_preserved' => 'Ten wynik został oznaczony jako usunięty i wkrótce zniknie.',
         'title' => 'wynik gracza :username na :title [:version]',
 
         'beatmap' => [
@@ -25,8 +25,8 @@ return [
 
     'status' => [
         'non_best' => 'Tylko twoje najlepsze wyniki przyznają pp',
-        'no_pp' => 'pp nie jest nagradzane za ten wynik',
+        'no_pp' => 'pp nie zostanie przyznane za ten wynik',
         'processing' => 'Ten wynik jest nadal obliczany i zostanie wyświetlony wkrótce.',
-        'no_rank' => 'Ten wynik nie posiada rangi, ponieważ jest nierankingowy albo przeznaczony do usunięcia',
+        'no_rank' => 'Ten wynik nie jest pozycjonowany w rankingu, ponieważ jest nierankingowy lub został oznaczony jako usunięty',
     ],
 ];

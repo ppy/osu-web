@@ -44,7 +44,7 @@ return [
         'reply' => 'Balas',
         'reply_reopen' => 'Balas dan Buka Semula',
         'reply_resolve' => 'Balas dan Selesaikan',
-        'reset' => 'Set semula',
+        'reset' => 'Tetap semula',
         'restore' => 'Pulihkan',
         'retry' => 'Cuba lagi',
         'save' => 'Simpan',
@@ -94,6 +94,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => '',
+        ],
+        'year' => [
+            'php' => '',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

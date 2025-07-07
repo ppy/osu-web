@@ -18,7 +18,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'permetre kudosu',
-        'beatmap_information' => 'Pàgina del beatmap',
+        'beatmap_information' => 'Pàgina del mapa',
         'delete' => 'eliminar',
         'deleted' => 'Eliminat per :editor :delete_time.',
         'deny_kudosu' => 'negar kudosu',
@@ -27,7 +27,7 @@ return [
         'guest' => 'Dificultat de convidat per :user',
         'kudosu_denied' => 'Negar l\'obtenció de kudosu.',
         'message_placeholder_deleted_beatmap' => 'Aquesta dificultat ha estat eliminada, per tant ja no es pot discutir.',
-        'message_placeholder_locked' => 'La discussió per a aquest beatmap s\'ha desactivat.',
+        'message_placeholder_locked' => 'La discussió per a aquest mapa s\'ha desactivat.',
         'message_placeholder_silenced' => "No podeu publicar una discussió mentre estigui silenciat.",
         'message_type_select' => 'Seleccionar tipus de comentari',
         'reply_notice' => 'Premeu enter per respondre.',
@@ -36,7 +36,7 @@ return [
         'require-login' => 'Inicia sessió per publicar o respondre',
         'resolved' => 'Resolt',
         'restore' => 'restaurar',
-        'show_deleted' => 'Mostrar eliminats',
+        'show_deleted' => 'Mostra els eliminats',
         'title' => 'Discussions',
         'unresolved_count' => ':count_delimited problema sense resoldre|:count_delimited problemes sense resoldre',
 
@@ -158,11 +158,11 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => 'Aquest beatmap va ser aprovat el :date!',
-            'graveyard' => "Aquest beatmap no s'ha actualitzat des del :date, de manera que va ser enterrat...",
-            'loved' => 'Aquest beatmap es va afegir a Estimats el :date!',
-            'ranked' => 'Aquest beatmap va ser classificat el :date!',
-            'wip' => 'Nota: el creador ha marcat aquest beatmap com a treball en curs.',
+            'approved' => 'Aquest mapa es va aprovar el :date!',
+            'graveyard' => "Aquest mapa no s'ha actualitzat des del :date, de manera que s'ha abandonat...",
+            'loved' => 'Aquest mapa es va afegir a Estimats el :date!',
+            'ranked' => 'Aquest mapa va ser classificat el :date!',
+            'wip' => 'Nota: el creador ha marcat aquest mapa com a treball en curs.',
         ],
 
         'votes' => [
@@ -178,11 +178,11 @@ return [
     ],
 
     'hype' => [
-        'button' => 'Mostrar eufòria a aquest beatmap!',
+        'button' => 'Mostra eufòria a aquest mapa!',
         'button_done' => 'Ja li has donat la teva mostra d\'eufòria!',
         'confirm' => "Segur? Això farà servir una de les teves :n mostres d'eufòria restants i no es pot desfer.",
-        'explanation' => 'Mostra eufòria a aquest beatmap per fer-lo més visible per a la nominació i la classificació!',
-        'explanation_guest' => 'Inicia sessió i mostra eufòria a aquest beatmap per fer-lo més visible per a la nominació i la classificació!',
+        'explanation' => 'Mostra eufòria a aquest mapa per a fer-lo més visible per a la nominació i la classificació!',
+        'explanation_guest' => 'Inicia sessió i mostra eufòria a aquest mapa per a fer-lo més visible per a la nominació i la classificació!',
         'new_time' => "Obtindràs una altra mostra d'eufòria :new_time.",
         'remaining' => 'Et queden :remaining mostres d\'eufòria.',
         'required_text' => 'Eufòria: :current/:required',
@@ -195,11 +195,11 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => 'Ja has nominat aquest beatmap.',
-        'cannot_nominate' => 'No podeu nominar aquest mode de joc del beatmap.',
+        'already_nominated' => 'Ja has nominat aquest mapa.',
+        'cannot_nominate' => 'No podeu nominar aquest mode de joc del mapa.',
         'delete' => 'Eliminar',
-        'delete_own_confirm' => 'Estàs segur? El beatmap serà eliminat i seràs redirigit de tornada al teu perfil.',
-        'delete_other_confirm' => 'Estàs segur? El beatmap serà eliminat i seràs redirigit al perfil de l\'usuari.',
+        'delete_own_confirm' => 'Estàs segur? El mapa s\'eliminarà i se us redigirirà de tornada al perfil.',
+        'delete_other_confirm' => 'Estàs segur? El mapa s\'eliminarà i se us redigirirà al perfil d\'usuari.',
         'disqualification_prompt' => 'Motiu de la desqualificació?',
         'disqualified_at' => 'Desqualificat :time_ago (:reason).',
         'disqualified_no_reason' => 'no s\'ha especificat cap raó',
@@ -207,9 +207,9 @@ return [
         'incorrect_state' => 'Error en realitzar aquesta acció, intenteu actualitzar la pàgina.',
         'love' => 'Estimar',
         'love_choose' => 'Trieu la dificultat per a l\'estimat',
-        'love_confirm' => 'Estimar aquest beatmap?',
+        'love_confirm' => 'Estimar aquest mapa?',
         'nominate' => 'Nominar',
-        'nominate_confirm' => 'Nominar aquest beatmap?',
+        'nominate_confirm' => 'Nominar aquest mapa?',
         'nominated_by' => 'nominat per :users',
         'not_enough_hype' => "No hi ha prou eufòria.",
         'remove_from_loved' => 'Eliminar de Estimats',
@@ -234,9 +234,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'disqualify' => 'Estàs segur? Això eliminarà el beatmap de la qualificació i restablirà el procés de nominació.',
+            'disqualify' => 'Estàs segur? Això eliminarà el mapa de la qualificació i restablirà el procés de nominació.',
             'nomination_reset' => 'N\'estàs segur? Publicar un nou problema reiniciarà el temps de nominació.',
-            'problem_warning' => 'Segur que vols informar d\'un problema en aquest beatmap? Això alertarà els Nominadors de Beatmaps.',
+            'problem_warning' => 'Segur que vols informar d\'un problema en aquest mapa? Això alertarà els Nominadors de Mapes.',
         ],
     ],
 

@@ -94,6 +94,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => '',
+        ],
+        'year' => [
+            'php' => '',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',
@@ -111,7 +117,7 @@ return [
     ],
 
     'dropzone' => [
-        'target' => 'бросьте файл сюда',
+        'target' => 'перетащите для загрузки',
     ],
 
     'input' => [
@@ -155,7 +161,7 @@ return [
     ],
 
     'title' => [
-        'notice' => 'Замечание',
+        'notice' => 'Примечание',
     ],
 
     'wrong_user' => [

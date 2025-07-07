@@ -88,7 +88,7 @@ return [
             'beatmap_owner_change' => 'dificuldade do convidado',
             'beatmapset:modding' => 'modding em beatmap',
             'channel_message' => 'mensagens privadas',
-            'channel_team' => '',
+            'channel_team' => 'mensagens do bate-papo do time',
             'comment_new' => 'novos comentários',
             'forum_topic_reply' => 'resposta em tópico',
             'mail' => 'Caixa de Entrada',

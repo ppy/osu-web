@@ -17,7 +17,7 @@ return [
     ],
 
     'show' => [
-        'created_by' => '',
+        'created_by' => 'από :author',
         'download' => 'Λήψη',
         'item' => [
             'cleared' => 'ολοκληρώθηκε',

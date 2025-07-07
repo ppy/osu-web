@@ -16,6 +16,8 @@ return [
         'map_count' => ':count_delimited الخريطة|:count_delimited خرائط',
         'player_count' => ':count_delimited لاعب|:count_delimited لاعبين',
         'time_left' => 'تبقى:time',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => 'المدة طويلة جداً.',

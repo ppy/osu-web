@@ -113,6 +113,7 @@ return [
             'copyright' => '版权（DMCA）',
             'jp_sctl' => '',
             'privacy' => '隐私政策',
+            'rules' => '',
             'server_status' => '服务器状态',
             'source_code' => '源代码',
             'terms' => '服务条款',

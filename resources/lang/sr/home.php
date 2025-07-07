@@ -142,10 +142,12 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Нове рангиране мапе',
             'popular' => 'Популарне мапе',
             'by_user' => 'од корисника :user
 ',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'Преузмите osu!',

@@ -129,6 +129,11 @@ return [
             '_' => 'knowledge base',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'panhitulutan ang app',

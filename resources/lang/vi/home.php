@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Beatmap Được Xếp Hạng Mới',
             'popular' => 'Beatmaps Phổ Biến',
             'by_user' => 'bởi :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'Tải Xuống osu!',

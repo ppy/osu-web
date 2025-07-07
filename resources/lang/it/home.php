@@ -10,7 +10,7 @@ return [
         'peak' => 'Picco, :count utenti online',
         'players' => '<strong>:count</strong> giocatori registrati',
         'title' => 'benvenuto',
-        'see_more_news' => 'guarda più notizie',
+        'see_more_news' => 'vedi più notizie',
 
         'slogan' => [
             'main' => 'il miglior gioco di ritmo free-to-win',
@@ -27,12 +27,12 @@ return [
         'title' => 'Cerca',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'Vedi più risultati di ricerca per traccia di artisti in primo piano',
         ],
         'beatmapset' => [
             'login_required' => 'Accedi per cercare beatmap',
             'more' => 'altri :count risultati di ricerca delle beatmap',
-            'more_simple' => 'Vedi più risultati di ricerca delle beatmap',
+            'more_simple' => 'Vedi più risultati di ricerca per beatmap',
             'title' => 'Beatmap',
         ],
 
@@ -40,7 +40,7 @@ return [
             'all' => 'Tutti i forum',
             'link' => 'Cerca nel forum',
             'login_required' => 'Accedi per cercare nel forum',
-            'more_simple' => 'Vedi più risultati di ricerca del forum',
+            'more_simple' => 'Vedi più risultati di ricerca per forum',
             'title' => 'Forum',
 
             'label' => [
@@ -54,29 +54,29 @@ return [
 
         'mode' => [
             'all' => 'tutto',
-            'artist_track' => '',
+            'artist_track' => 'traccia artista in primo piano',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
-            'team' => '',
+            'team' => 'squadra',
             'user' => 'giocatore',
             'wiki_page' => 'wiki',
         ],
 
         'team' => [
-            'more_simple' => '',
+            'more_simple' => 'Vedi più risultati di ricerca per squadra',
         ],
 
         'user' => [
             'login_required' => 'Accedi per cercare utenti',
             'more' => 'altri :count risultati di ricerca di giocatori',
-            'more_simple' => 'Vedi più risultati di ricerca di giocatori',
+            'more_simple' => 'Vedi più risultati di ricerca per giocatore',
             'more_hidden' => 'La ricerca di giocatori è limitata a :max giocatori. Prova a ridefinire la ricerca.',
             'title' => 'Giocatori',
         ],
 
         'wiki_page' => [
             'link' => 'Cerca nella wiki',
-            'more_simple' => 'Vedi più risultati di ricerca della wiki',
+            'more_simple' => 'Vedi più risultati di ricerca per wiki',
             'title' => 'Wiki',
         ],
     ],
@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Nuove Beatmap Classificate',
             'popular' => 'Beatmap Popolari',
             'by_user' => 'di :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'Scarica osu!',

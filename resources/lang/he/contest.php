@@ -30,7 +30,9 @@ return [
         '_' => '',
         'creator' => '',
         'score' => '',
+        'score_std' => '',
         'total_score' => '',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'הצבעות',
         'count' => ':count_delimited הצבעה|:count_delimited הצבעות',
         'points' => ':count_delimited נקודה|:count_delimited נקודות',
+        'points_float' => '',
     ],
 
     'dates' => [

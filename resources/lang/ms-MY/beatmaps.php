@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid_ruleset' => 'Ruleset tidak sah ditentukan.',
+    'invalid_ruleset' => 'Cara main tidak sah ditentukan.',
 
     'change_owner' => [
         'too_many' => 'Terlalu ramai pemeta tamu.',
@@ -78,7 +78,7 @@ return [
             'disqualify' => 'Singkirkan',
             'hype' => 'Gembarkan!',
             'mapper_note' => 'Catatan',
-            'nomination_reset' => 'Set Semula Pencalonan',
+            'nomination_reset' => 'Tetap Semula Pencalonan',
             'praise' => 'Puji',
             'problem' => 'Masalah',
             'problem_warning' => 'Laporkan Masalah',
@@ -161,7 +161,7 @@ return [
             'approved' => 'Peta rentak ini lulus pada :date!',
             'graveyard' => "Peta rentak ini dikuburkan kerana tidak dikemas kini sejak :date...",
             'loved' => 'Peta rentak ini ditambah ke Kegemaran pada :date!',
-            'ranked' => 'Beatmap ini berkedudukan pada :date!',
+            'ranked' => 'Peta rentak ini telah berpangkat pada :date!',
             'wip' => 'Catatan: Peta rentak ini ditanda selaku kerja sedang berjalan oleh pencipta.',
         ],
 
@@ -181,8 +181,8 @@ return [
         'button' => 'Gembarkan Peta Rentak!',
         'button_done' => 'Telah Digembarkan!',
         'confirm' => "Adakah anda pasti? Tindakan ini akan menggunakan satu daripada :n gembaran anda dan tidak boleh dibuat asal.",
-        'explanation' => 'Gembarkan peta rentak ini agar lebih tampak untuk pencalonan dan penarafan Berkedudukan!',
-        'explanation_guest' => 'Daftar masuk dan gembarkan peta rentak ini agar lebih tampak untuk pencalonan dan penarafan Berkedudukan!',
+        'explanation' => 'Gembarkan peta rentak ini agar lebih tampak untuk pencalonan dan penarafan Berpangkat!',
+        'explanation_guest' => 'Daftar masuk dan gembarkan peta rentak ini agar lebih tampak untuk pencalonan dan penarafan Berpangkat!',
         'new_time' => "Anda akan mendapat gembaran lagi :new_time.",
         'remaining' => 'Anda mempunyai :remaining gembaran lagi.',
         'required_text' => 'Gembaran: :current/:required',
@@ -220,22 +220,22 @@ return [
         'unresolved_issues' => 'Masih terdapat isu tidak selesai yang mesti diberi perhatian dahulu.',
 
         'rank_estimate' => [
-            '_' => 'Peta ini dianggarkan berkedudukan pada :date sekiranya tiada isu ditemui. Peta ini bergiliran #:position pada :queue.',
+            '_' => 'Peta ini dianggarkan berpangkat pada :date sekiranya tiada isu ditemui. Peta ini bergiliran #:position pada :queue.',
             'unresolved_problems' => 'Peta ini disekat dari meninggalkan bahagian Layak hingga :problems diselesaikan.',
             'problems' => 'masalah-masalah ini',
             'on' => 'pada :date',
-            'queue' => 'giliran penarafan Berkedudukan',
+            'queue' => 'giliran penarafan Berpangkat',
             'soon' => 'nanti',
         ],
 
         'reset_at' => [
-            'nomination_reset' => 'Proses pencalonan diset semula :time_ago oleh :user dengan masalah baru :discussion (:message).',
+            'nomination_reset' => 'Proses pencalonan ditetap semula :time_ago oleh :user dengan masalah baru :discussion (:message).',
             'disqualify' => 'Disingkirkan :time_ago oleh :user dengan masalah baru :discussion (:message).',
         ],
 
         'reset_confirm' => [
-            'disqualify' => 'Adakah anda pasti? Tindakan ini akan menarik balik kelayakan peta rentak ini dan mengeset semula proses pencalonan.',
-            'nomination_reset' => 'Adakah anda pasti? Menghantar masalah baru akan mengeset semula proses pencalonan.',
+            'disqualify' => 'Adakah anda pasti? Tindakan ini akan menarik balik kelayakan peta rentak ini dan menetap semula proses pencalonan.',
+            'nomination_reset' => 'Adakah anda pasti? Menghantar masalah baru akan menetap semula proses pencalonan.',
             'problem_warning' => 'Adakah anda pasti ingin melaporkan isu pada peta rentak ini? Tindakan ini akan menyedarkan Pencalon Peta Rentak.',
         ],
     ],
@@ -265,7 +265,7 @@ return [
                 'difficulty' => 'Kesukaran',
                 'favourites' => 'Sukaan',
                 'updated' => 'Kemas kini',
-                'ranked' => 'Berkedudukan',
+                'ranked' => 'Berpangkat',
                 'rating' => 'Nilai',
                 'plays' => 'Mainan',
                 'relevance' => 'Kaitan',
@@ -298,13 +298,13 @@ return [
         'approved' => 'Lulus',
         'favourites' => 'Sukaan',
         'graveyard' => 'Kubur',
-        'leaderboard' => 'Mempunyai Carta Kedudukan',
+        'leaderboard' => 'Berpapan Pendahulu',
         'loved' => 'Kegemaran',
         'mine' => 'Petaku',
         'pending' => 'Tergantung',
         'wip' => 'WIP',
         'qualified' => 'Layak',
-        'ranked' => 'Berkedudukan',
+        'ranked' => 'Berpangkat',
     ],
     'genre' => [
         'any' => 'Semua',

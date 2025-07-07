@@ -13,6 +13,10 @@ return [
         'beatmap' => 'Kesukaran',
         'top_10p' => 'Markah 10% Teratas',
         'top_50p' => 'Markah 50% Teratas',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
     ],
 
     'filter' => [
@@ -30,7 +34,7 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => 'Pengguna ini mempunyai sejarah kedudukan terkini kurang daripada 30 hari.',
+        'insufficient_history' => 'Sejarah pangkat terkini pengguna ini kurang daripada 30 hari.',
     ],
 
     'type' => [
@@ -70,7 +74,7 @@ return [
         'play_count' => 'Jumlah Mainan',
         'performance' => 'Prestasi',
         'total_score' => 'Jumlah Markah',
-        'ranked_score' => 'Markah Berkedudukan',
+        'ranked_score' => 'Markah Berpangkat',
         'average_score' => 'Markah Purata',
         'average_performance' => 'Prestasi Purata',
         'ss' => '',

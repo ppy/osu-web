@@ -117,6 +117,7 @@ return [
             'copyright' => 'Autorska prava (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Privatnost',
+            'rules' => '',
             'server_status' => 'Status Servera',
             'source_code' => 'Izvorni kȏd',
             'terms' => 'Uvjeti',

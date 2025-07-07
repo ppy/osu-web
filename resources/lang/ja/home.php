@@ -57,7 +57,7 @@ return [
             'artist_track' => '',
             'beatmapset' => 'ビートマップ',
             'forum_post' => 'フォーラム',
-            'team' => '',
+            'team' => 'チーム',
             'user' => 'プレイヤー',
             'wiki_page' => 'wiki',
         ],
@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => '最新のRankedビートマップ',
             'popular' => '人気のビートマップ',
             'by_user' => 'by :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'osu!をダウンロード',

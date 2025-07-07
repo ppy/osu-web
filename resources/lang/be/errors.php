@@ -29,7 +29,7 @@ return [
         'generic' => 'Узнікла памылка падчас апрацоўкі пакупкі.',
     ],
     'scores' => [
-        'invalid_id' => '',
+        'invalid_id' => 'Недапушчальны id рэкорду.',
     ],
     'search' => [
         'default' => 'Нічога не знойдзена, паспрабуйце пазней.',
@@ -37,6 +37,6 @@ return [
         'operation_timeout_exception' => 'Пошук зараз перанагружаны, паспрабуйце пазней.',
     ],
     'user_report' => [
-        'recently_reported' => "",
+        'recently_reported' => "Вы ўжо скардзіліся на гэтага гульца.",
     ],
 ];

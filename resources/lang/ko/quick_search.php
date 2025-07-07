@@ -5,11 +5,11 @@
 
 return [
     'mode' => [
-        'artist_track' => '',
+        'artist_track' => '공식 아티스트 곡',
         'beatmapset' => '비트맵',
         'forum_post' => '포럼',
         'other' => '기타',
-        'team' => '',
+        'team' => '팀',
         'user' => '플레이어',
         'wiki_page' => '위키',
     ],

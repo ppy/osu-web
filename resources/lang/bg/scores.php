@@ -9,7 +9,7 @@ return [
         'title' => ':username в :title [:version]',
 
         'beatmap' => [
-            'by' => 'по :artist',
+            'by' => 'от :artist',
         ],
 
         'player' => [

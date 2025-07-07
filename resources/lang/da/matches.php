@@ -15,19 +15,22 @@ return [
         'winner_by' => '',
 
         'events' => [
-            'player-left' => ':user forlod kampen',
-            'player-joined' => ':user deltog i kampen',
-            'player-kicked' => ':user blev smidt ud af kampen',
-            'match-created' => ':user lavede kampen',
-            'match-disbanded' => 'kampen blev opløst',
-            'host-changed' => ':user er blevet vært',
-
-            'player-left-no-user' => 'en spiller forlod kampen',
-            'player-joined-no-user' => 'en spiller deltog i kampen',
-            'player-kicked-no-user' => 'en spiller blev smidt ud af kampen',
-            'match-created-no-user' => 'kampen blev lavet',
-            'match-disbanded-no-user' => 'kampen blev opløst',
-            'host-changed-no-user' => 'vært blev skiftet',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Alle mod alle',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => 'Højeste Score',
             'accuracy' => 'Højeste Præcision',

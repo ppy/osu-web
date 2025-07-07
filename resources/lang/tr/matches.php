@@ -15,19 +15,22 @@ return [
         'winner_by' => ':difference farkla :winner',
 
         'events' => [
-            'player-left' => ':user maçtan ayrıldı',
-            'player-joined' => ':user maça katıldı',
-            'player-kicked' => ':user maçtan atıldı',
-            'match-created' => ':user maçı oluşturdu',
-            'match-disbanded' => 'maç dağıtıldı',
-            'host-changed' => ':user odanın sahibi oldu',
-
-            'player-left-no-user' => 'bir oyuncu maçı terk etti',
-            'player-joined-no-user' => 'bir oyuncu maça katıldı',
-            'player-kicked-no-user' => 'bir oyuncu maçtan atıldı',
-            'match-created-no-user' => 'maç oluşturuldu',
-            'match-disbanded-no-user' => 'maç dağıtıldı',
-            'host-changed-no-user' => 'odanın sahibi değiştirildi',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Başa-baş',
-            'tag-coop' => 'Sıralı Co-op',
-            'team-vs' => 'Takım VS',
-            'tag-team-vs' => 'Tag takım VS',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => 'En Yüksek Skor',
             'accuracy' => 'En Yüksek İsabetlilik',

@@ -16,6 +16,8 @@ return [
         'map_count' => ':count_delimited map',
         'player_count' => ':count_delimited người_chơi|:count_delimited người chơi',
         'time_left' => ':time thời gian còn lại',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => 'Thời lượng quá dài. ',

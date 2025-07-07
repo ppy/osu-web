@@ -55,7 +55,7 @@ return [
         'contact' => 'Contacte:',
         'date' => 'Data:',
         'echeck_delay' => 'Com que el seu pagament va ser un eCheck, si us plau permeti fins a 10 dies addicionals perquè el pagament es faci a través de PayPal!',
-        'echeck_denied' => '',
+        'echeck_denied' => 'PayPal ha rebutjat el pagament amb eCheck.',
         'hide_from_activity' => 'les etiquetes osu!supporter en aquesta ordre no es mostren a les teves activitats recents.',
         'sent_via' => 'Enviat via:',
         'shipping_to' => 'Enviament a:',
@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'Afegeix a la cistella',
         'notify' => 'Avisa\'m quan estigui disponible!',
+        'out_of_stock' => '',
 
         'notification_success' => 't\'avisarem quan tinguem noves existències. clica :link per cancel·lar',
         'notification_remove_text' => 'aquí',

@@ -30,7 +30,9 @@ return [
         '_' => 'Rezultate evaluare',
         'creator' => 'creator',
         'score' => 'Scor',
+        'score_std' => '',
         'total_score' => 'scor total',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'voturi',
         'count' => 'un vot|:count_delimited voturi|:count_delimited de voturi',
         'points' => 'un punct|:count_delimited puncte|:count_delimited de puncte',
+        'points_float' => '',
     ],
 
     'dates' => [

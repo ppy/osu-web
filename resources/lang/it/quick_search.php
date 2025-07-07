@@ -5,18 +5,18 @@
 
 return [
     'mode' => [
-        'artist_track' => '',
+        'artist_track' => 'Artista in primo piano',
         'beatmapset' => 'Beatmap',
         'forum_post' => 'Forum',
         'other' => 'Altro',
-        'team' => '',
+        'team' => 'Squadra',
         'user' => 'Giocatore',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty_for' => 'Nessun risultato per :modes',
-        'more' => 'Ulteriori risultati di ricerca di :mode',
-        'title' => 'Risultati di ricerca di :mode',
+        'empty_for' => 'Nessun risultato per :mode',
+        'more' => 'Altri risultati di ricerca per :mode',
+        'title' => 'Ricerca per :mode',
     ],
 ];

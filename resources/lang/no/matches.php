@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner med :difference',
 
         'events' => [
-            'player-left' => ':user forlot spillet',
-            'player-joined' => ':user ble med i spillet',
-            'player-kicked' => ':user har blitt sparket fra spillet',
-            'match-created' => ':user opprettet spillet',
-            'match-disbanded' => 'spillet ble oppløst',
-            'host-changed' => ':user ble verten',
-
-            'player-left-no-user' => 'en spiller forlot spillet',
-            'player-joined-no-user' => 'en spiller ble med i spillet',
-            'player-kicked-no-user' => 'en spiller har blitt sparket fra spillet',
-            'match-created-no-user' => 'spillet ble opprettet',
-            'match-disbanded-no-user' => 'spillet ble oppløst',
-            'host-changed-no-user' => 'verten ble endret',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Alle-mot-alle',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Lag VS',
-            'tag-team-vs' => 'Tag Lag VS',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => 'Høyeste poengsum',
             'accuracy' => 'Høyeste presisjon',

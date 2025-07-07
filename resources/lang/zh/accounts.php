@@ -88,7 +88,7 @@ return [
             'beatmap_owner_change' => '客串难度',
             'beatmapset:modding' => '谱面摸图',
             'channel_message' => '私信',
-            'channel_team' => '',
+            'channel_team' => '战队聊天消息',
             'comment_new' => '新评论',
             'forum_topic_reply' => '主题回复',
             'mail' => '邮件',

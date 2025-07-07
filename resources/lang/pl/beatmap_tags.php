@@ -5,6 +5,6 @@
 
 return [
     'update' => [
-        'invalid_ruleset' => 'Ten tag nie jest prawidłowy dla tej Beatmapy.',
+        'invalid_ruleset' => 'Nieprawidłowy tag dla beatmapy o tym trybie gry.',
     ],
 ];

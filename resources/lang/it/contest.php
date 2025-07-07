@@ -30,7 +30,9 @@ return [
         '_' => 'Risultati della valutazione',
         'creator' => 'autore',
         'score' => 'Punteggio',
+        'score_std' => '',
         'total_score' => 'punteggio totale',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'voti',
         'count' => ':count_delimited voto|:count_delimited voti',
         'points' => ':count_delimited punto|:count_delimited punti',
+        'points_float' => '',
     ],
 
     'dates' => [

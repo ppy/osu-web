@@ -5,7 +5,7 @@
 
 return [
     'confirm_new' => 'Czy na pewno chcesz utworzyć nowe hasło IRC?',
-    'new' => 'Nowe hasło starszego IRC',
+    'new' => 'Nowe hasło IRC',
     'none' => 'Brak ustawionego hasła IRC.',
 
     'form' => [

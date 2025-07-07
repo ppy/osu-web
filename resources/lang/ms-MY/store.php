@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'Masukkan ke Troli',
         'notify' => 'Beritahu saya ketika telah tersedia!',
+        'out_of_stock' => '',
 
         'notification_success' => 'anda akan diberitahu ketika kami mempunyai simpanan baharu. klik :link untuk batal',
         'notification_remove_text' => 'di sini',
@@ -194,7 +195,7 @@ return [
     'username_change' => [
         'check' => 'Masukkan nama pengguna untuk semak ketersediaan!',
         'checking' => 'Menyemak ketersediaan :username...',
-        'placeholder' => 'Nama Pengguna Permintaan',
+        'placeholder' => 'Nama Pengguna Pintaan',
         'label' => 'Nama Pengguna Baharu',
         'current' => 'Nama pengguna semasa anda ialah ":username".',
 

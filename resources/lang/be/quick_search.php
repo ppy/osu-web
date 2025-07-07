@@ -5,12 +5,12 @@
 
 return [
     'mode' => [
-        'artist_track' => '',
-        'beatmapset' => 'Карта',
+        'artist_track' => 'трэкам абраных выканаўцаў',
+        'beatmapset' => 'Картам',
         'forum_post' => 'Форум',
         'other' => 'Iншае',
-        'team' => '',
-        'user' => 'Гулец',
+        'team' => 'камандам',
+        'user' => 'гульцам',
         'wiki_page' => 'Вікі',
     ],
 

@@ -129,6 +129,11 @@ return [
             '_' => 'מאגר נתונים',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => '',

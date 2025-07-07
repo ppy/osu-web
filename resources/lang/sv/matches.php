@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner med :difference',
 
         'events' => [
-            'player-left' => ':user lämnade matchen',
-            'player-joined' => ':user gick med i matchen',
-            'player-kicked' => ':user har blivit kickad från matchen',
-            'match-created' => ':user skapade matchen',
-            'match-disbanded' => 'matchen upplöstes',
-            'host-changed' => ':user blev värd',
-
-            'player-left-no-user' => 'en spelare lämnade matchen',
-            'player-joined-no-user' => 'en spelare gick med i matchen',
-            'player-kicked-no-user' => 'en spelare har blivit kickad från matchen',
-            'match-created-no-user' => 'matchen skapades',
-            'match-disbanded-no-user' => 'matchen upplöstes',
-            'host-changed-no-user' => 'värden ändrades',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Alla mot alla',
-            'tag-coop' => 'Tag co-op',
-            'team-vs' => 'Lag mot lag',
-            'tag-team-vs' => 'Tag-lag VS',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => 'Högsta poäng',
             'accuracy' => 'Högsta precision',

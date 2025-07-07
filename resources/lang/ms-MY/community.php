@@ -20,7 +20,7 @@ return [
             ],
             'infra' => [
                 'title' => 'Prasarana Pelayan',
-                'description' => 'Sumbangan akan terarah ke pelayan yang mengurus laman sesawang, perkhidmatan pemain ramai, carta kedudukan dalam talian dsb.',
+                'description' => 'Sumbangan akan terarah ke pelayan yang mengurus laman sesawang, perkhidmatan pemain ramai, papan pendahulu dalam talian dsb.',
             ],
             'featured-artists' => [
                 'title' => 'Artis Sorotan',
@@ -50,12 +50,12 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => 'Kedudukan Kawan',
-                'description' => "Bandingkan kedudukan anda dan kawan-kawan anda pada carta kedudukan dalam mainan serta pada laman sesawang.",
+                'title' => 'Pangkat Kawan',
+                'description' => "Bandingkan pangkat anda dan kawan-kawan anda pada papan pendahulu dalam mainan serta pada laman sesawang.",
             ],
 
             'country_ranking' => [
-                'title' => 'Kedudukan Kebangsaan',
+                'title' => 'Pangkat Kebangsaan',
                 'description' => 'Takluklah tanah airmu sebelum menakluki jagat.',
             ],
 
@@ -71,7 +71,7 @@ return [
 
             'upload_more' => [
                 'title' => 'Muat Naik Lebih Banyak',
-                'description' => 'Slot peta rentak tergantung tambahan (setiap peta rentak berkedudukan) hingga maksimum 10 slot.',
+                'description' => 'Slot peta rentak tergantung tambahan (setiap peta rentak berpangkat) hingga maksimum 10 slot.',
             ],
 
             'early_access' => [
@@ -116,7 +116,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Pilihan Penyusunan',
-                'description' => 'Kebolehan melihat kedudukan kebangsaan / kawan / penyesuai tertentu peta rentak dalam mainan.',
+                'description' => 'Kebolehan melihat pangkat kebangsaan / kawan / penyesuai tertentu peta rentak dalam mainan.',
             ],
 
             'more_favourites' => [
@@ -129,10 +129,10 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Muat Naik Lebih Banyak Peta Rentak',
-                'description' => 'Jumlah peta rentak tergantung yang anda boleh miliki dikira dari nilai pangkal ditambah dengan bonus tambahan bagi setiap peta rentak berkedudukan yang anda kini miliki (terhad).<br/><br/>Biasanya jumlah ini adalah :base + :bonus setiap peta rentak berperingkat (hingga :bonus_max). Sekiranya anda penyokong, jumlah ini naik ke :supporter_base + :supporter_bonus setiap peta rentak berperingkat (hingga :supporter_bonus_max).',
+                'description' => 'Jumlah peta rentak tergantung yang anda boleh miliki dikira dari nilai pangkal dengan tambahan bagi setiap peta rentak berpangkat yang anda kini miliki (terhad).<br/><br/>Biasanya jumlah ini adalah :base + :bonus setiap peta rentak berpangkat (hingga :bonus_max). Sekiranya anda penyokong, jumlah ini naik ke :supporter_base + :supporter_bonus setiap peta rentak berpangkat (hingga :supporter_bonus_max).',
             ],
             'friend_filtering' => [
-                'title' => 'Carta Kedudukan Kawan',
+                'title' => 'Papan Pendahulu Kawan',
                 'description' => 'Beradu dengan kawan-kawan anda dan bandingkan prestasi kalian!',
             ],
 

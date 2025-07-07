@@ -12,7 +12,7 @@ return [
 
         'info' => [
             'check_spam' => "Assegura-te de que confirmas a pasta de spam se não conseguires encontrar o email.",
-            'recover' => "Se não conseguires aceder ao teu email ou esqueceste-te do que usaste, por favor segue o :link.",
+            'recover' => "Se não conseguires aceder ao teu email ou esqueceste-te do que usaste, segue o :link.",
             'recover_link' => 'processo de recuperação de email aqui',
             'reissue' => 'Também podes :reissue_link ou :logout_link.',
             'reissue_link' => 'pedir outro código',

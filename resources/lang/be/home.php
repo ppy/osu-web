@@ -27,7 +27,7 @@ return [
         'title' => 'Пошук',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'Паглядзець усе вынікі пошуку сярод песен абраных выканаўцаў',
         ],
         'beatmapset' => [
             'login_required' => 'Увайдзіце, каб шукаць бітмапы',
@@ -54,16 +54,16 @@ return [
 
         'mode' => [
             'all' => 'усе',
-            'artist_track' => '',
+            'artist_track' => 'песні выбраных выканаўцаў',
             'beatmapset' => 'бітмапы',
             'forum_post' => 'форум',
-            'team' => '',
+            'team' => 'каманда',
             'user' => 'гульцы',
             'wiki_page' => 'вікі',
         ],
 
         'team' => [
-            'more_simple' => '',
+            'more_simple' => 'Паглядзець усе вынікі пошуку сярод каманд',
         ],
 
         'user' => [
@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Новыя ранкаваныя бітмапы',
             'popular' => 'Папулярныя бітмапы',
             'by_user' => 'ад :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'Спампаваць osu!',

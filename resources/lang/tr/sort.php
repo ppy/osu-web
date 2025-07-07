@@ -38,9 +38,9 @@ return [
     ],
 
     'teams' => [
-        'relevance' => '',
-        'name' => '',
-        'short-name' => '',
+        'relevance' => 'Alaka düzeyi',
+        'name' => 'İsim',
+        'short-name' => 'Kısa İsim',
     ],
 
     'users' => [

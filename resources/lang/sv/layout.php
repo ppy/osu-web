@@ -113,6 +113,7 @@ return [
             'copyright' => 'Copyright (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Sekretess',
+            'rules' => '',
             'server_status' => 'Serverstatus',
             'source_code' => 'Källkod',
             'terms' => 'Användarvillkor',

@@ -174,6 +174,7 @@ return [
 
         'add_to_cart' => 'Idagdag sa kart',
         'notify' => 'Abisuhan ako kapag available!',
+        'out_of_stock' => '',
 
         'notification_success' => 'maabisuhan ka kapag may mga bagong stock. i-click ang :link upang kanselahin',
         'notification_remove_text' => 'nandito',

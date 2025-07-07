@@ -113,6 +113,7 @@ return [
             'copyright' => 'کپی رایت (DMCA)',
             'jp_sctl' => '',
             'privacy' => '',
+            'rules' => '',
             'server_status' => '',
             'source_code' => '',
             'terms' => '',

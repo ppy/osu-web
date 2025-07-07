@@ -6,7 +6,7 @@
 return [
     'confirm_new' => 'Cipta kata laluan IRC baharu?',
     'new' => 'Kata Laluan IRC Legasi Baharu',
-    'none' => 'Kata laluan IRC tidak ditetapkan.',
+    'none' => 'Kata Laluan IRC tidak ditetapkan.',
 
     'form' => [
         'server_host' => 'pelayan',

@@ -30,7 +30,9 @@ return [
         '_' => '判定結果',
         'creator' => '作成者',
         'score' => 'スコア',
+        'score_std' => '',
         'total_score' => '合計スコア',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => '投票',
         'count' => ':count_delimited 票',
         'points' => ':count_delimited ポイント',
+        'points_float' => '',
     ],
 
     'dates' => [

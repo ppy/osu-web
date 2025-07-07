@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid_ruleset' => '',
+    'invalid_ruleset' => 'Азначаны недапушчальны рэжым гульні.',
 
     'change_owner' => [
-        'too_many' => '',
+        'too_many' => 'Занадта шмат гасцявых маппераў.',
     ],
 
     'discussion-votes' => [
@@ -89,7 +89,7 @@ return [
         'message_type_title' => [
             'disqualify' => 'Адправіць дыскваліфікацыю',
             'hype' => 'Адправіць хайп!',
-            'mapper_note' => '',
+            'mapper_note' => 'Адправіць нататку',
             'nomination_reset' => 'Выдаліць усе намінацыі ',
             'praise' => 'Адправіць пахвалу',
             'problem' => 'Адправіць праблему',
@@ -221,7 +221,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Гэтая карта cможа маць рэйтынг :date, калі праблем не знойдзена. Гэта #:position у :queue.',
-            'unresolved_problems' => '',
+            'unresolved_problems' => 'Гэтая карта застанецца ў чарзе кваліфікаваных, пакуль не будуць вырашаны :problems.',
             'problems' => 'гэтыя праблемы',
             'on' => ':date',
             'queue' => 'чаргу ў рэйтынг',

@@ -27,7 +27,7 @@ return [
         'title' => 'Ara',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'Daha fazla öne çıkan artist parçası arama sonucu görün',
         ],
         'beatmapset' => [
             'login_required' => 'Beatmapleri aramak için giriş yapın',
@@ -54,16 +54,16 @@ return [
 
         'mode' => [
             'all' => 'hepsi',
-            'artist_track' => '',
+            'artist_track' => 'öne çıkan artist parçaları',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
-            'team' => '',
+            'team' => 'takım',
             'user' => 'oyuncu',
             'wiki_page' => 'wiki',
         ],
 
         'team' => [
-            'more_simple' => '',
+            'more_simple' => 'Daha fazla takım arama sonucu gör',
         ],
 
         'user' => [
@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Yeni Dereceli Beatmapler',
             'popular' => 'Popüler Beatmapler',
             'by_user' => ':user tarafından',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'osu!\'yu indir',

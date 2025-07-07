@@ -6,163 +6,163 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Гулец прыняты ў каманду.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Запыт на ўступленне адкліканы.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Запыт на ўступленне адхілены.',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Запыт на ўступленне адпраўлены.',
         ],
     ],
 
     'card' => [
-        'members' => '',
+        'members' => ':count_delimited удзельнік|:count_delimited удзельніка|:count_delimited удзельнікаў',
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'Стварыць каманду!',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => 'Назва вашай каманды. Пакуль што яго нельга будзе змяніць.',
+            'short_name_help' => 'Максімум 4 знака.',
+            'title' => "Прыступім да стварэння новай каманды",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "Гуляйце разам з сябрамі, стварыўшы сваю каманду або заводзіце новых, уступаючы ў існуючыя! Пакуль вы не ў камандзе.",
+            'title' => 'Каманда!',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Каманды больш не існуе.',
     ],
 
     'edit' => [
-        'ok' => '',
-        'title' => '',
+        'ok' => 'Налады захаваны.',
+        'title' => 'Налады каманды',
 
         'description' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Апісанне',
+            'title' => 'Апісанне каманды',
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Сцяг каманды',
+            'title' => 'Загрузіць сцяг',
         ],
 
         'header' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Вокладка',
+            'title' => 'Загрузіць вокладку',
         ],
 
         'settings' => [
-            'application_help' => '',
-            'default_ruleset_help' => '',
-            'flag_help' => '',
-            'header_help' => '',
-            'title' => '',
+            'application_help' => 'Ці дазволіць усім жадаючым падаваць запыты на ўступленне ў каманду',
+            'default_ruleset_help' => 'Рэжым гульні, які адлюстроўваецца на галоўнай старонцы каманды',
+            'flag_help' => 'Максімальны размер: :width×:height',
+            'header_help' => 'Максімальны размер: :width×:height',
+            'title' => 'Налады каманды',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => 'Закрыта',
+                'state_1' => 'Адкрыта',
             ],
         ],
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'налады',
+        'leaderboard' => 'рэйтынг',
+        'show' => 'інфармацыя',
 
         'members' => [
-            'index' => '',
+            'index' => 'кіраванне ўдзельнікамі',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
+        'global_rank' => 'Глабальны рэйтынг',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '',
+            'success' => 'Удзельнік каманды выдалены',
         ],
 
         'index' => [
-            'title' => '',
+            'title' => 'Кіраванне ўдзельнікамі',
 
             'applications' => [
-                'accept_confirm' => '',
-                'created_at' => '',
-                'empty' => '',
-                'empty_slots' => '',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
-                'title' => '',
+                'accept_confirm' => 'Прыняць гульца :user ў каманду?',
+                'created_at' => 'Запыт адпраўлены',
+                'empty' => 'Няма запытаў на ўступленне.',
+                'empty_slots' => 'Свабодных месцаў',
+                'empty_slots_overflow' => 'перапоўненая на :count_delimited гульца|перапоўненая на :count_delimited гульцоў',
+                'reject_confirm' => 'Адхіліць запыт на ўступленне гульца :user?',
+                'title' => 'Запыты на ўступленне',
             ],
 
             'table' => [
-                'joined_at' => '',
-                'remove' => '',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
-                'status' => '',
-                'title' => '',
+                'joined_at' => 'Дата ўступлення',
+                'remove' => 'Выдаліць',
+                'remove_confirm' => 'Выдаліць гульца :user з каманды?',
+                'set_leader' => 'Перадаць правы кіравання',
+                'set_leader_confirm' => 'Перадаць тытул капітана каманды гульцу :user?',
+                'status' => 'Статус',
+                'title' => 'Сучасныя ўдзельнікі',
             ],
 
             'status' => [
-                'status_0' => '',
-                'status_1' => '',
+                'status_0' => 'Неактыўны',
+                'status_1' => 'Актыўны',
             ],
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'Цяпер гулец :user - новы капітан каманды.',
         ],
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Вы пакінулі каманду ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'chat' => '',
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'chat' => 'Камандны чат',
+            'destroy' => 'Распусціць каманду',
+            'join' => 'Ўступіць у каманду',
+            'join_cancel' => 'Адклікаць запыт',
+            'part' => 'Пакінуць каманду',
         ],
 
         'info' => [
-            'created' => '',
+            'created' => 'Сфармаваная',
         ],
 
         'members' => [
-            'members' => '',
-            'owner' => '',
+            'members' => 'Удзельнікі каманды',
+            'owner' => 'Капітан каманды',
         ],
 
         'sections' => [
-            'about' => '',
-            'info' => '',
-            'members' => '',
+            'about' => 'Пра нас!',
+            'info' => 'Інфармацыя',
+            'members' => 'Удзельнікі',
         ],
 
         'statistics' => [
-            'rank' => '',
-            'leader' => '',
+            'rank' => 'Ранг',
+            'leader' => 'Капітан каманды',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'Каманда створана.',
     ],
 ];

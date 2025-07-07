@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner de :difference',
 
         'events' => [
-            'player-left' => ':user a quitté le match',
-            'player-joined' => ':user a rejoint le match',
-            'player-kicked' => ':user a été exclu du match',
-            'match-created' => ':user a créé le match',
-            'match-disbanded' => 'le match a été dissous',
-            'host-changed' => ':user a pris le contrôle de la salle',
-
-            'player-left-no-user' => 'un joueur a quitté le match',
-            'player-joined-no-user' => 'un joueur a rejoint le match',
-            'player-kicked-no-user' => 'un joueur a été exclu du match',
-            'match-created-no-user' => 'le match a été créé',
-            'match-disbanded-no-user' => 'le match a été dissous',
-            'host-changed-no-user' => 'l\'hôte a changé',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => 'Score le plus élevé',
             'accuracy' => 'Précision la plus élevée',

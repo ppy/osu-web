@@ -5,8 +5,8 @@
 
 return [
     'play_more' => 'Que tal jogar osu! como alternativa?',
-    'require_login' => 'Por favor inicia sessão para proceder.',
-    'require_verification' => 'Por favor verifica para proceder.',
+    'require_login' => 'Inicia sessão para proceder.',
+    'require_verification' => 'Verifica para proceder.',
     'restricted' => "Não é possível fazeres isso enquanto estiveres restrito.",
     'silenced' => "Não é possível fazeres isso enquanto estiveres silenciado.",
     'unauthorized' => 'Acesso negado.',
@@ -17,7 +17,7 @@ return [
             'has_reply' => 'Não é possível apagares uma discussão com respostas',
         ],
         'nominate' => [
-            'exhausted' => 'Alcançaste o teu limite de nomeações por dia, por favor tenta outra vez amanhã.',
+            'exhausted' => 'Alcançaste o teu limite de nomeações por dia. Tenta novamente amanhã.',
             'incorrect_state' => 'Erro ao executar essa ação, tenta recarregar a página.',
             'owner' => "Não é possível nomeares o teu próprio beatmap.",
             'set_metadata' => 'Tens de definir o género e a língua antes de nomeares.',
@@ -32,7 +32,7 @@ return [
 
         'vote' => [
             'bot' => "Não é possível votar numa discussão criada por um bot",
-            'limit_exceeded' => 'Por favor espera um momento antes de pores mais votos',
+            'limit_exceeded' => 'Espera um pouco antes de votares mais.',
             'owner' => "Não é possível votares na tua própria discussão.",
             'wrong_beatmapset_state' => 'Só é possível votares em discussões com beatmaps que estejam a aguardar aprovação.',
         ],
@@ -118,20 +118,20 @@ return [
             ],
 
             'store' => [
-                'play_more' => 'Tenta jogar o jogo antes de publicar nos fóruns por favor! Se tiveres um problema ao jogar, por favor publica no fórum de Ajuda e Suporte.',
+                'play_more' => 'Experimenta jogar o jogo antes de publicar nos fóruns! Se tiveres um problema ao jogar, publica no fórum de Ajuda e Suporte.',
                 'too_many_help_posts' => "Precisas de jogar mais tempo o jogo antes de criares publicações adicionais. Se ainda estiveres a ter problemas ao jogares o jogo, envia um email para support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Por favor edita a tua ultima publicação em vez de publicar novamente.',
+                'double_post' => 'Edita a tua última publicação em vez de publicares novamente.',
                 'locked' => 'Não é possível responderes a um segmento de mensagens bloqueado.',
                 'no_forum_access' => 'Um acesso ao fórum solicitado é obrigatório.',
                 'no_permission' => 'Não tens permissão para responder.',
 
                 'user' => [
-                    'require_login' => 'Por favor inicia sessão para responder.',
+                    'require_login' => 'Inicia sessão para responder.',
                     'restricted' => "Não é possível responderes enquanto estiveres restrito.",
                     'silenced' => "Não é possível responderes enquanto estiveres silenciado.",
                 ],
@@ -150,7 +150,7 @@ return [
                 'voted' => 'A troca de voto não é permitida.',
 
                 'user' => [
-                    'require_login' => 'Por favor inicia sessão para votar.',
+                    'require_login' => 'Inicia sessão para votar.',
                     'restricted' => "Não é possível votares enquanto estiveres restrito.",
                     'silenced' => "Não é possível votares enquanto estiveres silenciado.",
                 ],

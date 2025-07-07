@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Uudet rankatut rytmikartat',
             'popular' => 'Suositut Beatmapit',
             'by_user' => 'tehnyt :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'Lataa osu!',

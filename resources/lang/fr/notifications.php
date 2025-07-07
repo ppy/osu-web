@@ -5,9 +5,9 @@
 
 return [
     'all_read' => 'Toutes les notifications ont été lues !',
-    'delete' => 'Supprimer :type',
+    'delete' => 'Supprimer les notifications (:type)',
     'loading' => 'Chargement des notifications non lues...',
-    'mark_read' => 'Marquer comme lu :type',
+    'mark_read' => 'Marquer comme lu (:type)',
     'none' => 'Pas de notifications',
     'see_all' => 'voir toutes les notifications',
     'see_channel' => 'accéder au tchat',
@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => 'Nouveau message d\'équipe',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username dit « :title »',
+                    'channel_team_compact' => ':username dit « :title »',
+                    'channel_team_group' => ':username dit « :title »',
                 ],
             ],
         ],
@@ -173,17 +173,17 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => 'Demander à rejoindre',
+                '_' => 'Candidature pour votre équipe',
 
                 'team_application_accept' => "Vous faites désormais partie de l'équipe :title",
                 'team_application_accept_compact' => "Vous faites désormais partie de l'équipe :title",
 
-                'team_application_group' => '',
+                'team_application_group' => 'Informations concernant votre candidature pour rejoindre une équipe',
 
                 'team_application_reject' => 'Votre demande pour rejoindre l\'équipe :title a été refusée',
                 'team_application_reject_compact' => 'Votre demande pour rejoindre l\'équipe :title a été refusée',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_store' => ':title voudrait rejoindre votre équipe',
+                'team_application_store_compact' => ':title voudrait rejoindre votre équipe',
             ],
         ],
 
@@ -245,13 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => 'Il y a une nouvelle annonce dans « :name »',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => 'Vous avez reçu un nouveau message de :username',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'Il y a un nouveau message dans l\'équipe « :name »',
             ],
         ],
 
@@ -277,7 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Vous faites désormais partie de l'équipe :title",
                 'team_application_reject' => 'Votre demande pour rejoindre l\'équipe :title a été refusée',
-                'team_application_store' => '',
+                'team_application_store' => ':title voudrait rejoindre votre équipe',
             ],
         ],
 

@@ -486,6 +486,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Точність',
+            'hits_per_play' => '',
             'level' => 'Рівень :level',
             'level_progress' => 'Прогрес до наступного рівня',
             'maximum_combo' => 'Максимальне комбо',

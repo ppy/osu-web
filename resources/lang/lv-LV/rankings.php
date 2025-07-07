@@ -13,6 +13,10 @@ return [
         'beatmap' => 'Grūtība',
         'top_10p' => 'Top 10% Rezultāti',
         'top_50p' => 'Top 50% Rezultāti',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
     ],
 
     'filter' => [
@@ -37,11 +41,11 @@ return [
         'charts' => 'prožektoru gaismā (vecs)',
         'country' => 'valsts',
         'daily_challenge' => 'dienas izaicinājums',
-        'global' => '',
+        'global' => 'globāli',
         'kudosu' => 'kudosu',
         'multiplayer' => 'daudzspēlētāju režīms',
         'seasons' => 'sezonas',
-        'team' => '',
+        'team' => 'komanda',
     ],
 
     'seasons' => [
@@ -50,7 +54,7 @@ return [
         'room_count' => 'Dziesmu sarakstu skaits',
         'url' => 'Parādīt vairāk informāciju par to sezonu.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'nav pietiekami daudz punktu faktori, lai veiktu kārtīgas kalkulācijas',
         ],
     ],
 
@@ -65,8 +69,8 @@ return [
         'accuracy' => 'Precizitāte',
         'active_users' => 'Aktīvie lietotāji',
         'country' => 'Valsts',
-        'division' => '',
-        'members' => '',
+        'division' => 'Divīzija',
+        'members' => 'Dalībnieki',
         'play_count' => 'Spēļu skaits',
         'performance' => 'Veiktspēja',
         'total_score' => 'Kopējais punktu skaits',

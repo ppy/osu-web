@@ -486,6 +486,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Ακρίβεια Ευστοχίας',
+            'hits_per_play' => '',
             'level' => 'Επίπεδο :level',
             'level_progress' => 'Πρόοδος για επόμενο επίπεδο',
             'maximum_combo' => 'Μέγιστο Combo',

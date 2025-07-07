@@ -35,8 +35,8 @@ return [
     ],
 
     'team' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Докладвай отбора',
+        'title' => 'Докладване отбора на :username?',
     ],
 
     'user' => [

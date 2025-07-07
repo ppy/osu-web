@@ -16,6 +16,8 @@ return [
         'map_count' => '',
         'player_count' => '',
         'time_left' => 'Zostávajúci čas - :time',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => '',

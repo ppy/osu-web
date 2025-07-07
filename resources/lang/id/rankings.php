@@ -13,6 +13,10 @@ return [
         'beatmap' => 'Tingkat Kesulitan',
         'top_10p' => 'Skor 10% Teratas',
         'top_50p' => 'Skor 50% Teratas',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
     ],
 
     'filter' => [

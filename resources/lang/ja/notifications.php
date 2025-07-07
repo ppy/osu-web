@@ -125,7 +125,7 @@ return [
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => '新しいチームメッセージ',
 
                 'team' => [
                     'channel_team' => '',

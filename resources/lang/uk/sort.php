@@ -38,9 +38,9 @@ return [
     ],
 
     'teams' => [
-        'relevance' => '',
-        'name' => '',
-        'short-name' => '',
+        'relevance' => 'Релевантністю',
+        'name' => 'Назвою',
+        'short-name' => 'Абревіатурою',
     ],
 
     'users' => [

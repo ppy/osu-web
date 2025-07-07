@@ -137,7 +137,7 @@ return [
         'word_not_allowed' => ':attribute ini tidak dibenarkan.',
 
         'attributes' => [
-            'default_ruleset_id' => 'Ruleset asal',
+            'default_ruleset_id' => 'Cara main asal',
             'is_open' => 'Permohonan pasukan',
             'name' => 'Nama',
             'short_name' => 'Nama pendek',
@@ -157,14 +157,14 @@ return [
         'unknown_duplicate' => 'Nama pengguna atau e-mel telah digunakan.',
         'username_available_in' => 'Nama pengguna ini akan sedia digunakan dalam :duration.',
         'username_available_soon' => 'Nama pengguna akan sedia digunakan sebentar lagi!',
-        'username_invalid_characters' => 'Nama pengguna yang diminta mengandungi aksara yang tidak sah.',
+        'username_invalid_characters' => 'Nama pengguna pintaan mengandungi aksara yang tidak sah.',
         'username_in_use' => 'Nama pengguna ini telah digunakan!',
         'username_locked' => 'Nama pengguna ini telah digunakan!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Sila gunakan aksara garis bawah atau jarak tetapi bukan kedua-dua sekali!',
         'username_no_spaces' => "Nama pengguna tidak boleh bermula atau berakhir dengan aksara jarak!",
         'username_not_allowed' => 'Pilihan nama pengguna ini tidak dibenarkan.',
-        'username_too_short' => 'Pilihan nama pengguna ini terlalu pendek.',
-        'username_too_long' => 'Pilihan nama pengguna ini terlalu panjang.',
+        'username_too_short' => 'Nama pengguna pintaan terlalu pendek.',
+        'username_too_long' => 'Nama pengguna pintaan terlalu panjang.',
         'weak' => 'Kata laluan disenarai hitam.',
         'wrong_current_password' => 'Kata laluan semasa tidak betul.',
         'wrong_email_confirmation' => 'Pengesahan e-mel tidak sepadan.',
@@ -188,7 +188,7 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => 'Peta rentak berkedudukan tidak boleh dilaporkan',
+        'no_ranked_beatmapset' => 'Peta rentak berpangkat tidak boleh dilaporkan',
         'not_in_channel' => 'Anda tiada dalam saluran ini.',
         'in_team' => 'Anda ahli pasukan ini.',
         'reason_not_valid' => ':reason tidak sah untuk jenis laporan.',

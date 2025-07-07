@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid_ruleset' => '',
+    'invalid_ruleset' => 'Невалиден режим на игра зададен.',
 
     'change_owner' => [
         'too_many' => 'Твърде много гост картографи.',

@@ -20,7 +20,7 @@ return [
     ],
 
     'card' => [
-        'members' => '',
+        'members' => ':count_delimited участник|:count_delimited участника|:count_delimited участников',
     ],
 
     'create' => [

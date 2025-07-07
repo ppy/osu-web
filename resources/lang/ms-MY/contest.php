@@ -27,10 +27,12 @@ return [
     ],
 
     'judge_results' => [
-        '_' => 'Keputusan pengadilan',
+        '_' => 'Hasil pengadilan',
         'creator' => 'pencipta',
         'score' => 'Markah',
+        'score_std' => '',
         'total_score' => 'jumlah markah',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => 'undian',
         'count' => ':count_delimited undian',
         'points' => ':count_delimited mata',
+        'points_float' => '',
     ],
 
     'dates' => [
@@ -102,6 +105,6 @@ return [
     'states' => [
         'entry' => 'Terbuka untuk Masukan',
         'voting' => 'Pengundian Bermula',
-        'results' => 'Keputusan Diumumkan',
+        'results' => 'Hasil Diumumkan',
     ],
 ];

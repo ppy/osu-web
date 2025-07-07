@@ -23,7 +23,7 @@ return [
     ],
     'beatmaps' => [
         'invalid_mode' => 'Mod tidak sah ditentukan.',
-        'standard_converts_only' => 'Tiada markah tersedia untuk mod yang diminta pada kesukaran peta rentak ini.',
+        'standard_converts_only' => 'Tiada markah tersedia untuk mod pintaan pada kesukaran peta rentak ini.',
     ],
     'checkout' => [
         'generic' => 'Ralat berlaku ketika penyiapan semak keluar anda.',
@@ -32,7 +32,7 @@ return [
         'invalid_id' => 'ID markah tidak sah.',
     ],
     'search' => [
-        'default' => 'Hasil tidak ditemui. Cuba lagi nanti.',
+        'default' => 'Tiada hasil ditemui. Cuba lagi nanti.',
         'invalid_cursor_exception' => 'Parameter kursor tidak sah ditentukan.',
         'operation_timeout_exception' => 'Pencari kini lebih sibuk dari biasa, cuba lagi nanti.',
     ],

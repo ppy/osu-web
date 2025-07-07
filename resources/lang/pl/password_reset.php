@@ -16,7 +16,7 @@ return [
         'invalid' => 'Wystąpił nieoczekiwany błąd z kodem weryfikacyjnym.',
         'is_privileged' => 'Skontaktuj się administratorem, by odzyskać konto.',
         'missing_key' => 'Wymagane.',
-        'too_many_tries' => 'Za dużo błędnych prób.',
+        'too_many_tries' => 'Zbyt wiele nieudanych prób.',
         'user_not_found' => 'Ten użytkownik nie istnieje.',
         'wrong_key' => 'Nieprawidłowy kod.',
     ],
@@ -29,7 +29,7 @@ return [
     'started' => [
         'password' => 'Nowe hasło',
         'password_confirmation' => 'Potwierdź hasło',
-        'title' => 'Resetowanie hasła dla konta <strong>:username</strong>.',
+        'title' => 'Resetowanie hasła dla użytkownika<strong>:username</strong>.',
         'verification_key' => 'Kod weryfikacyjny',
     ],
 

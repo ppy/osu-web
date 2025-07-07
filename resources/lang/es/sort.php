@@ -38,9 +38,9 @@ return [
     ],
 
     'teams' => [
-        'relevance' => '',
-        'name' => '',
-        'short-name' => '',
+        'relevance' => 'Relevancia',
+        'name' => 'Nombre',
+        'short-name' => 'Nombre abreviado',
     ],
 
     'users' => [

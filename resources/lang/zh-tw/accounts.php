@@ -88,7 +88,7 @@ return [
             'beatmap_owner_change' => '客串難度',
             'beatmapset:modding' => '圖譜製作',
             'channel_message' => '私訊',
-            'channel_team' => '',
+            'channel_team' => '團隊聊天訊息',
             'comment_new' => '新評論',
             'forum_topic_reply' => '主題回覆',
             'mail' => '郵件',

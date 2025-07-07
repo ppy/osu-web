@@ -129,8 +129,8 @@ return [
         'modding_description_empty' => 'Pengguna ini tidak mempunyai apa-apa peta rentak...',
 
         'description' => [
-            '_' => 'Kedudukan (:ruleset): :global | :country',
-            'country' => 'Negara :rank',
+            '_' => 'Pangkat (:ruleset): :global | :country',
+            'country' => 'Kebangsaan :rank',
             'global' => 'Global :rank',
         ],
     ],
@@ -243,7 +243,7 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => 'Set semula warna ke asal? Tag penyokong akan diperlukan untuk mengubahnya ke warna lain.',
+                'reset_no_supporter' => 'Tetap semula warna ke asal? Tag penyokong akan diperlukan untuk mengubahnya ke warna lain.',
                 'title' => 'Warna',
 
                 'supporter' => [
@@ -264,7 +264,7 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'oleh :artist',
-                'title' => 'Beatmap',
+                'title' => 'Peta Rentak',
 
                 'favourite' => [
                     'title' => 'Peta Rentak Sukaan',
@@ -279,13 +279,13 @@ return [
                     'title' => 'Peta Rentak Kegemaran',
                 ],
                 'nominated' => [
-                    'title' => 'Calon Peta Rentak Berkedudukan',
+                    'title' => 'Calon Peta Rentak Berpangkat',
                 ],
                 'pending' => [
                     'title' => 'Peta Rentak Tergantung',
                 ],
                 'ranked' => [
-                    'title' => 'Peta Rentak Berkedudukan',
+                    'title' => 'Peta Rentak Berpangkat',
                 ],
             ],
             'discussions' => [
@@ -307,7 +307,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'kali dimain',
-                    'title' => 'Beatmap Paling Kerap Dimain',
+                    'title' => 'Peta Rentak Kerap',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'ketepatan: :percentage',
@@ -357,7 +357,7 @@ return [
 
                     'forum_post' => [
                         'give' => ':amount diterima daripada :giver bagi hantaran pada :post',
-                        'reset' => 'Kudosu diset semula oleh :giver bagi hantaran :post',
+                        'reset' => 'Kudosu ditetap semula oleh :giver bagi hantaran :post',
                         'revoke' => 'Kudosu ditolak oleh :giver bagi hantaran :post',
                     ],
                 ],
@@ -391,7 +391,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Muat Turun Ulangan',
-                'not_ranked' => 'Hanya peta rentak berkedudukan memberi pp',
+                'not_ranked' => 'Hanya peta rentak berpangkat memberi pp',
                 'pp_weight' => 'terwajar :percentage',
                 'view_details' => 'Lihat Butiran',
                 'title' => 'Gred',
@@ -400,7 +400,7 @@ return [
                     'title' => 'Prestasi Terbaik',
                 ],
                 'first' => [
-                    'title' => 'Gred Kedudukan Pertama',
+                    'title' => 'Gred Pangkat Pertama',
                 ],
                 'pin' => [
                     'to_0' => 'Nyahsemat',
@@ -474,11 +474,11 @@ return [
             'count' => ':count_delimited hantaran forum',
         ],
         'rank' => [
-            'country' => 'Kedudukan kebangsaan :mode',
-            'country_simple' => 'Kedudukan Kebangsaan',
-            'global' => 'Kedudukan dunia :mode',
-            'global_simple' => 'Kedudukan Dunia',
-            'highest' => 'Peringkat tertinggi: :rank pada :date',
+            'country' => 'Pangkat kebangsaan :mode',
+            'country_simple' => 'Pangkat Kebangsaan',
+            'global' => 'Pangkat dunia :mode',
+            'global_simple' => 'Pangkat Dunia',
+            'highest' => 'Pangkat tertinggi: :rank pada :date',
         ],
         'season_stats' => [
             'division_top_percentage' => ':value tertinggi',
@@ -486,22 +486,23 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Ketepatan Pukulan',
+            'hits_per_play' => '',
             'level' => 'Level :level',
             'level_progress' => 'kemajuan ke tahap seterusnya',
             'maximum_combo' => 'Kombo Maksimum',
             'medals' => 'Pingat',
             'play_count' => 'Jumlah Mainan',
             'play_time' => 'Jumlah Masa Permainan',
-            'ranked_score' => 'Markah Berkedudukan',
+            'ranked_score' => 'Markah Berpangkat',
             'replays_watched_by_others' => 'Ulangan Tontonan Orang Lain',
-            'score_ranks' => 'Kedudukan Markah',
+            'score_ranks' => 'Pangkat Markah',
             'total_hits' => 'Jumlah Pukulan',
             'total_score' => 'Jumlah Markah',
             // modding stats
             'graveyard_beatmapset_count' => 'Peta Rentak di Kubur',
             'loved_beatmapset_count' => 'Peta Rentak Kegemaran',
             'pending_beatmapset_count' => 'Peta Rentak Tergantung',
-            'ranked_beatmapset_count' => 'Peta Rentak Berkedudukan',
+            'ranked_beatmapset_count' => 'Peta Rentak Berpangkat',
         ],
     ],
 

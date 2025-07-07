@@ -113,6 +113,7 @@ return [
             'copyright' => '',
             'jp_sctl' => '',
             'privacy' => '',
+            'rules' => '',
             'server_status' => '',
             'source_code' => '',
             'terms' => '',

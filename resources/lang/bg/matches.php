@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner с :difference',
 
         'events' => [
-            'player-left' => ':user напусна състезанието',
-            'player-joined' => ':user се присъедини към състезанието',
-            'player-kicked' => ':user е изгонен от състезанието',
-            'match-created' => ':user създаде състезанието',
-            'match-disbanded' => 'състезанието е разпуснато',
-            'host-changed' => ':user стана домакин',
-
-            'player-left-no-user' => 'играч напусна състезанието',
-            'player-joined-no-user' => 'играч се присъедини към състезанието',
-            'player-kicked-no-user' => 'играч е изгонен от състезанието',
-            'match-created-no-user' => 'състезанието е създадено',
-            'match-disbanded-no-user' => 'състезанието е разпуснато',
-            'host-changed-no-user' => 'домакинът е променен',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => 'Най-висок резултат',
             'accuracy' => 'Най-висока прецизност',

@@ -30,7 +30,9 @@ return [
         '_' => '評分結果',
         'creator' => '作者',
         'score' => '分數',
+        'score_std' => '',
         'total_score' => '總分',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -87,6 +89,7 @@ return [
         'list' => '投票',
         'count' => ':count_delimited 票|:count_delimited 票',
         'points' => ':count_delimited 分|:count_delimited 分',
+        'points_float' => '',
     ],
 
     'dates' => [

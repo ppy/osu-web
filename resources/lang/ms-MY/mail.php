@@ -47,7 +47,7 @@ return [
 
     'password_reset' => [
         'code' => 'Kod pengesahan anda ialah:',
-        'requested' => 'Sama ada anda atau seseorang yang menyamar menjadi anda telah meminta pengesetan semula kata laluan pada akaun osu! anda.',
+        'requested' => 'Sama ada anda atau seseorang yang menyamar menjadi anda telah meminta penetapan semula kata laluan pada akaun osu! anda.',
         'subject' => 'pemulihan akaun osu!',
     ],
 
@@ -80,7 +80,7 @@ return [
 
     'user_force_reactivation' => [
         'main' => 'Akaun anda diragui telah terjejas atau mempunyai kegiatan ragu baru-baru ini mahupun kata laluan yang AMAT lemah. Hasilnya, kami memerlukan anda agar menetapkan kata laluan baharu. Sila pastikan anda memilih kata laluan yang SELAMAT.',
-        'perform_reset' => 'Anda boleh menjalankan set semula dari :url',
+        'perform_reset' => 'Anda boleh menjalankan penetapan semula dari :url',
         'reason' => 'Sebab:',
         'subject' => 'Pengupayaan Semula Akaun osu! Diperlukan',
     ],

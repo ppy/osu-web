@@ -27,7 +27,7 @@ return [
         'title' => '搜尋',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => '查看更多精選藝術家曲目的搜尋結果',
         ],
         'beatmapset' => [
             'login_required' => '登入以搜尋圖譜',
@@ -54,16 +54,16 @@ return [
 
         'mode' => [
             'all' => '所有',
-            'artist_track' => '',
+            'artist_track' => '精選藝術家曲目',
             'beatmapset' => '圖譜',
             'forum_post' => '論壇',
-            'team' => '',
+            'team' => '團隊',
             'user' => '玩家',
             'wiki_page' => 'wiki',
         ],
 
         'team' => [
-            'more_simple' => '',
+            'more_simple' => '查看更多團隊搜尋結果',
         ],
 
         'user' => [
@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => '新進榜圖譜',
             'popular' => '熱門圖譜',
             'by_user' => '由 :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => '下載 osu!',

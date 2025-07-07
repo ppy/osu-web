@@ -15,19 +15,22 @@ return [
         'winner_by' => ':difference 차로 :winner',
 
         'events' => [
-            'player-left' => ':user님이 게임을 떠났습니다.',
-            'player-joined' => ':user님이 게임에 참가했습니다.',
-            'player-kicked' => ':user님이 게임에서 추방되었습니다.',
-            'match-created' => ':user님이 게임을 개설하였습니다.',
-            'match-disbanded' => '게임이 해체되었습니다.',
-            'host-changed' => ':user님이 방장이 되었습니다.',
-
-            'player-left-no-user' => '플레이어가 게임을 떠났습니다.',
-            'player-joined-no-user' => '플레이어가 게임에 참가했습니다.',
-            'player-kicked-no-user' => '플레이어가 게임에서 추방되었습니다.',
-            'match-created-no-user' => '게임이 개설되었습니다.',
-            'match-disbanded-no-user' => '게임이 해체되었습니다.',
-            'host-changed-no-user' => '방장이 변경되었습니다.',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => '개인전',
-            'tag-coop' => '태그 협동전',
-            'team-vs' => '팀 대전',
-            'tag-team-vs' => '팀 태그 대전',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => '최고 점수',
             'accuracy' => '최고 정확도',

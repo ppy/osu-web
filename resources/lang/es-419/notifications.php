@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => 'Nuevo mensaje del equipo',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username dice «:title»',
+                    'channel_team_compact' => ':username dice «:title»',
+                    'channel_team_group' => ':username dice «:title»',
                 ],
             ],
         ],
@@ -178,12 +178,12 @@ return [
                 'team_application_accept' => "Ahora eres miembro del equipo :title",
                 'team_application_accept_compact' => "Ahora eres miembro del equipo :title",
 
-                'team_application_group' => '',
+                'team_application_group' => 'Actualizaciones de las solicitudes para unirse al equipo',
 
                 'team_application_reject' => 'Tu solicitud para unirte al equipo :title ha sido rechazada',
                 'team_application_reject_compact' => 'Tu solicitud para unirte al equipo :title ha sido rechazada',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_store' => ':title ha solicitado unirse a tu equipo',
+                'team_application_store_compact' => ':title ha solicitado unirse a tu equipo',
             ],
         ],
 
@@ -245,13 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => 'Hay un nuevo anuncio en «:name»',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => 'Has recibido un nuevo mensaje de :username',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'Hay un nuevo mensaje en el equipo «:name»',
             ],
         ],
 
@@ -277,7 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Ahora eres miembro del equipo :title",
                 'team_application_reject' => 'Tu solicitud para unirte al equipo :title ha sido rechazada',
-                'team_application_store' => '',
+                'team_application_store' => ':title ha solicitado unirse a tu equipo',
             ],
         ],
 

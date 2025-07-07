@@ -281,7 +281,7 @@ return [
         'converts' => 'Sertakan beatmap convert',
         'featured_artists' => 'Featured artist',
         'follows' => 'Mapper yang diikuti',
-        'recommended' => 'Rentang kesulitan yang disarankan',
+        'recommended' => 'Kesulitan yang disarankan',
         'spotlights' => 'Beatmap yang di-spotlight',
     ],
     'mode' => [
@@ -300,7 +300,7 @@ return [
         'graveyard' => 'Graveyard',
         'leaderboard' => 'Memiliki Leaderboard',
         'loved' => 'Loved',
-        'mine' => 'Map Saya',
+        'mine' => 'Beatmap Saya',
         'pending' => 'Pending',
         'wip' => 'WIP',
         'qualified' => 'Qualified',

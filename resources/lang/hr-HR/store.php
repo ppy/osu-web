@@ -176,6 +176,7 @@ return [
 
         'add_to_cart' => 'Dodaj u košaricu',
         'notify' => 'Obavijesti me kada bude dostupno!',
+        'out_of_stock' => '',
 
         'notification_success' => 'bit ćeš obaviješten/a kada budemo imali nove zalihe. kliknite :link za odustajanje',
         'notification_remove_text' => 'ovdje',

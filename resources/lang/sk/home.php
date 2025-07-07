@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Nové Hodnotené Beatmapy',
             'popular' => 'Populárne Beatmapy',
             'by_user' => 'od :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'Sťahovať osu!',

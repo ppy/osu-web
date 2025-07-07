@@ -27,7 +27,7 @@ return [
         'title' => 'Procurar',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'Ver mais resultados da pesquisa de faixas de artistas em destaque',
         ],
         'beatmapset' => [
             'login_required' => 'Inicia a sessão para procurar por beatmaps',
@@ -54,16 +54,16 @@ return [
 
         'mode' => [
             'all' => 'todos',
-            'artist_track' => '',
+            'artist_track' => 'faixa do artista em destaque',
             'beatmapset' => 'beatmap',
             'forum_post' => 'fórum',
-            'team' => '',
+            'team' => 'equipa',
             'user' => 'jogador',
             'wiki_page' => 'wiki',
         ],
 
         'team' => [
-            'more_simple' => '',
+            'more_simple' => 'Ver mais resultados da pesquisa por equipa',
         ],
 
         'user' => [
@@ -95,7 +95,7 @@ return [
         'os_version_or_later' => ':os_version ou superior',
         'other_os' => 'outras plataformas',
         'quick_start_guide' => 'guia de início rápido',
-        'tagline' => "vamos pôr-te<br>a andar!",
+        'tagline' => "vamos pôr-te<br>a mexer!",
         'video-guide' => 'vídeo de guia',
 
         'help' => [
@@ -142,9 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Novos beatmaps classificados',
             'popular' => 'Beatmaps populares',
             'by_user' => 'por :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'Transfere o osu!',
