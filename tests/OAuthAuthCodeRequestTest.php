@@ -12,8 +12,16 @@ class OAuthAuthCodeRequestTest extends TestCase
 {
     protected $client;
 
+    public static function dataProviderForTestBotClient()
+    {
+        return [
+            'cannot request delegation with auth_code' => ['delegate', false],
+            'can request chat.write scope' => ['chat.write', true],
+        ];
+    }
+
     /**
-     * @dataProvider botClientDataProvider
+     * @dataProvider dataProviderForTestBotClient
      */
     public function testBotClient($scope, $success)
     {
@@ -47,14 +55,6 @@ class OAuthAuthCodeRequestTest extends TestCase
         $this->get(route('oauth.authorizations.authorize', $params))
             ->assertViewIs('layout.error')
             ->assertStatus(400);
-    }
-
-    public static function botClientDataProvider()
-    {
-        return [
-            'cannot request delegation with auth_code' => ['delegate', false],
-            'can request chat.write scope' => ['chat.write', true],
-        ];
     }
 
     protected function setUp(): void
