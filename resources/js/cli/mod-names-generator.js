@@ -56,14 +56,14 @@ function modNamesGenerator() {
     index: {},
     name: 'Score V2',
     setting_labels: {},
-    type: 'Conversion',
+    type: 'System',
   };
   modNames.NM = {
     acronym: 'NM',
     index: {},
     name: 'No Mod',
     setting_labels: {},
-    type: 'Conversion', // not really relevant
+    type: 'System',
   };
 
   const outDir = `${root}/resources/builds`;
