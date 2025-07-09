@@ -295,10 +295,10 @@
 @mod-indicator-size: 20px;
 
 // while these are supposed to be in pixels too, they are declared unitless
-// because they are later passed to a `calc()` invocation on setting `zoom` css property,
+// because they are later passed to a `calc()` division operation whose result is used for the `zoom` css property,
 // which requires unitless quantities for two reasons:
-// - `calc()` refuses to work on chrome & firefox if the rhs is not unitless
-// - `zoom` only works on chrome & firefox if the lhs is also unitless (otherwise it passes a pixel-unit value to `zoom` and does nothing)
+// - `calc()` refuses to work on chrome & firefox if the rhs of division is not unitless
+// - `zoom` only works on chrome & firefox if the lhs of division is also unitless (otherwise it passes a pixel-unit value to `zoom` and does nothing)
 @mod-height: 56;
 @mod-height-normal: 22;
 @mod-height-small: 18;

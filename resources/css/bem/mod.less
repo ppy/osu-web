@@ -2,10 +2,18 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .mod {
-  zoom: calc(var(--mod-height, @mod-height-normal) / @mod-height);
-  height: unit(@mod-height, px);
-  display: flex;
-  position: relative;
+  &__sizing-container {
+    // the entire mod component is expected to scale to a given height.
+    // there are two options for that: either specify every size here against a fixed "reference size" and then scale the entire component in post,
+    // or bake a scale into every single size specification of every element of the component.
+    // this is attempting to implement the first approach via `zoom`
+    // (`scale` cannot be used because it does not affect the layout size of the element, leaving undesirable gaps)
+    // however, if `zoom` is specified on the root element it breaks tooltips, therefore zoom is applied to a child div instead.
+    zoom: calc(var(--mod-height, @mod-height-normal) / @mod-height);
+    height: unit(@mod-height, px);
+    display: flex;
+    position: relative;
+  }
 
   .mod-type(@name, @colour) {
     &--type-@{name} {

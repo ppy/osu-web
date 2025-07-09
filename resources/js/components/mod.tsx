@@ -113,12 +113,14 @@ export default function Mod({ mod }: Props) {
 
   return (
     <div className={classWithModifiers('mod', `type-${modJson.type}`)} title={`${modJson.name}${settingsLabel(modJson, mod)}`}>
-      <div
-        className={classWithModifiers('mod__icon', mod.acronym)}
-        data-acronym={modJson.acronym}
-      />
-      {Object.entries(mod.settings ?? {}).length > 0 && <div className='mod__customised-indicator' />}
-      {extendedContent !== null && <div className='mod__extender'>{extendedContent}</div>}
+      <div className='mod__sizing-container'>
+        <div
+          className={classWithModifiers('mod__icon', mod.acronym)}
+          data-acronym={modJson.acronym}
+        />
+        {Object.entries(mod.settings ?? {}).length > 0 && <div className='mod__customised-indicator' />}
+        {extendedContent !== null && <div className='mod__extender'>{extendedContent}</div>}
+      </div>
     </div>
   );
 }
