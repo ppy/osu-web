@@ -1269,7 +1269,7 @@
             "GET",
             "HEAD"
         ],
-        "controller": "App\\Http\\Controllers\\Users\\ScoresController@beatmapsPassed",
+        "controller": "App\\Http\\Controllers\\Users\\BeatmapsController@beatmapsPassed",
         "middlewares": [
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",
