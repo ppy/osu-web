@@ -41,8 +41,13 @@ class ScoresController extends Controller
         RequestCost::setCost($count);
 
         $beatmaps = Beatmap::whereIn('beatmapset_id', $beatmapsetIds)->get();
-        $completedBeatmapIds = new BeatmapsPassedSearch($user->getKey(), $beatmaps->pluck('beatmap_id')->all())
-            ->completedBeatmapIds();
+        $completedBeatmapIds = BeatmapsPassedSearch::completedIds(
+            $user->getKey(),
+            $beatmaps->pluck('beatmap_id')->all(),
+            true,
+            null,
+            null
+        );
 
         $completedBeatmaps = [];
         $beatmapsById = $beatmaps->keyBy('beatmap_id');

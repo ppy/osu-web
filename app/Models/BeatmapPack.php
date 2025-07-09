@@ -107,13 +107,13 @@ class BeatmapPack extends Model
                 $beatmapsetIdsByBeatmapId[$beatmap->beatmap_id] = $beatmap->beatmapset_id;
             }
 
-            $completedBeatmapIds = new BeatmapsPassedSearch(
+            $completedBeatmapIds = BeatmapsPassedSearch::completedIds(
                 $userId,
                 array_keys($beatmapsetIdsByBeatmapId),
                 $this->no_diff_reduction,
                 $this->playmode,
                 $isLegacy
-            )->completedBeatmapIds();
+            );
 
             $completedBeatmapsetIds = (new Set(array_map(
                 fn (int $beatmapId): int => $beatmapsetIdsByBeatmapId[$beatmapId],
