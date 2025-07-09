@@ -546,7 +546,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             Route::get('recent_activity', 'UsersController@recentActivity');
 
             Route::group(['namespace' => 'Users'], function () {
-                Route::get('beatmapset-completion', 'ScoresController@beatmapsetCompletion');
+                Route::get('beatmaps-passed', 'ScoresController@beatmapsPassed');
             });
 
             //  GET /api/v2/users/:user_id/:mode [osu, taiko, fruits, mania]

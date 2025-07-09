@@ -24,7 +24,7 @@ class ScoresController extends Controller
         $this->middleware('require-scopes:public');
     }
 
-    public function beatmapsetCompletion($userId)
+    public function beatmapsPassed($userId)
     {
         $user = User::findOrFail($userId);
 
