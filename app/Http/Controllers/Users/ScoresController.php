@@ -28,14 +28,11 @@ class ScoresController extends Controller
     {
         $user = User::findOrFail($userId);
 
-        $params = get_params(\Request::all(), null, [
-            'beatmapset_ids:int[]',
-        ], ['null_missing' => true]);
-
-        $count = count($params['beatmapset_ids'] ?? []);
+        $beatmapsetIds = get_arr(request('beatmapset_ids') ?? null, 'get_int') ?? [];
+        $count = count($beatmapsetIds);
 
         if ($count === 0) {
-            return response()->noContent();
+            return ['completed_beatmaps' => []];
         }
         if ($count > self::LIMIT) {
             throw new RequestTooLargeException('beatmapset_ids', self::LIMIT);
@@ -43,7 +40,7 @@ class ScoresController extends Controller
 
         RequestCost::setCost($count);
 
-        $beatmaps = Beatmap::whereIn('beatmapset_id', array_slice($params['beatmapset_ids'], 0, 10))->get();
+        $beatmaps = Beatmap::whereIn('beatmapset_id', $beatmapsetIds)->get();
         $completedBeatmapIds = new BeatmapsPassedSearch($user->getKey(), $beatmaps->pluck('beatmap_id')->all())
             ->completedBeatmapIds();
 
