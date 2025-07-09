@@ -28,7 +28,15 @@ class ScoresController extends Controller
     {
         $user = User::findOrFail($userId);
 
-        $beatmapsetIds = get_arr(request('beatmapset_ids') ?? null, 'get_int') ?? [];
+        $params = get_params(\Request::all(), null, [
+            'beatmapset_ids:int[]',
+            'exclude_converts:bool',
+            'is_legacy:bool',
+            'no_diff_reduction:bool',
+            'ruleset_id:int',
+        ], ['null_missing' => true]);
+
+        $beatmapsetIds = $params['beatmapset_ids'] ?? [];
         $count = count($beatmapsetIds);
 
         if ($count === 0) {
@@ -44,9 +52,10 @@ class ScoresController extends Controller
         $completedBeatmapIds = BeatmapsPassedSearch::completedIds(
             $user->getKey(),
             $beatmaps->pluck('beatmap_id')->all(),
-            true,
-            null,
-            null
+            $params['no_diff_reduction'] ?? true,
+            $params['ruleset_id'],
+            $params['is_legacy'],
+            $params['exclude_converts'],
         );
 
         $completedBeatmaps = [];

@@ -112,7 +112,8 @@ class BeatmapPack extends Model
                 array_keys($beatmapsetIdsByBeatmapId),
                 $this->no_diff_reduction,
                 $this->playmode,
-                $isLegacy
+                $isLegacy,
+                $this->playmode === null,
             );
 
             $completedBeatmapsetIds = (new Set(array_map(

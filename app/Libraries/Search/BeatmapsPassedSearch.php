@@ -14,7 +14,8 @@ class BeatmapsPassedSearch
         array $beatmapIds,
         bool $noDiffReduction,
         ?int $rulesetId,
-        ?bool $isLegacy
+        ?bool $isLegacy,
+        ?bool $excludeConverts,
     ) {
         if (count($beatmapIds) === 0) {
             return [];
@@ -22,7 +23,7 @@ class BeatmapsPassedSearch
 
         $params = [
             'beatmap_ids' => $beatmapIds,
-            'exclude_converts' => $rulesetId === null,
+            'exclude_converts' => $excludeConverts,
             'is_legacy' => $isLegacy,
             'ruleset_id' => $rulesetId,
             'user_id' => $userId,
