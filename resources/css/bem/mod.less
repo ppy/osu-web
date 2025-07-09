@@ -83,12 +83,22 @@
     }
 
     .mod-icon-fa(@acronym, @glyph) {
+      display: flex;
+      content: @glyph;
+      font-size: 45px;
+      padding: 0 0 5px 2px; // helps a bit on small sizes
+    }
+
+    .mod-icon-fas(@acronym, @glyph) {
       &--@{acronym}::after {
         .fas();
-        display: flex;
-        content: @glyph;
-        font-size: 45px;
-        padding: 0 0 5px 2px; // helps a bit on small sizes
+        .mod-icon-fa(@acronym, @glyph);
+      }
+    }
+    .mod-icon-far(@acronym, @glyph) {
+      &--@{acronym}::after {
+        .far();
+        .mod-icon-fa(@acronym, @glyph);
       }
     }
 
@@ -111,27 +121,27 @@
     .mod-icon-osu(TD, touch-device);
     .mod-icon-osu(TP, target-practice);
 
-    .mod-icon-fa(AD, @fa-var-circle);
-    .mod-icon-fa(AL, @fa-var-keyboard);
-    .mod-icon-fa(BL, @fa-var-adjust);
-    .mod-icon-fa(CL, @fa-var-history);
-    .mod-icon-fa(CS, @fa-var-equals);
-    .mod-icon-fa(DA, @fa-var-hammer);
-    .mod-icon-fa(DF, @fa-var-compress-arrows-alt);
-    .mod-icon-fa(DP, @fa-var-cube);
-    .mod-icon-fa(FF, @fa-var-cloud);
-    .mod-icon-fa(GR, @fa-var-arrows-alt-v);
-    .mod-icon-fa(HO, @fa-var-dot-circle);
-    .mod-icon-fa(IN, @fa-var-yin-yang);
-    .mod-icon-fa(NM, @fa-var-ban);
-    .mod-icon-fa(NS, @fa-var-eye-slash);
-    .mod-icon-fa(MG, @fa-var-magnet);
-    .mod-icon-fa(MU, @fa-var-volume-mute);
-    .mod-icon-fa(SI, @fa-var-undo);
-    .mod-icon-fa(TR, @fa-var-arrows-alt);
-    .mod-icon-fa(WD, @fa-var-chevron-circle-down);
-    .mod-icon-fa(WG, @fa-var-certificate);
-    .mod-icon-fa(WU, @fa-var-chevron-circle-up);
+    .mod-icon-far(AD, @fa-var-circle);
+    .mod-icon-fas(AL, @fa-var-keyboard);
+    .mod-icon-fas(BL, @fa-var-adjust);
+    .mod-icon-fas(CL, @fa-var-history);
+    .mod-icon-fas(CS, @fa-var-equals);
+    .mod-icon-fas(DA, @fa-var-hammer);
+    .mod-icon-fas(DF, @fa-var-compress-arrows-alt);
+    .mod-icon-fas(DP, @fa-var-cube);
+    .mod-icon-fas(FF, @fa-var-cloud);
+    .mod-icon-fas(GR, @fa-var-arrows-alt-v);
+    .mod-icon-fas(HO, @fa-var-dot-circle);
+    .mod-icon-fas(IN, @fa-var-yin-yang);
+    .mod-icon-fas(NM, @fa-var-ban);
+    .mod-icon-fas(NS, @fa-var-eye-slash);
+    .mod-icon-fas(MG, @fa-var-magnet);
+    .mod-icon-fas(MU, @fa-var-volume-mute);
+    .mod-icon-fas(SI, @fa-var-undo);
+    .mod-icon-fas(TR, @fa-var-arrows-alt);
+    .mod-icon-fas(WD, @fa-var-chevron-circle-down);
+    .mod-icon-fas(WG, @fa-var-certificate);
+    .mod-icon-fas(WU, @fa-var-chevron-circle-up);
   }
 
   &__customised-indicator::after {
