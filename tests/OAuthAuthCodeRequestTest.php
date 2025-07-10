@@ -7,6 +7,7 @@ namespace Tests;
 
 use App\Models\OAuth\Client;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class OAuthAuthCodeRequestTest extends TestCase
 {
@@ -25,9 +26,7 @@ class OAuthAuthCodeRequestTest extends TestCase
         return static::chatScopes()->map(fn ($scope) => [$scope]);
     }
 
-    /**
-     * @dataProvider dataProviderForTestBotClient
-     */
+    #[DataProvider('dataProviderForTestBotClient')]
     public function testBotClient($scope, $success)
     {
         $client = Client::factory()->create([
@@ -50,9 +49,7 @@ class OAuthAuthCodeRequestTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider dataProviderForTestNonBotClientCannotRequestChatScopes
-     */
+    #[DataProvider('dataProviderForTestNonBotClientCannotRequestChatScopes')]
     public function testNonBotClientCannotRequestChatScopes(string $scope)
     {
         $client = Client::factory()->create();

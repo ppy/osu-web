@@ -12,6 +12,7 @@ use App\Models\OAuth\Token;
 use App\Models\User;
 use Database\Factories\OAuth\RefreshTokenFactory;
 use Illuminate\Support\Facades\Event;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class TokenTest extends TestCase
@@ -84,9 +85,7 @@ class TokenTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider dataProviderForTestAuthCodeChatScopesAllowsSelf
-     */
+    #[DataProvider('dataProviderForTestAuthCodeChatScopesAllowsSelf')]
     public function testAuthCodeChatScopesAllowsSelf(string $scope)
     {
         $user = User::factory()->create();
@@ -99,9 +98,7 @@ class TokenTest extends TestCase
         $this->assertTrue($user->is(auth()->user()));
     }
 
-    /**
-     * @dataProvider dataProviderForTestAuthCodeChatScopesRequiresBotGroup
-     */
+    #[DataProvider('dataProviderForTestAuthCodeChatScopesRequiresBotGroup')]
     public function testAuthCodeChatScopesRequiresBotGroup(string $scope, ?string $group, bool $shouldThrow)
     {
         $user = User::factory()->withGroup($group)->create();
@@ -158,9 +155,7 @@ class TokenTest extends TestCase
         $this->assertNull(auth()->user());
     }
 
-    /**
-     * @dataProvider dataProviderForTestDelegationNotAllowedScopes
-     */
+    #[DataProvider('dataProviderForTestDelegationNotAllowedScopes')]
     public function testDelegationNotAllowedScopes(array $scopes, ?string $exceptionKey)
     {
         $user = User::factory()->withGroup('bot')->create();
@@ -171,9 +166,7 @@ class TokenTest extends TestCase
         $this->createToken(null, $scopes, $client);
     }
 
-    /**
-     * @dataProvider dataProviderForTestDelegationRequiredScopes
-     */
+    #[DataProvider('dataProviderForTestDelegationRequiredScopes')]
     public function testDelegationRequiredScopes(array $scopes, ?string $exceptionKey)
     {
         $user = User::factory()->withGroup('bot')->create();
@@ -184,9 +177,7 @@ class TokenTest extends TestCase
         $this->createToken(null, $scopes, $client);
     }
 
-    /**
-     * @dataProvider dataProviderForTestDelegationRequiresChatBot
-     */
+    #[DataProvider('dataProviderForTestDelegationRequiresChatBot')]
     public function testDelegationRequiresChatBot(?string $group, bool $shouldThrow)
     {
         $user = User::factory()->withGroup($group)->create();
@@ -198,11 +189,7 @@ class TokenTest extends TestCase
         $this->createToken(null, ['delegate'], $client);
     }
 
-    /**
-     * @dataProvider dataProviderForTestScopes
-     *
-     * @return void
-     */
+    #[DataProvider('dataProviderForTestScopes')]
     public function testScopes($scopes, ?string $exceptionKey)
     {
         $user = User::factory()->create();
@@ -221,11 +208,7 @@ class TokenTest extends TestCase
         $this->assertSame(['a', 'am', 'i', 'scope'], $token->scopes);
     }
 
-    /**
-     * @dataProvider dataProviderForTestScopesClientCredentials
-     *
-     * @return void
-     */
+    #[DataProvider('dataProviderForTestScopesClientCredentials')]
     public function testScopesClientCredentials($scopes, $exceptionKey)
     {
         $user = User::factory()->create();
