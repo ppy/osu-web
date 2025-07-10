@@ -140,6 +140,11 @@ class Contest extends Model
         return isset($this->getExtraOptions()['best_of']);
     }
 
+    public function isHostUserId(?int $userId): bool
+    {
+        return in_array($userId, $this->getExtraOptions()['host_user_ids'] ?? [], true);
+    }
+
     public function isJudge(User $user): bool
     {
         $judges = $this->judges();
