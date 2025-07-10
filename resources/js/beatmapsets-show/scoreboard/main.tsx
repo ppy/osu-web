@@ -6,10 +6,13 @@ import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import { route } from 'laroute';
 import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
+import modNames from 'mod-names.json';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import { SwitchError } from 'utils/switch-never';
+import ModJson from '../../interfaces/mod-json';
 import Controller from './controller';
 import Mod from './mod';
 import { scoreboardTypes } from './scoreboard-type';
@@ -17,15 +20,14 @@ import Tab from './tab';
 import Table from './table';
 import TopCard from './top-card';
 
-const defaultMods = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL'];
-const mods = {
-  fruits: defaultMods,
-  mania: ['NM', 'EZ', 'NF', 'HT', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL', 'MR'],
-  osu: [...defaultMods, 'SO', 'TD'],
-  taiko: defaultMods,
+const legacyDefaultMods = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL'];
+const legacyMods = {
+  fruits: legacyDefaultMods,
+  mania: ['NM', 'EZ', 'NF', 'HT', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL', 'MR', '4K', '5K', '6K', '7K', '8K', '9K'],
+  osu: [...legacyDefaultMods, 'SO', 'TD'],
+  taiko: legacyDefaultMods,
 };
-const maniaConvertMods = [...mods.mania];
-maniaConvertMods.splice(-1, 0, '4K', '5K', '6K', '7K', '8K', '9K');
+const maniaConvertMods = new Set(['1K', '2K', '3K', '4K', '5K', '6K', '7K', '8K', '9K', '10K', 'DS']);
 
 interface Props {
   beatmap: BeatmapExtendedJson;
@@ -42,11 +44,23 @@ export default class Main extends React.Component<Props> {
 
   @computed
   private get mods() {
-    if (this.controller.beatmap.mode === 'mania' && this.controller.beatmap.convert) {
-      return maniaConvertMods;
+    let mods: string[];
+
+    if (core.userPreferences.get('legacy_score_only')) {
+      mods = legacyMods[this.controller.beatmap.mode];
+    } else {
+      mods = Object.values(modNames)
+        .filter((m): m is ModJson => m != null && this.controller.beatmap.mode_int in m.index)
+        .sort((a, b) => (a.index[this.controller.beatmap.mode_int] ?? 0) - (b.index[this.controller.beatmap.mode_int] ?? 0))
+        .map((m) => m.acronym);
+      mods.unshift('NM');
     }
 
-    return mods[this.controller.beatmap.mode];
+    if (this.controller.beatmap.mode === 'mania' && !this.controller.beatmap.convert) {
+      mods = mods.filter((m) => !maniaConvertMods.has(m));
+    }
+
+    return mods;
   }
 
   constructor(props: Props) {

@@ -46,7 +46,9 @@ function modNamesGenerator() {
       for (const setting of mod.Settings) {
         modNames[mod.Acronym].setting_labels[setting.Name] = setting.Label;
       }
-      modNames[mod.Acronym].index[rulesetId] = i;
+      if (mod.UserPlayable) {
+        modNames[mod.Acronym].index[rulesetId] = i;
+      }
     }
   }
 
