@@ -2,18 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .mod {
-  &__sizing-container {
-    // the entire mod component is expected to scale to a given height.
-    // there are two options for that: either specify every size here against a fixed "reference size" and then scale the entire component in post,
-    // or bake a scale into every single size specification of every element of the component.
-    // this is attempting to implement the first approach via `zoom`
-    // (`scale` cannot be used because it does not affect the layout size of the element, leaving undesirable gaps)
-    // however, if `zoom` is specified on the root element it breaks tooltips, therefore zoom is applied to a child div instead.
-    zoom: calc(var(--mod-height, @mod-height-normal) / @mod-height);
-    height: unit(@mod-height, px);
-    display: flex;
-    position: relative;
-  }
+  // the entire mod component is expected to scale to a given height.
+  // there are two options for that: either specify every size here against a fixed "reference size" and then scale the entire component in post,
+  // or bake a scale into every single size specification of every element of the component.
+  // this is implementing the second approach via usage of `font-size` and `em`.
+  font-size: var(--mod-height, @mod-height-normal);
+  height: var(--mod-height, @mod-height-normal);
+  display: flex;
+  position: relative;
 
   .mod-type(@name, @colour) {
     &--type-@{name} {
@@ -41,7 +37,7 @@
 
   &__icon {
     position: relative;
-    width: @mod-width;
+    width: 1.42em;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -66,7 +62,7 @@
       color: var(--type-fg-colour);
       font-family: @font-grade;
       font-weight: 900;
-      font-size: 22px;
+      font-size: 0.4em;
       margin-top: 2px;
     }
 
@@ -85,7 +81,7 @@
     .mod-icon-fa(@acronym, @glyph) {
       display: flex;
       content: @glyph;
-      font-size: 45px;
+      font-size: 0.8em;
       padding: 0 0 5px 2px; // helps a bit on small sizes
     }
 
@@ -144,40 +140,44 @@
     .mod-icon-fas(WU, @fa-var-chevron-circle-up);
   }
 
-  &__customised-indicator::after {
-    width: @mod-indicator-size;
-    height: @mod-indicator-size;
+  &__customised-indicator {
+    .fas();
+    .center-content();
+    width: 0.35em;
+    height: 0.35em;
     border-radius: 50%;
     background-color: var(--type-fg-colour);
     z-index: 1;
     position: absolute;
-    left: 60px;
-    top: -7px;
-    .fas();
-    // in client this is 0.6, but that looks bad on small sizes
-    font-size: 8px;
-    .center-content();
-    content: @fa-var-cog;
-    color: var(--type-bg-colour);
+    left: 1.05em;
+    top: -0.125em;
+
+    &::after {
+      content: @fa-var-cog;
+      color: var(--type-bg-colour);
+      font-size: 0.2em;
+    }
   }
 
   &__extender {
-    width: @mod-extender-width;
+    width: 2.2em;
     background-color: var(--type-extender-colour);
     mask-image: url("~@images/badges/mods/blanks/mod-icon-extender.svg");
     mask-size: contain;
     mask-position: center;
     mask-repeat: no-repeat;
-    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.3));
-    margin-left: -@mod-extender-width-inset;
-    padding-left: @mod-extender-width-inset;
+    margin-left: -0.5em;
+    padding-left: 0.5em;
     padding-right: 5px;
     padding-bottom: 3px;
     font-weight: 700;
-    font-size: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--type-bg-colour);
+
+    span {
+      font-size: 0.5em;
+    }
   }
 }
