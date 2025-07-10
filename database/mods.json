@@ -510,7 +510,7 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForFreestyleAsRequiredMod": true,
+        "ValidForFreestyleAsRequiredMod": false,
         "ValidForMultiplayerAsFreeMod": true,
         "AlwaysValidForSubmission": false
       },
@@ -1745,7 +1745,7 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForFreestyleAsRequiredMod": true,
+        "ValidForFreestyleAsRequiredMod": false,
         "ValidForMultiplayerAsFreeMod": true,
         "AlwaysValidForSubmission": false
       },
@@ -2412,7 +2412,7 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForFreestyleAsRequiredMod": true,
+        "ValidForFreestyleAsRequiredMod": false,
         "ValidForMultiplayerAsFreeMod": true,
         "AlwaysValidForSubmission": false
       },
@@ -3152,7 +3152,7 @@
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
-        "ValidForFreestyleAsRequiredMod": true,
+        "ValidForFreestyleAsRequiredMod": false,
         "ValidForMultiplayerAsFreeMod": true,
         "AlwaysValidForSubmission": false
       },
