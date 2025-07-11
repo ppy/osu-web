@@ -63,7 +63,6 @@
       font-family: @font-grade;
       font-weight: 900;
       font-size: 0.4em;
-      margin-top: 2px;
     }
 
     .mod-icon-osu(@acronym, @filename) {
@@ -82,7 +81,9 @@
       display: flex;
       content: @glyph;
       font-size: 0.8em;
-      padding: 0 0 5px 2px; // helps a bit on small sizes
+      // slight adjustments for small sizes
+      padding-left: 1px;
+      padding-bottom: 1px;
     }
 
     .mod-icon-fas(@acronym, @glyph) {
@@ -168,13 +169,14 @@
     mask-repeat: no-repeat;
     margin-left: -0.5em;
     padding-left: 0.5em;
-    padding-right: 5px;
-    padding-bottom: 3px;
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--type-bg-colour);
+    // slight adjustments for small sizes
+    padding-right: 3px;
+    padding-bottom: 1px;
 
     span {
       font-size: 0.5em;
