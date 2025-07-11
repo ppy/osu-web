@@ -82,6 +82,17 @@ class BeatmapsetFactory extends Factory
         ]);
     }
 
+    public function ranked(?\DateTimeInterface $approvedAt = null)
+    {
+        $approvedAt ??= now();
+
+        return $this->state([
+            'approved' => Beatmapset::STATES['ranked'],
+            'approved_date' => $approvedAt,
+            'queued_at' => $approvedAt,
+        ]);
+    }
+
     public function withDescription(): static
     {
         // Like `$this->for(Topic::factory()->...)`, but called after making the model and creating
