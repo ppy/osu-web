@@ -6,7 +6,6 @@ import modNames from 'mod-names.json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { modDetails } from 'utils/score-helper';
-import { formatNumber } from '../utils/html';
 
 // English only until the labels are translated.
 const numberFormatter = new Intl.NumberFormat('en');
@@ -19,6 +18,13 @@ function format(value: unknown) {
   }
 
   return String(value);
+}
+
+function formatNumberWithPrecision(value: number, precision: number)  {
+  return value.toLocaleString('en', {
+    maximumFractionDigits: precision,
+    minimumFractionDigits: precision,
+  });
 }
 
 function settingsLabel(modJson: NonNullable<typeof modNames[string]>, scoreModJson: ScoreModJson) {
@@ -41,21 +47,25 @@ function settingsLabel(modJson: NonNullable<typeof modNames[string]>, scoreModJs
     : ` (${settings.join(', ')})`;
 }
 
+interface ExtendedContentDisplayCandidate {
+  acronym: string;
+  significantDigits: number;
+}
+
 function getExtendedContent(scoreModJson: ScoreModJson): string | null {
-  const settings = Object.entries(scoreModJson.settings ?? {});
   switch (scoreModJson.acronym) {
     case 'HT':
     case 'DC':
     case 'DT':
     case 'NC':
     {
-      const speedChange = settings.find((s) => s[0] === 'speed_change');
-      return speedChange != null ? `${formatNumber(speedChange[1] as number, 2)}x` : null;
+      const speedChange = scoreModJson.settings?.speed_change as number;
+      return speedChange != null ? `${formatNumberWithPrecision(speedChange, 2)}×` : null;
     }
 
     case 'DA':
     {
-      const displayCandidates = {
+      const displayCandidates: Partial<Record<string, ExtendedContentDisplayCandidate>> = {
         approach_rate: {
           acronym: 'AR',
           significantDigits: 1,
@@ -78,21 +88,23 @@ function getExtendedContent(scoreModJson: ScoreModJson): string | null {
         },
       };
 
-      let displayCandidate;
+      let displayCandidate: ExtendedContentDisplayCandidate | undefined;
       let displayValue: number | undefined;
-      for (const [setting, value] of settings) {
-        if (setting in displayCandidates) {
-          if (displayCandidate != null) {
+
+      for (const [key, setting] of Object.entries(displayCandidates)) {
+        const settingValue = scoreModJson.settings?.[key];
+        if (typeof settingValue === 'number') {
+          if (displayCandidate !== undefined) {
             return null;
           }
 
-          displayCandidate = displayCandidates[setting as keyof typeof displayCandidates];
-          displayValue = value as number;
+          displayValue = settingValue;
+          displayCandidate = setting;
         }
       }
 
       if (displayCandidate != null && displayValue != null) {
-        return `${displayCandidate.acronym}${formatNumber(displayValue, displayCandidate.significantDigits)}`;
+        return `${displayCandidate.acronym}${formatNumberWithPrecision(displayValue, displayCandidate.significantDigits)}`;
       }
 
       return null;
@@ -117,8 +129,8 @@ export default function Mod({ mod }: Props) {
         className={classWithModifiers('mod__icon', mod.acronym)}
         data-acronym={modJson.acronym}
       />
-      {Object.entries(mod.settings ?? {}).length > 0 && <div className='mod__customised-indicator' />}
       {extendedContent !== null && <div className='mod__extender'><span>{extendedContent}</span></div>}
+      {Object.entries(mod.settings ?? {}).length > 0 && <div className='mod__customised-indicator' />}
     </div>
   );
 }
