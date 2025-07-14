@@ -7,12 +7,15 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Users;
 
+use App\Exceptions\RequestTooLargeException;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Transformers\UserCompactTransformer;
 
 class LookupController extends Controller
 {
+    private const LIMIT = 50;
+
     public function __construct()
     {
         $this->middleware('throttle:1200,1');
@@ -27,7 +30,10 @@ class LookupController extends Controller
             'ids:string[]',
         ]);
 
-        $ids = array_slice(array_reject_null(get_arr($params['ids'] ?? [], presence(...))), 0, 50);
+        $ids = array_reject_null(get_arr($params['ids'] ?? [], presence(...)));
+        if (count($ids) > self::LIMIT) {
+            throw new RequestTooLargeException('ids', self::LIMIT);
+        }
 
         $numericIds = [];
         $stringIds = [];

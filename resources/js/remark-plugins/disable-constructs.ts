@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import type Constructs from 'micromark-core-commonmark';
+import type * as Constructs from 'micromark-core-commonmark';
 import type { Processor } from 'unified';
 import add from './add';
 

@@ -7,19 +7,35 @@ namespace Tests;
 
 use App\Models\OAuth\Client;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class OAuthAuthCodeRequestTest extends TestCase
 {
-    protected $client;
+    public static function dataProviderForTestBotClient()
+    {
+        return [
+            'cannot request delegation with auth_code' => ['delegate', false],
+            'can request chat.read scope' => ['chat.read', true],
+            'can request chat.write scope' => ['chat.write', true],
+            'can request chat.write_manage scope' => ['chat.write_manage', true],
+        ];
+    }
 
-    /**
-     * @dataProvider botClientDataProvider
-     */
+    public static function dataProviderForTestNonBotClientCannotRequestChatScopes()
+    {
+        return static::chatScopes()->map(fn ($scope) => [$scope]);
+    }
+
+    #[DataProvider('dataProviderForTestBotClient')]
     public function testBotClient($scope, $success)
     {
+        $client = Client::factory()->create([
+            'user_id' => User::factory()->withGroup('bot'),
+        ]);
+
         $params = [
-            'client_id' => $this->client->getKey(),
-            'redirect_uri' => $this->client->redirect,
+            'client_id' => $client->getKey(),
+            'redirect_uri' => $client->redirect,
             'response_type' => 'code',
             'scope' => $scope,
         ];
@@ -33,7 +49,8 @@ class OAuthAuthCodeRequestTest extends TestCase
         }
     }
 
-    public function testNonBotClientCannotRequestChatWriteScope()
+    #[DataProvider('dataProviderForTestNonBotClientCannotRequestChatScopes')]
+    public function testNonBotClientCannotRequestChatScopes(string $scope)
     {
         $client = Client::factory()->create();
 
@@ -41,20 +58,12 @@ class OAuthAuthCodeRequestTest extends TestCase
             'client_id' => $client->getKey(),
             'redirect_uri' => $client->redirect,
             'response_type' => 'code',
-            'scope' => 'chat.write',
+            'scope' => $scope,
         ];
 
         $this->get(route('oauth.authorizations.authorize', $params))
             ->assertViewIs('layout.error')
             ->assertStatus(400);
-    }
-
-    public static function botClientDataProvider()
-    {
-        return [
-            'cannot request delegation with auth_code' => ['delegate', false],
-            'can request chat.write scope' => ['chat.write', true],
-        ];
     }
 
     protected function setUp(): void
@@ -63,10 +72,6 @@ class OAuthAuthCodeRequestTest extends TestCase
 
         // otherwise exceptions won't render the actual view.
         config_set('app.debug', false);
-
-        $this->client = Client::factory()->create([
-            'user_id' => User::factory()->withGroup('bot'),
-        ]);
 
         $user = User::factory()->create();
         $this->actAsUser($user, true);

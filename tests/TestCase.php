@@ -16,6 +16,7 @@ use App\Models\Build;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\ScoreLink;
 use App\Models\OAuth\Client;
+use App\Models\OAuth\Token;
 use App\Models\ScoreToken;
 use App\Models\User;
 use Artisan;
@@ -25,9 +26,9 @@ use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Testing\Fakes\MailFake;
 use Laravel\Passport\Passport;
-use Laravel\Passport\Token;
 use Queue;
 use ReflectionMethod;
 use ReflectionProperty;
@@ -48,18 +49,10 @@ class TestCase extends BaseTestCase
 
     public static function regularOAuthScopesDataProvider()
     {
-        $data = [];
-
-        foreach (Passport::scopes()->pluck('id') as $scope) {
-            // just skip over any scopes that require special conditions for now.
-            if (in_array($scope, ['chat.read', 'chat.write', 'chat.write_manage', 'delegate'], true)) {
-                continue;
-            }
-
-            $data[] = [$scope];
-        }
-
-        return $data;
+        // just skip over any scopes that require special conditions for now.
+        return static::allPassportScopeIds()
+            ->diff(['chat.read', ...Token::SCOPES_REQUIRE_DELEGATION])
+            ->map(fn ($scope) => [$scope]);
     }
 
     public static function withDbAccess(callable $callback): void
@@ -85,6 +78,16 @@ class TestCase extends BaseTestCase
             fn ($file) => [basename($file, $suffix), $path],
             glob("{$path}/*{$suffix}"),
         );
+    }
+
+    protected static function chatScopes(): Collection
+    {
+        return static::allPassportScopeIds()->filter(fn ($scope) => str_starts_with($scope, 'chat.'));
+    }
+
+    protected static function allPassportScopeIds(): Collection
+    {
+        return Passport::scopes()->pluck('id');
     }
 
     protected static function reindexScores()
@@ -188,12 +191,8 @@ class TestCase extends BaseTestCase
 
     /**
      * This is for tests that will skip the request middleware stack.
-     *
-     * @param Token $token OAuth token.
-     * @param string $driver Auth driver to use.
-     * @return void
      */
-    protected function actAsUserWithToken(Token $token, $driver = null): static
+    protected function actAsUserWithToken(Token $token, ?string $driver = null): static
     {
         $guard = app('auth')->guard($driver);
         $user = $token->getResourceOwner();
@@ -229,18 +228,6 @@ class TestCase extends BaseTestCase
     protected function assertEqualsUpToOneSecond(CarbonInterface $expected, CarbonInterface $actual): void
     {
         $this->assertTrue($expected->diffInSeconds($actual, true) < 2);
-    }
-
-    protected function createAllowedScopesDataProvider(array $allowedScopes)
-    {
-        $data = Passport::scopes()->pluck('id')->map(function ($scope) use ($allowedScopes) {
-            return [[$scope], in_array($scope, $allowedScopes, true)];
-        })->all();
-
-        // scopeless tokens should fail in general.
-        $data[] = [[], false];
-
-        return $data;
     }
 
     protected function createVerifiedSession($user): SessionStore
