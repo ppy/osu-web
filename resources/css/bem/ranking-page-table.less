@@ -62,11 +62,25 @@
     }
   }
 
+  &__combo {
+    &--perfect {
+      color: hsl(@beatmap-score--hsl-perfect);
+    }
+  }
+
   &__heading {
     font-weight: normal;
     color: hsl(var(--hsl-f1));
-    padding: 5px 10px;
+    padding: 6px 5px;
     text-align: center;
+
+    &:first-child {
+      padding-left: 10px;
+    }
+
+    &:last-child {
+      padding-right: 10px;
+    }
 
     &--focused {
       color: hsl(var(--hsl-c1));

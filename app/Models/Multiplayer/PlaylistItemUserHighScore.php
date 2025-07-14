@@ -119,6 +119,15 @@ class PlaylistItemUserHighScore extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function scopeForRanking(Builder $query): Builder
+    {
+        return $query
+            ->passing()
+            ->whereHas('user', fn ($q) => $q->default())
+            ->orderByDesc('total_score')
+            ->orderBy('score_id');
+    }
+
     public function scopePassing(Builder $query): Builder
     {
         return $query->where('total_score', '>', 0);
@@ -146,5 +155,18 @@ class PlaylistItemUserHighScore extends Model
             'score_id' => $score->getKey(),
             'total_score' => $score->total_score,
         ])->save();
+    }
+
+    public function userRank(): ?int
+    {
+        if ($this->total_score === null || $this->score_id === null) {
+            return null;
+        }
+
+        $query = static::where('playlist_item_id', $this->playlist_item_id)
+            ->forRanking()
+            ->cursorSort('score_asc', $this);
+
+        return 1 + $query->count();
     }
 }
