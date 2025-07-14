@@ -26,7 +26,7 @@ function modSorter(a, b) {
     return typeOrder[a.Type] - typeOrder[b.Type];
   }
 
-  return a.Acronym.localeCompare(b.Acronym);
+  return a.Acronym.localeCompare(b.Acronym, 'en', { numeric: true });
 }
 
 function modNamesGenerator() {

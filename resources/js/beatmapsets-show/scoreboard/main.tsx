@@ -3,6 +3,7 @@
 
 import StringWithComponent from 'components/string-with-component';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import ModJson from 'interfaces/mod-json';
 import { route } from 'laroute';
 import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -12,7 +13,6 @@ import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import { SwitchError } from 'utils/switch-never';
-import ModJson from '../../interfaces/mod-json';
 import Controller from './controller';
 import Mod from './mod';
 import { scoreboardTypes } from './scoreboard-type';
