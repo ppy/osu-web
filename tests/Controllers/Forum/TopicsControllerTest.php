@@ -5,7 +5,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Controllers;
+namespace Tests\Controllers\Forum;
 
 use App\Models\Forum\Authorize;
 use App\Models\Forum\Forum;
@@ -15,7 +15,7 @@ use App\Models\Forum\TopicTrack;
 use App\Models\User;
 use Tests\TestCase;
 
-class ForumTopicsControllerTest extends TestCase
+class TopicsControllerTest extends TestCase
 {
     public function testDestroy(): void
     {
