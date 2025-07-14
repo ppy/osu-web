@@ -9,9 +9,9 @@ class InvalidScopeException extends SilencedException
 {
     private $error;
 
-    public function __construct(string $description, string $error = 'invalid_scope')
+    public function __construct(string $key, string $error = 'invalid_scope')
     {
-        parent::__construct($description);
+        parent::__construct(osu_trans("model_validation/token.invalid_scope.{$key}"));
 
         $this->error = $error;
     }
