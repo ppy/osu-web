@@ -5,12 +5,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\Controllers;
+namespace Tests\Controllers\Forum;
 
 use App\Models\Forum\Forum;
 use Tests\TestCase;
 
-class ForumForumsControllerTest extends TestCase
+class ForumsControllerTest extends TestCase
 {
     public function testIndex(): void
     {
