@@ -30,7 +30,7 @@ class RemoveBeatmapsetSoloScoresDbTest extends TestCase
             'beatmapset_id' => $beatmapset,
         ]);
         $user = User::factory()->create();
-        $score = Score::factory()->create([
+        Score::factory()->create([
             'beatmap_id' => $beatmap->getKey(),
             'user_id' => $user->getKey(),
             'ruleset_id' => Beatmap::MODES['mania'],
