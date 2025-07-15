@@ -159,8 +159,17 @@ return [
             'cancel' => 'Cancel',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => 'Please report copyright infringement through a DMCA claim to :mail as per :policy.',
+                'policy' => 'the osu! copyright policy',
+            ],
+            'message_2' => 'This applies to cases where audio tracks, visual content or beatmap level content is used without correct permission.',
+        ],
+
         'options' => [
             'cheating' => 'Cheating',
+            'copyright_infringement' => 'Copyright infringement',
             'inappropriate_chat' => 'Inappropriate chat behaviour',
             'insults' => 'Insulting me / others',
             'multiple_accounts' => 'Using multiple accounts',
