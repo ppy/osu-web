@@ -157,8 +157,9 @@ return [
         ],
 
         'statistics' => [
-            'rank' => 'Rank',
+            'empty_slots' => ':count_delimited slot available|:count_delimited slots available',
             'leader' => 'Team Leader',
+            'rank' => 'Rank',
         ],
     ],
 
