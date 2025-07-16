@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Libraries\Search;
 
 use App\Models\Beatmapset;
@@ -10,15 +12,180 @@ use Carbon\CarbonImmutable;
 
 class BeatmapsetQueryParser
 {
-    public static function parse(?string $query): array
-    {
-        $options = [];
+    public array $includes = [];
+    public array $excludes = [];
+    public ?string $keywords;
 
+    private static function makeDateRangeOption(string $operator, string $value): ?array
+    {
+        $value = presence(trim($value, '"'));
+        if ($value === null) {
+            return null;
+        }
+
+        if (preg_match('#^\d{4}$#', $value) === 1) {
+            $startTime = CarbonImmutable::create($value, 1, 1, 0, 0, 0, 'UTC');
+            $endTime = $startTime->addYears(1);
+        } elseif (preg_match('#^(?<year>\d{4})[-./]?(?<month>\d{1,2})$#', $value, $m) === 1) {
+            $startTime = CarbonImmutable::create(get_int($m['year']), get_int($m['month']), 1, 0, 0, 0, 'UTC');
+            $endTime = $startTime->addMonths(1);
+        } elseif (preg_match('#^(?<year>\d{4})[-./]?(?<month>\d{1,2})[-./]?(?<day>\d{1,2})$#', $value, $m) === 1) {
+            $startTime = CarbonImmutable::create(get_int($m['year']), get_int($m['month']), get_int($m['day']), 0, 0, 0, 'UTC');
+            $endTime = $startTime->addDays(1);
+        } else {
+            $startTime = parse_time_to_carbon($value)?->toImmutable()->utc();
+            $endTime = $startTime?->addSeconds(1);
+        }
+
+        if (isset($startTime) && isset($endTime)) {
+            return match ($operator) {
+                '=' => [
+                    'gte' => $startTime->getTimestampMs(),
+                    'lt' => $endTime->getTimestampMs(),
+                ],
+                '<' => [
+                    'lt' => $startTime->getTimestampMs(),
+                ],
+                '<=' => [
+                    'lt' => $endTime->getTimestampMs(),
+                ],
+                '>' => [
+                    'gte' => $endTime->getTimestampMs(),
+                ],
+                '>=' => [
+                    'gte' => $startTime->getTimestampMs(),
+                ],
+            };
+        }
+
+        return null;
+    }
+
+    private static function makeFloatRangeOption(string $operator, float|string $value, float $tolerance): ?array
+    {
+        // Some locales have `,` as decimal separator.
+        // Note that thousand separator is not (yet?) supported.
+        $value = str_replace(',', '.', (string) $value);
+
+        if (!is_numeric($value)) {
+            return null;
+        }
+
+        $value = get_float($value);
+
+        switch ($operator) {
+            case '=':
+                return [
+                    'gte' => $value - $tolerance,
+                    'lte' => $value + $tolerance,
+                ];
+            case '<':
+                return [
+                    'lte' => $value - $tolerance,
+                ];
+            case '<=':
+                return [
+                    'lte' => $value + $tolerance,
+                ];
+            case '>':
+                return [
+                    'gte' => $value + $tolerance,
+                ];
+            case '>=':
+                return [
+                    'gte' => $value - $tolerance,
+                ];
+        }
+
+        return null;
+    }
+
+    private static function makeIntOption(string $operator, string $value): ?int
+    {
+        if (is_numeric($value) && $operator === '=') {
+            return get_int($value);
+        }
+
+        return null;
+    }
+
+    private static function makeIntRangeOption(string $operator, int|string|null $value): ?array
+    {
+        if (!is_numeric($value)) {
+            return null;
+        }
+
+        $value = get_int($value);
+
+        switch ($operator) {
+            case '=':
+                return [
+                    'gte' => $value,
+                    'lte' => $value,
+                ];
+            case '<':
+                return [
+                    'lt' => $value,
+                ];
+            case '<=':
+                return [
+                    'lte' => $value,
+                ];
+            case '>':
+                return [
+                    'gt' => $value,
+                ];
+            case '>=':
+                return [
+                    'gte' => $value,
+                ];
+        }
+
+        return null;
+    }
+
+    private static function makeTextOption(string $operator, string $value): ?string
+    {
+        return $operator === '='
+            ? presence(strtr(preg_replace('/^"(.*)"$/', '$1', $value), ['\\"' => '"']))
+            : null;
+    }
+
+    private static function statePrefixSearch($value): ?int
+    {
+        if (!present($value)) {
+            return null;
+        }
+
+        if (isset(Beatmapset::STATES[$value])) {
+            return Beatmapset::STATES[$value];
+        }
+
+        foreach (Beatmapset::STATES as $string => $int) {
+            if (starts_with($string, $value)) {
+                return $int;
+            }
+        }
+
+        return null;
+    }
+
+    public function __construct(?string $query)
+    {
         // reference: https://github.com/ppy/osu/blob/f6baf49ad6b42c662a729ad05e18bd99bc48b4c7/osu.Game/Screens/Select/FilterQueryParser.cs
-        // adjusted for multiple quoted options (with side effect of inner quotes must be escaped)
-        $keywords = preg_replace_callback('#\b(?<key>\w+)(?<op>(:|=|(>|<)(:|=)?))(?<value>("{1,2})(?:\\\"|.)*?\7|\S*)#i', function ($m) use (&$options) {
-            $key = strtolower($m['key']);
+        // adjusted for negative and multiple quoted options (with side effect of inner quotes must be escaped)
+        static $regex = '#(?<!\S)(?<key>-?\w+)(?<op>(:|=|(>|<)(:|=)?))(?<value>("{1,2})(?:\\\"|.)*?\7|\S*)#i';
+
+        $keywords = preg_replace_callback($regex, function ($m) {
             $op = str_replace(':', '=', $m['op']);
+
+            $type = 'includes';
+            $key = strtolower($m['key']);
+            if (str_starts_with($key, '-')) {
+                $type = 'excludes';
+                $key = substr($key, 1);
+            }
+
             switch ($key) {
                 case 'star':
                 case 'stars':
@@ -102,9 +269,9 @@ class BeatmapsetQueryParser
 
             if (isset($option)) {
                 if (is_array($option)) {
-                    $options[$key] = array_merge($options[$key] ?? [], $option);
+                    $this->{$type}[$key] = array_merge($this->{$type}[$key] ?? [], $option);
                 } else {
-                    $options[$key] = $option;
+                    $this->{$type}[$key] = $option;
                 }
 
                 return '';
@@ -113,154 +280,6 @@ class BeatmapsetQueryParser
             return $m[0];
         }, $query ?? '');
 
-        return [
-            'keywords' => presence(trim($keywords)),
-            'options' => $options,
-        ];
-    }
-
-    private static function makeDateRangeOption(string $operator, string $value): ?array
-    {
-        $value = presence(trim($value, '"'));
-
-        if (preg_match('#^\d{4}$#', $value) === 1) {
-            $startTime = CarbonImmutable::create($value, 1, 1, 0, 0, 0, 'UTC');
-            $endTime = $startTime->addYears(1);
-        } elseif (preg_match('#^(?<year>\d{4})[-./]?(?<month>\d{1,2})$#', $value, $m) === 1) {
-            $startTime = CarbonImmutable::create($m['year'], $m['month'], 1, 0, 0, 0, 'UTC');
-            $endTime = $startTime->addMonths(1);
-        } elseif (preg_match('#^(?<year>\d{4})[-./]?(?<month>\d{1,2})[-./]?(?<day>\d{1,2})$#', $value, $m) === 1) {
-            $startTime = CarbonImmutable::create($m['year'], $m['month'], $m['day'], 0, 0, 0, 'UTC');
-            $endTime = $startTime->addDays(1);
-        } else {
-            $startTime = parse_time_to_carbon($value)?->toImmutable()->utc();
-            $endTime = $startTime?->addSeconds(1);
-        }
-
-        if (isset($startTime) && isset($endTime)) {
-            return match ($operator) {
-                '=' => [
-                    'gte' => $startTime->getTimestampMs(),
-                    'lt' => $endTime->getTimestampMs(),
-                ],
-                '<' => [
-                    'lt' => $startTime->getTimestampMs(),
-                ],
-                '<=' => [
-                    'lt' => $endTime->getTimestampMs(),
-                ],
-                '>' => [
-                    'gte' => $endTime->getTimestampMs(),
-                ],
-                '>=' => [
-                    'gte' => $startTime->getTimestampMs(),
-                ],
-            };
-        }
-
-        return null;
-    }
-
-    private static function makeFloatRangeOption($operator, $value, $tolerance)
-    {
-        // Some locales have `,` as decimal separator.
-        // Note that thousand separator is not (yet?) supported.
-        $value = str_replace(',', '.', $value);
-
-        if (!is_numeric($value)) {
-            return;
-        }
-
-        $value = get_float($value);
-
-        switch ($operator) {
-            case '=':
-                return [
-                    'gte' => $value - $tolerance,
-                    'lte' => $value + $tolerance,
-                ];
-            case '<':
-                return [
-                    'lte' => $value - $tolerance,
-                ];
-            case '<=':
-                return [
-                    'lte' => $value + $tolerance,
-                ];
-            case '>':
-                return [
-                    'gte' => $value + $tolerance,
-                ];
-            case '>=':
-                return [
-                    'gte' => $value - $tolerance,
-                ];
-        }
-    }
-
-    private static function makeIntOption($operator, $value)
-    {
-        if (is_numeric($value) && $operator === '=') {
-            return get_int($value);
-        }
-    }
-
-    private static function makeIntRangeOption($operator, $value)
-    {
-        if (!is_numeric($value)) {
-            return;
-        }
-
-        $value = get_int($value);
-
-        switch ($operator) {
-            case '=':
-                return [
-                    'gte' => $value,
-                    'lte' => $value,
-                ];
-            case '<':
-                return [
-                    'lt' => $value,
-                ];
-            case '<=':
-                return [
-                    'lte' => $value,
-                ];
-            case '>':
-                return [
-                    'gt' => $value,
-                ];
-            case '>=':
-                return [
-                    'gte' => $value,
-                ];
-        }
-    }
-
-    private static function makeTextOption(string $operator, string $value): ?string
-    {
-        return $operator === '='
-            ? presence(strtr(preg_replace('/^"(.*)"$/', '$1', $value), ['\\"' => '"']))
-            : null;
-    }
-
-    private static function statePrefixSearch($value): ?int
-    {
-        if (!present($value)) {
-            return null;
-        }
-
-        if (isset(Beatmapset::STATES[$value])) {
-            return Beatmapset::STATES[$value];
-        }
-
-        foreach (Beatmapset::STATES as $string => $int) {
-            if (starts_with($string, $value)) {
-                return $int;
-            }
-        }
-
-        return null;
+        $this->keywords = presence(trim($keywords));
     }
 }
