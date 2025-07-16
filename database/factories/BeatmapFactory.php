@@ -17,6 +17,36 @@ class BeatmapFactory extends Factory
 {
     protected $model = Beatmap::class;
 
+    public function convertsToManiaKeys(int $keys): static
+    {
+        return $this->state([
+            'playmode' => Beatmap::MODES['osu'],
+            ...match ($keys) {
+                4 => [
+                    'countNormal' => 2,
+                    'countSlider' => 10,
+                    'countSpinner' => 0,
+                    'diff_overall' => 3,
+                    'diff_size' => 4,
+                ],
+                6 => [
+                    'countNormal' => 2,
+                    'countSlider' => 10,
+                    'countSpinner' => 0,
+                    'diff_overall' => 5,
+                    'diff_size' => 10,
+                ],
+                7 => [
+                    'countNormal' => 2,
+                    'countSlider' => 0,
+                    'countSpinner' => 0,
+                    'diff_overall' => 1,
+                    'diff_size' => 1,
+                ],
+            },
+        ]);
+    }
+
     public function definition(): array
     {
         return [
