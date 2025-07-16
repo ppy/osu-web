@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Thanks for your support so far! You have contributed :dollars over :tags tag purchases!',
-            'gifted' => "You have given away :giftedTags of your purchases as gifts (that's :giftedDollars worth), how generous!",
+            'contribution_with_duration' => 'Thank you for your ongoing support! So far, you\'ve contributed a total of :dollars, earning you the "Supporter" tag for :duration.',
             'not_yet' => "You haven't ever had an osu!supporter tag :(",
             'valid_until' => 'Your current osu!supporter tag is valid until :date!',
             'was_valid_until' => 'Your osu!supporter tag was valid until :date.',
+
+            'gifted' => [
+                '_' => 'Out of your total contributions, you’ve gifted :dollars worth of tags to :users covering :duration. That’s incredibly generous!',
+                'users' => ':count_delimited other user|:count_delimited other users',
+            ],
         ],
     ],
 ];
