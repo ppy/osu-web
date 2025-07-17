@@ -1493,14 +1493,24 @@ class OsuAuthorize
     }
 
     /**
-     * @param User|null $user
-     * @param Topic $topic
-     * @return string
      * @throws AuthorizationCheckException
      */
     public function checkForumTopicEdit(?User $user, Topic $topic): string
     {
-        return $this->checkForumPostEdit($user, $topic->firstPost);
+        if ($this->doCheckUser($user, 'ForumModerate', $topic->forum)->can()) {
+            return 'ok';
+        }
+
+        $postEditPermission = $this->doCheckUser($user, 'ForumPostEdit', $topic->firstPost);
+        if (!$postEditPermission->can()) {
+            return $postEditPermission->rawMessage();
+        }
+
+        if (!ForumAuthorize::aclCheck($user, 'f_post', $topic->forum)) {
+            return 'forum.topic.edit.no_permission';
+        }
+
+        return 'ok';
     }
 
     /**
