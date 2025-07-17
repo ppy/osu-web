@@ -44,6 +44,9 @@
         </span>
     </a>
 @elseif ($object instanceof App\Models\User)
+    @php
+        $country = app('countries')->byCode($object->country_acronym);
+    @endphp
     <div class="ranking-page-table-main">
         <span class="ranking-page-table-main__flag">
             <a
@@ -53,13 +56,13 @@
                     'sort' => $params['sort'],
                     'type' => $params['type'],
 
-                    'country' => $object->country->acronym,
+                    'country' => $country->acronym,
                     'filter' => $params['filter'],
                     'variant' => $params['variant'],
                 ]) }}"
             >
                 @include('objects._flag_country', [
-                    'country' => $object->country,
+                    'country' => $country,
                 ])
             </a>
         </span>
