@@ -10,7 +10,9 @@ export class BaseEntryList extends React.Component
     super props
 
     @eventId = "contests-show-voting-#{nextVal()}"
-    @state =
+    state = JSON.parse(@props.container.dataset.state) if @props.container.dataset.state?
+
+    @state = Object.assign
       waitingForResponse: false
       contest: @props.contest
       selected: @props.selected
@@ -18,7 +20,9 @@ export class BaseEntryList extends React.Component
       options:
         showPreview: @props.options.showPreview ? false
         showLink: @props.options.showLink ? false
-        linkIcon: @props.options.linkIcon ? false
+        linkIcon: @props.options.linkIcon ? false,
+      state ? {}
+
 
   handleVoteClick: (_e, {contest_id, entry_id, callback}) =>
     return unless contest_id == @state.contest.id
@@ -35,6 +39,7 @@ export class BaseEntryList extends React.Component
       waitingForResponse: true
       callback
 
+
   handleUpdate: (_e, {response, callback}) =>
     return unless response.contest.id == @state.contest.id
 
@@ -42,11 +47,16 @@ export class BaseEntryList extends React.Component
       contest: response.contest
       selected: response.userVotes
       waitingForResponse: false
-      callback
+      () =>
+        # TODO: combine with count in GalleryContestVoteProgress when converting to typescript
+        @props.container.dataset.state = JSON.stringify(@state)
+        callback?()
+
 
   componentDidMount: ->
     $.subscribe "contest:vote:click.#{@eventId}", @handleVoteClick
     $.subscribe "contest:vote:done.#{@eventId}", @handleUpdate
+
 
   componentWillUnmount: ->
     $.unsubscribe ".#{@eventId}"
@@ -63,4 +73,6 @@ export class BaseEntryList extends React.Component
 
 
   onToggleShowVotedOnlyClick: =>
-    @setState showVotedOnly: !@state.showVotedOnly
+    @setState
+      showVotedOnly: !@state.showVotedOnly
+      () => @props.container.dataset.state = JSON.stringify(@state)
