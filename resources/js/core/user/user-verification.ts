@@ -1,11 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { type TurboSubmitEndEvent } from '@hotwired/turbo';
+import { TurboBeforeFetchResponseEvent, type TurboSubmitEndEvent } from '@hotwired/turbo';
 import { route } from 'laroute';
 import { xhrErrorMessage } from 'utils/ajax';
 import { fadeIn, fadeOut, fadeToggle } from 'utils/fade';
-import { createClickCallback } from 'utils/html';
+import { createClickCallback, htmlElementOrNull } from 'utils/html';
 import { trans } from 'utils/lang';
 import { reloadPage } from 'utils/turbolinks';
 
@@ -74,6 +74,7 @@ export default class UserVerification {
     $.subscribe('user-verification:success', this.success);
 
     document.addEventListener('turbo:submit-end', this.onErrorTurbo);
+    document.addEventListener('turbo:before-fetch-response', this.onMailFallbackMethod);
   }
 
   showOnError = (xhr: JQuery.jqXHR, callback?: () => void) => {
@@ -113,7 +114,14 @@ export default class UserVerification {
   };
 
   private readonly error = (xhr: JQuery.jqXHR) => {
-    this.setMessage(xhrErrorMessage(xhr));
+    if (xhr.getResponseHeader('x-turbo-action') === 'session-verification-mail-fallback') {
+      const json = xhr.responseJSON as UserVerificationJson;
+
+      const box = this.setBoxContent(json.box);
+      htmlElementOrNull(box?.querySelector('.modal-af'))?.focus();
+    } else {
+      this.setMessage(xhrErrorMessage(xhr));
+    }
   };
 
   private readonly isActive = () => this.modal?.classList.contains('js-user-verification--active');
@@ -142,6 +150,21 @@ export default class UserVerification {
     });
   };
 
+  private readonly onMailFallbackMethod = (e: TurboBeforeFetchResponseEvent) => {
+    const fetchResponse = e.detail.fetchResponse;
+    if (fetchResponse.header('x-turbo-action') !== 'session-verification-mail-fallback') {
+      return;
+    }
+
+    e.preventDefault();
+    fetchResponse.responseText.then((jsonString: string) => {
+      const json = JSON.parse(jsonString) as UserVerificationJson;
+
+      const box = this.setBoxContent(json.box);
+      htmlElementOrNull(box?.querySelector('.modal-af'))?.focus();
+    });
+  };
+
   private readonly prepareForRequest = (type: string) => {
     this.request?.abort();
     this.setMessage(trans(`user_verification.box.${type}`), true);
@@ -159,6 +182,15 @@ export default class UserVerification {
       })
       .fail(this.error);
   };
+
+  private setBoxContent(html: string) {
+    const box = htmlElementOrNull(document.querySelector('.js-user-verification--box'));
+    if (box != null) {
+      box.innerHTML = html;
+    }
+
+    return box;
+  }
 
   private readonly setDelayShow = () => {
     this.delayShow = true;
@@ -198,7 +230,7 @@ export default class UserVerification {
     this.callback = callback;
 
     if (html != null) {
-      $('.js-user-verification--box').html(html);
+      this.setBoxContent(html);
     }
 
     this.$modal()

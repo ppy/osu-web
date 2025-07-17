@@ -312,6 +312,14 @@ class AccountController extends Controller
         }
     }
 
+    public function verificationMailFallback()
+    {
+        return SessionVerification\Controller::mailFallback(
+            SessionVerification\State::getCurrent(),
+            SessionVerification\Controller::FALLBACK_MODES['user_initiated'],
+        );
+    }
+
     public function verify()
     {
         return SessionVerification\Controller::verify();

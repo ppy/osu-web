@@ -18,6 +18,23 @@
         ]
     },
     {
+        "uri": "api/v2/session/verify/mail-fallback",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\AccountController@verificationMailFallback",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:any",
+            "Illuminate\\Auth\\Middleware\\Authenticate",
+            "App\\Http\\Middleware\\VerifyUser"
+        ],
+        "scopes": [
+            "any"
+        ]
+    },
+    {
         "uri": "api/v2/session/verify/reissue",
         "methods": [
             "POST"

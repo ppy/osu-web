@@ -11,6 +11,7 @@
   "require": {
     "ext-ds": "*",
     "ext-redis": "*",
+    "bacon/bacon-qr-code": "^3.0",
     "chaseconey/laravel-datadog-helper": ">=1.2.0",
     "egulias/email-validator": "*",
     "elasticsearch/elasticsearch": "^7.17.x-dev",
@@ -39,6 +40,7 @@
     "romanzipp/laravel-turnstile": "^1.3",
     "sentry/sentry-laravel": ">=4.13.0",
     "shopify/shopify-api": "^5.6",
+    "spomky-labs/otphp": "^11.3",
     "symfony/yaml": "*",
     "tightenco/ziggy": "^1.8",
     "xsolla/xsolla-sdk-php": "*"
