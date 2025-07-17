@@ -3,6 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    $currentUser = Auth::user();
     $links = [
         [
             'url' => route('contests.index'),
@@ -46,5 +47,28 @@
         <div class="contest">
             @yield('contest-content')
         </div>
+
+        @if ($currentUser !== null && $currentUser->isAdmin())
+            <div class="admin-menu">
+                <button class="admin-menu__button js-menu" data-menu-target="admin-menu-forums-show">
+                    <span class="fas fa-angle-up"></span>
+                    <span class="admin-menu__button-icon fas fa-tools"></span>
+                </button>
+
+                <div class="admin-menu__menu js-menu" data-menu-id="admin-menu-forums-show" data-visibility="hidden">
+                    <a class="admin-menu-item" href="{{ route('admin.contests.show', $contestMeta->id) }}" target="_blank">
+                        <span class="admin-menu-item__content">
+                            <span class="admin-menu-item__label admin-menu-item__label--icon">
+                                <span class="fas fa-list-alt"></span>
+                            </span>
+
+                            <span class="admin-menu-item__label admin-menu-item__label--text">
+                                {{ osu_trans('contest.show.admin.page') }}
+                            </span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        @endif
     </div>
 @endsection
