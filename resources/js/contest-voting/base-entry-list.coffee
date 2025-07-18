@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { isEqual } from 'lodash'
 import { button, span } from 'react-dom-factories'
 import { trans } from 'utils/lang'
 import { nextVal } from 'utils/seq'
@@ -10,6 +11,7 @@ export class BaseEntryList extends React.Component
     super props
 
     @eventId = "contests-show-voting-#{nextVal()}"
+    # TODO: combine with count in GalleryContestVoteProgress when converting to typescript
     state = JSON.parse(@props.container.dataset.state) if @props.container.dataset.state?
 
     @state = Object.assign
@@ -47,15 +49,19 @@ export class BaseEntryList extends React.Component
       contest: response.contest
       selected: response.userVotes
       waitingForResponse: false
-      () =>
-        # TODO: combine with count in GalleryContestVoteProgress when converting to typescript
-        @props.container.dataset.state = JSON.stringify(@state)
-        callback?()
+      callback
 
 
   componentDidMount: ->
     $.subscribe "contest:vote:click.#{@eventId}", @handleVoteClick
     $.subscribe "contest:vote:done.#{@eventId}", @handleUpdate
+
+
+  componentDidUpdate: (_, prevState) ->
+    if !isEqual(prevState.selected, @state.selected) || prevState.showVotedOnly != @state.showVotedOnly
+      @props.container.dataset.state = JSON.stringify
+        selected: @state.selected
+        showVotedOnly: @state.showVotedOnly
 
 
   componentWillUnmount: ->
@@ -73,6 +79,4 @@ export class BaseEntryList extends React.Component
 
 
   onToggleShowVotedOnlyClick: =>
-    @setState
-      showVotedOnly: !@state.showVotedOnly
-      () => @props.container.dataset.state = JSON.stringify(@state)
+    @setState showVotedOnly: !@state.showVotedOnly
