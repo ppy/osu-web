@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { isEqual } from 'lodash'
 import { button, span } from 'react-dom-factories'
 import { trans } from 'utils/lang'
 import { nextVal } from 'utils/seq'
@@ -10,7 +11,10 @@ export class BaseEntryList extends React.Component
     super props
 
     @eventId = "contests-show-voting-#{nextVal()}"
-    @state =
+    # TODO: combine with count in GalleryContestVoteProgress when converting to typescript
+    state = JSON.parse(@props.container.dataset.state) if @props.container.dataset.state?
+
+    @state = Object.assign
       waitingForResponse: false
       contest: @props.contest
       selected: @props.selected
@@ -18,7 +22,9 @@ export class BaseEntryList extends React.Component
       options:
         showPreview: @props.options.showPreview ? false
         showLink: @props.options.showLink ? false
-        linkIcon: @props.options.linkIcon ? false
+        linkIcon: @props.options.linkIcon ? false,
+      state ? {}
+
 
   handleVoteClick: (_e, {contest_id, entry_id, callback}) =>
     return unless contest_id == @state.contest.id
@@ -35,6 +41,7 @@ export class BaseEntryList extends React.Component
       waitingForResponse: true
       callback
 
+
   handleUpdate: (_e, {response, callback}) =>
     return unless response.contest.id == @state.contest.id
 
@@ -42,11 +49,15 @@ export class BaseEntryList extends React.Component
       contest: response.contest
       selected: response.userVotes
       waitingForResponse: false
-      callback
+      () =>
+        @saveState()
+        callback?()
+
 
   componentDidMount: ->
     $.subscribe "contest:vote:click.#{@eventId}", @handleVoteClick
     $.subscribe "contest:vote:done.#{@eventId}", @handleUpdate
+
 
   componentWillUnmount: ->
     $.unsubscribe ".#{@eventId}"
@@ -63,4 +74,13 @@ export class BaseEntryList extends React.Component
 
 
   onToggleShowVotedOnlyClick: =>
-    @setState showVotedOnly: !@state.showVotedOnly
+    @setState
+      showVotedOnly: !@state.showVotedOnly
+      @saveState
+
+
+  saveState: =>
+    @props.container.dataset.state = JSON.stringify
+      selected: @state.selected
+      showVotedOnly: @state.showVotedOnly
+

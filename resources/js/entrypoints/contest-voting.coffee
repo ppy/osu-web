@@ -11,6 +11,7 @@ propsFunction = (container) ->
   data = parseJson container.dataset.src
 
   return {
+    container
     contest: data.contest
     selected: data.userVotes
     stdRange:
