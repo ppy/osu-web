@@ -4,25 +4,33 @@
 --}}
 @php
     $currentUser ??= Auth::user();
-    $extraFooterLinks = $currentUser?->isAdmin()
-        ? [
-            osu_trans('common.buttons.admin') => route('admin.beatmapsets.show', $beatmapset->getKey()),
-        ] : [];
 @endphp
 @extends('master', [
     'titlePrepend' => "{$beatmapset->getDisplayArtist($currentUser)} - {$beatmapset->getDisplayTitle($currentUser)}",
-    'extraFooterLinks' => $extraFooterLinks,
 ])
 
 @section('content')
     <div class="js-react--beatmapset-page u-contents"></div>
-    @if ($currentUser?->isModerator() ?? false)
+    @if ($currentUser?->isModerator() || $currentUser?->isAdmin())
         <div class="admin-menu">
             <button class="admin-menu__button js-menu" data-menu-target="admin-beatmapset" type="button">
                 <span class="fas fa-angle-up"></span>
                 <span class="admin-menu__button-icon fas fa-tools"></span>
             </button>
             <div class="admin-menu__menu js-menu" data-menu-id="admin-beatmapset" data-visibility="hidden">
+                @if ($currentUser?->isAdmin())
+                    <a class="admin-menu-item" href="{{ route('admin.beatmapsets.show', $beatmapset->getKey()) }}" target="_blank">
+                        <span class="admin-menu-item__content">
+                            <span class="admin-menu-item__label admin-menu-item__label--icon">
+                                <span class="fas fa-cogs"></span>
+                            </span>
+
+                            <span class="admin-menu-item__label admin-menu-item__label--text">
+                                {{ osu_trans('beatmapsets.show.admin.page') }}
+                            </span>
+                        </span>
+                    </a>
+                @endif
                 <a class="admin-menu-item" href="{{ $beatmapset->coverURL('raw') }}" target="_blank">
                     <span class="admin-menu-item__content">
                         <span class="admin-menu-item__label admin-menu-item__label--icon">

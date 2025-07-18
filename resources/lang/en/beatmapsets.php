@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'View full size cover image',
+            'page' => 'View admin page',
         ],
 
         'deleted_banner' => [

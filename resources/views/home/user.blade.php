@@ -6,6 +6,7 @@
     use App\Models\NewsPost;
 
     $newsPostLargePreviews = NewsPost::LANDING_LIMIT;
+    $currentUser = Auth::user();
 @endphp
 @extends('master')
 
@@ -129,6 +130,29 @@
                 </div>
             </div>
         </div>
+
+        @if ($currentUser !== null && $currentUser->isAdmin())
+            <div class="admin-menu">
+                <button class="admin-menu__button js-menu" data-menu-target="admin-menu-forums-show">
+                    <span class="fas fa-angle-up"></span>
+                    <span class="admin-menu__button-icon fas fa-tools"></span>
+                </button>
+
+                <div class="admin-menu__menu js-menu" data-menu-id="admin-menu-forums-show" data-visibility="hidden">
+                    <a class="admin-menu-item" href="{{ route('admin.root') }}" target="_blank">
+                        <span class="admin-menu-item__content">
+                            <span class="admin-menu-item__label admin-menu-item__label--icon">
+                                <span class="fas fa-terminal"></span>
+                            </span>
+
+                            <span class="admin-menu-item__label admin-menu-item__label--text">
+                                {{ osu_trans('home.user.show.admin.page') }}
+                            </span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        @endif
     </div>
 @endsection
 
