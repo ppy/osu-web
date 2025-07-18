@@ -11,14 +11,14 @@
 
 @section('content')
     <div class="js-react--beatmapset-page u-contents"></div>
-    @if ($currentUser?->isModerator() ?? false)
+    @if ($currentUser?->isModerator() || $currentUser?->isAdmin())
         <div class="admin-menu">
             <button class="admin-menu__button js-menu" data-menu-target="admin-beatmapset" type="button">
                 <span class="fas fa-angle-up"></span>
                 <span class="admin-menu__button-icon fas fa-tools"></span>
             </button>
             <div class="admin-menu__menu js-menu" data-menu-id="admin-beatmapset" data-visibility="hidden">
-                @if ($currentUser?->isAdmin() ?? false)
+                @if ($currentUser?->isAdmin())
                     <a class="admin-menu-item" href="{{ route('admin.beatmapsets.show', $beatmapset->getKey()) }}" target="_blank">
                         <span class="admin-menu-item__content">
                             <span class="admin-menu-item__label admin-menu-item__label--icon">

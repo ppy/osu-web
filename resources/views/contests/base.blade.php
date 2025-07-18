@@ -56,7 +56,7 @@
                 </button>
 
                 <div class="admin-menu__menu js-menu" data-menu-id="admin-menu-forums-show" data-visibility="hidden">
-                    <a class="admin-menu-item" href="{{ route('admin.contests.show', $contestMeta->id) }}" target="_blank">
+                    <a class="admin-menu-item" href="{{ route('admin.contests.show', $contestMeta) }}" target="_blank">
                         <span class="admin-menu-item__content">
                             <span class="admin-menu-item__label admin-menu-item__label--icon">
                                 <span class="fas fa-list-alt"></span>
