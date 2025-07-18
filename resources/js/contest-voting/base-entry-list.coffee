@@ -49,19 +49,14 @@ export class BaseEntryList extends React.Component
       contest: response.contest
       selected: response.userVotes
       waitingForResponse: false
-      callback
+      () =>
+        @saveState()
+        callback?()
 
 
   componentDidMount: ->
     $.subscribe "contest:vote:click.#{@eventId}", @handleVoteClick
     $.subscribe "contest:vote:done.#{@eventId}", @handleUpdate
-
-
-  componentDidUpdate: (_, prevState) ->
-    if !isEqual(prevState.selected, @state.selected) || prevState.showVotedOnly != @state.showVotedOnly
-      @props.container.dataset.state = JSON.stringify
-        selected: @state.selected
-        showVotedOnly: @state.showVotedOnly
 
 
   componentWillUnmount: ->
@@ -79,4 +74,13 @@ export class BaseEntryList extends React.Component
 
 
   onToggleShowVotedOnlyClick: =>
-    @setState showVotedOnly: !@state.showVotedOnly
+    @setState
+      showVotedOnly: !@state.showVotedOnly
+      @saveState
+
+
+  saveState: =>
+    @props.container.dataset.state = JSON.stringify
+      selected: @state.selected
+      showVotedOnly: @state.showVotedOnly
+
