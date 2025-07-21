@@ -17,6 +17,7 @@ use Sentry\State\Scope;
  * @property \Carbon\Carbon $date
  * @property int $epicfactor
  * @property int $event_id
+ * @property boolean|null $legacy_score_event
  * @property int $private
  * @property string $text
  * @property string|null $text_clean
