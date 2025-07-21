@@ -12,6 +12,7 @@ use App\Libraries\ClientCheck;
 use App\Libraries\RateLimiter;
 use App\Libraries\Search\ForumSearch;
 use App\Libraries\Search\ForumSearchRequestParams;
+use App\Libraries\Search\ScoreSearchParams;
 use App\Libraries\User\FindForProfilePage;
 use App\Libraries\UserRegistration;
 use App\Models\Beatmap;
@@ -790,7 +791,7 @@ class UsersController extends Controller
             // Event
             case 'recentActivity':
                 $transformer = 'Event';
-                $query = $this->user->events()->recent();
+                $query = $this->user->events()->recent(ScoreSearchParams::showLegacyForUser(\Auth::user()));
                 break;
 
             // KudosuHistory

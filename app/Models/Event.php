@@ -498,9 +498,11 @@ class Event extends Model
         return $this;
     }
 
-    public function scopeRecent($query)
+    public function scopeRecent($query, null | true $legacyOnly)
     {
-        return $query->orderBy('event_id', 'desc')->limit(5);
+        return $query->orderBy('event_id', 'desc')
+            ->whereIn('legacy_score_event', [null, $legacyOnly === true])
+            ->limit(5);
     }
 
     private static function userParams($user)
