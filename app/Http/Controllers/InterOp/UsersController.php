@@ -5,11 +5,13 @@
 
 namespace App\Http\Controllers\InterOp;
 
+use App\Enums\Ruleset;
 use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\ValidationException;
 use App\Http\Controllers\Controller;
 use App\Libraries\UserRegistration;
 use App\Models\Beatmap;
+use App\Models\Event;
 use App\Models\User;
 use App\Models\UserAchievement;
 use App\Transformers\CurrentUserTransformer;
@@ -30,6 +32,22 @@ class UsersController extends Controller
         datadog_increment('user_achievement_unlock', ['id' => $achievementId]);
 
         return $achievement->getKey();
+    }
+
+    public function rankAchieved($userId, $beatmapId, $rulesetId)
+    {
+        $params = get_params(request()->all(), null,
+        [
+            'position_after:int',
+            'rank:string',
+            'legacy_score_event:bool',
+        ]);
+        $params['beatmap'] = Beatmap::findOrFail($beatmapId);
+        $params['ruleset'] = Ruleset::from($rulesetId);
+        $params['user'] = User::findOrFail($userId);
+
+        Event::generate('rank', $params);
+        // TODO: also emit lost first place rank event when relevant
     }
 
     public function store()

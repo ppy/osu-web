@@ -5,6 +5,8 @@
 
 namespace App\Models;
 
+use App\Enums\Ruleset;
+use App\Exceptions\InvariantException;
 use App\Models\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
 use Sentry\State\Scope;
@@ -172,6 +174,31 @@ class Event extends Model
                     'epicfactor' => 4,
                 ];
 
+                break;
+
+            case 'rank':
+                $beatmap = $options['beatmap'];
+                $ruleset = $options['ruleset'];
+                $rulesetName = self::modeToString($ruleset);
+                $beatmapParams = static::beatmapParams($beatmap, $ruleset);
+                $user = $options['user'];
+                $userParams = static::userParams($user);
+                $positionAfter = $options['position_after'];
+                $positionText = $positionAfter <= 50 ? "<b>rank #{$positionAfter}</b>" : "#{$positionAfter}";
+                $rank = $options['rank'];
+                $legacyScoreEvent = $options['legacy_score_event'];
+
+                $params = [
+                    'text' => "<img src='/images/{$rank}_small.png'/> <b><a href='{$userParams['url']}'>{$userParams['username']}</a></b> achieved rank {$positionText} on <a href='{$beatmapParams['url']}'>{$beatmapParams['title']}</a> ({$rulesetName})",
+                    'text_clean' => "[{$userParams['url_clean']} {$userParams['username']}] achieved rank #{$positionAfter} on [{$beatmapParams['url_clean']} {$beatmapParams['title']}] ({$rulesetName})",
+                    'beatmap_id' => $beatmap->getKey(),
+                    'beatmapset_id' => $beatmap->beatmapset->getKey(),
+                    'user_id' => $user->getKey(),
+                    'private' => false,
+                    // copy-pasted from https://github.com/peppy/osu-web-10/blob/2821062bbb668bc85fd655bd1c777d6e610c51b7/www/web/osu-submit-20190809.php#L1208
+                    'epicfactor' => ($positionAfter == 1 && $ruleset == Ruleset::osu && $beatmap->passcount > 250 ? 8 : ($positionAfter < 10 ? 4 : ($positionAfter < 40 ? 2 : 1))),
+                    'legacy_score_event' => $legacyScoreEvent,
+                ];
                 break;
 
             case 'usernameChange':
@@ -495,5 +522,32 @@ class Event extends Model
             'url' => $url,
             'url_clean' => $GLOBALS['cfg']['app']['url'].$url,
         ];
+    }
+
+    private static function beatmapParams($beatmap, $ruleset)
+    {
+        $url = e(route('beatmaps.show', ['beatmap' => $beatmap, 'm' => $ruleset], false));
+        return [
+            'title' => e($beatmap->beatmapset->artist.' - '.$beatmap->beatmapset->title.' ['.$beatmap->version.']'),
+            'url' => $url,
+            'url_clean' => $GLOBALS['cfg']['app']['url'].$url,
+        ];
+    }
+
+
+    public static function modeToString(Ruleset $mode)
+    {
+        switch ($mode) {
+            case Ruleset::osu:
+                return 'osu!';
+            case Ruleset::taiko:
+                return 'osu!taiko';
+            case Ruleset::catch:
+                return 'osu!catch';
+            case Ruleset::mania:
+                return 'osu!mania';
+        }
+
+        throw new InvariantException("unknown mode {$mode->value}");
     }
 }
