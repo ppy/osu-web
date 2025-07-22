@@ -41,7 +41,11 @@ class DailyChallengeController extends Controller
         } else {
             $playlist = $room->currentPlaylistItem;
 
-            $scores = $room->topScores()->paginate();
+            $scores = $playlist
+                ->highScores()
+                ->forRanking()
+                ->with(['score.user.team'])
+                ->paginate();
         }
 
         $currentUser = \Auth::user();
@@ -67,7 +71,7 @@ class DailyChallengeController extends Controller
                 ->get()
                 ->keyBy(fn ($agg) => $dateHelper::makeId(parse_db_time($agg->getAttribute('room_starts_at'))));
 
-            $userScore = $room?->topScores()->whereBelongsTo($currentUser)->first();
+            $userScore = $playlist?->highScores()->whereBelongsTo($currentUser)->first();
         }
 
         return ext_view('rankings.daily_challenge', compact(
