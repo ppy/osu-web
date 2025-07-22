@@ -19,7 +19,7 @@ use Sentry\State\Scope;
  * @property \Carbon\Carbon $date
  * @property int $epicfactor
  * @property int $event_id
- * @property boolean|null $legacy_score_event
+ * @property bool|null $legacy_score_event
  * @property int $private
  * @property string $text
  * @property string|null $text_clean
@@ -196,7 +196,7 @@ class Event extends Model
                     'user_id' => $user->getKey(),
                     'private' => false,
                     // copy-pasted from https://github.com/peppy/osu-web-10/blob/2821062bbb668bc85fd655bd1c777d6e610c51b7/www/web/osu-submit-20190809.php#L1208
-                    'epicfactor' => ($positionAfter == 1 && $ruleset == Ruleset::osu && $beatmap->passcount > 250 ? 8 : ($positionAfter < 10 ? 4 : ($positionAfter < 40 ? 2 : 1))),
+                    'epicfactor' => ($positionAfter === 1 && $ruleset === Ruleset::osu && $beatmap->passcount > 250 ? 8 : ($positionAfter < 10 ? 4 : ($positionAfter < 40 ? 2 : 1))),
                     'legacy_score_event' => $legacyScoreEvent,
                 ];
                 break;

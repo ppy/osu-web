@@ -36,12 +36,15 @@ class UsersController extends Controller
 
     public function rankAchieved($userId, $beatmapId, $rulesetId)
     {
-        $params = get_params(request()->all(), null,
-        [
-            'position_after:int',
-            'rank:string',
-            'legacy_score_event:bool',
-        ]);
+        $params = get_params(
+            request()->all(),
+            null,
+            [
+                'position_after:int',
+                'rank:string',
+                'legacy_score_event:bool',
+            ]
+        );
         $params['beatmap'] = Beatmap::findOrFail($beatmapId);
         $params['ruleset'] = Ruleset::from($rulesetId);
         $params['user'] = User::findOrFail($userId);
