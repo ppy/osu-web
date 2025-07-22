@@ -192,7 +192,7 @@
                     <tr class="{{ class_with_modifiers('ranking-page-table__row', ['inactive' => !$score->user->isActive()]) }}">
                         <td class="ranking-page-table__column">
                             #{{ i18n_number_format($loop->first
-                                ? $score->userRank()
+                                ? $agg->userRank()
                                 : $firstItem + $index
                             ) }}
                         </td>
