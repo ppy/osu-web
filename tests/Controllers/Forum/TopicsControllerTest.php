@@ -110,6 +110,27 @@ class TopicsControllerTest extends TestCase
     }
 
     #[DataProvider('dataProviderForModerationTests')]
+    public function testLock(?string $group, array $forumGroups, bool $success): void
+    {
+        $user = User::factory()->withGroup($group)->create();
+        $topic = Topic::factory()->for(Forum::factory()->moderatorGroups($forumGroups))->create();
+
+        $this->expectCountChange(fn () => Log::count(), $success ? 1 : 0);
+
+        $response = $this
+            ->actingAsVerified($user)
+            ->post(route('forum.topics.lock', $topic), ['lock' => true]);
+
+        if ($success) {
+            $response->assertSuccessful();
+            $this->assertTrue($topic->fresh()->isLocked());
+        } else {
+            $response->assertStatus(403);
+            $this->assertFalse($topic->fresh()->isLocked());
+        }
+    }
+
+    #[DataProvider('dataProviderForModerationTests')]
     public function testPin(?string $group, array $forumGroups, bool $success): void
     {
         $user = User::factory()->withGroup($group)->create();
@@ -128,27 +149,6 @@ class TopicsControllerTest extends TestCase
         } else {
             $response->assertStatus(403);
             $this->assertSame(Topic::TYPES['normal'], $topic->fresh()->topic_type);
-        }
-    }
-
-    #[DataProvider('dataProviderForModerationTests')]
-    public function testLock(?string $group, array $forumGroups, bool $success): void
-    {
-        $user = User::factory()->withGroup($group)->create();
-        $topic = Topic::factory()->for(Forum::factory()->moderatorGroups($forumGroups))->create();
-
-        $this->expectCountChange(fn () => Log::count(), $success ? 1 : 0);
-
-        $response = $this
-            ->actingAsVerified($user)
-            ->post(route('forum.topics.lock', $topic), ['lock' => true]);
-
-        if ($success) {
-            $response->assertSuccessful();
-            $this->assertTrue($topic->fresh()->isLocked());
-        } else {
-            $response->assertStatus(403);
-            $this->assertFalse($topic->fresh()->isLocked());
         }
     }
 
