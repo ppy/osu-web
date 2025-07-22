@@ -106,7 +106,7 @@ class SupporterTag
             ]);
     }
 
-    public static function getDurationText($length, ?string $locale = null)
+    public static function getDurationText($length, ?string $locale = null, string $joinString = ', ')
     {
         // don't forget to update StoreSupporterTagPrice.durationText in coffee
         $years = (int) ($length / 12);
@@ -121,6 +121,6 @@ class SupporterTag
             $texts[] = osu_trans_choice('common.count.months', $months, [], $locale);
         }
 
-        return implode(', ', $texts);
+        return implode($joinString, $texts);
     }
 }
