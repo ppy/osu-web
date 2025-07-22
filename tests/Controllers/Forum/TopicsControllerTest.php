@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace Tests\Controllers\Forum;
 
 use App\Exceptions\InvalidScopeException;
-use App\Models\Forum\Authorize;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
@@ -241,7 +240,8 @@ class TopicsControllerTest extends TestCase
 
         $this
             ->actAsScopedUser($user, ['forum.write_manage'], $client)
-            ->post(route('api.forum.topics.pin', $topic), ['pin' => Topic::TYPES['sticky']]);}
+            ->post(route('api.forum.topics.pin', $topic), ['pin' => Topic::TYPES['sticky']]);
+    }
 
     #[DataProvider('dataProviderForClientCredentialsGroupTests')]
     public function testPinClientCredentials(array $groups, array $forumGroups, bool $expectException, bool $success): void
@@ -265,7 +265,7 @@ class TopicsControllerTest extends TestCase
         }
     }
 
-   #[DataProvider('dataProviderForTestReply')]
+    #[DataProvider('dataProviderForTestReply')]
     public function testReply(bool $hasMinPlays, ?string $authorize, bool $success): void
     {
         $topic = Topic::factory()->for(Forum::factory()->withAuthorize($authorize))->create();
