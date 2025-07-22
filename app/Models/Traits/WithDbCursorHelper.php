@@ -14,11 +14,21 @@ trait WithDbCursorHelper
         return new DbCursorHelper(static::SORTS, static::DEFAULT_SORT, $sort);
     }
 
+    private static function cursorSortColumnName(array $sortOrCursorItem): mixed
+    {
+        return isset($sortOrCursorItem['nullPlaceholder'])
+            ? \DB::raw(sprintf(
+                'COALESCE(%s, %s)',
+                $sortOrCursorItem['column'],
+                \DB::escape($sortOrCursorItem['nullPlaceholder']),
+            )) : $sortOrCursorItem['column'];
+    }
+
     private static function cursorSortExecOrder($query, array $sort)
     {
         foreach ($sort as $i => $sortItem) {
             $orderMethod = $i === 0 ? 'reorderBy' : 'orderBy';
-            $query->$orderMethod($sortItem['column'], $sortItem['order']);
+            $query->$orderMethod(static::cursorSortColumnName($sortItem), $sortItem['order']);
         }
 
         return $query;
@@ -33,17 +43,18 @@ trait WithDbCursorHelper
         $current = array_shift($preparedCursor);
 
         $dir = $current['order'] === 'DESC' ? '<' : '>';
+        $column = static::cursorSortColumnName($current);
+        $value = $current['value'] ?? $current['nullPlaceholder'] ?? null;
 
         if (count($preparedCursor) === 0) {
-            $query->where($current['column'], $dir, $current['value']);
+            $query->where($column, $dir, $value);
         } else {
-            $query->where($current['column'], "{$dir}=", $current['value'])
-                ->where(function ($q) use ($current, $dir, $preparedCursor) {
-                    return $q->where($current['column'], $dir, $current['value'])
-                        ->orWhere(function ($qq) use ($preparedCursor) {
-                            return static::cursorSortExecWhere($qq, $preparedCursor);
-                        });
-                });
+            $query
+                ->where($column, "{$dir}=", $value)
+                ->where(fn ($q) =>
+                    $q
+                        ->where($column, $dir, $value)
+                        ->orWhere(fn ($qq) => static::cursorSortExecWhere($qq, $preparedCursor)));
         }
 
         return $query;
