@@ -1413,14 +1413,15 @@ class OsuAuthorize
     {
         $prefix = 'forum.post.edit.';
 
-        if ($this->doCheckUser($user, 'ForumModerate', $post->forum)->can()) {
+        $forum = $post->forum;
+        if ($this->doCheckUser($user, 'ForumModerate', $forum)->can()) {
             return 'ok';
         }
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if (!$this->doCheckUser($user, 'ForumView', $post->forum)->can()) {
+        if (!$this->doCheckUser($user, 'ForumView', $forum)->can()) {
             return $prefix.'no_forum_access';
         }
 
@@ -1438,6 +1439,10 @@ class OsuAuthorize
 
         if ($post->post_edit_locked) {
             return $prefix.'locked';
+        }
+
+        if (!ForumAuthorize::aclCheck($user, 'f_post', $forum)) {
+            return 'forum.topic.edit.no_permission';
         }
 
         return 'ok';
@@ -1504,10 +1509,6 @@ class OsuAuthorize
         $postEditPermission = $this->doCheckUser($user, 'ForumPostEdit', $topic->firstPost);
         if (!$postEditPermission->can()) {
             return $postEditPermission->rawMessage();
-        }
-
-        if (!ForumAuthorize::aclCheck($user, 'f_post', $topic->forum)) {
-            return 'forum.topic.edit.no_permission';
         }
 
         return 'ok';

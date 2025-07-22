@@ -7,13 +7,27 @@ declare(strict_types=1);
 
 namespace Tests\Controllers\Forum;
 
+use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class PostsControllerTest extends TestCase
 {
+    public static function dataProviderForTestUpdate(): array
+    {
+        return [
+            [null, 'post', null, [], 422],
+            ['new text', 'post', null, [], 200],
+            ['new text', null, null, [], 403],
+            ['new text', null, 'loved', [], 403],
+            ['new text', null, 'loved', ['loved'], 200],
+            ['new text', null, 'gmt', [], 200],
+        ];
+    }
+
     public function testDestroy(): void
     {
         $topic = Topic::factory()->withPost()->create();
@@ -86,5 +100,34 @@ class PostsControllerTest extends TestCase
             ->actingAsVerified($moderator)
             ->post(route('forum.posts.restore', $post))
             ->assertSuccessful();
+    }
+
+    #[DataProvider('dataProviderForTestUpdate')]
+    public function testUpdate(?string $newText, ?string $authorize, ?string $group, array $forumGroups, int $statusCode): void
+    {
+        $user = User::factory()->withGroup($group)->create();
+        $topic = Topic::factory()->withPost()->for(
+            Forum::factory()->withAuthorize($authorize)->moderatorGroups($forumGroups)
+        )->create([
+            'topic_poster' => $user,
+        ]);
+        $post = Post::factory()->create([
+            'topic_id' => $topic,
+            'post_text' => 'text',
+            'poster_id' => $user,
+        ]);
+
+        $this
+            ->actingAsVerified($user)
+            ->put(route('forum.posts.update', $post), [
+                'body' => $newText,
+            ])
+            ->assertStatus($statusCode);
+
+        if ($statusCode === 200) {
+            $this->assertSame($newText, $post->fresh()->post_text);
+        } else {
+            $this->assertSame('text', $post->fresh()->post_text);
+        }
     }
 }
