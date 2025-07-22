@@ -63,13 +63,14 @@ class DbCursorHelper
             $columnInput = $sortItem['columnInput'] ?? $sortItem['column'];
             $column = $sortItem['column'];
             $order = $sortItem['order'];
+            $nullPlaceholder = $sortItem['nullPlaceholder'] ?? null;
             $value = get_param_value($cursor[$columnInput] ?? null, $sortItem['type'] ?? null);
 
             if ($value === null) {
                 return;
             }
 
-            $ret[] = compact('column', 'order', 'value');
+            $ret[] = compact('column', 'nullPlaceholder', 'order', 'value');
         }
 
         return $ret;
