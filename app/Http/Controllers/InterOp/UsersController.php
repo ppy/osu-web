@@ -45,8 +45,13 @@ class UsersController extends Controller
                 'legacy_score_event:bool',
             ]
         );
+
+        abort_unless(isset($params['position_after']), 422, 'missing position_after parameter');
+        abort_unless(isset($params['rank']), 422, 'missing rank parameter');
+        abort_unless(isset($params['legacy_score_event']), 422, 'missing legacy_score_event parameter');
+
         $params['beatmap'] = Beatmap::findOrFail($beatmapId);
-        $params['ruleset'] = Ruleset::from($rulesetId);
+        $params['ruleset'] = Beatmap::modeStr($rulesetId);
         $params['user'] = User::findOrFail($userId);
 
         Event::generate('rank', $params);
