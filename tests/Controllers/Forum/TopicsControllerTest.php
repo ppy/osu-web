@@ -21,6 +21,20 @@ use Tests\TestCase;
 
 class TopicsControllerTest extends TestCase
 {
+    public static function dataProviderForAuthCodeDelegateOnlyGroupTests(): array
+    {
+        // $groups, $forumGroups, $success
+        return [
+            [[], []],
+            [['loved'], []],
+            [['loved'], ['loved']],
+            [['loved'], ['gmt']],
+            [['gmt'], []],
+            [['gmt'], ['loved']],
+            [['gmt'], ['gmt']],
+        ];
+    }
+
     public static function dataProviderForClientCredentialsGroupTests(): array
     {
         // $groups, $forumGroups, $expectException, $success
@@ -31,7 +45,9 @@ class TopicsControllerTest extends TestCase
             [['bot'], [], false, false],
             [['loved'], [], true, false],
             [['loved'], ['loved'], true, false],
+            [['loved'], ['gmt'], true, false],
             [['gmt'], [], true, false],
+            [['gmt'], ['loved'], true, false],
             [['gmt'], ['gmt'], true, false],
 
             // with bot group, bot needs to be last for the factory.
@@ -156,16 +172,18 @@ class TopicsControllerTest extends TestCase
         }
     }
 
-    public function testLockAuthCode(): void
+    #[DataProvider('dataProviderForAuthCodeDelegateOnlyGroupTests')]
+    public function testLockAuthCode(array $groups, array $forumGroups): void
     {
-        $user = User::factory()->withGroup('gmt')->create();
+        $user = User::factory()->withGroups($groups)->create();
         $client = Client::factory()->create();
-        $topic = Topic::factory()->create();
+        $topic = Topic::factory()->for(Forum::factory()->moderatorGroups($forumGroups))->create();
+
+        $this->expectInvalidScopeException('client_credentials_only');
 
         $this
             ->actAsScopedUser($user, ['forum.write_manage'], $client)
-            ->post(route('api.forum.topics.lock', $topic), ['lock' => true])
-            ->assertStatus(403);
+            ->post(route('api.forum.topics.lock', $topic), ['lock' => true]);
     }
 
     #[DataProvider('dataProviderForClientCredentialsGroupTests')]
@@ -212,17 +230,18 @@ class TopicsControllerTest extends TestCase
         }
     }
 
-    public function testPinAuthCode(): void
+    #[DataProvider('dataProviderForAuthCodeDelegateOnlyGroupTests')]
+    public function testPinAuthCode(array $groups, array $forumGroups): void
     {
-        $user = User::factory()->withGroup('gmt')->create();
+        $user = User::factory()->withGroups($groups)->create();
         $client = Client::factory()->create();
-        $topic = Topic::factory()->create();
+        $topic = Topic::factory()->for(Forum::factory()->moderatorGroups($forumGroups))->create();
+
+        $this->expectInvalidScopeException('client_credentials_only');
 
         $this
             ->actAsScopedUser($user, ['forum.write_manage'], $client)
-            ->post(route('api.forum.topics.pin', $topic), ['pin' => Topic::TYPES['sticky']])
-            ->assertStatus(403);
-    }
+            ->post(route('api.forum.topics.pin', $topic), ['pin' => Topic::TYPES['sticky']]);}
 
     #[DataProvider('dataProviderForClientCredentialsGroupTests')]
     public function testPinClientCredentials(array $groups, array $forumGroups, bool $expectException, bool $success): void
