@@ -1442,7 +1442,7 @@ class OsuAuthorize
         }
 
         if (!ForumAuthorize::aclCheck($user, 'f_post', $forum)) {
-            return 'forum.topic.edit.no_permission';
+            return $prefix.'no_permission';
         }
 
         return 'ok';
