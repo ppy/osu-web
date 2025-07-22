@@ -6,10 +6,8 @@
     use App\Models\Store\Product;
     use App\Models\SupporterTag;
 
-    function getDurationText(string $duration): string
-    {
-        return SupporterTag::getDurationText($duration, null, osu_trans('common.array_and.two_words_connector'));
-    }
+    static $getDurationText = fn (string $duration): string =>
+        SupporterTag::getDurationText($duration, null, osu_trans('common.array_and.two_words_connector'));
 @endphp
 
 @extends('master')
@@ -49,7 +47,7 @@
                                     'dollars' => "<strong>{$supporterStatus['dollars']}</strong>",
                                     'duration' => tag(
                                         'strong',
-                                        content: e(getDurationText($supporterStatus['duration'])),
+                                        content: e($getDurationText($supporterStatus['duration'])),
                                     ),
                                 ]) !!}
                             </div>
@@ -60,7 +58,7 @@
                                     'dollars' => "<strong>{$supporterStatus['giftedDollars']}</strong>",
                                     'duration' => tag(
                                         'strong',
-                                        content: e(getDurationText($supporterStatus['giftedDuration'])),
+                                        content: e($getDurationText($supporterStatus['giftedDuration'])),
                                     ),
                                     'users' => tag(
                                         'strong',
