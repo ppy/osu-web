@@ -5,7 +5,6 @@
 
 namespace App\Http\Controllers\InterOp;
 
-use App\Enums\Ruleset;
 use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\ValidationException;
 use App\Http\Controllers\Controller;
