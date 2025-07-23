@@ -1441,7 +1441,8 @@ class OsuAuthorize
             return $prefix.'locked';
         }
 
-        if (!ForumAuthorize::aclCheck($user, 'f_post', $forum)) {
+        $isFirstPost = $post->getKey() === $post->topic->topic_first_post_id;
+        if (!ForumAuthorize::aclCheck($user, $isFirstPost ? 'f_post' : 'f_reply', $forum)) {
             return $prefix.'no_permission';
         }
 
@@ -1502,16 +1503,7 @@ class OsuAuthorize
      */
     public function checkForumTopicEdit(?User $user, Topic $topic): string
     {
-        if ($this->doCheckUser($user, 'ForumModerate', $topic->forum)->can()) {
-            return 'ok';
-        }
-
-        $postEditPermission = $this->doCheckUser($user, 'ForumPostEdit', $topic->firstPost);
-        if (!$postEditPermission->can()) {
-            return $postEditPermission->rawMessage();
-        }
-
-        return 'ok';
+        return $this->checkForumPostEdit($user, $topic->firstPost);
     }
 
     /**
