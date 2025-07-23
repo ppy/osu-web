@@ -42,11 +42,9 @@ class ForumFactory extends Factory
     {
         return $type === null
             ? $this
-            : $this->afterCreating(function (Forum $forum) use ($type) {
-                Authorize::factory()->$type()->create([
-                    'forum_id' => $forum,
-                    'group_id' => app('groups')->byIdentifier('default'),
-                ]);
-            });
+            : $this->afterCreating(fn (Forum $forum) => Authorize::factory()->$type()->create([
+                'forum_id' => $forum,
+                'group_id' => app('groups')->byIdentifier('default'),
+            ]));
     }
 }
