@@ -527,7 +527,7 @@ class Event extends Model
 
     private static function beatmapParams($beatmap, $ruleset)
     {
-        $url = e(route('beatmaps.show', ['beatmap' => $beatmap, 'm' => $ruleset], false));
+        $url = e(route('beatmaps.show', ['beatmap' => $beatmap, 'ruleset' => $ruleset], false));
         return [
             'title' => e("{$beatmap->beatmapset->artist} - {$beatmap->beatmapset->title} [{$beatmap->version}]"),
             'url' => $url,
