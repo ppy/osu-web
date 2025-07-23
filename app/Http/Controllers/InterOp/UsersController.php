@@ -55,6 +55,7 @@ class UsersController extends Controller
 
         Event::generate('rank', $params);
         // TODO: also emit lost first place rank event when relevant
+        return response([], 204);
     }
 
     public function store()
