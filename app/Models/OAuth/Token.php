@@ -20,6 +20,8 @@ class Token extends PassportToken implements SessionVerificationInterface
     // PassportToken doesn't have factory
     use HasFactory, FasterAttributes;
 
+    const SCOPES_CLIENT_CREDENTIALS_ONLY = ['delegate', 'forum.write_manage'];
+    const SCOPES_OWN_CLIENT = ['chat.read', 'chat.write', 'chat.write_manage'];
     const SCOPES_REQUIRE_DELEGATION = ['chat.write', 'chat.write_manage', 'delegate', 'forum.write', 'forum.write_manage'];
 
     protected $casts = [
@@ -166,13 +168,8 @@ class Token extends PassportToken implements SessionVerificationInterface
         static $clientCredentialsRequireDelegateScopes = new Set(static::SCOPES_REQUIRE_DELEGATION);
         // only clients owned by bots are allowed to act on behalf of another user.
         // the user's own client can send messages as themselves for authorization code flows.
-        static $ownClientScopes = new Set([
-            'chat.read',
-            'chat.write',
-            'chat.write_manage',
-        ]);
-        static $clientCredentialsOnlyScopes = new Set(['delegate', 'forum.write_manage']);
-
+        static $ownClientScopes = new Set(static::SCOPES_OWN_CLIENT);
+        static $clientCredentialsOnlyScopes = new Set(static::SCOPES_CLIENT_CREDENTIALS_ONLY);
 
         $scopes = $this->scopeSet();
         if ($scopes->isEmpty()) {
