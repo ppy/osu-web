@@ -4,10 +4,13 @@
 --}}
 @php
     use App\Libraries\ApidocRouteHelper;
+    use App\Models\OAuth\Token;
+    use Ds\Set;
     use Knuckles\Camel\Output\OutputEndpointData;
 
     $baseUrl = $GLOBALS['cfg']['app']['url'];
     $wikiUrl = wiki_url('Bot_account', null, false);
+    $delegateScopes = new Set(Token::SCOPES_REQUIRE_DELEGATION);
 
     $defaultHeaders = [
         'Accept' => 'application/json',
@@ -479,21 +482,8 @@ fetch("{{ $GLOBALS['cfg']['app']['url'] }}/api/[version]/[endpoint]", {
 </p>
 
 <p>
-    The following scopes currently support delegation:
+    Refer to the list of <a href="#scopes">Scopes</a> for which scopes support delegation.
 </p>
-
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{ ApidocRouteHelper::scopeBadge('chat.write') }}</td>
-        </tr>
-    </tbody>
-</table>
 
 <h2>Scopes</h2>
 
@@ -520,6 +510,7 @@ $scopeDescriptions = [
         <tr>
             <th>Name</th>
             <th>Description</th>
+            <th><a href="#client-credentials-delegation">Can Delegate?</a></th>
         </tr>
     </thead>
     <tbody>
@@ -529,6 +520,7 @@ $scopeDescriptions = [
                     <a class="badge badge-scope badge-scope-{{ $scope }}" name="scope-{{ $scope }}">{{ $scope }}</a>
                 </td>
                 <td>{!! markdown_plain($description) !!}</td>
+                <td>{{ $delegateScopes->contains($scope) ? 'Yes' : 'No' }}</td>
             </tr>
         @endforeach
         <tr>
