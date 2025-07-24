@@ -113,6 +113,7 @@ return [
                 'deleted' => 'Can not edit deleted post.',
                 'locked' => 'The post is locked from editing.',
                 'no_forum_access' => 'Access to requested forum is required.',
+                'no_permission' => 'No permission to edit.',
                 'not_owner' => 'Only poster can edit the post.',
                 'topic_locked' => 'Can not edit post of a locked topic.',
             ],
