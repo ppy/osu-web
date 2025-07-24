@@ -11,6 +11,7 @@
     $baseUrl = $GLOBALS['cfg']['app']['url'];
     $wikiUrl = wiki_url('Bot_account', null, false);
     $delegateScopes = new Set(Token::SCOPES_REQUIRE_DELEGATION);
+    $ownScopeBadges = array_map(fn ($scope) => ApidocRouteHelper::scopeBadge($scope), Token::SCOPES_OWN_CLIENT);
 
     $defaultHeaders = [
         'Accept' => 'application/json',
@@ -529,7 +530,7 @@ $scopeDescriptions = [
 </table>
 
 <p>
-    <code>identify</code> is the default scope for the <a href="#authorization-code-grant">Authorization Code Grant</a> and always implicitly provided. The <a href="#client-credentials-grant">Client Credentials Grant</a> does not currently have any default scopes.
+    {{ ApidocRouteHelper::scopeBadge('identify') }} is the default scope for the <a href="#authorization-code-grant">Authorization Code Grant</a> and always implicitly provided. The <a href="#client-credentials-grant">Client Credentials Grant</a> does not currently have any default scopes.
 </p>
 
 <p>
@@ -537,7 +538,7 @@ $scopeDescriptions = [
 </p>
 
 <p>
-    Using the {{ ApidocRouteHelper::scopeBadge('chat.write') }} scope requires either
+    Using any of the {!! implode(' ', $ownScopeBadges) !!} scopes requires either
     <ul>
         <li>a <a href="{{ $wikiUrl }}">Chat Bot</a> account to send messages on behalf of other users.
         <li>Authorization code grant where the user is the same as the client's owner (send as yourself).
