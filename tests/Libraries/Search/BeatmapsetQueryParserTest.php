@@ -54,6 +54,10 @@ class BeatmapsetQueryParserTest extends TestCase
             ['tag="hello world" tag="foo bar"', ['keywords' => null, 'options' => ['tag' => ['hello world', 'foo bar']]]],
             ['tag="hello world"aa tag="foo bar"', ['keywords' => 'aa', 'options' => ['tag' => ['hello world', 'foo bar']]]],
 
+            // float with , and . parse the same
+            ['star=1,5', ['keywords' => null, 'options' => ['stars' => ['gte' => 1.495, 'lte' => 1.505]]]],
+            ['star=1.5', ['keywords' => null, 'options' => ['stars' => ['gte' => 1.495, 'lte' => 1.505]]]],
+
             // multiple options
             ['artist=hello creator:world', ['keywords' => null, 'options' => ['artist' => 'hello', 'creator' => 'world']]],
 
