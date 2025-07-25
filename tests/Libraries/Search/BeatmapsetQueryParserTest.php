@@ -16,23 +16,23 @@ class BeatmapsetQueryParserTest extends TestCase
     {
         return [
             // basic options
-            ['stars=1', ['keywords' => null, 'options' => ['stars' => ['gte' => 0.995, 'lte' => 1.005]]]],
-            ['star=1', ['keywords' => null, 'options' => ['stars' => ['gte' => 0.995, 'lte' => 1.005]]]],
+            ['stars=1', ['keywords' => null, 'options' => ['difficultyRating' => ['gte' => 0.995, 'lte' => 1.005]]]],
+            ['star=1', ['keywords' => null, 'options' => ['difficultyRating' => ['gte' => 0.995, 'lte' => 1.005]]]],
             ['ar=2', ['keywords' => null, 'options' => ['ar' => ['gte' => 1.95, 'lte' => 2.05]]]],
-            ['dr=3', ['keywords' => null, 'options' => ['dr' => ['gte' => 2.95, 'lte' => 3.05]]]],
-            ['hp<4', ['keywords' => null, 'options' => ['dr' => ['lte' => 3.95]]]],
+            ['dr=3', ['keywords' => null, 'options' => ['drain' => ['gte' => 2.95, 'lte' => 3.05]]]],
+            ['hp<4', ['keywords' => null, 'options' => ['drain' => ['lte' => 3.95]]]],
             ['cs>5', ['keywords' => null, 'options' => ['cs' => ['gte' => 5.05]]]],
-            ['od>=9', ['keywords' => null, 'options' => ['od' => ['gte' => 8.95]]]],
+            ['od>=9', ['keywords' => null, 'options' => ['accuracy' => ['gte' => 8.95]]]],
             ['bpm<=6', ['keywords' => null, 'options' => ['bpm' => ['lte' => 6.005]]]],
-            ['length<70000ms', ['keywords' => null, 'options' => ['length' => ['lte' => 69.9995]]]],
-            ['length>=70', ['keywords' => null, 'options' => ['length' => ['gte' => 69.5]]]],
-            ['length>=70s', ['keywords' => null, 'options' => ['length' => ['gte' => 69.5]]]],
-            ['length:8m', ['keywords' => null, 'options' => ['length' => ['gte' => 450, 'lte' => 510]]]],
-            ['length:0.9h', ['keywords' => null, 'options' => ['length' => ['gte' => (0.9 * 3600 - 1800), 'lte' => (0.9 * 3600 + 1800)]]]],
+            ['length<70000ms', ['keywords' => null, 'options' => ['totalLength' => ['lte' => 69.9995]]]],
+            ['length>=70', ['keywords' => null, 'options' => ['totalLength' => ['gte' => 69.5]]]],
+            ['length>=70s', ['keywords' => null, 'options' => ['totalLength' => ['gte' => 69.5]]]],
+            ['length:8m', ['keywords' => null, 'options' => ['totalLength' => ['gte' => 450, 'lte' => 510]]]],
+            ['length:0.9h', ['keywords' => null, 'options' => ['totalLength' => ['gte' => (0.9 * 3600 - 1800), 'lte' => (0.9 * 3600 + 1800)]]]],
             ['keys=10', ['keywords' => null, 'options' => ['keys' => ['gte' => 10, 'lte' => 10]]]],
             ['divisor>0', ['keywords' => null, 'options' => ['divisor' => ['gt' => 0]]]],
-            ['status<ranked', ['keywords' => null, 'options' => ['status' => ['lt' => Beatmapset::STATES['ranked']]]]],
-            ['status=graveyard', ['keywords' => null, 'options' => ['status' => ['gte' => Beatmapset::STATES['graveyard'], 'lte' => Beatmapset::STATES['graveyard']]]]],
+            ['status<ranked', ['keywords' => null, 'options' => ['statusRange' => ['lt' => Beatmapset::STATES['ranked']]]]],
+            ['status=graveyard', ['keywords' => null, 'options' => ['statusRange' => ['gte' => Beatmapset::STATES['graveyard'], 'lte' => Beatmapset::STATES['graveyard']]]]],
             ['creator=hello', ['keywords' => null, 'options' => ['creator' => 'hello']]],
             ['artist=hello', ['keywords' => null, 'options' => ['artist' => 'hello']]],
             ['artist="hello world"', ['keywords' => null, 'options' => ['artist' => 'hello world']]],
@@ -47,29 +47,29 @@ class BeatmapsetQueryParserTest extends TestCase
             ['ranked="2020-07-21 12:30:30 +09:00"', ['keywords' => null, 'options' => ['ranked' => ['gte' => static::parseTime('2020-07-21 03:30:30'), 'lt' => static::parseTime('2020-07-21 03:30:31')]]]],
             ['ranked>="2020-07-21 12:30:30 +09:00" ranked<="2020-08-21 13:40:40 +09:00"', ['keywords' => null, 'options' => ['ranked' => ['gte' => static::parseTime('2020-07-21 03:30:30'), 'lt' => static::parseTime('2020-08-21 04:40:41')]]]],
             ['ranked="invalid date format"', ['keywords' => 'ranked="invalid date format"', 'options' => []]],
-            ['tag=hello', ['keywords' => null, 'options' => ['tag' => ['hello']]]],
-            ['tag=hello tag=world', ['keywords' => null, 'options' => ['tag' => ['hello', 'world']]]],
-            ['tag=hello -tag=world', ['keywords' => null, 'options' => ['tag' => ['hello']]], ['tag' => ['world']]],
-            ['tag="hello world"', ['keywords' => null, 'options' => ['tag' => ['hello world']]]],
-            ['tag="hello world" tag="foo bar"', ['keywords' => null, 'options' => ['tag' => ['hello world', 'foo bar']]]],
-            ['tag="hello world"aa tag="foo bar"', ['keywords' => 'aa', 'options' => ['tag' => ['hello world', 'foo bar']]]],
+            ['tag=hello', ['keywords' => null, 'options' => ['tags' => ['hello']]]],
+            ['tag=hello tag=world', ['keywords' => null, 'options' => ['tags' => ['hello', 'world']]]],
+            ['tag=hello -tag=world', ['keywords' => null, 'options' => ['tags' => ['hello']]], ['tags' => ['world']]],
+            ['tag="hello world"', ['keywords' => null, 'options' => ['tags' => ['hello world']]]],
+            ['tag="hello world" tag="foo bar"', ['keywords' => null, 'options' => ['tags' => ['hello world', 'foo bar']]]],
+            ['tag="hello world"aa tag="foo bar"', ['keywords' => 'aa', 'options' => ['tags' => ['hello world', 'foo bar']]]],
 
             // float with , and . parse the same
-            ['star=1,5', ['keywords' => null, 'options' => ['stars' => ['gte' => 1.495, 'lte' => 1.505]]]],
-            ['star=1.5', ['keywords' => null, 'options' => ['stars' => ['gte' => 1.495, 'lte' => 1.505]]]],
+            ['star=1,5', ['keywords' => null, 'options' => ['difficultyRating' => ['gte' => 1.495, 'lte' => 1.505]]]],
+            ['star=1.5', ['keywords' => null, 'options' => ['difficultyRating' => ['gte' => 1.495, 'lte' => 1.505]]]],
 
             // multiple options
             ['artist=hello creator:world', ['keywords' => null, 'options' => ['artist' => 'hello', 'creator' => 'world']]],
 
             // last option overrides previous ones
-            ['dr=1 dr=9', ['keywords' => null, 'options' => ['dr' => ['gte' => 8.95, 'lte' => 9.05]]]],
+            ['dr=1 dr=9', ['keywords' => null, 'options' => ['drain' => ['gte' => 8.95, 'lte' => 9.05]]]],
             ['artist=hello artist:world', ['keywords' => null, 'options' => ['artist' => 'world']]],
 
             // last option overrides previous ones, including with different names
-            ['dr=1 hp<9', ['keywords' => null, 'options' => ['dr' => ['gte' => 0.95, 'lte' => 8.95]]]],
+            ['dr=1 hp<9', ['keywords' => null, 'options' => ['drain' => ['gte' => 0.95, 'lte' => 8.95]]]],
 
             // keyword with options
-            ['hello stars>=1 stars<4', ['keywords' => 'hello', 'options' => ['stars' => ['gte' => 0.995, 'lte' => 3.995]]]],
+            ['hello stars>=1 stars<4', ['keywords' => 'hello', 'options' => ['difficultyRating' => ['gte' => 0.995, 'lte' => 3.995]]]],
 
             // keywords with option in between
             ['hello ar<:1 world', ['keywords' => 'hello  world', 'options' => ['ar' => ['lte' => 1.05]]]],
@@ -79,19 +79,19 @@ class BeatmapsetQueryParserTest extends TestCase
             ['dr=a', ['keywords' => 'dr=a', 'options' => []]],
 
             // taken from https://github.com/ppy/osu/blob/b3e96c8385fdfec3ea1bb3899f74763ccafa055c/osu.Game.Tests/NonVisual/Filtering/FilterQueryParserTest.cs
-            ['stars<4 easy', ['keywords' => 'easy', 'options' => ['stars' => ['lte' => 3.995]]]],
+            ['stars<4 easy', ['keywords' => 'easy', 'options' => ['difficultyRating' => ['lte' => 3.995]]]],
             ['ar>=9 difficult', ['keywords' => 'difficult', 'options' => ['ar' => ['gte' => 8.95]]]],
-            ['dr>2 quite specific dr<:6', ['keywords' => 'quite specific', 'options' => ['dr' => ['gte' => 2.05, 'lte' => 6.05]]]],
-            ['hp>2 quite specific hp<=6', ['keywords' => 'quite specific', 'options' => ['dr' => ['gte' => 2.05, 'lte' => 6.05]]]],
-            ['od>4 easy od<8', ['keywords' => 'easy', 'options' => ['od' => ['gte' => 4.05, 'lte' => 7.95]]]],
+            ['dr>2 quite specific dr<:6', ['keywords' => 'quite specific', 'options' => ['drain' => ['gte' => 2.05, 'lte' => 6.05]]]],
+            ['hp>2 quite specific hp<=6', ['keywords' => 'quite specific', 'options' => ['drain' => ['gte' => 2.05, 'lte' => 6.05]]]],
+            ['od>4 easy od<8', ['keywords' => 'easy', 'options' => ['accuracy' => ['gte' => 4.05, 'lte' => 7.95]]]],
             ['bpm>:200 gotta go fast', ['keywords' => 'gotta go fast', 'options' => ['bpm' => ['gte' => 199.995]]]],
-            ['length=6ms time', ['keywords' => 'time', 'options' => ['length' => ['gte' => (6 / 1000 - 1 / 2000), 'lte' => (6 / 1000 + 1 / 2000)]]]],
-            ['length=23s time', ['keywords' => 'time', 'options' => ['length' => ['gte' => 22.5, 'lte' => 23.5]]]],
-            ['length=9m time', ['keywords' => 'time', 'options' => ['length' => ['gte' => (9 * 60 - 30), 'lte' => (9 * 60 + 30)]]]],
-            ['length=0.25h time', ['keywords' => 'time', 'options' => ['length' => ['gte' => (0.25 * 3600 - 1800), 'lte' => (0.25 * 3600 + 1800)]]]],
-            ['length=70 time', ['keywords' => 'time', 'options' => ['length' => ['gte' => 69.5, 'lte' => 70.5]]]],
+            ['length=6ms time', ['keywords' => 'time', 'options' => ['totalLength' => ['gte' => (6 / 1000 - 1 / 2000), 'lte' => (6 / 1000 + 1 / 2000)]]]],
+            ['length=23s time', ['keywords' => 'time', 'options' => ['totalLength' => ['gte' => 22.5, 'lte' => 23.5]]]],
+            ['length=9m time', ['keywords' => 'time', 'options' => ['totalLength' => ['gte' => (9 * 60 - 30), 'lte' => (9 * 60 + 30)]]]],
+            ['length=0.25h time', ['keywords' => 'time', 'options' => ['totalLength' => ['gte' => (0.25 * 3600 - 1800), 'lte' => (0.25 * 3600 + 1800)]]]],
+            ['length=70 time', ['keywords' => 'time', 'options' => ['totalLength' => ['gte' => 69.5, 'lte' => 70.5]]]],
             ["that's a time signature alright! divisor:12", ['keywords' => "that's a time signature alright!", 'options' => ['divisor' => ['gte' => 12, 'lte' => 12]]]],
-            ['I want the pp status=ranked', ['keywords' => 'I want the pp', 'options' => ['status' => ['gte' => Beatmapset::STATES['ranked'], 'lte' => Beatmapset::STATES['ranked']]]]],
+            ['I want the pp status=ranked', ['keywords' => 'I want the pp', 'options' => ['statusRange' => ['gte' => Beatmapset::STATES['ranked'], 'lte' => Beatmapset::STATES['ranked']]]]],
             ['beatmap specifically by creator=my_fav', ['keywords' => 'beatmap specifically by', 'options' => ['creator' => 'my_fav']]],
             ['find me songs by artist=singer please', ['keywords' => 'find me songs by  please', 'options' => ['artist' => 'singer']]],
             ['really like artist="name with space" yes', ['keywords' => 'really like  yes', 'options' => ['artist' => 'name with space']]],
@@ -103,8 +103,8 @@ class BeatmapsetQueryParserTest extends TestCase
             ['bpm=bad', ['keywords' => 'bpm=bad', 'options' => []]],
             ['divisor<nah', ['keywords' => 'divisor<nah', 'options' => []]],
             ['status=noidea', ['keywords' => 'status=noidea', 'options' => []]],
-            ['status=l', ['keywords' => null, 'options' => ['status' => ['gte' => Beatmapset::STATES['loved'], 'lte' => Beatmapset::STATES['loved']]]]],
-            ['status=lo', ['keywords' => null, 'options' => ['status' => ['gte' => Beatmapset::STATES['loved'], 'lte' => Beatmapset::STATES['loved']]]]],
+            ['status=l', ['keywords' => null, 'options' => ['statusRange' => ['gte' => Beatmapset::STATES['loved'], 'lte' => Beatmapset::STATES['loved']]]]],
+            ['status=lo', ['keywords' => null, 'options' => ['statusRange' => ['gte' => Beatmapset::STATES['loved'], 'lte' => Beatmapset::STATES['loved']]]]],
         ];
     }
 
@@ -120,7 +120,7 @@ class BeatmapsetQueryParserTest extends TestCase
     {
         $parser = new BeatmapsetQueryParser($query);
         $this->assertSame(json_encode($expected['keywords']), json_encode($parser->keywords));
-        $this->assertSame(json_encode($expected['options']), json_encode($parser->includes));
-        $this->assertSame(json_encode($excludes), json_encode($parser->excludes));
+        $this->assertSame(json_encode($expected['options']), json_encode($parser->includes->toArray()));
+        $this->assertSame(json_encode($excludes), json_encode($parser->excludes->toArray()));
     }
 }
