@@ -206,49 +206,16 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
     private function parseQuery(): void
     {
-        static $optionMap = [
-            'ar' => 'ar',
-            'artist' => 'artist',
-            'bpm' => 'bpm',
-            'circles' => 'countNormal',
-            'created' => 'created',
-            'creator' => 'creator',
-            'cs' => 'cs',
-            'difficulty' => 'difficulty',
-            'dr' => 'drain',
-            'favourites' => 'favouriteCount',
-            'featured_artist' => 'featuredArtist',
-            'keys' => 'keys',
-            'length' => 'totalLength',
-            'od' => 'accuracy',
-            'ranked' => 'ranked',
-            'sliders' => 'countSlider',
-            'source' => 'source',
-            'stars' => 'difficultyRating',
-            'status' => 'statusRange',
-            'tag' => 'tags',
-            'title' => 'title',
-            'updated' => 'updated',
-        ];
-
         $parser = new BeatmapsetQueryParser($this->requestQuery);
 
         $this->queryString = $parser->keywords;
 
         foreach ($parser->includes as $optionKey => $optionValue) {
-            $propName = $optionMap[$optionKey] ?? null;
-
-            if ($propName !== null) {
-                $this->includes->$propName = $optionValue;
-            }
+            $this->includes->set($optionKey, $optionValue);
         }
 
         foreach ($parser->excludes as $optionKey => $optionValue) {
-            $propName = $optionMap[$optionKey] ?? null;
-
-            if ($propName !== null) {
-                $this->excludes->$propName = $optionValue;
-            }
+            $this->excludes->set($optionKey, $optionValue);
         }
     }
 
