@@ -192,7 +192,7 @@ class BeatmapsetQueryParser
             switch ($key) {
                 case 'star':
                 case 'stars':
-                    $key = 'stars';
+                    $key = 'difficultyRating';
                     $option = static::makeFloatRangeOption($op, $m['value'], 0.01 / 2);
                     break;
                 case 'ar':
@@ -200,31 +200,36 @@ class BeatmapsetQueryParser
                     break;
                 case 'dr':
                 case 'hp':
-                    $key = 'dr';
+                    $key = 'drain';
                     $option = static::makeFloatRangeOption($op, $m['value'], 0.1 / 2);
                     break;
                 case 'cs':
                     $option = static::makeFloatRangeOption($op, $m['value'], 0.1 / 2);
                     break;
                 case 'od':
+                    $key = 'accuracy';
                     $option = static::makeFloatRangeOption($op, $m['value'], 0.1 / 2);
                     break;
                 case 'bpm':
                     $option = static::makeFloatRangeOption($op, $m['value'], 0.01 / 2);
                     break;
                 case 'circles':
+                    $key = 'countNormal';
                     $option = static::makeIntRangeOption($op, $m['value']);
                     break;
                 case 'sliders':
+                    $key = 'countSlider';
                     $option = static::makeIntRangeOption($op, $m['value']);
                     break;
                 case 'length':
+                    $key = 'totalLength';
                     $parsed = get_length_seconds($m['value']);
                     if ($parsed !== null) {
                         $option = static::makeFloatRangeOption($op, $parsed['value'], $parsed['min_scale'] / 2);
                     }
                     break;
                 case 'featured_artist':
+                    $key = 'featuredArtist';
                     $option = static::makeIntOption($op, $m['value']);
                     break;
                 case 'key':
@@ -236,6 +241,7 @@ class BeatmapsetQueryParser
                     $option = static::makeIntRangeOption($op, $m['value']);
                     break;
                 case 'status':
+                    $key = 'statusRange';
                     $option = static::makeIntRangeOption($op, static::statePrefixSearch($m['value']));
                     break;
                 case 'creator':
@@ -245,6 +251,7 @@ class BeatmapsetQueryParser
                     $option = static::makeTextOption($op, $m['value']);
                     break;
                 case 'favourites':
+                    $key = 'favouriteCount';
                     $option = static::makeIntRangeOption($op, $m['value']);
                     break;
                 case 'artist':
@@ -254,6 +261,7 @@ class BeatmapsetQueryParser
                     $option = static::makeTextOption($op, $m['value']);
                     break;
                 case 'tag':
+                    $key = 'tags';
                     $option = [static::makeTextOption($op, $m['value'])];
                     break;
                 case 'title':
@@ -274,9 +282,9 @@ class BeatmapsetQueryParser
 
             if (isset($option)) {
                 if (is_array($option)) {
-                    $this->{$type}->set($key, array_merge($this->{$type}->get($key) ?? [], $option));
+                    $this->{$type}->$key = array_merge($this->{$type}->$key ?? [], $option);
                 } else {
-                    $this->{$type}->set($key, $option);
+                    $this->{$type}->$key = $option;
                 }
 
                 return '';
