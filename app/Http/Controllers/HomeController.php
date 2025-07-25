@@ -260,7 +260,7 @@ class HomeController extends Controller
                 // gifted
                 'giftedDollars' => currency($giftedDollars, 2, false),
                 'giftedDuration' => $giftedDuration,
-                'giftedUsers' => i18n_number_format($giftedUsers),
+                'giftedUsers' => $giftedUsers,
             ];
 
             if ($current) {
