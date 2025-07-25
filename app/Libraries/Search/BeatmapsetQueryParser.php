@@ -65,7 +65,7 @@ class BeatmapsetQueryParser
     {
         // Some locales have `,` as decimal separator.
         // Note that thousand separator is not (yet?) supported.
-        $value = str_replace(',', '.', (string) $value);
+        $value = strtr((string) $value, ',', '.');
 
         if (!is_numeric($value)) {
             return null;
