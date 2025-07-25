@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Libraries\Elasticsearch;
 
 class BoolQuery implements Queryable
@@ -13,19 +15,14 @@ class BoolQuery implements Queryable
     protected $shoulds = [];
     protected $minimum = null;
 
-    /**
-     * @param array|Queryable $clause
-     *
-     * @return $this
-     */
-    public function filter($clause)
+    public function filter(array|Queryable $clause): static
     {
         $this->filters[] = QueryHelper::clauseToArray($clause);
 
         return $this;
     }
 
-    public function isEmpty()
+    public function isEmpty(): bool
     {
         return $this->filters === []
             && $this->musts === []
@@ -33,36 +30,21 @@ class BoolQuery implements Queryable
             && $this->shoulds === [];
     }
 
-    /**
-     * @param array|Queryable $clause
-     *
-     * @return $this
-     */
-    public function must($clause)
+    public function must(array|Queryable $clause): static
     {
         $this->musts[] = QueryHelper::clauseToArray($clause);
 
         return $this;
     }
 
-    /**
-     * @param array|Queryable $clause
-     *
-     * @return $this
-     */
-    public function mustNot($clause)
+    public function mustNot(array|Queryable $clause): static
     {
         $this->mustNots[] = QueryHelper::clauseToArray($clause);
 
         return $this;
     }
 
-    /**
-     * @param array|Queryable $clause
-     *
-     * @return $this
-     */
-    public function should($clause)
+    public function should(array|Queryable $clause): static
     {
         $this->shoulds[] = QueryHelper::clauseToArray($clause);
 
@@ -71,19 +53,14 @@ class BoolQuery implements Queryable
 
     /**
      * minimum_should_match.
-     *
-     * @return $this
      */
-    public function shouldMatch(?int $count)
+    public function shouldMatch(?int $count): static
     {
         $this->minimum = $count;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function toArray(): array
     {
         $bool = [
