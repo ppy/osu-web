@@ -209,14 +209,8 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         $parser = new BeatmapsetQueryParser($this->requestQuery);
 
         $this->queryString = $parser->keywords;
-
-        foreach ($parser->includes as $optionKey => $optionValue) {
-            $this->includes->set($optionKey, $optionValue);
-        }
-
-        foreach ($parser->excludes as $optionKey => $optionValue) {
-            $this->excludes->set($optionKey, $optionValue);
-        }
+        $this->includes = $parser->includes;
+        $this->excludes = $parser->excludes;
     }
 
     private function parseSort(?string $value): void

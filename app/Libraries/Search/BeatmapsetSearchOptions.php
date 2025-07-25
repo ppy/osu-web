@@ -18,6 +18,7 @@ class BeatmapsetSearchOptions
         'creator' => 'creator',
         'cs' => 'cs',
         'difficulty' => 'difficulty',
+        'divisor' => 'divisor',
         'dr' => 'drain',
         'favourites' => 'favouriteCount',
         'featured_artist' => 'featuredArtist',
@@ -44,7 +45,8 @@ class BeatmapsetSearchOptions
     public ?string $creator = null;
     public ?array $cs = null;
     public ?string $difficulty = null;
-    public ?string $difficultyRating = null;
+    public ?array $difficultyRating = null;
+    public ?array $divisor = null;
     public ?array $drain = null;
     public ?array $favouriteCount = null;
     public ?int $featuredArtist = null;
@@ -57,6 +59,13 @@ class BeatmapsetSearchOptions
     public ?array $totalLength = null;
     public ?string $updated = null;
 
+    public function get(string $key)
+    {
+        $propName = self::OPTION_MAP[$key] ?? null;
+
+        return $propName !== null ? $this->$propName : null;
+    }
+
     public function set(string $key, $value): void
     {
         $propName = self::OPTION_MAP[$key] ?? null;
@@ -64,5 +73,11 @@ class BeatmapsetSearchOptions
         if ($propName !== null) {
             $this->$propName = $value;
         }
+    }
+
+    // mostly for testing for array comparision
+    public function toArray(): array
+    {
+        return array_filter((array) $this, fn ($value) => $value !== null);
     }
 }
