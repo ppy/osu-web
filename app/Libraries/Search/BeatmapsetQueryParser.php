@@ -12,8 +12,8 @@ use Carbon\CarbonImmutable;
 
 class BeatmapsetQueryParser
 {
-    public array $includes = [];
-    public array $excludes = [];
+    public BeatmapsetSearchOptions $excludes;
+    public BeatmapsetSearchOptions $includes;
     public ?string $keywords;
 
     private static function makeDateRangeOption(string $operator, string $value): ?array
@@ -172,6 +172,9 @@ class BeatmapsetQueryParser
 
     public function __construct(?string $query)
     {
+        $this->includes = new BeatmapsetSearchOptions();
+        $this->excludes = new BeatmapsetSearchOptions();
+
         // reference: https://github.com/ppy/osu/blob/f6baf49ad6b42c662a729ad05e18bd99bc48b4c7/osu.Game/Screens/Select/FilterQueryParser.cs
         // adjusted for negative and multiple quoted options (with side effect of inner quotes must be escaped)
         static $regex = '#(?<!\S)(?<key>-?\w+)(?<op>(:|=|(>|<)(:|=)?))(?<value>("{1,2})(?:\\\"|.)*?\7|\S*)#i';
@@ -269,9 +272,9 @@ class BeatmapsetQueryParser
 
             if (isset($option)) {
                 if (is_array($option)) {
-                    $this->{$type}[$key] = array_merge($this->{$type}[$key] ?? [], $option);
+                    $this->{$type}->set($key, array_merge($this->{$type}->get($key) ?? [], $option));
                 } else {
-                    $this->{$type}[$key] = $option;
+                    $this->{$type}->set($key, $option);
                 }
 
                 return '';
