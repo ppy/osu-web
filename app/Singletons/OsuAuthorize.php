@@ -1413,14 +1413,15 @@ class OsuAuthorize
     {
         $prefix = 'forum.post.edit.';
 
-        if ($this->doCheckUser($user, 'ForumModerate', $post->forum)->can()) {
+        $forum = $post->forum;
+        if ($this->doCheckUser($user, 'ForumModerate', $forum)->can()) {
             return 'ok';
         }
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if (!$this->doCheckUser($user, 'ForumView', $post->forum)->can()) {
+        if (!$this->doCheckUser($user, 'ForumView', $forum)->can()) {
             return $prefix.'no_forum_access';
         }
 
@@ -1438,6 +1439,11 @@ class OsuAuthorize
 
         if ($post->post_edit_locked) {
             return $prefix.'locked';
+        }
+
+        $isFirstPost = $post->getKey() === $post->topic->topic_first_post_id;
+        if (!ForumAuthorize::aclCheck($user, $isFirstPost ? 'f_post' : 'f_reply', $forum)) {
+            return $prefix.'no_permission';
         }
 
         return 'ok';
@@ -1493,9 +1499,6 @@ class OsuAuthorize
     }
 
     /**
-     * @param User|null $user
-     * @param Topic $topic
-     * @return string
      * @throws AuthorizationCheckException
      */
     public function checkForumTopicEdit(?User $user, Topic $topic): string
