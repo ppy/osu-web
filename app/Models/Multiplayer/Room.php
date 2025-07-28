@@ -149,6 +149,7 @@ class Room extends Model
     {
         $params = get_params($rawParams, null, [
             'category',
+            'is_active:bool',
             'limit:int',
             'mode',
             'season_id:int',
@@ -210,6 +211,14 @@ class Room extends Model
                 break;
             default:
                 $query->active();
+        }
+
+        if (isset($params['is_active'])) {
+            if ($params['is_active']) {
+                $query->active();
+            } else {
+                $query->ended();
+            }
         }
 
         $cursorHelper = static::makeDbCursorHelper($sort);
