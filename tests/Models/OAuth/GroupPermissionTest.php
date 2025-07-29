@@ -5,6 +5,7 @@
 
 namespace Tests\Models\OAuth;
 
+use App\Models\Forum\Forum;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -12,7 +13,7 @@ use Tests\TestCase;
 
 class GroupPermissionTest extends TestCase
 {
-    public static function groupsDataProvider()
+    public static function dataProviderForTestGroup()
     {
         return [
             ['admin', 'isAdmin', false],
@@ -27,10 +28,27 @@ class GroupPermissionTest extends TestCase
         ];
     }
 
+    public static function dataProviderForTestForumModerator()
+    {
+        return [
+            ['admin', [], false],
+            ['admin', ['gmt'], false],
+            ['admin', ['admin', 'gmt'], true],
+
+            ['loved', [], false],
+            ['loved', ['admin', 'gmt'], false],
+            ['loved', ['admin', 'gmt', 'loved'], true],
+
+            ['gmt', [], false],
+            ['gmt', ['loved'], false],
+            ['gmt', ['gmt', 'loved'], true],
+        ];
+    }
+
     /**
      * TODO: maybe an exclusion list of when groups are allowed with token instead...
      */
-    #[DataProvider('groupsDataProvider')]
+    #[DataProvider('dataProviderForTestGroup')]
     public function testGroupWithOAuth(string $group, string $method, bool $inGroup)
     {
         $user = User::factory()->withGroup($group)->create();
@@ -38,15 +56,37 @@ class GroupPermissionTest extends TestCase
         $token = $this->createToken($user, ['*'], $client);
         $this->actAsUserWithToken($token);
 
-        $this->assertSame($inGroup, auth()->user()->$method());
+        $this->assertSame($inGroup, \Auth::user()->$method());
     }
 
-    #[DataProvider('groupsDataProvider')]
+    #[DataProvider('dataProviderForTestGroup')]
     public function testGroupWithoutOAuth(string $group, string $method)
     {
         $user = User::factory()->withGroup($group)->create();
         $this->actAsUser($user);
 
-        $this->assertTrue(auth()->user()->$method());
+        $this->assertTrue(\Auth::user()->$method());
+    }
+
+    #[DataProvider('dataProviderForTestForumModerator')]
+    public function testForumModeratorWithOAuth(string $group, array $forumGroups, bool $inGroup)
+    {
+        $user = User::factory()->withGroup($group)->create();
+        $forum = Forum::factory()->moderatorGroups($forumGroups)->create();
+        $this->actAsUser($user);
+
+        $this->assertSame($inGroup, \Auth::user()->isForumModerator($forum));
+    }
+
+    #[DataProvider('dataProviderForTestForumModerator')]
+    public function testForumModeratorWithoutOAuth(string $group, array $forumGroups, bool $inGroup)
+    {
+        $user = User::factory()->withGroup($group)->create();
+        $client = Client::factory()->create(['user_id' => $user]);
+        $forum = Forum::factory()->moderatorGroups($forumGroups)->create();
+        $token = $this->createToken($user, ['*'], $client);
+        $this->actAsUserWithToken($token);
+
+        $this->assertSame($inGroup, \Auth::user()->isForumModerator($forum));
     }
 }
