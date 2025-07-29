@@ -132,6 +132,7 @@
         @include("layout._global_variables")
         @include('layout._loading_overlay')
         @include('layout.popup-container')
+        @include('layout._user_verification_popup')
 
         <script id="json-route-section" type="application/json">
             {!! json_encode($currentRoute) !!}
