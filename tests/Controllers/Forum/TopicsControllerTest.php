@@ -522,8 +522,7 @@ class TopicsControllerTest extends TestCase
         ?string $authorize,
         ?string $aclGroup,
         int $statusCode
-    ): void
-    {
+    ): void {
         $user = User::factory()->withGroup($group)->create();
         $topic = Topic::factory()
             ->for(Forum::factory()->withAuthorize($authorize, $aclGroup)->moderatorGroups($forumGroups))
