@@ -22,7 +22,7 @@ class TopicsControllerTest extends TestCase
 {
     public static function dataProviderForAuthCodeDelegateOnlyGroupTests(): array
     {
-        // $groups, $forumGroups, $success
+        // $groups, $forumGroups
         return [
             [[], []],
             [['loved'], []],
@@ -99,13 +99,33 @@ class TopicsControllerTest extends TestCase
 
     public static function dataProviderForTestUpdate(): array
     {
+        // $newTitle, $group, $forumGroups, $authorize, $aclGroup, $statusCode
         return [
-            [null, 'post', null, [], 422],
-            ['new title', 'post', null, [], 204],
-            ['new title', null, null, [], 403],
-            ['new title', null, 'loved', [], 403],
-            ['new title', null, 'loved', ['loved'], 204],
-            ['new title', null, 'gmt', [], 204],
+            // default acl
+            [null, null, [], 'post', null, 422],
+            ['new title', null, [], 'post', null, 204],
+            ['new title', null, [], null, null, 403],
+            ['new title', 'loved', [], null, null, 403],
+            ['new title', 'loved', ['loved'], null, null, 204],
+            ['new title', 'gmt', [], null, null, 204],
+
+            // specific group acl
+            ['new title', null, [], 'post', 'gmt', 403],
+            ['new title', 'loved', [], 'post', 'loved', 204],
+            ['new title', 'loved', [], 'post', 'gmt', 403],
+        ];
+    }
+
+    public static function dataProviderForTestUpdateAuthCode(): array
+    {
+        // $group, $aclGroup, $statusCode
+        return [
+            [null, null, 200],
+            [null, 'gmt', 403],
+            ['loved', 'loved', 200],
+            ['loved', 'gmt', 403],
+            ['gmt', 'loved', 403],
+            ['gmt', 'gmt', 200],
         ];
     }
 
@@ -495,15 +515,23 @@ class TopicsControllerTest extends TestCase
     }
 
     #[DataProvider('dataProviderForTestUpdate')]
-    public function testUpdate(?string $newTitle, ?string $authorize, ?string $group, array $forumGroups, int $statusCode): void
+    public function testUpdate(
+        ?string $newTitle,
+        ?string $group,
+        array $forumGroups,
+        ?string $authorize,
+        ?string $aclGroup,
+        int $statusCode
+    ): void
     {
         $user = User::factory()->withGroup($group)->create();
-        $topic = Topic::factory()->withPost()->for(
-            Forum::factory()->withAuthorize($authorize)->moderatorGroups($forumGroups)
-        )->create([
-            'topic_poster' => $user,
-            'topic_title' => 'Initial title',
-        ]);
+        $topic = Topic::factory()
+            ->for(Forum::factory()->withAuthorize($authorize, $aclGroup)->moderatorGroups($forumGroups))
+            ->withPost()
+            ->create([
+                'topic_poster' => $user,
+                'topic_title' => 'Initial title',
+            ]);
 
         $this
             ->actingAsVerified($user)
@@ -521,11 +549,15 @@ class TopicsControllerTest extends TestCase
         }
     }
 
-    public function testUpdateAuthCode(): void
+    #[DataProvider('dataProviderForTestUpdateAuthCode')]
+    public function testUpdateAuthCode(?string $group, ?string $aclGroup, int $statusCode): void
     {
-        $user = User::factory()->create();
+        $user = User::factory()->withGroup($group)->create();
         $client = Client::factory()->create();
-        $topic = Topic::factory()->for(Forum::factory()->withAuthorize('post'))->withPost()->create(['topic_poster' => $user]);
+        $topic = Topic::factory()
+            ->for(Forum::factory()->withAuthorize('post', $aclGroup))
+            ->withPost()
+            ->create(['topic_poster' => $user]);
 
         $this->expectCountChange(fn () => Post::count(), 0);
         $this->expectCountChange(fn () => Topic::count(), 0);
@@ -537,7 +569,7 @@ class TopicsControllerTest extends TestCase
                     'topic_title' => 'A different title',
                 ],
             ])
-            ->assertSuccessful();
+            ->assertStatus($statusCode);
     }
 
     #[DataProvider('dataProviderForClientCredentialsGroupTests')]
