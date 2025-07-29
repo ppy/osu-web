@@ -1042,6 +1042,13 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->inGroupWithPlaymode('bng', $mode);
     }
 
+    public function isForumModerator(Forum\Forum $forum): bool
+    {
+        // permission set directly though moderator_groups should behave like checks
+        // using findUserGroup directly instead of isGroup and are available with OAuth.
+        return $forum->moderator_groups !== null && !empty(array_intersect($this->groupIds()['active'], $forum->moderator_groups));
+    }
+
     public function isLimitedBN(?string $mode = null)
     {
         return $this->inGroupWithPlaymode('bng_limited', $mode);
