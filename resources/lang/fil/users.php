@@ -159,8 +159,17 @@ return [
             'cancel' => 'Ikansela',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Hindi tamang gawain / Pandaraya',
+            'copyright_infringement' => '',
             'inappropriate_chat' => '',
             'insults' => 'Iniinsulto ako o ang iba',
             'multiple_accounts' => 'Gumagamit ng maraming account',

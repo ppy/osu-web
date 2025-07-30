@@ -14,8 +14,8 @@ return [
         'top_10p' => 'Score du Top 10%',
         'top_50p' => 'Score du Top 50%',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'Pas de défi du jour à cette date pour le moment !',
+            'past' => 'Pas de défi du jour à cette date !',
         ],
     ],
 

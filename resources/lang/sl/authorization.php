@@ -113,6 +113,7 @@ return [
                 'deleted' => 'Izbrisane objave ni možno urejati.',
                 'locked' => 'Objava je zaščitena proti urejanju.',
                 'no_forum_access' => 'Zahtevan je dostop do željenega foruma.',
+                'no_permission' => '',
                 'not_owner' => 'Samo avtor lahko ureja objavo.',
                 'topic_locked' => 'Ni mogoče urejati objave v zaklenjeni temi.',
             ],

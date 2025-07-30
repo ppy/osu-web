@@ -81,7 +81,7 @@ return [
             'testflight' => 'thử nghệm bay',
         ],
         'legacy_matches_controller' => [
-            '_' => '',
+            '_' => 'trận đấu',
         ],
         'legal_controller' => [
             '_' => 'thông tin
@@ -132,7 +132,7 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            'events' => '',
+            'events' => 'lịch sử phòng',
         ],
     ],
     'passport' => [

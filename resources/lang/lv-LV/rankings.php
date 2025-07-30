@@ -14,8 +14,8 @@ return [
         'top_10p' => 'Top 10% Rezultāti',
         'top_50p' => 'Top 50% Rezultāti',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'Pagaidām nav dienas izaicinājums izvēlētajā datumā!',
+            'past' => 'Nav dienas izaicinājums izvēlētajā datumā!',
         ],
     ],
 

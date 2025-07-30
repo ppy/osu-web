@@ -174,7 +174,7 @@ return [
 
         'add_to_cart' => 'Adaugă în coș',
         'notify' => 'Anunță-mă când este disponibil!',
-        'out_of_stock' => '',
+        'out_of_stock' => 'Nu este în stoc',
 
         'notification_success' => 'vei fi anunțat când vom avea un stoc nou. Dă clic pe :link pentru a anula',
         'notification_remove_text' => 'aici',

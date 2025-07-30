@@ -16,8 +16,8 @@ return [
         'map_count' => ':count_delimited map|:count_delimited map',
         'player_count' => ':count_delimited pemain|:count_delimited pemain',
         'time_left' => ':time tersisa',
-        'view_history' => '',
-        'view_summary' => '',
+        'view_history' => 'Lihat Riwayat',
+        'view_summary' => 'Lihat Ringkasan',
 
         'errors' => [
             'duration_too_long' => 'Durasi pertandingan terlalu lama.',

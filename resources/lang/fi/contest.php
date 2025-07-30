@@ -107,4 +107,10 @@ return [
         'voting' => 'Äänestys Alkanut',
         'results' => 'Tulokset Julkistettu',
     ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
+    ],
 ];

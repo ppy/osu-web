@@ -159,8 +159,17 @@ return [
             'cancel' => 'Cancel·la',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Joc brut/trampes',
+            'copyright_infringement' => '',
             'inappropriate_chat' => 'Conducta inadequada al xat',
             'insults' => 'Insultant-me/insultant als altres',
             'multiple_accounts' => 'Fa servir diversos comptes',

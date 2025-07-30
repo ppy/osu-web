@@ -81,7 +81,7 @@ return [
         'beatmapset_disqualify' => 'terima pemberitahuan ketika peta rentak mod berikut tersingkir',
         'comment_reply' => 'terima pemberitahuan untuk balasan pada komen',
         'title' => 'Pemberitahuan',
-        'topic_auto_subscribe' => 'upayakan pemberitahuan automatik pada tajuk forum baharu yang anda cipta atau balas',
+        'topic_auto_subscribe' => 'upayakan pemberitahuan secara automatik pada tajuk forum baharu yang anda cipta atau balas',
 
         'options' => [
             '_' => 'hantarkan pemberitahuan melalui',

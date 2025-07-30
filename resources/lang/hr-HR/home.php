@@ -153,5 +153,10 @@ return [
             'support' => 'Podrži osu!',
             'store' => 'osu!trgovina',
         ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
+        ],
     ],
 ];

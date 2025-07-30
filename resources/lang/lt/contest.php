@@ -107,4 +107,10 @@ return [
         'voting' => 'Balsavimas Pradėtas',
         'results' => 'Yra rezultatai',
     ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
+    ],
 ];

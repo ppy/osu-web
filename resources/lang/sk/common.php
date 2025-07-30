@@ -19,7 +19,6 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Administrátor',
         'authorise' => 'Autorizovať',
         'authorising' => 'Autorizovanie...',
         'back' => '',

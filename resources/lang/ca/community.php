@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Gràcies pel teu suport! Has contribuït :dollars amb la compra de :tags tags!',
-            'gifted' => "Has regalat :giftedTags de les teves compres (pel valor de :giftedDollars), que generós!",
+            'contribution_with_duration' => '',
             'not_yet' => "No has tingut mai l'etiqueta d'osu!supporter :(",
             'valid_until' => 'La teva etiqueta d\'osu!supporter és vàlida fins :date!',
             'was_valid_until' => 'La teva etiqueta d\'osu!supporter va ser vàlida fins :date.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

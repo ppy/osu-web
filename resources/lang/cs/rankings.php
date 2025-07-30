@@ -14,8 +14,8 @@ return [
         'top_10p' => 'Skóre pro Top 10%',
         'top_50p' => 'Skóre pro Top 50%',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'Prozatím žádná denní výzva pro zadané datum!',
+            'past' => 'Žádná denní výzva pro zadané datum!',
         ],
     ],
 

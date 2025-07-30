@@ -113,6 +113,7 @@ return [
                 'deleted' => '',
                 'locked' => '',
                 'no_forum_access' => '',
+                'no_permission' => '',
                 'not_owner' => '',
                 'topic_locked' => '',
             ],

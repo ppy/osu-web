@@ -159,8 +159,17 @@ return [
             'cancel' => '취소',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => '부정 행위 / 치트 사용',
+            'copyright_infringement' => '',
             'inappropriate_chat' => '부적절한 언행',
             'insults' => '자신 / 다른 사람을 모욕 함',
             'multiple_accounts' => '다중 계정 사용',
@@ -487,7 +496,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => '정확도',
-            'hits_per_play' => '',
+            'hits_per_play' => '플레이 당 히트 수',
             'level' => '레벨 :level',
             'level_progress' => '다음 레벨까지의 진척도',
             'maximum_combo' => '최대 콤보',

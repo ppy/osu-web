@@ -16,8 +16,8 @@ return [
         'map_count' => ':count_delimited мапа|:count_delimited мапи|:count_delimited мап',
         'player_count' => ':count_delimited гравець|:count_delimited гравця|:count_delimited гравців',
         'time_left' => ':time залишилось',
-        'view_history' => '',
-        'view_summary' => '',
+        'view_history' => 'Переглянути Історію',
+        'view_summary' => 'Переглянути Звіт',
 
         'errors' => [
             'duration_too_long' => 'Тривалість занадто довга.',

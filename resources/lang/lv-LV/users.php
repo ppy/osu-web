@@ -159,8 +159,17 @@ return [
             'cancel' => 'Atcelt',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Netīra spēle / Krāpšanās',
+            'copyright_infringement' => '',
             'inappropriate_chat' => 'Nepiedienīga uzvedība tērzētavā',
             'insults' => 'Mani / Citus aizvainoja',
             'multiple_accounts' => 'Izmanto vairākus kontus',
@@ -486,7 +495,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Trāpījuma Precizitāte',
-            'hits_per_play' => '',
+            'hits_per_play' => 'Sitieni Katrā Mēģinājumā',
             'level' => 'Līmenis :level',
             'level_progress' => 'progress uz nākamo līmeni',
             'maximum_combo' => 'Maksimālā Kombinācija',

@@ -6,54 +6,54 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'La til bruker i teamet.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Kansellerte invitasjonsforespørsel.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Avslo invitasjonsforespørsel.',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Forespurt å delta i teamet.',
         ],
     ],
 
     'card' => [
-        'members' => '',
+        'members' => ':count_delimited medlem|:count_delimited medlemmer',
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'Opprett Team',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => 'Ditt teamnavn. Navnet er permanent for øyeblikket.',
+            'short_name_help' => 'Maks 4 tegn.',
+            'title' => "La oss sette opp et nytt team",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "Spill sammen med venner; både kjente og nye. Du er for øyeblikket ikke i et team. Bli med i et eksisterende team ved å gå til deres teamside eller lag ditt eget team fra denne siden.",
+            'title' => 'Team!',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Team fjernet.',
     ],
 
     'edit' => [
-        'ok' => '',
-        'title' => '',
+        'ok' => 'Innstillinger er lagret.',
+        'title' => 'Teaminnstillinger',
 
         'description' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Beskrivelse',
+            'title' => 'Team Beskrivelse',
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Team Flagg',
+            'title' => 'Angi Team Flagg',
         ],
 
         'header' => [
@@ -64,21 +64,21 @@ return [
         'settings' => [
             'application_help' => '',
             'default_ruleset_help' => '',
-            'flag_help' => '',
-            'header_help' => '',
-            'title' => '',
+            'flag_help' => 'Maksimal størrelse på :width×:height',
+            'header_help' => 'Maksimal størrelse på :width×:height',
+            'title' => 'Team Innstillinger',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => 'Stengt',
+                'state_1' => 'Åpent',
             ],
         ],
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'innstillinger',
+        'leaderboard' => 'toppliste',
+        'show' => 'info',
 
         'members' => [
             'index' => '',
@@ -138,7 +138,7 @@ return [
             'destroy' => '',
             'join' => '',
             'join_cancel' => '',
-            'part' => '',
+            'part' => 'Forlat Team',
         ],
 
         'info' => [
@@ -157,8 +157,9 @@ return [
         ],
 
         'statistics' => [
-            'rank' => '',
+            'empty_slots' => '',
             'leader' => '',
+            'rank' => '',
         ],
     ],
 

@@ -157,8 +157,9 @@ return [
         ],
 
         'statistics' => [
-            'rank' => '排名',
+            'empty_slots' => '',
             'leader' => '队长',
+            'rank' => '排名',
         ],
     ],
 

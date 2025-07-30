@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => '전체 사이즈 커버 이미지 보기',
+            'page' => '',
         ],
 
         'deleted_banner' => [

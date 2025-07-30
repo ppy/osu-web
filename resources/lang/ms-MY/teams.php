@@ -157,8 +157,9 @@ return [
         ],
 
         'statistics' => [
-            'rank' => 'Pangkat',
+            'empty_slots' => '',
             'leader' => 'Ketua Pasukan',
+            'rank' => 'Pangkat',
         ],
     ],
 

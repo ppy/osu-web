@@ -159,8 +159,17 @@ return [
             'cancel' => 'Peruuta',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Huijaaminen',
+            'copyright_infringement' => '',
             'inappropriate_chat' => '',
             'insults' => 'Loukkaa minua / muita',
             'multiple_accounts' => 'Käyttää useita tilejä',

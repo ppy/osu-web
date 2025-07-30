@@ -19,7 +19,6 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Yönetici',
         'authorise' => 'Yetki ver',
         'authorising' => 'İzin Veriliyor...',
         'back' => 'Geri',

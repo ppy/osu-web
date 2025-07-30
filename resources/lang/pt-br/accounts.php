@@ -11,8 +11,8 @@ return [
         'avatar' => [
             'title' => 'Avatar',
             'reset' => 'redefinir',
-            'rules' => 'Por favor, tenha certeza que seu avatar respeite :link.<br/>Isso significa que deve ser <strong>adequado para todas as idades</strong>, ou seja, sem nudez, palavrões ou conteúdo sugestivo.',
-            'rules_link' => 'as regras da comunidade',
+            'rules' => 'Por favor, tenha certeza que seu avatar respeite :link.<br/>Isso significa que deve ser <strong>adequado para todas as idades</strong>, ou seja, sem nudez e sem conteúdo ofensivo ou sugestivo.',
+            'rules_link' => 'as Considerações de conteúdo visual',
         ],
 
         'email' => [
@@ -20,7 +20,7 @@ return [
             'new_confirmation' => 'confirmar email',
             'title' => 'Email',
             'locked' => [
-                '_' => 'Por favor, contate :accounts se precisar atualizar o seu email.',
+                '_' => 'Por favor, contate a :accounts se precisar atualizar o seu email.',
                 'accounts' => 'equipe de suporte de contas',
             ],
         ],

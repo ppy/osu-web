@@ -19,7 +19,6 @@ return [
     ],
 
     'buttons' => [
-        'admin' => '管理員',
         'authorise' => '授權',
         'authorising' => '授權中',
         'back' => '返回',
@@ -95,10 +94,10 @@ return [
 
     'datetime' => [
         'month' => [
-            'php' => '',
+            'php' => '月',
         ],
         'year' => [
-            'php' => '',
+            'php' => '年',
         ],
         'year_month' => [
             'moment' => 'YYYY年 MMMM',

@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Mulțumim pentru sprijinul acordat! Ai contribuit cu un total de :dollars în :tags statusuri suporter!',
-            'gifted' => ":giftedTags din achizițiile tale de statusuri suporter au fost dăruite (valorând :giftedDollars), cât de generos!",
+            'contribution_with_duration' => '',
             'not_yet' => "Nu ai avut vreodată status de suporter osu! :(",
             'valid_until' => 'Statusul tău actual de suporter osu! este valid până la :date!',
             'was_valid_until' => 'Statusul tău de suporter a fost valid pâna la data de :date.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

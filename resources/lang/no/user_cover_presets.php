@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Deaktiver valgte',
+        'batch_enable' => 'Aktiver valgte',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':action :items?',
+            'disable' => 'Deaktiver',
+            'enable' => 'Aktiver',
+            'items' => ':count_delimited forside|:count_delimited forsider',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Filer',
+            'submit' => 'Lagre',
+            'title' => 'Legg til ny',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'Klikk for å deaktivere',
+            'click_to_enable' => 'Klikk for å aktivere',
+            'enabled' => 'Aktivert',
+            'disabled' => 'Deaktivert',
+            'image_store' => 'Angi Bilde',
+            'image_update' => 'Erstatt Bilde',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'En feil oppstod ved opprettelse av forside: :error',
+        'ok' => 'Forsider opprettet',
     ],
 ];

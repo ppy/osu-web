@@ -159,9 +159,18 @@ return [
             'cancel' => 'Hủy',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Chơi xấu / Gian lận',
-            'inappropriate_chat' => '',
+            'copyright_infringement' => '',
+            'inappropriate_chat' => 'Hành vi trò chuyện không phù hợp',
             'insults' => 'Xúc phạm tôi / những người khác',
             'multiple_accounts' => 'Sử dụng nhiều tài khoản',
             'nonsense' => 'Phi lý',
@@ -481,12 +490,12 @@ return [
             'highest' => 'Hạng cao nhất: :rank vào :date',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
+            'division_top_percentage' => 'Top :value',
             'total_score' => 'Tổng điểm',
         ],
         'stats' => [
             'hit_accuracy' => 'Độ Chính Xác',
-            'hits_per_play' => '',
+            'hits_per_play' => 'Số lần nhấn mỗi khi chơi',
             'level' => 'Level :level',
             'level_progress' => 'Tiến độ qua level tiếp theo',
             'maximum_combo' => 'Combo Cao Nhất',

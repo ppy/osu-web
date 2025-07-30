@@ -174,7 +174,7 @@ return [
 
         'add_to_cart' => 'Pievienot grozam',
         'notify' => 'Paziņot man, kad pieejams!',
-        'out_of_stock' => '',
+        'out_of_stock' => 'Izpirkts',
 
         'notification_success' => 'tev paziņos, kad mums būs jauns krājums. uzspied :link lai atceltu',
         'notification_remove_text' => 'šeit',

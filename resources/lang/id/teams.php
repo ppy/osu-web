@@ -157,8 +157,9 @@ return [
         ],
 
         'statistics' => [
-            'rank' => 'Peringkat',
+            'empty_slots' => '',
             'leader' => 'Ketua Tim',
+            'rank' => 'Peringkat',
         ],
     ],
 

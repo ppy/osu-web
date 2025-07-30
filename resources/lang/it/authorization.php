@@ -113,6 +113,7 @@ return [
                 'deleted' => 'Non puoi modificare un post eliminato.',
                 'locked' => 'Non è permesso effettuare modifiche in questo post.',
                 'no_forum_access' => 'È necessario accedere al forum richiesto.',
+                'no_permission' => '',
                 'not_owner' => 'Solo l\'autore del post lo può modificare.',
                 'topic_locked' => 'Non puoi modificare i post di un topic bloccato.',
             ],

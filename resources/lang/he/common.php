@@ -19,7 +19,6 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'מנהל',
         'authorise' => 'אשר',
         'authorising' => 'מאשר...',
         'back' => '',

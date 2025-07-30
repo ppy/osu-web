@@ -220,9 +220,9 @@ return [
         'unresolved_issues' => 'Terdapat masalah belum terjawab yang harus diselesaikan terlebih dahulu.',
 
         'rank_estimate' => [
-            '_' => 'Map ini diperkirakan akan di-rank :date apabila tidak terdapat masalah yang ditemukan. Map ini berada pada urutan ke-:position dalam :queue saat ini.',
+            '_' => 'Beatmap ini diperkirakan akan di-rank :date apabila tidak terdapat masalah yang ditemukan. Beatmap ini berada pada urutan ke-:position dalam :queue saat ini.',
             'unresolved_problems' => 'Beatmap ini sedang diblokir untuk dapat melewati kategori Qualified hingga :problems terselesaikan.',
-            'problems' => 'masalah berikut',
+            'problems' => 'masalah ini',
             'on' => 'pada tanggal :date',
             'queue' => 'antrean ranking',
             'soon' => 'segera',

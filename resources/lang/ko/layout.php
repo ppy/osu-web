@@ -113,7 +113,7 @@ return [
             'copyright' => '저작권 (DMCA)',
             'jp_sctl' => '특정상거래법',
             'privacy' => '개인 정보 보호 정책',
-            'rules' => '',
+            'rules' => '규칙',
             'server_status' => '서버 상태 확인',
             'source_code' => '소스 코드',
             'terms' => '서비스 이용약관',

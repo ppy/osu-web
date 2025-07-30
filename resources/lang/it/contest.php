@@ -89,7 +89,7 @@ return [
         'list' => 'voti',
         'count' => ':count_delimited voto|:count_delimited voti',
         'points' => ':count_delimited punto|:count_delimited punti',
-        'points_float' => '',
+        'points_float' => ':points punti',
     ],
 
     'dates' => [
@@ -106,5 +106,11 @@ return [
         'entry' => 'Iscrizioni Aperte',
         'voting' => 'Votazione Iniziata',
         'results' => 'Risultati Pubblicati',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

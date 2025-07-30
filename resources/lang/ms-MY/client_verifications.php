@@ -12,7 +12,7 @@ return [
     ],
 
     'create' => [
-        'confirm' => 'Klik butang izinkan di bawah untuk melengkapkan pengesahan pelanggan.',
+        'confirm' => 'Klik butang izinkan di bawah untuk selesaikan pengesahan pelanggan.',
         'title' => 'pengesahan pelanggan osu!',
     ],
 ];

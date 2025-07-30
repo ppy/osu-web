@@ -157,8 +157,9 @@ return [
         ],
 
         'statistics' => [
-            'rank' => '순위',
+            'empty_slots' => '',
             'leader' => '팀장',
+            'rank' => '순위',
         ],
     ],
 

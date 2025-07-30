@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Obrigado pelo o seu apoio! Você contribuiu com um total de :dollars em :tags compras de tags!',
-            'gifted' => ":giftedTags de suas compras de tag foram presenteadas (um total de :giftedDollars presenteados), que generoso!",
+            'contribution_with_duration' => '',
             'not_yet' => "Você ainda não tem uma supporter tag :(",
             'valid_until' => 'Sua supporter tag atual é válida até :date!',
             'was_valid_until' => 'Sua supporter tag era válida até :date.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

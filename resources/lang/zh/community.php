@@ -101,7 +101,7 @@ return [
 
             'change_username' => [
                 'title' => '修改用户名',
-                'description' => '你能得到一次免费修改用户名的机会。',
+                'description' => '首次购买支持者标签时，将包含一次免费修改用户名的机会。',
             ],
 
             'skinnables' => [
@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => '感谢您一直以来的支持！您已经捐赠了 :tags 张支持者标签，价值 :dollars！',
-            'gifted' => "您已经送出了 :giftedTags 张支持者标签（价值 :giftedDollars），真是慷慨解囊啊！",
+            'contribution_with_duration' => '',
             'not_yet' => "您还没有支持者标签 :(",
             'valid_until' => '您的支持者标签将在 :date 到期',
             'was_valid_until' => '您的支持者标签已于 :date 到期',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

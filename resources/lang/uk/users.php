@@ -159,8 +159,17 @@ return [
             'cancel' => 'Скасувати',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Нечесна гра / чітерство',
+            'copyright_infringement' => '',
             'inappropriate_chat' => 'Неприйнятна поведінка в чаті',
             'insults' => 'Образа мене / інших',
             'multiple_accounts' => 'Використання кількох облікових записів',
@@ -486,7 +495,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Точність',
-            'hits_per_play' => '',
+            'hits_per_play' => 'Влучань За Гру',
             'level' => 'Рівень :level',
             'level_progress' => 'Прогрес до наступного рівня',
             'maximum_combo' => 'Максимальне комбо',

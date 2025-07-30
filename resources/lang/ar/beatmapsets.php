@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'عرض صورة الغلاف بحجمها الكامل',
+            'page' => '',
         ],
 
         'deleted_banner' => [
