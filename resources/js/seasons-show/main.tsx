@@ -73,6 +73,7 @@ export default function Main(props: Props) {
 
       <div className='osu-page osu-page--generic'>
         <RoomList
+          emptyMessage={trans('rankings.seasons.empty')}
           showMoreUrl={route('seasons.rooms', { season: props.currentSeason.id })}
           store={props.store}
         />
