@@ -7,40 +7,80 @@ declare(strict_types=1);
 
 namespace Tests\Controllers\Forum;
 
-use App\Models\Forum\Authorize;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicTrack;
+use App\Models\Log;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class TopicsControllerTest extends TestCase
 {
-    public function testDestroy(): void
+    public static function dataProviderForModerationTests(): array
     {
-        $user = User::factory()->create();
-        $topic = Topic::factory()->withPost()->create(['topic_poster' => $user]);
-
-        $this->expectCountChange(fn () => Topic::count(), -1);
-
-        $this
-            ->actingAsVerified($user)
-            ->delete(route('forum.topics.destroy', $topic))
-            ->assertRedirect(route('forum.forums.show', $topic->forum_id));
+        return [
+            [null, [], false],
+            ['gmt', [], true],
+            ['loved', [], false],
+            ['loved', ['loved'], true],
+        ];
     }
 
-    public function testDestroyAsDifferentUser(): void
+    public static function dataProviderForTestDestroy(): array
     {
-        $user = User::factory()->create();
+        return [
+            [null, false],
+            ['gmt', true],
+        ];
+    }
+
+    public static function dataProviderForTestReply(): array
+    {
+        return [
+            [false, 'reply', false],
+            [true, 'reply', true],
+            [true, 'post', false],
+            [true, null, false],
+        ];
+    }
+
+    public static function dataProviderForTestStore(): array
+    {
+        return [
+            [false, 'post', false],
+            [true, 'post', true],
+            [true, 'reply', false],
+            [true, null, false],
+        ];
+    }
+
+    public static function dataProviderForTestUpdate(): array
+    {
+        return [
+            [null, 'post', null, [], 422],
+            ['new title', 'post', null, [], 204],
+            ['new title', null, null, [], 403],
+            ['new title', null, 'loved', [], 403],
+            ['new title', null, 'loved', ['loved'], 204],
+            ['new title', null, 'gmt', [], 204],
+        ];
+    }
+
+    #[DataProvider('dataProviderForTestDestroy')]
+    public function testDestroy(?string $group, bool $success): void
+    {
+        $user = User::factory()->withGroup($group)->create();
         $topic = Topic::factory()->withPost()->create();
 
-        $this->expectCountChange(fn () => Topic::count(), 0);
+        $this->expectCountChange(fn () => Topic::count(), $success ? -1 : 0);
+        $this->expectCountChange(fn () => Log::count(), $success ? 1 : 0);
 
         $this
             ->actingAsVerified($user)
             ->delete(route('forum.topics.destroy', $topic))
-            ->assertStatus(403);
+            ->assertStatus($success ? 200 : 403);
     }
 
     public function testDestroyAsGuest(): void
@@ -48,93 +88,107 @@ class TopicsControllerTest extends TestCase
         $topic = Topic::factory()->withPost()->create();
 
         $this->expectCountChange(fn () => Topic::count(), 0);
+        $this->expectCountChange(fn () => Log::count(), 0);
 
         $this
             ->delete(route('forum.topics.destroy', $topic))
             ->assertStatus(401);
     }
 
-    public function testDestroyAsModerator(): void
+    public function testDestroyAsSameUser(): void
     {
-        $topic = Topic::factory()->withPost()->create();
-        $user = User::factory()->withGroup('gmt')->create();
+        $user = User::factory()->create();
+        $topic = Topic::factory()->withPost()->create(['topic_poster' => $user]);
 
         $this->expectCountChange(fn () => Topic::count(), -1);
+        $this->expectCountChange(fn () => Log::count(), 0);
 
         $this
             ->actingAsVerified($user)
             ->delete(route('forum.topics.destroy', $topic))
-            ->assertSuccessful();
+            ->assertRedirect(route('forum.forums.show', $topic->forum_id));
     }
 
-    public function testPin(): void
+    #[DataProvider('dataProviderForModerationTests')]
+    public function testLock(?string $group, array $forumGroups, bool $success): void
     {
-        $moderator = User::factory()->withGroup('gmt')->create();
-        $topic = Topic::factory()->create();
+        $user = User::factory()->withGroup($group)->create();
+        $topic = Topic::factory()->for(Forum::factory()->moderatorGroups($forumGroups))->create();
+
+        $this->expectCountChange(fn () => Log::count(), $success ? 1 : 0);
+
+        $response = $this
+            ->actingAsVerified($user)
+            ->post(route('forum.topics.lock', $topic), ['lock' => true]);
+
+        if ($success) {
+            $response->assertSuccessful();
+            $this->assertTrue($topic->fresh()->isLocked());
+        } else {
+            $response->assertStatus(403);
+            $this->assertFalse($topic->fresh()->isLocked());
+        }
+    }
+
+    #[DataProvider('dataProviderForModerationTests')]
+    public function testPin(?string $group, array $forumGroups, bool $success): void
+    {
+        $user = User::factory()->withGroup($group)->create();
+        $topic = Topic::factory()->for(Forum::factory()->moderatorGroups($forumGroups))->create();
         $typeInt = Topic::TYPES['sticky'];
 
-        $this
-            ->actingAsVerified($moderator)
-            ->post(route('forum.topics.pin', $topic), ['pin' => $typeInt])
-            ->assertSuccessful();
+        $this->expectCountChange(fn () => Log::count(), $success ? 1 : 0);
 
-        $this->assertSame($typeInt, $topic->fresh()->topic_type);
+        $response = $this
+            ->actingAsVerified($user)
+            ->post(route('forum.topics.pin', $topic), ['pin' => $typeInt]);
+
+        if ($success) {
+            $response->assertSuccessful();
+            $this->assertSame($typeInt, $topic->fresh()->topic_type);
+        } else {
+            $response->assertStatus(403);
+            $this->assertSame(Topic::TYPES['normal'], $topic->fresh()->topic_type);
+        }
     }
 
-    public function testReply(): void
+    #[DataProvider('dataProviderForTestReply')]
+    public function testReply(bool $hasMinPlays, ?string $authorize, bool $success): void
     {
-        $topic = Topic::factory()->create();
-        $user = User::factory()->withPlays($GLOBALS['cfg']['osu']['forum']['minimum_plays'])->create();
-        Authorize::factory()->reply()->create([
-            'forum_id' => $topic->forum_id,
-            'group_id' => app('groups')->byIdentifier('default'),
-        ]);
+        $topic = Topic::factory()->for(Forum::factory()->withAuthorize($authorize))->create();
+        $user = User::factory()->withPlays($hasMinPlays ? $GLOBALS['cfg']['osu']['forum']['minimum_plays'] : 0)->create();
 
-        $this->expectCountChange(fn () => Post::count(), 1);
+        $this->expectCountChange(fn () => Post::count(), $success ? 1 : 0);
         $this->expectCountChange(fn () => Topic::count(), 0);
-        $this->expectCountChange(fn () => $topic->fresh()->postCount(), 1);
+        $this->expectCountChange(fn () => $topic->fresh()->postCount(), $success ? 1 : 0);
 
         $this
             ->actingAsVerified($user)
             ->post(route('forum.topics.reply', $topic), [
                 'body' => 'This is test reply',
             ])
-            ->assertSuccessful();
+            ->assertStatus($success ? 200 : 403);
     }
 
-    public function testReplyWithoutPlays(): void
+    #[DataProvider('dataProviderForModerationTests')]
+    public function testRestore(?string $group, array $forumGroups, bool $success): void
     {
-        $topic = Topic::factory()->create();
-        $user = User::factory()->create();
-        Authorize::factory()->reply()->create([
-            'forum_id' => $topic->forum_id,
-            'group_id' => app('groups')->byIdentifier('default'),
-        ]);
-
-        $this->expectCountChange(fn () => Post::count(), 0);
-        $this->expectCountChange(fn () => Topic::count(), 0);
-        $this->expectCountChange(fn () => $topic->fresh()->postCount(), 0);
-
-        $this
-            ->actingAsVerified($user)
-            ->post(route('forum.topics.reply', $topic), [
-                'body' => 'This is test reply',
-            ])
-            ->assertStatus(403);
-    }
-
-    public function testRestore(): void
-    {
-        $moderator = User::factory()->withGroup('gmt')->create();
-        $topic = Topic::factory()->withPost()->create();
+        $user = User::factory()->withGroup($group)->create();
+        $topic = Topic::factory()->withPost()->for(Forum::factory()->moderatorGroups($forumGroups))->create();
         $topic->delete();
 
-        $this->expectCountChange(fn () => Topic::count(), 1);
+        $this->expectCountChange(fn () => Topic::count(), $success ? 1 : 0);
+        $this->expectCountChange(fn () => Log::count(), $success ? 1 : 0);
 
-        $this
-            ->actingAsVerified($moderator)
-            ->post(route('forum.topics.restore', $topic))
-            ->assertSuccessful();
+        $response = $this
+            ->actingAsVerified($user)
+            ->post(route('forum.topics.restore', $topic));
+
+        if ($success) {
+            $response->assertSuccessful();
+        } else {
+            $response->assertStatus(403);
+        }
     }
 
     public function testShow(): void
@@ -201,61 +255,44 @@ class TopicsControllerTest extends TestCase
             ->assertSuccessful();
     }
 
-    public function testStore(): void
+    #[DataProvider('dataProviderForTestStore')]
+    public function testStore(bool $hasMinPlays, ?string $authorize, bool $success): void
     {
-        $forum = Forum::factory()->create();
-        $user = User::factory()->withPlays($GLOBALS['cfg']['osu']['forum']['minimum_plays'])->create();
-        Authorize::factory()->post()->create([
-            'forum_id' => $forum,
-            'group_id' => app('groups')->byIdentifier('default'),
-        ]);
+        $forum = Forum::factory()->withAuthorize($authorize)->create();
+        $user = User::factory()->withPlays($hasMinPlays ? $GLOBALS['cfg']['osu']['forum']['minimum_plays'] : 0)->create();
 
-        $this->expectCountChange(fn () => Post::count(), 1);
-        $this->expectCountChange(fn () => Topic::count(), 1);
-        $this->expectCountChange(fn () => TopicTrack::count(), 1);
+        $change = $success ? 1 : 0;
+        $this->expectCountChange(fn () => Post::count(), $change);
+        $this->expectCountChange(fn () => Topic::count(), $change);
+        $this->expectCountChange(fn () => TopicTrack::count(), $change);
 
-        $this
+        $response = $this
             ->actingAsVerified($user)
             ->post(route('forum.topics.store', ['forum_id' => $forum]), [
                 'title' => 'Test post',
                 'body' => 'This is test post',
-            ])
-            ->assertRedirect(route(
+            ]);
+
+        if ($success) {
+            $response->assertRedirect(route(
                 'forum.topics.show',
                 Topic::orderBy('topic_id', 'DESC')->first(),
             ));
+        } else {
+            $response->assertStatus(403);
+        }
     }
 
-    public function testStoreWithoutPlays(): void
+    #[DataProvider('dataProviderForTestUpdate')]
+    public function testUpdate(?string $newTitle, ?string $authorize, ?string $group, array $forumGroups, int $statusCode): void
     {
-        $forum = Forum::factory()->create();
-        $user = User::factory()->create();
-        Authorize::factory()->post()->create([
-            'forum_id' => $forum,
-            'group_id' => app('groups')->byIdentifier('default'),
-        ]);
-
-        $this->expectCountChange(fn () => Post::count(), 0);
-        $this->expectCountChange(fn () => Topic::count(), 0);
-        $this->expectCountChange(fn () => TopicTrack::count(), 0);
-
-        $this
-            ->actingAsVerified($user)
-            ->post(route('forum.topics.store', ['forum_id' => $forum]), [
-                'title' => 'Test post',
-                'body' => 'This is test post',
-            ])
-            ->assertStatus(403);
-    }
-
-    public function testUpdateTitle(): void
-    {
-        $user = User::factory()->create();
-        $topic = Topic::factory()->withPost()->create([
+        $user = User::factory()->withGroup($group)->create();
+        $topic = Topic::factory()->withPost()->for(
+            Forum::factory()->withAuthorize($authorize)->moderatorGroups($forumGroups)
+        )->create([
             'topic_poster' => $user,
             'topic_title' => 'Initial title',
         ]);
-        $newTitle = 'A different title';
 
         $this
             ->actingAsVerified($user)
@@ -264,26 +301,12 @@ class TopicsControllerTest extends TestCase
                     'topic_title' => $newTitle,
                 ],
             ])
-            ->assertSuccessful();
+            ->assertStatus($statusCode);
 
-        $this->assertSame($newTitle, $topic->fresh()->topic_title);
-    }
-
-    public function testUpdateTitleBlank(): void
-    {
-        $user = User::factory()->create();
-        $topic = Topic::factory()->withPost()->create(['topic_poster' => $user]);
-        $title = $topic->topic_title;
-
-        $this
-            ->actingAsVerified($user)
-            ->put(route('forum.topics.update', $topic), [
-                'forum_topic' => [
-                    'topic_title' => null,
-                ],
-            ])
-            ->assertStatus(422);
-
-        $this->assertSame($title, $topic->fresh()->topic_title);
+        if ($statusCode === 204) {
+            $this->assertSame($newTitle, $topic->fresh()->topic_title);
+        } else {
+            $this->assertSame('Initial title', $topic->fresh()->topic_title);
+        }
     }
 }
