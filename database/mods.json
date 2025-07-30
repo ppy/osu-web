@@ -2438,7 +2438,8 @@
         "Settings": [],
         "IncompatibleMods": [
           "CN",
-          "RX"
+          "RX",
+          "MF"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": false,
@@ -2460,7 +2461,8 @@
           "AC",
           "AT",
           "CN",
-          "RX"
+          "RX",
+          "MF"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": false,
@@ -2477,7 +2479,8 @@
         "Settings": [],
         "IncompatibleMods": [
           "AT",
-          "CN"
+          "CN",
+          "MF"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2631,6 +2634,24 @@
           }
         ],
         "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForFreestyleAsRequiredMod": false,
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
+      },
+      {
+        "Acronym": "MF",
+        "Name": "Moving Fast",
+        "Description": "Dashing by default, slow down!",
+        "Type": "Fun",
+        "Settings": [],
+        "IncompatibleMods": [
+          "AT",
+          "CN",
+          "RX"
+        ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
