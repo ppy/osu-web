@@ -59,9 +59,9 @@ export default function Main(props: Props) {
                   {trans('users.multiplayer.index.active')}
                 </h3>
                 <RoomList
+                  emptyMessage={trans('multiplayer.empty.active', { type_group: trans(`multiplayer.empty.${props.typeGroup}`) })}
                   showMoreUrl={route('users.multiplayer.index', { is_active: true, typeGroup: props.typeGroup, user: props.user.id })}
                   store={props.store.active}
-                  typeGroup={props.typeGroup}
                 />
               </div>
 
@@ -70,9 +70,9 @@ export default function Main(props: Props) {
                   {trans('users.multiplayer.index.ended')}
                 </h3>
                 <RoomList
+                  emptyMessage={trans('multiplayer.empty.ended', { type_group: trans(`multiplayer.empty.${props.typeGroup}`) })}
                   showMoreUrl={route('users.multiplayer.index', { is_active: false, typeGroup: props.typeGroup, user: props.user.id })}
                   store={props.store.ended}
-                  typeGroup={props.typeGroup}
                 />
               </div>
             </div>
