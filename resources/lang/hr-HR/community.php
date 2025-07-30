@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => '',
-            'gifted' => "",
+            'contribution_with_duration' => '',
             'not_yet' => "",
             'valid_until' => '',
             'was_valid_until' => '',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

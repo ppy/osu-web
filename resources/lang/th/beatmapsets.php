@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'ดูภาพปกขนาดเต็ม',
+            'page' => '',
         ],
 
         'deleted_banner' => [

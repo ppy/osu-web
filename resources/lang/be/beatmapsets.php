@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Адкрыць вокладку ў арыгінальным памеры',
+            'page' => '',
         ],
 
         'deleted_banner' => [

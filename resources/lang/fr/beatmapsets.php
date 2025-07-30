@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Afficher la taille réelle de l\'image de couverture',
+            'page' => '',
         ],
 
         'deleted_banner' => [
@@ -212,7 +213,7 @@ return [
             'cs-mania' => 'Nombre de touches',
             'drain' => 'Drain de santé',
             'accuracy' => 'Précision',
-            'ar' => 'Taux d\'approche',
+            'ar' => 'Vitesse d\'approche',
             'stars' => 'Difficulté en étoiles',
             'total_length' => 'Durée (drain time : :hit_length)',
             'bpm' => 'BPM',

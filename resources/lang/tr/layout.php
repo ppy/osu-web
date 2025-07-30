@@ -113,7 +113,7 @@ return [
             'copyright' => 'Telif Hakkı (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Gizlilik',
-            'rules' => '',
+            'rules' => 'Kurallar',
             'server_status' => 'Sunucu Durumu',
             'source_code' => 'Kaynak Kodu',
             'terms' => 'Koşullar',

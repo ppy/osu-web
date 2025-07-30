@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Mostra copertina a grandezza intera',
+            'page' => '',
         ],
 
         'deleted_banner' => [

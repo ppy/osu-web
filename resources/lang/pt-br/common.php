@@ -19,7 +19,6 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Admin',
         'authorise' => 'Autorizar',
         'authorising' => 'Autorizando...',
         'back' => 'Voltar',
@@ -95,10 +94,10 @@ return [
 
     'datetime' => [
         'month' => [
-            'php' => '',
+            'php' => 'm',
         ],
         'year' => [
-            'php' => '',
+            'php' => 'a',
         ],
         'year_month' => [
             'moment' => 'MMMM YYYY',

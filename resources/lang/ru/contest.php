@@ -30,9 +30,9 @@ return [
         '_' => 'Результаты судейства',
         'creator' => 'создатель',
         'score' => 'Баллы',
-        'score_std' => '',
+        'score_std' => 'Стандартизированные очки',
         'total_score' => 'суммарный балл',
-        'total_score_std' => '',
+        'total_score_std' => 'всего стандартизированных очков',
     ],
 
     'voting' => [
@@ -89,7 +89,7 @@ return [
         'list' => 'голоса',
         'count' => ':count_delimited голос|:count_delimited голоса|:count_delimited голосов',
         'points' => ':count_delimited очко|:count_delimited очка|:count_delimited очков',
-        'points_float' => '',
+        'points_float' => ':points очков',
     ],
 
     'dates' => [
@@ -106,5 +106,11 @@ return [
         'entry' => 'Заявки открыты',
         'voting' => 'Голосование началось',
         'results' => 'Результаты опубликованы',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

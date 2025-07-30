@@ -5,11 +5,11 @@
 
 return [
     'mode' => [
-        'artist_track' => '',
+        'artist_track' => 'Nhạc của nghệ sĩ tiêu biểu',
         'beatmapset' => 'Beatmap',
         'forum_post' => 'Diễn đàn',
         'other' => 'Khác',
-        'team' => '',
+        'team' => 'Đội',
         'user' => 'Người chơi',
         'wiki_page' => 'Wiki',
     ],

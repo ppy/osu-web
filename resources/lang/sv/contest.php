@@ -107,4 +107,10 @@ return [
         'voting' => 'Röstning startad',
         'results' => 'Resultat ute',
     ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
+    ],
 ];

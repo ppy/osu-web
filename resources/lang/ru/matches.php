@@ -15,22 +15,22 @@ return [
         'winner_by' => ':winner с разницей в :difference очков',
 
         'events' => [
-            'game_aborted' => '',
-            'game_aborted_no_user' => '',
-            'game_completed' => '',
-            'game_completed_no_user' => '',
-            'host_changed' => '',
-            'host_changed_no_user' => '',
-            'player_joined' => '',
-            'player_joined_no_user' => '',
-            'player_kicked' => '',
-            'player_kicked_no_user' => '',
-            'player_left' => '',
-            'player_left_no_user' => '',
-            'room_created' => '',
-            'room_created_no_user' => '',
-            'room_disbanded' => '',
-            'room_disbanded_no_user' => '',
+            'game_aborted' => 'игра была прервана',
+            'game_aborted_no_user' => 'игра была прервана',
+            'game_completed' => 'игра завершилась',
+            'game_completed_no_user' => 'игра завершилась',
+            'host_changed' => ':user стал хостом',
+            'host_changed_no_user' => 'хост поменялся',
+            'player_joined' => ':user зашёл в комнату',
+            'player_joined_no_user' => 'игрок зашёл в комнату',
+            'player_kicked' => ':user был выгнан из комнаты',
+            'player_kicked_no_user' => 'игрок был выгнан из комнаты',
+            'player_left' => ':user покинул комнату',
+            'player_left_no_user' => 'игрок покинул комнату',
+            'room_created' => ':user создал комнату',
+            'room_created_no_user' => 'комната была создана',
+            'room_disbanded' => 'комната была распущена',
+            'room_disbanded_no_user' => 'комната была распущена',
         ],
 
         'score' => [
@@ -42,10 +42,10 @@ return [
         ],
 
         'team_types' => [
-            'head_to_head' => '',
-            'tag_coop' => '',
-            'tag_team_versus' => '',
-            'team_versus' => '',
+            'head_to_head' => 'Каждый сам за себя',
+            'tag_coop' => 'Совместное прохождение',
+            'tag_team_versus' => 'Совместное прохождение по командам',
+            'team_versus' => 'Противостояние команд',
         ],
 
         'teams' => [
@@ -54,7 +54,7 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '',
+        'freestyle' => 'Фристайл',
 
         'scoring-type' => [
             'score' => 'Наибольшее кол-во очков',

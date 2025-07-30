@@ -174,7 +174,7 @@ return [
 
         'add_to_cart' => 'Добави в количка',
         'notify' => 'Изпрати ми известие, когато отново е в наличност!',
-        'out_of_stock' => '',
+        'out_of_stock' => 'Без наличност',
 
         'notification_success' => 'ще бъдете уведомени, при нова наличност. кликнете :link за отказ',
         'notification_remove_text' => 'тук',

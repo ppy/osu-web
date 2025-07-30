@@ -71,7 +71,7 @@ return [
 
     'search' => [
         'go_to_post' => 'Přejít na příspěvek',
-        'post_number_input' => 'zadejte číslo příspěvku',
+        'post_number_input' => 'zadej číslo příspěvku',
         'total_posts' => ':posts_count příspěvků celkem',
     ],
 

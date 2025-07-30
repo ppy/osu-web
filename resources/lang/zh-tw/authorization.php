@@ -113,6 +113,7 @@ return [
                 'deleted' => '無法編輯已刪除的貼文。',
                 'locked' => '這篇貼文已鎖定，無法編輯。',
                 'no_forum_access' => '需要有存取該論壇的權限。',
+                'no_permission' => '',
                 'not_owner' => '只有發文作者才能編輯貼文。',
                 'topic_locked' => '無法編輯已鎖定主題的貼文。',
             ],

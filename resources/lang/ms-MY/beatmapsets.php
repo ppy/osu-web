@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Lihat gambar kulit ukuran penuh',
+            'page' => '',
         ],
 
         'deleted_banner' => [

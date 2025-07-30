@@ -30,9 +30,9 @@ return [
         '_' => 'Sonuçlar değerlendiriliyor',
         'creator' => 'yapımcı',
         'score' => 'Skor',
-        'score_std' => '',
+        'score_std' => 'Standardize puan',
         'total_score' => 'toplam skor',
-        'total_score_std' => '',
+        'total_score_std' => 'toplam standardize puan',
     ],
 
     'voting' => [
@@ -89,7 +89,7 @@ return [
         'list' => 'oylar',
         'count' => ':count_delimited oy|:count_delimited oy',
         'points' => ':count_delimited puan|:count_delimited puan',
-        'points_float' => '',
+        'points_float' => ':points noktalar',
     ],
 
     'dates' => [
@@ -106,5 +106,11 @@ return [
         'entry' => 'Girişler Açık',
         'voting' => 'Oylama Başladı',
         'results' => 'Sonuçlar Çıktı',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

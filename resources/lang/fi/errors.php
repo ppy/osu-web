@@ -7,6 +7,7 @@ return [
     'load_failed' => 'Tietojen lataus epäonnistui.',
     'missing_route' => 'Virheellinen URL-osoite tai virheellinen pyyntötapa.',
     'no_restricted_access' => 'Et voi suorittaa tätä toimintoa tilisi ollessa rajoitetussa tilassa.',
+    'param_too_large' => '',
     'supporter_only' => 'Sinun täytyy olla Tukija käyttääksesi tätä ominaisuutta.',
     'unknown' => 'Tuntematon virhe.',
 

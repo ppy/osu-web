@@ -113,6 +113,7 @@ return [
                 'deleted' => 'Ištrinto įrašo negalima redaguoti.',
                 'locked' => 'Įrašo redagavimas buvo uždraustas.',
                 'no_forum_access' => 'Prieiga prie norimo forumo reikalauja papildomų teisių.',
+                'no_permission' => '',
                 'not_owner' => 'Tik įrašo autorius gali ištrinti įrašą.',
                 'topic_locked' => 'Po temos užrakinimo trinti įrašų negalima.',
             ],

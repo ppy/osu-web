@@ -14,7 +14,7 @@ return [
         'contact_support' => 'Prosím kontaktujte podporu pro obnovení účtu.',
         'expired' => 'Platnost ověřovacího kódu vypršela.',
         'invalid' => 'Neočekávaná chyba v ověřovacím kódu.',
-        'is_privileged' => 'Kontaktujte peppyho lulz.',
+        'is_privileged' => 'Pro obnovení účtu kontaktuj admina s vysokými oprávněními.',
         'missing_key' => 'Vyžadováno.',
         'too_many_tries' => 'Příliš mnoho nezdařených pokusů.',
         'user_not_found' => 'Zadaný uživatel neexistuje.',
@@ -22,7 +22,7 @@ return [
     ],
 
     'notice' => [
-        'sent' => 'Zkontrolujte svůj e-mail pro ověřovací kód.',
+        'sent' => 'Zkontroluj svůj email pro ověřovací kód.',
         'saved' => 'Nové heslo uloženo!',
     ],
 
@@ -34,14 +34,14 @@ return [
     ],
 
     'starting' => [
-        'username' => 'Zadejte Vaši e-mailovou adresu nebo uživatelské jméno',
+        'username' => 'Zadej svoji emailovou adresu nebo uživatelské jméno',
 
         'reason' => [
             'inactive_different_country' => "Váš účet již nebyl dlouhou dobu použit. Pro zajištění bezpečnosti vašeho účtu si prosím obnovte vaše heslo.",
         ],
         'support' => [
-            '_' => 'Potřebujete další pomoc? Kontaktujte nás prostřednictvím :button.',
-            'button' => 'systém podpory',
+            '_' => 'Potřebuješ další pomoc? Kontaktuj nás prostřednictvím našeho :button.',
+            'button' => 'systému podpory',
         ],
     ],
 ];

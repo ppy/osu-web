@@ -178,11 +178,11 @@ return [
                 'team_application_accept' => "Вече сте член на :title",
                 'team_application_accept_compact' => "Вече сте член на :title",
 
-                'team_application_group' => '',
+                'team_application_group' => 'Обновявания на заявките за присъединяване към екип',
 
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
-                'team_application_store' => '',
+                'team_application_reject' => 'Заявлението Ви за отбора :title беше отказано',
+                'team_application_reject_compact' => 'Заявлението Ви за отбора :title беше отказано',
+                'team_application_store' => ':title заяви да влезе в отбора Ви',
                 'team_application_store_compact' => ':title заяви да влезе в отбора Ви',
             ],
         ],
@@ -251,7 +251,7 @@ return [
                 'channel_message' => 'Получихте съобщение от :username',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'Имате ново съобщение от отбора \':name\'',
             ],
         ],
 
@@ -275,9 +275,9 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
-                'team_application_store' => '',
+                'team_application_accept' => "Вече сте член на :title",
+                'team_application_reject' => 'Заявлението Ви за отбора :title беше отказано',
+                'team_application_store' => ':title заяви да влезе в отбора Ви',
             ],
         ],
 

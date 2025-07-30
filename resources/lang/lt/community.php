@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Ačiū už jūsų paramą! Jūsų įnašas :dollars per :tags žymų pirkimus!',
-            'gifted' => "Jūs atidavėte :giftedTags iš jūsų pirkimų kaip dovanas (Tai verta :giftedDollars), koks dosnus!",
+            'contribution_with_duration' => '',
             'not_yet' => "Jūs dar nesate turėjęs osu!rėmėjo žymos :(",
             'valid_until' => 'Jūsų osu!rėmėjo žyma galioja iki :date!',
             'was_valid_until' => 'Jūsų osu!rėmėjo žyma buvo galiojanti :date.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

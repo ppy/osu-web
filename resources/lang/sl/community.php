@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Hvala za tvojo dosedanjo podporo! Prispeval si :dollars na nakupu :tags značk!',
-            'gifted' => "Podaril si :giftedTags značk (to je vredno :giftedDollars), kako radodarno!",
+            'contribution_with_duration' => '',
             'not_yet' => "Nikoli še nisi imel osu!supporter značke :(",
             'valid_until' => 'Tvoja trenutna osu!supporter značka je veljavna do :date!',
             'was_valid_until' => 'Tvoja osu!supporter značka je bila veljavna do :date.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

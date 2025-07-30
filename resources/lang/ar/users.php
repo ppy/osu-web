@@ -159,8 +159,17 @@ return [
             'cancel' => 'إلغاء',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'لعب مؤذي/ غش',
+            'copyright_infringement' => '',
             'inappropriate_chat' => '',
             'insults' => 'اهانتي / اهانة الاخرين',
             'multiple_accounts' => 'استخدام حسابات متعددة',

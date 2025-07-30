@@ -107,4 +107,10 @@ return [
         'voting' => '投票期間中',
         'results' => '結果発表',
     ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
+    ],
 ];

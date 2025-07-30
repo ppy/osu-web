@@ -159,8 +159,17 @@ return [
             'cancel' => 'Annullér',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Uærligt spil / Snyd',
+            'copyright_infringement' => '',
             'inappropriate_chat' => '',
             'insults' => 'Fornærmede mig / andre',
             'multiple_accounts' => 'Bruger flere konti',

@@ -7,6 +7,7 @@ return [
     'load_failed' => '',
     'missing_route' => '',
     'no_restricted_access' => 'אינך יכול לבצע את הפעולה הזאת כאשר החשבון שלך במצב מוגבל.',
+    'param_too_large' => '',
     'supporter_only' => 'אתה חייב להיות osu!supporter כדי להשתמש בתכונה זו.',
     'unknown' => 'אירעה שגיאה לא ידועה.',
 

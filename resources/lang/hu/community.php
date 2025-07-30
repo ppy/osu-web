@@ -139,11 +139,15 @@ Ha támogató vagy, ez megnövekszik :supporter_base plusz :supporter_bonus rang
 
         ],
         'supporter_status' => [
-            'contribution' => 'Köszönjük az eddigi támogatásodat! Összesen :dollars adománnyal járultál hozzá :tags: cím vásárlással!',
-            'gifted' => "A cím vételeidből :giftedTags ajándékozott (eddig összesen :giftedDollars ajándékozott), milyen nagylelkű!",
+            'contribution_with_duration' => '',
             'not_yet' => "Még nincsen támogatói címed :(",
             'valid_until' => 'A jelenlegi támogatói címed eddig érvényes: :date!',
             'was_valid_until' => 'A támogatói címed eddig volt érvényes: :date.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

@@ -142,16 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Beatmap Provocare Zilnică',
             'new' => 'Beatmap-uri Clasate Noi',
             'popular' => 'Beatmap-uri Populare',
             'by_user' => 'de :user',
-            'resets' => '',
+            'resets' => 'se resetează :ends',
         ],
         'buttons' => [
             'download' => 'Descarcă osu!',
             'support' => 'Sprijină osu!',
             'store' => 'Magazinul osu!',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

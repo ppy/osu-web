@@ -30,9 +30,9 @@ return [
         '_' => 'Resultados de la evaluación',
         'creator' => 'creador',
         'score' => 'Puntuación',
-        'score_std' => '',
+        'score_std' => 'Puntuación estandarizada',
         'total_score' => 'puntuación total',
-        'total_score_std' => '',
+        'total_score_std' => 'puntuación estandarizada total',
     ],
 
     'voting' => [
@@ -89,7 +89,7 @@ return [
         'list' => 'votos',
         'count' => ':count_delimited voto|:count_delimited votos',
         'points' => ':count_delimited punto|:count_delimited puntos',
-        'points_float' => '',
+        'points_float' => ':points puntos',
     ],
 
     'dates' => [
@@ -106,5 +106,11 @@ return [
         'entry' => 'Inscripción abierta',
         'voting' => 'Votación iniciada',
         'results' => 'Resultados',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

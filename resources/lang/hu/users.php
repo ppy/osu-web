@@ -159,8 +159,17 @@ return [
             'cancel' => 'Mégse',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Tisztességtelen játék / Csalás',
+            'copyright_infringement' => '',
             'inappropriate_chat' => '',
             'insults' => 'Engem / másokat sérteget',
             'multiple_accounts' => 'Több fiók használata',

@@ -7,6 +7,7 @@ return [
     'load_failed' => 'Falha ao carregar os dados.',
     'missing_route' => 'Hiperligação inválida ou método de pedido incorreto.',
     'no_restricted_access' => 'Tu não és capaz de desempenhar esta ação enquanto a tua conta estiver num estado restrito.',
+    'param_too_large' => '',
     'supporter_only' => 'Tens de ser um apoiante para utilizar esta funcionalidade.',
     'unknown' => 'Ocorreu um erro desconhecido.',
 

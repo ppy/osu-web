@@ -19,7 +19,6 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Ylläpitäjä',
         'authorise' => 'Valtuuta',
         'authorising' => 'Valtuutetaan...',
         'back' => 'Takaisin',

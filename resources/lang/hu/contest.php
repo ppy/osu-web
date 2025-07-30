@@ -107,4 +107,10 @@ return [
         'voting' => 'Szavazás Folyamatban',
         'results' => 'Kihirdetett Eredmény',
     ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
+    ],
 ];

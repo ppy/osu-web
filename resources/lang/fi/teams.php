@@ -6,13 +6,13 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Käyttäjä lisätty joukkueeseen.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Liittymiskutsu peruttu.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Liittymiskutsu kielletty.',
         ],
         'store' => [
             'ok' => '',
@@ -58,7 +58,7 @@ return [
 
         'header' => [
             'label' => '',
-            'title' => '',
+            'title' => 'Aseta Otsikkokuva',
         ],
 
         'settings' => [
@@ -86,12 +86,12 @@ return [
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
+        'global_rank' => 'Kansainvälinen sijoitus',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '',
+            'success' => 'Joukkueen jäsen poistettu',
         ],
 
         'index' => [
@@ -110,7 +110,7 @@ return [
             'table' => [
                 'joined_at' => '',
                 'remove' => '',
-                'remove_confirm' => '',
+                'remove_confirm' => 'Haluatko poistaa käyttäjän :user joukkueestasi?',
                 'set_leader' => '',
                 'set_leader_confirm' => '',
                 'status' => '',
@@ -135,7 +135,7 @@ return [
     'show' => [
         'bar' => [
             'chat' => 'Tiimikeskustelu',
-            'destroy' => '',
+            'destroy' => 'Hajota joukkue',
             'join' => '',
             'join_cancel' => '',
             'part' => '',
@@ -151,14 +151,15 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
-            'info' => '',
+            'about' => 'Tietoa meistä!',
+            'info' => 'Info',
             'members' => '',
         ],
 
         'statistics' => [
+            'empty_slots' => '',
+            'leader' => 'Joukkuejohtaja',
             'rank' => '',
-            'leader' => '',
         ],
     ],
 

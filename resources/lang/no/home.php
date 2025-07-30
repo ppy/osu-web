@@ -153,5 +153,10 @@ return [
             'support' => 'Støtt osu!',
             'store' => 'osu!butikken',
         ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
+        ],
     ],
 ];

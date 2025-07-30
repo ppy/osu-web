@@ -113,6 +113,7 @@ return [
                 'deleted' => 'Nevar rediģēt izdzēstu rakstu.',
                 'locked' => 'Raksta rediģēšana ir slēgta.',
                 'no_forum_access' => 'Ir nepieciešama piekļuve pieprasītajam forumam.',
+                'no_permission' => '',
                 'not_owner' => 'Tikai publicētājs var rediģēt rakstu.',
                 'topic_locked' => 'Nevar rediģēt ziņojumus slēgtā tēmā.',
             ],

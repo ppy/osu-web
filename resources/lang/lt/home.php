@@ -153,5 +153,10 @@ return [
             'support' => 'Paremti osu!',
             'store' => 'osu!parduotuvė',
         ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
+        ],
     ],
 ];

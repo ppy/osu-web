@@ -159,8 +159,17 @@ return [
             'cancel' => 'בטל',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'אי הוגנות / רמאות',
+            'copyright_infringement' => '',
             'inappropriate_chat' => '',
             'insults' => 'העליב אותי / אחרים',
             'multiple_accounts' => '',

@@ -113,7 +113,7 @@ return [
             'copyright' => 'Autortiesības (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Konfidencialitāte',
-            'rules' => '',
+            'rules' => 'Noteikumi',
             'server_status' => 'Servera stāvoklis',
             'source_code' => 'Pirmkods',
             'terms' => 'Nosacījumi',
