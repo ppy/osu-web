@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Преглед на пълноразмерната корица',
+            'page' => '',
         ],
 
         'deleted_banner' => [
@@ -140,7 +141,7 @@ return [
             'description' => 'Описание',
             'genre' => 'Жанр',
             'language' => 'Език',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Тагове от автора',
             'no_scores' => 'Информацията все още се обработва...',
             'nominators' => 'Номинатори',
             'nsfw' => 'Explicit съдържание',
@@ -149,7 +150,7 @@ return [
             'source' => 'Източник',
             'storyboard' => 'Този бийтмап съдържа анимирана история',
             'success-rate' => 'Степен на успех (%)',
-            'user_tags' => '',
+            'user_tags' => 'Тагове от потребители',
             'video' => 'Този бийтмап съдържа видео',
         ],
 

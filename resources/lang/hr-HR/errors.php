@@ -7,6 +7,7 @@ return [
     'load_failed' => '',
     'missing_route' => 'Nepostojeći url ili netočna metoda zahtijeva.',
     'no_restricted_access' => 'Ne možeš to raditi dok je tvoj račun ograničen.',
+    'param_too_large' => '',
     'supporter_only' => 'Moraš imati osu!supporter oznaku kako bi koristio/la ovu značajku.',
     'unknown' => 'Došlo je do nepoznate greške.',
 

@@ -7,6 +7,7 @@ return [
     'load_failed' => 'Neizdevās ielādēt datus.',
     'missing_route' => 'Nederīgs url vai nepareiza pieprasījuma metode.',
     'no_restricted_access' => 'Jūs nevarat veikt šo darbību, kamēr jūsu konts ir ierobežojuma stāvoklī.',
+    'param_too_large' => '',
     'supporter_only' => 'Lai izmantotu šo funkciju, jums jābūt osu!supporter.',
     'unknown' => 'Notika nezināma kļūda.',
 

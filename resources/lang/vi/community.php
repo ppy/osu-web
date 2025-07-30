@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Cảm ơn về sự hỗ trợ của bạn! Bạn đã đóng góp tổng cộng :dollars với :tags tag đã mua!',
-            'gifted' => ":giftedTags tag đã mua của bạn đã được tặng (với tổng cộng :giftedDollars được tặng), thật hào phóng!",
+            'contribution_with_duration' => '',
             'not_yet' => "Bạn chưa có supporter tag nào hết :(",
             'valid_until' => 'Supporter tag hiện tại của bạn có giá trị đến :date!',
             'was_valid_until' => 'Supporter tag của bạn đã hết hạn vào :date.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Vis omslagsbilde i full størrelse',
+            'page' => '',
         ],
 
         'deleted_banner' => [

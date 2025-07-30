@@ -19,7 +19,6 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Админ',
         'authorise' => 'Оторизирай',
         'authorising' => 'Оторизиране...',
         'back' => 'Назад',
@@ -95,10 +94,10 @@ return [
 
     'datetime' => [
         'month' => [
-            'php' => '',
+            'php' => 'м',
         ],
         'year' => [
-            'php' => '',
+            'php' => 'г',
         ],
         'year_month' => [
             'moment' => 'MMMM YYYY',

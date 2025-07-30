@@ -16,8 +16,8 @@ return [
         'map_count' => ':count_delimited개의 맵',
         'player_count' => ':count_delimited명의 플레이어',
         'time_left' => ':time 남음',
-        'view_history' => '',
-        'view_summary' => '',
+        'view_history' => '기록 보기',
+        'view_summary' => '요약 보기',
 
         'errors' => [
             'duration_too_long' => '기간이 너무 깁니다.',

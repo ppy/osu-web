@@ -7,6 +7,7 @@ return [
     'load_failed' => '',
     'missing_route' => '',
     'no_restricted_access' => '',
+    'param_too_large' => '',
     'supporter_only' => '',
     'unknown' => '',
 

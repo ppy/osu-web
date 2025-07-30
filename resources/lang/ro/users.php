@@ -159,8 +159,17 @@ return [
             'cancel' => 'Anulează',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Trișat',
+            'copyright_infringement' => '',
             'inappropriate_chat' => 'Comportament necorespunzător în conversații',
             'insults' => 'M-a insultat pe mine / pe alții',
             'multiple_accounts' => 'Utilizarea mai multor conturi',
@@ -486,7 +495,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Precizie',
-            'hits_per_play' => '',
+            'hits_per_play' => 'Clicuri Pe Scor',
             'level' => 'Nivelul :level',
             'level_progress' => 'Progres până la nivelul următor',
             'maximum_combo' => 'Combo Maxim',

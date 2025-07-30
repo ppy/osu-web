@@ -174,7 +174,7 @@ return [
 
         'add_to_cart' => 'Zum Warenkorb hinzufügen',
         'notify' => 'Benachrichtige mich, sobald der Artikel wieder verfügbar ist!',
-        'out_of_stock' => '',
+        'out_of_stock' => 'Ausverkauft',
 
         'notification_success' => 'du erhältst eine benachrichtigung, sobald neuer bestand vorhanden ist. klick :link zum abbrechen',
         'notification_remove_text' => 'hier',

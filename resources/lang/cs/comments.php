@@ -25,7 +25,7 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Zmáčkněte Enter pro :action. Použijte Shift+Enter pro nový řádek.',
+            '_' => 'Zmáčkni enter pro :action. Použij shift+enter pro nový řádek.',
             'edit' => 'uložení',
             'new' => 'postnutí',
             'reply' => 'odeslání odpovědi',

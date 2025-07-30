@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Näytä täysikokoinen kansikuva',
+            'page' => '',
         ],
 
         'deleted_banner' => [

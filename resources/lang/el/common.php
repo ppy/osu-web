@@ -19,7 +19,6 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Διαχειριστής',
         'authorise' => 'Εξουσιοδότηση',
         'authorising' => 'Εξουσιοδότηση...',
         'back' => 'Πίσω',
@@ -95,10 +94,10 @@ return [
 
     'datetime' => [
         'month' => [
-            'php' => '',
+            'php' => 'μην',
         ],
         'year' => [
-            'php' => '',
+            'php' => 'χρ',
         ],
         'year_month' => [
             'moment' => 'MMMM YYYY',

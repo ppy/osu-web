@@ -15,22 +15,22 @@ return [
         'winner_by' => ':winner с :difference',
 
         'events' => [
-            'game_aborted' => '',
-            'game_aborted_no_user' => '',
-            'game_completed' => '',
-            'game_completed_no_user' => '',
-            'host_changed' => '',
-            'host_changed_no_user' => '',
-            'player_joined' => '',
-            'player_joined_no_user' => '',
-            'player_kicked' => '',
-            'player_kicked_no_user' => '',
-            'player_left' => '',
-            'player_left_no_user' => '',
-            'room_created' => '',
-            'room_created_no_user' => '',
-            'room_disbanded' => '',
-            'room_disbanded_no_user' => '',
+            'game_aborted' => 'играта беше прекратена',
+            'game_aborted_no_user' => 'играта беше прекратена',
+            'game_completed' => 'играта приключи',
+            'game_completed_no_user' => 'играта приключи',
+            'host_changed' => ':user стана домакин',
+            'host_changed_no_user' => 'домакинът е променен',
+            'player_joined' => ':user се присъедини',
+            'player_joined_no_user' => 'играч се присъедини',
+            'player_kicked' => ':user беше изгонен',
+            'player_kicked_no_user' => 'играч беше изгонен',
+            'player_left' => ':user напусна стаята',
+            'player_left_no_user' => 'играч напусна стаята',
+            'room_created' => ':user създаде стая',
+            'room_created_no_user' => 'създадена е стая',
+            'room_disbanded' => 'стаята е разпусната',
+            'room_disbanded_no_user' => 'стаята е разпусната',
         ],
 
         'score' => [
@@ -42,10 +42,10 @@ return [
         ],
 
         'team_types' => [
-            'head_to_head' => '',
-            'tag_coop' => '',
-            'tag_team_versus' => '',
-            'team_versus' => '',
+            'head_to_head' => 'Всеки за себе си',
+            'tag_coop' => 'С редуване',
+            'tag_team_versus' => 'По отбори с редуване',
+            'team_versus' => 'По отбори',
         ],
 
         'teams' => [
@@ -54,7 +54,7 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '',
+        'freestyle' => 'Свободен стил',
 
         'scoring-type' => [
             'score' => 'Най-висок резултат',

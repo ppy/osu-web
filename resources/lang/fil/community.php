@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Maraming salamat sa iyong suporta! Nakapag-ambag ka na ng kabuuang :dollars sa :tags na beses ng pagbili ng tag!',
-            'gifted' => ":giftedTags sa iyong mga biniling tags ay ini-regalo mo (may kabuuang :giftedDollars bilang regalo), napaka-mapagbigay mo naman!",
+            'contribution_with_duration' => '',
             'not_yet' => "Hindi ka pa nagkaroon ng osu!supporter tag :(",
             'valid_until' => 'Ang kasalukuyan mong supporter tag ay balido hanggang sa :date!',
             'was_valid_until' => 'Ang dati mong supporter tag ay balido hanggang sa :date.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

@@ -100,7 +100,7 @@ return [
 
         'help' => [
             '_' => 'apabila kamu menemui masalah pada saat kamu ingin memulai permainan atau mendaftarkan akun, silakan :help_forum_link atau :support_button.',
-            'help_forum_link' => 'kunjungi sub-forum Help',
+            'help_forum_link' => 'kunjungi forum Help',
             'support_button' => 'hubungi layanan dukungan kami',
         ],
 
@@ -142,16 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Beatmap Tantangan Harian',
             'new' => 'Beatmap Ranked Terbaru',
             'popular' => 'Beatmap Terpopuler Saat Ini',
             'by_user' => 'oleh :user',
-            'resets' => '',
+            'resets' => 'berakhir dalam :ends',
         ],
         'buttons' => [
             'download' => 'Unduh osu!',
             'support' => 'Dukung osu!',
             'store' => 'osu!store',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

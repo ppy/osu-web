@@ -7,6 +7,7 @@ return [
     'load_failed' => 'Data kunne ikke indlæses.',
     'missing_route' => 'Ugyldig URL eller forkert anmodningsmetode.',
     'no_restricted_access' => 'Du kan ikke udføre denne handling mens din konto er begrænset.',
+    'param_too_large' => '',
     'supporter_only' => 'Du skal være osu!supporter for at kunne anvende denne funktion.',
     'unknown' => 'En ukendt fejl er opstået.',
 

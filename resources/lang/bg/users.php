@@ -159,8 +159,17 @@ return [
             'cancel' => 'Отмени',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Нечестна игра / Измама',
+            'copyright_infringement' => '',
             'inappropriate_chat' => 'Неприлично поведение в чат',
             'insults' => 'Обижда мен / друг',
             'multiple_accounts' => 'Използва няколко профила',
@@ -486,7 +495,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Прецизност на ударите',
-            'hits_per_play' => '',
+            'hits_per_play' => 'Удари при игра',
             'level' => 'Ниво :level',
             'level_progress' => 'Прогрес до следващо ниво',
             'maximum_combo' => 'Максимално комбо',

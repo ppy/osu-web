@@ -14,8 +14,8 @@ return [
         'top_10p' => 'Wynik 90. percentyla',
         'top_50p' => 'Wynik 50. percentyla',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'Wyzwanie dnia w określonej dacie jeszcze się nie rozpoczęło!',
+            'past' => 'Brak wyzwania dnia w określonej dacie!',
         ],
     ],
 

@@ -30,9 +30,9 @@ return [
         '_' => '심사 결과',
         'creator' => '제작자',
         'score' => '점수',
-        'score_std' => '',
+        'score_std' => '표준화된 점수',
         'total_score' => '총 점수',
-        'total_score_std' => '',
+        'total_score_std' => '표준화된 총점',
     ],
 
     'voting' => [
@@ -89,7 +89,7 @@ return [
         'list' => '투표',
         'count' => ':count표',
         'points' => ':count포인트',
-        'points_float' => '',
+        'points_float' => ':points 점',
     ],
 
     'dates' => [
@@ -106,5 +106,11 @@ return [
         'entry' => '참가 작품 모집중',
         'voting' => '투표 시작됨',
         'results' => '결과 발표됨',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

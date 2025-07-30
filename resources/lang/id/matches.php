@@ -15,22 +15,22 @@ return [
         'winner_by' => ':winner dengan selisih skor :difference',
 
         'events' => [
-            'game_aborted' => '',
-            'game_aborted_no_user' => '',
-            'game_completed' => '',
-            'game_completed_no_user' => '',
-            'host_changed' => '',
-            'host_changed_no_user' => '',
-            'player_joined' => '',
-            'player_joined_no_user' => '',
-            'player_kicked' => '',
-            'player_kicked_no_user' => '',
-            'player_left' => '',
-            'player_left_no_user' => '',
-            'room_created' => '',
-            'room_created_no_user' => '',
-            'room_disbanded' => '',
-            'room_disbanded_no_user' => '',
+            'game_aborted' => 'permainan dibatalkan',
+            'game_aborted_no_user' => 'permainan dibatalkan',
+            'game_completed' => 'permainan berakhir',
+            'game_completed_no_user' => 'permainan berakhir',
+            'host_changed' => ':user menjadi host',
+            'host_changed_no_user' => 'host diubah',
+            'player_joined' => ':user bergabung ke dalam ruang pertandingan',
+            'player_joined_no_user' => 'seorang pengguna bergabung ke dalam ruang pertandingan',
+            'player_kicked' => ':user dikeluarkan dari ruang pertandingan',
+            'player_kicked_no_user' => 'seorang pengguna dikeluarkan dari ruang pertandingan',
+            'player_left' => ':user meninggalkan ruang pertandingan',
+            'player_left_no_user' => 'seorang pengguna meninggalkan ruang pertandingan',
+            'room_created' => ':user membuat ruang pertandingan',
+            'room_created_no_user' => 'ruang pertandingan dibuat',
+            'room_disbanded' => 'ruang pertandingan dibubarkan',
+            'room_disbanded_no_user' => 'ruang pertandingan dibubarkan',
         ],
 
         'score' => [
@@ -42,10 +42,10 @@ return [
         ],
 
         'team_types' => [
-            'head_to_head' => '',
-            'tag_coop' => '',
-            'tag_team_versus' => '',
-            'team_versus' => '',
+            'head_to_head' => 'Head-to-head',
+            'tag_coop' => 'Tag Co-op',
+            'tag_team_versus' => 'Tag Team VS',
+            'team_versus' => 'Team VS',
         ],
 
         'teams' => [
@@ -54,7 +54,7 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '',
+        'freestyle' => 'Freestyle',
 
         'scoring-type' => [
             'score' => 'Skor Tertinggi',

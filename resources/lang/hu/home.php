@@ -153,5 +153,10 @@ return [
             'support' => 'osu! támogatása',
             'store' => 'osu!bolt',
         ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
+        ],
     ],
 ];

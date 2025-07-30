@@ -20,7 +20,7 @@ return [
     ],
 
     'card' => [
-        'members' => '',
+        'members' => ':count_delimited メンバー|:count_delimited メンバー',
     ],
 
     'create' => [
@@ -157,8 +157,9 @@ return [
         ],
 
         'statistics' => [
-            'rank' => 'ランキング',
+            'empty_slots' => '',
             'leader' => 'チームリーダー',
+            'rank' => 'ランキング',
         ],
     ],
 

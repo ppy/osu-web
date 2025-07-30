@@ -159,8 +159,17 @@ return [
             'cancel' => 'İptal',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Kuraldışı oyun / Hile',
+            'copyright_infringement' => '',
             'inappropriate_chat' => 'Uygunsuz sohbet davranışı',
             'insults' => 'Bana / başkalarına hakaret',
             'multiple_accounts' => 'Birden fazla hesap kullanımı',
@@ -486,7 +495,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Vuruş İsabeti',
-            'hits_per_play' => '',
+            'hits_per_play' => 'Oyun Başı Vuruşlar',
             'level' => ':level Seviye',
             'level_progress' => 'Sonraki seviyeye ilerle',
             'maximum_combo' => 'Maksimum Kombo',

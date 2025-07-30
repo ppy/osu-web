@@ -159,8 +159,17 @@ return [
             'cancel' => 'Άκυρο',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Παράτυπος τρόπος παιχνιδιού / Κλέψιμο',
+            'copyright_infringement' => '',
             'inappropriate_chat' => '',
             'insults' => 'Προσβάλει εμένα / άλλους',
             'multiple_accounts' => 'Χρήση πολλαπλών λογαριασμών',

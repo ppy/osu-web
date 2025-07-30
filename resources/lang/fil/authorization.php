@@ -113,6 +113,7 @@ return [
                 'deleted' => 'Hindi ma-edit ang natangal na post.',
                 'locked' => 'Ang post ay naka-lock mula sa pag-edit.',
                 'no_forum_access' => 'Ang pag-access sa hiniling na forum ay kinakailangan.',
+                'no_permission' => '',
                 'not_owner' => 'Ang poster lang ang makakapag-edit ng post.',
                 'topic_locked' => 'Hindi ma-edit ang post ng isang naka-lock na paksa.',
             ],

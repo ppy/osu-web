@@ -142,16 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Карта дня',
             'new' => 'Новые рейтинговые карты',
             'popular' => 'Популярные карты',
             'by_user' => 'от :user',
-            'resets' => '',
+            'resets' => 'закончится :ends',
         ],
         'buttons' => [
             'download' => 'Скачать osu!',
             'support' => 'Поддержать osu!',
             'store' => 'Магазин osu!store',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

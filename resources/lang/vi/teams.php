@@ -20,7 +20,7 @@ return [
     ],
 
     'card' => [
-        'members' => '',
+        'members' => ':count_delimited thành viên|::count_delimited thành viên',
     ],
 
     'create' => [
@@ -98,21 +98,21 @@ return [
             'title' => 'Quản lý thành viên',
 
             'applications' => [
-                'accept_confirm' => '',
+                'accept_confirm' => 'Thêm :user vào đội không?',
                 'created_at' => 'Yêu cầu vào lúc',
                 'empty' => 'Hiện nay không có yêu cầu gia nhập.',
                 'empty_slots' => 'Số chỗ còn trống',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
+                'empty_slots_overflow' => ':count_delimited người dùng|::count_delimited người dùng',
+                'reject_confirm' => 'Từ chối yêu cầu tham gia từ :user?',
                 'title' => 'Yêu cầu gia nhập',
             ],
 
             'table' => [
                 'joined_at' => 'Ngày tham gia',
                 'remove' => 'Loại',
-                'remove_confirm' => '',
+                'remove_confirm' => 'Loại bỏ :user khỏi đội không?',
                 'set_leader' => 'Bàn giao quyền lãnh đạo đội',
-                'set_leader_confirm' => '',
+                'set_leader_confirm' => 'Chuyển trưởng đội sang :user?',
                 'status' => 'Trạng thái',
                 'title' => 'Thành viên hiện tại',
             ],
@@ -124,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'Bây giờ :user là trưởng đội.',
         ],
     ],
 
@@ -157,8 +157,9 @@ return [
         ],
 
         'statistics' => [
-            'rank' => 'Hạng',
+            'empty_slots' => '',
             'leader' => 'Trưởng đội',
+            'rank' => 'Hạng',
         ],
     ],
 

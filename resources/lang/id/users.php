@@ -159,8 +159,17 @@ return [
             'cancel' => 'Batal',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Melakukan kecurangan',
+            'copyright_infringement' => '',
             'inappropriate_chat' => 'Berperilaku tidak pantas dalam chat',
             'insults' => 'Menghina saya / orang lain',
             'multiple_accounts' => 'Menggunakan lebih dari satu akun',
@@ -486,7 +495,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Akurasi Hit',
-            'hits_per_play' => '',
+            'hits_per_play' => 'Hit Per Permainan',
             'level' => 'Level :level',
             'level_progress' => 'persentase pencapaian menuju level berikutnya',
             'maximum_combo' => 'Kombo Maksimum',

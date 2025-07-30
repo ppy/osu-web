@@ -15,22 +15,22 @@ return [
         'winner_by' => ':winner ar starpību :difference',
 
         'events' => [
-            'game_aborted' => '',
-            'game_aborted_no_user' => '',
-            'game_completed' => '',
-            'game_completed_no_user' => '',
-            'host_changed' => '',
-            'host_changed_no_user' => '',
-            'player_joined' => '',
-            'player_joined_no_user' => '',
-            'player_kicked' => '',
-            'player_kicked_no_user' => '',
-            'player_left' => '',
-            'player_left_no_user' => '',
-            'room_created' => '',
-            'room_created_no_user' => '',
-            'room_disbanded' => '',
-            'room_disbanded_no_user' => '',
+            'game_aborted' => 'šī spēle tika atcelta',
+            'game_aborted_no_user' => 'šī spēle tika atcelta',
+            'game_completed' => 'šī spēle tika atcelta',
+            'game_completed_no_user' => 'šī spēle tika atcelta',
+            'host_changed' => ':user ir kļuvis par vadītāju',
+            'host_changed_no_user' => 'vadītājs nomainijās',
+            'player_joined' => ':user pievienojās spēlei',
+            'player_joined_no_user' => 'spēlētājs ir pievienojies spēlei',
+            'player_kicked' => ':user ir ticis izmests no spēlēs',
+            'player_kicked_no_user' => 'spēlētājs ir ticis izmests no spēles',
+            'player_left' => ':user pameta spēli',
+            'player_left_no_user' => 'spēlētājs pameta spēli',
+            'room_created' => ':user izveidoja spēli',
+            'room_created_no_user' => 'spēle tika izveidota',
+            'room_disbanded' => 'spēle tika izjaukta',
+            'room_disbanded_no_user' => 'spēle tika izjaukta',
         ],
 
         'score' => [
@@ -42,10 +42,10 @@ return [
         ],
 
         'team_types' => [
-            'head_to_head' => '',
-            'tag_coop' => '',
-            'tag_team_versus' => '',
-            'team_versus' => '',
+            'head_to_head' => 'Viens-pret-vienu',
+            'tag_coop' => 'Stafetes kooperatīvs',
+            'tag_team_versus' => 'Stafetes Komanda VS',
+            'team_versus' => 'Komanda VS',
         ],
 
         'teams' => [
@@ -54,7 +54,7 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '',
+        'freestyle' => 'Brīvais stills',
 
         'scoring-type' => [
             'score' => 'Visaugstākais Rezultāts',

@@ -30,9 +30,9 @@ return [
         '_' => 'Hasil penjurian',
         'creator' => 'pembuat',
         'score' => 'Skor',
-        'score_std' => '',
+        'score_std' => 'Skor Terstandardisasi',
         'total_score' => 'jumlah skor',
-        'total_score_std' => '',
+        'total_score_std' => 'total skor terstandardisasi',
     ],
 
     'voting' => [
@@ -89,7 +89,7 @@ return [
         'list' => 'suara',
         'count' => ':count_delimited suara|:count_delimited suara',
         'points' => ':count_delimited poin|:count_delimited poin',
-        'points_float' => '',
+        'points_float' => ':points poin',
     ],
 
     'dates' => [
@@ -106,5 +106,11 @@ return [
         'entry' => 'Menerima Entri',
         'voting' => 'Dalam Tahap Pemungutan Suara',
         'results' => 'Telah Berakhir',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

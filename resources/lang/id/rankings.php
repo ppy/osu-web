@@ -14,8 +14,8 @@ return [
         'top_10p' => 'Skor 10% Teratas',
         'top_50p' => 'Skor 50% Teratas',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'Tanggal yang dipilih belum memiliki tantangan harian!',
+            'past' => 'Tidak ada tantangan harian pada tanggal yang dipilih!',
         ],
     ],
 

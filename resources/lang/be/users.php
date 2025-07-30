@@ -159,8 +159,17 @@ return [
             'cancel' => 'Скасаваць',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Несумленная гульня / Чыты',
+            'copyright_infringement' => '',
             'inappropriate_chat' => 'Непрыстойныя паводзіны ў чаце',
             'insults' => 'Абраза мяне / іншых',
             'multiple_accounts' => 'Выкарыстанне некалькіх акаўнтаў',

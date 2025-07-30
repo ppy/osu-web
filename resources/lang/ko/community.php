@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => '지금까지 지원해 주셔서 감사합니다! 총 :tags번의 결제로 :dollars를 후원하셨습니다.',
-            'gifted' => "총 :giftedTags번 서포터 태그를 선물하셨습니다. (총 :giftedDollars 달러 어치), 관대의 끝판왕이시네요!",
+            'contribution_with_duration' => '',
             'not_yet' => "아직 osu! 서포터 태그를 가지신 적이 없으시네요 :(",
             'valid_until' => '현재 osu! 서포터 태그는 :date까지 유효합니다!',
             'was_valid_until' => '지난 osu! 서포터 태그는 :date까지 유효했습니다.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

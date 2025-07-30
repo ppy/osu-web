@@ -16,8 +16,8 @@ return [
         'map_count' => ':count_delimited beatmapa|:count_delimited beatmapy|:count_delimited beatmap',
         'player_count' => ':count_delimited gracz|:count_delimited gracze|:count_delimited graczy',
         'time_left' => 'pozostało :time',
-        'view_history' => '',
-        'view_summary' => '',
+        'view_history' => 'Pokaż historię',
+        'view_summary' => 'Pokaż podsumowanie',
 
         'errors' => [
             'duration_too_long' => 'Czas trwania jest zbyt długi.',

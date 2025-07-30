@@ -142,16 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => '일일 도전 비트맵',
             'new' => '새로 랭크된 비트맵',
             'popular' => '인기 비트맵',
             'by_user' => ':user님이 만듦',
-            'resets' => '',
+            'resets' => ':ends 후에 초기화',
         ],
         'buttons' => [
             'download' => 'osu! 다운로드',
             'support' => 'osu! 지원하기',
             'store' => 'osu!store',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

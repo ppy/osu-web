@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Dziękujemy za twoje dotychczasowe wsparcie! Otrzymaliśmy od ciebie łącznie :dollars pochodzących z :tags zakupionych statusów donatora!',
-            'gifted' => "Ze wszystkich zakupionych statusów donatora, :giftedTags podarowano innym użytkownikom (za łączną wartość :giftedDollars). Wspaniała szczodrość!",
+            'contribution_with_duration' => '',
             'not_yet' => "Nie masz jeszcze statusu donatora osu! :(",
             'valid_until' => 'Twój status donatora przestanie być aktywny :date!',
             'was_valid_until' => 'Twój status donatora przestał być aktywny :date.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

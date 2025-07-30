@@ -30,9 +30,9 @@ return [
         '_' => 'Kết quả đánh giá',
         'creator' => 'tác giả',
         'score' => 'Điểm',
-        'score_std' => '',
+        'score_std' => 'Điểm hàng loạt',
         'total_score' => 'tổng điểm',
-        'total_score_std' => '',
+        'total_score_std' => 'tổng điểm hàng loạt',
     ],
 
     'voting' => [
@@ -89,7 +89,7 @@ return [
         'list' => 'phiếu',
         'count' => ':count phiếu',
         'points' => ':count điểm',
-        'points_float' => '',
+        'points_float' => ':points điểm',
     ],
 
     'dates' => [
@@ -106,5 +106,11 @@ return [
         'entry' => 'Nhận Bài Dự Thi',
         'voting' => 'Bắt Đầu Bình Chọn',
         'results' => 'Đã Có Kết Quả',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

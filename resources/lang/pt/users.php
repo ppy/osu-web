@@ -159,8 +159,17 @@ return [
             'cancel' => 'Cancelar',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Jogada suja / Fazer batota',
+            'copyright_infringement' => '',
             'inappropriate_chat' => 'Comportamento inadequado na conversa',
             'insults' => 'Insulto a mim ou a outros',
             'multiple_accounts' => 'Utilização de contas múltiplas',

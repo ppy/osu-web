@@ -20,23 +20,33 @@ class MultiplayerController extends Controller
             return ujs_redirect(route('users.multiplayer.index', ['typeGroup' => 'realtime', 'user' => $userId]));
         }
 
-        $rawParams = request()->all();
         $params = [
-            'cursor' => cursor_from_params($rawParams),
-            'limit' => get_int($rawParams['limit'] ?? null),
             'mode' => 'participated',
-            'sort' => 'ended',
             'type_group' => $typeGroup,
             'user' => $user,
         ];
 
-        $json = Room::responseJson($params);
-
         if (is_json_request()) {
-            return $json;
+            $rawParams = \Request::all();
+            $extParams = get_params($rawParams, null, [
+                'is_active:bool',
+                'limit:int',
+            ], ['null_missing' => true]);
+
+            return Room::responseJson([
+                ...$params,
+                ...$extParams,
+                'cursor' => cursor_from_params($rawParams),
+                'sort' => $extParams['is_active'] ? 'created' : 'ended',
+            ]);
         }
 
         set_opengraph($user, 'multiplayer');
+
+        $json = [
+            'active' => Room::responseJson([...$params, 'is_active' => true, 'sort' => 'created']),
+            'ended' => Room::responseJson([...$params, 'is_active' => false, 'sort' => 'ended']),
+        ];
 
         $jsonUser = json_item(
             $user,

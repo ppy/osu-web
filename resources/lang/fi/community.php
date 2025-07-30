@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Kiitos tuestasi tähän asti! Olet tukenut :tags tukijaostoksella yhteensä :dollars arvosta!',
-            'gifted' => "Tukijamerkkiostoksistasi :giftedTags on annettu lahjaksi (yhteensä :giftedDollars arvosta), kuinka anteliasta!",
+            'contribution_with_duration' => '',
             'not_yet' => "Sinulla ei vielä ole ollut tukijamerkkiä :(",
             'valid_until' => 'Nykyinen tukijamerkkisi on voimassa :date asti!',
             'was_valid_until' => 'Tukijamerkkisi oli voimassa :date asti.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

@@ -159,8 +159,17 @@ return [
             'cancel' => 'Atšaukti',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Sukčiavimas',
+            'copyright_infringement' => '',
             'inappropriate_chat' => '',
             'insults' => 'Įžeidinėja manę / kitus',
             'multiple_accounts' => 'Naudoja kelias paskyras',

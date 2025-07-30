@@ -14,8 +14,8 @@ return [
         'top_10p' => 'Điểm thuộc top 10%',
         'top_50p' => 'Điểm thuộc top 50%',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'Chưa có thử thách hàng ngày vào ngày cụ thể!',
+            'past' => 'Chưa có thử thách hàng ngày vào ngày cụ thể!',
         ],
     ],
 
@@ -41,7 +41,7 @@ return [
         'charts' => 'tiêu điểm',
         'country' => 'quốc gia',
         'daily_challenge' => 'thử thách hằng ngày',
-        'global' => '',
+        'global' => 'toàn cầu',
         'kudosu' => 'kudosu',
         'multiplayer' => 'nhiều người chơi',
         'seasons' => 'mùa',

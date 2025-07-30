@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Teljes borítókép megtekintése',
+            'page' => '',
         ],
 
         'deleted_banner' => [
