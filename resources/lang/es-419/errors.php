@@ -7,6 +7,7 @@ return [
     'load_failed' => 'Error al cargar los datos.',
     'missing_route' => 'URL no válida o método de solicitud incorrecto.',
     'no_restricted_access' => 'No podrás realizar esta acción mientras tu cuenta esté en estado restringido.',
+    'param_too_large' => '',
     'supporter_only' => 'Debes ser un osu!supporter para utilizar esta función.',
     'unknown' => 'Se produjo un error desconocido.',
 

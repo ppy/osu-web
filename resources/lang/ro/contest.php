@@ -30,9 +30,9 @@ return [
         '_' => 'Rezultate evaluare',
         'creator' => 'creator',
         'score' => 'Scor',
-        'score_std' => '',
+        'score_std' => 'Scor Standardizat',
         'total_score' => 'scor total',
-        'total_score_std' => '',
+        'total_score_std' => 'scor standardizat total',
     ],
 
     'voting' => [
@@ -89,7 +89,7 @@ return [
         'list' => 'voturi',
         'count' => 'un vot|:count_delimited voturi|:count_delimited de voturi',
         'points' => 'un punct|:count_delimited puncte|:count_delimited de puncte',
-        'points_float' => '',
+        'points_float' => ':points puncte',
     ],
 
     'dates' => [
@@ -106,5 +106,11 @@ return [
         'entry' => 'Înscriere Deschisă',
         'voting' => 'Votarea a început',
         'results' => 'Rezultate postate',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

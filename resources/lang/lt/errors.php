@@ -7,6 +7,7 @@ return [
     'load_failed' => 'Nepavyko įkelti duomenų.',
     'missing_route' => 'Negaliojanti nuoroda arba neteisingas prašymo metodas.',
     'no_restricted_access' => 'Jūs negalite atlikti šio veiksmo, kai jūsų paskyra yra apribotoje būsenoje.',
+    'param_too_large' => '',
     'supporter_only' => 'Jūs turite būti osu!rėmėjas, kad galėtumėte naudotis šia funkcija.',
     'unknown' => 'Įvyko nežinoma klaida.',
 

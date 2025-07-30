@@ -174,7 +174,7 @@ return [
 
         'add_to_cart' => 'Masukkan ke Troli',
         'notify' => 'Beritahu saya ketika telah tersedia!',
-        'out_of_stock' => '',
+        'out_of_stock' => 'Tiada dalam simpanan',
 
         'notification_success' => 'anda akan diberitahu ketika kami mempunyai simpanan baharu. klik :link untuk batal',
         'notification_remove_text' => 'di sini',

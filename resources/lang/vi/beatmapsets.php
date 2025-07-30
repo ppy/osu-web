@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Xem ảnh bìa kích thước đầy đủ',
+            'page' => '',
         ],
 
         'deleted_banner' => [
@@ -140,7 +141,7 @@ return [
             'description' => 'Mô Tả',
             'genre' => 'Thể Loại',
             'language' => 'Ngôn Ngữ',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Thẻ người tạo bản đồ',
             'no_scores' => 'Vẫn đang tính toán dữ liệu...',
             'nominators' => 'Người đề cử',
             'nsfw' => 'Nội dung không lành mạnh',
@@ -149,7 +150,7 @@ return [
             'source' => 'Nguồn',
             'storyboard' => 'Beatmap này chứa storyboard',
             'success-rate' => 'Tỉ Lệ Thành Công',
-            'user_tags' => '',
+            'user_tags' => 'Thẻ người dùng',
             'video' => 'Beatmap này chứa video',
         ],
 

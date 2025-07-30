@@ -113,6 +113,7 @@ return [
                 'deleted' => 'Je kan een verwijderde post niet bewerken.',
                 'locked' => 'De post is afgesloten voor bewerkingen.',
                 'no_forum_access' => 'Toegang tot dit forum is nodig.',
+                'no_permission' => '',
                 'not_owner' => 'Alleen de eigenaar kan de post bewerken.',
                 'topic_locked' => 'Kan geen post in een gesloten onderwerp bewerken.',
             ],

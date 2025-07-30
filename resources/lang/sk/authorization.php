@@ -113,6 +113,7 @@ return [
                 'deleted' => 'Nemôžete upraviť odstránený príspevok.',
                 'locked' => 'Príspevok je uzamknutý pre upravovanie.',
                 'no_forum_access' => 'Nemáš prístup k danému fóru.',
+                'no_permission' => '',
                 'not_owner' => 'Upravovať môže iba autor príspevku.',
                 'topic_locked' => 'Nie je možné upraviť príspevok zamknutej témy.',
             ],

@@ -159,8 +159,17 @@ return [
             'cancel' => 'لغو',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'تقلب',
+            'copyright_infringement' => '',
             'inappropriate_chat' => '',
             'insults' => 'توهین به من یا دیگران',
             'multiple_accounts' => 'استفاده از چند حساب کاربری',

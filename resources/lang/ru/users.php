@@ -159,8 +159,17 @@ return [
             'cancel' => 'Отмена',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Нечестная игра / читы',
+            'copyright_infringement' => '',
             'inappropriate_chat' => 'Неподобающее поведение в чате',
             'insults' => 'Оскорбление меня / других',
             'multiple_accounts' => 'Использование нескольких аккаунтов',
@@ -486,7 +495,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Точность попаданий',
-            'hits_per_play' => '',
+            'hits_per_play' => 'Попаданий за игру',
             'level' => 'Уровень :level',
             'level_progress' => 'прогресс до следующего уровня',
             'maximum_combo' => 'Максимальное комбо',

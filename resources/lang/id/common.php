@@ -19,7 +19,6 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Admin',
         'authorise' => 'Izinkan',
         'authorising' => 'Mengotorisir...',
         'back' => 'Kembali',
@@ -95,10 +94,10 @@ return [
 
     'datetime' => [
         'month' => [
-            'php' => '',
+            'php' => 'bln',
         ],
         'year' => [
-            'php' => '',
+            'php' => 'thn',
         ],
         'year_month' => [
             'moment' => 'MMMM YYYY',

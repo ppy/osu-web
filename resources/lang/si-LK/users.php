@@ -159,8 +159,17 @@ return [
             'cancel' => '',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => '',
+            'copyright_infringement' => '',
             'inappropriate_chat' => '',
             'insults' => '',
             'multiple_accounts' => '',

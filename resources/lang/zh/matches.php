@@ -15,22 +15,22 @@ return [
         'winner_by' => ':winner，分差 :difference',
 
         'events' => [
-            'game_aborted' => '',
-            'game_aborted_no_user' => '',
-            'game_completed' => '',
-            'game_completed_no_user' => '',
-            'host_changed' => '',
-            'host_changed_no_user' => '',
-            'player_joined' => '',
-            'player_joined_no_user' => '',
-            'player_kicked' => '',
-            'player_kicked_no_user' => '',
-            'player_left' => '',
-            'player_left_no_user' => '',
-            'room_created' => '',
-            'room_created_no_user' => '',
-            'room_disbanded' => '',
-            'room_disbanded_no_user' => '',
+            'game_aborted' => '游戏被中止',
+            'game_aborted_no_user' => '游戏被中止',
+            'game_completed' => '游戏已结束',
+            'game_completed_no_user' => '游戏已结束',
+            'host_changed' => ':user 成为房主',
+            'host_changed_no_user' => '房主已被更改',
+            'player_joined' => ':user 加入房间',
+            'player_joined_no_user' => '有玩家加入了房间',
+            'player_kicked' => ':user 被踢出房间',
+            'player_kicked_no_user' => '有玩家被踢出房间',
+            'player_left' => ':user 离开房间',
+            'player_left_no_user' => '有玩家离开了房间',
+            'room_created' => ':user 创建房间',
+            'room_created_no_user' => '创建了房间',
+            'room_disbanded' => '房间关闭',
+            'room_disbanded_no_user' => '房间关闭',
         ],
 
         'score' => [
@@ -42,10 +42,10 @@ return [
         ],
 
         'team_types' => [
-            'head_to_head' => '',
-            'tag_coop' => '',
-            'tag_team_versus' => '',
-            'team_versus' => '',
+            'head_to_head' => '个人',
+            'tag_coop' => '接力',
+            'tag_team_versus' => '组队接力',
+            'team_versus' => '组队',
         ],
 
         'teams' => [
@@ -54,7 +54,7 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '',
+        'freestyle' => '自由发挥',
 
         'scoring-type' => [
             'score' => '最高分',

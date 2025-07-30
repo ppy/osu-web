@@ -16,7 +16,7 @@ return [
     'judge' => [
         'comments' => 'σχόλια',
         'hide_judged' => 'απόκρυψη κρίσιμων καταχωρήσεων',
-        'nav_title' => '',
+        'nav_title' => 'γνώμη',
         'no_current_vote' => 'δεν έχεις ψηφίσει ακόμα.',
         'update' => 'ενημέρωση',
         'validation' => [
@@ -30,9 +30,9 @@ return [
         '_' => 'Αποτέλεσμα κρίσης',
         'creator' => 'δημιουργός',
         'score' => 'Σκορ',
-        'score_std' => '',
+        'score_std' => 'Τυποποιημένη Βαθμολογία',
         'total_score' => 'συνολικό σκορ',
-        'total_score_std' => '',
+        'total_score_std' => 'συνολική τυποποιημένη βαθμολογία',
     ],
 
     'voting' => [
@@ -89,7 +89,7 @@ return [
         'list' => 'ψήφοι',
         'count' => ':count ψήφος|:count ψήφοι',
         'points' => ':count πόντος|:count πόντοι',
-        'points_float' => '',
+        'points_float' => ':points πόντοι',
     ],
 
     'dates' => [
@@ -106,5 +106,11 @@ return [
         'entry' => 'Ανοιχτές Συμμετοχές',
         'voting' => 'Η Ψηφοφορία Ξεκίνησε',
         'results' => 'Αποτελέσματα',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

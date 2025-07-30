@@ -14,8 +14,8 @@ return [
         'top_10p' => 'Scor Top 10%',
         'top_50p' => 'Scor Top 50%',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'Nu există nici o provocare zilnică la data specificată încă!',
+            'past' => 'Nu există nici o provocare zilnică la data specificată!',
         ],
     ],
 

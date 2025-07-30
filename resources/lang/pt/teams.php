@@ -157,8 +157,9 @@ return [
         ],
 
         'statistics' => [
-            'rank' => 'Classificação',
+            'empty_slots' => '',
             'leader' => 'Líder da equipa',
+            'rank' => 'Classificação',
         ],
     ],
 

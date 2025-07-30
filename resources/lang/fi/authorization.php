@@ -113,6 +113,7 @@ return [
                 'deleted' => 'Poistettua postausta ei voi muokata.',
                 'locked' => 'Viestin muokkaaminen on estetty.',
                 'no_forum_access' => 'Tarvitset pääsyn tälle foorumille.',
+                'no_permission' => '',
                 'not_owner' => 'Vain lähettäjä voi muokata postausta.',
                 'topic_locked' => 'Lukitun aiheen viestiä ei voi muokata.',
             ],

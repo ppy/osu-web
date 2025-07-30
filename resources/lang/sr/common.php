@@ -19,7 +19,6 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Aдмин',
         'authorise' => 'Ауторизуј',
         'authorising' => 'Ауторизује се...',
         'back' => 'Назад',

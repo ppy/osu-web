@@ -113,6 +113,7 @@ return [
                 'deleted' => '无法编辑已删除的回复。',
                 'locked' => '此回复已被锁定。',
                 'no_forum_access' => '没有权限进入该板块。',
+                'no_permission' => '',
                 'not_owner' => '只有作者能编辑此回复。',
                 'topic_locked' => '无法编辑被锁定主题的回复。',
             ],

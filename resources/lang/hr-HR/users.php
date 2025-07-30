@@ -159,8 +159,17 @@ return [
             'cancel' => 'Poništi',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Varanje',
+            'copyright_infringement' => '',
             'inappropriate_chat' => '',
             'insults' => 'Vrijeđanje mene / drugih',
             'multiple_accounts' => 'Korištenje više korisničkih profila',

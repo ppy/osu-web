@@ -157,8 +157,9 @@ return [
         ],
 
         'statistics' => [
-            'rank' => 'Posició',
+            'empty_slots' => '',
             'leader' => 'Líder de l\'equip',
+            'rank' => 'Posició',
         ],
     ],
 

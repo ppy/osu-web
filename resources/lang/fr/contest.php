@@ -30,9 +30,9 @@ return [
         '_' => 'Résultats du jugement',
         'creator' => 'créateur',
         'score' => 'Score',
-        'score_std' => '',
+        'score_std' => 'Score normalisé',
         'total_score' => 'score total',
-        'total_score_std' => '',
+        'total_score_std' => 'score total normalisé',
     ],
 
     'voting' => [
@@ -89,7 +89,7 @@ return [
         'list' => 'votes',
         'count' => ':count_delimited vote|:count_delimited votes',
         'points' => ':count_delimited point|:count_delimited points',
-        'points_float' => '',
+        'points_float' => ':points points',
     ],
 
     'dates' => [
@@ -106,5 +106,11 @@ return [
         'entry' => 'Participations ouvertes',
         'voting' => 'En cours de vote',
         'results' => 'Résultats tombés',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

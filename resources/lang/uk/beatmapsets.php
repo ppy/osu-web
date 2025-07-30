@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Перегляд зображення повнорозмірної обкладинки',
+            'page' => '',
         ],
 
         'deleted_banner' => [

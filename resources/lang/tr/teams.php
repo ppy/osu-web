@@ -159,8 +159,9 @@ return [
         ],
 
         'statistics' => [
-            'rank' => 'Sıralama',
+            'empty_slots' => '',
             'leader' => 'Takım Lideri',
+            'rank' => 'Sıralama',
         ],
     ],
 

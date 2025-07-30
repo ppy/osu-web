@@ -14,8 +14,8 @@ return [
         'top_10p' => 'Markah 10% Teratas',
         'top_50p' => 'Markah 50% Teratas',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'Belum ada cabaran harian pada tarikh ditentukan!',
+            'past' => 'Tiada cabaran harian pada tarikh ditentukan!',
         ],
     ],
 

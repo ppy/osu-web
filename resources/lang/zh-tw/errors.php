@@ -7,6 +7,7 @@ return [
     'load_failed' => '無法載入資料。',
     'missing_route' => '網址或請求方法錯誤。',
     'no_restricted_access' => '由於您的帳號已受限，故無法執行該操作。',
+    'param_too_large' => '',
     'supporter_only' => '您需要成為 osu! 贊助者才能使用此功能。',
     'unknown' => '發生了未知的錯誤。',
 

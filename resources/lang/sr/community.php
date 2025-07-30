@@ -150,14 +150,17 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Хвала на вашој подршци! Допринели сте :dollars преко :tags ознака куповине!',
-            'gifted' => "Дали сте :giftedTags ваших куповина као поклона (то вреди :giftedDollars), како великодушно!
-",
+            'contribution_with_duration' => '',
             'not_yet' => "Никада нисте имали osu!supporter ознаку :(
 ",
             'valid_until' => 'Ваша тренутна ознака osu!supporter важи до :date!
 ',
             'was_valid_until' => 'Ваша ознака osu!supporter је била важећа до :date.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

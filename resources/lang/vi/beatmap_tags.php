@@ -5,6 +5,6 @@
 
 return [
     'update' => [
-        'invalid_ruleset' => '',
+        'invalid_ruleset' => 'Thẻ này không hợp lệ với Beatmap này.',
     ],
 ];

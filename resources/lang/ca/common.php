@@ -19,7 +19,6 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Administrador',
         'authorise' => 'Autoritzar',
         'authorising' => 'Autoritzant...',
         'back' => 'Enrere',

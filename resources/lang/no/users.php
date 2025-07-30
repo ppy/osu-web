@@ -32,7 +32,7 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => 'Du har blokkerte denne brukeren.',
+        'banner_text' => 'Du har blokkert denne brukeren.',
         'comment_text' => 'Denne kommentaren er skjult.',
         'blocked_count' => 'blokkerte brukere (:count)',
         'hide_profile' => 'Skjul profil',
@@ -41,7 +41,7 @@ return [
         'not_blocked' => 'Den brukeren er ikke blokkert.',
         'show_profile' => 'Vis profil',
         'show_comment' => 'vis',
-        'too_many' => 'Maks antall blokkerte personer nådd.',
+        'too_many' => 'Maks antall blokkerte brukere nådd.',
         'button' => [
             'block' => 'Blokker',
             'unblock' => 'Fjern blokkering',
@@ -51,16 +51,16 @@ return [
     'card' => [
         'gift_supporter' => 'Gi osu!supporter i gave',
         'loading' => 'Laster...',
-        'send_message' => 'send melding',
+        'send_message' => 'Send melding',
     ],
 
     'create' => [
         'form' => [
             'password' => 'passord',
-            'password_confirmation' => 'passord bekreftelse',
+            'password_confirmation' => 'passordbekreftelse',
             'submit' => 'opprett konto',
-            'user_email' => 'epost',
-            'user_email_confirmation' => 'epostbekreftelse',
+            'user_email' => 'e-post',
+            'user_email_confirmation' => 'e-postbekreftelse',
             'username' => 'brukernavn',
 
             'tos_notice' => [
@@ -159,8 +159,17 @@ return [
             'cancel' => 'Avbryt',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Juksing',
+            'copyright_infringement' => '',
             'inappropriate_chat' => 'Upassende chat atferd',
             'insults' => 'Fornærmer meg / andre',
             'multiple_accounts' => 'Bruker flere kontoer',
@@ -198,28 +207,28 @@ return [
             'to_1' => 'Vis banner',
         ],
         'daily_challenge' => [
-            'daily' => '',
-            'daily_streak_best' => '',
-            'daily_streak_current' => '',
-            'playcount' => '',
-            'title' => '',
-            'top_10p_placements' => '',
-            'top_50p_placements' => '',
-            'weekly' => '',
-            'weekly_streak_best' => '',
-            'weekly_streak_current' => '',
+            'daily' => 'Daglig Streak',
+            'daily_streak_best' => 'Beste Daglig Streak',
+            'daily_streak_current' => 'Nåværende Daglig Streak',
+            'playcount' => 'Total Deltagelse',
+            'title' => 'Daglig\nUtfordring',
+            'top_10p_placements' => 'Topp 10% Plassering',
+            'top_50p_placements' => 'Topp 50% Plassering',
+            'weekly' => 'Ukentlig Streak',
+            'weekly_streak_best' => 'Beste Ukentlig Streak',
+            'weekly_streak_current' => 'Nåværende Ukentlig Streak',
 
             'unit' => [
-                'day' => '',
-                'week' => '',
+                'day' => ':valued',
+                'week' => ':valuew',
             ],
         ],
         'edit' => [
             'cover' => [
                 'button' => 'Endre profilbanner',
                 'defaults_info' => 'Flere banneralternativer vil være tilgjengelige i framtiden',
-                'holdover_remove_confirm' => "",
-                'title' => '',
+                'holdover_remove_confirm' => "Den forrige valgte forsiden er ikke tilgjenglig for utvalg lenger. Du kan ikke velge den tilbake etter at du har byttet til et annet forside. Fortsett?",
+                'title' => 'Forside',
 
                 'upload' => [
                     'broken_file' => 'Kunne ikke prosessere bildet. Verifiser opplastet bilde og prøv igjen.',
@@ -243,12 +252,12 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
-                'title' => '',
+                'reset_no_supporter' => 'Tilbakestille fargen til standard? Supporter-tag kreves for å endre den til en annen farge.',
+                'title' => 'Farge',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Egendefinerte fargetemaer kun tilgjengelig for :link',
+                    'link' => 'osu!supportere',
                 ],
             ],
         ],
@@ -481,12 +490,12 @@ return [
             'highest' => 'Høyeste rangering: :rank den :date',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'Topp :value',
+            'total_score' => 'Total poengsum',
         ],
         'stats' => [
             'hit_accuracy' => 'Presisjon',
-            'hits_per_play' => '',
+            'hits_per_play' => 'Treff per spill',
             'level' => 'Nivå :level',
             'level_progress' => 'Fremgang til neste nivå',
             'maximum_combo' => 'Maks kombo nådd',

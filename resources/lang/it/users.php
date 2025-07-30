@@ -159,8 +159,17 @@ return [
             'cancel' => 'Annulla',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Gioco scorretto / Cheating',
+            'copyright_infringement' => '',
             'inappropriate_chat' => 'Comportamento inappropriato in chat',
             'insults' => 'Insulti a me / altri',
             'multiple_accounts' => 'Uso di account multipli',

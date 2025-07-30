@@ -107,4 +107,10 @@ return [
         'voting' => 'Avstemningen har begynt',
         'results' => 'Resultat er ute',
     ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
+    ],
 ];

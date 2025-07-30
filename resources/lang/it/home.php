@@ -142,16 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Beatmap della Sfida Giornaliera',
             'new' => 'Nuove Beatmap Classificate',
             'popular' => 'Beatmap Popolari',
             'by_user' => 'di :user',
-            'resets' => '',
+            'resets' => 'si resetta :ends',
         ],
         'buttons' => [
             'download' => 'Scarica osu!',
             'support' => 'Supporta osu!',
             'store' => 'osu!store',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

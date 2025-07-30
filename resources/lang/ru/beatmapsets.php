@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Открыть обложку в оригинальном размере',
+            'page' => '',
         ],
 
         'deleted_banner' => [

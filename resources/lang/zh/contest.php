@@ -30,9 +30,9 @@ return [
         '_' => '打分结果',
         'creator' => '谱师',
         'score' => '分数',
-        'score_std' => '',
+        'score_std' => '标准分数',
         'total_score' => '总分',
-        'total_score_std' => '',
+        'total_score_std' => '总标准分数',
     ],
 
     'voting' => [
@@ -89,7 +89,7 @@ return [
         'list' => '票数',
         'count' => ':count_delimited 票',
         'points' => ':count_delimited 分',
-        'points_float' => '',
+        'points_float' => ':points 分',
     ],
 
     'dates' => [
@@ -107,5 +107,11 @@ return [
         'entry' => '可参加',
         'voting' => '投票中',
         'results' => '已结束',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

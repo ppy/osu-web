@@ -113,6 +113,7 @@ return [
                 'deleted' => 'Silinmiş gönderi düzenlenemez.',
                 'locked' => 'Bu gönderi için düzenleme yasaklanmıştır.',
                 'no_forum_access' => 'İstenilen foruma erişim gereklidir.',
+                'no_permission' => '',
                 'not_owner' => 'Gönderi yalnızca gönderen tarafından düzenlenebilir.',
                 'topic_locked' => 'Kilitli bir konunun gönderisini düzenleyemezsiniz.',
             ],

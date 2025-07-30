@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Danke für deine bisherige Unterstützung! Du hast insgesamt :dollars durch :tags Supporter-Tag(s) beigesteuert!',
-            'gifted' => ":giftedTags deiner Supporter-Einkäufe waren Geschenke (im Wert von :giftedDollars), wie großzügig von dir!",
+            'contribution_with_duration' => '',
             'not_yet' => "Du hast noch kein osu!supporter-Tag :(",
             'valid_until' => 'Dein aktuelles osu!supporter-Tag endet am :date!',
             'was_valid_until' => 'Dein osu!supporter-Tag war bis :date gültig.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

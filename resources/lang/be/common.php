@@ -19,7 +19,6 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Кіраўнік',
         'authorise' => 'Аўтарызацыя',
         'authorising' => 'Аўтарызіруемся...',
         'back' => 'Назад',

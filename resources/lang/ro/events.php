@@ -10,7 +10,7 @@ return [
     'beatmapset_delete' => ':beatmapset a fost șters.',
     'beatmapset_revive' => ':beatmapset a fost reînviat din somnul etern de către <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> a actualizat beatmap-ul "<em>:beatmapset</em>"',
-    'beatmapset_upload' => '<strong><em>:user</em></strong> a postat un beatmap nou ":beatmapset"',
+    'beatmapset_upload' => '<strong><em>:user</em></strong> a încărcat un beatmap nou ":beatmapset"',
     'empty' => "Acest utilizator nu a realizat nimic notabil în ultimul timp!",
     'rank' => ':user a obținut locul #:rank pe :beatmap (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> a pierdut primul loc pe <em>:beatmap</em> (:mode)',

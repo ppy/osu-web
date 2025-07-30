@@ -14,8 +14,8 @@ return [
         'top_10p' => '90%-Perzentil',
         'top_50p' => 'Median',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'Noch gibt es für das angegebene Datum keine tägliche Herausforderung!',
+            'past' => 'Für das angegebene Datum gibt es keine tägliche Herausforderung!',
         ],
     ],
 

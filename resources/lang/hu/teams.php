@@ -157,8 +157,9 @@ return [
         ],
 
         'statistics' => [
-            'rank' => 'Rang',
+            'empty_slots' => '',
             'leader' => 'Csapatvezető',
+            'rank' => 'Rang',
         ],
     ],
 

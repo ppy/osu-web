@@ -190,7 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Beatmap đã Được Xếp hạng không thể bị báo cáo',
         'not_in_channel' => 'Bạn không ở trong kênh này.',
-        'in_team' => '',
+        'in_team' => 'Bạn là một phần của đội.',
         'reason_not_valid' => ':reason không phù hợp cho kiểu báo cáo này.',
         'self' => "Bạn không thể báo cáo chính mình!",
     ],

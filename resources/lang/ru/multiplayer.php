@@ -16,8 +16,8 @@ return [
         'map_count' => ':count_delimited карта|:count_delimited карты|:count_delimited карт',
         'player_count' => ':count_delimited игрок|:count_delimited игрока|:count_delimited игроков',
         'time_left' => 'осталось :time',
-        'view_history' => '',
-        'view_summary' => '',
+        'view_history' => 'Открыть историю',
+        'view_summary' => 'Открыть сводку',
 
         'errors' => [
             'duration_too_long' => 'Слишком большая продолжительность.',

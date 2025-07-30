@@ -159,8 +159,17 @@ return [
             'cancel' => 'Annuleren',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Valsspelen',
+            'copyright_infringement' => '',
             'inappropriate_chat' => '',
             'insults' => 'Beledigen van mij / anderen',
             'multiple_accounts' => 'Meerdere accounts gebruiken',

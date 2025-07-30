@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Kapak resmini tam boyutlu görüntüle',
+            'page' => '',
         ],
 
         'deleted_banner' => [

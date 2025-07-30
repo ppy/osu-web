@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Paldies par līdzšinējo atbalstu! Jūs esat ziedojuši :dollars ar :tags tagu pirkumiem!',
-            'gifted' => "Jūs esat izdalījuši :giftedTags no savuiem pirkumiem kā dāvanas (tas ir :giftedDollars vērts), cik dāsni!",
+            'contribution_with_duration' => '',
             'not_yet' => "Jums nekad nav bijis osu!supporter :(",
             'valid_until' => 'Jūsu pašreizējais osu!supporter ir derīgs līdz :date!',
             'was_valid_until' => 'Jūsu osu!supporter bija derīgs līdz :date.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

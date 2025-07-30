@@ -143,16 +143,21 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Dienas Izaicinājuma Ritma-Karte',
             'new' => 'Jaunās Rankotās Bītmapes',
             'popular' => 'Populārās Bītmapes',
             'by_user' => 'pēc :user',
-            'resets' => '',
+            'resets' => 'restartējās :ends',
         ],
         'buttons' => [
             'download' => 'Lejupielādēt osu!',
             'support' => 'Atbalstīt osu!',
             'store' => 'osu!veikals',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

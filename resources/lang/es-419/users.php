@@ -159,8 +159,17 @@ return [
             'cancel' => 'Cancelar',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Juega sucio o hace trampa',
+            'copyright_infringement' => '',
             'inappropriate_chat' => 'Conducta inapropiada en el chat',
             'insults' => 'Insultándome/insultando a otros',
             'multiple_accounts' => 'Utiliza múltiples cuentas',
@@ -486,7 +495,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Precisión',
-            'hits_per_play' => '',
+            'hits_per_play' => 'Pulsaciones por jugada',
             'level' => 'Nivel :level',
             'level_progress' => 'progreso al siguiente nivel',
             'maximum_combo' => 'Combo máximo',

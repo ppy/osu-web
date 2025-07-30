@@ -19,7 +19,6 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Admin',
         'authorise' => 'Cho phép',
         'authorising' => 'Cho phép...',
         'back' => 'Quay lại',
@@ -97,10 +96,10 @@ return [
 
     'datetime' => [
         'month' => [
-            'php' => '',
+            'php' => 'tháng',
         ],
         'year' => [
-            'php' => '',
+            'php' => 'năm',
         ],
         'year_month' => [
             'moment' => 'MMMM YYYY',

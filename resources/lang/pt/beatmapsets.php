@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Ver imagem da capa em tamanho real',
+            'page' => '',
         ],
 
         'deleted_banner' => [

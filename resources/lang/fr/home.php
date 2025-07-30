@@ -27,7 +27,7 @@ return [
         'title' => 'rechercher',
 
         'artist_track' => [
-            'more_simple' => 'Voir plus de résultats de recherche de parcours d\'artistes',
+            'more_simple' => 'Voir plus de résultats de recherche de pistes de Featured Artists',
         ],
         'beatmapset' => [
             'login_required' => 'Connectez-vous pour rechercher des beatmaps',
@@ -142,16 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Beatmap du défi du jour',
             'new' => 'Nouvelles beatmaps classées',
             'popular' => 'Beatmaps populaires',
             'by_user' => 'par :user',
-            'resets' => '',
+            'resets' => 'fin :ends',
         ],
         'buttons' => [
             'download' => 'Télécharger osu!',
             'support' => 'Soutenir osu!',
             'store' => 'osu!store',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

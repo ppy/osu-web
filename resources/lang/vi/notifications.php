@@ -126,12 +126,12 @@ return [
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => 'Tin nhắn mới của đội',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username nói ":title"',
+                    'channel_team_compact' => ':username nói ":title"',
+                    'channel_team_group' => ':username nói ":title"',
                 ],
             ],
         ],
@@ -179,12 +179,12 @@ return [
                 'team_application_accept' => "Bạn vừa trở thành thành viên của đội :title",
                 'team_application_accept_compact' => "Bây giờ bạn là thành viên của đội :title",
 
-                'team_application_group' => '',
+                'team_application_group' => 'Cập nhật yêu cầu tham gia đội',
 
                 'team_application_reject' => 'Yêu cầu gia nhập đội :title của bạn đã bị từ chối',
                 'team_application_reject_compact' => 'Yêu cầu gia nhập đội :title của bạn đã bị từ chối',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_store' => ':title yêu cầu tham gia đội của bạn',
+                'team_application_store_compact' => ':title yêu cầu tham gia đội của bạn',
             ],
         ],
 
@@ -246,13 +246,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => 'Có một thông báo mới ở ":name"',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => 'Bạn nhận được tin nhắn mới từ :username',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'Có tin nhắn mới trong đội ":name"',
             ],
         ],
 
@@ -278,7 +278,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Bây giờ bạn là thành viên của đội :title",
                 'team_application_reject' => 'Yêu cầu gia nhập đội :title của bạn đã bị từ chối',
-                'team_application_store' => '',
+                'team_application_store' => ':title yêu cầu tham gia đội của bạn',
             ],
         ],
 

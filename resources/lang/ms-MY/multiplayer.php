@@ -16,8 +16,8 @@ return [
         'map_count' => ':count_delimited peta',
         'player_count' => ':count_delimited pemain',
         'time_left' => ':time tinggal',
-        'view_history' => '',
-        'view_summary' => '',
+        'view_history' => 'Lihat Sejarah',
+        'view_summary' => 'Lihat Ringkasan',
 
         'errors' => [
             'duration_too_long' => 'Tempoh terlalu panjang.',

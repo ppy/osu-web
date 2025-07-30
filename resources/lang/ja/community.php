@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'osu!をサポートしてくれてありがとうございます！今までに:dollarsで:tags個のタグを購入しました！',
-            'gifted' => "今まで購入したサポータータグのうち:giftedTags個がギフト（ギフト合計金額：:giftedDollars）として送られました。あなたの寛大さに拍手！",
+            'contribution_with_duration' => '',
             'not_yet' => "osu!サポータータグをまだ持っていません :(",
             'valid_until' => 'あなたのosu!サポータータグは:dateまで有効です！',
             'was_valid_until' => 'あなたのosu!サポータータグは:dateに期限切れになりました。',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

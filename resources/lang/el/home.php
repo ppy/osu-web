@@ -142,16 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Ημερήσια Πρόκληση Beatmap',
             'new' => 'Νέα Ranked Beatmaps',
             'popular' => 'Δημοφιλή Beatmaps',
             'by_user' => 'από :user',
-            'resets' => '',
+            'resets' => 'επαναφέρεται σε :ends',
         ],
         'buttons' => [
             'download' => 'Λήψη osu!',
             'support' => 'Υποστηρίξτε το osu!',
             'store' => 'osu!κατάστημα',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

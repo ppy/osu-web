@@ -19,7 +19,6 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Administratorius',
         'authorise' => 'Leisti',
         'authorising' => 'Leidžiama...',
         'back' => 'Atgal',
