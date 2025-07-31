@@ -260,8 +260,7 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         if ($this->excludes->keys !== null) {
-            // TODO: needs checking; exclude keys but only on mania maps
-            // TODO: this seems to make no sense to apply across a whole set?
+            $this->nested->filter(['term' => ['beatmaps.playmode' => Beatmap::MODES['mania']]]);
             $this->nestedMustNot->should(
                 (new BoolQuery())
                     ->filter(['range' => ['beatmaps.diff_size' => $this->excludes->keys]])
