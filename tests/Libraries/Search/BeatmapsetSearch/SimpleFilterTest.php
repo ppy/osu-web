@@ -38,9 +38,18 @@ class SimpleFilterTest extends TestCase
             $data[] = [['q' => "{$key}>={$value}"], [2, 1, 0]];
             $data[] = [['q' => "{$key}<{$value}"], [0]];
             $data[] = [['q' => "{$key}<={$value}"], [1, 0]];
+            $data[] = [['q' => "-{$key}={$value}"], [2]];
         }
 
-        $data[] = [['q' => 'od>9 ar<3'], []];
+        // no matches because there is no beatmap that matches both conditions
+        // even though the beatmapset has both in different beatmaps.
+        $data[] = [['q' => 'od>=9 ar<3'], []];
+        // exclusion doesn't have to match the same beatmap
+        $data[] = [['q' => 'od>=9 -ar>3'], [1]];
+
+        $data[] = [['q' => 'od>9 -ar>3'], []];
+        $data[] = [['q' => 'od>=8 -ar>2'], [0]];
+        $data[] = [['q' => 'od>=9 -ar>2'], []];
 
         $data[] = [['q' => 'favourites=150'], []]; // if you really want an exact number of favourites...
         $data[] = [['q' => 'favourites>200'], [2]];
@@ -51,9 +60,11 @@ class SimpleFilterTest extends TestCase
         $data[] = [['q' => 'od>7'], [2, 1, 0]];
         $data[] = [['q' => 'od>7 favourites>123'], [2, 1]];
 
-        // no matches because there is no beatmap that matches both conditions
-        // even though the beatmapset has both in different beatmaps.
-        $data[] = [['q' => 'od>=9 ar<3'], []];
+        $data[] = [['q' => '-favourites=150'], [2, 1, 0]];
+        $data[] = [['q' => '-favourites>200'], [1, 0]];
+        $data[] = [['q' => '-favourites>=200'], [0]];
+        $data[] = [['q' => '-favourites<200'], [2, 1]];
+        $data[] = [['q' => '-favourites<=200'], [2]];
 
         return $data;
     }
