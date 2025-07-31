@@ -27,11 +27,22 @@ class DateFilterTest extends TestCase
             $data[] = [['q' => "{$key}={$year}-02-28"], [3]];
             $data[] = [['q' => "{$key}={$year}"], [2, 3, 4]];
 
+            $data[] = [['q' => "-{$key}={$year}"], [0, 1]];
+            $data[] = [['q' => "-{$key}={$year}-02"], [0, 1, 4]];
+            $data[] = [['q' => "-{$key}={$year}-02-28"], [0, 1, 2, 4]];
+
+            $data[] = [['q' => "{$key}<={$year} -{$key}={$year}-02"], [0, 1, 4]];
+
             $year = 2022 + $index;
             $data[] = [['q' => "{$key}>{$year}"], [2, 3, 4]];
             $data[] = [['q' => "{$key}>={$year}"], [1, 2, 3, 4]];
             $data[] = [['q' => "{$key}<{$year}"], [0]];
             $data[] = [['q' => "{$key}<={$year}"], [0, 1]];
+
+            $data[] = [['q' => "-{$key}>{$year}"], [0, 1]];
+            $data[] = [['q' => "-{$key}>={$year}"], [0]];
+            $data[] = [['q' => "-{$key}<{$year}"], [1, 2, 3, 4]];
+            $data[] = [['q' => "-{$key}<={$year}"], [2, 3, 4]];
         }
 
         return $data;
