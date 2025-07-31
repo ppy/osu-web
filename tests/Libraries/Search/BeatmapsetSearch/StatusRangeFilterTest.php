@@ -35,6 +35,9 @@ class StatusRangeFilterTest extends TestCase
             [['q' => 'status>ranked'], [4, 6]],
             [['s' => 'qualified', 'q' => 'status>ranked'], [5]],
             [['s' => 'ranked', 'q' => 'status>ranked'], [4]],
+
+            [['s' => 'ranked', 'q' => '-status=approved'], [3]],
+            [['q' => '-status>ranked'], [3]],
         ];
     }
 
