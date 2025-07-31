@@ -17,6 +17,8 @@ class CreatorFilterTest extends TestCase
         return [
             'include lookup user' => [['q' => 'creator=mapper'], [0, 1]],
             'include non-lookup user' => [['q' => 'creator=someone'], [0, 3]],
+            'exclude lookup user' => [['q' => '-creator=mapper'], [2, 3, 4]],
+            'exclude non-lookup user' => [['q' => '-creator=someone'], [1, 2, 4]],
         ];
     }
 
