@@ -245,7 +245,8 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         if ($this->excludes->difficulty !== null) {
-            $this->nestedMustNot->should(['match' => ['beatmaps.version' => ['query' => $this->excludes->difficulty, 'operator' => 'or']]]);
+            $operator = static::isQuoted($this->excludes->difficulty) ? 'and' : 'or';
+            $this->nestedMustNot->should(['match' => ['beatmaps.version' => ['query' => $this->excludes->difficulty, 'operator' => $operator]]]);
         }
     }
 

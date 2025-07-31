@@ -27,11 +27,22 @@ class DateFilterTest extends TestCase
             $data[] = [['q' => "{$key}={$year}-02-28"], [3]];
             $data[] = [['q' => "{$key}={$year}"], [4, 3, 2]];
 
+            $data[] = [['q' => "-{$key}={$year}"], [1, 0]];
+            $data[] = [['q' => "-{$key}={$year}-02"], [4, 1, 0]];
+            $data[] = [['q' => "-{$key}={$year}-02-28"], [4, 2, 1, 0]];
+
+            $data[] = [['q' => "{$key}<={$year} -{$key}={$year}-02"], [4, 1, 0]];
+
             $year = 2022 + $index;
             $data[] = [['q' => "{$key}>{$year}"], [4, 3, 2]];
             $data[] = [['q' => "{$key}>={$year}"], [4, 3, 2, 1]];
             $data[] = [['q' => "{$key}<{$year}"], [0]];
             $data[] = [['q' => "{$key}<={$year}"], [1, 0]];
+
+            $data[] = [['q' => "-{$key}>{$year}"], [1, 0]];
+            $data[] = [['q' => "-{$key}>={$year}"], [0]];
+            $data[] = [['q' => "-{$key}<{$year}"], [4, 3, 2, 1]];
+            $data[] = [['q' => "-{$key}<={$year}"], [4, 3, 2]];
         }
 
         return $data;
@@ -41,7 +52,7 @@ class DateFilterTest extends TestCase
     {
         static::withDbAccess(function () {
             $factory = Beatmapset::factory()->withBeatmaps();
-            $helper = fn (CarbonImmutable $date) => $factory->ranked($date)->state([
+            $helper = fn(CarbonImmutable $date) => $factory->ranked($date)->state([
                 'last_update' => $date->addYearNoOverflow(1),
                 'submit_date' => $date->addYearNoOverflow(-1),
             ]);

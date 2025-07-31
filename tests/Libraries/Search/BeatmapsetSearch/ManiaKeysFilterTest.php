@@ -15,6 +15,7 @@ class ManiaKeysFilterTest extends TestCase
     {
         return [
             [['q' => 'keys=7'], [3, 1]],
+            [['q' => '-keys=7'], [2]],
         ];
     }
 

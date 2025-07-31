@@ -40,6 +40,12 @@ class TitleFilterTest extends TestCase
             [['q' => 'title="the beatmap"'], [1, 2]],
             [['q' => 'title=""best beatmap""'], [3, 2, 1]],
             [['q' => 'title=""the beatmap""'], []],
+
+            [['q' => '-title=best'], [4], ['approved_date', 'id']],
+            [['q' => '-title="best beatmap"'], [4, 0], ['approved_date', 'id']],
+            [['q' => '-title="the beatmap"'], [4, 3, 0], ['approved_date', 'id']],
+            [['q' => '-title=""best beatmap""'], [4, 0], ['approved_date', 'id']],
+            [['q' => '-title=""the beatmap""'], [4, 3, 2, 1, 0], ['approved_date', 'id']],
         ];
     }
 

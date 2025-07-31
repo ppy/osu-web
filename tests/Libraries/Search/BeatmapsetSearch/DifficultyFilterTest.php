@@ -19,6 +19,12 @@ class DifficultyFilterTest extends TestCase
             [['q' => 'difficulty="very mapper"'], [2]],
             [['q' => 'difficulty="very hard"'], []],
             [['q' => 'difficulty=""very easy""'], [0]],
+
+            [['q' => '-difficulty=hard'], [0]],
+            [['q' => '-difficulty="very mapper"'], [1]],
+            [['q' => '-difficulty="very hard"'], []],
+            [['q' => '-difficulty=""very easy""'], [2, 1]],
+            [['q' => '-difficulty="hard easy"'], []],
         ];
     }
 
