@@ -7,9 +7,7 @@ declare(strict_types=1);
 
 namespace App\Exceptions;
 
-use Exception;
-
-class UserVerificationException extends Exception
+class UserVerificationException extends InvariantException
 {
     public function __construct(private string $reasonKey, private bool $shouldReissue)
     {
