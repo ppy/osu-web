@@ -382,7 +382,7 @@ class Room extends Model
                 if ($firstItem->relationLoaded('beatmap')) {
                     $extraQuery = false;
                     foreach ($this->playlist as $item) {
-                        if ($item->expired)
+                        if (!$this->hasEnded() && $item->expired)
                             continue;
 
                         $rating = $item->beatmap->difficultyrating;
@@ -402,7 +402,11 @@ class Room extends Model
         }
 
         if ($extraQuery) {
-            $beatmapIds = $this->playlist()->where('expired', '=', false)->select('beatmap_id');
+            $beatmapIds = $this->playlist();
+            if (!$this->hasEnded())
+                $beatmapIds = $beatmapIds->where('expired', '=', false);
+            $beatmapIds = $beatmapIds->select('beatmap_id');
+
             $range = Beatmap::selectRaw('
                 MIN(difficultyrating) as min_difficulty,
                 MAX(difficultyrating) as max_difficulty
