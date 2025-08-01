@@ -402,9 +402,9 @@ class Room extends Model
             $range = Beatmap::selectRaw('
                 MIN(difficultyrating) as min_difficulty,
                 MAX(difficultyrating) as max_difficulty
-            ')->whereIn('beatmap_id', $this->playlist()->select('beatmap_id'))->first();
-            $max = $range->max_difficulty;
-            $min = $range->min_difficulty;
+            ')->whereIn('beatmap_id', $this->playlist()->select('beatmap_id'))->first()->getAttributes();
+            $max = $range['max_difficulty'];
+            $min = $range['min_difficulty'];
         }
 
         return [
