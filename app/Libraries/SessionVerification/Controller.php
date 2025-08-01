@@ -63,13 +63,13 @@ class Controller
 
         $key = strtr(get_string(\Request::input('verification_key')) ?? '', [' ' => '']);
         $user = Helper::currentUserOrFail();
-        $state = State::fromSession($session);
+        $mailState = MailState::fromSession($session);
 
         try {
-            if ($state === null) {
+            if ($mailState === null) {
                 throw new UserVerificationException('expired', true);
             }
-            $state->verify($key);
+            $mailState->verify($key);
         } catch (UserVerificationException $e) {
             Helper::logAttempt('input', 'fail', $e->reasonKey());
 
@@ -85,26 +85,26 @@ class Controller
         }
 
         Helper::logAttempt('input', 'success');
-        Helper::markVerified($session, $state);
+        Helper::markVerified($session, $mailState);
 
         return response(null, 204);
     }
 
     public static function verifyLink()
     {
-        $state = State::fromVerifyLink(get_string(\Request::input('key')) ?? '');
+        $mailState = MailState::fromVerifyLink(get_string(\Request::input('key')) ?? '');
 
-        if ($state === null) {
+        if ($mailState === null) {
             Helper::logAttempt('link', 'fail', 'incorrect_key');
 
             return ext_view('accounts.verification_invalid', null, null, 404);
         }
 
-        $session = $state->findSession();
+        $session = $mailState->findSession();
         // Otherwise pretend everything is okay if session is missing
         if ($session !== null) {
             Helper::logAttempt('link', 'success');
-            Helper::markVerified($session, $state);
+            Helper::markVerified($session, $mailState);
         }
 
         return ext_view('accounts.verification_completed');
