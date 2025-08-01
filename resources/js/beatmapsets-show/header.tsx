@@ -239,14 +239,16 @@ export default class Header extends React.Component<Props> {
 
       return;
     }
+    const count = this.controller.beatmapset.favourite_count;
 
     this.favouritePopupDisposer ??= createTooltip(
       () => this.favouriteIconRef.current,
       () => ({
-        count: this.controller.beatmapset.favourite_count,
+        count,
+        title: count < 1 ? trans('beatmapsets.show.stats.favourites') : undefined,
         users: this.filteredFavourites,
       }),
-      'right center',
+      count < 1 ? 'top center' : 'right center',
     );
   };
 
