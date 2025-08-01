@@ -12,7 +12,7 @@ use App\Interfaces\SessionVerificationInterface;
 use App\Libraries\SignedRandomString;
 use Carbon\CarbonImmutable;
 
-class State
+class MailState
 {
     private const KEY_VALID_DURATION = 600;
 
