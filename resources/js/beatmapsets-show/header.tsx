@@ -130,6 +130,7 @@ export default class Header extends React.Component<Props> {
               <span
                 ref={this.favouriteIconRef}
                 className={classWithModifiers('beatmapset-header__value', { 'has-favourites': this.controller.beatmapset.favourite_count > 0 })}
+                title={trans('beatmapsets.show.stats.favourites')}
                 onMouseOver={this.onEnterFavouriteIcon}
                 onTouchStart={this.onEnterFavouriteIcon}
               >
