@@ -78,7 +78,7 @@ class Room extends Model
 
     const PLAYLIST_TYPE = 'playlists';
     const REALTIME_DEFAULT_TYPE = 'head_to_head';
-    const REALTIME_TYPES = ['head_to_head', 'team_versus'];
+    const REALTIME_TYPES = ['head_to_head', 'team_versus', 'matchmaking'];
 
     const PLAYLIST_QUEUE_MODE = 'host_only';
     const REALTIME_DEFAULT_QUEUE_MODE = 'host_only';
