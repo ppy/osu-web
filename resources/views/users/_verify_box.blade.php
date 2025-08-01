@@ -8,7 +8,7 @@
     </h1>
 
     <p class="user-verification__row user-verification__row--info">
-        {!! osu_trans('user_verification.box.sent', ['mail' => '<strong>'.obscure_email($email).'</strong>']) !!}
+        {!! osu_trans('user_verification.box.sent', ['mail' => tag('strong', [], e(obscure_email($email)))]) !!}
     </p>
 
     <div class="user-verification__row user-verification__row--key">
@@ -47,15 +47,17 @@
                 osu_trans('user_verification.box.info.reissue_link'),
                 ['class' => 'js-user-verification--reissue user-verification__link']
             ),
-            'logout_link' =>
-                "<button
-                    class='js-logout-link user-verification__link'
-                    type='button'
-                    data-method='delete'
-                    data-remote='1'
-                    data-url='".route('logout')."'
-                >".osu_trans('user_verification.box.info.logout_link')."
-                </button>",
+            'logout_link' => tag(
+                'button',
+                [
+                    'class' => 'js-logout-link user-verification__link',
+                    'data-method' => 'DELETE',
+                    'data-remote' => '1',
+                    'data-url' => route('logout'),
+                    'type' => 'button',
+                ],
+                e(osu_trans('user_verification.box.info.logout_link')),
+            ),
         ]) !!}
     </p>
 </div>
