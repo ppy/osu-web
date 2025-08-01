@@ -3,7 +3,6 @@
 
 import { type TurboSubmitEndEvent } from '@hotwired/turbo';
 import { route } from 'laroute';
-import core from 'osu-core-singleton';
 import { xhrErrorMessage } from 'utils/ajax';
 import { fadeIn, fadeOut, fadeToggle } from 'utils/fade';
 import { createClickCallback } from 'utils/html';
@@ -64,10 +63,6 @@ export default class UserVerification {
     return document.querySelector<HTMLElement>('.js-user-verification--message-text');
   }
 
-  private get reference() {
-    return document.querySelector<HTMLElement>('.js-user-verification--reference');
-  }
-
   constructor() {
     $(document)
       .on('ajax:error', this.onError)
@@ -79,8 +74,6 @@ export default class UserVerification {
     $.subscribe('user-verification:success', this.success);
 
     document.addEventListener('turbo:submit-end', this.onErrorTurbo);
-
-    $(window).on('resize scroll', this.reposition);
   }
 
   showOnError = (xhr: JQuery.jqXHR, callback?: () => void) => {
@@ -121,16 +114,6 @@ export default class UserVerification {
 
   private readonly error = (xhr: JQuery.jqXHR) => {
     this.setMessage(xhrErrorMessage(xhr));
-  };
-
-  private readonly float = (float: boolean, modal: HTMLElement, referenceBottom?: number) => {
-    if (float) {
-      modal.classList.add('js-user-verification--center');
-      modal.style.paddingTop = '';
-    } else {
-      modal.classList.remove('js-user-verification--center');
-      modal.style.paddingTop = `${referenceBottom ?? 0}px`;
-    }
   };
 
   private readonly isActive = () => this.modal?.classList.contains('js-user-verification--active');
@@ -175,18 +158,6 @@ export default class UserVerification {
         this.setMessage(data.message);
       })
       .fail(this.error);
-  };
-
-  private readonly reposition = () => {
-    if (!this.isActive() || this.modal == null) return;
-
-    if (core.windowSize.isMobile) {
-      this.float(true, this.modal);
-    } else {
-      const referenceBottom = this.reference?.getBoundingClientRect().bottom ?? 0;
-
-      this.float(referenceBottom < 0, this.modal, referenceBottom);
-    }
   };
 
   private readonly setDelayShow = () => {
@@ -237,8 +208,6 @@ export default class UserVerification {
         show: true,
       })
       .addClass('js-user-verification--active');
-
-    this.reposition();
   };
 
   // for pages which require authentication

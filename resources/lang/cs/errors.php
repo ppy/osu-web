@@ -7,6 +7,7 @@ return [
     'load_failed' => 'Nepodařilo se načíst data.',
     'missing_route' => 'Neplatná url adresa nebo nesprávná metoda požadavku.',
     'no_restricted_access' => 'Tuto akci nemůžeš provést, když je tvůj účet v omezeném režimu.',
+    'param_too_large' => '',
     'supporter_only' => 'Pro použití této funkce musíš mít osu! supporter tag.',
     'unknown' => 'Vyskytla se neznámá chyba.',
 

@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Vezi imaginea de copertă întreagă',
+            'page' => '',
         ],
 
         'deleted_banner' => [
@@ -104,7 +105,7 @@ return [
             'loved' => 'iubit :timeago',
             'qualified' => 'calificat :timeago',
             'ranked' => 'clasat :timeago',
-            'submitted' => 'postat :timeago',
+            'submitted' => 'încărcat :timeago',
             'updated' => 'ultima actualizare :timeago',
         ],
 

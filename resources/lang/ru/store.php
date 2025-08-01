@@ -174,7 +174,7 @@ return [
 
         'add_to_cart' => 'Добавить в корзину',
         'notify' => 'Сообщить о поступлении!',
-        'out_of_stock' => '',
+        'out_of_stock' => 'Нет в наличии',
 
         'notification_success' => 'Вы будете оповещены, когда товар будет в наличии. Нажмите :link для отмены',
         'notification_remove_text' => 'сюда',

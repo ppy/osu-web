@@ -8,7 +8,7 @@ return [
     'not_negative' => ':attribute nesmí být záporný.',
     'required' => ':attribute je vyžadován.',
     'too_long' => ':attribute přesáhl maximální délku - může mít maximálně :limit znaků.',
-    'url' => 'Zadejte prosím platnou URL adresu.',
+    'url' => 'Zadej prosím platnou URL adresu.',
     'wrong_confirmation' => 'Potvrzení se neshoduje.',
 
     'beatmapset_discussion' => [
@@ -122,7 +122,7 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => 'Byl překročen limit povolených možností.',
-            'url' => 'Zadejte prosím platné adresy URL.',
+            'url' => 'Zadej prosím platné URL adresy.',
 
             'attributes' => [
                 'name' => 'Název aplikace',

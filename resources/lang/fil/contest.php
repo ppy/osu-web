@@ -107,4 +107,10 @@ return [
         'voting' => 'Nagsimula ang Pagboto',
         'results' => 'Linabas Ang Mga Resulta',
     ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
+    ],
 ];

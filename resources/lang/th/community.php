@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'ขอบคุณสำหรับการสนับสนุนของคุณ! คุณได้สนับสนุนเป็นเงินรวม :dollars จากการซิ้อแท็ก :tags อัน!',
-            'gifted' => "คุณได้ซื้อแท็ก :giftedTags อันสำหรับเป็นของขวัญ (มูลค่า :giftedDollars) ใจกว้างมาก!",
+            'contribution_with_duration' => '',
             'not_yet' => "คุณยังไม่มีแท็กสนับสนุน :(",
             'valid_until' => 'แท็กสนับสนุนของคุณใช้ได้จนถึง :date!',
             'was_valid_until' => 'แท็กสนับสนุนคุณหมดอายุเมื่อ :date',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

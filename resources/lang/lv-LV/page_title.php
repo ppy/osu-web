@@ -131,7 +131,7 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            'events' => '',
+            'events' => 'izstabas vēsture',
         ],
     ],
     'passport' => [

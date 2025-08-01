@@ -161,8 +161,17 @@ CAPTCHA認証を成功させてから再試行してください。
             'cancel' => 'キャンセル',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'チート',
+            'copyright_infringement' => '',
             'inappropriate_chat' => '不適切なチャット行為',
             'insults' => 'あなた/他の人への侮辱',
             'multiple_accounts' => '複数のアカウントを管理している',

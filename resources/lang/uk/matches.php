@@ -15,22 +15,22 @@ return [
         'winner_by' => ':winner з відривом в :difference очків',
 
         'events' => [
-            'game_aborted' => '',
-            'game_aborted_no_user' => '',
-            'game_completed' => '',
-            'game_completed_no_user' => '',
-            'host_changed' => '',
-            'host_changed_no_user' => '',
-            'player_joined' => '',
-            'player_joined_no_user' => '',
-            'player_kicked' => '',
-            'player_kicked_no_user' => '',
-            'player_left' => '',
-            'player_left_no_user' => '',
-            'room_created' => '',
-            'room_created_no_user' => '',
-            'room_disbanded' => '',
-            'room_disbanded_no_user' => '',
+            'game_aborted' => 'гру було скасовано',
+            'game_aborted_no_user' => 'гру було скасовано',
+            'game_completed' => 'гра завершилась',
+            'game_completed_no_user' => 'гра завершилась',
+            'host_changed' => ':user став хостом',
+            'host_changed_no_user' => 'хост змінився',
+            'player_joined' => ':user доєднався до гри',
+            'player_joined_no_user' => 'гравець доєднався до гри',
+            'player_kicked' => ':user був вигнаний з гри',
+            'player_kicked_no_user' => 'гравець був вигнаний з гри',
+            'player_left' => ':user покинув гру',
+            'player_left_no_user' => 'гравець покинув гру',
+            'room_created' => ':user створив гру',
+            'room_created_no_user' => 'створено гру',
+            'room_disbanded' => 'гру було розпущено',
+            'room_disbanded_no_user' => 'гру було розпущено',
         ],
 
         'score' => [
@@ -42,10 +42,10 @@ return [
         ],
 
         'team_types' => [
-            'head_to_head' => '',
-            'tag_coop' => '',
-            'tag_team_versus' => '',
-            'team_versus' => '',
+            'head_to_head' => 'Всі проти всіх',
+            'tag_coop' => 'Естафета',
+            'tag_team_versus' => 'Командна естафета',
+            'team_versus' => 'Командна гра',
         ],
 
         'teams' => [
@@ -54,7 +54,7 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '',
+        'freestyle' => 'Вільний стиль',
 
         'scoring-type' => [
             'score' => 'Найвищий бал',

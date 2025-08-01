@@ -88,7 +88,7 @@ return [
             'beatmap_owner_change' => 'độ khó khách mời',
             'beatmapset:modding' => 'sửa đổi beatmap',
             'channel_message' => 'tin nhắn riêng tư',
-            'channel_team' => '',
+            'channel_team' => 'tin nhắn đội',
             'comment_new' => 'bình luận mới',
             'forum_topic_reply' => 'trả lời chủ đề',
             'mail' => 'thư',

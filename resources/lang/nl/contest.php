@@ -107,4 +107,10 @@ return [
         'voting' => 'Stemmen Gestard',
         'results' => 'Resultaten uit',
     ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
+    ],
 ];

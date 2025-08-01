@@ -113,6 +113,7 @@ return [
                 'deleted' => 'Törölt posztot nem lehet szerkeszteni.',
                 'locked' => 'A posztot nem lehet szerkeszteni.',
                 'no_forum_access' => 'A kért fórumhoz hozzáférési jog szükséges.',
+                'no_permission' => '',
                 'not_owner' => 'Csak a szerző szerkesztheti a posztot.',
                 'topic_locked' => 'Lezárt téma posztját nem lehet szerkeszteni.',
             ],

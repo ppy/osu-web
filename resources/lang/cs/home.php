@@ -142,16 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Beatmapa denní výzvy',
             'new' => 'Nově hodnocené beatmapy',
             'popular' => 'Populární beatmapy',
             'by_user' => 'od :user',
-            'resets' => '',
+            'resets' => 'obnoví se :ends',
         ],
         'buttons' => [
             'download' => 'Stáhnout osu!',
             'support' => 'Podpoř osu!',
             'store' => 'osu!store',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

@@ -19,7 +19,6 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Admin',
         'authorise' => 'Engedélyezés',
         'authorising' => 'Engedélyezés...',
         'back' => 'Vissza',

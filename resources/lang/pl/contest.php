@@ -30,9 +30,9 @@ return [
         '_' => 'Wyniki oceny prac',
         'creator' => 'twórca',
         'score' => 'Wynik',
-        'score_std' => '',
+        'score_std' => 'Wynik standaryzowany',
         'total_score' => 'całkowity wynik',
-        'total_score_std' => '',
+        'total_score_std' => 'całkowity wynik standaryzowany',
     ],
 
     'voting' => [
@@ -89,7 +89,7 @@ return [
         'list' => 'głosy',
         'count' => ':count_delimited głos|:count_delimited głosy|:count_delimited głosów',
         'points' => ':count_delimited punkt|:count_delimited punkty|:count_delimited punktów',
-        'points_float' => '',
+        'points_float' => ':points pkt',
     ],
 
     'dates' => [
@@ -106,5 +106,11 @@ return [
         'entry' => 'Otwarty na zgłoszenia',
         'voting' => 'Głosowanie',
         'results' => 'Wyniki',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

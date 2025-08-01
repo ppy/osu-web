@@ -153,5 +153,10 @@ return [
             'support' => '',
             'store' => '',
         ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
+        ],
     ],
 ];

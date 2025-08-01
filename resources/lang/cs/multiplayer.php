@@ -16,8 +16,8 @@ return [
         'map_count' => ':count_delimited mapa|:count_delimited mapy|:count_delimited map',
         'player_count' => ':count_delimited hráč|:count_delimited hráči|:count_delimited hráčů',
         'time_left' => ':time zbývá',
-        'view_history' => '',
-        'view_summary' => '',
+        'view_history' => 'Zobrazit historii',
+        'view_summary' => 'Zobrazit shrnutí',
 
         'errors' => [
             'duration_too_long' => 'Doba je příliě dlouhá.',

@@ -142,16 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => '每日挑戰圖譜',
             'new' => '新進榜圖譜',
             'popular' => '熱門圖譜',
             'by_user' => '由 :user',
-            'resets' => '',
+            'resets' => '重置時間：:ends',
         ],
         'buttons' => [
             'download' => '下載 osu!',
             'support' => '贊助 osu!',
             'store' => 'osu! 商店',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

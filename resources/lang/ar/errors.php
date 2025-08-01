@@ -7,6 +7,7 @@ return [
     'load_failed' => 'تعذر تحميل البيانات.',
     'missing_route' => 'رابط غير صالح أو طريقة طلب غير صحيحة.',
     'no_restricted_access' => 'أنت لست قادراً على تنفيذ هذا الإجراء عندما يكون حسابك في حالة مقيدة.',
+    'param_too_large' => '',
     'supporter_only' => 'يجب أن تكون osu!supporter لاستخدام هذه الميزة.',
     'unknown' => 'حدث خطأ غير معروف.',
 

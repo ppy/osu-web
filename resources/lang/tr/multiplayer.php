@@ -17,7 +17,7 @@ return [
         'player_count' => ':count_delimited oyuncu|:count_delimited oyuncu',
         'time_left' => 'kalan süre: :time',
         'view_history' => '',
-        'view_summary' => '',
+        'view_summary' => 'Özeti Göster',
 
         'errors' => [
             'duration_too_long' => 'Süre aşırı uzun.',

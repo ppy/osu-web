@@ -159,8 +159,17 @@ return [
             'cancel' => 'Annuler',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Anti-jeu / Triche',
+            'copyright_infringement' => '',
             'inappropriate_chat' => 'Comportement inapproprié dans le tchat',
             'insults' => 'M’insulte / insulte les autres',
             'multiple_accounts' => 'Utilisation de plusieurs comptes',
@@ -486,7 +495,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Précision',
-            'hits_per_play' => '',
+            'hits_per_play' => 'Clics par partie',
             'level' => 'Niveau :level',
             'level_progress' => 'Progression jusqu’au prochain niveau',
             'maximum_combo' => 'Combo maximum',

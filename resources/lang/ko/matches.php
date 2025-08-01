@@ -15,22 +15,22 @@ return [
         'winner_by' => ':difference 차로 :winner',
 
         'events' => [
-            'game_aborted' => '',
-            'game_aborted_no_user' => '',
-            'game_completed' => '',
-            'game_completed_no_user' => '',
-            'host_changed' => '',
-            'host_changed_no_user' => '',
-            'player_joined' => '',
-            'player_joined_no_user' => '',
-            'player_kicked' => '',
-            'player_kicked_no_user' => '',
-            'player_left' => '',
-            'player_left_no_user' => '',
-            'room_created' => '',
-            'room_created_no_user' => '',
-            'room_disbanded' => '',
-            'room_disbanded_no_user' => '',
+            'game_aborted' => '게임이 취소됨',
+            'game_aborted_no_user' => '게임이 취소됨',
+            'game_completed' => '게임이 종료됨',
+            'game_completed_no_user' => '게임이 종료됨',
+            'host_changed' => ':user 님이 방장 권한을 얻음',
+            'host_changed_no_user' => '방장이 변경됨',
+            'player_joined' => ':user 님이 대전에 참가함',
+            'player_joined_no_user' => '플레이어가 대전에 참가함',
+            'player_kicked' => ':user 님이 대전에서 강제 퇴장됨',
+            'player_kicked_no_user' => '플레이어가 대전에서 강제 퇴장됨',
+            'player_left' => ':user 님이 대전에서 퇴장함',
+            'player_left_no_user' => '플레이어가 대전에서 퇴장함',
+            'room_created' => ':user 님이 대전을 생성함',
+            'room_created_no_user' => '대전이 생성됨',
+            'room_disbanded' => '대전이 해체됨',
+            'room_disbanded_no_user' => '대전이 해체됨',
         ],
 
         'score' => [
@@ -42,10 +42,10 @@ return [
         ],
 
         'team_types' => [
-            'head_to_head' => '',
-            'tag_coop' => '',
-            'tag_team_versus' => '',
-            'team_versus' => '',
+            'head_to_head' => '개인전',
+            'tag_coop' => '태그 협동',
+            'tag_team_versus' => '태그 팀전',
+            'team_versus' => '팀전',
         ],
 
         'teams' => [
@@ -54,7 +54,7 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '',
+        'freestyle' => '프리스타일',
 
         'scoring-type' => [
             'score' => '최고 점수',

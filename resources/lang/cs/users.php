@@ -159,8 +159,17 @@ return [
             'cancel' => 'Zrušit',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Podvádění',
+            'copyright_infringement' => '',
             'inappropriate_chat' => 'Nevhodné chování v chatu',
             'insults' => 'Uráží mě / ostatní',
             'multiple_accounts' => 'Používání více účtů',
@@ -486,7 +495,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Přesnost zásahů',
-            'hits_per_play' => '',
+            'hits_per_play' => 'Zásahů za hru',
             'level' => 'Úroveň :level',
             'level_progress' => 'postup do dalšího levelu',
             'maximum_combo' => 'Maximální Combo',
@@ -517,8 +526,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'from_client' => 'prosím, zaregistrujte se přes herního klienta!',
-        'from_web' => 'prosím dokončete registraci na webové stránce osu!',
+        'from_client' => 'prosím, zaregistruj se přes herního klienta!',
+        'from_web' => 'prosím dokonči registraci na webové stránce osu!',
         'saved' => 'Uživatelem vytvořen',
     ],
     'verify' => [

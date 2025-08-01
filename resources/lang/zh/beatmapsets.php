@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => '查看完整封面图',
+            'page' => '',
         ],
 
         'deleted_banner' => [

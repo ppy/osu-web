@@ -30,9 +30,9 @@ return [
         '_' => 'Судові результати',
         'creator' => 'автор',
         'score' => 'Бали',
-        'score_std' => '',
+        'score_std' => 'Стандартизований рахунок',
         'total_score' => 'всього очок',
-        'total_score_std' => '',
+        'total_score_std' => 'загальний стандартизований рахунок',
     ],
 
     'voting' => [
@@ -89,7 +89,7 @@ return [
         'list' => 'голосів',
         'count' => ':count_delimited голос|:count_delimited голоси|:count_delimited голосів',
         'points' => ':count_delimited очко|:count_delimited очка|:count_delimited очків',
-        'points_float' => '',
+        'points_float' => ':points очок',
     ],
 
     'dates' => [
@@ -106,5 +106,11 @@ return [
         'entry' => 'Відкриті заявки',
         'voting' => 'Голосування почалося',
         'results' => 'Результати опубліковані',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

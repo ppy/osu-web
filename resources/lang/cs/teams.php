@@ -157,8 +157,9 @@ return [
         ],
 
         'statistics' => [
-            'rank' => 'Umístění',
+            'empty_slots' => '',
             'leader' => 'Vedoucí týmu',
+            'rank' => 'Umístění',
         ],
     ],
 

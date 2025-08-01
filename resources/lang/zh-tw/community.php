@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => '感謝您一直以來的支持！您已經捐贈了 :dollars 並購買了 :tags 次贊助者標籤！',
-            'gifted' => "您已經捐贈了 :giftedTags 次贊助者標籤（花費了 :giftedDollars），真慷慨啊！",
+            'contribution_with_duration' => '',
             'not_yet' => "您還沒有贊助者標籤 :(",
             'valid_until' => '您的贊助者標籤將在 :date 到期',
             'was_valid_until' => '您的贊助者標籤已於 :date 到期',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

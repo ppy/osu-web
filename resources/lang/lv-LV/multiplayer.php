@@ -16,8 +16,8 @@ return [
         'map_count' => ':count_delimited mape|:count_delimited mapes',
         'player_count' => ':count_delimited spēlētājs|:count_delimited spēlētāji',
         'time_left' => 'atlicis :time',
-        'view_history' => '',
-        'view_summary' => '',
+        'view_history' => 'Apskatīt Vēsturi',
+        'view_summary' => 'Apskatīt Apkopojumu',
 
         'errors' => [
             'duration_too_long' => 'Ilgums ir pārāk garš.',

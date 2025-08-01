@@ -113,6 +113,7 @@ return [
                 'deleted' => 'No podeu editar una publicació eliminada.',
                 'locked' => 'L\'edició de la publicació està bloquejada.',
                 'no_forum_access' => 'Cal accés al fòrum sol·licitat.',
+                'no_permission' => '',
                 'not_owner' => 'Només el creador pot suprimir la publicació.',
                 'topic_locked' => 'No es pot editar la publicació d\'un tema bloquejat.',
             ],

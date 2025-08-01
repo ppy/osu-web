@@ -99,7 +99,7 @@ return [
     'user_verification' => [
         'code' => 'Kod pengesahan anda:',
         'code_hint' => 'Anda boleh memasukkan kod dengan atau tanpa aksara jarak.',
-        'link' => 'Anda juga boleh melawat pautan ini untuk melengkapkan pengesahan:',
+        'link' => 'Anda juga boleh melawat pautan ini untuk selesaikan pengesahan:',
         'report' => 'pengesahan akaun osu!',
         'subject' => 'pengesahan akaun osu!',
 

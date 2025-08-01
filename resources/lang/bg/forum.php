@@ -296,24 +296,24 @@ return [
         ],
 
         'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Премахни таг \'osu!lazer\'',
+            'to_0_done' => 'Премахнат бе таг \'osu!lazer\'',
+            'to_1' => 'Добави таг \'osu!lazer\'',
+            'to_1_done' => 'Добавен бе таг \'osu!lazer\'',
         ],
 
         'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Премахни таг \'osu!stable\'',
+            'to_0_done' => 'Премахнат бе таг \'osu!stable\'',
+            'to_1' => 'Добави таг \'osu!stable\'',
+            'to_1_done' => 'Добавен бе таг \'osu!stable\'',
         ],
 
         'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Премахни таг \'osu!web\'',
+            'to_0_done' => 'Премахнат бе таг \'osu!web\'',
+            'to_1' => 'Добави таг \'osu!web\'',
+            'to_1_done' => 'Добавен бе таг \'osu!web\'',
         ],
 
         'lock' => [

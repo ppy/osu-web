@@ -107,4 +107,10 @@ return [
         'voting' => 'Votació iniciada',
         'results' => 'Resultats fora',
     ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
+    ],
 ];

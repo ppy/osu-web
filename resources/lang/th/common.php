@@ -19,7 +19,6 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'ผู้ดูแล',
         'authorise' => 'อนุญาต',
         'authorising' => 'กำลังอนุญาต...',
         'back' => '',

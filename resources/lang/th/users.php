@@ -160,8 +160,17 @@ return [
             'cancel' => 'ยกเลิก',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'เล่นผิดกติกา / โกง',
+            'copyright_infringement' => '',
             'inappropriate_chat' => '',
             'insults' => 'ดูหมิ่น เหยียดหยามตนเอง / ผู้อื่น',
             'multiple_accounts' => 'การใช้หลายบัญชี',

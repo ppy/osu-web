@@ -19,7 +19,6 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Администратор',
         'authorise' => 'Тіркелу',
         'authorising' => 'Тіркелуде...',
         'back' => '',
