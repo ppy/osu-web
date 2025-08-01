@@ -236,6 +236,36 @@ class RoomTest extends TestCase
         $this->assertSame('good word', $room->name);
     }
 
+    /**
+     * @dataProvider difficultyRangeDataProvider
+     */
+    public function testRoomDifficultyRange(bool $roomEnded, bool $preloadRelations) {
+        $room = Room::factory()->create(['ends_at' => $roomEnded ? now() : null]);
+
+        $firstBeatmap = Beatmap::factory()->create(['difficultyrating' => 1]);
+        $secondBeatmap = Beatmap::factory()->create(['difficultyrating' => 3]);
+        $thirdBeatmap = Beatmap::factory()->create(['difficultyrating' => 5]);
+        $fourthBeatmap = Beatmap::factory()->create(['difficultyrating' => 7]);
+
+        $firstItem = PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $firstBeatmap->getKey(), 'expired' => true]);
+        $secondItem = PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $secondBeatmap->getKey(), 'expired' => false]);
+        $thirdItem = PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $thirdBeatmap->getKey(), 'expired' => false]);
+        $fourthItem = PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $fourthBeatmap->getKey(), 'expired' => true]);
+
+        if ($preloadRelations) {
+            $firstItem->setRelation('beatmap', $firstBeatmap);
+            $secondItem->setRelation('beatmap', $secondBeatmap);
+            $thirdItem->setRelation('beatmap', $thirdBeatmap);
+            $fourthItem->setRelation('beatmap', $fourthBeatmap);
+
+            $room->setRelation('playlist', collect([$firstItem, $secondItem, $thirdItem, $fourthItem]));
+        }
+
+        $difficultyRange = $room->difficultyRange();
+        $this->assertSame($roomEnded ? 1.0 : 3.0, $difficultyRange['min']);
+        $this->assertSame($roomEnded ? 7.0 : 5.0, $difficultyRange['max']);
+    }
+
     public static function startGameDurationDataProvider()
     {
         static $dayMinutes = 1440;
@@ -253,6 +283,15 @@ class RoomTest extends TestCase
             '3 months (with supporter)' => [$dayMinutes * $maxDurationSupporter, true, false],
             'more than 3 months' => [$dayMinutes * $maxDurationSupporter + 1, false, true],
             'more than 3 months (with supporter)' => [$dayMinutes * $maxDurationSupporter + 1, true, true],
+        ];
+    }
+
+    public static function difficultyRangeDataProvider() {
+        return [
+            'room active, no preload' => [false, false],
+            'room active, preload' => [false, true],
+            'room ended, no preload' => [true, false],
+            'room ended, preload' => [true, true],
         ];
     }
 }
