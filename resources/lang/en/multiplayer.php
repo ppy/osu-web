@@ -5,7 +5,7 @@
 
 return [
     'empty' => [
-        'active' => 'Not currenty in any in-progress osu!(lazer) :type_group games!',
+        'active' => 'Not currently in any in-progress osu!(lazer) :type_group games!',
         'ended' => 'Not in any completed osu!(lazer) :type_group games yet!',
         'playlists' => 'playlist',
         'realtime' => 'multiplayer',
