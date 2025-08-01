@@ -236,26 +236,11 @@ class RoomTest extends TestCase
         $this->assertSame('good word', $room->name);
     }
 
-    public function testRoomDifficultyRangeDoesNotIncludeExpiredItems_WhenFetchingRaw() {
-        $room = Room::factory()->create();
-
-        $firstBeatmap = Beatmap::factory()->create(['difficultyrating' => 1]);
-        $secondBeatmap = Beatmap::factory()->create(['difficultyrating' => 3]);
-        $thirdBeatmap = Beatmap::factory()->create(['difficultyrating' => 5]);
-        $fourthBeatmap = Beatmap::factory()->create(['difficultyrating' => 7]);
-
-        PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $firstBeatmap->getKey(), 'expired' => true]);
-        PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $secondBeatmap->getKey(), 'expired' => false]);
-        PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $thirdBeatmap->getKey(), 'expired' => false]);
-        PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $fourthBeatmap->getKey(), 'expired' => true]);
-
-        $difficultyRange = $room->difficultyRange();
-        $this->assertSame(3.0, $difficultyRange['min']);
-        $this->assertSame(5.0, $difficultyRange['max']);
-    }
-
-    public function testRoomDifficultyRangeDoesNotIncludeExpiredItems_WhenNotFetchingRaw() {
-        $room = Room::factory()->create();
+    /**
+     * @dataProvider difficultyRangeDataProvider
+     */
+    public function testRoomDifficultyRange(bool $roomEnded, bool $preloadRelations) {
+        $room = Room::factory()->create(['ends_at' => $roomEnded ? now() : null]);
 
         $firstBeatmap = Beatmap::factory()->create(['difficultyrating' => 1]);
         $secondBeatmap = Beatmap::factory()->create(['difficultyrating' => 3]);
@@ -263,19 +248,22 @@ class RoomTest extends TestCase
         $fourthBeatmap = Beatmap::factory()->create(['difficultyrating' => 7]);
 
         $firstItem = PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $firstBeatmap->getKey(), 'expired' => true]);
-        $firstItem->setRelation('beatmap', $firstBeatmap);
         $secondItem = PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $secondBeatmap->getKey(), 'expired' => false]);
-        $secondItem->setRelation('beatmap', $secondBeatmap);
         $thirdItem = PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $thirdBeatmap->getKey(), 'expired' => false]);
-        $thirdItem->setRelation('beatmap', $thirdBeatmap);
         $fourthItem = PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $fourthBeatmap->getKey(), 'expired' => true]);
-        $fourthItem->setRelation('beatmap', $fourthBeatmap);
 
-        $room->setRelation('playlist', collect([$firstItem, $secondItem, $thirdItem, $fourthItem]));
+        if ($preloadRelations) {
+            $firstItem->setRelation('beatmap', $firstBeatmap);
+            $secondItem->setRelation('beatmap', $secondBeatmap);
+            $thirdItem->setRelation('beatmap', $thirdBeatmap);
+            $fourthItem->setRelation('beatmap', $fourthBeatmap);
+
+            $room->setRelation('playlist', collect([$firstItem, $secondItem, $thirdItem, $fourthItem]));
+        }
 
         $difficultyRange = $room->difficultyRange();
-        $this->assertSame(3.0, $difficultyRange['min']);
-        $this->assertSame(5.0, $difficultyRange['max']);
+        $this->assertSame($roomEnded ? 1.0 : 3.0, $difficultyRange['min']);
+        $this->assertSame($roomEnded ? 7.0 : 5.0, $difficultyRange['max']);
     }
 
     public static function startGameDurationDataProvider()
@@ -295,6 +283,15 @@ class RoomTest extends TestCase
             '3 months (with supporter)' => [$dayMinutes * $maxDurationSupporter, true, false],
             'more than 3 months' => [$dayMinutes * $maxDurationSupporter + 1, false, true],
             'more than 3 months (with supporter)' => [$dayMinutes * $maxDurationSupporter + 1, true, true],
+        ];
+    }
+
+    public static function difficultyRangeDataProvider() {
+        return [
+            'room active, no preload' => [false, false],
+            'room active, preload' => [false, true],
+            'room ended, no preload' => [true, false],
+            'room ended, preload' => [true, true],
         ];
     }
 }
