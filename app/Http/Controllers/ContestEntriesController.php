@@ -20,11 +20,13 @@ class ContestEntriesController extends Controller
 {
     public function judgeResults($contestId, $id)
     {
-        $contest = Contest::findOrFail($contestId)
+        $contest = Contest::findOrFail($contestId);
+
+        abort_if(!$contest->isJudged() || !priv_check('ContestResultsShow', $contest)->can(), 404);
+
+        $contest
             ->loadCount('judges')
             ->loadSum('scoringCategories', 'max_value');
-
-        abort_if(!$contest->isJudged() || !$contest->show_votes, 404);
 
         $entry = ContestEntry
             ::with([
