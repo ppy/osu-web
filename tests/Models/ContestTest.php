@@ -68,6 +68,15 @@ class ContestTest extends TestCase
         ];
     }
 
+    public static function dataProviderForTestAnonJudges(): array
+    {
+        return [
+            [null, false],
+            [false, false],
+            [true, true],
+        ];
+    }
+
     /**
      * @dataProvider dataProviderForTestAssertVoteRequirementPlaylistBeatmapsets
      */
@@ -206,5 +215,19 @@ class ContestTest extends TestCase
             'extra_options' => $extraOptions,
         ]);
         $this->assertSame($result, $contest->showEntryUser());
+    }
+
+    /**
+     * @dataProvider dataProviderForTestAnonJudges
+     */
+    public function testAnonJudges(?bool $anonJudgesOption, bool $result): void
+    {
+        $extraOptions = $anonJudgesOption === null
+            ? null
+            : ['anon_judges' => $anonJudgesOption];
+        $contest = Contest::factory()->create([
+            'extra_options' => $extraOptions,
+        ]);
+        $this->assertSame($result, $contest->anon_judges);
     }
 }
