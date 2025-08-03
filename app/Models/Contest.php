@@ -157,6 +157,11 @@ class Contest extends Model
         return $this->isJudged() && $this->isVotingOpen() && !$this->show_votes;
     }
 
+    public function getAnonJudgesAttribute()
+    {
+        return $this->getExtraOptions()['anon_judges'] ?? false;
+    }
+
     public function isScoreStandardised(): bool
     {
         return $this->getExtraOptions()['is_score_standardised'] ?? false;
