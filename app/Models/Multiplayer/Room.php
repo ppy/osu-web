@@ -77,6 +77,7 @@ class Room extends Model
     ];
 
     const PLAYLIST_TYPE = 'playlists';
+    const MATCHMAKING_TYPE = 'matchmaking';
     const REALTIME_DEFAULT_TYPE = 'head_to_head';
     const REALTIME_TYPES = ['head_to_head', 'team_versus', 'matchmaking'];
 
@@ -681,7 +682,9 @@ class Room extends Model
         $playlistItemsCount = count($playlistItems);
 
         if ($this->isRealtime() && $playlistItemsCount !== 1) {
-            throw new InvariantException('realtime room must have exactly one playlist item');
+            if ($this->type !== static::MATCHMAKING_TYPE) {
+                throw new InvariantException('realtime room must have exactly one playlist item');
+            }
         }
 
         if ($playlistItemsCount < 1) {
