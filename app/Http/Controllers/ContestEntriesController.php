@@ -31,8 +31,17 @@ class ContestEntriesController extends Controller
             'user',
         ];
 
+        $includes = [
+            'judge_votes.scores',
+            'judge_votes.total_score',
+            'judge_votes.total_score_std',
+            'results',
+            'user',
+        ];
+
         if ($contest->show_judges) {
             $relationships[] = 'judgeVotes.user';
+            $includes[] = 'judge_votes.user';
         }
 
         $entry = ContestEntry
@@ -50,18 +59,6 @@ class ContestEntriesController extends Controller
                 'scoring_categories',
             ],
         );
-
-        $includes = [
-            'judge_votes.scores',
-            'judge_votes.total_score',
-            'judge_votes.total_score_std',
-            'results',
-            'user',
-        ];
-
-        if ($contest->show_judges) {
-            $includes[] = 'judge_votes.user';
-        }
 
         $entryJson = json_item($entry, new ContestEntryTransformer(), $includes);
 
