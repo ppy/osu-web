@@ -239,7 +239,8 @@ class RoomTest extends TestCase
     /**
      * @dataProvider difficultyRangeDataProvider
      */
-    public function testRoomDifficultyRange(bool $roomEnded, bool $preloadRelations) {
+    public function testRoomDifficultyRange(bool $roomEnded, bool $preloadRelations)
+    {
         $room = Room::factory()->create(['ends_at' => $roomEnded ? now() : null]);
 
         $firstBeatmap = Beatmap::factory()->create(['difficultyrating' => 1]);
@@ -286,7 +287,8 @@ class RoomTest extends TestCase
         ];
     }
 
-    public static function difficultyRangeDataProvider() {
+    public static function difficultyRangeDataProvider()
+    {
         return [
             'room active, no preload' => [false, false],
             'room active, preload' => [false, true],
