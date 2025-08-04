@@ -31,7 +31,7 @@ class ContestEntriesController extends Controller
             'user',
         ];
 
-        if (!$contest->anon_judges) {
+        if ($contest->show_judges) {
             $relationships[] = 'judgeVotes.user';
         }
 
@@ -59,7 +59,7 @@ class ContestEntriesController extends Controller
             'user',
         ];
 
-        if (!$contest->anon_judges) {
+        if ($contest->show_judges) {
             $includes[] = 'judge_votes.user';
         }
 

@@ -68,10 +68,10 @@ class ContestTest extends TestCase
         ];
     }
 
-    public static function dataProviderForTestAnonJudges(): array
+    public static function dataProviderForTestShowJudges(): array
     {
         return [
-            [null, false],
+            [null, true],
             [false, false],
             [true, true],
         ];
@@ -218,16 +218,16 @@ class ContestTest extends TestCase
     }
 
     /**
-     * @dataProvider dataProviderForTestAnonJudges
+     * @dataProvider dataProviderForTestShowJudges
      */
-    public function testAnonJudges(?bool $anonJudgesOption, bool $result): void
+    public function testShowJudges(?bool $showJudgesOption, bool $result): void
     {
-        $extraOptions = $anonJudgesOption === null
+        $extraOptions = $showJudgesOption === null
             ? null
-            : ['anon_judges' => $anonJudgesOption];
+            : ['show_judges' => $showJudgesOption];
         $contest = Contest::factory()->create([
             'extra_options' => $extraOptions,
         ]);
-        $this->assertSame($result, $contest->anon_judges);
+        $this->assertSame($result, $contest->show_judges);
     }
 }
