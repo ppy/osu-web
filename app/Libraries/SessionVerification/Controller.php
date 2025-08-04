@@ -81,7 +81,7 @@ class Controller
                 Helper::issue($session, $user);
             }
 
-            return error_popup($e->getMessage());
+            throw $e;
         }
 
         Helper::logAttempt('input', 'success');
