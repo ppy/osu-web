@@ -29,10 +29,9 @@ class SessionsController extends Controller
     {
         $request = request();
 
-        $params = get_params($request->all(), null, ['username:string', 'password:string', 'remember:bool', 'cf-turnstile-response:string']);
+        $params = get_params($request->all(), null, ['username:string', 'password:string', 'cf-turnstile-response:string']);
         $username = presence(trim($params['username'] ?? null));
         $password = presence($params['password'] ?? null);
-        $remember = $params['remember'] ?? false;
 
         if ($username === null) {
             DatadogLoginAttempt::log('missing_username');
@@ -101,7 +100,7 @@ class SessionsController extends Controller
             }
 
             DatadogLoginAttempt::log(null);
-            $this->login($user, $remember);
+            $this->login($user);
 
             return [
                 'csrf_token' => csrf_token(),
