@@ -29,6 +29,8 @@ return [
     'judge_results' => [
         '_' => 'Judging results',
         'creator' => 'creator',
+        'hosts_only' => 'Only contest hosts and admins can currently see the results.',
+        'provisional' => 'Judging has not been finalized yet, and scores may not be accurate!',
         'score' => 'Score',
         'score_std' => 'Standardised Score',
         'total_score' => 'total score',
@@ -36,6 +38,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => 'You are a host of this contest. View the premilinary results here!',
         'judge_link' => 'You are a judge of this contest. Judge the entries here!',
         'judged_notice' => 'This contest is using the judging system, the judges are currently processing the entries.',
         'login_required' => 'Please sign in to vote.',
