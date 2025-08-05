@@ -31,7 +31,7 @@ class Helper
     public static function issue(SessionVerificationInterface $session, User $user, bool $initial = false): void
     {
         if ($initial) {
-            if (State::fromSession($session) === null) {
+            if (MailState::fromSession($session) === null) {
                 static::logAttempt('input', 'new');
             } else {
                 return;
@@ -42,10 +42,10 @@ class Helper
             return;
         }
 
-        $state = State::create($session);
+        $mailState = MailState::create($session);
         $keys = [
-            'link' => $state->linkKey,
-            'main' => $state->key,
+            'link' => $mailState->linkKey,
+            'main' => $mailState->key,
         ];
 
         $request = \Request::instance();
@@ -67,10 +67,10 @@ class Helper
         );
     }
 
-    public static function markVerified(SessionVerificationInterface $session, State $state)
+    public static function markVerified(SessionVerificationInterface $session, MailState $mailState)
     {
         $session->markVerified();
-        $state->delete();
+        $mailState->delete();
         UserSessionEvent::newVerified($session->userId(), $session->getKeyForEvent())->broadcast();
     }
 }
