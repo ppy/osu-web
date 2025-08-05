@@ -26,12 +26,26 @@ class ContestEntriesController extends Controller
 
         abort_if(!$contest->isJudged() || !$contest->show_votes, 404);
 
+        $relationships = [
+            'judgeVotes.scores',
+            'user',
+        ];
+
+        $includes = [
+            'judge_votes.scores',
+            'judge_votes.total_score',
+            'judge_votes.total_score_std',
+            'results',
+            'user',
+        ];
+
+        if ($contest->show_judges) {
+            $relationships[] = 'judgeVotes.user';
+            $includes[] = 'judge_votes.user';
+        }
+
         $entry = ContestEntry
-            ::with([
-                'judgeVotes.scores',
-                'judgeVotes.user',
-                'user',
-            ])
+            ::with($relationships)
             ->withScore($contest)
             ->findOrFail($id)
             ->loadSum('scores', 'value');
@@ -46,14 +60,7 @@ class ContestEntriesController extends Controller
             ],
         );
 
-        $entryJson = json_item($entry, new ContestEntryTransformer(), [
-            'judge_votes.scores',
-            'judge_votes.total_score',
-            'judge_votes.total_score_std',
-            'judge_votes.user',
-            'results',
-            'user',
-        ]);
+        $entryJson = json_item($entry, new ContestEntryTransformer(), $includes);
 
         foreach ($contest->entries as $entry) {
             $entry->setRelation('contest', $contest);

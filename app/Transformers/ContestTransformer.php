@@ -32,6 +32,7 @@ class ContestTransformer extends TransformerAbstract
             'header_url' => $contest->header_url,
             'id' => $contest->id,
             'judged' => $contest->isJudged(),
+            'show_judges' => $contest->getShowJudgesAttribute(),
             'link_icon' => $contest->link_icon,
             'max_entries' => $contest->max_entries,
             'max_votes' => $contest->max_votes,

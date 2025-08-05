@@ -157,6 +157,11 @@ class Contest extends Model
         return $this->isJudged() && $this->isVotingOpen() && !$this->show_votes;
     }
 
+    public function getShowJudgesAttribute()
+    {
+        return $this->getExtraOptions()['show_judges'] ?? true;
+    }
+
     public function isScoreStandardised(): bool
     {
         return $this->getExtraOptions()['is_score_standardised'] ?? false;
