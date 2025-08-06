@@ -10,6 +10,7 @@ namespace Tests\Jobs;
 use App\Jobs\RemoveBeatmapsetSoloScores;
 use App\Libraries\Search\ScoreSearch;
 use App\Models\Beatmap;
+use App\Models\BeatmapLeader;
 use App\Models\Beatmapset;
 use App\Models\Country;
 use App\Models\Genre;
@@ -40,6 +41,7 @@ class RemoveBeatmapsetSoloScoresTest extends TestCase
             $scores,
         );
 
+        $maxScoreId = Score::max('id');
         $job = new RemoveBeatmapsetSoloScores($beatmapset, true);
 
         // These scores shouldn't be deleted
@@ -51,7 +53,16 @@ class RemoveBeatmapsetSoloScoresTest extends TestCase
 
         static::reindexScores();
 
+        foreach ($beatmapset->beatmaps as $beatmap) {
+            foreach (array_values(Beatmap::MODES) as $ruleset) {
+                BeatmapLeader::sync($beatmap->getKey(), $ruleset);
+            }
+        }
+        $this->assertNotEmpty(BeatmapLeader::whereIn('beatmap_id', $beatmapset->beatmaps->pluck('beatmap_id'))->where('score_id', '<=', $maxScoreId)->get());
+
         $job->handle();
+
+        $this->assertEmpty(BeatmapLeader::whereIn('beatmap_id', $beatmapset->beatmaps->pluck('beatmap_id'))->where('score_id', '<=', $maxScoreId)->get());
 
         $search = new ScoreSearch();
         // this also makes sure the job deletes scores from index
@@ -68,6 +79,7 @@ class RemoveBeatmapsetSoloScoresTest extends TestCase
                 User::truncate();
                 UserGroup::truncate();
                 UserGroupEvent::truncate();
+                BeatmapLeader::truncate();
                 $search->deleteAll();
             });
         });
