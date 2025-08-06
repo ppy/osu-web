@@ -199,6 +199,27 @@ class Event extends Model
                 ];
                 break;
 
+            case 'rankLost':
+                $beatmap = $options['beatmap'];
+                $ruleset = $options['ruleset'];
+                $rulesetName = trans("beatmaps.mode.{$ruleset}");
+                $beatmapParams = static::beatmapParams($beatmap, $ruleset);
+                $user = $options['user'];
+                $userParams = static::userParams($user);
+                $legacyScoreEvent = $options['legacy_score_event'];
+
+                $params = [
+                    'text' => "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b> has lost first place on <a href='{$beatmapParams['url']}'>{$beatmapParams['title']}</a> ($rulesetName)",
+                    'text_clean' => "[{$userParams['url_clean']} {$userParams['username']}] has lost first place on [{$beatmapParams['url_clean']} {$beatmapParams['title']}] ($rulesetName)",
+                    'beatmap_id' => $beatmap->getKey(),
+                    'beatmapset_id' => $beatmap->beatmapset->getKey(),
+                    'user_id' => $user->getKey(),
+                    'private' => false,
+                    'epicfactor' => 2,
+                    'legacy_score_event' => $legacyScoreEvent,
+                ];
+                break;
+
             case 'usernameChange':
                 $user = static::userParams($options['user']);
                 $oldUsername = e($options['history']->username_last);
