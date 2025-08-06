@@ -33,7 +33,7 @@ abstract class Controller extends BaseController
         Log::log($params);
     }
 
-    protected function login($user, $remember = false)
+    protected function login($user)
     {
         cleanup_cookies();
 
@@ -41,7 +41,7 @@ abstract class Controller extends BaseController
         $session->flush();
         $session->regenerateToken();
         $session->put('requires_verification', VerifyUserAlways::isRequired($user));
-        Auth::login($user, $remember);
+        Auth::login($user, false);
         if ($GLOBALS['cfg']['osu']['user']['bypass_verification']) {
             $session->markVerified();
         }

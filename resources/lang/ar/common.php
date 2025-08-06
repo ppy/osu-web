@@ -19,7 +19,6 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'المشرف',
         'authorise' => 'استأِذان',
         'authorising' => 'استأِذان...',
         'back' => '',

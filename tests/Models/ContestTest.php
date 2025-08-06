@@ -68,6 +68,15 @@ class ContestTest extends TestCase
         ];
     }
 
+    public static function dataProviderForTestShowJudges(): array
+    {
+        return [
+            [null, true],
+            [false, false],
+            [true, true],
+        ];
+    }
+
     /**
      * @dataProvider dataProviderForTestAssertVoteRequirementPlaylistBeatmapsets
      */
@@ -206,5 +215,19 @@ class ContestTest extends TestCase
             'extra_options' => $extraOptions,
         ]);
         $this->assertSame($result, $contest->showEntryUser());
+    }
+
+    /**
+     * @dataProvider dataProviderForTestShowJudges
+     */
+    public function testShowJudges(?bool $showJudgesOption, bool $result): void
+    {
+        $extraOptions = $showJudgesOption === null
+            ? null
+            : ['show_judges' => $showJudgesOption];
+        $contest = Contest::factory()->create([
+            'extra_options' => $extraOptions,
+        ]);
+        $this->assertSame($result, $contest->show_judges);
     }
 }

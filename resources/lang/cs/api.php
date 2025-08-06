@@ -14,7 +14,7 @@ return [
 
     'scopes' => [
         'bot' => 'Chovat se jako chat bot.',
-        'identify' => 'Indentifikovat vás a prohlížet váš veřejný profil.',
+        'identify' => 'Identifikovat tě a prohlížet tvůj veřejný profil.',
 
         'chat' => [
             'read' => 'Číst za vás zprávy.',

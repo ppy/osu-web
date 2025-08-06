@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Wyświetl tło w pełnej rozdzielczości',
+            'page' => '',
         ],
 
         'deleted_banner' => [

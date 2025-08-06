@@ -14,8 +14,9 @@ return [
         'top_10p' => 'İlk %10 Skor',
         'top_50p' => 'İlk %50 Skor',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'Şimdilik belirtilen tarihte günlük meydan okuma yok!',
+            'past' => '
+Belirtilen tarihte günlük meydan okuma yok!',
         ],
     ],
 

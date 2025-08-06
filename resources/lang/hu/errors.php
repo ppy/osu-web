@@ -7,6 +7,7 @@ return [
     'load_failed' => 'Nem sikerült betölteni az adatokat.',
     'missing_route' => 'Helytelen url vagy lekérési mód.',
     'no_restricted_access' => 'Felfüggesztett állapot erre nem vagy alkalmas.',
+    'param_too_large' => '',
     'supporter_only' => 'Támogatónak kell lenned a funkció használatához.',
     'unknown' => 'Ismeretlen hiba történt.',
 

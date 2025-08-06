@@ -82,11 +82,14 @@ export default observer(function Score(props: Props) {
           <div className={classWithModifiers('mp-history-player-score__stat-row', 'first')}>
             {firstRow.map((m) => {
               let modifier = 'medium';
-              let value;
+              let value: React.ReactNode;
 
               switch (m) {
                 case 'combo':
-                  value = formatNumber(props.score.max_combo);
+                  value =
+                    (<span className={classWithModifiers('mp-history-player-score__combo', { perfect: props.score.is_perfect_combo })}>
+                      {formatNumber(props.score.max_combo)}
+                    </span>);
                   break;
 
                 case 'accuracy':

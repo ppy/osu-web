@@ -5,8 +5,7 @@
 
 namespace App\Models;
 
-use App\Libraries\Search\ScoreSearch;
-use App\Libraries\Search\ScoreSearchParams;
+use App\Libraries\Search\BeatmapsPassedSearch;
 use App\Models\Traits\WithDbCursorHelper;
 use Ds\Set;
 
@@ -107,48 +106,16 @@ class BeatmapPack extends Model
             foreach ($beatmaps as $beatmap) {
                 $beatmapsetIdsByBeatmapId[$beatmap->beatmap_id] = $beatmap->beatmapset_id;
             }
-            $params = [
-                'beatmap_ids' => array_keys($beatmapsetIdsByBeatmapId),
-                'exclude_converts' => $this->playmode === null,
-                'is_legacy' => $isLegacy,
-                'limit' => 0,
-                'ruleset_id' => $this->playmode,
-                'user_id' => $userId,
-            ];
-            if ($this->no_diff_reduction) {
-                $params['exclude_mods'] = app('mods')->difficultyReductionIds->toArray();
-                if ($isLegacy !== true) {
-                    // the intended meaning of this check is that the scores should not include mods
-                    // that disqualify them from granting pp.
-                    // mods are not the only reason why pp might be missing, but it's the best that we have for now.
-                    // see also: https://github.com/ppy/osu-queue-score-statistics/pull/234
-                    $params['exclude_without_pp'] = true;
-                }
-            }
 
-            static $aggName = 'by_beatmap';
-
-            $search = new ScoreSearch(ScoreSearchParams::fromArray($params));
-            $search->size(0);
-            $search->setAggregations([$aggName => [
-                'terms' => [
-                    'field' => 'beatmap_id',
-                    'size' => max(1, count($params['beatmap_ids'])),
-                ],
-                'aggs' => [
-                    'scores' => [
-                        'top_hits' => [
-                            'size' => 1,
-                        ],
-                    ],
-                ],
-            ]]);
-            $response = $search->response();
-            $search->assertNoError();
-            $completedBeatmapIds = array_map(
-                fn (array $hit): int => (int) $hit['key'],
-                $response->aggregations($aggName)['buckets'],
+            $completedBeatmapIds = BeatmapsPassedSearch::completedIds(
+                $userId,
+                array_keys($beatmapsetIdsByBeatmapId),
+                $this->no_diff_reduction,
+                $this->playmode,
+                $isLegacy,
+                $this->playmode === null,
             );
+
             $completedBeatmapsetIds = (new Set(array_map(
                 fn (int $beatmapId): int => $beatmapsetIdsByBeatmapId[$beatmapId],
                 $completedBeatmapIds,

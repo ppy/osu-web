@@ -15,22 +15,22 @@ return [
         'winner_by' => ':winner o :difference',
 
         'events' => [
-            'game_aborted' => '',
-            'game_aborted_no_user' => '',
-            'game_completed' => '',
-            'game_completed_no_user' => '',
-            'host_changed' => '',
-            'host_changed_no_user' => '',
-            'player_joined' => '',
-            'player_joined_no_user' => '',
-            'player_kicked' => '',
-            'player_kicked_no_user' => '',
-            'player_left' => '',
-            'player_left_no_user' => '',
-            'room_created' => '',
-            'room_created_no_user' => '',
-            'room_disbanded' => '',
-            'room_disbanded_no_user' => '',
+            'game_aborted' => 'hra byla zrušena',
+            'game_aborted_no_user' => 'hra byla zrušena',
+            'game_completed' => 'hra skončila',
+            'game_completed_no_user' => 'hra skončila',
+            'host_changed' => ':user se stal hostitelem zápasu',
+            'host_changed_no_user' => 'hostitel byl změněn',
+            'player_joined' => ':user se připojil k zápasu',
+            'player_joined_no_user' => 'hráč se připojil k zápasu',
+            'player_kicked' => ':user byl vyhozen ze zápasu',
+            'player_kicked_no_user' => 'hráč byl vyhozen ze zápasu',
+            'player_left' => ':user opustil zápas',
+            'player_left_no_user' => 'hráč opustil zápas',
+            'room_created' => ':user vytvořil zápas',
+            'room_created_no_user' => 'zápas byl vytvořen',
+            'room_disbanded' => 'zápas byl zrušen',
+            'room_disbanded_no_user' => 'zápas byl zrušen',
         ],
 
         'score' => [
@@ -42,10 +42,10 @@ return [
         ],
 
         'team_types' => [
-            'head_to_head' => '',
-            'tag_coop' => '',
-            'tag_team_versus' => '',
-            'team_versus' => '',
+            'head_to_head' => 'Head-to-head',
+            'tag_coop' => 'Tag Co-op',
+            'tag_team_versus' => 'Tag Team VS',
+            'team_versus' => 'Team VS',
         ],
 
         'teams' => [
@@ -54,7 +54,7 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '',
+        'freestyle' => 'Freestyle',
 
         'scoring-type' => [
             'score' => 'Nejvyšší skóre',

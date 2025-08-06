@@ -26,7 +26,7 @@ function modSorter(a, b) {
     return typeOrder[a.Type] - typeOrder[b.Type];
   }
 
-  return a.Acronym.localeCompare(b.Acronym);
+  return a.Acronym.localeCompare(b.Acronym, 'en', { numeric: true });
 }
 
 function modNamesGenerator() {
@@ -46,7 +46,9 @@ function modNamesGenerator() {
       for (const setting of mod.Settings) {
         modNames[mod.Acronym].setting_labels[setting.Name] = setting.Label;
       }
-      modNames[mod.Acronym].index[rulesetId] = i;
+      if (mod.UserPlayable) {
+        modNames[mod.Acronym].index[rulesetId] = i;
+      }
     }
   }
 
@@ -56,14 +58,14 @@ function modNamesGenerator() {
     index: {},
     name: 'Score V2',
     setting_labels: {},
-    type: 'Conversion',
+    type: 'System',
   };
   modNames.NM = {
     acronym: 'NM',
     index: {},
     name: 'No Mod',
     setting_labels: {},
-    type: 'Conversion', // not really relevant
+    type: 'System',
   };
 
   const outDir = `${root}/resources/builds`;

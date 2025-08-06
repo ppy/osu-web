@@ -113,6 +113,7 @@ return [
                 'deleted' => 'Postingan yang telah dihapus tidak dapat disunting.',
                 'locked' => 'Postingan ini telah dikunci dari penyuntingan lebih lanjut.',
                 'no_forum_access' => 'Kamu tidak memiliki akses ke forum yang dituju.',
+                'no_permission' => '',
                 'not_owner' => 'Postingan ini hanya dapat disunting oleh pengirimnya.',
                 'topic_locked' => 'Postingan pada topik yang telah dikunci tidak dapat disunting.',
             ],

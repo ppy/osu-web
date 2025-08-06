@@ -159,8 +159,17 @@ return [
             'cancel' => '取消',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => '違規 / 作弊',
+            'copyright_infringement' => '',
             'inappropriate_chat' => '不適當的聊天行為',
             'insults' => '侮辱我 / 其他人',
             'multiple_accounts' => '使用多個帳號',

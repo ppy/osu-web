@@ -30,9 +30,9 @@ return [
         '_' => 'Hasil pengadilan',
         'creator' => 'pencipta',
         'score' => 'Markah',
-        'score_std' => '',
+        'score_std' => 'Markah Terpiawai',
         'total_score' => 'jumlah markah',
-        'total_score_std' => '',
+        'total_score_std' => 'jumlah markah terpiawai',
     ],
 
     'voting' => [
@@ -89,7 +89,7 @@ return [
         'list' => 'undian',
         'count' => ':count_delimited undian',
         'points' => ':count_delimited mata',
-        'points_float' => '',
+        'points_float' => ':points mata',
     ],
 
     'dates' => [
@@ -106,5 +106,11 @@ return [
         'entry' => 'Terbuka untuk Masukan',
         'voting' => 'Pengundian Bermula',
         'results' => 'Hasil Diumumkan',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

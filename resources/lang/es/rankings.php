@@ -14,8 +14,8 @@ return [
         'top_10p' => 'Puntuación del top 10 %',
         'top_50p' => 'Puntuación del top 50 %',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => '¡Todavía no hay un desafío diario para la fecha especificada!',
+            'past' => '¡No hay un desafío diario en la fecha especificada!',
         ],
     ],
 

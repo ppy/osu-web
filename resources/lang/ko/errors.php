@@ -7,6 +7,7 @@ return [
     'load_failed' => '데이터를 로드할 수 없습니다.',
     'missing_route' => 'URL이 잘못되었거나 잘못된 요청 메서드입니다.',
     'no_restricted_access' => '계정이 제한된 상태에서는 이 작업을 수행할 수 없습니다.',
+    'param_too_large' => '',
     'supporter_only' => '이 기능을 사용하려면 osu! 서포터가 되셔야 합니다.',
     'unknown' => '알 수 없는 문제가 발생했습니다.',
 

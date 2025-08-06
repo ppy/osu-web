@@ -143,16 +143,21 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Бийтмап от Дневно предизвикателство',
             'new' => 'Наскоро класирани бийтмапове',
             'popular' => 'Популярни бийтмапове',
             'by_user' => 'от :user',
-            'resets' => '',
+            'resets' => 'свършва след :ends',
         ],
         'buttons' => [
             'download' => 'Изтегли osu!',
             'support' => 'Подкрепи osu!',
             'store' => 'osu!магазин',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

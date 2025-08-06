@@ -107,4 +107,10 @@ return [
         'voting' => 'Glasanje započelo',
         'results' => 'Rezultati izašli',
     ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
+    ],
 ];

@@ -113,6 +113,7 @@ return [
                 'deleted' => 'Tidak boleh sunting hantaran yang dipadam.',
                 'locked' => 'Hantaran ini dikunci daripada disunting.',
                 'no_forum_access' => 'Capaian ke forum pintaan diperlukan.',
+                'no_permission' => '',
                 'not_owner' => 'Hanya penghantar boleh menyunting hantaran ini.',
                 'topic_locked' => 'Hantaran pada tajuk terkunci tidak boleh disunting.',
             ],

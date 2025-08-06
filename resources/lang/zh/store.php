@@ -174,7 +174,7 @@ return [
 
         'add_to_cart' => '添加到购物车',
         'notify' => '当可以购买时提醒我！',
-        'out_of_stock' => '',
+        'out_of_stock' => '售罄',
 
         'notification_success' => '当商品有货时会收到提醒，点击 :link 以取消该提醒',
         'notification_remove_text' => '这里',

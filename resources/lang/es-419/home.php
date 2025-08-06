@@ -142,16 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Mapa del desafío diario',
             'new' => 'Nuevos mapas clasificados',
             'popular' => 'Mapas populares',
             'by_user' => 'por :user',
-            'resets' => '',
+            'resets' => 'nuevo mapa :ends',
         ],
         'buttons' => [
             'download' => 'Descargar osu!',
             'support' => 'Apoyar a osu!',
             'store' => 'osu!store',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

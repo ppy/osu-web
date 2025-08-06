@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Desteğiniz için teşekkürler! Toplamda :tags farklı alımla :dollars yardımda bulundunuz!',
-            'gifted' => ":giftedTags defa hediye olarak aldınız (toplam :giftedDollars hediye verdiniz), bu ne bonkörlük!",
+            'contribution_with_duration' => '',
             'not_yet' => "Henüz bir osu!supporter etiketiniz yok :(",
             'valid_until' => 'Şu anki osu!supporter etiketiniz :date tarihine kadar geçerli!',
             'was_valid_until' => 'osu!supporter etiketiniz :date tarihine kadar geçerliydi.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

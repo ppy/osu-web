@@ -7,6 +7,7 @@ return [
     'load_failed' => 'Veri yüklenemedi.',
     'missing_route' => 'Geçersiz URL ya da hatalı istek metodu.',
     'no_restricted_access' => 'Hesabınız kısıtlanmış durumdayken bu işlemi gerçekleştiremezsiniz.',
+    'param_too_large' => '',
     'supporter_only' => 'Bu özelliği kullanabilmeniz için supporter olmanız gerekmektedir.',
     'unknown' => 'Bilinmeyen bir hata oluştu.',
 

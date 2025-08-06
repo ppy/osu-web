@@ -14,7 +14,7 @@ return [
 
         'slogan' => [
             'main' => 'permainan irama percuma terpaling baik',
-            'sub' => 'irama tinggal satu klik saja',
+            'sub' => 'irama tinggal seketik saja',
         ],
     ],
 
@@ -142,16 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Peta Rentak Cabaran Harian',
             'new' => 'Peta Rentak Berpangkat Baharu',
             'popular' => 'Peta Rentak Sohor Kini',
             'by_user' => 'oleh :user',
-            'resets' => '',
+            'resets' => 'tetap semula :ends',
         ],
         'buttons' => [
             'download' => 'Muat turun osu!',
             'support' => 'Sokong osu!',
             'store' => 'osu!store',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

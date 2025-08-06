@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Obrigado pelo teu apoio até agora! Contribuíste para um total de :dollars sobre compras de :tags etiquetas!',
-            'gifted' => ":giftedTags das tuas compras de etiquetas foram oferecidas (por um total de :giftedDollars oferecidos), que generoso!",
+            'contribution_with_duration' => '',
             'not_yet' => "Tu nunca tiveste uma etiqueta osu!supporter :(",
             'valid_until' => 'A tua etiqueta osu!supporter atual é válida até :date!',
             'was_valid_until' => 'A tua etiqueta osu!supporter era válida até :date.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

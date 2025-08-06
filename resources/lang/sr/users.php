@@ -159,8 +159,17 @@ return [
             'cancel' => 'Откажи',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Варање',
+            'copyright_infringement' => '',
             'inappropriate_chat' => '',
             'insults' => 'Вређа мене / друге',
             'multiple_accounts' => 'Коришћење више налога',

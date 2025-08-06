@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Veure imatge de portada a mida completa',
+            'page' => '',
         ],
 
         'deleted_banner' => [

@@ -152,6 +152,81 @@
         @include('rankings._beatmapsets', ['beatmapsets' => [$playlist->beatmap->beatmapset], 'modifiers' => 'daily-challenge'])
     @endsection
     @section('scores')
-        @include('multiplayer.rooms._rankings_table')
+        <table class="ranking-page-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="ranking-page-table__heading ranking-page-table__heading--main"></th>
+                    <th class="ranking-page-table__heading">
+                        {{ osu_trans('beatmapsets.show.scoreboard.headers.combo') }}
+                    </th>
+                    <th class="ranking-page-table__heading">
+                        {{ osu_trans('rankings.stat.accuracy') }}
+                    </th>
+                    <th class="ranking-page-table__heading">
+                        {{ osu_trans('rankings.stat.play_count') }}
+                    </th>
+                    <th class="ranking-page-table__heading ranking-page-table__heading--focused">
+                        {{ osu_trans('rankings.stat.total_score') }}
+                    </th>
+                    <th class="ranking-page-table__heading">
+                        {{ osu_trans('beatmapsets.show.scoreboard.headers.rank') }}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @php
+                    // -1 due to userScore being prepended
+                    $firstItem = $scores->firstItem() - 1;
+                @endphp
+                @foreach ([$userScore, ...$scores] as $index => $agg)
+                    @if ($agg === null)
+                        @continue
+                    @endif
+                    @php
+                        $score = $agg->score;
+                    @endphp
+                    @if ($score === null)
+                        @continue
+                    @endif
+                    <tr class="{{ class_with_modifiers('ranking-page-table__row', ['inactive' => !$score->user->isActive()]) }}">
+                        <td class="ranking-page-table__column">
+                            #{{ i18n_number_format($loop->first
+                                ? $agg->userRank()
+                                : $firstItem + $index
+                            ) }}
+                        </td>
+                        <td class="ranking-page-table__column ranking-page-table__column--main">
+                            @include('rankings._main_column', ['object' => $score->user])
+                        </td>
+                        <td class="ranking-page-table__column ranking-page-table__column--dimmed">
+                            <span class="{{ class_with_modifiers(
+                                'ranking-page-table__combo',
+                                ['perfect' => $score->is_perfect_combo],
+                            ) }}">
+                                {{ i18n_number_format($score->max_combo) }}
+                            </span>
+                        </td>
+                        <td class="ranking-page-table__column ranking-page-table__column--dimmed">
+                            {{ format_percentage($score->accuracy) }}
+                        </td>
+                        <td class="ranking-page-table__column ranking-page-table__column--dimmed">
+                            {{ i18n_number_format($agg->attempts) }}
+                        </td>
+                        <td class="ranking-page-table__column">
+                            {!! i18n_number_format($score->total_score) !!}
+                        </td>
+                        <td class="ranking-page-table__column ranking-page-table__column--dimmed">
+                            <div class="score-rank score-rank--daily-challenge score-rank--{{ $score->rank }}"></div>
+                        </td>
+                    </tr>
+                    @if ($loop->first)
+                        <tr>
+                            <td colspan="7">&nbsp;</td>
+                        </tr>
+                    @endif
+                @endforeach
+            </tbody>
+        </table>
     @endsection
 @endif

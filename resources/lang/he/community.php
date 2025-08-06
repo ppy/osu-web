@@ -140,11 +140,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'תודה על התמיכה שלך עד כה! תרמת סכום כולל של :dollars על :tags רכישות תג!',
-            'gifted' => ":giftedTags מרכישות התג שלך היו מתנות (עבור סכום כולל של :giftedDollars שנתת במתנה), כמה נדיב!",
+            'contribution_with_duration' => '',
             'not_yet' => "אין לך תג osu!supporter עדיין :(",
             'valid_until' => 'תג osu!supporter נוכחי תקף עד :date!',
             'was_valid_until' => 'תג osu!supporter היה תקף עד:date.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

@@ -159,8 +159,17 @@ return [
             'cancel' => 'Avbryt',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Fusk',
+            'copyright_infringement' => '',
             'inappropriate_chat' => 'Olämpligt chattbeteende',
             'insults' => 'Förolämpar mig / andra',
             'multiple_accounts' => 'Använder flera konton',

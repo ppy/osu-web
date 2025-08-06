@@ -174,7 +174,7 @@ return [
 
         'add_to_cart' => '장바구니에 추가',
         'notify' => '구매할 수 있을 때 알려주세요!',
-        'out_of_stock' => '',
+        'out_of_stock' => '재고 없음',
 
         'notification_success' => '재고가 들어오면 알려드리겠습니다. 취소하려면 :link를 누르세요.',
         'notification_remove_text' => '여기',

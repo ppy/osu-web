@@ -14,8 +14,8 @@ return [
         'top_10p' => 'Pontuações dos Melhores 10%',
         'top_50p' => 'Pontuações dos Melhores 50%',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'Nenhum desafio diário na data especificada!',
+            'past' => 'Nenhum desafio diário na data especificada!',
         ],
     ],
 

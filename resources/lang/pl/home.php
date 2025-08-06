@@ -142,16 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Wyzwanie dnia',
             'new' => 'Nowe rankingowe beatmapy',
             'popular' => 'Popularne beatmapy',
             'by_user' => 'autorstwa :user',
-            'resets' => '',
+            'resets' => 'zakończy się :ends',
         ],
         'buttons' => [
             'download' => 'Pobierz osu!',
             'support' => 'Wspomóż osu!',
             'store' => 'Sklep osu!',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

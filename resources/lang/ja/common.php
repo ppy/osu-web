@@ -19,7 +19,6 @@ return [
     ],
 
     'buttons' => [
-        'admin' => '管理者',
         'authorise' => '承認',
         'authorising' => '承認中...',
         'back' => '戻る',

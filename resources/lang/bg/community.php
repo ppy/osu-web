@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Благодарим за вашата подкрепа! Допринесохте общо :dollars за :tags osu!supporter покупки!',
-            'gifted' => "Дадохте :giftedTags от покупките като подарък (общо :giftedDollars струващ), колко щедро!",
+            'contribution_with_duration' => '',
             'not_yet' => "Никога не сте имали osu!supporter :(",
             'valid_until' => 'Вашият osu!supporter е валиден до :date!',
             'was_valid_until' => 'Вашият osu!supporter беше валиден преди :date.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

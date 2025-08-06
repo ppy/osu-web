@@ -4,22 +4,29 @@
 --}}
 @php
     use App\Models\Beatmap;
+    use App\Models\DeletedUser;
     use App\Transformers\UserCompactTransformer;
 
+    $members = [];
+    foreach ($team->members->sortBy('user.username', SORT_STRING | SORT_FLAG_CASE) as $member) {
+        $user = $member->userOrDeleted();
+        if ($user->getKey() === $team->leader_id) {
+            $leader = $user;
+        } elseif (!($user instanceof DeletedUser)) {
+            $members[] = $user;
+        }
+    }
     $userTransformer = new UserCompactTransformer();
-    $toJson = fn ($users) => json_collection($users, $userTransformer, UserCompactTransformer::CARD_INCLUDES);
-    $teamMembers = array_map(
-        $toJson,
-        $team
-            ->members
-            ->sortBy('user.username', SORT_STRING | SORT_FLAG_CASE)
-            ->mapToGroups(fn ($member) => [
-                $member->user_id === $team->leader_id ? 'leader' : 'member' => $member->userOrDeleted(),
-            ])
-            ->all(),
+    $members = json_collection(
+        $members,
+        $userTransformer,
+        UserCompactTransformer::CARD_INCLUDES,
     );
-    $teamMembers['member'] ??= [];
-    $leader = ($teamMembers['leader'] ?? $toJson([$team->members()->make(['user_id' => $team->leader_id])->userOrDeleted()]))[0];
+    $leader = json_item(
+        $leader ?? $team->members()->make(['user_id' => $team->leader_id])->userOrDeleted(),
+        $userTransformer,
+        UserCompactTransformer::CARD_INCLUDES,
+    );
     $headerUrl = $team->header()->url();
 
     $currentUser = Auth::user();
@@ -183,6 +190,9 @@
                             <div class="team-info-entry__title">{{ osu_trans('model_validation.team.attributes.is_open') }}</div>
                             <div class="team-info-entry__value">
                                 {{ osu_trans('teams.edit.settings.application_state.state_'.(int) $team->is_open) }}
+                                @if ($team->is_open)
+                                    ({{ osu_trans_choice('teams.show.statistics.empty_slots', max(0, $team->emptySlots())) }})
+                                @endif
                             </div>
                         </div>
                         <div class="team-info-entry">
@@ -237,7 +247,7 @@
                                 {{ osu_trans('rankings.stat.members') }}
                             </div>
                             <div class="team-info-entry__value">
-                                {{ i18n_number_format($team->members->count()) }}
+                                {{ i18n_number_format(count($members) + 1) }}
                             </div>
                         </div>
                     </div>
@@ -281,10 +291,10 @@
                                 {{ osu_trans('teams.show.members.members') }}
                             </span>
                             <span>
-                                {{ i18n_number_format(count($teamMembers['member'])) }}
+                                {{ i18n_number_format(count($members)) }}
                             </span>
                         </div>
-                        @foreach ($teamMembers['member'] as $memberJson)
+                        @foreach ($members as $memberJson)
                             <div
                                 class="js-react--user-card u-contents"
                                 data-user="{{ json_encode($memberJson) }}"

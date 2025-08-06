@@ -113,6 +113,7 @@ return [
                 'deleted' => 'Ne možeš urediti izbrisanu objavu.',
                 'locked' => 'Ova objava je zaključena od uređivanja.',
                 'no_forum_access' => 'Potreban je pristup zatraženom forumu.',
+                'no_permission' => '',
                 'not_owner' => 'Samo autor može urediti objavu.',
                 'topic_locked' => 'Ne možeš urediti objavu zaključane teme.',
             ],

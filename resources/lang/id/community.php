@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Terima kasih atas dukunganmu sejauh ini! Kamu telah berkontribusi senilai :dollars melalui pembelian :tags tag supporter!',
-            'gifted' => "Dari jumlah tersebut, kamu telah menghadiahkan :giftedTags tag di antaranya (:giftedDollars) kepada para pemain lainnya. Terima kasih atas kemurahan hatimu!",
+            'contribution_with_duration' => '',
             'not_yet' => "Kamu belum pernah memiliki supporter tag :(",
             'valid_until' => 'Tag supporter yang kamu miliki saat ini berlaku hingga tanggal :date!',
             'was_valid_until' => 'Masa berlaku tag supporter milikmu telah berakhir pada :date.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

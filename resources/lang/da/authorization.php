@@ -113,6 +113,7 @@ return [
                 'deleted' => 'Kan ikke redigere slettede opslag.',
                 'locked' => 'Dette opslag er låst fra at blive redigeret.',
                 'no_forum_access' => 'Adgang til det anmodede forum er nødvendigt.',
+                'no_permission' => '',
                 'not_owner' => 'Kun ejeren af dette opslag kan redigere det.',
                 'topic_locked' => 'Kan ikke redigere opslag fra låste emner.',
             ],

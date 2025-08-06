@@ -113,6 +113,7 @@ return [
                 'deleted' => 'Impossible de modifier un post supprimé.',
                 'locked' => 'Ce post ne peut pas être édité.',
                 'no_forum_access' => 'L\'accès au forum demandé est requis.',
+                'no_permission' => '',
                 'not_owner' => 'Seul l\'auteur de ce post peut l\'éditer.',
                 'topic_locked' => 'Impossible d\'éditer un post sur un sujet verrouillé.',
             ],

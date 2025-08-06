@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Terima kasih atas sokongan anda setakat ini! Anda telah menyumbang :dollars melalui :tags pembelian tag!',
-            'gifted' => "Anda telah memberikan :giftedTags pembelian anda selaku hadiah (berjumlah :giftedDollars). Alangkah baiknya anda!",
+            'contribution_with_duration' => '',
             'not_yet' => "Anda tidak pernah mempunyai tag osu!supporter :(",
             'valid_until' => 'Tag osu!supporter semasa anda sah hingga :date!',
             'was_valid_until' => 'Tag osu!supporter anda sebelumnya sah hingga :date!',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

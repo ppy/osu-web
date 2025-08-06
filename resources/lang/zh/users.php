@@ -159,8 +159,17 @@ return [
             'cancel' => '取消',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => '作弊',
+            'copyright_infringement' => '',
             'inappropriate_chat' => '不当的聊天行为',
             'insults' => '侮辱 我/其他人',
             'multiple_accounts' => '使用多账号（开小号）',
@@ -486,7 +495,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => '准确率',
-            'hits_per_play' => '',
+            'hits_per_play' => '每次游玩击打数',
             'level' => '等级 :level',
             'level_progress' => '距下一等级进度',
             'maximum_combo' => '最大连击',

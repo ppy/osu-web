@@ -159,8 +159,17 @@ return [
             'cancel' => 'Abbrechen',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Cheating',
+            'copyright_infringement' => '',
             'inappropriate_chat' => 'Unangemessenes Verhalten im Chat',
             'insults' => 'Beleidigt mich / andere',
             'multiple_accounts' => 'Verwendet mehrere Konten',
@@ -486,7 +495,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Genauigkeit',
-            'hits_per_play' => '',
+            'hits_per_play' => 'Treffer pro Spiel',
             'level' => 'Level :level',
             'level_progress' => 'Fortschritt bis zum nächsten Level',
             'maximum_combo' => 'Höchste Combo',

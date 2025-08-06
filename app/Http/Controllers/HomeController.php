@@ -231,17 +231,24 @@ class HomeController extends Controller
             $expiration = $user->osu_subscriptionexpiry?->addDays(1);
             $current = $expiration?->isFuture() ?? false;
 
+            static $lengthSumFn = fn ($p) => $p['length'] * ($p['cancel'] ? -1 : 1);
             // purchased
             $tagPurchases = $user->supporterTagPurchases;
             $dollars = $tagPurchases->sum('amount');
-            $cancelledTags = $tagPurchases->where('cancel', true)->count() * 2; // 1 for purchase transaction and 1 for cancel transaction
-            $tags = $tagPurchases->count() - $cancelledTags;
+            $duration = $tagPurchases->sum($lengthSumFn);
 
             // gifted
             $gifted = $tagPurchases->where('target_user_id', '<>', $user->user_id);
             $giftedDollars = $gifted->sum('amount');
-            $canceledGifts = $gifted->where('cancel', true)->count() * 2; // 1 for purchase transaction and 1 for cancel transaction
-            $giftedTags = $gifted->count() - $canceledGifts;
+            $giftedDuration = $gifted->sum($lengthSumFn);
+
+            $giftedUsers = [];
+            foreach ($gifted as $gift) {
+                $giftedUsers[$gift->target_user_id] =
+                    ($giftedUsers[$gift->target_user_id] ?? 0)
+                    + ($gift->cancel ? -1 : 1);
+            }
+            $giftedUsers = count(array_filter($giftedUsers, fn ($count) => $count > 0));
 
             $supporterStatus = [
                 // current status
@@ -249,10 +256,11 @@ class HomeController extends Controller
                 'expiration' => $expiration,
                 // purchased
                 'dollars' => currency($dollars, 2, false),
-                'tags' => i18n_number_format($tags),
+                'duration' => $duration,
                 // gifted
                 'giftedDollars' => currency($giftedDollars, 2, false),
-                'giftedTags' => i18n_number_format($giftedTags),
+                'giftedDuration' => $giftedDuration,
+                'giftedUsers' => $giftedUsers,
             ];
 
             if ($current) {

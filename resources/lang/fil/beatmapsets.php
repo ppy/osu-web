@@ -69,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Tingnan ang buong laki ng cover sa larawan',
+            'page' => '',
         ],
 
         'deleted_banner' => [

@@ -7,6 +7,7 @@ return [
     'load_failed' => 'Laden van gegevens mislukt.',
     'missing_route' => 'Ongeldige Url of onjuiste aanvraagmethode.',
     'no_restricted_access' => 'Je mag dit niet doen terwijl je account beperkt is.',
+    'param_too_large' => '',
     'supporter_only' => 'Je moet een supporter zijn om dit te gebruiken.',
     'unknown' => 'Een onbekende fout trad op.',
 

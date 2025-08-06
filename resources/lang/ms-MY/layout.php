@@ -9,7 +9,7 @@ return [
     ],
 
     'defaults' => [
-        'page_description' => 'osu! - Irama tinggal satu *klik* sahaja! Dengan Ouendan/EBA, Taiko dan mod permainan asli serta penyunting tahap berfungsi penuh.',
+        'page_description' => 'osu! - Irama tinggal *seketik* saja! Dengan Ouendan/EBA, Taiko dan mod permainan asli serta penyunting tahap berfungsi penuh.',
     ],
 
     'header' => [
@@ -113,7 +113,7 @@ return [
             'copyright' => 'Hak Cipta (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Kebersendirian',
-            'rules' => '',
+            'rules' => 'Peraturan',
             'server_status' => 'Taraf Pelayan',
             'source_code' => 'Kod Sumber',
             'terms' => 'Syarat',

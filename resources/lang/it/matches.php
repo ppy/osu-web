@@ -15,22 +15,22 @@ return [
         'winner_by' => ':winner di :difference',
 
         'events' => [
-            'game_aborted' => '',
-            'game_aborted_no_user' => '',
-            'game_completed' => '',
-            'game_completed_no_user' => '',
-            'host_changed' => '',
-            'host_changed_no_user' => '',
-            'player_joined' => '',
-            'player_joined_no_user' => '',
-            'player_kicked' => '',
-            'player_kicked_no_user' => '',
-            'player_left' => '',
-            'player_left_no_user' => '',
-            'room_created' => '',
-            'room_created_no_user' => '',
-            'room_disbanded' => '',
-            'room_disbanded_no_user' => '',
+            'game_aborted' => 'la partita è stata annullata',
+            'game_aborted_no_user' => 'la partita è stata annullata',
+            'game_completed' => 'la partita è terminata',
+            'game_completed_no_user' => 'la partita è terminata',
+            'host_changed' => ':user è diventato l\'host',
+            'host_changed_no_user' => 'l\'host è stato cambiato',
+            'player_joined' => ':user si è unito al match',
+            'player_joined_no_user' => 'un giocatore si è unito al match',
+            'player_kicked' => ':user è stato cacciato dal match',
+            'player_kicked_no_user' => 'un giocatore è stato cacciato dal match',
+            'player_left' => ':user ha lasciato il match',
+            'player_left_no_user' => 'un giocatore ha lasciato il match',
+            'room_created' => ':user ha creato il match',
+            'room_created_no_user' => 'il match è stato creato',
+            'room_disbanded' => 'il match è terminato',
+            'room_disbanded_no_user' => 'il match è terminato',
         ],
 
         'score' => [
@@ -42,10 +42,10 @@ return [
         ],
 
         'team_types' => [
-            'head_to_head' => '',
-            'tag_coop' => '',
-            'tag_team_versus' => '',
-            'team_versus' => '',
+            'head_to_head' => 'Testa a Testa',
+            'tag_coop' => 'Tag Co-op',
+            'tag_team_versus' => 'Tag a squadre',
+            'team_versus' => 'A Squadre',
         ],
 
         'teams' => [
@@ -54,7 +54,7 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '',
+        'freestyle' => 'Freestyle',
 
         'scoring-type' => [
             'score' => 'Punteggio più alto',

@@ -174,7 +174,7 @@ return [
 
         'add_to_cart' => 'Thêm Vào Giỏ Hàng',
         'notify' => 'Thông báo cho tôi khi có hàng!',
-        'out_of_stock' => '',
+        'out_of_stock' => 'Hết hàng',
 
         'notification_success' => 'bạn sẽ được thông báo khi chúng tôi có hàng mới. nhấp vào :link để hủy',
         'notification_remove_text' => 'đây',
