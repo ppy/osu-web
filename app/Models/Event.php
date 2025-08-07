@@ -96,7 +96,7 @@ class Event extends Model
                 $template = '%s by %s has just been %s!';
                 $params = [
                     'text' => sprintf($template, "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a>", "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b>", $approval),
-                    'text_clean' => sprintf($template, "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title']}]", "[{$userParams['url_clean']} {$userParams['username']}]", $approval),
+                    'text_clean' => sprintf($template, "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title_clean']}]", "[{$userParams['url_clean']} {$userParams['username_clean']}]", $approval),
                     'beatmap_id' => 0,
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $beatmapset->user->getKey(),
@@ -128,7 +128,7 @@ class Event extends Model
                 $template = '%s has been revived from eternal slumber by %s.';
                 $params = [
                     'text' => sprintf($template, "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a>", "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b>"),
-                    'text_clean' => sprintf($template, "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title']}]", "[{$userParams['url_clean']} {$userParams['username']}]"),
+                    'text_clean' => sprintf($template, "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title_clean']}]", "[{$userParams['url_clean']} {$userParams['username_clean']}]"),
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $beatmapset->user->getKey(),
                     'private' => false,
@@ -148,7 +148,7 @@ class Event extends Model
                 $template = '%s has updated the beatmap "%s"';
                 $params = [
                     'text' => sprintf($template, "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b>", "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a>"),
-                    'text_clean' => sprintf($template, "[{$userParams['url_clean']} {$userParams['username']}]", "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title']}]"),
+                    'text_clean' => sprintf($template, "[{$userParams['url_clean']} {$userParams['username_clean']}]", "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title_clean']}]"),
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $user->getKey(),
                     'private' => false,
@@ -165,7 +165,7 @@ class Event extends Model
                 $template = '%s has submitted a new beatmap "%s"';
                 $params = [
                     'text' => sprintf($template, "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b>", "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a>"),
-                    'text_clean' => sprintf($template, "[{$userParams['url_clean']} {$userParams['username']}]", "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title']}]"),
+                    'text_clean' => sprintf($template, "[{$userParams['url_clean']} {$userParams['username_clean']}]", "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title_clean']}]"),
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $beatmapset->user->getKey(),
                     'private' => false,
@@ -188,7 +188,7 @@ class Event extends Model
 
                 $params = [
                     'text' => "<img src='/images/{$rank}_small.png'/> <b><a href='{$userParams['url']}'>{$userParams['username']}</a></b> achieved {$positionText} on <a href='{$beatmapParams['url']}'>{$beatmapParams['title']}</a> ({$rulesetName})",
-                    'text_clean' => "[{$userParams['url_clean']} {$userParams['username']}] achieved rank #{$positionAfter} on [{$beatmapParams['url_clean']} {$beatmapParams['title']}] ({$rulesetName})",
+                    'text_clean' => "[{$userParams['url_clean']} {$userParams['username_clean']}] achieved rank #{$positionAfter} on [{$beatmapParams['url_clean']} {$beatmapParams['title_clean']}] ({$rulesetName})",
                     'beatmap_id' => $beatmap->getKey(),
                     'beatmapset_id' => $beatmap->beatmapset->getKey(),
                     'user_id' => $user->getKey(),
@@ -507,9 +507,11 @@ class Event extends Model
     private static function userParams($user)
     {
         $url = e(route('users.show', $user, false));
+        $username = $user->username;
         return [
             'id' => $user->getKey(),
-            'username' => e($user->username),
+            'username' => e($username),
+            'username_clean' => $username,
             'url' => $url,
             'url_clean' => $GLOBALS['cfg']['app']['url'].$url,
         ];
@@ -518,8 +520,10 @@ class Event extends Model
     private static function beatmapsetParams($beatmapset)
     {
         $url = e(route('beatmapsets.show', $beatmapset, false));
+        $title = $beatmapset->artist.' - '.$beatmapset->title;
         return [
-            'title' => e($beatmapset->artist.' - '.$beatmapset->title),
+            'title' => e($title),
+            'title_clean' => $title,
             'url' => $url,
             'url_clean' => $GLOBALS['cfg']['app']['url'].$url,
         ];
@@ -528,8 +532,10 @@ class Event extends Model
     private static function beatmapParams($beatmap, $ruleset)
     {
         $url = e(route('beatmaps.show', ['beatmap' => $beatmap, 'ruleset' => $ruleset], false));
+        $title = "{$beatmap->beatmapset->artist} - {$beatmap->beatmapset->title} [{$beatmap->version}]";
         return [
-            'title' => e("{$beatmap->beatmapset->artist} - {$beatmap->beatmapset->title} [{$beatmap->version}]"),
+            'title' => e($title),
+            'title_clean' => $title,
             'url' => $url,
             'url_clean' => $GLOBALS['cfg']['app']['url'].$url,
         ];
