@@ -31,7 +31,7 @@ class BeatmapsetSearchOptions
     public ?array $tags = null;
     public ?string $title = null;
     public ?array $totalLength = null;
-    public ?string $updated = null;
+    public ?array $updated = null;
 
     // mostly for testing for array comparision
     public function toArray(): array
