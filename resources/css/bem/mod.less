@@ -77,24 +77,29 @@
       }
     }
 
-    .mod-icon-fa(@acronym, @glyph) {
-      display: flex;
-      content: @glyph;
-      font-size: 0.8em;
-      // slight adjustments for small sizes
-      padding-left: 1px;
+    .mod-icon-fa() {
+      content: "";
+      --margin: 0.32em;
+      margin: var(--margin);
+      width: calc(100% - var(--margin) * 2);
+      height: calc(100% - var(--margin) * 2);
+
+      background-color: var(--type-fg-colour);
+      mask-size: contain;
+      mask-position: center;
+      mask-repeat: no-repeat;
     }
 
     .mod-icon-fas(@acronym, @glyph) {
       &--@{acronym}::after {
-        .fas();
-        .mod-icon-fa(@acronym, @glyph);
+        .mod-icon-fa();
+        mask-image: url("~@fortawesome/fontawesome-free/svgs/solid/@{glyph}.svg");
       }
     }
     .mod-icon-far(@acronym, @glyph) {
       &--@{acronym}::after {
-        .far();
-        .mod-icon-fa(@acronym, @glyph);
+        .mod-icon-fa();
+        mask-image: url("~@fortawesome/fontawesome-free/svgs/regular/@{glyph}.svg");
       }
     }
 
@@ -117,27 +122,27 @@
     .mod-icon-osu(TD, touch-device);
     .mod-icon-osu(TP, target-practice);
 
-    .mod-icon-far(AD, @fa-var-circle);
-    .mod-icon-fas(AL, @fa-var-keyboard);
-    .mod-icon-fas(BL, @fa-var-adjust);
-    .mod-icon-fas(CL, @fa-var-history);
-    .mod-icon-fas(CS, @fa-var-equals);
-    .mod-icon-fas(DA, @fa-var-hammer);
-    .mod-icon-fas(DF, @fa-var-compress-arrows-alt);
-    .mod-icon-fas(DP, @fa-var-cube);
-    .mod-icon-fas(FF, @fa-var-cloud);
-    .mod-icon-fas(GR, @fa-var-arrows-alt-v);
-    .mod-icon-fas(HO, @fa-var-dot-circle);
-    .mod-icon-fas(IN, @fa-var-yin-yang);
-    .mod-icon-fas(NM, @fa-var-ban);
-    .mod-icon-fas(NS, @fa-var-eye-slash);
-    .mod-icon-fas(MG, @fa-var-magnet);
-    .mod-icon-fas(MU, @fa-var-volume-mute);
-    .mod-icon-fas(SI, @fa-var-undo);
-    .mod-icon-fas(TR, @fa-var-arrows-alt);
-    .mod-icon-fas(WD, @fa-var-chevron-circle-down);
-    .mod-icon-fas(WG, @fa-var-certificate);
-    .mod-icon-fas(WU, @fa-var-chevron-circle-up);
+    .mod-icon-far(AD, circle);
+    .mod-icon-fas(AL, keyboard);
+    .mod-icon-fas(BL, adjust);
+    .mod-icon-fas(CL, history);
+    .mod-icon-fas(CS, equals);
+    .mod-icon-fas(DA, hammer);
+    .mod-icon-fas(DF, compress-arrows-alt);
+    .mod-icon-fas(DP, cube);
+    .mod-icon-fas(FF, cloud);
+    .mod-icon-fas(GR, arrows-alt-v);
+    .mod-icon-fas(HO, dot-circle);
+    .mod-icon-fas(IN, yin-yang);
+    .mod-icon-fas(NM, ban);
+    .mod-icon-fas(NS, eye-slash);
+    .mod-icon-fas(MG, magnet);
+    .mod-icon-fas(MU, volume-mute);
+    .mod-icon-fas(SI, undo);
+    .mod-icon-fas(TR, arrows-alt);
+    .mod-icon-fas(WD, chevron-circle-down);
+    .mod-icon-fas(WG, certificate);
+    .mod-icon-fas(WU, chevron-circle-up);
   }
 
   &__customised-indicator {
