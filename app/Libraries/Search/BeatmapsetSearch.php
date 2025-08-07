@@ -449,14 +449,24 @@ class BeatmapsetSearch extends RecordSearch
         $nestedPrefixLength = strlen($nestedPrefix);
 
         foreach ($filters as $prop => $options) {
+            $isNested = substr($options['field'], 0, $nestedPrefixLength) === $nestedPrefix;
             if ($this->includes->$prop !== null) {
-                $q = substr($options['field'], 0, $nestedPrefixLength) === $nestedPrefix ? $this->nested : $this->query;
+                $q = $isNested ? $this->nested : $this->query;
                 $q->filter([$options['type'] => [$options['field'] => $this->includes->$prop]]);
             }
 
             if ($this->excludes->$prop !== null) {
-                if (substr($options['field'], 0, $nestedPrefixLength) === $nestedPrefix) {
-                    $this->nestedMustNot->should([$options['type'] => [$options['field'] => $this->excludes->$prop]]);
+                if ($isNested) {
+                    $boolQuery = (new BoolQuery())->filter([$options['type'] => [$options['field'] => $this->excludes->$prop]]);
+                    // converts can have different values so it needs to be specific when excluding
+                    // or the exclude query will match the convert when it's not supposed to.
+                    if (!$this->params->includeConverts) {
+                        $boolQuery->filter(['term' => ['beatmaps.convert' => false]]);
+                    } else if ($this->params->mode !== null) {
+                        $boolQuery->filter(['term' => ['beatmaps.playmode' => $this->params->mode]]);
+                    }
+
+                    $this->nestedMustNot->should($boolQuery);
                 } else {
                     $this->query->mustNot([$options['type'] => [$options['field'] => $this->excludes->$prop]]);
                 }
