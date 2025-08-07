@@ -29,9 +29,14 @@ class SessionsController extends Controller
     {
         $request = request();
 
-        $params = get_params($request->all(), null, ['username:string', 'password:string', 'cf-turnstile-response:string']);
-        $username = presence(trim($params['username'] ?? null));
-        $password = presence($params['password'] ?? null);
+        $params = get_params(
+            $request->all(),
+            null,
+            ['username:string', 'password', 'cf-turnstile-response'],
+            ['null_missing' => true],
+        );
+        $username = presence(trim($params['username'] ?? ''));
+        $password = $params['password'];
 
         if ($username === null) {
             DatadogLoginAttempt::log('missing_username');
@@ -46,7 +51,7 @@ class SessionsController extends Controller
         }
 
         if (captcha_login_triggered()) {
-            $token = presence($params['cf-turnstile-response'] ?? null);
+            $token = $params['cf-turnstile-response'];
             $validCaptcha = false;
 
             if ($token !== null) {
