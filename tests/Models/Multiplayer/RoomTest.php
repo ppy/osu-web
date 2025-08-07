@@ -239,9 +239,9 @@ class RoomTest extends TestCase
     /**
      * @dataProvider difficultyRangeDataProvider
      */
-    public function testRoomDifficultyRange(bool $roomEnded, bool $preloadRelations)
+    public function testRoomDifficultyRange(bool $preloadRelations, bool $allItemsExpired, float $minDifficulty, float $maxDifficulty)
     {
-        $room = Room::factory()->create(['ends_at' => $roomEnded ? now() : null]);
+        $room = Room::factory()->create();
 
         $firstBeatmap = Beatmap::factory()->create(['difficultyrating' => 1]);
         $secondBeatmap = Beatmap::factory()->create(['difficultyrating' => 3]);
@@ -249,8 +249,8 @@ class RoomTest extends TestCase
         $fourthBeatmap = Beatmap::factory()->create(['difficultyrating' => 7]);
 
         $firstItem = PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $firstBeatmap->getKey(), 'expired' => true]);
-        $secondItem = PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $secondBeatmap->getKey(), 'expired' => false]);
-        $thirdItem = PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $thirdBeatmap->getKey(), 'expired' => false]);
+        $secondItem = PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $secondBeatmap->getKey(), 'expired' => $allItemsExpired]);
+        $thirdItem = PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $thirdBeatmap->getKey(), 'expired' => $allItemsExpired]);
         $fourthItem = PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $fourthBeatmap->getKey(), 'expired' => true]);
 
         if ($preloadRelations) {
@@ -263,8 +263,8 @@ class RoomTest extends TestCase
         }
 
         $difficultyRange = $room->difficultyRange();
-        $this->assertSame($roomEnded ? 1.0 : 3.0, $difficultyRange['min']);
-        $this->assertSame($roomEnded ? 7.0 : 5.0, $difficultyRange['max']);
+        $this->assertSame($minDifficulty, $difficultyRange['min']);
+        $this->assertSame($maxDifficulty, $difficultyRange['max']);
     }
 
     public static function startGameDurationDataProvider()
@@ -290,10 +290,10 @@ class RoomTest extends TestCase
     public static function difficultyRangeDataProvider()
     {
         return [
-            'room active, no preload' => [false, false],
-            'room active, preload' => [false, true],
-            'room ended, no preload' => [true, false],
-            'room ended, preload' => [true, true],
+            'room with some non-expired items uses non-expired items for range (no preload)' => [false, false, 3.0, 5.0],
+            'room with some non-expired items uses non-expired items for range (preload)' => [true, false, 3.0, 5.0],
+            'room with all expired items uses all items for range (no preload)' => [false, true, 1.0, 7.0],
+            'room with all expired items uses all items for range (preload)' => [true, true, 1.0, 7.0],
         ];
     }
 }
