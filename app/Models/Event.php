@@ -74,12 +74,11 @@ class Event extends Model
 
                 // not escaped because it's not in the old system either
                 $achievementName = $achievement->name;
-                $userUrl = e(route('users.show', $user, false));
-                $userName = e($user->username);
+                $userLink = static::userLink($options['user']);
 
                 $params = [
                     // taken from medal
-                    'text' => "<b><a href='{$userUrl}'>{$userName}</a></b> unlocked the \"<b>{$achievementName}</b>\" medal!",
+                    'text' => "<b>{$userLink['html']}</b> unlocked the \"<b>{$achievementName}</b>\" medal!",
                     'user_id' => $user->getKey(),
                     'private' => false,
                     'epicfactor' => 4,
@@ -89,14 +88,14 @@ class Event extends Model
 
             case 'beatmapsetApprove':
                 $beatmapset = $options['beatmapset'];
-                $beatmapsetParams = static::beatmapsetParams($beatmapset);
-                $userParams = static::userParams($options['beatmapset']->user);
+                $beatmapsetLink = static::beatmapsetLink($beatmapset);
+                $userLink = static::userLink($options['beatmapset']->user);
                 $approval = e($beatmapset->status());
 
                 $template = '%s by %s has just been %s!';
                 $params = [
-                    'text' => sprintf($template, "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a>", "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b>", $approval),
-                    'text_clean' => sprintf($template, "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title_clean']}]", "[{$userParams['url_clean']} {$userParams['username_clean']}]", $approval),
+                    'text' => sprintf($template, $beatmapsetLink['html'], tag('b', [], $userLink['html']), $approval),
+                    'text_clean' => sprintf($template, $beatmapsetLink['clean'], $userLink['clean'], $approval),
                     'beatmap_id' => 0,
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $beatmapset->user->getKey(),
@@ -108,10 +107,10 @@ class Event extends Model
 
             case 'beatmapsetDelete':
                 $beatmapset = $options['beatmapset'];
-                $beatmapsetParams = static::beatmapsetParams($beatmapset);
+                $beatmapsetLink = static::beatmapsetLink($beatmapset);
 
                 $params = [
-                    'text' => "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a> has been deleted.",
+                    'text' => "{$beatmapsetLink['html']} has been deleted.",
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $options['user']->getKey(),
                     'private' => false,
@@ -122,13 +121,13 @@ class Event extends Model
 
             case 'beatmapsetRevive':
                 $beatmapset = $options['beatmapset'];
-                $beatmapsetParams = static::beatmapsetParams($beatmapset);
-                $userParams = static::userParams($beatmapset->user);
+                $beatmapsetLink = static::beatmapsetLink($beatmapset);
+                $userLink = static::userLink($beatmapset->user);
 
                 $template = '%s has been revived from eternal slumber by %s.';
                 $params = [
-                    'text' => sprintf($template, "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a>", "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b>"),
-                    'text_clean' => sprintf($template, "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title_clean']}]", "[{$userParams['url_clean']} {$userParams['username_clean']}]"),
+                    'text' => sprintf($template, $beatmapsetLink['html'], tag('b', [], $userLink['html'])),
+                    'text_clean' => sprintf($template, $beatmapsetLink['clean'], $userLink['clean']),
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $beatmapset->user->getKey(),
                     'private' => false,
@@ -139,16 +138,16 @@ class Event extends Model
 
             case 'beatmapsetUpdate':
                 $beatmapset = $options['beatmapset'];
-                $beatmapsetParams = static::beatmapsetParams($beatmapset);
+                $beatmapsetLink = static::beatmapsetLink($beatmapset);
                 // retrieved separately from options because it doesn't necessarily need to be the same user
                 // as $beatmapset->user in some cases (see: direct guest difficulty update)
                 $user = $options['user'];
-                $userParams = static::userParams($user);
+                $userLink = static::userLink($user);
 
                 $template = '%s has updated the beatmap "%s"';
                 $params = [
-                    'text' => sprintf($template, "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b>", "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a>"),
-                    'text_clean' => sprintf($template, "[{$userParams['url_clean']} {$userParams['username_clean']}]", "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title_clean']}]"),
+                    'text' => sprintf($template, tag('b', [], $userLink['html']), $beatmapsetLink['html']),
+                    'text_clean' => sprintf($template, $userLink['clean'], $beatmapsetLink['clean']),
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $user->getKey(),
                     'private' => false,
@@ -159,13 +158,13 @@ class Event extends Model
 
             case 'beatmapsetUpload':
                 $beatmapset = $options['beatmapset'];
-                $beatmapsetParams = static::beatmapsetParams($beatmapset);
-                $userParams = static::userParams($beatmapset->user);
+                $beatmapsetLink = static::beatmapsetLink($beatmapset);
+                $userLink = static::userLink($beatmapset->user);
 
                 $template = '%s has submitted a new beatmap "%s"';
                 $params = [
-                    'text' => sprintf($template, "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b>", "<a href='{$beatmapsetParams['url']}'>{$beatmapsetParams['title']}</a>"),
-                    'text_clean' => sprintf($template, "[{$userParams['url_clean']} {$userParams['username_clean']}]", "[{$beatmapsetParams['url_clean']} {$beatmapsetParams['title_clean']}]"),
+                    'text' => sprintf($template, tag('b', [], $userLink['html']), $beatmapsetLink['html']),
+                    'text_clean' => sprintf($template, $userLink['clean'], $beatmapsetLink['clean']),
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $beatmapset->user->getKey(),
                     'private' => false,
@@ -178,17 +177,17 @@ class Event extends Model
                 $beatmap = $options['beatmap'];
                 $ruleset = $options['ruleset'];
                 $rulesetName = trans("beatmaps.mode.{$ruleset}");
-                $beatmapParams = static::beatmapParams($beatmap, $ruleset);
+                $beatmapLink = static::beatmapLink($beatmap, $ruleset);
                 $user = $options['user'];
-                $userParams = static::userParams($user);
+                $userLink = static::userLink($user);
                 $positionAfter = $options['position_after'];
                 $positionText = $positionAfter <= 50 ? "<b>rank #{$positionAfter}</b>" : "rank #{$positionAfter}";
                 $rank = $options['rank'];
                 $legacyScoreEvent = $options['legacy_score_event'];
 
                 $params = [
-                    'text' => "<img src='/images/{$rank}_small.png'/> <b><a href='{$userParams['url']}'>{$userParams['username']}</a></b> achieved {$positionText} on <a href='{$beatmapParams['url']}'>{$beatmapParams['title']}</a> ({$rulesetName})",
-                    'text_clean' => "[{$userParams['url_clean']} {$userParams['username_clean']}] achieved rank #{$positionAfter} on [{$beatmapParams['url_clean']} {$beatmapParams['title_clean']}] ({$rulesetName})",
+                    'text' => "<img src=\"/images/{$rank}_small.png\"/> <b>{$userLink['html']}</b> achieved {$positionText} on {$beatmapLink['html']} ({$rulesetName})",
+                    'text_clean' => "{$userLink['clean']} achieved rank #{$positionAfter} on {$beatmapLink['clean']} ({$rulesetName})",
                     'beatmap_id' => $beatmap->getKey(),
                     'beatmapset_id' => $beatmap->beatmapset->getKey(),
                     'user_id' => $user->getKey(),
@@ -200,13 +199,14 @@ class Event extends Model
                 break;
 
             case 'usernameChange':
-                $user = static::userParams($options['user']);
-                $oldUsername = e($options['history']->username_last);
-                $newUsername = e($options['history']->username);
+                $user = $options['user'];
+                $history = $options['history'];
+                $userLink = static::userLink($user, $history);
+                $newUsername = e($history->username);
                 $params = [
-                    'text' => "<b><a href='{$user['url']}'>{$oldUsername}</a></b> has changed their username to {$newUsername}!",
-                    'user_id' => $user['id'],
-                    'date' => $options['history']->timestamp,
+                    'text' => "<b>{$userLink['html']}</b> has changed their username to {$newUsername}!",
+                    'user_id' => $user->getKey(),
+                    'date' => $history->timestamp,
                     'private' => false,
                     'epicfactor' => 4,
                 ];
@@ -214,10 +214,11 @@ class Event extends Model
                 break;
 
             case 'userSupportGift':
-                $user = static::userParams($options['user']);
+                $user = $options['user'];
+                $userLink = static::userLink($user);
                 $params = [
-                    'text' => "<b><a href='{$user['url']}'>{$user['username']}</a></b> has received the gift of osu! supporter!",
-                    'user_id' => $user['id'],
+                    'text' => "<b>{$userLink['html']}</b> has received the gift of osu! supporter!",
+                    'user_id' => $user->getKey(),
                     'date' => $options['date'],
                     'private' => false,
                     'epicfactor' => 2,
@@ -226,10 +227,11 @@ class Event extends Model
                 break;
 
             case 'userSupportFirst':
-                $user = static::userParams($options['user']);
+                $user = $options['user'];
+                $userLink = static::userLink($user);
                 $params = [
-                    'text' => "<b><a href='{$user['url']}'>{$user['username']}</a></b> has become an osu! supporter - thanks for your generosity!",
-                    'user_id' => $user['id'],
+                    'text' => "<b>{$userLink['html']}</b> has become an osu! supporter - thanks for your generosity!",
+                    'user_id' => $user->getKey(),
                     'date' => $options['date'],
                     'private' => false,
                     'epicfactor' => 2,
@@ -238,10 +240,11 @@ class Event extends Model
                 break;
 
             case 'userSupportAgain':
-                $user = static::userParams($options['user']);
+                $user = $options['user'];
+                $userLink = static::userLink($user);
                 $params = [
-                    'text' => "<b><a href='{$user['url']}'>{$user['username']}</a></b> has once again chosen to support osu! - thanks for your generosity!",
-                    'user_id' => $user['id'],
+                    'text' => "<b>{$userLink['html']}</b> has once again chosen to support osu! - thanks for your generosity!",
+                    'user_id' => $user->getKey(),
                     'date' => $options['date'],
                     'private' => false,
                     'epicfactor' => 2,
@@ -504,40 +507,33 @@ class Event extends Model
             ->limit(5);
     }
 
-    private static function userParams($user)
+    private static function userLink($user, $usernameChange = null)
     {
-        $url = e(route('users.show', $user, false));
-        $username = $user->username;
+        $url = route('users.show', $user, false);
+        $username = $usernameChange->username_last ?? $user->username;
         return [
-            'id' => $user->getKey(),
-            'username' => e($username),
-            'username_clean' => $username,
-            'url' => $url,
-            'url_clean' => $GLOBALS['cfg']['app']['url'].$url,
+            'html' => tag('a', ['href' => $url], e($username)),
+            'clean' => "[{$GLOBALS['cfg']['app']['url']}{$url} {$username}]",
         ];
     }
 
-    private static function beatmapsetParams($beatmapset)
+    private static function beatmapsetLink($beatmapset)
     {
-        $url = e(route('beatmapsets.show', $beatmapset, false));
+        $url = route('beatmapsets.show', $beatmapset, false);
         $title = $beatmapset->artist.' - '.$beatmapset->title;
         return [
-            'title' => e($title),
-            'title_clean' => $title,
-            'url' => $url,
-            'url_clean' => $GLOBALS['cfg']['app']['url'].$url,
+            'html' => tag('a', ['href' => $url], e($title)),
+            'clean' => "[{$GLOBALS['cfg']['app']['url']}{$url} {$title}]",
         ];
     }
 
-    private static function beatmapParams($beatmap, $ruleset)
+    private static function beatmapLink($beatmap, $ruleset)
     {
-        $url = e(route('beatmaps.show', ['beatmap' => $beatmap, 'ruleset' => $ruleset], false));
+        $url = route('beatmaps.show', ['beatmap' => $beatmap, 'ruleset' => $ruleset], false);
         $title = "{$beatmap->beatmapset->artist} - {$beatmap->beatmapset->title} [{$beatmap->version}]";
         return [
-            'title' => e($title),
-            'title_clean' => $title,
-            'url' => $url,
-            'url_clean' => $GLOBALS['cfg']['app']['url'].$url,
+            'html' => tag('a', ['href' => $url], e($title)),
+            'clean' => "[{$GLOBALS['cfg']['app']['url']}{$url} {$title}]",
         ];
     }
 }
