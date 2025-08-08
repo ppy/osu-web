@@ -186,7 +186,7 @@ class Event extends Model
                 $legacyScoreEvent = $options['legacy_score_event'];
 
                 $params = [
-                    'text' => "<img src=\"/images/{$rank}_small.png\"/> <b>{$userLink['html']}</b> achieved {$positionText} on {$beatmapLink['html']} ({$rulesetName})",
+                    'text' => "<img src='/images/{$rank}_small.png'/> <b>{$userLink['html']}</b> achieved {$positionText} on {$beatmapLink['html']} ({$rulesetName})",
                     'text_clean' => "{$userLink['clean']} achieved rank #{$positionAfter} on {$beatmapLink['clean']} ({$rulesetName})",
                     'beatmap_id' => $beatmap->getKey(),
                     'beatmapset_id' => $beatmap->beatmapset->getKey(),
@@ -512,7 +512,7 @@ class Event extends Model
         $url = route('users.show', $user, false);
         $username = $usernameChange->username_last ?? $user->username;
         return [
-            'html' => tag('a', ['href' => $url], e($username)),
+            'html' => sprintf('<a href=\'%s\'>%s</a>', e($url), e($username)),
             'clean' => "[{$GLOBALS['cfg']['app']['url']}{$url} {$username}]",
         ];
     }
@@ -522,7 +522,7 @@ class Event extends Model
         $url = route('beatmapsets.show', $beatmapset, false);
         $title = $beatmapset->artist.' - '.$beatmapset->title;
         return [
-            'html' => tag('a', ['href' => $url], e($title)),
+            'html' => sprintf('<a href=\'%s\'>%s</a>', e($url), e($title)),
             'clean' => "[{$GLOBALS['cfg']['app']['url']}{$url} {$title}]",
         ];
     }
@@ -532,7 +532,7 @@ class Event extends Model
         $url = route('beatmaps.show', ['beatmap' => $beatmap, 'ruleset' => $ruleset], false);
         $title = "{$beatmap->beatmapset->artist} - {$beatmap->beatmapset->title} [{$beatmap->version}]";
         return [
-            'html' => tag('a', ['href' => $url], e($title)),
+            'html' => sprintf('<a href=\'%s\'>%s</a>', e($url), e($title)),
             'clean' => "[{$GLOBALS['cfg']['app']['url']}{$url} {$title}]",
         ];
     }
