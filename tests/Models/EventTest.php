@@ -7,14 +7,31 @@ declare(strict_types=1);
 
 namespace Tests\Models;
 
+use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Event;
 use App\Models\User;
+use App\Models\UsernameChangeHistory;
 use Tests\TestCase;
 
 class EventTest extends TestCase
 {
+    public function testAchievementEventEscaping()
+    {
+        $achievement = Achievement::factory()->create([
+            'name' => 'Test & Stuff',
+        ]);
+        $user = User::factory()->create([
+            'user_id' => 222,
+            'username' => 'john123',
+        ]);
+
+        $event = Event::generate('achievement', ['achievement' => $achievement, 'user' => $user]);
+
+        $this->assertSame('<b><a href=\'/users/222\'>john123</a></b> unlocked the "<b>Test & Stuff</b>" medal!', $event->text);
+    }
+
     public function testBeatmapsetApproveEventEscaping()
     {
         $user = User::factory()->create([
@@ -33,6 +50,26 @@ class EventTest extends TestCase
 
         $this->assertSame('<a href=\'/beatmapsets/333\'>artist &amp; artist - &lt; title &gt;</a> by <b><a href=\'/users/222\'>john123</a></b> has just been ranked!', $event->text);
         $this->assertSame('[http://localhost/beatmapsets/333 artist & artist - < title >] by [http://localhost/users/222 john123] has just been ranked!', $event->text_clean);
+    }
+
+
+    public function testBeatmapsetDeleteEventEscaping()
+    {
+        $user = User::factory()->create([
+            'user_id' => 222,
+            'username' => 'john123',
+        ]);
+        $beatmapset = BeatmapSet::factory()->create([
+            'beatmapset_id' => 333,
+            'user_id' => $user->getKey(),
+            'artist' => 'artist & artist',
+            'title' => '< title >',
+            'approved' => 1,
+        ]);
+
+        $event = Event::generate('beatmapsetDelete', ['beatmapset' => $beatmapset, 'user' => $user]);
+
+        $this->assertSame('<a href=\'/beatmapsets/333\'>artist &amp; artist - &lt; title &gt;</a> has been deleted.', $event->text);
     }
 
     public function testBeatmapsetReviveEventEscaping()
@@ -126,5 +163,58 @@ class EventTest extends TestCase
 
         $this->assertSame('<img src=\'/images/SH_small.png\'/> <b><a href=\'/users/222\'>john123</a></b> achieved rank #321 on <a href=\'/beatmaps/444?ruleset=fruits\'>artist &amp; artist - &lt; title &gt; [a &amp; b&#039;s Normal]</a> (osu!catch)', $event->text);
         $this->assertSame('[http://localhost/users/222 john123] achieved rank #321 on [http://localhost/beatmaps/444?ruleset=fruits artist & artist - < title > [a & b\'s Normal]] (osu!catch)', $event->text_clean);
+    }
+
+    public function testUsernameChangeEventEscaping()
+    {
+        $user = User::factory()->create([
+            'user_id' => 222,
+            'username' => 'john123',
+        ]);
+        $usernameChange = UsernameChangeHistory::factory()->create([
+            'user_id' => $user->getKey(),
+            'username_last' => 'john122',
+            'username' => 'john123',
+        ]);
+
+        $event = Event::generate('usernameChange', ['user' => $user, 'history' => $usernameChange]);
+
+        $this->assertSame('<b><a href=\'/users/222\'>john122</a></b> has changed their username to john123!', $event->text);
+    }
+
+    public function testUserSupportGiftEventEscaping()
+    {
+        $user = User::factory()->create([
+            'user_id' => 222,
+            'username' => 'john123',
+        ]);
+
+        $event = Event::generate('userSupportGift', ['user' => $user, 'date' => now()]);
+
+        $this->assertSame('<b><a href=\'/users/222\'>john123</a></b> has received the gift of osu! supporter!', $event->text);
+    }
+
+    public function testUserSupportFirstEventEscaping()
+    {
+        $user = User::factory()->create([
+            'user_id' => 222,
+            'username' => 'john123',
+        ]);
+
+        $event = Event::generate('userSupportFirst', ['user' => $user, 'date' => now()]);
+
+        $this->assertSame('<b><a href=\'/users/222\'>john123</a></b> has become an osu! supporter - thanks for your generosity!', $event->text);
+    }
+
+    public function testUserSupportAgainEventEscaping()
+    {
+        $user = User::factory()->create([
+            'user_id' => 222,
+            'username' => 'john123',
+        ]);
+
+        $event = Event::generate('userSupportAgain', ['user' => $user, 'date' => now()]);
+
+        $this->assertSame('<b><a href=\'/users/222\'>john123</a></b> has once again chosen to support osu! - thanks for your generosity!', $event->text);
     }
 }
