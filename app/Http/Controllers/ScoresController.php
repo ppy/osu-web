@@ -65,7 +65,7 @@ class ScoresController extends Controller
             $soloScore = SoloScore::where([
                 'has_replay' => true,
                 'legacy_score_id' => $id,
-                'ruleset_id' => Beatmap::MODES[$rulesetOrSoloId],
+                'ruleset_id' => Beatmap::MODES[$rulesetOrSoloId] ?? abort(404, 'unknown ruleset name'),
             ])->firstOrFail();
         }
 

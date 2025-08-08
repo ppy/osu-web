@@ -200,6 +200,18 @@ class ScoresControllerTest extends TestCase
             ->assertRedirect(route('scores.show', $this->params()));
     }
 
+    public function testDownloadLegacyInvalidRuleset()
+    {
+        $this
+            ->actingAs($this->otherUser)
+            ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
+            ->json(
+                'GET',
+                route('scores.download-legacy', [...$this->params(), 'rulesetOrScore' => 'nope'])
+            )
+            ->assertStatus(404);
+    }
+
     public function testDownloadNoReferer()
     {
         $this
@@ -209,17 +221,6 @@ class ScoresControllerTest extends TestCase
                 route('scores.download-legacy', $this->params())
             )
             ->assertRedirect(route('scores.show', $this->params()));
-    }
-
-    public function testDownloadInvalidRuleset()
-    {
-        $this
-            ->actingAs($this->user)
-            ->json(
-                'GET',
-                route('scores.download-legacy', ['rulesetOrScore' => 'nope', 'score' => $this->score->getKey()])
-            )
-            ->assertStatus(302);
     }
 
     protected function setUp(): void
