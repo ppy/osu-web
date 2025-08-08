@@ -140,6 +140,16 @@ class UserFactory extends Factory
             });
     }
 
+    public function withGroups(array $groupIdentifiers, ?array $playmodes = null)
+    {
+        $factory = $this;
+        foreach ($groupIdentifiers as $groupIdentifier) {
+            $factory = $factory->withGroup($groupIdentifier, $playmodes);
+        }
+
+        return $factory;
+    }
+
     public function withNote()
     {
         return $this->has(UserAccountHistory::factory(), 'accountHistories');
