@@ -202,14 +202,15 @@ class Event extends Model
                 $beatmap = $options['beatmap'];
                 $ruleset = $options['ruleset'];
                 $rulesetName = trans("beatmaps.mode.{$ruleset}");
-                $beatmapParams = static::beatmapParams($beatmap, $ruleset);
+                $beatmapLink = static::beatmapLink($beatmap, $ruleset);
                 $user = $options['user'];
-                $userParams = static::userParams($user);
+                $userLink = static::userLink($user);
                 $legacyScoreEvent = $options['legacy_score_event'];
 
+                $template = '%s has lost first place on %s (%s)';
                 $params = [
-                    'text' => "<b><a href='{$userParams['url']}'>{$userParams['username']}</a></b> has lost first place on <a href='{$beatmapParams['url']}'>{$beatmapParams['title']}</a> ($rulesetName)",
-                    'text_clean' => "[{$userParams['url_clean']} {$userParams['username']}] has lost first place on [{$beatmapParams['url_clean']} {$beatmapParams['title']}] ($rulesetName)",
+                    'text' => sprintf($template, tag('b', [], $userLink['html']), $beatmapLink['html'], $rulesetName),
+                    'text_clean' => sprintf($template, $userLink['clean'], $beatmapLink['clean'], $rulesetName),
                     'beatmap_id' => $beatmap->getKey(),
                     'beatmapset_id' => $beatmap->beatmapset->getKey(),
                     'user_id' => $user->getKey(),
