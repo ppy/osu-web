@@ -186,6 +186,40 @@ class EventTest extends TestCase
         $this->assertSame('rank', $event->type);
     }
 
+    public function testRankLostEscaping()
+    {
+        $user = User::factory()->create([
+            'user_id' => 222,
+            'username' => 'john123',
+        ]);
+        $beatmapset = BeatmapSet::factory()->create([
+            'beatmapset_id' => 333,
+            'user_id' => $user->getKey(),
+            'artist' => 'artist & artist',
+            'title' => '< title >',
+            'approved' => 1,
+        ]);
+        $beatmap = Beatmap::factory()->create([
+            'beatmap_id' => 444,
+            'beatmapset_id' => $beatmapset->getKey(),
+            'version' => 'a & b\'s Normal',
+            'playmode' => 0,
+        ]);
+
+        $event = Event::generate('rankLost', [
+            'beatmap' => $beatmap,
+            'ruleset' => 'fruits',
+            'user' => $user,
+            'legacy_score_event' => null,
+        ]);
+
+        $this->assertSame('<b><a href=\'/users/222\'>john123</a></b> has lost first place on <a href=\'/beatmaps/444?ruleset=fruits\'>artist &amp; artist - &lt; title &gt; [a &amp; b&#039;s Normal]</a> (osu!catch)', $event->text);
+        $this->assertSame('[http://localhost/users/222 john123] has lost first place on [http://localhost/beatmaps/444?ruleset=fruits artist & artist - < title > [a & b\'s Normal]] (osu!catch)', $event->text_clean);
+
+        $this->assertArrayNotHasKey('parse_error', $event->parse()->details);
+        $this->assertSame('rankLost', $event->type);
+    }
+
     public function testUsernameChangeEventEscaping()
     {
         $user = User::factory()->create([

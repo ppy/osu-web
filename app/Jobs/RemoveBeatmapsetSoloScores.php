@@ -9,6 +9,7 @@ namespace App\Jobs;
 
 use App\Libraries\Search\ScoreSearch;
 use App\Models\Beatmap;
+use App\Models\BeatmapLeader;
 use App\Models\Beatmapset;
 use App\Models\Solo\Score;
 use App\Models\UserStatistics\Model as UserStatisticsModel;
@@ -68,6 +69,10 @@ class RemoveBeatmapsetSoloScores implements ShouldQueue
                 $this->recordUserBestScores($scores);
                 $this->deleteScores($scores);
             });
+        BeatmapLeader
+            ::whereIn('beatmap_id', $beatmapIds)
+            ->where('score_id', '<=', $this->maxScoreId)
+            ->delete();
         $this->updateUserStatistics();
     }
 
