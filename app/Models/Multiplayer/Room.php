@@ -376,10 +376,12 @@ class Room extends Model
         $extraQuery = true;
 
         if ($this->relationLoaded('playlist')) {
-            $anyNonExpiredItems = $this->playlist->where('expired', '=', false)->isNotEmpty();
+            $playlistItems = $this->playlist;
+            $activePlaylistItems = $playlistItems->where('expired', '=', false);
 
             if ($this->playlist->count() > 0) {
                 $firstItem = $this->playlist[0];
+                $anyNonExpiredItems = $activePlaylistItems->isNotEmpty();
 
                 if ($firstItem->relationLoaded('beatmap')) {
                     $extraQuery = false;
@@ -405,11 +407,10 @@ class Room extends Model
         }
 
         if ($extraQuery) {
-            $playlistItems = $this->playlist()->select(['beatmap_id', 'expired'])->get();
+            $playlistItems ??= $this->playlist()->select(['beatmap_id', 'expired'])->get();
+            $activePlaylistItems ??= $playlistItems->where('expired', '=', false);
 
-            $beatmapIds = $playlistItems->where('expired', '=', false)->isNotEmpty()
-                ? $playlistItems->where('expired', '=', false)->pluck('beatmap_id')
-                : $playlistItems->pluck('beatmap_id');
+            $beatmapIds = ($activePlaylistItems->isNotEmpty() ? $activePlaylistItems : $playlistItems)->pluck('beatmap_id');
 
             $range = Beatmap::selectRaw('
                 MIN(difficultyrating) as min_difficulty,
