@@ -25,6 +25,10 @@ class BeatmapDiscussionPostsController extends Controller
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
         $this->middleware('require-scopes:public', ['only' => ['index']]);
+        $this->middleware('require-scopes:beatmap_discussion.write', ['only' => [
+            'store',
+            'update'
+        ]]);
 
         parent::__construct();
     }
@@ -107,6 +111,29 @@ class BeatmapDiscussionPostsController extends Controller
         return ujs_redirect(route('beatmapsets.discussion', $beatmapset).'#/'.$discussion->getKey().'/'.$post->getKey());
     }
 
+    /**
+     * Create a new Beatmapset Discussion Post. 
+     * 
+     * Replies to a Beatmapset Discussion or creates a new one.
+     * 
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field                             | Type                                                    | Description
+     * --------------------------------- | ------------------------------------------------------- | -----------
+     * beatmapset                        | [Beatmapset](#beatmapset)                               |                                                    |
+     * beatmap_discussion_post_ids       | integer[]                                               | id of Beatmapset Discussion Posts that are created |
+     * beatmap_discussion_id             | integer                                                 | id of the Beatmapset Discussion                    |
+     *
+     * @bodyParam beatmap_discussion_id integer `id` of the [BeatmapsetDiscussion](#beatmapsetdiscussion) to reply to. Example: 1
+     * @bodyParam beatmapset_id integer `id` of the [Beatmapset](#beatmapset) to create a new discussion for. Required if no `beatmap_discussion_id` is provided. No-example
+     * @bodyParam beatmap_discussion_post[message] string required Message content as plain text. Example: hello 
+     * @bodyParam beatmap_discussion[message_type] [MessageType](#messagetype), required when creating a new discussion No-example
+     * @bodyParam beatmap_discussion[timestamp] integer Will place the post in the timeline tab at the given timestamp when creating a new discussion. No-example
+     * @bodyParam beatmap_discussion[beatmap_id] integer `id` of the [Beatmap](#beatmap) the discussion addresses. Required when `timestamp` is being used. No-example
+     * @bodyParam beatmap_discussion[resolved] boolean Changes resolved status of a discussion. Example: true 
+     */
     public function store()
     {
         /** @var User $user */
@@ -146,6 +173,21 @@ class BeatmapDiscussionPostsController extends Controller
         ];
     }
 
+    /**
+     * Edit Beatmapset Discussion Post
+     * 
+     * Edit specified beatmapset discussion post.
+     * 
+     * ---
+     * 
+     * ### Response Format
+     *
+     * [Beatmapset](#beatmapset)
+     *
+     * @urlParam post integer required Id of the post. Example: 1
+     *
+     * @bodyParam beatmap_discussion_post[message] string required New post content in plaintext. Example: hello
+     */
     public function update($id)
     {
         $post = BeatmapDiscussionPost::findOrFail($id);
