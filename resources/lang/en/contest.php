@@ -30,7 +30,7 @@ return [
         '_' => 'Judging results',
         'creator' => 'creator',
         'hosts_only' => 'Only contest hosts and admins can currently see the results.',
-        'provisional' => 'Judging has not been finalized yet, and scores may not be accurate!',
+        'provisional' => 'Judging has not been finalised yet, and scores may not be accurate!',
         'score' => 'Score',
         'score_std' => 'Standardised Score',
         'total_score' => 'total score',
