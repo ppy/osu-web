@@ -39,10 +39,8 @@ class LoginTest extends DuskTestCase
     {
         $user = User::factory()->create();
 
-        $timedOut = false;
         $attempts = 1;
         while (true) {
-            $timedOut = false;
             try {
                 $this->browse(function (Browser $browser) use ($user) {
                     $browser->loginAs($user)
@@ -55,15 +53,12 @@ class LoginTest extends DuskTestCase
                         ->assertPathIs('/')
                         ->assertVisible('.landing-hero');
                 });
+                break;
             } catch (TimeoutException $e) {
-                $timedOut = true;
                 static::closeAll();
                 if ($attempts++ > 5) {
                     throw $e;
                 }
-            }
-            if (!$timedOut) {
-                break;
             }
         }
     }
