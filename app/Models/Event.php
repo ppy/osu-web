@@ -201,11 +201,12 @@ class Event extends Model
             case 'rankLost':
                 $beatmap = $options['beatmap'];
                 $ruleset = $options['ruleset'];
+                $user = $options['user'];
+                $legacyScoreEvent = $options['legacy_score_event'];
+
                 $rulesetName = trans("beatmaps.mode.{$ruleset}");
                 $beatmapLink = static::beatmapLink($beatmap, $ruleset);
-                $user = $options['user'];
                 $userLink = static::userLink($user);
-                $legacyScoreEvent = $options['legacy_score_event'];
 
                 $template = '%s has lost first place on %s (%s)';
                 $params = [
