@@ -10,6 +10,8 @@ namespace Database\Factories;
 use App\Models\Beatmap;
 use App\Models\BeatmapOwner;
 use App\Models\Beatmapset;
+use App\Models\BeatmapTag;
+use App\Models\Tag;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -123,5 +125,13 @@ class BeatmapFactory extends Factory
     public function wip(): static
     {
         return $this->state(['approved' => Beatmapset::STATES['wip']]);
+    }
+
+    public function withTag(int|Tag|null $tag = null, ?int $userId = null): static
+    {
+        return $this->has(BeatmapTag::factory()->state([
+            'tag_id' => $tag ?? Tag::factory(),
+            'user_id' => $userId ?? User::factory(),
+        ]));
     }
 }
