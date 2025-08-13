@@ -333,7 +333,7 @@ class SanityTest extends DuskTestCase
 
         $session = Session\Store::findOrNew($sessionId);
 
-        return SessionVerification\State::fromSession($session)->key;
+        return SessionVerification\MailState::fromSession($session)->key;
     }
 
     public static function routesDataProvider()

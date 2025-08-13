@@ -56,9 +56,13 @@
     height: var(--avatar-height);
     border-radius: var(--avatar-radius);
     overflow: hidden;
-    align-self: flex-end;
-    margin-bottom: var(--vertical-padding);
+    align-self: flex-start;
     .default-box-shadow();
+
+    @media @desktop {
+      margin-bottom: var(--vertical-padding);
+      align-self: flex-end;
+    }
   }
 
   &__bg {
@@ -89,14 +93,16 @@
   &__details {
     --gutter-size: @gutter-v2;
     --gutter-size-desktop: @gutter-v2-desktop;
-    padding: 0 var(--gutter-size);
+    --details-vertical-padding: var(--vertical-padding);
+    padding: var(--details-vertical-padding) var(--gutter-size);
     display: flex;
     align-items: center;
     position: relative;
-    height: calc(var(--content-height) + var(--vertical-padding) * 2);
 
     @media @desktop {
       --gutter-size: var(--gutter-size-desktop);
+      --details-vertical-padding: 0; // handled by container height
+      height: calc(var(--content-height) + var(--vertical-padding) * 2);
     }
   }
 
@@ -104,9 +110,12 @@
     .link-plain();
     .link-white();
     display: grid;
-    grid-template-columns: auto 1fr;
     gap: 4px;
     align-items: center;
+
+    @media @desktop {
+      grid-template-columns: auto 1fr;
+    }
   }
 
   &__flag-text {
@@ -120,13 +129,16 @@
 
   &__flags {
     display: flex;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 5px;
     margin-top: 10px;
     font-size: 15px; // icon size
 
     @media @desktop {
-      font-size: @flag-size-medium; // icon size
+      flex-wrap: nowrap;
+      gap: 10px;
       margin-top: 5px;
+      font-size: @flag-size-medium; // icon size
     }
   }
 
