@@ -6,7 +6,6 @@
 namespace Tests\Browser;
 
 use App\Models\User;
-use Facebook\WebDriver\Exception\TimeoutException;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
@@ -39,27 +38,18 @@ class LoginTest extends DuskTestCase
     {
         $user = User::factory()->create();
 
-        $attempts = 1;
-        while (true) {
-            try {
-                $this->browse(function (Browser $browser) use ($user) {
-                    $browser->loginAs($user)
-                        ->visit('/')
-                        ->click('.js-user-login--menu') // bring up user menu
-                        ->waitFor('.js-user-header-popup .js-logout-link')
-                        ->click('.js-user-header-popup .js-logout-link') // click the logout 'button'
-                        ->acceptDialog()
-                        ->waitFor('.landing-hero__bg-container')
-                        ->assertPathIs('/')
-                        ->assertVisible('.landing-hero');
-                });
-                break;
-            } catch (TimeoutException $e) {
-                static::closeAll();
-                if ($attempts++ > 5) {
-                    throw $e;
-                }
-            }
-        }
+        static::withRetries(function () use ($user) {
+            $this->browse(function (Browser $browser) use ($user) {
+                $browser->loginAs($user)
+                    ->visit('/')
+                    ->click('.js-user-login--menu') // bring up user menu
+                    ->waitFor('.js-user-header-popup .js-logout-link')
+                    ->click('.js-user-header-popup .js-logout-link') // click the logout 'button'
+                    ->acceptDialog()
+                    ->waitFor('.landing-hero__bg-container')
+                    ->assertPathIs('/')
+                    ->assertVisible('.landing-hero');
+            });
+        });
     }
 }

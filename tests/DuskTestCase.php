@@ -6,6 +6,7 @@
 namespace Tests;
 
 use Facebook\WebDriver\Chrome\ChromeOptions;
+use Facebook\WebDriver\Exception\TimeoutException;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\WebDriverDimension;
@@ -43,6 +44,22 @@ abstract class DuskTestCase extends BaseTestCase
     protected static function resetSession(Browser $browser): void
     {
         $browser->driver->manage()->deleteAllCookies();
+    }
+
+    protected static function withRetries(callable $test): void
+    {
+        $attempts = 1;
+        while (true) {
+            try {
+                $test();
+                break;
+            } catch (TimeoutException $e) {
+                static::closeAll();
+                if ($attempts++ > 5) {
+                    throw $e;
+                }
+            }
+        }
     }
 
     /**
