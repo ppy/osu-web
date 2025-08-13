@@ -4,7 +4,7 @@
 --}}
 @php
     if ($contestMeta->isJudgingActive()) {
-        $noVoteReason = trans('contest.voting.judged_notice');
+        $noVoteReason = osu_trans('contest.voting.judged_notice');
     }
 @endphp
 

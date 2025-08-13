@@ -133,7 +133,7 @@ class OrderItem extends Model
     {
         $extraData = $this->extra_data;
         if ($extraData instanceof ExtraDataSupporterTag && $extraData->message !== null) {
-            return trans('store.order.item.subtext.supporter_tag', ['message' => $extraData->message]);
+            return osu_trans('store.order.item.subtext.supporter_tag', ['message' => $extraData->message]);
         }
 
         return null;
