@@ -54,10 +54,10 @@ abstract class DuskTestCase extends BaseTestCase
                 $test();
                 break;
             } catch (TimeoutException $e) {
-                static::closeAll();
                 if ($attempts++ > 5) {
                     throw $e;
                 }
+                static::closeAll();
             }
         }
     }
