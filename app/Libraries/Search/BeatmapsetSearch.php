@@ -25,15 +25,19 @@ class BeatmapsetSearch extends RecordSearch
 {
     private BeatmapsetSearchOptions $excludes;
     private BeatmapsetSearchOptions $includes;
+    private BoolQuery $nested;
+    private BoolQuery $nestedMustNot;
     private array $tokens;
+
+    private static function isExactTag(string $value): bool
+    {
+        return mb_strpos($value, '/') !== false;
+    }
 
     private static function isQuoted(string $value): bool
     {
         return str_starts_with($value, '"') && str_ends_with($value, '"');
     }
-
-    private BoolQuery $nested;
-    private BoolQuery $nestedMustNot;
 
     public function __construct(?BeatmapsetSearchParams $params = null)
     {
@@ -576,42 +580,74 @@ class BeatmapsetSearch extends RecordSearch
         if ($includeTags !== null) {
             // workaround multi tag parsing when there's an empty tag.
             $tags = array_reject_null($includeTags);
-
-            // require exact match for full tags, partial otherwise.
-            // "grid snap" - match grid AND snap in any order. e.g. snap/grid is allowed.
-            // ""grid snap"" - match anything with "grid snap".
+            // "geometric grid snap" - match any words in any tag
+            // ""geometric grid snap"" - match the phrase in the same tag.
             // "geometric/grid snap" - explicitly match the tag.
             foreach ($tags as $tag) {
-                if (mb_strpos($tag, '/') !== false) {
+                $value = mb_trim($tag, '"');
+                if (static::isExactTag($tag)) {
                     $this->nested->filter([
                         'term' => [
                             'beatmaps.top_tags.raw' => [
                                 'case_insensitive' => true,
-                                'value' => mb_trim($tag, '"'),
+                                'value' => $value,
+                            ],
+                        ],
+                    ]);
+                } else if (static::isQuoted($tag)) {
+                    $this->nested->filter([
+                        'match_phrase' => [
+                            'beatmaps.top_tags' => [
+                                'query' => $value,
                             ],
                         ],
                     ]);
                 } else {
-                    $this->nested->filter(['match' => ['beatmaps.top_tags' => ['query' => $tags, 'operator' => 'and']]]);
+                    $this->nested->filter([
+                        'match' => [
+                            'beatmaps.top_tags' => [
+                                'query' => $value,
+                                'operator' => 'and',
+                            ],
+                        ],
+                    ]);
                 }
             }
         }
 
         if ($excludeTags !== null) {
             $tags = array_reject_null($excludeTags);
-
+            // "geometric grid snap" - exclude if all words are matched in any tag
+            // ""geometric grid snap"" - exclude if the exact phrase matches any part of the tag.
+            // "geometric/grid snap" - exclude only if matches the whole tag.
             foreach ($tags as $tag) {
-                if (mb_strpos($tag, '/') !== false) {
+                $value = mb_trim($tag, '"');
+                if (static::isExactTag($tag)) {
                     $this->nestedMustNot->should([
                         'term' => [
                             'beatmaps.top_tags.raw' => [
                                 'case_insensitive' => true,
-                                'value' => mb_trim($tag, '"'),
+                                'value' => $value,
+                            ],
+                        ],
+                    ]);
+                } else if (static::isQuoted($tag)) {
+                    $this->nestedMustNot->should([
+                        'match_phrase' => [
+                            'beatmaps.top_tags' => [
+                                'query' => $value,
                             ],
                         ],
                     ]);
                 } else {
-                    $this->nestedMustNot->should(['match' => ['beatmaps.top_tags' => ['query' => $tags, 'operator' => 'or']]]);
+                    $this->nestedMustNot->should([
+                        'match' => [
+                            'beatmaps.top_tags' => [
+                                'query' => $value,
+                                'operator' => 'and',
+                            ],
+                        ],
+                    ]);
                 }
             }
         }
