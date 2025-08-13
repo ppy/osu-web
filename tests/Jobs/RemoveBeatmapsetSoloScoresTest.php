@@ -53,16 +53,18 @@ class RemoveBeatmapsetSoloScoresTest extends TestCase
 
         static::reindexScores();
 
-        foreach ($beatmapset->beatmaps as $beatmap) {
-            foreach (array_values(Beatmap::MODES) as $ruleset) {
-                BeatmapLeader::sync($beatmap->getKey(), $ruleset);
+        $beatmapIds = $beatmapset->beatmaps->pluck('beatmap_id');
+
+        foreach ($beatmapIds as $beatmapId) {
+            foreach (Beatmap::MODES as $rulesetId) {
+                BeatmapLeader::sync($beatmapId, $rulesetId);
             }
         }
-        $this->assertNotEmpty(BeatmapLeader::whereIn('beatmap_id', $beatmapset->beatmaps->pluck('beatmap_id'))->where('score_id', '<=', $maxScoreId)->get());
+        $this->assertNotEmpty(BeatmapLeader::whereIn('beatmap_id', $beatmapIds)->where('score_id', '<=', $maxScoreId)->get());
 
         $job->handle();
 
-        $this->assertEmpty(BeatmapLeader::whereIn('beatmap_id', $beatmapset->beatmaps->pluck('beatmap_id'))->where('score_id', '<=', $maxScoreId)->get());
+        $this->assertEmpty(BeatmapLeader::whereIn('beatmap_id', $beatmapIds)->where('score_id', '<=', $maxScoreId)->get());
 
         $search = new ScoreSearch();
         // this also makes sure the job deletes scores from index
@@ -71,6 +73,7 @@ class RemoveBeatmapsetSoloScoresTest extends TestCase
         $this->beforeApplicationDestroyed(function () use ($search) {
             static::withDbAccess(function () use ($search) {
                 Beatmap::truncate();
+                BeatmapLeader::truncate();
                 Beatmapset::truncate();
                 Country::truncate();
                 Genre::truncate();
@@ -79,7 +82,6 @@ class RemoveBeatmapsetSoloScoresTest extends TestCase
                 User::truncate();
                 UserGroup::truncate();
                 UserGroupEvent::truncate();
-                BeatmapLeader::truncate();
                 $search->deleteAll();
             });
         });
