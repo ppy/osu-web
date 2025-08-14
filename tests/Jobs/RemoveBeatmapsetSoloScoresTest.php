@@ -60,11 +60,11 @@ class RemoveBeatmapsetSoloScoresTest extends TestCase
                 BeatmapLeader::sync($beatmapId, $rulesetId);
             }
         }
-        $this->assertNotEmpty(BeatmapLeader::whereIn('beatmap_id', $beatmapIds)->where('score_id', '<=', $maxScoreId)->get());
+        $this->assertTrue(BeatmapLeader::whereIn('beatmap_id', $beatmapIds)->where('score_id', '<=', $maxScoreId)->exists());
 
         $job->handle();
 
-        $this->assertEmpty(BeatmapLeader::whereIn('beatmap_id', $beatmapIds)->where('score_id', '<=', $maxScoreId)->get());
+        $this->assertFalse(BeatmapLeader::whereIn('beatmap_id', $beatmapIds)->where('score_id', '<=', $maxScoreId)->exists());
 
         $search = new ScoreSearch();
         // this also makes sure the job deletes scores from index
