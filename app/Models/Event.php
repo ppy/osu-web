@@ -176,7 +176,7 @@ class Event extends Model
             case 'rank':
                 $beatmap = $options['beatmap'];
                 $ruleset = $options['ruleset'];
-                $rulesetName = trans("beatmaps.mode.{$ruleset}");
+                $rulesetName = osu_trans("beatmaps.mode.{$ruleset}");
                 $beatmapLink = static::beatmapLink($beatmap, $ruleset);
                 $user = $options['user'];
                 $userLink = static::userLink($user);
@@ -204,7 +204,7 @@ class Event extends Model
                 $user = $options['user'];
                 $legacyScoreEvent = $options['legacy_score_event'];
 
-                $rulesetName = trans("beatmaps.mode.{$ruleset}");
+                $rulesetName = osu_trans("beatmaps.mode.{$ruleset}");
                 $beatmapLink = static::beatmapLink($beatmap, $ruleset);
                 $userLink = static::userLink($user);
 
