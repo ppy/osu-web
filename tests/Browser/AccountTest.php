@@ -15,41 +15,39 @@ class AccountTest extends DuskTestCase
 {
     public function testUpdatePassword(): void
     {
-        static::withRetries(function () {
-            $this->browse(function (Browser $browserMain, Browser $browserOther) {
-                $userFactory = User::factory();
+        $this->browseWithRetries(function (Browser $browserMain, Browser $browserOther) {
+            $userFactory = User::factory();
 
-                $password = $userFactory::DEFAULT_PASSWORD;
-                $user = $userFactory->create();
+            $password = $userFactory::DEFAULT_PASSWORD;
+            $user = $userFactory->create();
 
-                $browsers = collect([$browserMain, $browserOther]);
+            $browsers = collect([$browserMain, $browserOther]);
 
-                $browsers->each(fn ($browser) => (
-                    $browser->visit('/')
-                        ->clickLink('Sign in')
-                        ->type('username', $user->user_email)
-                        ->type('password', $password)
-                        ->press('Sign in')
-                ));
+            $browsers->each(fn ($browser) => (
+                $browser->visit('/')
+                    ->clickLink('Sign in')
+                    ->type('username', $user->user_email)
+                    ->type('password', $password)
+                    ->press('Sign in')
+            ));
 
-                $browsers->each(fn ($browser) => $browser->waitFor('.user-home'));
+            $browsers->each(fn ($browser) => $browser->waitFor('.user-home'));
 
-                $newPassword = str_random(20);
+            $newPassword = str_random(20);
 
-                $browserMain->visit('/_dusk/verify')
-                    ->visitRoute('account.edit')
-                    ->type('.js-password-update input[name="user[current_password]"]', $password)
-                    ->type('.js-password-update input[name="user[password]"]', $newPassword)
-                    ->type('.js-password-update input[name="user[password_confirmation]"]', $newPassword)
-                    ->press('.js-password-update button[type=submit]')
-                    ->waitForText('Saved')
-                    ->clickLink('home')
-                    ->waitFor('.user-home');
+            $browserMain->visit('/_dusk/verify')
+                ->visitRoute('account.edit')
+                ->type('.js-password-update input[name="user[current_password]"]', $password)
+                ->type('.js-password-update input[name="user[password]"]', $newPassword)
+                ->type('.js-password-update input[name="user[password_confirmation]"]', $newPassword)
+                ->press('.js-password-update button[type=submit]')
+                ->waitForText('Saved')
+                ->clickLink('home')
+                ->waitFor('.user-home');
 
-                $browserOther
-                    ->visit('/')
-                    ->assertVisible('.landing-hero');
-            });
+            $browserOther
+                ->visit('/')
+                ->assertVisible('.landing-hero');
         });
     }
 }

@@ -46,12 +46,12 @@ abstract class DuskTestCase extends BaseTestCase
         $browser->driver->manage()->deleteAllCookies();
     }
 
-    protected static function withRetries(callable $test): void
+    protected function browseWithRetries(callable $callback): void
     {
         $attempts = 1;
         while (true) {
             try {
-                $test();
+                $this->browse($callback);
                 break;
             } catch (TimeoutException $e) {
                 if ($attempts++ > 5) {

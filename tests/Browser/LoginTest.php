@@ -38,18 +38,15 @@ class LoginTest extends DuskTestCase
     {
         $user = User::factory()->create();
 
-        static::withRetries(function () use ($user) {
-            $this->browse(function (Browser $browser) use ($user) {
-                $browser->loginAs($user)
-                    ->visit('/')
-                    ->click('.js-user-login--menu') // bring up user menu
-                    ->waitFor('.js-user-header-popup .js-logout-link')
-                    ->click('.js-user-header-popup .js-logout-link') // click the logout 'button'
-                    ->acceptDialog()
-                    ->waitFor('.landing-hero__bg-container')
-                    ->assertPathIs('/')
-                    ->assertVisible('.landing-hero');
-            });
-        });
+        $this->browseWithRetries(fn (Browser $browser) =>
+            $browser->loginAs($user)
+                ->visit('/')
+                ->click('.js-user-login--menu') // bring up user menu
+                ->waitFor('.js-user-header-popup .js-logout-link')
+                ->click('.js-user-header-popup .js-logout-link') // click the logout 'button'
+                ->acceptDialog()
+                ->waitFor('.landing-hero__bg-container')
+                ->assertPathIs('/')
+                ->assertVisible('.landing-hero'));
     }
 }
