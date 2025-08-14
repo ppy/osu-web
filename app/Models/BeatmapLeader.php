@@ -26,7 +26,6 @@ class BeatmapLeader extends Model
     {
         $searchParams = ScoreSearchParams::fromArray([
             'beatmap_ids' => [$beatmapId],
-            'is_legacy' => false,
             'limit' => 1,
             'ruleset_id' => $rulesetId,
             'sort' => 'score_desc',
