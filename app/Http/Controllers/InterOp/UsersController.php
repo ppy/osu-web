@@ -59,11 +59,11 @@ class UsersController extends Controller
 
     public function firstPlaceLost($userId, $beatmapId, $rulesetId)
     {
-        $params = request()->all();
-        abort_unless(isset($params['legacy_score_event']), 422, 'missing legacy_score_event parameter');
+        $legacyScoreEvent = get_bool(request('legacy_score_event'));
+        abort_unless(isset($legacyScoreEvent), 422, 'missing legacy_score_event parameter');
 
         Event::generate('rankLost', [
-            'legacy_score_event' => get_bool($params['legacy_score_event']),
+            'legacy_score_event' => $legacyScoreEvent,
             'beatmap' => Beatmap::findOrFail($beatmapId),
             'ruleset' => Beatmap::modeStr($rulesetId),
             'user' => User::findOrFail($userId),
