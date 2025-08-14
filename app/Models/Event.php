@@ -198,6 +198,29 @@ class Event extends Model
                 ];
                 break;
 
+            case 'rankLost':
+                $beatmap = $options['beatmap'];
+                $ruleset = $options['ruleset'];
+                $user = $options['user'];
+                $legacyScoreEvent = $options['legacy_score_event'];
+
+                $rulesetName = osu_trans("beatmaps.mode.{$ruleset}");
+                $beatmapLink = static::beatmapLink($beatmap, $ruleset);
+                $userLink = static::userLink($user);
+
+                $template = '%s has lost first place on %s (%s)';
+                $params = [
+                    'text' => sprintf($template, tag('b', [], $userLink['html']), $beatmapLink['html'], $rulesetName),
+                    'text_clean' => sprintf($template, $userLink['clean'], $beatmapLink['clean'], $rulesetName),
+                    'beatmap_id' => $beatmap->getKey(),
+                    'beatmapset_id' => $beatmap->beatmapset->getKey(),
+                    'user_id' => $user->getKey(),
+                    'private' => false,
+                    'epicfactor' => 2,
+                    'legacy_score_event' => $legacyScoreEvent,
+                ];
+                break;
+
             case 'usernameChange':
                 $user = $options['user'];
                 $history = $options['history'];

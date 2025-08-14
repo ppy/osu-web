@@ -640,6 +640,7 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
 
         Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'UsersController@achievement')->name('users.achievement');
         Route::post('users/{user}/{beatmap}/{ruleset}/rank-achieved', 'UsersController@rankAchieved')->name('users.rank-achieved');
+        Route::post('users/{user}/{beatmap}/{ruleset}/first-place-lost', 'UsersController@firstPlaceLost')->name('users.first-place-lost');
 
         Route::group(['as' => 'user-group.'], function () {
             Route::put('users/{user}/groups/{group}', 'UserGroupsController@update')->name('update');

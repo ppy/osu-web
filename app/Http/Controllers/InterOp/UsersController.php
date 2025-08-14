@@ -54,7 +54,20 @@ class UsersController extends Controller
         $params['user'] = User::findOrFail($userId);
 
         Event::generate('rank', $params);
-        // TODO: also emit lost first place rank event when relevant
+        return response([], 204);
+    }
+
+    public function firstPlaceLost($userId, $beatmapId, $rulesetId)
+    {
+        $legacyScoreEvent = get_bool(request('legacy_score_event'));
+        abort_unless(isset($legacyScoreEvent), 422, 'missing legacy_score_event parameter');
+
+        Event::generate('rankLost', [
+            'legacy_score_event' => $legacyScoreEvent,
+            'beatmap' => Beatmap::findOrFail($beatmapId),
+            'ruleset' => Beatmap::modeStr($rulesetId),
+            'user' => User::findOrFail($userId),
+        ]);
         return response([], 204);
     }
 
