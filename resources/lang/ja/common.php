@@ -94,10 +94,10 @@ return [
 
     'datetime' => [
         'month' => [
-            'php' => '',
+            'php' => '月',
         ],
         'year' => [
-            'php' => '',
+            'php' => '年',
         ],
         'year_month' => [
             'moment' => 'YYYY年MM月',

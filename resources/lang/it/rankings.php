@@ -14,8 +14,8 @@ return [
         'top_10p' => 'Top 10% Punteggi',
         'top_50p' => 'Top 50% Punteggi',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'Ancora nessuna sfida giornaliera nella data specificata!',
+            'past' => 'Nessuna sfida giornaliera nella data specificata!',
         ],
     ],
 

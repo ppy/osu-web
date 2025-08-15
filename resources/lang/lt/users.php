@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Beatmap\'ai: :counts',
         'modding_description_empty' => 'Vartotojas nėra sukūręs beatmap\'ų...',

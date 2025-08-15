@@ -7,8 +7,8 @@ return [
     'error' => [
         'chat' => [
             'empty' => 'Nevar nosūtīt tukšu ziņu.',
-            'limit_exceeded' => 'Tu pārāk ātri sūtāt ziņas, lūdzu, nedaudz uzgaidiet, pirms mēģiniet vēlreiz.',
-            'too_long' => 'Ziņa, ko mēģināji nosūtīt, ir pārāk gara.',
+            'limit_exceeded' => 'Tu pārāk ātri sūtāt ziņas, lūdzu, nedaudz uzgaidi, pirms mēģini vēlreiz.',
+            'too_long' => 'Ziņa, kuru tu mēģināji nosūtīt, ir pārāk gara.',
         ],
     ],
 

@@ -5,7 +5,7 @@
 
 return [
     'mode' => [
-        'artist_track' => 'Iemīļoto Mākslinieku Dziesmas',
+        'artist_track' => 'Kontraktēto Mākslinieku Dziesmas',
         'beatmapset' => 'Bītmapes',
         'forum_post' => 'Forums',
         'other' => 'Cits',

@@ -64,11 +64,11 @@ return [
             '_' => 'σχόλια',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'διαγωνισμός κρίνοντας αποτελέσματα',
         ],
         'contests_controller' => [
             '_' => 'διαγωνισμοί',
-            'judge' => '',
+            'judge' => 'διαγωνισμός κρίνοντας',
         ],
         'groups_controller' => [
             'show' => 'ομάδες',
@@ -81,7 +81,7 @@ return [
             'testflight' => 'δοκιμή',
         ],
         'legacy_matches_controller' => [
-            '_' => '',
+            '_' => 'αγώνες',
         ],
         'legal_controller' => [
             '_' => 'πληροφορίες',
@@ -108,17 +108,17 @@ return [
             '_' => 'κατατάξεις',
         ],
         'teams_controller' => [
-            '_' => '',
-            'create' => '',
-            'edit' => '',
-            'leaderboard' => '',
-            'show' => '',
+            '_' => 'ομάδες',
+            'create' => 'δημιουργία ομάδας',
+            'edit' => 'ρυθμίσεις ομάδας',
+            'leaderboard' => 'πίνακας κατάταξης',
+            'show' => 'πληροφορίες ομάδας',
         ],
         'tournaments_controller' => [
             '_' => 'πρωταθλήματα',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'προεπιλογές καλύμματος χρήστη',
         ],
         'users_controller' => [
             '_' => 'πληροφορίες παίκτη',
@@ -131,7 +131,7 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            'events' => '',
+            'events' => 'ιστορικό δωματίου',
         ],
     ],
     'passport' => [
@@ -144,7 +144,7 @@ return [
     ],
     'teams' => [
         'members_controller' => [
-            'index' => '',
+            'index' => 'μέλη ομάδας',
         ],
     ],
     'users' => [

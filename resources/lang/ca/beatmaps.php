@@ -41,8 +41,8 @@ return [
         'unresolved_count' => ':count_delimited problema sense resoldre|:count_delimited problemes sense resoldre',
 
         'collapse' => [
-            'all-collapse' => 'Replegar-ho tot',
-            'all-expand' => 'Ampliar-ho tot',
+            'all-collapse' => 'Plega-ho tot',
+            'all-expand' => 'Expandeix-ho tot',
         ],
 
         'empty' => [

@@ -179,7 +179,7 @@ return [
         ],
 
         'post_edit' => [
-            'cancel' => 'Cancella',
+            'cancel' => 'Annulla',
             'post' => 'Salva',
         ],
     ],

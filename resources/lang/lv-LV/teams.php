@@ -157,7 +157,7 @@ return [
         ],
 
         'statistics' => [
-            'empty_slots' => '',
+            'empty_slots' => ':count_delimited vieta brīva|:count_delimited vietas brīvas',
             'leader' => 'Komandas Līderis',
             'rank' => 'Rangs',
         ],

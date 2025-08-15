@@ -157,7 +157,7 @@ return [
         ],
 
         'statistics' => [
-            'empty_slots' => '',
+            'empty_slots' => ':count_delimited ranura disponible|:count_delimited ranures disponibles',
             'leader' => 'Líder de l\'equip',
             'rank' => 'Posició',
         ],

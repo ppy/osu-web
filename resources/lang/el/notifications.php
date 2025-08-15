@@ -92,72 +92,72 @@ return [
             ],
 
             'comment' => [
-                '_' => '',
+                '_' => 'Νέο σχόλιο',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_new' => ':username σχολίασε \'\':content\'\' στο \'\':title\'\'',
+                'comment_new_compact' => ':username σχολίασε \'\':content\'\'',
+                'comment_reply' => ':username απάντησε με \'\':content\'\' στο \'\':title\'\'',
+                'comment_reply_compact' => ':username απάντησε με \'\':content\'\'',
             ],
         ],
 
         'channel' => [
-            '_' => '',
+            '_' => 'Συνομιλία',
 
             'announcement' => [
-                '_' => '',
+                '_' => 'Νέα ανακοίνωση',
 
                 'announce' => [
-                    'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
-                    'channel_announcement_group' => '',
+                    'channel_announcement' => ':username λέει \'\':title\'\'',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Ανακοίνωση από :username',
                 ],
             ],
 
             'channel' => [
-                '_' => '',
+                '_' => 'Νέο μήνυμα',
 
                 'pm' => [
-                    'channel_message' => '',
-                    'channel_message_compact' => '',
-                    'channel_message_group' => '',
+                    'channel_message' => ':username λέει ":title"',
+                    'channel_message_compact' => ':title',
+                    'channel_message_group' => 'από :username',
                 ],
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => 'Νέο μήνυμα ομάδας',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username λέει ":title"',
+                    'channel_team_compact' => ':username λέει ":title"',
+                    'channel_team_group' => ':username λέει ":title"',
                 ],
             ],
         ],
 
         'build' => [
-            '_' => '',
+            '_' => 'Αλλαγές',
 
             'comment' => [
-                '_' => '',
+                '_' => 'Νέο σχόλιο',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_new' => ':username σχολίασε \'\':content\'\' στο \'\':title\'\'',
+                'comment_new_compact' => ':username σχολίασε ":content"',
+                'comment_reply' => ':username απάντησε με \'\':content\'\' στο \'\':title\'\'',
+                'comment_reply_compact' => ':username απάντησε με \'\':content\'\'',
             ],
         ],
 
         'news_post' => [
-            '_' => '',
+            '_' => 'Νέα',
 
             'comment' => [
-                '_' => '',
+                '_' => 'Νέο σχόλιο',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_new' => ':username σχολίασε \'\':content\'\' στο \'\':title\'\'',
+                'comment_new_compact' => ':username σχολίασε ":content"',
+                'comment_reply' => ':username απάντησε με \'\':content\'\' στο \'\':title\'\'',
+                'comment_reply_compact' => ':username απάντησε με \'\':content\'\'',
             ],
         ],
 
@@ -167,47 +167,47 @@ return [
             'forum_topic_reply' => [
                 '_' => 'Νέα απάντηση στο forum',
                 'forum_topic_reply' => 'O χρήστης:username απάντησε στο θέμα του forum ":title".',
-                'forum_topic_reply_compact' => '',
+                'forum_topic_reply_compact' => ':username απάντησε',
             ],
         ],
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Αίτημα συμμετοχής ομάδας',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
+                'team_application_accept' => "Είσαι τώρα μέλος της ομάδας :title ",
+                'team_application_accept_compact' => "Είσαι τώρα μέλος της ομάδας :title ",
 
-                'team_application_group' => '',
+                'team_application_group' => 'Ενημερώσεις αιτήματος συμμετοχής ομάδας',
 
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_reject' => 'Το αίτημά σου για ένταξη στην ομάδα :title έχει απορριφθεί',
+                'team_application_reject_compact' => 'Το αίτημά σου για ένταξη στην ομάδα :title έχει απορριφθεί',
+                'team_application_store' => ':title έκανε αίτημα για να μπει στην ομάδα σου',
+                'team_application_store_compact' => ':title έκανε αίτημα για να μπει στην ομάδα σου',
             ],
         ],
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Νέο beatmap',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => 'Νέο beatmap ":title" από :username',
+                'user_beatmapset_new_compact' => 'Νέο beatmap ":title"',
+                'user_beatmapset_new_group' => 'Νέα beatmaps από :username',
 
-                'user_beatmapset_revive' => '',
-                'user_beatmapset_revive_compact' => '',
+                'user_beatmapset_revive' => 'Beatmap ":title" αναβιώθηκε από :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" αναβιώθηκε',
             ],
         ],
 
         'user_achievement' => [
-            '_' => '',
+            '_' => 'Μετάλλια',
 
             'user_achievement_unlock' => [
-                '_' => '',
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_compact' => '',
-                'user_achievement_unlock_group' => '',
+                '_' => 'Νέο μετάλλιο',
+                'user_achievement_unlock' => 'Ξεκλείδωτο ":title"!',
+                'user_achievement_unlock_compact' => 'Ξεκλείδωτο ":title"!',
+                'user_achievement_unlock_group' => 'Μετάλλια ξεκλειδώθηκαν!',
             ],
         ],
     ],
@@ -215,76 +215,76 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'Είσαι τώρα επισκέπτης του beatmap \'\':title\'\'',
             ],
 
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_lock' => 'Η συζήτηση στο ":title" έχει κλείσει',
+                'beatmapset_discussion_post_new' => 'Η συζήτηση στο ":title" έχει νέες ενημερώσεις',
+                'beatmapset_discussion_unlock' => 'Η συζήτηση στο ":title" έχει ανοίξει',
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem' => 'Ένα νέο πρόβλημα αναφέρθηκε στο ":title"',
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_disqualify' => '":title" έχει αποκλειστεί',
+                'beatmapset_love' => '":title" προωθήθηκε στα αγαπημένα',
+                'beatmapset_nominate' => 'Το ":title" έχει καταταχθεί',
+                'beatmapset_qualify' => '":title" έχει κερδίσει αρκετές υποψηφιότητες και έχει εισέλθει στην ουρά κατάταξης',
+                'beatmapset_rank' => '":title" έχει καταταχθεί',
+                'beatmapset_remove_from_loved' => '":title" αφαιρέθηκε από τα αγαπημένα',
+                'beatmapset_reset_nominations' => 'Η υποψηφιότητα του \'\':title\'\' έχει επαναφερθεί',
             ],
 
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Το beatmap \'\':title\'\' έχει νέα σχόλια',
             ],
         ],
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => 'Υπάρχει μια νέα ανακοίνωση στο ":name"',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => 'Έλαβες ένα νέο μήνυμ από :username',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'Υπάρχει ένα νέο μήνυμα στην ομάδα ":name"',
             ],
         ],
 
         'build' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Το ημερολόγιο αλλαγών \'\':title\'\' έχει νέα σχόλια',
             ],
         ],
 
         'news_post' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Νέα ":title" έχει νέα σχόλια',
             ],
         ],
 
         'forum_topic' => [
             'forum_topic_reply' => [
-                'forum_topic_reply' => '',
+                'forum_topic_reply' => 'Υπάρχουν νέες απαντήσεις στο ":title"',
             ],
         ],
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
-                'team_application_store' => '',
+                'team_application_accept' => "Είσαι τώρα μέλος της ομάδας :title ",
+                'team_application_reject' => 'Το αίτημά σου για ένταξη στην ομάδα :title έχει απορριφθεί',
+                'team_application_store' => ':title έκανε αίτημα για να μπει στην ομάδα σου',
             ],
         ],
 
         'user' => [
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_new' => ':username έχει δημιουργήσει νέα beatmaps',
+                'user_beatmapset_revive' => ':username έχει αναβιώσει beatmaps',
             ],
         ],
     ],

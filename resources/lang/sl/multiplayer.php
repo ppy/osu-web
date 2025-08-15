@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Igre osu!(lazer) :type_group še niso bile odigrane!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'seznam pesmi',
         'realtime' => 'večigralski način',
     ],

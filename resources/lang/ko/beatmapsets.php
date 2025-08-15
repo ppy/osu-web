@@ -69,7 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => '전체 사이즈 커버 이미지 보기',
-            'page' => '',
+            'page' => '관리자 페이지 확인',
         ],
 
         'deleted_banner' => [

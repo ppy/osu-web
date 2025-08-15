@@ -138,14 +138,14 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => '',
+            'contribution_with_duration' => 'Merci pour votre soutien ! Jusqu\'à présent, vous avez contribué pour un total de :dollars, ce qui équivaut à :duration de durée totale pour votre tag osu!supporter.',
             'not_yet' => "Vous n'avez pas de tag osu!supporter :(",
             'valid_until' => 'Votre tag osu!supporter actuel est valable jusqu\'au :date !',
             'was_valid_until' => 'Votre tag osu!supporter était valable jusqu\'au :date.',
 
             'gifted' => [
-                '_' => '',
-                'users' => '',
+                '_' => 'Parmi toutes vos contributions, vous avez offert pour une valeur totale de :dollars en tags osu!supporters, offerts à :users, pour une durée totale de :duration. Quelle générosité !',
+                'users' => ':count_delimited autre personne|:count_delimited autres personnes',
             ],
         ],
     ],

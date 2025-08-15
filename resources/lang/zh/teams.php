@@ -157,7 +157,7 @@ return [
         ],
 
         'statistics' => [
-            'empty_slots' => '',
+            'empty_slots' => ':count_delimited 栏位可用',
             'leader' => '队长',
             'rank' => '排名',
         ],

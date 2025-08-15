@@ -159,7 +159,7 @@ return [
 
         'status-messages' => [
             'approved' => '이 비트맵은 :date에 Approved 상태가 되었습니다!',
-            'graveyard' => "이 비트맵은 :date 이후로 업데이트되지 않았고, 제작자에게 버려진 것 같습니다..",
+            'graveyard' => "본 비트맵이 :date 이후로 업데이트되지 않은 걸 보니 버려진 것 같네요...",
             'loved' => '이 비트맵은 :date에 Loved 되었습니다!',
             'ranked' => '이 비트맵은 :date에 Ranked 상태가 되었습니다!',
             'wip' => '안내: 이 비트맵은 제작자가 제작 중으로 표시한 맵입니다.',

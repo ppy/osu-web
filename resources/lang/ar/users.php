@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'الخرائط: :counts',
         'modding_description_empty' => 'ليس لدى المستخدم أي خرائط...',

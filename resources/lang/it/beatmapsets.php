@@ -69,7 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Mostra copertina a grandezza intera',
-            'page' => '',
+            'page' => 'Visualizza la pagina amministratore',
         ],
 
         'deleted_banner' => [
@@ -105,7 +105,7 @@ return [
             'loved' => 'amata :timeago',
             'qualified' => 'qualificata :timeago',
             'ranked' => 'classificata :timeago',
-            'submitted' => 'inviata :timeago',
+            'submitted' => 'caricata :timeago',
             'updated' => 'ultimo aggiornamento :timeago',
         ],
 

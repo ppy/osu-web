@@ -155,7 +155,7 @@ return [
         ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => 'Adminkonsole öffnen',
             ],
         ],
     ],

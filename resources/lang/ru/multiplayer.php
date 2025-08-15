@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Пока не сыграно ни одной игры в :type_group osu!(lazer)',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'плейлистах',
         'realtime' => 'мультиплеере',
     ],
@@ -17,7 +18,7 @@ return [
         'player_count' => ':count_delimited игрок|:count_delimited игрока|:count_delimited игроков',
         'time_left' => 'осталось :time',
         'view_history' => 'Открыть историю',
-        'view_summary' => 'Открыть сводку',
+        'view_summary' => 'Вернуться к сводке',
 
         'errors' => [
             'duration_too_long' => 'Слишком большая продолжительность.',

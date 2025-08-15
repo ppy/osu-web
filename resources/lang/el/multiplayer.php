@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Κανένα osu!(lazer) :type_group παιχνίδια παίχτηκαν ακόμα!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'λίστες αναπαραγωγής',
         'realtime' => 'multiplayer',
     ],
@@ -16,8 +17,8 @@ return [
         'map_count' => ':count_delimited χάρτες:count_delimited',
         'player_count' => ':count_delimited παίκτης|:count_delimited παίκτες',
         'time_left' => 'απέμειναν :time',
-        'view_history' => '',
-        'view_summary' => '',
+        'view_history' => 'Προβολή Ιστορικού',
+        'view_summary' => 'Προβολή Σύνοψης',
 
         'errors' => [
             'duration_too_long' => 'Η διάρκεια είναι πολύ μεγάλη.',

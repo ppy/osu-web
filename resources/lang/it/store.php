@@ -146,7 +146,7 @@ return [
         ],
 
         'status' => [
-            'cancelled' => 'Cancellato',
+            'cancelled' => 'Annullato',
             'checkout' => 'In Preparazione',
             'delivered' => 'Consegnato',
             'paid' => 'Pagato',

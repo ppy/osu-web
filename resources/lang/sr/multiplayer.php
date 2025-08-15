@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Нема osu!(lazer) :type_group игара још увек!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'плејлисте',
         'realtime' => 'мултиплејер',
     ],

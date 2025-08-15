@@ -5,15 +5,15 @@
 
 return [
     'invalid_scope' => [
-        'all_scope_no_client_credentials' => '',
-        'all_scope_no_mix' => '',
-        'client_missing_owner' => '',
-        'client_unauthorized' => '',
-        'delegate_bot_only' => '',
-        'delegate_client_credentials_only' => '',
-        'delegate_invalid_combination' => '',
-        'delegate_required' => '',
-        'empty' => '',
-        'bot_only' => '',
+        'all_scope_no_client_credentials' => '* no està permès amb credencials de client',
+        'all_scope_no_mix' => '* no està permès amb altres àmbits',
+        'client_missing_owner' => 'Al client li falta el propietari.',
+        'client_unauthorized' => 'El client no està autoritzat.',
+        'delegate_bot_only' => 'La delegació amb credencials de client només és disponible per a bots del xat.',
+        'delegate_client_credentials_only' => 'l\'àmbit delegat només és vàlid per a testimonis de client_credentials.',
+        'delegate_invalid_combination' => 'La delegació no suporta aquesta combinació d\'àmbits.',
+        'delegate_required' => 'es requereix un àmbit delegat.',
+        'empty' => 'Els testimonis sense àmbit no són vàlids.',
+        'bot_only' => 'Aquest àmbit només està disponible per als bots del xat i els vostres propis clients.',
     ],
 ];

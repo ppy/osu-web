@@ -8,8 +8,8 @@ return [
     'heading' => 'Galvene',
     'help' => 'Palīdzība',
     'image' => 'Attēls',
-    'imagemap' => 'Attēla karte',
-    'italic' => 'Slīprraksts',
+    'imagemap' => 'Attēla Karte',
+    'italic' => 'Slīpraksts',
     'link' => 'Saite',
     'list' => 'Saraksts',
     'list_numbered' => 'Numurēts Saraksts',
@@ -20,6 +20,6 @@ return [
         'normal' => 'Vidējs',
         'large' => 'Liels',
     ],
-    'spoilerbox' => 'Spoilera lodziņš',
+    'spoilerbox' => 'Slēptā kaste',
     'strikethrough' => 'Izsvītrojums',
 ];

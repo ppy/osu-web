@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Beatmap: :counts',
         'modding_description_empty' => 'L\'utente non ha beatmap...',
@@ -161,15 +168,15 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
-                'policy' => '',
+                '_' => 'Segnala le violazioni del copyright attraverso un reclamo DMCA a :mail, come da :policy.',
+                'policy' => 'normativa sulla privacy di osu!',
             ],
-            'message_2' => '',
+            'message_2' => 'Questo vale per i casi in cui le tracce audio, il contenuto visivo o il contenuto del livello beatmap vengono utilizzati senza il corretto permesso.',
         ],
 
         'options' => [
             'cheating' => 'Gioco scorretto / Cheating',
-            'copyright_infringement' => '',
+            'copyright_infringement' => 'Violazione del copyright',
             'inappropriate_chat' => 'Comportamento inappropriato in chat',
             'insults' => 'Insulti a me / altri',
             'multiple_accounts' => 'Uso di account multipli',
@@ -495,7 +502,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Precisione dei Colpi',
-            'hits_per_play' => '',
+            'hits_per_play' => 'Colpi Per Partita',
             'level' => 'Livello :level',
             'level_progress' => 'Avanzamento al livello successivo',
             'maximum_combo' => 'Combo Massima',

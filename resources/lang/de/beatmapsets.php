@@ -69,7 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Titelbild in Originalgröße anzeigen',
-            'page' => '',
+            'page' => 'Admin-Seite anzeigen',
         ],
 
         'deleted_banner' => [

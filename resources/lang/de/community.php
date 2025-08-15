@@ -138,14 +138,14 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => '',
+            'contribution_with_duration' => 'Danke für deine ständige Unterstützung! Bis jetzt hast du insgesamt :dollars beigetragen, wodurch du das osu!supporter-Tag für :duration bekommen hast.',
             'not_yet' => "Du hast noch kein osu!supporter-Tag :(",
             'valid_until' => 'Dein aktuelles osu!supporter-Tag endet am :date!',
             'was_valid_until' => 'Dein osu!supporter-Tag war bis :date gültig.',
 
             'gifted' => [
-                '_' => '',
-                'users' => '',
+                '_' => 'Von deinem Gesamtbeitrag hast du Tags im Wert von :dollars an :users verschenkt, die :duration abdecken. Wie großzügig!',
+                'users' => ':count_delimited anderen Nutzer|:count_delimited andere Nutzer',
             ],
         ],
     ],

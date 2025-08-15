@@ -30,7 +30,7 @@ return [
         'click_to_copy' => 'clica per copiar al porta-retalls',
         'click_to_copy_copied' => 'copiat al porta-retalls!',
         'close' => 'Tanca',
-        'collapse' => 'redueix',
+        'collapse' => 'plega',
         'delete' => 'Eliminar',
         'edit' => 'Editar',
         'expand' => 'expandir',
@@ -94,10 +94,10 @@ return [
 
     'datetime' => [
         'month' => [
-            'php' => '',
+            'php' => 'm',
         ],
         'year' => [
-            'php' => '',
+            'php' => 'a',
         ],
         'year_month' => [
             'moment' => 'MMMM YYYY',

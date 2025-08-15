@@ -20,8 +20,8 @@ return [
             'new_confirmation' => 'potvrdenie emailu',
             'title' => 'Email',
             'locked' => [
-                '_' => 'Prosím kontaktuje :accounts ak potrebujete aktualizovať svoj email.',
-                'accounts' => 'tím podpory účtu',
+                '_' => 'Prosím kontaktujte :accounts, ak potrebujete aktualizovať svoj email.',
+                'accounts' => 'tím podpory pre účty',
             ],
         ],
 
@@ -43,7 +43,7 @@ return [
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "Krajina vášho účtu nezodpovedá krajine vášho bydliska. :update_link.",
+                '_' => "Zdá sa, že krajina vášho účtu nezodpovedá krajine vášho bydliska. :update_link.",
                 'update_link' => 'Aktualizovať na :country',
             ],
 

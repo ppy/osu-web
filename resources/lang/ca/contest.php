@@ -30,9 +30,9 @@ return [
         '_' => 'Resultats de l\'avaluació',
         'creator' => 'creador',
         'score' => 'Puntuació',
-        'score_std' => '',
+        'score_std' => 'Puntuació Estandarditzada',
         'total_score' => 'puntuació total',
-        'total_score_std' => '',
+        'total_score_std' => 'puntuació estandarditzada total',
     ],
 
     'voting' => [
@@ -89,7 +89,7 @@ return [
         'list' => 'vots',
         'count' => ':count_delimited vot |:count_delimited vots',
         'points' => ':count_delimited punt|:count_delimited punts',
-        'points_float' => '',
+        'points_float' => ':points punts',
     ],
 
     'dates' => [
@@ -110,7 +110,7 @@ return [
 
     'show' => [
         'admin' => [
-            'page' => '',
+            'page' => 'Veure info i entrades',
         ],
     ],
 ];

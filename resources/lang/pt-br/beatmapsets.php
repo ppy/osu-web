@@ -69,7 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Ver a imagem da capa em tamanho real',
-            'page' => '',
+            'page' => 'Visualizar página do administrador',
         ],
 
         'deleted_banner' => [

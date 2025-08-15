@@ -157,7 +157,7 @@ return [
         ],
 
         'statistics' => [
-            'empty_slots' => '',
+            'empty_slots' => 'доступно :count_delimited место|доступно :count_delimited места|доступно :count_delimited мест',
             'leader' => 'Капитан команды',
             'rank' => 'Рейтинг в мире',
         ],

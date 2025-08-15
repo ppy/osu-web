@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Пакуль што няма :type_group гульняў ў osu!lazer',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'плэйліст',
         'realtime' => 'мультыплэер',
     ],

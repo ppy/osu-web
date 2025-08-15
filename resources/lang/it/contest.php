@@ -30,9 +30,9 @@ return [
         '_' => 'Risultati della valutazione',
         'creator' => 'autore',
         'score' => 'Punteggio',
-        'score_std' => '',
+        'score_std' => 'Punteggio standardizzato',
         'total_score' => 'punteggio totale',
-        'total_score_std' => '',
+        'total_score_std' => 'punteggio standardizzato totale',
     ],
 
     'voting' => [
@@ -110,7 +110,7 @@ return [
 
     'show' => [
         'admin' => [
-            'page' => '',
+            'page' => 'Vedi info e voci',
         ],
     ],
 ];
