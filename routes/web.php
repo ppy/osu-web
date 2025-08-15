@@ -319,6 +319,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('teams', 'TeamsController', ['only' => ['create', 'destroy', 'edit', 'store', 'update']]);
     Route::get('teams/{team}/{ruleset?}', 'TeamsController@show')->name('teams.show');
 
+    Route::resource('user-totp', 'UserTotpController', ['only' => ['create', 'store']]);
+    Route::get('user-totp/edit', 'UserTotpController@edit')->name('user-totp.edit');
+    Route::delete('user-totp', 'UserTotpController@destroy')->name('user-totp.destroy');
+    Route::post('user-totp/issue-uri', 'UserTotpController@issueUri')->name('user-totp.issue-uri');
+
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
     Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');
     Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled');
