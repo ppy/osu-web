@@ -110,7 +110,7 @@ return [
 
     'show' => [
         'admin' => [
-            'page' => '',
+            'page' => 'Ver información y envíos',
         ],
     ],
 ];

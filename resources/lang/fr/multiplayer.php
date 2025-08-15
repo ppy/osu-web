@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Pas de parties :type_group jouées sur osu!(lazer) pour le moment !',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'playlist',
         'realtime' => 'multijoueur',
     ],

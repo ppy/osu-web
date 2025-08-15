@@ -5,15 +5,15 @@
 
 return [
     'invalid_scope' => [
-        'all_scope_no_client_credentials' => '',
-        'all_scope_no_mix' => '',
-        'client_missing_owner' => '',
-        'client_unauthorized' => '',
-        'delegate_bot_only' => '',
-        'delegate_client_credentials_only' => '',
-        'delegate_invalid_combination' => '',
-        'delegate_required' => '',
-        'empty' => '',
-        'bot_only' => '',
+        'all_scope_no_client_credentials' => '* 不允许使用客户端证书',
+        'all_scope_no_mix' => '* 在其他作用域内无效',
+        'client_missing_owner' => '客户端缺少所有者。',
+        'client_unauthorized' => '客户端未授权。',
+        'delegate_bot_only' => '只有聊天机器人可以使用包含客户端认证的委托。',
+        'delegate_client_credentials_only' => '只有客户端认证令牌才能指定委托范围。',
+        'delegate_invalid_combination' => '在此作用域组合下无法使用委托。',
+        'delegate_required' => '需要填写委托作用域。',
+        'empty' => '不包含作用域的令牌无效。',
+        'bot_only' => '此作用域仅适用于聊天机器人和你自己的客户端。',
     ],
 ];

@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Peta rentak: :counts',
         'modding_description_empty' => 'Pengguna ini tidak mempunyai apa-apa peta rentak...',

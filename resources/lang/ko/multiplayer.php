@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => '아직 아무런 osu!(lazer) :type_group 게임이 진행되지 않았습니다!',
+        'active' => '',
+        'ended' => '',
         'playlists' => '플레이리스트',
         'realtime' => '멀티플레이어',
     ],

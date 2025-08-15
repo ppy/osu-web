@@ -113,7 +113,7 @@ return [
             'copyright' => 'Drets d\'autor (DMCA)',
             'jp_sctl' => 'SCTL',
             'privacy' => 'Privacitat',
-            'rules' => '',
+            'rules' => 'Normes',
             'server_status' => 'Estat del servidor',
             'source_code' => 'Codi font',
             'terms' => 'Termes',

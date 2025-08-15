@@ -157,7 +157,7 @@ return [
         ],
 
         'statistics' => [
-            'empty_slots' => '',
+            'empty_slots' => ':count_delimited espacio disponible|:count_delimited espacios disponibles',
             'leader' => 'Líder del equipo',
             'rank' => 'Rango',
         ],

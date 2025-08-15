@@ -142,11 +142,11 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Mapa de Repte Diari',
             'new' => 'Mapes Classificats Nous',
             'popular' => 'Mapes Populars',
             'by_user' => 'per :user',
-            'resets' => '',
+            'resets' => 'resseteja :ends',
         ],
         'buttons' => [
             'download' => 'Descarrega l\'osu!',
@@ -155,7 +155,7 @@ return [
         ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => 'Obre la consola d\'admin',
             ],
         ],
     ],

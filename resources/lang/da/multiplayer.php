@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Ingen osu!(lazer) :type_group spil spillet endnu!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'playlist',
         'realtime' => 'multiplayer',
     ],

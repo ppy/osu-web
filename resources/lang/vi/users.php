@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Beatmap: :counts',
         'modding_description_empty' => 'Người dùng không có bất kỳ beatmap nào...',

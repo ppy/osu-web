@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => '谱面：:counts',
         'modding_description_empty' => '玩家没有任何谱面...',
@@ -161,15 +168,15 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
-                'policy' => '',
+                '_' => '请根据 :policy 向 :mail 以 DMCA 的形式报告侵权行为。',
+                'policy' => 'osu! 版权政策',
             ],
-            'message_2' => '',
+            'message_2' => '这适用于在没有正确权限的情况下使用音轨、视觉内容或谱面内容的情况。',
         ],
 
         'options' => [
             'cheating' => '作弊',
-            'copyright_infringement' => '',
+            'copyright_infringement' => '侵犯版权',
             'inappropriate_chat' => '不当的聊天行为',
             'insults' => '侮辱 我/其他人',
             'multiple_accounts' => '使用多账号（开小号）',

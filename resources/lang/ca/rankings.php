@@ -14,8 +14,8 @@ return [
         'top_10p' => 'Puntuació top 10%',
         'top_50p' => 'Puntuació top 50%',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'Encara no hi ha repte diari a la data especificada!',
+            'past' => 'No hi ha repte diari a la data especificada!',
         ],
     ],
 

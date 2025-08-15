@@ -113,7 +113,7 @@ return [
                 'deleted' => 'Nelze upravovat odstraněný příspěvek.',
                 'locked' => 'Příspěvek je uzamčen od upravování.',
                 'no_forum_access' => 'K vybranému fóru je vyžadován přístup.',
-                'no_permission' => '',
+                'no_permission' => 'Nemáte oprávnění upravovat.',
                 'not_owner' => 'Pouze autor může příspěvek upravit.',
                 'topic_locked' => 'Nelze upravit příspěvek uzamčeného tématu.',
             ],

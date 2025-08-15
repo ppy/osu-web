@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Uživatel zatím nehrál žádné :type_group osu!(lazer) hry!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'playlist',
         'realtime' => 'multiplayer',
     ],

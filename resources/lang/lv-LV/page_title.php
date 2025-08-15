@@ -32,7 +32,7 @@ return [
             'verify_link' => 'konta verifikācija',
         ],
         'artists_controller' => [
-            '_' => 'iemīļotie mākslinieki',
+            '_' => 'kontraktētie mākslinieki',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'ritma-mapju diskusijas raksts',

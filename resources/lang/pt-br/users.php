@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Beatmaps: :counts',
         'modding_description_empty' => 'O usuário não possui nenhum beatmap...',
@@ -161,15 +168,15 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
-                'policy' => '',
+                '_' => 'Por favor, denuncie a violação de direitos autorais através de uma reivindicação DMCA para :mail como :policy.',
+                'policy' => 'A política de direitos autorais do osu!',
             ],
-            'message_2' => '',
+            'message_2' => 'Isso se aplica a casos onde conteúdos de faixas de áudio, visual ou nível de beatmap são usados sem permissão correta.',
         ],
 
         'options' => [
             'cheating' => 'Jogando sujo / Trapaceando',
-            'copyright_infringement' => '',
+            'copyright_infringement' => 'Violação de direitos autorais',
             'inappropriate_chat' => 'Comportamento inadequado em conversa',
             'insults' => 'Me insultando / outros',
             'multiple_accounts' => 'Usando diversas contas',

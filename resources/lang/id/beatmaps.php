@@ -28,7 +28,7 @@ return [
         'kudosu_denied' => 'Perolehan kudosu ditolak.',
         'message_placeholder_deleted_beatmap' => 'Tingkat kesulitan ini telah dihapus sehingga diskusi lebih lanjut tidak lagi diperkenankan.',
         'message_placeholder_locked' => 'Diskusi pada beatmap ini telah ditutup.',
-        'message_placeholder_silenced' => "Kamu tidak dapat membuka topik diskusi baru ketika akunmu sedang di-silence.",
+        'message_placeholder_silenced' => "Kamu tidak dapat mengirim topik diskusi pada saat sedang di-silence.",
         'message_type_select' => 'Pilih Jenis Komentar',
         'reply_notice' => 'Tekan enter untuk membalas.',
         'reply_resolve_notice' => 'Tekan enter untuk membalas. Tekan ctrl+enter untuk membalas dan menutup topik diskusi.',
@@ -243,7 +243,7 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'ketik kata kunci pencarian...',
-            'login_required' => 'Silakan masuk untuk memulai pencarian.',
+            'login_required' => 'Silakan masuk untuk mencari.',
             'options' => 'Pilihan Pencarian Lebih Lanjut',
             'supporter_filter' => 'Penyaringan berdasarkan :filters memerlukan tag osu!supporter yang aktif',
             'not-found' => 'tidak ada hasil',

@@ -5,11 +5,11 @@
 
 return [
     'mode' => [
-        'artist_track' => '',
+        'artist_track' => 'Προτεινόμενο Κομμάτι Καλλιτέχνη',
         'beatmapset' => 'Beatmap',
         'forum_post' => 'Φόρουμ',
         'other' => 'Άλλο',
-        'team' => '',
+        'team' => 'Ομάδα',
         'user' => 'Παίκτης',
         'wiki_page' => 'Wiki',
     ],

@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Inga osu!(lazer) :type_group -spel spelade än!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'spellista',
         'realtime' => 'flerspelarläge',
     ],

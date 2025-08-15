@@ -7,7 +7,7 @@ return [
     'load_failed' => 'Daten konnten nicht geladen werden.',
     'missing_route' => 'Ungültige URL oder falsches Anfrageverfahren.',
     'no_restricted_access' => 'Diese Aktion steht nicht zur Verfügung, während der Account restricted ist.',
-    'param_too_large' => '',
+    'param_too_large' => 'Der Parameter :name darf maximal :count_delimited Item enthalten|Der Parameter :name darf maximal :count_delimited Items enthalten',
     'supporter_only' => 'Du musst ein osu!supporter sein, um dieses Feature zu nutzen.',
     'unknown' => 'Unbekannter Fehler aufgetreten.',
 

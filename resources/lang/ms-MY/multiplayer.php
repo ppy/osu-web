@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Tiada mainan osu!(lazer) :type_group dimain lagi!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'senarai main',
         'realtime' => 'pemain ramai',
     ],

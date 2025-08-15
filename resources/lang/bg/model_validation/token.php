@@ -12,8 +12,8 @@ return [
         'delegate_bot_only' => '',
         'delegate_client_credentials_only' => '',
         'delegate_invalid_combination' => '',
-        'delegate_required' => '',
-        'empty' => '',
-        'bot_only' => '',
+        'delegate_required' => 'изисква се обхват на делегат.',
+        'empty' => 'Токените без обхвати са невалидни.',
+        'bot_only' => 'Този обхват е достъпен само за чат ботове или ваши собствени клиенти.',
     ],
 ];

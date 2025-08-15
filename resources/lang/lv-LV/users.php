@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Ritma-mapes :counts',
         'modding_description_empty' => 'Lietotājam nav ritma-mapes...',
@@ -161,15 +168,15 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
-                'policy' => '',
+                '_' => 'Lūdzu pasūdzēties par autortiesību politiku pārkāpumu, nosūtot DMCA prasību uz :mail saskaņā ar :policy.',
+                'policy' => 'osu! autortiesību politika',
             ],
-            'message_2' => '',
+            'message_2' => 'Šis tiek piemērots visiem gadijumiem, kad audioieraksta vizuālais saturs vai ritma-kartes līmeis tiek izmantots bez pareizajām atļaujām.',
         ],
 
         'options' => [
             'cheating' => 'Netīra spēle / Krāpšanās',
-            'copyright_infringement' => '',
+            'copyright_infringement' => 'Autortiesību pārkāpums',
             'inappropriate_chat' => 'Nepiedienīga uzvedība tērzētavā',
             'insults' => 'Mani / Citus aizvainoja',
             'multiple_accounts' => 'Izmanto vairākus kontus',

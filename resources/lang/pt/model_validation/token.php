@@ -5,15 +5,15 @@
 
 return [
     'invalid_scope' => [
-        'all_scope_no_client_credentials' => '',
-        'all_scope_no_mix' => '',
-        'client_missing_owner' => '',
-        'client_unauthorized' => '',
-        'delegate_bot_only' => '',
-        'delegate_client_credentials_only' => '',
-        'delegate_invalid_combination' => '',
-        'delegate_required' => '',
-        'empty' => '',
-        'bot_only' => '',
+        'all_scope_no_client_credentials' => '* não é permitido com credenciais de cliente',
+        'all_scope_no_mix' => '* não é válido para um diferente âmbito',
+        'client_missing_owner' => 'O cliente não tem proprietário.',
+        'client_unauthorized' => 'O cliente não está autorizado.',
+        'delegate_bot_only' => 'A delegação com credenciais de cliente está disponível apenas para chatbots.',
+        'delegate_client_credentials_only' => 'O âmbito da delegação é válido apenas para tokens client_credentials.',
+        'delegate_invalid_combination' => 'A delegação não é suportada para esta combinação de âmbitos.',
+        'delegate_required' => 'É necessário um âmbito delegado.',
+        'empty' => 'Os tokens sem âmbitos não são válidos.',
+        'bot_only' => 'Este âmbito está disponível apenas para chatbots ou os próprios clientes.',
     ],
 ];

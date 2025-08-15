@@ -110,7 +110,7 @@ return [
 
     'show' => [
         'admin' => [
-            'page' => '',
+            'page' => 'Apskatīt informāciju un ierakstes',
         ],
     ],
 ];

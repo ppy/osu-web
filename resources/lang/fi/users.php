@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Rytmikarttoja: :counts',
         'modding_description_empty' => 'Käyttäjällä ei ole rytmikarttoja...',

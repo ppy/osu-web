@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Beatmapek: :counts',
         'modding_description_empty' => 'A felhasználónak nincsenek beatmapjai...',

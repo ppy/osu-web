@@ -10,12 +10,12 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'top_10p' => '',
-        'top_50p' => '',
+        'beatmap' => 'Δυσκολία',
+        'top_10p' => 'Κορυφαία 10% Βαθμολογία',
+        'top_50p' => 'Κορυφαία 50% Βαθμολογία',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'Δεν υπάρχει ημερήσια πρόκληση στη συγκεκριμένη ημερομηνία ακόμα!',
+            'past' => 'Καμία ημερήσια πρόκληση στην καθορισμένη ημερομηνία!',
         ],
     ],
 
@@ -34,18 +34,18 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Αυτός ο χρήστης έχει λιγότερο από 30 ημέρες πρόσφατου ιστορικού κατάταξης.',
     ],
 
     'type' => [
         'charts' => 'Spotlights',
         'country' => 'Χώρας',
-        'daily_challenge' => '',
-        'global' => '',
+        'daily_challenge' => 'ημερήσια πρόκληση',
+        'global' => 'παγκόσμια',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
         'seasons' => 'εποχές',
-        'team' => '',
+        'team' => 'ομάδα',
     ],
 
     'seasons' => [
@@ -54,7 +54,7 @@ return [
         'room_count' => 'Πλήθος λίστας αναπαραγωγής',
         'url' => 'Εμφάνιση περισσότερων πληροφοριών σε εκείνη τη σεζόν.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'δεν υπάρχουν αρκετοί παράγοντες βαθμολογίας για τον σωστό υπολογισμό',
         ],
     ],
 
@@ -69,8 +69,8 @@ return [
         'accuracy' => 'Ακρίβεια',
         'active_users' => 'Ενεργοί Χρήστες',
         'country' => 'Χώρα',
-        'division' => '',
-        'members' => '',
+        'division' => 'Διαίρεση',
+        'members' => 'Μέλη',
         'play_count' => 'Αριθμός Προσπαθειών',
         'performance' => 'Eπίδοση',
         'total_score' => 'Συνολικό Σκορ',

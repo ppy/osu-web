@@ -8,7 +8,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Historial de modding de :user",
-        'title_compact' => 'Moding',
+        'title_compact' => 'Modding',
 
         'discussions' => [
             'title_recent' => 'Discussions iniciades recentment',
@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => 'Regalar l\'etiqueta de supporter',
+        'gift_supporter' => 'Regala l\'etiqueta de supporter',
         'loading' => 'Carregant...',
         'send_message' => 'Enviar missatge',
     ],
@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Mapes: :counts',
         'modding_description_empty' => 'L\'usuari no té cap mapa...',
@@ -161,15 +168,15 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
-                'policy' => '',
+                '_' => 'Informeu de la infracció dels drets d\'autor a través d\'una reclamació DMCA a :mail segons :policy.',
+                'policy' => 'la política de drets d\'autor d\'osu!',
             ],
-            'message_2' => '',
+            'message_2' => 'Això s\'aplica en casos on es fan servir pistes d\'àudio, contingut visual o contingut de mapes sense els permisos apropiats.',
         ],
 
         'options' => [
             'cheating' => 'Joc brut/trampes',
-            'copyright_infringement' => '',
+            'copyright_infringement' => 'Infracció de drets d\'autor',
             'inappropriate_chat' => 'Conducta inadequada al xat',
             'insults' => 'Insultant-me/insultant als altres',
             'multiple_accounts' => 'Fa servir diversos comptes',
@@ -495,7 +502,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Precisió',
-            'hits_per_play' => '',
+            'hits_per_play' => 'Cops per partida',
             'level' => 'Nivell :level',
             'level_progress' => 'Progrés al següent nivell',
             'maximum_combo' => 'Combo màxim',

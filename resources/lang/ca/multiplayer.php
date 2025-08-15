@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'No s\'ha jugat cap partida :type_group d\'osu!(lazer) encara!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'llista d\'àudio',
         'realtime' => 'multijugador',
     ],
@@ -16,8 +17,8 @@ return [
         'map_count' => ':count_delimited mapa|:count_delimited mapes',
         'player_count' => ':count_delimited jugador|:count_delimited jugadors',
         'time_left' => ':time restant',
-        'view_history' => '',
-        'view_summary' => '',
+        'view_history' => 'Veure l\'historial',
+        'view_summary' => 'Veure Resum',
 
         'errors' => [
             'duration_too_long' => 'La durada és massa llarga.',

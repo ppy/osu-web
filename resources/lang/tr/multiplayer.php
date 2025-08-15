@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Henüz bir osu!(lazer) :type_group oynamamış!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'oynama listesi',
         'realtime' => 'çok oyunculu',
     ],

@@ -24,7 +24,7 @@ return [
         'back' => 'Indietro',
         'back_to_previous' => 'Torna alla posizione precedente',
         'back_to_top' => 'Torna in cima',
-        'cancel' => 'Cancella',
+        'cancel' => 'Annulla',
         'change' => 'cambia',
         'clear' => 'Svuota',
         'click_to_copy' => 'clicca per copiare negli appunti',

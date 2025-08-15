@@ -138,14 +138,14 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => '',
+            'contribution_with_duration' => 'Terima kasih atas dukunganmu! Sejauh ini, kamu telah berkontribusi senilai total :dollars, yang memberikan kamu tag "Supporter" selama :duration.',
             'not_yet' => "Kamu belum pernah memiliki supporter tag :(",
             'valid_until' => 'Tag supporter yang kamu miliki saat ini berlaku hingga tanggal :date!',
-            'was_valid_until' => 'Masa berlaku tag supporter milikmu telah berakhir pada :date.',
+            'was_valid_until' => 'Tag supporter kamu telah berakhir pada :date.',
 
             'gifted' => [
-                '_' => '',
-                'users' => '',
+                '_' => 'Dari jumlah ini, kamu telah menghadiahkan tag senilai :dollars kepada :users, yang mencakup total durasi selama :duration. Terima kasih atas kemurahan hatimu!',
+                'users' => ':count_delimited pengguna lainnya|:count_delimited[ pengguna lainnya',
             ],
         ],
     ],

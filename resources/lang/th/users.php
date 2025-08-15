@@ -125,6 +125,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'บีทแมป: :counts',
         'modding_description_empty' => 'ผู้ใช้ยังไม่มีบีทแมปใดๆ...',

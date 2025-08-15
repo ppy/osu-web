@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Dar nežaista osu!(lazer) :type_group!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'grojaraščių',
         'realtime' => 'žaidimų tinkle',
     ],

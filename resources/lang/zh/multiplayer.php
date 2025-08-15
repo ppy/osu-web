@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => '还没有玩过 osu!(lazer) 的:type_group游戏！',
+        'active' => '',
+        'ended' => '',
         'playlists' => '歌单',
         'realtime' => '多人',
     ],

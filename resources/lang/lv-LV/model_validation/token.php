@@ -5,15 +5,15 @@
 
 return [
     'invalid_scope' => [
-        'all_scope_no_client_credentials' => '',
-        'all_scope_no_mix' => '',
-        'client_missing_owner' => '',
-        'client_unauthorized' => '',
-        'delegate_bot_only' => '',
-        'delegate_client_credentials_only' => '',
-        'delegate_invalid_combination' => '',
-        'delegate_required' => '',
-        'empty' => '',
-        'bot_only' => '',
+        'all_scope_no_client_credentials' => '* nav atļauts ar Klienta Pilnvarām',
+        'all_scope_no_mix' => '* nav derīgs ar citām darbības jomām',
+        'client_missing_owner' => 'Klientam trūkst īpašnieks.',
+        'client_unauthorized' => 'Klients nav autorizēts.',
+        'delegate_bot_only' => 'Deleģēšana ar klienta pilnvarām ir pieejama tikai tērzēšanas robotiem.',
+        'delegate_client_credentials_only' => 'delegāta darbības joma ir derīga tikai klienta_akreditācijas žetoniem.',
+        'delegate_invalid_combination' => 'Šai darbības jomu kombinācijai deleģēšana netiek atbalstīta.',
+        'delegate_required' => 'ir nepieciešama delegāta darbības joma.',
+        'empty' => 'Žetoni bez darbības jomām nav derīgi.',
+        'bot_only' => 'Šī darbības joma ir pieejama tikai tērzēšanas robotiem vai jūsu klientiem.',
     ],
 ];

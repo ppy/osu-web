@@ -113,7 +113,7 @@ return [
                 'deleted' => '삭제된 답글은 수정할 수 없습니다.',
                 'locked' => '이 답글은 잠겨있어 수정할 수 없습니다.',
                 'no_forum_access' => '요청하신 포럼에 대한 접근 권한이 필요합니다.',
-                'no_permission' => '',
+                'no_permission' => '수정 권한이 없어요.',
                 'not_owner' => '본인이 쓴 답글만 수정할 수 있습니다.',
                 'topic_locked' => '잠긴 주제에 달린 답글은 수정할 수 없습니다.',
             ],

@@ -104,7 +104,7 @@ return [
             '_' => 'Aiuto e Comunità',
             'faq' => 'Domande Frequenti',
             'forum' => 'Forum della Comunità',
-            'livestreams' => 'Live',
+            'livestreams' => 'Dirette streaming',
             'report' => 'Segnala un problema',
             'wiki' => 'Wiki',
         ],

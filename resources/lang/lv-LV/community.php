@@ -23,7 +23,7 @@ return [
                 'description' => 'Līdzekļi tiek novirzīti serveriem, kas nodrošina tīmekļa vietnes darbību, multiplayer pakalpojumus, tiešsaistes līdersarakstus, utt.',
             ],
             'featured-artists' => [
-                'title' => 'Attēlotie Mākslinieki',
+                'title' => 'Kontraktētie Mākslinieki',
                 'description' => 'Ar jūsu atbalstu mēs varam uzrunāt vēl vairāk lieliskus māksliniekus, kā arī licencēt vairāk lielisku mūziku priekš osu!',
                 'link_text' => 'Skatīt pašreizējo klāstu &raquo;',
             ],
@@ -138,14 +138,14 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => '',
+            'contribution_with_duration' => 'Paldies par tavu pastāvīgo atbalstu! Līdz šim jūs esat ziedojis kopā :dollars, tādējādi nopelnot “Atbalstītāja” plāksni :duration.',
             'not_yet' => "Jums nekad nav bijis osu!supporter :(",
             'valid_until' => 'Jūsu pašreizējais osu!supporter ir derīgs līdz :date!',
             'was_valid_until' => 'Jūsu osu!supporter bija derīgs līdz :date.',
 
             'gifted' => [
-                '_' => '',
-                'users' => '',
+                '_' => 'No visiem taviem ziedojumiem, tu esi uzdāvinājis :dollars vērtu atbalstītāja statusu kopā :users cilvēkiem, aizņemot :duration. Tas ir neticami dāsni!',
+                'users' => ':count_delimited cits lietotājs|:count_delimited citi lietotāji',
             ],
         ],
     ],

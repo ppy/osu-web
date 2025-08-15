@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Ei vielä osu!(lazer) -:type_group pelattu!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'soittolistoja',
         'realtime' => 'moninpelejä',
     ],

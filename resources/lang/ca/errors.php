@@ -7,7 +7,7 @@ return [
     'load_failed' => 'No s\'han pogut carregar les dades.',
     'missing_route' => 'URL invàlida o mètode de sol·licitud incorrecte.',
     'no_restricted_access' => 'No pots fer aquesta acció mentre el teu compte es troba restringit.',
-    'param_too_large' => '',
+    'param_too_large' => 'El paràmetre :name té un màxim d\':count_delimited ítem|El paràmetre :name té un màxim de :count_delimited ítems',
     'supporter_only' => 'Has de ser un osu!supporter per a fer servir aquesta funció.',
     'unknown' => 'Hi ha hagut un error desconegut.',
 
