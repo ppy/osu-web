@@ -176,7 +176,7 @@ class Event extends Model
             case 'rank':
                 $beatmap = $options['beatmap'];
                 $ruleset = $options['ruleset'];
-                $rulesetName = trans("beatmaps.mode.{$ruleset}");
+                $rulesetName = osu_trans("beatmaps.mode.{$ruleset}");
                 $beatmapLink = static::beatmapLink($beatmap, $ruleset);
                 $user = $options['user'];
                 $userLink = static::userLink($user);
@@ -194,6 +194,29 @@ class Event extends Model
                     'private' => false,
                     // copy-pasted from https://github.com/peppy/osu-web-10/blob/2821062bbb668bc85fd655bd1c777d6e610c51b7/www/web/osu-submit-20190809.php#L1208
                     'epicfactor' => ($positionAfter === 1 && $ruleset === 'osu' && $beatmap->passcount > 250 ? 8 : ($positionAfter < 10 ? 4 : ($positionAfter < 40 ? 2 : 1))),
+                    'legacy_score_event' => $legacyScoreEvent,
+                ];
+                break;
+
+            case 'rankLost':
+                $beatmap = $options['beatmap'];
+                $ruleset = $options['ruleset'];
+                $user = $options['user'];
+                $legacyScoreEvent = $options['legacy_score_event'];
+
+                $rulesetName = osu_trans("beatmaps.mode.{$ruleset}");
+                $beatmapLink = static::beatmapLink($beatmap, $ruleset);
+                $userLink = static::userLink($user);
+
+                $template = '%s has lost first place on %s (%s)';
+                $params = [
+                    'text' => sprintf($template, tag('b', [], $userLink['html']), $beatmapLink['html'], $rulesetName),
+                    'text_clean' => sprintf($template, $userLink['clean'], $beatmapLink['clean'], $rulesetName),
+                    'beatmap_id' => $beatmap->getKey(),
+                    'beatmapset_id' => $beatmap->beatmapset->getKey(),
+                    'user_id' => $user->getKey(),
+                    'private' => false,
+                    'epicfactor' => 2,
                     'legacy_score_event' => $legacyScoreEvent,
                 ];
                 break;

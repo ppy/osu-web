@@ -10,6 +10,7 @@ namespace Tests\Jobs;
 use App\Jobs\RemoveBeatmapsetSoloScores;
 use App\Libraries\Search\ScoreSearch;
 use App\Models\Beatmap;
+use App\Models\BeatmapLeader;
 use App\Models\Beatmapset;
 use App\Models\Country;
 use App\Models\Genre;
@@ -40,6 +41,7 @@ class RemoveBeatmapsetSoloScoresTest extends TestCase
             $scores,
         );
 
+        $maxScoreId = Score::max('id');
         $job = new RemoveBeatmapsetSoloScores($beatmapset, true);
 
         // These scores shouldn't be deleted
@@ -51,7 +53,18 @@ class RemoveBeatmapsetSoloScoresTest extends TestCase
 
         static::reindexScores();
 
+        $beatmapIds = $beatmapset->beatmaps->pluck('beatmap_id');
+
+        foreach ($beatmapIds as $beatmapId) {
+            foreach (Beatmap::MODES as $rulesetId) {
+                BeatmapLeader::sync($beatmapId, $rulesetId);
+            }
+        }
+        $this->assertTrue(BeatmapLeader::whereIn('beatmap_id', $beatmapIds)->where('score_id', '<=', $maxScoreId)->exists());
+
         $job->handle();
+
+        $this->assertFalse(BeatmapLeader::whereIn('beatmap_id', $beatmapIds)->where('score_id', '<=', $maxScoreId)->exists());
 
         $search = new ScoreSearch();
         // this also makes sure the job deletes scores from index
@@ -60,6 +73,7 @@ class RemoveBeatmapsetSoloScoresTest extends TestCase
         $this->beforeApplicationDestroyed(function () use ($search) {
             static::withDbAccess(function () use ($search) {
                 Beatmap::truncate();
+                BeatmapLeader::truncate();
                 Beatmapset::truncate();
                 Country::truncate();
                 Genre::truncate();
