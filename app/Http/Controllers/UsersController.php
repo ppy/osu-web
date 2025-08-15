@@ -183,7 +183,7 @@ class UsersController extends Controller
                     ),
                     'firsts' => $this->getExtraSection(
                         'scoresFirsts',
-                        $this->user->scoresFirst($this->mode, true)->count()
+                        $this->user->scoresFirst($this->mode, ScoreSearchParams::showLegacyForUser(\Auth::user()))->count()
                     ),
                     'pinned' => $this->getExtraSection(
                         'scoresPinned',
@@ -822,7 +822,7 @@ class UsersController extends Controller
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
                 $query = $this
                     ->user
-                    ->scoresFirst($this->mode, true)
+                    ->scoresFirst($this->mode, ScoreSearchParams::showLegacyForUser(\Auth::user()))
                     ->with(array_map(
                         fn ($include) => "score.{$include}",
                         ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD,
