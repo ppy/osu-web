@@ -705,6 +705,50 @@
         ]
     },
     {
+        "uri": "api/v2/forums/topics/{topic}/lock",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\Forum\\TopicsController@lock",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate",
+            "App\\Http\\Middleware\\RequireScopes:forum.write_manage"
+        ],
+        "scopes": [
+            "forum.write_manage"
+        ]
+    },
+    {
+        "uri": "api/v2/forums/topics/{topic}/move",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\Forum\\TopicsController@move",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/forums/topics/{topic}/pin",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\Forum\\TopicsController@pin",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate",
+            "App\\Http\\Middleware\\RequireScopes:forum.write_manage"
+        ],
+        "scopes": [
+            "forum.write_manage"
+        ]
+    },
+    {
         "uri": "api/v2/forums/topics/{topic}/reply",
         "methods": [
             "POST"
