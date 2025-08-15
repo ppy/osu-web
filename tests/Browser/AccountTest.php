@@ -15,7 +15,7 @@ class AccountTest extends DuskTestCase
 {
     public function testUpdatePassword(): void
     {
-        $this->browse(function (Browser $browserMain, Browser $browserOther) {
+        $this->browseWithRetries(function (Browser $browserMain, Browser $browserOther) {
             $userFactory = User::factory();
 
             $password = $userFactory::DEFAULT_PASSWORD;
