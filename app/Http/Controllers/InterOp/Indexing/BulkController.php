@@ -14,7 +14,7 @@ class BulkController extends Controller
     public function store()
     {
         // TODO: limited to these for now.
-        static $allowedTypes = ['beatmapset', 'score', 'user'];
+        static $allowedTypes = ['beatmapset', 'score', 'team', 'user'];
 
         $params = request()->all();
 
