@@ -157,7 +157,7 @@ return [
         ],
 
         'statistics' => [
-            'empty_slots' => '',
+            'empty_slots' => ':count_delimited slot tersedia|:count_delimited slot tersedia',
             'leader' => 'Ketua Tim',
             'rank' => 'Peringkat',
         ],

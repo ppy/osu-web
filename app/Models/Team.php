@@ -11,6 +11,7 @@ use App\Exceptions\InvariantException;
 use App\Jobs\EsDocument;
 use App\Jobs\Notifications\TeamApplicationAccept;
 use App\Libraries\BBCodeForDB;
+use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\Uploader;
 use App\Libraries\User\Cover as UserCover;
@@ -18,7 +19,7 @@ use App\Libraries\UsernameValidation;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Team extends Model implements AfterCommit, Traits\ReportableInterface
+class Team extends Model implements AfterCommit, Indexable, Traits\ReportableInterface
 {
     use Traits\Es\TeamSearch, Traits\Reportable;
 

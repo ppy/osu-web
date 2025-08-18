@@ -7,7 +7,7 @@ return [
     'load_failed' => 'Falha ao carregar os dados.',
     'missing_route' => 'URL inválida ou método de requisição incorreto.',
     'no_restricted_access' => 'Você não pode executar esta ação enquanto sua conta estiver restrita.',
-    'param_too_large' => '',
+    'param_too_large' => 'O parâmetro :name tem um máximo de :count_delimited item|O parâmetro :name tem um máximo de :count_delimited itens',
     'supporter_only' => 'Você precisa ser um osu!supporter para usar esta função.',
     'unknown' => 'Ocorreu um erro desconhecido.',
 

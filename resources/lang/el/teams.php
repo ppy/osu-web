@@ -6,164 +6,164 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Προστέθηκε χρήστης στην ομάδα.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Ακυρώθηκε το αίτημα συμμετοχής.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Απορρίφθηκε το ίτημα συμμετοχής',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Ζητήθηκε το αίτημα για τη συμμετοχή στην ομάδα',
         ],
     ],
 
     'card' => [
-        'members' => '',
+        'members' => ':count_delimited μέλος|:count_delimited μέλη',
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'Δημιουργία Ομάδας',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => 'Το όνομα της ομάδας σου. Το όνομα είναι μόνιμο αυτή τη στιγμή.',
+            'short_name_help' => 'Μέγιστο 4 χαρακτήρες.',
+            'title' => "Ας δημιουργήσουμε μια νέα ομάδα",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "Παίξε μαζί με φίλους, υπάρχοντες ή νέους. Δεν βρίσκεσαι σε ομάδα. Μπες σε μία υπάρχουσα ομάδα επισκέπτοντας την σελίδα ομάδας ή δημιούργησε την δικιά σου ομάδα από αυτήν τη σελίδα.",
+            'title' => 'Ομάδα!',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Η ομάδα αφαιρέθηκε.',
     ],
 
     'edit' => [
-        'ok' => '',
-        'title' => '',
+        'ok' => 'Οι ρυθμίσεις αποθηκεύτηκαν επιτυχώς.',
+        'title' => 'Ρυθμίσεις Ομάδας',
 
         'description' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Περιγραφή',
+            'title' => 'Περιγραφή Ομάδας',
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Σημαία Ομάδας',
+            'title' => 'Ορισμός Σημαίας Ομάδας',
         ],
 
         'header' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Εικόνα Κεφαλίδας',
+            'title' => 'Ορισμός Εικόνας Κεφαλίδας',
         ],
 
         'settings' => [
-            'application_help' => '',
-            'default_ruleset_help' => '',
-            'flag_help' => '',
-            'header_help' => '',
-            'title' => '',
+            'application_help' => 'Αν θα επιτρέπεται σε άτομα να υποβάλουν αίτηση για την ομάδα',
+            'default_ruleset_help' => 'Το σύνολο κανόνων που θα επιλεγεί από προεπιλογή κατά την επίσκεψη στη σελίδα της ομάδας',
+            'flag_help' => 'Μέγιστο μέγεθος :width×:height',
+            'header_help' => 'Μέγιστο μέγεθος :width×:height',
+            'title' => 'Ρυθμίσεις Ομάδας',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => 'Κλειστό',
+                'state_1' => 'Ανοιχτό',
             ],
         ],
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'ρυθμίσεις',
+        'leaderboard' => 'Κατάταξη',
+        'show' => 'πληροφορίες',
 
         'members' => [
-            'index' => '',
+            'index' => 'Διαχείριση μελών',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
+        'global_rank' => 'Παγκόσμια Κατάταξη',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '',
+            'success' => 'Μέλος της ομάδας αφαιρέθηκε',
         ],
 
         'index' => [
-            'title' => '',
+            'title' => 'Διαχείριση μελών',
 
             'applications' => [
-                'accept_confirm' => '',
-                'created_at' => '',
-                'empty' => '',
-                'empty_slots' => '',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
-                'title' => '',
+                'accept_confirm' => 'Προσθήκη χρήστη :user στην ομάδα;',
+                'created_at' => 'Ζητήθηκε Στις',
+                'empty' => 'Δεν υπάρχουν αιτήσεις συμμετοχής αυτή τη στιγμή.',
+                'empty_slots' => 'Διαθέσιμες υποδοχές',
+                'empty_slots_overflow' => ':count_delimited συνδεδεμένος χρήστης |:count_delimited συνδεδεμένοι χρήστες',
+                'reject_confirm' => 'Άρνηση αίτησης συμμετοχής από τον χρήστη :user;',
+                'title' => 'Αιτήματα συμμετοχής',
             ],
 
             'table' => [
-                'joined_at' => '',
-                'remove' => '',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
-                'status' => '',
-                'title' => '',
+                'joined_at' => 'Ημερομηνία Συμμετοχής',
+                'remove' => 'Αφαίρεση',
+                'remove_confirm' => 'Αφαίρεση χρήστη :user από την ομάδα;',
+                'set_leader' => 'Μεταφορά ηγεσίας ομάδας',
+                'set_leader_confirm' => 'Μεταφορά ηγεσίας της ομάδας στον χρήστη :user;',
+                'status' => 'Κατάσταση',
+                'title' => 'Τρέχοντα μέλη',
             ],
 
             'status' => [
-                'status_0' => '',
-                'status_1' => '',
+                'status_0' => 'Ανενεργός',
+                'status_1' => 'Ενεργός',
             ],
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'Ο χρήστης :user είναι τώρα ο αρχηγός της ομάδας.',
         ],
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Έφυγε από την ομάδα ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'chat' => '',
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'chat' => 'Συνομιλία Ομάδας',
+            'destroy' => 'Διάλυση Ομάδας',
+            'join' => 'Αίτημα Συμμετοχής',
+            'join_cancel' => 'Ακύρωση Σύμμετοχής',
+            'part' => 'Αποχώρηση Από Την Ομάδα',
         ],
 
         'info' => [
-            'created' => '',
+            'created' => 'Σχηματίστηκε',
         ],
 
         'members' => [
-            'members' => '',
-            'owner' => '',
+            'members' => 'Μέλη Ομάδας',
+            'owner' => 'Αρχηγός ομάδας',
         ],
 
         'sections' => [
-            'about' => '',
-            'info' => '',
-            'members' => '',
+            'about' => 'Σχετικά Με Εμάς!',
+            'info' => 'Πληροφορίες',
+            'members' => 'Μέλη',
         ],
 
         'statistics' => [
-            'empty_slots' => '',
-            'leader' => '',
-            'rank' => '',
+            'empty_slots' => ':count_delimited διαθέσιμη υποδοχή|:count_delimited διαθέσιμες υποδοχές',
+            'leader' => 'Αρχηγός Ομάδας',
+            'rank' => 'Κατάταξη',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'Η ομάδα δημιουργήθηκε.',
     ],
 ];

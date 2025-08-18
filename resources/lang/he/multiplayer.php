@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => '',
+        'active' => '',
+        'ended' => '',
         'playlists' => '',
         'realtime' => '',
     ],

@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Beatmapy: :counts',
         'modding_description_empty' => 'Użytkownik nie posiada żadnych beatmap...',
@@ -161,15 +168,15 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
-                'policy' => '',
+                '_' => 'Zgodnie z :policy, naruszenia praw autorskich należy składać poprzez zgłoszenia DMCA na adres e-mail :mail.',
+                'policy' => 'polityką praw autorskich osu!',
             ],
-            'message_2' => '',
+            'message_2' => 'Dotyczy to nieuprawnionego wykorzystania treści wizualnych i muzycznych oraz zawartości beatmap.',
         ],
 
         'options' => [
             'cheating' => 'Oszukiwanie',
-            'copyright_infringement' => '',
+            'copyright_infringement' => 'Naruszenie praw autorskich',
             'inappropriate_chat' => 'Nieodpowiednie zachowanie na czacie',
             'insults' => 'Obrażanie mnie lub innych',
             'multiple_accounts' => 'Korzystanie z wielu kont',

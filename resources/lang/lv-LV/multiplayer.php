@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Vēl neviena osu!(lazer) :type_group spēle nav spēlēta!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'sarakstu',
         'realtime' => 'daudzspēlētāju režīma',
     ],

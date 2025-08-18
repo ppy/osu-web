@@ -113,7 +113,7 @@ return [
                 'deleted' => 'Não é possível editar uma publicação excluída.',
                 'locked' => 'A edição desta publicação está bloqueada.',
                 'no_forum_access' => 'O acesso ao fórum solicitado é necessário.',
-                'no_permission' => '',
+                'no_permission' => 'Sem permissão para editar.',
                 'not_owner' => 'Somente o autor da publicação pode editar a publicação.',
                 'topic_locked' => 'Não é possível editar publicações de um tópico trancado.',
             ],

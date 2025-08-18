@@ -25,8 +25,8 @@ return [
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Αναφορά Μηνύματος',
+        'title' => 'Αναφορά μηνύματος του :username;',
     ],
 
     'scores' => [
@@ -35,8 +35,8 @@ return [
     ],
 
     'team' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Αναφορά Ομάδας',
+        'title' => 'Αναφορά ομάδας του :username?',
     ],
 
     'user' => [

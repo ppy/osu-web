@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => '비트맵: :counts',
         'modding_description_empty' => '이 유저는 아무런 비트맵이 없어요...',
@@ -161,15 +168,15 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
-                'policy' => '',
+                '_' => '저작권 침해 신고는 :policy 당 한 건씩 DMCA 요청을 통해 :mail 로 발신해 주세요.',
+                'policy' => 'osu! 저작권 정책',
             ],
-            'message_2' => '',
+            'message_2' => '본 약관은 적절한 권한 없이 사용되는 오디오 트랙, 시각적 콘텐츠 또는 비트맵 레벨 콘텐츠에 적용됩니다.',
         ],
 
         'options' => [
             'cheating' => '부정 행위 / 치트 사용',
-            'copyright_infringement' => '',
+            'copyright_infringement' => '저작권 침해',
             'inappropriate_chat' => '부적절한 언행',
             'insults' => '자신 / 다른 사람을 모욕 함',
             'multiple_accounts' => '다중 계정 사용',

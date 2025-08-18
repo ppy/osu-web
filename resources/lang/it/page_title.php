@@ -87,7 +87,7 @@ return [
             '_' => 'informazioni',
         ],
         'livestreams_controller' => [
-            '_' => 'live streaming',
+            '_' => 'dirette streaming',
         ],
         'news_controller' => [
             '_' => 'notizie',
@@ -131,7 +131,7 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            'events' => '',
+            'events' => 'cronologia stanze',
         ],
     ],
     'passport' => [

@@ -157,7 +157,7 @@ return [
         ],
 
         'statistics' => [
-            'empty_slots' => '',
+            'empty_slots' => ':count_delimited slot k dispozici|:count_delimited sloty k dispozici|:count_delimited slotů k dispozici',
             'leader' => 'Vedoucí týmu',
             'rank' => 'Umístění',
         ],

@@ -5,15 +5,15 @@
 
 return [
     'invalid_scope' => [
-        'all_scope_no_client_credentials' => '',
-        'all_scope_no_mix' => '',
-        'client_missing_owner' => '',
-        'client_unauthorized' => '',
-        'delegate_bot_only' => '',
-        'delegate_client_credentials_only' => '',
-        'delegate_invalid_combination' => '',
-        'delegate_required' => '',
-        'empty' => '',
-        'bot_only' => '',
+        'all_scope_no_client_credentials' => 'Использовать * с Client Credentials запрещено',
+        'all_scope_no_mix' => '* недопустим с другими scopes',
+        'client_missing_owner' => 'У клиента отсутствует владелец.',
+        'client_unauthorized' => 'Клиент не авторизован.',
+        'delegate_bot_only' => 'Делегирование с Client Credentials доступно только чат-ботам.',
+        'delegate_client_credentials_only' => 'область (scope) делегирования допустима только для токенов client_credentials.',
+        'delegate_invalid_combination' => 'Делегирование не поддерживается для данной комбинации scope.',
+        'delegate_required' => 'область (scope) делегирования обязательна.',
+        'empty' => 'Токены без scope недействительны.',
+        'bot_only' => 'Данный scope доступен только чат-ботам или вашим собственным клиентам.',
     ],
 ];

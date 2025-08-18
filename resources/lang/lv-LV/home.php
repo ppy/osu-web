@@ -28,7 +28,7 @@ return [
         'title' => 'meklēt',
 
         'artist_track' => [
-            'more_simple' => 'Apskatīt vēl iemīļotā mākslinieka dziesmas meklēšanas rezultātus',
+            'more_simple' => 'Apskatīt vēl kontraktētā mākslinieka dziesmas meklēšanas rezultātus',
         ],
         'beatmapset' => [
             'login_required' => 'Ielogojieties, lai meklētu bītmapes',
@@ -55,7 +55,7 @@ return [
 
         'mode' => [
             'all' => 'visi',
-            'artist_track' => 'iemīļotā mākslinieka dziesmas',
+            'artist_track' => 'kontraktētā mākslinieka dziesmas',
             'beatmapset' => 'bītmape',
             'forum_post' => 'forums',
             'team' => 'komanda',
@@ -156,7 +156,7 @@ return [
         ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => 'Avērt adminu konsoli',
             ],
         ],
     ],

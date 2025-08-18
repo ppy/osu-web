@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Beatmap: :counts',
         'modding_description_empty' => 'Pengguna ini tidak memiliki beatmap apa pun...',
@@ -161,15 +168,15 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
-                'policy' => '',
+                '_' => 'Silakan laporkan pelanggaran hak cipta melalui klaim DMCA ke :mail sesuai dengan :policy yang berlaku.',
+                'policy' => 'kebijakan hak cipta osu!',
             ],
-            'message_2' => '',
+            'message_2' => 'Hal ini berlaku pada kasus di mana trek audio, konten visual, atau konten level beatmap yang ada dipergunakan tanpa izin yang semestinya.',
         ],
 
         'options' => [
             'cheating' => 'Melakukan kecurangan',
-            'copyright_infringement' => '',
+            'copyright_infringement' => 'Pelanggaran hak cipta',
             'inappropriate_chat' => 'Berperilaku tidak pantas dalam chat',
             'insults' => 'Menghina saya / orang lain',
             'multiple_accounts' => 'Menggunakan lebih dari satu akun',

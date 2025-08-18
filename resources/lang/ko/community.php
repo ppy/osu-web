@@ -138,14 +138,14 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => '',
+            'contribution_with_duration' => '지속적인 지원에 감사드려요! 지금까지, 총 :dollars 을 후원해 주셨고, :duration 동안 "서포터" 태그를 유지하셨어요.',
             'not_yet' => "아직 osu! 서포터 태그를 가지신 적이 없으시네요 :(",
             'valid_until' => '현재 osu! 서포터 태그는 :date까지 유효합니다!',
             'was_valid_until' => '지난 osu! 서포터 태그는 :date까지 유효했습니다.',
 
             'gifted' => [
-                '_' => '',
-                'users' => '',
+                '_' => '회원님의 총 기부 이력을 살펴보니, :users 님에게 총 :dollars 의 가치가 있는 :duration 기간의 태그를 선물하셨네요. 정말 대단하신데요!',
+                'users' => ':count_delimited 명의 회원이 있음|:count_delimited 명의 회원들이 있음',
             ],
         ],
     ],

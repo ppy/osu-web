@@ -113,7 +113,7 @@ return [
                 'deleted' => 'Nie możesz edytować usuniętego posta.',
                 'locked' => 'Ten post jest chroniony przed edycją.',
                 'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
-                'no_permission' => '',
+                'no_permission' => 'Nie posiadasz uprawnień do edytowania.',
                 'not_owner' => 'Tylko autor posta może go edytować.',
                 'topic_locked' => 'Nie możesz edytować postów w zamkniętym wątku.',
             ],

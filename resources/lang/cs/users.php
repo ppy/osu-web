@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Beatmap: :counts',
         'modding_description_empty' => 'Uživatel nemá žádné beatmapy...',
@@ -161,15 +168,15 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
-                'policy' => '',
+                '_' => 'Prosím nahlaste porušení autorských práv prostřednictvím DMCA požadavku na :mail podle :policy.',
+                'policy' => 'osu! pravidla autorských práv',
             ],
-            'message_2' => '',
+            'message_2' => 'To platí pro případy, kdy jsou zvukové stopy, vizuální obsah nebo obsah úrovně beatmapy použity bez správného oprávnění.',
         ],
 
         'options' => [
             'cheating' => 'Podvádění',
-            'copyright_infringement' => '',
+            'copyright_infringement' => 'Porušení autorských práv',
             'inappropriate_chat' => 'Nevhodné chování v chatu',
             'insults' => 'Uráží mě / ostatní',
             'multiple_accounts' => 'Používání více účtů',

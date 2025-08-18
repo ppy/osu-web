@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Nijedna osu!(lazer) :type_group još nije odigrana!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'popis za reprodukciju',
         'realtime' => 'multiplayer',
     ],

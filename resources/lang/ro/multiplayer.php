@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => ':type_group nu au fost jucate încă!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'playlist',
         'realtime' => 'multiplayer',
     ],

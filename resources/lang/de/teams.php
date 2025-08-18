@@ -27,13 +27,13 @@ return [
         'submit' => 'Team erstellen',
 
         'form' => [
-            'name_help' => 'Dein Teamname. Der Name kann nicht mehr geändert werden.',
+            'name_help' => 'Dein Teamname. Der Name kann später nicht mehr geändert werden.',
             'short_name_help' => 'Maximal 4 Zeichen.',
             'title' => "Ein neues Team anlegen",
         ],
 
         'intro' => [
-            'description' => "Spiele zusammen mit Freunden, egal ob bereits erfahrene Spieler oder Anfänger. Du bist aktuell in keinem Team. Tritt einem existierendem Team bei, indem du die Teamseite besuchst oder hier dein eigenes Team erstellst.",
+            'description' => "Spiele zusammen mit Freunden, egal ob bereits erfahrene Spieler oder Anfänger. Du bist aktuell in keinem Team. Tritt einem existierenden Team bei, indem du die Teamseite besuchst oder hier dein eigenes Team erstellst.",
             'title' => 'Team!',
         ],
     ],
@@ -157,7 +157,7 @@ return [
         ],
 
         'statistics' => [
-            'empty_slots' => '',
+            'empty_slots' => ':count_delimited Platz verfügbar|:count_delimited Plätze verfügbar',
             'leader' => 'Teamleiter',
             'rank' => 'Rang',
         ],

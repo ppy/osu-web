@@ -21,7 +21,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Attēlotais mākslinieks',
+        'label' => 'Kontraktētais mākslinieks',
     ],
 
     'index' => [
@@ -69,7 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Skatīt pilna izmēra bildes pārvalku',
-            'page' => '',
+            'page' => 'Apskatīt adminu lapu',
         ],
 
         'deleted_banner' => [

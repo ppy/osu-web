@@ -64,15 +64,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "Ja esat ieguldītājs osu! atvērtā koda repozitorijos, sasaistot savu GitHub kontu šeit un jūsu izmaiņu žurnāla ieraksti tiks saistīti ar jūsu osu! profilu. GitHub kontus, kuriem nav ieguldījumu vēstures osu!, nevar sasaistīt.",
+        'info' => "Ja esi ieguldītājs osu! atvērtā koda repozitorijos, sasaistot savu GitHub kontu šeit, tavi izmaiņu žurnāla ieraksti tiks saistīti ar tavu osu! profilu. GitHub kontus, kuriem nav ieguldījumu vēstures osu!, nevar sasaistīt.",
         'link' => 'Pievienot GitHub kontu',
         'title' => 'GitHub',
-        'unlink' => 'Atvienot GitHub kontu',
+        'unlink' => 'Atsaistīt GitHub kontu',
 
         'error' => [
             'already_linked' => 'Šis GitHub konts jau ir pievienots citam lietotājam.',
             'no_contribution' => 'Nevar sasaistīt GitHub kontu bez jebkādas ieguldījumu vēstures osu! repozitorijos.',
-            'unverified_email' => 'Lūdzu, apstriprinā savu primāro e-pasta adresi GitHub un pēc tam mēģiniet vēlreiz sasaistīt kontu.',
+            'unverified_email' => 'Lūdzu, apstiprini savu primāro e-pasta adresi GitHub un pēc tam mēģini vēlreiz sasaistīt kontu.',
         ],
     ],
 
@@ -87,7 +87,7 @@ return [
             '_' => 'piegādes opcijas',
             'beatmap_owner_change' => 'viesa grūtības līmenis',
             'beatmapset:modding' => 'ritma-karšu modifikācijas',
-            'channel_message' => 'privātās čata ziņas',
+            'channel_message' => 'privātās tērzētavas ziņas',
             'channel_team' => 'komandas tērzētavas ziņas',
             'comment_new' => 'jauni komentāri',
             'forum_topic_reply' => 'tēmas atbilde',
@@ -131,7 +131,7 @@ return [
     ],
 
     'security' => [
-        'current_session' => 'Pašreizējais',
+        'current_session' => 'pašreizējais',
         'end_session' => 'Beigt sesiju',
         'end_session_confirmation' => 'Šis beigs jūsu sesiju uz šo ierīci. Vai esat pārliecināts?',
         'last_active' => 'Pēdējais aktīvs:',

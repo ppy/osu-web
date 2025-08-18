@@ -138,14 +138,14 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => '',
+            'contribution_with_duration' => 'Děkujeme za tvoji přetrvávající podporu! Už jsi přispěl celkem :dollars, což ti přineslo "Supporter" tag pro :duration.',
             'not_yet' => "Ještě nemáš supporter tag :(",
             'valid_until' => 'Tvůj supporter tag je platný do :date!',
             'was_valid_until' => 'Tvůj supporter tag byl platný do :date.',
 
             'gifted' => [
-                '_' => '',
-                'users' => '',
+                '_' => 'Přes všechny tvé příspěvky jsi daroval tagy v hodnotě :dollars :users uživatelům pokrývající :duration. To je neuvěřitelně velkorysé!',
+                'users' => ':count_delimited další uživatel|:count_delimited další uživatelé|:count_delimited dalších uživatelů',
             ],
         ],
     ],

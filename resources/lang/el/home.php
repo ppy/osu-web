@@ -9,7 +9,7 @@ return [
         'online' => '<strong>:players</strong> συνδεδεμένοι αυτή τη στιγμή σε <strong>:games</strong> παιχνίδια',
         'peak' => 'Κορύφωση, :count συνδεδεμένοι χρήστες',
         'players' => '<strong>:count</strong> εγγεγραμμένοι παίκτες',
-        'title' => 'καλώς ήρθατε',
+        'title' => 'καλώς ήρθες',
         'see_more_news' => 'εμφάνιση περισσότερων νέων',
 
         'slogan' => [
@@ -155,7 +155,7 @@ return [
         ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => 'Άνοιγμα κονσόλας διαχειριστή',
             ],
         ],
     ],

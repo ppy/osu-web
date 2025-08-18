@@ -6,9 +6,9 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Lai rediģētu, ir jāpierakstās.',
-            'system_generated' => 'Sistēmas ģenerēto rakstu nevar rediģēt.',
-            'wrong_user' => 'Lai rediģētu, ir jābūt raksta īpašniekam.',
+            'null_user' => 'Vajag būt pierakstījušamies, lai rediģētu.',
+            'system_generated' => 'Sistēmas-ģenerēto rakstu nevar rediģēt.',
+            'wrong_user' => ' Lai rediģētu, ir jābūt raksta īpašniekam.',
         ],
     ],
 
@@ -19,24 +19,24 @@ return [
     'index' => [
         'deleted_beatmap' => 'izdzēsts',
         'none_found' => 'Netika atrastas diskusijas šim meklēšanas kritērijam.',
-        'title' => 'Bītmapes Diskusijas',
+        'title' => 'Ritma-Karšu Diskusijas',
 
         'form' => [
             '_' => 'Meklēt',
             'deleted' => 'Iekļaut dzēstās diskusijas',
-            'mode' => 'Bītmapes mods',
+            'mode' => 'Ritma-Karšu mods',
             'only_unresolved' => 'Rādīt tikai neatrisinātās diskusijas',
             'show_review_embeds' => 'Rādīt apskata rakstus',
             'types' => 'Ziņu tipi',
             'username' => 'Lietotājvārds',
 
             'beatmapset_status' => [
-                '_' => 'Bītmapes Statuss',
+                '_' => 'Ritma-Kartes Statuss',
                 'all' => 'Viss',
                 'disqualified' => 'Diskvalificēta',
-                'never_qualified' => 'Nekad Kvalificēta',
+                'never_qualified' => 'Nekad Nav Bijusi Kvalificēta',
                 'qualified' => 'Kvalificēta',
-                'ranked' => 'Ierindota',
+                'ranked' => 'Novērtēta',
             ],
 
             'user' => [
@@ -50,12 +50,12 @@ return [
         'created_at' => 'Raksta datums',
         'deleted_at' => 'Dzēšanas datums',
         'message_type' => 'Tips',
-        'permalink' => 'Pastāvīgā saite',
+        'permalink' => 'Patstāvīgā saitne',
     ],
 
     'nearby_posts' => [
         'confirm' => 'Neviens no šiem rakstiem neattiecas uz manu problēmu',
-        'notice' => 'Ir raksti ap :timestamp (:existing_timestamps). Lūdzu, pārbaudiet tos pirms publicēšanas.',
+        'notice' => 'Ir raksti ap :timestamp (:existing_timestamps). Lūdzu, pārbaudi tos pirms publicēšanas.',
         'unsaved' => ':count šajā atsauksmē',
     ],
 
@@ -104,7 +104,7 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => 'visparīgī',
+        'general' => 'visparīgi',
         'general_all' => 'vispārīgi (viss)',
     ],
 

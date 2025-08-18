@@ -15,22 +15,22 @@ return [
         'winner_by' => ':winner per :difference',
 
         'events' => [
-            'game_aborted' => '',
-            'game_aborted_no_user' => '',
-            'game_completed' => '',
-            'game_completed_no_user' => '',
-            'host_changed' => '',
-            'host_changed_no_user' => '',
-            'player_joined' => '',
-            'player_joined_no_user' => '',
-            'player_kicked' => '',
-            'player_kicked_no_user' => '',
-            'player_left' => '',
-            'player_left_no_user' => '',
-            'room_created' => '',
-            'room_created_no_user' => '',
-            'room_disbanded' => '',
-            'room_disbanded_no_user' => '',
+            'game_aborted' => 'la partida ha sigut cancel·lada',
+            'game_aborted_no_user' => 'la partida s\'ha cancel·lat',
+            'game_completed' => 'la partida ha finalitzat',
+            'game_completed_no_user' => 'la partida ha finalitzat',
+            'host_changed' => ':user és ara l\'amfitrió',
+            'host_changed_no_user' => 'l\'amfitrió ha canviat',
+            'player_joined' => ':user s\'ha unit a la partida',
+            'player_joined_no_user' => 'un jugador s\'ha unit a la partida',
+            'player_kicked' => ':user ha estat expulsat de la partida',
+            'player_kicked_no_user' => 'un jugador ha estat expulsat de la partida',
+            'player_left' => ':user ha abandonat la partida',
+            'player_left_no_user' => 'un jugador ha abandonat la partida',
+            'room_created' => ':user ha creat la partida',
+            'room_created_no_user' => 's\'ha creat la partida',
+            'room_disbanded' => 'la partida s\'ha dissolt',
+            'room_disbanded_no_user' => 'la partida s\'ha dissolt',
         ],
 
         'score' => [
@@ -42,10 +42,10 @@ return [
         ],
 
         'team_types' => [
-            'head_to_head' => '',
-            'tag_coop' => '',
-            'tag_team_versus' => '',
-            'team_versus' => '',
+            'head_to_head' => 'Cara a cara',
+            'tag_coop' => 'Etiqueta cooperatiu',
+            'tag_team_versus' => 'Etiqueta per equips',
+            'team_versus' => 'Per equips',
         ],
 
         'teams' => [
@@ -54,7 +54,7 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '',
+        'freestyle' => 'Estil lliure',
 
         'scoring-type' => [
             'score' => 'Puntuació més alta',

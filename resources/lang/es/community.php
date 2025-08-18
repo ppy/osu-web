@@ -138,14 +138,14 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => '',
+            'contribution_with_duration' => '¡Gracias por tu apoyo constante! Hasta ahora, has contribuido con un total de :dollars, lo que te ha permitido usar la etiqueta de «supporter» durante :duration.',
             'not_yet' => "Nunca has tenido una etiqueta de osu!supporter :(",
             'valid_until' => '¡Tu etiqueta de osu!supporter actual es válida hasta el :date!',
             'was_valid_until' => 'Tu etiqueta de osu!supporter fue válida hasta el :date.',
 
             'gifted' => [
-                '_' => '',
-                'users' => '',
+                '_' => 'Del total de tus contribuciones, has regalado :dollars en etiquetas a :users que cubren :duration. ¡Qué generoso!',
+                'users' => ':count_delimited usuario|:count_delimited usuarios',
             ],
         ],
     ],

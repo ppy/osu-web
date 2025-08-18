@@ -69,7 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Veure imatge de portada a mida completa',
-            'page' => '',
+            'page' => 'Mostra la pàgina d\'administrador',
         ],
 
         'deleted_banner' => [
@@ -216,7 +216,7 @@ return [
             'ar' => 'Velocitat d\'aproximació',
             'stars' => 'Estrelles de dificultat',
             'total_length' => 'Durada (Duració del drenatge: :hit_length)',
-            'bpm' => 'BPM',
+            'bpm' => 'PPM',
             'count_circles' => 'Nombre de cercles',
             'count_sliders' => 'Nombre de sliders',
             'offset' => 'Compensació en línia: :offset',

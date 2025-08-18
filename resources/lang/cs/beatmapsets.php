@@ -69,7 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Zobrazit plnou velikost úvodního obrázku',
-            'page' => '',
+            'page' => 'Zobrazit administrátorskou stránku',
         ],
 
         'deleted_banner' => [

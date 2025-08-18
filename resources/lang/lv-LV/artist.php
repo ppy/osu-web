@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'page_description' => 'osu! Izvēlētie mākslinieki',
-    'title' => 'Izvēlētie Mākslinieki',
+    'page_description' => 'Kontraktētie Mākslinieki osu!',
+    'title' => 'Kontraktētie Mākslinieki',
 
     'admin' => [
         'hidden' => 'PAŠLAIK MĀKSLINIEKS IR PASLĒPTS',
@@ -13,12 +13,12 @@ return [
 
     'beatmaps' => [
         '_' => 'Ritma-mapes',
-        'download' => 'Lejupielādēt Bītmapes Veidni',
-        'download-na' => 'Bītmapes Veidne vēl nav pieejama',
+        'download' => 'lejupielādēt ritma-kartes pamatni',
+        'download-na' => 'ritma-kartes pamatne vēl nav pieejama',
     ],
 
     'index' => [
-        'description' => 'Izvēlētie mākslinieki ir mākslinieki, ar kuriem mēs sadarbojamies, lai osu! piedāvātu jaunu un oriģinālu mūziku. Šos māksliniekus un viņu dziesmu izlasi ir atlasījusi osu! komanda, jo tās ir lieliskas un piemērotas ritma-mapju veidošanai. Daži no šiem Izvēlētajiem Māksliniekiem ir radījuši arī ekskluzīvas jaunas dziesmas izmantošanai osu!.<br><br>Visas šajā sadaļā iekļautās dziesmas ir nodrošinātas kā pirmatnēji .osz faili un ir oficiāli licencētas izmantošanai osu! un ar osu! saistītā saturā.',
+        'description' => 'Kontraktētie mākslinieki ir mākslinieki, ar kuriem mēs sadarbojamies, lai piedāvātu osu! jaunu un oriģinālu mūziku. Šos māksliniekus un viņu dziesmu izlasi ir atlasījusi osu! komanda, jo tās ir lieliskas un piemērotas ritma-mapju veidošanai. Daži no šiem Kontraktētajiem Māksliniekiem ir radījuši arī ekskluzīvas jaunas dziesmas izmantošanai osu!.<br><br>Visas šajā sadaļā iekļautās dziesmas ir nodrošinātas kā pirmatnēji .osz faili un ir oficiāli licencētas izmantošanai osu! un ar osu! saistītā saturā.',
     ],
 
     'links' => [
@@ -31,7 +31,7 @@ return [
         '_' => 'Dziesmas',
         'count' => ':count_delimited dziesma|:count_delimited dziesmas',
         'original' => 'osu! oriģināli',
-        'original_badge' => 'ORIGINAL',
+        'original_badge' => 'ORIĢINĀLI',
     ],
 
     'tracklist' => [

@@ -7,8 +7,8 @@ return [
     'play_more' => 'Mengapa kamu tidak mencoba untuk bermain terlebih dahulu?',
     'require_login' => 'Silakan masuk untuk melanjutkan.',
     'require_verification' => 'Silakan verifikasi akunmu untuk melanjutkan.',
-    'restricted' => "Tidak dapat melakukan hal itu saat dibatasi.",
-    'silenced' => "Tidak dapat melakukan hal itu saat dibungkam.",
+    'restricted' => "Kamu tidak dapat melakukan hal ini pada saat sedang di-restrict.",
+    'silenced' => "Kamu tidak dapat melakukan hal ini pada saat sedang di-silence.",
     'unauthorized' => 'Akses ditolak.',
 
     'beatmap_discussion' => [
@@ -46,7 +46,7 @@ return [
         ],
 
         'edit' => [
-            'not_owner' => 'Postingan hanya dapat disunting oleh pengirim.',
+            'not_owner' => 'Postingan ini hanya dapat disunting oleh pengirimnya.',
             'resolved' => 'Kamu tidak dapat menyunting postingan pada topik diskusi yang telah terjawab.',
             'system_generated' => 'Postingan yang dihasilkan secara otomatis tidak dapat disunting.',
         ],
@@ -113,7 +113,7 @@ return [
                 'deleted' => 'Postingan yang telah dihapus tidak dapat disunting.',
                 'locked' => 'Postingan ini telah dikunci dari penyuntingan lebih lanjut.',
                 'no_forum_access' => 'Kamu tidak memiliki akses ke forum yang dituju.',
-                'no_permission' => '',
+                'no_permission' => 'Kamu tidak memiliki izin untuk menyunting.',
                 'not_owner' => 'Postingan ini hanya dapat disunting oleh pengirimnya.',
                 'topic_locked' => 'Postingan pada topik yang telah dikunci tidak dapat disunting.',
             ],

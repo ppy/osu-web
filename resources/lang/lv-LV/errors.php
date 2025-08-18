@@ -7,7 +7,7 @@ return [
     'load_failed' => 'Neizdevās ielādēt datus.',
     'missing_route' => 'Nederīgs url vai nepareiza pieprasījuma metode.',
     'no_restricted_access' => 'Jūs nevarat veikt šo darbību, kamēr jūsu konts ir ierobežojuma stāvoklī.',
-    'param_too_large' => '',
+    'param_too_large' => ':name parametram ir maximāli :count_delimited preces|:name parametram ir maksimāli :count_delimited daudzums ar precēm',
     'supporter_only' => 'Lai izmantotu šo funkciju, jums jābūt osu!supporter.',
     'unknown' => 'Notika nezināma kļūda.',
 

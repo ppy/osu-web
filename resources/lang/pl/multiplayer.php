@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Brak rozegranych gier w trybie :type_group!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'asynchronicznym',
         'realtime' => 'wieloosobowym',
     ],
