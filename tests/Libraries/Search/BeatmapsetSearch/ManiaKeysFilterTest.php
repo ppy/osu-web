@@ -24,16 +24,15 @@ class ManiaKeysFilterTest extends TestCase
         parent::setUpBeforeClass();
 
         static::withDbAccess(function () {
-            $beatmapsetFactory = Beatmapset::factory()->ranked();
-            $beatmapFactory = Beatmap::factory()->ruleset('mania')->state(['approved' => Beatmapset::STATES['ranked']]);
+            $factory = Beatmapset::factory()->ranked();
 
             static::$beatmapsets = [
-                $beatmapsetFactory->withBeatmaps('osu')->create(),
-                $beatmapsetFactory->has($beatmapFactory->state(['diff_size' => 7]))->create(),
-                $beatmapsetFactory->has($beatmapFactory->state(['diff_size' => 4]))->create(),
-                $beatmapsetFactory
-                    ->has($beatmapFactory->state(['diff_size' => 4]))
-                    ->has($beatmapFactory->state(['diff_size' => 7]))
+                $factory->withBeatmaps('osu', beatmapState: ['diff_size' => 7])->create(),
+                $factory->withBeatmaps('mania', beatmapState: ['diff_size' => 7])->create(),
+                $factory->withBeatmaps('mania', beatmapState: ['diff_size' => 4])->create(),
+                $factory
+                    ->withBeatmaps('mania', beatmapState: ['diff_size' => 4])
+                    ->withBeatmaps('mania', beatmapState: ['diff_size' => 7])
                     ->create(),
             ];
             static::refresh();
