@@ -53,19 +53,6 @@ abstract class TestCase extends BaseTestCase
         Es::getClient()->indices()->refresh();
     }
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-        config_set('osu.beatmapset.guest_advanced_search', true);
-    }
-
-    protected function searchAndAssert(array $params, array $expected): void
-    {
-        $beatmapsetIds = array_map(fn (int $index) => static::$beatmapsets[$index]->getKey(), $expected);
-
-        $this->assertEqualsCanonicalizing($beatmapsetIds, new BeatmapsetSearch(new BeatmapsetSearchRequestParams($params))->response()->ids());
-    }
-
     #[DataProvider('dataProvider')]
     public function testSearch(array $params, array $expected): void
     {
@@ -73,6 +60,15 @@ abstract class TestCase extends BaseTestCase
         $anyParams->status = 'any';
         $this->assertCount(count(static::$beatmapsets), new BeatmapsetSearch($anyParams)->response()->ids());
 
-        $this->searchAndAssert($params, $expected);
+        $this->assertEqualsCanonicalizing(
+            array_map(fn (int $index) => static::$beatmapsets[$index]->getKey(), $expected),
+            new BeatmapsetSearch(new BeatmapsetSearchRequestParams($params))->response()->ids()
+        );
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        config_set('osu.beatmapset.guest_advanced_search', true);
     }
 }
