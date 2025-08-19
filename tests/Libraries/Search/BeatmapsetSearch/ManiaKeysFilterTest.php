@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace Tests\Libraries\Search\BeatmapsetSearch;
 
-use App\Models\Beatmap;
 use App\Models\Beatmapset;
 
 class ManiaKeysFilterTest extends TestCase
