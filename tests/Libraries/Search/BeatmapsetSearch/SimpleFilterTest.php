@@ -48,8 +48,6 @@ class SimpleFilterTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        parent::setUpBeforeClass();
-
         static::withDbAccess(function () {
             $factory = Beatmapset::factory()->ranked();
             $beatmapFactory = Beatmap::factory()->ranked()->ruleset('osu');
@@ -103,8 +101,8 @@ class SimpleFilterTest extends TestCase
                         ]))
                     ->create(['favourite_count' => 300]),
             ];
-
-            static::refresh();
         });
+
+        parent::setUpBeforeClass();
     }
 }

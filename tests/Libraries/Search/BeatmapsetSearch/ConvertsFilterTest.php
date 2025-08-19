@@ -27,8 +27,6 @@ class ConvertsFilterTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        parent::setUpBeforeClass();
-
         static::withDbAccess(function () {
             $factory = Beatmapset::factory()->ranked();
             $beatmapFactory = Beatmap::factory()->ranked();
@@ -83,8 +81,8 @@ class ConvertsFilterTest extends TestCase
                         ]))
                     ->create(),
             ];
-
-            static::refresh();
         });
+
+        parent::setUpBeforeClass();
     }
 }

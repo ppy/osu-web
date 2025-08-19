@@ -21,8 +21,6 @@ class ManiaKeysFilterTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        parent::setUpBeforeClass();
-
         static::withDbAccess(function () {
             $factory = Beatmapset::factory()->ranked();
 
@@ -35,7 +33,8 @@ class ManiaKeysFilterTest extends TestCase
                     ->withBeatmaps('mania', beatmapState: ['diff_size' => 7])
                     ->create(),
             ];
-            static::refresh();
         });
+
+        parent::setUpBeforeClass();
     }
 }

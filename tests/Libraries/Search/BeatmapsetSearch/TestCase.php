@@ -23,18 +23,39 @@ use Tests\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
-    protected static iterable $beatmapsets;
+    protected static iterable $beatmapsets = [];
 
     abstract public static function dataProvider(): array;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @afterClass
+     * @beforeClass
+     *
+     * Should run before setUpBeforeClass.
+     */
+    public static function cleanupEsBeatmapsets(): void
     {
         static::deleteAllEsBeatmapsets();
     }
 
+    public static function setUpBeforeClass(): void
+    {
+        $count = count(static::$beatmapsets);
+        if ($count === 0) {
+            throw new \Exception('No beatmapsets added to test setup.');
+        }
+
+        Es::getClient()->indices()->refresh();
+        $params = new BeatmapsetSearchParams();
+        $params->status = 'any';
+
+        if (count(new BeatmapsetSearch($params)->response()->ids()) !== $count) {
+            throw new \Exception('Beatmapset count in index does not match test setup.');
+        }
+    }
+
     public static function tearDownAfterClass(): void
     {
-        static::deleteAllEsBeatmapsets();
         static::withDbAccess(function () {
             Beatmap::truncate();
             Beatmapset::truncate();
@@ -48,18 +69,9 @@ abstract class TestCase extends BaseTestCase
         static::$beatmapsets = [];
     }
 
-    protected static function refresh(): void
-    {
-        Es::getClient()->indices()->refresh();
-    }
-
     #[DataProvider('dataProvider')]
     public function testSearch(array $params, array $expected): void
     {
-        $anyParams = new BeatmapsetSearchParams();
-        $anyParams->status = 'any';
-        $this->assertCount(count(static::$beatmapsets), new BeatmapsetSearch($anyParams)->response()->ids());
-
         $this->assertEqualsCanonicalizing(
             array_map(fn (int $index) => static::$beatmapsets[$index]->getKey(), $expected),
             new BeatmapsetSearch(new BeatmapsetSearchRequestParams($params))->response()->ids()
