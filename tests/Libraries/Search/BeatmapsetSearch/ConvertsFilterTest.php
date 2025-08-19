@@ -33,8 +33,8 @@ class ConvertsFilterTest extends TestCase
             $factory = Beatmapset::factory()->ranked();
             $beatmapFactory = Beatmap::factory()->ranked();
             static::$beatmapsets = [
-                $factory->has(
-                    $beatmapFactory
+                $factory
+                    ->has($beatmapFactory
                         ->ruleset('osu')
                         ->state([
                             // converted to mania diff_size 4
@@ -43,12 +43,11 @@ class ConvertsFilterTest extends TestCase
                             'countSpinner' => 1,
                             'diff_size' => 1,
                             'diff_overall' => 1,
-                    ])
-                )
-                ->create(),
+                        ]))
+                    ->create(),
 
-                $factory->has(
-                    $beatmapFactory
+                $factory
+                    ->has($beatmapFactory
                         ->ruleset('osu')
                         ->state([
                             // converted to mania diff_size 7
@@ -57,12 +56,11 @@ class ConvertsFilterTest extends TestCase
                             'countSpinner' => 1,
                             'diff_size' => 4,
                             'diff_overall' => 4,
-                    ])
-                )
-                ->create(),
+                        ]))
+                    ->create(),
 
-                $factory->has(
-                    $beatmapFactory
+                $factory
+                    ->has($beatmapFactory
                         ->ruleset('mania')
                         ->state([
                             'countNormal' => 1,
@@ -70,12 +68,11 @@ class ConvertsFilterTest extends TestCase
                             'countSpinner' => 1,
                             'diff_size' => 4,
                             'diff_overall' => 1,
-                    ])
-                )
-                ->create(),
+                        ]))
+                    ->create(),
 
-                $factory->has(
-                    $beatmapFactory
+                $factory
+                    ->has($beatmapFactory
                         ->ruleset('mania')
                         ->state([
                             'countNormal' => 100,
@@ -83,9 +80,8 @@ class ConvertsFilterTest extends TestCase
                             'countSpinner' => 1,
                             'diff_size' => 7,
                             'diff_overall' => 1,
-                    ])
-                )
-                ->create(),
+                        ]))
+                    ->create(),
             ];
 
             static::refresh();
