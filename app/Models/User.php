@@ -1459,15 +1459,23 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(LegacyScoreFirst\Taiko::class)->default();
     }
 
-    public function scoresFirst(string $mode, bool $returnQuery = false)
+    public function beatmapLeaders()
+    {
+        return $this->hasMany(BeatmapLeader::class);
+    }
+
+    public function scoresFirst(string $mode, null | true $legacyOnly)
     {
         if (!Beatmap::isModeValid($mode)) {
             return;
         }
 
-        $relation = 'scoresFirst'.studly_case($mode);
+        if ($legacyOnly) {
+            $relation = 'scoresFirst'.studly_case($mode);
+            return $this->$relation();
+        }
 
-        return $returnQuery ? $this->$relation() : $this->$relation;
+        return $this->beatmapLeaders()->ruleset($mode);
     }
 
     public function scoresBestOsu()
