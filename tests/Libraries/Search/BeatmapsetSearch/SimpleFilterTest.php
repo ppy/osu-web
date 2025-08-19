@@ -57,7 +57,7 @@ class SimpleFilterTest extends TestCase
                 $factory
                     ->has($beatmapFactory
                         ->count(2)
-                        ->state(new Sequence(fn (Sequence $sequence) => [
+                        ->state(new Sequence(fn (Sequence $sequence): array => [
                             'total_length' => 1 + $sequence->index,
                             'hit_length' => 1 + $sequence->index,
                             'countNormal' => 1 + $sequence->index,
@@ -74,7 +74,7 @@ class SimpleFilterTest extends TestCase
                 $factory
                     ->has($beatmapFactory
                         ->count(2)
-                        ->state(new Sequence(fn (Sequence $sequence) => [
+                        ->state(new Sequence(fn (Sequence $sequence): array => [
                             'total_length' => 2 + $sequence->index,
                             'hit_length' => 2 + $sequence->index,
                             'countNormal' => 2 + $sequence->index,
