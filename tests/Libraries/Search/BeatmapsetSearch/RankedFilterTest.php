@@ -36,8 +36,6 @@ class RankedFilterTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        parent::setUpBeforeClass();
-
         static::withDbAccess(function () {
             $factory = Beatmapset::factory()->withBeatmaps();
             $helper = fn (DateTimeInterface $date) => $factory->ranked($date)->state([
@@ -51,7 +49,8 @@ class RankedFilterTest extends TestCase
                 $helper(new DateTime('2024-02-28'))->create(),
                 $helper(new DateTime('2024-03-05'))->create(),
             ];
-            static::refresh();
         });
+
+        parent::setUpBeforeClass();
     }
 }

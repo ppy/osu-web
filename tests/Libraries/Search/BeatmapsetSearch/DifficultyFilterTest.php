@@ -24,8 +24,6 @@ class DifficultyFilterTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        parent::setUpBeforeClass();
-
         static::withDbAccess(function () {
             $factory = Beatmapset::factory()->ranked();
             $beatmapFactory = Beatmap::factory()
@@ -48,7 +46,8 @@ class DifficultyFilterTest extends TestCase
                     ->has($beatmapFactory->state(['version' => 'hard']))
                     ->create(),
             ];
-            static::refresh();
         });
+
+        parent::setUpBeforeClass();
     }
 }

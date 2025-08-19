@@ -24,8 +24,6 @@ class FeaturedArtistFilterTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        parent::setUpBeforeClass();
-
         static::withDbAccess(function () {
             $artists = Artist::factory()
                 ->count(2)
@@ -51,9 +49,9 @@ class FeaturedArtistFilterTest extends TestCase
                 ->ranked()
                 ->withBeatmaps()
                 ->create();
-
-            static::refresh();
         });
+
+        parent::setUpBeforeClass();
     }
 
     public static function tearDownAfterClass(): void

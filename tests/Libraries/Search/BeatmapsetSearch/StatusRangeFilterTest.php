@@ -40,16 +40,14 @@ class StatusRangeFilterTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        parent::setUpBeforeClass();
-
         static::withDbAccess(function () {
             static::$beatmapsets = [];
             $factory = Beatmapset::factory()->withBeatmaps();
             foreach (Beatmapset::STATES as $_state => $value) {
                 static::$beatmapsets[] = $factory->state(['approved' => $value])->create();
             }
-
-            static::refresh();
         });
+
+        parent::setUpBeforeClass();
     }
 }

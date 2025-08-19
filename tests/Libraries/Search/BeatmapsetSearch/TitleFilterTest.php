@@ -24,8 +24,6 @@ class TitleFilterTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        parent::setUpBeforeClass();
-
         static::withDbAccess(function () {
             $factory = Beatmapset::factory()->ranked()->withBeatmaps();
             static::$beatmapsets = [
@@ -34,7 +32,8 @@ class TitleFilterTest extends TestCase
                 $factory->create(['title_unicode' => 'the best beatmapよ']),
                 $factory->create(['artist' => 'the best artist']),
             ];
-            static::refresh();
         });
+
+        parent::setUpBeforeClass();
     }
 }
