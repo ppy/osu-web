@@ -29,13 +29,13 @@ class FeaturedArtistFilterTest extends TestCase
         static::withDbAccess(function () {
             $artists = Artist::factory()
                 ->count(2)
-                ->state(new Sequence(fn (Sequence $sequence) => ['id' => $sequence->index + 1]))
+                ->state(new Sequence(fn (Sequence $sequence): array => ['id' => $sequence->index + 1]))
                 ->create();
 
             // multiple tracks per artist
             $tracks = ArtistTrack::factory()
                 ->count(4)
-                ->state(new Sequence(fn (Sequence $sequence) => ['artist_id' => $artists[$sequence->index % 2]]))
+                ->state(new Sequence(fn (Sequence $sequence): array => ['artist_id' => $artists[$sequence->index % 2]]))
                 ->create();
 
             // multiple beatmapsets on at least one track
@@ -43,7 +43,7 @@ class FeaturedArtistFilterTest extends TestCase
                 ->ranked()
                 ->withBeatmaps()
                 ->count(6)
-                ->state(new Sequence(fn (Sequence $sequence) => ['track_id' => $tracks[$sequence->index % 4]]))
+                ->state(new Sequence(fn (Sequence $sequence): array => ['track_id' => $tracks[$sequence->index % 4]]))
                 ->create();
 
             // extra non-featured artist beatmapset
