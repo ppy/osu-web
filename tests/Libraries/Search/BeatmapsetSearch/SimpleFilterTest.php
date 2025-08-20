@@ -13,22 +13,34 @@ use Illuminate\Database\Eloquent\Factories\Sequence;
 
 class SimpleFilterTest extends TestCase
 {
+    // Date tests in RankedFilterTest
+    private const KEYS = [
+        'ar' => 'diff_approach',
+        'bpm' => 'bpm',
+        'circles' => 'countNormal',
+        'cs' => 'diff_size',
+        'hp' => 'diff_drain',
+        'length' => 'total_length',
+        'od' => 'diff_overall',
+        'sliders' => 'countSlider',
+        'stars' => 'difficultyrating',
+    ];
+
     public static function dataProvider(): array
     {
-        // Date tests in RankedFilterTest
-        static $keys = ['ar', 'bpm', 'circles', 'cs', 'hp', 'length', 'od', 'sliders', 'stars'];
-
         $data = [];
-        foreach ($keys as $key) {
-            $data[] = [['q' => "{$key}=2"], [0, 1]];
-            $data[] = [['q' => "{$key}>2"], [1, 2]];
-            $data[] = [['q' => "{$key}>=2"], [0, 1, 2]];
-            $data[] = [['q' => "{$key}<2"], [0]];
-            $data[] = [['q' => "{$key}<=2"], [0, 1]];
-            $data[] = [['q' => "{$key}>2 {$key}=1"], [0]]; // same key overrides
+        foreach (array_keys(static::KEYS) as $offset => $key) {
+            $value = $offset + 2;
+            $otherValue = $offset + 1;
+            $data[] = [['q' => "{$key}={$value}"], [0, 1]];
+            $data[] = [['q' => "{$key}>{$value}"], [1, 2]];
+            $data[] = [['q' => "{$key}>={$value}"], [0, 1, 2]];
+            $data[] = [['q' => "{$key}<{$value}"], [0]];
+            $data[] = [['q' => "{$key}<={$value}"], [0, 1]];
+            $data[] = [['q' => "{$key}>2 {$key}={$otherValue}"], [0]]; // same key overrides
         }
 
-        $data[] = [['q' => 'od>3 ar<3'], []];
+        $data[] = [['q' => 'od>9 ar<3'], []];
 
         $data[] = [['q' => 'favourites=150'], []]; // if you really want an exact number of favourites...
         $data[] = [['q' => 'favourites>200'], [2]];
@@ -36,12 +48,12 @@ class SimpleFilterTest extends TestCase
         $data[] = [['q' => 'favourites<200'], [0]];
         $data[] = [['q' => 'favourites<=200'], [0, 1]];
 
-        $data[] = [['q' => 'od>1'], [0, 1, 2]];
-        $data[] = [['q' => 'od>1 favourites>123'], [1, 2]];
+        $data[] = [['q' => 'od>7'], [0, 1, 2]];
+        $data[] = [['q' => 'od>7 favourites>123'], [1, 2]];
 
         // no matches because there is no beatmap that matches both conditions
         // even though the beatmapset has both in different beatmaps.
-        $data[] = [['q' => 'od>=3 ar<3'], []];
+        $data[] = [['q' => 'od>=9 ar<3'], []];
 
         return $data;
     }
@@ -51,54 +63,37 @@ class SimpleFilterTest extends TestCase
         static::withDbAccess(function () {
             $factory = Beatmapset::factory()->ranked();
             $beatmapFactory = Beatmap::factory()->ranked()->ruleset('osu');
+
+            $props = array_values(static::KEYS);
+            $baseValues = [];
+            foreach ($props as $offset => $prop) {
+                $baseValues[$prop] = $offset;
+            }
+            $baseValues['hit_length'] = $baseValues['total_length']; // don't use the rand in factory.
+
+            $offsetValues = function (int $offset) use ($baseValues): array {
+                $props = [];
+                foreach ($baseValues as $key => $value) {
+                    $props[$key] = $value + $offset;
+                }
+
+                return $props;
+            };
+
             static::$beatmapsets = [
                 $factory
                     ->has($beatmapFactory
                         ->count(2)
-                        ->state(new Sequence(fn (Sequence $sequence): array => [
-                            'total_length' => 1 + $sequence->index,
-                            'hit_length' => 1 + $sequence->index,
-                            'countNormal' => 1 + $sequence->index,
-                            'countSlider' => 1 + $sequence->index,
-                            'bpm' => 1 + $sequence->index,
-                            'diff_approach' => 1 + $sequence->index,
-                            'diff_drain' => 1 + $sequence->index,
-                            'diff_overall' => 1 + $sequence->index,
-                            'diff_size' => 1 + $sequence->index,
-                            'difficultyrating' => 1 + $sequence->index,
-                        ])))
+                        ->state(new Sequence(fn (Sequence $sequence): array => $offsetValues($sequence->index + 1))))
                     ->create(['favourite_count' => 100]),
                 // this beatmapset has beatmaps with values overlapping the first.
                 $factory
                     ->has($beatmapFactory
                         ->count(2)
-                        ->state(new Sequence(fn (Sequence $sequence): array => [
-                            'total_length' => 2 + $sequence->index,
-                            'hit_length' => 2 + $sequence->index,
-                            'countNormal' => 2 + $sequence->index,
-                            'countSlider' => 2 + $sequence->index,
-                            'bpm' => 2 + $sequence->index,
-                            'diff_approach' => 2 + $sequence->index,
-                            'diff_drain' => 2 + $sequence->index,
-                            'diff_overall' => 2 + $sequence->index,
-                            'diff_size' => 2 + $sequence->index,
-                            'difficultyrating' => 2 + $sequence->index,
-                        ])))
+                        ->state(new Sequence(fn (Sequence $sequence): array => $offsetValues($sequence->index + 2))))
                     ->create(['favourite_count' => 200]),
                 $factory
-                    ->has($beatmapFactory
-                        ->state([
-                            'total_length' => 4,
-                            'hit_length' => 4,
-                            'countNormal' => 4,
-                            'countSlider' => 4,
-                            'bpm' => 4,
-                            'diff_approach' => 4,
-                            'diff_drain' => 4,
-                            'diff_overall' => 4,
-                            'diff_size' => 4,
-                            'difficultyrating' => 4,
-                        ]))
+                    ->has($beatmapFactory->state($offsetValues(4)))
                     ->create(['favourite_count' => 300]),
             ];
         });
