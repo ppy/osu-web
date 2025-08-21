@@ -49,7 +49,7 @@ abstract class TestCase extends BaseTestCase
         $params = new BeatmapsetSearchParams();
         $params->status = 'any';
 
-        if (count(new BeatmapsetSearch($params)->response()->ids()) !== $count) {
+        if (new BeatmapsetSearch($params)->count() !== $count) {
             throw new \Exception('Beatmapset count in index does not match test setup.');
         }
     }
