@@ -394,9 +394,6 @@ Route::group(['middleware' => ['web']], function () {
         });
     });
 
-    // TODO: update to redirect to root later
-    Route::get('/home', 'HomeController@index');
-
     Route::get('/', 'HomeController@index')->name('home');
 
     // redirects go here
