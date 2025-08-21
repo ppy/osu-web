@@ -63,6 +63,7 @@ class Room extends Model
             ['column' => 'id', 'order' => 'DESC', 'type' => 'int'],
         ],
         'created' => [
+            ['column' => 'pinned', 'order' => 'DESC', 'type' => 'bool'],
             ['column' => 'id', 'order' => 'DESC', 'type' => 'int'],
         ],
     ];
