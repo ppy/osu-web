@@ -35,12 +35,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int|null $channel_id
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $deleted_at
+ * @property string|null $description
  * @property \Carbon\Carbon $ends_at
  * @property User $host
  * @property int $id
  * @property int|null $max_attempts
  * @property string $name
  * @property int $participant_count
+ * @property bool $pinned
  * @property \Illuminate\Database\Eloquent\Collection $playlist PlaylistItem
  * @property \Illuminate\Database\Eloquent\Collection $scoreLinks ScoreLink
  * @property-read Season $season
