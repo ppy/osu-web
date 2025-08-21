@@ -32,10 +32,14 @@ abstract class TestCase extends BaseTestCase
      * @beforeClass
      *
      * Should run before setUpBeforeClass.
+     * This runs beforeClass as well, to workaround data that may be left in the index from other tests.
+     * Due to Laravel not sending the transaction events when it wraps tests in a transaction,
+     * afterCommit may or may not unintentionally index documents,
+     * depending on whether or no additional transactions are involved in the test.
      */
     public static function cleanupEsBeatmapsets(): void
     {
-        static::deleteAllEsBeatmapsets();
+        new BeatmapsetSearch()->deleteAll();
     }
 
     public static function setUpBeforeClass(): void
