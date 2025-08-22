@@ -562,6 +562,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         // Friends
         Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
 
+        Route::get('me/beatmapset-favourites', 'Account\BeatmapsetFavouritesController@index');
         //  GET /api/v2/me/download-quota-check
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
         //  GET /api/v2/me
