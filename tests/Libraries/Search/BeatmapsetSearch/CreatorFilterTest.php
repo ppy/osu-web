@@ -17,6 +17,9 @@ class CreatorFilterTest extends TestCase
     public static function dataProvider(): array
     {
         return [
+            'include keyword' => [['q' => 'mapper'], []], // doesn't match guest mapper because keyword doesn't do the name lookup
+            'exclude keyword' => [['q' => '-mapper'], [4, 3, 2, 1, 0]],
+
             'include lookup user' => [['q' => 'creator=mapper'], [1, 0]],
             'include non-lookup user' => [['q' => 'creator=someone'], [0, 3]],
             'exclude lookup user' => [['q' => '-creator=mapper'], [4, 3, 2], ['approved_date', 'id']],
