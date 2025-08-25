@@ -29,6 +29,34 @@ class BeatmapsetSearch extends RecordSearch
     private BoolQuery $nested;
     private BoolQuery $nestedMustNot;
 
+    private array $tokens;
+
+    public static function tokenize(string $query): array
+    {
+        $parts = [
+            'exclude' => [],
+            'include' => [],
+        ];
+
+        $mode = 'include';
+        $token = strtok($query, ' ');
+        while ($token !== false) {
+            $mode = str_starts_with($token, '-') ? 'exclude' : 'include';
+            $word = ltrim($token, '-');
+            if (str_starts_with($word, '"')) {
+                $phraseStart = ltrim($word, '"');
+                $token = strtok('"');
+                $parts[$mode][] = $phraseStart.' '.$token;
+            } else {
+                $parts[$mode][] = $word;
+            }
+
+            $token = strtok(' ');
+        }
+
+        return $parts;
+    }
+
     private static function isExactTag(string $value): bool
     {
         return mb_strpos($value, '/') !== false;
@@ -49,6 +77,7 @@ class BeatmapsetSearch extends RecordSearch
 
         $this->excludes = $this->params->excludes;
         $this->includes = $this->params->includes;
+        $this->tokens = static::tokenize($params->queryString ?? '');
     }
 
     /**
@@ -69,29 +98,56 @@ class BeatmapsetSearch extends RecordSearch
             'tags^0.5',
         ];
 
+        static $queryStringFields = [
+            'artist',
+            'artist_unicode',
+            'creator',
+            'title',
+            'title_unicode',
+        ];
+
         $this->query = new BoolQuery();
         $this->nested = new BoolQuery();
         $this->nestedMustNot = new BoolQuery()->shouldMatch(1);
-
-        if (present($this->params->queryString)) {
-            $terms = explode(' ', $this->params->queryString);
+        if (!empty($this->tokens['include'])) {
+            $includeString = implode(' ', $this->tokens['include']);
 
             // the subscoping is not necessary but prevents unintentional accidents when combining other matchers
-            $this->query->must(
-                (new BoolQuery())
-                    // results must contain at least one of the terms and boosted by containing all of them,
-                    // or match the id of the beatmapset.
-                    ->shouldMatch(1)
-                    ->should(['term' => ['_id' => ['value' => $this->params->queryString, 'boost' => 100]]])
-                    ->should(QueryHelper::queryString($this->params->queryString, $partialMatchFields, 'or', 1 / count($terms)))
-                    ->should(QueryHelper::queryString($this->params->queryString, [], 'and'))
-                    ->should([
-                        'nested' => [
-                            'path' => 'beatmaps',
-                            'query' => QueryHelper::queryString($this->params->queryString, ['beatmaps.top_tags'], 'or', 0.5 / count($terms)),
+            $this->query->must(new BoolQuery()
+                // results must contain at least one of the terms and boosted by containing all of them,
+                // or match the id of the beatmapset.
+                ->shouldMatch(1)
+                ->should(['term' => ['_id' => ['value' => $includeString, 'boost' => 100]]])
+                ->should([
+                    'multi_match' => [
+                        'fields' => $partialMatchFields,
+                        'type' => 'most_fields',
+                        'query' => $includeString,
+                    ],
+                ])
+                ->should([
+                    'nested' => [
+                        'path' => 'beatmaps',
+                        'query' => [
+                            'match' => [
+                                'beatmaps.top_tags' => [
+                                    'query' => $includeString,
+                                    'boost' => 0.5,
+                                ],
+                            ],
                         ],
-                    ])
-            );
+                    ],
+                ]));
+        }
+
+        // exclusion should be full matches only, and only on the main beatmapset fields.
+        if (!empty($this->tokens['exclude'])) {
+            $this->query->mustNot([
+                'multi_match' => [
+                    'fields' => $queryStringFields,
+                    'query' => implode(' ', $this->tokens['exclude']),
+                ],
+            ]);
         }
 
         // top level
