@@ -42,13 +42,13 @@ class TagsFilterTest extends TestCase
     public static function dataProvider(): array
     {
         return [
-            [['q' => 'triangles'], [0, 1, 3]],
-            [['q' => '-triangles'], [2, 3]],
-            [['q' => 'triangles -revival'], [0, 3]],
+            [['q' => 'triangles'], [0, 1, 3], ['_score', 'id']],
+            [['q' => '-triangles'], [2, 3], ['_score', 'id']],
+            [['q' => 'triangles -revival'], [0, 3], ['_score', 'id']],
 
             [['q' => 'tag=triangles'], [3]],
-            [['q' => 'tag=aim'], [1, 3]],
-            [['q' => 'tag=tech'], [0, 2]],
+            [['q' => 'tag=aim'], [3, 1]],
+            [['q' => 'tag=tech'], [2, 0]],
 
             [['q' => 'tag="style marathon"'], [2]], // should have style AND marathon, different tags accepted.
             [['q' => 'tag="\"style marathon\""'], []], // "style marathon" must be in the same tag
@@ -59,10 +59,10 @@ class TagsFilterTest extends TestCase
             [['q' => 'tag="\"marathon meta\""'], []],
             [['q' => 'tag="\"mega marathon\""'], [2]],
             [['q' => 'tag="\"marathon mega\""'], []],
-            [['q' => 'tag="\"meta mega\""'], [1, 2]],
+            [['q' => 'tag="\"meta mega\""'], [2, 1]],
 
             [['q' => 'tag=style tag="meta marathon"'], [2]],
-            [['q' => 'tag=tech tag="meta marathon"'], [0, 2]],
+            [['q' => 'tag=tech tag="meta marathon"'], [2, 0]],
             [['q' => 'tag=tech tag="\"meta marathon\""'], [0]],
 
             // explicitly match a tag, double quoting not required.
@@ -73,21 +73,21 @@ class TagsFilterTest extends TestCase
 
             // tag="style \"meta marathon\"" is not a valid parser output and not tested.
 
-            [['q' => '-tag="aim"'], [0, 1, 2]], // exclude tag only if it's in all the beatmaps of the beatmapset.
+            [['q' => '-tag="aim"'], [2, 1, 0]], // exclude tag only if it's in all the beatmaps of the beatmapset.
 
-            [['q' => '-tag=marathon'], [1, 3]],
+            [['q' => '-tag=marathon'], [3, 1]],
             [['q' => '-tag=meta'], [3]],
-            [['q' => '-tag=tech'], [1, 3]],
-            [['q' => '-tag="style marathon"'], [0, 1, 3]], // exclude style AND marathon
+            [['q' => '-tag=tech'], [3, 1]],
+            [['q' => '-tag="style marathon"'], [3, 1, 0]], // exclude style AND marathon
             [['q' => '-tag=style -tag=marathon'], [3]], // exclude style OR marathon
 
-            [['q' => '-tag="\"meta mega\""'], [0, 3]],
-            [['q' => '-tag="\"meta mega marathon\""'], [0, 1, 3]],
-            [['q' => '-tag="\"meta marathon\""'], [1, 2, 3]],
-            [['q' => '-tag="meta/marathon"'], [1, 2, 3]],
-            [['q' => '-tag="style/old-style revival"'], [0, 1, 3]],
-            [['q' => '-tag="style/old-style"'], [0, 1, 2, 3]],
-            [['q' => '-tag="\"style old-style\""'], [0, 1, 3]],
+            [['q' => '-tag="\"meta mega\""'], [3, 0]],
+            [['q' => '-tag="\"meta mega marathon\""'], [3, 1, 0]],
+            [['q' => '-tag="\"meta marathon\""'], [3, 2, 1]],
+            [['q' => '-tag="meta/marathon"'], [3, 2, 1]],
+            [['q' => '-tag="style/old-style revival"'], [3, 1, 0]],
+            [['q' => '-tag="style/old-style"'], [3, 2, 1, 0]],
+            [['q' => '-tag="\"style old-style\""'], [3, 1, 0]],
         ];
     }
 
@@ -96,7 +96,7 @@ class TagsFilterTest extends TestCase
         static::withDbAccess(function () {
             \DB::transaction(function () {
                 static::$tagUserId = User::factory()->create()->getKey();
-                static::$tags = Tag::factory()->count(count(static::TAG_NAMES))->state(new Sequence(fn (Sequence $sequence) => [
+                static::$tags = Tag::factory()->count(count(static::TAG_NAMES))->state(new Sequence(fn(Sequence $sequence) => [
                     'name' => static::TAG_NAMES[$sequence->index],
                 ]))->create()->keyBy('name');
 
