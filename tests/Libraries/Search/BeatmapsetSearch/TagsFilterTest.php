@@ -29,14 +29,10 @@ class TagsFilterTest extends TestCase
         'meta/mega marathon',
         'meta/mega collab',
         'skillset/tech',
-        'streams/cutstreams',
         'style/messy',
-        'style/geometric',
         'style/old-style revival',
         'style/high contrast',
-        'tap/finger control',
         'tap/streams',
-        'tech/complex sv',
         'tech/slider tech',
     ];
 
@@ -77,6 +73,8 @@ class TagsFilterTest extends TestCase
 
             // tag="style \"meta marathon\"" is not a valid parser output and not tested.
 
+            [['q' => '-tag="aim"'], [0, 1, 2]], // exclude tag only if it's in all the beatmaps of the beatmapset.
+
             [['q' => '-tag=marathon'], [1, 3]],
             [['q' => '-tag=meta'], [3]],
             [['q' => '-tag=tech'], [1, 3]],
@@ -109,12 +107,14 @@ class TagsFilterTest extends TestCase
                         ->create(['title' => 'Triangles']),
                     $factory
                         ->has(static::beatmapWithTags('aim/flow', 'style/high contrast', 'meta/variable timing', 'meta/mega collab'))
+                        ->has(static::beatmapWithTags('meta/mega collab', 'style/messy'))
                         ->create(['title' => 'Triangles Revival']),
                     $factory
                         ->has(static::beatmapWithTags('style/old-style revival', 'skillset/tech', 'meta/mega marathon'))
                         ->create(['title' => 'Aim for the bottom!']),
                     $factory
-                        ->has(static::beatmapWithTags('aim/flow', 'aim/triangles', 'geometic/grid snap'))
+                        ->has(static::beatmapWithTags('aim/triangles', 'geometic/grid snap'))
+                        ->has(static::beatmapWithTags('aim/flow'))
                         ->create(['title' => 'high tech flow control']),
                 ];
             });
