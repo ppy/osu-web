@@ -27,6 +27,32 @@ class QueryHelper
         throw new Exception('$clause should be associative array or Queryable.');
     }
 
+    public static function tokenize(string $query): array
+    {
+        $parts = [
+            'exclude' => [],
+            'include' => [],
+        ];
+
+        $mode = 'include';
+        $token = strtok($query, ' ');
+        while ($token !== false) {
+            $mode = str_starts_with($token, '-') ? 'exclude' : 'include';
+            $word = ltrim($token, '-');
+            if (str_starts_with($word, '"')) {
+                $phraseStart = ltrim($word, '"');
+                $token = strtok('"');
+                $parts[$mode][] = $phraseStart.' '.$token;
+            } else {
+                $parts[$mode][] = $word;
+            }
+
+            $token = strtok(' ');
+        }
+
+        return $parts;
+    }
+
     /**
      * Helper method that creates the simple_query_string query.
      *

@@ -20,6 +20,8 @@ use Ds\Set;
 
 class BeatmapsetSearch extends RecordSearch
 {
+    private array $tokens;
+
     public function __construct(?BeatmapsetSearchParams $params = null)
     {
         parent::__construct(
@@ -27,6 +29,8 @@ class BeatmapsetSearch extends RecordSearch
             $params ?? new BeatmapsetSearchParams(),
             Beatmapset::class
         );
+
+        $this->tokens = QueryHelper::tokenize($params->queryString ?? '');
     }
 
     /**
@@ -34,40 +38,64 @@ class BeatmapsetSearch extends RecordSearch
      */
     public function getQuery()
     {
-        static $partialMatchFields = [
+        static $fullMatchFields = [
             'artist',
-            'artist.*',
             'artist_unicode',
-            'artist_unicode.*',
             'creator',
             'title',
-            'title.*',
             'title_unicode',
+        ];
+
+        static $partialMatchFields = [
+            ...$fullMatchFields,
+            'artist.*',
+            'artist_unicode.*',
+            'title.*',
             'title_unicode.*',
             'tags^0.5',
         ];
 
         $query = new BoolQuery();
 
-        if (present($this->params->queryString)) {
-            $terms = explode(' ', $this->params->queryString);
+        if (!empty($this->tokens['include'])) {
+            $includeString = implode(' ', $this->tokens['include']);
 
             // the subscoping is not necessary but prevents unintentional accidents when combining other matchers
-            $query->must(
-                (new BoolQuery())
-                    // results must contain at least one of the terms and boosted by containing all of them,
-                    // or match the id of the beatmapset.
-                    ->shouldMatch(1)
-                    ->should(['term' => ['_id' => ['value' => $this->params->queryString, 'boost' => 100]]])
-                    ->should(QueryHelper::queryString($this->params->queryString, $partialMatchFields, 'or', 1 / count($terms)))
-                    ->should(QueryHelper::queryString($this->params->queryString, [], 'and'))
-                    ->should([
-                        'nested' => [
-                            'path' => 'beatmaps',
-                            'query' => QueryHelper::queryString($this->params->queryString, ['beatmaps.top_tags'], 'or', 0.5 / count($terms)),
+            $query->must(new BoolQuery()
+                // results must contain at least one of the terms and boosted by containing all of them,
+                // or match the id of the beatmapset.
+                ->shouldMatch(1)
+                ->should(['term' => ['_id' => ['value' => $includeString, 'boost' => 100]]])
+                ->should([
+                    'multi_match' => [
+                        'fields' => $partialMatchFields,
+                        'type' => 'most_fields',
+                        'query' => $includeString,
+                    ],
+                ])
+                ->should([
+                    'nested' => [
+                        'path' => 'beatmaps',
+                        'query' => [
+                            'match' => [
+                                'beatmaps.top_tags' => [
+                                    'query' => $includeString,
+                                    'boost' => 0.5,
+                                ],
+                            ],
                         ],
-                    ])
-            );
+                    ],
+                ]));
+        }
+
+        // exclusion should be full matches only, and only on the main beatmapset fields.
+        if (!empty($this->tokens['exclude'])) {
+            $query->mustNot([
+                'multi_match' => [
+                    'fields' => $fullMatchFields,
+                    'query' => implode(' ', $this->tokens['exclude']),
+                ],
+            ]);
         }
 
         $this->addBlockedUsersFilter($query);
