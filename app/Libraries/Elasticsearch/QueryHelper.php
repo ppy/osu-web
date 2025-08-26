@@ -40,9 +40,8 @@ class QueryHelper
             $mode = str_starts_with($token, '-') ? 'exclude' : 'include';
             $word = ltrim($token, '-');
             if (str_starts_with($word, '"')) {
-                $phraseStart = ltrim($word, '"');
                 $token = strtok('"');
-                $parts[$mode][] = $phraseStart.' '.$token;
+                $parts[$mode][] = $word.' '.$token.'"';
             } else {
                 $parts[$mode][] = $word;
             }
