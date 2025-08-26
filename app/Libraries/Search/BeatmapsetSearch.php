@@ -63,31 +63,39 @@ class BeatmapsetSearch extends RecordSearch
         $query = new BoolQuery();
 
         if (!empty($this->tokens['include'])) {
-            $includeString = implode(' ', $this->tokens['include']);
-
             // the subscoping is not necessary but prevents unintentional accidents when combining other matchers
-            $query->must(new BoolQuery()
+            $boolQuery = new BoolQuery()
                 // results must contain at least one of the terms and boosted by containing all of them,
                 // or match the id of the beatmapset.
                 ->shouldMatch(1)
-                ->should(['term' => ['_id' => ['value' => $includeString, 'boost' => 100]]])
-                ->should([
-                    'multi_match' => [
-                        'fields' => $partialMatchFields,
-                        'type' => 'most_fields',
-                        'query' => $includeString,
-                    ],
-                ]));
+                ->should(['term' => ['_id' => ['value' => implode(' ', $this->tokens['include']), 'boost' => 100]]]);
+
+            foreach ($this->tokens['include'] as $include) {
+                $isQuoted = static::isQuoted($include);
+                $boolQuery
+                    ->should([
+                        'multi_match' => [
+                            'fields' => $isQuoted ? $fullMatchFields : $partialMatchFields,
+                            'type' => $isQuoted ? 'phrase' : 'most_fields',
+                            'query' => $include,
+                        ],
+                    ]);
+            }
+
+            $query->must($boolQuery);
         }
 
         // exclusion should be full matches only, and only on the main beatmapset fields.
         if (!empty($this->tokens['exclude'])) {
-            $query->mustNot([
-                'multi_match' => [
-                    'fields' => $fullMatchFields,
-                    'query' => implode(' ', $this->tokens['exclude']),
-                ],
-            ]);
+            foreach ($this->tokens['exclude'] as $exclude) {
+                $query->mustNot([
+                    'multi_match' => [
+                        'fields' => $fullMatchFields,
+                        'type' => static::isQuoted($exclude) ? 'phrase' : 'most_fields',
+                        'query' => $exclude,
+                    ],
+                ]);
+            }
         }
 
         $this->addBlockedUsersFilter($query);
