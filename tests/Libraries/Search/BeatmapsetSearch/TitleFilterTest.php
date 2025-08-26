@@ -14,6 +14,13 @@ class TitleFilterTest extends TestCase
     public static function dataProvider(): array
     {
         return [
+            [['q' => 'best'], [0, 1, 2, 3]],
+            [['q' => 'best beatmap'], [0, 1, 2, 3]],
+            [['q' => '"best beatmap"'], [1, 2]],
+            [['q' => '-best'], []],
+            [['q' => '-best -beatmap'], []],
+            [['q' => '-"best beatmap"'], [0, 3]],
+
             [['q' => 'title=best'], [0, 1, 2]],
             [['q' => 'title="best beatmap"'], [1, 2]],
             [['q' => 'title="the beatmap"'], [1, 2]],
