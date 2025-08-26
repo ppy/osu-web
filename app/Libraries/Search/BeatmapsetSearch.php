@@ -22,6 +22,11 @@ class BeatmapsetSearch extends RecordSearch
 {
     private array $tokens;
 
+    private static function isQuoted(string $value): bool
+    {
+        return str_starts_with($value, '"') && str_ends_with($value, '"');
+    }
+
     public function __construct(?BeatmapsetSearchParams $params = null)
     {
         parent::__construct(
@@ -169,7 +174,7 @@ class BeatmapsetSearch extends RecordSearch
     private function addDifficultyFilter(BoolQuery $nested)
     {
         if ($this->params->difficulty !== null) {
-            $nested->must(QueryHelper::queryString($this->params->difficulty, ['beatmaps.version'], 'and'));
+            $nested->must(['match' => ['beatmaps.version' => ['query' => $this->params->difficulty, 'operator' => 'and']]]);
         }
     }
 
@@ -435,7 +440,14 @@ class BeatmapsetSearch extends RecordSearch
             $subQuery->should(['term' => ["{$field}.raw" => ['value' => $value, 'boost' => 100]]]);
         }
 
-        $subQuery->should(QueryHelper::queryString($value, $searchFields, 'and'));
+        $subQuery->should([
+            'multi_match' => [
+                'fields' => $searchFields,
+                'query' => $value,
+                'operator' => 'and',
+                'type' => static::isQuoted($value) ? 'phrase' : 'most_fields',
+            ],
+        ]);
 
         $query->must($subQuery);
     }
@@ -464,7 +476,7 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         foreach (array_values($tagMap) as $tag) {
-            $query->filter(QueryHelper::queryString($tag, ['beatmaps.top_tags'], 'and'));
+            $query->filter(['match' => ['beatmaps.top_tags' => ['query' => $tags, 'operator' => 'and']]]);
         }
     }
 
