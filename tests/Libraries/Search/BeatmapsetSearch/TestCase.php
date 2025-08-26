@@ -18,6 +18,8 @@ use App\Models\Genre;
 use App\Models\Language;
 use App\Models\User;
 use App\Models\UserGroup;
+use PHPUnit\Framework\Attributes\AfterClass;
+use PHPUnit\Framework\Attributes\BeforeClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase as BaseTestCase;
 
@@ -28,15 +30,13 @@ abstract class TestCase extends BaseTestCase
     abstract public static function dataProvider(): array;
 
     /**
-     * @afterClass
-     * @beforeClass
-     *
      * Should run before setUpBeforeClass.
      * This runs beforeClass as well, to workaround data that may be left in the index from other tests.
      * Due to Laravel not sending the transaction events when it wraps tests in a transaction,
      * afterCommit may or may not unintentionally index documents,
      * depending on whether or no additional transactions are involved in the test.
      */
+    #[AfterClass, BeforeClass]
     public static function cleanupEsBeatmapsets(): void
     {
         new BeatmapsetSearch()->deleteAll();
