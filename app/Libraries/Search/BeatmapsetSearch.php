@@ -99,14 +99,7 @@ class BeatmapsetSearch extends RecordSearch
                 ->should([
                     'nested' => [
                         'path' => 'beatmaps',
-                        'query' => [
-                            'match' => [
-                                'beatmaps.top_tags' => [
-                                    'query' => $includeString,
-                                    'boost' => 0.5,
-                                ],
-                            ],
-                        ],
+                        'query' => ['match' => ['beatmaps.top_tags' => ['query' => $includeString, 'operator' => 'and', 'boost' => 0.5]]],
                     ],
                 ]));
         }
@@ -230,11 +223,16 @@ class BeatmapsetSearch extends RecordSearch
     private function addDifficultyFilter()
     {
         if ($this->includes->difficulty !== null) {
-            $this->nested->filter(QueryHelper::queryString($this->includes->difficulty, ['beatmaps.version'], 'and'));
+            $params = static::isQuoted($this->includes->difficulty)
+                ? ['match_phrase' => ['beatmaps.version' => $this->includes->difficulty]]
+                : ['match' => ['beatmaps.version' => ['query' => $this->includes->difficulty, 'operator' => 'and']]];
+            $this->nested->must($params);
         }
 
+        // difficulty excludes if any single beatmap matches since requiring all the difficulties to have the matching phrase would be weird.
         if ($this->excludes->difficulty !== null) {
-            $this->nestedMustNot->should(QueryHelper::queryString($this->excludes->difficulty, ['beatmaps.version'], 'or'));
+            $matcher = static::isQuoted($this->excludes->difficulty) ? 'match_phrase' : 'match';
+            $this->nestedMustNot->should([$matcher => ['beatmaps.version' => $this->excludes->difficulty]]);
         }
     }
 
@@ -513,7 +511,14 @@ class BeatmapsetSearch extends RecordSearch
             $subQuery->should(['term' => ["{$field}.raw" => ['value' => $value, 'boost' => 100]]]);
         }
 
-        $subQuery->should(QueryHelper::queryString($value, $searchFields, 'and'));
+        $subQuery->should([
+            'multi_match' => [
+                'fields' => $searchFields,
+                'query' => $value,
+                'operator' => 'and',
+                'type' => static::isQuoted($value) ? 'phrase' : 'most_fields',
+            ],
+        ]);
 
         if ($include) {
             $this->query->must($subQuery);
