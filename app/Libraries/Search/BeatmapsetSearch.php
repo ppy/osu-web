@@ -251,11 +251,16 @@ class BeatmapsetSearch extends RecordSearch
     private function addDifficultyFilter()
     {
         if ($this->includes->difficulty !== null) {
-            $this->nested->must(['match' => ['beatmaps.version' => ['query' => $this->includes->difficulty, 'operator' => 'and']]]);
+            $params = static::isQuoted($this->includes->difficulty)
+                ? ['match_phrase' => ['beatmaps.version' => $this->includes->difficulty]]
+                : ['match' => ['beatmaps.version' => ['query' => $this->includes->difficulty, 'operator' => 'and']]];
+            $this->nested->must($params);
         }
 
+        // difficulty excludes if any single beatmap matches since requiring all the difficulties to have the matching phrase would be weird.
         if ($this->excludes->difficulty !== null) {
-            $this->nestedMustNot->should(['match' => ['beatmaps.version' => ['query' => $this->excludes->difficulty, 'operator' => 'or']]]);
+            $matcher = static::isQuoted($this->excludes->difficulty) ? 'match_phrase' : 'match';
+            $this->nestedMustNot->should([$matcher => ['beatmaps.version' => $this->excludes->difficulty]]);
         }
     }
 
