@@ -23,16 +23,16 @@ class CreatorFilterTest extends TestCase
     public static function setUpBeforeClass(): void
     {
         static::withDbAccess(function () {
-            $factory = Beatmapset::factory()->ranked();
+            $factory = Beatmapset::factory()->withBeatmaps()->ranked();
             $mapper1 = User::factory()->create(['username' => 'mapper']);
             $mapper2 = User::factory()->create(['username' => 'another_mapper']);
 
             static::$beatmapsets = [
-                $factory->withBeatmaps()->withBeatmaps(guestMapper: $mapper1)->create(['creator' => 'someone']),
-                $factory->withBeatmaps()->create(['user_id' => $mapper1]),
-                $factory->withBeatmaps()->create(['user_id' => $mapper2]),
-                $factory->withBeatmaps()->create(['creator' => 'someone_else']),
-                $factory->withBeatmaps()->create(['creator' => 'unknown_mapper']),
+                $factory->withBeatmaps(guestMapper: $mapper1)->create(['creator' => 'someone']),
+                $factory->create(['user_id' => $mapper1]),
+                $factory->create(['user_id' => $mapper2]),
+                $factory->create(['creator' => 'someone_else']),
+                $factory->create(['creator' => 'unknown_mapper']),
             ];
         });
 
