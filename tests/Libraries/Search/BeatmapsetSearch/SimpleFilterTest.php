@@ -63,21 +63,8 @@ class SimpleFilterTest extends TestCase
         static::withDbAccess(function () {
             $factory = Beatmapset::factory()->ranked();
             $beatmapFactory = Beatmap::factory()->ranked()->ruleset('osu');
-
-            $props = array_values(static::KEYS);
-            $baseValues = [];
-            foreach ($props as $offset => $prop) {
-                $baseValues[$prop] = $offset;
-            }
-
-            $offsetValues = function (int $offset) use ($baseValues): array {
-                $props = [];
-                foreach ($baseValues as $key => $value) {
-                    $props[$key] = $value + $offset;
-                }
-
-                return $props;
-            };
+            $baseValues = array_flip(array_values(static::KEYS));
+            $offsetValues = fn (int $offset): array => array_map(fn (int $value): int => $value + $offset, $baseValues);
 
             static::$beatmapsets = [
                 $factory
