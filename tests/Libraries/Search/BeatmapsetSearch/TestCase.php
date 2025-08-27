@@ -74,12 +74,11 @@ abstract class TestCase extends BaseTestCase
     }
 
     #[DataProvider('dataProvider')]
-    public function testSearch(array $params, array $expected): void
+    public function testSearch(array $params, array $expected, ?bool $order = null): void
     {
-        $this->assertEqualsCanonicalizing(
-            array_map(fn (int $index) => static::$beatmapsets[$index]->getKey(), $expected),
-            new BeatmapsetSearch(new BeatmapsetSearchRequestParams($params))->response()->ids()
-        );
+        $ids = new BeatmapsetSearch(new BeatmapsetSearchRequestParams($params))->response()->ids();
+        $method = $order ?? false ? 'assertEquals' : 'assertEqualsCanonicalizing';
+        $this->$method(array_map(fn (int $index) => static::$beatmapsets[$index]->getKey(), $expected), $ids);
     }
 
     protected function setUp(): void
