@@ -35,7 +35,7 @@ class BeatmapsetSearch extends RecordSearch
             Beatmapset::class
         );
 
-        $this->tokens = QueryHelper::tokenize($params->queryString ?? '');
+        $this->tokens = QueryHelper::tokenise($params->queryString ?? '');
     }
 
     /**
