@@ -55,6 +55,7 @@ export class WikiSearch extends React.Component {
         navigate(wikiUrl(this.controller.selectedItem.path));
       }
     } else if (key === 'ArrowUp' || key === 'ArrowDown') {
+      e.preventDefault();
       this.keepSelectionInView = true;
       this.controller.shiftSelectedIndex(key === 'ArrowDown' ? 1 : -1);
     }
