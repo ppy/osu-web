@@ -94,6 +94,7 @@ class Room extends Model
         'auto_skip' => 'boolean',
         'ends_at' => 'datetime',
         'password' => PresentString::class,
+        'pinned' => 'boolean',
         'starts_at' => 'datetime',
     ];
     protected array $macros = [
