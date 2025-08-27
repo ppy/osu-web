@@ -19,6 +19,7 @@ return new class extends Migration
         Schema::table('multiplayer_rooms', function (Blueprint $table) {
             $table->boolean('pinned')->default(false);
             $table->string('description')->nullable();
+            $table->index('pinned');
         });
     }
 
@@ -28,6 +29,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('multiplayer_rooms', function (Blueprint $table) {
+            $table->dropIndex(['pinned']);
             $table->dropColumn(['pinned', 'description']);
         });
     }
