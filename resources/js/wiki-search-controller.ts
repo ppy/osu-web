@@ -12,6 +12,7 @@ interface SuggestionJson {
 }
 
 export class WikiSearchController {
+  @observable highlightedIndex = -1;
   @observable selectedIndex = -1;
   @observable shouldShowSuggestions = false;
   @observable suggestions: SuggestionJson[] = [];
@@ -43,6 +44,22 @@ export class WikiSearchController {
   }
 
   @action
+  highlightIndex(index: number): number {
+    if (index < -1) {
+      return this.highlightIndex(this.suggestions.length - 1);
+    }
+
+    if (index >= this.suggestions.length) {
+      return this.highlightIndex(-1);
+    }
+
+    this.highlightedIndex = index;
+    this.shouldShowSuggestions = true;
+
+    return this.highlightedIndex;
+  }
+
+  @action
   search() {
     const query = this.displayText.trim();
 
@@ -56,28 +73,15 @@ export class WikiSearchController {
     }));
   }
 
-  @action
-  selectIndex(index: number): void {
-    if (index < -1) {
-      return this.selectIndex(this.suggestions.length - 1);
-    }
-
-    if (index >= this.suggestions.length) {
-      return this.selectIndex(-1);
-    }
-
-    this.selectedIndex = index;
-    this.shouldShowSuggestions = true;
-  }
 
   @action
   shiftSelectedIndex(direction: number) {
-    this.selectIndex(this.selectedIndex + direction);
+    this.selectedIndex = this.highlightIndex(this.highlightedIndex + direction);
   }
 
   @action
-  unselect(leaveOpen: boolean) {
-    this.selectIndex(-1);
+  unhighlight(leaveOpen: boolean) {
+    this.highlightIndex(-1);
     this.shouldShowSuggestions = this.shouldShowSuggestions && !leaveOpen;
   }
 
@@ -87,7 +91,7 @@ export class WikiSearchController {
     const previousQuery = this.query.trim();
 
     this.query = query;
-    this.selectedIndex = -1;
+    this.highlightedIndex = -1;
 
     // just adding more spaces to either end of the query shouldn't perform more queries
     if (previousQuery === newQuery) return;
