@@ -69,7 +69,6 @@ class SimpleFilterTest extends TestCase
             foreach ($props as $offset => $prop) {
                 $baseValues[$prop] = $offset;
             }
-            $baseValues['hit_length'] = $baseValues['total_length']; // don't use the rand in factory.
 
             $offsetValues = function (int $offset) use ($baseValues): array {
                 $props = [];
