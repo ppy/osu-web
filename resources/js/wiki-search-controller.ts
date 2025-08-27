@@ -80,9 +80,9 @@ export class WikiSearchController {
   }
 
   @action
-  unhighlight(leaveOpen: boolean) {
+  unhighlight(close: boolean) {
     this.highlightIndex(-1);
-    this.shouldShowSuggestions = this.shouldShowSuggestions && !leaveOpen;
+    this.shouldShowSuggestions = this.shouldShowSuggestions && !close;
   }
 
   @action
