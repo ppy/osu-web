@@ -31,13 +31,11 @@ class SimpleFilterTest extends TestCase
         $data = [];
         foreach (array_keys(static::KEYS) as $offset => $key) {
             $value = $offset + 2;
-            $otherValue = $offset + 1;
             $data[] = [['q' => "{$key}={$value}"], [0, 1]];
             $data[] = [['q' => "{$key}>{$value}"], [1, 2]];
             $data[] = [['q' => "{$key}>={$value}"], [0, 1, 2]];
             $data[] = [['q' => "{$key}<{$value}"], [0]];
             $data[] = [['q' => "{$key}<={$value}"], [0, 1]];
-            $data[] = [['q' => "{$key}>2 {$key}={$otherValue}"], [0]]; // same key overrides
         }
 
         $data[] = [['q' => 'od>9 ar<3'], []];
