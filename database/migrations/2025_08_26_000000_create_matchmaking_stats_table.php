@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('matchmaking_stats', function (Blueprint $table) {
-            $table->unsignedMediumInteger('user_id')->nullable(false);
-            $table->unsignedMediumInteger('first_placements')->default(0);
+            $table->unsignedInteger('user_id')->nullable(false);
+            $table->unsignedInteger('first_placements')->default(0);
 
             $table->primary('user_id');
         });
