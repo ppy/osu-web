@@ -79,7 +79,8 @@ class Room extends Model
     const PLAYLIST_TYPE = 'playlists';
     const MATCHMAKING_TYPE = 'matchmaking';
     const REALTIME_DEFAULT_TYPE = 'head_to_head';
-    const REALTIME_TYPES = ['head_to_head', 'team_versus', 'matchmaking'];
+    const REALTIME_STANDARD_TYPES = ['head_to_head', 'team_versus'];
+    const REALTIME_TYPES = [...self::REALTIME_STANDARD_TYPES, self::MATCHMAKING_TYPE];
 
     const PLAYLIST_QUEUE_MODE = 'host_only';
     const REALTIME_DEFAULT_QUEUE_MODE = 'host_only';
@@ -787,7 +788,7 @@ class Room extends Model
     {
         $banchoBotId = $GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id'];
 
-        if ($this->host->getKey() == $banchoBotId) {
+        if ($this->host->getKey() === $banchoBotId) {
             // BanchoBot can always create rooms.
             return;
         }
