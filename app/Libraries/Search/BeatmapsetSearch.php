@@ -142,6 +142,18 @@ class BeatmapsetSearch extends RecordSearch
             ],
         ]);
 
+        if (!empty($this->tokens['exclude'])) {
+            $query = [
+                'boosting' => [
+                    'positive' => $query->toArray(),
+                    'negative' => [
+                        'match' => ['tags' => implode(' ', $this->tokens['exclude'])],
+                    ],
+                    'negative_boost' => 0.5,
+                ],
+            ];
+        }
+
         if (present($this->params->queryString)) {
             $query = (new FunctionScore($query))
                 ->applyFunction([
