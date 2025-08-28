@@ -25,8 +25,21 @@ return new class extends Migration
             $table->index(['user_id', 'pinned']);
             $table->dropIndex(['user_id']);
 
+            $table->index(['category', 'ends_at', 'pinned']);
+            $table->dropIndex(['category', 'ends_at']);
+
             $table->index(['category', 'user_id', 'pinned']);
             $table->dropIndex(['category', 'user_id']);
+
+            $table->index(['ends_at', 'pinned']);
+            $table->dropIndex(['ends_at']);
+
+            $table->index(['type', 'category', 'ends_at', 'pinned']);
+            $table->dropIndex(['type', 'category', 'ends_at']);
+        });
+
+        Schema::table('multiplayer_rooms_high', function (Blueprint $table) {
+            $table->index(['room_id', 'in_room', 'user_id', 'updated_at']);
         });
     }
 
@@ -35,14 +48,27 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('multiplayer_rooms_high', function (Blueprint $table) {
+            $table->dropIndex(['room_id', 'in_room', 'user_id', 'updated_at']);
+        });
+
         Schema::table('multiplayer_rooms', function (Blueprint $table) {
             $table->dropIndex(['pinned']);
 
             $table->index(['user_id']);
             $table->dropIndex(['user_id', 'pinned']);
 
+            $table->index(['category', 'ends_at']);
+            $table->dropIndex(['category', 'ends_at', 'pinned']);
+
             $table->index(['category', 'user_id']);
             $table->dropIndex(['category', 'user_id', 'pinned']);
+
+            $table->index(['ends_at']);
+            $table->dropIndex(['ends_at', 'pinned']);
+
+            $table->index(['type', 'category', 'ends_at']);
+            $table->dropIndex(['type', 'category', 'ends_at', 'pinned']);
 
             $table->dropColumn(['pinned', 'description']);
         });
