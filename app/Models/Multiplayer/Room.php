@@ -773,7 +773,7 @@ class Room extends Model
     {
         $banchoBotId = $GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id'];
 
-        if ($this->host->getKey() == $banchoBotId) {
+        if ($this->host->getKey() === $banchoBotId) {
             // BanchoBot can always create rooms.
             return;
         }
