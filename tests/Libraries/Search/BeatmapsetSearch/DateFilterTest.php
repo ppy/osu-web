@@ -10,8 +10,8 @@ namespace Tests\Libraries\Search\BeatmapsetSearch;
 use App\Models\Beatmapset;
 use Carbon\CarbonImmutable;
 
-// Includes created and updated date tests.
-class RankedFilterTest extends TestCase
+// Ranked filter, and the date related parts of addSimpleFilters().
+class DateFilterTest extends TestCase
 {
     public static function dataProvider(): array
     {
@@ -19,7 +19,7 @@ class RankedFilterTest extends TestCase
 
         $data = [];
         foreach ($keys as $index => $key) {
-            // BeatmapsetQueryParserTest will handle the other date formats
+            // BeatmapsetQueryParserTest will test the other date formats are equivalent.
             $year = 2023 + $index;
 
             $data[] = [['q' => "{$key}={$year}"], [2, 3, 4]];

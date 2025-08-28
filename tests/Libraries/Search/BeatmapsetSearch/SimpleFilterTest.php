@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Factories\Sequence;
 
 class SimpleFilterTest extends TestCase
 {
-    // Date tests in RankedFilterTest
+    // Date tests in DateFilterTest
     private const KEYS = [
         'ar' => 'diff_approach',
         'bpm' => 'bpm',
