@@ -147,6 +147,20 @@ return [
         'update' => 'update',
     ],
 
+    'user_totp' => [
+        'title' => 'Authenticator App',
+
+        'button' => [
+            'remove' => 'Remove',
+            'setup' => 'Setup',
+        ],
+        'status' => [
+            'label' => 'status',
+            'not_set' => 'Not configured',
+            'set' => 'Configured',
+        ],
+    ],
+
     'verification_completed' => [
         'text' => 'You can close this tab/window now',
         'title' => 'Verification has been completed',
