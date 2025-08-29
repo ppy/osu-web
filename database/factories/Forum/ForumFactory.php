@@ -38,13 +38,13 @@ class ForumFactory extends Factory
         ]);
     }
 
-    public function withAuthorize(?string $type): static
+    public function withAuthorize(?string $type, ?string $group = null): static
     {
         return $type === null
             ? $this
             : $this->afterCreating(fn (Forum $forum) => Authorize::factory()->$type()->create([
                 'forum_id' => $forum,
-                'group_id' => app('groups')->byIdentifier('default'),
+                'group_id' => app('groups')->byIdentifier($group ?? 'default'),
             ]));
     }
 }
