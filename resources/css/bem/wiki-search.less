@@ -27,12 +27,12 @@
 
   &__input {
     .reset-input();
-    color: @osu-colour-c1;
+    color: hsl(var(--hsl-c1));
     flex: 1;
     padding: 13px 0 13px @_gutter;
 
     &::placeholder {
-      color: @osu-colour-c2;
+      color: hsl(var(--hsl-c2));
     }
   }
 
@@ -40,7 +40,7 @@
     .center-content();
     .reset-input();
 
-    color: @osu-colour-c1;
+    color: hsl(var(--hsl-c1));
     margin: 0 @_gutter 0 10px;
   }
 
@@ -56,7 +56,7 @@
     padding: 5px @_gutter;
 
     em {
-      color: @osu-colour-l2;
+      color: hsl(var(--hsl-l2));
       font-style: normal;
       font-weight: bold;
     }
@@ -79,8 +79,8 @@
 
   &__suggestions {
     position: absolute;
-    background-color: @osu-colour-b6;
-    color: @osu-colour-c1;
+    background-color: hsl(var(--hsl-b6));
+    color: hsl(var(--hsl-c1));
 
     max-height: 500px;
     width: calc(100% - @_border-size * 2);
