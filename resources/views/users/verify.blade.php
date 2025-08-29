@@ -13,5 +13,5 @@
 @endsection
 
 @section('user-verification-box')
-    @include('users._verify_box', compact('email'))
+    @include('users._verify_box', compact('state'))
 @endsection
