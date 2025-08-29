@@ -176,7 +176,7 @@ class RoomsControllerTest extends TestCase
     public function testStoreRealtime()
     {
         $token = Token::factory()->create(['scopes' => ['*']]);
-        $type = array_rand_val(Room::REALTIME_TYPES);
+        $type = array_rand_val(array_except(Room::REALTIME_TYPES, Room::MATCHMAKING_TYPE));
 
         $roomsCountInitial = Room::count();
         $playlistItemsCountInitial = PlaylistItem::count();
@@ -205,7 +205,7 @@ class RoomsControllerTest extends TestCase
     public function testStoreRealtimeByType()
     {
         $token = Token::factory()->create(['scopes' => ['*']]);
-        $type = array_rand_val(Room::REALTIME_TYPES);
+        $type = array_rand_val(array_except(Room::REALTIME_TYPES, Room::MATCHMAKING_TYPE));
 
         $response = $this
             ->actingWithToken($token)
@@ -273,7 +273,7 @@ class RoomsControllerTest extends TestCase
                 $this->createBasicStoreParams(),
                 [
                     'password' => $password,
-                    'type' => array_rand_val(Room::REALTIME_TYPES),
+                    'type' => array_rand_val(array_except(Room::REALTIME_TYPES, Room::MATCHMAKING_TYPE)),
                 ],
             ))->assertSuccessful();
 
@@ -295,7 +295,7 @@ class RoomsControllerTest extends TestCase
             'beatmap_id' => $beatmap->getKey(),
             'ruleset_id' => $beatmap->playmode,
         ];
-        $params['type'] = array_rand_val(Room::REALTIME_TYPES);
+        $params['type'] = array_rand_val(array_except(Room::REALTIME_TYPES, Room::MATCHMAKING_TYPE));
 
         $this
             ->actingWithToken($token)
@@ -364,7 +364,7 @@ class RoomsControllerTest extends TestCase
             ->actingWithToken($token)
             ->post(route('api.rooms.store'), array_merge(
                 $this->createBasicStoreParams(),
-                ['type' => array_rand_val(Room::REALTIME_TYPES)],
+                ['type' => array_rand_val(array_except(Room::REALTIME_TYPES, Room::MATCHMAKING_TYPE))],
             ))->assertStatus(422);
 
         $this->assertSame($roomsCountInitial, Room::count());
@@ -388,7 +388,7 @@ class RoomsControllerTest extends TestCase
             ->actingWithToken($token)
             ->post(route('api.rooms.store'), array_merge(
                 $this->createBasicStoreParams(),
-                ['type' => array_rand_val(Room::REALTIME_TYPES)],
+                ['type' => array_rand_val(array_except(Room::REALTIME_TYPES, Room::MATCHMAKING_TYPE))],
             ))->assertSuccessful();
 
         $this->assertSame($roomsCountInitial + 1, Room::count());
@@ -520,7 +520,7 @@ class RoomsControllerTest extends TestCase
     public static function dataProviderForTestStoreWithInvalidPlayableMods(): array
     {
         $ret = [];
-        foreach ([Arr::random(Room::REALTIME_TYPES), Room::PLAYLIST_TYPE] as $type) {
+        foreach ([Arr::random(array_except(Room::REALTIME_TYPES, Room::MATCHMAKING_TYPE)), Room::PLAYLIST_TYPE] as $type) {
             foreach (['allowed', 'required'] as $modType) {
                 $ret[] = [$type, $modType];
             }
@@ -532,7 +532,7 @@ class RoomsControllerTest extends TestCase
     public static function dataProviderForTestStoreWithInvalidRealtimeAllowedMods(): array
     {
         return [
-            [Arr::random(Room::REALTIME_TYPES), false],
+            [Arr::random(array_except(Room::REALTIME_TYPES, Room::MATCHMAKING_TYPE)), false],
             [Room::PLAYLIST_TYPE, true],
         ];
     }
@@ -540,7 +540,7 @@ class RoomsControllerTest extends TestCase
     public static function dataProviderForTestStoreWithInvalidRealtimeMods(): array
     {
         return [
-            [Arr::random(Room::REALTIME_TYPES), false],
+            [Arr::random(array_except(Room::REALTIME_TYPES, Room::MATCHMAKING_TYPE)), false],
             [Room::PLAYLIST_TYPE, true],
         ];
     }
