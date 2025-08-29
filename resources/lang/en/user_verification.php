@@ -21,7 +21,7 @@ return [
     ],
 
     'box_totp' => [
-        'heading' => 'Please enter the code from your two-factor authentication app.',
+        'heading' => 'Please enter the code from your authenticator app.',
 
         'info' => [
             'logout' => [
