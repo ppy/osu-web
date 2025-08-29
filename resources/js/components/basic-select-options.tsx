@@ -5,6 +5,7 @@ import SelectOptions, { OptionRenderProps } from 'components/select-options';
 import SelectOptionJson from 'interfaces/select-option-json';
 import { route } from 'laroute';
 import * as React from 'react';
+import { Modifiers } from 'utils/css';
 import { fail } from 'utils/fail';
 import { navigate } from 'utils/turbolinks';
 import { updateQueryString } from 'utils/url';
@@ -12,13 +13,15 @@ import { updateQueryString } from 'utils/url';
 interface Props {
   currentItem: SelectOptionJson;
   items: SelectOptionJson[];
-  type: 'daily_challenge' | 'multiplayer' | 'seasons' | 'spotlight';
+  modifiers?: Modifiers;
+  type: 'daily_challenge' | 'download' | 'multiplayer' | 'seasons' | 'spotlight';
 }
 
 export default class BasicSelectOptions extends React.PureComponent<Props> {
   render() {
     return (
       <SelectOptions
+        modifiers={this.props.modifiers}
         onChange={this.handleChange}
         options={this.props.items}
         renderOption={this.renderOption}
@@ -35,6 +38,8 @@ export default class BasicSelectOptions extends React.PureComponent<Props> {
     switch (this.props.type) {
       case 'daily_challenge':
         return route('daily-challenge.show', { daily_challenge: id ?? fail('missing id parameter') });
+      case 'download':
+        return route('download', { platform: id });
       case 'multiplayer':
         return route('multiplayer.rooms.show', { room: id ?? 'latest' });
       case 'seasons':
