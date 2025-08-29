@@ -12,7 +12,6 @@ import { WikiSearchController } from 'wiki-search-controller';
 @observer
 export class WikiSearch extends React.Component {
   private readonly controller = new WikiSearchController();
-  private keepSelectionInView = false;
   private readonly ref = React.createRef<HTMLDivElement>();
 
   componentDidMount() {
@@ -22,11 +21,7 @@ export class WikiSearch extends React.Component {
 
   componentDidUpdate() {
     // scroll highlighted option into view if triggered by keys
-    if (this.keepSelectionInView) {
-      // FIXME: probably doesn't work on Edge?
-      $('.wiki-search__suggestion--active')[0]?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
-      this.keepSelectionInView = false;
-    }
+    $('.wiki-search__suggestion--active')[0]?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
   }
 
   componentWillUnmount() {
@@ -55,7 +50,7 @@ export class WikiSearch extends React.Component {
         navigate(wikiUrl(this.controller.selectedItem.path));
       }
     } else if (key === 'ArrowUp' || key === 'ArrowDown') {
-      this.keepSelectionInView = true;
+      e.preventDefault();
       this.controller.shiftSelectedIndex(key === 'ArrowDown' ? 1 : -1);
     }
   };
@@ -66,10 +61,6 @@ export class WikiSearch extends React.Component {
     if (!e.composedPath().includes(this.ref.current)) {
       this.controller.unselect(true);
     }
-  };
-
-  handleMouseLeave = () => {
-    this.controller.unselect(false);
   };
 
   handleSearch = () => {
@@ -101,7 +92,7 @@ export class WikiSearch extends React.Component {
     if (!this.controller.isSuggestionsVisible) return null;
 
     return (
-      <div ref={this.ref} className='wiki-search__suggestions u-fancy-scrollbar' onMouseLeave={this.handleMouseLeave}>
+      <div ref={this.ref} className='wiki-search__suggestions u-fancy-scrollbar'>
         {
           this.controller.suggestions.map((item, index) => (
             <a
@@ -109,7 +100,6 @@ export class WikiSearch extends React.Component {
               className={classWithModifiers('wiki-search__suggestion', { active: this.controller.selectedIndex === index })}
               data-index={index}
               href={wikiUrl(item.path)}
-              onMouseEnter={this.handleSuggestionMouseEnter}
             >
               <span dangerouslySetInnerHTML={{ __html: item.highlight }} />
             </a>
@@ -118,9 +108,4 @@ export class WikiSearch extends React.Component {
       </div>
     );
   }
-
-  private readonly handleSuggestionMouseEnter = (e: React.SyntheticEvent<HTMLElement>) => {
-    this.keepSelectionInView = false;
-    this.controller.selectIndex(parseInt(e.currentTarget.dataset.index ?? '', 10));
-  };
 }
