@@ -36,7 +36,7 @@ export class WikiSearch extends React.Component {
 
   handleEsc = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
-      this.controller.unhighlight(true);
+      this.controller.unselect(true);
     }
   };
 
@@ -59,7 +59,7 @@ export class WikiSearch extends React.Component {
     if (this.ref.current == null) return;
 
     if (!e.composedPath().includes(this.ref.current)) {
-      this.controller.unhighlight(true);
+      this.controller.unselect(true);
     }
   };
 
@@ -97,7 +97,7 @@ export class WikiSearch extends React.Component {
           this.controller.suggestions.map((item, index) => (
             <a
               key={index}
-              className={classWithModifiers('wiki-search__suggestion', { active: this.controller.highlightedIndex === index })}
+              className={classWithModifiers('wiki-search__suggestion', { active: this.controller.selectedIndex === index })}
               data-index={index}
               href={wikiUrl(item.path)}
             >
