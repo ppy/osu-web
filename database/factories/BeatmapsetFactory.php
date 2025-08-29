@@ -47,6 +47,12 @@ class BeatmapsetFactory extends Factory
         ];
     }
 
+    // Set values that can affect search scoring to a consistent value.
+    public function consistent()
+    {
+        return $this->state(['favourite_count' => 0]);
+    }
+
     public function deleted()
     {
         return $this->state(['deleted_at' => now()]);
@@ -146,7 +152,7 @@ class BeatmapsetFactory extends Factory
                 ]), 'events');
     }
 
-    public function withBeatmaps(?string $ruleset = null, int $count = 1, ?User $guestMapper = null)
+    public function withBeatmaps(?string $ruleset = null, int $count = 1, ?User $guestMapper = null, array $beatmapState = [])
     {
         return $this
             ->has(Beatmap::factory()
@@ -155,6 +161,7 @@ class BeatmapsetFactory extends Factory
                 ->state(fn (array $attr, Beatmapset $set) => [
                     'approved' => $set->approved,
                     'user_id' => $guestMapper?->getKey() ?? $set->user_id,
+                    ...$beatmapState,
                 ]));
     }
 }
