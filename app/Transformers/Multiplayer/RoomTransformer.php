@@ -48,6 +48,7 @@ class RoomTransformer extends TransformerAbstract
         return [
             'id' => $room->id,
             'name' => $room->name,
+            'description' => $room->description,
             'category' => $room->category,
             'status' => $room->status,
             'type' => $room->type,
@@ -61,6 +62,7 @@ class RoomTransformer extends TransformerAbstract
             'has_password' => $room->password !== null,
             'queue_mode' => $room->queue_mode,
             'auto_skip' => $room->auto_skip,
+            'pinned' => $room->pinned,
         ];
     }
 
