@@ -116,7 +116,7 @@ class Topic extends Model implements AfterCommit
     ];
 
     const MAX_FIELD_LENGTHS = [
-        'topic_title' => 100,
+        'topic_title' => 255, // matching db, there's separate validation for title_normalised
     ];
 
     const VIEW_COUNT_INTERVAL = 86400; // 1 day
@@ -251,6 +251,11 @@ class Topic extends Model implements AfterCommit
         return $this->attributes['poll_length'] / 86400;
     }
 
+    public function getTitleNormalisedAttribute(): string
+    {
+        return $this->titleNormalized();
+    }
+
     public function getTopicFirstPosterColourAttribute($value)
     {
         if (present($value)) {
@@ -302,9 +307,14 @@ class Topic extends Model implements AfterCommit
     {
         $this->validationErrors()->reset();
 
-        if ($this->isDirty('topic_title') && !present($this->topic_title)) {
-            $this->validationErrors()->add('topic_title', 'required');
+        if ($this->isDirty('topic_title')) {
+            if (!present($this->topic_title)) {
+                $this->validationErrors()->add('topic_title', 'required');
+            }
+
+            $this->validateFieldLength(100, 'topic_title', 'title_normalised');
         }
+
 
         $this->validateDbFieldLengths();
 
@@ -313,11 +323,11 @@ class Topic extends Model implements AfterCommit
 
     public function titleNormalized()
     {
-        if (!$this->isIssue()) {
-            return $this->topic_title;
-        }
+        $title = $this->topic_title ?? '';
 
-        $title = $this->topic_title;
+        if (!$this->isIssue()) {
+            return $title;
+        }
 
         foreach (static::ISSUE_TAGS as $tag) {
             $title = str_replace("[{$tag}]", '', $title);
