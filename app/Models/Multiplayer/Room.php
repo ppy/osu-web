@@ -73,7 +73,7 @@ class Room extends Model
     const CATEGORIES = ['normal', 'spotlight', 'featured_artist', 'daily_challenge'];
     const TYPE_GROUPS = [
         'playlists' => [self::PLAYLIST_TYPE],
-        'realtime' => self::REALTIME_TYPES,
+        'realtime' => self::REALTIME_STANDARD_TYPES,
     ];
 
     const PLAYLIST_TYPE = 'playlists';
