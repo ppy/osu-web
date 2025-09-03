@@ -152,7 +152,7 @@ return [
 
         'button' => [
             'remove' => 'Remove',
-            'setup' => 'Setup',
+            'setup' => 'Add Authenticator App',
         ],
         'status' => [
             'label' => 'status',
