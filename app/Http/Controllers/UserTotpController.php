@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\InvariantException;
 use App\Models\UserTotpKey;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -109,7 +108,6 @@ class UserTotpController extends Controller
                     if (!is_sql_unique_exception($e)) {
                         throw $e;
                     }
-                    // uhhh
                     $existingTotpKey = $currentUser->userTotpKey()->first();
                 }
                 \Cache::forget($cacheKey);
@@ -120,13 +118,11 @@ class UserTotpController extends Controller
             }
         }
 
-        // this also handles race condition between key existence check and creation
-        if ($existingTotpKey !== null && $existingTotpKey !== $totpUri) {
-            // pretend setup is complete
-            throw new InvariantException('you already have a different totp key setup!');
-        }
-
-        $session->flash('popup', osu_trans('user_totp.store.ok'));
+        $message = $existingTotpKey !== null && $existingTotpKey !== $totpUri
+            // this also handles race condition between key existence check and creation
+            ? osu_trans('user_totp.store.existing')
+            : osu_trans('user_totp.store.ok');
+        $session->flash('popup', $message);
 
         return ujs_redirect(route('account.edit').'#totp');
     }

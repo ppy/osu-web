@@ -7,22 +7,23 @@ return [
     'create' => [
         'finish' => 'Finish',
         'key' => 'Scan the QR code with the authenticator app and enter the verification key',
-        'password' => 'To setup app based two-factor authentication, please enter your current password',
+        'password' => 'To set up authenticator app verification, please enter your current password',
         'start' => 'Continue',
     ],
 
     'destroy' => [
-        'missing' => 'You don\'t have authenticator app verification setup.',
+        'missing' => 'You don\'t have authenticator app verification set up.',
         'ok' => 'Authenticator app verification removed.',
     ],
 
     'edit' => [
-        'password' => 'Please enter your current password to remove verification using authenticator app.',
+        'password' => 'Please enter your current password to remove authenticator app verification.',
         'start' => 'Remove',
     ],
 
     'store' => [
-        'ok' => 'Authenticator based verification has been setup',
+        'existing' => 'You already have a different authenticator app verification set up.',
+        'ok' => 'Authenticator app verification has been set up',
         'restart' => 'Error occurred. Please restart the process.',
     ],
 ];
