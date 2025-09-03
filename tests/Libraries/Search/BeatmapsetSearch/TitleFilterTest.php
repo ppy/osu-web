@@ -14,17 +14,17 @@ class TitleFilterTest extends TestCase
     public static function dataProvider(): array
     {
         return [
-            [['q' => 'best'], [0, 1, 2, 3, 4]],
-            [['q' => 'best beatmap'], [3, 2, 1, 0, 4], true],
-            [['q' => '"best beatmap"'], [3, 2, 1], true],
+            [['q' => 'best'], [0, 4, 1, 3, 2], true],
+            [['q' => 'best beatmap'], [1, 3, 2, 0, 4], true],
+            [['q' => '"best beatmap"'], [1, 3, 2], true],
             [['q' => '-best'], []],
             [['q' => '-best -beatmap'], []],
-            [['q' => '-"best beatmap"'], [0, 4]],
+            [['q' => '-"best beatmap"'], [4, 0], true],
 
-            [['q' => 'title=best'], [0, 1, 2, 3]],
-            [['q' => 'title="best beatmap"'], [1, 2, 3]],
-            [['q' => 'title="the beatmap"'], [1, 2], true],
-            [['q' => 'title=""best beatmap""'], [3, 2, 1], true],
+            [['q' => 'title=best'], [0, 1, 3, 2], true],
+            [['q' => 'title="best beatmap"'], [1, 3, 2], true],
+            [['q' => 'title="the beatmap"'], [2, 3], true],
+            [['q' => 'title=""best beatmap""'], [1, 3, 2], true],
             [['q' => 'title=""the beatmap""'], []],
         ];
     }
@@ -35,9 +35,10 @@ class TitleFilterTest extends TestCase
             $factory = Beatmapset::factory()->consistent()->ranked()->withBeatmaps();
             static::$beatmapsets = [
                 $factory->create(['title' => 'best']),
+                $factory->create(['title' => 'best beatmap']),
                 $factory->create(['title' => 'the best beatmap']),
                 $factory->create(['title' => 'the best beatmap', 'title_unicode' => 'ダ best beatmap']), // scores slightly better in prefix matching.
-                $factory->create(['title' => 'best beatmap']),
+                // this will score better in the 'best' test due to the term having lower frequency in the artist field.
                 $factory->create(['artist' => 'the best artist']),
             ];
         });
