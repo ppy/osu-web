@@ -476,6 +476,7 @@ class BeatmapsetSearch extends RecordSearch
             $subQuery->should(['term' => ["{$field}.raw" => ['value' => $value, 'boost' => 100]]]);
         }
 
+        // TODO: change matching logic to match query string keywords?
         $subQuery->should([
             'multi_match' => [
                 'fields' => $searchFields,
