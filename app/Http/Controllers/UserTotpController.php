@@ -118,7 +118,7 @@ class UserTotpController extends Controller
             }
         }
 
-        $message = $existingTotpKey !== null && $existingTotpKey !== $totpUri
+        $message = $existingTotpKey !== null && $existingTotpKey->uri !== $totpUri
             // this also handles race condition between key existence check and creation
             ? osu_trans('user_totp.store.existing')
             : osu_trans('user_totp.store.ok');
