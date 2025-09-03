@@ -30,7 +30,7 @@
                             } else {
                                 $url = route('user-totp.create');
                                 $text = osu_trans('accounts.user_totp.button.setup');
-                                $icon = 'fas fa-plus';
+                                $icon = 'fas fa-mobile-alt';
                             }
                         @endphp
                         <a class="btn-osu-big" href="{{ $url }}">
