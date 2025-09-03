@@ -15,15 +15,15 @@ class TitleFilterTest extends TestCase
     {
         return [
             [['q' => 'best'], [0, 1, 2, 3, 4]],
-            [['q' => 'best beatmap'], [3, 1, 2, 0, 4], true],
-            [['q' => '"best beatmap"'], [3, 1, 2], true],
+            [['q' => 'best beatmap'], [3, 2, 1, 0, 4], true],
+            [['q' => '"best beatmap"'], [3, 2, 1], true],
             [['q' => '-best'], []],
             [['q' => '-best -beatmap'], []],
             [['q' => '-"best beatmap"'], [0, 4]],
 
             [['q' => 'title=best'], [0, 1, 2, 3]],
             [['q' => 'title="best beatmap"'], [1, 2, 3]],
-            [['q' => 'title="the beatmap"'], [2, 1], true],
+            [['q' => 'title="the beatmap"'], [1, 2], true],
             [['q' => 'title=""best beatmap""'], [3, 2, 1], true],
             [['q' => 'title=""the beatmap""'], []],
         ];
@@ -36,7 +36,7 @@ class TitleFilterTest extends TestCase
             static::$beatmapsets = [
                 $factory->create(['title' => 'best']),
                 $factory->create(['title' => 'the best beatmap']),
-                $factory->create(['title_unicode' => 'the best beatmapよ']), // this sets title as well, giving it higher field relevancy scoring.
+                $factory->create(['title' => 'the best beatmap', 'title_unicode' => 'ダ best beatmap']), // scores slightly better in prefix matching.
                 $factory->create(['title' => 'best beatmap']),
                 $factory->create(['artist' => 'the best artist']),
             ];
