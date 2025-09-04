@@ -56,7 +56,10 @@ abstract class TestCase extends BaseTestCase
             throw new \Exception('No beatmapsets added to test setup.');
         }
 
-        Es::getClient()->indices()->refresh();
+        $indexParams = ['index' => Beatmapset::esIndexName()];
+        Es::getClient()->indices()->close($indexParams);
+        Es::getClient()->indices()->open($indexParams);
+
         $params = new BeatmapsetSearchParams();
         $params->status = 'any';
 
