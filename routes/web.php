@@ -227,7 +227,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::resource('sessions', 'Account\SessionsController', ['only' => ['destroy']]);
             Route::get('verify', 'AccountController@verifyLink');
             Route::post('verify', 'AccountController@verify')->name('verify');
-            Route::post('verify/mail-fallback', 'AccountController@verificationMailFallback')->name('verify-mail-fallback');
+            Route::post('verify/mail-fallback', 'AccountController@verificationMailFallback')->name('verify.mail-fallback');
             Route::put('/', 'AccountController@update')->name('update');
 
             Route::get('github-users/callback', 'Account\GithubUsersController@callback')->name('github-users.callback');

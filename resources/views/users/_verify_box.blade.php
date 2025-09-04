@@ -94,7 +94,7 @@
         <p class="user-verification__row user-verification__row--info">
             {!! osu_trans('user_verification.box_totp.info.mail_fallback._', [
                 'link' => link_to(
-                    route('account.verify-mail-fallback'),
+                    route('account.verify.mail-fallback'),
                     osu_trans('user_verification.box_totp.info.mail_fallback.link'),
                     [
                         'class' => 'user-verification__link',
