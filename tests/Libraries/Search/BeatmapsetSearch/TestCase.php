@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Tests\Libraries\Search\BeatmapsetSearch;
 
 use App\Libraries\Elasticsearch\Es;
+use App\Libraries\Elasticsearch\Indexing;
 use App\Libraries\Search\BeatmapsetSearch;
 use App\Libraries\Search\BeatmapsetSearchParams;
 use App\Libraries\Search\BeatmapsetSearchRequestParams;
@@ -26,20 +27,26 @@ use Tests\TestCase as BaseTestCase;
 abstract class TestCase extends BaseTestCase
 {
     protected static iterable $beatmapsets = [];
+    protected static array $existingIndex;
+    protected static string $testIndex;
 
     abstract public static function dataProvider(): array;
 
-    /**
-     * Should run before setUpBeforeClass.
-     * This runs beforeClass as well, to workaround data that may be left in the index from other tests.
-     * Due to Laravel not sending the transaction events when it wraps tests in a transaction,
-     * afterCommit may or may not unintentionally index documents,
-     * depending on whether or no additional transactions are involved in the test.
-     */
-    #[AfterClass, BeforeClass]
-    public static function cleanupEsBeatmapsets(): void
+    #[AfterClass]
+    public static function cleanupTestIndex(): void
     {
-        new BeatmapsetSearch()->deleteAll();
+        Indexing::updateAlias(Beatmapset::esIndexName(), static::$existingIndex[0]);
+        Indexing::deleteIndex(static::$testIndex);
+    }
+
+    #[BeforeClass]
+    public static function createTestIndex(): void
+    {
+        // create fresh index for the test so term frequency scoring isn't polluted by previous deleted documents.
+        static::$existingIndex = Indexing::getOldIndices(Beatmapset::esIndexName());
+        static::$testIndex = Beatmapset::esIndexName().'_'.snake_case(get_class_basename(get_called_class()));
+        Beatmapset::esCreateIndex(static::$testIndex);
+        Indexing::updateAlias(Beatmapset::esIndexName(), static::$testIndex);
     }
 
     public static function setUpBeforeClass(): void
