@@ -1,0 +1,77 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmapset-versions {
+  --border: 1px solid hsl(var(--hsl-b3));
+  list-style: none;
+  border: var(--border);
+  padding: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+
+  &__change {
+    display: inline-flex;
+    gap: 4px;
+  }
+
+  &__changes {
+    list-style: none;
+    font-size: @font-size--title-small;
+    display: grid;
+    gap: 3px;
+    grid-column: 1 / -1;
+    padding: 0;
+  }
+
+  &__entry {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    gap: 10px;
+    align-items: baseline;
+
+    & + & {
+      border-top: var(--border);
+    }
+
+    &:hover {
+      background-color: hsl(var(--hsl-b3));
+    }
+  }
+
+  &__icon {
+    border-radius: @border-radius-large;
+    aspect-ratio: 1;
+    font-size: 0.8em;
+    width: 1.7em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--hsl-c1));
+
+    .link-hover({
+      color: hsl(var(--hsl-c1));
+      text-decoration: none;
+    });
+
+    &--removed {
+      background: hsl(var(--hsl-red-3));
+    }
+
+    &--updated {
+      background: hsl(var(--hsl-blue-3));
+    }
+
+    &--added {
+      background: hsl(var(--hsl-green-3));
+    }
+  }
+
+  &__number {
+    background: hsl(var(--hsl-b2));
+    border-radius: @border-radius-large;
+    padding: 3px 8px;
+    text-align: center;
+  }
+}
