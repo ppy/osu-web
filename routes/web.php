@@ -109,6 +109,8 @@ Route::group(['middleware' => ['web']], function () {
             Route::delete('love', 'BeatmapsetsController@removeFromLoved')->name('remove-from-loved');
             Route::put('nominate', 'BeatmapsetsController@nominate')->name('nominate');
 
+            Route::get('versions', 'BeatmapsetsController@versions')->name('versions');
+
             Route::group(['namespace' => 'Beatmapsets'], function () {
                 Route::apiResource('favourites', 'FavouritesController', ['only' => ['store']]);
             });
