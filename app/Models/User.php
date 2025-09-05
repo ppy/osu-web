@@ -982,6 +982,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'userNotifications',
             'userPage',
             'userProfileCustomization',
+            'userTotpKey',
             'usernameChangeHistory',
             'usernameChangeHistoryPublic' => $this->getRelationValue($key),
         };
@@ -1522,6 +1523,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function userProfileCustomization()
     {
         return $this->hasOne(UserProfileCustomization::class);
+    }
+
+    public function userTotpKey()
+    {
+        return $this->hasOne(UserTotpKey::class);
     }
 
     public function accountHistories()

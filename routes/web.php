@@ -227,6 +227,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::resource('sessions', 'Account\SessionsController', ['only' => ['destroy']]);
             Route::get('verify', 'AccountController@verifyLink');
             Route::post('verify', 'AccountController@verify')->name('verify');
+            Route::post('verify/mail-fallback', 'AccountController@verificationMailFallback')->name('verify.mail-fallback');
             Route::put('/', 'AccountController@update')->name('update');
 
             Route::get('github-users/callback', 'Account\GithubUsersController@callback')->name('github-users.callback');
@@ -317,6 +318,11 @@ Route::group(['middleware' => ['web']], function () {
     });
     Route::resource('teams', 'TeamsController', ['only' => ['create', 'destroy', 'edit', 'store', 'update']]);
     Route::get('teams/{team}/{ruleset?}', 'TeamsController@show')->name('teams.show');
+
+    Route::resource('user-totp', 'UserTotpController', ['only' => ['create', 'store']]);
+    Route::get('user-totp/edit', 'UserTotpController@edit')->name('user-totp.edit');
+    Route::delete('user-totp', 'UserTotpController@destroy')->name('user-totp.destroy');
+    Route::post('user-totp/issue-uri', 'UserTotpController@issueUri')->name('user-totp.issue-uri');
 
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
     Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');
@@ -422,6 +428,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
     Route::group(['prefix' => 'v2'], function () {
         Route::group(['middleware' => ['require-scopes:any']], function () {
             Route::post('session/verify', 'AccountController@verify')->name('verify');
+            Route::post('session/verify/mail-fallback', 'AccountController@verificationMailFallback')->name('verify.mail-fallback');
             Route::post('session/verify/reissue', 'AccountController@reissueCode')->name('verify.reissue');
         });
 

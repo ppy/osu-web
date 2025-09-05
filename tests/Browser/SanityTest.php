@@ -557,6 +557,8 @@ class SanityTest extends DuskTestCase
             'store.checkout.show',
             'store.invoice.show',
             'store.orders.index',
+            'user-totp.create',
+            'user-totp.edit',
         ];
 
         if (in_array($route->getName(), $verificationExpected, true)) {
