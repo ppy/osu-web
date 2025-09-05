@@ -32,9 +32,9 @@ interface State {
 type TagJsonWithCount = TagJson & { count: number };
 
 export default class Controller {
-  private config: Config;
   @observable hoveredBeatmap: null | BeatmapJsonForBeatmapsetShow = null;
   @observable state: State;
+  private readonly config: Config;
 
   @computed
   get beatmaps() {
