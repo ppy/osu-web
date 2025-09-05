@@ -494,7 +494,13 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         Route::group(['as' => 'forum.', 'namespace' => 'Forum'], function () {
             Route::group(['prefix' => 'forums'], function () {
-                Route::post('topics/{topic}/reply', 'TopicsController@reply')->name('topics.reply');
+                Route::group(['as' => 'topics.', 'prefix' => 'topics/{topic}'], function () {
+                    Route::post('lock', 'TopicsController@lock')->name('lock');
+                    Route::post('move', 'TopicsController@move')->name('move');
+                    Route::post('pin', 'TopicsController@pin')->name('pin');
+                    Route::post('reply', 'TopicsController@reply')->name('reply');
+                });
+
                 Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'store', 'update']]);
                 Route::resource('posts', 'PostsController', ['only' => ['update']]);
             });
