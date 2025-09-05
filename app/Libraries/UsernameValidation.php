@@ -74,6 +74,7 @@ class UsernameValidation
             $errors->add('username', '.username_too_long');
         }
 
+        // also note that totp key generator forbids `:` in username
         if (strpos($username, '  ') !== false || !preg_match('#^[A-Za-z0-9-\[\]_ ]+$#u', $username)) {
             $errors->add('username', '.username_invalid_characters');
         }
