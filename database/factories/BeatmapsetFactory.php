@@ -47,12 +47,6 @@ class BeatmapsetFactory extends Factory
         ];
     }
 
-    // Set values that can affect search scoring to a consistent value.
-    public function consistent()
-    {
-        return $this->state(['favourite_count' => 0]);
-    }
-
     public function deleted()
     {
         return $this->state(['deleted_at' => now()]);
