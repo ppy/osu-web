@@ -9,7 +9,7 @@
     <div class="osu-page osu-page--generic-compact">
         @if (isset($uri))
             <form
-                action="{{ route('user-totp.store') }}"
+                action="{{ route('authenticator-app.store') }}"
                 class="password-reset js-form-error"
                 method="POST"
                 data-remote
@@ -36,7 +36,7 @@
             </form>
         @else
             <form
-                action="{{ route('user-totp.issue-uri') }}"
+                action="{{ route('authenticator-app.issue-uri') }}"
                 class="password-reset js-form-error"
                 method="POST"
                 data-remote

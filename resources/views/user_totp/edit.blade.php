@@ -8,7 +8,7 @@
     @include('layout._page_header_v4')
     <div class="osu-page osu-page--generic-compact">
         <form
-            action="{{ route('user-totp.destroy') }}"
+            action="{{ route('authenticator-app.destroy') }}"
             class="password-reset js-form-error"
             method="DELETE"
             data-remote

@@ -30,7 +30,7 @@ class UserTotpController extends Controller
                 $session->flash('popup', osu_trans('user_totp.index.already_setup'));
                 \Cache::forget($this->cacheKey());
 
-                return ujs_redirect(route('account.edit').'#totp');
+                return ujs_redirect(route('account.edit').'#authenticator-app');
             }
 
             return $next($request);
@@ -51,7 +51,7 @@ class UserTotpController extends Controller
 
         \Session::flash('popup', osu_trans('user_totp.destroy.ok'));
 
-        return ujs_redirect(route('account.edit').'#totp');
+        return ujs_redirect(route('account.edit').'#authenticator-app');
     }
 
     public function edit(): Response
@@ -60,7 +60,7 @@ class UserTotpController extends Controller
         if ($currentUser->userTotpKey === null) {
             \Session::flash('popup', osu_trans('user_totp.destroy.missing'));
 
-            return ujs_redirect(route('account.edit').'#totp');
+            return ujs_redirect(route('account.edit').'#authenticator-app');
         }
 
         return ext_view('user_totp.edit');
@@ -79,7 +79,7 @@ class UserTotpController extends Controller
 
         \Cache::put($this->cacheKey(), UserTotpKey::generateUri($currentUser), static::TIMEOUT);
 
-        return ujs_redirect(route('user-totp.create'));
+        return ujs_redirect(route('authenticator-app.create'));
     }
 
     public function store()
@@ -92,7 +92,7 @@ class UserTotpController extends Controller
         if ($totpUri === null) {
             $session->flash('popup', osu_trans('user_totp.store.restart'));
 
-            return ujs_redirect(route('user-totp.create'));
+            return ujs_redirect(route('authenticator-app.create'));
         }
 
         $currentUser = \Auth::user();
@@ -124,7 +124,7 @@ class UserTotpController extends Controller
             : osu_trans('user_totp.store.ok');
         $session->flash('popup', $message);
 
-        return ujs_redirect(route('account.edit').'#totp');
+        return ujs_redirect(route('account.edit').'#authenticator-app');
     }
 
     private function cacheKey(): string

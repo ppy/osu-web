@@ -33,6 +33,11 @@ Route::group(['middleware' => ['web']], function () {
         });
     });
 
+    Route::resource('authenticator-app', 'UserTotpController', ['only' => ['create', 'store']]);
+    Route::get('authenticator-app/edit', 'UserTotpController@edit')->name('authenticator-app.edit');
+    Route::delete('authenticator-app', 'UserTotpController@destroy')->name('authenticator-app.destroy');
+    Route::post('authenticator-app/issue-uri', 'UserTotpController@issueUri')->name('authenticator-app.issue-uri');
+
     Route::group(['prefix' => 'beatmaps'], function () {
         // featured artists
         Route::group(['as' => 'artists.', 'prefix' => 'artists'], function () {
@@ -318,11 +323,6 @@ Route::group(['middleware' => ['web']], function () {
     });
     Route::resource('teams', 'TeamsController', ['only' => ['create', 'destroy', 'edit', 'store', 'update']]);
     Route::get('teams/{team}/{ruleset?}', 'TeamsController@show')->name('teams.show');
-
-    Route::resource('user-totp', 'UserTotpController', ['only' => ['create', 'store']]);
-    Route::get('user-totp/edit', 'UserTotpController@edit')->name('user-totp.edit');
-    Route::delete('user-totp', 'UserTotpController@destroy')->name('user-totp.destroy');
-    Route::post('user-totp/issue-uri', 'UserTotpController@issueUri')->name('user-totp.issue-uri');
 
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
     Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');

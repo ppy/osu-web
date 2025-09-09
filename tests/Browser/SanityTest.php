@@ -551,14 +551,14 @@ class SanityTest extends DuskTestCase
             'account.edit',
             'account.github-users.callback',
             'account.github-users.create',
+            'authenticator-app.create',
+            'authenticator-app.edit',
             'chat.index',
             'client-verifications.create',
             'messages.users.show',
             'store.checkout.show',
             'store.invoice.show',
             'store.orders.index',
-            'user-totp.create',
-            'user-totp.edit',
         ];
 
         if (in_array($route->getName(), $verificationExpected, true)) {
