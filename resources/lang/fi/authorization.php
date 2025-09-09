@@ -62,7 +62,7 @@ return [
 
     'beatmap_tag' => [
         'store' => [
-            'no_score' => '',
+            'no_score' => 'Sinun täytyy asettaa tulos rytmikarttaan lisätäksesi tunnisteen.',
         ],
     ],
 
@@ -113,7 +113,7 @@ return [
                 'deleted' => 'Poistettua postausta ei voi muokata.',
                 'locked' => 'Viestin muokkaaminen on estetty.',
                 'no_forum_access' => 'Tarvitset pääsyn tälle foorumille.',
-                'no_permission' => '',
+                'no_permission' => 'Ei muokkausoikeuksia.',
                 'not_owner' => 'Vain lähettäjä voi muokata postausta.',
                 'topic_locked' => 'Lukitun aiheen viestiä ei voi muokata.',
             ],
@@ -179,7 +179,7 @@ return [
 
     'room' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'Vain huoneen omistaja voi sulkea sen.',
         ],
     ],
 
