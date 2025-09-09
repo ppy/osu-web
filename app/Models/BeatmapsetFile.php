@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -21,8 +22,23 @@ class BeatmapsetFile extends Model
 
     protected $primaryKey = 'file_id';
 
+    public static function storage(): Filesystem
+    {
+        return \Storage::disk("{$GLOBALS['cfg']['filesystems']['default']}-central");
+    }
+
     public function versionFiles(): HasMany
     {
         return $this->hasMany(BeatmapsetVersionFile::class);
+    }
+
+    public function content(): string
+    {
+        return static::storage()->get($this->path());
+    }
+
+    public function path(): string
+    {
+        return 'beatmap_files/'.bin2hex($this->sha2_hash);
     }
 }

@@ -84,6 +84,12 @@ return [
             'visibility' => 'public',
         ],
 
+        'local-central' => [
+            'driver' => 'local',
+            'root' => public_path('/uploads/central'),
+            'base_url' => "{$appUrl}/uploads/central",
+        ],
+
         'local-solo-replay' => [
             'driver' => 'local',
             'root' => public_path('uploads/solo-replay'),
@@ -104,6 +110,12 @@ return [
             'key' => env('S3_AVATAR_KEY'),
             'region' => env('S3_AVATAR_REGION'),
             'secret' => env('S3_AVATAR_SECRET'),
+        ],
+
+        's3-central' => [
+            ...$s3Default,
+            'bucket' => env('S3_CENTRAL_BUCKET_NAME'),
+            'region' => env('S3_CENTRAL_BUCKET_REGION'),
         ],
 
         's3-solo-replay' => [
