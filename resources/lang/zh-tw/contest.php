@@ -30,9 +30,9 @@ return [
         '_' => '評分結果',
         'creator' => '作者',
         'score' => '分數',
-        'score_std' => '',
+        'score_std' => '標準分數',
         'total_score' => '總分',
-        'total_score_std' => '',
+        'total_score_std' => '總標準分數',
     ],
 
     'voting' => [
@@ -89,7 +89,7 @@ return [
         'list' => '投票',
         'count' => ':count_delimited 票|:count_delimited 票',
         'points' => ':count_delimited 分|:count_delimited 分',
-        'points_float' => '',
+        'points_float' => ':points 分',
     ],
 
     'dates' => [
@@ -110,7 +110,7 @@ return [
 
     'show' => [
         'admin' => [
-            'page' => '',
+            'page' => '檢視詳細資訊及參賽作品',
         ],
     ],
 ];

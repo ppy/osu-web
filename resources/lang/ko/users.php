@@ -126,8 +126,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => '진행 중',
+            'ended' => '종료됨',
         ],
     ],
 

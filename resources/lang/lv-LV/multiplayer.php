@@ -5,8 +5,8 @@
 
 return [
     'empty' => [
-        'active' => '',
-        'ended' => '',
+        'active' => 'Pagaidām nav neviena notiekošā osu!(shitzer) :type_group spēlē!',
+        'ended' => 'Pagaidām nav neviena pabeigtā osu!(shitzer) :type_group spēlē!',
         'playlists' => 'sarakstu',
         'realtime' => 'daudzspēlētāju režīma',
     ],

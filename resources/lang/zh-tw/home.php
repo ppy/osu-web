@@ -146,7 +146,7 @@ return [
             'new' => '新進榜圖譜',
             'popular' => '熱門圖譜',
             'by_user' => '由 :user',
-            'resets' => '重置時間：:ends',
+            'resets' => '重設時間：:ends',
         ],
         'buttons' => [
             'download' => '下載 osu!',
@@ -155,7 +155,7 @@ return [
         ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => '開啟管理控制台',
             ],
         ],
     ],

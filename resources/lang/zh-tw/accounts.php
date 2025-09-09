@@ -9,7 +9,7 @@ return [
         'username' => '使用者名稱',
 
         'avatar' => [
-            'title' => '編輯頭像',
+            'title' => '頭像',
             'reset' => '重設',
             'rules' => '請確保您的頭貼遵守 :link 的規範。<br/>這表示它必須<strong>適合所有年齡層</strong>，也就是說不能包含裸露、冒犯性或暗示性的內容。',
             'rules_link' => '視覺內容注意事項',
@@ -132,7 +132,7 @@ return [
 
     'security' => [
         'current_session' => '目前',
-        'end_session' => '終止工作階段',
+        'end_session' => '結束工作階段',
         'end_session_confirmation' => '這將立即結束這個裝置上的工作階段。您確定嗎？',
         'last_active' => '上次使用：',
         'title' => '安全性',

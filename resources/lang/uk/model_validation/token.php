@@ -5,15 +5,15 @@
 
 return [
     'invalid_scope' => [
-        'all_scope_no_client_credentials' => '',
-        'all_scope_no_mix' => '',
-        'client_missing_owner' => '',
-        'client_unauthorized' => '',
-        'delegate_bot_only' => '',
-        'delegate_client_credentials_only' => '',
-        'delegate_invalid_combination' => '',
-        'delegate_required' => '',
-        'empty' => '',
-        'bot_only' => '',
+        'all_scope_no_client_credentials' => '* Не дозволено з обліковими даними клієнта',
+        'all_scope_no_mix' => '* не підходить з іншими областями',
+        'client_missing_owner' => 'У клієнта відсутній власник.',
+        'client_unauthorized' => 'Клієнт не авторизований.',
+        'delegate_bot_only' => 'Делегація з облікових даних клієнта доступна лише для чат-ботів.',
+        'delegate_client_credentials_only' => 'делегативна область діє лише для токенів клієнтів і облікових даних.',
+        'delegate_invalid_combination' => 'Делегація не підтримується для цієї комбінації областей.',
+        'delegate_required' => 'Потрібно делегувати область видимості.',
+        'empty' => 'Токени без областей є недійсними.',
+        'bot_only' => 'Ця сфера доступна тільки для ботів чату або ваших власних клієнтів.',
     ],
 ];

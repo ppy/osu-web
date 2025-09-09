@@ -131,7 +131,7 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            'events' => '',
+            'events' => '房間歷史記錄',
         ],
     ],
     'passport' => [
