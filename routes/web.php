@@ -73,6 +73,8 @@ Route::group(['middleware' => ['web']], function () {
         route_redirect('beatmap-discussion-posts', 'beatmapsets.discussions.posts.index');
     });
 
+    Route::get('beatmapset-version-files/{beatmapset_version_file}/download', 'BeatmapsetVersionFilesController@download')->name('beatmapset-version-files.download');
+
     Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
         Route::resource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
         Route::get('search', 'BeatmapsetsController@search')->name('search');
