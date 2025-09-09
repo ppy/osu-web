@@ -19,7 +19,7 @@ class UserTotpController extends Controller
         parent::__construct();
 
         $this->middleware('auth');
-        $this->middleware('throttle:20,1440,user-totp:');
+        $this->middleware('throttle:60,10,user-totp:');
         $this->middleware('verify-user');
 
         $this->middleware(function ($request, $next) {
