@@ -79,6 +79,12 @@ return [
             'base_url' => env('APP_URL', 'http://localhost').'/uploads-avatar',
         ],
 
+        'local-central' => [
+            'driver' => 'local',
+            'root' => public_path().'/uploads-central',
+            'base_url' => env('APP_URL', 'http://localhost').'/uploads-central',
+        ],
+
         'local-solo-replay' => [
             'driver' => 'local',
             'root' => public_path().'/uploads-solo-replay/',
