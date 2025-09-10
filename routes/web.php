@@ -70,6 +70,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
         Route::resource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
+        Route::get('search', 'BeatmapsetsController@search')->name('search');
         // keeping old link alive
         route_redirect('watches', 'follows.index');
         Route::resource('watches', 'BeatmapsetWatchesController', ['only' => ['update', 'destroy']]);
@@ -90,20 +91,22 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::resource('discussions', 'BeatmapDiscussionsController', ['only' => ['destroy', 'index', 'show']]);
 
-        Route::group(['namespace' => 'Beatmapsets'], function () {
-            Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
+        Route::group(['prefix' => '{beatmapset}'], function () {
+            Route::get('discussion/{beatmap?}/{mode?}/{filter?}', 'BeatmapsetsController@discussion')->name('discussion');
+            Route::post('discussion/review', 'BeatmapDiscussionsController@review')->name('discussion.review');
+            Route::get('discussion-last-update', 'BeatmapsetsController@discussionLastUpdate')->name('discussion-last-update');
+            Route::post('discussion-lock', 'BeatmapsetsController@discussionLock')->name('discussion-lock');
+            Route::post('discussion-unlock', 'BeatmapsetsController@discussionUnlock')->name('discussion-unlock');
+            Route::get('download', 'BeatmapsetsController@download')->name('download');
+            Route::put('love', 'BeatmapsetsController@love')->name('love');
+            Route::delete('love', 'BeatmapsetsController@removeFromLoved')->name('remove-from-loved');
+            Route::put('nominate', 'BeatmapsetsController@nominate')->name('nominate');
+
+            Route::group(['namespace' => 'Beatmapsets'], function () {
+                Route::apiResource('favourites', 'FavouritesController', ['only' => ['store']]);
+            });
         });
     });
-    Route::get('beatmapsets/search', 'BeatmapsetsController@search')->name('beatmapsets.search');
-    Route::get('beatmapsets/{beatmapset}/discussion/{beatmap?}/{mode?}/{filter?}', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');
-    Route::post('beatmapsets/{beatmapset}/discussion/review', 'BeatmapDiscussionsController@review')->name('beatmapsets.discussion.review');
-    Route::get('beatmapsets/{beatmapset}/discussion-last-update', 'BeatmapsetsController@discussionLastUpdate')->name('beatmapsets.discussion-last-update');
-    Route::post('beatmapsets/{beatmapset}/discussion-lock', 'BeatmapsetsController@discussionLock')->name('beatmapsets.discussion-lock');
-    Route::post('beatmapsets/{beatmapset}/discussion-unlock', 'BeatmapsetsController@discussionUnlock')->name('beatmapsets.discussion-unlock');
-    Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download')->name('beatmapsets.download');
-    Route::put('beatmapsets/{beatmapset}/love', 'BeatmapsetsController@love')->name('beatmapsets.love');
-    Route::delete('beatmapsets/{beatmapset}/love', 'BeatmapsetsController@removeFromLoved')->name('beatmapsets.remove-from-loved');
-    Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate')->name('beatmapsets.nominate');
     Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
     Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
@@ -394,9 +397,6 @@ Route::group(['middleware' => ['web']], function () {
         });
     });
 
-    // TODO: update to redirect to root later
-    Route::get('/home', 'HomeController@index');
-
     Route::get('/', 'HomeController@index')->name('home');
 
     // redirects go here
@@ -565,6 +565,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         // Friends
         Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
 
+        Route::get('me/beatmapset-favourites', 'Account\BeatmapsetFavouritesController@index');
         //  GET /api/v2/me/download-quota-check
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
         //  GET /api/v2/me

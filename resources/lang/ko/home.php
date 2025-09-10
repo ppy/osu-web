@@ -95,11 +95,11 @@ return [
         'os_version_or_later' => ':os_version 이상',
         'other_os' => '다른 플랫폼',
         'quick_start_guide' => '빠른 시작 안내',
-        'tagline' => "시작해봐요!",
+        'tagline' => "시작해 보세요!",
         'video-guide' => '영상 가이드',
 
         'help' => [
-            '_' => '게임을 시작하거나 계정을 등록하는데 문제가 있다면, :help_forum_link 하거나 :support_button 해보세요.',
+            '_' => '만약 게임 시작이나 계정 등록에 문제가 발생했다면, :help_forum_link 하거나 :support_button 해 주세요.',
             'help_forum_link' => '도움말 포럼을 확인',
             'support_button' => '지원 팀에 연락',
         ],
@@ -112,11 +112,11 @@ return [
         'steps' => [
             'register' => [
                 'title' => '계정 만들기',
-                'description' => '게임을 시작하면 로그인하거나 계정을 만드는 절차를 따라주세요.',
+                'description' => '로그인을 하시거나 새로운 계정을 생성하시려면 게임 시작 시 나타나는 절차를 따라주세요.',
             ],
             'download' => [
                 'title' => '게임 다운로드!',
-                'description' => '위 버튼을 눌러 설치 프로그램을 다운받고, 실행하세요!',
+                'description' => '위의 버튼을 클릭해서 프로그램을 다운로드받고, 실행해 보세요!',
             ],
             'beatmaps' => [
                 'title' => '비트맵 받기',

@@ -11,7 +11,7 @@ return [
     ],
 
     'builds' => [
-        'users_online' => '접속중인 유저: :count_delimited명',
+        'users_online' => '접속 중인 유저: :count_delimited명',
     ],
 
     'entry' => [

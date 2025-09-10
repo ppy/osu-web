@@ -126,8 +126,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'Aktywne',
+            'ended' => 'Zakończone',
         ],
     ],
 

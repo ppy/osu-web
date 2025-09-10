@@ -15,11 +15,11 @@ return [
         'winner_by' => ':winner，勝分差: :difference',
 
         'events' => [
-            'game_aborted' => '',
-            'game_aborted_no_user' => '',
-            'game_completed' => '',
-            'game_completed_no_user' => '',
-            'host_changed' => '',
+            'game_aborted' => '遊戲被中止',
+            'game_aborted_no_user' => '遊戲被中止',
+            'game_completed' => '遊戲已結束',
+            'game_completed_no_user' => '遊戲已結束',
+            'host_changed' => ':user 成為房主',
             'host_changed_no_user' => '房主已經變更',
             'player_joined' => ':user 加入了房間',
             'player_joined_no_user' => '有玩家加入了房間',
@@ -27,10 +27,10 @@ return [
             'player_kicked_no_user' => '有玩家被踢出房間',
             'player_left' => ':user 離開了房間',
             'player_left_no_user' => '有玩家離開了房間',
-            'room_created' => ':user 創建了此房間',
-            'room_created_no_user' => '',
-            'room_disbanded' => '',
-            'room_disbanded_no_user' => '',
+            'room_created' => ':user 建立了房間',
+            'room_created_no_user' => '建立了房間',
+            'room_disbanded' => '關閉了房間',
+            'room_disbanded_no_user' => '關閉了房間',
         ],
 
         'score' => [
@@ -42,10 +42,10 @@ return [
         ],
 
         'team_types' => [
-            'head_to_head' => '',
-            'tag_coop' => '',
-            'tag_team_versus' => '',
-            'team_versus' => '',
+            'head_to_head' => '對戰',
+            'tag_coop' => 'Tag Co-op',
+            'tag_team_versus' => 'Tag 團隊對戰',
+            'team_versus' => '團隊對戰',
         ],
 
         'teams' => [
@@ -54,7 +54,7 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '',
+        'freestyle' => '自由模式',
 
         'scoring-type' => [
             'score' => '最高分',
