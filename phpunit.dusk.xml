@@ -8,6 +8,7 @@
     xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
 >
     <extensions>
+        <bootstrap class="ScriptFUSION\Pip\PipExtension"/>
         <bootstrap class="Tests\SeederExtension" />
     </extensions>
     <testsuites>
