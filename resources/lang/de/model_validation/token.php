@@ -5,15 +5,15 @@
 
 return [
     'invalid_scope' => [
-        'all_scope_no_client_credentials' => '',
-        'all_scope_no_mix' => '',
-        'client_missing_owner' => '',
-        'client_unauthorized' => '',
-        'delegate_bot_only' => '',
-        'delegate_client_credentials_only' => '',
-        'delegate_invalid_combination' => '',
-        'delegate_required' => '',
-        'empty' => '',
-        'bot_only' => '',
+        'all_scope_no_client_credentials' => '* ist mit Client-Zugangsdaten nicht erlaubt',
+        'all_scope_no_mix' => '* ist mit anderen Typen nicht gültig',
+        'client_missing_owner' => 'Der Anwendung fehlt der Besitzer.',
+        'client_unauthorized' => 'Die Anwendung ist nicht autorisiert.',
+        'delegate_bot_only' => 'Delegation mit Client-Zugangsdaten ist nur für Chat-Bots verfügbar.',
+        'delegate_client_credentials_only' => 'Typ "delegate" ist nur für client_credentials Token gültig.',
+        'delegate_invalid_combination' => 'Die Delegation wird für diese Typen nicht unterstützt.',
+        'delegate_required' => 'Typ "delegate" ist erforderlich.',
+        'empty' => 'Tokens ohne Typen sind nicht gültig.',
+        'bot_only' => 'Dieser Typ ist nur für Chat-Bots oder eigene Anwendungen verfügbar.',
     ],
 ];

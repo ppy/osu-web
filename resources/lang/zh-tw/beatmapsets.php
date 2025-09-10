@@ -69,7 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => '檢視完整封面圖片',
-            'page' => '',
+            'page' => '檢視管理頁面',
         ],
 
         'deleted_banner' => [

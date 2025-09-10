@@ -15,10 +15,10 @@ return [
         'winner_by' => ':winner з розніцай у :difference',
 
         'events' => [
-            'game_aborted' => '',
-            'game_aborted_no_user' => '',
-            'game_completed' => '',
-            'game_completed_no_user' => '',
+            'game_aborted' => 'гульня была скасавана',
+            'game_aborted_no_user' => 'гульня была скасавана',
+            'game_completed' => 'гульня скончана',
+            'game_completed_no_user' => 'гульня скончана',
             'host_changed' => '',
             'host_changed_no_user' => '',
             'player_joined' => '',

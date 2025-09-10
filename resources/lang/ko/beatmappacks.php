@@ -11,8 +11,8 @@ return [
         'title' => '비트맵 팩',
 
         'blurb' => [
-            'important' => '다운로드 하기 전에 읽어주세요',
-            'install_instruction' => '설치: 다운로드가 끝나면 압축을 풀고 내용물을 osu! 폴더 내의 Songs 폴더에 저장해주세요. 나머지는 osu!에서 알아서 해드립니다.',
+            'important' => '다운로드 전에 반드시 읽어주세요',
+            'install_instruction' => '설치: 팩 다운로드 후, 팩의 내용물을 osu! 폴더 내의 Songs 폴더에 저장해 주시면 osu!가 나머지 작업을 합니다.',
         ],
     ],
 

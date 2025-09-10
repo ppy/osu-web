@@ -184,7 +184,7 @@ return [
                 'pin' => 'Fissa',
                 'player' => 'Giocatore',
                 'pp' => '',
-                'rank' => 'Posto',
+                'rank' => 'Rango',
                 'score' => 'Punteggio',
                 'score_total' => 'Punteggio Totale',
                 'time' => 'Tempo',

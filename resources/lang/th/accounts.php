@@ -88,7 +88,7 @@ return [
             'beatmap_owner_change' => 'ระดับความยากของแขก',
             'beatmapset:modding' => 'การวิจารณ์บีทแมพ',
             'channel_message' => 'ข้อความส่วนตัว',
-            'channel_team' => '',
+            'channel_team' => 'ข้อความกลุ่ม',
             'comment_new' => 'ความคิดเห็นใหม่',
             'forum_topic_reply' => 'ข้อความตอบกลับในกระทู้',
             'mail' => 'อีเมล',
