@@ -23,9 +23,7 @@ class UserTotpController extends Controller
         $this->middleware('verify-user');
 
         $this->middleware(function ($request, $next) {
-            $this->currentUser = \Auth::user();
-
-            if ($this->currentUser->userTotpKey !== null) {
+            if (\Auth::user()->userTotpKey !== null) {
                 $session = \Session::instance();
                 $session->flash('popup', osu_trans('user_totp.store.existing'));
                 \Cache::forget($this->cacheKey());
