@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "65b58e38dc386a96a52ed32e2006fb4e",
+    "content-hash": "7e560369074a3282da127bdd06ad8d8b",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -12312,6 +12312,47 @@
                 }
             ],
             "time": "2025-02-06T16:08:12+00:00"
+        },
+        {
+            "name": "scriptfusion/pip",
+            "version": "3.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ScriptFUSION/Pip.git",
+                "reference": "8d4a895f4c458ab81380eff662bf4fed419a4386"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ScriptFUSION/Pip/zipball/8d4a895f4c458ab81380eff662bf4fed419a4386",
+                "reference": "8d4a895f4c458ab81380eff662bf4fed419a4386",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "phpunit/phpunit": "^10.5.28|^11.2.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ScriptFUSION\\Pip\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Bilge",
+                    "email": "bilge@scriptfusion.com"
+                }
+            ],
+            "description": "Immediately prints exceptions and assertion failures during testing.",
+            "support": {
+                "issues": "https://github.com/ScriptFUSION/Pip/issues",
+                "source": "https://github.com/ScriptFUSION/Pip/tree/3.5.2"
+            },
+            "time": "2024-11-05T20:57:34+00:00"
         },
         {
             "name": "sebastian/cli-parser",

@@ -53,6 +53,7 @@
     "mockery/mockery": "*",
     "nunomaduro/collision": "^8.1",
     "phpunit/phpunit": ">=10.0",
+    "scriptfusion/pip": "^3.5",
     "slevomat/coding-standard": "^8.15",
     "spatie/laravel-ignition": "^2.0",
     "squizlabs/php_codesniffer": "^3.10",
