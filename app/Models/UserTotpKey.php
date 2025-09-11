@@ -13,7 +13,6 @@ use BaconQrCode\Writer;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use OTPHP\Factory;
 use OTPHP\InternalClock;
-use OTPHP\OTPInterface;
 use OTPHP\TOTP;
 
 /**
@@ -68,11 +67,6 @@ class UserTotpKey extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function totp(): OTPInterface
-    {
-        return Factory::loadFromProvisioningUri($this->uri);
     }
 
     public function assertValidKey(string $key): void
