@@ -402,13 +402,13 @@ class Beatmap extends Model implements AfterCommit
                 $countById[$vote->tag_id] ??= ['tag_id' => $vote->tag_id, 'count' => 0];
                 $countById[$vote->tag_id]['count']++;
             }
-            usort($countById, fn ($a, $b) => $a['count'] === $b['count']
-                ? $a['tag_id'] - $b['tag_id']
-                : $b['count'] - $a['count']);
-
             // slowTopTagIds is only used by indexing so it should be fine to filter out tags under the threshold for now.
             $minVotes = $GLOBALS['cfg']['osu']['tags']['min_votes_display'];
             $countById = array_filter($countById, fn ($count) => $count >= $minVotes);
+
+            usort($countById, fn ($a, $b) => $a['count'] === $b['count']
+                ? $a['tag_id'] - $b['tag_id']
+                : $b['count'] - $a['count']);
 
             return array_slice($countById, 0, $GLOBALS['cfg']['osu']['tags']['top_tag_count']);
         });
