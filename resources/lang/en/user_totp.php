@@ -22,7 +22,7 @@ return [
     ],
 
     'store' => [
-        'existing' => 'You already have a different authenticator app verification set up.',
+        'existing' => 'You already have authenticator app verification set up.',
         'ok' => 'Authenticator app verification has been set up',
         'restart' => 'Error occurred. Please restart the process.',
     ],

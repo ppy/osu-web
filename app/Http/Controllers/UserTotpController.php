@@ -27,7 +27,7 @@ class UserTotpController extends Controller
 
             if ($this->currentUser->userTotpKey !== null) {
                 $session = \Session::instance();
-                $session->flash('popup', osu_trans('user_totp.index.already_setup'));
+                $session->flash('popup', osu_trans('user_totp.store.existing'));
                 \Cache::forget($this->cacheKey());
 
                 return ujs_redirect(route('account.edit').'#authenticator-app');
@@ -97,34 +97,29 @@ class UserTotpController extends Controller
 
         $currentUser = \Auth::user();
 
-        $existingTotpKey = $currentUser->userTotpKey;
-        if ($existingTotpKey === null) {
-            if (UserTotpKey::isValidKey($totpUri, $key)) {
-                try {
-                    $totpKey = $currentUser->userTotpKey()->create([
-                        'uri' => $totpUri,
-                    ]);
-                } catch (\Throwable $e) {
-                    if (!is_sql_unique_exception($e)) {
-                        throw $e;
-                    }
-                    $existingTotpKey = $currentUser->userTotpKey()->first();
+        if (UserTotpKey::isValidKey($totpUri, $key)) {
+            try {
+                $totpKey = $currentUser->userTotpKey()->create([
+                    'uri' => $totpUri,
+                ]);
+                $message = osu_trans('user_totp.store.ok');
+            } catch (\Throwable $e) {
+                if (!is_sql_unique_exception($e)) {
+                    throw $e;
                 }
-                \Cache::forget($cacheKey);
-            } else {
-                return response(['form_error' => [
-                    'key' => [osu_trans('user_verification.errors.incorrect_key')],
-                ]], 422);
+                $existingTotpKey = $currentUser->userTotpKey()->first();
+                $message = osu_trans('user_totp.store.existing');
             }
+            \Cache::forget($cacheKey);
+
+            $session->flash('popup', $message);
+
+            return ujs_redirect(route('account.edit').'#authenticator-app');
         }
 
-        $message = $existingTotpKey !== null && $existingTotpKey->uri !== $totpUri
-            // this also handles race condition between key existence check and creation
-            ? osu_trans('user_totp.store.existing')
-            : osu_trans('user_totp.store.ok');
-        $session->flash('popup', $message);
-
-        return ujs_redirect(route('account.edit').'#authenticator-app');
+        return response(['form_error' => [
+            'key' => [osu_trans('user_verification.errors.incorrect_key')],
+        ]], 422);
     }
 
     private function cacheKey(): string
