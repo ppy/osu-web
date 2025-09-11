@@ -11,43 +11,43 @@
 
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
-                <div class="account-edit-entry">
-                    <div class="account-edit-entry__label account-edit-entry__label--top-pinned">
-                        {{ osu_trans('accounts.user_totp.status.label') }}
-                    </div>
+            <div class="account-edit-entry">
+                <div class="account-edit-entry__label account-edit-entry__label--top-pinned">
+                    {{ osu_trans('accounts.user_totp.status.label') }}
+                </div>
+                @php
+                    $isSet = $user->userTotpKey !== null;
+                @endphp
+                <div class="account-edit-entry__group">
+                    <p>
+                        {{ osu_trans('accounts.user_totp.status.'.($isSet ? 'set' : 'not_set')) }}
+                    </p>
                     @php
-                        $isSet = $user->userTotpKey !== null;
+                        if ($isSet) {
+                            $url = route('authenticator-app.edit');
+                            $text = osu_trans('accounts.user_totp.button.remove');
+                            $icon = 'fas fa-trash';
+                        } else {
+                            $url = route('authenticator-app.create');
+                            $text = osu_trans('accounts.user_totp.button.setup');
+                            $icon = 'fas fa-mobile-alt';
+                        }
                     @endphp
-                    <div class="account-edit-entry__group">
-                        <p>
-                            {{ osu_trans('accounts.user_totp.status.'.($isSet ? 'set' : 'not_set')) }}
-                        </p>
-                        @php
-                            if ($isSet) {
-                                $url = route('authenticator-app.edit');
-                                $text = osu_trans('accounts.user_totp.button.remove');
-                                $icon = 'fas fa-trash';
-                            } else {
-                                $url = route('authenticator-app.create');
-                                $text = osu_trans('accounts.user_totp.button.setup');
-                                $icon = 'fas fa-mobile-alt';
-                            }
-                        @endphp
-                        <a class="btn-osu-big" href="{{ $url }}">
-                            <span class="btn-osu-big__content">
-                                <span class="btn-osu-big__left">
-                                    <span class="btn-osu-big__text-top">
-                                        {{ $text }}
-                                    </span>
-                                </span>
-                                <span class="btn-osu-big__icon">
-                                    <span class="fa-fw {{ $icon }}">
-                                    </span>
+                    <a class="btn-osu-big" href="{{ $url }}">
+                        <span class="btn-osu-big__content">
+                            <span class="btn-osu-big__left">
+                                <span class="btn-osu-big__text-top">
+                                    {{ $text }}
                                 </span>
                             </span>
-                        </a>
-                    </div>
+                            <span class="btn-osu-big__icon">
+                                <span class="fa-fw {{ $icon }}">
+                                </span>
+                            </span>
+                        </span>
+                    </a>
                 </div>
+            </div>
         </div>
     </div>
 </div>
