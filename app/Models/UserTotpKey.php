@@ -13,8 +13,8 @@ use BaconQrCode\Writer;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use OTPHP\Factory;
 use OTPHP\InternalClock;
+use OTPHP\OTPInterface;
 use OTPHP\TOTP;
-use OTPHP\TOTPInterface;
 
 /**
  * @property int $user_id
@@ -70,7 +70,7 @@ class UserTotpKey extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function totp(): TOTPInterface
+    public function totp(): OTPInterface
     {
         return Factory::loadFromProvisioningUri($this->uri);
     }
