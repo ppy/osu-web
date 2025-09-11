@@ -46,6 +46,10 @@
                             </span>
                         </span>
                     </a>
+
+                    <div class="account-edit-entry__rules">
+                        {{ osu_trans('accounts.user_totp.usage_note') }}
+                    </div>
                 </div>
             </div>
         </div>

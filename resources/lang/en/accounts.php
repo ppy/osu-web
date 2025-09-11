@@ -149,6 +149,7 @@ return [
 
     'user_totp' => [
         'title' => 'Authenticator App',
+        'usage_note' => 'Use authenticator app instead of email for session verification. Fallback to email verification is still possible. Verification using authenticator app is not yet available for osu!(lazer) - it will still be done through email.',
 
         'button' => [
             'remove' => 'Remove',
