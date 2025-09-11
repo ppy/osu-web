@@ -98,7 +98,7 @@ class BeatmapsetsController extends Controller
 
             $noindex = !$beatmapset->esShouldIndex();
             $config = [
-                'tags_min_votes_display' => $GLOBALS['cfg']['osu']['tags']['min_votes_display'],
+                'tags_min_votes_display' => $GLOBALS['cfg']['osu']['beatmap_tags']['min_votes_display'],
             ];
 
             set_opengraph($beatmapset);
