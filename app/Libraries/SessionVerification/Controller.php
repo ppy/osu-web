@@ -106,7 +106,7 @@ class Controller
                     // erased between verification start and here
                     return static::mailFallback($state, static::FALLBACK_MODES['totp_gone']);
                 }
-                $state->user->userTotpKey->assertValidKey($key);
+                $totp->assertValidKey($key);
             } else {
                 $mailState = MailState::fromSession($state->session);
 
