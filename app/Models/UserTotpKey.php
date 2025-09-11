@@ -10,6 +10,7 @@ namespace App\Models;
 use App\Exceptions\UserVerificationException;
 use BaconQrCode\Renderer\PlainTextRenderer;
 use BaconQrCode\Writer;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use OTPHP\Factory;
 use OTPHP\InternalClock;
 use OTPHP\TOTP;
