@@ -53,7 +53,7 @@ class UserTotpKey extends Model
     public static function generateUri(User $user): string
     {
         $totp = TOTP::generate(new InternalClock());
-        $totp->setIssuer('osu!');
+        $totp->setIssuer($GLOBALS['cfg']['osu']['totp']['issuer_name']);
         // this assumes username to never contain colon `:`
         $totp->setLabel($user->username);
 
