@@ -17,6 +17,7 @@ foreach (['osu', 'taiko', 'fruits', 'mania'] as $mode) {
     $replays["local-legacy-replay-{$mode}"] = [
         'driver' => 'local',
         'root' => public_path("uploads/legacy-replay/{$mode}"),
+        'visibility' => 'public',
     ];
 
     $replays["s3-legacy-replay-{$mode}"] = [
@@ -73,18 +74,21 @@ return [
             'driver' => 'local',
             'root' => public_path('uploads/default'),
             'base_url' => "{$appUrl}/uploads/default",
+            'visibility' => 'public',
         ],
 
         'local-avatar' => [
             'driver' => 'local',
             'root' => public_path('uploads/avatar'),
             'base_url' => "{$appUrl}/uploads/avatar",
+            'visibility' => 'public',
         ],
 
         'local-solo-replay' => [
             'driver' => 'local',
             'root' => public_path('uploads/solo-replay'),
             'base_url' => "{$appUrl}/uploads/solo-replay",
+            'visibility' => 'public',
         ],
 
         's3' => [
