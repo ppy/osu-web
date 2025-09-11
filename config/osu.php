@@ -206,7 +206,7 @@ return [
     ],
     'tags' => [
         'beatmap_tags_cache_duration' => 60 * (get_int(env('BEATMAP_TAGS_CACHE_DURATION')) ?? 60), // in minutes, converted to seconds
-        'min_votes_display' => get_int(env('BEATMAP_TAGS_MIN_VOTES_DISPLAY') ?? 5),
+        'min_votes_display' => get_int(env('BEATMAP_TAGS_MIN_VOTES_DISPLAY')) ?? 5,
         'top_tag_count' => get_int(env('BEATMAP_TOP_TAG_COUNT')) ?? 50,
     ],
     'team' => [
