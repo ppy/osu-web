@@ -24,7 +24,13 @@
                     {{ osu_trans('user_totp.create.key') }}
                 </div>
                 <label class="password-reset__input-group">
-                    <input autofocus class="password-reset__input" name="key">
+                    <input
+                        autocomplete="one-time-code"
+                        autofocus
+                        class="password-reset__input"
+                        inputmode="numeric"
+                        name="key"
+                    >
                     <span class="password-reset__error js-form-error--error"></span>
                 </label>
 
