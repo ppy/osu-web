@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use OTPHP\Factory;
 use OTPHP\InternalClock;
 use OTPHP\TOTP;
+use OTPHP\TOTPInterface;
 
 /**
  * @property int $user_id
@@ -69,7 +70,7 @@ class UserTotpKey extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function totp()
+    public function totp(): TOTPInterface
     {
         return Factory::loadFromProvisioningUri($this->uri);
     }
