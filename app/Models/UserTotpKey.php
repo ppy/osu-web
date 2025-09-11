@@ -11,6 +11,7 @@ use App\Exceptions\UserVerificationException;
 use BaconQrCode\Renderer\PlainTextRenderer;
 use BaconQrCode\Writer;
 use OTPHP\Factory;
+use OTPHP\InternalClock;
 use OTPHP\TOTP;
 
 /**
@@ -49,7 +50,7 @@ class UserTotpKey extends Model
 
     public static function generateUri(User $user): string
     {
-        $totp = TOTP::generate();
+        $totp = TOTP::generate(new InternalClock());
         $totp->setIssuer('osu!');
         // this assumes username to never contain colon `:`
         $totp->setLabel($user->username);
