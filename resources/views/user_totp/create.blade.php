@@ -19,6 +19,9 @@
                     <div class="qr-svg">
                         {!! qr_svg($uri) !!}
                     </div>
+                    <div>
+                        <a href="{{ $uri }}">{{ osu_trans('user_totp.create.key_link') }}</a>
+                    </div>
                 </div>
                 <div class="password-reset__input-group">
                     {{ osu_trans('user_totp.create.key') }}

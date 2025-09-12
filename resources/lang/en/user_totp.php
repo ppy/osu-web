@@ -7,6 +7,7 @@ return [
     'create' => [
         'finish' => 'Finish',
         'key' => 'Scan the QR code with the authenticator app and enter the verification key',
+        'key_link' => 'Use this link if you\'re using mobile phone',
         'password' => 'To set up authenticator app verification, please enter your current password',
         'start' => 'Continue',
     ],
