@@ -483,6 +483,16 @@ function prefix_strings(string $prefix, array $strings): array
     return $ret;
 }
 
+function qr_svg(string $text): string
+{
+    return new BaconQrCode\Writer(
+        new BaconQrCode\Renderer\ImageRenderer(
+            new BaconQrCode\Renderer\RendererStyle\RendererStyle(400),
+            new BaconQrCode\Renderer\Image\SvgImageBackEnd()
+        ),
+    )->writeString($text);
+}
+
 function trim_unicode(?string $value)
 {
     return preg_replace('/(^\s+|\s+$)/u', '', $value);

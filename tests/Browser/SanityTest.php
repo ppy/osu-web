@@ -551,6 +551,8 @@ class SanityTest extends DuskTestCase
             'account.edit',
             'account.github-users.callback',
             'account.github-users.create',
+            'authenticator-app.create',
+            'authenticator-app.edit',
             'chat.index',
             'client-verifications.create',
             'messages.users.show',

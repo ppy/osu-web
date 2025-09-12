@@ -147,6 +147,21 @@ return [
         'update' => 'update',
     ],
 
+    'user_totp' => [
+        'title' => 'Authenticator App',
+        'usage_note' => 'Use authenticator app instead of email for verification. Email verification will still be available as a fallback. Verification using authenticator app is not yet available for osu!(lazer) - it will still be done through email.',
+
+        'button' => [
+            'remove' => 'Remove',
+            'setup' => 'Add Authenticator App',
+        ],
+        'status' => [
+            'label' => 'status',
+            'not_set' => 'Not configured',
+            'set' => 'Configured',
+        ],
+    ],
+
     'verification_completed' => [
         'text' => 'You can close this tab/window now',
         'title' => 'Verification has been completed',
