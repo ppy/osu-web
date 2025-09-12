@@ -141,7 +141,7 @@ class Score extends Model implements Traits\ReportableInterface
 
     public static function replayFileDiskName(): string
     {
-        return "{$GLOBALS['cfg']['osu']['score_replays']['storage']}-solo-replay";
+        return "{$GLOBALS['cfg']['filesystems']['default']}-solo-replay";
     }
 
     public static function replayFileStorage(): Filesystem

@@ -33,7 +33,6 @@ return [
         'cache_purge_method' => env('AVATAR_CACHE_PURGE_METHOD'),
         'cache_purge_authorization_key' => env('AVATAR_CACHE_PURGE_AUTHORIZATION_KEY'),
         'default' => env('DEFAULT_AVATAR', env('APP_URL', 'http://localhost').'/images/layout/avatar-guest@2x.png'),
-        'storage' => env('AVATAR_STORAGE', 'local-avatar'),
     ],
 
     'bbcode' => [
@@ -187,9 +186,6 @@ return [
         'max' => [
             'user' => 100,
         ],
-    ],
-    'score_replays' => [
-        'storage' => env('SCORE_REPLAYS_STORAGE', 'local'),
     ],
     'scores' => [
         'es_cache_duration' => 60 * (get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5), // in minutes, converted to seconds
