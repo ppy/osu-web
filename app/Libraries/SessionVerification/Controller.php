@@ -110,7 +110,7 @@ class Controller
             } else {
                 $mailState = MailState::fromSession($state->session);
 
-                if ($state === null) {
+                if ($mailState === null) {
                     throw new UserVerificationException('expired', true);
                 }
                 $mailState->verify($key);
