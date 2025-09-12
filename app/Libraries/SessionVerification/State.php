@@ -33,7 +33,7 @@ class State
             LoginAttempt::logAttempt(\Request::getClientIp(), $this->user, 'verify');
 
             // force mail to prevent client without totp support from showing wrong message
-            $currentMethod = (is_api_request() && api_version() < 20250818) || $this->user->userTotpKey === null
+            $currentMethod = (is_api_request() && api_version() < 20250913) || $this->user->userTotpKey === null
                 ? 'mail'
                 : 'totp';
 
