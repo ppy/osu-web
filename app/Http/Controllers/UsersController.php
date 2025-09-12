@@ -579,6 +579,7 @@ class UsersController extends Controller
             $user,
             (new UserTransformer())->setMode($currentMode),
             [
+                'session_verification_method',
                 'session_verified',
                 ...$this->showUserIncludes(),
                 ...array_map(

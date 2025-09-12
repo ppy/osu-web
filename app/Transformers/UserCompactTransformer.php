@@ -7,6 +7,7 @@ namespace App\Transformers;
 
 use App\Libraries\MorphMap;
 use App\Libraries\Search\ScoreSearchParams;
+use App\Libraries\SessionVerification;
 use App\Libraries\User\SeasonStats;
 use App\Models\Beatmap;
 use App\Models\Season;
@@ -94,6 +95,7 @@ class UserCompactTransformer extends TransformerAbstract
         'scores_first_count',
         'scores_pinned_count',
         'scores_recent_count',
+        'session_verification_method',
         'session_verified',
         'statistics',
         'statistics_rulesets',
@@ -452,6 +454,15 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeSessionVerified(User $user)
     {
         return $this->primitive($user->token()?->isVerified() ?? false);
+    }
+
+    public function includeSessionVerificationMethod(User $user)
+    {
+        $session = $user->token();
+
+        return $this->primitive($session === null || $session->isVerified()
+            ? null
+            : (new SessionVerification\State($session, $user))->getMethod());
     }
 
     public function includeStatistics(User $user)
