@@ -9,7 +9,7 @@ namespace App\Exceptions;
 
 class UserVerificationException extends InvariantException
 {
-    public function __construct(private string $reasonKey, private bool $shouldReissue)
+    public function __construct(private string $reasonKey, private bool $shouldReissueMail)
     {
         parent::__construct(osu_trans("user_verification.errors.{$reasonKey}"));
     }
@@ -19,8 +19,8 @@ class UserVerificationException extends InvariantException
         return $this->reasonKey;
     }
 
-    public function shouldReissue(): bool
+    public function shouldReissueMail(): bool
     {
-        return $this->shouldReissue;
+        return $this->shouldReissueMail;
     }
 }

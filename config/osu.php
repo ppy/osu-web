@@ -213,6 +213,9 @@ return [
         'create_require_supporter' => get_bool(env('TEAM_CREATE_REQUIRE_SUPPORTER')) ?? false,
         'max_members' => get_int(env('TEAM_MAX_MEMBERS')) ?? 40,
     ],
+    'totp' => [
+        'issuer_name' => env('TOTP_ISSUER_NAME', 'osu!dev'),
+    ],
     'twitch_client_id' => presence(env('TWITCH_CLIENT_ID')),
     'twitch_client_secret' => presence(env('TWITCH_CLIENT_SECRET')),
     'urls' => [

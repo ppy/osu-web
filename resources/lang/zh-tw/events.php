@@ -10,7 +10,7 @@ return [
     'beatmapset_delete' => ':beatmapset 已經被刪除。',
     'beatmapset_revive' => ':beatmapset 已由 <strong>:user</strong> 從永恆的沉睡中喚醒。',
     'beatmapset_update' => '<strong><em>:user</em></strong> 更新了圖譜 "<em>:beatmapset</em>"',
-    'beatmapset_upload' => '<strong><em>:user</em></strong> 提交了一個新圖譜 ":beatmapset"',
+    'beatmapset_upload' => '<strong><em>:user</em></strong> 提交了一個新圖譜「:beatmapset」',
     'empty' => "該使用者最近沒有活動！",
     'rank' => '<strong><em>:user</em></strong> 在 <em>:beatmap</em> （:mode）中取得第 :rank 名',
     'rank_lost' => '<strong><em>:user</em></strong> 失去了 <em>:beatmap</em>（:mode）的第一名',

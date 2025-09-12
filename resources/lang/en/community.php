@@ -81,7 +81,7 @@ return [
 
             'customisation' => [
                 'title' => 'Customisation',
-                'description' => "Stand out by uploading a custom cover image or by creating a fully customizable 'me!' section within your user profile.",
+                'description' => "Stand out by uploading a custom cover image, creating a fully customizable 'me!' section, or even change the colour to any of your liking within your user profile.",
             ],
 
             'beatmap_filters' => [

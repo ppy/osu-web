@@ -138,14 +138,14 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => '',
+            'contribution_with_duration' => 'Дякуємо за вашу постійну підтримку! Наразі ви внесли загалом :dollars, що дає вам статус «Підтримувач» на :duration.',
             'not_yet' => "У вас ще ніколи не було тегу osu!supporter :(",
             'valid_until' => 'Ваш osu!supporter чинний до :date!',
             'was_valid_until' => 'Ваш тег osu!supporter був чинний до :date.',
 
             'gifted' => [
-                '_' => '',
-                'users' => '',
+                '_' => 'Із загальної кількості ваших внесків ви подарували :users теги на суму :dollars, що охоплюють :duration. Це неймовірно щедро!',
+                'users' => ':count_delimited інший користувач |:count_delimited інших користувачів',
             ],
         ],
     ],

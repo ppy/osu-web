@@ -5,8 +5,8 @@
 
 return [
     'empty' => [
-        'active' => '',
-        'ended' => '',
+        'active' => 'Atualmente não está em nenhum jogo de :type_group em andamento no osu!(lazer)!',
+        'ended' => 'Não está em nenhum jogo de :type_group finalizado no osu!(lazer) ainda!',
         'playlists' => 'seleção de música',
         'realtime' => 'multiplayer',
     ],

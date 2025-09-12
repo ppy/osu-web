@@ -57,7 +57,7 @@ return [
         'show_more_options' => 'afficher plus d’options',
         'submit' => 'Envoyer',
         'unpin' => 'désépingler',
-        'update' => 'Enregistrer',
+        'update' => 'Mettre à jour',
         'upload_image' => 'mettre en ligne une image',
 
         'watch' => [

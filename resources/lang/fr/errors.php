@@ -7,7 +7,7 @@ return [
     'load_failed' => 'Impossible de charger les données.',
     'missing_route' => 'URL invalide ou méthode de requête incorrecte.',
     'no_restricted_access' => 'Vous ne pouvez pas effectuer cette action avec un compte restreint.',
-    'param_too_large' => '',
+    'param_too_large' => 'Le paramètre :name ne peut contenir qu\'au maximum :count_delimited seul élément|Le paramètre :name ne peut contenir au maximum que :count_delimited éléments',
     'supporter_only' => 'Vous devez être un osu!supporter pour utiliser cette fonctionnalité.',
     'unknown' => 'Une erreur inconnue est survenue.',
 
