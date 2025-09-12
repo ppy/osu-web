@@ -97,7 +97,7 @@ class UserTotpController extends Controller
 
         if (UserTotpKey::isValidKey($totpUri, $key)) {
             try {
-                $totpKey = $currentUser->userTotpKey()->create([
+                $currentUser->userTotpKey()->create([
                     'uri' => $totpUri,
                 ]);
                 $message = osu_trans('user_totp.store.ok');
