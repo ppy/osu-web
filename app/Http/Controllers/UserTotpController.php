@@ -103,7 +103,6 @@ class UserTotpController extends Controller
                 $message = osu_trans('user_totp.store.ok');
             } catch (\Throwable $e) {
                 if (is_sql_unique_exception($e)) {
-                    $existingTotpKey = $currentUser->userTotpKey()->first();
                     $message = osu_trans('user_totp.store.existing');
                 } else {
                     throw $e;
