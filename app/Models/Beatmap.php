@@ -402,11 +402,15 @@ class Beatmap extends Model implements AfterCommit
                 $countById[$vote->tag_id] ??= ['tag_id' => $vote->tag_id, 'count' => 0];
                 $countById[$vote->tag_id]['count']++;
             }
+            // slowTopTagIds is only used by indexing so it should be fine to filter out tags under the threshold for now.
+            $minVotes = $GLOBALS['cfg']['osu']['beatmap_tags']['min_votes_display'];
+            $countById = array_filter($countById, fn ($count) => $count >= $minVotes);
+
             usort($countById, fn ($a, $b) => $a['count'] === $b['count']
                 ? $a['tag_id'] - $b['tag_id']
                 : $b['count'] - $a['count']);
 
-            return array_slice($countById, 0, $GLOBALS['cfg']['osu']['tags']['top_tag_count']);
+            return array_slice($countById, 0, $GLOBALS['cfg']['osu']['beatmap_tags']['top_count']);
         });
     }
 
@@ -422,8 +426,8 @@ class Beatmap extends Model implements AfterCommit
             __FUNCTION__,
             fn () => \Cache::remember(
                 "beatmap_top_tag_ids:{$this->getKey()}",
-                $GLOBALS['cfg']['osu']['tags']['beatmap_tags_cache_duration'],
-                fn () => $this->beatmapTags()->topTagIds()->limit($GLOBALS['cfg']['osu']['tags']['top_tag_count'])->get()->toArray(),
+                $GLOBALS['cfg']['osu']['beatmap_tags']['cache_duration'],
+                fn () => $this->beatmapTags()->topTagIds()->limit($GLOBALS['cfg']['osu']['beatmap_tags']['top_count'])->get()->toArray(),
             ),
         );
     }
