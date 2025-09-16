@@ -44,8 +44,7 @@ class UserTotpController extends Controller
 
     public function destroy(): Response
     {
-        $currentUser = \Auth::user();
-        $currentUser->userTotpKey?->delete();
+        \Auth::user()->userTotpKey?->delete();
 
         \Session::flash('popup', osu_trans('user_totp.destroy.ok'));
 
@@ -54,8 +53,7 @@ class UserTotpController extends Controller
 
     public function edit(): Response
     {
-        $currentUser = \Auth::user();
-        if ($currentUser->userTotpKey === null) {
+        if (\Auth::user()->userTotpKey === null) {
             \Session::flash('popup', osu_trans('user_totp.destroy.missing'));
 
             return ujs_redirect(route('account.edit').'#authenticator-app');
