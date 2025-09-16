@@ -8,6 +8,9 @@
     @include('layout._page_header_v4')
     <div class="osu-page osu-page--generic-compact">
         @if (isset($uri))
+            @php
+                $totp = OTPHP\Factory::loadFromProvisioningUri($uri);
+            @endphp
             <form
                 action="{{ route('authenticator-app.store') }}"
                 class="password-reset js-form-error"
@@ -19,8 +22,19 @@
                     <div class="qr-svg">
                         {!! qr_svg($uri) !!}
                     </div>
-                    <div>
+                    <p>
                         <a href="{{ $uri }}">{{ osu_trans('user_totp.create.key_link') }}</a>
+                    </p>
+                    <div>
+                        <div
+                            class="js-react--click-to-copy u-contents"
+                            data-props="{{ json_encode([
+                                'label' => osu_trans('user_totp.create.key_copy'),
+                                'showIcon' => true,
+                                'value' => $totp->getSecret(),
+                                'valueAsUrl' => false,
+                            ]) }}"
+                        ></div>
                     </div>
                 </div>
                 <div class="password-reset__input-group">
