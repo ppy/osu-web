@@ -62,7 +62,8 @@ class Token extends PassportToken implements SessionVerificationInterface
             'client_id',
             'id',
             'name',
-            'user_id' => $this->getRawAttribute($key),
+            'user_id',
+            'verification_method' => $this->getRawAttribute($key),
 
             'revoked',
             'verified' => $this->getNullableBool($key),
@@ -97,6 +98,11 @@ class Token extends PassportToken implements SessionVerificationInterface
         }
 
         return $this->user;
+    }
+
+    public function getVerificationMethod(): ?string
+    {
+        return $this->verification_method;
     }
 
     public function isClientCredentials()
@@ -156,6 +162,17 @@ class Token extends PassportToken implements SessionVerificationInterface
         $this->attributes['scopes'] = $this->castAttributeAsJson('scopes', $value);
     }
 
+    public function setVerificationMethod(string $method): void
+    {
+        $this->verification_method = $method;
+        $this->save();
+    }
+
+    /**
+     * Get token user id
+     *
+     * Note that this is different from getResourceOwner().
+     */
     public function userId(): ?int
     {
         return $this->user_id;
