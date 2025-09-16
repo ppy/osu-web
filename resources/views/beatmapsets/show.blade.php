@@ -58,6 +58,10 @@
         {!! json_encode($commentBundle->toArray()) !!}
     </script>
 
+    <script id="json-config" type="application/json">
+        {!! json_encode($config) !!}
+    </script>
+
     <script id="json-genres" type="application/json">
         {!! json_encode($genres) !!}
     </script>

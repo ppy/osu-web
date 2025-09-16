@@ -13,7 +13,9 @@ interface SessionVerificationInterface
 
     public function getKey();
     public function getKeyForEvent(): string;
+    public function getVerificationMethod(): ?string;
     public function isVerified(): bool;
     public function markVerified(): void;
+    public function setVerificationMethod(string $method): void;
     public function userId(): ?int;
 }

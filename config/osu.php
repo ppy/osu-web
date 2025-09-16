@@ -55,6 +55,11 @@ return [
         'thumbnailer' => env('BM_PROCESSOR_THUMBNAILER', 'http://localhost:4001'),
         'sentry' => env('BM_PROCESSOR_SENTRY'),
     ],
+    'beatmap_tags' => [
+        'cache_duration' => 60 * (get_int(env('BEATMAP_TAGS_CACHE_DURATION')) ?? 60), // in minutes, converted to seconds
+        'min_votes_display' => get_int(env('BEATMAP_TAGS_MIN_VOTES_DISPLAY')) ?? 5,
+        'top_count' => get_int(env('BEATMAP_TAGS_TOP_COUNT')) ?? 50,
+    ],
     'beatmapset' => [
         'discussion_kudosu_per_user' => get_int(env('BEATMAPSET_DISCUSSION_KUDOSU_PER_USER')) ?? 10,
         'discussion_review_max_blocks' => get_int(env('BEATMAPSET_DISCUSSION_REVIEW_MAXIMUM_BLOCKS', 10)),
@@ -204,14 +209,12 @@ return [
     'store' => [
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE') ?? '')),
     ],
-    'tags' => [
-        'beatmap_tags_cache_duration' => 60 * (get_int(env('BEATMAP_TAGS_CACHE_DURATION')) ?? 60), // in minutes, converted to seconds
-        'tags_cache_duration' => 60 * (get_int(env('TAGS_CACHE_DURATION')) ?? 60), // in minutes, converted to seconds
-        'top_tag_count' => get_int(env('BEATMAP_TOP_TAG_COUNT')) ?? 50,
-    ],
     'team' => [
         'create_require_supporter' => get_bool(env('TEAM_CREATE_REQUIRE_SUPPORTER')) ?? false,
         'max_members' => get_int(env('TEAM_MAX_MEMBERS')) ?? 40,
+    ],
+    'totp' => [
+        'issuer_name' => env('TOTP_ISSUER_NAME', 'osu!dev'),
     ],
     'twitch_client_id' => presence(env('TWITCH_CLIENT_ID')),
     'twitch_client_secret' => presence(env('TWITCH_CLIENT_SECRET')),
