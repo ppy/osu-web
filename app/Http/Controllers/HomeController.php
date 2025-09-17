@@ -61,7 +61,7 @@ class HomeController extends Controller
     public function getDownload()
     {
         $lazerPlatformNames = [
-            'android' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Android 5']),
+            'android' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Android 9']),
             'ios' => osu_trans('home.download.os_version_or_later', ['os_version' => 'iOS 13.4']),
             'linux_x64' => 'Linux (x64)',
             'macos_as' => osu_trans('home.download.os_version_or_later', ['os_version' => 'macOS 10.15']).' (Apple Silicon)',
