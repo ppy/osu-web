@@ -111,7 +111,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
             </div>
           </div>
 
-          <div className={`${bn}__mods_pp`}>
+          <div className={`${bn}__mods-pp`}>
             <div className={`${bn}__mods`}>
               {score.mods.map((mod) => <Mod key={mod.acronym} mod={mod} />)}
             </div>
