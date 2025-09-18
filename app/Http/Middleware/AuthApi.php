@@ -102,7 +102,12 @@ class AuthApi
             if ($token->isVerified()) {
                 $user->markSessionVerified();
             } else {
-                SessionVerification\Helper::issue($token, $user, true);
+                if ($token->getVerificationMethod() === null) {
+                    $verificationState = new SessionVerification\State($token, $user);
+                    if ($verificationState->getMethod() === 'mail') {
+                        $verificationState->issueMail(true);
+                    }
+                }
             }
         }
 

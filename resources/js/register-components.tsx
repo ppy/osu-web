@@ -6,6 +6,7 @@ import BasicSelectOptions from 'components/basic-select-options';
 import BeatmapsetEvents, { Props as BeatmapsetEventsProps } from 'components/beatmapset-events';
 import BlockButton from 'components/block-button';
 import ChatIcon from 'components/chat-icon';
+import ClickToCopy from 'components/click-to-copy';
 import CountdownTimer from 'components/countdown-timer';
 import { LandingNews } from 'components/landing-news';
 import MainNotificationIcon from 'components/main-notification-icon';
@@ -47,6 +48,10 @@ function reqStr(input: string|undefined) {
 
 core.reactTurbolinks.register('artist-track', (container) => (
   <TracklistTrack {...reqJson(container.dataset.props)} />
+));
+
+core.reactTurbolinks.register('click-to-copy', (container) => (
+  <ClickToCopy {...reqJson(container.dataset.props)} />
 ));
 
 core.reactTurbolinks.register('countdownTimer', (container) => (

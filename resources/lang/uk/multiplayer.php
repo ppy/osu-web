@@ -5,14 +5,14 @@
 
 return [
     'empty' => [
-        'active' => '',
-        'ended' => '',
-        'playlists' => 'плейлістах',
-        'realtime' => 'мультиплеєрі',
+        'active' => 'Наразі немає жодної незавершеної гри osu!(lazer) :type_group!',
+        'ended' => 'Ще не в жодній завершеній грі osu!(lazer) :type_group!',
+        'playlists' => 'плейліст',
+        'realtime' => 'мультиплеєр',
     ],
 
     'room' => [
-        'hosted_by' => 'власник: :user',
+        'hosted_by' => 'Власник: :user',
         'invalid_password' => 'Невірний пароль кімнати',
         'map_count' => ':count_delimited мапа|:count_delimited мапи|:count_delimited мап',
         'player_count' => ':count_delimited гравець|:count_delimited гравця|:count_delimited гравців',

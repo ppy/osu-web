@@ -174,7 +174,7 @@ return [
 
         'add_to_cart' => '加入到購物車',
         'notify' => '可訂購時通知我 !',
-        'out_of_stock' => '',
+        'out_of_stock' => '缺貨',
 
         'notification_success' => '當商品有貨時會收到通知，點擊 :link 以取消該通知',
         'notification_remove_text' => '這裡',

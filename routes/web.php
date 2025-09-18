@@ -33,6 +33,11 @@ Route::group(['middleware' => ['web']], function () {
         });
     });
 
+    Route::resource('authenticator-app', 'UserTotpController', ['only' => ['create', 'store']]);
+    Route::get('authenticator-app/edit', 'UserTotpController@edit')->name('authenticator-app.edit');
+    Route::delete('authenticator-app', 'UserTotpController@destroy')->name('authenticator-app.destroy');
+    Route::post('authenticator-app/issue-uri', 'UserTotpController@issueUri')->name('authenticator-app.issue-uri');
+
     Route::group(['prefix' => 'beatmaps'], function () {
         // featured artists
         Route::group(['as' => 'artists.', 'prefix' => 'artists'], function () {
@@ -70,6 +75,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
         Route::resource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
+        Route::get('search', 'BeatmapsetsController@search')->name('search');
         // keeping old link alive
         route_redirect('watches', 'follows.index');
         Route::resource('watches', 'BeatmapsetWatchesController', ['only' => ['update', 'destroy']]);
@@ -90,20 +96,22 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::resource('discussions', 'BeatmapDiscussionsController', ['only' => ['destroy', 'index', 'show']]);
 
-        Route::group(['namespace' => 'Beatmapsets'], function () {
-            Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
+        Route::group(['prefix' => '{beatmapset}'], function () {
+            Route::get('discussion/{beatmap?}/{mode?}/{filter?}', 'BeatmapsetsController@discussion')->name('discussion');
+            Route::post('discussion/review', 'BeatmapDiscussionsController@review')->name('discussion.review');
+            Route::get('discussion-last-update', 'BeatmapsetsController@discussionLastUpdate')->name('discussion-last-update');
+            Route::post('discussion-lock', 'BeatmapsetsController@discussionLock')->name('discussion-lock');
+            Route::post('discussion-unlock', 'BeatmapsetsController@discussionUnlock')->name('discussion-unlock');
+            Route::get('download', 'BeatmapsetsController@download')->name('download');
+            Route::put('love', 'BeatmapsetsController@love')->name('love');
+            Route::delete('love', 'BeatmapsetsController@removeFromLoved')->name('remove-from-loved');
+            Route::put('nominate', 'BeatmapsetsController@nominate')->name('nominate');
+
+            Route::group(['namespace' => 'Beatmapsets'], function () {
+                Route::apiResource('favourites', 'FavouritesController', ['only' => ['store']]);
+            });
         });
     });
-    Route::get('beatmapsets/search', 'BeatmapsetsController@search')->name('beatmapsets.search');
-    Route::get('beatmapsets/{beatmapset}/discussion/{beatmap?}/{mode?}/{filter?}', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');
-    Route::post('beatmapsets/{beatmapset}/discussion/review', 'BeatmapDiscussionsController@review')->name('beatmapsets.discussion.review');
-    Route::get('beatmapsets/{beatmapset}/discussion-last-update', 'BeatmapsetsController@discussionLastUpdate')->name('beatmapsets.discussion-last-update');
-    Route::post('beatmapsets/{beatmapset}/discussion-lock', 'BeatmapsetsController@discussionLock')->name('beatmapsets.discussion-lock');
-    Route::post('beatmapsets/{beatmapset}/discussion-unlock', 'BeatmapsetsController@discussionUnlock')->name('beatmapsets.discussion-unlock');
-    Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download')->name('beatmapsets.download');
-    Route::put('beatmapsets/{beatmapset}/love', 'BeatmapsetsController@love')->name('beatmapsets.love');
-    Route::delete('beatmapsets/{beatmapset}/love', 'BeatmapsetsController@removeFromLoved')->name('beatmapsets.remove-from-loved');
-    Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate')->name('beatmapsets.nominate');
     Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
     Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
@@ -224,6 +232,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::resource('sessions', 'Account\SessionsController', ['only' => ['destroy']]);
             Route::get('verify', 'AccountController@verifyLink');
             Route::post('verify', 'AccountController@verify')->name('verify');
+            Route::post('verify/mail-fallback', 'AccountController@verificationMailFallback')->name('verify.mail-fallback');
             Route::put('/', 'AccountController@update')->name('update');
 
             Route::get('github-users/callback', 'Account\GithubUsersController@callback')->name('github-users.callback');
@@ -419,6 +428,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
     Route::group(['prefix' => 'v2'], function () {
         Route::group(['middleware' => ['require-scopes:any']], function () {
             Route::post('session/verify', 'AccountController@verify')->name('verify');
+            Route::post('session/verify/mail-fallback', 'AccountController@verificationMailFallback')->name('verify.mail-fallback');
             Route::post('session/verify/reissue', 'AccountController@reissueCode')->name('verify.reissue');
         });
 

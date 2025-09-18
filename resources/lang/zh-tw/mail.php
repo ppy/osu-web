@@ -6,7 +6,7 @@
 return [
     'beatmapset_update_notice' => [
         'new' => '只是讓您知道自從您上次訪問以來，圖譜「:title」中有了新的更新。',
-        'subject' => '圖譜“:title”有更新',
+        'subject' => '圖譜「:title」有新更新',
         'unwatch' => '如果您不想再追蹤這張圖譜的話，可以點擊 “取消關注” 連結在頁面的下方，或者在摸圖關注頁面中：',
         'visit' => '訪問這裡的討論頁面：',
     ],

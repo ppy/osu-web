@@ -5,6 +5,6 @@
 
 return [
     'update' => [
-        'invalid_ruleset' => '',
+        'invalid_ruleset' => 'Tämä tunniste ei ole kelvollinen tässä Rytmikartassa.',
     ],
 ];

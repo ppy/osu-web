@@ -15,7 +15,7 @@ return [
     ],
 
     'result' => [
-        'empty_for' => 'Tidak ada hasil pencarian :modes yang ditemukan',
+        'empty_for' => 'Tidak ada hasil pencarian :mode yang ditemukan',
         'more' => 'Muat Lebih Banyak Hasil Pencarian :mode',
         'title' => 'Hasil Pencarian :mode',
     ],

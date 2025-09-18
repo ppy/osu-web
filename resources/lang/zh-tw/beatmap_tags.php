@@ -5,6 +5,6 @@
 
 return [
     'update' => [
-        'invalid_ruleset' => '這個標籤無法適用於此譜面。',
+        'invalid_ruleset' => '這個標籤無法適用於這張圖譜。',
     ],
 ];
