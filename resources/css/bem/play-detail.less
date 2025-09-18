@@ -139,7 +139,17 @@
   }
 
   &__mods {
-    flex: 1;
+    display: flex;
+    margin-top: 10px;
+    padding-right: 0;
+
+    @media @desktop {
+      align-items: center;
+      padding: @_padding-vertical-desktop 10px;
+      margin-top: 0;
+      order: -1;
+      background-color: var(--bg-main);
+    }
   }
 
   &__more {
@@ -204,16 +214,6 @@
       align-items: center;
       padding: @_padding-vertical-desktop 10px;
       background-color: var(--bg-main);
-    }
-
-    &--mods {
-      margin-top: 10px;
-      padding-right: 0;
-
-      @media @desktop {
-        margin-top: 0;
-        order: -1;
-      }
     }
   }
 
