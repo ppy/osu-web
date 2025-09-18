@@ -111,25 +111,27 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
             </div>
           </div>
 
-          <div className={`${bn}__mods`}>
-            {score.mods.map((mod) => <Mod key={mod.acronym} mod={mod} />)}
-          </div>
+          <div className={`${bn}__mods_pp`}>
+            <div className={`${bn}__mods`}>
+              {score.mods.map((mod) => <Mod key={mod.acronym} mod={mod} />)}
+            </div>
 
-          <div className={`${bn}__pp`}>
-            {shouldShowPp(beatmap) ? (
-              <PpValue
-                score={score}
-                suffix={<span className={`${bn}__pp-unit`}>pp</span>}
-              />
-            ) : (
-              <span title={trans('users.show.extra.top_ranks.not_ranked')}>
-                {(beatmap.status === 'loved') ? (
-                  <span className='fas fa-heart' />
-                ) : (
-                  '-'
-                )}
-              </span>
-            )}
+            <div className={`${bn}__pp`}>
+              {shouldShowPp(beatmap) ? (
+                <PpValue
+                  score={score}
+                  suffix={<span className={`${bn}__pp-unit`}>pp</span>}
+                />
+              ) : (
+                <span title={trans('users.show.extra.top_ranks.not_ranked')}>
+                  {(beatmap.status === 'loved') ? (
+                    <span className='fas fa-heart' />
+                  ) : (
+                    '-'
+                  )}
+                </span>
+              )}
+            </div>
           </div>
 
           <div className={`${bn}__more`}>

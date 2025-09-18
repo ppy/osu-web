@@ -142,13 +142,24 @@
     display: flex;
     margin-top: 10px;
     padding-right: 0;
+    flex-wrap: wrap;
 
     @media @desktop {
+      max-width: 400px; // avoid squashing too much of the left side
       align-items: center;
       padding: @_padding-vertical-desktop 10px;
       margin-top: 0;
       order: -1;
       background-color: var(--bg-main);
+    }
+  }
+
+  &__mods_pp {
+    display: flex;
+    justify-content: space-between;
+
+    @media @desktop {
+      display: contents;
     }
   }
 
@@ -167,9 +178,7 @@
   }
 
   &__pp {
-    position: absolute;
-    right: 20px;
-    bottom: 10px;
+    align-content: flex-end;
     flex: none;
     font-size: @font-size--title-small-3;
     font-weight: 700;
