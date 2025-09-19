@@ -6,6 +6,7 @@
 namespace App\Models\Traits\Es;
 
 use App\Models\Beatmap;
+use Ds\Set;
 
 trait BeatmapsetSearch
 {
@@ -54,8 +55,19 @@ trait BeatmapsetSearch
             'beatmaps' => $this->esBeatmapsValues(),
             'difficulties' => $this->esDifficultiesValues(),
             'id' => $this->getKey(),
+            'user_tags' => $this->esAllBeatmapTags(),
             default => $this->$field,
         };
+    }
+
+    private function esAllBeatmapTags(): array
+    {
+        $userTags = new Set();
+        foreach ($this->beatmaps as $beatmap) {
+            $userTags->add(...$this->esBeatmapTags($beatmap));
+        }
+
+        return $userTags->toArray();
     }
 
     private function esBeatmapsValues()
