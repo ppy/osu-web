@@ -67,6 +67,7 @@ class AuthServiceProvider extends ServiceProvider
 
         Passport::tokensCan([
             'delegate' => '',
+            'forum.delegate' => '',
             'forum.write' => osu_trans('api.scopes.forum.write'),
             'forum.write_manage' => osu_trans('api.scopes.forum.write_manage'),
             'chat.read' => osu_trans('api.scopes.chat.read'),

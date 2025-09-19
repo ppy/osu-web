@@ -1050,7 +1050,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         // permission set directly though moderator_groups should behave like checks
         // using findUserGroup directly instead of isGroup and are available with OAuth.
         $token = $this->token();
-        return $token !== null && !$token->delegatesOwner() && !$token->isOwnToken()
+
+        return $token !== null && !($token->delegatesOwner() && $token->can('forum.delegate')) && !$token->isOwnToken()
             ? false
             : $forum->moderator_groups !== null && !empty(array_intersect($this->groupIds()['active'], $forum->moderator_groups));
     }
