@@ -18,7 +18,7 @@ return [
         'more' => 'More :mode Search Results',
         'title' => ':mode Search Results',
 
-        'empty_for' => [
+        'no_results' => [
             '_' => 'No results for :modes',
 
             'artist_track' => 'Featured Artist Tracks',
