@@ -129,7 +129,7 @@ class BBCodeForDB
 
     public function parseImage($text)
     {
-        preg_match_all('#\[img\](?<url>.*?)\[/img\]#', $text, $images, PREG_SET_ORDER);
+        preg_match_all('#\[img\](?<url>[^[]+)\[/img\]#', $text, $images, PREG_SET_ORDER);
 
         foreach ($images as $i) {
             $escapedUrl = $this->extraEscapes($i['url']);
