@@ -69,7 +69,7 @@ class UserTotpController extends Controller
 
         if (!$currentUser->checkPassword($password)) {
             return response(['form_error' => [
-                'password' => [osu_trans('user_totp.issue_uri.invalid_password')],
+                'password' => [osu_trans('layout.popup_login.login.error.password')],
             ]], 422);
         }
 
