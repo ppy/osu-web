@@ -30,7 +30,7 @@ export default class Main extends React.Component {
   @observable private currentParams: GroupHistoryJson['params'];
   @observable private events: UserGroupEventJson[];
   @observable private loading: 'more' | 'new' | false = false;
-  @observable private moreParams!: MoreParams | null;
+  @observable private moreParams: MoreParams | undefined;
   @observable private readonly newParams: GroupHistoryJson['params'];
   private xhr?: JQuery.jqXHR<GroupHistoryJson>;
 
@@ -157,7 +157,7 @@ export default class Main extends React.Component {
 
   private setMoreParamsFromJson(json: GroupHistoryJson) {
     this.moreParams = json.cursor_string == null
-      ? null
+      ? undefined
       : { ...json.params, cursor_string: json.cursor_string };
   }
 }
