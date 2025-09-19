@@ -10,7 +10,6 @@ use App\Jobs\EsDocument;
 use App\Jobs\Notifications\ForumTopicReply;
 use App\Jobs\RegenerateBeatmapsetCover;
 use App\Libraries\Chat;
-use App\Libraries\UserBestScoresCheck;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Chat\Channel;
@@ -19,12 +18,10 @@ use App\Models\Chat\UserChannel;
 use App\Models\Forum;
 use App\Models\NewsPost;
 use App\Models\Notification;
-use App\Models\Score\Best;
 use App\Models\User;
 use App\Models\UserStatistics;
 use App\Transformers\Chat\MessageTransformer;
 use Artisan;
-use Datadog;
 use Ds\Set;
 use Exception;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -288,7 +285,7 @@ class LegacyInterOpController extends Controller
                 ];
             }
 
-            Datadog::increment($GLOBALS['cfg']['datadog-helper']['prefix_web'].'.chat.batch', 1, [
+            datadog_increment('chat.batch', [
                 'status' => $result['status'],
             ]);
 
@@ -298,27 +295,12 @@ class LegacyInterOpController extends Controller
         return response()->json($results);
     }
 
-    public function userBestScoresCheck($id)
-    {
-        $user = User::findOrFail($id);
-
-        foreach (Beatmap::MODES as $mode => $_v) {
-            (new UserBestScoresCheck($user))->run($mode);
-        }
-
-        return ['success' => true];
-    }
-
     public function userIndex($id)
     {
         $user = User::findOrFail($id);
 
         dispatch(new EsDocument($user));
 
-        foreach (Beatmap::MODES as $modeStr => $modeId) {
-            $class = Best\Model::getClass($modeStr);
-            $class::queueIndexingForUser($user);
-        }
         Artisan::queue('es:index-scores:queue', [
             '--all' => true,
             '--no-interaction' => true,

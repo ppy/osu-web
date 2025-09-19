@@ -2,19 +2,42 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .input-container {
+  --label-font-size: @font-size--normal;
+  --label-line-height: 1.25;
+  --label-height: calc(
+    var(--label-font-size) * var(--label-line-height) + var(--label-padding) * 2
+  );
   --label-colour: hsl(var(--hsl-c2));
-  --input-bg: hsl(var(--hsl-b5));
+  --label-padding: 5px;
+  --label-pointer-events: auto;
+  --input-bg: hsl(var(--hsl-b6));
+  --input-border-colour: var(--input-border-base-colour);
+  --input-border-base-colour: transparent;
+  --input-border-hover-colour: hsl(var(--hsl-l3));
+  --input-border-focus-colour: hsl(var(--hsl-l1));
+  --input-border-error-colour: hsl(var(--hsl-red-2));
+  --input-border-error-focus-colour: hsl(var(--hsl-red-3));
+  --input-padding: var(--label-height) var(--input-padding-right)
+    var(--input-padding-base) var(--input-padding-base);
+  --input-padding-base: 10px;
+  --input-padding-right: var(--input-padding-base);
 
-  display: flex;
-  flex-direction: column;
-  background: var(--input-bg);
-  border-radius: 5px;
+  display: grid;
   text-transform: initial;
   font-weight: initial;
+  font-size: inherit;
+  position: relative;
 
   margin: 0;
-  padding: 5px 10px 10px;
   width: 100%;
+
+  &:focus-within {
+    --input-border-colour: var(--input-border-focus-colour);
+  }
+
+  &:hover {
+    --input-border-colour: var(--input-border-hover-colour);
+  }
 
   &--2 {
     grid-column-end: span 2;
@@ -28,15 +51,15 @@
     }
   }
 
-  &--chat {
+  &--beatmap-owner-editor {
     --input-bg: hsl(var(--hsl-b6));
-
-    border: 2px solid transparent;
-    padding: 5px;
+    --input-padding: 5px;
   }
 
   &--error {
-    border-color: hsl(var(--hsl-red-2));
+    --input-border-colour: var(--input-border-error-colour);
+    --input-border-focus-colour: var(--input-border-error-focus-colour);
+    --input-border-hover-colour: var(--input-border-error-focus-colour);
   }
 
   &--fill {
@@ -46,7 +69,10 @@
 
   &--genre {
     --label-colour: hsl(var(--hsl-c1));
-    background: none;
+    --input-bg: transparent;
+    --input-border-hover-colour: transparent;
+    --input-border-focus-colour: transparent;
+    --input-border-error-colour: transparent;
   }
 
   &--group-history-wide {
@@ -55,11 +81,46 @@
     }
   }
 
+  &--judging {
+    margin: 20px 0;
+  }
+
+  &--search-box {
+    font-size: @font-size--title-small-4;
+    --input-padding: 15px var(--input-padding-base);
+  }
+
+  &--select {
+    --arrow-width: calc(var(--input-padding-base) * 2 + 1em);
+    --input-padding-right: var(--arrow-width);
+    --label-pointer-events: none;
+
+    &::after {
+      .fas();
+      .center-content();
+      content: @fa-var-chevron-down;
+      width: var(--arrow-width);
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+      pointer-events: none;
+    }
+  }
+
+  // Floats the label so the input can receive click event on the entire area.
+  // Mainly useful for select input to allow showing the dropdown when the
+  // label is clicked.
   &__label {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5px;
     color: var(--label-colour);
-    font-size: @font-size--normal;
+    font-size: var(--label-font-size);
+    line-height: var(--label-line-height);
+    margin: 0;
+    padding: var(--label-padding) var(--input-padding-base) 0;
+    position: absolute;
+    width: 100%;
+    pointer-events: var(--label-pointer-events);
   }
 }

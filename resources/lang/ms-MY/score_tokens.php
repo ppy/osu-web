@@ -5,7 +5,7 @@
 
 return [
     'create' => [
-        'beatmap_hash_invalid' => '',
-        'submission_disabled' => '',
+        'beatmap_hash_invalid' => 'beatmap_hash tidak sah atau tiada',
+        'submission_disabled' => 'penyerahan markah dilumpuhkan',
     ],
 ];

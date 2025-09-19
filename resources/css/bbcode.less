@@ -6,7 +6,7 @@
 .bbcode {
   @_top: bbcode;
   .content-font();
-  word-wrap: break-word;
+  overflow-wrap: anywhere;
   line-height: 1.5;
 
   code {
@@ -35,7 +35,7 @@
     position: relative;
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       left: 0;
       top: 0;
@@ -77,16 +77,9 @@
     max-width: 100%;
   }
 
-  ol, ul {
+  ol,
+  ul {
     padding-left: 20px;
-
-    ol {
-      font-size: 0.85em;
-
-      ol {
-        font-size: 1em;
-      }
-    }
   }
 
   pre {
@@ -122,9 +115,5 @@
   &__list-title {
     list-style: none;
     margin: 0;
-  }
-
-  &__video-box {
-    max-width: 425px;
   }
 }

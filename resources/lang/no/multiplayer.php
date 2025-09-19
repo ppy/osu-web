@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Ingen osu!(lazer) :type_group runder spilt ennå!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'spilleliste',
         'realtime' => 'flerspiller',
     ],
@@ -16,9 +17,12 @@ return [
         'map_count' => ':count_delimited map|:count_delimited maps',
         'player_count' => ':count_delimited spiller|:count_delimited spillere',
         'time_left' => ':time igjen',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => 'Lengden er for lang.',
+            'name_too_long' => '',
         ],
 
         'status' => [

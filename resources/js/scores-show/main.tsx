@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import HeaderV4 from 'components/header-v4';
-import { SoloScoreJsonForShow } from 'interfaces/solo-score-json';
+import { ScoreJsonForShow } from 'interfaces/score-json';
 import * as React from 'react';
 import { trans } from 'utils/lang';
 import BeatmapInfo from './beatmap-info';
@@ -10,7 +10,7 @@ import Info from './info';
 import Stats from './stats';
 
 interface Props {
-  score: SoloScoreJsonForShow;
+  score: ScoreJsonForShow;
 }
 
 export default function Main({ score }: Props) {
@@ -27,7 +27,7 @@ export default function Main({ score }: Props) {
 
         <Stats beatmap={beatmap} score={score} />
 
-        {score.preserve === false && (
+        {score.type === 'solo_score' && !score.preserve && (
           <div className='wiki-notice wiki-notice--score'>
             <span className='fas fa-info-circle' />
             {` ${trans('scores.show.non_preserved')}`}

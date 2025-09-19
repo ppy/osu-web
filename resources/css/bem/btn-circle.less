@@ -92,11 +92,18 @@
 
     .link-hover({
       box-shadow: none;
-    })
+    });
   }
 
   &--page-toggle-detail {
     .circle(40px);
+  }
+
+  &--page-toggle-team-card {
+    width: auto;
+    border-radius: 10000px;
+    padding: 10px;
+    --bg: transparent;
   }
 
   &--topic-entry {
@@ -120,7 +127,8 @@
     }
   }
 
-  &--activated, &.js-activated {
+  &--activated,
+  &.js-activated {
     background-color: @osu-colour-h2;
     color: @osu-colour-b5;
 
@@ -191,7 +199,8 @@
     opacity: var(--normal-opacity);
     transition: var(--transition);
 
-    .@{top}:hover &, .@{top}:active & {
+    .@{top}:hover &,
+    .@{top}:active & {
       opacity: var(--hover-opacity);
     }
 

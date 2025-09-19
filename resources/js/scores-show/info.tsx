@@ -2,17 +2,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetCover from 'components/beatmapset-cover';
-import { SoloScoreJsonForShow } from 'interfaces/solo-score-json';
+import { ScoreJsonForShow } from 'interfaces/score-json';
 import * as React from 'react';
-import { rulesetName } from 'utils/beatmap-helper';
-import { accuracy, rank } from 'utils/score-helper';
+import { accuracy, rank, rankCutoffs } from 'utils/score-helper';
 import Buttons from './buttons';
 import Dial from './dial';
 import Player from './player';
 import Tower from './tower';
 
 interface Props {
-  score: SoloScoreJsonForShow;
+  score: ScoreJsonForShow;
 }
 
 export default function Info({ score }: Props) {
@@ -27,7 +26,7 @@ export default function Info({ score }: Props) {
       </div>
 
       <div className='score-info__item score-info__item--dial'>
-        <Dial accuracy={accuracy(score)} mode={rulesetName(score.ruleset_id)} rank={rank(score)} />
+        <Dial accuracy={accuracy(score)} rank={rank(score)} rankCutoffs={rankCutoffs(score)} />
       </div>
 
       <div className='score-info__item score-info__item--player'>

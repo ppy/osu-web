@@ -7,7 +7,7 @@ return [
     'deleted' => 'Dzēsts lietotājs',
 
     'beatmapset_activities' => [
-        'title' => "Lietotāja modošanas vēsture",
+        'title' => "Lietotāja Mooficēšanas Vēsture",
         'title_compact' => 'Regulēšana',
 
         'discussions' => [
@@ -33,14 +33,14 @@ return [
 
     'blocks' => [
         'banner_text' => 'Jūs esiet nobloķējis šo lietotāju.',
-        'comment_text' => '',
+        'comment_text' => 'Šis komentārs ir paslēpts.',
         'blocked_count' => 'bloķētie lietotāji (:count)',
         'hide_profile' => 'Slēpt profilu',
-        'hide_comment' => '',
-        'forum_post_text' => '',
+        'hide_comment' => 'paslēpt',
+        'forum_post_text' => 'Šis raksts ir paslēpts.',
         'not_blocked' => 'Šis lietotājs nav bloķēts.',
         'show_profile' => 'Rādīt profilu',
-        'show_comment' => '',
+        'show_comment' => 'rādīt',
         'too_many' => 'Ir sasniegts bloķēsanas limits.',
         'button' => [
             'block' => 'Bloķēt',
@@ -49,56 +49,56 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Uzdāvināt supporter statusu.',
         'loading' => 'Notiek ielāde...',
         'send_message' => 'nosūtīt ziņu',
     ],
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'parole',
+            'password_confirmation' => 'paroles apstiprināšana',
+            'submit' => 'izveidot kontu',
+            'user_email' => 'e-pasts',
+            'user_email_confirmation' => 'e-pasta apstiprināšana',
+            'username' => 'lietotājvārds',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'izveidojot kontu, tu piekrīti :link',
+                'link' => 'pakalpojumu sniegšanas noteikumi',
             ],
         ],
     ],
 
     'disabled' => [
-        'title' => '',
-        'warning' => "",
+        'title' => 'Ak nē! Izskatās ka tavs konts ir atslēgts.',
+        'warning' => "Ja nu gadijumā tu esi pārkoiāpis noteikumu, lūdzu iegaumē, ka mums galvenokārt ir 1 mēneša uzgadīšanas laiks, kurā mēs attaisnojumus nepieņemsim. Pēc šī perioda, tu vari ar mums sazināties, ja uzskati ka tas ir nepieciešams. Lūdzu iegaumē, ja tu izveidosi jaunu kontu pēc tam kad viens tika atslēgts, <strong>1 mēneša uzgaidīsanas periods tiks pagarināts</strong>. Lūdzu arī iegaumē ka <strong>jo vairāk kontus tu izveidosi, jo tālāk tu pārkāpsi noteikumus</strong>. Mēs stingri iesakam nenoiet uz to ceļu.",
 
         'if_mistake' => [
-            '_' => '',
+            '_' => 'Ja tu domā ka tā ir kļūda, droši vari sazināties ar mums (caur :email vai uzspiežot "?" apakšējā labajā stūrī šajā lapā). Lūdzu iegum\'ē to ka mēs vienmēr esam ļoti pārliecināti par saviem lēmumiem, jo tie tiek balstīti uz ļoti stipru informāciju. Mums arī paliek opcija noraidīt tavu pieprasījumu, ja mums ir aizdomas, ka tu esi tīšām negodīgs.',
             'email' => 'e-pasts',
         ],
 
         'reasons' => [
-            'compromised' => '',
-            'opening' => '',
+            'compromised' => 'Tavs konts ir konpensējams. Tas var būt uz neilgu laiku izslēgts, kamēr tā identitāe tiek apstiprināta.',
+            'opening' => 'Ir daudzi iesmesli, kuru rezultātā tavs konts var tikt izslēgt:',
 
             'tos' => [
-                '_' => '',
-                'community_rules' => '',
-                'tos' => '',
+                '_' => 'Tu esi pārkāpis vienu vai vairākus no mūsu :community_rules vai :tos.',
+                'community_rules' => 'kopienas noteikumi',
+                'tos' => 'lietošanas noteikumi',
             ],
         ],
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Lietotāji spēles veidā',
     ],
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
-            'inactive_different_country' => "",
+            'inactive' => "Tavs konts nav ilgi ticis izmantots.",
+            'inactive_different_country' => "Tavs konts nav ilgi ticis izmantots.",
         ],
     ],
 
@@ -106,11 +106,11 @@ return [
         '_' => 'Ienākt',
         'button' => 'Ienākt',
         'button_posting' => 'Savienojas...',
-        'email_login_disabled' => '',
+        'email_login_disabled' => 'Pierakstīšanās ar e-pastu pašlaik nav iespējama. Lūdzu izmanto lietotājvārdu tā vietā.',
         'failed' => 'Nepareizi dati',
         'forgot' => 'Aizmirsāt paroli?',
-        'info' => '',
-        'invalid_captcha' => '',
+        'info' => 'Lūdzu pieraksties lai turpinātu',
+        'invalid_captcha' => 'Pārāk daudz neizdevušos pierakstīšanās mēģinājumu, lūdzu izpildi captcha un mēģini vēlreiz. (Atsvaidzini lapu ja captcha nav redzama)',
         'locked_ip' => 'jūsu IP adrese ir bloķēta. Lūdzu uzgaidiet pāris minūtes',
         'password' => 'Parole',
         'register' => "Nav osu! profila? Izveido jaunu",
@@ -124,14 +124,21 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => 'Aktīvs',
+            'ended' => 'Beidzies',
+        ],
+    ],
+
     'ogp' => [
-        'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description' => 'Ritma-mapes :counts',
+        'modding_description_empty' => 'Lietotājam nav ritma-mapes...',
 
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'Vieta (:ruleset): :global | :country',
+            'country' => 'Valsts :rank',
+            'global' => 'Globāli :rank',
         ],
     ],
 
@@ -159,24 +166,34 @@ return [
             'cancel' => 'Atcelt',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => 'Lūdzu pasūdzēties par autortiesību politiku pārkāpumu, nosūtot DMCA prasību uz :mail saskaņā ar :policy.',
+                'policy' => 'osu! autortiesību politika',
+            ],
+            'message_2' => 'Šis tiek piemērots visiem gadijumiem, kad audioieraksta vizuālais saturs vai ritma-kartes līmeis tiek izmantots bez pareizajām atļaujām.',
+        ],
+
         'options' => [
             'cheating' => 'Netīra spēle / Krāpšanās',
-            'multiple_accounts' => '',
-            'insults' => 'Mani / citus apvainoja',
-            'spam' => 'Spams',
-            'unwanted_content' => 'Pievieno neatbilstošu saturu',
+            'copyright_infringement' => 'Autortiesību pārkāpums',
+            'inappropriate_chat' => 'Nepiedienīga uzvedība tērzētavā',
+            'insults' => 'Mani / Citus aizvainoja',
+            'multiple_accounts' => 'Izmanto vairākus kontus',
             'nonsense' => 'Bezsakars',
             'other' => 'Cits (norādīt zemāk)',
+            'spam' => 'Spams',
+            'unwanted_content' => 'Pievieno neatbilstošu saturu',
         ],
     ],
     'restricted_banner' => [
         'title' => 'Jūsu konts tika ierobežots!',
         'message' => 'Kamēr esiet ierobežots, jūs nevarēsiet sazināties ar citiem spēlētājiem un jūsu rezultāts būs pieejams tikai jums. Šis parasti mēdz būt rezultāts pateicoties automātiskam procesam un kas visticamāk tiks nolaists 24 stundu laikā. Ja vēlaties iesniegt apelāciju par jūsu ierobežojumu, lūgums <a href="mailto:accounts@ppy.sh">sazināties ar atbalsta komandu</a>.',
-        'message_link' => '',
+        'message_link' => 'Apskati šo lapu lai uzzinātu vairāk.',
     ],
     'show' => [
         'age' => ':age gadus vecs',
-        'change_avatar' => 'mainīt profila attēlu!',
+        'change_avatar' => 'mainīt sava profila attēlu!',
         'first_members' => 'Šeit kopš paša sākuma',
         'is_developer' => 'osu!izstrādātājs',
         'is_supporter' => 'osu!atbalstītājs',
@@ -189,17 +206,37 @@ return [
         'plays_with' => 'Spēlē ar :devices',
 
         'comments_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => 'Publicēja :link',
+            'count' => ':count_delimited komentārs|:count_delimited komentāri',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Paslēpt pārvalku',
+            'to_1' => 'Rādīt pārvalku',
+        ],
+        'daily_challenge' => [
+            'daily' => 'Dienu ',
+            'daily_streak_best' => 'Labākais Dienu ',
+            'daily_streak_current' => 'Pašreizējais Dienu ',
+            'playcount' => 'Kopējais piedalīšanās skaits',
+            'title' => 'Ikdienas\nIzaicinājums',
+            'top_10p_placements' => 'Top 10% Novietojums',
+            'top_50p_placements' => 'Top 50% Novietojums',
+            'weekly' => 'Nedēļu ',
+            'weekly_streak_best' => 'Labākais Nedēļu ',
+            'weekly_streak_current' => 'Pašreizējais Nedēļu ',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
         ],
         'edit' => [
             'cover' => [
                 'button' => 'Mainīt Profila Pārklāju',
                 'defaults_info' => 'Vairāk pārklāja iestatījumu būs pieejami nākotnē',
+                'holdover_remove_confirm' => "Iepriekš izvēlētais pārklājs vairāk nav pieejams izvēlei. Tu nevari to izvēlēties atkal, pēc tam kad esi mto nomainījis uz citu. Turpināt?",
+                'title' => 'Pārklājs',
+
                 'upload' => [
                     'broken_file' => 'Neizdevās apstrādāt bildi. Verificējiet augšupielādēto bildi un mēģiniet vēlreiz.',
                     'button' => 'Augšupielādēt bildi',
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'noklusējuma spēles režīms',
                 'set' => 'uzstādīt :mode kā profila noklusējuma spēles režīmu',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Iestatīt krāsu uz pamata krāsu? Atbalstītāja žertons būs nepieciešams, lai to nomainītu uz citu krāsu. ',
+                'title' => 'Krāsa',
+
+                'supporter' => [
+                    '_' => 'Personalizējami krāsu dizaini ir pieejami tikai :link',
+                    'link' => 'osu!atbalstītāji',
+                ],
             ],
         ],
 
@@ -242,19 +289,19 @@ return [
                     'title' => 'Kapā Metamās Bītmapes',
                 ],
                 'guest' => [
-                    'title' => '',
+                    'title' => 'Viesu Dalības Ritma-Mapēs',
                 ],
                 'loved' => [
                     'title' => 'Mīļākās Bītmapes',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Nominētās Novērtētās Ritma-mapes',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'Gaidošās Ritma-mapes',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'Novērtētās Ritma-mapes',
                 ],
             ],
             'discussions' => [
@@ -298,65 +345,65 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => '',
+                            'give' => 'Saņēma :amount no kudosu??????????????????',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => '',
+                            'reset' => 'Noliedza :amount no moderācijas raksta :post',
                         ],
 
                         'delete' => [
-                            'reset' => '',
+                            'reset' => 'Pazaudēja :amount no moderācijas raksta izdzēšanas :post',
                         ],
 
                         'restore' => [
-                            'give' => '',
+                            'give' => 'Saņēma :amount no moderācijas raksta atjaunināšanas :post',
                         ],
 
                         'vote' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => 'Saņēma :amount no balsu saņemšanas moderācijas rakstā :post',
+                            'reset' => 'Pazaudēja :amount no balsu zaudēšanas :post rakstā',
                         ],
 
                         'recalculate' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => 'Saņēma :amount no balsu rekalkulāciias, :post raksta modificēšanā',
+                            'reset' => 'Pazaudēja :amount no balsu rekalkulāciias, :post raksta modificēšanā',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => '',
-                        'reset' => '',
-                        'revoke' => '',
+                        'give' => 'Saņēmis :amount no :giver rakstam :post',
+                        'reset' => 'Kudosu atiestatīja :giver rakstam :post',
+                        'revoke' => 'Noliedza kudosu :giver rakstam :post',
                     ],
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Balstīts uz to lielu ieguldījumu lietotājs ir veicis ritma-mapes modificēšanā. Apskatīt :link priekš vairāk informācijas.',
+                    'link' => 'šī lapa',
                 ],
             ],
             'me' => [
                 'title' => 'Es!',
             ],
             'medals' => [
-                'empty' => "",
+                'empty' => "Šis lietotājs nav necik saņēmis. ;_;",
                 'recent' => 'Jaunākais',
                 'title' => 'Medaļas',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Saraksta Spēles',
             ],
             'posts' => [
                 'title' => 'Ziņas',
                 'title_longer' => 'Jaunākās ziņas',
-                'show_more' => '',
+                'show_more' => 'apskatīt vairāk rakstus',
             ],
             'recent_activity' => [
                 'title' => 'Nesenie',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Daudzspēlētāju Spēles',
             ],
             'top_ranks' => [
                 'download_replay' => 'Lejupielādēt Spēles Ierakstu',
@@ -372,13 +419,13 @@ return [
                     'title' => 'Pirmās Vietas Ranki',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
-                    'to_1' => '',
-                    'to_1_done' => '',
+                    'to_0' => 'Atspraust',
+                    'to_0_done' => 'Nepiesprausts rezultāts',
+                    'to_1' => 'Piespraust',
+                    'to_1_done' => 'Piespraustais rezultāts',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'Piespraustie Rezultāti',
                 ],
             ],
             'votes' => [
@@ -398,14 +445,14 @@ return [
                     'date' => 'datums',
                     'action' => 'darbība',
                     'length' => 'ilgums',
-                    'length_indefinite' => '',
+                    'length_indefinite' => 'Nenoteikts',
                     'description' => 'apraksts',
                     'actor' => 'no :username',
 
                     'actions' => [
                         'restriction' => 'Bans',
                         'silence' => 'Klusums',
-                        'tournament_ban' => '',
+                        'tournament_ban' => 'Turnīru aizliegums',
                         'note' => 'Piezīme',
                     ],
                 ],
@@ -421,21 +468,21 @@ return [
             'website' => 'Mājaslapa',
         ],
         'not_found' => [
-            'reason_1' => 'Viņi iespējams nomainīja savu lietotājvārdu.',
-            'reason_2' => 'Konts var nebūt pieejams sakarā ar drošības vai ļaunprātīgas izmantošanas saistībām.',
-            'reason_3' => 'Iespējams, ka esi ielaidis rakstveida kļūdu!',
-            'reason_header' => 'Šim ir pāris iespējami iemesli:',
+            'reason_1' => 'Meklējamais cilvēks, iespējams nomainīja savu lietotājvārdu.',
+            'reason_2' => 'Konts var nebūt uz kādu laiku pieejams, drošību vai ļaunprātīgu iemeslu dēļ.',
+            'reason_3' => 'Iespējams, ka esi izdarījis rakstveida kļūdu!',
+            'reason_header' => 'Šim ir pāris iespējamu iemeslu:',
             'title' => 'Lietotājs nav atrasts! ;_;',
         ],
         'page' => [
-            'button' => 'Rediģēt profila lapu',
+            'button' => 'rediģēt profila lapu',
             'description' => '<strong>es!</strong> ir personiski rediģējams lauks tavā profila lapā.',
             'edit_big' => 'Rediģēt es!',
             'placeholder' => 'Ievadi lapas saturu šeit',
 
             'restriction_info' => [
                 '_' => 'Tev jābūt :link, lai atvērtu šo iespēju.',
-                'link' => 'osu!atbalstītājs',
+                'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
@@ -444,54 +491,59 @@ return [
         ],
         'rank' => [
             'country' => 'Valsts ranks pēc :mode',
-            'country_simple' => 'Valsts Rankējums',
+            'country_simple' => 'Valsts Pozīcijas',
             'global' => 'Globālais ranks pēc :mode',
-            'global_simple' => 'Globālais Rankējums',
-            'highest' => '',
+            'global_simple' => 'Globālās Pozīcijas',
+            'highest' => 'Augstākais novietojums: :rank :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Kopējais punktu skaits',
         ],
         'stats' => [
             'hit_accuracy' => 'Trāpījuma Precizitāte',
+            'hits_per_play' => 'Sitieni Katrā Mēģinājumā',
             'level' => 'Līmenis :level',
-            'level_progress' => '',
-            'maximum_combo' => '',
+            'level_progress' => 'progress uz nākamo līmeni',
+            'maximum_combo' => 'Maksimālā Kombinācija',
             'medals' => 'Medaļas',
             'play_count' => 'Spēļu skaits',
-            'play_time' => '',
-            'ranked_score' => '',
-            'replays_watched_by_others' => '',
-            'score_ranks' => '',
-            'total_hits' => '',
-            'total_score' => '',
+            'play_time' => 'Kopējais Spēlēšanas Laiks',
+            'ranked_score' => 'Novērtēto Punktu Daudzums',
+            'replays_watched_by_others' => 'Atkārtojumi, kurus citi ir noskatījušies',
+            'score_ranks' => 'Punktu Reitingi',
+            'total_hits' => 'Totālie sitieni',
+            'total_score' => 'Totālais Punktu Skaits',
             // modding stats
-            'graveyard_beatmapset_count' => '',
-            'loved_beatmapset_count' => 'Loved Bītmapes',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => 'Izmirušās Ritma-mapes',
+            'loved_beatmapset_count' => 'Iemīlētās Ritma-Mapes',
+            'pending_beatmapset_count' => 'Uzgaidāmās Ritma-mapes',
+            'ranked_beatmapset_count' => 'Novērtētās Ritma-mapes',
         ],
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Tu pašlaik esi apklusināts.',
+        'message' => 'Dažas darbības iespējams var nebūt pieejamas.',
     ],
 
     'status' => [
-        'all' => '',
-        'online' => '',
-        'offline' => '',
+        'all' => 'Viss',
+        'online' => 'Pieslēdzies',
+        'offline' => 'Atslēdzies',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
-        'saved' => '',
+        'from_client' => 'lūdzu tā vietā reğistrējies ar spēles klijentu!',
+        'from_web' => 'lūdzu pabeidz reğistrāciju izmantojot osu! mājaslapu',
+        'saved' => 'Lietotājs izveidots',
     ],
     'verify' => [
-        'title' => '',
+        'title' => 'Konta Verifikācija',
     ],
 
     'view_mode' => [
-        'brick' => '',
-        'card' => '',
-        'list' => '',
+        'brick' => 'Ķieğeļa skats',
+        'card' => 'Profila skats',
+        'list' => 'Saraksta skats',
     ],
 ];

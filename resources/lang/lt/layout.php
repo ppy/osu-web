@@ -113,6 +113,7 @@ return [
             'copyright' => 'Autorinės teisės (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Privatumas',
+            'rules' => '',
             'server_status' => 'Serverio būsena',
             'source_code' => 'Pirminis Kodas',
             'terms' => 'Sąlygos',
@@ -199,6 +200,9 @@ return [
             'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Atsijungti',
             'profile' => 'Mano Profilis',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
+            'team' => '',
         ],
     ],
 

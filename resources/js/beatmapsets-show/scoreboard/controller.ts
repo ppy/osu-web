@@ -2,11 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import { SoloScoreJsonForBeatmap } from 'interfaces/solo-score-json';
+import { ScoreJsonForBeatmap } from 'interfaces/score-json';
 import { route } from 'laroute';
 import { action, computed, makeObservable, observable, reaction, runInAction } from 'mobx';
 import core from 'osu-core-singleton';
-import ScoreboardType from './scoreboard-type';
+import ScoreboardType, { supporterTypes } from './scoreboard-type';
 
 interface SetOptions {
   forceReload?: boolean;
@@ -19,12 +19,12 @@ export type ScoreLoadingState = null | 'error' | 'loading' | 'supporter_only' | 
 
 interface UserScore {
   position: number;
-  score: SoloScoreJsonForBeatmap;
+  score: ScoreJsonForBeatmap;
 }
 
 interface BeatmapScoresJson {
   blank?: true;
-  scores: SoloScoreJsonForBeatmap[];
+  scores: ScoreJsonForBeatmap[];
   user_score?: UserScore;
 }
 
@@ -65,11 +65,15 @@ export default class Controller {
       return 'unranked';
     }
 
-    if (!core.currentUser?.is_supporter && (this.currentType !== 'global' || this.enabledMods.size > 0)) {
+    if (!core.currentUser?.is_supporter && this.requiresSupporter) {
       return 'supporter_only';
     }
 
     return this.xhrState;
+  }
+
+  get requiresSupporter() {
+    return supporterTypes.has(this.currentType) || this.enabledMods.size > 0;
   }
 
   constructor(private readonly container: HTMLElement, private readonly getBeatmap: () => BeatmapExtendedJson) {
@@ -88,7 +92,7 @@ export default class Controller {
 
     makeObservable(this);
 
-    $(document).on('turbolinks:before-cache', this.storeState);
+    $(document).on('turbo:before-cache', this.storeState);
 
     // fetch score data if needed
     this.setCurrent({});
@@ -103,7 +107,7 @@ export default class Controller {
     this.xhr?.abort();
     this.disposers.forEach((d) => d?.());
     this.storeState();
-    $(document).off('turbolinks:before-cache', this.storeState);
+    $(document).off('turbo:before-cache', this.storeState);
   }
 
   @action

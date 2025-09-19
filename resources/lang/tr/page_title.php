@@ -64,11 +64,11 @@ return [
             '_' => 'yorumlar',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'yarışma yargı sonucu',
         ],
         'contests_controller' => [
             '_' => 'yarışmalar',
-            'judge' => '',
+            'judge' => 'yarışma yargısı',
         ],
         'groups_controller' => [
             'show' => 'gruplar',
@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'oyunu destekle',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => 'eşleşmeler',
+        ],
         'legal_controller' => [
             '_' => 'bilgi',
         ],
         'livestreams_controller' => [
             '_' => 'canlı yayınlar',
-        ],
-        'matches_controller' => [
-            '_' => 'maçlar',
         ],
         'news_controller' => [
             '_' => 'haberler',
@@ -107,11 +107,18 @@ return [
         'seasons_controller' => [
             '_' => 'sıralamalar',
         ],
+        'teams_controller' => [
+            '_' => 'takımlar',
+            'create' => 'takım oluştur',
+            'edit' => 'takım ayarları',
+            'leaderboard' => 'takım sıralaması',
+            'show' => 'takım bilgisi',
+        ],
         'tournaments_controller' => [
             '_' => 'turnuvalar',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'kullanıcı kapak fotoğrafı ön ayarları',
         ],
         'users_controller' => [
             '_' => 'oyuncu bilgisi',
@@ -122,6 +129,11 @@ return [
             '_' => 'wiki',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => 'oda geçmişi',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'uygulamaya izin ver',
@@ -129,6 +141,11 @@ return [
     ],
     'store' => [
         '_' => 'mağaza',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'takım üyeleri',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

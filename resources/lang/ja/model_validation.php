@@ -132,6 +132,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => 'この :attribute には無効な文字が含まれています。',
+        'used' => 'この :attribute はすでに使用されています。',
+        'word_not_allowed' => 'この :attribute の使用は許可されていません。',
+
+        'attributes' => [
+            'default_ruleset_id' => 'デフォルトのルールセット',
+            'is_open' => 'チームの参加設定',
+            'name' => '名前',
+            'short_name' => '略称',
+            'url' => 'URL',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'ユーザー名を含んだパスワードは使用できません。',
         'email_already_used' => '既に使用されているメールアドレスです。',
@@ -177,6 +191,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'ランク付けされたビートマップは報告できません。',
         'not_in_channel' => 'あなたはこのチャンネルに参加していません。',
+        'in_team' => 'あなたはチームの一員です。',
         'reason_not_valid' => ':reason はこの報告タイプでは無効です。',
         'self' => "自分自身を報告することはできません！",
     ],

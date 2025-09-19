@@ -26,6 +26,9 @@ return [
         'placeholder' => 'พิมพ์เพื่อค้นหา',
         'title' => 'ค้นหา',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'เข้าสู่ระบบเพื่อค้นหาบีทแมพ',
             'more' => ':count ผลการค้นหาบีทแมพเพิ่มเติม',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'ทั้งหมด',
+            'artist_track' => '',
             'beatmapset' => 'บีทแมพ',
             'forum_post' => 'ฟอรั่ม',
+            'team' => '',
             'user' => 'ผู้เล่น',
             'wiki_page' => 'วิกิ',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [
@@ -133,14 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'บีทแมพจัดอันดับใหม่ล่าสุด',
             'popular' => 'บีทแมพยอดฮิต',
             'by_user' => 'โดย :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'ดาวน์โหลด osu!',
             'support' => 'สนับสนุน osu!',
             'store' => 'osu!ร้านค้า',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

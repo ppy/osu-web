@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'Невалиден режим на игра зададен.',
+
+    'change_owner' => [
+        'too_many' => 'Твърде много гост картографи.',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Неуспешно актуализиране на гласуването',
@@ -24,13 +30,15 @@ return [
         'message_placeholder_locked' => 'Изключена е дискусията за този бийтмап.',
         'message_placeholder_silenced' => "Не може да публикувате дискусии, докато сте заглушени.",
         'message_type_select' => 'Избор на вид коментар',
-        'reply_notice' => 'Натисни enter за отговор.',
+        'reply_notice' => 'Натиснете enter, за да отговорите.',
+        'reply_resolve_notice' => 'Натиснете enter за отговор. Натиснете ctrl+enter за отговор и решаване.',
         'reply_placeholder' => 'Въведете вашия отговор тук',
-        'require-login' => 'Моля, влез в профила си, за публикуване или отговор',
-        'resolved' => 'Приключен',
+        'require-login' => 'Моля, влезте в профила си, за да публикувате или отговаряте',
+        'resolved' => 'Решени',
         'restore' => 'възстанови',
         'show_deleted' => 'Покажи изтрити',
         'title' => 'Дискусии',
+        'unresolved_count' => ':count_delimited нерешен проблем|:count_delimited нерешени проблеми',
 
         'collapse' => [
             'all-collapse' => 'Свий всички',
@@ -44,13 +52,13 @@ return [
 
         'lock' => [
             'button' => [
-                'lock' => 'Заключи дискусия',
-                'unlock' => 'Отключи дискусия',
+                'lock' => 'Заключи дискусията',
+                'unlock' => 'Отключи дискусията',
             ],
 
             'prompt' => [
-                'lock' => 'Причина за заключване',
-                'unlock' => 'Наистина ли искате да отключите?',
+                'lock' => 'Причина за заключването',
+                'unlock' => 'Сигурни ли сте, че искате да отключите дискусията?',
             ],
         ],
 
@@ -145,7 +153,7 @@ return [
             'mine' => 'Мои',
             'pending' => 'Чакащи',
             'praises' => 'Похвали',
-            'resolved' => 'Разрешени',
+            'resolved' => 'Решен',
             'total' => 'Всички',
         ],
 
@@ -283,7 +291,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'не е зададен',
     ],
     'status' => [
         'any' => 'Всяка',

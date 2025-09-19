@@ -7,8 +7,8 @@ declare(strict_types=1);
 
 namespace Tests\Libraries\Fulfillments;
 
+use App\Exceptions\Store\FulfillmentException;
 use App\Libraries\Fulfillments\ApplySupporterTag;
-use App\Libraries\Fulfillments\FulfillmentException;
 use App\Libraries\Fulfillments\SupporterTagFulfillment;
 use App\Mail\DonationThanks;
 use App\Mail\SupporterGift;
@@ -36,7 +36,7 @@ class SupporterTagFulfillmentTest extends TestCase
 
         $donor->refresh();
         $this->assertTrue($donor->osu_subscriber);
-        $this->assertEqualsUpToMinute($expectedExpiry, $donor->osu_subscriptionexpiry);
+        $this->assertEqualsUpToOneSecond($expectedExpiry, $donor->osu_subscriptionexpiry);
         $this->assertSame(2, $donor->osu_featurevotes);
     }
 
@@ -64,8 +64,8 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->assertTrue($giftee->osu_subscriber);
 
         // donor's expiry should not change.
-        $this->assertEqualsUpToMinute($expectedExpiry, $giftee->osu_subscriptionexpiry);
-        $this->assertEqualsUpToMinute($now, $donor->osu_subscriptionexpiry);
+        $this->assertEqualsUpToOneSecond($expectedExpiry, $giftee->osu_subscriptionexpiry);
+        $this->assertEqualsUpToOneSecond($now, $donor->osu_subscriptionexpiry);
 
         // votes go to donor.
         $this->assertSame(2, $donor->osu_featurevotes);
@@ -97,7 +97,7 @@ class SupporterTagFulfillmentTest extends TestCase
 
         (new SupporterTagFulfillment($this->order))->run();
 
-        $this->assertEqualsUpToMinute($expectedExpiry, $giftee1->fresh()->osu_subscriptionexpiry);
+        $this->assertEqualsUpToOneSecond($expectedExpiry, $giftee1->fresh()->osu_subscriptionexpiry);
 
         Mail::assertQueued(SupporterGift::class, function ($mail) use ($giftee1, $giftee2) {
             $params = $this->invokeProperty($mail, 'params');
@@ -156,7 +156,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor->refresh();
         // Should only apply one supporter tag.
         $this->assertTrue($donor->osu_subscriber);
-        $this->assertEqualsUpToMinute($expectedExpiry, $donor->osu_subscriptionexpiry);
+        $this->assertEqualsUpToOneSecond($expectedExpiry, $donor->osu_subscriptionexpiry);
         $this->assertSame(2, $donor->osu_featurevotes);
     }
 
@@ -173,7 +173,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor->refresh();
         // Should not apply any supporter tags
         $this->assertFalse($donor->osu_subscriber);
-        $this->assertEqualsUpToMinute($expectedExpiry, $donor->osu_subscriptionexpiry);
+        $this->assertEqualsUpToOneSecond($expectedExpiry, $donor->osu_subscriptionexpiry);
         $this->assertSame(0, $donor->osu_featurevotes);
     }
 
@@ -194,7 +194,7 @@ class SupporterTagFulfillmentTest extends TestCase
 
         $donor->refresh();
 
-        $this->assertEqualsUpToMinute($now, $donor->osu_subscriptionexpiry);
+        $this->assertEqualsUpToOneSecond($now, $donor->osu_subscriptionexpiry);
         $this->assertSame(0, $donor->osu_featurevotes);
         $this->assertFalse($donor->osu_subscriber);
     }
@@ -220,7 +220,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor->refresh();
 
         // there should be 1 month left.
-        $this->assertEqualsUpToMinute(ApplySupporterTag::addDuration($oldExpiry, -1), $donor->osu_subscriptionexpiry);
+        $this->assertEqualsUpToOneSecond(ApplySupporterTag::addDuration($oldExpiry, -1), $donor->osu_subscriptionexpiry);
         $this->assertSame(2, $donor->osu_featurevotes);
         $this->assertTrue($donor->osu_subscriber);
     }
@@ -243,7 +243,7 @@ class SupporterTagFulfillmentTest extends TestCase
 
         $donor->refresh();
 
-        $this->assertEqualsUpToMinute(ApplySupporterTag::addDuration($now->copy(), 2), $donor->osu_subscriptionexpiry);
+        $this->assertEqualsUpToOneSecond(ApplySupporterTag::addDuration($now->copy(), 2), $donor->osu_subscriptionexpiry);
         $this->assertSame(4, $donor->osu_featurevotes);
         $this->assertTrue($donor->osu_subscriber);
     }
@@ -265,7 +265,7 @@ class SupporterTagFulfillmentTest extends TestCase
 
         $donor->refresh();
         $this->assertTrue($donor->osu_subscriber);
-        $this->assertEqualsUpToMinute($expectedExpiry, $donor->osu_subscriptionexpiry);
+        $this->assertEqualsUpToOneSecond($expectedExpiry, $donor->osu_subscriptionexpiry);
         $this->assertSame(2, $donor->osu_featurevotes);
     }
 
@@ -352,10 +352,5 @@ class SupporterTagFulfillmentTest extends TestCase
                 'username' => $user->username,
             ],
         ]);
-    }
-
-    private function assertEqualsUpToMinute(Carbon $expected, Carbon $actual): void
-    {
-        $this->assertTrue($expected->diffInMinutes($actual, false) < 2);
     }
 }

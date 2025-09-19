@@ -5,23 +5,26 @@ import { BeatmapsetCardSize } from 'beatmapset-panel';
 import { ViewMode } from 'components/user-card';
 import { Filter, SortMode } from 'components/user-list';
 
-export const defaultUserPreferencesJson: UserPreferencesJson = {
-  audio_autoplay: false,
-  audio_muted: false,
-  audio_volume: 0.45,
-  beatmapset_card_size: 'normal',
-  beatmapset_download: 'all',
-  beatmapset_show_nsfw: false,
-  beatmapset_title_show_original: false,
-  comments_show_deleted: false,
-  comments_sort: 'new',
-  forum_posts_show_deleted: true,
-  legacy_score_only: false,
-  profile_cover_expanded: true,
-  user_list_filter: 'all',
-  user_list_sort: 'last_visit',
-  user_list_view: 'card',
-};
+export function defaultUserPreferencesJson(): UserPreferencesJson {
+  return {
+    audio_autoplay: false,
+    audio_muted: false,
+    audio_volume: 0.45,
+    beatmapset_card_size: 'normal',
+    beatmapset_download: 'all',
+    beatmapset_show_nsfw: false,
+    beatmapset_title_show_original: false,
+    comments_show_deleted: false,
+    comments_sort: 'new',
+    forum_posts_show_deleted: true,
+    legacy_score_only: false,
+    profile_cover_expanded: true,
+    scoring_mode: 'standardised',
+    user_list_filter: 'all',
+    user_list_sort: 'last_visit',
+    user_list_view: 'card',
+  };
+}
 
 export default interface UserPreferencesJson {
   audio_autoplay: boolean;
@@ -36,6 +39,7 @@ export default interface UserPreferencesJson {
   forum_posts_show_deleted: boolean;
   legacy_score_only: boolean;
   profile_cover_expanded: boolean;
+  scoring_mode: 'classic' | 'standardised';
   user_list_filter: Filter;
   user_list_sort: SortMode;
   user_list_view: ViewMode;

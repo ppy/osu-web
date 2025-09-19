@@ -113,6 +113,7 @@ return [
             'copyright' => 'Copyright (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Privacy',
+            'rules' => '',
             'server_status' => 'Server Status',
             'source_code' => 'Broncode',
             'terms' => 'Gebruikersvoorwaarden',
@@ -199,6 +200,9 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Lazermodus toont scores gezet op lazer met een nieuw scoringsalgoritme',
             'logout' => 'Log Uit',
             'profile' => 'Mijn Profiel',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
+            'team' => '',
         ],
     ],
 

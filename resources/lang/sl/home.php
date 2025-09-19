@@ -26,6 +26,9 @@ return [
         'placeholder' => 'vpiši za iskanje',
         'title' => 'išči',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Za brskanje beatmap se vpiši',
             'more' => ':count več najdenih rezultatov beatmap',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'vse',
+            'artist_track' => '',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
+            'team' => '',
             'user' => 'igralec',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [
@@ -133,14 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Nove Rankirane Beatmape',
             'popular' => 'Popularne Beatmape',
             'by_user' => 'od :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'Prenesi osu!',
             'support' => 'Podpri osu!',
             'store' => 'osu!store',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

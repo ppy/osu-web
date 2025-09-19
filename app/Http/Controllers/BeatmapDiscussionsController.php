@@ -11,7 +11,6 @@ use App\Libraries\BeatmapsetDiscussionsBundle;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
 use Auth;
-use Request;
 
 /**
  * @group Beatmapset Discussions
@@ -118,18 +117,6 @@ class BeatmapDiscussionsController extends Controller
         return ext_view('beatmap_discussions.index', compact('json', 'search', 'paginator'));
     }
 
-    public function mediaUrl()
-    {
-        $url = presence(get_string(request('url')));
-
-        if (!isset($url)) {
-            return response('Missing url parameter', 422);
-        }
-
-        // Tell browser not to request url for a while.
-        return redirect(proxy_media($url))->header('Cache-Control', 'max-age=600');
-    }
-
     public function restore($id)
     {
         $discussion = BeatmapDiscussion::whereNotNull('deleted_at')->findOrFail($id);
@@ -147,7 +134,7 @@ class BeatmapDiscussionsController extends Controller
         priv_check('BeatmapsetDiscussionReviewStore', $beatmapset)->ensureCan();
 
         try {
-            $document = json_decode(request()->all()['document'] ?? '[]', true);
+            $document = get_arr(json_decode(get_string(request('document')) ?? '[]', true)) ?? [];
             Review::create($beatmapset, $document, Auth::user());
         } catch (\Exception $e) {
             return error_popup($e->getMessage(), 422);
@@ -173,12 +160,8 @@ class BeatmapDiscussionsController extends Controller
 
         priv_check('BeatmapDiscussionVote', $discussion)->ensureCan();
 
-        $params = get_params(Request::all(), 'beatmap_discussion_vote', ['score:int']);
+        $params = get_params(\Request::all(), 'beatmap_discussion_vote', ['score:int']);
         $params['user_id'] = Auth::user()->user_id;
-
-        if ($params['score'] < 0) {
-            priv_check('BeatmapDiscussionVoteDown', $discussion)->ensureCan();
-        }
 
         if ($discussion->vote($params)) {
             return $discussion->beatmapset->defaultDiscussionJson();

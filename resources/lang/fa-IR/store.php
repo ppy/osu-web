@@ -55,6 +55,7 @@ return [
         'contact' => '',
         'date' => '',
         'echeck_delay' => '',
+        'echeck_denied' => '',
         'hide_from_activity' => '',
         'sent_via' => '',
         'shipping_to' => '',
@@ -173,6 +174,7 @@ return [
 
         'add_to_cart' => '',
         'notify' => '',
+        'out_of_stock' => '',
 
         'notification_success' => '',
         'notification_remove_text' => '',

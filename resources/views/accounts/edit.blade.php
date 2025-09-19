@@ -91,32 +91,58 @@
                             </div>
                         </div>
 
-                        <label
-                            class="btn-osu-big btn-osu-big--account-edit"
-                            @if ($isSilenced)
-                                disabled
-                            @endif
-                        >
-                            <div class="btn-osu-big__content">
-                                <div class="btn-osu-big__left">
-                                    {{ osu_trans('common.buttons.upload_image') }}
-                                </div>
-
-                                <div class="btn-osu-big__icon">
-                                    <i class="far fa-arrow-alt-circle-up"></i>
-                                </div>
-                            </div>
-
-                            <input
-                                class="js-account-edit-avatar__button fileupload"
-                                type="file"
-                                name="avatar_file"
-                                data-url="{{ route('account.avatar') }}"
+                        <p>
+                            <label
+                                class="btn-osu-big btn-osu-big--account-edit"
                                 @if ($isSilenced)
                                     disabled
                                 @endif
                             >
-                        </label>
+                                <span class="btn-osu-big__content">
+                                    <span class="btn-osu-big__left">
+                                        {{ osu_trans('common.buttons.upload_image') }}
+                                    </span>
+
+                                    <span class="btn-osu-big__icon">
+                                        <i class="far fa-arrow-alt-circle-up"></i>
+                                    </span>
+                                </span>
+
+                                <input
+                                    class="js-account-edit-avatar__button fileupload"
+                                    type="file"
+                                    name="avatar_file"
+                                    data-url="{{ route('account.avatar') }}"
+                                    @if ($isSilenced)
+                                        disabled
+                                    @endif
+                                >
+                            </label>
+                        </p>
+
+                        <p>
+                            <button
+                                class="btn-osu-big btn-osu-big--account-edit js-account-edit-avatar--reset"
+                                type="button"
+                                data-url="{{ route('account.avatar') }}"
+                                data-method="POST"
+                                data-remote
+                                data-confirm="{{ osu_trans('common.confirmation') }}"
+                                @if ($isSilenced)
+                                    disabled
+                                @endif
+                            >
+                                <span class="btn-osu-big__content">
+                                    <span class="btn-osu-big__left">
+                                        {{ osu_trans('accounts.edit.avatar.reset') }}
+                                    </span>
+
+                                    <span class="btn-osu-big__icon">
+                                        <i class="fas fa-times"></i>
+                                    </span>
+                                </span>
+                            </button>
+                        </p>
 
                         <div class="account-edit-entry__rules">
                             {!! osu_trans('accounts.edit.avatar.rules', [
@@ -144,6 +170,8 @@
         @include('accounts._edit_password')
 
         @include('accounts._edit_email')
+
+        @include('accounts._edit_user_totp')
 
         @include('accounts._edit_sessions')
 

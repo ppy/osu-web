@@ -27,7 +27,7 @@
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">
-                        @include('accounts._edit_entry_status')
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                     </div>
                 </label>
             </div>
@@ -48,7 +48,7 @@
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">
-                        @include('accounts._edit_entry_status')
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                     </div>
                 </label>
             </div>

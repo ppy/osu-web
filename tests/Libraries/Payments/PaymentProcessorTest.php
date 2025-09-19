@@ -9,7 +9,10 @@ use App\Libraries\Payments\NotificationType;
 use App\Libraries\Payments\PaymentSignature;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
-use Illuminate\Support\Facades\Event;
+use App\Models\Store\Payment;
+use Mockery\MockInterface;
+use Sentry;
+use Sentry\ClientInterface;
 use Tests\Libraries\Payments\TestPaymentProcessor as PaymentProcessor;
 use Tests\TestCase;
 
@@ -20,26 +23,29 @@ class PaymentProcessorTest extends TestCase
 
     public function testCancelWithoutPayment()
     {
-        Event::fake();
+        $sentry = $this->mock(ClientInterface::class, function (MockInterface $mock) {
+            $mock->shouldReceive('captureMessage')
+                ->withArgs(function (string $message) {
+                    return $message === PaymentProcessor::WARN_CANCEL_MISSING_PAYMENT;
+                })
+                ->once();
+        });
+        Sentry::bindClient($sentry);
 
         $this->subject->run();
 
         $this->order->refresh();
 
         $this->assertTrue($this->order->isCancelled());
-        Event::assertDispatched('store.payments.error.test');
-        Event::assertNotDispatched('store.payments.cancelled.test');
     }
 
     public function testCancelWithPayment()
     {
-        Event::fake();
-
         $payment = $this->order->payments()->create([
             'country_code' => 'CC',
             'paid_at' => now(),
             'provider' => 'test',
-            'transaction_id' => $this->order->getProviderReference(),
+            'transaction_id' => $this->order->getTransactionId(),
         ]);
 
         $this->order->paid($payment);
@@ -50,24 +56,35 @@ class PaymentProcessorTest extends TestCase
 
         $this->assertTrue($this->order->isCancelled());
         $this->assertTrue($this->order->payments()->where('cancelled', true)->exists());
-        Event::assertNotDispatched('store.payments.error.test');
-        Event::assertDispatched('store.payments.cancelled.test');
     }
-
 
     public function testCancelWithCancelledPayment()
     {
-        Event::fake();
-
-        $payment = $this->order->payments()->create([
-            'cancelled' => true,
+        $params = [
             'country_code' => 'CC',
             'paid_at' => now(),
             'provider' => 'test',
-            'transaction_id' => $this->order->getProviderReference(),
+            'transaction_id' => $this->order->getTransactionId(),
+        ];
+
+        $this->order->paid(new Payment($params));
+
+        $this->order->payments()->create([
+            ...$params,
+            'cancelled' => true,
         ]);
 
-        $this->order->paid($payment);
+        $this->order->refresh();
+
+        $sentry = $this->mock(ClientInterface::class, function (MockInterface $mock) {
+            $mock->shouldIgnoreMissing()
+                ->shouldReceive('captureMessage')
+                ->withArgs(function (string $message) {
+                    return $message === PaymentProcessor::WARN_PAYMENT_ALREADY_CANCELLED;
+                })
+                ->once();
+        });
+        Sentry::bindClient($sentry);
 
         $this->subject->run();
 
@@ -75,8 +92,6 @@ class PaymentProcessorTest extends TestCase
 
         $this->assertTrue($this->order->isCancelled());
         $this->assertTrue($this->order->payments()->where('cancelled', true)->exists());
-        Event::assertDispatched('store.payments.error.test');
-        Event::assertNotDispatched('store.payments.cancelled.test');
     }
 
     protected function setUp(): void
@@ -85,7 +100,7 @@ class PaymentProcessorTest extends TestCase
 
         config_set('store.order.prefix', 'test');
 
-        $this->order = Order::factory()->checkout()->create([
+        $this->order = Order::factory()->paymentApproved()->create([
             'transaction_id' => 'test-123',
         ]);
         OrderItem::factory()->supporterTag()->create(['order_id' => $this->order]);
@@ -102,9 +117,8 @@ class PaymentProcessorTest extends TestCase
     private function validSignature()
     {
         return new class implements PaymentSignature {
-            public function isValid()
+            public function assertValid(): void
             {
-                return true;
             }
         };
     }

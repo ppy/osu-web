@@ -48,6 +48,7 @@
     padding-left: 10px;
     padding-right: $padding-left;
     font-weight: normal;
+    justify-self: start;
   }
 
   &--comments {
@@ -77,7 +78,17 @@
     margin: 5px auto 0;
   }
 
-  &[data-disabled='1'], &.js-disabled {
+  &--profile-page-beatmapsets {
+    // overrides the one in --profile-page
+    margin-top: 0;
+
+    @media @desktop {
+      grid-column: span 2;
+    }
+  }
+
+  &[data-disabled="1"],
+  &.js-disabled {
     background-color: @osu-colour-b2;
   }
 
@@ -87,7 +98,8 @@
     position: absolute;
     display: none;
 
-    .@{_top}[data-disabled='1'] &, .@{_top}.js-disabled & {
+    .@{_top}[data-disabled="1"] &,
+    .@{_top}.js-disabled & {
       display: flex;
     }
   }
@@ -98,7 +110,8 @@
     display: flex;
     align-items: center;
 
-    .@{_top}[data-disabled='1'] &, .@{_top}.js-disabled & {
+    .@{_top}[data-disabled="1"] &,
+    .@{_top}.js-disabled & {
       opacity: 0;
     }
   }

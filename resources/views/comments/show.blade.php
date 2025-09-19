@@ -13,11 +13,11 @@
     @include('layout._page_header_v4', ['params' => [
         'links' => [
             [
-                'title' => trans('comments.index.nav_title'),
+                'title' => osu_trans('comments.index.nav_title'),
                 'url' => route('comments.index'),
             ],
             [
-                'title' => trans('comments.show.nav_title'),
+                'title' => osu_trans('comments.show.nav_title'),
                 'url' => route('comments.show', ['comment' => $commentJson['id']]),
             ],
         ],

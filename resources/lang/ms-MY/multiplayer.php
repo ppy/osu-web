@@ -5,26 +5,30 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        'active' => '',
+        'ended' => '',
+        'playlists' => 'senarai main',
+        'realtime' => 'pemain ramai',
     ],
 
     'room' => [
-        'hosted_by' => '',
-        'invalid_password' => '',
-        'map_count' => '',
-        'player_count' => '',
-        'time_left' => '',
+        'hosted_by' => 'diacarakan oleh :user',
+        'invalid_password' => 'Kata laluan bilik tidak sah',
+        'map_count' => ':count_delimited peta',
+        'player_count' => ':count_delimited pemain',
+        'time_left' => ':time tinggal',
+        'view_history' => 'Lihat Sejarah',
+        'view_summary' => 'Lihat Ringkasan',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'Tempoh terlalu panjang.',
+            'name_too_long' => 'Nama bilik terlalu panjang.',
         ],
 
         'status' => [
-            'active' => '',
-            'ended' => '',
-            'soon' => '',
+            'active' => 'aktif',
+            'ended' => 'tamat',
+            'soon' => 'akan tamat',
         ],
     ],
 ];

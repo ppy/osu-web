@@ -7,6 +7,7 @@ return [
     'cancel' => 'Ikansel',
 
     'authorise' => [
+        'app_owner' => '',
         'request' => 'ay humihingi ng pahintulot sa pag-access ng account mo.',
         'scopes_title' => 'Ang aplikasyong ito ay maaaring:',
         'title' => 'Paghingi ng Pahintulot',

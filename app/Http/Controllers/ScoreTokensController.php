@@ -29,33 +29,20 @@ class ScoreTokensController extends BaseController
         $beatmap = Beatmap::increasesStatistics()->findOrFail($beatmapId);
         $user = auth()->user();
         $request = \Request::instance();
-        $params = get_params($request->all(), null, [
-            'beatmap_hash',
-            'ruleset_id:int',
+
+        $scoreToken = new ScoreToken([
+            'beatmap_id' => $beatmap->getKey(),
+            'build_id' => ClientCheck::parseToken($request)['buildId'],
+            'user_id' => $user->getKey(),
+            ...get_params($request->all(), null, [
+                'beatmap_hash',
+                'ruleset_id:int',
+            ]),
         ]);
-
-        $checks = [
-            'beatmap_hash' => fn (string $value): bool => $value === $beatmap->checksum,
-            'ruleset_id' => fn (int $value): bool => Beatmap::modeStr($value) !== null,
-        ];
-        foreach ($checks as $key => $testFn) {
-            if (!isset($params[$key])) {
-                throw new InvariantException("missing {$key}");
-            }
-            if (!$testFn($params[$key])) {
-                throw new InvariantException("invalid {$key}");
-            }
-        }
-
-        $buildId = ClientCheck::parseToken($request)['buildId'];
+        $scoreToken->setRelation('beatmap', $beatmap);
 
         try {
-            $scoreToken = ScoreToken::create([
-                'beatmap_id' => $beatmap->getKey(),
-                'build_id' => $buildId,
-                'ruleset_id' => $params['ruleset_id'],
-                'user_id' => $user->getKey(),
-            ]);
+            $scoreToken->saveOrExplode();
         } catch (PDOException $e) {
             // TODO: move this to be a validation inside Score model
             throw new InvariantException('failed creating score token');

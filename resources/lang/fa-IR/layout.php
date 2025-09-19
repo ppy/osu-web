@@ -113,6 +113,7 @@ return [
             'copyright' => 'کپی رایت (DMCA)',
             'jp_sctl' => '',
             'privacy' => '',
+            'rules' => '',
             'server_status' => '',
             'source_code' => '',
             'terms' => '',
@@ -199,6 +200,9 @@ return [
             'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'خروج',
             'profile' => 'پروفایل من',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
+            'team' => '',
         ],
     ],
 

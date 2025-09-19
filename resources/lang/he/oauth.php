@@ -7,6 +7,7 @@ return [
     'cancel' => 'בטל',
 
     'authorise' => [
+        'app_owner' => '',
         'request' => 'מבקש הרשאה לגשת למשתמש שלך.',
         'scopes_title' => 'יישום זה יוכל:',
         'title' => 'בקשת הרשאה',

@@ -49,12 +49,13 @@ return [
     ],
 
     'discount' => 'sutaupyk :percent%',
-    'free' => '',
+    'free' => 'nemokamai!',
 
     'invoice' => [
-        'contact' => '',
+        'contact' => 'Susisiekti:',
         'date' => 'Data:',
         'echeck_delay' => 'Kadangi jūsų mokėjote el. čekiu, pervedimas gali užtrukti iki 10 dienų kol praeis per PayPal sistemą!',
+        'echeck_denied' => '',
         'hide_from_activity' => 'osu!rėmėjo žymos šiame užsakyme nerodomos jūsų pastarojoje veikloje.',
         'sent_via' => '',
         'shipping_to' => '',
@@ -90,7 +91,7 @@ return [
                 ],
             ],
             'shipped' => [
-                'title' => '',
+                'title' => 'Jūsų užsakymas išsiųstas!',
                 'tracking_details' => '',
                 'no_tracking_details' => [
                     '_' => "",
@@ -158,7 +159,7 @@ return [
             'title' => '',
             'line_1' => [
                 '_' => '',
-                'link_text' => '',
+                'link_text' => 'susisiekite su mumis',
             ],
         ],
     ],
@@ -173,6 +174,7 @@ return [
 
         'add_to_cart' => 'Įdėti į krepšelį',
         'notify' => 'Informuokite mane kai bus!',
+        'out_of_stock' => '',
 
         'notification_success' => 'kai prekė atsiras mes jums pranešime. Atšaukimui spausk :link',
         'notification_remove_text' => 'čia',
@@ -193,8 +195,8 @@ return [
     'username_change' => [
         'check' => 'Patikrinimui įvesk norimą vartotojo vardą!',
         'checking' => 'Tikrinama ar galimas :username...',
-        'placeholder' => '',
-        'label' => '',
+        'placeholder' => 'Reikalingas naudotojo vardas',
+        'label' => 'Naujas naudotojo vardas',
         'current' => '',
 
         'require_login' => [

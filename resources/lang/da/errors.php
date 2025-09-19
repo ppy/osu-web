@@ -7,6 +7,7 @@ return [
     'load_failed' => 'Data kunne ikke indlæses.',
     'missing_route' => 'Ugyldig URL eller forkert anmodningsmetode.',
     'no_restricted_access' => 'Du kan ikke udføre denne handling mens din konto er begrænset.',
+    'param_too_large' => '',
     'supporter_only' => 'Du skal være osu!supporter for at kunne anvende denne funktion.',
     'unknown' => 'En ukendt fejl er opstået.',
 
@@ -28,9 +29,15 @@ return [
     'checkout' => [
         'generic' => 'Der opstod en fejl under forberedelsen af ​​dit køb.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Kunne ikke få resultater, prøv igen senere.',
         'invalid_cursor_exception' => 'Ugyldig markørparameter angivet.',
         'operation_timeout_exception' => 'Søgemaskinen er i øjeblikket travlere end ellers, prøv igen senere.',
+    ],
+    'user_report' => [
+        'recently_reported' => "",
     ],
 ];

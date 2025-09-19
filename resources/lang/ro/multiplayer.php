@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => ':type_group nu au fost jucate încă!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'playlist',
         'realtime' => 'multiplayer',
     ],
@@ -16,9 +17,12 @@ return [
         'map_count' => 'un beatmap|:count_delimited beatmap-uri|:count_delimited de beatmap-uri',
         'player_count' => 'un jucător|:count_delimited jucători|:count_delimited de jucători ',
         'time_left' => ':time rămas',
+        'view_history' => 'Vezi Istoricul',
+        'view_summary' => 'Vezi Sumar',
 
         'errors' => [
             'duration_too_long' => 'Durata este prea lungă.',
+            'name_too_long' => 'Numele camerei este prea lung.',
         ],
 
         'status' => [

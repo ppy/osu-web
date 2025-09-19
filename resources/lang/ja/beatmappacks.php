@@ -13,14 +13,11 @@ return [
         'blurb' => [
             'important' => 'ダウンロード前に必ず読んでください',
             'install_instruction' => '読み込み方法: ビートマップパックをダウンロードしたら、アーカイブの中身をosu!のSongsディレクトリに抽出するとosu!が残りの作業を行います。',
-            'note' => [
-                '_' => ':scary作成日時が古いビートマップはクオリティが低い可能性があります。',
-                'scary' => '最新のビートマップを優先してダウンロードしてください。',
-            ],
         ],
     ],
 
     'show' => [
+        'created_by' => '作成者: :author',
         'download' => 'ダウンロード',
         'item' => [
             'cleared' => '削除済み',
@@ -36,7 +33,7 @@ return [
         'artist' => 'アーティスト/アルバム',
         'chart' => 'スポットライト',
         'featured' => '注目アーティスト',
-        'loved' => '',
+        'loved' => 'Project Loved',
         'standard' => 'スタンダードパック',
         'theme' => 'テーマ',
         'tournament' => 'トーナメント',

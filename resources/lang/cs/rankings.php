@@ -9,6 +9,16 @@ return [
         'title' => 'Stát',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Obtížnost',
+        'top_10p' => 'Skóre pro Top 10%',
+        'top_50p' => 'Skóre pro Top 50%',
+        'unavailable' => [
+            'future' => 'Prozatím žádná denní výzva pro zadané datum!',
+            'past' => 'Žádná denní výzva pro zadané datum!',
+        ],
+    ],
+
     'filter' => [
         'title' => 'Zobrazit',
 
@@ -24,17 +34,18 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Tento uživatel má méně než 30 dní nedávné ranking historie. ',
     ],
 
     'type' => [
         'charts' => 'výběry (staré)',
         'country' => 'stát',
+        'daily_challenge' => 'denní výzva',
+        'global' => 'svět',
         'kudosu' => 'kudosu',
         'multiplayer' => 'hra pro více hráčů',
-        'performance' => 'výkon',
-        'score' => 'skóre',
         'seasons' => 'sezóny',
+        'team' => 'týmy',
     ],
 
     'seasons' => [
@@ -42,6 +53,9 @@ return [
         'ongoing' => 'Tato sezóna stále probíhá (více playlistů bude přidáno průběhem času).',
         'room_count' => 'Počet playlistů',
         'url' => 'Zobrazit více informací pro tuto sezónu.',
+        'validation' => [
+            'not_enough_factors' => 'neexistuje dostatek prvků skóre pro řádný výpočet',
+        ],
     ],
 
     'spotlight' => [
@@ -55,6 +69,8 @@ return [
         'accuracy' => 'Přesnost',
         'active_users' => 'Aktivní uživatelé',
         'country' => 'Stát',
+        'division' => 'Divize',
+        'members' => 'Členové',
         'play_count' => 'Počet zahrání',
         'performance' => 'Výkon',
         'total_score' => 'Celkové skóre',

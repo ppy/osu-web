@@ -16,7 +16,6 @@ import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import { BeatmapsetNominationsInterface, NominationsInterface } from 'interfaces/beatmapset-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import Ruleset from 'interfaces/ruleset';
-import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
@@ -155,7 +154,7 @@ export class Nominations extends React.Component<Props> {
       route('beatmapsets.destroy', { beatmapset: this.beatmapset.id }),
       { method: 'DELETE' },
     )
-      .done(() => Turbolinks.visit(route('users.show', { user: this.beatmapset.user_id })))
+      .done(() => Turbo.visit(route('users.show', { user: this.beatmapset.user_id })))
       .fail(onError)
       .always(action(() => {
         this.xhr.delete = undefined;
@@ -571,28 +570,13 @@ export class Nominations extends React.Component<Props> {
   private renderNominatorsList() {
     if (!nominatorsVisibleBeatmapStatuses.has(this.beatmapset.status)) return;
 
-    const nominators: UserJson[] = [];
-    for (let i = this.events.length - 1; i >= 0; i--) {
-      const event = this.events[i];
-      if (event.type === 'disqualify' || event.type === 'nomination_reset') {
-        break;
-      }
-
-      if (event.type === 'nominate' && event.user_id != null) {
-        const user = this.users.get(event.user_id);
-        if (user != null) {
-          nominators.unshift(user);
-        }
-      }
-    }
-
-    if (nominators.length === 0 ) return;
+    if (this.props.discussionsState.nominators.length === 0) return;
 
     return (
       <span>
         <StringWithComponent
           mappings={{
-            users: joinComponents(nominators.map((user) => <UserLink key={user.id} user={user} />)),
+            users: joinComponents(this.props.discussionsState.nominators.map((user) => <UserLink key={user.id} user={user} />)),
           }}
           pattern={trans('beatmaps.nominations.nominated_by')}
         />

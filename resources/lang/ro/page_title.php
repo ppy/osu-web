@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'sprijină jocul',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => 'meciuri',
+        ],
         'legal_controller' => [
             '_' => 'informație',
         ],
         'livestreams_controller' => [
             '_' => 'fluxuri live',
-        ],
-        'matches_controller' => [
-            '_' => 'potriviri',
         ],
         'news_controller' => [
             '_' => 'noutăți',
@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => 'clasamente',
         ],
+        'teams_controller' => [
+            '_' => 'echipe',
+            'create' => 'creează echipă',
+            'edit' => 'setări echipă',
+            'leaderboard' => 'clasament echipă',
+            'show' => 'informații echipă',
+        ],
         'tournaments_controller' => [
             '_' => 'turnee',
         ],
@@ -122,6 +129,11 @@ return [
             '_' => 'wiki',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => 'istoric cameră',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'autorizați aplicația',
@@ -129,6 +141,11 @@ return [
     ],
     'store' => [
         '_' => 'magazin',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'membrii echipei',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Denne kanalen er bare beregnet på kunngjøringer.',
         'blocked' => 'Kan ikke sende en melding til en bruker som blokkerer deg eller som du har blokkert.',
         'friends_only' => 'Brukeren blokkerer meldinger fra personer som ikke er på deres venneliste.',
         'moderated' => 'Denne kanalen er for tiden moderert.',
         'no_access' => 'Du har ingen adgang til denne kanalen.',
+        'no_announce' => '',
         'receive_friends_only' => 'Brukeren kan ikke svare fordi du bare godtar meldinger fra personer på vennelisten din.',
         'restricted' => 'Du kan ikke sende meldinger mens du er stum, begrenset eller bannlyst.',
         'silenced' => 'Du kan ikke sende meldinger mens du er stum, begrenset eller bannlyst.',
@@ -107,6 +113,7 @@ return [
                 'deleted' => 'Kan ikke redigere slettet innlegg.',
                 'locked' => 'Innlegget er låst fra redigering.',
                 'no_forum_access' => 'Adgang til forespurt forum kreves.',
+                'no_permission' => '',
                 'not_owner' => 'Bare senderen kan redigere innlegget.',
                 'topic_locked' => 'Kan ikke redigere innlegget i et låst emne.',
             ],
@@ -170,12 +177,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Kan ikke feste denne typen score",
             'failed' => "Kan ikke feste ikke-bestått score.",
             'not_owner' => 'Kun resultateieren kan festeresultat.',
             'too_many' => 'Festet for mange resultater.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "",
+                'already_other_member' => "",
+                'currently_applying' => '',
+                'team_closed' => '',
+                'team_full' => "",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "",
+            'not_member' => '',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

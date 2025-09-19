@@ -22,14 +22,17 @@ return [
         'advanced_link' => 'Pencarian lanjutan',
         'button' => 'Cari',
         'empty_result' => 'Tidak ada hasil yang ditemukan!',
-        'keyword_required' => 'Kata kunci pencarian diperlukan',
+        'keyword_required' => 'Kata kunci pencarian dibutuhkan',
         'placeholder' => 'ketik untuk mulai mencari',
         'title' => 'pencarian',
 
+        'artist_track' => [
+            'more_simple' => 'Lihat lebih banyak hasil pencarian lagu featured artist',
+        ],
         'beatmapset' => [
             'login_required' => 'Masuk untuk mencari beatmap',
             'more' => ':count hasil pencarian beatmap lainnya',
-            'more_simple' => 'Lihat hasil pencarian beatmap lainnya',
+            'more_simple' => 'Lihat lebih banyak hasil pencarian beatmap',
             'title' => 'Beatmap',
         ],
 
@@ -37,7 +40,7 @@ return [
             'all' => 'Seluruh forum',
             'link' => 'Cari di forum',
             'login_required' => 'Masuk untuk mencari forum',
-            'more_simple' => 'Lihat hasil pencarian forum lainnya',
+            'more_simple' => 'Lihat lebih banyak hasil pencarian forum',
             'title' => 'Forum',
 
             'label' => [
@@ -45,29 +48,35 @@ return [
                 'forum_children' => 'sertakan subforum',
                 'include_deleted' => 'sertakan postingan yang telah dihapus',
                 'topic_id' => 'topik #',
-                'username' => 'pembuat post',
+                'username' => 'pengirim',
             ],
         ],
 
         'mode' => [
             'all' => 'semua',
+            'artist_track' => 'lagu featured artist',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
+            'team' => 'tim',
             'user' => 'pemain',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => 'Lihat lebih banyak hasil pencarian tim',
         ],
 
         'user' => [
             'login_required' => 'Masuk untuk mencari pengguna',
             'more' => ':count hasil pencarian pengguna lainnya',
-            'more_simple' => 'Lihat hasil pencarian pengguna lainnya',
+            'more_simple' => 'Lihat lebih banyak hasil pencarian pengguna',
             'more_hidden' => 'Pencarian pengguna terbatas hanya pada :max pengguna. Cobalah untuk mempersempit kriteria pencarian.',
             'title' => 'Pengguna',
         ],
 
         'wiki_page' => [
             'link' => 'Cari di wiki',
-            'more_simple' => 'Lihat hasil pencarian wiki lainnya',
+            'more_simple' => 'Lihat lebih banyak hasil pencarian wiki',
             'title' => 'Wiki',
         ],
     ],
@@ -91,7 +100,7 @@ return [
 
         'help' => [
             '_' => 'apabila kamu menemui masalah pada saat kamu ingin memulai permainan atau mendaftarkan akun, silakan :help_forum_link atau :support_button.',
-            'help_forum_link' => 'kunjungi sub-forum Help',
+            'help_forum_link' => 'kunjungi forum Help',
             'support_button' => 'hubungi layanan dukungan kami',
         ],
 
@@ -103,7 +112,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'buat akunnya',
-                'description' => 'ikuti petunjuk yang muncul pada awal permainan untuk masuk atau membuat akun baru',
+                'description' => 'ikuti petunjuk yang tertera pada saat memulai permainan untuk masuk atau membuat akun baru',
             ],
             'download' => [
                 'title' => 'unduh permainannya',
@@ -112,7 +121,7 @@ return [
             'beatmaps' => [
                 'title' => 'dapatkan beatmapnya',
                 'description' => [
-                    '_' => ':browse berbagai beatmap buatan pengguna yang tersedia pada pustaka beatmap kami dan mulailah bermain!',
+                    '_' => ':browse berbagai beatmap buatan pengguna pada pustaka beatmap kami dan mulailah bermain!',
                     'browse' => 'telusuri',
                 ],
             ],
@@ -133,14 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => 'Beatmap Tantangan Harian',
             'new' => 'Beatmap Ranked Terbaru',
             'popular' => 'Beatmap Terpopuler Saat Ini',
             'by_user' => 'oleh :user',
+            'resets' => 'berakhir dalam :ends',
         ],
         'buttons' => [
             'download' => 'Unduh osu!',
             'support' => 'Dukung osu!',
             'store' => 'osu!store',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => 'Buka konsol admin',
+            ],
         ],
     ],
 ];

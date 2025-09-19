@@ -24,9 +24,19 @@ return [
         'title' => '',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Nahlásiť skóre',
         'title' => 'Nahlásiť skóre :username?',
+    ],
+
+    'team' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'user' => [

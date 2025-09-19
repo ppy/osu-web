@@ -53,6 +53,11 @@ return [
                 'beatmapsets' => '',
                 'forum' => '',
                 'general' => '',
+
+                'users' => [
+                    'header' => 'Käyttäjä',
+                    'cover_presets' => 'Profiilin cover-esiasetukset',
+                ],
             ],
         ],
     ],

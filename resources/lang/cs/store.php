@@ -55,6 +55,7 @@ return [
         'contact' => 'Kontakt:',
         'date' => 'Datum:',
         'echeck_delay' => 'Jelikož vaše platba byla prováděna službou eCheck, prosím, dejte nám až 10 dní na to, aby platba úspěšně prošla přes PayPal!',
+        'echeck_denied' => 'eCheck platba byla zamítnuta PayPalem.',
         'hide_from_activity' => 'osu!supporter tagy v této objednávce se nebudou zobrazovat v nedávných aktivitách.',
         'sent_via' => 'Odesláno přes:',
         'shipping_to' => 'Místo doručení:',
@@ -158,7 +159,7 @@ return [
             'title' => 'Děkujeme za Vaši objednávku!',
             'line_1' => [
                 '_' => 'Brzy obdržíte potvrzovací email. Pokud máte nějaké dotazy, :link prosím!',
-                'link_text' => 'kontaktujte nás',
+                'link_text' => 'kontaktuj nás',
             ],
         ],
     ],
@@ -173,6 +174,7 @@ return [
 
         'add_to_cart' => 'Přidat do košíku',
         'notify' => 'Informujte mě, až bude k dispozici!',
+        'out_of_stock' => 'Není skladem',
 
         'notification_success' => 'dáme ti vědět, až produkt znovu naskladníme. klikněte :link pro zrušení',
         'notification_remove_text' => 'zde',

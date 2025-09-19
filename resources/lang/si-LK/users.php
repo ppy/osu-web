@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => '',
         'modding_description_empty' => '',
@@ -159,14 +166,24 @@ return [
             'cancel' => '',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => '',
-            'multiple_accounts' => '',
+            'copyright_infringement' => '',
+            'inappropriate_chat' => '',
             'insults' => '',
-            'spam' => '',
-            'unwanted_content' => '',
+            'multiple_accounts' => '',
             'nonsense' => '',
             'other' => '',
+            'spam' => '',
+            'unwanted_content' => '',
         ],
     ],
     'restricted_banner' => [
@@ -196,10 +213,30 @@ return [
             'to_0' => '',
             'to_1' => '',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'playcount' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => '',
                 'defaults_info' => '',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => '',
                     'button' => '',
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => '',
                 'set' => '',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 
@@ -449,8 +496,13 @@ return [
             'global_simple' => '',
             'highest' => '',
         ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
+        ],
         'stats' => [
             'hit_accuracy' => '',
+            'hits_per_play' => '',
             'level' => '',
             'level_progress' => '',
             'maximum_combo' => '',

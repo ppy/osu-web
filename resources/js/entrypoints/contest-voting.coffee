@@ -11,8 +11,12 @@ propsFunction = (container) ->
   data = parseJson container.dataset.src
 
   return {
+    container
     contest: data.contest
     selected: data.userVotes
+    stdRange:
+      max: _.maxBy(data.contest.entries, 'results.score_std')?.results.score_std
+      min: _.minBy(data.contest.entries, 'results.score_std')?.results.score_std
     options:
       showPreview: data.contest['type'] == 'music'
       showLink: data.contest['type'] == 'external' || (data.contest['type'] == 'beatmap' && _.some(data.contest.entries, 'preview'))

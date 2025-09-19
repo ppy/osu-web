@@ -37,6 +37,12 @@ return [
         'new' => 'Последен отговор',
     ],
 
+    'teams' => [
+        'relevance' => 'Уместност',
+        'name' => 'Име',
+        'short-name' => 'Кратко име',
+    ],
+
     'users' => [
         'relevance' => 'Уместност',
         'username' => 'Име',

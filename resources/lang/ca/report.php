@@ -5,17 +5,17 @@
 
 return [
     'beatmapset' => [
-        'button' => 'Reportar',
-        'title' => 'Reportar el beatmap de :username?',
+        'button' => 'Denuncia',
+        'title' => 'Denuncia el mapa de :username?',
     ],
 
     'beatmapset_discussion_post' => [
-        'button' => 'Reportar',
-        'title' => 'Reportar la publicació de :username?',
+        'button' => 'Denuncia',
+        'title' => 'Denunciar la publicació de :username?',
     ],
 
     'comment' => [
-        'button' => 'Informe',
+        'button' => 'Denuncia',
         'title' => 'Voleu informar del comentari de :username?',
     ],
 
@@ -24,13 +24,23 @@ return [
         'title' => 'Voleu informar de la publicació de :username?',
     ],
 
+    'message' => [
+        'button' => 'Denunciar missatge',
+        'title' => 'Voleu denunciar el missatge de :username?',
+    ],
+
     'scores' => [
-        'button' => 'Puntuació de l\'informe',
+        'button' => 'Denunciar puntuació',
         'title' => 'Voleu informar de la puntuació de :username?',
+    ],
+
+    'team' => [
+        'button' => 'Denunciar equip',
+        'title' => 'Denunciar :username de l\'equip?',
     ],
 
     'user' => [
         'button' => 'Informe',
-        'title' => 'Informar :username?',
+        'title' => 'Denunciar :username?',
     ],
 ];

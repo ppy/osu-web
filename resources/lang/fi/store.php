@@ -55,6 +55,7 @@ return [
         'contact' => 'Ota yhteyttä:',
         'date' => 'Päivämäärä:',
         'echeck_delay' => 'Koska maksusi oli eCheck, anna maksimissaan 10 päivää että maksu pääsee PayPalin läpi!',
+        'echeck_denied' => '',
         'hide_from_activity' => 'Tämän tilauksen osu!tukijamerkkejä ei näytetä viimeaikaisessa toiminnassasi.',
         'sent_via' => 'Lähetetty kautta:',
         'shipping_to' => 'Toimitetaan kohteeseen:',
@@ -173,6 +174,7 @@ return [
 
         'add_to_cart' => 'Lisää kärryihin',
         'notify' => 'Ilmoita minulle, kun saatavilla!',
+        'out_of_stock' => '',
 
         'notification_success' => 'saat ilmoituksen, kun meillä on täydennystä. klikkaa :link peruuttaaksesi',
         'notification_remove_text' => 'tässä',

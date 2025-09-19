@@ -113,6 +113,7 @@ return [
             'copyright' => 'Autorské právo (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Soukromí',
+            'rules' => 'Pravidla',
             'server_status' => 'Stav serveru',
             'source_code' => 'Zdrojový kód',
             'terms' => 'Podmínky',
@@ -199,11 +200,14 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Lazer režim zobrazuje skóre zahraná na lazeru s novým skórovacím algoritmem',
             'logout' => 'Odhlásit se',
             'profile' => 'Můj profil',
+            'scoring_mode_toggle' => 'Klasické skórování',
+            'scoring_mode_toggle_tooltip' => 'Upravit hodnoty skóre tak, aby se více podobaly klasickému neomezenému skórování',
+            'team' => 'Můj tým',
         ],
     ],
 
     'popup_search' => [
-        'initial' => 'Zadejte hledaný výraz!',
+        'initial' => 'Zadej hledaný výraz!',
         'retry' => 'Hledání se nezdařilo. Klepněte na tlačítko Opakovat.',
     ],
 ];

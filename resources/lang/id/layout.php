@@ -9,7 +9,7 @@ return [
     ],
 
     'defaults' => [
-        'page_description' => 'osu! - Rhythm is just a *click* away! Dengan berbagai mode permainan seperti Ouendan/EBA, Taiko, serta level editor yang sepenuhnya fungsional.',
+        'page_description' => 'osu! - Rhythm is just a *click* away! Dengan Ouendan/EBA, Taiko, dan berbagai mode permainan orisinal serta editor level yang sepenuhnya fungsional.',
     ],
 
     'header' => [
@@ -41,7 +41,7 @@ return [
 
         'store' => [
             'cart' => 'keranjang',
-            'orders' => 'riwayat transaksi',
+            'orders' => 'riwayat pemesanan',
             'products' => 'produk',
         ],
 
@@ -113,6 +113,7 @@ return [
             'copyright' => 'Hak Cipta (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Privasi',
+            'rules' => 'Peraturan',
             'server_status' => 'Status Server',
             'source_code' => 'Kode Sumber',
             'terms' => 'Ketentuan Layanan',
@@ -134,7 +135,7 @@ return [
         ],
         '401' => [
             'error' => "Kamu tidak seharusnya berada di sini.",
-            'description' => 'Kamu dapat mencoba untuk kembali ke halaman sebelumnya. Atau mungkin coba untuk masuk terlebih dahulu.',
+            'description' => 'Kamu dapat mencoba untuk kembali ke halaman sebelumnya. Atau mungkin untuk masuk terlebih dahulu.',
         ],
         '405' => [
             'error' => 'Halaman Tidak Ditemukan',
@@ -165,7 +166,7 @@ return [
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "Untuk berjaga-jaga, berikut kode yang dapat kamu berikan kepada layanan dukungan kami!",
+        'reference' => "Untuk berjaga-jaga, berikut kode yang dapat kamu berikan kepada tim layanan dukungan kami!",
     ],
 
     'popup_login' => [
@@ -199,6 +200,9 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Mode lazer menampilkan skor yang diraih dari lazer dengan algoritma perhitungan skor baru',
             'logout' => 'Keluar',
             'profile' => 'Profil Saya',
+            'scoring_mode_toggle' => 'Perhitungan skor klasik',
+            'scoring_mode_toggle_tooltip' => 'Sesuaikan nilai skor untuk lebih menyerupai perhitungan skor klasik yang tidak memiliki batas',
+            'team' => 'Tim Saya',
         ],
     ],
 

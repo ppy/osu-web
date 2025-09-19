@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'not_found' => "",
+    'not_found' => "Ta zawartość (:model) nie istnieje.",
 
     'name' => [
-        'App\Models\Beatmap' => '',
-        'App\Models\Beatmapset' => '',
+        'App\Models\Beatmap' => 'poziom trudności',
+        'App\Models\Beatmapset' => 'beatmapa',
     ],
 ];

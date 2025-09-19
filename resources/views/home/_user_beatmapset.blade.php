@@ -4,8 +4,13 @@
 --}}
 @php
     $user = Auth::user();
+    $href = $type === 'daily_challenge' && isset($dailyChallenge) 
+        ? route('daily-challenge.show', [
+            'daily_challenge' => \App\Libraries\DailyChallengeDateHelper::roomId($dailyChallenge)
+        ])
+        : route('beatmapsets.show', $beatmapset->beatmapset_id);
 @endphp
-<a class='user-home-beatmapset' href="{{route('beatmapsets.show', $beatmapset->beatmapset_id)}}">
+<a class='user-home-beatmapset' href="{{$href}}">
     @include('objects._beatmapset_cover', [
         'beatmapset' => $beatmapset,
         'modifiers' => 'home',
@@ -15,7 +20,7 @@
     <div class="user-home-beatmapset__meta">
         <div class="user-home-beatmapset__title-container">
             @foreach ($beatmapset->playmodesStr() as $playmode)
-                <div class="user-home-beatmapset__playmode-icon">
+                <div class="user-home-beatmapset__playmode-icon" title="{{ osu_trans("beatmaps.mode.{$playmode}") }}">
                     <span class="fal fa-extra-mode-{{$playmode}}"></span>
                 </div>
             @endforeach
@@ -40,6 +45,8 @@
                 @elseif ($type === 'popular')
                     <span class="fa fa-heart"></span>
                     {{ i18n_number_format($beatmapset->favourite_count) }}
+                @elseif ($type === 'daily_challenge')
+                    {!! osu_trans('home.user.beatmaps.resets', ['ends' => timeago($dailyChallenge->ends_at)]) !!}
                 @endif
             </span>
         </div>

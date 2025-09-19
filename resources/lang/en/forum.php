@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Really restore topic?',
         'deleted' => 'deleted topic',
         'go_to_latest' => 'view latest post',
+        'go_to_unread' => 'view first unread post',
         'has_replied' => 'You have replied to this topic',
         'in_forum' => 'in :forum',
         'latest_post' => ':when by :user',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'Removed "resolved" tag',
             'to_1' => 'Add "resolved" tag',
             'to_1_done' => 'Added "resolved" tag',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => 'Remove "osu!lazer" tag',
+            'to_0_done' => 'Removed "osu!lazer" tag',
+            'to_1' => 'Add "osu!lazer" tag',
+            'to_1_done' => 'Added "osu!lazer" tag',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => 'Remove "osu!stable" tag',
+            'to_0_done' => 'Removed "osu!stable" tag',
+            'to_1' => 'Add "osu!stable" tag',
+            'to_1_done' => 'Added "osu!stable" tag',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => 'Remove "osu!web" tag',
+            'to_0_done' => 'Removed "osu!web" tag',
+            'to_1' => 'Add "osu!web" tag',
+            'to_1_done' => 'Added "osu!web" tag',
         ],
 
         'lock' => [

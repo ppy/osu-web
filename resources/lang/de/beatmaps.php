@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'Ungültigen Spielmodus ausgewählt.',
+
+    'change_owner' => [
+        'too_many' => 'Zu viele Gastmapper.',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Aktualisieren der Stimme fehlgeschlagen',
@@ -19,18 +25,20 @@ return [
         'edit' => 'bearbeiten',
         'edited' => 'Zuletzt bearbeitet von :editor (:update_time).',
         'guest' => 'Guest-Difficulty von :user',
-        'kudosu_denied' => 'Kudosu-Annahme abgelehnt.',
+        'kudosu_denied' => 'Kudosu-Vergabe abgelehnt.',
         'message_placeholder_deleted_beatmap' => 'Diese Difficulty wurde gelöscht und kann nicht mehr diskutiert werden.',
         'message_placeholder_locked' => 'Die Diskussion für diese Beatmap wurde deaktiviert.',
         'message_placeholder_silenced' => "Posten in der Diskussion nicht möglich, während du stummgeschaltet bist.",
         'message_type_select' => 'Bemerkungs-Art auswählen',
         'reply_notice' => 'Zum Antworten Enter drücken.',
+        'reply_resolve_notice' => 'Zum Antworten Enter drücken. Zum Antworten und als erledigt markieren Strg+Enter drücken.',
         'reply_placeholder' => 'Antwort hier eingeben',
         'require-login' => 'Zum Posten oder Antworten bitte einloggen',
         'resolved' => 'Erledigt',
         'restore' => 'wiederherstellen',
         'show_deleted' => 'Gelöschte anzeigen',
         'title' => 'Diskussionen',
+        'unresolved_count' => ':count_delimited ungelöstes Problem|:count_delimited ungelöste Probleme',
 
         'collapse' => [
             'all-collapse' => 'Alle verkleinern',
@@ -222,7 +230,7 @@ return [
 
         'reset_at' => [
             'nomination_reset' => 'Nominierungsprozess zurückgesetzt vor :time_ago von :user mit dem Problem :discussion (:message).',
-            'disqualify' => 'Vor :time_ago disqualifiziert von :user mit einem neuen Problem :discussion (:message).',
+            'disqualify' => 'Wegen eines neuen Problems :discussion (:message) :time_ago von :user disqualifiziert.',
         ],
 
         'reset_confirm' => [
@@ -283,7 +291,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'nicht festgelegt',
     ],
     'status' => [
         'any' => 'Alle',

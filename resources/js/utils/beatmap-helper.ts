@@ -4,7 +4,9 @@
 import * as d3 from 'd3';
 import { isValid as isBeatmapExtendedJson } from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import Ruleset, { rulesets } from 'interfaces/ruleset';
+import WithBeatmapOwners from 'interfaces/with-beatmap-owners';
 import * as _ from 'lodash';
 import core from 'osu-core-singleton';
 import { parseJsonNullable } from 'utils/json';
@@ -99,6 +101,14 @@ export function group<T extends BeatmapJson>(beatmaps?: T[] | null, includeEmpty
   return ret;
 }
 
+export function hasGuestOwners(beatmap: WithBeatmapOwners<BeatmapJson>, beatmapset: BeatmapsetJson) {
+  return beatmap.owners.some((owner) => owner.id !== beatmapset.user_id);
+}
+
+export function isOwner(userId: number, beatmap: WithBeatmapOwners<BeatmapJson>) {
+  return beatmap.owners.some((owner) => owner.id === userId);
+}
+
 export function rulesetName(id: number): Ruleset {
   switch (id) {
     case 0:
@@ -151,7 +161,7 @@ let userRecommendedDifficultyCache: Partial<Record<Ruleset, number>> | null = nu
 function userRecommendedDifficulty(mode: Ruleset) {
   if (userRecommendedDifficultyCache == null) {
     userRecommendedDifficultyCache = parseJsonNullable('json-recommended-star-difficulty-all') ?? {};
-    $(document).one('turbolinks:before-cache', () => {
+    $(document).one('turbo:before-cache', () => {
       userRecommendedDifficultyCache = null;
     });
   }

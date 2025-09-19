@@ -82,13 +82,15 @@ export default class User {
   }
 }
 
-const deletedUser = new User(-1);
+export const deletedUser = new User(-1);
 deletedUser.isDeleted = true;
 deletedUser.username = trans('users.deleted');
+Object.freeze(deletedUser);
 
-const deletedUserJson = deletedUser.toJson();
+export const deletedUserJson = Object.freeze(deletedUser.toJson());
 
-export {
-  deletedUser,
-  deletedUserJson,
-};
+const userNotFound = new User(-1);
+userNotFound.username = trans('supporter_tag.user_search.not_found');
+Object.freeze(userNotFound);
+
+export const userNotFoundJson = Object.freeze(userNotFound.toJson());

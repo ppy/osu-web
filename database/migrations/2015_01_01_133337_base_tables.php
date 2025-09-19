@@ -2,6 +2,9 @@
 
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
+
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
@@ -1135,7 +1138,7 @@ class BaseTables extends Migration
         });
 
         Schema::create('phpbb_users', function (Blueprint $table) {
-            $table->mediumIncrements('user_id');
+            $table->mediumIncrements('user_id')->from(2);
             $table->tinyInteger('user_type')->default(0);
             $table->mediumInteger('group_id')->unsigned()->default(2);
             $table->mediumText('user_permissions');

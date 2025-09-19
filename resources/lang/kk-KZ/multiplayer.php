@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => '',
+        'active' => '',
+        'ended' => '',
         'playlists' => '',
         'realtime' => '',
     ],
@@ -16,9 +17,12 @@ return [
         'map_count' => ':count_delimited карта',
         'player_count' => ':count_delimited ойыншы',
         'time_left' => ':time қалды',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => '',
+            'name_too_long' => '',
         ],
 
         'status' => [

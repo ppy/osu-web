@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Không có game :type_group osu!(lazer) đã chơi!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'danh sách phát',
         'realtime' => 'nhiều người chơi',
     ],
@@ -16,9 +17,12 @@ return [
         'map_count' => ':count_delimited map',
         'player_count' => ':count_delimited người_chơi|:count_delimited người chơi',
         'time_left' => ':time thời gian còn lại',
+        'view_history' => 'Xem lịch sử',
+        'view_summary' => 'Xem thống kê',
 
         'errors' => [
             'duration_too_long' => 'Thời lượng quá dài. ',
+            'name_too_long' => 'Tên phòng quá dài.',
         ],
 
         'status' => [

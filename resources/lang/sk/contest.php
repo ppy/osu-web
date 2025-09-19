@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => '',
         'hide_judged' => '',
         'nav_title' => '',
         'no_current_vote' => '',
@@ -29,7 +30,9 @@ return [
         '_' => '',
         'creator' => '',
         'score' => '',
+        'score_std' => '',
         'total_score' => '',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'hlasy',
         'count' => ':count hlas|:count hlasov',
         'points' => ':count bod|:count body',
+        'points_float' => '',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Vstup Otvorený',
         'voting' => 'Hlasovanie Začalo',
         'results' => 'Výsledky',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

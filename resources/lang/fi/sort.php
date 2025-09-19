@@ -37,6 +37,12 @@ return [
         'new' => 'Viimeisin kommentti',
     ],
 
+    'teams' => [
+        'relevance' => 'Osuvuus',
+        'name' => 'Nimi',
+        'short-name' => 'Lyhytnimi',
+    ],
+
     'users' => [
         'relevance' => 'Osuvuus',
         'username' => 'Nimi',

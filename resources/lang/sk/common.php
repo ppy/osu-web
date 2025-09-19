@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Administrátor',
         'authorise' => 'Autorizovať',
         'authorising' => 'Autorizovanie...',
+        'back' => '',
         'back_to_previous' => 'Návrat do predchádzajúceho stavu',
         'back_to_top' => 'Naspäť hore',
         'cancel' => 'Zrušiť',
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => '',
+        ],
+        'year' => [
+            'php' => '',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

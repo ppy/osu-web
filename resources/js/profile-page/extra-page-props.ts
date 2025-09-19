@@ -26,6 +26,7 @@ export type HistoricalSection = typeof historicalSections[number];
 type ProfilePageIncludes =
   ProfileHeaderIncludes
   | 'account_history'
+  | 'daily_challenge_user_stats'
   | 'page'
   | 'rank_highest'
   | 'rank_history'

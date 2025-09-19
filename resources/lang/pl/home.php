@@ -26,6 +26,9 @@ return [
         'placeholder' => 'wpisz, by rozpocząć wyszukiwanie',
         'title' => 'wyszukiwarka',
 
+        'artist_track' => [
+            'more_simple' => 'Zobacz więcej wyszukanych utworów wyróżnionych artystów',
+        ],
         'beatmapset' => [
             'login_required' => 'Zaloguj się, aby wyszukać beatmapy',
             'more' => 'Zobacz więcej wyszukanych beatmap: :count',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'wszystko',
+            'artist_track' => 'utwór wyróżnionego artysty',
             'beatmapset' => 'beatmapa',
             'forum_post' => 'forum',
+            'team' => 'zespół',
             'user' => 'użytkownik',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => 'Zobacz więcej wyszukanych zespołów',
         ],
 
         'user' => [
@@ -133,14 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => 'Wyzwanie dnia',
             'new' => 'Nowe rankingowe beatmapy',
             'popular' => 'Popularne beatmapy',
             'by_user' => 'autorstwa :user',
+            'resets' => 'zakończy się :ends',
         ],
         'buttons' => [
             'download' => 'Pobierz osu!',
             'support' => 'Wspomóż osu!',
             'store' => 'Sklep osu!',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => 'Otwórz konsolę administratora',
+            ],
         ],
     ],
 ];

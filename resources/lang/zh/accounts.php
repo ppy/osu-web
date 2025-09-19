@@ -10,8 +10,9 @@ return [
 
         'avatar' => [
             'title' => '头像',
-            'rules' => '请确保你的头像符合 :link。<br/>这意味着头像内容必须是<strong>全年龄的</strong>，即没有裸露、亵渎或暗示的内容。',
-            'rules_link' => '社区规则',
+            'reset' => '重置',
+            'rules' => '请确保你的头像符合:link。<br/>这意味着头像内容必须是<strong>全年龄的</strong>，即没有裸露、亵渎或暗示的内容。',
+            'rules_link' => '视觉内容注意事项',
         ],
 
         'email' => [
@@ -19,7 +20,7 @@ return [
             'new_confirmation' => '确认新邮箱地址',
             'title' => '邮箱',
             'locked' => [
-                '_' => '如果您想修改邮箱地址，请联系 :accounts 。',
+                '_' => '如果您想修改邮箱地址，请联系:accounts。',
                 'accounts' => '账号支持团队',
             ],
         ],
@@ -87,6 +88,7 @@ return [
             'beatmap_owner_change' => '客串难度',
             'beatmapset:modding' => '谱面摸图',
             'channel_message' => '私信',
+            'channel_team' => '战队聊天消息',
             'comment_new' => '新评论',
             'forum_topic_reply' => '主题回复',
             'mail' => '邮件',

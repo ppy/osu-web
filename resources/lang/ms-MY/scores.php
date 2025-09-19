@@ -5,28 +5,28 @@
 
 return [
     'show' => [
-        'non_preserved' => '',
-        'title' => '',
+        'non_preserved' => 'Markah ini ditanda untuk pemadaman dan akan lenyap sebentar lagi.',
+        'title' => ':username pada :title [:version]',
 
         'beatmap' => [
-            'by' => '',
+            'by' => 'oleh :artist',
         ],
 
         'player' => [
-            'by' => '',
-            'submitted_on' => '',
+            'by' => 'Dimain oleh',
+            'submitted_on' => 'Diserahkan pada',
 
             'rank' => [
-                'country' => '',
-                'global' => '',
+                'country' => 'Pangkat Kebangsaan',
+                'global' => 'Pangkat Dunia',
             ],
         ],
     ],
 
     'status' => [
-        'non_best' => '',
-        'no_pp' => '',
-        'processing' => '',
-        'no_rank' => '',
+        'non_best' => 'Hanya markah terbaik peribadi memberi pp',
+        'no_pp' => 'pp tidak diberi untuk markah ini',
+        'processing' => 'Markah ini masih dikira dan akan dipaparkan sebentar lagi',
+        'no_rank' => 'Markah ini tiada pangkat kerana tanpa pangkat atau ditanda untuk pemadaman',
     ],
 ];

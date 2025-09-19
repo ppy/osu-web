@@ -53,6 +53,11 @@ return [
                 'beatmapsets' => '',
                 'forum' => '',
                 'general' => '',
+
+                'users' => [
+                    'header' => '使用者',
+                    'cover_presets' => '個人檔案封面預設',
+                ],
             ],
         ],
     ],

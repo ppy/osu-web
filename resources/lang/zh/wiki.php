@@ -5,12 +5,12 @@
 
 return [
     'show' => [
-        'fallback_translation' => '请求的页面还没有没有被翻译为您的语言（:language）。 正在显示其英文版本。',
-        'incomplete_or_outdated' => '此页面的内容不完整或已过时。如果你能帮忙，请一起更新这篇文章！',
-        'missing' => '请求的页面 :keyword 未找到。',
+        'fallback_translation' => '当前页面尚未支持所选语言（:language），已显示英文版本。',
+        'incomplete_or_outdated' => '此页内容尚不完整或已过时。如果你能协助完善，欢迎对本文内容进行修缮！',
+        'missing' => '请求访问的页面“:keyword”无法找到。',
         'missing_title' => '未找到',
         'missing_translation' => '请求的页面没有当前语言的版本。',
-        'needs_cleanup_or_rewrite' => '此页面不符合 osu! wiki 的标准，需要清理或重写。 欢迎你帮助更新这篇文章 ！',
+        'needs_cleanup_or_rewrite' => '此页面不符合 osu! wiki 标准，需进行清理或重新编写。如果你能协助完善，欢迎对本文内容进行修缮！',
         'search' => '在 wiki 中搜索 :link 。',
         'stub' => '这篇文章不完整，需要他人来补充。',
         'toc' => '目录',
@@ -21,8 +21,8 @@ return [
         ],
 
         'translation' => [
-            'legal' => '本翻译仅为方便阅读，只有原始的 :default 才是唯一具有法律效力的版本。',
-            'outdated' => '本文是原始内容的过期翻译，请查阅 :default 以获得最准确的信息（欢迎你来帮助更新翻译）！',
+            'legal' => '本翻译仅供参考，原始 :default 版本方为唯一具备法律效力的正式文本。',
+            'outdated' => '本文翻译内容已过时，请查阅 :default 以获得最准确的信息（如果你能协助完善，欢迎对本文翻译进行更新与修缮）！',
 
             'default' => '英文版本',
         ],

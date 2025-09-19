@@ -6,8 +6,7 @@
 namespace App\Http\Controllers\Payments;
 
 use App\Exceptions\InvalidSignatureException;
-use App\Exceptions\ValidationException;
-use App\Libraries\OrderCheckout;
+use App\Exceptions\Store\OrderException;
 use App\Libraries\Payments\XsollaPaymentProcessor;
 use App\Libraries\Payments\XsollaSignature;
 use App\Libraries\Payments\XsollaUserNotFoundException;
@@ -15,7 +14,6 @@ use App\Models\Store\Order;
 use Auth;
 use Exception;
 use Illuminate\Http\Request as HttpRequest;
-use Log;
 use Request;
 use Xsolla\SDK\API\PaymentUI\TokenRequest;
 use Xsolla\SDK\API\XsollaClient;
@@ -81,8 +79,8 @@ class XsollaController extends Controller
             }
 
             $processor->run();
-        } catch (ValidationException $exception) {
-            Log::error($exception->getMessage());
+        } catch (OrderException $exception) {
+            log_error($exception);
 
             return $this->errorResponse(
                 'A validation error occured while running the transaction',
@@ -90,6 +88,7 @@ class XsollaController extends Controller
                 422
             );
         } catch (InvalidSignatureException $exception) {
+            log_error($exception);
             // xsolla expects INVALID_SIGNATURE
             return $this->errorResponse('The signature is invalid.', 'INVALID_SIGNATURE', 422);
         } catch (XsollaUserNotFoundException $exception) {
@@ -106,9 +105,9 @@ class XsollaController extends Controller
     public function completed()
     {
         $orderNumber = Request::input('foreignInvoice') ?? '';
-        $order = OrderCheckout::for($orderNumber)->completeCheckout();
+        $order = Order::whereOrderNumber($orderNumber)->firstOrFail();
 
-        return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
+        return redirect(route('store.invoice.show', ['invoice' => $order->getKey(), 'thanks' => 1]));
     }
 
     private function errorResponse(string $message, string $code, int $status)

@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => '',
+        'used' => '',
+        'word_not_allowed' => '',
+
+        'attributes' => [
+            'default_ruleset_id' => '',
+            'is_open' => '',
+            'name' => '',
+            'short_name' => '',
+            'url' => '',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Heslo nemôže obsahovať užívateľské meno.',
         'email_already_used' => 'E-mailová adresa už bola použitá.',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => '',
         'not_in_channel' => '',
+        'in_team' => '',
         'reason_not_valid' => '',
         'self' => "",
     ],

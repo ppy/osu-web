@@ -13,14 +13,11 @@ return [
         'blurb' => [
             'important' => 'LEIA ISSO ANTES DE BAIXAR',
             'install_instruction' => 'Instalação: Assim que um pacote for baixado, extraia o conteúdo do pacote na pasta Songs da instalação do seu jogo, e o osu! fará o resto.',
-            'note' => [
-                '_' => 'Lembre-se que é altamente recomendado :scary, já que beatmaps mais antigos tem uma qualidade muito menor do que os mais recentes.',
-                'scary' => 'baixar os pacotes de beatmaps dos mais recentes para os mais antigos',
-            ],
         ],
     ],
 
     'show' => [
+        'created_by' => 'por :author',
         'download' => 'Baixar',
         'item' => [
             'cleared' => 'finalizado',

@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Rank from 'interfaces/rank';
-import SoloScoreJson from 'interfaces/solo-score-json';
+import ScoreJson from 'interfaces/score-json';
 
 interface CacheEntry {
   accuracy: number;
@@ -11,15 +11,15 @@ interface CacheEntry {
 let cache: Partial<Record<string, CacheEntry>> = {};
 
 // reset cache on navigation
-document.addEventListener('turbolinks:load', () => {
+document.addEventListener('turbo:load', () => {
   cache = {};
 });
 
-function shouldHaveHiddenRank(score: SoloScoreJson) {
+function shouldHaveHiddenRank(score: ScoreJson) {
   return score.mods.some((mod) => mod.acronym === 'FI' || mod.acronym === 'FL' || mod.acronym === 'HD');
 }
 
-export function legacyAccuracyAndRank(score: SoloScoreJson) {
+export function legacyAccuracyAndRank(score: ScoreJson) {
   const key = `${score.type}:${score.id}`;
   let cached = cache[key];
 

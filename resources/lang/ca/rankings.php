@@ -9,6 +9,16 @@ return [
         'title' => 'País',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Dificultat',
+        'top_10p' => 'Puntuació top 10%',
+        'top_50p' => 'Puntuació top 50%',
+        'unavailable' => [
+            'future' => 'Encara no hi ha repte diari a la data especificada!',
+            'past' => 'No hi ha repte diari a la data especificada!',
+        ],
+    ],
+
     'filter' => [
         'title' => 'Mostra',
 
@@ -24,17 +34,18 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Aquest usuari té menys de 30 dies d\'historial de classificació recent.',
     ],
 
     'type' => [
-        'charts' => 'spotlights',
+        'charts' => 'en el focus (vell)',
         'country' => 'país',
+        'daily_challenge' => 'repte diari',
+        'global' => 'global',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multijugador',
-        'performance' => 'rendiment',
-        'score' => 'puntuació',
         'seasons' => 'temporades',
+        'team' => 'equip',
     ],
 
     'seasons' => [
@@ -42,6 +53,9 @@ return [
         'ongoing' => 'Aquesta temporada encara està en curs (s\'afegiran més llistes de reproducció).',
         'room_count' => 'Nombre de llistes de reproducció',
         'url' => 'Mostra més informació sobre la temporada.',
+        'validation' => [
+            'not_enough_factors' => 'no hi ha prou factors de puntuació per a un càlcul adequat',
+        ],
     ],
 
     'spotlight' => [
@@ -55,6 +69,8 @@ return [
         'accuracy' => 'Precisió',
         'active_users' => 'Usuaris actius',
         'country' => 'País',
+        'division' => 'Divisió',
+        'members' => 'Membres',
         'play_count' => 'Nombre de partides',
         'performance' => 'Rendiment',
         'total_score' => 'Puntuació total',

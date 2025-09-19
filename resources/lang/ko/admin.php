@@ -53,6 +53,11 @@ return [
                 'beatmapsets' => '',
                 'forum' => '',
                 'general' => '',
+
+                'users' => [
+                    'header' => '사용자',
+                    'cover_presets' => '프로필 커버 프리셋',
+                ],
             ],
         ],
     ],

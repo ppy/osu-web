@@ -26,6 +26,9 @@ return [
         'placeholder' => 'nhập để tìm kiếm',
         'title' => 'Tìm Kiếm',
 
+        'artist_track' => [
+            'more_simple' => 'Hiển thị thêm bài của nghệ sĩ nổi bật theo kết quả tìm kiếm',
+        ],
         'beatmapset' => [
             'login_required' => 'Đăng nhập để tìm beatmap',
             'more' => 'còn :count kết quả tìm kiếm beatmap khác',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'tất cả',
+            'artist_track' => 'nhạc của nghệ sĩ nổi bật',
             'beatmapset' => 'beatmap',
             'forum_post' => 'diễn đàn',
+            'team' => 'đội',
             'user' => 'người chơi',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => 'Hiển thị thêm kết quả tìm kiếm đội',
         ],
 
         'user' => [
@@ -133,14 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => 'Thử thách beatmap hàng ngày',
             'new' => 'Beatmap Được Xếp Hạng Mới',
             'popular' => 'Beatmaps Phổ Biến',
             'by_user' => 'bởi :user',
+            'resets' => 'đặt lại sau :ends',
         ],
         'buttons' => [
             'download' => 'Tải Xuống osu!',
             'support' => 'Ủng Hộ osu!',
             'store' => 'osu!store',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

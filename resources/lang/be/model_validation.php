@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => ':attribute змяшчае недапушчальныя сімвалы.',
+        'used' => ':attribute ўжо занята.',
+        'word_not_allowed' => 'Такое :attribute забаронена.',
+
+        'attributes' => [
+            'default_ruleset_id' => 'Асноўны рэжым гульні',
+            'is_open' => 'Падача заявак',
+            'name' => 'Назва',
+            'short_name' => 'Кароткая назва',
+            'url' => 'URL',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Пароль не павінен змяшчаць імя карыстальніка.',
         'email_already_used' => 'Эл. пошта ўжо выкарыстоўваецца.',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Нельга скардзіцца на ранкаваныя бітмапы',
         'not_in_channel' => 'Вы няма ў гэтым канале.',
+        'in_team' => 'Вы з\'яўляецеся часткай каманды.',
         'reason_not_valid' => ':reason не падыходзіць для дадзенага тыпу дакладу.',
         'self' => "Вы не можаце паскардзіцца на самога сябе!",
     ],

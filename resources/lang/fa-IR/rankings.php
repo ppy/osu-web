@@ -9,6 +9,16 @@ return [
         'title' => '',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'top_10p' => '',
+        'top_50p' => '',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
+    ],
+
     'filter' => [
         'title' => '',
 
@@ -30,11 +40,12 @@ return [
     'type' => [
         'charts' => '',
         'country' => '',
+        'daily_challenge' => '',
+        'global' => '',
         'kudosu' => '',
         'multiplayer' => '',
-        'performance' => '',
-        'score' => '',
         'seasons' => '',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -42,6 +53,9 @@ return [
         'ongoing' => '',
         'room_count' => '',
         'url' => '',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -55,6 +69,8 @@ return [
         'accuracy' => '',
         'active_users' => '',
         'country' => '',
+        'division' => '',
+        'members' => '',
         'play_count' => '',
         'performance' => '',
         'total_score' => '',

@@ -13,14 +13,11 @@ return [
         'blurb' => [
             'important' => 'LISEZ CECI AVANT DE TÉLÉCHARGER',
             'install_instruction' => 'Installation : Une fois qu\'un pack a été téléchargé, extrayez le contenu du pack dans le dossier Songs d\'osu! et le client s\'occupera du reste.',
-            'note' => [
-                '_' => 'Notez aussi qu\'il est recommandé de :scary, car les anciennes beatmaps sont de moins bonne qualité que les nouvelles beatmaps.',
-                'scary' => 'télécharger les beatmaps packs du plus récent au plus ancien',
-            ],
         ],
     ],
 
     'show' => [
+        'created_by' => 'par :author',
         'download' => 'Télécharger',
         'item' => [
             'cleared' => 'terminée',

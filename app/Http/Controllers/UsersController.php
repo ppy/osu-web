@@ -6,7 +6,6 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Exceptions\UserProfilePageLookupException;
 use App\Exceptions\ValidationException;
 use App\Http\Middleware\RequestCost;
 use App\Libraries\ClientCheck;
@@ -18,13 +17,10 @@ use App\Libraries\User\FindForProfilePage;
 use App\Libraries\UserRegistration;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
-use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Log;
-use App\Models\Solo\Score as SoloScore;
 use App\Models\User;
 use App\Models\UserAccountHistory;
-use App\Models\UserNotFound;
 use App\Transformers\CurrentUserTransformer;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
@@ -77,7 +73,6 @@ class UsersController extends Controller
         $this->middleware('guest', ['only' => ['create', 'store', 'storeWeb']]);
         $this->middleware('auth', ['only' => [
             'checkUsernameAvailability',
-            'checkUsernameExists',
             'report',
             'me',
             'posts',
@@ -115,17 +110,6 @@ class UsersController extends Controller
         ], 403);
     }
 
-    public function card($id)
-    {
-        try {
-            $user = FindForProfilePage::find($id, null, false);
-        } catch (UserProfilePageLookupException $e) {
-            $user = UserNotFound::instance();
-        }
-
-        return json_item($user, 'UserCompact', UserCompactTransformer::CARD_INCLUDES);
-    }
-
     public function create()
     {
         if (!$GLOBALS['cfg']['osu']['user']['registration_mode']['web']) {
@@ -157,14 +141,6 @@ class UsersController extends Controller
             'cost' => $cost,
             'costString' => currency($cost),
         ];
-    }
-
-    public function checkUsernameExists()
-    {
-        $username = get_string(request('username'));
-        $user = User::lookup($username, 'username') ?? UserNotFound::instance();
-
-        return json_item($user, 'UserCompact', ['cover', 'country']);
     }
 
     public function extraPages($_id, $page)
@@ -203,11 +179,11 @@ class UsersController extends Controller
                 return [
                     'best' => $this->getExtraSection(
                         'scoresBest',
-                        count($this->user->beatmapBestScoreIds($this->mode, ScoreSearchParams::showLegacyForUser(\Auth::user())))
+                        count($this->user->beatmapBestScoreIds($this->mode))
                     ),
                     'firsts' => $this->getExtraSection(
                         'scoresFirsts',
-                        $this->user->scoresFirst($this->mode, true)->visibleUsers()->count()
+                        $this->user->scoresFirst($this->mode, ScoreSearchParams::showLegacyForUser(\Auth::user()))->count()
                     ),
                     'pinned' => $this->getExtraSection(
                         'scoresPinned',
@@ -556,7 +532,7 @@ class UsersController extends Controller
 
         $perPage = $this->perPage;
 
-        if ($type === 'firsts' || $type === 'pinned') {
+        if (in_array($type, ['best', 'firsts', 'pinned'], true)) {
             // Override per page restriction in parsePaginationParams to allow infinite paging
             $perPage = $this->sanitizedLimitParam();
         }
@@ -603,6 +579,7 @@ class UsersController extends Controller
             $user,
             (new UserTransformer())->setMode($currentMode),
             [
+                'session_verification_method',
                 'session_verified',
                 ...$this->showUserIncludes(),
                 ...array_map(
@@ -657,10 +634,10 @@ class UsersController extends Controller
      * - support_level
      * - user_achievements
      *
-     * @urlParam user integer required Id or username of the user. Id lookup is prioritised unless `key` parameter is specified. Previous usernames are also checked in some cases. Example: 1
+     * @urlParam user integer required Id or `@`-prefixed username of the user. Previous usernames are also checked in some cases. Example: 1
      * @urlParam mode string [Ruleset](#ruleset). User default mode will be used if not specified. Example: osu
      *
-     * @queryParam key Type of `user` passed in url parameter. Can be either `id` or `username` to limit lookup by their respective type. Passing empty or invalid value will result in id lookup followed by username lookup if not found.
+     * @queryParam key Type of `user` passed in url parameter. Can be either `id` or `username` to limit lookup by their respective type. Passing empty or invalid value will result in id lookup followed by username lookup if not found. This parameter has been deprecated. Prefix `user` parameter with `@` instead to lookup by username.
      *
      * @response "See User object section"
      */
@@ -752,7 +729,7 @@ class UsersController extends Controller
 
     private function sanitizedLimitParam()
     {
-        return clamp(get_int(request('limit')) ?? 5, 1, 100);
+        return \Number::clamp(get_int(request('limit')) ?? 5, 1, 100);
     }
 
     private function getExtra($page, array $options, int $perPage = 10, int $offset = 0)
@@ -815,7 +792,7 @@ class UsersController extends Controller
             // Event
             case 'recentActivity':
                 $transformer = 'Event';
-                $query = $this->user->events()->recent();
+                $query = $this->user->events()->recent(ScoreSearchParams::showLegacyForUser(\Auth::user()));
                 break;
 
             // KudosuHistory
@@ -837,23 +814,23 @@ class UsersController extends Controller
                     $this->mode,
                     $perPage,
                     $offset,
-                    ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD,
-                    ScoreSearchParams::showLegacyForUser(\Auth::user()),
+                    ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD
                 );
                 $userRelationColumn = 'user';
                 break;
             case 'scoresFirsts':
                 $transformer = new ScoreTransformer();
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                $scoreQuery = $this->user->scoresFirst($this->mode, true)->unorder();
-                $userFirstsQuery = $scoreQuery->select($scoreQuery->qualifyColumn('score_id'));
-                $query = SoloScore
-                    ::whereIn('legacy_score_id', $userFirstsQuery)
-                    ->where('ruleset_id', Beatmap::MODES[$this->mode])
-                    ->default()
-                    ->reorderBy('id', 'desc')
-                    ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
+                $query = $this
+                    ->user
+                    ->scoresFirst($this->mode, ScoreSearchParams::showLegacyForUser(\Auth::user()))
+                    ->with(array_map(
+                        fn ($include) => "score.{$include}",
+                        ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD,
+                    ))
+                    ->orderByDesc('score_id');
                 $userRelationColumn = 'user';
+                $collectionFn = fn ($scoreFirst) => $scoreFirst->map->score;
                 break;
             case 'scoresPinned':
                 $transformer = new ScoreTransformer();
@@ -945,6 +922,8 @@ class UsersController extends Controller
         $userIncludes = [
             ...UserTransformer::PROFILE_HEADER_INCLUDES,
             'account_history',
+            'current_season_stats',
+            'daily_challenge_user_stats',
             'page',
             'pending_beatmapset_count',
             'rank_highest',
@@ -953,6 +932,7 @@ class UsersController extends Controller
             'statistics.country_rank',
             'statistics.rank',
             'statistics.variants',
+            'team',
             'user_achievements',
         ];
 
@@ -1004,9 +984,8 @@ class UsersController extends Controller
             'username',
         ], ['null_missing' => true]);
         $countryCode = request_country();
-        $country = Country::find($countryCode);
         $params['user_ip'] = $ip;
-        $params['country_acronym'] = $country === null ? '' : $country->getKey();
+        $params['country_acronym'] = $countryCode;
         $params['user_lang'] = \App::getLocale();
 
         $registration = new UserRegistration($params);
@@ -1030,7 +1009,11 @@ class UsersController extends Controller
             $user = $registration->user();
 
             // report unknown country code but ignore non-country from cloudflare
-            if ($countryCode !== null && $country === null && $countryCode !== 'T1') {
+            if (
+                $countryCode !== null
+                && $countryCode !== 'T1'
+                && app('countries')->byCode($countryCode) === null
+            ) {
                 app('sentry')->getClient()->captureMessage(
                     'User registered from unknown country',
                     null,

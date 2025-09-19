@@ -7,7 +7,7 @@
 ])
 
 @section("content")
-    <div class="js-react--chat osu-layout osu-layout--full"></div>
+    <div class="js-react--chat u-contents"></div>
 @endsection
 
 @section("script")

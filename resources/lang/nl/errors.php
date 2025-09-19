@@ -7,6 +7,7 @@ return [
     'load_failed' => 'Laden van gegevens mislukt.',
     'missing_route' => 'Ongeldige Url of onjuiste aanvraagmethode.',
     'no_restricted_access' => 'Je mag dit niet doen terwijl je account beperkt is.',
+    'param_too_large' => '',
     'supporter_only' => 'Je moet een supporter zijn om dit te gebruiken.',
     'unknown' => 'Een onbekende fout trad op.',
 
@@ -28,9 +29,15 @@ return [
     'checkout' => [
         'generic' => 'Er is een fout opgetreden tijdens het voorbereiden voor het afrekenen.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Kan geen resultaten krijgen, probeer het later opnieuw.',
         'invalid_cursor_exception' => 'Ongeldige cursorwaarde opgegeven.',
         'operation_timeout_exception' => 'Zoeken is momenteel drukker dan gebruikelijk, probeer het later opnieuw.',
+    ],
+    'user_report' => [
+        'recently_reported' => "",
     ],
 ];

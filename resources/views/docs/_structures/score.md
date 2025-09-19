@@ -2,35 +2,37 @@
 
 The following is the format returned when API v2 version header is 20220705 or higher. Exceptions apply (f.ex. doesn't apply for legacy match score).
 
-Field              | Type                     | Description
------------------- | ------------------------ | -----------
-accuracy           | float                    | |
-beatmap_id         | integer                  | |
-best_id            | integer?                 | |
-build_id           | integer?                 | |
-ended_at           | [Timestamp](#timestamp)  | |
-has_replay         | boolean                  | |
-id                 | integer                  | |
-is_perfect_combo   | boolean                  | |
-legacy_perfect     | boolean                  | |
-legacy_score_id    | integer?                 | |
-legacy_total_score | integer                  | |
-max_combo          | integer                  | |
-maximum_statistics | ScoreStatistics?         | |
-mods               | Mod[]                    | |
-passed             | boolean                  | |
-playlist_item_id   | integer                  | Only for multiplayer score
-pp                 | float?                   | |
-preserve           | boolean                  | Whether or not the score may eventually be deleted. Only for `solo_score` type
-rank               | string                   | |
-ranked             | boolean                  | Whether or not the score can have pp. Only for `solo_score` type
-room_id            | integer                  | Only for multiplayer score
-ruleset_id         | integer                  | |
-started_at         | [Timestamp](#timestamp)? | |
-statistics         | ScoreStatistics          | |
-total_score        | integer                  | |
-type               | string                   | |
-user_id            | integer                  | |
+Field               | Type                     | Description
+------------------- | ------------------------ | -----------
+accuracy            | float                    | |
+beatmap_id          | integer                  | |
+best_id             | integer?                 | |
+build_id            | integer?                 | |
+classic_total_score | integer                  | Only for `solo_score` type
+ended_at            | [Timestamp](#timestamp)  | |
+has_replay          | boolean                  | |
+id                  | integer                  | |
+is_perfect_combo    | boolean                  | |
+legacy_perfect      | boolean                  | |
+legacy_score_id     | integer?                 | |
+legacy_total_score  | integer                  | |
+max_combo           | integer                  | |
+maximum_statistics  | ScoreStatistics          | |
+mods                | Mod[]                    | |
+passed              | boolean                  | |
+playlist_item_id    | integer                  | Only for multiplayer score
+pp                  | float?                   | |
+preserve            | boolean                  | Whether or not the score may eventually be deleted. Only for `solo_score` type
+processed           | boolean                  | Only for `solo_score` type
+rank                | string                   | |
+ranked              | boolean                  | Whether or not the score can have pp. Only for `solo_score` type
+room_id             | integer                  | Only for multiplayer score
+ruleset_id          | integer                  | |
+started_at          | [Timestamp](#timestamp)? | |
+statistics          | ScoreStatistics          | |
+total_score         | integer                  | |
+type                | string                   | |
+user_id             | integer                  | |
 
 ### Initial version
 

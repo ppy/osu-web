@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Du måste ange en poäng på en beatmap för att lägga till en tagg.',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Denna kanal är endast för notiser.',
         'blocked' => 'Kan inte skicka meddelanden till en användare som blockerar dig eller som du har blockerat.',
         'friends_only' => 'Användaren blockerar meddelanden från personer som inte finns på sin vänlista.',
         'moderated' => 'Den kanalen är för närvarande modererad.',
         'no_access' => 'Du har ingen behörighet till denna kanalen.',
+        'no_announce' => 'Du har inte behörighet för att lägga upp meddelande.',
         'receive_friends_only' => 'Användaren kanske inte kan svara eftersom du bara accepterar meddelanden från personer på din vänlista.',
         'restricted' => 'Du kan inte skicka meddelanden medan du är tystad, begränsad eller bannad.',
         'silenced' => 'Du kan inte skicka meddelanden medan du är tystad, begränsad eller bannad.',
@@ -107,6 +113,7 @@ return [
                 'deleted' => 'Kan ej redigera borttagna inlägg.',
                 'locked' => 'Inlägget är låst för redigering.',
                 'no_forum_access' => 'Åtkomst till begärt forum behövs.',
+                'no_permission' => '',
                 'not_owner' => 'Endast avsändaren kan redigera inlägget.',
                 'topic_locked' => 'Kan ej redigera inlägg med ett låst ämne.',
             ],
@@ -170,12 +177,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Bara rum ägare kan stänga det.',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Kan inte fästa den här typen av poäng",
-            'failed' => "",
+            'failed' => "Kan inte fästa icke-passerande poäng.",
             'not_owner' => 'Endast resultatägaren kan fästa resultat.',
             'too_many' => 'Fäst för många resultat.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "Du är redan med i laget.",
+                'already_other_member' => "Du är redan med i ett annat lag.",
+                'currently_applying' => 'Du har en väntande lag inbjudan.',
+                'team_closed' => 'Laget accepterar inte några anslutningsbegäranden just nu.',
+                'team_full' => "Laget är fullt och kan inte acceptera flera medlemmar.",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "Lagledare kan inte lämna laget.",
+            'not_member' => 'Inte en medlem i laget.',
+        ],
+        'store' => [
+            'require_supporter_tag' => 'osu!supporter tag krävs för att skapa ett lag.',
         ],
     ],
 

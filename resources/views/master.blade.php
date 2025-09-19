@@ -26,19 +26,21 @@
 
     $title = '';
     foreach ($titleTree as $i => $titlePart) {
-        $title .= e($titlePart);
+        // Reset text direction (202c = reset, 202d = force ltr).
+        $title .= e($titlePart)."\u{202c}";
 
         if ($i + 1 === count($titleTree)) {
             // Titles ending with phrase containing "osu!" like "osu!store" don't need the suffix.
             if (strpos($titlePart, 'osu!') === false) {
-                $title .= ' | osu!';
+                $title .= " | \u{202d}osu!\u{202c}";
             }
         } else {
             $title .= ' · ';
         }
     }
 
-    $currentHue = $currentHue ?? section_to_hue_map($currentSection);
+    $defaultHue = section_to_hue_map($currentSection);
+    $currentHue ??= $defaultHue;
 
     $navLinks ??= nav_links();
     $currentLocaleMeta ??= current_locale_meta();
@@ -48,6 +50,7 @@
     <head>
         @include("layout.metadata")
         <title>{!! $title !!}</title>
+        <base href="{{ Request::getSchemeAndHttpHost().Request::getRequestUri() }}" />
     </head>
 
     <body
@@ -56,12 +59,8 @@
             {{ class_with_modifiers('osu-layout', 'body', ['body-lazer' => !$legacyScoreMode]) }}
             {{ $bodyAdditionalClasses ?? '' }}
         "
+        style="--base-hue-default: {{ $defaultHue }}; --base-hue-override: {{ $currentHue }}"
     >
-        <style>
-            :root {
-                --base-hue: {{ $currentHue }};
-            }
-        </style>
         <div id="overlay" class="blackout blackout--overlay" style="display: none;"></div>
         <div class="blackout js-blackout" data-visibility="hidden"></div>
 
@@ -117,7 +116,7 @@
             </div>
         </div>
 
-        <div id="main-player" class="audio-player-floating" data-turbolinks-permanent>
+        <div id="main-player" class="audio-player-floating" data-turbo-permanent>
             <div class="js-audio--main"></div>
             <div class="js-sync-height--target" data-sync-height-id="permanent-fixed-footer"></div>
         </div>
@@ -127,12 +126,13 @@
             - less/bem/estimate-min-lines.less (styling)
             - views/master.blade.php (placeholder)
         --}}
-        <div id="estimate-min-lines" class="estimate-min-lines" data-turbolinks-permanent>
+        <div id="estimate-min-lines" class="estimate-min-lines" data-turbo-permanent>
             <div class="estimate-min-lines__content js-estimate-min-lines"></div>
         </div>
         @include("layout._global_variables")
         @include('layout._loading_overlay')
         @include('layout.popup-container')
+        @include('layout._user_verification_popup')
 
         <script id="json-route-section" type="application/json">
             {!! json_encode($currentRoute) !!}

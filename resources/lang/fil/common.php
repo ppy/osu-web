@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Admin',
         'authorise' => 'Pahintulutan',
         'authorising' => 'Pinapahintulutan...',
+        'back' => '',
         'back_to_previous' => 'Bumalik sa nakaraang posisyon',
         'back_to_top' => 'Balik sa itaas',
         'cancel' => 'Kansel',
@@ -39,7 +39,7 @@ return [
         'pin' => 'aspile',
         'post' => 'Post',
         'read_more' => 'magbasa pa',
-        'refresh' => '',
+        'refresh' => 'I-refresh',
         'reply' => 'Sumagot',
         'reply_reopen' => 'Sagutin at Muling Buksan',
         'reply_resolve' => 'Sagutin at Lutasin',
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => '',
+        ],
+        'year' => [
+            'php' => '',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

@@ -40,13 +40,14 @@
   }
 
   .qtip--user-card & {
-    width: @user-card-width;
+    width: @user-card-width + 10px;
   }
 
   &--has-outline::after {
-    .@{top}:hover&, .@{top}--active& {
+    .@{top}:hover&,
+    .@{top}--active& {
       .full-size();
-      content: '';
+      content: "";
       border: 2px solid @osu-colour-l1;
       border-radius: @card-border-radius;
       pointer-events: none;
@@ -80,7 +81,7 @@
     }
 
     .@{top}--list & {
-      border-radius: @avatar-border-radius 0 0 @avatar-border-radius
+      border-radius: @avatar-border-radius 0 0 @avatar-border-radius;
     }
   }
 

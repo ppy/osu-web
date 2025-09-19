@@ -1,15 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { FormWithErrors } from 'components/input-container';
 import UserJson from 'interfaces/user-json';
-import { route } from 'laroute';
-import { debounce } from 'lodash';
-import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
-import core from 'osu-core-singleton';
-import { onError } from 'utils/ajax';
-import { uuid } from 'utils/seq';
-import { presence, present } from 'utils/string';
+import { action, autorun, computed, makeObservable, observable } from 'mobx';
+import { present } from 'utils/string';
+import { v4 as uuidv4 } from 'uuid';
 import { maxMessageLength } from './channel';
 
 interface LocalStorageProps extends Record<InputKey, string> {
@@ -25,23 +20,21 @@ export const maxLengths = Object.freeze({
   description: 255,
   message: maxMessageLength,
   name: 50,
+  users: undefined,
 });
 
 export function isInputKey(key: string): key is InputKey {
-  return (inputKeys as Readonly<string[]>).includes(key);
+  return (inputKeys as readonly string[]).includes(key);
 }
 
 // This class is owned by ChatStateStore
-export default class CreateAnnouncement implements FormWithErrors<InputKey> {
+export default class CreateAnnouncement {
   @observable inputs: Record<InputKey, string>;
-  @observable lookingUpUsers = false;
   @observable showError: Record<InputKey, boolean>;
   @observable validUsers = new Map<number, UserJson>();
 
-  private readonly debouncedLookupUsers = debounce(() => this.lookupUsers(), 1000);
   private initialized = false;
-  private readonly uuid = uuid();
-  private xhrLookupUsers?: JQuery.jqXHR<{ users: UserJson[] }>;
+  private readonly uuid = uuidv4();
 
   @computed
   get errors() {
@@ -59,6 +52,13 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
     return !Object.values(this.errors).some(Boolean);
   }
 
+  get propsForUsernameInput() {
+    return {
+      initialUsers: [...this.validUsers.values()],
+      initialValue: this.inputs.users,
+    };
+  }
+
   constructor() {
     this.inputs = this.resetInputs();
     this.showError = this.resetErrors();
@@ -68,8 +68,6 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
 
   @action
   clear() {
-    this.xhrLookupUsers?.abort();
-    this.lookingUpUsers = false;
     this.resetErrors();
     this.resetInputs();
     this.validUsers.clear();
@@ -86,23 +84,11 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
         // TODO: validate props
         const json = JSON.parse(saved) as LocalStorageProps;
 
-        const userIds: (string | number)[] = [];
-        if (json.validUsers.length > 0) {
-          userIds.push(...json.validUsers);
-        }
-
-        if (present(json.users.trim())) {
-          userIds.push(...json.users.split(','));
-        }
-
         this.inputs.description = json.description;
         this.inputs.message = json.message;
         this.inputs.name = json.name;
-
-        if (userIds.length > 0) {
-          this.updateUsers(userIds.join(','), true);
-        }
-      } catch (error) {
+        this.inputs.users = [...json.validUsers, json.users].join(',');
+      } catch (_error) {
         console.error('invalid json in localStorage');
         localStorage.removeItem(localStorageKey);
       }
@@ -121,6 +107,15 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
     this.initialized = true;
   }
 
+  inputContainerPropsFor(name: InputKey) {
+    return {
+      hasError: this.errors[name],
+      input: this.inputs[name],
+      maxLength: maxLengths[name],
+      showError: this.showError[name],
+    };
+  }
+
   toJson() {
     const { description, message, name } = this.inputs;
 
@@ -133,79 +128,8 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
     };
   }
 
-  @action
-  updateUsers(text: string, immediate: boolean) {
-    this.debouncedLookupUsers.cancel();
-    this.inputs.users = text;
-
-    // TODO: check if change is only whitespace.
-    if (text.trim().length === 0) {
-      this.xhrLookupUsers?.abort();
-      this.lookingUpUsers = false;
-
-      return;
-    }
-
-    // spinner should trigger even before request is sent.
-    this.lookingUpUsers = true;
-    this.debouncedLookupUsers();
-
-    if (immediate) {
-      this.debouncedLookupUsers.flush();
-    }
-  }
-
-  /**
-   * Disassembles and extract valid users from the string.
-   */
-  @action
-  private extractValidUsers(users: UserJson[]) {
-    const userIds = this.inputs.users.split(',');
-
-    for (const user of users) {
-      this.validUsers.set(user.id, user);
-    }
-
-    const invalidUsers: string[] = [];
-
-    for (const userId of userIds) {
-      const trimmedUserId = presence(userId.trim());
-
-      if (!this.validUsersContains(trimmedUserId)) {
-        invalidUsers.push(userId);
-      }
-    }
-
-    this.inputs.users = invalidUsers.join(',');
-
-    // current user is implicit, always remove.
-    this.validUsers.delete(core.currentUserOrFail.id);
-  }
-
   private isValidLength(key: Exclude<InputKey, 'users'>, allowEmpty = false) {
     return (allowEmpty || present(this.inputs[key])) && this.inputs[key].length <= maxLengths[key];
-  }
-
-  @action
-  private async lookupUsers() {
-    this.xhrLookupUsers?.abort();
-    this.debouncedLookupUsers.cancel();
-
-    const userIds = this.inputs.users.split(',').map((s) => presence(s.trim())).filter(Boolean);
-    if (userIds.length === 0) {
-      this.lookingUpUsers = false;
-      return;
-    }
-
-    try {
-      this.xhrLookupUsers = $.getJSON(route('chat.users.index'), { ids: userIds });
-      const response = await this.xhrLookupUsers;
-      this.extractValidUsers(response.users);
-    } catch (error) {
-      onError(error);
-    } finally {
-      runInAction(() => this.lookingUpUsers = false);
-    }
   }
 
   @action
@@ -226,13 +150,5 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
       name: '',
       users: '',
     };
-  }
-
-  private validUsersContains(userId?: string | null) {
-    if (userId == null) return false;
-
-    return this.validUsers.has(Number(userId))
-      // maybe it's a username
-      || [...this.validUsers.values()].some((user) => user.username.toLowerCase() === userId.toLowerCase());
   }
 }

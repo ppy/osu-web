@@ -34,6 +34,11 @@ return [
         'title' => 'Report :username\'s score?',
     ],
 
+    'team' => [
+        'button' => 'Report Team',
+        'title' => 'Report :username\'s team?',
+    ],
+
     'user' => [
         'button' => 'Report',
         'title' => 'Report :username?',

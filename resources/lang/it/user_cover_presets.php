@@ -5,8 +5,8 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Disabilita selezionati',
+        'batch_enable' => 'Abilita selezionati',
 
         'batch_confirm' => [
             '_' => ':action :items?',
@@ -27,11 +27,11 @@ return [
             'enabled' => 'Abilitato',
             'disabled' => 'Disabilitato',
             'image_store' => 'Imposta Immagine',
-            'image_update' => '',
+            'image_update' => 'Sostituisci Immagine',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'Errore nella creazione della copertina: :error',
+        'ok' => 'Copertine create',
     ],
 ];

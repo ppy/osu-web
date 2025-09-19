@@ -15,19 +15,22 @@ return [
         'winner_by' => '',
 
         'events' => [
-            'player-left' => ':user je napustio/la utakmicu',
-            'player-joined' => ':user se pridružio/la utakmici',
-            'player-kicked' => ':user je izbačen/a s utakmice',
-            'match-created' => ':user je stvorio utakmicu',
-            'match-disbanded' => 'utakmica je prekinuta',
-            'host-changed' => ':user je postao/la domaćin',
-
-            'player-left-no-user' => 'igrač je napustio utakmicu',
-            'player-joined-no-user' => 'igrač se pridružio utakmici',
-            'player-kicked-no-user' => 'igrač je izbačen s utakmice',
-            'match-created-no-user' => 'utakmica je stvorena',
-            'match-disbanded-no-user' => 'utakmica je prekinuta',
-            'host-changed-no-user' => 'domaćin je promijenjen',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Glava uz glavu',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => 'Najviši bodovi',
             'accuracy' => 'Najveća preciznost',

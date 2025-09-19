@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Admin',
         'authorise' => 'Auktorisera',
         'authorising' => 'Auktoriserar...',
+        'back' => 'Tillbaka',
         'back_to_previous' => 'Återgå till tidigare position',
         'back_to_top' => 'Tillbaka till toppen',
         'cancel' => 'Avbryt',
@@ -39,7 +39,7 @@ return [
         'pin' => 'fäst',
         'post' => 'Lägg upp',
         'read_more' => 'läs mer',
-        'refresh' => '',
+        'refresh' => 'Ladda om',
         'reply' => 'Svara',
         'reply_reopen' => 'Svara och öppna igen',
         'reply_resolve' => 'Svara och lös',
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => '',
+        ],
+        'year' => [
+            'php' => '',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

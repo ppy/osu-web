@@ -5,15 +5,16 @@
 
 return [
     'mode' => [
+        'artist_track' => '',
         'beatmapset' => 'Beatmapa',
         'forum_post' => 'Fórum',
         'other' => 'Ostatné',
+        'team' => '',
         'user' => 'Hráč',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => 'Bez výsledkov',
         'empty_for' => '',
         'more' => '',
         'title' => '',

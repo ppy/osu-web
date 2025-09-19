@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => 'Active',
+            'ended' => 'Ended',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Beatmaps: :counts',
         'modding_description_empty' => 'User doesn\'t have any beatmaps...',
@@ -159,14 +166,24 @@ return [
             'cancel' => 'Cancel',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => 'Please report copyright infringement through a DMCA claim to :mail as per :policy.',
+                'policy' => 'the osu! copyright policy',
+            ],
+            'message_2' => 'This applies to cases where audio tracks, visual content or beatmap level content is used without correct permission.',
+        ],
+
         'options' => [
             'cheating' => 'Cheating',
-            'multiple_accounts' => 'Using multiple accounts',
+            'copyright_infringement' => 'Copyright infringement',
+            'inappropriate_chat' => 'Inappropriate chat behaviour',
             'insults' => 'Insulting me / others',
-            'spam' => 'Spamming',
-            'unwanted_content' => 'Linking inappropriate content',
+            'multiple_accounts' => 'Using multiple accounts',
             'nonsense' => 'Nonsense',
             'other' => 'Other (type below)',
+            'spam' => 'Spamming',
+            'unwanted_content' => 'Inappropriate content',
         ],
     ],
     'restricted_banner' => [
@@ -196,18 +213,36 @@ return [
             'to_0' => 'Hide cover',
             'to_1' => 'Show cover',
         ],
+        'daily_challenge' => [
+            'daily' => 'Daily Streak',
+            'daily_streak_best' => 'Best Daily Streak',
+            'daily_streak_current' => 'Current Daily Streak',
+            'playcount' => 'Total Participation',
+            'title' => 'Daily\nChallenge',
+            'top_10p_placements' => 'Top 10% Placements',
+            'top_50p_placements' => 'Top 50% Placements',
+            'weekly' => 'Weekly Streak',
+            'weekly_streak_best' => 'Best Weekly Streak',
+            'weekly_streak_current' => 'Current Weekly Streak',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Change Profile Cover',
                 'defaults_info' => 'More cover options will be available in the future',
                 'holdover_remove_confirm' => "The previously selected cover is not available for selection anymore. You can't select it back after switching to a different cover. Proceed?",
+                'title' => 'Cover',
 
                 'upload' => [
                     'broken_file' => 'Failed processing image. Verify uploaded image and try again.',
                     'button' => 'Upload image',
                     'dropzone' => 'Drop here to upload',
                     'dropzone_info' => 'You can also drop your image here to upload',
-                    'size_info' => 'Cover size should be 2400x640',
+                    'size_info' => 'Cover size should be 2000x500',
                     'too_large' => 'Uploaded file is too large.',
                     'unsupported_format' => 'Unsupported format.',
 
@@ -221,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'default game mode',
                 'set' => 'set :mode as profile default game mode',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Reset colour to default? Supporter tag will be required to change it to a different colour.',
+                'title' => 'Colour',
+
+                'supporter' => [
+                    '_' => 'Custom colour themes available for :link only',
+                    'link' => 'osu!supporters',
+                ],
             ],
         ],
 
@@ -451,8 +496,13 @@ return [
             'global_simple' => 'Global Ranking',
             'highest' => 'Highest rank: :rank on :date',
         ],
+        'season_stats' => [
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Total score',
+        ],
         'stats' => [
             'hit_accuracy' => 'Hit Accuracy',
+            'hits_per_play' => 'Hits Per Play',
             'level' => 'Level :level',
             'level_progress' => 'progress to next level',
             'maximum_combo' => 'Maximum Combo',

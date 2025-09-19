@@ -35,16 +35,16 @@ return [
         'banner_text' => 'Ten użytkownik został zablokowany.',
         'comment_text' => 'Ten komentarz został ukryty.',
         'blocked_count' => 'zablokowani użytkownicy (:count)',
-        'hide_profile' => 'ukryj profil',
+        'hide_profile' => 'Ukryj profil',
         'hide_comment' => 'ukryj',
         'forum_post_text' => 'Ten post został ukryty.',
         'not_blocked' => 'Ten użytkownik nie jest zablokowany.',
-        'show_profile' => 'pokaż profil',
+        'show_profile' => 'Pokaż profil',
         'show_comment' => 'pokaż',
         'too_many' => 'Osiągnięto limit zablokowanych użytkowników.',
         'button' => [
-            'block' => 'zablokuj',
-            'unblock' => 'odblokuj',
+            'block' => 'Zablokuj',
+            'unblock' => 'Odblokuj',
         ],
     ],
 
@@ -97,8 +97,8 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "Twoje konto nie było aktywne przez długi czas.",
-            'inactive_different_country' => "Brak aktywności przez długi czas.",
+            'inactive' => "Twoje konto nie było aktywne od dłuższego czasu.",
+            'inactive_different_country' => "Twoje konto nie było aktywne od dłuższego czasu.",
         ],
     ],
 
@@ -114,7 +114,7 @@ return [
         'locked_ip' => 'Twój adres IP został zablokowany. Poczekaj kilka minut.',
         'password' => 'Hasło',
         'register' => "Nie posiadasz konta osu!? Utwórz nowe.",
-        'remember' => 'Zapamiętaj ten komputer',
+        'remember' => 'Zapamiętaj to urządzenie',
         'title' => 'Zaloguj się, aby kontynuować',
         'username' => 'Nazwa użytkownika',
 
@@ -124,15 +124,21 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => 'Aktywne',
+            'ended' => 'Zakończone',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Beatmapy: :counts',
-        'modding_description_empty' => 'Użytkownik nie posiada beatmap...',
+        'modding_description_empty' => 'Użytkownik nie posiada żadnych beatmap...',
 
         'description' => [
             '_' => 'Pozycja w rankingu (:ruleset): :global | :country',
-            'country' => 'Krajowy :rank',
-            'global' => 'Globalny :rank
-',
+            'country' => ':rank (krajowy)',
+            'global' => ':rank (globalny)',
         ],
     ],
 
@@ -153,21 +159,31 @@ return [
         'placeholder' => 'Podaj wszystkie informacje, które mogą okazać się przydatne.',
         'reason' => 'Powód',
         'thanks' => 'Dziękujemy za zgłoszenie!',
-        'title' => 'Zgłosić gracza :username?',
+        'title' => 'Zgłosić użytkownika :username?',
 
         'actions' => [
             'send' => 'Wyślij zgłoszenie',
             'cancel' => 'Anuluj',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => 'Zgodnie z :policy, naruszenia praw autorskich należy składać poprzez zgłoszenia DMCA na adres e-mail :mail.',
+                'policy' => 'polityką praw autorskich osu!',
+            ],
+            'message_2' => 'Dotyczy to nieuprawnionego wykorzystania treści wizualnych i muzycznych oraz zawartości beatmap.',
+        ],
+
         'options' => [
             'cheating' => 'Oszukiwanie',
-            'multiple_accounts' => 'Korzystanie z wielu kont',
+            'copyright_infringement' => 'Naruszenie praw autorskich',
+            'inappropriate_chat' => 'Nieodpowiednie zachowanie na czacie',
             'insults' => 'Obrażanie mnie lub innych',
-            'spam' => 'Spamowanie',
-            'unwanted_content' => 'Zamieszczanie nieodpowiednich treści',
+            'multiple_accounts' => 'Korzystanie z wielu kont',
             'nonsense' => 'Pisanie bez sensu',
             'other' => 'Inny (napisz poniżej)',
+            'spam' => 'Spamowanie',
+            'unwanted_content' => 'Zamieszczanie nieodpowiednich treści',
         ],
     ],
     'restricted_banner' => [
@@ -197,16 +213,36 @@ return [
             'to_0' => 'Ukryj tło',
             'to_1' => 'Pokaż tło',
         ],
+        'daily_challenge' => [
+            'daily' => 'Dzienna passa',
+            'daily_streak_best' => 'Najlepsza dzienna passa',
+            'daily_streak_current' => 'Aktualna dzienna passa',
+            'playcount' => 'Łączne uczestnictwo',
+            'title' => 'Wyzwanie dnia',
+            'top_10p_placements' => 'Wyniki powyżej 90. percentyla',
+            'top_50p_placements' => 'Wyniki powyżej 50. percentyla',
+            'weekly' => 'Tygodniowa passa',
+            'weekly_streak_best' => 'Najlepsza tygodniowa passa',
+            'weekly_streak_current' => 'Aktualna tygodniowa passa',
+
+            'unit' => [
+                'day' => ':value d',
+                'week' => ':value tyg.',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Zmień tło profilu',
                 'defaults_info' => 'Więcej teł pojawi się w przyszłości',
+                'holdover_remove_confirm' => "Aktualnie wybrane tło nie będzie mogło zostać wybrane ponownie. Czy na pewno chcesz je zmienić?",
+                'title' => 'Tło',
+
                 'upload' => [
                     'broken_file' => 'Nie udało się przetworzyć pliku. Zweryfikuj plik i spróbuj ponownie.',
                     'button' => 'Dodaj tło',
                     'dropzone' => 'Upuść tutaj, aby dodać',
                     'dropzone_info' => 'Możesz także upuścić swoje tło tutaj, aby je dodać',
-                    'size_info' => 'Rozmiary tła powinny wynosić przynajmniej 2400x640',
+                    'size_info' => 'Rozdzielczość tła powinna wynosić przynajmniej 2000x500',
                     'too_large' => 'Plik jest zbyt duży.',
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
 
@@ -221,6 +257,16 @@ return [
                 'is_default_tooltip' => 'domyślny tryb gry',
                 'set' => 'ustaw :mode jako domyślny tryb gry',
             ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Czy na pewno chcesz przywrócić domyślny kolor profilu? Ponowna zmiana koloru będzie wymagała aktywnego statusu donatora osu!.',
+                'title' => 'Kolor',
+
+                'supporter' => [
+                    '_' => 'Zmiana koloru profilu wymaga aktywnego statusu :link',
+                    'link' => 'donatora osu!',
+                ],
+            ],
         ],
 
         'extra' => [
@@ -230,7 +276,7 @@ return [
             'achievements' => [
                 'achieved-on' => 'Odblokowane dnia :date',
                 'locked' => 'Zablokowane',
-                'title' => 'Osiągnięcia',
+                'title' => 'Medale',
             ],
             'beatmaps' => [
                 'by_artist' => 'autorstwa :artist',
@@ -326,7 +372,7 @@ return [
                     ],
 
                     'forum_post' => [
-                        'give' => 'Otrzymano :amount od :giver za post na :post',
+                        'give' => 'Otrzymano :amount od :giver za post :post',
                         'reset' => 'Zresetowano kudosu przez :giver za post :post',
                         'revoke' => 'Odebrano kudosu przez :giver za post :post',
                     ],
@@ -450,8 +496,13 @@ return [
             'global_simple' => 'Ranking globalny',
             'highest' => 'Najwyższa pozycja: :rank (osiągnięta :date)',
         ],
+        'season_stats' => [
+            'division_top_percentage' => 'Wśród :value najlepszych',
+            'total_score' => 'Łączny wynik',
+        ],
         'stats' => [
             'hit_accuracy' => 'Celność',
+            'hits_per_play' => 'Liczba uderzeń na zagranie',
             'level' => 'Poziom :level',
             'level_progress' => 'postęp do następnego poziomu',
             'maximum_combo' => 'Maksymalne combo',
@@ -484,7 +535,7 @@ return [
     'store' => [
         'from_client' => 'zarejestruj się poprzez klient gry!',
         'from_web' => 'ukończ proces rejestracji poprzez stronę osu!',
-        'saved' => 'Użytkownik utworzony',
+        'saved' => 'Utworzono użytkownika',
     ],
     'verify' => [
         'title' => 'Weryfikacja konta',

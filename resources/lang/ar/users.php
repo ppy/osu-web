@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "لم تستعمل حسابك منذ وقتِِ طويل.",
             'inactive_different_country' => "لم تستعمل حسابك منذ وقتِِ طويل.",
         ],
     ],
@@ -121,6 +121,13 @@ return [
         'beta' => [
             'main' => 'وصول البيتا مقيد حالياََ للمستخدمين ذوي الاِمتيازات فقط.',
             'small' => '(سوف يحصل عليه osu!supporters قريبا)',
+        ],
+    ],
+
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
         ],
     ],
 
@@ -159,14 +166,24 @@ return [
             'cancel' => 'إلغاء',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'لعب مؤذي/ غش',
-            'multiple_accounts' => 'استخدام حسابات متعددة',
+            'copyright_infringement' => '',
+            'inappropriate_chat' => '',
             'insults' => 'اهانتي / اهانة الاخرين',
-            'spam' => 'سبام',
-            'unwanted_content' => 'ربط عن محتوى غير لائق',
+            'multiple_accounts' => 'استخدام حسابات متعددة',
             'nonsense' => 'هُراء',
             'other' => 'أخرى (اكتب أدناه)',
+            'spam' => 'سبام',
+            'unwanted_content' => 'ربط عن محتوى غير لائق',
         ],
     ],
     'restricted_banner' => [
@@ -196,10 +213,30 @@ return [
             'to_0' => 'إخفاء الغلاف',
             'to_1' => 'إظهار الغلاف',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'playcount' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'تغيير صورة الغلاف',
                 'defaults_info' => 'خيارات اغلفة اضافية ستكون متاحة في المستقبل',
+                'holdover_remove_confirm' => "الغلاف المحدد سابقاً لم يعد متوفّراً ولن تستطيع اختياره مجدداً بعد تغييره. هل تريد المتابعة؟",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'فشلت معالجة الصورة. تحقق من الصورة المرفوعة وحاول مرة أخرى.',
                     'button' => 'رفع صورة',
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'الوضع الافتراضي للعبة',
                 'set' => 'عين :mode كالوضع الافتراضي للعبة',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 
@@ -356,7 +403,7 @@ return [
                 'title' => 'الأخيرة',
             ],
             'realtime' => [
-                'title' => 'ألـ ألعاب الجماعية',
+                'title' => 'الألعاب الجماعية',
             ],
             'top_ranks' => [
                 'download_replay' => 'تحميل الـ Replay',
@@ -449,8 +496,13 @@ return [
             'global_simple' => 'الترتيب العالمي',
             'highest' => 'أعلى ترتيب: :rank في :date',
         ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
+        ],
         'stats' => [
             'hit_accuracy' => 'دقة التصويب',
+            'hits_per_play' => '',
             'level' => 'المستوى :level',
             'level_progress' => 'التقدم للمستوى التالي',
             'maximum_combo' => 'اقصى كومبو',

@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'játék támogatása',
             'testflight' => 'teszt',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'információ',
         ],
         'livestreams_controller' => [
             '_' => 'élő közvetítések',
-        ],
-        'matches_controller' => [
-            '_' => 'találatok',
         ],
         'news_controller' => [
             '_' => 'újdonságok',
@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => 'rangsorok',
         ],
+        'teams_controller' => [
+            '_' => 'csapatok',
+            'create' => 'csapat létrehozása',
+            'edit' => 'csapat beállításai',
+            'leaderboard' => 'csapat ranglista',
+            'show' => 'csapat info',
+        ],
         'tournaments_controller' => [
             '_' => 'bajnokságok',
         ],
@@ -122,6 +129,11 @@ return [
             '_' => 'wiki',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'alkalmazás engedélyezése',
@@ -129,6 +141,11 @@ return [
     ],
     'store' => [
         '_' => 'áruház',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'csapattagok',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

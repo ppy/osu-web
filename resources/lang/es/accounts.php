@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => 'restablecer',
             'rules' => 'Por favor, asegúrate de que tu avatar se adhiera a :link.<br/>Esto significa que debe ser <strong>adecuado para todas las edades</strong>. Es decir, sin desnudez, contenido ofensivo o sugerente.',
             'rules_link' => 'las consideraciones de contenido visual',
         ],
@@ -87,6 +88,7 @@ return [
             'beatmap_owner_change' => 'dificultades de invitados',
             'beatmapset:modding' => 'modding de mapas',
             'channel_message' => 'mensajes de chat privados',
+            'channel_team' => 'mensajes del chat del equipo',
             'comment_new' => 'nuevos comentarios',
             'forum_topic_reply' => 'respuestas a temas',
             'mail' => 'correo',

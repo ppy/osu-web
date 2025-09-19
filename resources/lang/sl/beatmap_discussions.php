@@ -66,6 +66,13 @@ return [
         'version' => 'Težavnost',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Prijavite se, da odgovorite',

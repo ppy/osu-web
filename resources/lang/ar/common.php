@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'المشرف',
         'authorise' => 'استأِذان',
         'authorising' => 'استأِذان...',
+        'back' => '',
         'back_to_previous' => 'العودة إلى الحالة السابقة',
         'back_to_top' => 'العودة إلى الأعلى',
         'cancel' => 'إلغاء',
@@ -39,7 +39,7 @@ return [
         'pin' => 'ثبّت',
         'post' => 'نشر',
         'read_more' => 'إقرأ المزيد',
-        'refresh' => '',
+        'refresh' => 'تحديث',
         'reply' => 'رد',
         'reply_reopen' => 'الرد وإعادة فتح',
         'reply_resolve' => 'الرد والاِصلاح',
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => '',
+        ],
+        'year' => [
+            'php' => '',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

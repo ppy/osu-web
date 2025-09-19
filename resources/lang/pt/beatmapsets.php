@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Abranda, joga mais.',
+        'no_mirrors' => 'Nenhum servidor de transferência disponível.',
     ],
 
     'featured_artist_badge' => [
@@ -40,20 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Os nomeadores novatos não podem nomear vários conjuntos de regras.',
+        'full_nomination_required' => 'Precisas de ser um nomeador efetivo para realizar a nomeação final dum conjunto de regras.',
         'hybrid_requires_modes' => 'Um conjunto de beatmaps híbrido necessita que seleciones pelo menos um modo de jogo para nomear.',
         'incorrect_mode' => 'Não tens permissão de nomear para o modo: :mode',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Este beatmap tem nomeações inválidas e não pode ser qualificado neste estado.',
+        'invalid_ruleset' => 'Esta nomeação tem conjuntos de regras inválidos.',
         'too_many' => 'O requisito de nomeação já foi realizado.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'O requisito de nomeação para o conjunto de regras não principal já foi cumprido.',
 
         'dialog' => [
             'confirmation' => 'Tens a certeza que queres nomear este beatmap?',
+            'different_nominator_warning' => 'Qualificar este beatmaps com nominadores diferentes irá redefinir a tua posição na fila de qualificação.',
             'header' => 'Nomear beatmap',
             'hybrid_warning' => 'nota: poderás apenas nomear uma vez, por isso certifica-te de que estás a nomear para todos os modos de jogo que pretendes',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'O conjunto de regras principal está de momento: :ruleset',
             'which_modes' => 'Nomear para quais modos?',
         ],
     ],
@@ -67,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Ver imagem da capa em tamanho real',
+            'page' => '',
         ],
 
         'deleted_banner' => [
@@ -107,7 +110,7 @@ return [
         ],
 
         'favourites' => [
-            'limit_reached' => 'Tens demasiados beatmaps como favoritos! Por favor remove alguns antes de tentares novamente.',
+            'limit_reached' => 'Tens demasiados beatmaps como favoritos! Remove alguns antes de tentares novamente.',
         ],
 
         'hype' => [
@@ -124,11 +127,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Se encontrares um problema com este beatmap, por favor desqualifica-o :link.',
+                '_' => 'Se encontrares um problema com este beatmap, desqualifica-o :link.',
             ],
 
             'report' => [
-                '_' => 'Se encontrares um problema com este beatmap, por favor transmite-o :link para avisar a equipa.',
+                '_' => 'Se encontrares um problema com este beatmap, denuncia-o :link para avisar a equipa.',
                 'button' => 'Relatar problema',
                 'link' => 'aqui',
             ],
@@ -138,6 +141,7 @@ return [
             'description' => 'Descrição',
             'genre' => 'Género',
             'language' => 'Língua',
+            'mapper_tags' => 'Etiquetas do mapeador',
             'no_scores' => 'Os dados ainda estão a ser calculados...',
             'nominators' => 'Nomeadores',
             'nsfw' => 'Conteúdo explícito',
@@ -146,7 +150,7 @@ return [
             'source' => 'Fonte',
             'storyboard' => 'Este beatmap contém um cenário',
             'success-rate' => 'Taxa de sucesso',
-            'tags' => 'Etiquetas',
+            'user_tags' => 'Etiquetas do utilizador',
             'video' => 'Este beatmap contém vídeo',
         ],
 
@@ -169,6 +173,7 @@ return [
             'global' => 'Classificação global',
             'supporter-link' => 'Clica <a href=":link">aqui</a> para ver todas as funcionalidades extravagantes que obténs!',
             'supporter-only' => 'Precisas de ser um osu!supporter para acederes às classificações de amigos e países!',
+            'team' => 'Classificação da equipa',
             'title' => 'Tabela de pontuações',
 
             'headers' => [
@@ -190,6 +195,7 @@ return [
                 'friend' => 'Ainda nenhum dos teus amigos estabeleceu uma pontuação neste mapa!',
                 'global' => 'Ainda sem pontuações. Talvez deverias estabelecer algumas?',
                 'loading' => 'A carregar pontuações...',
+                'team' => 'Ainda ninguém da tua equipa estabeleceu uma pontuação neste mapa!',
                 'unranked' => 'Beatmap sem classificação.',
             ],
             'score' => [

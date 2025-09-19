@@ -6,6 +6,7 @@
 namespace App\Models\LegacyMatch;
 
 use App\Models\Beatmap;
+use App\Models\Solo\ScoreData;
 use App\Models\Traits\Scoreable;
 
 /**
@@ -25,14 +26,12 @@ use App\Models\Traits\Scoreable;
  * @property mixed $rank
  * @property int $score
  * @property int $slot
- * @property int $team
+ * @property mixed $team
  * @property int $user_id
  */
 class Score extends Model
 {
-    use Scoreable {
-        getEnabledModsAttribute as private _getEnabledMods;
-    }
+    use Scoreable;
 
     const TEAMS = [
         0 => 'none',
@@ -55,24 +54,65 @@ class Score extends Model
         return $this->belongsTo(Game::class, 'game_id');
     }
 
+    public function scopeDefault($query)
+    {
+        return $query->orderBy('slot', 'asc');
+    }
+
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'game_id',
+            'slot',
+            'user_id',
+            'score',
+            'maxcombo',
+
+            'count50',
+            'count100',
+            'count300',
+            'countgeki',
+            'countkatu',
+            'countmiss',
+            'frame' => $this->getRawAttribute($key),
+
+            'pass',
+            'perfect' => (bool) $this->getRawAttribute($key),
+
+            'date' => $this->game->start_time,
+
+            'date_json' => $this->game->start_time_json,
+
+            'best_id' => null,
+            'has_replay' => false,
+            'pp' => null,
+
+            'enabled_mods' => $this->getEnabledMods(),
+            'rank' => $this->getRank(),
+            'team' => static::TEAMS[$this->getRawAttribute('team')],
+
+            'game' => $this->getRelationValue($key),
+
+            'accuracy' => $this->accuracy(),
+            'beatmap_id' => $this->game->beatmap_id,
+            'build_id' => null,
+            'data' => $this->getData(),
+            'ended_at_json' => $this->date_json,
+            'is_perfect_combo' => $this->perfect,
+            'legacy_perfect' => $this->perfect,
+            'legacy_score_id' => $this->getKey(),
+            'legacy_total_score' => $this->score,
+            'max_combo' => $this->maxcombo,
+            'passed' => $this->pass,
+            'ruleset_id' => $this->game->play_mode,
+            'started_at_json' => null,
+            'total_score' => $this->score,
+        };
+    }
+
     public function getMode(): string
     {
-        return Beatmap::modeStr($this->game->play_mode);
-    }
-
-    public function getDateJsonAttribute(): ?string
-    {
-        return $this->game?->start_time_json;
-    }
-
-    public function getEnabledModsAttribute($value)
-    {
-        return $this->_getEnabledMods($value | ($this->game->getAttributes()['mods'] ?? 0));
-    }
-
-    public function getRankAttribute($value): string
-    {
-        return $value === '0' ? 'F' : $value;
+        return $this->game->mode;
     }
 
     public function getScoringType()
@@ -80,13 +120,49 @@ class Score extends Model
         return $this->game->scoring_type;
     }
 
-    public function getTeamAttribute($value)
+    private function getData(): ScoreData
     {
-        return self::TEAMS[$value];
+        $mods = array_map(fn ($m) => ['acronym' => $m, 'settings' => []], $this->enabled_mods);
+
+        $statistics = [
+            'miss' => $this->countmiss,
+            'great' => $this->count300,
+            ...match ($this->ruleset_id) {
+                Beatmap::MODES['osu'] => [
+                    'ok' => $this->count100,
+                    'meh' => $this->count50,
+                ],
+                Beatmap::MODES['taiko'] => [
+                    'ok' => $this->count100,
+                ],
+                Beatmap::MODES['fruits'] => [
+                    'large_tick_hit' => $this->count100,
+                    'small_tick_hit' => $this->count50,
+                    'small_tick_miss' => $this->countkatu,
+                ],
+                Beatmap::MODES['mania'] => [
+                    'perfect' => $this->countgeki,
+                    'good' => $this->countkatu,
+                    'ok' => $this->count100,
+                    'meh' => $this->count50,
+                ],
+            },
+        ];
+
+        return new ScoreData(compact('mods', 'statistics'));
     }
 
-    public function scopeDefault($query)
+    private function getEnabledMods(): array
     {
-        return $query->orderBy('slot', 'asc');
+        return $this->getEnabledModsAttribute($this->getRawAttribute('enabled_mods') | ($this->game->getRawAttribute('mods') ?? 0));
+    }
+
+    private function getRank(): string
+    {
+        if ($this->attributes['rank'] === '0') {
+            $this->recalculateRank();
+        }
+
+        return $this->attributes['rank'];
     }
 }

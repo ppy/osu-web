@@ -1,11 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { TurboBeforeFetchResponseEvent, type TurboSubmitEndEvent } from '@hotwired/turbo';
 import { route } from 'laroute';
-import core from 'osu-core-singleton';
 import { xhrErrorMessage } from 'utils/ajax';
 import { fadeIn, fadeOut, fadeToggle } from 'utils/fade';
-import { createClickCallback } from 'utils/html';
+import { createClickCallback, htmlElementOrNull } from 'utils/html';
 import { trans } from 'utils/lang';
 import { reloadPage } from 'utils/turbolinks';
 
@@ -23,14 +23,23 @@ interface UserVerificationXhr extends JQuery.jqXHR {
   status: 401;
 }
 
-const isUserVerificationXhr = (arg: JQuery.jqXHR): arg is UserVerificationXhr => (
-  arg.status === 401 && arg.responseJSON?.authentication === 'verify'
-);
+function isUserVerificationJson(arg: unknown): arg is UserVerificationJson {
+  return typeof arg === 'object'
+    && arg != null
+    && 'authentication' in arg
+    && arg.authentication === 'verify'
+    && 'box' in arg
+    && typeof arg.box === 'string';
+}
+
+export function isUserVerificationXhr(arg: JQuery.jqXHR<unknown>): arg is UserVerificationXhr {
+  return arg.status === 401 && isUserVerificationJson(arg.responseJSON);
+}
 
 export default class UserVerification {
   // Used as callback on original action (where verification was required)
   private callback?: () => void;
-  // set to true on turbolinks:visit so the box will be rendered on navigation
+  // set to true on turbo:visit so the box will be rendered on navigation
   private delayShow = false;
   // actual function to "store" the parameter original used for delayed show call
   private delayShowCallback?: () => void;
@@ -54,21 +63,18 @@ export default class UserVerification {
     return document.querySelector<HTMLElement>('.js-user-verification--message-text');
   }
 
-  private get reference() {
-    return document.querySelector<HTMLElement>('.js-user-verification--reference');
-  }
-
   constructor() {
     $(document)
       .on('ajax:error', this.onError)
-      .on('turbolinks:load', this.setModal)
-      .on('turbolinks:load', this.showOnLoad)
-      .on('turbolinks:visit', this.setDelayShow)
+      .on('turbo:load', this.setModal)
+      .on('turbo:load', this.showOnLoad)
+      .on('turbo:visit', this.setDelayShow)
       .on('input', '.js-user-verification--input', this.autoSubmit)
       .on('click', '.js-user-verification--reissue', this.reissue);
     $.subscribe('user-verification:success', this.success);
 
-    $(window).on('resize scroll', this.reposition);
+    document.addEventListener('turbo:submit-end', this.onErrorTurbo);
+    document.addEventListener('turbo:before-fetch-response', this.onMailFallbackMethod);
   }
 
   showOnError = (xhr: JQuery.jqXHR, callback?: () => void) => {
@@ -108,16 +114,13 @@ export default class UserVerification {
   };
 
   private readonly error = (xhr: JQuery.jqXHR) => {
-    this.setMessage(xhrErrorMessage(xhr));
-  };
+    if (xhr.getResponseHeader('x-turbo-action') === 'session-verification-mail-fallback') {
+      const json = xhr.responseJSON as UserVerificationJson;
 
-  private readonly float = (float: boolean, modal: HTMLElement, referenceBottom?: number) => {
-    if (float) {
-      modal.classList.add('js-user-verification--center');
-      modal.style.paddingTop = '';
+      const box = this.setBoxContent(json.box);
+      htmlElementOrNull(box?.querySelector('.modal-af'))?.focus();
     } else {
-      modal.classList.remove('js-user-verification--center');
-      modal.style.paddingTop = `${referenceBottom ?? 0}px`;
+      this.setMessage(xhrErrorMessage(xhr));
     }
   };
 
@@ -130,6 +133,37 @@ export default class UserVerification {
   private readonly onError = (e: { target: unknown }, xhr: JQuery.jqXHR) => (
     this.showOnError(xhr, createClickCallback(e.target))
   );
+
+  private readonly onErrorTurbo = (e: TurboSubmitEndEvent) => {
+    const fetchResponse = e.detail.fetchResponse;
+    if (fetchResponse == null || fetchResponse.header('x-turbo-action') !== 'session-verification') {
+      return;
+    }
+
+    e.preventDefault();
+    const form = e.detail.formSubmission.formElement;
+    fetchResponse.responseText.then((jsonString: string) => {
+      const json = JSON.parse(jsonString) as UserVerificationJson;
+      this.show(json.box, () => {
+        form.requestSubmit();
+      });
+    });
+  };
+
+  private readonly onMailFallbackMethod = (e: TurboBeforeFetchResponseEvent) => {
+    const fetchResponse = e.detail.fetchResponse;
+    if (fetchResponse.header('x-turbo-action') !== 'session-verification-mail-fallback') {
+      return;
+    }
+
+    e.preventDefault();
+    fetchResponse.responseText.then((jsonString: string) => {
+      const json = JSON.parse(jsonString) as UserVerificationJson;
+
+      const box = this.setBoxContent(json.box);
+      htmlElementOrNull(box?.querySelector('.modal-af'))?.focus();
+    });
+  };
 
   private readonly prepareForRequest = (type: string) => {
     this.request?.abort();
@@ -149,17 +183,14 @@ export default class UserVerification {
       .fail(this.error);
   };
 
-  private readonly reposition = () => {
-    if (!this.isActive() || this.modal == null) return;
-
-    if (core.windowSize.isMobile) {
-      this.float(true, this.modal);
-    } else {
-      const referenceBottom = this.reference?.getBoundingClientRect().bottom ?? 0;
-
-      this.float(referenceBottom < 0, this.modal, referenceBottom);
+  private setBoxContent(html: string) {
+    const box = htmlElementOrNull(document.querySelector('.js-user-verification--box'));
+    if (box != null) {
+      box.innerHTML = html;
     }
-  };
+
+    return box;
+  }
 
   private readonly setDelayShow = () => {
     this.delayShow = true;
@@ -199,7 +230,7 @@ export default class UserVerification {
     this.callback = callback;
 
     if (html != null) {
-      $('.js-user-verification--box').html(html);
+      this.setBoxContent(html);
     }
 
     this.$modal()
@@ -209,8 +240,6 @@ export default class UserVerification {
         show: true,
       })
       .addClass('js-user-verification--active');
-
-    this.reposition();
   };
 
   // for pages which require authentication

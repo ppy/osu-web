@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => '慢一点，打几张图再回来吧。',
+        'no_mirrors' => '没有可用的下载服务器。',
     ],
 
     'featured_artist_badge' => [
@@ -40,20 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => '见习谱面提名成员 (PBN) 无法提名多模式谱面。',
+        'full_nomination_required' => '只有正式谱面审核成员 (Full)，才能作出所属游戏模式的最终提名。',
         'hybrid_requires_modes' => '您需要在多模式谱面中选择至少一个游戏模式并提名。',
         'incorrect_mode' => '您没有提名 :mode 模式的权限。',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => '谱面含有无效提名，无法在此状态下过审 (Qualified)。',
+        'invalid_ruleset' => '这个提名含有无效的游戏模式。',
         'too_many' => '提名需求已达标。',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => '除了主游戏模式之外，其他模式的提名要求已经达成。',
 
         'dialog' => [
             'confirmation' => '您确定要提名这张谱面吗？',
+            'different_nominator_warning' => '如果谱面的提名者发生了变更，那么在谱面过审后，它在过审区的队列位置将重置。',
             'header' => '提名谱面',
             'hybrid_warning' => '注意：您只能提名一次，所以请确保提名包含所有您想要提名的游戏模式。',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => '主游戏模式：:ruleset',
             'which_modes' => '您要提名哪种模式？',
         ],
     ],
@@ -67,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => '查看完整封面图',
+            'page' => '查看管理页面',
         ],
 
         'deleted_banner' => [
@@ -138,6 +141,7 @@ return [
             'description' => '谱面介绍',
             'genre' => '流派',
             'language' => '语言',
+            'mapper_tags' => '谱师标签',
             'no_scores' => '数据还在计算中……',
             'nominators' => '提名者',
             'nsfw' => '不良内容',
@@ -146,7 +150,7 @@ return [
             'source' => '来源',
             'storyboard' => '此谱面包含故事板',
             'success-rate' => '成功率',
-            'tags' => '标签',
+            'user_tags' => '玩家标签',
             'video' => '此谱面包含视频',
         ],
 
@@ -169,6 +173,7 @@ return [
             'global' => '全球排名',
             'supporter-link' => '点击 <a href=":link">这里</a> 来查看你得到的精彩功能！',
             'supporter-only' => '你需要成为 osu! 支持者才能查看地区/好友/特定 Mod 排名！',
+            'team' => '战队排名',
             'title' => '排行榜',
 
             'headers' => [
@@ -189,11 +194,12 @@ return [
                 'country' => '您所在的国家/地区中还没有玩家上传过成绩！',
                 'friend' => '还没有好友上传成绩！',
                 'global' => '还没有玩家上传过成绩，来玩一把？',
-                'loading' => '加载分数中...',
+                'loading' => '加载成绩中...',
+                'team' => '您所在的战队中还没有玩家上传过成绩！',
                 'unranked' => '未上架 (Unranked) 谱面',
             ],
             'score' => [
-                'first' => '领衔者',
+                'first' => '领先',
                 'own' => '个人最佳成绩',
             ],
             'supporter_link' => [
@@ -221,13 +227,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => 'Ranked',
-            'approved' => 'Approved',
-            'loved' => 'Loved',
-            'qualified' => 'Qualified',
-            'wip' => 'WIP',
-            'pending' => 'Pending',
-            'graveyard' => 'Graveyard',
+            'ranked' => '上架',
+            'approved' => '达标',
+            'loved' => '社区喜爱',
+            'qualified' => '过审',
+            'wip' => '制作中',
+            'pending' => '待定',
+            'graveyard' => '坟场',
         ],
     ],
 

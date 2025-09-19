@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'komentáře',
         'hide_judged' => 'skrýt posuzované položky',
         'nav_title' => 'soudce',
         'no_current_vote' => 'ještě jsi nehlasoval.',
@@ -29,7 +30,9 @@ return [
         '_' => 'Výsledky souzení',
         'creator' => 'autor',
         'score' => 'Skóre',
+        'score_std' => 'Standardizované skóre',
         'total_score' => 'celkové skóre',
+        'total_score_std' => 'celkové standardizované skóre',
     ],
 
     'voting' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'hlasy',
         'count' => ':count_delimited hlas|:count_delimited hlasy|:count_delimited hlasů',
         'points' => ':count_delimited bod|:count_delimited body|:count_delimited bodů',
+        'points_float' => ':points bodů',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Vstup otevřen',
         'voting' => 'Hlasování začalo',
         'results' => 'Výsledky vyhlášeny',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => 'Zobrazit info a položky',
+        ],
     ],
 ];

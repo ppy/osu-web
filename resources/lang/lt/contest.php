@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => '',
         'hide_judged' => '',
         'nav_title' => '',
         'no_current_vote' => '',
@@ -29,7 +30,9 @@ return [
         '_' => '',
         'creator' => '',
         'score' => '',
+        'score_std' => '',
         'total_score' => '',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'balsai',
         'count' => ':count_delimited balsas|:count_delimited balsų',
         'points' => ':count_delimited taškas|:count_delimited taškų',
+        'points_float' => '',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Atidarytas Pateikimui',
         'voting' => 'Balsavimas Pradėtas',
         'results' => 'Yra rezultatai',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

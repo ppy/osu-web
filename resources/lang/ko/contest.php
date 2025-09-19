@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => '코멘트',
         'hide_judged' => '심사된 항목 숨기기',
         'nav_title' => '심사',
         'no_current_vote' => '아직은 투표할 수 없습니다.',
@@ -29,7 +30,9 @@ return [
         '_' => '심사 결과',
         'creator' => '제작자',
         'score' => '점수',
+        'score_std' => '표준화된 점수',
         'total_score' => '총 점수',
+        'total_score_std' => '표준화된 총점',
     ],
 
     'voting' => [
@@ -86,6 +89,7 @@ return [
         'list' => '투표',
         'count' => ':count표',
         'points' => ':count포인트',
+        'points_float' => ':points 점',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => '참가 작품 모집중',
         'voting' => '투표 시작됨',
         'results' => '결과 발표됨',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '정보 및 항목 보기',
+        ],
     ],
 ];

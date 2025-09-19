@@ -17,10 +17,11 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Zpomal, více hraj.',
+        'no_mirrors' => 'Nejsou dostupné žádné servery pro stahování.',
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Featured Artist',
+        'label' => 'Oficiální umělec',
     ],
 
     'index' => [
@@ -40,20 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Zkušební nominátoři nemohou nominovat více rulesetů.',
+        'full_nomination_required' => 'Musíš být plnohodnotný nominátor, abys mohl provést finální nominaci rulesetu.',
         'hybrid_requires_modes' => 'Hybridní beatmapa vyžaduje, abyste vybrali alespoň jeden herní režim, za který ji chcete nominovat.',
         'incorrect_mode' => 'Nemáte oprávnění k nominaci za mód: :mode',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Tato beatmapa má neplatné nominace a nemůže být v kvalifikovaném stavu.',
+        'invalid_ruleset' => 'Tato nominace má neplatné rulesety.',
         'too_many' => 'Požadavek na nominaci je již splněn.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'Požadavek pro nominace u jiných než hlavních rulesetů je již splněn.',
 
         'dialog' => [
             'confirmation' => 'Jste si jisti, že chcete nominovat tuto beatmapu?',
+            'different_nominator_warning' => 'Kvalifikace této beatmapy s jinými nominátory vyresetuje její pozici ve frontě kvalifikací.',
             'header' => 'Nominovat beatmapu',
             'hybrid_warning' => 'poznámka: můžete nominovat pouze jednou, takže se ujistěte, že nominujete za všechny herní režimy, které chcete',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'Hlavní ruleset je aktuálně: :ruleset',
             'which_modes' => 'Nominovat pro jaké módy?',
         ],
     ],
@@ -67,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Zobrazit plnou velikost úvodního obrázku',
+            'page' => 'Zobrazit administrátorskou stránku',
         ],
 
         'deleted_banner' => [
@@ -138,6 +141,7 @@ return [
             'description' => 'Popis',
             'genre' => 'Žánr',
             'language' => 'Jazyk',
+            'mapper_tags' => 'Označení od autora',
             'no_scores' => 'Data se vypočítávají...',
             'nominators' => 'Nominátoři',
             'nsfw' => 'Explicitní obsah',
@@ -146,7 +150,7 @@ return [
             'source' => 'Zdroj',
             'storyboard' => 'Tato beatmapa obsahuje storyboard',
             'success-rate' => 'Úspěšnost',
-            'tags' => 'Tagy',
+            'user_tags' => 'Označení od uživatelů',
             'video' => 'Tato beatmapa obsahuje video',
         ],
 
@@ -169,6 +173,7 @@ return [
             'global' => 'Celosvětové žebříčky',
             'supporter-link' => 'Klikněte <a href=":link">zde</a> pro zobrazení všech výhod, které dostanete!',
             'supporter-only' => 'Pro zobrazení národních žebříčků a žebříčků přátel potřebujete funkci Supportera!',
+            'team' => 'Žebříček týmu',
             'title' => 'Tabulka výsledků',
 
             'headers' => [
@@ -190,6 +195,7 @@ return [
                 'friend' => 'Nikdo z vašich přátel na této mapě zatím žádné skóre nenahrál!',
                 'global' => 'Zatím žádné skóre. Možná by ses o to měl pokusit!',
                 'loading' => 'Načítání skóre...',
+                'team' => 'Nikdo z tvého týmu na této mapě zatím žádné skóre nenahrál!',
                 'unranked' => 'Neschválená beatmapa.',
             ],
             'score' => [

@@ -30,6 +30,11 @@
     margin-right: auto;
   }
 
+  &--dynamic-size {
+    height: 1em;
+    width: 1em;
+  }
+
   &--forum {
     width: 100%;
     height: 0;
@@ -99,7 +104,9 @@
     box-shadow: none;
     border-radius: 50%;
     overflow: hidden;
-    transition: width var(--header-pinned-animation-duration), height var(--header-pinned-animation-duration);
+    transition:
+      width var(--header-pinned-animation-duration),
+      height var(--header-pinned-animation-duration);
     position: relative;
 
     .@{header-pinned} & {
@@ -107,7 +114,8 @@
       height: @nav2-avatar-height--pinned;
     }
 
-    &.js-click-menu--active, &:hover {
+    &.js-click-menu--active,
+    &:hover {
       box-shadow: inset 0 0 0 3px hsl(var(--hsl-c1));
     }
   }
@@ -126,8 +134,8 @@
   &--restricted {
     &::before {
       .full-size();
-      content: '';
-      background-image: url('~@images/layout/exclamation-icon.svg');
+      content: "";
+      background-image: url("~@images/layout/exclamation-icon.svg");
       background-size: 60%;
       background-position: center;
       background-repeat: no-repeat;

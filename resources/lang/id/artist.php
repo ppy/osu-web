@@ -12,13 +12,13 @@ return [
     ],
 
     'beatmaps' => [
-        '_' => 'Beatmaps',
+        '_' => 'Beatmap',
         'download' => 'unduh template beatmap',
         'download-na' => 'template beatmap belum tersedia',
     ],
 
     'index' => [
-        'description' => 'Featured Artist merupakan rangkaian musisi yang bekerja sama dengan kami untuk menghadirkan berbagai lagu baru dan orisinal ke dalam lingkungan osu!. Para musisi berikut, beserta dengan karya-karya pilihan mereka, telah diseleksi secara seksama oleh tim osu! atas dasar lagu-lagu mereka yang kece dan cocok untuk mapping. Lebih dari itu, beberapa dari mereka bahkan juga telah menulis berbagai lagu baru yang khusus diciptakan untuk osu!.<br><br>Seluruh lagu yang tertera pada halaman ini disediakan dalam bentuk berkas .osz dengan timing yang telah ditentukan sebelumnya (pre-timed) serta telah terlisensi secara resmi untuk digunakan di osu! dan konten yang terkait dengan osu!.',
+        'description' => 'Featured Artist merupakan jajaran musisi yang berkolaborasi dengan kami untuk menghadirkan berbagai lagu baru dan orisinal ke osu!. Para musisi berikut, beserta dengan karya pilihan mereka, telah dipilih langsung oleh tim osu! atas dasar lagu-lagu mereka yang kece dan cocok untuk mapping. Lebih dari itu, sebagian dari mereka bahkan juga telah menulis sejumlah lagu baru yang khusus diciptakan untuk osu!.<br><br>Seluruh lagu pada halaman ini disediakan dalam bentuk berkas .osz dengan timing yang telah siap pakai (pre-timed) serta telah terlisensi secara resmi untuk digunakan di osu! dan konten yang terkait dengan osu!.',
     ],
 
     'links' => [
@@ -29,7 +29,7 @@ return [
 
     'songs' => [
         '_' => 'Lagu',
-        'count' => ':count lagu',
+        'count' => ':count_delimited lagu|:count_delimited lagu',
         'original' => 'osu! original',
         'original_badge' => 'ORIGINAL',
     ],

@@ -53,6 +53,11 @@ return [
                 'beatmapsets' => '',
                 'forum' => '',
                 'general' => '',
+
+                'users' => [
+                    'header' => 'Kullanıcı',
+                    'cover_presets' => 'Profil Kapağı Ön Ayarları',
+                ],
             ],
         ],
     ],

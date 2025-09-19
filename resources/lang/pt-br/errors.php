@@ -7,6 +7,7 @@ return [
     'load_failed' => 'Falha ao carregar os dados.',
     'missing_route' => 'URL inválida ou método de requisição incorreto.',
     'no_restricted_access' => 'Você não pode executar esta ação enquanto sua conta estiver restrita.',
+    'param_too_large' => 'O parâmetro :name tem um máximo de :count_delimited item|O parâmetro :name tem um máximo de :count_delimited itens',
     'supporter_only' => 'Você precisa ser um osu!supporter para usar esta função.',
     'unknown' => 'Ocorreu um erro desconhecido.',
 
@@ -28,9 +29,15 @@ return [
     'checkout' => [
         'generic' => 'Ocorreu um erro durante ao preparar o seu pagamento.',
     ],
+    'scores' => [
+        'invalid_id' => 'Pontuação ID inválida.',
+    ],
     'search' => [
         'default' => 'Não foi possível obter nenhum resultado, tente novamente mais tarde.',
         'invalid_cursor_exception' => 'Parâmetro do cursor inválido.',
         'operation_timeout_exception' => 'A busca está mais ocupada que o normal, tente novamente mais tarde.',
+    ],
+    'user_report' => [
+        'recently_reported' => "Você já informou isso recentemente.",
     ],
 ];

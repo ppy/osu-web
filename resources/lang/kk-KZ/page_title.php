@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'ойынды қолдаңыз ',
             'testflight' => '',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => '',
         ],
         'livestreams_controller' => [
             '_' => '',
-        ],
-        'matches_controller' => [
-            '_' => 'матчтар',
         ],
         'news_controller' => [
             '_' => 'жаңалықтар',
@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => '',
         ],
+        'teams_controller' => [
+            '_' => '',
+            'create' => '',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'жарыстар',
         ],
@@ -122,6 +129,11 @@ return [
             '_' => 'wiki',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => '',
@@ -129,6 +141,11 @@ return [
     ],
     'store' => [
         '_' => 'дүкен',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

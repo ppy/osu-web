@@ -3,10 +3,10 @@
 
 import { UserCard } from 'components/user-card';
 import UserJson from 'interfaces/user-json';
-import { route } from 'laroute';
 import { debounce } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
-import { disposeOnUnmount, observer } from 'mobx-react';
+import { observer } from 'mobx-react';
+import { userNotFoundJson } from 'models/user';
 import core from 'osu-core-singleton';
 import React from 'react';
 import { onError } from 'utils/ajax';
@@ -15,6 +15,7 @@ import { parseJsonNullable, storeJson } from 'utils/json';
 import { trans, transChoice } from 'utils/lang';
 import { toggleCart } from 'utils/store-cart';
 import { currentUrlParams } from 'utils/turbolinks';
+import { apiLookupUsers } from 'utils/user';
 
 const jsonId = 'json-store-supporter-tag';
 
@@ -29,12 +30,6 @@ interface SavedState {
   savedGiftMessage: string;
   sliderValue: number;
   username: string;
-}
-
-interface SliderUIParams {
-  handle?: JQuery | undefined;
-  value?: number | undefined;
-  values?: number[] | undefined;
 }
 
 const monthPresets = [1, 2, 4, 6, 12, 18, 24] as const;
@@ -55,13 +50,14 @@ function durationToPrice(duration: number) {
 @observer
 export default class StoreSupporterTag extends React.Component<Props> {
   private readonly debouncedGetUser;
+  private readonly disposers = new Set<((() => void) | undefined)>();
   private readonly giftMessageRef = React.createRef<HTMLTextAreaElement>();
   private readonly savedGiftMessage: string = '';
   private readonly sliderRef = React.createRef<HTMLDivElement>();
   @observable private sliderValue = minValue;
   @observable private user: UserJson | null;
   @observable private username = currentUrlParams().get('target') ?? '';
-  private xhr: JQuery.jqXHR<UserJson> | null = null;
+  private xhr: ReturnType<typeof apiLookupUsers> | null = null;
 
   @computed
   get cost() {
@@ -127,7 +123,7 @@ export default class StoreSupporterTag extends React.Component<Props> {
     super(props);
 
     this.debouncedGetUser = debounce(this.getUser, 300);
-    document.addEventListener('turbolinks:before-cache', this.handleBeforeCache);
+    document.addEventListener('turbo:before-cache', this.handleBeforeCache);
 
     makeObservable(this);
 
@@ -145,24 +141,26 @@ export default class StoreSupporterTag extends React.Component<Props> {
       this.user = core.currentUserOrFail;
     }
 
-    disposeOnUnmount(
-      this,
-      autorun(() => {
+    this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => {
+      this.disposers.add(autorun(() => {
         toggleCart(this.isValidUser);
         if (this.sliderRef.current != null) {
           $(this.sliderRef.current).slider({ disabled: !this.isValidUser });
         }
-      }),
-    );
+      }));
+    }));
   }
 
   componentDidMount() {
-    this.initializeSlider();
+    this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => {
+      this.initializeSlider();
+    }));
   }
 
   componentWillUnmount() {
-    document.removeEventListener('turbolinks:before-cache', this.handleBeforeCache);
+    document.removeEventListener('turbo:before-cache', this.handleBeforeCache);
     this.xhr?.abort();
+    this.disposers.forEach((disposer) => disposer?.());
   }
 
   render() {
@@ -229,16 +227,11 @@ export default class StoreSupporterTag extends React.Component<Props> {
 
   @action
   private readonly getUser = (username: string) => {
-    this.xhr = $.ajax({
-      data: { username },
-      dataType: 'json',
-      type: 'POST',
-      url: route('users.check-username-exists'),
-    });
+    this.xhr = apiLookupUsers([`@${username}`], true);
 
     this.xhr
-      .done((data) => runInAction(() => {
-        this.user = data;
+      .done((response) => runInAction(() => {
+        this.user = response.users[0] ?? userNotFoundJson;
       }))
       .fail(onError)
       .always(() => {

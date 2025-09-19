@@ -66,6 +66,13 @@ return [
         'version' => 'Nehézség',
     ],
 
+    'refresh' => [
+        'checking' => 'Frissítések keresése...',
+        'has_updates' => '',
+        'no_updates' => 'Nincsenek frissítések.',
+        'updating' => 'Frissítés...',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Jelentkezz be a válaszoláshoz',

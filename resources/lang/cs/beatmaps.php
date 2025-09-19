@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'Zadán neplatný ruleset.',
+
+    'change_owner' => [
+        'too_many' => 'Příliš mnoho mapper hostů.',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Nastala chyba během hlasování',
@@ -25,12 +31,14 @@ return [
         'message_placeholder_silenced' => "Nelze odeslat diskuzi když jste ztišeni.",
         'message_type_select' => 'Vybrat typ komentáře',
         'reply_notice' => 'Stiskni enter pro odpověď.',
+        'reply_resolve_notice' => 'Stiskni enter pro odpověď. Stiskni ctrl+enter pro odpověď a označení jako vyřešené.',
         'reply_placeholder' => 'Napiš svou odpověď sem',
         'require-login' => 'Pro psaní odpovědí nebo přidávání příspěvků se prosím přihlas',
         'resolved' => 'Vyřešeno',
         'restore' => 'obnovit',
         'show_deleted' => 'Zobrazit smazané',
         'title' => 'Diskuze',
+        'unresolved_count' => ':count_delimited nevyřešený problém|:count_delimited nevyřešené problémy|:count_delimited nevyřešených problémů',
 
         'collapse' => [
             'all-collapse' => 'Skrýt vše',
@@ -271,7 +279,7 @@ return [
     ],
     'general' => [
         'converts' => 'Zahrnout překonvertované beatmapy',
-        'featured_artists' => 'Featured Artists',
+        'featured_artists' => 'Oficiální umělci',
         'follows' => 'Odebíraní autoři map',
         'recommended' => 'Doporučená obtížnost',
         'spotlights' => 'Zvýrazněné beatmapy',
@@ -283,7 +291,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'nenastaveno',
     ],
     'status' => [
         'any' => 'Jakákoliv',

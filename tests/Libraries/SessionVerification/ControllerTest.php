@@ -14,11 +14,13 @@ use App\Models\LoginAttempt;
 use App\Models\OAuth\Client;
 use App\Models\OAuth\Token;
 use App\Models\User;
+use App\Models\UserTotpKey;
+use OTPHP\Factory;
 use Tests\TestCase;
 
 class ControllerTest extends TestCase
 {
-    public function testIssue(): void
+    public function testIssueMail(): void
     {
         \Mail::fake();
         $user = User::factory()->create();
@@ -36,7 +38,7 @@ class ControllerTest extends TestCase
         $this->assertFalse(\Session::isVerified());
     }
 
-    public function testReissue(): void
+    public function testReissueMail(): void
     {
         \Mail::fake();
         $user = User::factory()->create();
@@ -47,7 +49,7 @@ class ControllerTest extends TestCase
             ->withPersistentSession($session)
             ->get(route('account.edit'));
 
-        $state = SessionVerification\State::fromSession($session);
+        $state = SessionVerification\MailState::fromSession($session);
 
         $this
             ->withPersistentSession($session)
@@ -55,7 +57,7 @@ class ControllerTest extends TestCase
             ->assertSuccessful();
 
         \Mail::assertQueued(UserVerificationMail::class, 2);
-        $this->assertNotSame($state->key, SessionVerification\State::fromSession($session)->key);
+        $this->assertNotSame($state->key, SessionVerification\MailState::fromSession($session)->key);
     }
 
     public function testReissueOAuthVerified(): void
@@ -69,7 +71,7 @@ class ControllerTest extends TestCase
             ->assertStatus(422);
 
         \Mail::assertNotQueued(UserVerificationMail::class);
-        $this->assertNull(SessionVerification\State::fromSession($token));
+        $this->assertNull(SessionVerification\MailState::fromSession($token));
     }
 
     public function testReissueVerified(): void
@@ -86,7 +88,39 @@ class ControllerTest extends TestCase
             ->assertStatus(422);
 
         \Mail::assertNotQueued(UserVerificationMail::class);
-        $this->assertNull(SessionVerification\State::fromSession($session));
+        $this->assertNull(SessionVerification\MailState::fromSession($session));
+    }
+
+    public function testTotpVerify(): void
+    {
+        \Mail::fake();
+        $user = User::factory()->create();
+        $userTotp = UserTotpKey::createOrFirstForUser($user);
+
+        $this
+            ->be($user)
+            ->get(route('account.edit'))
+            ->assertStatus(401)
+            ->assertViewIs('users.verify');
+
+        $session = \Session::instance();
+        $record = LoginAttempt::find('127.0.0.1');
+
+        \Mail::assertQueued(UserVerificationMail::class, 0);
+        $this->assertNull(SessionVerification\MailState::fromSession($session));
+        $this->assertFalse(\Session::isVerified());
+        $this->assertTrue($record->containsUser($user, 'verify'));
+
+        $key = Factory::loadFromProvisioningUri($userTotp->uri)->now();
+
+        $this
+            ->withPersistentSession($session)
+            ->post(route('account.verify'), ['verification_key' => $key])
+            ->assertSuccessful();
+
+        $record->refresh();
+        $this->assertTrue($session->isVerified());
+        $this->assertFalse($record->containsUser($user, 'verify-mismatch:'));
     }
 
     public function testVerify(): void
@@ -101,7 +135,7 @@ class ControllerTest extends TestCase
             ->assertStatus(401)
             ->assertViewIs('users.verify');
 
-        $key = SessionVerification\State::fromSession($session)->key;
+        $key = SessionVerification\MailState::fromSession($session)->key;
 
         $this
             ->withPersistentSession($session)
@@ -112,7 +146,7 @@ class ControllerTest extends TestCase
 
         $this->assertFalse($record->containsUser($user, 'verify-mismatch:'));
         $this->assertTrue($session->isVerified());
-        $this->assertNull(SessionVerification\State::fromSession($session));
+        $this->assertNull(SessionVerification\MailState::fromSession($session));
     }
 
     public function testVerifyLink(): void
@@ -128,7 +162,7 @@ class ControllerTest extends TestCase
             ->assertStatus(401)
             ->assertViewIs('users.verify');
 
-        $linkKey = SessionVerification\State::fromSession($session)->linkKey;
+        $linkKey = SessionVerification\MailState::fromSession($session)->linkKey;
 
         $guestSession = SessionStore::findOrNew();
         $this
@@ -176,7 +210,7 @@ class ControllerTest extends TestCase
             ->get(route('api.me'))
             ->assertSuccessful();
 
-        $linkKey = SessionVerification\State::fromSession($token)->linkKey;
+        $linkKey = SessionVerification\MailState::fromSession($token)->linkKey;
 
         \Auth::logout();
         $this
@@ -188,6 +222,31 @@ class ControllerTest extends TestCase
 
         $this->assertFalse($record->containsUser($token->user, 'verify-mismatch:'));
         $this->assertTrue($token->fresh()->isVerified());
+    }
+
+    public function testVerifyMailExpired(): void
+    {
+        \Mail::fake();
+        $user = User::factory()->create();
+        $session = \Session::instance();
+
+        $this
+            ->be($user)
+            ->withPersistentSession($session)
+            ->get(route('account.edit'))
+            ->assertStatus(401);
+
+        $mailState = SessionVerification\MailState::fromSession($session);
+        $key = $mailState->key;
+        $mailState->delete();
+
+        $this
+            ->withPersistentSession($session)
+            ->post(route('account.verify'), ['verification_key' => $key])
+            ->assertStatus(422);
+
+        $this->assertFalse($session->isVerified());
+        \Mail::assertQueued(UserVerificationMail::class, 2);
     }
 
     public function testVerifyMismatch(): void
@@ -228,7 +287,7 @@ class ControllerTest extends TestCase
             ->get(route('api.me'))
             ->assertSuccessful();
 
-        $key = SessionVerification\State::fromSession($token)->key;
+        $key = SessionVerification\MailState::fromSession($token)->key;
 
         $this
             ->actingWithToken($token)
@@ -251,7 +310,7 @@ class ControllerTest extends TestCase
             ->post(route('api.verify', ['verification_key' => 'invalid']))
             ->assertSuccessful();
 
-        $this->assertNull(SessionVerification\State::fromSession($token));
+        $this->assertNull(SessionVerification\MailState::fromSession($token));
         \Mail::assertNotQueued(UserVerificationMail::class);
     }
 
@@ -268,7 +327,7 @@ class ControllerTest extends TestCase
             ->post(route('account.verify'), ['verification_key' => 'invalid'])
             ->assertSuccessful();
 
-        $this->assertNull(SessionVerification\State::fromSession($session));
+        $this->assertNull(SessionVerification\MailState::fromSession($session));
         \Mail::assertNotQueued(UserVerificationMail::class);
     }
 }

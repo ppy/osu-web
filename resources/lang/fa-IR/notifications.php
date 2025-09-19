@@ -20,17 +20,19 @@ return [
         'channel' => '',
         'forum_topic' => '',
         'news_post' => '',
+        'team' => '',
         'user' => '',
     ],
 
     'filters' => [
         '_' => 'همه',
-        'user' => 'پروفایل',
         'beatmapset' => 'بیت مپ ها',
-        'forum_topic' => 'انجمن',
-        'news_post' => 'اخبار',
         'build' => '',
         'channel' => 'چت',
+        'forum_topic' => 'انجمن',
+        'news_post' => 'اخبار',
+        'team' => '',
+        'user' => 'پروفایل',
     ],
 
     'item' => [
@@ -121,6 +123,16 @@ return [
                     'channel_message_group' => '',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -156,6 +168,22 @@ return [
                 '_' => '',
                 'forum_topic_reply' => '',
                 'forum_topic_reply_compact' => '',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+
+                'team_application_group' => '',
+
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -217,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => '',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -240,6 +270,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => '',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
+                'team_application_store' => '',
             ],
         ],
 

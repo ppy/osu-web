@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Descarcă mai puțin, joacă mai mult.',
+        'no_mirrors' => 'Nu există servere de descărcare disponibile.',
     ],
 
     'featured_artist_badge' => [
@@ -40,20 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Nominalizatorii temporari nu pot nominaliza ruleset-uri multiple.',
+        'full_nomination_required' => 'Trebuie să fii un nominalizator complet pentru a efectua nominalizarea finală a unui ruleset.',
         'hybrid_requires_modes' => 'Un beatmap hibrid îți cere să selectezi cel puțin un mod de joc pentru care să nominalizezi.',
         'incorrect_mode' => 'Nu ai permisiunea de a nominaliza pentru modul :mode',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Acest beatmap are nominalizari invalide și nu poate fi calificat în această stare.',
+        'invalid_ruleset' => 'Această nominalizare are ruleset-uri invalide.',
         'too_many' => 'Cerința de nominalizare este deja îndeplinită.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'Cerințele de nominalizare pentru ruleset-urile secundare sunt deja îndeplinite.',
 
         'dialog' => [
-            'confirmation' => 'Ești sigur că vrei să nominalizezi acest Beatmap?',
+            'confirmation' => 'Ești sigur că vrei să nominalizezi acest beatmap?',
+            'different_nominator_warning' => 'Calificarea acestui beatmap cu nominalizatori diferiți va reseta poziția beatmap-ului în coadă pentru calificare.',
             'header' => 'Nominalizează acest Beatmap',
             'hybrid_warning' => 'observație: poți nominaliza o singură dată, așa că te rugăm să te asiguri că nominalizezi pentru toate modurile de joc pentru care intenționezi să nominalizezi',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'Ruleset-ul principal este :ruleset momentan',
             'which_modes' => 'Nominalizare pentru care moduri?',
         ],
     ],
@@ -67,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Vezi imaginea de copertă întreagă',
+            'page' => '',
         ],
 
         'deleted_banner' => [
@@ -102,7 +105,7 @@ return [
             'loved' => 'iubit :timeago',
             'qualified' => 'calificat :timeago',
             'ranked' => 'clasat :timeago',
-            'submitted' => 'postat :timeago',
+            'submitted' => 'încărcat :timeago',
             'updated' => 'ultima actualizare :timeago',
         ],
 
@@ -138,6 +141,7 @@ return [
             'description' => 'Descriere',
             'genre' => 'Gen',
             'language' => 'Limbă',
+            'mapper_tags' => 'Etichete Creator',
             'no_scores' => 'Încă se calculează datele...',
             'nominators' => 'Nominalizatori',
             'nsfw' => 'Conținut obscen',
@@ -146,7 +150,7 @@ return [
             'source' => 'Sursă',
             'storyboard' => 'Acest beatmap conține un storyboard',
             'success-rate' => 'Rată de succes',
-            'tags' => 'Etichete',
+            'user_tags' => 'Etichete Utilizatori',
             'video' => 'Acest beatmap conține un video',
         ],
 
@@ -169,6 +173,7 @@ return [
             'global' => 'Clasament Global',
             'supporter-link' => 'Faceți clic <a href=":link">aici</a> pentru a vedea toate avantajele pe care le poți obține!',
             'supporter-only' => 'Trebuie să fii un suporter pentru a accesa clasamentele pentru prieteni, pe mod-uri sau național!',
+            'team' => 'Clasament Echipă',
             'title' => 'Tabela de scor',
 
             'headers' => [
@@ -190,6 +195,7 @@ return [
                 'friend' => 'Niciunul dintre prietenii tăi nu a stabilit un scor pe acest beatmap încă!',
                 'global' => 'Niciun scor încă. Poate ar trebui să încerci să obții câteva?',
                 'loading' => 'Se încarcă scorurile...',
+                'team' => 'Nimeni din echipa ta nu a stabilit un scor pe acest beatmap încă!',
                 'unranked' => 'Beatmap neclasificat.',
             ],
             'score' => [

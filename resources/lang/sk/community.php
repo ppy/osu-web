@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Ďakujeme za tvoju podporu! Zatiaľ si prispel celkovo :dollars cez :tags zakúpených supporter tagov!',
-            'gifted' => ":giftedTags z vaších nákupov bolo darovaných (celkovo :giftedDollars darovaných), jak štedré!",
+            'contribution_with_duration' => '',
             'not_yet' => "Zatiaľ nemáš supporter tag :(",
             'valid_until' => 'Tvoj momentálny supporter tag je platný do :date!',
             'was_valid_until' => 'Tvoj supporter tag bol platný do :date.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

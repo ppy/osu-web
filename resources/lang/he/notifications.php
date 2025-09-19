@@ -20,17 +20,19 @@ return [
         'channel' => '',
         'forum_topic' => '',
         'news_post' => '',
+        'team' => '',
         'user' => '',
     ],
 
     'filters' => [
         '_' => 'הכל',
-        'user' => 'פרופיל',
         'beatmapset' => 'מפות',
-        'forum_topic' => 'פורום',
-        'news_post' => 'חדשות',
         'build' => 'בניות',
         'channel' => 'צ\'אטים',
+        'forum_topic' => 'פורום',
+        'news_post' => 'חדשות',
+        'team' => '',
+        'user' => 'פרופיל',
     ],
 
     'item' => [
@@ -121,6 +123,16 @@ return [
                     'channel_message_group' => 'מ:username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -156,6 +168,22 @@ return [
                 '_' => 'תגובת פורום חדשה',
                 'forum_topic_reply' => ':username הגיב לנושא פורום ":title".',
                 'forum_topic_reply_compact' => ':username הגיב',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+
+                'team_application_group' => '',
+
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -217,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => 'קיבלת הודעה חדשה מאת :username',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -240,6 +270,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'יש תגובות חדשות ב":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
+                'team_application_store' => '',
             ],
         ],
 

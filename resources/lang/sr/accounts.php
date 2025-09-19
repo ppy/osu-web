@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Аватар',
+            'reset' => 'ресетуј',
             'rules' => 'Молимо Вас да ваш аватар поштује :link. <br/> То значи да мора бити <strong>сутабилан за људе свих узраста</strong>. Аватари не смеју садржати голотињу, псовке и сугестиван садржај.',
             'rules_link' => 'правила заједнице',
         ],
@@ -64,12 +65,12 @@ return [
 
     'github_user' => [
         'info' => "",
-        'link' => '',
-        'title' => '',
-        'unlink' => '',
+        'link' => 'Повежи GitHub Налог',
+        'title' => 'GitHub',
+        'unlink' => 'Отклони везу GitHub Налога',
 
         'error' => [
-            'already_linked' => '',
+            'already_linked' => 'Овај GitHub налог је већ тренутно повезан са другим налогом.',
             'no_contribution' => '',
             'unverified_email' => '',
         ],
@@ -87,6 +88,7 @@ return [
             'beatmap_owner_change' => 'гостојућа тежина',
             'beatmapset:modding' => 'модовање мапа',
             'channel_message' => 'приватне чет поруке',
+            'channel_team' => '',
             'comment_new' => 'нови коментари',
             'forum_topic_reply' => 'одговор на тему',
             'mail' => 'пошта',

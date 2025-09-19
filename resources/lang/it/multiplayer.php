@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Ancora nessuna partita in :type_group giocata su osu!(lazer).',
+        'active' => 'Nessuna partita :type_group in corso su osu!(lazer)!',
+        'ended' => 'Ancora nessuna partita :type_group su osu!(lazer)!',
         'playlists' => 'playlist',
         'realtime' => 'multigiocatore',
     ],
@@ -16,9 +17,12 @@ return [
         'map_count' => ':count_delimited mappa|:count_delimited mappe',
         'player_count' => ':count_delimited giocatore|:count_delimited giocatori',
         'time_left' => ':time rimanenti',
+        'view_history' => 'Visualizza Cronologia',
+        'view_summary' => 'Visualizza Riepilogo',
 
         'errors' => [
             'duration_too_long' => 'La durata è troppo lunga.',
+            'name_too_long' => 'Il nome della stanza è troppo lungo.',
         ],
 
         'status' => [

@@ -37,6 +37,12 @@ return [
         'new' => '',
     ],
 
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
+    ],
+
     'users' => [
         'relevance' => '',
         'username' => 'Аты',

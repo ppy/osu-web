@@ -9,6 +9,16 @@ return [
         'title' => 'Negara',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Kesukaran',
+        'top_10p' => 'Markah 10% Teratas',
+        'top_50p' => 'Markah 50% Teratas',
+        'unavailable' => [
+            'future' => 'Belum ada cabaran harian pada tarikh ditentukan!',
+            'past' => 'Tiada cabaran harian pada tarikh ditentukan!',
+        ],
+    ],
+
     'filter' => [
         'title' => 'Paparkan',
 
@@ -18,49 +28,55 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '',
-        'available' => '',
-        'used' => '',
+        'total' => 'Diterima',
+        'available' => 'Tersedia',
+        'used' => 'Digunakan',
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Sejarah pangkat terkini pengguna ini kurang daripada 30 hari.',
     ],
 
     'type' => [
-        'charts' => 'sorotan',
+        'charts' => 'sorotan (lama)',
         'country' => 'negara',
-        'kudosu' => '',
-        'multiplayer' => 'pemainan beramai',
-        'performance' => 'pencapaian',
-        'score' => 'markah',
+        'daily_challenge' => 'cabaran harian',
+        'global' => 'sejagat',
+        'kudosu' => 'kudosu',
+        'multiplayer' => 'pemain ramai',
         'seasons' => 'musim',
+        'team' => 'pasukan',
     ],
 
     'seasons' => [
-        'empty' => 'Musim ini belum memiliki ruangan.',
-        'ongoing' => 'Musim ini sedang berlangsung (ke depannya, akan terdapat lebih banyak senarai untuk dimainkan).',
+        'empty' => 'Musim ini belum memiliki bilik.',
+        'ongoing' => 'Musim ini masih berlangsung (lebih banyak senarai main akan ditambah).',
         'room_count' => 'Jumlah senarai main',
-        'url' => 'Menampilkan maklumat lebih lanjut seputar musim yang dipilih.',
+        'url' => 'Paparkan lebih banyak maklumat tentang musim tersebut.',
+        'validation' => [
+            'not_enough_factors' => 'faktor permarkahan tidak cukup untuk pengiraan sah',
+        ],
     ],
 
     'spotlight' => [
         'end_date' => 'Tarikh Akhir',
-        'map_count' => 'Kiraan Map',
+        'map_count' => 'Jumlah Peta',
         'participants' => 'Peserta',
         'start_date' => 'Tarikh Mula',
     ],
 
     'stat' => [
-        'accuracy' => 'Ketepatan',
-        'active_users' => 'Pengguna aktif',
+        'accuracy' => 'Kejituan',
+        'active_users' => 'Pengguna Giat',
         'country' => 'Negara',
-        'play_count' => 'Kiraan Main',
-        'performance' => 'Pencapaian',
-        'total_score' => 'Jumlah Skor',
-        'ranked_score' => 'Skor Ranked',
-        'average_score' => 'Skor Purata',
-        'average_performance' => 'Prestasi Purata. ',
+        'division' => 'Pembahagian',
+        'members' => 'Ahli',
+        'play_count' => 'Jumlah Mainan',
+        'performance' => 'Prestasi',
+        'total_score' => 'Jumlah Markah',
+        'ranked_score' => 'Markah Berpangkat',
+        'average_score' => 'Markah Purata',
+        'average_performance' => 'Prestasi Purata',
         'ss' => '',
         's' => '',
         'a' => '',

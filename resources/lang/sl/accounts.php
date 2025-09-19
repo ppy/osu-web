@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => 'ponastavi',
             'rules' => 'Prosimo, da naj se tvoj avatar drži :link.<br/>To pomeni, da mora biti <strong>primerno za vse starosti</strong>. t.j. Nič golote, kletvic ali druge neželene vsebine.',
             'rules_link' => 'pravila skupnosti',
         ],
@@ -87,6 +88,7 @@ return [
             'beatmap_owner_change' => 'težavnost za goste',
             'beatmapset:modding' => 'modificiranje beatmape',
             'channel_message' => 'zasebna sporočila',
+            'channel_team' => '',
             'comment_new' => 'novi komentarji',
             'forum_topic_reply' => 'odgovor na temo',
             'mail' => 'e-pošta',

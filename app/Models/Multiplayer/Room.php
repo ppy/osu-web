@@ -6,7 +6,9 @@
 namespace App\Models\Multiplayer;
 
 use App\Casts\PresentString;
+use App\Exceptions\AuthorizationException;
 use App\Exceptions\InvariantException;
+use App\Libraries\User\SeasonStats;
 use App\Models\Beatmap;
 use App\Models\Chat\Channel;
 use App\Models\Model;
@@ -18,27 +20,32 @@ use App\Models\User;
 use App\Traits\Memoizes;
 use App\Transformers\Multiplayer\RoomTransformer;
 use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Ds\Set;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property string $category
+ * @property string $status
  * @property Channel $channel
  * @property int|null $channel_id
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $deleted_at
+ * @property string|null $description
  * @property \Carbon\Carbon $ends_at
  * @property User $host
  * @property int $id
  * @property int|null $max_attempts
  * @property string $name
  * @property int $participant_count
+ * @property bool $pinned
  * @property \Illuminate\Database\Eloquent\Collection $playlist PlaylistItem
  * @property \Illuminate\Database\Eloquent\Collection $scoreLinks ScoreLink
- * @property-read Collection<\App\Models\Season> $seasons
+ * @property-read Season $season
  * @property \Carbon\Carbon $starts_at
  * @property \Carbon\Carbon|null $updated_at
  * @property int $user_id
@@ -56,6 +63,7 @@ class Room extends Model
             ['column' => 'id', 'order' => 'DESC', 'type' => 'int'],
         ],
         'created' => [
+            ['column' => 'pinned', 'order' => 'DESC', 'type' => 'bool'],
             ['column' => 'id', 'order' => 'DESC', 'type' => 'int'],
         ],
     ];
@@ -65,16 +73,19 @@ class Room extends Model
     const CATEGORIES = ['normal', 'spotlight', 'featured_artist', 'daily_challenge'];
     const TYPE_GROUPS = [
         'playlists' => [self::PLAYLIST_TYPE],
-        'realtime' => self::REALTIME_TYPES,
+        'realtime' => self::REALTIME_STANDARD_TYPES,
     ];
 
     const PLAYLIST_TYPE = 'playlists';
+    const MATCHMAKING_TYPE = 'matchmaking';
     const REALTIME_DEFAULT_TYPE = 'head_to_head';
-    const REALTIME_TYPES = ['head_to_head', 'team_versus'];
+    const REALTIME_STANDARD_TYPES = ['head_to_head', 'team_versus'];
+    const REALTIME_TYPES = [...self::REALTIME_STANDARD_TYPES, self::MATCHMAKING_TYPE];
 
     const PLAYLIST_QUEUE_MODE = 'host_only';
     const REALTIME_DEFAULT_QUEUE_MODE = 'host_only';
     const REALTIME_QUEUE_MODES = [ 'host_only', 'all_players', 'all_players_round_robin' ];
+    const REALTIME_STATUSES = ['idle', 'playing'];
 
     public ?array $preloadedRecentParticipants = null;
 
@@ -85,7 +96,11 @@ class Room extends Model
         'auto_skip' => 'boolean',
         'ends_at' => 'datetime',
         'password' => PresentString::class,
+        'pinned' => 'boolean',
         'starts_at' => 'datetime',
+    ];
+    protected array $macros = [
+        'dailyChallengeFor',
     ];
     protected $table = 'multiplayer_rooms';
 
@@ -119,7 +134,7 @@ class Room extends Model
         [$rooms, $hasMore] = $search['query']->with([
             'playlist.beatmap',
             'host',
-        ])->getWithHasMore();
+        ])->whereHas('playlist.beatmap')->getWithHasMore();
 
         $rooms->each->findAndSetCurrentPlaylistItem();
         $rooms->loadMissing('currentPlaylistItem.beatmap.beatmapset');
@@ -140,10 +155,12 @@ class Room extends Model
     {
         $params = get_params($rawParams, null, [
             'category',
+            'is_active:bool',
             'limit:int',
             'mode',
             'season_id:int',
             'sort',
+            'status',
             'type_group',
             'user:any',
         ], ['null_missing' => true]);
@@ -152,6 +169,7 @@ class Room extends Model
         $user = $params['user'];
         $seasonId = $params['season_id'];
         $sort = $params['sort'];
+        $status = $params['status'];
         $category = $params['category'];
         $typeGroup = $params['type_group'];
 
@@ -168,8 +186,16 @@ class Room extends Model
 
         $query = static::whereIn('type', static::TYPE_GROUPS[$typeGroup]);
 
+        if (!in_array($status, static::REALTIME_STATUSES, true)) {
+            $status = null;
+        }
+
+        if (isset($status)) {
+            $query->where('status', $status);
+        }
+
         if (isset($seasonId)) {
-            $query->whereRelation('seasons', 'seasons.id', $seasonId);
+            $query->whereRelation('season', 'season_id', $seasonId);
         }
 
         if (in_array($category, static::CATEGORIES, true)) {
@@ -193,10 +219,18 @@ class Room extends Model
                 $query->active();
         }
 
+        if (isset($params['is_active'])) {
+            if ($params['is_active']) {
+                $query->active();
+            } else {
+                $query->ended();
+            }
+        }
+
         $cursorHelper = static::makeDbCursorHelper($sort);
         $query->cursorSort($cursorHelper, cursor_from_params($rawParams));
 
-        $limit = clamp($params['limit'] ?? $maxLimit, 1, $maxLimit);
+        $limit = \Number::clamp($params['limit'] ?? $maxLimit, 1, $maxLimit);
         $query->limit($limit);
 
         return [
@@ -219,6 +253,14 @@ class Room extends Model
         return $this->belongsTo(PlaylistItem::class, 'current_playlist_item_id');
     }
 
+    public function macroDailyChallengeFor(): \Closure
+    {
+        return fn (Builder $query, CarbonImmutable $date): ?static
+            => static::dailyChallenges()
+                ->whereBetween('starts_at', [$date->startOfDay(), $date->endOfDay()])
+                ->last();
+    }
+
     public function host()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -234,9 +276,21 @@ class Room extends Model
         return $this->hasMany(ScoreLink::class);
     }
 
-    public function seasons()
+    public function events()
     {
-        return $this->belongsToMany(Season::class, SeasonRoom::class);
+        return $this->hasMany(RealtimeRoomEvent::class);
+    }
+
+    public function season(): HasOneThrough
+    {
+        return $this->hasOneThrough(
+            Season::class,
+            SeasonRoom::class,
+            'room_id',
+            'id',
+            'id',
+            'season_id',
+        );
     }
 
     public function userHighScores()
@@ -253,6 +307,11 @@ class Room extends Model
             });
     }
 
+    public function scopeDailyChallenges(Builder $query): Builder
+    {
+        return $query->where('category', 'daily_challenge');
+    }
+
     public function scopeEnded($query)
     {
         return $query->where('ends_at', '<', Carbon::now());
@@ -263,17 +322,21 @@ class Room extends Model
         return $query->whereIn('category', ['featured_artist', 'spotlight']);
     }
 
-    public function scopeHasParticipated($query, User $user)
+    public function scopeHasParticipated($query, ?User $user)
     {
-        return $query->whereHas(
-            'userHighScores',
-            fn ($q) => $q->where('user_id', $user->getKey()),
-        );
+        return $user === null
+            ? $query->none()
+            : $query->whereHas(
+                'userHighScores',
+                fn ($q) => $q->where('user_id', $user->getKey()),
+            );
     }
 
-    public function scopeStartedBy($query, User $user)
+    public function scopeStartedBy($query, ?User $user)
     {
-        return $query->where('user_id', $user->user_id);
+        return $user === null
+            ? $query->none()
+            : $query->where('user_id', $user->getKey());
     }
 
     public function scopeWithRecentParticipantIds($query, ?int $limit = null)
@@ -303,17 +366,32 @@ class Room extends Model
         ", 'recent_participant_ids');
     }
 
+    public function assertCorrectPassword(?string $password): void
+    {
+        if ($this->password === null) {
+            return;
+        }
+
+        if ($password === null || !hash_equals(hash('sha256', $this->password), hash('sha256', $password))) {
+            throw new AuthorizationException(osu_trans('multiplayer.room.invalid_password'));
+        }
+    }
+
     public function difficultyRange()
     {
         $extraQuery = true;
 
         if ($this->relationLoaded('playlist')) {
-            if ($this->playlist->count() > 0) {
-                $firstItem = $this->playlist[0];
+            $playlistItems = $this->playlist;
+            $activePlaylistItems = $playlistItems->where('expired', '=', false);
+            $playlistItemsForRange = $activePlaylistItems->isNotEmpty() ? $activePlaylistItems : $playlistItems;
+
+            if ($playlistItemsForRange->count() > 0) {
+                $firstItem = $playlistItems[0];
 
                 if ($firstItem->relationLoaded('beatmap')) {
                     $extraQuery = false;
-                    foreach ($this->playlist as $item) {
+                    foreach ($playlistItemsForRange as $item) {
                         $rating = $item->beatmap->difficultyrating;
                         $max ??= $rating;
                         $min ??= $rating;
@@ -331,12 +409,18 @@ class Room extends Model
         }
 
         if ($extraQuery) {
+            if (!isset($playlistItemsForRange)) {
+                $playlistItems = $this->playlist()->select(['beatmap_id', 'expired'])->get();
+                $activePlaylistItems = $playlistItems->where('expired', '=', false);
+                $playlistItemsForRange = $activePlaylistItems->isNotEmpty() ? $activePlaylistItems : $playlistItems;
+            }
+
             $range = Beatmap::selectRaw('
                 MIN(difficultyrating) as min_difficulty,
                 MAX(difficultyrating) as max_difficulty
-            ')->whereIn('beatmap_id', $this->playlist()->select('beatmap_id'))->first();
-            $max = $range->max_difficulty;
-            $min = $range->min_difficulty;
+            ')->whereIn('beatmap_id', $playlistItemsForRange->pluck('beatmap_id'))->first()->getAttributes();
+            $max = $range['max_difficulty'];
+            $min = $range['min_difficulty'];
         }
 
         return [
@@ -359,6 +443,11 @@ class Room extends Model
         return $realtimeTypes->contains($this->type);
     }
 
+    public function isMatchmaking()
+    {
+        return $this->type === static::MATCHMAKING_TYPE;
+    }
+
     public function isScoreSubmissionStillAllowed()
     {
         // TODO: move grace period to config or use the beatmap's duration
@@ -379,7 +468,7 @@ class Room extends Model
     {
         return $this->memoize(
             __FUNCTION__,
-            fn () => json_decode($this->attributes['recent_participant_ids'], true) ?? []
+            fn () => json_decode($this->attributes['recent_participant_ids'] ?? '', true) ?? []
         );
     }
 
@@ -402,13 +491,36 @@ class Room extends Model
 
     public function completePlay(ScoreToken $scoreToken, array $params): ScoreLink
     {
-        priv_check_user($scoreToken->user, 'MultiplayerScoreSubmit')->ensureCan();
+        priv_check_user($scoreToken->user, 'MultiplayerScoreSubmit', $this)->ensureCan();
 
         $this->assertValidCompletePlay();
 
         return $this->getConnection()->transaction(function () use ($params, $scoreToken) {
+            $playlistItem = $scoreToken->playlistItem()->firstOrFail();
+            $playlistItem->setRelation('room', $this);
+            $scoreToken->setRelation('playlistItem', $playlistItem);
+
             $scoreLink = ScoreLink::complete($scoreToken, $params);
-            UserScoreAggregate::new($scoreLink->user, $this)->addScoreLink($scoreLink);
+            $user = $scoreLink->user;
+            $agg = UserScoreAggregate::new($user, $this);
+            $agg->addScoreLink($scoreLink);
+            if ($this->category === 'daily_challenge' && $agg->total_score > 0) {
+                $stats = $user->dailyChallengeUserStats()->firstOrNew();
+                $stats->updateStreak(true, $this->starts_at->toImmutable()->startOfDay());
+                $stats->save();
+            }
+
+            if ($this->category === 'spotlight' && $agg->total_score > 0 && $this->season !== null) {
+                $seasonScore = $user->seasonScores()
+                    ->where('season_id', $this->season->getKey())
+                    ->firstOrNew();
+
+                $seasonScore->season()->associate($this->season);
+                $seasonScore->calculate();
+                $seasonScore->save();
+
+                (new SeasonStats($user, $this->season))->resetCache();
+            }
 
             return $scoreLink;
         });
@@ -459,6 +571,11 @@ class Room extends Model
         $this->channel->addUser($user);
     }
 
+    public function part(User $user)
+    {
+        $this->channel->removeUser($user);
+    }
+
     public function participants(): HasMany
     {
         $query = $this->userHighScores();
@@ -500,7 +617,7 @@ class Room extends Model
             ->all();
     }
 
-    public function startGame(User $host, array $rawParams)
+    public function startGame(User $host, array $rawParams, array $extraParams = [])
     {
         priv_check_user($host, 'MultiplayerRoomCreate')->ensureCan();
 
@@ -527,6 +644,7 @@ class Room extends Model
             'auto_start_duration' => $params['auto_start_duration'],
             'auto_skip' => $params['auto_skip'] ?? false,
             'user_id' => $host->getKey(),
+            ...$extraParams,
         ]);
 
         $this->setRelation('host', $host);
@@ -569,12 +687,21 @@ class Room extends Model
 
         $playlistItemsCount = count($playlistItems);
 
-        if ($this->isRealtime() && $playlistItemsCount !== 1) {
+        if ($playlistItemsCount < 1) {
+            throw new InvariantException('room must have at least one playlist item');
+        }
+
+        if ($this->isMatchmaking()) {
+            $banchoBotId = $GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id'];
+            foreach ($playlistItems as $item) {
+                $item->owner_id = $banchoBotId;
+            }
+        } elseif ($this->isRealtime() && $playlistItemsCount !== 1) {
             throw new InvariantException('realtime room must have exactly one playlist item');
         }
 
-        if ($playlistItemsCount < 1) {
-            throw new InvariantException('room must have at least one playlist item');
+        if (mb_strlen($this->name) > 100) {
+            throw new InvariantException(osu_trans('multiplayer.room.errors.name_too_long'));
         }
 
         PlaylistItem::assertBeatmapsExist($playlistItems);
@@ -597,13 +724,40 @@ class Room extends Model
         return $this->fresh();
     }
 
-    public function startPlay(User $user, PlaylistItem $playlistItem, int $buildId)
+    /**
+     * @throws InvariantException
+     */
+    public function endGame(User $requestingUser)
     {
-        priv_check_user($user, 'MultiplayerScoreSubmit')->ensureCan();
+        priv_check_user($requestingUser, 'MultiplayerRoomDestroy', $this)->ensureCan();
 
-        $this->assertValidStartPlay($user, $playlistItem);
+        if ($this->isRealtime()) {
+            throw new InvariantException('Realtime rooms cannot be closed.');
+        }
 
-        return $this->getConnection()->transaction(function () use ($buildId, $user, $playlistItem) {
+        $gracePeriodMinutes = $GLOBALS['cfg']['osu']['multiplayer']['room_close_grace_period_minutes'];
+        if ($this->starts_at->addMinutes($gracePeriodMinutes)->isPast()) {
+            throw new InvariantException('The grace period for closing this room has expired.');
+        }
+
+        $this->ends_at = now();
+        $this->save();
+    }
+
+    public function startPlay(User $user, PlaylistItem $playlistItem, array $rawParams): ScoreToken
+    {
+        priv_check_user($user, 'MultiplayerScoreSubmit', $this)->ensureCan();
+
+        $params = get_params($rawParams, null, [
+            'beatmap_hash',
+            'beatmap_id:int',
+            'build_id',
+            'ruleset_id:int',
+        ], ['null_missing' => true]);
+
+        $this->assertValidStartPlay($user, $playlistItem, $params);
+
+        return $this->getConnection()->transaction(function () use ($params, $playlistItem, $user) {
             $agg = UserScoreAggregate::new($user, $this);
             if ($agg->wasRecentlyCreated) {
                 $this->incrementInstance('participant_count');
@@ -615,10 +769,11 @@ class Room extends Model
             $playlistItemAgg->updateUserAttempts();
 
             return ScoreToken::create([
-                'beatmap_id' => $playlistItem->beatmap_id,
-                'build_id' => $buildId,
+                'beatmap_hash' => $params['beatmap_hash'],
+                'beatmap_id' => $params['beatmap_id'],
+                'build_id' => $params['build_id'],
                 'playlist_item_id' => $playlistItem->getKey(),
-                'ruleset_id' => $playlistItem->ruleset_id,
+                'ruleset_id' => $params['ruleset_id'],
                 'user_id' => $user->getKey(),
             ]);
         });
@@ -626,14 +781,23 @@ class Room extends Model
 
     public function topScores()
     {
-        return $this->userHighScores()->forRanking()->with('user.country');
+        return $this->userHighScores()->forRanking()->with(['user.country', 'user.team']);
     }
 
     private function assertHostRoomAllowance()
     {
+        $banchoBotId = $GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id'];
+
+        if ($this->host->getKey() === $banchoBotId) {
+            // BanchoBot can always create rooms.
+            return;
+        }
+
         $query = static::active()->startedBy($this->host);
 
-        if ($this->isRealtime()) {
+        if ($this->isMatchmaking()) {
+            throw new InvariantException('matchmaking rooms cannot be created');
+        } else if ($this->isRealtime()) {
             $query->whereIn('type', static::REALTIME_TYPES);
             $max = 1;
         } else {
@@ -679,12 +843,26 @@ class Room extends Model
         }
     }
 
-    private function assertValidStartPlay(User $user, PlaylistItem $playlistItem)
+    private function assertValidStartPlay(User $user, PlaylistItem $playlistItem, array $params): void
     {
         // todo: check against room's end time (to see if player has enough time to play this beatmap) and is under the room's max attempts limit
 
         if ($this->hasEnded()) {
             throw new InvariantException('Room has already ended.');
+        }
+
+        if ($playlistItem->freestyle) {
+            // assert the beatmap_id is part of playlist item's beatmapset
+            if ($playlistItem->beatmap->beatmapset_id !== Beatmap::find($params['beatmap_id'])?->beatmapset_id) {
+                throw new InvariantException('Specified beatmap_id is not allowed');
+            }
+        } else {
+            if ($playlistItem->ruleset_id !== $params['ruleset_id']) {
+                throw new InvariantException('Specified ruleset_id is not allowed');
+            }
+            if ($playlistItem->beatmap_id !== $params['beatmap_id']) {
+                throw new InvariantException('Specified beatmap_id is not allowed');
+            }
         }
 
         $userId = $user->getKey();
@@ -709,5 +887,10 @@ class Room extends Model
         if ($playlistItem->played_at !== null) {
             throw new InvariantException('Cannot play a playlist item that has already been played.');
         }
+
+        // ensure the playlist item itself is in a valid state.
+        // this is a defensive measure to prevent further breakage if the item's state is inconsistent
+        // due to an external modification from osu-server-spectator.
+        $playlistItem->assertValid();
     }
 }

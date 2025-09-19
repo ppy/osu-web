@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'ผู้ดูแล',
         'authorise' => 'อนุญาต',
         'authorising' => 'กำลังอนุญาต...',
+        'back' => '',
         'back_to_previous' => 'กลับไปยังตำแหน่งก่อนหน้านี้',
         'back_to_top' => 'กลับไปด้านบน',
         'cancel' => 'ยกเลิก',
@@ -39,7 +39,7 @@ return [
         'pin' => 'ปักหมุด',
         'post' => 'โพสต์',
         'read_more' => 'อ่านเพิ่มเติม',
-        'refresh' => '',
+        'refresh' => 'รีเฟรช',
         'reply' => 'ตอบกลับ',
         'reply_reopen' => 'ตอบกลับ และเปิดใหม่',
         'reply_resolve' => 'ตอบกลับ และแก้ไข',
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => '',
+        ],
+        'year' => [
+            'php' => '',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

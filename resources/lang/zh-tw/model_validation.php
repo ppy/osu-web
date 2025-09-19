@@ -6,41 +6,41 @@
 return [
     'invalid' => '所指定的 :attribute 無效。',
     'not_negative' => ':attribute 不能為負數。',
-    'required' => '需要 :attribute 。',
-    'too_long' => ':attribute 超出最大長度——最多允許 :limit 個字符。',
-    'url' => '請輸入一個正確無誤的網址。',
-    'wrong_confirmation' => '確認信息不匹配。',
+    'required' => '需要 :attribute。',
+    'too_long' => ':attribute 超出最大長度限制，最多只能輸入 :limit 個字元。',
+    'url' => '請輸入有效的 URL。',
+    'wrong_confirmation' => '確認資訊不符。',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => '指定了時間戳但是譜面不存在。',
-        'beatmapset_no_hype' => "無法推薦譜面。",
-        'hype_requires_null_beatmap' => '只能在 常規（全難度） 中推薦。',
+        'beatmap_missing' => '指定了時間戳記但是圖譜不存在。',
+        'beatmapset_no_hype' => "無法推薦圖譜。",
+        'hype_requires_null_beatmap' => '推薦必須在「一般（所有難度）」區塊進行。',
         'invalid_beatmap_id' => '指定的難度無效。',
-        'invalid_beatmapset_id' => '指定的譜面無效。',
+        'invalid_beatmapset_id' => '指定的圖譜無效。',
         'locked' => '討論被鎖定。',
 
         'attributes' => [
             'message_type' => '訊息類型',
-            'timestamp' => '時間戳',
+            'timestamp' => '時間戳記',
         ],
 
         'hype' => [
             'discussion_locked' => "該圖譜目前為鎖定討論狀態，無法被推薦",
-            'guest' => '登錄後才能推薦',
-            'hyped' => '你已經推薦了這張譜面',
-            'limit_exceeded' => '你已經用光了推薦次數',
+            'guest' => '必須登入後才能推薦',
+            'hyped' => '你已經推薦了這張圖譜。',
+            'limit_exceeded' => '你已經用完推薦次數',
             'not_hypeable' => '這張譜面無法推薦',
-            'owner' => '不能推薦你自己的譜面',
+            'owner' => '不能推薦你自己的圖譜。',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => '指定的時間戳不在譜面範圍內。',
-            'negative' => "無法定位時間戳。",
+            'exceeds_beatmapset_length' => '指定的時間戳記不在圖譜範圍內。',
+            'negative' => "無法定位時間戳記。",
         ],
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => '討論被鎖定。',
+        'discussion_locked' => '討論已被鎖定。',
         'first_post' => '無法刪除第一個討論。',
 
         'attributes' => [
@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => ':attribute包含無效字元。',
+        'used' => ':attribute已被使用。',
+        'word_not_allowed' => '不允許使用:attribute。',
+
+        'attributes' => [
+            'default_ruleset_id' => '預設遊戲模式',
+            'is_open' => '隊伍申請',
+            'name' => '名稱',
+            'short_name' => '簡稱',
+            'url' => '超連結',
+        ],
+    ],
+
     'user' => [
         'contains_username' => '密碼不能包含使用者名稱。',
         'email_already_used' => '電郵地址已被使用。',
@@ -155,7 +169,7 @@ return [
         'wrong_current_password' => '密碼不正確.',
         'wrong_email_confirmation' => '新電郵地址不一致。',
         'wrong_password_confirmation' => '重複新密碼與新密碼不一致。',
-        'too_long' => '超出長度限制——最多為 :limit 個字符。',
+        'too_long' => '超出最大長度限制，最多只能輸入 :limit 個字元。',
 
         'attributes' => [
             'username' => '使用者名稱',
@@ -164,7 +178,7 @@ return [
         ],
 
         'change_username' => [
-            'restricted' => '帳戶處於限制模式時無法更變使用者名稱。',
+            'restricted' => '帳戶處於限制模式時無法變更使用者名稱。',
             'supporter_required' => [
                 '_' => '你必須 :link 才能更改用戶名！',
                 'link_text' => '支持 osu!',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => '無法檢舉已進榜的圖譜',
         'not_in_channel' => '您不在這個頻道中。',
+        'in_team' => '你是團隊成員。',
         'reason_not_valid' => ':reason 不符合此報告類型。',
         'self' => "您不能檢舉你自己！",
     ],

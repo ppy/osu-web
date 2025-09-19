@@ -5,8 +5,10 @@
 
 namespace Tests\Controllers;
 
+use App\Models\Beatmap;
 use App\Models\OAuth\Client;
 use App\Models\Score\Best\Osu;
+use App\Models\ScoreReplayStats;
 use App\Models\Solo\Score as SoloScore;
 use App\Models\User;
 use App\Models\UserStatistics;
@@ -17,12 +19,18 @@ use Tests\TestCase;
 class ScoresControllerTest extends TestCase
 {
     private Osu $score;
+    private SoloScore $soloScore;
     private User $user;
     private User $otherUser;
 
     private static function getLegacyScoreReplayViewCount(Osu $score): int
     {
         return $score->replayViewCount()->first()?->play_count ?? 0;
+    }
+
+    private static function getScoreReplayViewCount(SoloScore $score): int
+    {
+        return ScoreReplayStats::find($score->getKey())?->watch_count ?? 0;
     }
 
     private static function getUserReplaysWatchedCount(Osu|SoloScore $score): int
@@ -40,6 +48,7 @@ class ScoresControllerTest extends TestCase
     public function testDownloadApiSameUser()
     {
         $this->expectCountChange(fn () => static::getLegacyScoreReplayViewCount($this->score), 0);
+        $this->expectCountChange(fn () => static::getScoreReplayViewCount($this->soloScore), 0);
         $this->expectCountChange(fn () => static::getUserReplayPopularity($this->score), 0);
         $this->expectCountChange(fn () => static::getUserReplaysWatchedCount($this->score), 0);
 
@@ -73,6 +82,7 @@ class ScoresControllerTest extends TestCase
     public function testDownload()
     {
         $this->expectCountChange(fn () => static::getLegacyScoreReplayViewCount($this->score), 0);
+        $this->expectCountChange(fn () => static::getScoreReplayViewCount($this->soloScore), 0);
         $this->expectCountChange(fn () => static::getUserReplayPopularity($this->score), 0);
         $this->expectCountChange(fn () => static::getUserReplaysWatchedCount($this->score), 0);
 
@@ -89,6 +99,7 @@ class ScoresControllerTest extends TestCase
     public function testDownloadApi(): void
     {
         $this->expectCountChange(fn () => static::getLegacyScoreReplayViewCount($this->score), 1);
+        $this->expectCountChange(fn () => static::getScoreReplayViewCount($this->soloScore), 1);
         $this->expectCountChange(fn () => static::getUserReplayPopularity($this->score), 1);
         $this->expectCountChange(fn () => static::getUserReplaysWatchedCount($this->score), 1);
 
@@ -112,6 +123,7 @@ class ScoresControllerTest extends TestCase
             ->assertSuccessful();
 
         $this->expectCountChange(fn () => static::getLegacyScoreReplayViewCount($this->score), 0);
+        $this->expectCountChange(fn () => static::getScoreReplayViewCount($this->soloScore), 0);
         $this->expectCountChange(fn () => static::getUserReplayPopularity($this->score), 0);
         $this->expectCountChange(fn () => static::getUserReplaysWatchedCount($this->score), 0);
 
@@ -188,6 +200,18 @@ class ScoresControllerTest extends TestCase
             ->assertRedirect(route('scores.show', $this->params()));
     }
 
+    public function testDownloadLegacyInvalidRuleset()
+    {
+        $this
+            ->actingAs($this->otherUser)
+            ->withHeaders(['HTTP_REFERER' => $GLOBALS['cfg']['app']['url'].'/'])
+            ->json(
+                'GET',
+                route('scores.download-legacy', [...$this->params(), 'rulesetOrScore' => 'nope'])
+            )
+            ->assertStatus(404);
+    }
+
     public function testDownloadNoReferer()
     {
         $this
@@ -199,26 +223,15 @@ class ScoresControllerTest extends TestCase
             ->assertRedirect(route('scores.show', $this->params()));
     }
 
-    public function testDownloadInvalidRuleset()
-    {
-        $this
-            ->actingAs($this->user)
-            ->json(
-                'GET',
-                route('scores.download-legacy', ['rulesetOrScore' => 'nope', 'score' => $this->score->getKey()])
-            )
-            ->assertStatus(302);
-    }
-
     protected function setUp(): void
     {
         parent::setUp();
 
         // fake all the replay disks
         $disks = [SoloScore::replayFileDiskName()];
-        foreach ($GLOBALS['cfg']['filesystems']['disks']['replays'] as $ruleset => $types) {
-            foreach ($types as $type => $_config) {
-                $disks[] = "replays.{$ruleset}.{$type}";
+        foreach (['local', 's3'] as $type) {
+            foreach (Beatmap::MODES as $ruleset => $_rulesetId) {
+                $disks[] = "{$type}-legacy-replay-{$ruleset}";
             }
         }
         foreach ($disks as $disk) {
@@ -239,6 +252,12 @@ class ScoresControllerTest extends TestCase
 
         UserStatistics\Osu::factory()->create(['user_id' => $this->user->user_id]);
         $this->score = Osu::factory()->withReplay()->create(['user_id' => $this->user->user_id]);
+        $this->soloScore = SoloScore::factory()->create([
+            'beatmap_id' => $this->score->beatmap_id,
+            'has_replay' => true,
+            'legacy_score_id' => $this->score->getKey(),
+            'user_id' => $this->score->user_id,
+        ]);
     }
 
     private function actAsPasswordClientUser(User $user): static

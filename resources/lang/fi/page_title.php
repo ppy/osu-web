@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'tue peliä',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'tiedot',
         ],
         'livestreams_controller' => [
             '_' => 'suorat lähetykset',
-        ],
-        'matches_controller' => [
-            '_' => 'ottelut',
         ],
         'news_controller' => [
             '_' => 'uutiset',
@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => 'tilastot',
         ],
+        'teams_controller' => [
+            '_' => 'tiimit',
+            'create' => 'luo tiimi',
+            'edit' => 'tiimin asetukset',
+            'leaderboard' => 'tiimin tulostaulukko',
+            'show' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'turnaukset',
         ],
@@ -122,6 +129,11 @@ return [
             '_' => 'wiki',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'valtuuta sovellus',
@@ -129,6 +141,11 @@ return [
     ],
     'store' => [
         '_' => 'kauppa',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

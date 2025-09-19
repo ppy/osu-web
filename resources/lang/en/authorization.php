@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'You must set a score on a beatmap to add a tag.',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'This channel is for announcements only.',
         'blocked' => 'Cannot message a user that is blocking you or that you have blocked.',
         'friends_only' => 'User is blocking messages from people not on their friends list.',
         'moderated' => 'This channel is currently moderated.',
         'no_access' => 'You do not have access to that channel.',
+        'no_announce' => 'You do not have permission to post announcement.',
         'receive_friends_only' => 'The user may not be able to reply because you are only accepting messages from people on your friends list.',
         'restricted' => 'You cannot send messages while silenced, restricted or banned.',
         'silenced' => 'You cannot send messages while silenced, restricted or banned.',
@@ -107,6 +113,7 @@ return [
                 'deleted' => 'Can not edit deleted post.',
                 'locked' => 'The post is locked from editing.',
                 'no_forum_access' => 'Access to requested forum is required.',
+                'no_permission' => 'No permission to edit.',
                 'not_owner' => 'Only poster can edit the post.',
                 'topic_locked' => 'Can not edit post of a locked topic.',
             ],
@@ -170,12 +177,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Only room owner can close it.',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Can't pin this type of score",
             'failed' => "Can't pin non-passing score.",
             'not_owner' => 'Only score owner can pin score.',
             'too_many' => 'Pinned too many scores.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "You're already part of the team.",
+                'already_other_member' => "You're already part of a different team.",
+                'currently_applying' => 'You have a pending team join request.',
+                'team_closed' => 'The team is currently not accepting any join requests.',
+                'team_full' => "The team is full and can't accept any more members.",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "Team leader can't leave the team.",
+            'not_member' => 'Not a member of the team.',
+        ],
+        'store' => [
+            'require_supporter_tag' => 'osu!supporter tag is required to create team.',
         ],
     ],
 

@@ -35,6 +35,7 @@ type GroupKey =
   | 'forum_post'
   | 'message'
   | 'scores'
+  | 'team'
   | 'user';
 export const reportableTypeToGroupKey: Record<ReportableType, GroupKey> = {
   beatmapset: 'beatmapset',
@@ -47,6 +48,7 @@ export const reportableTypeToGroupKey: Record<ReportableType, GroupKey> = {
   score_best_osu: 'scores',
   score_best_taiko: 'scores',
   solo_score: 'scores',
+  team: 'team',
   user: 'user',
 } as const;
 
@@ -54,9 +56,11 @@ export const reportableTypeToGroupKey: Record<ReportableType, GroupKey> = {
 /* eslint-disable sort-keys */
 const availableOptions = {
   Cheating: trans('users.report.options.cheating'),
+  CopyrightInfringement: trans('users.report.options.copyright_infringement'),
   MultipleAccounts: trans('users.report.options.multiple_accounts'),
   Insults: trans('users.report.options.insults'),
   Spam: trans('users.report.options.spam'),
+  InappropriateChat: trans('users.report.options.inappropriate_chat'),
   UnwantedContent: trans('users.report.options.unwanted_content'),
   Nonsense: trans('users.report.options.nonsense'),
   Other: trans('users.report.options.other'),
@@ -64,9 +68,11 @@ const availableOptions = {
 /* eslint-enable sort-keys */
 
 const reasons = {
-  beatmapset: ['UnwantedContent', 'Other'],
+  beatmapset: ['UnwantedContent', 'CopyrightInfringement', 'Other'],
   post: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
   score: ['Cheating', 'MultipleAccounts', 'Other'],
+  team: ['UnwantedContent', 'Other'],
+  user: ['Cheating', 'MultipleAccounts', 'InappropriateChat', 'UnwantedContent', 'Other'],
 } as const;
 
 const availableOptionsByGroupKey: Partial<Record<GroupKey, readonly (keyof typeof availableOptions)[]>> = {
@@ -76,6 +82,8 @@ const availableOptionsByGroupKey: Partial<Record<GroupKey, readonly (keyof typeo
   forum_post: reasons.post,
   message: reasons.post,
   scores: reasons.score,
+  team: reasons.team,
+  user: reasons.user,
 };
 
 interface Props {
@@ -106,6 +114,10 @@ export default class ReportForm extends React.Component<Props> {
     return reportableTypeToGroupKey[this.props.reportableType];
   }
 
+  private get isDmca() {
+    return this.selectedReason.id === 'CopyrightInfringement';
+  }
+
   @computed
   private get options() {
     const options = availableOptionsByGroupKey[this.groupKey]
@@ -123,11 +135,11 @@ export default class ReportForm extends React.Component<Props> {
   }
 
   componentDidMount() {
-    $(document).on('turbolinks:before-cache', this.handleClose);
+    $(document).on('turbo:before-cache', this.handleClose);
   }
 
   componentWillUnmount() {
-    $(document).off('turbolinks:before-cache', this.handleClose);
+    $(document).off('turbo:before-cache', this.handleClose);
     window.clearTimeout(this.timeout);
   }
 
@@ -194,6 +206,27 @@ export default class ReportForm extends React.Component<Props> {
     }));
   };
 
+  private renderDmcaInfo() {
+    return (
+      <div>
+        <p>
+          {
+            <StringWithComponent
+              mappings={{
+                mail: <a href='mailto:copyright@ppy.sh'>copyright@ppy.sh</a>,
+                policy: <a href={route('legal', { locale: currentLocale, path: 'Copyright' })}>{trans('users.report.dmca.message_1.policy')}</a>,
+              }}
+              pattern={trans('users.report.dmca.message_1._')}
+            />
+          }
+        </p>
+        <p>
+          {trans('users.report.dmca.message_2')}
+        </p>
+      </div>
+    );
+  }
+
   private renderFormContent() {
     return (
       <div>
@@ -213,27 +246,38 @@ export default class ReportForm extends React.Component<Props> {
             </div>
           </>
         )}
-        <div className={`${bn}__row`}>
-          {trans('users.report.comments')}
-        </div>
-        <div className={`${bn}__row`}>
-          <textarea
-            className={`${bn}__textarea`}
-            maxLength={maxLength}
-            onChange={this.handleCommentsChange}
-            placeholder={trans('users.report.placeholder')}
-            value={this.comments}
-          />
-        </div>
+        {this.isDmca
+          ?
+          <div className={`${bn}__row`}>
+            {this.renderDmcaInfo()}
+          </div>
+          :
+          <>
+            <div className={`${bn}__row`}>
+              {trans('users.report.comments')}
+            </div>
+            <div className={`${bn}__row`}>
+              <textarea
+                className={`${bn}__textarea`}
+                maxLength={maxLength}
+                onChange={this.handleCommentsChange}
+                placeholder={trans('users.report.placeholder')}
+                value={this.comments}
+              />
+            </div>
+          </>
+        }
         <div className={`${bn}__row ${bn}__row--buttons`}>
-          <button
-            className={`${bn}__button ${bn}__button--report`}
-            disabled={!this.canSubmit}
-            onClick={this.handleSubmit}
-            type='button'
-          >
-            {trans('users.report.actions.send')}
-          </button>
+          {!this.isDmca &&
+            <button
+              className={`${bn}__button ${bn}__button--report`}
+              disabled={!this.canSubmit}
+              onClick={this.handleSubmit}
+              type='button'
+            >
+              {trans('users.report.actions.send')}
+            </button>
+          }
           <button
             className={`${bn}__button`}
             disabled={this.disabled}

@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Más despacio, juega un poco.',
+        'no_mirrors' => 'No hay servidores de descarga disponibles.',
     ],
 
     'featured_artist_badge' => [
@@ -40,20 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Los nominadores provisionales no pueden nominar varios modos de juego.',
+        'full_nomination_required' => 'Debes ser un nominador completo para realizar la nominación final de un modo de juego.',
         'hybrid_requires_modes' => 'Un mapa híbrido requiere que selecciones al menos un modo de juego para nominar.',
         'incorrect_mode' => 'No tienes permiso para nominar el modo: :mode',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Este mapa tiene nominaciones no válidas y no puede ser calificado en este estado.',
+        'invalid_ruleset' => 'Esta nominación tiene modos de juego no válidos.',
         'too_many' => 'Requisito de nominación ya cumplido.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'Ya se cumplió el requisito de nominación para el modo juego no principal.',
 
         'dialog' => [
             'confirmation' => '¿Estás seguro de que quieres nominar este mapa?',
+            'different_nominator_warning' => 'Calificar este mapa con diferentes nominadores restablecerá su posición en la cola de calificación.',
             'header' => 'Nominar mapa',
             'hybrid_warning' => 'nota: solo puedes nominar una vez, así que asegúrate de que estás nominando todos los modos de juego que quieres nominar',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'El modo de juego principal es: :ruleset',
             'which_modes' => '¿Nominar para qué modos?',
         ],
     ],
@@ -67,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Ver la imagen de la portada a tamaño completo',
+            'page' => 'Ver la página de administración',
         ],
 
         'deleted_banner' => [
@@ -138,6 +141,7 @@ return [
             'description' => 'Descripción',
             'genre' => 'Género',
             'language' => 'Idioma',
+            'mapper_tags' => 'Etiquetas del mapper',
             'no_scores' => 'Los datos todavía están siendo calculados...',
             'nominators' => 'Nominadores',
             'nsfw' => 'Contenido explícito',
@@ -146,7 +150,7 @@ return [
             'source' => 'Fuente',
             'storyboard' => 'Este mapa contiene storyboard',
             'success-rate' => 'Tasa de éxito',
-            'tags' => 'Etiquetas',
+            'user_tags' => 'Etiquetas de los usuarios',
             'video' => 'Este mapa contiene video',
         ],
 
@@ -169,6 +173,7 @@ return [
             'global' => 'Clasificación global',
             'supporter-link' => '¡Haz clic <a href=":link">aquí</a> para ver todas las ventajas que ofrece!',
             'supporter-only' => '¡Necesitas ser osu!supporter para acceder a las clasificaciones nacionales y entre amigos!',
+            'team' => 'Clasificación por equipos',
             'title' => 'Tabla de puntuaciones',
 
             'headers' => [
@@ -190,6 +195,7 @@ return [
                 'friend' => '¡Ninguno de tus amigos ha establecido una puntuación en este mapa aún!',
                 'global' => 'Aún no hay puntuaciones. ¿Tal vez deberías intentar establecer alguna?',
                 'loading' => 'Cargando puntuaciones...',
+                'team' => '¡Nadie de tu equipo ha establecido una puntuación en este mapa aún!',
                 'unranked' => 'Mapa no clasificado.',
             ],
             'score' => [

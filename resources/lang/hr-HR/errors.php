@@ -7,6 +7,7 @@ return [
     'load_failed' => '',
     'missing_route' => 'Nepostojeći url ili netočna metoda zahtijeva.',
     'no_restricted_access' => 'Ne možeš to raditi dok je tvoj račun ograničen.',
+    'param_too_large' => '',
     'supporter_only' => 'Moraš imati osu!supporter oznaku kako bi koristio/la ovu značajku.',
     'unknown' => 'Došlo je do nepoznate greške.',
 
@@ -28,9 +29,15 @@ return [
     'checkout' => [
         'generic' => 'Došlo je do pogreške pri pripremanju tvoje naplate.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Nije moguće dobiti nikakve rezultate, pokušaj ponovo kasnije.',
         'invalid_cursor_exception' => 'Navedeni su neispravni parametri za pokazivač.',
         'operation_timeout_exception' => 'Pretraga je trenutno zauzetija nego inače, pokušaj ponovo kasnije.',
+    ],
+    'user_report' => [
+        'recently_reported' => "",
     ],
 ];

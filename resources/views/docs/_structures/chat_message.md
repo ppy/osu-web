@@ -29,7 +29,6 @@ Field        | Type                    | Description
 ------------ | ----------------------- | ------------------------------------------------------------
 channel_id   | integer                 | `channel_id` of where the message was sent
 content      | string                  | message content
-content_html | string?                 | Deprecated. Markdown message content as HTML
 is_action    | boolean                 | was this an action? i.e. `/me dances`
 message_id   | integer                 | unique identifier for message
 sender_id    | integer                 | `user_id` of the sender

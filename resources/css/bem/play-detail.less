@@ -27,7 +27,8 @@
     min-height: auto;
     background-color: transparent;
 
-    &:hover, &--active {
+    &:hover,
+    &--active {
       --bg: hsl(var(--hsl-b2));
       --bg-main: hsl(var(--hsl-b1));
     }
@@ -138,7 +139,28 @@
   }
 
   &__mods {
-    flex: 1;
+    display: flex;
+    margin-top: 10px;
+    flex-wrap: wrap;
+
+    @media @desktop {
+      max-width: 400px; // avoid squashing too much of the left side
+      align-items: center;
+      padding: @_padding-vertical-desktop 10px;
+      margin-top: 0;
+      order: -1;
+      background-color: var(--bg-main);
+    }
+  }
+
+  &__mods-pp {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+
+    @media @desktop {
+      display: contents;
+    }
   }
 
   &__more {
@@ -156,9 +178,7 @@
   }
 
   &__pp {
-    position: absolute;
-    right: 20px;
-    bottom: 10px;
+    align-content: flex-end;
     flex: none;
     font-size: @font-size--title-small-3;
     font-weight: 700;
@@ -169,7 +189,8 @@
       position: relative;
       right: auto;
       bottom: auto;
-      padding: @_padding-vertical-desktop @_padding-horizontal @_padding-vertical-desktop (@_padding-horizontal + 10px);
+      padding: @_padding-vertical-desktop @_padding-horizontal
+        @_padding-vertical-desktop (@_padding-horizontal + 10px);
       min-width: 110px;
       flex: none;
       background: var(--bg);
@@ -178,7 +199,7 @@
 
     &::before {
       @media @desktop {
-        content: '';
+        content: "";
         width: 10px;
         height: 100%;
         position: absolute;
@@ -202,16 +223,6 @@
       align-items: center;
       padding: @_padding-vertical-desktop 10px;
       background-color: var(--bg-main);
-    }
-
-    &--mods {
-      margin-top: 10px;
-      padding-right: 0;
-
-      @media @desktop {
-        margin-top: 0;
-        order: -1;
-      }
     }
   }
 

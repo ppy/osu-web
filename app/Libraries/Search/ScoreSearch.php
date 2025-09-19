@@ -27,9 +27,34 @@ class ScoreSearch extends RecordSearch
         );
     }
 
-    public function getActiveSchemas(): array
+    public static function getActiveSchemas(): array
     {
         return LaravelRedis::smembers('osu-queue:score-index:'.$GLOBALS['cfg']['osu']['elasticsearch']['prefix'].'active-schemas');
+    }
+
+    public static function queueForIndex(?array $schemas, array $ids): void
+    {
+        $count = count($ids);
+
+        if ($count === 0) {
+            return;
+        }
+
+        $schemas ??= static::getActiveSchemas();
+
+        $values = array_map(
+            static fn (int $id): string => json_encode(['ScoreId' => $id]),
+            $ids,
+        );
+
+        foreach ($schemas as $schema) {
+            LaravelRedis::lpush("osu-queue:{$schema}", ...$values);
+        }
+    }
+
+    public static function setSchema(string $schema): void
+    {
+        LaravelRedis::set('osu-queue:score-index:'.$GLOBALS['cfg']['osu']['elasticsearch']['prefix'].'schema', $schema);
     }
 
     public function getQuery(): BoolQuery
@@ -68,6 +93,9 @@ class ScoreSearch extends RecordSearch
                 break;
             case 'friend':
                 $query->filter(['terms' => ['user_id' => $this->params->getFriendIds()]]);
+                break;
+            case 'team':
+                $query->filter(['terms' => ['user_id' => $this->params->getTeamMemberIds()]]);
                 break;
         }
 
@@ -111,31 +139,6 @@ class ScoreSearch extends RecordSearch
         }
 
         throw new Exception("Indexable and indexed score counts still don't match. Queue runner is probably either having problem, not running, or too slow");
-    }
-
-    public function queueForIndex(?array $schemas, array $ids): void
-    {
-        $count = count($ids);
-
-        if ($count === 0) {
-            return;
-        }
-
-        $schemas ??= $this->getActiveSchemas();
-
-        $values = array_map(
-            static fn (int $id): string => json_encode(['ScoreId' => $id]),
-            $ids,
-        );
-
-        foreach ($schemas as $schema) {
-            LaravelRedis::lpush("osu-queue:{$schema}", ...$values);
-        }
-    }
-
-    public function setSchema(string $schema): void
-    {
-        LaravelRedis::set('osu-queue:score-index:'.$GLOBALS['cfg']['osu']['elasticsearch']['prefix'].'schema', $schema);
     }
 
     private function addModsFilter(BoolQuery $query): void

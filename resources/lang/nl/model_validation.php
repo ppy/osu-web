@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => '',
+        'used' => '',
+        'word_not_allowed' => '',
+
+        'attributes' => [
+            'default_ruleset_id' => '',
+            'is_open' => '',
+            'name' => '',
+            'short_name' => '',
+            'url' => '',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Wachtwoorden mogen je gebruikersnaam niet bevatten.',
         'email_already_used' => 'Dit e-mailadres is al in gebruik.',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Ranked beatmaps kunnen niet worden gerapporteerd',
         'not_in_channel' => 'Je zit niet in dit kanaal.',
+        'in_team' => '',
         'reason_not_valid' => ':reason is niet geldig voor dit rapporttype.',
         'self' => "Je kunt jezelf niet rapporteren!",
     ],

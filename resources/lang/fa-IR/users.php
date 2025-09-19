@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => '',
         'modding_description_empty' => '',
@@ -159,14 +166,24 @@ return [
             'cancel' => 'لغو',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'تقلب',
-            'multiple_accounts' => 'استفاده از چند حساب کاربری',
+            'copyright_infringement' => '',
+            'inappropriate_chat' => '',
             'insults' => 'توهین به من یا دیگران',
-            'spam' => 'اسپم کردن (هرز نویسی)',
-            'unwanted_content' => 'لینک کردن به محتوای نامناسب',
+            'multiple_accounts' => 'استفاده از چند حساب کاربری',
             'nonsense' => 'خارج از منطق',
             'other' => 'موارد دیگر (پایین بنویسید)',
+            'spam' => 'اسپم کردن (هرز نویسی)',
+            'unwanted_content' => 'لینک کردن به محتوای نامناسب',
         ],
     ],
     'restricted_banner' => [
@@ -196,10 +213,30 @@ return [
             'to_0' => 'مخفی کردن پوشش',
             'to_1' => 'نمایش دادن پوشش',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'playcount' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'تغییر عکس نمایه',
                 'defaults_info' => 'تنظیمات عکس بیشتری در آینده در دسترس خواهند بود',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'پردازش عکس ناموفق. عکس بارگذاری شده را بررسی کنید و مجدد امتحان کنید.',
                     'button' => 'بارگذاری تصویر',
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'حالت بازی پیشفرض',
                 'set' => 'تعیین :mode بعنوان حالت عادی بازی در پروفایل',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 
@@ -449,8 +496,13 @@ return [
             'global_simple' => 'رتبه جهانی',
             'highest' => '',
         ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
+        ],
         'stats' => [
             'hit_accuracy' => 'دقت ضربات',
+            'hits_per_play' => '',
             'level' => 'سطح :level',
             'level_progress' => 'پیشروی تا سطح بعدی',
             'maximum_combo' => 'بیشترین کمبو',

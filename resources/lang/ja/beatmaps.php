@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => '無効なルールセットが指定されています。',
+
+    'change_owner' => [
+        'too_many' => 'ゲストマッパーの数が多すぎます。',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => '評価の更新に失敗しました',
@@ -25,12 +31,14 @@ return [
         'message_placeholder_silenced' => "サイレンス中はディスカッションへ投稿できません。",
         'message_type_select' => 'コメントタイプを選択',
         'reply_notice' => 'Enterキーを押して送信',
+        'reply_resolve_notice' => 'Enterを押して返信します。Ctrl + Enter キーを押して返信し、解決済みにします。',
         'reply_placeholder' => 'ここに入力してください',
         'require-login' => '返信するにはログインが必要です。',
         'resolved' => '解決済み',
         'restore' => '復元',
         'show_deleted' => '削除済みを表示',
         'title' => 'ディスカッション',
+        'unresolved_count' => ':count_delimited 個の未解決問題|:count_delimited 個の未解決問題',
 
         'collapse' => [
             'all-collapse' => '全てを折りたたむ',
@@ -69,7 +77,7 @@ return [
         'message_type' => [
             'disqualify' => 'Disqualify',
             'hype' => 'Hype!',
-            'mapper_note' => '注意',
+            'mapper_note' => 'メモ',
             'nomination_reset' => 'ノミネーションをリセット',
             'praise' => '称賛',
             'problem' => '問題',
@@ -79,15 +87,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => '失格を投稿',
+            'hype' => 'Hypeを投稿',
+            'mapper_note' => 'メモを投稿',
+            'nomination_reset' => 'すべてのノミネートを削除する',
+            'praise' => '称賛を投稿',
+            'problem' => '問題を投稿',
+            'problem_warning' => '問題を投稿',
+            'review' => 'レビューを投稿',
+            'suggestion' => '提案を投稿',
         ],
 
         'mode' => [
@@ -188,7 +196,7 @@ return [
 
     'nominations' => [
         'already_nominated' => '既にこのビートマップをHypeしています。',
-        'cannot_nominate' => '',
+        'cannot_nominate' => 'このゲームモードをノミネートすることはできません。',
         'delete' => '削除',
         'delete_own_confirm' => '本当によろしいですか？ビートマップは削除され、プロフィール画面にリダイレクトされます。',
         'delete_other_confirm' => '本当によろしいですか？ビートマップは削除され、ユーザーのプロフィール画面にリダイレクトされます。',
@@ -213,9 +221,9 @@ return [
 
         'rank_estimate' => [
             '_' => 'このマップは、問題が見つからなければ :date にrankedされると推定されます。:queue 内の #:position ',
-            'unresolved_problems' => '',
-            'problems' => '',
-            'on' => '',
+            'unresolved_problems' => '現在このマップは :problems が解決されるまでQualified状態から離れることをブロックされています。',
+            'problems' => 'この問題',
+            'on' => ':date',
             'queue' => 'ランキングキュー',
             'soon' => '間もなく',
         ],
@@ -283,7 +291,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => '未設定',
     ],
     'status' => [
         'any' => '全て',

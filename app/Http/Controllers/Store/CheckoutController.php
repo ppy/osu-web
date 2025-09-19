@@ -5,18 +5,16 @@
 
 namespace App\Http\Controllers\Store;
 
-use App\Events\Fulfillments\PaymentEvent;
 use App\Libraries\OrderCheckout;
+use App\Libraries\Payments\PaymentCompleted;
 use App\Models\Store\Order;
 use App\Traits\CheckoutErrorSettable;
-use App\Traits\StoreNotifiable;
 use Auth;
 use DB;
-use Exception;
 
 class CheckoutController extends Controller
 {
-    use CheckoutErrorSettable, StoreNotifiable;
+    use CheckoutErrorSettable;
 
     protected $layout = 'master';
 
@@ -41,13 +39,12 @@ class CheckoutController extends Controller
         // TODO: should be able to notify user that items were changed due to stock/price changes.
         $order->refreshCost();
         $checkout = new OrderCheckout($order);
-        $addresses = Auth::user()->storeAddresses()->with('country')->get();
 
         // using $errors will conflict with laravel's default magic MessageBag/ViewErrorBag that doesn't act like
         // an array and will cause issues in shared views.
         $validationErrors = session('checkout.error.errors') ?? $checkout->validate();
 
-        return ext_view('store.checkout.show', compact('order', 'addresses', 'checkout', 'validationErrors'));
+        return ext_view('store.checkout.show', compact('order', 'checkout', 'validationErrors'));
     }
 
     public function store()
@@ -92,16 +89,10 @@ class CheckoutController extends Controller
     private function freeCheckout($checkout)
     {
         $order = DB::connection('mysql-store')->transaction(function () use ($checkout) {
-            try {
-                $order = $checkout->getOrder();
-                $checkout->completeCheckout();
-                $order->paid(null);
-            } catch (Exception $exception) {
-                $this->notifyError($exception, $order, 'store.payments.error.free');
-                throw $exception;
-            }
+            $order = $checkout->getOrder();
+            $checkout->completeCheckout();
 
-            event('store.payments.completed.free', new PaymentEvent($order));
+            (new PaymentCompleted($order, null))->handle();
 
             return $order;
         });

@@ -14,28 +14,31 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => 'schowaj ocenione wpisy',
-        'nav_title' => 'oceniać',
-        'no_current_vote' => 'jeszcze nie zagłosowałeś.',
-        'update' => 'aktualizacja',
+        'comments' => 'komentarze',
+        'hide_judged' => 'ukryj ocenione prace',
+        'nav_title' => 'ocena prac',
+        'no_current_vote' => 'brak głosów',
+        'update' => 'zaktualizuj',
         'validation' => [
-            'missing_score' => 'brakujący wynik',
-            'contest_vote_judged' => 'nie można głosować w ocenianych konkursach',
+            'missing_score' => 'brak wyniku',
+            'contest_vote_judged' => 'nie możesz głosować w konkursach ocenianych przez jury',
         ],
-        'voted' => 'Już zagłosowałeś w tym wpisie.',
+        'voted' => 'Już zagłosowano na tę pracę.',
     ],
 
     'judge_results' => [
-        '_' => 'Wyniki oceniania',
+        '_' => 'Wyniki oceny prac',
         'creator' => 'twórca',
         'score' => 'Wynik',
-        'total_score' => 'wynik całkowity',
+        'score_std' => 'Wynik standaryzowany',
+        'total_score' => 'całkowity wynik',
+        'total_score_std' => 'całkowity wynik standaryzowany',
     ],
 
     'voting' => [
-        'judge_link' => 'Jesteś sędzią tego konkursu. Oceń wpisy tutaj!',
-        'judged_notice' => 'Ten konkurs używa systemu oceniania, sędziowie obecnie sprawdzają wpisy.',
-        'login_required' => 'Zaloguj się, aby zagłosować!',
+        'judge_link' => 'Jesteś członkiem jury tego konkursu. Oceń zgłoszone prace tutaj!',
+        'judged_notice' => 'Ten konkurs jest oceniany przez jury - członkowie zespołu są w trakcie przetwarzania zgłoszonych prac.',
+        'login_required' => 'Zaloguj się, aby zagłosować.',
         'over' => 'Głosowanie dla tego konkursu zostało zakończone',
         'show_voted_only' => 'Pokaż prace z moimi głosami',
 
@@ -55,27 +58,27 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => 'Musisz zagrać wszystkie beatmapy w określonych grach, by zagłosować',
+                'incomplete_play' => 'Musisz zagrać wszystkie beatmapy w określonych grach asynchronicznych, by zagłosować',
             ],
         ],
     ],
 
     'entry' => [
         '_' => 'zgłoszenie',
-        'login_required' => 'Zaloguj się, aby uczestniczyć w tym konkursie.',
+        'login_required' => 'Zaloguj się, aby wziąć udział w konkursie.',
         'silenced_or_restricted' => 'Nie możesz uczestniczyć w konkursach po tym, jak twoje konto zostało ograniczone lub uciszone.',
         'preparation' => 'Ten konkurs jest obecnie przygotowywany. Czekaj cierpliwie!',
         'drop_here' => 'Tutaj umieść swoje zgłoszenie',
         'download' => 'Pobierz plik .osz',
 
         'wrong_type' => [
-            'art' => 'Jedynie pliki o rozszerzeniach .jpg czy .png są dozwolone w tym konkursie.',
-            'beatmap' => 'Jedynie pliki o rozszerzeniu .osu są dozwolone w tym konkursie.',
-            'music' => 'Jedynie pliki o rozszerzeniu .mp3 są dozwolone w tym konkursie.',
+            'art' => 'W tym konkursie dozwolone są wyłącznie pliki o rozszerzeniach .jpg i .png.',
+            'beatmap' => 'W tym konkursie dozwolone są wyłącznie pliki o rozszerzeniu .osu.',
+            'music' => 'W tym konkursie dozwolone są wyłącznie pliki o rozszerzeniu .mp3.',
         ],
 
         'wrong_dimensions' => 'Zgłoszenia do tego konkursu muszą mieć rozdzielczość :widthx:height',
-        'too_big' => 'Maksymalna wielkość zgłoszeń dla tego konkursu to :limit.',
+        'too_big' => 'Maksymalny rozmiar pliku ze zgłoszeniem dla tego konkursu to :limit.',
     ],
 
     'beatmaps' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'głosy',
         'count' => ':count_delimited głos|:count_delimited głosy|:count_delimited głosów',
         'points' => ':count_delimited punkt|:count_delimited punkty|:count_delimited punktów',
+        'points_float' => ':points pkt',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Otwarty na zgłoszenia',
         'voting' => 'Głosowanie',
         'results' => 'Wyniki',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => 'Pokaż informacje i zgłoszenia',
+        ],
     ],
 ];

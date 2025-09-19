@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'ต้องการกู้คืนโพสต์จริงหรอ?',
         'deleted' => 'ลบกระทู้',
         'go_to_latest' => 'ดูโพสต์ล่าสุด',
+        'go_to_unread' => '',
         'has_replied' => 'คุณได้ตอบกลับการสนทนานี้',
         'in_forum' => 'ใน :forum',
         'latest_post' => ':when โดย :user',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'ลบแท็ก "แก้แล้ว" แล้ว',
             'to_1' => 'เพิ่มแท็ก "แก้แล้ว"',
             'to_1_done' => 'เพิ่มแท็ก "แก้แล้ว" แล้ว',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'lock' => [

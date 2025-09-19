@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => '',
         'hide_judged' => 'itago ang hinuhusgahang mga entry',
         'nav_title' => 'maghusga',
         'no_current_vote' => 'hindi ka pa nakaboto.',
@@ -29,7 +30,9 @@ return [
         '_' => 'Mga resulta sa paghuhusga',
         'creator' => 'tagagawa',
         'score' => 'Puntos',
+        'score_std' => '',
         'total_score' => 'kabuuang puntos',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'mga boto',
         'count' => ':count_delimited boto|:count_delimited mga boto',
         'points' => ':count_delimited puntos|:count_delimited mga puntos',
+        'points_float' => '',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Maaaring Magsumite',
         'voting' => 'Nagsimula ang Pagboto',
         'results' => 'Linabas Ang Mga Resulta',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

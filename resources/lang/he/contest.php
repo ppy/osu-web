@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => '',
         'hide_judged' => '',
         'nav_title' => '',
         'no_current_vote' => '',
@@ -29,7 +30,9 @@ return [
         '_' => '',
         'creator' => '',
         'score' => '',
+        'score_std' => '',
         'total_score' => '',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'הצבעות',
         'count' => ':count_delimited הצבעה|:count_delimited הצבעות',
         'points' => ':count_delimited נקודה|:count_delimited נקודות',
+        'points_float' => '',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'שליחה פתוחה',
         'voting' => 'הצבעה התחילה',
         'results' => 'תוצאות',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

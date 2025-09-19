@@ -13,18 +13,15 @@ return [
         'blurb' => [
             'important' => '下载前必读',
             'install_instruction' => '导入：当曲包下载完成后，把它解压至 Songs 文件夹内即可。osu! 会完成接下来的工作。',
-            'note' => [
-                '_' => '强烈建议 :scary，因为旧谱面的质量可能不如新谱面。',
-                'scary' => '从新到旧下载曲包',
-            ],
         ],
     ],
 
     'show' => [
+        'created_by' => '作者：:author',
         'download' => '下载',
         'item' => [
-            'cleared' => '玩过',
-            'not_cleared' => '未玩过',
+            'cleared' => '已通过',
+            'not_cleared' => '未通过',
         ],
         'no_diff_reduction' => [
             '_' => '若要解锁成就，则不能使用:link游玩谱面。',

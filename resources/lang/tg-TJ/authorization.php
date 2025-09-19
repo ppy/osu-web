@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => '',
         'blocked' => '',
         'friends_only' => '',
         'moderated' => '',
         'no_access' => '',
+        'no_announce' => '',
         'receive_friends_only' => '',
         'restricted' => '',
         'silenced' => '',
@@ -107,6 +113,7 @@ return [
                 'deleted' => '',
                 'locked' => '',
                 'no_forum_access' => '',
+                'no_permission' => '',
                 'not_owner' => '',
                 'topic_locked' => '',
             ],
@@ -170,12 +177,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "",
             'failed' => "",
             'not_owner' => '',
             'too_many' => '',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "",
+                'already_other_member' => "",
+                'currently_applying' => '',
+                'team_closed' => '',
+                'team_full' => "",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "",
+            'not_member' => '',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

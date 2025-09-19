@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'podpri igro',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'informacije',
         ],
         'livestreams_controller' => [
             '_' => 'oddajanja v živo',
-        ],
-        'matches_controller' => [
-            '_' => 'tekma',
         ],
         'news_controller' => [
             '_' => 'novice',
@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => 'uvrstitve',
         ],
+        'teams_controller' => [
+            '_' => '',
+            'create' => '',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'turnirji',
         ],
@@ -122,6 +129,11 @@ return [
             '_' => 'wiki',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'pooblasti aplikacijo',
@@ -129,6 +141,11 @@ return [
     ],
     'store' => [
         '_' => 'trgovina',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

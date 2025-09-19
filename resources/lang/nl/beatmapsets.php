@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Niet zo snel, speel meer.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Weet je zeker dat je deze Beatmap wilt nomineren?',
+            'different_nominator_warning' => '',
             'header' => 'Nomineer Beatmap',
             'hybrid_warning' => 'opmerking: je mag maar één keer nomineren, dus zorg er alsjeblieft voor dat je nomineert voor alle spelmodi die je van plan bent te nomineren',
             'current_main_ruleset' => '',
@@ -67,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Bekijk afbeelding op volledige grootte',
+            'page' => '',
         ],
 
         'deleted_banner' => [
@@ -138,6 +141,7 @@ return [
             'description' => 'Beschrijving',
             'genre' => 'Genre',
             'language' => 'Taal',
+            'mapper_tags' => '',
             'no_scores' => 'Data nog aan het berekenen...',
             'nominators' => 'Nominatoren',
             'nsfw' => 'Expliciete inhoud',
@@ -146,7 +150,7 @@ return [
             'source' => 'Bron',
             'storyboard' => 'Deze beatmap bevat verhaalborden',
             'success-rate' => 'Slagingspercentage',
-            'tags' => 'Tags',
+            'user_tags' => '',
             'video' => 'Deze beatmap bevat een video',
         ],
 
@@ -169,6 +173,7 @@ return [
             'global' => 'Globale Ranking',
             'supporter-link' => 'Klik <a href=":link">hier</a> om alle chique functies die je krijgt te zien!',
             'supporter-only' => 'Je moet een osu!supporter zijn om toegang te krijgen tot land- en vriendenrankings, net als mod-specifieke ranglijsten!',
+            'team' => '',
             'title' => 'Scorebord',
 
             'headers' => [
@@ -190,6 +195,7 @@ return [
                 'friend' => 'Niemand van jouw vrienden heeft nog een score behaald op deze map!',
                 'global' => 'Nog geen scores. Probeer er een paar te halen?',
                 'loading' => 'Scoren aan het laden...',
+                'team' => '',
                 'unranked' => 'Ongerankte beatmap.',
             ],
             'score' => [

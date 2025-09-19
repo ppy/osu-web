@@ -46,7 +46,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Стварно обрисати пост?',
         'confirm_restore' => 'Стварно вратити пост?',
-        'edited' => 'Последње измењено од :user :when, измењено :count_delimited пута и укупно.|Последње измењено од :user :when, измењено :count_delimited пута укупно.',
+        'edited' => 'Последње измењено од :user :when, измењено :count_delimited пута укупно.|Последње измењено од :user :when, измењено :count_delimited пута укупно.',
         'posted_at' => 'постовао :when',
         'posted_by_in' => 'поставио :username у :forum',
 
@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Стварно вратити тему?',
         'deleted' => 'обрисана тема',
         'go_to_latest' => 'погледај најновији пост',
+        'go_to_unread' => '',
         'has_replied' => 'Одговорили сте на ову тему',
         'in_forum' => 'у :forum',
         'latest_post' => ':when од :user',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => '',
             'to_1' => 'Додај ознаку "решено"',
             'to_1_done' => 'Додата ознака "решено"',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'lock' => [

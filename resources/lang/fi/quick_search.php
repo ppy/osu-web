@@ -5,17 +5,18 @@
 
 return [
     'mode' => [
+        'artist_track' => '',
         'beatmapset' => 'Rytmikartta',
         'forum_post' => 'Foorumi',
         'other' => 'Muu',
+        'team' => '',
         'user' => 'Pelaaja',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => 'Ei tuloksia',
         'empty_for' => 'Ei :modes-hakutuloksia',
         'more' => 'Lisää :mode-hakutuloksia',
-        'title' => ':mode-hakutulokset',
+        'title' => ':mode: hakutulokset',
     ],
 ];

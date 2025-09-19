@@ -1,16 +1,18 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetSearch, SearchResponse } from 'beatmaps/beatmapset-search';
+import BeatmapsetSearch from 'beatmaps/beatmapset-search';
 import ResultSet from 'beatmaps/result-set';
 import { BeatmapsetSearchFilters, FilterKey, filtersFromUrl } from 'beatmapset-search-filters';
+import BeatmapsetSearchResponse from 'interfaces/beatmapset-search-response';
 import { route } from 'laroute';
 import { debounce, intersection } from 'lodash';
 import { action, computed, IObjectDidChange, Lambda, makeObservable, observable, observe, runInAction } from 'mobx';
 import core from 'osu-core-singleton';
 import { trans, transArray } from 'utils/lang';
 import { popup } from 'utils/popup';
-import { currentUrl } from 'utils/turbolinks';
+import { updateHistory, currentUrl } from 'utils/turbolinks';
+import { updateQueryString } from 'utils/url';
 
 
 const expandFilters: FilterKey[] = ['genre', 'language', 'extra', 'rank', 'played'];
@@ -99,7 +101,7 @@ export class BeatmapsetSearchController {
     return value != null ? value.split('.') : value;
   }
 
-  initialize(data: SearchResponse) {
+  initialize(data: BeatmapsetSearchResponse) {
     this.restoreStateFromUrl();
     this.beatmapsetSearch.initialize(this.filters, data);
     this.initialErrorMessage = data.error;
@@ -150,10 +152,9 @@ export class BeatmapsetSearchController {
     });
   }
 
+  @action
   private readonly filterChangedHandler = (change: IObjectDidChange<BeatmapsetSearchFilters>) => {
     if (change.type === 'update' && change.oldValue === change.newValue) return;
-    // FIXME: sort = null changes ignored because search triggered too early during filter update.
-    if (change.type !== 'remove' && change.name === 'sort' && change.newValue == null) return;
 
     this.searchStatus.state = 'input';
     this.debouncedFilterChangedSearch();
@@ -165,7 +166,7 @@ export class BeatmapsetSearchController {
 
   private filterChangedSearch() {
     const url = route('beatmapsets.index', this.filters.queryParams);
-    Turbolinks.controller.advanceHistory(url);
+    updateHistory(url, 'push');
 
     this.search();
   }
@@ -178,6 +179,10 @@ export class BeatmapsetSearchController {
       this.filtersObserver();
     }
     this.filters = new BeatmapsetSearchFilters(url);
+
+    // normalize url
+    updateHistory(updateQueryString(null, { ...this.filters.queryParams }), 'replace');
+
     this.filtersObserver = observe(this.filters, this.filterChangedHandler);
 
     this.isExpanded = intersection(Object.keys(filtersFromUrl(url)), expandFilters).length > 0;

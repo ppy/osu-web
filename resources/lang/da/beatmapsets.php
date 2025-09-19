@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Sæt farten ned, spil mere.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -41,16 +42,17 @@ return [
 
     'nominate' => [
         'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'full_nomination_required' => 'Du skal være en fuld nominator for at udføre en rulesets sidste nomination.',
         'hybrid_requires_modes' => 'Et hybrid beatmap kræver at du vælger mindst en spilletilstand at nominere til.',
         'incorrect_mode' => 'Du har ikke tilladelse til at nominere for tilstand: :mode',
-        'invalid_limited_nomination' => '',
+        'invalid_limited_nomination' => 'Dette beatmap har ugyldige nominationer og kan ikke kvalificeres i denne tilstand.',
         'invalid_ruleset' => '',
         'too_many' => 'Nomineringskravet er allerede opfyldt.',
         'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => 'Er du sikker på du vil nominere dette Beatmap?',
+            'different_nominator_warning' => '',
             'header' => 'Nominér Beatmap',
             'hybrid_warning' => 'bemærk: du kan kun nominere én gang, så sørg for at du nominerer til alle spiltilstande, du har til hensigt til',
             'current_main_ruleset' => '',
@@ -67,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => '',
+            'page' => '',
         ],
 
         'deleted_banner' => [
@@ -138,6 +141,7 @@ return [
             'description' => 'Beskrivelse',
             'genre' => 'Genre',
             'language' => 'Sprog',
+            'mapper_tags' => '',
             'no_scores' => 'Data er stadig ved at blive beregnet...',
             'nominators' => '',
             'nsfw' => 'Eksplicit indhold',
@@ -146,7 +150,7 @@ return [
             'source' => 'Kilde',
             'storyboard' => 'Dette beatmap indeholder storyboard',
             'success-rate' => 'Succesrate',
-            'tags' => 'Tags',
+            'user_tags' => '',
             'video' => 'Dette beatmap indeholder video',
         ],
 
@@ -169,6 +173,7 @@ return [
             'global' => 'Global Rang',
             'supporter-link' => 'Klik <a href=":link">here</a> for at se alle de fede fordele du kan få!',
             'supporter-only' => 'Du skal være supporter for at få adgang til venne- og landerangering!',
+            'team' => '',
             'title' => 'Scoreboard',
 
             'headers' => [
@@ -190,6 +195,7 @@ return [
                 'friend' => 'Ingen af dine venner har sat en score på dette map endnu!',
                 'global' => 'Ingen scores endnu. Måske skulle du prøve at sætte en?',
                 'loading' => 'Indlæser scores...',
+                'team' => '',
                 'unranked' => 'Ikke-ranked beatmap.',
             ],
             'score' => [

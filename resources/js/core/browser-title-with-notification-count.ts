@@ -18,8 +18,8 @@ export default class BrowserTitleWithNotificationCount {
 
   constructor(private readonly core: OsuCore) {
     makeObservable(this);
-    document.addEventListener('turbolinks:load', this.setTitle);
-    document.addEventListener('turbolinks:before-cache', this.resetTitle);
+    document.addEventListener('turbo:load', this.setTitle);
+    document.addEventListener('turbo:before-cache', this.resetTitle);
   }
 
   @action

@@ -6,7 +6,7 @@
     <span class="landing-nav__link js-menu" data-menu-target="landing--locale">
         <span class="landing-nav__locale-flag">
             @include('objects._flag_country', [
-                'countryCode' => $currentLocaleMeta->flag(),
+                'country' => $currentLocaleMeta->flag(),
             ])
         </span>
 
@@ -38,7 +38,7 @@
 
                     <span class="landing-nav__locale-flag">
                         @include('objects._flag_country', [
-                            'countryCode' => $localeMeta->flag(),
+                            'country' => $localeMeta->flag(),
                         ])
                     </span>
 

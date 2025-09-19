@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avataras',
+            'reset' => 'atstatyti',
             'rules' => 'Prašome užtikrinti, kad avataras atitinka :link.<br/>Reiškias jis turi būti<strong> tinkamas visiems amžiams </strong>. pvz. nėra nuogybių, nešvankybių ar kito pažeidžiamo tūrinio.',
             'rules_link' => 'bendruomenės taisyklės',
         ],
@@ -19,7 +20,7 @@ return [
             'new_confirmation' => 'el. pašto patvirtinimas',
             'title' => 'El. Paštas',
             'locked' => [
-                '_' => '',
+                '_' => 'Prašome susisiekti su :accounts jei tau reikia atnaujinti el. paštą.',
                 'accounts' => '',
             ],
         ],
@@ -64,12 +65,12 @@ return [
 
     'github_user' => [
         'info' => "",
-        'link' => '',
-        'title' => '',
+        'link' => 'Susieti GitHub paskyrą',
+        'title' => 'GitHub',
         'unlink' => '',
 
         'error' => [
-            'already_linked' => '',
+            'already_linked' => 'Ši GitHub paskyra jau yra susieta su kitu naudotuju.',
             'no_contribution' => '',
             'unverified_email' => '',
         ],
@@ -87,6 +88,7 @@ return [
             'beatmap_owner_change' => 'svečio sunkumas',
             'beatmapset:modding' => 'beatmap\'ų modifikacijos',
             'channel_message' => 'privatūs susirašinėjimai',
+            'channel_team' => '',
             'comment_new' => 'nauji komentarai',
             'forum_topic_reply' => 'temos atsakymas',
             'mail' => 'paštas',

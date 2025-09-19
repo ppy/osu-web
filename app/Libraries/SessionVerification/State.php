@@ -7,99 +7,73 @@ declare(strict_types=1);
 
 namespace App\Libraries\SessionVerification;
 
-use App\Exceptions\UserVerificationException;
 use App\Interfaces\SessionVerificationInterface;
-use App\Libraries\SignedRandomString;
-use Carbon\CarbonImmutable;
+use App\Mail\UserVerification as UserVerificationMail;
+use App\Models\LoginAttempt;
+use App\Models\User;
 
 class State
 {
-    private const KEY_VALID_DURATION = 5 * 3600;
-
-    public readonly CarbonImmutable $expiresAt;
-    public readonly string $key;
-    public readonly string $linkKey;
-    public int $tries = 0;
-
-    private function __construct(
-        private readonly string $sessionClass,
-        private readonly string $sessionId,
+    public function __construct(
+        public SessionVerificationInterface $session,
+        public User $user,
     ) {
-        // 1 byte = 8 bits = 2^8 = 16^2 = 2 hex characters
-        $this->key = bin2hex(random_bytes($GLOBALS['cfg']['osu']['user']['verification_key_length_hex'] / 2));
-        $this->linkKey = SignedRandomString::create(32);
-        $this->expiresAt = CarbonImmutable::now()->addSeconds(static::KEY_VALID_DURATION);
     }
 
-    public static function create(SessionVerificationInterface $session): static
+    public static function getCurrent(): static
     {
-        $state = new static($session::class, $session->getKey());
-        $state->save(true);
-
-        return $state;
+        return new static(Helper::currentSession(), \Auth::user());
     }
 
-    public static function fromSession(SessionVerificationInterface $session): ?static
+    public function getMethod(): string
     {
-        return \Cache::get(static::cacheKey($session::class, $session->getKey()));
-    }
+        $currentMethod = $this->session->getVerificationMethod();
 
-    public static function fromVerifyLink(string $linkKey): ?static
-    {
-        if (!SignedRandomString::isValid($linkKey)) {
-            return null;
+        if ($currentMethod === null) {
+            LoginAttempt::logAttempt(\Request::getClientIp(), $this->user, 'verify');
+
+            // force mail to prevent client without totp support from showing wrong message
+            $currentMethod = (is_api_request() && api_version() < 20250913) || $this->user->userTotpKey === null
+                ? 'mail'
+                : 'totp';
+
+            $this->session->setVerificationMethod($currentMethod);
         }
 
-        $cacheKey = \Cache::get(static::cacheLinkKey($linkKey));
-
-        return $cacheKey === null ? null : \Cache::get($cacheKey);
+        return $currentMethod;
     }
 
-    private static function cacheKey(string $class, string $id): string
+    public function issueMail(bool $initial): void
     {
-        return "session_verification:{$class}:{$id}";
-    }
-
-    private static function cacheLinkKey(string $linkKey): string
-    {
-        return "session_verification_link:{$linkKey}";
-    }
-
-    public function delete(): void
-    {
-        \Cache::delete(static::cacheKey($this->sessionClass, $this->sessionId));
-        \Cache::delete(static::cacheLinkKey($this->linkKey));
-    }
-
-    public function findSession(): ?SessionVerificationInterface
-    {
-        return $this->sessionClass::findForVerification($this->sessionId);
-    }
-
-    public function verify(string $inputKey): void
-    {
-        $this->tries++;
-
-        if ($this->expiresAt->isPast()) {
-            throw new UserVerificationException('expired', true);
-        }
-
-        if (!hash_equals($this->key, $inputKey)) {
-            if ($this->tries >= $GLOBALS['cfg']['osu']['user']['verification_key_tries_limit']) {
-                throw new UserVerificationException('retries_exceeded', true);
+        if ($initial) {
+            if (MailState::fromSession($this->session) === null) {
+                Helper::logAttempt('input', 'new');
             } else {
-                $this->save(false);
-                throw new UserVerificationException('incorrect_key', false);
+                return;
             }
         }
+
+        if (!is_valid_email_format($this->user->user_email)) {
+            return;
+        }
+
+        $mailState = MailState::create($this->session);
+        $keys = [
+            'link' => $mailState->linkKey,
+            'main' => $mailState->key,
+        ];
+
+        $requestCountry = app('countries')->byCode(request_country() ?? '')?->name;
+
+        \Mail::to($this->user)->queue(new UserVerificationMail([
+            'keys' => $keys,
+            'requestCountry' => $requestCountry,
+            'user' => $this->user,
+        ]));
     }
 
-    private function save(bool $saveLinkKey): void
+    public function markVerified(?MailState $mailState): void
     {
-        $cacheKey = static::cacheKey($this->sessionClass, $this->sessionId);
-        \Cache::put($cacheKey, $this, $this->expiresAt);
-        if ($saveLinkKey) {
-            \Cache::put(static::cacheLinkKey($this->linkKey), $cacheKey, $this->expiresAt);
-        }
+        Helper::markVerified($this->session, $mailState);
     }
 }

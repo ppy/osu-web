@@ -55,6 +55,7 @@ return [
         'contact' => 'Contact:',
         'date' => 'Datum:',
         'echeck_delay' => 'Aangezien uw betaling een eCheck was, Wacht maximaal 10 dagen extra om de betaling veilig via PayPal te laten gaan!',
+        'echeck_denied' => '',
         'hide_from_activity' => 'osu!supporter tags in deze bestelling worden niet weergegeven in je recente activiteiten.',
         'sent_via' => 'Gestuurd Via:',
         'shipping_to' => 'Verzenden Naar:',
@@ -173,6 +174,7 @@ return [
 
         'add_to_cart' => 'Voeg toe aan winkelwagen',
         'notify' => 'Laat me weten wanneer het beschikbaar is!',
+        'out_of_stock' => '',
 
         'notification_success' => 'we zullen het je laten weten wanneer het weer op voorraad is. klik :link om te annuleren',
         'notification_remove_text' => 'hier',

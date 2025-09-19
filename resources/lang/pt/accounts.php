@@ -10,7 +10,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Por favor, assegura-te de que o teu avatar respeita :link.<br/>Isto significa que deve ser <strong>adequado para todas as idades</strong>, ou seja, sem nudez, profanidade ou conteúdo estimulante.',
+            'reset' => 'reiniciar',
+            'rules' => 'Assegura-te de que o teu avatar respeita :link.<br/>Significa que deve estar<strong>adequado para todas as idades</strong>, ou seja, sem nudez, profanidade ou conteúdo sugestivo.',
             'rules_link' => 'as regras da comunidade',
         ],
 
@@ -87,6 +88,7 @@ return [
             'beatmap_owner_change' => 'dificuldade de convidado',
             'beatmapset:modding' => 'modificações de beatmaps',
             'channel_message' => 'Mensagens do chat privado',
+            'channel_team' => 'mensagens da equipa',
             'comment_new' => 'Novos comentários ',
             'forum_topic_reply' => 'resposta a um tópico',
             'mail' => 'correio',

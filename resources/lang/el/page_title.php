@@ -64,11 +64,11 @@ return [
             '_' => 'σχόλια',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'διαγωνισμός κρίνοντας αποτελέσματα',
         ],
         'contests_controller' => [
             '_' => 'διαγωνισμοί',
-            'judge' => '',
+            'judge' => 'διαγωνισμός κρίνοντας',
         ],
         'groups_controller' => [
             'show' => 'ομάδες',
@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'υποστήριξη του παιχνιδιού',
             'testflight' => 'δοκιμή',
         ],
+        'legacy_matches_controller' => [
+            '_' => 'αγώνες',
+        ],
         'legal_controller' => [
             '_' => 'πληροφορίες',
         ],
         'livestreams_controller' => [
             '_' => 'ζωντανές ροές',
-        ],
-        'matches_controller' => [
-            '_' => 'matches',
         ],
         'news_controller' => [
             '_' => 'ειδήσεις',
@@ -107,11 +107,18 @@ return [
         'seasons_controller' => [
             '_' => 'κατατάξεις',
         ],
+        'teams_controller' => [
+            '_' => 'ομάδες',
+            'create' => 'δημιουργία ομάδας',
+            'edit' => 'ρυθμίσεις ομάδας',
+            'leaderboard' => 'πίνακας κατάταξης',
+            'show' => 'πληροφορίες ομάδας',
+        ],
         'tournaments_controller' => [
             '_' => 'πρωταθλήματα',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'προεπιλογές καλύμματος χρήστη',
         ],
         'users_controller' => [
             '_' => 'πληροφορίες παίκτη',
@@ -122,6 +129,11 @@ return [
             '_' => 'wiki',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => 'ιστορικό δωματίου',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'εξουσιοδότηση εφαρμογής',
@@ -129,6 +141,11 @@ return [
     ],
     'store' => [
         '_' => 'κατάστημα',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'μέλη ομάδας',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

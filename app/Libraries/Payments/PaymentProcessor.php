@@ -5,116 +5,90 @@
 
 namespace App\Libraries\Payments;
 
-use App\Events\Fulfillments\PaymentEvent;
-use App\Events\Fulfillments\ProcessorValidationFailed;
 use App\Exceptions\InvalidSignatureException;
-use App\Exceptions\ModelNotSavedException;
+use App\Exceptions\Store\PaymentProcessorException;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
-use Datadog;
 use DB;
-use Exception;
+use Sentry\State\Scope;
 
 abstract class PaymentProcessor implements \ArrayAccess
 {
     use Memoizes, Validatable;
 
-    protected $params;
-    protected $signature;
+    const WARN_CANCEL_MISSING_PAYMENT = 'Cancelling order with no existing payment found.';
+    const WARN_PAYMENT_ALREADY_CANCELLED = 'Payment already cancelled.';
 
-    public function __construct(array $params, PaymentSignature $signature)
+    public function __construct(protected array $params, protected PaymentSignature $signature)
     {
         \Log::debug($params);
-
-        $this->params = $params;
-        $this->signature = $signature;
     }
 
     /**
      * Gets the country code of the payment as returned by the provider.
-     *
-     * @return string
      */
-    abstract public function getCountryCode();
+    abstract public function getCountryCode(): ?string;
 
     /**
      * Gets a more friendly identifying order number string that represents an Order.
-     *
-     * @return string
      */
-    abstract public function getOrderNumber();
+    abstract public function getOrderNumber(): ?string;
 
     /**
      * string representing the payment provider.
      *
      * @return string
      */
-    abstract public function getPaymentProvider();
+    abstract public function getPaymentProvider(): string;
 
     /**
      * Transaction ID returned by the payment provider.
-     *
-     * @return string
      */
-    abstract public function getPaymentTransactionId();
+    abstract public function getPaymentTransactionId(): string;
 
     /**
      * Gets the transaction ID for the payment tagged with the payment processor used..
      * Transaction IDs should be unique scoped to the payment processor.
-     *
-     * @return string
      */
-    public function getTransactionId()
+    public function getTransactionId(): string
     {
         return "{$this->getPaymentProvider()}-{$this->getPaymentTransactionId()}";
     }
 
     /**
      * Gets the payment amount given by the payment provider.
-     *
-     * @return float
      */
-    abstract public function getPaymentAmount();
+    abstract public function getPaymentAmount(): float;
 
     /**
      * Gets the payment date given by the payment provider.
-     *
-     * @return Carbon\Carbon
      */
-    abstract public function getPaymentDate();
+    abstract public function getPaymentDate(): \DateTimeInterface;
 
     /**
      * Gets the type of payment notification.
-     *
-     * @return string
      */
-    abstract public function getNotificationType();
+    abstract public function getNotificationType(): string;
 
     /**
      * Gets the raw value of the notification type from the payment provider.
-     *
-     * @return string
      */
-    abstract public function getNotificationTypeRaw();
+    abstract public function getNotificationTypeRaw(): string;
 
     /**
      * Gets if the payment notification is a test transaction.
      * This should only be used for the final payment notification;
      * it is not set by providers in the intermediate notifications.
-     *
-     * @return bool
      */
     abstract public function isTest();
 
     /**
      * Validates the transaction.
      * Returns true if the transaction is valid; false, otherwise.
-     *
-     * @return bool
      */
-    abstract public function validateTransaction();
+    abstract public function validateTransaction(): bool;
 
     public function isSkipped()
     {
@@ -125,6 +99,8 @@ abstract class PaymentProcessor implements \ArrayAccess
      * Auto run apply() or cancel() depending on the notification type.
      *
      * @return void
+     * @throws InvalidSignatureException thrown if the request signature is invalid.
+     * @throws PaymentProcessorException thrown if the validating the order fails.
      * @throws UnsupportedNotificationTypeException thrown if the notification type is unsupported.
      */
     public function run()
@@ -152,9 +128,8 @@ abstract class PaymentProcessor implements \ArrayAccess
                 throw new UnsupportedNotificationTypeException($type);
         }
 
-        Datadog::increment(
-            $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.payment_processor.run',
-            1,
+        datadog_increment(
+            'payment_processor.run',
             ['provider' => $this->getPaymentProvider(), 'type' => $type]
         );
     }
@@ -169,41 +144,25 @@ abstract class PaymentProcessor implements \ArrayAccess
         $this->sandboxAssertion();
 
         $order = $this->getOrder();
-        optional($order)->update(['transaction_id' => $this->getTransactionId()]);
-
-        if (!$this->validateTransaction()) {
-            $this->throwValidationFailed(new PaymentProcessorException($this->validationErrors()));
+        // This update before anything is so we have something to refer to if anything explodes.
+        if ($order !== null) {
+            $order->transaction_id = $this->getTransactionId();
+            if ($order->reference === null) { // this only affects xsolla at this stage.
+                $order->reference = $this->getPaymentTransactionId();
+            }
+            $order->save();
         }
 
-        DB::connection('mysql-store')->transaction(function () use ($order) {
-            try {
-                // FIXME: less hacky
-                if ($order->tracking_code === Order::PENDING_ECHECK) {
-                    $order->tracking_code = Order::ECHECK_CLEARED;
-                }
+        $this->assertValidTransaction();
 
-                // Using a unique constraint, so we don't need to lock any rows.
-                $payment = new Payment([
-                    'provider' => $this->getPaymentProvider(),
-                    'transaction_id' => $this->getPaymentTransactionId(),
-                    'country_code' => $this->getCountryCode(),
-                    'paid_at' => $this->getPaymentDate(),
-                ]);
+        $payment = new Payment([
+            'provider' => $this->getPaymentProvider(),
+            'transaction_id' => $this->getPaymentTransactionId(),
+            'country_code' => $this->getCountryCode(),
+            'paid_at' => $this->getPaymentDate(),
+        ]);
 
-                if (!$order->payments()->save($payment)) {
-                    throw new ModelNotSavedException('failed saving model');
-                }
-
-                $order->paid($payment);
-
-                $eventName = "store.payments.completed.{$payment->provider}";
-            } catch (Exception $exception) {
-                $this->dispatchErrorEvent($exception, $order);
-                throw $exception;
-            }
-
-            event($eventName, new PaymentEvent($order));
-        });
+        (new PaymentCompleted($order, $payment))->handle();
     }
 
     /**
@@ -214,75 +173,52 @@ abstract class PaymentProcessor implements \ArrayAccess
     public function cancel()
     {
         $this->sandboxAssertion();
-
-        if (!$this->validateTransaction()) {
-            $this->throwValidationFailed(new PaymentProcessorException($this->validationErrors()));
-        }
+        $this->assertValidTransaction();
 
         DB::connection('mysql-store')->transaction(function () {
-            try {
-                $order = $this->getOrder()->lockSelf();
-                $payment = $order->payments->where('cancelled', false)->first();
+            $order = $this->getOrder()->lockSelf();
+            $payment = $order->payments->where('cancelled', false)->first();
 
-                if ($payment === null) {
-                    // payment not processed, manually cancelled.
-                    $this->dispatchErrorEvent(
-                        new Exception('Cancelling order with no existing payment found.'),
-                        $order
-                    );
-                }
-
-                // check for pre-existing cancelled payment.
-                // Paypal sends multiple notifications that we treat as a cancellation.
-                if ($order->payments->where('cancelled', true)->first() !== null) {
-                    $this->dispatchErrorEvent(
-                        new Exception('Payment already cancelled.'),
-                        $order
-                    );
-                }
-
-                if ($payment !== null) {
-                    $payment->cancel();
-                    $eventName = "store.payments.cancelled.{$payment->provider}";
-                }
-
-                $order->cancel();
-            } catch (Exception $exception) {
-                $this->dispatchErrorEvent($exception, $order);
-                throw $exception;
+            if ($payment === null) {
+                // payment not processed, manually cancelled.
+                app('sentry')->getClient()->captureMessage(
+                    static::WARN_CANCEL_MISSING_PAYMENT,
+                    null,
+                    (new Scope())->setExtra('order_id', $order->getKey())
+                );
             }
 
-            if (isset($eventName)) {
-                event($eventName, new PaymentEvent($order));
+            // check for pre-existing cancelled payment.
+            // Paypal sends multiple notifications that we treat as a cancellation.
+            if ($order->payments->where('cancelled', true)->first() !== null) {
+                app('sentry')->getClient()->captureMessage(
+                    static::WARN_PAYMENT_ALREADY_CANCELLED,
+                    null,
+                    (new Scope())->setExtra('order_id', $order->getKey())
+                );
+            } else {
+                $payment?->cancel();
             }
+
+            $order->cancel();
         });
     }
 
     public function pending()
     {
         $this->sandboxAssertion();
-
-        if (!$this->validateTransaction()) {
-            $this->throwValidationFailed(new PaymentProcessorException($this->validationErrors()));
-        }
+        $this->assertValidTransaction();
 
         DB::connection('mysql-store')->transaction(function () {
-            try {
-                $order = $this->getOrder()->lockSelf();
-                // Only supported by Paypal processor atm, so assume eCheck.
-                // Change if the situation changes.
-                $order->tracking_code = Order::PENDING_ECHECK;
-                $order->transaction_id = $this->getTransactionId();
-                $order->saveOrExplode();
-
-                $eventName = "store.payments.pending.{$this->getPaymentProvider()}";
-            } catch (Exception $exception) {
-                $this->dispatchErrorEvent($exception, $order);
-                throw $exception;
-            }
-
-            event($eventName, new PaymentEvent($order));
+            $order = $this->getOrder()->lockSelf();
+            // Only supported by Paypal processor atm, so assume eCheck.
+            // Change if the situation changes.
+            $order->tracking_code = Order::PENDING_ECHECK;
+            $order->transaction_id = $this->getTransactionId();
+            $order->saveOrExplode();
         });
+
+        datadog_increment('store.payments.pending', ['provider' => $this->getPaymentProvider()]);
     }
 
     /**
@@ -295,60 +231,22 @@ abstract class PaymentProcessor implements \ArrayAccess
     {
         // just validate the signature until we make sure validating
         //  the whole transaction doesn't make it explode.
-        $this->ensureValidSignature();
+        $this->signature->assertValid();
 
-        $order = $this->getOrder();
-        $eventName = "store.payments.rejected.{$this->getPaymentProvider()}";
-        event($eventName, new PaymentEvent($order));
-    }
-
-    public function ensureValidSignature()
-    {
-        // TODO: post many warnings
-        if (!$this->signature->isValid()) {
-            $this->validationErrors()->add('header.signature', '.signature.not_match');
-            $this->throwValidationFailed(new InvalidSignatureException());
-        }
-    }
-
-    /**
-     * Sends a ValidationFailedEvent with the validation errors.
-     *
-     * @return void
-     */
-    protected function dispatchValidationFailed()
-    {
-        event(
-            "store.payments.validation.failed.{$this->getPaymentProvider()}",
-            new ProcessorValidationFailed($this, $this->validationErrors())
-        );
+        datadog_increment('store.payments.rejected', ['provider' => $this->getPaymentProvider()]);
     }
 
     /**
      * Fetches the Order corresponding to this payment and memoizes it.
      * Overridden in PaypalPaymentProcessor.
-     *
-     * @return Order
      */
-    protected function getOrder()
+    protected function getOrder(): ?Order
     {
         return $this->memoize(__FUNCTION__, function () {
             return Order::withPayments()
                 ->whereOrderNumber($this->getOrderNumber())
                 ->first();
         });
-    }
-
-    /**
-     * Convenience method that calls dispatchValidationFailed() and then throws the supplied exception.
-     *
-     * @param Exception $exception
-     * @return void
-     */
-    protected function throwValidationFailed(Exception $exception)
-    {
-        $this->dispatchValidationFailed();
-        throw $exception;
     }
 
     /**
@@ -387,15 +285,11 @@ abstract class PaymentProcessor implements \ArrayAccess
         return 'model_validation/';
     }
 
-    private function dispatchErrorEvent($exception, $order)
+    private function assertValidTransaction()
     {
-        event("store.payments.error.{$this->getPaymentProvider()}", [
-            'error' => $exception,
-            'order' => $order,
-            'order_number' => $this->getOrderNumber(),
-            'notification_type' => "{$this->getNotificationType()} ({$this->getNotificationTypeRaw()})",
-            'transaction_id' => $this->getTransactionId(),
-        ]);
+        if (!$this->validateTransaction()) {
+            throw new PaymentProcessorException($this->getOrder(), $this->validationErrors());
+        }
     }
 
     private function sandboxAssertion()

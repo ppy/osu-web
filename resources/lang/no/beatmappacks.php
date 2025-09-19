@@ -13,14 +13,11 @@ return [
         'blurb' => [
             'important' => 'LES DETTE FØR NEDLASTING',
             'install_instruction' => 'Installasjon: Når en pakke er lastet ned, pakk ut innholdet i pakken til osu! Sang mappen og osu! vil gjøre resten.',
-            'note' => [
-                '_' => 'Legg også merke til at det er sterkt anbefalt å :scary, ettersom de eldste mappene er av mye lavere kvalitet enn de fleste nye maps.',
-                'scary' => 'laste ned de nye pakkene først',
-            ],
         ],
     ],
 
     'show' => [
+        'created_by' => '',
         'download' => 'Last ned',
         'item' => [
             'cleared' => 'fullført',

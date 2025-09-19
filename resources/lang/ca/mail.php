@@ -5,9 +5,9 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => 'Et fem saber que hi ha hagut una actualització al beatmap ":title" des de la teva última visita!',
-        'subject' => 'Nova actualització al beatmap ":title"',
-        'unwatch' => 'Si ja no vols seguir aquest beatmap, pots clicar a l\'enllaç "Deixa de seguir" que es troba a la pàgina de sobre, o bé des de la pàgina de seguiment de modding: ',
+        'new' => 'Et fem saber que hi ha hagut una actualització al mapa «:title» des de la teva última visita.',
+        'subject' => 'Nova actualització al mapa ":title"',
+        'unwatch' => 'Si ja no vols seguir aquest mapa, pots clicar a l\'enllaç "Deixa de seguir" que es troba a la pàgina de sobre, o bé des de la pàgina de seguiment de moding: ',
         'visit' => 'Visita la pàgina de discussió aquí:',
     ],
 
@@ -21,7 +21,7 @@ return [
     'donation_thanks' => [
         'benefit_more' => 'A més, amb el temps apareixeran nous beneficis per supporter!',
         'feedback' => "Si tens preguntes o vols donar-nos comentaris, no dubtis en respondre a aquest correu. Ens posarem en contacte amb tu tan ràpid com ens sigui possible!",
-        'keep_free' => 'És gràcies a gent com tu que l\'osu! pot mantenir el joc i la comunitat en servei sense anuncis o pagaments forçosos.',
+        'keep_free' => 'És gràcies a gent com tu que osu! pot mantenir el joc i la comunitat en servei sense anuncis o pagaments forçosos.',
         'keep_running' => 'El vostre suport manté a osu! funcionant durant :minutes! Potser no sembla gaire, però tot suma :).',
         'subject' => 'Gràcies, l\'osu! et <3',
         'translation' => 'A continuació hi ha una traducció feta per la comunitat:',
@@ -32,16 +32,16 @@ return [
         ],
 
         'support' => [
-            '_' => 'Gràcies pel teu :support a l\'osu!.',
+            '_' => 'Gràcies pel teu :support a osu!.',
             'first' => 'suport',
             'repeat' => 'suport continuat',
         ],
     ],
 
     'forum_new_reply' => [
-        'new' => 'Et fem saber que hi ha ha noves respostes al beatmap ":title" des de la teva última visita!',
+        'new' => 'Et fem saber que hi ha noves respostes a «:title» des de la teva última visita.',
         'subject' => '[osu!] Nova resposta al tema ":title"',
-        'unwatch' => 'Si ja no vols seguir aquest tema, pot clicar l\'enllaç "Dexa de seguir el tema" al final del tema de sobre, o bé des de la pàgina de gestió de suscripcions a temes:',
+        'unwatch' => 'Si ja no vols seguir aquest tema, pot clicar l\'enllaç "Deixa de seguir el tema" al final del tema de sobre, o bé des de la pàgina de gestió de suscripcions a temes:',
         'visit' => 'Ves a l\'última resposta seguint aquest enllaç:',
     ],
 

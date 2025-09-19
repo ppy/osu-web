@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Topic echt herstellen?',
         'deleted' => 'topic verwijderd',
         'go_to_latest' => 'bekijk nieuwste post',
+        'go_to_unread' => '',
         'has_replied' => 'Je hebt gereageerd op dit onderwerp',
         'in_forum' => 'in :forum ',
         'latest_post' => ':when door :user',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'Verwijderde "opgelost" tag',
             'to_1' => 'Voeg "opgelost" tag toe',
             'to_1_done' => 'Voegde "opgelost" tag toe',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'lock' => [

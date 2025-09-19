@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'yorumlar',
         'hide_judged' => 'değerlendirilen girişleri gizle',
         'nav_title' => 'yargıç',
         'no_current_vote' => 'henüz oy vermedin.',
@@ -26,15 +27,17 @@ return [
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'Sonuçlar değerlendiriliyor',
+        'creator' => 'yapımcı',
+        'score' => 'Skor',
+        'score_std' => 'Standardize puan',
+        'total_score' => 'toplam skor',
+        'total_score_std' => 'toplam standardize puan',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Bu yarışmanın jürisi sensin. Yapımları değerlendir!',
+        'judged_notice' => 'Bu yarışma yargı sistemini kullanıyor, yargılar şu anda girişleri işliyor.',
         'login_required' => 'Oylamak için lütfen giriş yapınız.',
         'over' => 'Bu yarışma için oylama sona erdi',
         'show_voted_only' => 'Oy verilenleri göster',
@@ -86,6 +89,7 @@ return [
         'list' => 'oylar',
         'count' => ':count_delimited oy|:count_delimited oy',
         'points' => ':count_delimited puan|:count_delimited puan',
+        'points_float' => ':points noktalar',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Girişler Açık',
         'voting' => 'Oylama Başladı',
         'results' => 'Sonuçlar Çıktı',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

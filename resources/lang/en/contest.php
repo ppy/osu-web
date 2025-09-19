@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'comments',
         'hide_judged' => 'hide judged entries',
         'nav_title' => 'judge',
         'no_current_vote' => 'you didn\'t vote yet.',
@@ -29,7 +30,9 @@ return [
         '_' => 'Judging results',
         'creator' => 'creator',
         'score' => 'Score',
+        'score_std' => 'Standardised Score',
         'total_score' => 'total score',
+        'total_score_std' => 'total standardised score',
     ],
 
     'voting' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'votes',
         'count' => ':count_delimited vote|:count_delimited votes',
         'points' => ':count_delimited point|:count_delimited points',
+        'points_float' => ':points points',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Entry Open',
         'voting' => 'Voting Started',
         'results' => 'Results Out',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => 'View info and entries',
+        ],
     ],
 ];

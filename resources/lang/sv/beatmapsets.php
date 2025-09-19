@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Sakta ner, spela mer.',
+        'no_mirrors' => 'Inga nerladdnings servrar tillgängliga.',
     ],
 
     'featured_artist_badge' => [
@@ -40,20 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Probationära nominatörer kan ej nominera flera regelset.',
+        'full_nomination_required' => 'Du måste vara en fullständig nominatör för att utföra den slutliga nomineringen av ett regelset.',
         'hybrid_requires_modes' => 'En hybrid beatmap kräver att du väljer minst ett spelläge att nominera för.',
         'incorrect_mode' => 'Du har inte behörighet att nominera för läge: :mode',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Denna beatmap har ogiltiga nomineringar och kan inte kvalificeras i detta tillstånd',
+        'invalid_ruleset' => 'Den här nomineringen har ogiltiga regelverk.',
         'too_many' => 'Nomineringskravet är redan uppfyllt.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'Nomineringskrav för icke-huvudregelset har redan uppfyllts.',
 
         'dialog' => [
             'confirmation' => 'Är du säker på att du vill nominera denna beatmap?',
+            'different_nominator_warning' => 'Att kvalificera denna beatmap med andra nominatorer kommer att återställa dess position i kvalificeringskön.',
             'header' => 'Nominera beatmap',
             'hybrid_warning' => 'notera: du kan bara nominera en gång, så se till att du nominerar för alla spellägen som du tänker nominera för',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'Det huvudsakliga regelsettet är för närvarande :ruleset',
             'which_modes' => 'Nominera för vilka spellägen?',
         ],
     ],
@@ -66,7 +68,8 @@ return [
         'discussion' => 'Diskussion',
 
         'admin' => [
-            'full_size_cover' => '',
+            'full_size_cover' => 'Visa omslagsbilden i full storlek',
+            'page' => '',
         ],
 
         'deleted_banner' => [
@@ -138,6 +141,7 @@ return [
             'description' => 'Beskrivning',
             'genre' => 'Genre',
             'language' => 'Språk',
+            'mapper_tags' => 'Mapper-taggar',
             'no_scores' => 'Data beräknas...',
             'nominators' => 'Nominatorer',
             'nsfw' => 'Explicit innehåll',
@@ -146,7 +150,7 @@ return [
             'source' => 'Källa',
             'storyboard' => 'Denna beatmap innehåller storyboard',
             'success-rate' => 'Genomsnittig Succe',
-            'tags' => 'Taggar',
+            'user_tags' => 'Använartaggar',
             'video' => 'Denna beatmap innehåller video',
         ],
 
@@ -169,6 +173,7 @@ return [
             'global' => 'Global rankning',
             'supporter-link' => 'Klicka <a href=":link">här</a> för att se alla fina funktioner du kommer få!',
             'supporter-only' => 'Du behöver vara en supporter för att komma åt vän-, land-, och modspecifika rankningar!',
+            'team' => 'Lag Rangordning ',
             'title' => 'Poängtavla',
 
             'headers' => [
@@ -190,6 +195,7 @@ return [
                 'friend' => 'Ingen av dina vänner har satt ett poäng på denna map än!',
                 'global' => 'Inga poäng än. Du kanske ska försöka sätta några?',
                 'loading' => 'Laddar poäng...',
+                'team' => 'Ingen från ditt lag har satt ett resultat på denna karta än!',
                 'unranked' => 'Ej rankad beatmap.',
             ],
             'score' => [

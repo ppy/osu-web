@@ -113,6 +113,7 @@ return [
             'copyright' => 'Drepturi de autor (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Confidențialitate',
+            'rules' => 'Reguli',
             'server_status' => 'Starea server-ului',
             'source_code' => 'Cod Sursă',
             'terms' => 'Termeni și Condiții',
@@ -199,6 +200,9 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Modul lazer afișează scoruri obținute din lazer folosind un algoritm nou de scor',
             'logout' => 'Deconectare',
             'profile' => 'Profilul Meu',
+            'scoring_mode_toggle' => 'Mod scor clasic',
+            'scoring_mode_toggle_tooltip' => 'Ajustează valorile pentru o experiența mai apropiată de modul clasic de scor fără standardizare',
+            'team' => 'Echipa Mea',
         ],
     ],
 

@@ -3,18 +3,16 @@
 
 import ShowMoreLink from 'components/show-more-link';
 import RoomListJson from 'interfaces/room-list-json';
-import { MultiplayerTypeGroup } from 'interfaces/user-multiplayer-history-json';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import RoomListStore from 'stores/room-list-store';
-import { trans } from 'utils/lang';
 import MultiplayerRoom from './multiplayer-room';
 
 interface Props {
+  emptyMessage: string;
   showMoreUrl: string;
   store: RoomListStore;
-  typeGroup?: MultiplayerTypeGroup;
 }
 
 @observer
@@ -33,17 +31,10 @@ export default class RoomList extends React.Component<Props> {
   }
 
   render() {
-    const emptyMessage = this.props.typeGroup != null
-      ? trans('multiplayer.empty._', {
-        type_group: trans(`multiplayer.empty.${this.props.typeGroup}`),
-      })
-      : trans('rankings.seasons.empty');
-
-
     if (this.props.store.rooms.length === 0) {
       return (
         <div className='room-list'>
-          {emptyMessage}
+          {this.props.emptyMessage}
         </div>
       );
     }

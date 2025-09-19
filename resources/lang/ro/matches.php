@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner cu :difference puncte',
 
         'events' => [
-            'player-left' => ':user a părăsit meciul',
-            'player-joined' => ':user s-a alăturat meciului',
-            'player-kicked' => ':user a fost dat afară din meci',
-            'match-created' => ':user a creat meciul',
-            'match-disbanded' => 'meciul a fost desființat',
-            'host-changed' => ':user a devenit gazda',
-
-            'player-left-no-user' => 'un jucător a părăsit meciul',
-            'player-joined-no-user' => 'un jucător s-a alăturat meciului',
-            'player-kicked-no-user' => 'un jucător a fost dat afară din meci',
-            'match-created-no-user' => 'meciul a fost creat',
-            'match-disbanded-no-user' => 'meciul a fost desființat',
-            'host-changed-no-user' => 'gazda s-a schimbat',
+            'game_aborted' => 'meciul a fost anulat',
+            'game_aborted_no_user' => 'meciul a fost anulat',
+            'game_completed' => 'meciul s-a terminat',
+            'game_completed_no_user' => 'meciul s-a terminat',
+            'host_changed' => ':user a devenit gazda',
+            'host_changed_no_user' => 'gazda s-a schimbat',
+            'player_joined' => ':user s-a alăturat meciului',
+            'player_joined_no_user' => 'un jucător s-a alăturat meciului',
+            'player_kicked' => ':user a fost dat afară din meci',
+            'player_kicked_no_user' => 'un jucător a fost dat afară din meci',
+            'player_left' => ':user a părăsit meciul',
+            'player_left_no_user' => 'un jucător a părăsit meciul',
+            'room_created' => ':user a creat meciul',
+            'room_created_no_user' => 'meciul a fost creat',
+            'room_disbanded' => 'meciul a fost desființat',
+            'room_disbanded_no_user' => 'meciul a fost desființat',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Cap la cap',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+        'team_types' => [
+            'head_to_head' => 'Cap la cap',
+            'tag_coop' => 'Tag Co-op',
+            'tag_team_versus' => 'Tag Team VS',
+            'team_versus' => 'Team VS',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => 'Freestyle',
+
         'scoring-type' => [
             'score' => 'Scor Maxim',
             'accuracy' => 'Precizie Maximă',

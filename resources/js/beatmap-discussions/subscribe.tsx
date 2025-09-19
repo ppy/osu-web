@@ -7,7 +7,7 @@ import { route } from 'laroute';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { onError } from 'utils/ajax';
+import { onErrorWithCallback } from 'utils/ajax';
 import { trans } from 'utils/lang';
 import DiscussionsState from './discussions-state';
 
@@ -64,7 +64,7 @@ export class Subscribe extends React.Component<Props> {
     this.xhr.done(() => {
       this.props.discussionsState.update({ watching: !this.isWatching });
     })
-      .fail(onError)
+      .fail(onErrorWithCallback(this.toggleWatch))
       .always(action(() => this.xhr = null));
   };
 }

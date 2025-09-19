@@ -5,10 +5,10 @@
 
 return [
     'index' => [
-        'title' => '',
+        'title' => 'Undian Perbincangan Peta Rentak',
     ],
 
     'item' => [
-        'score' => '',
+        'score' => 'Markah',
     ],
 ];

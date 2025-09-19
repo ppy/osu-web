@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Aдмин',
         'authorise' => 'Ауторизуј',
         'authorising' => 'Ауторизује се...',
+        'back' => 'Назад',
         'back_to_previous' => 'Повратак на претходни приказ',
         'back_to_top' => 'Назад на врх',
         'cancel' => 'Откажите',
@@ -39,7 +39,7 @@ return [
         'pin' => 'закачи',
         'post' => 'Објавите',
         'read_more' => 'прочитај више',
-        'refresh' => '',
+        'refresh' => 'Освежи',
         'reply' => 'Одговорите',
         'reply_reopen' => 'Одговорите и отворите поново',
         'reply_resolve' => 'Одговорите и решите',
@@ -50,7 +50,7 @@ return [
         'saving' => 'Чување...',
         'search' => 'Претрага',
         'see_more' => 'прикажите више',
-        'show' => 'прикажите',
+        'show' => 'прикажи',
         'show_deleted' => 'Прикажи обрисане',
         'show_less' => 'прикажи мање',
         'show_more' => 'прикажи више',
@@ -69,20 +69,20 @@ return [
     'count' => [
         'badges' => ':count_delimited беџ|:count_delimited беџева',
         'days' => ':count_delimited дан|:count_delimited дана',
-        'hour_short_unit' => 'сат|сати',
+        'hour_short_unit' => 'сата|сати',
         'hours' => ':count_delimited сат|:count_delimited сати',
         'item' => ':count_delimited ствар|:count_delimited ствари',
         'minute_short_unit' => 'минут|минута',
         'minutes' => ':count_delimited минут|:count_delimited минута',
         'months' => ':count_delimited месец|:count_delimited месеци',
         'notifications' => ':count_delimited нотификација|:count_delimited нотификације',
-        'plus_others' => '+ :count_delimited друго|:count_delimited других!',
+        'plus_others' => '+ :count_delimited друго!|:count_delimited других!',
         'post' => ':count_delimited објава|:count_delimited објаве',
         'second_short_unit' => 'секунда|секунде',
         'star_priority' => ':count_delimited приоритет звезде|:count_delimited приоритети звезде',
         'update' => ':count_delimited ажурирања|:count_delimited ажурирања',
         'view' => ':count_delimited преглед|:count_delimited прегледа',
-        'years' => ':count_delimited година|:count_delimited година',
+        'years' => ':count_delimited година|:count_delimited године',
     ],
 
     'countdown' => [
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => '',
+        ],
+        'year' => [
+            'php' => '',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',
@@ -103,10 +109,10 @@ return [
     ],
 
     'device' => [
-        'keyboard' => 'Тастатура',
-        'mouse' => 'Миш',
-        'tablet' => 'Таблет',
-        'touch' => 'Екран на додир',
+        'keyboard' => 'Тастатуром',
+        'mouse' => 'Мишем',
+        'tablet' => 'Таблетом',
+        'touch' => 'Екраном на додир',
     ],
 
     'dropzone' => [
@@ -132,22 +138,22 @@ return [
     ],
 
     'scoreboard_time' => [
-        'd' => '%dd',
-        'dd' => '%dd',
-        'h' => '%dh',
-        'hh' => '%dh',
+        'd' => '%dд',
+        'dd' => '%dд',
+        'h' => '%dс',
+        'hh' => '%dс',
         'm' => 'сада',
         'mm' => 'сада',
-        'month' => '%dm',
-        'months' => '%dm',
+        'month' => '%dм',
+        'months' => '%dм',
         'past' => '',
         's' => 'сада',
-        'y' => '%dy',
-        'yy' => '%dy',
+        'y' => '%dг',
+        'yy' => '%dг',
     ],
 
     'time' => [
-        'days_ago' => ':count_delimited пре један дан|:count_delimited пре пар дана',
+        'days_ago' => 'пре :count_delimited дан|пре :count_delimited дана',
         'hours_ago' => 'пре :count_delimited сат|пре :count_delimited сати',
         'now' => 'сада',
         'remaining' => 'Преостало време',
@@ -158,7 +164,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => 'Пријављени сте као корисник :user. :logout_link.',
+        '_' => 'Пријављени сте као :user. :logout_link.',
         'logout_link' => 'Кликните овде да се пријавите као други корисник',
     ],
 ];

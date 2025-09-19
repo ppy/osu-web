@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatár',
+            'reset' => 'alaphelyzet',
             'rules' => 'Kérjük, ellenőrizze, hogy az avatár illeszkedik-e ehhez :link.<br/>Ez azt jelenti, hogy <strong>minden korosztály számára alkalmasnak kell lennie</strong>. Vagyis nincs meztelenség, mások számára elfogadhatatlan vagy szuggesztív tartalom.',
             'rules_link' => 'a közösségi szabályok',
         ],
@@ -87,6 +88,7 @@ return [
             'beatmap_owner_change' => 'vendég nehézség',
             'beatmapset:modding' => 'beatmap modolás',
             'channel_message' => 'Privát üzenetek',
+            'channel_team' => '',
             'comment_new' => 'Új megjegyzések',
             'forum_topic_reply' => 'Válaszolj erre a témára',
             'mail' => 'e-mail',

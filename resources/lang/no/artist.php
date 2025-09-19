@@ -46,8 +46,9 @@ return [
             '_' => 'sporsøk',
 
             'exclusive_only' => [
-                'all' => '',
-                'exclusive_only' => '',
+                'all' => 'Alle',
+                'exclusive_only' => 'osu! original
+',
             ],
 
             'form' => [
@@ -57,7 +58,7 @@ return [
                 'bpm_gte' => 'Minste BPM',
                 'bpm_lte' => 'Maks BPM',
                 'empty' => 'Fant ingen spor som samsvarer med søkekriteriene.',
-                'exclusive_only' => '',
+                'exclusive_only' => 'Type',
                 'genre' => 'Sjanger',
                 'genre_all' => 'Alle',
                 'length_gte' => 'Minste Lengde',

@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Потребителят не е играл osu!(lazer) :type_group игри все още!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'плейлист',
         'realtime' => 'мултиплейър',
     ],
@@ -16,9 +17,12 @@ return [
         'map_count' => ':count_delimited бийтмап|:count_delimited бийтмапа',
         'player_count' => ':count_delimited играч|:count_delimited играча',
         'time_left' => ':time остава',
+        'view_history' => 'Показване на история',
+        'view_summary' => 'Показване на обобщение',
 
         'errors' => [
             'duration_too_long' => 'Прекалено голяма продължителност.',
+            'name_too_long' => 'Името на стаята е много дълго.',
         ],
 
         'status' => [

@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => '',
         'blocked' => 'לא ניתן לשלוח הודעה למשתמש שחסם אותך או שנחסם על ידייך.',
         'friends_only' => 'המשתמש חוסם הודעות מאנשים שלא ברשימת החברים שלהם.',
         'moderated' => 'ערוץ זה כרגע ממותן.',
         'no_access' => 'אין לך גישה לערוץ זה.',
+        'no_announce' => '',
         'receive_friends_only' => '',
         'restricted' => 'אתם לא יכולים לשלוח הודעות בזמן שאתם מושתקים, מוגבלים או מגורשים.',
         'silenced' => '',
@@ -107,6 +113,7 @@ return [
                 'deleted' => 'לא ניתן לערוך פוסט שנמחק.',
                 'locked' => 'פוסט זה נעול מעריכה.',
                 'no_forum_access' => 'נדרשת גישה לפורום המבוקש.',
+                'no_permission' => '',
                 'not_owner' => 'רק המעלה יכול למחוק את הפוסט.',
                 'topic_locked' => 'לא ניתן לערוך פוסט של נושא נעול.',
             ],
@@ -170,12 +177,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "",
             'failed' => "",
             'not_owner' => '',
             'too_many' => '',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "",
+                'already_other_member' => "",
+                'currently_applying' => '',
+                'team_closed' => '',
+                'team_full' => "",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "ראש הקבוצה אינו יכול לעזוב את הקבוצה",
+            'not_member' => '',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 
@@ -188,7 +220,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => 'כתבות האימייל נעולה',
         ],
     ],
 ];

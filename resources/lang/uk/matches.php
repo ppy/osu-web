@@ -12,22 +12,25 @@ return [
         'in_progress_spinner_label' => 'гра в процесі',
         'loading-events' => 'Завантаження подій...',
         'winner' => ':team перемогла,',
-        'winner_by' => ':winner з відривом в :difference очко|:winner з відривом в :difference очка|:winner з відривом в :difference очків',
+        'winner_by' => ':winner з відривом в :difference очків',
 
         'events' => [
-            'player-left' => ':user покинув гру',
-            'player-joined' => ':user зайшов в гру',
-            'player-kicked' => ':user був вигнаний з гри',
-            'match-created' => ':user створив гру',
-            'match-disbanded' => 'гра була розпущена',
-            'host-changed' => ':user став хостом',
-
-            'player-left-no-user' => 'гравець покинув гру',
-            'player-joined-no-user' => 'гравець приєднався до гри',
-            'player-kicked-no-user' => 'був вигнаний з гри',
-            'match-created-no-user' => 'гра була створена',
-            'match-disbanded-no-user' => 'гра була розпущена',
-            'host-changed-no-user' => 'хост гри змінився',
+            'game_aborted' => 'гру було скасовано',
+            'game_aborted_no_user' => 'гру було скасовано',
+            'game_completed' => 'гра завершилась',
+            'game_completed_no_user' => 'гра завершилась',
+            'host_changed' => ':user став хостом',
+            'host_changed_no_user' => 'хост змінився',
+            'player_joined' => ':user доєднався до гри',
+            'player_joined_no_user' => 'гравець доєднався до гри',
+            'player_kicked' => ':user був вигнаний з гри',
+            'player_kicked_no_user' => 'гравець був вигнаний з гри',
+            'player_left' => ':user покинув гру',
+            'player_left_no_user' => 'гравець покинув гру',
+            'room_created' => ':user створив гру',
+            'room_created_no_user' => 'створено гру',
+            'room_disbanded' => 'гру було розпущено',
+            'room_disbanded_no_user' => 'гру було розпущено',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+        'team_types' => [
+            'head_to_head' => 'Всі проти всіх',
+            'tag_coop' => 'Естафета',
+            'tag_team_versus' => 'Командна естафета',
+            'team_versus' => 'Командна гра',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => 'Вільний стиль',
+
         'scoring-type' => [
             'score' => 'Найвищий бал',
             'accuracy' => 'Найвища точність',

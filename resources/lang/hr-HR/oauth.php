@@ -7,6 +7,7 @@ return [
     'cancel' => 'Poništi',
 
     'authorise' => [
+        'app_owner' => '',
         'request' => 'traži dopuštenje za pristup tvom računu.',
         'scopes_title' => 'Ova aplikacija će moći:',
         'title' => 'Zahtjev za autorizaciju',

@@ -9,6 +9,16 @@ return [
         'title' => 'Country',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Difficulty',
+        'top_10p' => 'Top 10% Score',
+        'top_50p' => 'Top 50% Score',
+        'unavailable' => [
+            'future' => 'No daily challenge at the specified date yet!',
+            'past' => 'No daily challenge at the specified date!',
+        ],
+    ],
+
     'filter' => [
         'title' => 'Show',
 
@@ -30,11 +40,12 @@ return [
     'type' => [
         'charts' => 'spotlights (old)',
         'country' => 'country',
+        'daily_challenge' => 'daily challenge',
+        'global' => 'global',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
-        'performance' => 'performance',
-        'score' => 'score',
         'seasons' => 'seasons',
+        'team' => 'team',
     ],
 
     'seasons' => [
@@ -42,6 +53,9 @@ return [
         'ongoing' => 'This season is still ongoing (there will be more playlists added).',
         'room_count' => 'Playlist count',
         'url' => 'Display more informations on that season.',
+        'validation' => [
+            'not_enough_factors' => 'there is not enough score factors for proper calculation',
+        ],
     ],
 
     'spotlight' => [
@@ -55,6 +69,8 @@ return [
         'accuracy' => 'Accuracy',
         'active_users' => 'Active Users',
         'country' => 'Country',
+        'division' => 'Division',
+        'members' => 'Members',
         'play_count' => 'Play Count',
         'performance' => 'Performance',
         'total_score' => 'Total Score',

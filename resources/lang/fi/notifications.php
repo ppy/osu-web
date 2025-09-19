@@ -20,17 +20,19 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'foorumit',
         'news_post' => 'uutiset',
+        'team' => 'tiimi',
         'user' => 'profiili',
     ],
 
     'filters' => [
         '_' => 'kaikki',
-        'user' => 'profiili',
         'beatmapset' => 'rytmikartat',
-        'forum_topic' => 'foorumi',
-        'news_post' => 'uutiset',
         'build' => 'rakennukset',
         'channel' => 'chatti',
+        'forum_topic' => 'foorumi',
+        'news_post' => 'uutiset',
+        'team' => 'tiimi',
+        'user' => 'profiili',
     ],
 
     'item' => [
@@ -121,6 +123,16 @@ return [
                     'channel_message_group' => 'käyttäjältä :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -156,6 +168,22 @@ return [
                 '_' => 'Uusi foorumivastaus',
                 'forum_topic_reply' => ':username vastasi foorumi aiheeseen ":title".',
                 'forum_topic_reply_compact' => ':username vastasi',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => 'Tiimiin liittymispyyntö',
+
+                'team_application_accept' => "Olet nyt tiimin :title jäsen",
+                'team_application_accept_compact' => "Olet nyt tiimin :title jäsen",
+
+                'team_application_group' => '',
+
+                'team_application_reject' => 'Sinun pyyntösi tiimiin :title on hylätty',
+                'team_application_reject_compact' => 'Sinun pyyntösi tiimiin :title on hylätty',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -217,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '":name" on saanut uuden tiedotteen',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => 'Olet saanut uuden viestin käyttäjältä :username',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -240,6 +270,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Aihe ":title" on saanut uusia vastauksia',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Olet nyt tiimin :title jäsen",
+                'team_application_reject' => 'Pyyntösi tiimiin :title on hylätty',
+                'team_application_store' => '',
             ],
         ],
 

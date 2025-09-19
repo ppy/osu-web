@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'osu!(lazer)の:type_groupゲームはまだプレイされていません。',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'プレイリスト',
         'realtime' => 'マルチプレイヤー',
     ],
@@ -16,9 +17,12 @@ return [
         'map_count' => ':count_delimited マップ',
         'player_count' => ':count_delimited プレイヤー',
         'time_left' => '残り :time',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => '時間が長すぎます。',
+            'name_too_long' => 'ルーム名が長すぎます。',
         ],
 
         'status' => [

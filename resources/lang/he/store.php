@@ -55,6 +55,7 @@ return [
         'contact' => '',
         'date' => '',
         'echeck_delay' => 'מכיוון שהתשלום שלך היה eCheck, נא אפשר עד ל-- 10 ימים נוספים לתשלום לעבור דרך PayPal!',
+        'echeck_denied' => '',
         'hide_from_activity' => '',
         'sent_via' => '',
         'shipping_to' => '',
@@ -173,6 +174,7 @@ return [
 
         'add_to_cart' => 'הוסף לעגלה',
         'notify' => 'נא להודיע ​​לי כאשר המוצר זמין!',
+        'out_of_stock' => '',
 
         'notification_success' => 'אנחנו ניידע אותך כאשר יהיה לנו מלאי חדש. לחץ :link כדי לבטל',
         'notification_remove_text' => 'כאן',

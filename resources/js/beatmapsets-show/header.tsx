@@ -1,20 +1,20 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import UserLinkList from 'beatmap-discussions/user-link-list';
 import BeatmapsetBadge from 'components/beatmapset-badge';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import BeatmapsetMapping from 'components/beatmapset-mapping';
 import BigButton from 'components/big-button';
 import StringWithComponent from 'components/string-with-component';
-import UserLink from 'components/user-link';
-import UserListPopup, { createTooltip } from 'components/user-list-popup';
+import { createTooltip } from 'components/user-list-popup';
 import { route } from 'laroute';
-import { action, autorun, computed, makeObservable, observable } from 'mobx';
-import { disposeOnUnmount, observer } from 'mobx-react';
+import { action, computed, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
-import { downloadLimited, getArtist, getTitle, toggleFavourite } from 'utils/beatmapset-helper';
+import { hasGuestOwners } from 'utils/beatmap-helper';
+import { downloadLimited, getArtist, getTitle, makeSearchQueryOption, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
@@ -25,6 +25,19 @@ import Controller from './controller';
 import Stats from './stats';
 
 const favouritesToShow = 50;
+
+function statusIcon(type: 'storyboard' | 'video') {
+  const iconClass = type === 'video' ? 'fas fa-film' : 'fas fa-image';
+
+  return (
+    <div
+      className='beatmapset-status beatmapset-status--show-icon'
+      title={trans(`beatmapsets.show.info.${type}`)}
+    >
+      <span className={iconClass} />
+    </div>
+  );
+}
 
 interface DownloadButtonOptions {
   bottomTextKey?: string;
@@ -40,17 +53,10 @@ interface Props {
 @observer
 export default class Header extends React.Component<Props> {
   private readonly favouriteIconRef = React.createRef<HTMLSpanElement>();
-  @observable private hoveredFavouriteIcon = false;
+  private favouritePopupDisposer?: () => void;
 
   private get controller() {
     return this.props.controller;
-  }
-
-  @computed
-  private get favouritePopup() {
-    return renderToStaticMarkup(
-      <UserListPopup count={this.controller.beatmapset.favourite_count} users={this.filteredFavourites} />,
-    );
   }
 
   @computed
@@ -75,8 +81,8 @@ export default class Header extends React.Component<Props> {
     makeObservable(this);
   }
 
-  componentDidMount() {
-    disposeOnUnmount(this, autorun(this.updateFavouritePopup));
+  componentWillUnmount() {
+    this.favouritePopupDisposer?.();
   }
 
   render() {
@@ -140,7 +146,7 @@ export default class Header extends React.Component<Props> {
           <span className='beatmapset-header__details-text beatmapset-header__details-text--title'>
             <a
               className='beatmapset-header__details-text-link'
-              href={route('beatmapsets.index', { q: `title=""${getTitle(this.controller.beatmapset)}""` })}
+              href={route('beatmapsets.index', { q: makeSearchQueryOption('title', getTitle(this.controller.beatmapset)) })}
             >
               {getTitle(this.controller.beatmapset)}
             </a>
@@ -157,7 +163,7 @@ export default class Header extends React.Component<Props> {
           <span className='beatmapset-header__details-text beatmapset-header__details-text--artist'>
             <a
               className='beatmapset-header__details-text-link'
-              href={route('beatmapsets.index', { q: `artist=""${getArtist(this.controller.beatmapset)}""` })}
+              href={route('beatmapsets.index', { q: makeSearchQueryOption('artist', getArtist(this.controller.beatmapset)) })}
             >
               {getArtist(this.controller.beatmapset)}
             </a>
@@ -211,9 +217,6 @@ export default class Header extends React.Component<Props> {
         href={href}
         icon={icon}
         modifiers='beatmapset-header'
-        props={{
-          'data-turbolinks': 'false',
-        }}
         text={{
           bottom: bottomTextKey == null ? undefined : trans(`beatmapsets.show.details.download.${bottomTextKey}`),
           top: trans(`beatmapsets.show.details.download.${topTextKey}`),
@@ -228,7 +231,23 @@ export default class Header extends React.Component<Props> {
 
   @action
   private readonly onEnterFavouriteIcon = () => {
-    this.hoveredFavouriteIcon = true;
+    if (this.filteredFavourites.length < 1) {
+      if (this.favouritePopupDisposer != null) {
+        this.favouritePopupDisposer();
+        $(this.favouriteIconRef.current ?? []).qtip('destroy', true);
+      }
+
+      return;
+    }
+
+    this.favouritePopupDisposer ??= createTooltip(
+      () => this.favouriteIconRef.current,
+      () => ({
+        count: this.controller.beatmapset.favourite_count,
+        users: this.filteredFavourites,
+      }),
+      'right center',
+    );
   };
 
   private renderAvailabilityInfo() {
@@ -272,11 +291,11 @@ export default class Header extends React.Component<Props> {
       <span className='beatmapset-header__diff-name'>
         {beatmap.version}
 
-        {beatmap.user_id !== this.controller.beatmapset.user_id && (
+        {hasGuestOwners(beatmap, this.controller.beatmapset) && (
           <span className='beatmapset-header__diff-extra'>
             <StringWithComponent
               mappings={{
-                mapper: <UserLink user={this.controller.mapper(beatmap)} />,
+                mapper: <UserLinkList users={this.controller.owners(beatmap)} />,
               }}
               pattern={trans('beatmapsets.show.details.mapped_by')}
             />
@@ -344,14 +363,8 @@ export default class Header extends React.Component<Props> {
   private renderStatusBar() {
     return (
       <div className='beatmapset-header__status'>
-        {this.controller.beatmapset.storyboard &&
-          <div
-            className='beatmapset-status beatmapset-status--show-icon'
-            title={trans('beatmapsets.show.info.storyboard')}
-          >
-            <span className='fas fa-image' />
-          </div>
-        }
+        {this.controller.beatmapset.video && statusIcon('video')}
+        {this.controller.beatmapset.storyboard && statusIcon('storyboard')}
         <a className='beatmapset-status beatmapset-status--show' href={this.statusToWikiLink(this.controller.currentBeatmap.status)}>
           {trans(`beatmapsets.show.status.${this.controller.currentBeatmap.status}`)}
         </a>
@@ -368,28 +381,4 @@ export default class Header extends React.Component<Props> {
     }
     return wikiUrl(`Beatmap/Category#${fragment}`);
   }
-
-  private readonly updateFavouritePopup = () => {
-    if (!this.hoveredFavouriteIcon) {
-      return;
-    }
-
-    const target = this.favouriteIconRef.current;
-
-    if (target == null) {
-      throw new Error('favourite icon is missing');
-    }
-
-    if (this.filteredFavourites.length < 1) {
-      if (target._tooltip === '1') {
-        target._tooltip = '';
-        $(target).qtip('destroy', true);
-      }
-
-      return;
-    }
-
-    createTooltip(target, 'right center', '');
-    $(target).qtip('set', { 'content.text': this.favouritePopup });
-  };
 }

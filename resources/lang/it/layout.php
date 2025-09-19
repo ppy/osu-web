@@ -9,7 +9,7 @@ return [
     ],
 
     'defaults' => [
-        'page_description' => 'osu! - Il ritmo è ad un *click* di distanza!  Con Ouendan/EBA, Taiko e originali modalità di gameplay, oltre che un editor di livelli completamente funzionale.',
+        'page_description' => 'osu! - Il ritmo è a distanza di un *click*!  Con Ouendan/EBA, Taiko e modalità di gioco originali con un editor di livelli dotato di ogni funzionalità.',
     ],
 
     'header' => [
@@ -26,7 +26,7 @@ return [
         ],
 
         'beatmapsets' => [
-            'show' => 'info',
+            'show' => 'dettagli',
             'discussions' => 'discussione',
         ],
 
@@ -53,7 +53,7 @@ return [
             'modding' => 'modding',
             'playlists' => 'playlist',
             'realtime' => 'multigiocatore',
-            'show' => 'info',
+            'show' => 'dettagli',
         ],
     ],
 
@@ -104,7 +104,7 @@ return [
             '_' => 'Aiuto e Comunità',
             'faq' => 'Domande Frequenti',
             'forum' => 'Forum della Comunità',
-            'livestreams' => 'Live',
+            'livestreams' => 'Dirette streaming',
             'report' => 'Segnala un problema',
             'wiki' => 'Wiki',
         ],
@@ -113,6 +113,7 @@ return [
             'copyright' => 'Copyright (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Privacy',
+            'rules' => 'Regole',
             'server_status' => 'Stato del Server',
             'source_code' => 'Codice Sorgente',
             'terms' => 'Termini di Servizio',
@@ -199,6 +200,9 @@ return [
             'legacy_score_only_toggle_tooltip' => 'La modalità lazer mostra i punteggi di lazer con un nuovo algoritmo dei punti',
             'logout' => 'Esci',
             'profile' => 'Profilo',
+            'scoring_mode_toggle' => 'Punteggio classico',
+            'scoring_mode_toggle_tooltip' => 'Regola i valori del punteggio per farli sembrare come il punteggio classico illimitato',
+            'team' => 'Squadra',
         ],
     ],
 

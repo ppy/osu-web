@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
+ * @property-read Collection<ContestJudge> $contestJudges
  * @property \Carbon\Carbon|null $created_at
  * @property string $description_enter
  * @property string|null $description_voting
@@ -28,7 +29,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $header_url
  * @property int $id
  * @property mixed $link_icon
- * @property-read Collection<ContestJudge> $judges
+ * @property-read Collection<User> $judges
  * @property int $max_entries
  * @property int $max_votes
  * @property string $name
@@ -56,6 +57,11 @@ class Contest extends Model
         'voting_ends_at' => 'datetime',
         'voting_starts_at' => 'datetime',
     ];
+
+    public function contestJudges(): HasMany
+    {
+        return $this->HasMany(ContestJudge::class);
+    }
 
     public function entries()
     {
@@ -115,6 +121,20 @@ class Contest extends Model
         }
     }
 
+    public function calculateScoresStd(): void
+    {
+        $judgeScores = [];
+        foreach ($this->contestJudges as $judge) {
+            $judgeScores[$judge->user_id] = $judge->stdDev();
+        }
+
+        $judgeVotes = ContestJudgeVote::whereHas('entry', fn ($q) => $q->where('contest_id', $this->getKey()))->get();
+        foreach ($judgeVotes as $vote) {
+            [$stdDev, $mean] = $judgeScores[$vote->user_id];
+            $vote->update(['total_score_std' => $stdDev === 0.0 ? 0 : ($vote->totalScore() - $mean) / $stdDev]);
+        }
+    }
+
     public function isBestOf(): bool
     {
         return isset($this->getExtraOptions()['best_of']);
@@ -134,7 +154,17 @@ class Contest extends Model
 
     public function isJudgingActive(): bool
     {
-        return $this->isJudged() && $this->isVotingStarted() && !$this->show_votes;
+        return $this->isJudged() && $this->isVotingOpen() && !$this->show_votes;
+    }
+
+    public function getShowJudgesAttribute()
+    {
+        return $this->getExtraOptions()['show_judges'] ?? true;
+    }
+
+    public function isScoreStandardised(): bool
+    {
+        return $this->getExtraOptions()['is_score_standardised'] ?? false;
     }
 
     public function isSubmittedBeatmaps(): bool
@@ -146,6 +176,11 @@ class Contest extends Model
     {
         return $this->entry_starts_at !== null && $this->entry_starts_at->isPast() &&
             $this->entry_ends_at !== null && $this->entry_ends_at->isFuture();
+    }
+
+    public function isVotingEnded()
+    {
+        return $this->voting_ends_at !== null && $this->voting_ends_at->isPast();
     }
 
     public function isVotingOpen()
@@ -271,50 +306,26 @@ class Contest extends Model
         }
     }
 
-    public function entriesByType($user = null, array $preloads = [])
+    public function entriesByType(?User $user, array $preloads = [])
     {
-        $entries = $this->entries()->with(['contest', ...$preloads]);
+        $query = $this->entries()->with(['contest', ...$preloads]);
 
         if ($this->show_votes) {
-            return Cache::remember("contest_entries_with_votes_{$this->id}", 300, function () use ($entries) {
-                $orderValue = 'votes_count';
-
-                if ($this->isBestOf()) {
-                    $entries = $entries
-                        ->selectRaw('*')
-                        ->selectRaw('(SELECT FLOOR(SUM(`weight`)) FROM `contest_votes` WHERE `contest_entries`.`id` = `contest_votes`.`contest_entry_id`) AS votes_count')
-                        ->limit(50); // best of contests tend to have a _lot_ of entries...
-                } else if ($this->isJudged()) {
-                    $entries = $entries->withSum('scores', 'value');
-                    $orderValue = 'scores_sum_value';
-                } else {
-                    $entries = $entries->withCount('votes');
-                }
-
-                return $entries->orderBy($orderValue, 'desc')->get();
-            });
-        } else {
-            if ($this->isBestOf()) {
-                if ($user === null) {
-                    return [];
-                }
-
-                // Only return contest entries that a user has actually played
-                return $entries
-                    ->whereIn('entry_url', function ($query) use ($user) {
-                        $query->select('beatmapset_id')
-                            ->from('osu_beatmaps')
-                            ->where('osu_beatmaps.playmode', Beatmap::MODES[$this->getExtraOptions()['best_of']['mode'] ?? 'osu'])
-                            ->whereIn('beatmap_id', function ($query) use ($user) {
-                                $query->select('beatmap_id')
-                                    ->from('osu_user_beatmap_playcount')
-                                    ->where('user_id', '=', $user->user_id);
-                            });
-                    })->get();
+            return Cache::remember(
+                "contest_entries_with_votes_{$this->id}",
+                300,
+                fn () => $query->with(['contest', ...$preloads])->withScore($this)->get()
+            );
+        } elseif ($this->isBestOf()) {
+            if ($user === null) {
+                return [];
             }
+
+            $options = $this->getExtraOptions()['best_of'];
+            $query->forBestOf($user, $options['mode'] ?? 'osu', $options['variant'] ?? null);
         }
 
-        return $entries->get();
+        return $query->get();
     }
 
     public function defaultJson($user = null)

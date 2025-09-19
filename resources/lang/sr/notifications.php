@@ -20,17 +20,19 @@ return [
         'channel' => 'ћаскање',
         'forum_topic' => 'форум',
         'news_post' => 'новости',
+        'team' => 'тим',
         'user' => 'профил',
     ],
 
     'filters' => [
         '_' => 'све',
-        'user' => 'профил',
         'beatmapset' => 'мапе',
-        'forum_topic' => 'форум',
-        'news_post' => 'новости',
         'build' => 'верзије',
         'channel' => 'чет',
+        'forum_topic' => 'форум',
+        'news_post' => 'новости',
+        'team' => 'тим',
+        'user' => 'профил',
     ],
 
     'item' => [
@@ -57,9 +59,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'Дискусија је откључана',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited похвала|:count_delimited похвале',
+                    'problems' => ':count_delimited проблем|:count_delimited проблема',
+                    'suggestions' => ':count_delimited сугестија|:count_delimited сугестије',
                 ],
             ],
 
@@ -121,6 +123,16 @@ return [
                     'channel_message_group' => 'од корисника :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -156,6 +168,22 @@ return [
                 '_' => 'Нови одговор на форуму',
                 'forum_topic_reply' => ':username је одговорио/ла ":title"',
                 'forum_topic_reply_compact' => ':username је одговорио/ла',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => 'Захтев придруживање тима',
+
+                'team_application_accept' => "Ви сте сада члан тима :title",
+                'team_application_accept_compact' => "Ви сте сада члан тима :title",
+
+                'team_application_group' => '',
+
+                'team_application_reject' => 'Ваш захтев за придруживање тима :title је одбијен',
+                'team_application_reject_compact' => 'Ваш захтев за придруживање тима :title је одбијен',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -217,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Постоји нова најава у ":name"',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => 'Примили сте нову поруку од корисника :username',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -240,6 +270,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Има нових одговора у ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Сада сте члан тима :title",
+                'team_application_reject' => 'Ваш захтев да се придружите тиму :title је одбијен',
+                'team_application_store' => '',
             ],
         ],
 

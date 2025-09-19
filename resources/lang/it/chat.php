@@ -27,13 +27,14 @@ return [
                 'GROUP' => 'Gruppi',
                 'PM' => 'Conversazioni',
                 'PUBLIC' => 'Canali',
+                'TEAM' => 'Squadra',
             ],
         ],
     ],
 
     'form' => [
         'title' => [
-            'announcement' => 'Crea Nuovo Annuncio',
+            'announcement' => 'Crea nuovo annuncio',
         ],
 
         'labels' => [

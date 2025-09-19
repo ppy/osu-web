@@ -37,6 +37,12 @@ return [
         'new' => 'Última resposta',
     ],
 
+    'teams' => [
+        'relevance' => 'Relevância',
+        'name' => 'Nome',
+        'short-name' => 'Nome Curto',
+    ],
+
     'users' => [
         'relevance' => 'Relevância',
         'username' => 'Nome',

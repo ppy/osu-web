@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Yavaş ol, daha çok oyna.',
+        'no_mirrors' => 'Herhangi bir indirme sunucusu mevcut değil.',
     ],
 
     'featured_artist_badge' => [
@@ -40,20 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Deneme sürecindeki aday göstericiler birden fazla kural seti aday gösteremez.',
+        'full_nomination_required' => 'Bir kural setinin son adaylığını gerçekleştirmek için tam yetkili bir aday gösterici olmanız gerekir.',
         'hybrid_requires_modes' => 'Karma bir beatmap seti, adaylık için en az bir oyun modu seçmenizi gerektirir.',
         'incorrect_mode' => ':mode modunu aday göstermek için izniniz yok.',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Bu beatmap geçersiz adaylara sahip ve bu durumda onaylanamaz.',
+        'invalid_ruleset' => 'Bu aday geçersiz kural setlerine sahip.',
         'too_many' => 'Adaylık şartı zaten yerine getirildi.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'Ana kural seti dışındaki adaylık gereksinimi zaten karşılandı.',
 
         'dialog' => [
             'confirmation' => 'Bu beatmapi aday göstermek istediğinize emin misiniz?',
+            'different_nominator_warning' => 'Bu beatmapi farklı seçmenlerle nitelendirmek, nitelendirme sırası konumunu sıfırlayacaktır.',
             'header' => 'Beatmap aday gösterin',
             'hybrid_warning' => 'not: sadece bir kez aday gösterebilirsiniz, bu yüzden lütfen istediğiniz tüm oyun modlarını aday gösterdiğinizden emin olun',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'Şu anki kural dizisi: :ruleset',
             'which_modes' => 'Hangi modlar için aday gösterilsin?',
         ],
     ],
@@ -67,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Kapak resmini tam boyutlu görüntüle',
+            'page' => '',
         ],
 
         'deleted_banner' => [
@@ -138,6 +141,7 @@ return [
             'description' => 'Açıklama',
             'genre' => 'Tür',
             'language' => 'Dil',
+            'mapper_tags' => 'Mapper Etiketleri',
             'no_scores' => 'Veriler hala hesaplanıyor...',
             'nominators' => 'Nominator\'ler',
             'nsfw' => 'Müstehcen içerik',
@@ -146,7 +150,7 @@ return [
             'source' => 'Kaynak',
             'storyboard' => 'Bu beatmap storyboard içeriyor',
             'success-rate' => 'Başarı Oranı',
-            'tags' => 'Etiketler',
+            'user_tags' => 'Kullanıcı Etiketleri',
             'video' => 'Bu beatmap video içeriyor',
         ],
 
@@ -169,6 +173,7 @@ return [
             'global' => 'Dünya Sıralaması',
             'supporter-link' => 'Aldığınız tüm süslü özellikleri görmek için buraya <a href=":link">tıklayın</a>!',
             'supporter-only' => 'Arkadaş ve ülke sıralamasına erişebilmek için osu!supporter olman gerekiyor!',
+            'team' => 'Takım Sıralaması',
             'title' => 'Skor tahtası',
 
             'headers' => [
@@ -190,6 +195,7 @@ return [
                 'friend' => 'Hiçbir arkadaşın henüz bu mapte bir skora sahip değil!',
                 'global' => 'Henüz skor yok. Biraz skor yapmaya ne dersin?',
                 'loading' => 'Skorlar yükleniyor...',
+                'team' => 'Takımınızdan hiç kimse henüz bu beatmapde bir skor elde etmedi!',
                 'unranked' => 'Derecelendirilmemiş beatmap.',
             ],
             'score' => [

@@ -14,27 +14,30 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
+        'comments' => 'каментарыі',
+        'hide_judged' => 'схаваць ацэненыя заяўкі',
+        'nav_title' => 'суддзя',
+        'no_current_vote' => 'вы яшчэ не прагаласавалі.',
         'update' => 'абнавіць',
         'validation' => [
             'missing_score' => 'адсутны вынік',
-            'contest_vote_judged' => '',
+            'contest_vote_judged' => 'нельга прагаласаваць у конкурсе, які вы судзілі',
         ],
-        'voted' => '',
+        'voted' => 'Вы ўжо прагаласавалі за гэтую заяўку.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
+        '_' => 'Вынікі судзейства',
+        'creator' => 'аўтар',
         'score' => 'Вынік',
-        'total_score' => '',
+        'score_std' => '',
+        'total_score' => 'агульны рахунак',
+        'total_score_std' => '',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Вы - суддзя гэтага конкурсу. Клікніце тут, каб пачаць ацэньваць заяўкі!',
+        'judged_notice' => 'Гэты конкурс выкарыстоўвае сістэму судзейства, на дадзены момант суддзі ацэньваюць заяўкі.',
         'login_required' => 'Увайдзіце, каб прагаласаваць.',
         'over' => 'Галасаванне за гэты конкурс скончылася',
         'show_voted_only' => 'Паказаць прагаласаваўшых',
@@ -86,6 +89,7 @@ return [
         'list' => 'галасоў',
         'count' => ':count голас|:count галасы|:count галасоў',
         'points' => ':count ачко|:count ачкі|:count ачкоў',
+        'points_float' => '',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Адкрытыя ўдзелы',
         'voting' => 'Пачатае галасаванне',
         'results' => 'Апублікаваныя вынікі',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace App\Jobs;
 
-use Datadog;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -18,7 +17,7 @@ class EsDocument implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable;
 
-    private array $modelMeta;
+    protected array $modelMeta;
 
     /**
      * Create a new job instance.
@@ -78,13 +77,9 @@ class EsDocument implements ShouldQueue
 
     private function incrementStat(string $action): void
     {
-        Datadog::increment(
-            $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.es_document',
-            1,
-            [
-                'action' => $action,
-                'class' => $this->modelMeta['class'],
-            ],
-        );
+        datadog_increment('es_document', [
+            'action' => $action,
+            'class' => $this->modelMeta['class'],
+        ]);
     }
 }

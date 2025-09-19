@@ -132,6 +132,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => '',
+        'used' => '',
+        'word_not_allowed' => '',
+
+        'attributes' => [
+            'default_ruleset_id' => '',
+            'is_open' => '',
+            'name' => '',
+            'short_name' => '',
+            'url' => '',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Passord kan ikke inneholde brukernavnet ditt.',
         'email_already_used' => 'E-postadressen er allerede i bruk.',
@@ -177,6 +191,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Rangerte beatmaps kan ikke rapporteres',
         'not_in_channel' => 'Du er ikke i denne kanalen.',
+        'in_team' => '',
         'reason_not_valid' => ':reason er ikke gyldig for denne rapporttypen.',
         'self' => "Du kan ikke rapportere deg selv!",
     ],

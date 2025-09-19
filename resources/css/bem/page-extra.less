@@ -70,6 +70,15 @@
     }
   }
 
+  &__beatmapsets {
+    display: grid;
+    gap: 10px;
+
+    @media @desktop {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
   &__chart {
     height: 250px;
     width: 100%;
@@ -101,5 +110,10 @@
     background-color: hsl(var(--hsl-b3));
     margin: 0 calc(-1 * var(--inner-gutter)) 20px;
     padding: 0 var(--inner-gutter) 20px;
+  }
+
+  &__user-multiplayer-rooms {
+    gap: 20px;
+    display: grid;
   }
 }

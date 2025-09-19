@@ -113,6 +113,7 @@ return [
             'copyright' => 'Bản Quyền (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Quyền Riêng Tư',
+            'rules' => 'Quy tắc',
             'server_status' => 'Trạng thái máy chủ',
             'source_code' => 'Mã Nguồn',
             'terms' => 'Điều Khoản Và Điều Kiện',
@@ -199,6 +200,9 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Chế độ lazer hiển thị các điểm cá nhân từ lazer cùng thuật toán tính điểm mới',
             'logout' => 'Đăng Xuất',
             'profile' => 'Trang Cá Nhân',
+            'scoring_mode_toggle' => 'Hệ thống điểm cổ điển',
+            'scoring_mode_toggle_tooltip' => 'Thay đổi giá trị điểm để có cảm giác như hệ thống điểm cổ điển không giới hạn',
+            'team' => 'Đội của tôi',
         ],
     ],
 

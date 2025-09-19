@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => '',
             'rules' => 'Zorg ervoor dat uw avatar voldoet aan :link. <br/> Dit betekent dat deze <strong> geschikt moet zijn voor alle leeftijden </strong>. d.w.z. geen naaktheid, godslastering of suggestieve inhoud.',
             'rules_link' => 'de community regels',
         ],
@@ -87,6 +88,7 @@ return [
             'beatmap_owner_change' => 'gast moeilijkheid',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'privéberichten',
+            'channel_team' => '',
             'comment_new' => 'nieuwe reacties',
             'forum_topic_reply' => 'topic antwoord',
             'mail' => 'e-mail',

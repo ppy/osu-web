@@ -12,6 +12,7 @@ use Illuminate\Session\TokenMismatchException;
 
 class VerifyCsrfToken extends BaseVerifier
 {
+    protected $addHttpCookie = false;
     protected $except = [
         'home/changelog/github',
         'oauth/authorize',
@@ -23,6 +24,21 @@ class VerifyCsrfToken extends BaseVerifier
 
     public function handle($request, Closure $next)
     {
+        $currentUser = \Auth::user();
+
+        if ($currentUser === null) {
+            if (
+                $this->isReading($request)
+                || $this->runningUnitTests()
+                || $this->inExceptArray($request)
+                || from_app_url($request)
+            ) {
+                return $next($request);
+            }
+
+            throw new TokenMismatchException('Invalid request origin');
+        }
+
         try {
             return parent::handle($request, $next);
         } catch (TokenMismatchException $e) {

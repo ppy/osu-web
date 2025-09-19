@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Большое спасибо за вашу поддержку! Всего вы пожертвовали :dollars за :tags покупок тега!',
-            'gifted' => "Из них вы подарили :giftedTags тегов на сумму в :giftedDollars – как щедро с вашей стороны!",
+            'contribution_with_duration' => 'Большое Вам спасибо за постоянную поддержку! За всё время вы пожертвовали :dollars, получив взамен тег "osu!supporter" на :duration.',
             'not_yet' => "У вас нет и ещё не было тега osu!supporter :(",
             'valid_until' => 'Ваш тег osu!supporter активен до :date!',
             'was_valid_until' => 'Ваш тег osu!supporter истёк :date.',
+
+            'gifted' => [
+                '_' => 'Из них вы подарили :users тегов на сумму :dollars, общей длительностью в :duration. Это невероятно щедро!',
+                'users' => ':count_delimited другому игроку|:count_delimited другим игрокам',
+            ],
         ],
     ],
 ];

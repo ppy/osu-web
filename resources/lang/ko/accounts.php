@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => '아바타',
+            'reset' => '초기화',
             'rules' => '아바타가 :link을 따르고 있는지 확인하세요.<br/>이는 아바타가 <strong>모든 연령에 적합해야 하므로</strong> 과도한 노출, 욕설 혹은 이러한 것을 암시하는 내용이 없어야 한다는 의미입니다.',
             'rules_link' => '커뮤니티 규칙',
         ],
@@ -63,15 +64,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "osu!의 오픈소스 저장소에 기여를 한 사람인 경우, 여기에 GitHub 계정을 연결하면 당신의 변경 사항 항목이 osu! 프로필과 연결됩니다. osu!에 기여를 한 이력 없는 GitHub 계정은 연결할 수 없습니다.",
+        'info' => "만약 osu! 오픈 소스 리포지토리의 기여자이신 경우, GitHub 계정을 연동하시면 변경 사항 항목이 osu! 프로필과 연동돼요. 기여 이력이 없는 GitHub 계정의 경우에는 osu!와 연동할 수 없어요.",
         'link' => 'GitHub 계정 연결',
         'title' => 'GitHub',
         'unlink' => 'GitHub 계정 연결 해제',
 
         'error' => [
             'already_linked' => '이 GitHub 계정은 이미 다른 유저에게 연결되어 있습니다.',
-            'no_contribution' => 'osu! 저장소에 기여를 한 이력이 없으면 GitHub 계정을 연결할 수 없습니다.',
-            'unverified_email' => 'GitHub에서 주 이메일을 인증한 후에 계정을 다시 연결해보세요.',
+            'no_contribution' => 'osu! 레포지토리에 기여한 이력이 없는 GitHub 계정은 연동할 수 없어요.',
+            'unverified_email' => 'GitHub에 등록된 주 이메일 인증 후, 계정을 다시 연동해 주세요.',
         ],
     ],
 
@@ -80,13 +81,14 @@ return [
         'beatmapset_disqualify' => '비트맵이 Disqualified 처리됐을 때 알림을 수신할 모드',
         'comment_reply' => '댓글에 답글이 달리면 알림 받기',
         'title' => '알림',
-        'topic_auto_subscribe' => '새로 만드는 포럼 주제에 대한 알림을 자동으로 활성화',
+        'topic_auto_subscribe' => '생성했거나 답변을 게시한 포럼 주제에 대한 알림을 자동으로 활성화',
 
         'options' => [
             '_' => '수신 옵션',
             'beatmap_owner_change' => '게스트 난이도',
             'beatmapset:modding' => '비트맵 모딩',
             'channel_message' => '개인 채팅 메시지',
+            'channel_team' => '팀 채팅 메시지',
             'comment_new' => '새 댓글',
             'forum_topic_reply' => '주제 답글',
             'mail' => '메일',
@@ -102,8 +104,8 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '부적절한 내용의 비트맵 경고 숨기기',
-        'beatmapset_title_show_original' => '원본 언어로 비트맵 메타데이터 표시',
+        'beatmapset_show_nsfw' => '부적절한 내용에 대한 비트맵 경고 숨기기',
+        'beatmapset_title_show_original' => '원본 언어로 비트맵 메타데이터 표시하기',
         'title' => '설정',
 
         'beatmapset_download' => [

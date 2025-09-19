@@ -12,22 +12,25 @@ return [
         'in_progress_spinner_label' => '対戦中',
         'loading-events' => 'イベントの読み込み中・・・',
         'winner' => ':teamの勝利',
-        'winner_by' => '',
+        'winner_by' => ':winner by :difference',
 
         'events' => [
-            'player-left' => ':userが退室しました',
-            'player-joined' => ':userが入室しました',
-            'player-kicked' => ':userが部屋から追放されました',
-            'match-created' => ':userが部屋を作成しました',
-            'match-disbanded' => '部屋が解散しました',
-            'host-changed' => ':userがホストになりました',
-
-            'player-left-no-user' => 'プレイヤーが退室しました',
-            'player-joined-no-user' => 'プレイヤーが入室しました',
-            'player-kicked-no-user' => 'プレイヤーが追放されました',
-            'match-created-no-user' => '部屋が作成されました',
-            'match-disbanded-no-user' => '部屋が解散されました',
-            'host-changed-no-user' => 'ホストが変更されました',
+            'game_aborted' => 'ゲームはキャンセルされました',
+            'game_aborted_no_user' => 'ゲームはキャンセルされました',
+            'game_completed' => 'ゲームは終了しました',
+            'game_completed_no_user' => 'ゲームは終了しました',
+            'host_changed' => ':user がホストになりました',
+            'host_changed_no_user' => 'ホストが変更されました',
+            'player_joined' => ':user がマッチに参加しました',
+            'player_joined_no_user' => 'プレイヤーがマッチに参加しました',
+            'player_kicked' => ':user はマッチから退出させられました',
+            'player_kicked_no_user' => 'プレイヤーがマッチから追放されました',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => '個人戦',
-            'tag-coop' => '協力モード',
-            'team-vs' => 'チーム戦',
-            'tag-team-vs' => 'タッグチーム戦',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => '最高スコア',
             'accuracy' => '最高精度',

@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'kommentit',
         'hide_judged' => 'piilota arvioidut tuotokset',
         'nav_title' => 'arvioi',
         'no_current_vote' => 'et äänestänyt vielä.',
@@ -29,7 +30,9 @@ return [
         '_' => 'Tuomaroinnin tulokset',
         'creator' => 'tekijä',
         'score' => 'Pisteet',
+        'score_std' => '',
         'total_score' => 'yhteispisteet',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'äänet',
         'count' => ':count_delimited ääni|:count_delimited ääntä',
         'points' => ':count piste|:count pistettä',
+        'points_float' => '',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Avoinna',
         'voting' => 'Äänestys Alkanut',
         'results' => 'Tulokset Julkistettu',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

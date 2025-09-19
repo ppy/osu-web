@@ -10,6 +10,7 @@ namespace App\Models\Solo;
 use App\Enums\Ruleset;
 use App\Enums\ScoreRank;
 use App\Exceptions\InvariantException;
+use App\Libraries\Score\ScoringMode;
 use App\Libraries\Score\UserRank;
 use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
@@ -51,7 +52,13 @@ use LaravelRedis;
  */
 class Score extends Model implements Traits\ReportableInterface
 {
-    use Traits\Reportable, Traits\WithWeightedPp;
+    use Traits\Reportable, Traits\WithDbCursorHelper, Traits\WithWeightedPp;
+
+    const DEFAULT_SORT = 'old';
+
+    const SORTS = [
+        'old' => [['column' => 'id', 'order' => 'ASC']],
+    ];
 
     public $timestamps = false;
 
@@ -71,11 +78,13 @@ class Score extends Model implements Traits\ReportableInterface
             'maximum_statistics' => $params['maximum_statistics'] ?? [],
             'mods' => $params['mods'] ?? [],
             'statistics' => $params['statistics'] ?? [],
+            'total_score_without_mods' => $params['total_score_without_mods'] ?? null,
         ];
         unset(
             $params['maximum_statistics'],
             $params['mods'],
             $params['statistics'],
+            $params['total_score_without_mods'],
         );
 
         $score = new static($params);
@@ -105,6 +114,7 @@ class Score extends Model implements Traits\ReportableInterface
             'rank:string',
             'statistics:array',
             'total_score:int',
+            'total_score_without_mods:int',
         ]);
 
         $params['maximum_statistics'] ??= [];
@@ -131,7 +141,7 @@ class Score extends Model implements Traits\ReportableInterface
 
     public static function replayFileDiskName(): string
     {
-        return "{$GLOBALS['cfg']['osu']['score_replays']['storage']}-solo-replay";
+        return "{$GLOBALS['cfg']['filesystems']['default']}-solo-replay";
     }
 
     public static function replayFileStorage(): Filesystem
@@ -157,6 +167,18 @@ class Score extends Model implements Traits\ReportableInterface
     public function scopeDefault(Builder $query): Builder
     {
         return $query->whereHas('beatmap.beatmapset');
+    }
+
+    /**
+     * This should only be sorted by primary key(s)
+     */
+    public function scopeForListing(Builder $query): Builder
+    {
+        return $query->where('ranked', true)
+            ->whereHas('user', fn ($q) => $q->default())
+            ->from(\DB::raw("{$this->getTable()} FORCE INDEX (PRIMARY)"))
+            ->leftJoinRelation('processHistory')
+            ->select([$query->qualifyColumn('*'), 'processed_version']);
     }
 
     public function scopeForRuleset(Builder $query, string $ruleset): Builder
@@ -264,9 +286,17 @@ class Score extends Model implements Traits\ReportableInterface
             throw new InvariantException('Invalid accuracy.');
         }
 
-        // unsigned int (as per the column)
-        if ($this->total_score === null || $this->total_score < 0 || $this->total_score > 4294967295) {
+        // int (as per es schema)
+        if ($this->total_score === null || $this->total_score <= 0 || $this->total_score > 2147483647) {
             throw new InvariantException('Invalid total_score.');
+        }
+
+        // int (no data type enforcement as this goes into the json, but just to match total_score)
+        if (
+            $this->data->totalScoreWithoutMods !== null
+            && ($this->data->totalScoreWithoutMods < 0 || $this->data->totalScoreWithoutMods > 2147483647)
+        ) {
+            throw new InvariantException('Invalid total_score_without_mods.');
         }
 
         foreach (['max_combo', 'passed'] as $field) {
@@ -278,6 +308,20 @@ class Score extends Model implements Traits\ReportableInterface
         if ($this->data->statistics->isEmpty()) {
             throw new InvariantException("field cannot be empty: 'statistics'");
         }
+
+        app('mods')->assertValidExclusivity(
+            $this->ruleset_id,
+            array_column($this->data->mods, 'acronym')
+        );
+    }
+
+    public function getClassicTotalScore(): int
+    {
+        return ScoringMode::convertToClassic(
+            Ruleset::from($this->ruleset_id),
+            $this->total_score,
+            $this->maxBasicJudgements(),
+        );
     }
 
     public function getMode(): string
@@ -341,6 +385,19 @@ class Score extends Model implements Traits\ReportableInterface
         }
 
         return null;
+    }
+
+    public function isProcessed(): bool
+    {
+        if ($this->legacy_score_id !== null) {
+            return true;
+        }
+
+        if (array_key_exists('processed_version', $this->attributes)) {
+            return $this->attributes['processed_version'] !== null;
+        }
+
+        return $this->processHistory !== null;
     }
 
     public function legacyScore(): ?LegacyScore\Best\Model
@@ -481,5 +538,33 @@ class Score extends Model implements Traits\ReportableInterface
             'reason' => 'Cheating',
             'user_id' => $this->user_id,
         ];
+    }
+
+    /**
+     * Shortcut for calculating the beatmap's object count using only the score.
+     *
+     * @see https://github.com/ppy/osu/blob/b535f7c51916ed09231b78aa422e6488cf9a2a12/osu.Game/Scoring/Legacy/ScoreInfoExtensions.cs#L28-L32 Client reference
+     * @see https://github.com/ppy/osu/blob/b535f7c51916ed09231b78aa422e6488cf9a2a12/osu.Game/Rulesets/Scoring/HitResult.cs#L228-L243 Client reference (IsBasic)
+     */
+    private function maxBasicJudgements(): int
+    {
+        static $basicHitResults = [
+            'none',
+            'miss',
+            'meh',
+            'ok',
+            'good',
+            'great',
+            'perfect',
+        ];
+
+        $count = 0;
+        $maximumStatistics = $this->data->maximumStatistics;
+
+        foreach ($basicHitResults as $field) {
+            $count += $maximumStatistics->$field;
+        }
+
+        return $count;
     }
 }

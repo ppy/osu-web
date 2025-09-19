@@ -76,9 +76,15 @@ class UserFactory extends Factory
             'user_interests' => fn () => mb_substr($this->faker->bs(), 0, 30),
             'user_occ' => fn () => mb_substr($this->faker->catchPhrase(), 0, 30),
             'user_sig' => fn () => $this->faker->realText(155),
-            'user_from' => fn () => mb_substr($this->faker->country(), 0, 30),
+            'user_from' => fn () => mb_substr($this->faker->country(), 0, 25),
             'user_regdate' => fn () => $this->faker->dateTimeBetween('-6 years'),
         ];
+    }
+
+    // convenience for dataProviders so null checks don't have to be called when creating with named state.
+    public function default()
+    {
+        return $this;
     }
 
     public function restricted()

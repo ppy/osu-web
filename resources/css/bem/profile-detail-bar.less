@@ -4,7 +4,7 @@
 .profile-detail-bar {
   --padding: @gutter-v2;
   --vertical-padding: 10px;
-  --height: 60px;
+  --item-height: 40px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -12,11 +12,14 @@
   background-color: hsl(var(--hsl-b3));
   position: relative;
   gap: 10px;
-  min-height: var(--height);
   padding: 10px var(--padding);
 
   @media @desktop {
     --padding: @gutter-v2-desktop;
+  }
+
+  &--team {
+    justify-content: end;
   }
 
   &__level {
@@ -26,7 +29,7 @@
     gap: 10px;
     font-size: @font-size--normal;
     font-weight: bold;
-    height: calc(var(--height) - var(--vertical-padding) * 2);
+    height: var(--item-height);
   }
 
   &__level-bar {

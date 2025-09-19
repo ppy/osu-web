@@ -6,11 +6,14 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property \Illuminate\Database\Eloquent\Collection $builds Build
  * @property \Illuminate\Database\Eloquent\Collection $changelogEntries ChangelogEntry
  * @property \Illuminate\Database\Eloquent\Collection $changelogs Changelog
+ * @property bool $default_allow_bancho
  * @property string $name
  * @property string|null $pretty_name
  * @property string|null $repository
@@ -20,6 +23,9 @@ class UpdateStream extends Model
 {
     public $timestamps = false;
 
+    protected $casts = [
+        'default_allow_bancho' => 'boolean',
+    ];
     protected $connection = 'mysql-updates';
     protected $table = 'streams';
     protected $primaryKey = 'stream_id';
@@ -36,7 +42,14 @@ class UpdateStream extends Model
 
     public function changelogEntries()
     {
-        return $this->hasManyThrough(ChangelogEntry::class, Repository::class);
+        return $this->belongsToMany(
+            ChangelogEntry::class,
+            Repository::updateStreamBridgeTable(),
+            null,
+            'repository_id',
+            'stream_id',
+            'repository_id',
+        );
     }
 
     public function scopeWhereHasBuilds($query)
@@ -51,10 +64,31 @@ class UpdateStream extends Model
         });
     }
 
+    public function scopeWithLatestBuild(Builder $query): Builder
+    {
+        $buildQuery = Build::selectRaw('MAX(build_id)')
+            ->from(new Build()->tableName(true))
+            ->default()
+            ->whereColumn(['stream_id' => $query->qualifyColumn('stream_id')]);
+
+        return $query->addSelect(['latest_build_id' => $buildQuery])->with('latestBuild');
+    }
+
+    public function scopeWithUserCount(Builder $query): Builder
+    {
+        return $query->withSum(
+            ['builds' => fn ($b) => $b
+                ->from((new Build())->tableName(true))
+                ->where('allow_bancho', true),
+            ],
+            'users',
+        );
+    }
+
     public function createBuild()
     {
         $entryIds = model_pluck(
-            $this->changelogEntries()->orphans($this->getKey()),
+            $this->orphanChangelogEntries(),
             'id',
             ChangelogEntry::class
         );
@@ -64,20 +98,46 @@ class UpdateStream extends Model
         }
 
         $version = Carbon::now()->format('Y.nd.0');
-        $build = $this->builds()->firstOrCreate(compact('version'));
+        $build = $this->builds()->firstOrCreate([
+            'version' => $version,
+        ], [
+            'allow_bancho' => $this->default_allow_bancho,
+        ]);
         $build->changelogEntries()->attach($entryIds);
 
         return $build;
     }
 
-    public function latestBuild()
+    public function orphanChangelogEntries(): Builder
     {
-        return $this->builds()->orderBy('build_id', 'DESC')->first();
+        $query = $this->changelogEntries()->orphans($this->getKey());
+
+        if ($this->parent_id !== null) {
+            $query->orphans($this->parent_id);
+        }
+
+        return $query;
+    }
+
+    /**
+     * Latest build of the stream
+     *
+     * This relies on the model being queried with `withLatestBuild` scope
+     * so the relation attribute (`latest_build_id`) is included.
+     *
+     * Only read operation is directly possible with this relation.
+     */
+    public function latestBuild(): BelongsTo
+    {
+        return $this->belongsTo(Build::class, 'latest_build_id');
     }
 
     public function userCount()
     {
-        return (int) $this->builds()->where('allow_bancho', '=', true)->sum('users');
+        return (int) (array_key_exists('builds_sum_users', $this->attributes)
+            ? $this->attributes['builds_sum_users']
+            : $this->builds()->where('allow_bancho', true)->sum('users')
+        );
     }
 
     public function isFeatured()

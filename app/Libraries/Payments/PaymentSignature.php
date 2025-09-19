@@ -7,5 +7,5 @@ namespace App\Libraries\Payments;
 
 interface PaymentSignature
 {
-    public function isValid();
+    public function assertValid(): void;
 }

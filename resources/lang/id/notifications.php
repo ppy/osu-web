@@ -20,17 +20,19 @@ return [
         'channel' => 'percakapan',
         'forum_topic' => 'forum',
         'news_post' => 'berita',
+        'team' => 'tim',
         'user' => 'profil',
     ],
 
     'filters' => [
-        '_' => 'semua notifikasi',
-        'user' => 'profil',
+        '_' => 'semua',
         'beatmapset' => 'beatmap',
-        'forum_topic' => 'forum',
-        'news_post' => 'berita',
         'build' => 'build',
         'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'berita',
+        'team' => 'tim',
+        'user' => 'profil',
     ],
 
     'item' => [
@@ -79,8 +81,8 @@ return [
                 'beatmapset_love_compact' => 'Beatmap telah dipromosikan ke kategori Loved',
                 'beatmapset_nominate' => '":title" telah dinominasikan',
                 'beatmapset_nominate_compact' => 'Beatmap telah dinominasikan',
-                'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk dapat memasuki antrian ranking',
-                'beatmapset_qualify_compact' => 'Beatmap memasuki antrian ranking',
+                'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk dapat memasuki antrean ranking',
+                'beatmapset_qualify_compact' => 'Beatmap memasuki antrean ranking',
                 'beatmapset_rank' => '":title" telah berstatus Ranked',
                 'beatmapset_rank_compact' => 'Beatmap telah berstatus Ranked',
                 'beatmapset_remove_from_loved' => '":title" telah dilepas dari Loved',
@@ -121,6 +123,16 @@ return [
                     'channel_message_group' => 'dari :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => 'Pesan tim baru',
+
+                'team' => [
+                    'channel_team' => ':username mengatakan ":title"',
+                    'channel_team_compact' => ':username mengatakan ":title"',
+                    'channel_team_group' => ':username mengatakan ":title"',
+                ],
+            ],
         ],
 
         'build' => [
@@ -156,6 +168,22 @@ return [
                 '_' => 'Balasan forum baru',
                 'forum_topic_reply' => ':username membalas postinganmu pada utas forum ":title"',
                 'forum_topic_reply_compact' => ':username membalas postinganmu',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => 'Permintaan gabung tim',
+
+                'team_application_accept' => "Kamu kini merupakan anggota dari tim :title",
+                'team_application_accept_compact' => "Kamu kini merupakan anggota dari tim :title",
+
+                'team_application_group' => 'Pembaruan permintaan gabung tim',
+
+                'team_application_reject' => 'Permintaan kamu untuk bergabung ke tim :title telah ditolak',
+                'team_application_reject_compact' => 'Permintaan kamu untuk bergabung ke tim :title telah ditolak',
+                'team_application_store' => ':title meminta untuk bergabung ke tim kamu',
+                'team_application_store_compact' => ':title meminta untuk bergabung ke tim kamu',
             ],
         ],
 
@@ -204,7 +232,7 @@ return [
                 'beatmapset_disqualify' => '":title" telah didiskualifikasi',
                 'beatmapset_love' => '":title" telah dipromosikan ke kategori Loved',
                 'beatmapset_nominate' => '":title" telah dinominasikan',
-                'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk dapat memasuki antrian ranking',
+                'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk dapat memasuki antrean ranking',
                 'beatmapset_rank' => '":title" telah berstatus Ranked',
                 'beatmapset_remove_from_loved' => ':title telah dilepas dari Loved',
                 'beatmapset_reset_nominations' => 'Nominasi pada beatmap ":title" telah dianulir',
@@ -217,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Terdapat pengumuman baru pada ":name"',
+                'channel_announcement' => 'Terdapat pengumuman baru pada ":name"',
             ],
-
             'channel' => [
-                'pm' => 'Kamu menerima pesan baru dari :username',
+                'channel_message' => 'Kamu menerima pesan baru dari :username',
+            ],
+            'channel_team' => [
+                'channel_team' => 'Terdapat pesan baru pada tim ":name"',
             ],
         ],
 
@@ -240,6 +270,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Terdapat balasan baru pada ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Kamu kini merupakan anggota dari tim :title",
+                'team_application_reject' => 'Permintaan kamu untuk bergabung ke tim :title telah ditolak',
+                'team_application_store' => ':title meminta untuk bergabung ke tim kamu',
             ],
         ],
 

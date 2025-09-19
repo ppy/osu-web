@@ -14,7 +14,7 @@
 ])
 
 @section('content')
-    <nav class="osu-layout__row">
+    <nav class="osu-page">
         <!-- Mobile Navigation -->
         @include('layout._header_mobile')
 
@@ -46,7 +46,7 @@
 
     </nav>
 
-    <div class="js-nav-data" id="nav-data-landing" data-turbolinks-permanent></div>
+    <div class="js-nav-data" id="nav-data-landing" data-turbo-permanent></div>
     @include('layout._popup_login', ['modifiers' => ['landing']])
 
     <div class="osu-page">
@@ -126,7 +126,7 @@
     </div>
 
     <footer class="osu-layout__section osu-layout__section--landing-footer">
-        <div class="osu-layout__row osu-layout__row--landing-sitemap">
+        <div class="osu-page">
             <div class="landing-sitemap">
                 @foreach (footer_landing_links() as $section => $links)
                     <ul class="landing-sitemap__list">
@@ -152,8 +152,6 @@
 
         @include('layout.footer', ['modifiers' => ['landing'], 'withLinks' => false])
     </footer>
-
-    @include('layout.popup-container')
 @endsection
 
 @section ("script")
@@ -161,5 +159,35 @@
 
     <script id="json-posts" type="application/json">
         {!! json_encode($news) !!}
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoGame",
+      "name": "osu!",
+      "url": "https://osu.ppy.sh/",
+      "image": "https://assets.ppy.sh/logo-with-background.png",
+      "description": "rhythm is just a click away",
+      "author": {
+        "@type": "Organization",
+        "name": "ppy"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "ppy"
+      },
+      "producer": {
+        "@type": "Organization",
+        "name": "ppy"
+      },
+      "applicationCategory": "Game",
+      "gamePlatform": ["Windows", "macOS", "Linux", "Android", "iOS"],
+      "playMode": ["SinglePlayer","MultiPlayer"],
+      "genre": "Rhythm",
+      "inLanguage": ["en", "be", "bg", "ca", "cs", "da", "de", "el", "es", "fi", "fr", "hr-hr", "hu", "id", "it", "ja", "ko", "lt", "lv-lv", "ms-my", "nl", "no", "pl", "pt", "pt-br", "ro", "ru", "sk", "sl", "sr", "sv", "th", "tr", "uk", "vi", "zh", "zh_hant"],
+      "sameAs": "https://github.com/ppy/osu",
+      "datePublished": "2007-09-16"
+    }
     </script>
 @endsection

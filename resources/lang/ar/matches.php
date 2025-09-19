@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner فاز بفارق :difference',
 
         'events' => [
-            'player-left' => ':user غادر الغرفة',
-            'player-joined' => ':user انضم للغرفة',
-            'player-kicked' => ':user تم طرده من الغرفة',
-            'match-created' => ':user انشأ الغرفة',
-            'match-disbanded' => 'تم مسح الغرفة',
-            'host-changed' => ':user اصبح المضيف',
-
-            'player-left-no-user' => 'غادر لاعب الغرفة',
-            'player-joined-no-user' => 'انضم لاعب للغرفة',
-            'player-kicked-no-user' => 'طُرِد لاعب من الغرفة',
-            'match-created-no-user' => 'تم انشاء الغرفة',
-            'match-disbanded-no-user' => 'تم مسح الغرفة',
-            'host-changed-no-user' => 'تم تغيير المضيف',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'رأس-الى-رأس',
-            'tag-coop' => 'فريق co-op',
-            'team-vs' => 'فريق ضد',
-            'tag-team-vs' => 'فريق من شخصين ضد',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => 'أعلى نتيجة',
             'accuracy' => 'اعلى دقة',

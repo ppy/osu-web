@@ -9,6 +9,16 @@ return [
         'title' => 'Land',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Level',
+        'top_10p' => '90%-Perzentil',
+        'top_50p' => 'Median',
+        'unavailable' => [
+            'future' => 'Noch gibt es für das angegebene Datum keine tägliche Herausforderung!',
+            'past' => 'Für das angegebene Datum gibt es keine tägliche Herausforderung!',
+        ],
+    ],
+
     'filter' => [
         'title' => 'Anzeigen',
 
@@ -24,17 +34,18 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Der kürzliche Ranking-Verlauf dieses Benutzers ist kleiner als 30 Tage.',
     ],
 
     'type' => [
         'charts' => 'Spotlights (alt)',
         'country' => 'Länder',
+        'daily_challenge' => 'Tägliche Herausforderung',
+        'global' => 'Global',
         'kudosu' => 'Kudosu',
         'multiplayer' => 'Mehrspieler',
-        'performance' => 'Performance',
-        'score' => 'Punktzahl',
         'seasons' => 'Seasons',
+        'team' => 'Teams',
     ],
 
     'seasons' => [
@@ -42,6 +53,9 @@ return [
         'ongoing' => 'Diese Season ist noch im Gange (es werden weitere Playlists hinzugefügt).',
         'room_count' => 'Anzahl der Playlists',
         'url' => 'Weitere Informationen zu dieser Season anzeigen.',
+        'validation' => [
+            'not_enough_factors' => 'Es gibt nicht genügend Score-Faktoren für eine korrekte Berechnung',
+        ],
     ],
 
     'spotlight' => [
@@ -55,6 +69,8 @@ return [
         'accuracy' => 'Genauigkeit',
         'active_users' => 'Aktive Nutzer',
         'country' => 'Land',
+        'division' => 'Spielklasse',
+        'members' => 'Mitglieder',
         'play_count' => 'Gespielt',
         'performance' => 'Performance',
         'total_score' => 'Gesamtpunktzahl',

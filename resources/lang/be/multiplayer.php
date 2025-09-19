@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Пакуль што няма :type_group гульняў ў osu!lazer',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'плэйліст',
         'realtime' => 'мультыплэер',
     ],
@@ -16,9 +17,12 @@ return [
         'map_count' => ':count_delimited бітмапа|:count_delimited бітмап',
         'player_count' => ':count_delimited гулец|:count_delimited гульцоў',
         'time_left' => ':time засталася',
+        'view_history' => 'Праглядзець гісторыю',
+        'view_summary' => 'Праглядзець справаздачу',
 
         'errors' => [
             'duration_too_long' => 'Вельмі вялікая працягласць.',
+            'name_too_long' => 'Занадта доўгая назва пакоя.',
         ],
 
         'status' => [

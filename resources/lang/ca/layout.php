@@ -14,8 +14,8 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => 'beatmapset',
-            'beatmapset_covers' => 'portades de beatmapsets',
+            'beatmapset' => 'col·lecció de mapes',
+            'beatmapset_covers' => 'portades de la col·lecció de mapes',
             'contest' => 'concurs',
             'contests' => 'concursos',
             'root' => 'consola',
@@ -50,8 +50,8 @@ return [
         ],
 
         'users' => [
-            'modding' => 'modding',
-            'playlists' => 'llistes de joc',
+            'modding' => 'moding',
+            'playlists' => 'llistes d\'àudio',
             'realtime' => 'multijugador',
             'show' => 'info',
         ],
@@ -67,7 +67,7 @@ return [
 
     'menu' => [
         'beatmaps' => [
-            '_' => 'beatmaps',
+            '_' => 'mapes',
         ],
         'community' => [
             '_' => 'comunitat',
@@ -97,7 +97,7 @@ return [
             '_' => 'General',
             'home' => 'Casa',
             'changelog-index' => 'Registre de canvis',
-            'beatmaps' => 'Llistat de beatmaps',
+            'beatmaps' => 'Llistat de mapes',
             'download' => 'Descarregar osu!',
         ],
         'help' => [
@@ -113,6 +113,7 @@ return [
             'copyright' => 'Drets d\'autor (DMCA)',
             'jp_sctl' => 'SCTL',
             'privacy' => 'Privacitat',
+            'rules' => 'Normes',
             'server_status' => 'Estat del servidor',
             'source_code' => 'Codi font',
             'terms' => 'Termes',
@@ -199,6 +200,9 @@ return [
             'legacy_score_only_toggle_tooltip' => 'El mode lazer mostra les puntuacions enviades des de lazer amb un nou algoritme de puntuació',
             'logout' => 'Tanca la sessió',
             'profile' => 'El meu perfil',
+            'scoring_mode_toggle' => 'Puntuació clàssica',
+            'scoring_mode_toggle_tooltip' => 'Ajusta els valors de la puntuació per a simular la puntuació clàssic sense límits.',
+            'team' => 'El Meu Equip',
         ],
     ],
 

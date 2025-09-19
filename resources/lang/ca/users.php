@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => 'Regalar etiqueta de supporter',
+        'gift_supporter' => 'Regala l\'etiqueta de supporter',
         'loading' => 'Carregant...',
         'send_message' => 'Enviar missatge',
     ],
@@ -103,8 +103,8 @@ return [
     ],
 
     'login' => [
-        '_' => 'Iniciar sessió',
-        'button' => 'Iniciar sessió',
+        '_' => 'Inicia sessió',
+        'button' => 'Inicia sessió',
         'button_posting' => 'Iniciant sessió...',
         'email_login_disabled' => 'L\'inici de sessió amb correu electrònic està deshabilitat. Si us plau, fes servir el teu nom d\'usuari.',
         'failed' => 'Inici de sessió incorrecte',
@@ -114,7 +114,7 @@ return [
         'locked_ip' => 'La seva adreça IP està bloquejada. Esperi uns minuts.',
         'password' => 'Contrasenya',
         'register' => "No tens un compte d'osu? Crea'n un de nou",
-        'remember' => 'Recordar aquest ordinador',
+        'remember' => 'Recorda en aquest ordinador',
         'title' => 'Inicia sessió per a continuar',
         'username' => 'Nom d\'usuari',
 
@@ -124,9 +124,16 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => 'Actiu',
+            'ended' => 'Finalitzat',
+        ],
+    ],
+
     'ogp' => [
-        'modding_description' => 'Beatmaps: :counts',
-        'modding_description_empty' => 'L\'usuari no té cap beatmap...',
+        'modding_description' => 'Mapes: :counts',
+        'modding_description_empty' => 'L\'usuari no té cap mapa...',
 
         'description' => [
             '_' => 'Clasificació (:ruleset): :global | :country',
@@ -159,14 +166,24 @@ return [
             'cancel' => 'Cancel·la',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => 'Informeu de la infracció dels drets d\'autor a través d\'una reclamació DMCA a :mail segons :policy.',
+                'policy' => 'la política de drets d\'autor d\'osu!',
+            ],
+            'message_2' => 'Això s\'aplica en casos on es fan servir pistes d\'àudio, contingut visual o contingut de mapes sense els permisos apropiats.',
+        ],
+
         'options' => [
             'cheating' => 'Joc brut/trampes',
-            'multiple_accounts' => 'Fa servir diversos comptes',
+            'copyright_infringement' => 'Infracció de drets d\'autor',
+            'inappropriate_chat' => 'Conducta inadequada al xat',
             'insults' => 'Insultant-me/insultant als altres',
-            'spam' => 'Envia spam',
-            'unwanted_content' => 'Enllaça contingut inapropiat',
+            'multiple_accounts' => 'Fa servir diversos comptes',
             'nonsense' => 'Ximpleries',
             'other' => 'Altres (escriu a sota)',
+            'spam' => 'Envia spam',
+            'unwanted_content' => 'Enllaça contingut inapropiat',
         ],
     ],
     'restricted_banner' => [
@@ -194,12 +211,32 @@ return [
         ],
         'cover' => [
             'to_0' => 'Ocultar portada',
-            'to_1' => 'MostraR portada',
+            'to_1' => 'Mostra la portada',
+        ],
+        'daily_challenge' => [
+            'daily' => 'Ratxa diària',
+            'daily_streak_best' => 'Millor ratxa diària',
+            'daily_streak_current' => 'Ratxa diària actual',
+            'playcount' => 'Participació total',
+            'title' => 'Repte\ndiari',
+            'top_10p_placements' => 'Llocs del top 10 %',
+            'top_50p_placements' => 'Llocs del top 50 %',
+            'weekly' => 'Ratxa setmanal',
+            'weekly_streak_best' => 'Millor ratxa setmanal',
+            'weekly_streak_current' => 'Ratxa setmanal actual',
+
+            'unit' => [
+                'day' => ':value d',
+                'week' => ':value s',
+            ],
         ],
         'edit' => [
             'cover' => [
                 'button' => 'Canvia la portada del perfil',
                 'defaults_info' => 'Més opcions de portada estaran disponibles en el futur',
+                'holdover_remove_confirm' => "La coberta seleccionada anteriorment ja no està disponible. No la podreu tornar a triar si canvieu de coberta. Voleu continuar?",
+                'title' => 'Portada',
+
                 'upload' => [
                     'broken_file' => 'Error en processar la imatge. Verifica la imatge pujada i torna-ho a intentar.',
                     'button' => 'Penja una imatge',
@@ -220,6 +257,16 @@ return [
                 'is_default_tooltip' => 'mode de joc per defecte',
                 'set' => 'estableix :mode com a mode de joc per defecte del perfil',
             ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Voleu restablir els valors per defecte? Cal una etiqueta de seguidor per a canviar el color.',
+                'title' => 'Color',
+
+                'supporter' => [
+                    '_' => 'Els temes de colors personalitzats només estan disponibles per a :link.',
+                    'link' => 'osu!supporters',
+                ],
+            ],
         ],
 
         'extra' => [
@@ -233,28 +280,28 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'per :artist',
-                'title' => 'Beatmaps',
+                'title' => 'Mapes',
 
                 'favourite' => [
-                    'title' => 'Beatmaps preferits',
+                    'title' => 'Mapes preferits',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps abandonats',
+                    'title' => 'Mapes abandonats',
                 ],
                 'guest' => [
-                    'title' => 'Beatmaps amb participació de convidats',
+                    'title' => 'Mapes amb participació de convidats',
                 ],
                 'loved' => [
-                    'title' => 'Beatmaps estimats',
+                    'title' => 'Mapes estimats',
                 ],
                 'nominated' => [
                     'title' => 'Betmaps classificats nominats',
                 ],
                 'pending' => [
-                    'title' => 'Beatmaps pendents',
+                    'title' => 'Mapes pendents',
                 ],
                 'ranked' => [
-                    'title' => 'Beatmaps classificats',
+                    'title' => 'Mapes classificats',
                 ],
             ],
             'discussions' => [
@@ -276,7 +323,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'vegades jugat',
-                    'title' => 'Beatmaps més jugats',
+                    'title' => 'Mapes més jugats',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisió :percentage',
@@ -332,7 +379,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Basat en les contribucions que l\'usuari ha fet a la moderació de beatmaps. Consulta :link per a més informació.',
+                    '_' => 'Basat en les contribucions que l\'usuari ha fet a la moderació de mapes. Consulta :link per a més informació.',
                     'link' => 'aquesta pàgina',
                 ],
             ],
@@ -359,8 +406,8 @@ return [
                 'title' => 'Partides multijugador',
             ],
             'top_ranks' => [
-                'download_replay' => 'Baixar repetició',
-                'not_ranked' => 'Només beatmaps classificatoris donen pp',
+                'download_replay' => 'Baixa la repetició',
+                'not_ranked' => 'Només els mapes classificatoris donen pp',
                 'pp_weight' => 'valorat :percentage',
                 'view_details' => 'Veure Detalls',
                 'title' => 'Classificacions',
@@ -449,8 +496,13 @@ return [
             'global_simple' => 'Classificació global',
             'highest' => 'Classificació més alta: :rank el :date',
         ],
+        'season_stats' => [
+            'division_top_percentage' => ':value millors',
+            'total_score' => 'Puntuació total',
+        ],
         'stats' => [
             'hit_accuracy' => 'Precisió',
+            'hits_per_play' => 'Cops per partida',
             'level' => 'Nivell :level',
             'level_progress' => 'Progrés al següent nivell',
             'maximum_combo' => 'Combo màxim',
@@ -463,10 +515,10 @@ return [
             'total_hits' => 'Encerts totals',
             'total_score' => 'Puntuació total',
             // modding stats
-            'graveyard_beatmapset_count' => 'Beatmaps abandonats',
-            'loved_beatmapset_count' => 'Beatmaps estimats',
-            'pending_beatmapset_count' => 'Beatmaps pendents',
-            'ranked_beatmapset_count' => 'Beatmaps Classificats',
+            'graveyard_beatmapset_count' => 'Mapes abandonats',
+            'loved_beatmapset_count' => 'Mapes estimats',
+            'pending_beatmapset_count' => 'Mapes pendents',
+            'ranked_beatmapset_count' => 'Mapes Classificats',
         ],
     ],
 

@@ -23,7 +23,7 @@ return [
                 'description' => 'Příspěvky jsou použity k zajištění provozu serverů, na kterých běží webové stránky, multiplayer, online žebříčky atd.',
             ],
             'featured-artists' => [
-                'title' => 'Featured Artists',
+                'title' => 'Oficiální umělci',
                 'description' => 'S tvojí podporou můžeme získat více úžasných tvůrců a licencovat více skvělé hudby pro použití v osu!',
                 'link_text' => 'Zobrazit aktuální seznam &raquo;',
             ],
@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Díky za tvou podporu! Zatím jsi přispěl/a celkově :dollars napříč :tags nákupy supporter tagů!',
-            'gifted' => ":giftedTags z vašich nákupů tagů bylo darováno (což dělá celkem :giftedDollars), jak štědré!",
+            'contribution_with_duration' => 'Děkujeme za tvoji přetrvávající podporu! Už jsi přispěl celkem :dollars, což ti přineslo "Supporter" tag pro :duration.',
             'not_yet' => "Ještě nemáš supporter tag :(",
             'valid_until' => 'Tvůj supporter tag je platný do :date!',
             'was_valid_until' => 'Tvůj supporter tag byl platný do :date.',
+
+            'gifted' => [
+                '_' => 'Přes všechny tvé příspěvky jsi daroval tagy v hodnotě :dollars :users uživatelům pokrývající :duration. To je neuvěřitelně velkorysé!',
+                'users' => ':count_delimited další uživatel|:count_delimited další uživatelé|:count_delimited dalších uživatelů',
+            ],
         ],
     ],
 ];

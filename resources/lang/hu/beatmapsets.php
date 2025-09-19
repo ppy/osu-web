@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Lassíts le, játssz többet.',
+        'no_mirrors' => 'Nem érhető el letöltés kiszolgáló.',
     ],
 
     'featured_artist_badge' => [
@@ -40,20 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'A próbaidős nominálók nem nominálhatnak több ruleszetet.',
+        'full_nomination_required' => 'Teljes nominálónak kell lennie a ruleszet végső nominálásának végrehajtásához.',
         'hybrid_requires_modes' => 'Egy hibrid beatmap szettet legalább egy játékmódra nominálni kell.',
         'incorrect_mode' => 'Nincs jogosultságod :mode módban nominálni',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Ez a beatmap érvénytelen nominálásokkal rendelkezik, és ebben az állapotban nem kvalifikálható.',
+        'invalid_ruleset' => 'Ez a nomináció érvénytelen ruleszeteket tartalmaz.',
         'too_many' => 'A nominálási követelmények már teljesültek.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'Nomináció kötelezettség a nem fő ruleszetre már teljesítve van.',
 
         'dialog' => [
             'confirmation' => 'Biztosan nominálni szeretnéd ezt a Beatmap-et?',
+            'different_nominator_warning' => 'A beatmap kvalifikálása különbözű nominálókkal a kvalifikálási várólístai helyének visszaállításával jár.',
             'header' => 'Beatmap Nominálása',
             'hybrid_warning' => 'megjegyzés: csak egyszer nominálhatsz, ezért kérlek győződj meg róla, hogy minden játékmódra nominálsz, amire szeretnél',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'A fő ruleszet jelenleg: :ruleset',
             'which_modes' => 'Mely módokra nominálsz?',
         ],
     ],
@@ -67,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Teljes borítókép megtekintése',
+            'page' => '',
         ],
 
         'deleted_banner' => [
@@ -138,6 +141,7 @@ return [
             'description' => 'Leírás',
             'genre' => 'Műfaj',
             'language' => 'Nyelv',
+            'mapper_tags' => '',
             'no_scores' => 'Az adatok még számítás alatt...',
             'nominators' => 'Nominálók',
             'nsfw' => 'Felnőtt tartalom',
@@ -146,7 +150,7 @@ return [
             'source' => 'Forrás',
             'storyboard' => 'Ez a beatmap storyboard-ot tartalmaz',
             'success-rate' => 'Teljesítési arány',
-            'tags' => 'Címkék',
+            'user_tags' => '',
             'video' => 'Ez a beatmap videót tartalmaz',
         ],
 
@@ -169,6 +173,7 @@ return [
             'global' => 'Globális Ranglista',
             'supporter-link' => 'Kattints <a href=":link">ide</a>, hogy megtekinthesd azt a sok jó funkciót amit kaphatsz!',
             'supporter-only' => 'Támogató kell legyél, hogy elérd a baráti és az országos ranglistát!',
+            'team' => '',
             'title' => 'Eredménylista',
 
             'headers' => [
@@ -190,6 +195,7 @@ return [
                 'friend' => 'Senki sem ért még el eredményt a barátaid közül ezen a map-en!',
                 'global' => 'Egyetlen eredmény sincs. Esetleg megpróbálhatnál szerezni párat?',
                 'loading' => 'Eredmények betöltése...',
+                'team' => '',
                 'unranked' => 'Rangsorolatlan beatmap.',
             ],
             'score' => [

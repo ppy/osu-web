@@ -5,16 +5,17 @@
 
 return [
     'mode' => [
+        'artist_track' => 'Lagu Featured Artist',
         'beatmapset' => 'Beatmap',
         'forum_post' => 'Forum',
         'other' => 'Lainnya',
+        'team' => 'Tim',
         'user' => 'Pengguna',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => 'Tidak ada hasil yang ditemukan',
-        'empty_for' => 'Tidak ada hasil pencarian :modes yang ditemukan',
+        'empty_for' => 'Tidak ada hasil pencarian :mode yang ditemukan',
         'more' => 'Muat Lebih Banyak Hasil Pencarian :mode',
         'title' => 'Hasil Pencarian :mode',
     ],

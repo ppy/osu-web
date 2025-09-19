@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Brak rozegranych gier w trybie :type_group!',
+        'active' => 'Brak aktywnych gier w trybie :type_group!',
+        'ended' => 'Brak zakończonych gier w trybie :type_group!',
         'playlists' => 'asynchronicznym',
         'realtime' => 'wieloosobowym',
     ],
@@ -16,9 +17,12 @@ return [
         'map_count' => ':count_delimited beatmapa|:count_delimited beatmapy|:count_delimited beatmap',
         'player_count' => ':count_delimited gracz|:count_delimited gracze|:count_delimited graczy',
         'time_left' => 'pozostało :time',
+        'view_history' => 'Pokaż historię',
+        'view_summary' => 'Pokaż podsumowanie',
 
         'errors' => [
             'duration_too_long' => 'Czas trwania jest zbyt długi.',
+            'name_too_long' => 'Nazwa pokoju jest zbyt długa.',
         ],
 
         'status' => [

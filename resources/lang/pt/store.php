@@ -31,9 +31,9 @@ return [
         'cart_problems' => 'Oh não, há problemas com o teu carrinho!',
         'cart_problems_edit' => 'Clica aqui para editá-lo.',
         'declined' => 'O pagamento foi cancelado.',
-        'delayed_shipping' => 'Nós estamos atualmente sobrecarregados com encomendas! Podes realizar o teu pedido, mas por favor espera aguardar **1-2 semanas** enquanto nos pomos a par dos pedidos existentes.',
+        'delayed_shipping' => 'Estamos de momento sobrecarregados com encomendas! Podes realizar o teu pedido, mas espera aguardar **1 a 2 semanas** enquanto nos pomos a par dos pedidos existentes.',
         'hide_from_activity' => 'Ocultar todas as etiquetas osu!supporter nesta ordem da minha atividade',
-        'old_cart' => 'O teu carrinho parece que está fora de prazo e foi recarregado, por favor tenta outra vez.',
+        'old_cart' => 'O teu carrinho parece que está fora de prazo e foi atualizado. Tenta outra vez.',
         'pay' => 'Pagar com Paypal',
         'title_compact' => 'pagamento',
 
@@ -54,7 +54,8 @@ return [
     'invoice' => [
         'contact' => 'Contacto:',
         'date' => 'Data:',
-        'echeck_delay' => 'Como o teu pagamento era um eCheck, por favor permite até 10 dias extras para o pagamento ser autorizado através do PayPal!',
+        'echeck_delay' => 'Como o teu pagamento era um eCheck, terás de permitir até 10 dias extra para que o pagamento seja autorizado através do PayPal!',
+        'echeck_denied' => 'O pagamento por eCheck foi rejeitado pelo PayPal.',
         'hide_from_activity' => 'As etiquetas osu!supporter nesta ordem não estão visíveis nas tuas atividades recentes.',
         'sent_via' => 'Enviado através de:',
         'shipping_to' => 'Enviar para:',
@@ -83,7 +84,7 @@ return [
             ],
             'processing' => [
                 'title' => 'O teu pagamento ainda não foi confirmado!',
-                'line_1' => 'Se já pagaste, ainda poderemos estar à espera de receber a confirmação do teu pagamento. Por favor atualiza esta página dentro de um minuto ou dois!',
+                'line_1' => 'Se já pagaste, ainda poderemos estar à espera de receber a confirmação do teu pagamento. Atualiza esta página dentro de um minuto ou dois!',
                 'line_2' => [
                     '_' => 'Se encontraste um problema durante o pagamento, :link',
                     'link_text' => 'clica aqui para resumir o teu pagamento',
@@ -157,7 +158,7 @@ return [
         'thanks' => [
             'title' => 'Obrigado pelo teu pedido!',
             'line_1' => [
-                '_' => 'Receberás um email de confirmação em breve. Se tiveres alguma dúvida, por favor :link!',
+                '_' => 'Receberás um email de confirmação em breve. Se tiveres alguma dúvida: :link!',
                 'link_text' => 'contacta-nos',
             ],
         ],
@@ -173,6 +174,7 @@ return [
 
         'add_to_cart' => 'Adicionar ao carrinho',
         'notify' => 'Notifica-me quando estiver disponível!',
+        'out_of_stock' => '',
 
         'notification_success' => 'serás notificado quando tivermos um novo stock. clica em :link para cancelar',
         'notification_remove_text' => 'aqui',

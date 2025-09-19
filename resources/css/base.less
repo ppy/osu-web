@@ -20,17 +20,29 @@ h2 {
   margin: 10px 0 0 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: @osu-colour-c1;
 }
 
 a {
   .link-default();
   outline-style: none;
-  &:link, &:visited, &:hover, &:active { outline-style: none; }
+  &:link,
+  &:visited,
+  &:hover,
+  &:active {
+    outline-style: none;
+  }
 
   text-decoration: none;
-  &:hover { text-decoration: underline; }
+  &:hover {
+    text-decoration: underline;
+  }
 
   transition: color 80ms linear;
 }
@@ -44,13 +56,14 @@ code {
 }
 
 @font-face {
-  font-family: 'FontAwesomeExtra';
-  src: url('~@fonts/extra/extra.eot?1280178');
-  src: url('~@fonts/extra/extra.eot?1280178#iefix') format('embedded-opentype'),
-       url('~@fonts/extra/extra.woff2?1280178') format('woff2'),
-       url('~@fonts/extra/extra.woff?1280178') format('woff'),
-       url('~@fonts/extra/extra.ttf?1280178') format('truetype'),
-       url('~@fonts/extra/extra.svg?1280178#extra') format('svg');
+  font-family: "FontAwesomeExtra";
+  src: url("~@fonts/extra/extra.eot");
+  src:
+    url("~@fonts/extra/extra.eot#iefix") format("embedded-opentype"),
+    url("~@fonts/extra/extra.woff2") format("woff2"),
+    url("~@fonts/extra/extra.woff") format("woff"),
+    url("~@fonts/extra/extra.ttf") format("truetype"),
+    url("~@fonts/extra/extra.svg#extra") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -64,7 +77,7 @@ code {
 }
 
 .form-control {
-  .inset-box-shadow;
+  .inset-box-shadow();
   border-radius: @input-border-radius;
   border: none;
   font-size: 14px;
@@ -76,7 +89,7 @@ code {
   }
 
   &:focus {
-    .inset-box-shadow;
+    .inset-box-shadow();
   }
 }
 
@@ -98,13 +111,18 @@ label {
   font-weight: 600;
 }
 
-input[type="checkbox"], input[type="radio"] {
+input[type="checkbox"],
+input[type="radio"] {
   margin: 2px 0 0;
 }
 
-a[disabled] { &:extend(.btn[disabled]); }
+a[disabled] {
+  &:extend(.btn[disabled]);
+}
 
-.clickable-row { cursor: pointer; }
+.clickable-row {
+  cursor: pointer;
+}
 
 [data-visibility] {
   will-change: opacity;

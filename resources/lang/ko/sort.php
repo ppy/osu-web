@@ -37,6 +37,12 @@ return [
         'new' => '최근 응답',
     ],
 
+    'teams' => [
+        'relevance' => '연관성',
+        'name' => '이름',
+        'short-name' => '짧은 이름',
+    ],
+
     'users' => [
         'relevance' => '연관성',
         'username' => '이름',

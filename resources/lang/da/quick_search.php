@@ -5,15 +5,16 @@
 
 return [
     'mode' => [
+        'artist_track' => '',
         'beatmapset' => 'Beatmap',
         'forum_post' => 'Forum',
         'other' => 'Andre',
+        'team' => '',
         'user' => 'Spiller',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => 'Ingen resultater',
         'empty_for' => 'Ingen resultater for :modes',
         'more' => 'Mere :mode Søgeresultater',
         'title' => ':mode Søgeresultater',

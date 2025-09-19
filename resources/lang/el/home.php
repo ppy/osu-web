@@ -9,8 +9,8 @@ return [
         'online' => '<strong>:players</strong> συνδεδεμένοι αυτή τη στιγμή σε <strong>:games</strong> παιχνίδια',
         'peak' => 'Κορύφωση, :count συνδεδεμένοι χρήστες',
         'players' => '<strong>:count</strong> εγγεγραμμένοι παίκτες',
-        'title' => 'καλώς ήρθατε',
-        'see_more_news' => 'δείτε περισσότερα νέα',
+        'title' => 'καλώς ήρθες',
+        'see_more_news' => 'εμφάνιση περισσότερων νέων',
 
         'slogan' => [
             'main' => 'το καλυτερότερο free-to-win ρυθμικό παιχνίδι',
@@ -26,6 +26,9 @@ return [
         'placeholder' => 'πληκτρολογήστε για αναζήτηση',
         'title' => 'Αναζήτηση',
 
+        'artist_track' => [
+            'more_simple' => 'Εμφάνιση περισσότερων αποτελεσμάτων κομματιών καλλιτέχνη ',
+        ],
         'beatmapset' => [
             'login_required' => 'Συνδεθείτε για να αναζητήσετε beatmaps',
             'more' => ':count περισσότερα αποτελέσματα αναζήτησης beatmap',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'όλα',
+            'artist_track' => 'επιλεγμένοι καλλιτέχνες',
             'beatmapset' => 'beatmap',
             'forum_post' => 'φόρουμ',
+            'team' => 'ομάδα',
             'user' => 'παίκτης',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => 'Εμφάνιση περισσότερων αποτελεσμάτων ομάδων',
         ],
 
         'user' => [
@@ -133,14 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => 'Ημερήσια Πρόκληση Beatmap',
             'new' => 'Νέα Ranked Beatmaps',
             'popular' => 'Δημοφιλή Beatmaps',
             'by_user' => 'από :user',
+            'resets' => 'επαναφέρεται σε :ends',
         ],
         'buttons' => [
             'download' => 'Λήψη osu!',
             'support' => 'Υποστηρίξτε το osu!',
             'store' => 'osu!κατάστημα',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => 'Άνοιγμα κονσόλας διαχειριστή',
+            ],
         ],
     ],
 ];

@@ -55,7 +55,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => 'Nenhuma das publicações abordam a minha preocupação',
-        'notice' => 'Há publicações à volta de :timestamp (:existing_timestamps). Por favor consulta-as antes de publicar.',
+        'notice' => 'Há publicações à volta de :timestamp (:existing_timestamps). Consulta-as antes de publicares.',
         'unsaved' => ':count nesta revisão',
     ],
 
@@ -64,6 +64,13 @@ return [
         'reset_confirm' => 'Redefinir o proprietário para esta dificuldade?',
         'user' => 'Dono',
         'version' => 'Dificuldade',
+    ],
+
+    'refresh' => [
+        'checking' => 'A procurar atualizações...',
+        'has_updates' => 'A discussão possui atualizações. Clica para atualizá-la.',
+        'no_updates' => 'Não há atualizações.',
+        'updating' => 'A atualizar...',
     ],
 
     'reply' => [

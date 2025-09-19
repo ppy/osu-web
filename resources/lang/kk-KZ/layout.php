@@ -113,6 +113,7 @@ return [
             'copyright' => 'Авторлық құқық (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Құпиялық',
+            'rules' => '',
             'server_status' => '',
             'source_code' => '',
             'terms' => '',
@@ -199,6 +200,9 @@ return [
             'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Шығу',
             'profile' => '',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
+            'team' => '',
         ],
     ],
 

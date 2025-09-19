@@ -29,7 +29,7 @@ return [
     'started' => [
         'password' => 'Kata sandi baru',
         'password_confirmation' => 'Konfirmasi kata sandi',
-        'title' => 'Mengatur ulang kata sandi akun <strong>:username</strong>.',
+        'title' => 'Mengatur ulang kata sandi untuk akun <strong>:username</strong>.',
         'verification_key' => 'Kode verifikasi',
     ],
 

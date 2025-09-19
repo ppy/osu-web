@@ -53,7 +53,8 @@
     background: var(--active-bg);
   }
 
-  &[disabled], &--disabled {
+  &[disabled],
+  &--disabled {
     cursor: default;
     background: var(--disabled-bg);
     color: var(--disabled-colour);
@@ -165,7 +166,8 @@
     flex-direction: column;
     --bg-colour: hsl(var(--hsl-blue-3));
     --bg: var(--bg-colour) center/150% url("~@images/backgrounds/button.svg");
-    --hover-bg: var(--bg-colour) calc(50% - 20px) 50%/150% url("~@images/backgrounds/button.svg");
+    --hover-bg: var(--bg-colour) calc(50% - 20px) 50%/150%
+      url("~@images/backgrounds/button.svg");
   }
 
   &--download-lazer {
@@ -269,6 +271,7 @@
   &--password-reset {
     padding: 10px;
     text-align: center;
+    border-radius: 10000px;
   }
 
   &--pink {
@@ -304,12 +307,6 @@
   &--rounded-thin-wide {
     padding: 8px 40px;
     border-radius: 100000px;
-  }
-
-  &--search-advanced {
-    flex: 1 0 auto;
-    text-transform: lowercase;
-    margin: 0 5px;
   }
 
   &--store-action {
@@ -373,7 +370,8 @@
     white-space: normal;
   }
 
-  &--activated, &.js-activated {
+  &--activated,
+  &.js-activated {
     --bg: hsl(var(--hsl-h2));
     --colour: hsl(var(--hsl-c1));
     --hover-colour: hsl(var(--hsl-c1));
@@ -424,7 +422,8 @@
       justify-content: center;
     }
 
-    .@{top}--comment-editor, .@{top}--chat-send & {
+    .@{top}--comment-editor,
+    .@{top}--chat-send & {
       font-size: 120%;
     }
 

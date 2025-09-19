@@ -2,23 +2,11 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@extends('rankings.index')
+@extends('rankings.index', ['hasPager' => false])
 
 @section('ranking-header')
     <div class="osu-page osu-page--ranking-info">
-        <div class="js-react--spotlight-select-options">
-            <div class="select-options select-options--spotlight">
-                <div class="select-options__select">
-                    <span class="select-options__option">
-                        {{ $spotlight->name }}
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        <script id="json-spotlight-select-options" type="application/json">
-            {!! json_encode($selectOptions) !!}
-        </script>
+        @include('objects._basic_select_options', compact('selectOptions'))
 
         <div class="grid-items grid-items--ranking-info-bar">
             <div class="counter-box counter-box--ranking">

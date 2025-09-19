@@ -10,15 +10,42 @@ use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicTrack;
 use App\Transformers\Forum\ForumCoverTransformer;
+use App\Transformers\Forum\ForumTransformer;
+use App\Transformers\Forum\TopicTransformer;
 use Auth;
 
+/**
+ * @group Forum
+ */
 class ForumsController extends Controller
 {
     public function __construct()
     {
         parent::__construct();
+
+        $this->middleware('require-scopes:public', ['only' => ['index', 'show']]);
     }
 
+    /**
+     * Get Forum Listing
+     *
+     * Get top-level forums and their subforums (max 2 deep).
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field       | Type                         |
+     * ----------- | ---------------------------- |
+     * forums      | [Forum](#forum-object)[]     |
+     *
+     * @response {
+     *   "forums": [
+     *     { "forum_id": 1, "...": "..." },
+     *     { "forum_id": 2, "...": "..." }
+     *   ]
+     * }
+     */
     public function index()
     {
         $forums = Forum
@@ -27,11 +54,17 @@ class ForumsController extends Controller
             ->orderBy('left_id')
             ->get();
 
-        $lastTopics = Forum::lastTopics();
-
         $forums = $forums->filter(function ($forum) {
             return priv_check('ForumView', $forum)->can();
         });
+
+        if (is_api_request()) {
+            return [
+                'forums' => json_collection($forums, new ForumTransformer(), ['subforums.subforums']),
+            ];
+        }
+
+        $lastTopics = Forum::lastTopics();
 
         return ext_view('forum.forums.index', compact('forums', 'lastTopics'));
     }
@@ -53,6 +86,35 @@ class ForumsController extends Controller
         return ext_view('layout.ujs-reload', [], 'js');
     }
 
+    /**
+     * Get Forum and Topics
+     *
+     * Get a forum by id, its pinned topics, recent topics, and its subforums.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field         | Type                         |
+     * ------------- | ---------------------------- |
+     * forum         | [Forum](#forum-object)       |
+     * topics        | [ForumTopic](#forum-topic)[] |
+     * pinned_topics | [ForumTopic](#forum-topic)[] |
+     *
+     * @urlParam forum integer required Id of the forum. Example: 1
+     *
+     * @response {
+     *   "forum": { "id": 1, "...": "..." },
+     *   "topics": [
+     *     { "id": 1, "...": "..." },
+     *     { "id": 2, "...": "..." },
+     *   ],
+     *   "pinned_topics": [
+     *     { "id": 1, "...": "..." },
+     *     { "id": 2, "...": "..." },
+     *   ]
+     * }
+     */
     public function show($id)
     {
         $params = get_params(request()->all(), null, [
@@ -63,17 +125,11 @@ class ForumsController extends Controller
         $user = auth()->user();
 
         $forum = Forum::with('subforums.subforums')->findOrFail($id);
-        $lastTopics = Forum::lastTopics($forum);
 
         $sort = $params['sort'] ?? Topic::DEFAULT_SORT;
         $withReplies = $params['with_replies'] ?? null;
 
         priv_check('ForumView', $forum)->ensureCan();
-
-        $cover = json_item(
-            $forum->cover()->firstOrNew([]),
-            new ForumCoverTransformer()
-        );
 
         $showDeleted = priv_check('ForumModerate', $forum)->can();
 
@@ -88,8 +144,19 @@ class ForumsController extends Controller
             ->with('forum')
             ->normal()
             ->showDeleted($showDeleted)
-            ->recent(compact('sort', 'withReplies'))
-            ->paginate(30);
+            ->recent(compact('sort', 'withReplies'));
+
+        if (is_api_request()) {
+            return [
+                'forum' => json_item($forum, new ForumTransformer(), ['subforums.subforums']),
+                'topics' => json_collection($topics->limit(Topic::PER_PAGE)->get(), new TopicTransformer()),
+                'pinned_topics' => json_collection($pinnedTopics, new TopicTransformer()),
+            ];
+        }
+
+        $topics = $topics->paginate();
+
+        $lastTopics = Forum::lastTopics($forum);
 
         $allTopics = array_merge($pinnedTopics->all(), $topics->all());
         $topicReadStatus = TopicTrack::readStatus($user, $allTopics);
@@ -102,6 +169,11 @@ class ForumsController extends Controller
                 ->select('topic_id')
                 ->get()
                 ->keyBy('topic_id');
+
+        $cover = json_item(
+            $forum->cover()->firstOrNew([]),
+            new ForumCoverTransformer()
+        );
 
         $noindex = !$forum->enable_indexing;
 

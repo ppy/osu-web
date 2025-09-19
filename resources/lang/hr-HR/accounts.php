@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => '',
             'rules' => 'Provjeri da li je tvoj avatar u skladu s :link.<br/>To znači da mora biti <strong>prikladno za sve uzraste</strong>. tj. bez golotinje, vulgarnosti ili sugestivnog sadržaja.',
             'rules_link' => 'pravilima zajednice',
         ],
@@ -87,6 +88,7 @@ return [
             'beatmap_owner_change' => 'gostova težina',
             'beatmapset:modding' => 'modificiranje beatmapa',
             'channel_message' => 'privatne chat poruke',
+            'channel_team' => '',
             'comment_new' => 'nove komentare',
             'forum_topic_reply' => 'odgovor na temu',
             'mail' => 'pošta',

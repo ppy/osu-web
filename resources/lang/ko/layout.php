@@ -113,6 +113,7 @@ return [
             'copyright' => '저작권 (DMCA)',
             'jp_sctl' => '특정상거래법',
             'privacy' => '개인 정보 보호 정책',
+            'rules' => '규칙',
             'server_status' => '서버 상태 확인',
             'source_code' => '소스 코드',
             'terms' => '서비스 이용약관',
@@ -199,6 +200,9 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Lazer 모드는 osu!lazer에서 새로운 점수 알고리즘으로 등록한 점수를 표시합니다',
             'logout' => '로그아웃',
             'profile' => '내 프로필',
+            'scoring_mode_toggle' => '클래식 점수',
+            'scoring_mode_toggle_tooltip' => '점숫값을 한계치가 없는 예전 클래식 점수처럼 느껴지도록 조정합니다.',
+            'team' => '내 팀',
         ],
     ],
 

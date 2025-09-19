@@ -6,7 +6,8 @@
 namespace App\Http\Controllers\Payments;
 
 use App\Exceptions\InvalidSignatureException;
-use App\Exceptions\ValidationException;
+use App\Exceptions\Store\OrderException;
+use App\Exceptions\Store\PaymentRejectedException;
 use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\NotificationType;
 use App\Libraries\Payments\PaypalCreatePayment;
@@ -18,7 +19,6 @@ use App\Traits\CheckoutErrorSettable;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request as HttpRequest;
 use Lang;
-use Log;
 use PayPalHttp\HttpException;
 
 class PaypalController extends Controller
@@ -62,6 +62,10 @@ class PaypalController extends Controller
             (new PaypalExecutePayment($order))->run();
         } catch (HttpException $e) {
             return $this->setAndRedirectCheckoutError($order, $this->userErrorMessage($e));
+        } catch (PaymentRejectedException) {
+            $order->update(['transaction_id' => 'paypal-banned']);
+
+            return $this->setAndRedirectCheckoutError($order, osu_trans('paypal/errors.unknown'));
         }
 
         return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
@@ -102,11 +106,13 @@ class PaypalController extends Controller
 
         try {
             $processor->run();
-        } catch (ValidationException $exception) {
-            Log::error($exception->getMessage());
+        } catch (OrderException $exception) {
+            log_error($exception);
 
             return response(['message' => 'A validation error occured while running the transaction'], 406);
         } catch (InvalidSignatureException $exception) {
+            log_error($exception);
+
             return response(['message' => $exception->getMessage()], 406);
         } catch (QueryException $exception) {
             // can get multiple cancellations for the same order from paypal.

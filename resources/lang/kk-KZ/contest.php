@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => '',
         'hide_judged' => '',
         'nav_title' => 'төреші',
         'no_current_vote' => '',
@@ -29,7 +30,9 @@ return [
         '_' => '',
         'creator' => '',
         'score' => 'Ұпай',
+        'score_std' => '',
         'total_score' => '',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'дауыс',
         'count' => ':count_delimited дауыс|:count_delimited дауыс',
         'points' => ':count_delimited ұпай|:count_delimited ұпай',
+        'points_float' => '',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Өтінімдерді қабылдау ашық',
         'voting' => 'Дауыс беру басталды',
         'results' => 'Нәтиже шықты',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

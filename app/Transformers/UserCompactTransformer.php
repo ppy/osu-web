@@ -7,10 +7,14 @@ namespace App\Transformers;
 
 use App\Libraries\MorphMap;
 use App\Libraries\Search\ScoreSearchParams;
+use App\Libraries\SessionVerification;
+use App\Libraries\User\SeasonStats;
 use App\Models\Beatmap;
+use App\Models\Season;
 use App\Models\User;
 use App\Models\UserProfileCustomization;
 use Illuminate\Support\Arr;
+use League\Fractal\Resource\Primitive;
 use League\Fractal\Resource\ResourceInterface;
 
 class UserCompactTransformer extends TransformerAbstract
@@ -19,13 +23,15 @@ class UserCompactTransformer extends TransformerAbstract
         'country',
         'cover',
         'groups',
+        'team',
     ];
 
     const CARD_INCLUDES_PRELOAD = [
-        'country',
+        'team',
         'userGroups',
     ];
 
+    // Paired with static::listIncludesPreload
     const LIST_INCLUDES = [
         ...self::CARD_INCLUDES,
         'statistics',
@@ -56,6 +62,8 @@ class UserCompactTransformer extends TransformerAbstract
         'comments_count',
         'country',
         'cover',
+        'current_season_stats',
+        'daily_challenge_user_stats',
         'favourite_beatmapset_count',
         'follow_user_mapping',
         'follower_count',
@@ -87,10 +95,12 @@ class UserCompactTransformer extends TransformerAbstract
         'scores_first_count',
         'scores_pinned_count',
         'scores_recent_count',
+        'session_verification_method',
         'session_verified',
         'statistics',
         'statistics_rulesets',
         'support_level',
+        'team',
         'unread_pm_count',
         'user_achievements',
         'user_preferences',
@@ -111,6 +121,15 @@ class UserCompactTransformer extends TransformerAbstract
         'is_restricted' => 'UserShowRestrictedStatus',
         'is_silenced' => 'IsNotOAuth',
     ];
+
+    public static function listIncludesPreload(string $rulesetName): array
+    {
+        return [
+            ...static::CARD_INCLUDES_PRELOAD,
+            User::statisticsRelationName($rulesetName),
+            'supporterTagPurchases',
+        ];
+    }
 
     public function transform(User $user)
     {
@@ -149,7 +168,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeActiveTournamentBanner(User $user)
     {
-        $banner = $user->profileBanners()->active();
+        $banner = $user->profileBannersActive->last();
 
         return $banner === null
             ? $this->primitive(null)
@@ -159,7 +178,7 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeActiveTournamentBanners(User $user)
     {
         return $this->collection(
-            $user->profileBanners()->activeOnly()->orderBy('banner_id')->get(),
+            $user->profileBannersActive,
             new ProfileBannerTransformer(),
         );
     }
@@ -192,9 +211,14 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeCountry(User $user)
     {
-        return $user->country === null
+        $countryAcronym = $user->country_acronym;
+        $country = $countryAcronym === null
+            ? null
+            : app('countries')->byCode($countryAcronym);
+
+        return $country === null
             ? $this->primitive(null)
-            : $this->item($user->country, new CountryTransformer());
+            : $this->item($country, new CountryTransformer());
     }
 
     public function includeCover(User $user)
@@ -207,6 +231,25 @@ class UserCompactTransformer extends TransformerAbstract
             // cast to string for backward compatibility
             'id' => get_string($user->cover_preset_id),
         ]);
+    }
+
+    public function includeCurrentSeasonStats(User $user): Primitive
+    {
+        $season = Season::active()
+            ->where('ruleset_id', Beatmap::modeInt($this->mode))
+            ->first();
+
+        return $season === null
+            ? $this->primitive(null)
+            : $this->primitive((new SeasonStats($user, $season))->get());
+    }
+
+    public function includeDailyChallengeUserStats(User $user)
+    {
+        return $this->item(
+            $user->dailyChallengeUserStats ?? $user->dailyChallengeUserStats()->make(),
+            new DailyChallengeUserStatsTransformer(),
+        );
     }
 
     public function includeFavouriteBeatmapsetCount(User $user)
@@ -232,7 +275,7 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeFriends(User $user)
     {
         return $this->collection(
-            $user->relations()->friends()->withMutual()->get(),
+            $user->relationFriends,
             new UserRelationTransformer()
         );
     }
@@ -389,14 +432,13 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeScoresBestCount(User $user)
     {
         return $this->primitive(count($user->beatmapBestScoreIds(
-            $this->mode,
-            ScoreSearchParams::showLegacyForUser(\Auth::user()),
+            $this->mode
         )));
     }
 
     public function includeScoresFirstCount(User $user)
     {
-        return $this->primitive($user->scoresFirst($this->mode, true)->visibleUsers()->count());
+        return $this->primitive($user->scoresFirst($this->mode, ScoreSearchParams::showLegacyForUser(\Auth::user()))->count());
     }
 
     public function includeScoresPinnedCount(User $user)
@@ -414,6 +456,15 @@ class UserCompactTransformer extends TransformerAbstract
         return $this->primitive($user->token()?->isVerified() ?? false);
     }
 
+    public function includeSessionVerificationMethod(User $user)
+    {
+        $session = $user->token();
+
+        return $this->primitive($session === null || $session->isVerified()
+            ? null
+            : (new SessionVerification\State($session, $user))->getMethod());
+    }
+
     public function includeStatistics(User $user)
     {
         $stats = $user->statistics($this->mode);
@@ -429,6 +480,13 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeSupportLevel(User $user)
     {
         return $this->primitive($user->supportLevel());
+    }
+
+    public function includeTeam(User $user)
+    {
+        return ($team = $user->team) === null
+            ? $this->null()
+            : $this->item($team, new TeamTransformer());
     }
 
     public function includeUnreadPmCount(User $user)
@@ -459,6 +517,7 @@ class UserCompactTransformer extends TransformerAbstract
             'forum_posts_show_deleted',
             'legacy_score_only',
             'profile_cover_expanded',
+            'scoring_mode',
             'user_list_filter',
             'user_list_sort',
             'user_list_view',

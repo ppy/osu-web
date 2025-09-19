@@ -83,14 +83,14 @@ return [
             'support_the_game' => 'support the game',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => 'matches',
+        ],
         'legal_controller' => [
             '_' => 'information',
         ],
         'livestreams_controller' => [
             '_' => 'live streams',
-        ],
-        'matches_controller' => [
-            '_' => 'matches',
         ],
         'news_controller' => [
             '_' => 'news',
@@ -110,11 +110,21 @@ return [
         'seasons_controller' => [
             '_' => 'rankings',
         ],
+        'teams_controller' => [
+            '_' => 'teams',
+            'create' => 'create team',
+            'edit' => 'team settings',
+            'leaderboard' => 'team leaderboard',
+            'show' => 'team info',
+        ],
         'tournaments_controller' => [
             '_' => 'tournaments',
         ],
         'user_cover_presets_controller' => [
             '_' => 'user cover presets',
+        ],
+        'user_totp_controller' => [
+            '_' => 'authenticator app',
         ],
         'users_controller' => [
             '_' => 'player info',
@@ -125,6 +135,11 @@ return [
             '_' => 'wiki',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => 'room history',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'authorize app',
@@ -132,6 +147,11 @@ return [
     ],
     'store' => [
         '_' => 'store',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'team members',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => '',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => '',
+            'different_nominator_warning' => '',
             'header' => '',
             'hybrid_warning' => '',
             'current_main_ruleset' => '',
@@ -67,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => '',
+            'page' => '',
         ],
 
         'deleted_banner' => [
@@ -138,6 +141,7 @@ return [
             'description' => '',
             'genre' => '',
             'language' => '',
+            'mapper_tags' => '',
             'no_scores' => '',
             'nominators' => '',
             'nsfw' => '',
@@ -146,7 +150,7 @@ return [
             'source' => '',
             'storyboard' => '',
             'success-rate' => '',
-            'tags' => '',
+            'user_tags' => '',
             'video' => '',
         ],
 
@@ -169,6 +173,7 @@ return [
             'global' => '',
             'supporter-link' => '',
             'supporter-only' => '',
+            'team' => '',
             'title' => '',
 
             'headers' => [
@@ -190,6 +195,7 @@ return [
                 'friend' => '',
                 'global' => '',
                 'loading' => '',
+                'team' => '',
                 'unranked' => '',
             ],
             'score' => [

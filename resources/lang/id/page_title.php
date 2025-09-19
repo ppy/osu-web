@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'dukung permainan ini',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => 'kecocokan',
+        ],
         'legal_controller' => [
             '_' => 'informasi',
         ],
         'livestreams_controller' => [
             '_' => 'siaran langsung',
-        ],
-        'matches_controller' => [
-            '_' => 'pertandingan',
         ],
         'news_controller' => [
             '_' => 'berita',
@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => 'peringkat',
         ],
+        'teams_controller' => [
+            '_' => 'tim',
+            'create' => 'buat tim',
+            'edit' => 'pengaturan tim',
+            'leaderboard' => 'papan peringkat tim',
+            'show' => 'info tim',
+        ],
         'tournaments_controller' => [
             '_' => 'turnamen',
         ],
@@ -122,6 +129,11 @@ return [
             '_' => 'wiki',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => 'riwayat ruangan',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'otorisir aplikasi',
@@ -129,6 +141,11 @@ return [
     ],
     'store' => [
         '_' => 'toko',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'anggota tim',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

@@ -9,6 +9,16 @@ return [
         'title' => 'Šalis',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'top_10p' => '',
+        'top_50p' => '',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
+    ],
+
     'filter' => [
         'title' => 'Rodyti',
 
@@ -30,11 +40,12 @@ return [
     'type' => [
         'charts' => 'pasižymėje',
         'country' => 'Šalimis',
+        'daily_challenge' => '',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'žaidimas tinkle',
-        'performance' => 'pp',
-        'score' => 'Taškai',
         'seasons' => 'sezonai',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -42,6 +53,9 @@ return [
         'ongoing' => 'Šis sezonas dar tęsiasi (bus pridėta daugiau grojaraščių).',
         'room_count' => 'Grojaraščių skaičius',
         'url' => 'Rodyti daugiau informacijos apie šį sezoną.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -55,12 +69,14 @@ return [
         'accuracy' => 'Tikslumas',
         'active_users' => 'Aktyvūs Vartotojai',
         'country' => 'Šalis',
+        'division' => '',
+        'members' => '',
         'play_count' => 'Sužaidimų Skaičius',
-        'performance' => 'pp',
+        'performance' => 'Rezultatyvumas',
         'total_score' => 'Iš viso taškų',
         'ranked_score' => 'Reitinguoti taškai',
         'average_score' => 'Vid. Taškų',
-        'average_performance' => 'Vid. pp.',
+        'average_performance' => 'Vid. Rez.',
         'ss' => '',
         's' => '',
         'a' => '',

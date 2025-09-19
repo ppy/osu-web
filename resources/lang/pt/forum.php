@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Queres mesmo restaurar o tópico?',
         'deleted' => 'tópico eliminado',
         'go_to_latest' => 'ver ultima publicação',
+        'go_to_unread' => 'ver a primeira mensagem não lida',
         'has_replied' => 'Respondeste a este tópico',
         'in_forum' => 'em :forum',
         'latest_post' => ':when por :user',
@@ -109,7 +110,7 @@ return [
                 'default' => 'Este tópico tem estado inativo há já algum tempo. Publica aqui só se tiveres uma razão específica para o fazer.',
 
                 'new_topic' => [
-                    '_' => "Este tópico tem estado inativo há já algum tempo. Se não tiveres uma razão específica para publicar aqui, por favor :create como alternativa.",
+                    '_' => "Este tópico tem estado inativo há já algum tempo. Se não tiveres uma razão específica para publicar aqui, :create como alternativa.",
                     'create' => 'criar um novo tópico',
                 ],
             ],
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'Removida a etiqueta "resolvido"',
             'to_1' => 'Adicionar a etiqueta "resolvido"',
             'to_1_done' => 'Adicionada a etiqueta "resolvido"',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => 'Remover a etiqueta "osu!lazer"',
+            'to_0_done' => 'Removida a etiqueta "osu!lazer"',
+            'to_1' => 'Adicionada a etiqueta "osu!lazer"',
+            'to_1_done' => 'Adicionada a etiqueta "osu!lazer"',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => 'Remover a etiqueta "osu!stable"',
+            'to_0_done' => 'Removida a etiqueta "osu!stable"',
+            'to_1' => 'Adicionar etiqueta "osu!stable"',
+            'to_1_done' => 'Adicionada a etiqueta "osu!stable"',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => 'Remover a etiqueta "osu!web"',
+            'to_0_done' => 'Removida a etiqueta "osu!web"',
+            'to_1' => 'Adicionada a etiqueta "osu!web"',
+            'to_1_done' => 'Adicionada a etiqueta "osu!web"',
         ],
 
         'lock' => [

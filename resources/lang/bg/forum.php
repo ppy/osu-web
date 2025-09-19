@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Наистина ли възстановявате темата?',
         'deleted' => 'изтрита тема',
         'go_to_latest' => 'виж най-новата публикация',
+        'go_to_unread' => 'към първата непрочетена публикация',
         'has_replied' => 'Вече отговорихте на тази тема',
         'in_forum' => 'в :forum',
         'latest_post' => ':when от :user',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'Премахнат е етикетът "разрешен"',
             'to_1' => 'Сложи етикет "разрешен"',
             'to_1_done' => 'Сложен е етикет "разрешен"',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => 'Премахни таг \'osu!lazer\'',
+            'to_0_done' => 'Премахнат бе таг \'osu!lazer\'',
+            'to_1' => 'Добави таг \'osu!lazer\'',
+            'to_1_done' => 'Добавен бе таг \'osu!lazer\'',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => 'Премахни таг \'osu!stable\'',
+            'to_0_done' => 'Премахнат бе таг \'osu!stable\'',
+            'to_1' => 'Добави таг \'osu!stable\'',
+            'to_1_done' => 'Добавен бе таг \'osu!stable\'',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => 'Премахни таг \'osu!web\'',
+            'to_0_done' => 'Премахнат бе таг \'osu!web\'',
+            'to_1' => 'Добави таг \'osu!web\'',
+            'to_1_done' => 'Добавен бе таг \'osu!web\'',
         ],
 
         'lock' => [

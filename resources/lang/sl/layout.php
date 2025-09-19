@@ -113,6 +113,7 @@ return [
             'copyright' => 'Avtorske pravice (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Zasebnost',
+            'rules' => '',
             'server_status' => 'Stanje Strežnika',
             'source_code' => 'Izvorna Koda',
             'terms' => 'Pogoji',
@@ -199,6 +200,9 @@ return [
             'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Odjavi se',
             'profile' => 'Moj profil',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
+            'team' => '',
         ],
     ],
 

@@ -16,11 +16,11 @@ return [
 
             'team' => [
                 'title' => 'Mendukung Tim Kami',
-                'description' => 'osu! dikembangkan dan dikelola oleh tim yang berukuran kecil. Dukunganmu akan sangat membantu... keberlangsungan hidup mereka.',
+                'description' => 'osu! dikembangkan dan dikelola oleh tim yang kecil. Dukunganmu akan sangat membantu... keberlangsungan hidup mereka.',
             ],
             'infra' => [
                 'title' => 'Prasarana Server',
-                'description' => 'Kontribusimu akan digunakan untuk menutupi biaya server yang menjalankan fasilitas seperti situs web, layanan multiplayer, papan peringkat online, dan lain sebagainya.',
+                'description' => 'Kontribusimu akan digunakan untuk membiayai server yang menjalankan fasilitas seperti situs web, layanan multiplayer, papan peringkat online, dan lain sebagainya.',
             ],
             'featured-artists' => [
                 'title' => 'Featured Artist',
@@ -29,7 +29,7 @@ return [
             ],
             'ads' => [
                 'title' => 'Membantu osu! Tetap Mandiri',
-                'description' => 'Kontribusimu membantu osu! untuk tetap mandiri dan sepenuhnya terbebas dari iklan maupun sponsor.',
+                'description' => 'Kontribusimu membantu menjaga permainan ini untuk tetap mandiri dan sepenuhnya terbebas dari iklan maupun sponsor.',
             ],
             'tournaments' => [
                 'title' => 'Pendanaan Turnamen Resmi',
@@ -38,7 +38,7 @@ return [
             ],
             'bounty-program' => [
                 'title' => 'Program Open Source Bounty',
-                'description' => 'Sebagian dari dana ini juga akan disalurkan kepada para kontributor komunitas yang telah menyisihkan waktu dan upaya mereka untuk membuat osu! menjadi lebih istimewa.',
+                'description' => 'Sebagian dari dana ini juga akan disalurkan kepada para kontributor komunitas yang telah menyisihkan waktu dan upaya mereka demi membuat osu! menjadi lebih baik.',
                 'link_text' => 'Cari tahu lebih lanjut seputar program Open Source Bounty &raquo;',
             ],
         ],
@@ -46,12 +46,12 @@ return [
             'title' => 'Menarik! Keuntungan apa saja yang akan saya dapatkan?',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'Telusuri dan unduh berbagai beatmap secara cepat dan mudah tanpa harus meninggalkan permainan.',
+                'description' => 'Dapatkan akses yang cepat dan mudah ke bilah pencarian dan unduhan beatmap tanpa harus meninggalkan permainan.',
             ],
 
             'friend_ranking' => [
                 'title' => 'Papan Peringkat Teman',
-                'description' => "Bandingkan skor yang kamu peroleh dengan skor teman-temanmu baik di dalam permainan maupun pada situs web.",
+                'description' => "Bandingkan skor kamu dengan skor teman-temanmu pada papan peringkat khusus teman, baik itu di dalam permainan maupun pada situs web.",
             ],
 
             'country_ranking' => [
@@ -70,7 +70,7 @@ return [
             ],
 
             'upload_more' => [
-                'title' => 'Unggah Lebih Banyak',
+                'title' => 'Lebih Banyak Unggahan',
                 'description' => 'Kuota tambahan bagimu untuk dapat mengunggah lebih banyak beatmap (dengan rincian satu kuota tambahan per beatmap Ranked yang kamu miliki, hingga maksimum 10 beatmap)',
             ],
 
@@ -81,7 +81,7 @@ return [
 
             'customisation' => [
                 'title' => 'Kustomisasi Profil',
-                'description' => "Buat halaman profilmu lebih menarik dengan tambahan gambar latar dan kolom \"saya!\" yang dapat kamu isi sesuka hatimu.",
+                'description' => "Buat halaman profilmu lebih menarik dengan tambahan gambar latar atau kolom \"saya!\" yang dapat disesuaikan sesuka hati.",
             ],
 
             'beatmap_filters' => [
@@ -115,7 +115,7 @@ return [
             ],
 
             'sort_options' => [
-                'title' => 'Opsi Untuk Menyortir',
+                'title' => 'Opsi Penyortiran',
                 'description' => 'Kemampuan untuk dapat mengakses papan peringkat negara / teman / mod dari dalam permainan.',
             ],
 
@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Terima kasih atas dukunganmu sejauh ini! Kamu telah berkontribusi senilai :dollars melalui pembelian :tags tag supporter!',
-            'gifted' => "Dari jumlah tersebut, kamu telah menghadiahkan :giftedTags tag di antaranya (:giftedDollars) kepada para pemain lainnya. Terima kasih atas kemurahan hatimu!",
+            'contribution_with_duration' => 'Terima kasih atas dukunganmu! Sejauh ini, kamu telah berkontribusi senilai total :dollars, yang memberikan kamu tag "Supporter" selama :duration.',
             'not_yet' => "Kamu belum pernah memiliki supporter tag :(",
             'valid_until' => 'Tag supporter yang kamu miliki saat ini berlaku hingga tanggal :date!',
-            'was_valid_until' => 'Masa berlaku tag supporter milikmu telah berakhir pada :date.',
+            'was_valid_until' => 'Tag supporter kamu telah berakhir pada :date.',
+
+            'gifted' => [
+                '_' => 'Dari jumlah ini, kamu telah menghadiahkan tag senilai :dollars kepada :users, yang mencakup total durasi selama :duration. Terima kasih atas kemurahan hatimu!',
+                'users' => ':count_delimited pengguna lainnya|:count_delimited[ pengguna lainnya',
+            ],
         ],
     ],
 ];

@@ -26,11 +26,14 @@ return [
         'placeholder' => 'escriu per cercar',
         'title' => 'cerca',
 
+        'artist_track' => [
+            'more_simple' => 'Mostra més resultats de cerca de pistes d\'artista destacat',
+        ],
         'beatmapset' => [
-            'login_required' => 'Inicieu sessió per cercar beatmaps',
-            'more' => ':count resultats més de cerca de beatmap',
+            'login_required' => 'Inicieu sessió per cercar mapes',
+            'more' => ':count resultats més de cerca de mapes',
             'more_simple' => 'Veure més resultats',
-            'title' => 'Beatmaps',
+            'title' => 'Mapes',
         ],
 
         'forum_post' => [
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'tots',
-            'beatmapset' => 'beatmap',
+            'artist_track' => 'pista d\'artista destacat',
+            'beatmapset' => 'mapa',
             'forum_post' => 'fòrum',
+            'team' => 'equip',
             'user' => 'jugador',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => 'Mostra més resultats de la cerca d\'equip',
         ],
 
         'user' => [
@@ -110,10 +119,10 @@ return [
                 'description' => 'fes clic al botó de dalt per descarregar l\'instal·lador, després executa-ho!',
             ],
             'beatmaps' => [
-                'title' => 'obtenir beatmaps',
+                'title' => 'obtén mapes',
                 'description' => [
-                    '_' => ':browse la enorme biblioteca de beatmaps creats pels usuaris i comença a jugar!',
-                    'browse' => 'fes una ullada',
+                    '_' => ':browse l\'enorme biblioteca de mapes creats pels usuaris i comença a jugar!',
+                    'browse' => 'cerca',
                 ],
             ],
         ],
@@ -133,14 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nous Beatmaps Classificatoris',
-            'popular' => 'Beatmaps populars',
+            'daily_challenge' => 'Mapa de Repte Diari',
+            'new' => 'Mapes Classificats Nous',
+            'popular' => 'Mapes Populars',
             'by_user' => 'per :user',
+            'resets' => 'resseteja :ends',
         ],
         'buttons' => [
             'download' => 'Descarrega l\'osu!',
             'support' => 'Dona suport a l\'osu!',
             'store' => 'osu!store',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => 'Obre la consola d\'admin',
+            ],
         ],
     ],
 ];

@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Bedankt voor je steun tot nu toe! Je hebt in totaal :dollars bijgedragen in :tags aankopen supporter!',
-            'gifted' => ":giftedTags van je aankopen waren een cadeau voor iemand anders (een totaal van :giftedDollars), hoe vrijgevig!",
+            'contribution_with_duration' => '',
             'not_yet' => "Je hebt nog nooit een osu!supporter tag gehad :(",
             'valid_until' => 'Je huidige osu!supporter tag is geldig tot :date!',
             'was_valid_until' => 'Je osu!supporter tag was geldig tot :date.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

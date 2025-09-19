@@ -205,7 +205,7 @@ class ChannelsController extends Controller
             'channel' => json_item($channel, ChannelTransformer::forUser($user), ChannelTransformer::LISTING_INCLUDES),
             // TODO: probably going to need a better way to list/fetch/update users on larger channels without sending user on every message.
             'users' => json_collection(
-                $channel->visibleUsers($user)->loadMissing(UserCompactTransformer::CARD_INCLUDES_PRELOAD),
+                $channel->visibleUsers()->loadMissing(UserCompactTransformer::CARD_INCLUDES_PRELOAD),
                 new UserCompactTransformer(),
                 UserCompactTransformer::CARD_INCLUDES
             ),

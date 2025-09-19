@@ -4,6 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 use App\Exceptions\FastImagesizeFetchException;
+use App\Exceptions\HasExtraExceptionData;
+use App\Exceptions\InvariantException;
 use App\Http\Controllers\RankingController;
 use App\Libraries\Base64Url;
 use App\Libraries\LocaleMeta;
@@ -11,8 +13,10 @@ use App\Models\LoginAttempt;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
+use Sentry\State\Scope;
 
 function api_version(): int
 {
@@ -52,15 +56,11 @@ function atom_id(string $namespace, $id = null): string
     return 'tag:'.request()->getHttpHost().',2019:'.$namespace.($id === null ? '' : "/{$id}");
 }
 
-function background_image($url, $proxy = true)
+function background_image($url): string
 {
-    if (!present($url)) {
-        return '';
-    }
-
-    $url = $proxy ? proxy_media($url) : $url;
-
-    return sprintf(' style="background-image:url(\'%s\');" ', e($url));
+    return present($url)
+        ? sprintf(' style="background-image:url(\'%s\');" ', e($url))
+        : '';
 }
 
 function beatmap_timestamp_format($ms)
@@ -266,7 +266,7 @@ function cleanup_cookies()
     }
 
     // remove duplicates and current session domain
-    $sessionDomain = presence(ltrim($GLOBALS['cfg']['session']['domain'], '.')) ?? '';
+    $sessionDomain = presence(ltrim($GLOBALS['cfg']['session']['domain'] ?? '', '.')) ?? '';
     $domains = array_diff(array_unique($domains), [$sessionDomain]);
 
     foreach (['locale', 'osu_session', 'XSRF-TOKEN'] as $key) {
@@ -345,7 +345,16 @@ function cursor_from_params($params): ?array
     return null;
 }
 
-function datadog_timing(callable $callable, $stat, array $tag = null)
+function datadog_increment(string $stat, array|string|null $tags = null, int $value = 1)
+{
+    Datadog::increment(
+        stats: $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.'.$stat,
+        tags: $tags,
+        value: $value
+    );
+}
+
+function datadog_timing(callable $callable, $stat, ?array $tag = null)
 {
     $startTime = microtime(true);
 
@@ -381,9 +390,9 @@ function db_unsigned_increment($column, $count)
     return DB::raw($value);
 }
 
-function default_mode()
+function default_mode(): string
 {
-    return optional(auth()->user())->playmode ?? 'osu';
+    return Auth::user()?->playmode ?? 'osu';
 }
 
 function flag_url($countryCode)
@@ -395,7 +404,7 @@ function flag_url($countryCode)
     return "/assets/images/flags/{$baseFileName}.svg";
 }
 
-function format_month_column(\DateTimeInterface $date): string
+function format_month_column(DateTimeInterface $date): string
 {
     return $date->format('ym');
 }
@@ -410,6 +419,28 @@ function get_valid_locale($requestedLocale)
     if (in_array($requestedLocale, $GLOBALS['cfg']['app']['available_locales'], true)) {
         return $requestedLocale;
     }
+}
+
+function hsl_to_hex($h, $s, $l)
+{
+    $c = (1 - abs(2 * $l - 1)) * $s;
+    $x = $c * (1 - abs(fmod($h / 60, 2) - 1));
+    $m = $l - ($c / 2);
+
+    [$r, $g, $b] = match (true) {
+        $h < 60  => [$c, $x, 0],
+        $h < 120 => [$x, $c, 0],
+        $h < 180 => [0, $c, $x],
+        $h < 240 => [0, $x, $c],
+        $h < 300 => [$x, 0, $c],
+        default  => [$c, 0, $x]
+    };
+
+    $r = round(($r + $m) * 255);
+    $g = round(($g + $m) * 255);
+    $b = round(($b + $m) * 255);
+
+    return sprintf('#%02x%02x%02x', $r, $g, $b);
 }
 
 function html_entity_decode_better($string)
@@ -442,6 +473,26 @@ function locale_meta(string $locale): LocaleMeta
     return LocaleMeta::find($locale);
 }
 
+function prefix_strings(string $prefix, array $strings): array
+{
+    $ret = [];
+    foreach ($strings as $string) {
+        $ret[] = $prefix.$string;
+    }
+
+    return $ret;
+}
+
+function qr_svg(string $text): string
+{
+    return new BaconQrCode\Writer(
+        new BaconQrCode\Renderer\ImageRenderer(
+            new BaconQrCode\Renderer\RendererStyle\RendererStyle(400),
+            new BaconQrCode\Renderer\Image\SvgImageBackEnd()
+        ),
+    )->writeString($text);
+}
+
 function trim_unicode(?string $value)
 {
     return preg_replace('/(^\s+|\s+$)/u', '', $value);
@@ -465,12 +516,12 @@ function truncate_inclusive(string $text, int $limit): string
     return $text;
 }
 
-function json_date(?DateTime $date): ?string
+function json_date(?DateTimeInterface $date): ?string
 {
     return $date === null ? null : $date->format('Y-m-d');
 }
 
-function json_time(?DateTime $time): ?string
+function json_time(?DateTimeInterface $time): ?string
 {
     return $time === null ? null : $time->format(DateTime::ATOM);
 }
@@ -488,7 +539,7 @@ function log_error_sentry(Throwable $exception, ?array $tags = null): ?string
         return null;
     }
 
-    return Sentry\withScope(function ($scope) use ($exception, $tags) {
+    return Sentry\withScope(function (Scope $scope) use ($exception, $tags) {
         $currentUser = Auth::user();
         $userContext = $currentUser === null
             ? ['id' => null]
@@ -500,6 +551,15 @@ function log_error_sentry(Throwable $exception, ?array $tags = null): ?string
         $scope->setUser($userContext);
         foreach ($tags ?? [] as $key => $value) {
             $scope->setTag($key, $value);
+        }
+
+        if ($exception instanceof HasExtraExceptionData) {
+            $scope->setExtras($exception->getExtras());
+            $contexts = $exception->getContexts();
+
+            foreach ($contexts as $name => $value) {
+                $scope->setContext($name, $value ?? []);
+            }
         }
 
         return Sentry\captureException($exception);
@@ -526,25 +586,6 @@ function markdown($input, $preset = 'default')
     return $converter[$preset]->load($input)->html();
 }
 
-function markdown_chat($input)
-{
-    static $converter;
-
-    if (!isset($converter)) {
-        $environment = new League\CommonMark\Environment\Environment([
-            'allow_unsafe_links' => false,
-            'max_nesting_level' => 20,
-            'renderer' => ['soft_break' => '<br />'],
-        ]);
-
-        $environment->addExtension(new App\Libraries\Markdown\Chat\Extension());
-
-        $converter = new League\CommonMark\MarkdownConverter($environment);
-    }
-
-    return $converter->convert($input)->getContent();
-}
-
 function markdown_plain(?string $input): string
 {
     if ($input === null) {
@@ -568,11 +609,6 @@ function max_offset($page, $limit)
     $offset = ($page - 1) * $limit;
 
     return max(0, min($offset, $GLOBALS['cfg']['osu']['pagination']['max_count'] - $limit));
-}
-
-function mysql_escape_like($string)
-{
-    return addcslashes($string, '%_\\');
 }
 
 function oauth_token(): ?App\Models\OAuth\Token
@@ -626,17 +662,6 @@ function osu_url(string $key): ?string
 function pack_str($str)
 {
     return pack('ccH*', 0x0b, strlen($str), bin2hex($str));
-}
-
-function pagination($params, $defaults = null)
-{
-    $limit = clamp(get_int($params['limit'] ?? null) ?? $defaults['limit'] ?? 20, 5, 50);
-    $page = max(get_int($params['page'] ?? null) ?? 1, 1);
-
-    $offset = max_offset($page, $limit);
-    $page = 1 + $offset / $limit;
-
-    return compact('limit', 'page', 'offset');
 }
 
 function product_quantity_options($product, $selected = null)
@@ -771,11 +796,11 @@ function currency($price, $precision = 2, $zeroShowFree = true)
  * Compares 2 money values from payment processor in a sane manner.
  * i.e. not a float.
  *
- * @param $a money value A
- * @param $b money value B
- * @return 0 if equal, 1 if $a > $b, -1 if $a < $b
+ * @param float $a money value A
+ * @param float $b money value B
+ * @return int 0 if equal, 1 if $a > $b, -1 if $a < $b
  */
-function compare_currency($a, $b)
+function compare_currency(float $a, float $b): int
 {
     return (int) ($a * 100) <=> (int) ($b * 100);
 }
@@ -804,12 +829,15 @@ function ext_view($view, $data = null, $type = null, $status = null)
     );
 }
 
-function from_app_url()
+function from_app_url(?HttpRequest $request = null)
 {
-    // Add trailing slash so people can't just use https://osu.web.domain.com
-    // to bypass https://osu.web referrer check.
+    $headers = ($request ?? Request::instance())->headers;
+    $appUrl = $GLOBALS['cfg']['app']['url'];
+    // Add trailing slash for referer check to avoid matching
+    // https://osu.web.domain.com.
     // This assumes app.url doesn't contain trailing slash.
-    return starts_with(request()->headers->get('referer'), $GLOBALS['cfg']['app']['url'].'/');
+    return $headers->get('origin') === $appUrl
+        || str_starts_with($headers->get('referer'), "{$appUrl}/");
 }
 
 function forum_user_link(int $id, string $username, string|null $colour, int|null $currentUserId): string
@@ -819,22 +847,37 @@ function forum_user_link(int $id, string $username, string|null $colour, int|nul
         'style' => user_color_style($colour, 'background-color'),
     ]);
 
-    $link = link_to_user($id, $username, null, []);
+    $link = link_to_user($id, blade_safe($icon.e($username)), null, []);
     if ($currentUserId === $id) {
         $link = tag('strong', null, $link);
     }
 
-    return "{$icon} {$link}";
+    return $link;
 }
 
 function is_api_request(): bool
 {
-    return str_starts_with(rawurldecode(Request::getPathInfo()), '/api/');
+    $url = rawurldecode(Request::getPathInfo());
+    return str_starts_with($url, '/api/')
+        || str_starts_with($url, '/_lio/');
+}
+
+function is_http(string $url): bool
+{
+    return str_starts_with($url, 'http://')
+        || str_starts_with($url, 'https://');
 }
 
 function is_json_request(): bool
 {
     return is_api_request() || Request::expectsJson();
+}
+
+function is_turbo_request(?HttpRequest $request = null): bool
+{
+    $request ??= Request::instance();
+
+    return $request->headers->get('x-turbo-request-id') !== null;
 }
 
 function is_valid_email_format(?string $email): bool
@@ -894,11 +937,13 @@ function page_title()
         'main.artist_tracks_controller._' => 'main.artists_controller._',
         'main.store_controller._' => 'store._',
         'multiplayer.rooms_controller._' => 'main.ranking_controller._',
+        'ranking.daily_challenge_controller._' => 'main.ranking_controller._',
         default => $controllerKey,
     };
     $namespaceKey = "{$currentRoute['namespace']}._";
     $namespaceKey = match ($namespaceKey) {
         'admin_forum._' => 'admin._',
+        'teams._' => 'main.teams_controller._',
         default => $namespaceKey,
     };
     $keys = [
@@ -918,13 +963,20 @@ function page_title()
 
 function ujs_redirect($url, $status = 200)
 {
-    if (Request::ajax() && !Request::isMethod('get')) {
-        return ext_view('layout.ujs-redirect', compact('url'), 'js', $status);
-    } else {
-        if (Request::header('Turbolinks-Referrer')) {
-            Request::session()->put('_turbolinks_location', $url);
+    $request = Request::instance();
+    // This is done mainly to work around fetch ignoring/removing anchor from page redirect.
+    // Reference: https://github.com/hotwired/turbo/issues/211
+    if (is_turbo_request($request)) {
+        if ($status === 200 && $request->getMethod() !== 'GET') {
+            // Turbo doesn't like 200 response on non-GET requests.
+            // Reference: https://github.com/hotwired/turbo/issues/22
+            $status = 201;
         }
 
+        return response($url, $status, ['x-turbo-action' => 'redirect']);
+    } elseif ($request->ajax() && $request->getMethod() !== 'GET') {
+        return ext_view('layout.ujs-redirect', compact('url'), 'js', $status);
+    } else {
         // because non-3xx redirects make no sense.
         if ($status < 300 || $status > 399) {
             $status = 302;
@@ -932,6 +984,21 @@ function ujs_redirect($url, $status = 200)
 
         return redirect($url, $status);
     }
+}
+
+function std_dev(array $values): array
+{
+    $size = count($values);
+    if ($size < 1) {
+        throw new InvariantException('std_dev requires sample size > 0');
+    }
+
+    $mean = array_sum($values) / $size;
+
+    return [
+        sqrt(array_sum(array_map(fn ($value) => pow($value - $mean, 2), $values)) / $size),
+        $mean,
+    ];
 }
 
 // strips combining characters after x levels deep
@@ -993,20 +1060,25 @@ function make_blade_safe(HtmlString|string $text): HtmlString
 
 function issue_icon($issue)
 {
-    switch ($issue) {
-        case 'added':
-            return 'fas fa-cogs';
-        case 'assigned':
-            return 'fas fa-user';
-        case 'confirmed':
-            return 'fas fa-exclamation-triangle';
-        case 'resolved':
-            return 'far fa-check-circle';
-        case 'duplicate':
-            return 'fas fa-copy';
-        case 'invalid':
-            return 'far fa-times-circle';
+    $fa = match ($issue) {
+        'added' => 'fas fa-cogs',
+        'assigned' => 'fas fa-user',
+        'confirmed' => 'fas fa-exclamation-triangle',
+        'duplicate' => 'fas fa-copy',
+        'invalid' => 'far fa-times-circle',
+        'resolved' => 'far fa-check-circle',
+        default => null,
+    };
+
+    if ($fa !== null) {
+        return tag('i', ['class' => $fa]);
     }
+
+    return match ($issue) {
+        'osu!lazer' => 'lzr',
+        'osu!stable' => 'stb',
+        'osu!web' => 'web',
+    };
 }
 
 function build_url($build)
@@ -1062,7 +1134,7 @@ function wiki_url($path = null, $locale = null, $api = null, $fullUrl = true)
     return rtrim(str_replace($params['path'], $path, route($route, $params, $fullUrl)), '/');
 }
 
-function bbcode($text, $uid, $options = [])
+function bbcode($text, $uid = null, $options = [])
 {
     return (new App\Libraries\BBCodeFromDB($text, $uid, $options))->toHTML();
 }
@@ -1083,20 +1155,18 @@ function proxy_media($url)
         return '';
     }
 
-    $url = html_entity_decode_better($url);
-
     if ($GLOBALS['cfg']['osu']['camo']['key'] === null) {
         return $url;
     }
 
-    $isProxied = starts_with($url, $GLOBALS['cfg']['osu']['camo']['prefix']);
+    $isProxied = str_starts_with($url, $GLOBALS['cfg']['osu']['camo']['prefix']);
 
     if ($isProxied) {
         return $url;
     }
 
     // turn relative urls into absolute urls
-    if (!preg_match('/^https?\:\/\//', $url)) {
+    if (!is_http($url)) {
         // ensure url is relative to the site root
         if ($url[0] !== '/') {
             $url = "/{$url}";
@@ -1109,6 +1179,17 @@ function proxy_media($url)
     $secret = hash_hmac('sha1', $url, $GLOBALS['cfg']['osu']['camo']['key']);
 
     return $GLOBALS['cfg']['osu']['camo']['prefix']."{$secret}/{$hexUrl}";
+}
+
+function proxy_media_original_url(?string $url): ?string
+{
+    if ($url === null) {
+        return null;
+    }
+
+    return str_starts_with($url, $GLOBALS['cfg']['osu']['camo']['prefix'])
+        ? hex2bin(substr($url, strrpos($url, '/') + 1))
+        : $url;
 }
 
 function lazy_load_image($url, $class = '', $alt = '')
@@ -1135,7 +1216,7 @@ function nav_links()
         'page_title.main.beatmap_packs_controller._' => route('packs.index'),
     ];
     foreach (RankingController::TYPES as $rankingType) {
-        $links['rankings']["rankings.type.{$rankingType}"] = RankingController::url($rankingType, $defaultMode);
+        $links['rankings']["rankings.type.{$rankingType}"] = RankingController::url(['type' => $rankingType]);
     }
     $links['community'] = [
         'page_title.forum._' => route('forum.forums.index'),
@@ -1185,6 +1266,7 @@ function footer_legal_links(): array
     $locale = app()->getLocale();
 
     $ret = [];
+    $ret['rules'] = wiki_url('Rules');
     $ret['terms'] = route('legal', ['locale' => $locale, 'path' => 'Terms']);
     if ($locale === 'ja') {
         $ret['jp_sctl'] = route('legal', ['locale' => $locale, 'path' => 'SCTL']);
@@ -1224,7 +1306,7 @@ function display_regdate($user)
 
     $tooltipDate = i18n_date($user->user_regdate);
 
-    $formattedDate = i18n_date($user->user_regdate, null, 'year_month');
+    $formattedDate = i18n_date($user->user_regdate, transPattern: 'year_month');
 
     if ($user->user_regdate < Carbon\Carbon::createFromDate(2008, 1, 1)) {
         return '<div title="'.$tooltipDate.'">'.osu_trans('users.show.first_members').'</div>';
@@ -1235,16 +1317,22 @@ function display_regdate($user)
     ]);
 }
 
-function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null)
-{
+function i18n_date(
+    DateTimeInterface $datetime,
+    int $format = IntlDateFormatter::LONG,
+    ?string $transPattern = null,
+    ?string $pattern = null,
+) {
     $formatter = IntlDateFormatter::create(
         App::getLocale(),
         $format,
         IntlDateFormatter::NONE
     );
 
-    if ($pattern !== null) {
-        $formatter->setPattern(osu_trans("common.datetime.{$pattern}.php"));
+    if ($transPattern !== null) {
+        $formatter->setPattern(osu_trans("common.datetime.{$transPattern}.php"));
+    } elseif ($pattern !== null) {
+        $formatter->setPattern($pattern);
     }
 
     return $formatter->format($datetime);
@@ -1261,6 +1349,10 @@ function i18n_date_auto(DateTimeInterface $date, string $skeleton): string
 
 function i18n_number_format($number, $style = null, $pattern = null, $precision = null, $locale = null)
 {
+    if ($number === null) {
+        return null;
+    }
+
     if ($style === null && $pattern === null && $precision === null) {
         static $formatters = [];
         $locale ??= App::getLocale();
@@ -1568,6 +1660,8 @@ function get_param_value($input, $type)
             return get_arr($input, 'get_int');
         case 'time':
             return parse_time_to_carbon($input);
+        case 'timestamp':
+            return parse_time_to_timestamp($input);
         default:
             return presence(get_string($input));
     }
@@ -1581,9 +1675,13 @@ function get_params($input, $namespace, $keys, $options = [])
 
     $params = [];
 
-    if (Arr::accessible($input)) {
-        $options['null_missing'] = $options['null_missing'] ?? false;
+    $options['null_missing'] ??= false;
 
+    if (!Arr::accessible($input) && $options['null_missing']) {
+        $input = [];
+    }
+
+    if (Arr::accessible($input)) {
         foreach ($keys as $keyAndType) {
             $keyAndType = explode(':', $keyAndType);
 
@@ -1645,30 +1743,18 @@ function model_pluck($builder, $key, $class = null)
     return $result;
 }
 
-/*
- * Returns null if $timestamp is null or 0.
- * Used for table which has not null constraints but accepts "empty" value (0).
- */
-function get_time_or_null($timestamp)
-{
-    if ($timestamp !== 0) {
-        return parse_time_to_carbon($timestamp);
-    }
-}
-
-/*
- * Get unix timestamp of a DateTime (or Carbon\Carbon).
- * Returns 0 if $time is null so mysql doesn't explode because of not null
- * constraints.
- */
-function get_timestamp_or_zero(DateTime $time = null): int
-{
-    return $time === null ? 0 : $time->getTimestamp();
-}
-
 function null_if_false($value)
 {
     return $value === false ? null : $value;
+}
+
+// TODO: more specific argument type
+// This sometimes receives Carbon\Carbon instance instead of string
+function parse_db_time(mixed $value): ?Carbon\Carbon
+{
+    return $value === null
+        ? null
+        : Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value);
 }
 
 function parse_time_to_carbon($value)
@@ -1697,9 +1783,18 @@ function parse_time_to_carbon($value)
         return $value;
     }
 
-    if ($value instanceof DateTime) {
+    if ($value instanceof DateTimeInterface) {
         return Carbon\Carbon::instance($value);
     }
+
+    if ($value instanceof Carbon\CarbonImmutable) {
+        return $value->toMutable();
+    }
+}
+
+function parse_time_to_timestamp(mixed $value): ?int
+{
+    return parse_time_to_carbon($value)?->timestamp;
 }
 
 function format_duration_for_display(int $seconds)
@@ -1725,16 +1820,18 @@ function priv_check_user($user, $ability, $object = null)
 }
 
 // Used to generate x,y pairs for fancy-chart.coffee
-function array_to_graph_json(array &$array, $property_to_use)
+function array_to_graph_json(array $array, string $fieldName): array
 {
-    $index = 0;
+    $ret = [];
 
-    return array_map(function ($e) use (&$index, $property_to_use) {
-        return [
-            'x' => $index++,
-            'y' => $e[$property_to_use],
+    foreach ($array as $index => $item) {
+        $ret[] = [
+            'x' => $index,
+            'y' => $item[$fieldName],
         ];
-    }, $array);
+    }
+
+    return $ret;
 }
 
 // Fisher-Yates
@@ -1765,12 +1862,6 @@ function first_paragraph($html, $split_on = "\n")
     return $match_pos === false ? $text : substr($text, 0, $match_pos);
 }
 
-// clamps $number to be between $min and $max
-function clamp($number, $min, $max)
-{
-    return min($max, max($min, $number));
-}
-
 // e.g. 100634983048665 -> 100.63 trillion
 function suffixed_number_format(float|int $number, ?string $locale = null): string
 {
@@ -1792,11 +1883,11 @@ function suffixed_number_format_tag($number)
 }
 
 // formats a number as a percentage with a fixed number of precision
-// e.g.: 98.3 -> 98.30%
+// e.g.: 0.983 -> 98.30%
 function format_percentage($number, $precision = 2)
 {
     // the formatter assumes decimal number while the function receives percentage number.
-    return i18n_number_format($number / 100, NumberFormatter::PERCENT, null, $precision);
+    return i18n_number_format($number, NumberFormatter::PERCENT, null, $precision);
 }
 
 // shorthand to return the filename of an open stream/handle

@@ -17,6 +17,17 @@ use Illuminate\Support\Collection;
 
 class UsernameValidation
 {
+    public static function allowedName(string $username): bool
+    {
+        foreach (model_pluck(DB::table('phpbb_disallow'), 'disallow_username') as $check) {
+            if (preg_match('#^'.str_replace('%', '.*?', preg_quote($check, '#')).'$#i', $username)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public static function validateAvailability(string $username): ValidationErrors
     {
         $errors = new ValidationErrors('user');
@@ -24,15 +35,14 @@ class UsernameValidation
         if (($availableDate = User::checkWhenUsernameAvailable($username)) > Carbon::now()) {
             $remaining = Carbon::now()->diff($availableDate, false);
 
-            // the times are +1 to round up the interval; e.g. 5 days, 2 hours will show 6 days
-            if ($remaining->days + 1 >= User::INACTIVE_DAYS) {
+            if ($remaining->totalDays >= User::INACTIVE_DAYS) {
                 //no need to mention the inactivity period of the account is actively in use.
                 $errors->add('username', '.username_in_use');
-            } elseif ($remaining->days > 0) {
+            } elseif ($remaining->totalDays > 0) {
                 $errors->add(
                     'username',
                     '.username_available_in',
-                    ['duration' => osu_trans_choice('common.count.days', $remaining->days + 1)]
+                    ['duration' => osu_trans_choice('common.count.days', ((int) $remaining->totalDays) + 1)]
                 );
             } elseif ($remaining->h > 0) {
                 $errors->add(
@@ -64,6 +74,7 @@ class UsernameValidation
             $errors->add('username', '.username_too_long');
         }
 
+        // also note that totp key generator forbids `:` in username
         if (strpos($username, '  ') !== false || !preg_match('#^[A-Za-z0-9-\[\]_ ]+$#u', $username)) {
             $errors->add('username', '.username_invalid_characters');
         }
@@ -72,11 +83,8 @@ class UsernameValidation
             $errors->add('username', '.username_no_space_userscore_mix');
         }
 
-        foreach (model_pluck(DB::table('phpbb_disallow'), 'disallow_username') as $check) {
-            if (preg_match('#^'.str_replace('%', '.*?', preg_quote($check, '#')).'$#i', $username)) {
-                $errors->add('username', '.username_not_allowed');
-                break;
-            }
+        if (!static::allowedName($username)) {
+            $errors->add('username', '.username_not_allowed');
         }
 
         return $errors;

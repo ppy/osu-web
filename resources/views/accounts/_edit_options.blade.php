@@ -3,7 +3,8 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    $customization = Auth::user()->profileCustomization();
+    $currentUser ??= Auth::user();
+    $customization = App\Models\UserProfileCustomization::forUser($currentUser);
 @endphp
 <div class="account-edit">
     <div class="account-edit__section">
@@ -29,14 +30,12 @@
                             $statusIsRendered = false;
                         @endphp
                         @foreach (App\Models\UserProfileCustomization::BEATMAPSET_DOWNLOAD as $name)
-                            @if ($name === 'direct' && !auth()->user()->isSupporter())
+                            @if ($name === 'direct' && !$currentUser->isSupporter())
                                 @continue
                             @endif
-                            <label
-                                class="account-edit-entry__checkbox account-edit-entry__checkbox--inline"
-                            >
+                            <label class="account-edit-entry__checkbox">
                                 @include('objects._switch', ['locals' => [
-                                    'checked' => $customization->beatmapset_download === $name,
+                                    'checked' => $customization['beatmapset_download'] === $name,
                                     'name' => 'user_profile_customization[beatmapset_download]',
                                     'type' => 'radio',
                                     'value' => $name,
@@ -48,7 +47,7 @@
 
                                 @if (!$statusIsRendered)
                                     <div class="account-edit-entry__checkbox-status">
-                                        @include('accounts._edit_entry_status')
+                                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                                     </div>
                                     @php
                                         $statusIsRendered = true;
@@ -70,7 +69,7 @@
                 <label class="account-edit-entry__checkbox">
                     @include('objects._switch', ['locals' => [
                         'additionalClass'=> 'js-account-edit__input',
-                        'checked' => $customization->beatmapset_title_show_original,
+                        'checked' => $customization['beatmapset_title_show_original'],
                         'name' => 'user_profile_customization[beatmapset_title_show_original]',
                     ]])
 
@@ -79,7 +78,7 @@
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">
-                        @include('accounts._edit_entry_status')
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                     </div>
                 </label>
             </div>
@@ -95,7 +94,7 @@
                 <label class="account-edit-entry__checkbox">
                     @include('objects._switch', ['locals' => [
                         'additionalClass'=> 'js-account-edit__input',
-                        'checked' => $customization->beatmapset_show_nsfw,
+                        'checked' => $customization['beatmapset_show_nsfw'],
                         'name' => 'user_profile_customization[beatmapset_show_nsfw]',
                     ]])
 
@@ -104,7 +103,7 @@
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">
-                        @include('accounts._edit_entry_status')
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
                     </div>
                 </label>
             </div>

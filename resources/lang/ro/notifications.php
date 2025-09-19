@@ -20,17 +20,19 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'forum',
         'news_post' => 'știri',
+        'team' => 'echipă',
         'user' => 'profil',
     ],
 
     'filters' => [
         '_' => 'tot',
-        'user' => 'profil',
         'beatmapset' => 'beatmap-uri',
-        'forum_topic' => 'forum',
-        'news_post' => 'noutăți',
         'build' => 'versiuni',
         'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'noutăți',
+        'team' => 'echipă',
+        'user' => 'profil',
     ],
 
     'item' => [
@@ -121,6 +123,16 @@ return [
                     'channel_message_group' => 'de la :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => 'Mesaj de echipă nou',
+
+                'team' => [
+                    'channel_team' => ':username spune ":title"',
+                    'channel_team_compact' => ':username spune ":title"',
+                    'channel_team_group' => ':username spune ":title"',
+                ],
+            ],
         ],
 
         'build' => [
@@ -156,6 +168,22 @@ return [
                 '_' => 'Un nou răspuns pe forum',
                 'forum_topic_reply' => ':username a răspuns la ":title"',
                 'forum_topic_reply_compact' => ':username a răspuns',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => 'Cerere de înscriere în echipă',
+
+                'team_application_accept' => "Acum ești membru al echipei :title",
+                'team_application_accept_compact' => "Acum ești membru al echipei :title",
+
+                'team_application_group' => 'Actualizări la cererile de înscriere în echipă',
+
+                'team_application_reject' => 'Cererea ta de înscriere în echipa :title a fost refuzată',
+                'team_application_reject_compact' => 'Cererea ta de înscriere în echipa :title a fost refuzată',
+                'team_application_store' => ':title a solicitat să se înscrie echipei tale',
+                'team_application_store_compact' => ':title a solicitat să se înscrie echipei tale',
             ],
         ],
 
@@ -217,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Există un anunț nou în „:name”',
+                'channel_announcement' => 'Există un anunț nou în „:name”',
             ],
-
             'channel' => [
-                'pm' => 'Ai primit un mesaj nou de la :username',
+                'channel_message' => 'Ai primit un mesaj nou de la :username',
+            ],
+            'channel_team' => [
+                'channel_team' => 'Există un mesaj nou în echipa ":name"',
             ],
         ],
 
@@ -240,6 +270,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Există răspunsuri noi în ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Acum ești membru al echipei :title",
+                'team_application_reject' => 'Cererea ta de înscriere în echipa :title a fost refuzată',
+                'team_application_store' => ':title a solicitat să se înscrie echipei tale',
             ],
         ],
 

@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import Img2x from 'components/img2x';
 import StringWithComponent from 'components/string-with-component';
 import PostJson from 'interfaces/news-post-json';
 import { route } from 'laroute';
@@ -13,7 +14,7 @@ export default function PostItem({ modifiers, post }: { modifiers?: string[]; po
   let cover;
 
   if (post.first_image != null) {
-    cover = <img className='news-card__cover' src={post.first_image} />;
+    cover = <Img2x className='news-card__cover' src={post.first_image} src2x={post['first_image@2x']} />;
   }
 
   let preview = post.preview;

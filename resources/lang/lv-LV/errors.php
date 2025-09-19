@@ -7,6 +7,7 @@ return [
     'load_failed' => 'Neizdevās ielādēt datus.',
     'missing_route' => 'Nederīgs url vai nepareiza pieprasījuma metode.',
     'no_restricted_access' => 'Jūs nevarat veikt šo darbību, kamēr jūsu konts ir ierobežojuma stāvoklī.',
+    'param_too_large' => ':name parametram ir maximāli :count_delimited preces|:name parametram ir maksimāli :count_delimited daudzums ar precēm',
     'supporter_only' => 'Lai izmantotu šo funkciju, jums jābūt osu!supporter.',
     'unknown' => 'Notika nezināma kļūda.',
 
@@ -28,9 +29,15 @@ return [
     'checkout' => [
         'generic' => 'Jūsu pirkuma pārbaudes sagatavošanas laikā notikusi kļūda.',
     ],
+    'scores' => [
+        'invalid_id' => 'Nepareizs rezultāta id.',
+    ],
     'search' => [
         'default' => 'Nezidevās iegūt rezultātus, mēģiniet vēlreiz vēlāk.',
         'invalid_cursor_exception' => 'Norādīts nepareizs kursora parametrs.',
         'operation_timeout_exception' => 'Meklēšana pašlaik ir aizņemtāka nekā parasti, mēģiniet vēlreiz vēlāk.',
+    ],
+    'user_report' => [
+        'recently_reported' => "Tu jau esi par šo ziņojis nesen.",
     ],
 ];

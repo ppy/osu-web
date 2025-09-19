@@ -5,7 +5,7 @@
 
 return [
     'cart' => [
-        'checkout' => '结账',
+        'checkout' => '去结算',
         'empty_cart' => '清空购物车',
         'info' => '购物车里有 :count_delimited 件商品（$:subtotal）',
         'more_goodies' => '在完成订单之前，我想看看其他商品',
@@ -31,11 +31,11 @@ return [
         'cart_problems' => '啊哦，您的购物车中存在问题！',
         'cart_problems_edit' => '点击此处编辑。',
         'declined' => '支付被取消。',
-        'delayed_shipping' => '欢迎购买，但是我们正在处理大量的订单，所以订单**可能会有 1-2 周的延迟**。',
+        'delayed_shipping' => '欢迎购买，但是我们正在处理大量的订单，所以订单可能会有 **1-2 周的延迟**。',
         'hide_from_activity' => '不把此订单中的支持者标签购买同步到个人活动',
         'old_cart' => '您的购物车已经过期，请重试。',
         'pay' => '使用 Paypal 支付',
-        'title_compact' => '结账',
+        'title_compact' => '结算',
 
         'has_pending' => [
             '_' => '您有未完成的支付，点击 :link 查看。',
@@ -55,6 +55,7 @@ return [
         'contact' => '联系：',
         'date' => '日期：',
         'echeck_delay' => '由于您的支付是通过 eCheck 进行的，请再等待至多 10 天来让 PayPal 完成支付。',
+        'echeck_denied' => 'Paypal 拒绝受理 eCheck 支付。',
         'hide_from_activity' => '此订单的支持者标签购买未显示在你的个人活动中。',
         'sent_via' => '通过：',
         'shipping_to' => '送货到：',
@@ -93,7 +94,7 @@ return [
                 'title' => '您的订单已发货！',
                 'tracking_details' => '物流信息如下：',
                 'no_tracking_details' => [
-                    '_' => "由于我们使用 Air Mail 发货，所以无法记录物流信息。但您可以在 1-3 周内收到包裹。如果收货地位于欧洲，则海关可能会在这个基础上延长订单的运输时间。如果您有任何问题，请回复您收到的 :link 邮件。",
+                    '_' => "由于商品包裹通过航空邮件寄送，我们无法提供物流追踪信息，通常包裹预计 1 至 3 周内可送达。对于欧洲地区，清关流程可能导致包裹延误（此情况非商店可控）。如有疑问，请直接回复您收到的订单确认邮件（或通过 :link 联系）。",
                     'link_text' => '给我们发送邮件',
                 ],
             ],
@@ -102,21 +103,21 @@ return [
 
     'order' => [
         'cancel' => '取消订单',
-        'cancel_confirm' => '您确定取消订单吗？（此订单不能再支付，支付提供商可能不会立刻退款。）',
+        'cancel_confirm' => '您确定取消订单吗？（支付平台可能不会立即退回已支付款项或即时解冻预授权资金）',
         'cancel_not_allowed' => '目前无法取消订单。',
-        'invoice' => '查看发票',
+        'invoice' => '查看购物小票',
         'no_orders' => '没有可显示的订单。',
-        'paid_on' => ':date 支付订单',
-        'resume' => '恢复结账',
+        'paid_on' => '订单支付于 :date',
+        'resume' => '继续结算',
         'shipping_and_handling' => '运输和处理',
-        'shopify_expired' => '此订单的结账链接已过期。',
+        'shopify_expired' => '此订单的结算链接已失效。',
         'subtotal' => '小计',
         'total' => '总计',
 
         'details' => [
             'order_number' => '订单 #',
             'payment_terms' => '支付条款',
-            'salesperson' => '销售员',
+            'salesperson' => '销售方',
             'shipping_method' => '运输方式',
             'shipping_terms' => '运输条款',
             'title' => '订单详情',
@@ -135,13 +136,13 @@ return [
         ],
 
         'not_modifiable_exception' => [
-            'cancelled' => '您不能修改已取消的订单。',
-            'checkout' => '您不能修改正在处理的订单。', // checkout and processing should have the same message.
+            'cancelled' => '该订单已取消，无法进行修改。',
+            'checkout' => '该订单正在处理中，无法进行修改。', // checkout and processing should have the same message.
             'default' => '订单不可修改',
-            'delivered' => '您不能修改已送达订单。',
-            'paid' => '你不能修改此订单，因为它已经完成付款了。',
-            'processing' => '您不能修改正在处理的订单。',
-            'shipped' => '您不能修改已发货订单。',
+            'delivered' => '该订单已签收，无法进行修改。',
+            'paid' => '该订单已完成支付，无法进行修改。',
+            'processing' => '该订单正在处理中，无法进行修改。',
+            'shipped' => '该订单已发货，无法进行修改。',
         ],
 
         'status' => [
@@ -168,11 +169,12 @@ return [
 
         'stock' => [
             'out' => '卖完了呢( ´_ゝ｀) 过段时间再回来看看吧。',
-            'out_with_alternative' => '选择的类型已售罄(´；ω；`) 试试另外几种或者过段时间再回来看看吧。',
+            'out_with_alternative' => '选择的款式已售罄(´；ω；`) 试试另外几种款式或者过段时间再回来看看吧。',
         ],
 
         'add_to_cart' => '添加到购物车',
         'notify' => '当可以购买时提醒我！',
+        'out_of_stock' => '售罄',
 
         'notification_success' => '当商品有货时会收到提醒，点击 :link 以取消该提醒',
         'notification_remove_text' => '这里',
@@ -185,20 +187,20 @@ return [
         'gift_message' => '给礼物留下附言吧！（可选，至多 :length 个字符）',
 
         'require_login' => [
-            '_' => '你需要 :link 以获得 osu! 支持者标签！',
+            '_' => '您需要 :link 以获得 osu! 支持者标签！',
             'link_text' => '登录',
         ],
     ],
 
     'username_change' => [
-        'check' => '输入用户名并检查是否可用',
+        'check' => '输入玩家名并检查是否可用',
         'checking' => '正在检查 :username 是否可用...',
         'placeholder' => '想要使用的玩家名',
         'label' => '新玩家名',
         'current' => '您现在的玩家名是 ":username"。',
 
         'require_login' => [
-            '_' => '需要 :link 才能改变用户名！',
+            '_' => '需要 :link 才能改变玩家名！',
             'link_text' => '登录',
         ],
     ],

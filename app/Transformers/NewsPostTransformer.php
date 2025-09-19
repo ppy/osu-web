@@ -17,12 +17,15 @@ class NewsPostTransformer extends TransformerAbstract
 
     public function transform(NewsPost $post)
     {
+        $firstImage = $post->firstImageWith2x();
+
         return [
             'id' => $post->id,
 
             'author' => $post->author(),
             'edit_url' => $post->editUrl(),
-            'first_image' => $post->firstImage(),
+            'first_image' => $firstImage['1x'],
+            'first_image@2x' => $firstImage['2x'],
             'published_at' => json_time($post->published_at),
             'updated_at' => json_time($post->updated_at),
             'slug' => $post->slug,

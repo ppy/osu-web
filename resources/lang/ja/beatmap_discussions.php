@@ -66,6 +66,13 @@ return [
         'version' => '難易度',
     ],
 
+    'refresh' => [
+        'checking' => 'アップデートの確認中...',
+        'has_updates' => '議論の更新があります。クリックして更新してください。',
+        'no_updates' => '更新はありません。',
+        'updating' => '更新中…',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'ログインして返信する',

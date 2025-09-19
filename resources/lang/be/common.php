@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Кіраўнік',
         'authorise' => 'Аўтарызацыя',
         'authorising' => 'Аўтарызіруемся...',
+        'back' => 'Назад',
         'back_to_previous' => 'Вярнуцца ў папярэднюю пазіцыю',
         'back_to_top' => 'Вярнуцца ў пачатак',
         'cancel' => 'Скасаваць',
@@ -39,7 +39,7 @@ return [
         'pin' => 'замацаваць',
         'post' => 'Размясціць',
         'read_more' => 'чытаць далей',
-        'refresh' => '',
+        'refresh' => 'Абнавіць',
         'reply' => 'Адказаць',
         'reply_reopen' => 'Адказаць і пераадкрыць',
         'reply_resolve' => 'Адказаць і вырашыць',
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => 'мес',
+        ],
+        'year' => [
+            'php' => 'г',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

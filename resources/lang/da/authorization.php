@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Du skal sætte en score på et beatmap for at tilføje et tag.',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Denne kanal er kun for annonceringer.',
         'blocked' => 'Du kan ikke sende denne besked, enten har brugeren blokeret dig eller du har blokeret brugeren.',
         'friends_only' => 'Brugeren blokerer beskeder fra folk der ikke er på deres venneliste.',
         'moderated' => 'Denne kanal er i øjeblikket modereret.',
         'no_access' => 'Du har ikke adgang til denne kanal.',
+        'no_announce' => '',
         'receive_friends_only' => 'Brugeren kan muligvis ikke svare, fordi du kun accepterer beskeder fra folk på din venneliste.',
         'restricted' => 'Du kan ikke sende beskeder når du er enten muted, begrænset eller banned.',
         'silenced' => 'Du kan ikke sende beskeder når du er enten muted, begrænset eller banned.',
@@ -107,6 +113,7 @@ return [
                 'deleted' => 'Kan ikke redigere slettede opslag.',
                 'locked' => 'Dette opslag er låst fra at blive redigeret.',
                 'no_forum_access' => 'Adgang til det anmodede forum er nødvendigt.',
+                'no_permission' => '',
                 'not_owner' => 'Kun ejeren af dette opslag kan redigere det.',
                 'topic_locked' => 'Kan ikke redigere opslag fra låste emner.',
             ],
@@ -170,12 +177,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Kun ejeren at rummet kan lukke det.',
+        ],
+    ],
+
     'score' => [
         'pin' => [
-            'disabled_type' => "",
-            'failed' => "",
+            'disabled_type' => "Kan ikke fastlåse denne type scoring",
+            'failed' => "Kan ikke fastlåse ikke-bestående score.",
             'not_owner' => 'Kun score ejer kan pin score.',
             'too_many' => 'Fastgjort for mange score.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "Du er allerede en del a holdet.",
+                'already_other_member' => "Du er allerede en del af et andet hold.",
+                'currently_applying' => '',
+                'team_closed' => '',
+                'team_full' => "",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "",
+            'not_member' => '',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

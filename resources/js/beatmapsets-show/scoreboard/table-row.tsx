@@ -2,11 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import FlagCountry from 'components/flag-country';
+import FlagTeam from 'components/flag-team';
 import Mod from 'components/mod';
 import { PlayDetailMenu } from 'components/play-detail-menu';
+import ScoreValue from 'components/score-value';
 import ScoreboardTime from 'components/scoreboard-time';
+import UserLink from 'components/user-link';
 import BeatmapJson from 'interfaces/beatmap-json';
-import { SoloScoreJsonForBeatmap } from 'interfaces/solo-score-json';
+import { ScoreJsonForBeatmap } from 'interfaces/score-json';
 import { route } from 'laroute';
 import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -16,7 +19,7 @@ import PpValue from 'scores/pp-value';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { accuracy, filterMods, hasMenu, isPerfectCombo, attributeDisplayTotals, rank, scoreUrl, totalScore } from 'utils/score-helper';
+import { accuracy, filterMods, hasMenu, isPerfectCombo, calculateStatisticsFor, rank, scoreUrl } from 'utils/score-helper';
 
 const bn = 'beatmap-scoreboard-table';
 
@@ -44,7 +47,7 @@ interface Props {
   beatmap: BeatmapJson;
   highlightFriends: boolean;
   index: number;
-  score: SoloScoreJsonForBeatmap;
+  score: ScoreJsonForBeatmap;
   showPp: boolean;
 }
 
@@ -84,7 +87,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
         </TdLink>
 
         <TdLink href={this.scoreUrl} modifiers='score'>
-          {formatNumber(totalScore(score))}
+          <ScoreValue score={score} />
         </TdLink>
 
         <TdLink href={this.scoreUrl} modifiers={{ perfect: scoreAccuracy === 1 }}>
@@ -111,16 +114,20 @@ export default class ScoreboardTableRow extends React.Component<Props> {
             {trans('users.deleted')}
           </TdLink>
         ) : (
-          <td className={`${bn}__cell u-relative`}>
-            <a
-              className={`${bn}__cell-content ${bn}__cell-content--user-link js-usercard`}
-              data-user-id={score.user.id}
-              href={route('users.show', { mode: this.props.beatmap.mode, user: score.user.id })}
-            >
-              {score.user.username}
-            </a>
-
-            <a className={`${bn}__cell-content`} href={this.scoreUrl} />
+          <td className={`${bn}__cell ${bn}__cell--player u-relative`}>
+            <a className={classWithModifiers(`${bn}__cell-content`, 'bg-link')} href={this.scoreUrl} />
+            <span className={`${bn}__cell-content u-hover-none`}>
+              {score.user.team != null &&
+                <a className='u-contents u-hover' href={route('teams.show', { team: score.user.team.id })}>
+                  <FlagTeam team={score.user.team} />
+                </a>
+              }
+              <UserLink
+                className={`${bn}__user-link u-hover`}
+                mode={this.props.beatmap.mode}
+                user={score.user}
+              />
+            </span>
           </td>
         )}
 
@@ -128,13 +135,13 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           {`${formatNumber(score.max_combo)}x`}
         </TdLink>
 
-        {attributeDisplayTotals(this.props.beatmap.mode, score).map((stat) => (
+        {calculateStatisticsFor(score, 'leaderboard').map((stat) => (
           <TdLink
-            key={stat.key}
+            key={stat.label.short}
             href={this.scoreUrl}
-            modifiers={{ zero: stat.total === 0 }}
+            modifiers={{ zero: stat.value === 0 }}
           >
-            {formatNumber(stat.total)}
+            {formatNumber(stat.value)}
           </TdLink>
         ))}
 

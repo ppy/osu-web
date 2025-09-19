@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Απενεργοποίηση Επιλεγμένων',
+        'batch_enable' => 'Ενεργοποίηση Επιλεγμένων',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':action :items;',
+            'disable' => 'Απενεργοποίηση',
+            'enable' => 'Ενεργοποίηση',
+            'items' => ':count_delimited cover|:count_delimited covers',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Αρχεία',
+            'submit' => 'Αποθήκευση',
+            'title' => 'Προσθήκη Νέου',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'Κάντε κλικ για απενεργοποίηση',
+            'click_to_enable' => 'Κάντε κλικ για ενεργοποίηση',
+            'enabled' => 'Ενεργοποιημένο',
+            'disabled' => 'Απενεργοποιημένο',
+            'image_store' => 'Ορισμός Εικόνας',
+            'image_update' => 'Αντικατάσταση Εικόνας',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'Παρουσιάστηκε σφάλμα κατά τη δημιουργία cover: :error',
+        'ok' => 'Το cover δημιουργήθηκε',
     ],
 ];

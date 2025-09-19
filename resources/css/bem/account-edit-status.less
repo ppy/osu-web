@@ -9,20 +9,26 @@
   &__content {
     opacity: 0;
     .fade-element(120ms);
+    padding-right: 10px;
 
     &--saved {
       color: @green;
-      padding-right: 10px;
 
-      [data-account-edit-state=saved] & {
+      [data-account-edit-state="saved"] & {
         opacity: 1;
       }
     }
 
     &--saving {
-      width: 0;
+      position: absolute;
 
-      [data-account-edit-state=saving] & {
+      @media @desktop {
+        .account-edit-status--left & {
+          right: 0;
+        }
+      }
+
+      [data-account-edit-state="saving"] & {
         opacity: 1;
       }
     }

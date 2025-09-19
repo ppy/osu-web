@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => '',
+
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'נכשל בעדכון הצבעה',
@@ -25,12 +31,14 @@ return [
         'message_placeholder_silenced' => "לא ניתן לדון בזמן שמושתק.",
         'message_type_select' => 'בחר סוג תגובה',
         'reply_notice' => 'הקש על Enter כדי להגיב.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'הקלד את תגובתך כאן',
         'require-login' => 'אנא התחבר על מנת לפרסם הודעה או להגיב',
         'resolved' => 'נפתר',
         'restore' => 'שחזר',
         'show_deleted' => 'הצג שנמחק',
         'title' => 'דיונים',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'סגור הכל',
@@ -73,7 +81,7 @@ return [
             'nomination_reset' => 'איפוס מועמדות',
             'praise' => 'שבח',
             'problem' => 'בעיה',
-            'problem_warning' => '',
+            'problem_warning' => 'דווח על בעיה',
             'review' => 'ביקורת',
             'suggestion' => 'הצעה',
         ],
@@ -214,8 +222,8 @@ return [
         'rank_estimate' => [
             '_' => 'מפה זאת תקבל סטטוס Ranked ב:date במידה ולא ימצאו שגיעות. המפה נמצא ב#:position ב:queue.',
             'unresolved_problems' => '',
-            'problems' => '',
-            'on' => '',
+            'problems' => 'הבעיות האלו',
+            'on' => 'ב-:date',
             'queue' => 'נבדקת לקבלת Ranking',
             'soon' => 'בקרוב',
         ],
@@ -246,7 +254,7 @@ return [
                 'genre' => 'ז\'אנר',
                 'language' => 'שפה',
                 'mode' => 'מצב',
-                'nsfw' => '',
+                'nsfw' => 'תוכן חושפני',
                 'played' => 'שוחקה',
                 'rank' => 'דרגה הושגה',
                 'status' => 'קטגוריות',

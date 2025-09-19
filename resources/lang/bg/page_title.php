@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'подкрепи играта',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => 'мачове',
+        ],
         'legal_controller' => [
             '_' => 'информация',
         ],
         'livestreams_controller' => [
             '_' => 'игри на живо',
-        ],
-        'matches_controller' => [
-            '_' => 'състезания',
         ],
         'news_controller' => [
             '_' => 'новини',
@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => 'класации',
         ],
+        'teams_controller' => [
+            '_' => 'отбори',
+            'create' => 'създаване на отбор',
+            'edit' => 'настройки на отбора',
+            'leaderboard' => 'класации на отбора',
+            'show' => 'инфо за отбор',
+        ],
         'tournaments_controller' => [
             '_' => 'турнири',
         ],
@@ -122,6 +129,11 @@ return [
             '_' => 'wiki',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => 'история на стаите',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'упълномощаване на приложение',
@@ -129,6 +141,11 @@ return [
     ],
     'store' => [
         '_' => 'магазин',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'членове на отбора',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

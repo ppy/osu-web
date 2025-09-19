@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => '관리',
         'authorise' => '권한 부여',
         'authorising' => '인증하기...',
+        'back' => '돌아가기',
         'back_to_previous' => '이전 위치로 돌아가기',
         'back_to_top' => '맨 위로',
         'cancel' => '취소',
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => '월',
+        ],
+        'year' => [
+            'php' => '년',
+        ],
         'year_month' => [
             'moment' => 'YYYY년 MMMM',
             'php' => 'y년 MMMM',

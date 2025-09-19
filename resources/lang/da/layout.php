@@ -113,6 +113,7 @@ return [
             'copyright' => 'Copyright (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Privatliv',
+            'rules' => '',
             'server_status' => 'Server Status',
             'source_code' => 'Kildekode',
             'terms' => 'Betingelser for Brug',
@@ -199,6 +200,9 @@ return [
             'legacy_score_only_toggle_tooltip' => '',
             'logout' => 'Log ud',
             'profile' => 'Min Profil',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
+            'team' => '',
         ],
     ],
 

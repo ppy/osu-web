@@ -37,6 +37,12 @@ return [
         'new' => 'Trả lời cuối',
     ],
 
+    'teams' => [
+        'relevance' => 'Liên quan',
+        'name' => 'Tên',
+        'short-name' => 'Tên ngắn',
+    ],
+
     'users' => [
         'relevance' => 'Mức độ liên quan',
         'username' => 'Tên',

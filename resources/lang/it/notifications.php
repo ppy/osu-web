@@ -5,7 +5,7 @@
 
 return [
     'all_read' => 'Lette tutte le notifiche!',
-    'delete' => 'Elimina :type',
+    'delete' => 'Svuota ":type"',
     'loading' => 'Caricamento notifiche non lette...',
     'mark_read' => 'Segna :type come letto',
     'none' => 'Nessuna notifica',
@@ -14,23 +14,25 @@ return [
     'verifying' => 'Verifica la sessione per visualizzare le notifiche',
 
     'action_type' => [
-        '_' => '"tutto"',
-        'beatmapset' => '"beatmap"',
-        'build' => '"versioni"',
-        'channel' => '"chat"',
-        'forum_topic' => '"forum"',
-        'news_post' => '"notizie"',
-        'user' => '"profilo"',
+        '_' => 'tutto',
+        'beatmapset' => 'beatmap',
+        'build' => 'versioni',
+        'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'notizie',
+        'team' => 'squadra',
+        'user' => 'profilo',
     ],
 
     'filters' => [
         '_' => 'tutto',
-        'user' => 'profilo',
         'beatmapset' => 'beatmap',
-        'forum_topic' => 'forum',
-        'news_post' => 'notizie',
         'build' => 'versioni',
         'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'notizie',
+        'team' => 'squadra',
+        'user' => 'profilo',
     ],
 
     'item' => [
@@ -121,6 +123,16 @@ return [
                     'channel_message_group' => 'da :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => 'Nuovo messaggio di squadra',
+
+                'team' => [
+                    'channel_team' => ':username ha scritto ":title"',
+                    'channel_team_compact' => ':username ha scritto ":title"',
+                    'channel_team_group' => ':username ha scritto ":title"',
+                ],
+            ],
         ],
 
         'build' => [
@@ -156,6 +168,22 @@ return [
                 '_' => 'Nuova risposta sul forum',
                 'forum_topic_reply' => ':username ha risposto a ":title"',
                 'forum_topic_reply_compact' => ':username ha risposto',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => 'Richiesta di partecipazione squadra',
+
+                'team_application_accept' => "Sei diventato un membro della squadra :title",
+                'team_application_accept_compact' => "Sei diventato un membro della squadra :title",
+
+                'team_application_group' => 'Aggiornamenti di richiesta unione al team',
+
+                'team_application_reject' => 'La tua richiesta di unirsi alla squadra :title è stata rifiutata',
+                'team_application_reject_compact' => 'La tua richiesta di unirsi alla squadra :title è stata rifiutata',
+                'team_application_store' => ':title ha richiesto di unirsi alla tua squadra',
+                'team_application_store_compact' => ':title ha richiesto di unirsi alla tua squadra',
             ],
         ],
 
@@ -205,7 +233,7 @@ return [
                 'beatmapset_love' => '":title" è stata promossa tra le amate',
                 'beatmapset_nominate' => '":title" è stata nominata',
                 'beatmapset_qualify' => '":title" ha ottenuto abbastanza nomine ed è entrata nella coda di ranking',
-                'beatmapset_rank' => '":title" è stata rankata',
+                'beatmapset_rank' => '":title" è stata classificata',
                 'beatmapset_remove_from_loved' => '":title" è stata rimossa dalle amate',
                 'beatmapset_reset_nominations' => 'La nomina di ":title" è stata resettata',
             ],
@@ -217,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'C\'è un nuovo annuncio in ":name"',
+                'channel_announcement' => 'C\'è un nuovo annuncio su ":name"',
             ],
-
             'channel' => [
-                'pm' => 'Hai ricevuto un nuovo messaggio da :username',
+                'channel_message' => 'Hai ricevuto un nuovo messaggio da :username',
+            ],
+            'channel_team' => [
+                'channel_team' => 'C\'è un nuovo messaggio sulla squadra ":name"',
             ],
         ],
 
@@ -240,6 +270,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Ci sono nuove risposte in ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Sei diventato un membro della squadra :title",
+                'team_application_reject' => 'La tua richiesta di unirsi alla squadra :title è stata rifiutata',
+                'team_application_store' => ':title ha richiesto di unirsi alla tua squadra',
             ],
         ],
 

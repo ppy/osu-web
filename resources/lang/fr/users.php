@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => 'En cours',
+            'ended' => 'Terminées',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Beatmaps : :counts',
         'modding_description_empty' => 'L\'utilisateur n\'a pas de beatmaps...',
@@ -159,14 +166,24 @@ return [
             'cancel' => 'Annuler',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => 'Les violations des droits d\'auteur doivent être signalées par le biais d\'une réclamation DMCA à l\'adresse :mail conformément à :policy.',
+                'policy' => 'la politique des droits d\'auteur d\'osu!',
+            ],
+            'message_2' => 'Cela s\'applique aux cas où les pistes audio, le contenu vidéo, et/ou le contenu des beatmaps ont été utilisés sans une autorisation correcte.',
+        ],
+
         'options' => [
             'cheating' => 'Anti-jeu / Triche',
-            'multiple_accounts' => 'Utilisation de plusieurs comptes',
+            'copyright_infringement' => 'Violation des droits d\'auteur',
+            'inappropriate_chat' => 'Comportement inapproprié dans le tchat',
             'insults' => 'M’insulte / insulte les autres',
-            'spam' => 'Spam',
-            'unwanted_content' => 'Envoi de contenu inapproprié',
+            'multiple_accounts' => 'Utilisation de plusieurs comptes',
             'nonsense' => 'Absurdités répétées',
             'other' => 'Autre (détaillez ci-dessous)',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Contenu inapproprié',
         ],
     ],
     'restricted_banner' => [
@@ -196,16 +213,36 @@ return [
             'to_0' => 'Cacher la bannière',
             'to_1' => 'Afficher la bannière',
         ],
+        'daily_challenge' => [
+            'daily' => 'Série quotidienne',
+            'daily_streak_best' => 'Meilleure série quotidienne',
+            'daily_streak_current' => 'Série quotidienne actuelle',
+            'playcount' => 'Participations totales',
+            'title' => 'Défi\ndu Jour',
+            'top_10p_placements' => 'Placements dans le Top 10%',
+            'top_50p_placements' => 'Placements dans le Top 50%',
+            'weekly' => 'Série hebdomadaire',
+            'weekly_streak_best' => 'Meilleure série hebdomadaire',
+            'weekly_streak_current' => 'Série hebdomadaire actuelle',
+
+            'unit' => [
+                'day' => ':value j',
+                'week' => ':value sem',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Changer la bannière du profil',
                 'defaults_info' => 'D\'autres options de bannières seront disponibles à l\'avenir',
+                'holdover_remove_confirm' => "La bannière précédemment sélectionnée n'est plus disponible. Vous ne pourrez plus la réutiliser une fois que vous l'aurez changée. Êtes-vous sûr ?",
+                'title' => 'Bannière',
+
                 'upload' => [
                     'broken_file' => 'Impossible de traiter l\'image. Vérifiez l\'image mise en ligne et réessayez.',
                     'button' => 'Mettre en ligne une image',
                     'dropzone' => 'Déplacez ici pour mettre en ligne',
                     'dropzone_info' => 'Vous pouvez aussi déplacer l\'image ici pour la mettre en ligne',
-                    'size_info' => 'La taille de la bannière devrait être de 2400x640',
+                    'size_info' => 'La taille de la bannière devrait être de 2000x500',
                     'too_large' => 'Le fichier est trop volumineux.',
                     'unsupported_format' => 'Format non pris en charge.',
 
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'mode de jeu par défaut',
                 'set' => 'définir :mode comme mode de jeu par défaut',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Voulez-vous vraiment réinitialiser la couleur de votre profil ? Vous devrez obtenir un tag osu!supporter pour la changer à nouveau.',
+                'title' => 'Couleur',
+
+                'supporter' => [
+                    '_' => 'Les couleurs personnalisées ne sont disponibles que pour les :link',
+                    'link' => 'osu!supporters',
+                ],
             ],
         ],
 
@@ -449,8 +496,13 @@ return [
             'global_simple' => 'Classement global',
             'highest' => 'Meilleur rang : :rank le :date',
         ],
+        'season_stats' => [
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Score total',
+        ],
         'stats' => [
             'hit_accuracy' => 'Précision',
+            'hits_per_play' => 'Clics par partie',
             'level' => 'Niveau :level',
             'level_progress' => 'Progression jusqu’au prochain niveau',
             'maximum_combo' => 'Combo maximum',

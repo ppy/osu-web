@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'støt spillet',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'information',
         ],
         'livestreams_controller' => [
             '_' => 'livestreams',
-        ],
-        'matches_controller' => [
-            '_' => 'resultater',
         ],
         'news_controller' => [
             '_' => 'nyheder',
@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => '',
         ],
+        'teams_controller' => [
+            '_' => '',
+            'create' => '',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'turneringer',
         ],
@@ -122,6 +129,11 @@ return [
             '_' => 'wiki',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'godkend app',
@@ -129,6 +141,11 @@ return [
     ],
     'store' => [
         '_' => 'butik',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

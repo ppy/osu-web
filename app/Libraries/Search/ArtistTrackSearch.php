@@ -11,6 +11,7 @@ use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\ArtistTrack;
+use App\Transformers\ArtistTrackTransformer;
 
 class ArtistTrackSearch extends RecordSearch
 {
@@ -36,6 +37,11 @@ class ArtistTrackSearch extends RecordSearch
         $this->addExclusiveOnlyFilter($query);
 
         return $query;
+    }
+
+    public function records()
+    {
+        return parent::records()->load(ArtistTrackTransformer::CARD_INCLUDES_PRELOAD);
     }
 
     private function addExclusiveOnlyFilter(BoolQuery $query): void

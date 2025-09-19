@@ -46,8 +46,8 @@ return [
             '_' => 'spor søgning',
 
             'exclusive_only' => [
-                'all' => '',
-                'exclusive_only' => '',
+                'all' => 'Alle',
+                'exclusive_only' => '! original',
             ],
 
             'form' => [
@@ -57,7 +57,7 @@ return [
                 'bpm_gte' => 'Minimum BPM',
                 'bpm_lte' => 'Maksimum BPM',
                 'empty' => 'Ingen spor som matcher søgekriterier blev fundet.',
-                'exclusive_only' => '',
+                'exclusive_only' => 'Type',
                 'genre' => 'Genre',
                 'genre_all' => 'Alle',
                 'length_gte' => 'Minimum Længde',

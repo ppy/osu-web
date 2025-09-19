@@ -4,7 +4,7 @@
 import { PopupMenuPersistent } from 'components/popup-menu-persistent';
 import { ReportReportable } from 'components/report-reportable';
 import ScorePin from 'components/score-pin';
-import { SoloScoreJsonForShow } from 'interfaces/solo-score-json';
+import { ScoreJsonForShow } from 'interfaces/score-json';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { rulesetName } from 'utils/beatmap-helper';
@@ -12,7 +12,7 @@ import { trans } from 'utils/lang';
 import { canBeReported, hasReplay, scoreDownloadUrl } from 'utils/score-helper';
 
 interface Props {
-  score: SoloScoreJsonForShow;
+  score: ScoreJsonForShow;
 }
 
 export default function Buttons(props: Props) {
@@ -33,7 +33,6 @@ export default function Buttons(props: Props) {
       {hasReplay(props.score) && (
         <a
           className='js-login-required--click btn-osu-big btn-osu-big--rounded'
-          data-turbolinks={false}
           href={scoreDownloadUrl(props.score)}
         >
           {trans('users.show.extra.top_ranks.download_replay')}

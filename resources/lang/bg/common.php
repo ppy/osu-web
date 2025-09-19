@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Админ',
         'authorise' => 'Оторизирай',
         'authorising' => 'Оторизиране...',
+        'back' => 'Назад',
         'back_to_previous' => 'Връщане към предишния изглед',
         'back_to_top' => 'Обратно към началото',
         'cancel' => 'Отмяна',
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => 'м',
+        ],
+        'year' => [
+            'php' => 'г',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

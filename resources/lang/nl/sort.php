@@ -12,7 +12,7 @@ return [
     'new' => 'Recent',
     'old' => 'Oud',
     'rank' => 'Rank',
-    'top' => 'Terug naar boven',
+    'top' => 'Beste',
     'username' => 'Gebruikersnaam',
 
     'artist_tracks' => [
@@ -35,6 +35,12 @@ return [
         'created' => 'Aangemaakt',
         'feature_votes' => 'Ster prioriteit',
         'new' => 'Laatste antwoord',
+    ],
+
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
     ],
 
     'users' => [

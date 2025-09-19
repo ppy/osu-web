@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Pro přidání tagu musíš na beatmapě zahrát skóre.',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Tento kanál je pouze pro oznámení.',
         'blocked' => 'Nemůžete napsat uživateli, kterého máte buď zablokovaného nebo vás má v zablokovaných.',
         'friends_only' => 'Uživatel blokuje zprávy od lidí, kteří nejsou v jeho listu přátel.',
         'moderated' => 'Tento kanál je právě moderován.',
         'no_access' => 'Nemáte přístup k tomu kanálu.',
+        'no_announce' => 'Nemáte oprávnění postnout oznámení.',
         'receive_friends_only' => 'Tento uživatel nemusí být schopen odpovědět, protože přijímáte zprávy pouze od lidí ve vašem seznamu přátel.',
         'restricted' => 'Nemůžete posílat zprávy, když jste umlčen, omezen nebo zabanován.',
         'silenced' => 'Nemůžete posílat zprávy, když jste umlčen, omezen nebo zabanován.',
@@ -107,6 +113,7 @@ return [
                 'deleted' => 'Nelze upravovat odstraněný příspěvek.',
                 'locked' => 'Příspěvek je uzamčen od upravování.',
                 'no_forum_access' => 'K vybranému fóru je vyžadován přístup.',
+                'no_permission' => 'Nemáte oprávnění upravovat.',
                 'not_owner' => 'Pouze autor může příspěvek upravit.',
                 'topic_locked' => 'Nelze upravit příspěvek uzamčeného tématu.',
             ],
@@ -170,12 +177,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Pouze vlastník místnosti ji může zavřít.',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Nelze připnout tento typ skóre",
             'failed' => "Nelze připnout neprocházející skóre.",
             'not_owner' => 'Pouze vlastník skóre může připnout skóre.',
             'too_many' => 'Připnuto příliš mnoho skóre.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "Jsi již součástí tohoto týmu.",
+                'already_other_member' => "Jsi již součástí jiného týmu.",
+                'currently_applying' => 'Máte čekající žádosti o připojení.',
+                'team_closed' => 'Tým v současné době nepřijímá žádné žádosti o připojení.',
+                'team_full' => "Tým je plný a nemůže přijmout žádné další členy.",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "Vedoucí týmu nemůže opustit tým.",
+            'not_member' => 'Není členem tohoto týmu.',
+        ],
+        'store' => [
+            'require_supporter_tag' => 'osu!supporter tag je vyžadován pro vytvoření týmu.',
         ],
     ],
 

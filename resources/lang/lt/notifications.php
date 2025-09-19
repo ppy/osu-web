@@ -20,17 +20,19 @@ return [
         'channel' => 'pokalbiai',
         'forum_topic' => 'forumas',
         'news_post' => 'naujienos',
+        'team' => '',
         'user' => 'profilis',
     ],
 
     'filters' => [
         '_' => 'visi',
-        'user' => 'profilis',
         'beatmapset' => 'beatmap\'ai',
-        'forum_topic' => 'forumas',
-        'news_post' => 'naujienos',
         'build' => 'versijos',
         'channel' => 'pokalbiai',
+        'forum_topic' => 'forumas',
+        'news_post' => 'naujienos',
+        'team' => '',
+        'user' => 'profilis',
     ],
 
     'item' => [
@@ -121,6 +123,16 @@ return [
                     'channel_message_group' => 'nuo :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -156,6 +168,22 @@ return [
                 '_' => 'Naujas forumo atsakymas',
                 'forum_topic_reply' => ':username atsakė į ":title"',
                 'forum_topic_reply_compact' => ':username atsakė',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+
+                'team_application_group' => '',
+
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -217,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Naujas skelbimas tarp ":name"',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => 'Tu gavai žinutę iš :username',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -240,6 +270,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Yra naujų atsakymų tarp ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
+                'team_application_store' => '',
             ],
         ],
 

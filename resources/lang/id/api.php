@@ -7,8 +7,8 @@ return [
     'error' => [
         'chat' => [
             'empty' => 'Tidak dapat mengirim pesan kosong.',
-            'limit_exceeded' => 'Anda mengirim pesan terlalu cepat, harap tunggu sebentar sebelum mencoba lagi.',
-            'too_long' => 'Pesan yang ingin dikirim terlalu panjang.',
+            'limit_exceeded' => 'Kamu mengirim pesan terlalu cepat. Silakan tunggu beberapa saat sebelum mencoba lagi.',
+            'too_long' => 'Pesan yang ingin kamu kirim terlalu panjang.',
         ],
     ],
 

@@ -20,17 +20,19 @@ return [
         'channel' => 'Chat',
         'forum_topic' => 'Forum',
         'news_post' => 'Neuigkeiten',
+        'team' => 'Team',
         'user' => 'Profil',
     ],
 
     'filters' => [
         '_' => 'alle',
-        'user' => 'Profil',
         'beatmapset' => 'Beatmaps',
+        'build' => 'Versionen',
+        'channel' => 'Chat',
         'forum_topic' => 'Forum',
         'news_post' => 'Neuigkeiten',
-        'build' => 'Versionen',
-        'channel' => 'chat',
+        'team' => 'Team',
+        'user' => 'Profil',
     ],
 
     'item' => [
@@ -121,6 +123,16 @@ return [
                     'channel_message_group' => 'von :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => 'Neue Teamnachricht',
+
+                'team' => [
+                    'channel_team' => ':username: ":title"',
+                    'channel_team_compact' => ':username: ":title"',
+                    'channel_team_group' => ':username: ":title"',
+                ],
+            ],
         ],
 
         'build' => [
@@ -156,6 +168,22 @@ return [
                 '_' => 'Neue Foren-Antwort',
                 'forum_topic_reply' => ':username antwortete auf ":title"',
                 'forum_topic_reply_compact' => ':username antwortete',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => 'Team-Beitrittsanfrage',
+
+                'team_application_accept' => "Du bist jetzt Mitglied des Teams :title",
+                'team_application_accept_compact' => "Du bist jetzt Mitglied des Teams :title",
+
+                'team_application_group' => 'Akualisierungen zu Team-Beitrittsanfragen',
+
+                'team_application_reject' => 'Deine Beitrittsanfrage für das Team :title wurde abgelehnt',
+                'team_application_reject_compact' => 'Deine Beitrittsanfrage für das Team :title wurde abgelehnt',
+                'team_application_store' => ':title möchte deinem Team beitreten',
+                'team_application_store_compact' => ':title möchte deinem Team beitreten',
             ],
         ],
 
@@ -217,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Es gibt eine neue Ankündigung in ":name"',
+                'channel_announcement' => 'Es gibt eine neue Ankündigung in ":name"',
             ],
-
             'channel' => [
-                'pm' => 'Du hast eine neue Nachricht von :username erhalten',
+                'channel_message' => 'Du hast eine neue Nachricht von :username erhalten',
+            ],
+            'channel_team' => [
+                'channel_team' => 'Es gibt eine neue Nachricht im Team ":name"',
             ],
         ],
 
@@ -240,6 +270,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Es gibt neue Antworten in ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Du bist jetzt Mitglied des Teams :title",
+                'team_application_reject' => 'Deine Beitrittsanfrage für das Team :title wurde abgelehnt',
+                'team_application_store' => ':title möchte deinem Team beitreten',
             ],
         ],
 

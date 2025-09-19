@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'suportahan ang laro',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'impormasyon',
         ],
         'livestreams_controller' => [
             '_' => 'mga live stream',
-        ],
-        'matches_controller' => [
-            '_' => 'matches',
         ],
         'news_controller' => [
             '_' => 'news',
@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => 'mga ranggo',
         ],
+        'teams_controller' => [
+            '_' => '',
+            'create' => '',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'tournaments',
         ],
@@ -122,6 +129,11 @@ return [
             '_' => 'knowledge base',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'panhitulutan ang app',
@@ -129,6 +141,11 @@ return [
     ],
     'store' => [
         '_' => 'osu!store',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

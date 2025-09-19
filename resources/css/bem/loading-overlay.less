@@ -3,7 +3,7 @@
 
 @circle-size: 64px;
 @animation-length: 1.6s;
-@animation-delay: @animation-length / 4;
+@animation-delay: (@animation-length / 4);
 
 .loading-overlay {
   @_top: loading-overlay;
@@ -27,7 +27,7 @@
 
   &::before {
     .full-size();
-    content: ' ';
+    content: "";
     background-color: #000;
     will-change: opacity;
   }
@@ -41,7 +41,6 @@
       animation-fill-mode: forwards;
     }
   }
-
 
   &__container {
     width: @circle-size*4;
@@ -109,7 +108,6 @@
       border-radius: 100%;
       background-color: transparent;
 
-
       .@{_top}--visible & {
         animation-name: loading-overlay--circle-approach;
       }
@@ -146,7 +144,7 @@
     animation-fill-mode: forwards;
     will-change: opacity;
 
-    @animation-delay-start: @animation-delay*1/8;
+    @animation-delay-start: (@animation-delay / 8);
 
     .@{_top}--visible & {
       animation-name: loading-overlay--follow-point;
@@ -188,7 +186,8 @@
     opacity: 1;
   }
 
-  20.1%, 100% {
+  20.1%,
+  100% {
     transform: scale(0.5);
     opacity: 0;
   }
@@ -205,7 +204,8 @@
     opacity: 1;
   }
 
-  40%, 100% {
+  40%,
+  100% {
     transform: scale(1);
     opacity: 0;
   }

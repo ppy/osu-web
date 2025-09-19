@@ -5,16 +5,17 @@
 
 return [
     'mode' => [
+        'artist_track' => 'Utwory wyróżnionych artystów',
         'beatmapset' => 'Beatmapy',
         'forum_post' => 'Forum',
         'other' => 'Inne',
+        'team' => 'Zespoły',
         'user' => 'Użytkownicy',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => 'Brak wyników',
-        'empty_for' => 'Brak wyników dla „:modes”',
+        'empty_for' => 'Brak wyników dla „:mode”',
         'more' => 'Więcej wyników wyszukiwania dla „:mode”',
         'title' => 'Wyniki wyszukiwania dla „:mode”',
     ],

@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => '잠시 멈추시고, 좀 더 플레이해보세요.',
+        'no_mirrors' => '다운로드를 할 서버가 존재하지 않습니다.',
     ],
 
     'featured_artist_badge' => [
@@ -40,20 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => '견습 노미네이터는 여러 게임 모드를 가진 비트맵을 노미네이트 할 수 없습니다.',
+        'full_nomination_required' => '이 게임 모드를 최종 노미네이션 하려면 정식 노미네이터여야 합니다.',
         'hybrid_requires_modes' => '하이브리드 비트맵 셋은 노미네이트 할 플레이 모드를 하나 이상 선택해야 합니다.',
         'incorrect_mode' => ':mode 모드를 노미네이트 할 권한을 가지고 있지 않습니다.',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => '이 비트맵에 적합하지 않은 노미네이션이 있어 Qualify 할 수 없는 상태입니다.',
+        'invalid_ruleset' => '이 노미네이션의 게임 모드가 잘못되었습니다.',
         'too_many' => '노미네이션 요구 사항을 이미 만족했습니다.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => '메인이 아닌 모드에 대한 노미네이션 조건이 충족되었습니다.',
 
         'dialog' => [
             'confirmation' => '정말로 이 비트맵을 노미네이트 하시겠어요?',
+            'different_nominator_warning' => '다른 노미네이터가 이 비트맵을 Qualify하면 Qualification 대기열의 순서가 초기화됩니다.',
             'header' => '비트맵 노미네이트',
             'hybrid_warning' => '주의: 딱 한 번만 노미네이트 할 수 있으므로 자신이 노미네이트 하려는 모든 게임 모드를 선택했는지 확인해주세요.',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => '메인 모드는 현재 :ruleset입니다.',
             'which_modes' => '어떤 모드를 노미네이트 하겠습니까?',
         ],
     ],
@@ -67,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => '전체 사이즈 커버 이미지 보기',
+            'page' => '관리자 페이지 확인',
         ],
 
         'deleted_banner' => [
@@ -138,6 +141,7 @@ return [
             'description' => '설명',
             'genre' => '장르',
             'language' => '언어',
+            'mapper_tags' => '맵 제작자 태그',
             'no_scores' => '데이터를 수집중입니다...',
             'nominators' => '노미네이터',
             'nsfw' => '부적절한 내용',
@@ -146,12 +150,12 @@ return [
             'source' => '출처',
             'storyboard' => '이 비트맵은 스토리보드를 포함합니다.',
             'success-rate' => '클리어 비율',
-            'tags' => '태그',
+            'user_tags' => '사용자 태그',
             'video' => '이 비트맵은 영상을 포함합니다.',
         ],
 
         'nsfw_warning' => [
-            'details' => '이 비트맵은 노골적, 폭력적 혹은 혐오감을 들게 하는 내용이 포함되어 있습니다. 그래도 보시겠습니까?',
+            'details' => '이 비트맵은 노골적, 폭력적 혹은 혐오감이 들 수 있는 내용을 포함하고 있습니다. 그래도 보시겠어요?',
             'title' => '부적절한 내용',
 
             'buttons' => [
@@ -169,6 +173,7 @@ return [
             'global' => '전체 순위',
             'supporter-link' => '서포터로서 누릴 수 있는 다른 멋진 기능들을 확인하려면 <a href=":link">여기</a>를 클릭해주세요!',
             'supporter-only' => 'osu! 서포터가 되어야 국가 및 친구 간 순위를 확인할 수 있습니다!',
+            'team' => '팀 순위',
             'title' => '점수판',
 
             'headers' => [
@@ -190,6 +195,7 @@ return [
                 'friend' => '아직 친구들 중 점수를 기록한 사람이 없습니다!',
                 'global' => '아직 기록된 점수가 없네요. 한 번 기록해보시는 건 어때요?',
                 'loading' => '점수 불러오는 중...',
+                'team' => '이 맵에서 점수를 낸 팀원이 없어요!',
                 'unranked' => '랭크되지 않은 비트맵입니다.',
             ],
             'score' => [

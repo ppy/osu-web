@@ -80,6 +80,7 @@ return [
         'confirm_restore' => '',
         'deleted' => 'נושא שנמחק',
         'go_to_latest' => 'הצג את הפוסט האחרון',
+        'go_to_unread' => '',
         'has_replied' => 'הגבת בנושא זה',
         'in_forum' => 'ב :forum ',
         'latest_post' => ':when על-ידי :user',
@@ -134,7 +135,7 @@ return [
 
             'columns' => [
                 'action' => '',
-                'date' => '',
+                'date' => 'תאריך',
                 'user' => '',
             ],
 
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'נוסר תג "נפתר"',
             'to_1' => 'הוסף תג "נפתר"',
             'to_1_done' => 'נוסף תג "נפתר"',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'lock' => [

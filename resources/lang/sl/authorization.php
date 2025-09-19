@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Ta kanal je namenjen za obvestila.',
         'blocked' => 'Ni možno klepetati z igralcem, ki te je blokiral ali si ga ti blokiral.',
         'friends_only' => 'Igralec ima blokirana sporočila od drugih, ki niso na njegovem seznamu prijateljev.',
         'moderated' => 'Ta kanal je trenutno moderiran.',
         'no_access' => 'Nimaš dostopa do tega kanala.',
+        'no_announce' => '',
         'receive_friends_only' => 'Igralec morda ne bo mogel odgovoriti, ker lahko sprejemaš le sporočila od igralcev s seznama prijateljev.',
         'restricted' => 'Ne moreš pošiljati sporočila medtem, ko si utišan, omejen ali suspendiran.',
         'silenced' => 'Ne moreš pošiljati sporočila medtem, ko si utišan, omejen ali suspendiran.',
@@ -107,6 +113,7 @@ return [
                 'deleted' => 'Izbrisane objave ni možno urejati.',
                 'locked' => 'Objava je zaščitena proti urejanju.',
                 'no_forum_access' => 'Zahtevan je dostop do željenega foruma.',
+                'no_permission' => '',
                 'not_owner' => 'Samo avtor lahko ureja objavo.',
                 'topic_locked' => 'Ni mogoče urejati objave v zaklenjeni temi.',
             ],
@@ -170,12 +177,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "",
             'failed' => "",
             'not_owner' => 'Samo lastnik rezultata lahko pripne rezultat.',
             'too_many' => 'Pripeto je preveč rezultatov.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "",
+                'already_other_member' => "",
+                'currently_applying' => '',
+                'team_closed' => '',
+                'team_full' => "",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "",
+            'not_member' => '',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

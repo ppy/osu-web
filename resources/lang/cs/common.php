@@ -19,15 +19,15 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Admin',
         'authorise' => 'Autorizovat',
         'authorising' => 'Autorizování...',
+        'back' => 'Zpět',
         'back_to_previous' => 'Zpátky na předchozí pozici',
         'back_to_top' => 'Zpátky nahoru',
         'cancel' => 'Zrušit',
         'change' => 'změnit',
         'clear' => 'Vymazat',
-        'click_to_copy' => 'klikněte pro zkopírování do schránky',
+        'click_to_copy' => 'klikni pro zkopírování do schránky',
         'click_to_copy_copied' => 'zkopírováno do schránky!',
         'close' => 'Zavřít',
         'collapse' => 'zabalit',
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => 'm',
+        ],
+        'year' => [
+            'php' => 'l',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

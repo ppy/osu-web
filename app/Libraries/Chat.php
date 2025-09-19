@@ -46,7 +46,7 @@ class Chat
             throw new InvariantException('missing channel parameter');
         }
 
-        $users = User::whereIn('user_id', $params['target_ids'])->get();
+        $users = User::find($params['target_ids']);
         if ($users->isEmpty()) {
             throw new InvariantException('Nobody to broadcast to!');
         }

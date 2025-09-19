@@ -82,7 +82,9 @@
     width: @_logo-size;
     height: @_logo-size;
     margin: -@__logo-whitespace;
-    transition: width var(--header-pinned-animation-duration), height var(--header-pinned-animation-duration);
+    transition:
+      width var(--header-pinned-animation-duration),
+      height var(--header-pinned-animation-duration);
     position: relative;
 
     .@{header-pinned} & {
@@ -99,14 +101,17 @@
     color: @pink-light;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
 
       border-radius: 10px;
       top: (@_link-padding-vertical + @_link-highlight-margin-vertical);
       right: 100%;
       width: 3px;
-      height: calc(100% - (@_link-padding-vertical * 2 + @_link-highlight-margin-vertical * 2));
+      height: calc(
+        100% -
+          (@_link-padding-vertical * 2 + @_link-highlight-margin-vertical * 2)
+      );
       background-color: @yellow;
       opacity: 0;
       will-change: opacity;
@@ -135,7 +140,8 @@
     .@{_top}__colgroup:hover & {
       color: fade(#fff, 70%);
 
-      &:hover, &.js-menu--active {
+      &:hover,
+      &.js-menu--active {
         color: #fff;
       }
     }
@@ -145,6 +151,10 @@
       .circle(40px);
       align-self: center;
       padding: 0;
+
+      &:hover {
+        background-color: hsl(var(--hsl-h1));
+      }
     }
   }
 

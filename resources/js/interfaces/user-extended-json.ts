@@ -46,6 +46,7 @@ interface UserExtendedAdditionalAttributes {
   playmode: Ruleset;
   playstyle: string[];
   post_count: number;
+  profile_hue: number | null;
   profile_order: ProfileExtraPage[];
   title: string | null;
   title_url: string | null;

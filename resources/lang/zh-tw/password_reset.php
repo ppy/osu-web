@@ -11,13 +11,13 @@ return [
     ],
 
     'error' => [
-        'contact_support' => '請聯繫支援團隊以找回帳戶。',
+        'contact_support' => '請聯絡支援團隊以救援帳號。',
         'expired' => '驗證碼已過期。',
         'invalid' => '驗證碼中發生未預期的錯誤。',
         'is_privileged' => '聯繫 peppy（笑）',
         'missing_key' => '必填',
         'too_many_tries' => '重試次數過多',
-        'user_not_found' => '請求的用戶不存在',
+        'user_not_found' => '請求的使用者不存在。',
         'wrong_key' => '不正確的驗證碼',
     ],
 
@@ -29,19 +29,19 @@ return [
     'started' => [
         'password' => '新密碼',
         'password_confirmation' => '確認新密碼',
-        'title' => '為 <strong>:username</strong> 重置密碼',
+        'title' => '為 <strong>:username</strong> 重設密碼',
         'verification_key' => '驗證碼',
     ],
 
     'starting' => [
-        'username' => '輸入郵件地址或使用者名稱',
+        'username' => '輸入電子郵件地址或使用者名稱',
 
         'reason' => [
             'inactive_different_country' => "您的帳戶已長時間未使用。為確保帳戶安全，請重設您的密碼。",
         ],
         'support' => [
-            '_' => '需要進一步的幫助？通過我們的 :button 聯繫我們。',
-            'button' => '支持系統',
+            '_' => '需要進一步的幫助？透過我們的 :button 聯絡我們。',
+            'button' => '支援系統',
         ],
     ],
 ];

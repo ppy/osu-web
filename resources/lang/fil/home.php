@@ -26,6 +26,9 @@ return [
         'placeholder' => 'mag-type para makapag-search',
         'title' => 'Hanapin',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Mag sign-in para maka-search ng beatmaps',
             'more' => ':count pang resulta ng beatmap search',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'lahat',
+            'artist_track' => '',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
+            'team' => '',
             'user' => 'manlalaro',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [
@@ -134,14 +143,21 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Mga bagong na-rank na Beatmap',
             'popular' => 'Popular na mga Beatmap',
             'by_user' => 'ni :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'I-download ang osu!',
             'support' => 'Suportahan ang osu!',
             'store' => 'osu!store',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

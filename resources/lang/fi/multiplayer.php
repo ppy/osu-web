@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Ei vielä osu!(lazer) -:type_group pelattu!',
+        'active' => 'Ei tällä hetkellä missään keskeneräisessä osu!(lazer) :type_group pelissä!',
+        'ended' => 'Ei vielä missään valmiissa osu!(lazer) :type_group pelissä!',
         'playlists' => 'soittolistoja',
         'realtime' => 'moninpelejä',
     ],
@@ -16,9 +17,12 @@ return [
         'map_count' => ':count_delimited kartta|:count_delimited karttaa',
         'player_count' => ':count_delimited pelaaja|:count_delimited pelaajaa',
         'time_left' => ':time jäljellä',
+        'view_history' => 'Näytä Historia',
+        'view_summary' => 'Näytä yhteenveto',
 
         'errors' => [
             'duration_too_long' => 'Liian pitkä aika.',
+            'name_too_long' => 'Huoneen nimi on liian pitkä.',
         ],
 
         'status' => [

@@ -24,9 +24,19 @@ return [
         'title' => 'Raportează postarea lui :username?',
     ],
 
+    'message' => [
+        'button' => 'Raportează Mesajul',
+        'title' => 'Raportezi mesajul lui :username?',
+    ],
+
     'scores' => [
         'button' => 'Raportează Scorul',
         'title' => 'Raportezi scorul lui :username?',
+    ],
+
+    'team' => [
+        'button' => 'Raportează Echipa',
+        'title' => 'Raportezi echipa lui :username?',
     ],
 
     'user' => [

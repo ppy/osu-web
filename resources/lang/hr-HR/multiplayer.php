@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Nijedna osu!(lazer) :type_group još nije odigrana!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'popis za reprodukciju',
         'realtime' => 'multiplayer',
     ],
@@ -16,9 +17,12 @@ return [
         'map_count' => ':count_delimited mapa|:count_delimited mape',
         'player_count' => ':count_delimited igrač|:count_delimited igrača',
         'time_left' => 'preostalo :time',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => 'Trajanje je predugo.',
+            'name_too_long' => '',
         ],
 
         'status' => [

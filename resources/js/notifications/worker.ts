@@ -3,8 +3,8 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
+import { isUserVerificationXhr } from 'core/user/user-verification';
 import DispatchListener from 'dispatch-listener';
-import { isErrorJson } from 'interfaces/error-json';
 import { NotificationBundleJson } from 'interfaces/notification-json';
 import { route } from 'laroute';
 import { action, computed, makeObservable, observable, observe, runInAction } from 'mobx';
@@ -116,7 +116,7 @@ export default class Worker implements DispatchListener {
         this.retryDelay.reset();
       }))
       .fail((xhr) => runInAction(() => {
-        if (isErrorJson(xhr.responseJSON) && xhr.responseJSON.error === 'verification') {
+        if (isUserVerificationXhr(xhr)) {
           this.waitingVerification = true;
 
           return;

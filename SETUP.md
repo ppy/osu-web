@@ -96,9 +96,9 @@ Note that older versions of Elasticsearch do not work on ARM-based CPUs.
 
 `osu-elastic-indexer` currently cannot update indices using Elasticsearch 7; existing records can still be queried normally.
 
-### Mysql
+### MySQL
 
-The Mysql images provided by Docker and Mysql have different uids for the `mysql` user, if you are getting permission errors when starting the `db` container like
+The MySQL images provided by Docker and MySQL have different uids for the `mysql` user, if you are getting permission errors when starting the `db` container like
 
     mysqld: File './binlog.index' not found (OS errno 13 - Permission denied)
 
@@ -186,6 +186,7 @@ docker compose run --rm php mysql
 Docker images need to be occasionally updated to make sure they're running latest version of the packages.
 
 ```
+docker compose pull
 docker compose build --no-cache
 ```
 
@@ -208,6 +209,14 @@ p artisan tinker
 
 # Development
 
+## Reset the database + seeding sample data
+
+```
+php artisan migrate:fresh --seed
+```
+
+Run the above command to rebuild the database and populate it with sample data. In order for the seeder to seed beatmaps, you must enter a valid osu! API key as the value of the `OSU_API_KEY` property in the `.env` configuration file, as the seeder obtains beatmap data from the osu! API. The key can be obtained from [the "Legacy API" section of your account settings page](https://osu.ppy.sh/home/account/edit#legacy-api).
+
 ## Creating your initial user
 
 In the repository directory:
@@ -217,6 +226,8 @@ php artisan tinker
 >>> (new App\Libraries\UserRegistration(["username" => "yourusername", "user_email" => "your@email.com", "password" => "yourpassword"]))->save();
 ```
 
+Note that seeding sample data (the step above this) is required for user registration to work, otherwise the command above will fail due to missing user groups or otherwise.
+
 ## Generating assets
 
 ```bash
@@ -225,14 +236,6 @@ yarn run development
 ```
 
 Note that if you use the bundled docker compose setup, yarn/webpack will be already run in watch mode.
-
-## Reset the database + seeding sample data
-
-```
-php artisan migrate:fresh --seed
-```
-
-Run the above command to rebuild the database and populate it with sample data. In order for the seeder to seed beatmaps, you must enter a valid osu! API key as the value of the `OSU_API_KEY` property in the `.env` configuration file, as the seeder obtains beatmap data from the osu! API. The key can be obtained from [the "Legacy API" section of your account settings page](https://osu.ppy.sh/home/account/edit#legacy-api).
 
 ## Continuous asset generation while developing
 
@@ -329,7 +332,6 @@ bin/run_dusk.sh
 or if using Docker:
 
 ```
-# `compose exec` doesn't work here due to port conflict with dev instance
 docker compose run --rm php test browser
 ```
 
@@ -353,7 +355,7 @@ yarn karma start --single-run
 or if using Docker:
 
 ```
-docker compose run --rm php test js
+docker compose run --rm testjs
 ```
 
 # Documentation

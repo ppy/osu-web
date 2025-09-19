@@ -7,7 +7,7 @@ return [
     'error' => [
         'chat' => [
             'empty' => 'Non puoi inviare messaggi vuoti.',
-            'limit_exceeded' => 'Stai inviando messaggi troppo velocemente, per favore aspetta un po\' prima di riprovare.',
+            'limit_exceeded' => 'Stai inviando messaggi troppo velocemente, aspetta un po\' prima di riprovare.',
             'too_long' => 'Il messaggio che vuoi inviare è troppo lungo.',
         ],
     ],
@@ -19,7 +19,7 @@ return [
         'chat' => [
             'read' => 'Leggere messaggi a nome tuo.',
             'write' => 'Mandare messaggi a nome tuo.',
-            'write_manage' => 'Unirsi e lasciare canali a nome tuo.',
+            'write_manage' => 'Unirsi e abbandonare canali a nome tuo.',
         ],
 
         'forum' => [

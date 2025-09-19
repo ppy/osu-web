@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Uspori, igraj više.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Jesi li siguran/na da želiš nominirati ovu beatmapu?',
+            'different_nominator_warning' => '',
             'header' => 'Nominiraj beatmapu',
             'hybrid_warning' => 'napomena: možetš nominirati samo jednom, stoga te molimo da budeš siguran/na da nominiraš za sve načine igre koje namjeravaš',
             'current_main_ruleset' => '',
@@ -67,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => '',
+            'page' => '',
         ],
 
         'deleted_banner' => [
@@ -138,6 +141,7 @@ return [
             'description' => 'Opis',
             'genre' => 'Žanr',
             'language' => 'Jezik',
+            'mapper_tags' => '',
             'no_scores' => 'Podaci se još kalkuliraju...',
             'nominators' => 'Nominatori',
             'nsfw' => 'Eksplicitni sadržaj',
@@ -146,7 +150,7 @@ return [
             'source' => 'Izvor',
             'storyboard' => 'Ova beatmapa sadrži storyboard',
             'success-rate' => 'Stopa uspjeha',
-            'tags' => 'Oznake',
+            'user_tags' => '',
             'video' => 'Ova beatmapa sadrži video',
         ],
 
@@ -169,6 +173,7 @@ return [
             'global' => 'Globalni rang',
             'supporter-link' => 'Klikni <a href=":link">ovdje</a> da vidiš sve otmjene značajke koje dobivaš!',
             'supporter-only' => 'Moraš biti osu!supporter da bi pristupio/la ljestvicama specifičnim za prijatelje, državu ili mod!',
+            'team' => '',
             'title' => 'Scoreboard',
 
             'headers' => [
@@ -190,6 +195,7 @@ return [
                 'friend' => 'Nitko od tvojih prijatelja još nije postavio rezultat na ovoj mapi!',
                 'global' => 'Još nema rezultata. Možda bi trebao/la pokušati postaviti jednog?',
                 'loading' => 'Učitavanje rezultata...',
+                'team' => '',
                 'unranked' => 'Nerangirane beatmape.',
             ],
             'score' => [

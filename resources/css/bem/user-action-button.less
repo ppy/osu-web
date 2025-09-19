@@ -51,7 +51,7 @@
     .default-text-shadow();
     min-width: 80px;
     width: auto;
-    height: 100%;
+    height: var(--item-height);
     padding: 10px 10px;
     border-radius: 10000px;
     font-weight: bold;
@@ -71,7 +71,7 @@
   &--user-card {
     height: @user-card-icon-size;
     width: @user-card-icon-size;
-    font-size: @user-card-icon-size / 2;
+    font-size: (@user-card-icon-size / 2);
     border-radius: 50%;
   }
 

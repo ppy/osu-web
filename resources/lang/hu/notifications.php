@@ -20,17 +20,19 @@ return [
         'channel' => 'csevegés',
         'forum_topic' => 'fórum',
         'news_post' => 'újdonságok',
+        'team' => 'csapat',
         'user' => 'profil',
     ],
 
     'filters' => [
         '_' => 'összes',
-        'user' => 'profil',
         'beatmapset' => 'beatmapek',
-        'forum_topic' => 'fórum',
-        'news_post' => 'újdonságok',
         'build' => 'verziók',
         'channel' => 'csevegés',
+        'forum_topic' => 'fórum',
+        'news_post' => 'újdonságok',
+        'team' => 'csapat',
+        'user' => 'profil',
     ],
 
     'item' => [
@@ -122,6 +124,16 @@ return [
                     'channel_message_group' => 'tőle: :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -157,6 +169,22 @@ return [
                 '_' => 'Új fórum válasz',
                 'forum_topic_reply' => ':username válaszolt a fórum témára ":title".',
                 'forum_topic_reply_compact' => ':username válaszolt',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "Mostantól a :title csapat tagja vagy",
+                'team_application_accept_compact' => "Mostantól a :title csapat tagja vagy",
+
+                'team_application_group' => '',
+
+                'team_application_reject' => 'A :title csapatba való jelentkezésedet elutasították',
+                'team_application_reject_compact' => 'A :title csapatba való jelentkezésedet elutasították',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -218,11 +246,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Új hirdetmény van ":name" csatornában',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => 'Új üzenetet kaptál tőle::username',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -241,6 +271,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Új válaszok itt: ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Mostantól a :title csapat tagja vagy",
+                'team_application_reject' => 'A :title csapatba való jelentkezésedet elutasították',
+                'team_application_store' => '',
             ],
         ],
 

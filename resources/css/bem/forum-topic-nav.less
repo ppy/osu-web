@@ -138,7 +138,6 @@
         display: none;
       }
     }
-
   }
 
   &__mobile-float {
@@ -159,7 +158,9 @@
     position: absolute;
     left: 0;
     bottom: 100%;
-    transition: width 500ms ease-out, height 120ms ease-out;
+    transition:
+      width 500ms ease-out,
+      height 120ms ease-out;
     cursor: pointer;
     backface-visibility: hidden;
 
@@ -172,7 +173,7 @@
 
     // easier targeting
     &::after {
-      content: ' ';
+      content: "";
       position: absolute;
       left: 0;
       bottom: 100%;
@@ -215,10 +216,12 @@
     height: var(--main-height);
   }
 
-
   &__seek-tooltip {
     position: absolute;
-    bottom: calc(var(--main-height) + @_seek-bar-height-desktop-hover + @_seek-tooltip-arrow-height);
+    bottom: calc(
+      var(--main-height) + @_seek-bar-height-desktop-hover +
+        @_seek-tooltip-arrow-height
+    );
 
     display: flex;
     width: 0;
@@ -234,7 +237,7 @@
     flex: none;
 
     &::before {
-      content: ' ';
+      content: "";
       position: absolute;
       top: 100%;
       left: 50%;

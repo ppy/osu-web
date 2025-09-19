@@ -178,11 +178,11 @@ return [
 
     'providers' => ServiceProvider::defaultProviders()->except([
         Illuminate\Cookie\CookieServiceProvider::class,
+        Illuminate\Database\MigrationServiceProvider::class,
         Illuminate\Session\SessionServiceProvider::class,
     ])->merge([
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
         // Override default migrate:fresh
         App\Providers\MigrationServiceProvider::class,
         App\Providers\PassportServiceProvider::class,

@@ -5,14 +5,14 @@
 
 return [
     'completed' => [
-        'home' => 'Buka dasbor',
+        'home' => 'Tuju dasbor',
         'logout' => 'Keluar',
         'text' => 'Kamu dapat menutup tab/jendela ini sekarang',
-        'title' => 'verifikasi klien osu! berhasil',
+        'title' => 'Verifikasi klien osu! selesai',
     ],
 
     'create' => [
-        'confirm' => 'Klik tombol di bawah ini untuk menyelesaikan proses verifikasi.',
+        'confirm' => 'Klik tombol di bawah ini untuk menyelesaikan verifikasi klien.',
         'title' => 'Verifikasi klien osu!',
     ],
 ];

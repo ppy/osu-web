@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => '',
         'modding_description_empty' => '',
@@ -159,14 +166,24 @@ return [
             'cancel' => 'Poništi',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Varanje',
-            'multiple_accounts' => 'Korištenje više korisničkih profila',
+            'copyright_infringement' => '',
+            'inappropriate_chat' => '',
             'insults' => 'Vrijeđanje mene / drugih',
-            'spam' => 'Spamanje',
-            'unwanted_content' => 'Povezivanje neprikladnog sadržaja',
+            'multiple_accounts' => 'Korištenje više korisničkih profila',
             'nonsense' => 'Gluposti',
             'other' => 'Ostalo (navedite ispod)',
+            'spam' => 'Spamanje',
+            'unwanted_content' => 'Povezivanje neprikladnog sadržaja',
         ],
     ],
     'restricted_banner' => [
@@ -196,10 +213,30 @@ return [
             'to_0' => 'Sakrij naslovnicu',
             'to_1' => 'Prikaži naslovnicu',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'playcount' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Promjeni naslovnicu profila',
                 'defaults_info' => 'Više opcija naslovnice bit će dostupno u budućnosti',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Obrada slike nije uspjela. Provjeri učitanu sliku i pokušaj ponovno.',
                     'button' => 'Postavi sliku',
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'zadani način igre',
                 'set' => 'postavi :mode kao zadani način igre na profilu',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 
@@ -449,8 +496,13 @@ return [
             'global_simple' => 'Globalni rang',
             'highest' => 'Najviši položaj: :rank na :date',
         ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
+        ],
         'stats' => [
             'hit_accuracy' => 'Preciznost pogodaka',
+            'hits_per_play' => '',
             'level' => 'Level :level',
             'level_progress' => 'Napredak na sljedeću razinu',
             'maximum_combo' => 'Najveći combo',

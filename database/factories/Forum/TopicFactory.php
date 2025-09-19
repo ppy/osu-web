@@ -61,13 +61,13 @@ class TopicFactory extends Factory
             );
     }
 
-    public function withPost(): static
+    public function withPost(array $attribs = []): static
     {
         return $this
             ->has(
                 Post::factory()
-                    ->state(function (array $_attr, Topic $topic) {
-                        $attributes = ['post_time' => $topic->topic_time];
+                    ->state(function (array $_attr, Topic $topic) use ($attribs) {
+                        $attributes = [...$attribs, 'post_time' => $topic->topic_time];
 
                         if ($topic->topic_poster !== null) {
                             $attributes['poster_id'] = $topic->topic_poster;

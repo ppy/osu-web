@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => 'Activas',
+            'ended' => 'Finalizadas',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Mapas: :counts',
         'modding_description_empty' => 'El usuario no tiene ningún beatmap...',
@@ -159,14 +166,24 @@ return [
             'cancel' => 'Cancelar',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => 'Por favor, reporta la infracción de derechos de autor a través de una reclamación de DMCA a :mail según :policy.',
+                'policy' => 'la política de derechos de autor de osu!',
+            ],
+            'message_2' => 'Esto se aplica a los casos en los que se usan pistas de audio, contenido visual o contenido de los mapas sin el permiso correcto.',
+        ],
+
         'options' => [
             'cheating' => 'Juega sucio o hace trampa',
-            'multiple_accounts' => 'Utiliza múltiples cuentas',
+            'copyright_infringement' => 'Infracción de derechos de autor',
+            'inappropriate_chat' => 'Conducta inapropiada en el chat',
             'insults' => 'Insultándome/insultando a otros',
-            'spam' => 'Envía muchos mensajes a la vez (spam)',
-            'unwanted_content' => 'Enlaza contenido inapropiado',
+            'multiple_accounts' => 'Utiliza múltiples cuentas',
             'nonsense' => 'Sin sentido',
             'other' => 'Otros (indicar abajo)',
+            'spam' => 'Envía muchos mensajes a la vez (spam)',
+            'unwanted_content' => 'Enlaza contenido inapropiado',
         ],
     ],
     'restricted_banner' => [
@@ -196,10 +213,30 @@ return [
             'to_0' => 'Ocultar portada',
             'to_1' => 'Mostrar portada',
         ],
+        'daily_challenge' => [
+            'daily' => 'Racha diaria',
+            'daily_streak_best' => 'Mejor racha diaria',
+            'daily_streak_current' => 'Racha diaria actual',
+            'playcount' => 'Participación total',
+            'title' => 'Desafío\ndiario',
+            'top_10p_placements' => 'Puestos en el top 10 %',
+            'top_50p_placements' => 'Puestos en el top 50 %',
+            'weekly' => 'Racha semanal',
+            'weekly_streak_best' => 'Mejor racha semanal',
+            'weekly_streak_current' => 'Racha semanal actual',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Cambiar portada de perfil',
                 'defaults_info' => 'Más opciones de portadas estarán disponibles en el futuro',
+                'holdover_remove_confirm' => "La portada seleccionada anteriormente ya no está disponible para su selección. No puedes volver a seleccionarla después de cambiar a otra portada. ¿Quieres continuar?",
+                'title' => 'Portada',
+
                 'upload' => [
                     'broken_file' => 'Error al procesar la imagen. Verifica la imagen subida e intenta de nuevo.',
                     'button' => 'Subir imagen',
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'modo de juego predeterminado',
                 'set' => 'establecer :mode como el modo de juego predeterminado del perfil',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '¿Restablecer al color predeterminado? Se necesitará una etiqueta de osu!supporter para cambiar el color.',
+                'title' => 'Color',
+
+                'supporter' => [
+                    '_' => 'Los colores personalizados solo están disponibles para :link',
+                    'link' => 'osu!supporters',
+                ],
             ],
         ],
 
@@ -449,8 +496,13 @@ return [
             'global_simple' => 'Clasificación global',
             'highest' => 'Clasificación más alta: :rank el :date',
         ],
+        'season_stats' => [
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Puntuación total',
+        ],
         'stats' => [
             'hit_accuracy' => 'Precisión',
+            'hits_per_play' => 'Pulsaciones por jugada',
             'level' => 'Nivel :level',
             'level_progress' => 'progreso al siguiente nivel',
             'maximum_combo' => 'Combo máximo',

@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'bình luận',
         'hide_judged' => 'ẩn các bài thi đã được đánh giá',
         'nav_title' => 'đánh giá',
         'no_current_vote' => 'bạn vẫn chưa bầu chọn.',
@@ -29,7 +30,9 @@ return [
         '_' => 'Kết quả đánh giá',
         'creator' => 'tác giả',
         'score' => 'Điểm',
+        'score_std' => 'Điểm hàng loạt',
         'total_score' => 'tổng điểm',
+        'total_score_std' => 'tổng điểm hàng loạt',
     ],
 
     'voting' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'phiếu',
         'count' => ':count phiếu',
         'points' => ':count điểm',
+        'points_float' => ':points điểm',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Nhận Bài Dự Thi',
         'voting' => 'Bắt Đầu Bình Chọn',
         'results' => 'Đã Có Kết Quả',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

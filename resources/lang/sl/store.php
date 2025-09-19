@@ -55,6 +55,7 @@ return [
         'contact' => '',
         'date' => '',
         'echeck_delay' => 'Ker je bilo tvoje plačilo narejeno z eCheck-om, prosimo počakaj vsaj do 10 dodatnih dni, da se plačilo poravna preko PayPal-a!',
+        'echeck_denied' => '',
         'hide_from_activity' => 'osu!supporter oznake v tem naročilu ne bodo prikazane v tvojih nedavnih dejavnostih.',
         'sent_via' => '',
         'shipping_to' => '',
@@ -173,6 +174,7 @@ return [
 
         'add_to_cart' => 'Dodaj v košarico',
         'notify' => 'Obvesti me, ko bo na voljo!',
+        'out_of_stock' => '',
 
         'notification_success' => 'obveščen boš, ko bo nova zaloga. za preklic klikni :link',
         'notification_remove_text' => 'tukaj',

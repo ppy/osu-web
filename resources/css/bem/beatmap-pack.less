@@ -9,15 +9,10 @@
   width: 100%;
   margin: 2px 0;
 
-  &.js-accordion__item--expanded, &--expanded  {
+  &.js-accordion__item--expanded,
+  &--expanded {
     .thicker-box-shadow();
     z-index: 1;
-  }
-
-  &__author {
-    &--bold {
-      font-weight: 600;
-    }
   }
 
   &__body {
@@ -43,7 +38,8 @@
     background-color: @osu-colour-b3;
     display: flex;
 
-    .js-accordion__item--expanded &, .@{_top}--expanded & {
+    .js-accordion__item--expanded &,
+    .@{_top}--expanded & {
       background-color: @osu-colour-b2;
     }
 
@@ -53,7 +49,8 @@
   }
 
   &__name {
-    .js-accordion__item--expanded &, .@{_top}--expanded & {
+    .js-accordion__item--expanded &,
+    .@{_top}--expanded & {
       font-weight: 600;
     }
   }

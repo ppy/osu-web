@@ -14,6 +14,7 @@ use League\Fractal\Resource\ResourceInterface;
 class ContestTransformer extends TransformerAbstract
 {
     protected array $availableIncludes = [
+        'current_user_attributes',
         'entries',
         'scoring_categories',
         'max_judging_score',
@@ -31,6 +32,7 @@ class ContestTransformer extends TransformerAbstract
             'header_url' => $contest->header_url,
             'id' => $contest->id,
             'judged' => $contest->isJudged(),
+            'show_judges' => $contest->getShowJudgesAttribute(),
             'link_icon' => $contest->link_icon,
             'max_entries' => $contest->max_entries,
             'max_votes' => $contest->max_votes,
@@ -44,6 +46,13 @@ class ContestTransformer extends TransformerAbstract
             'forced_height' => $contest->getForcedHeight(),
             'voting_ends_at' => json_time($contest->voting_ends_at),
         ];
+    }
+
+    public function includeCurrentUserAttributes(Contest $contest)
+    {
+        return $this->primitive([
+            'can_judge' => priv_check('ContestJudge', $contest)->can(),
+        ]);
     }
 
     public function includeEntries(Contest $contest)

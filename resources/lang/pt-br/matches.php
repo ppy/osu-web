@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner por :difference',
 
         'events' => [
-            'player-left' => ':user saiu da partida',
-            'player-joined' => ':user entrou na partida',
-            'player-kicked' => ':user foi expulso da partida',
-            'match-created' => ':user criou a partida',
-            'match-disbanded' => 'a partida foi desfeita',
-            'host-changed' => ':user tornou-se o líder',
-
-            'player-left-no-user' => 'um jogador deixou a partida',
-            'player-joined-no-user' => 'um jogador entrou na partida',
-            'player-kicked-no-user' => 'um jogador foi expulso da partida',
-            'match-created-no-user' => 'a partida foi criada',
-            'match-disbanded-no-user' => 'a partida foi desfeita',
-            'host-changed-no-user' => 'o líder foi alterado',
+            'game_aborted' => 'o jogo foi cancelado',
+            'game_aborted_no_user' => 'o jogo foi cancelado',
+            'game_completed' => 'o jogo terminou',
+            'game_completed_no_user' => 'o jogo terminou',
+            'host_changed' => ':user tornou-se o anfitrião',
+            'host_changed_no_user' => 'o líder foi alterado',
+            'player_joined' => ':user entrou na partida',
+            'player_joined_no_user' => 'um jogador entrou na partida',
+            'player_kicked' => ':user foi expulso da partida',
+            'player_kicked_no_user' => 'um jogador foi expulso da partida',
+            'player_left' => ':user saiu da partida',
+            'player_left_no_user' => 'um jogador deixou a partida',
+            'room_created' => ':user criou a partida',
+            'room_created_no_user' => 'a partida foi desfeita',
+            'room_disbanded' => 'a partida foi desfeita',
+            'room_disbanded_no_user' => 'a partida foi desfeita',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+        'team_types' => [
+            'head_to_head' => 'Mata-mata',
+            'tag_coop' => 'Tag Co-op',
+            'tag_team_versus' => 'Tag Team VS',
+            'team_versus' => 'Equipe VS Equipe',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => 'Estilo Livre',
+
         'scoring-type' => [
             'score' => 'Maior Pontuação',
             'accuracy' => 'Maior Precisão',

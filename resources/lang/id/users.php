@@ -15,11 +15,11 @@ return [
         ],
 
         'events' => [
-            'title_recent' => 'Peristiwa terbaru',
+            'title_recent' => 'Peristiwa terkini',
         ],
 
         'posts' => [
-            'title_recent' => 'Postingan terbaru',
+            'title_recent' => 'Postingan terkini',
         ],
 
         'votes_received' => [
@@ -64,7 +64,7 @@ return [
             'username' => 'nama pengguna',
 
             'tos_notice' => [
-                '_' => 'dengan membuat akun, anda menyatakan diri setuju dengan :link yang berlaku',
+                '_' => 'dengan membuat akun, kamu menyatakan diri setuju dengan :link yang berlaku',
                 'link' => 'ketentuan layanan',
             ],
         ],
@@ -72,10 +72,10 @@ return [
 
     'disabled' => [
         'title' => 'Uh-oh! Sepertinya akunmu telah dinonaktifkan.',
-        'warning' => "Apabila kamu melanggar peraturan, akunmu akan ditempatkan pada masa percobaan selama satu bulan, di mana dalam rentang waktu ini kami tidak akan menanggapi permintaan apa pun yang terkait dengan akun Anda. Setelah masa ini berakhir, Anda baru akan dapat menghubungi kami untuk mengembalikan akunmu. Mohon diperhatikan bahwa membuat akun baru <strong>hanya akan menambah masa hukumanmu</strong>, dan <strong>masa hukumanmu akan bertambah panjang untuk setiap akun baru yang kamu buat</strong>. Kami harap kamu dapat belajar dari kesalahanmu!",
+        'warning' => "Apabila kamu melanggar peraturan, akunmu akan ditempatkan pada masa tenggang selama satu bulan, di mana dalam rentang waktu ini kami tidak akan menanggapi permintaan banding apa pun yang terkait dengan akun kamu. Setelah masa ini berakhir, kamu baru akan dapat menghubungi kami untuk mengembalikan akunmu. Mohon diperhatikan bahwa membuat akun baru setelah akun utamamu dinonaktifkan <strong>hanya akan memperpanjang masa hukumanmu selama satu bulan</strong>, dan <strong>pelanggaranmu akan semakin berat untuk setiap akun baru yang kamu buat</strong>. Kami harap kamu dapat belajar dari kesalahanmu!",
 
         'if_mistake' => [
-            '_' => 'Apabila kamu merasa bahwa hal ini merupakan sebuah kesalahan, kamu dapat menghubungi kami (baik melalui :email atau tombol "?" yang terletak pada pojok kanan bawah layar) sesegera mungkin. Mohon diperhatikan bahwa segala keputusan yang kami ambil selalu berdasar pada data dan diambil dengan penuh keyakinan. Di samping itu, kami juga berhak untuk tidak menindaklanjuti aduanmu apabila kami merasa kamu dengan sengaja telah berbohong kepada kami.',
+            '_' => 'Apabila kamu merasa bahwa hal ini merupakan sebuah kesalahan, kamu dipersilakan untuk menghubungi kami (baik melalui :email atau tombol "?" yang terletak pada pojok kanan bawah halaman ini) secara langsung. Mohon diperhatikan bahwa kami selalu sepenuhnya yakin akan seluruh tindakan kami, karena segala sesuatunya selalu kami dasarkan pada data yang konkrit. Kami berhak untuk tidak menindaklanjuti aduanmu apabila kami merasa kamu telah dengan sengaja berbohong kepada kami.',
             'email' => 'email',
         ],
 
@@ -106,7 +106,7 @@ return [
         '_' => 'Masuk',
         'button' => 'Masuk',
         'button_posting' => 'Mencoba masuk...',
-        'email_login_disabled' => 'Alamat email untuk saat ini tidak dapat digunakan untuk masuk. Silakan masuk dengan menggunakan nama pengguna.',
+        'email_login_disabled' => 'Entri masuk dengan email saat ini sedang dinonaktifkan. Silakan masuk dengan menggunakan nama pengguna.',
         'failed' => 'Rincian masuk salah',
         'forgot' => 'Lupa kata sandi?',
         'info' => 'Silakan masuk untuk melanjutkan',
@@ -121,6 +121,13 @@ return [
         'beta' => [
             'main' => 'Akses beta saat ini terbatas bagi para pengguna dengan hak khusus.',
             'small' => '(para pemilik osu!supporter akan segera masuk)',
+        ],
+    ],
+
+    'multiplayer' => [
+        'index' => [
+            'active' => 'Aktif',
+            'ended' => 'Berakhir',
         ],
     ],
 
@@ -159,14 +166,24 @@ return [
             'cancel' => 'Batal',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => 'Silakan laporkan pelanggaran hak cipta melalui klaim DMCA ke :mail sesuai dengan :policy yang berlaku.',
+                'policy' => 'kebijakan hak cipta osu!',
+            ],
+            'message_2' => 'Hal ini berlaku pada kasus di mana trek audio, konten visual, atau konten level beatmap yang ada dipergunakan tanpa izin yang semestinya.',
+        ],
+
         'options' => [
             'cheating' => 'Melakukan kecurangan',
-            'multiple_accounts' => 'Menggunakan lebih dari satu akun',
+            'copyright_infringement' => 'Pelanggaran hak cipta',
+            'inappropriate_chat' => 'Berperilaku tidak pantas dalam chat',
             'insults' => 'Menghina saya / orang lain',
-            'spam' => 'Spam',
-            'unwanted_content' => 'Menautkan konten yang tidak pantas',
+            'multiple_accounts' => 'Menggunakan lebih dari satu akun',
             'nonsense' => 'Beromong kosong',
             'other' => 'Lainnya (ketik di bawah)',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Menautkan konten yang tidak pantas',
         ],
     ],
     'restricted_banner' => [
@@ -196,10 +213,30 @@ return [
             'to_0' => 'Sembunyikan sampul',
             'to_1' => 'Tampilkan sampul',
         ],
+        'daily_challenge' => [
+            'daily' => 'Rantai Harian',
+            'daily_streak_best' => 'Rantai Harian Terlama',
+            'daily_streak_current' => 'Rantai Harian Saat Ini',
+            'playcount' => 'Jumlah Keikutsertaan',
+            'title' => 'Tantangan\nHarian',
+            'top_10p_placements' => 'Penempatan 10% Teratas',
+            'top_50p_placements' => 'Penempatan 50% Teratas',
+            'weekly' => 'Rantai Mingguan',
+            'weekly_streak_best' => 'Rantai Mingguan Terlama',
+            'weekly_streak_current' => 'Rantai Mingguan Saat Ini',
+
+            'unit' => [
+                'day' => ':valuehr',
+                'week' => ':valuemg',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Ubah Sampul Profil',
                 'defaults_info' => 'Pilihan sampul lainnya akan tersedia di masa mendatang',
+                'holdover_remove_confirm' => "Gambar sampul yang sebelumnya dipilih kini sudah tidak lagi tersedia. Kamu tidak lagi akan dapat memilih gambar ini setelah kamu beralih ke gambar sampul lain. Lanjut?",
+                'title' => 'Sampul',
+
                 'upload' => [
                     'broken_file' => 'Gambar gagal diproses. Periksa keabsahan gambar yang diunggah dan coba lagi.',
                     'button' => 'Unggah gambar',
@@ -220,11 +257,21 @@ return [
                 'is_default_tooltip' => 'mode permainan utama',
                 'set' => 'atur :mode sebagai mode permainan utamamu',
             ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Atur ulang warna ke pengaturan bawaan? Tag supporter akan dibutuhkan untuk mengubah warna ini ke warna yang berbeda.',
+                'title' => 'Warna',
+
+                'supporter' => [
+                    '_' => 'Warna tema khusus hanya tersedia bagi para pemilik :link',
+                    'link' => 'osu!supporter',
+                ],
+            ],
         ],
 
         'extra' => [
             'none' => 'kosong',
-            'unranked' => 'Tidak ada rekam jejak permainan yang tercatat dalam beberapa waktu ke belakang',
+            'unranked' => 'Tidak ada riwayat permainan terkini',
 
             'achievements' => [
                 'achieved-on' => 'Diraih pada :date',
@@ -254,7 +301,7 @@ return [
                     'title' => 'Beatmap Pending',
                 ],
                 'ranked' => [
-                    'title' => 'Beatmap Ranked & Approved',
+                    'title' => 'Beatmap Ranked',
                 ],
             ],
             'discussions' => [
@@ -263,9 +310,9 @@ return [
                 'show_more' => 'lihat lebih banyak diskusi',
             ],
             'events' => [
-                'title' => 'Aktivitas',
-                'title_longer' => 'Aktivitas Terkini',
-                'show_more' => 'lihat lebih banyak aktivitas',
+                'title' => 'Peristiwa',
+                'title_longer' => 'Peristiwa Terkini',
+                'show_more' => 'lihat lebih banyak peristiwa',
             ],
             'historical' => [
                 'title' => 'Historis',
@@ -332,7 +379,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Berdasarkan seberapa besar kontribusi yang telah diberikan oleh pengguna ini dalam hal moderasi beatmap. Kunjungi :link untuk informasi lebih lanjut.',
+                    '_' => 'Berdasarkan seberapa banyak kontribusi yang telah diberikan oleh pengguna ini terhadap moderasi beatmap. Kunjungi :link untuk informasi lebih lanjut.',
                     'link' => 'halaman ini',
                 ],
             ],
@@ -429,7 +476,7 @@ return [
         ],
         'page' => [
             'button' => 'sunting halaman profil',
-            'description' => '<strong>saya!</strong> merupakan area pada halaman profilmu yang dapat kamu modifikasi sesuka hati.',
+            'description' => '<strong>saya!</strong> merupakan area pribadi pada halaman profilmu yang dapat kamu isi sesuka hati.',
             'edit_big' => 'Sunting saya!',
             'placeholder' => 'Ketik konten halaman di sini',
 
@@ -449,8 +496,13 @@ return [
             'global_simple' => 'Peringkat Global',
             'highest' => 'Peringkat tertinggi: :rank pada :date',
         ],
+        'season_stats' => [
+            'division_top_percentage' => ':value teratas',
+            'total_score' => 'Jumlah skor',
+        ],
         'stats' => [
             'hit_accuracy' => 'Akurasi Hit',
+            'hits_per_play' => 'Hit Per Permainan',
             'level' => 'Level :level',
             'level_progress' => 'persentase pencapaian menuju level berikutnya',
             'maximum_combo' => 'Kombo Maksimum',
@@ -466,7 +518,7 @@ return [
             'graveyard_beatmapset_count' => 'Beatmap Graveyard',
             'loved_beatmapset_count' => 'Beatmap Loved',
             'pending_beatmapset_count' => 'Beatmap Pending',
-            'ranked_beatmapset_count' => 'Beatmap Ranked & Approved',
+            'ranked_beatmapset_count' => 'Beatmap Ranked',
         ],
     ],
 

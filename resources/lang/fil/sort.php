@@ -37,6 +37,12 @@ return [
         'new' => 'Huling tugon',
     ],
 
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
+    ],
+
     'users' => [
         'relevance' => 'Kaugnayan',
         'username' => 'Pangalan',

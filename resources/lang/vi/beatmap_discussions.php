@@ -67,6 +67,13 @@ return [
         'version' => 'Độ khó',
     ],
 
+    'refresh' => [
+        'checking' => 'Đang kiểm tra cập nhật...',
+        'has_updates' => 'Cuộc thảo luận có cập nhật, nhấn để làm mới.',
+        'no_updates' => 'Không có cập nhật mới.',
+        'updating' => 'Đang cập nhật...',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Hãy đăng nhập để trả lời',

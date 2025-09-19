@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Tack för ditt stöd! Än så länge har du bidragit med :dollars spritt över :tags tag-köp!',
-            'gifted' => ":giftedTags av dina tag-köp har getts bort som gåvor (till värdet av :giftedDollars), så generöst!",
+            'contribution_with_duration' => '',
             'not_yet' => "Du har inte en supporter-tag än :(",
             'valid_until' => 'Din nuvarande supporter-tag är giltig tills :date!',
             'was_valid_until' => 'Din supporter-tag var giltig till :date.',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

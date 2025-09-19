@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Administratorius',
         'authorise' => 'Leisti',
         'authorising' => 'Leidžiama...',
+        'back' => 'Atgal',
         'back_to_previous' => 'Grįžti į ankstesnę poziciją',
         'back_to_top' => 'Grįžti į viršų',
         'cancel' => 'Atšaukti',
@@ -39,7 +39,7 @@ return [
         'pin' => 'prisegti',
         'post' => 'Publikuoti',
         'read_more' => 'skaityti daugiau',
-        'refresh' => '',
+        'refresh' => 'Atnaujinti',
         'reply' => 'Atsakymai',
         'reply_reopen' => 'Atsakyti ir atidaryti',
         'reply_resolve' => 'Atsakyti ir išspręsti',
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => '',
+        ],
+        'year' => [
+            'php' => '',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

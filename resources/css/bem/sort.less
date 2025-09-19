@@ -5,6 +5,7 @@
   @_top: sort;
   @_item-margin: 5px;
 
+  --item-button-colour: hsl(var(--hsl-l1));
   --item-hover-bg: hsl(var(--hsl-b3));
   padding: 0;
   display: flex;
@@ -30,6 +31,10 @@
     --item-hover-bg: hsl(var(--hsl-b2));
   }
 
+  &--ranking-header {
+    --item-hover-bg: hsl(var(--hsl-b4));
+  }
+
   &--user-list {
     padding: 0;
   }
@@ -37,22 +42,17 @@
   &__item {
     .reset-input();
     margin: @_item-margin;
-    color: white;
     padding: 5px 10px;
     .default-border-radius();
 
     &--button {
       .link-plain();
-      .link-white();
+      color: var(--item-button-colour);
 
-      &:hover {
+      .link-hover({
         background-color: var(--item-hover-bg);
-      };
-    }
-
-    &--contest-judge {
-      margin: 0;
-      padding: 0;
+        color: var(--item-button-colour);
+      });
     }
 
     &--title {
@@ -61,8 +61,8 @@
 
     // overrides --button
     &--active {
+      --item-button-colour: hsl(var(--hsl-c1));
       background-color: var(--item-hover-bg);
-      color: @osu-colour-l1;
       font-weight: 600;
     }
   }

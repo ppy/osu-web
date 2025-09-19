@@ -9,6 +9,17 @@ return [
         'title' => 'Ülke',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Zorluk',
+        'top_10p' => 'İlk %10 Skor',
+        'top_50p' => 'İlk %50 Skor',
+        'unavailable' => [
+            'future' => 'Şimdilik belirtilen tarihte günlük meydan okuma yok!',
+            'past' => '
+Belirtilen tarihte günlük meydan okuma yok!',
+        ],
+    ],
+
     'filter' => [
         'title' => 'Göster',
 
@@ -24,17 +35,18 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Bu kullanıcının son sıralama geçmişi 30 günden azdır.',
     ],
 
     'type' => [
         'charts' => 'Öne Çıkanlar',
         'country' => 'Ülke',
+        'daily_challenge' => 'günlük meydan okuma',
+        'global' => 'küresel',
         'kudosu' => 'kudosu',
         'multiplayer' => 'çok oyunculu',
-        'performance' => 'Performans',
-        'score' => 'Skor',
         'seasons' => 'sezonlar',
+        'team' => 'takım',
     ],
 
     'seasons' => [
@@ -42,6 +54,9 @@ return [
         'ongoing' => 'Bu sezon hala devam etmektedir (daha fazla çalma listesi eklenecektir).',
         'room_count' => 'Oynatma listesi sayısı',
         'url' => 'Bu sezon hakkında daha fazla bilgi görüntüleyin.',
+        'validation' => [
+            'not_enough_factors' => 'düzgün hesaplama için yeterince skor faktörü yok',
+        ],
     ],
 
     'spotlight' => [
@@ -55,6 +70,8 @@ return [
         'accuracy' => 'İsabetlilik',
         'active_users' => 'Aktif Kullanıcılar',
         'country' => 'Ülke',
+        'division' => 'Bölüm',
+        'members' => 'Üyeler',
         'play_count' => 'Oynama Sayısı',
         'performance' => 'Performans',
         'total_score' => 'Toplam Skor',

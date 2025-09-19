@@ -29,7 +29,6 @@ use Cache;
 use Carbon\Carbon;
 use DB;
 use Ds\Set;
-use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -38,6 +37,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\QueryException;
 use Laravel\Passport\HasApiTokens;
 use League\OAuth2\Server\Exception\OAuthServerException;
@@ -119,6 +119,7 @@ use Request;
  * @property-read Collection<Score\Mania> $scoresMania
  * @property-read Collection<Score\Osu> $scoresOsu
  * @property-read Collection<Score\Taiko> $scoresTaiko
+ * @property-read Collection<UserSeasonScoreAggregate> $seasonScores
  * @property-read UserStatistics\Fruits|null $statisticsFruits
  * @property-read UserStatistics\Mania|null $statisticsMania
  * @property-read UserStatistics\Mania4k|null $statisticsMania4k
@@ -128,6 +129,8 @@ use Request;
  * @property-read Collection<Store\Address> $storeAddresses
  * @property-read Collection<UserDonation> $supporterTagPurchases
  * @property-read Collection<UserDonation> $supporterTags
+ * @property-read Team|null $team
+ * @property-read TeamApplication|null $teamApplication
  * @property-read Collection<OAuth\Token> $tokens
  * @property-read Collection<Forum\TopicWatch> $topicWatches
  * @property-read Collection<UserAchievement> $userAchievements
@@ -239,7 +242,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     const MAX_FIELD_LENGTHS = [
         'user_discord' => 37, // max 32char username + # + 4-digit discriminator
-        'user_from' => 30,
+        'user_from' => 25,
         'user_interests' => 30,
         'user_occ' => 30,
         'user_sig' => 3000,
@@ -297,6 +300,23 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(UserCountryHistory::class);
     }
 
+    public function team(): HasOneThrough
+    {
+        return $this->hasOneThrough(
+            Team::class,
+            TeamMember::class,
+            'user_id',
+            'id',
+            'user_id',
+            'team_id',
+        );
+    }
+
+    public function teamApplication(): HasOne
+    {
+        return $this->hasOne(TeamApplication::class);
+    }
+
     public function getAuthPassword()
     {
         return $this->user_password;
@@ -304,24 +324,24 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function usernameChangeCost()
     {
-        $changesToDate = $this->usernameChangeHistory()
-            ->whereIn('type', ['support', 'paid'])
-            ->count();
+        $minTier = $this->usernameChangeHistory()->paid()->exists() ? 1 : 0;
 
-        switch ($changesToDate) {
-            case 0:
-                return 0;
-            case 1:
-                return 8;
-            case 2:
-                return 16;
-            case 3:
-                return 32;
-            case 4:
-                return 64;
-            default:
-                return 100;
-        }
+        $tier = max(
+            $this->usernameChangeHistory()
+                ->paid()
+                ->where('timestamp', '>', Carbon::now()->subYearsNoOverflow(3))
+                ->count(),
+            $minTier,
+        );
+
+        return match ($tier) {
+            0 => 0,
+            1 => 8,
+            2 => 16,
+            3 => 32,
+            4 => 64,
+            default => 100,
+        };
     }
 
     public function revertUsername($type = 'revert'): UsernameChangeHistory
@@ -550,6 +570,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         // don't perform username change history lookup if we're searching by ID
+        // TODO: remove this parameter and always rely on `@` prefix or digit check.
         if ($type === 'id') {
             return null;
         }
@@ -691,6 +712,14 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $this->attributes['user_sig_bbcode_uid'] = $bbcode->uid;
     }
 
+    public function setUserStyleAttribute(?int $value): void
+    {
+        if ($value === null || $value < 1 || $value > 360) {
+            $value = 0;
+        }
+        $this->attributes['user_style'] = $value;
+    }
+
     public function setUserWebsiteAttribute($value)
     {
         // doubles as casting to empty string for not null constraint
@@ -699,7 +728,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         // FIXME: this can probably be removed after old site is deactivated
         //        as there's same check in getter function.
-        if (present($value) && !starts_with($value, ['http://', 'https://'])) {
+        if (present($value) && !is_http($value)) {
             $value = "https://{$value}";
         }
 
@@ -769,6 +798,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'cover_preset_id',
             'custom_cover_filename',
             'group_id',
+            'laravel_through_key', // added by hasManyThrough relation in Beatmap
             'osu_featurevotes',
             'osu_kudosavailable',
             'osu_kudosdenied',
@@ -817,7 +847,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'user_sig',
             'user_sig_bbcode_bitfield',
             'user_sig_bbcode_uid',
-            'user_style',
             'user_topic_show_days',
             'user_topic_sortby_dir',
             'user_topic_sortby_type',
@@ -855,6 +884,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'user_avatar' => AvatarHelper::url($this),
             'user_colour' => $this->getUserColour(),
             'user_rank' => $this->getUserRank(),
+            'user_style' => $this->getUserStyle(),
             'user_website' => $this->getUserWebsite(),
 
             // one-liner cast
@@ -863,7 +893,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'hide_presence' => !$this->user_allow_viewonline,
             'id' => $this->getKey(), // used by clockwork
             'name' => null, // used by mailer
-            'nonexistent' => null,
             'pm_friends_only' => !$this->user_allow_pm,
             'user_discord' => $this->user_jabber,
             'user_from' => presence(html_entity_decode_better($this->getRawAttribute($key))),
@@ -891,6 +920,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'clients',
             'comments',
             'country',
+            'dailyChallengeUserStats',
             'events',
             'favourites',
             'follows',
@@ -905,6 +935,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'orders',
             'pivot', // laravel built-in relation when using belongsToMany
             'profileBanners',
+            'profileBannersActive',
             'profileBeatmapsetsGraveyard',
             'profileBeatmapsetsLoved',
             'profileBeatmapsetsPending',
@@ -913,6 +944,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'rankHighests',
             'rankHistories',
             'receivedKudosu',
+            'relationFriends',
             'relations',
             'replaysWatchedCounts',
             'reportedIn',
@@ -940,6 +972,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'storeAddresses',
             'supporterTagPurchases',
             'supporterTags',
+            'team',
+            'teamApplication',
             'tokens',
             'topicWatches',
             'userAchievements',
@@ -948,6 +982,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'userNotifications',
             'userPage',
             'userProfileCustomization',
+            'userTotpKey',
             'usernameChangeHistory',
             'usernameChangeHistoryPublic' => $this->getRelationValue($key),
         };
@@ -1254,6 +1289,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(UserClient::class);
     }
 
+    public function dailyChallengeUserStats(): HasOne
+    {
+        return $this->hasOne(DailyChallengeUserStats::class);
+    }
+
     public function favourites()
     {
         return $this->hasMany(FavouriteBeatmapset::class);
@@ -1295,6 +1335,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(ProfileBanner::class);
     }
 
+    public function profileBannersActive(): HasMany
+    {
+        return $this->profileBanners()->active()->with('tournamentBanner')->orderBy('banner_id');
+    }
+
     public function storeAddresses()
     {
         return $this->hasMany(Store\Address::class);
@@ -1307,9 +1352,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function rankHighests(): HasMany
     {
-        return $GLOBALS['cfg']['osu']['scores']['experimental_rank_as_default']
-            ? $this->hasMany(RankHighest::class, null, 'nonexistent')
-            : $this->hasMany(RankHighest::class);
+        return $this->hasMany(RankHighest::class);
     }
 
     public function rankHistories()
@@ -1320,6 +1363,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function country()
     {
         return $this->belongsTo(Country::class, 'country_acronym');
+    }
+
+    public function seasonScores(): HasMany
+    {
+        return $this->hasMany(UserSeasonScoreAggregate::class);
     }
 
     public function statisticsOsu()
@@ -1394,33 +1442,41 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function scoresFirstOsu()
     {
-        return $this->belongsToMany(Score\Best\Osu::class, 'osu_leaders')->default();
+        return $this->hasMany(LegacyScoreFirst\Osu::class)->default();
     }
 
     public function scoresFirstFruits()
     {
-        return $this->belongsToMany(Score\Best\Fruits::class, 'osu_leaders_fruits')->default();
+        return $this->hasMany(LegacyScoreFirst\Fruits::class)->default();
     }
 
     public function scoresFirstMania()
     {
-        return $this->belongsToMany(Score\Best\Mania::class, 'osu_leaders_mania')->default();
+        return $this->hasMany(LegacyScoreFirst\Mania::class)->default();
     }
 
     public function scoresFirstTaiko()
     {
-        return $this->belongsToMany(Score\Best\Taiko::class, 'osu_leaders_taiko')->default();
+        return $this->hasMany(LegacyScoreFirst\Taiko::class)->default();
     }
 
-    public function scoresFirst(string $mode, bool $returnQuery = false)
+    public function beatmapLeaders()
+    {
+        return $this->hasMany(BeatmapLeader::class);
+    }
+
+    public function scoresFirst(string $mode, null | true $legacyOnly)
     {
         if (!Beatmap::isModeValid($mode)) {
             return;
         }
 
-        $relation = 'scoresFirst'.studly_case($mode);
+        if ($legacyOnly) {
+            $relation = 'scoresFirst'.studly_case($mode);
+            return $this->$relation();
+        }
 
-        return $returnQuery ? $this->$relation() : $this->$relation;
+        return $this->beatmapLeaders()->ruleset($mode);
     }
 
     public function scoresBestOsu()
@@ -1469,6 +1525,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasOne(UserProfileCustomization::class);
     }
 
+    public function userTotpKey()
+    {
+        return $this->hasOne(UserTotpKey::class);
+    }
+
     public function accountHistories()
     {
         return $this->hasMany(UserAccountHistory::class);
@@ -1501,6 +1562,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             ->select(['user_id', 'username_last'])
             ->withPresent('username_last')
             ->orderBy('timestamp', 'ASC');
+    }
+
+    public function relationFriends(): HasMany
+    {
+        return $this->relations()->friends()->withMutual();
     }
 
     public function relations()
@@ -1997,14 +2063,14 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             ->where('user_lastvisit', '>', time() - $GLOBALS['cfg']['osu']['user']['online_window']);
     }
 
-    public function scopeEagerloadForListing($query)
+    public function scopeWithoutBots(Builder $query): Builder
     {
-        return $query->with([
-            'country',
-            'supporterTagPurchases',
-            'userGroups',
-            'userProfileCustomization',
-        ]);
+        return $query->whereNot('group_id', app('groups')->byIdentifier('bot')->getKey());
+    }
+
+    public function scopeWithoutNoProfile(Builder $query): Builder
+    {
+        return $query->whereNot('group_id', app('groups')->byIdentifier('no_profile')->getKey());
     }
 
     public function checkPassword($password)
@@ -2096,8 +2162,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public static function findForLogin($username, $allowEmail = false)
     {
-        if (!present($username)) {
-            return;
+        $username = trim($username ?? '');
+
+        if ($username === null) {
+            return null;
         }
 
         $query = static::where('username', $username);
@@ -2132,7 +2200,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'user-profile-covers',
             $this,
             'custom_cover_filename',
-            ['image' => ['maxDimensions' => Cover::CUSTOM_COVER_MAX_DIMENSIONS]],
+            ['image' => [
+                'maxDimensions' => Cover::CUSTOM_COVER_MAX_DIMENSIONS,
+                'maxFilesize' => Cover::CUSTOM_COVER_MAX_FILESIZE,
+            ]],
         );
     }
 
@@ -2171,24 +2242,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         return $history->pluck('username_last');
-    }
-
-    public function profileCustomization()
-    {
-        return $this->memoize(__FUNCTION__, function () {
-            try {
-                return $this
-                    ->userProfileCustomization()
-                    ->firstOrCreate([]);
-            } catch (Exception $ex) {
-                if (is_sql_unique_exception($ex)) {
-                    // retry on duplicate
-                    return $this->profileCustomization();
-                }
-
-                throw $ex;
-            }
-        });
     }
 
     public function profileBeatmapsetsRanked()
@@ -2231,9 +2284,13 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         return Beatmapset
             ::where('user_id', '<>', $this->getKey())
-            ->whereHas('beatmaps', function (Builder $query) {
-                $query->scoreable()->where('user_id', $this->getKey());
-            })
+            ->whereHas(
+                'beatmaps',
+                fn (Builder $query) => $query->scoreable()->whereHas(
+                    'beatmapOwners',
+                    fn (Builder $ownerQuery) => $ownerQuery->where('user_id', $this->getKey())
+                )
+            )
             ->with('beatmaps');
     }
 
@@ -2320,16 +2377,12 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             $this->isValidEmail();
         }
 
-        if ($this->isDirty('country_acronym')) {
-            if (present($this->country_acronym)) {
-                if (($country = Country::find($this->country_acronym)) !== null) {
-                    // ensure matching case
-                    $this->country_acronym = $country->getKey();
-                } else {
-                    $this->validationErrors()->add('country', '.invalid_country');
-                }
-            } else {
-                $this->country_acronym = Country::UNKNOWN;
+        $countryAcronym = $this->country_acronym;
+        if ($countryAcronym === null) {
+            $this->country_acronym = Country::UNKNOWN;
+        } elseif ($this->isDirty('country_acronym') && $countryAcronym !== Country::UNKNOWN) {
+            if (app('countries')->byCode($countryAcronym) === null) {
+                $this->validationErrors()->add('country', '.invalid_country');
             }
         }
 
@@ -2463,18 +2516,22 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $value === 0 ? null : $value;
     }
 
+    private function getUserStyle()
+    {
+        $value = $this->getRawAttribute('user_style');
+
+        return $value === 0 ? null : $value;
+    }
+
     private function getUserWebsite()
     {
         $value = presence(trim($this->getRawAttribute('user_website')));
 
-        if ($value === null) {
-            return null;
-        }
-
-        if (starts_with($value, ['http://', 'https://'])) {
-            return $value;
-        }
-
-        return "https://{$value}";
+        return $value === null
+            ? null
+            : (is_http($value)
+                ? $value
+                : "https://{$value}"
+            );
     }
 }

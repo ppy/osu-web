@@ -28,10 +28,5 @@
     <div class="beatmap-packs-header">
         <p class="beatmap-packs-header__important">{{ osu_trans('beatmappacks.index.blurb.important') }}</p>
         <p>{{ osu_trans('beatmappacks.index.blurb.install_instruction') }}</p>
-        <p>{!! osu_trans('beatmappacks.index.blurb.note._', ['scary' => tag(
-            'span',
-            ['class' => 'beatmap-packs-header__scary'],
-            osu_trans('beatmappacks.index.blurb.note.scary')
-        )]) !!}</p>
     </div>
 </div>

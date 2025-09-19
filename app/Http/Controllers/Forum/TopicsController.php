@@ -18,6 +18,7 @@ use App\Models\Forum\TopicPoll;
 use App\Models\Forum\TopicWatch;
 use App\Models\UserProfileCustomization;
 use App\Transformers\Forum\TopicCoverTransformer;
+use App\Transformers\Forum\TopicTransformer;
 use Auth;
 use DB;
 use Request;
@@ -50,7 +51,7 @@ class TopicsController extends Controller
             'store',
         ]]);
 
-        $this->middleware('require-scopes:public', ['only' => ['show']]);
+        $this->middleware('require-scopes:public', ['only' => ['index', 'show']]);
         $this->middleware('require-scopes:forum.write', ['only' => ['reply', 'store', 'update']]);
     }
 
@@ -164,7 +165,7 @@ class TopicsController extends Controller
 
         $issueTag = presence(Request::input('issue_tag'));
         $state = get_bool(Request::input('state'));
-        $type = 'issue_tag_'.$issueTag;
+        $type = 'issue_tag_'.str_slug($issueTag);
 
         if ($issueTag === null || !$topic->isIssue() || !in_array($issueTag, $topic::ISSUE_TAGS, true)) {
             abort(422);
@@ -252,20 +253,86 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicReply', $topic)->ensureCan();
 
-        $post = Post::createNew($topic, auth()->user(), get_string(request('body')));
+        $user = \Auth::user();
+        $post = Post::createNew($topic, $user, get_string(request('body')));
 
-        $post->markRead(Auth::user());
-        (new ForumTopicReply($post, auth()->user()))->dispatch();
+        $post->markRead($user);
+        (new ForumTopicReply($post, $user))->dispatch();
+
+        $watch = $user->user_notify
+            ? TopicWatch::setState($topic, $user, 'watching_mail')
+            : TopicWatch::lookup($topic, $user);
 
         if (is_api_request()) {
             return json_item($post, 'Forum\Post', ['body']);
         } else {
-            return ext_view('forum.topics._posts', [
-                'firstPostPosition' => $topic->postPosition($post->post_id),
-                'posts' => collect([$post]),
-                'topic' => $topic,
-            ]);
+            return [
+                'posts' => view('forum.topics._posts', [
+                    'firstPostPosition' => $topic->postPosition($post->post_id),
+                    'posts' => collect([$post]),
+                    'topic' => $topic,
+                ])->render(),
+                'watch' => view('forum.topics._watch', [
+                    'state' => $watch,
+                    'topic' => $topic,
+                ])->render(),
+            ];
         }
+    }
+
+    /**
+     * Get Topic Listing
+     *
+     * Get a sorted list of topics, optionally from a specific forum
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field         | Type                          | Notes
+     * ------------- | ----------------------------- | -----
+     * topics        | [ForumTopic](#forum-topic)[]  | |
+     * cursor_string | [CursorString](#cursorstring) | |
+     *
+     * @usesCursor
+     * @queryParam forum_id Id of a specific forum to get topics from. No-example
+     * @queryParam sort Topic sorting option. Valid values are `new` (default) and `old`. Both sort by the topic's last post time. No-example
+     * @queryParam limit Maximum number of topics to be returned (50 at most and by default). No-example
+     *
+     * @response {
+     *   "topics": [
+     *     { "id": 1, "...": "..." },
+     *     { "id": 2, "...": "..." }
+     *   ],
+     *   "cursor_string": "eyJoZWxsbyI6IndvcmxkIn0"
+     * }
+     */
+    public function index()
+    {
+        $rawParams = \Request::all();
+        $params = get_params($rawParams, null, [
+            'limit:int',
+            'sort',
+            'forum_id:int',
+        ], ['null_missing' => true]);
+
+        $limit = \Number::clamp($params['limit'] ?? Topic::PER_PAGE, 1, Topic::PER_PAGE);
+        $cursorHelper = Topic::makeDbCursorHelper($params['sort']);
+
+        $topics = Topic::cursorSort($cursorHelper, cursor_from_params($rawParams))
+            ->limit($limit);
+
+        $forum_id = $params['forum_id'];
+        if ($forum_id !== null) {
+            $topics->where('forum_id', $forum_id);
+        }
+
+        [$topics, $hasMore] = $topics->getWithHasMore();
+
+        return [
+            'topics' => json_collection($topics, new TopicTransformer()),
+            ...cursor_for_response($cursorHelper->next($topics, $hasMore)),
+        ];
     }
 
     /**
@@ -385,6 +452,7 @@ class TopicsController extends Controller
             'user.country',
             'user.rank',
             'user.supporterTagPurchases',
+            'user.team',
             'user.userGroups',
         ]);
 
@@ -613,7 +681,7 @@ class TopicsController extends Controller
     {
         $rawParams = request()->all();
         $params = get_params($rawParams, null, [
-            'start', // either number or "unread"
+            'start', // either number or "unread" or "latest"
             'end:int',
             'n:int',
 
@@ -625,10 +693,10 @@ class TopicsController extends Controller
         ], ['null_missing' => true]);
 
         $params['skip_layout'] = $params['skip_layout'] ?? false;
-        $params['limit'] = clamp($params['limit'] ?? 20, 1, 50);
+        $params['limit'] = \Number::clamp($params['limit'] ?? Post::PER_PAGE, 1, 50);
 
         if ($userCanModerate) {
-            $params['with_deleted'] ??= ($currentUser->userProfileCustomization ?? UserProfileCustomization::DEFAULTS)['forum_posts_show_deleted'];
+            $params['with_deleted'] ??= UserProfileCustomization::forUser($currentUser)['forum_posts_show_deleted'];
         } else {
             $params['with_deleted'] = false;
         }
@@ -636,11 +704,11 @@ class TopicsController extends Controller
         $params['cursor'] = cursor_from_params($rawParams);
 
         if (!is_array($params['cursor'])) {
-            if ($params['start'] === 'unread') {
-                $params['start'] = Post::lastUnreadByUser($topic, $currentUser);
-            } else {
-                $params['start'] = get_int($params['start']);
-            }
+            $params['start'] = match ($params['start']) {
+                'latest' => $topic->topic_last_post_id,
+                'unread' => Post::lastUnreadByUser($topic, $currentUser),
+                default => get_int($params['start']),
+            };
 
             if ($params['n'] !== null && $params['n'] > 0) {
                 $post = $topic->nthPost($params['n']) ?? $topic->posts()->last();

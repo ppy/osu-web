@@ -5,7 +5,7 @@
 
 return [
     'confirmation' => 'Вы уверены?',
-    'confirmation_unsaved' => 'Несохраненные изменения будет утеряны. Вы уверены?',
+    'confirmation_unsaved' => 'Несохранённые изменения будет утеряны. Вы уверены?',
     'saved' => 'Сохранено',
 
     'array_and' => [
@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Администратор',
         'authorise' => 'Авторизовать',
         'authorising' => 'Авторизация...',
+        'back' => 'Назад',
         'back_to_previous' => 'Вернуться',
         'back_to_top' => 'В начало',
         'cancel' => 'Отмена',
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => 'мес',
+        ],
+        'year' => [
+            'php' => 'г',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',
@@ -110,7 +116,7 @@ return [
     ],
 
     'dropzone' => [
-        'target' => 'бросьте файл сюда',
+        'target' => 'перетащите для загрузки',
     ],
 
     'input' => [
@@ -154,7 +160,7 @@ return [
     ],
 
     'title' => [
-        'notice' => 'Замечание',
+        'notice' => 'Примечание',
     ],
 
     'wrong_user' => [

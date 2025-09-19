@@ -9,6 +9,7 @@ use App\Exceptions\InvariantException;
 use App\Models\Contest;
 use App\Models\ContestEntry;
 use App\Models\UserContestEntry;
+use App\Transformers\ContestEntryTransformer;
 use App\Transformers\ContestTransformer;
 use Auth;
 use Ds\Set;
@@ -17,23 +18,37 @@ use Request;
 
 class ContestEntriesController extends Controller
 {
-    public function judgeResults($id)
+    public function judgeResults($contestId, $id)
     {
-        $entry = ContestEntry::with('contest')->findOrFail($id);
-
-        abort_if(!$entry->contest->isJudged() || !$entry->contest->show_votes, 404);
-
-        $entry->load([
-            'contest.entries',
-            'contest.scoringCategories',
-            'judgeVotes.scores',
-            'judgeVotes.user',
-            'user',
-        ])->loadSum('scores', 'value');
-
-        $contest = $entry->contest
+        $contest = Contest::findOrFail($contestId)
             ->loadCount('judges')
             ->loadSum('scoringCategories', 'max_value');
+
+        abort_if(!$contest->isJudged() || !$contest->show_votes, 404);
+
+        $relationships = [
+            'judgeVotes.scores',
+            'user',
+        ];
+
+        $includes = [
+            'judge_votes.scores',
+            'judge_votes.total_score',
+            'judge_votes.total_score_std',
+            'results',
+            'user',
+        ];
+
+        if ($contest->show_judges) {
+            $relationships[] = 'judgeVotes.user';
+            $includes[] = 'judge_votes.user';
+        }
+
+        $entry = ContestEntry
+            ::with($relationships)
+            ->withScore($contest)
+            ->findOrFail($id)
+            ->loadSum('scores', 'value');
 
         $contestJson = json_item(
             $contest,
@@ -45,15 +60,13 @@ class ContestEntriesController extends Controller
             ],
         );
 
-        $entryJson = json_item($entry, 'ContestEntry', [
-            'judge_votes.scores',
-            'judge_votes.total_score',
-            'judge_votes.user',
-            'results',
-            'user',
-        ]);
+        $entryJson = json_item($entry, new ContestEntryTransformer(), $includes);
 
-        $entriesJson = json_collection($entry->contest->entries, 'ContestEntry');
+        foreach ($contest->entries as $entry) {
+            $entry->setRelation('contest', $contest);
+        }
+
+        $entriesJson = json_collection($contest->entries, new ContestEntryTransformer());
 
         return ext_view('contest_entries.judge-results', [
             'contestJson' => $contestJson,
@@ -62,7 +75,7 @@ class ContestEntriesController extends Controller
         ]);
     }
 
-    public function judgeVote($id)
+    public function judgeVote($contestId, $id)
     {
         $entry = ContestEntry::with('contest.scoringCategories')->findOrFail($id);
 
@@ -89,7 +102,7 @@ class ContestEntriesController extends Controller
 
             foreach ($entry->contest->scoringCategories as $category) {
                 $score = $scoresByCategoryId[$category->getKey()];
-                $value = clamp($score['value'], 0, $category->max_value);
+                $value = \Number::clamp($score['value'], 0, $category->max_value);
 
                 $vote->scores()->firstOrNew([
                     'contest_judge_vote_id' => $vote->getKey(),
@@ -100,7 +113,7 @@ class ContestEntriesController extends Controller
 
         $updatedEntry = $entry->refresh()->load('judgeVotes.scores');
 
-        return json_item($updatedEntry, 'ContestEntry', ['current_user_judge_vote.scores']);
+        return json_item($updatedEntry, new ContestEntryTransformer(), ['current_user_judge_vote.scores']);
     }
 
     public function vote($id)

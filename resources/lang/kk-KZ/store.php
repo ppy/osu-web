@@ -55,6 +55,7 @@ return [
         'contact' => 'Байланыс желілері:',
         'date' => '',
         'echeck_delay' => 'Төлеміңіз eCheck арқылы жүргізілгендіктен төлемнің Paypal арқылы расталуы 10 күнге дейін созылуы мүмкін!',
+        'echeck_denied' => '',
         'hide_from_activity' => 'Осы тапсырыстағы osu!supporter тегтері сіздің соңғы әрекеттеріңізде көрсетілмеген.',
         'sent_via' => '',
         'shipping_to' => '',
@@ -173,6 +174,7 @@ return [
 
         'add_to_cart' => '',
         'notify' => '',
+        'out_of_stock' => '',
 
         'notification_success' => '',
         'notification_remove_text' => '',

@@ -80,7 +80,8 @@ return [
         'confirm_restore' => 'Действительно восстановить тему?',
         'deleted' => 'удалённая тема',
         'go_to_latest' => 'перейти к последнему ответу',
-        'has_replied' => 'Вы отвечали на эту тему',
+        'go_to_unread' => 'перейти к первому непрочитанному ответу',
+        'has_replied' => 'Вы отвечали в этой теме',
         'in_forum' => 'в :forum',
         'latest_post' => ':when от :user',
         'latest_reply_by' => 'последний ответ от :user',
@@ -294,6 +295,27 @@ return [
             'to_1_done' => 'Добавлен тег "решено"',
         ],
 
+        'issue_tag_osulazer' => [
+            'to_0' => 'Удалить тег "osu!lazer"',
+            'to_0_done' => 'Удалён тег "osu!lazer"',
+            'to_1' => 'Добавить тег "osu!lazer"',
+            'to_1_done' => 'Добавлен тег "osu!lazer"',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => 'Удалить тег "osu!stable"',
+            'to_0_done' => 'Удалён тег "osu!stable"',
+            'to_1' => 'Добавить тег "osu!stable"',
+            'to_1_done' => 'Добавлен тег "osu!stable"',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => 'Удалить тег "osu!web"',
+            'to_0_done' => 'Удалён тег "osu!web"',
+            'to_1' => 'Добавить тег "osu!web"',
+            'to_1_done' => 'Добавлен тег "osu!web"',
+        ],
+
         'lock' => [
             'is_locked' => 'Нельзя написать ответ в закрытой теме',
             'to_0' => 'Открыть тему',
@@ -371,8 +393,8 @@ return [
             'to_not_watching' => 'Без подписки',
             'to_watching' => 'В подписки',
             'to_watching_mail' => 'В подписки с уведомлением',
-            'tooltip_mail_disable' => 'Уведомления включены. Нажмите, чтобы отключить',
-            'tooltip_mail_enable' => 'Уведомления отключены. Нажмите сюда, чтобы включить их',
+            'tooltip_mail_disable' => 'Уведомления включены. Нажмите сюда, чтобы отключить',
+            'tooltip_mail_enable' => 'Уведомления отключены. Нажмите сюда, чтобы включить',
         ],
     ],
 ];

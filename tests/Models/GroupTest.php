@@ -34,20 +34,14 @@ class GroupTest extends TestCase
         $this->assertSame($this->getGroupRenameEventCount($group), $groupRenameEventCount);
     }
 
-    /*
-    TODO: This test always fails because it depends on `Group::afterCommit`
-    being called right after `create`, but the whole test is wrapped in a
-    transaction.
-
     public function testResetCacheOnSave()
     {
-        $previousCacheVersion = cache()->get('groups_local_cache_version');
+        $previousCacheVersion = app('groups')->all();
 
         Group::create(['group_desc' => '']);
 
-        $this->assertNotSame($previousCacheVersion, cache()->get('groups_local_cache_version'));
+        $this->assertNotSame($previousCacheVersion, app('groups')->all());
     }
-    */
 
     private function getGroupRenameEventCount(Group $group): int
     {

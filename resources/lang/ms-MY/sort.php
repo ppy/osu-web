@@ -4,41 +4,47 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    '_' => '',
+    '_' => 'Susun menurut',
 
-    'all' => '',
-    'friends' => '',
-    'last_visit' => '',
-    'new' => '',
-    'old' => '',
-    'rank' => '',
-    'top' => '',
-    'username' => '',
+    'all' => 'Semua',
+    'friends' => 'Kawan',
+    'last_visit' => 'Kegiatan terkini',
+    'new' => 'Terkini',
+    'old' => 'Terlama',
+    'rank' => 'Pangkat',
+    'top' => 'Sohor',
+    'username' => 'Nama pengguna',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'Album',
+        'artist' => 'Artis',
+        'bpm' => 'BPM',
+        'genre' => 'Genre',
+        'length' => 'Tempoh',
+        'relevance' => 'Kaitan',
+        'title' => 'Judul',
+        'update' => 'Kemas Kini',
     ],
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Tarikh hantar',
+        'relevance' => 'Kaitan',
     ],
 
     'forum_topics' => [
-        'created' => '',
-        'feature_votes' => '',
-        'new' => '',
+        'created' => 'Tarikh cipta',
+        'feature_votes' => 'Keutamaan tinggi',
+        'new' => 'Balasan terkini',
+    ],
+
+    'teams' => [
+        'relevance' => 'Kaitan',
+        'name' => 'Nama',
+        'short-name' => 'Nama Pendek',
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'Kaitan',
+        'username' => 'Nama',
     ],
 ];

@@ -10,7 +10,7 @@ return [
     'beatmapset_delete' => ':beatmapset è stata eliminata.',
     'beatmapset_revive' => ':beatmapset è stata risvegliata dal sonno eterno da <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> ha aggiornato la beatmap "<em>:beatmapset</em>"',
-    'beatmapset_upload' => '<strong><em>:user</em></strong> ha inviato una nuova beatmap ":beatmapset"',
+    'beatmapset_upload' => '<strong><em>:user</em></strong> ha caricato una nuova beatmap ":beatmapset"',
     'empty' => "Questo utente non ha fatto nulla degno di nota recentemente!",
     'rank' => ':user ha raggiunto :rank su :beatmap (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> ha perso il primo posto su <em>:beatmap</em> (:mode)',

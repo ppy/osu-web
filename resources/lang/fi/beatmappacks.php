@@ -12,15 +12,12 @@ return [
 
         'blurb' => [
             'important' => 'LUE TÄMÄ ENNEN LATAAMISTA',
-            'install_instruction' => 'Asennus: Kun paketti on latautunut, pura sen sisältö osu!n "Songs"-tiedostohakemistoon ja osu! hoitaa loput.',
-            'note' => [
-                '_' => 'Huomaa myös, että on erittäin suositeltavaa :scary, koska vanhemmat kartat ovat yleisellä tasolla heikompilaatuisia kuin uudemmat.',
-                'scary' => 'ladata uusimpia kokoelmia vanhojen sijaan',
-            ],
+            'install_instruction' => 'Asennus: Kun paketti on latautunut, pura sen sisältö osu!:n "Songs"-tiedostohakemistoon ja osu! hoitaa loput.',
         ],
     ],
 
     'show' => [
+        'created_by' => 'tehnyt :author',
         'download' => 'Lataa',
         'item' => [
             'cleared' => 'läpäisty',

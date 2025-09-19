@@ -16,7 +16,7 @@
     "
     data-topic-id="{{ $topic->topic_id }}"
 >
-    <div class="forum-item-stripe"><span class="u-relative fas fa-angle-right"></span></div>
+    <div class="forum-item-stripe"><div class="forum-item-stripe__arrow"></div></div>
 
     <div class="forum-topic-entry__col forum-topic-entry__col--icon">
         @if (isset($topicReplyStatus[$topic->getKey()]))
@@ -24,12 +24,12 @@
         @endif
 
         <a
-            class="
-                forum-topic-entry__icon
-                {{ $isRead ? '' : 'forum-topic-entry__icon--unread' }}
-                {{ $topic->isLocked() ? 'forum-topic-entry__icon--small' : '' }}
-            "
-            href="{{ route("forum.topics.show", $topic->topic_id) }}"
+            class="{{ class_with_modifiers('forum-topic-entry__icon', [
+                'unread' => !$isRead,
+                'small' => $topic->isLocked(),
+            ]) }}"
+            href="{{ post_url($topic->getKey(), $isRead ? 'latest' : 'unread', false) }}"
+            title="{{ osu_trans($isRead ? 'forum.topic.go_to_latest' : 'forum.topic.go_to_unread') }}"
         >
             <span>
                 <i class="
@@ -89,9 +89,9 @@
             @foreach ($topic->issueTags() as $tag)
                 <div
                     title="{{ $tag }}"
-                    class="forum-issue-icon forum-issue-icon--{{ $tag }}"
+                    class="forum-issue-icon forum-issue-icon--{{ str_slug($tag) }}"
                 >
-                    <i class="{{ issue_icon($tag) }}"></i>
+                    {!! issue_icon($tag) !!}
                 </div>
             @endforeach
         </div>
@@ -151,7 +151,7 @@
 
     <a
         class="forum-topic-entry__col forum-topic-entry__col--last-link"
-        href="{{ post_url($topic->topic_id, "unread", false) }}"
+        href="{{ post_url($topic->getKey(), 'latest', false) }}"
         title="{{ osu_trans("forum.topic.go_to_latest") }}"
     >
         <i class="fas fa-chevron-right"></i>

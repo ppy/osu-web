@@ -32,9 +32,15 @@ return [
     ],
 
     'forum_topics' => [
-        'created' => '',
+        'created' => '作成日',
         'feature_votes' => 'スターの優先度',
         'new' => '最後の返信',
+    ],
+
+    'teams' => [
+        'relevance' => '関連性',
+        'name' => '名前',
+        'short-name' => '略称',
     ],
 
     'users' => [

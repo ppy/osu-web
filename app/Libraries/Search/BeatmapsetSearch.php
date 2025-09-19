@@ -14,14 +14,12 @@ use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Follow;
 use App\Models\Solo;
+use App\Models\Tag;
 use App\Models\User;
 use Ds\Set;
 
 class BeatmapsetSearch extends RecordSearch
 {
-    /**
-     * @param BeatmapsetSearchParams $params
-     */
     public function __construct(?BeatmapsetSearchParams $params = null)
     {
         parent::__construct(
@@ -63,10 +61,15 @@ class BeatmapsetSearch extends RecordSearch
                     ->should(['term' => ['_id' => ['value' => $this->params->queryString, 'boost' => 100]]])
                     ->should(QueryHelper::queryString($this->params->queryString, $partialMatchFields, 'or', 1 / count($terms)))
                     ->should(QueryHelper::queryString($this->params->queryString, [], 'and'))
+                    ->should([
+                        'nested' => [
+                            'path' => 'beatmaps',
+                            'query' => QueryHelper::queryString($this->params->queryString, ['beatmaps.top_tags'], 'or', 0.5 / count($terms)),
+                        ],
+                    ])
             );
         }
 
-        $this->addBlacklistFilter($query);
         $this->addBlockedUsersFilter($query);
         $this->addFeaturedArtistFilter($query);
         $this->addFeaturedArtistsFilter($query);
@@ -86,6 +89,7 @@ class BeatmapsetSearch extends RecordSearch
         $this->addPlayedFilter($query, $nested);
         $this->addRankFilter($nested);
         $this->addRecommendedFilter($nested);
+        $this->addTagsFilter($nested);
 
         $this->addSimpleFilters($query, $nested);
         $this->addCreatorFilter($query, $nested);
@@ -123,29 +127,6 @@ class BeatmapsetSearch extends RecordSearch
             ->with(['beatmaps' => function ($q) {
                 return $q->withMaxCombo();
             }])->get();
-    }
-
-    private function addBlacklistFilter($query)
-    {
-        static $fields = ['artist', 'source', 'tags'];
-        $params = [
-            'index' => $GLOBALS['cfg']['osu']['elasticsearch']['prefix'].'blacklist',
-            'id' => 'beatmapsets',
-            // can be changed to per-field blacklist as different fields should probably have different restrictions.
-            'path' => 'keywords',
-        ];
-
-        $bool = new BoolQuery();
-
-        foreach ($fields as $field) {
-            $bool->mustNot([
-                'terms' => [
-                    $field => $params,
-                ],
-            ]);
-        }
-
-        $query->filter($bool);
     }
 
     private function addBlockedUsersFilter($query)
@@ -253,17 +234,34 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addPlayedFilter($query, $nested)
     {
+        if ($this->params->playedFilter === null) {
+            return;
+        }
+
+        $ids = $this->getPlayedBeatmapIds();
+        $chunks = array_chunk($ids, 10000);
+
         if ($this->params->playedFilter === 'played') {
-            $nested->filter(['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds()]]);
+            if (count($ids) === 0) { // avoids the should empty list matching everything case.
+                return $query->filter(['match_none' => (object) []]);
+            }
+
+            $boolQuery = new BoolQuery();
+            foreach ($chunks as $chunk) {
+                $boolQuery->should(['terms' => ['beatmaps.beatmap_id' => $chunk]]);
+            }
+            $nested->filter($boolQuery);
         } elseif ($this->params->playedFilter === 'unplayed') {
             // The inverse of nested:filter/must is must_not:nested, not nested:must_not
             // https://github.com/elastic/elasticsearch/issues/26264#issuecomment-323668358
-            $query->mustNot([
-                'nested' => [
-                    'path' => 'beatmaps',
-                    'query' => ['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds()]],
-                ],
-            ]);
+            foreach ($chunks as $chunk) {
+                $query->mustNot([
+                    'nested' => [
+                        'path' => 'beatmaps',
+                        'query' => ['terms' => ['beatmaps.beatmap_id' => $chunk]],
+                    ],
+                ]);
+            }
         }
     }
 
@@ -273,7 +271,17 @@ class BeatmapsetSearch extends RecordSearch
             return;
         }
 
-        $query->filter(['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds($this->params->rank)]]);
+        $ids = $this->getPlayedBeatmapIds($this->params->rank);
+        if (count($ids) === 0) { // avoids the should empty list matching everything case.
+            return $query->filter(['match_none' => (object) []]);
+        }
+
+        $chunks = array_chunk($ids, 10000);
+        $boolQuery = new BoolQuery();
+        foreach ($chunks as $chunk) {
+            $boolQuery->should(['terms' => ['beatmaps.beatmap_id' => $chunk]]);
+        }
+        $query->filter($boolQuery);
     }
 
     private function addRecommendedFilter($query)
@@ -309,11 +317,14 @@ class BeatmapsetSearch extends RecordSearch
         static $filters = [
             'accuracy' => ['field' => 'beatmaps.diff_overall', 'type' => 'range'],
             'ar' => ['field' => 'beatmaps.diff_approach', 'type' => 'range'],
-            'bpm' => ['field' => 'bpm', 'type' => 'range'],
+            'bpm' => ['field' => 'beatmaps.bpm', 'type' => 'range'],
+            'countNormal' => ['field' => 'beatmaps.countNormal', 'type' => 'range'],
+            'countSlider' => ['field' => 'beatmaps.countSlider', 'type' => 'range'],
             'created' => ['field' => 'submit_date', 'type' => 'range'],
             'cs' => ['field' => 'beatmaps.diff_size', 'type' => 'range'],
             'difficultyRating' => ['field' => 'beatmaps.difficultyrating', 'type' => 'range'],
             'drain' => ['field' => 'beatmaps.diff_drain', 'type' => 'range'],
+            'favouriteCount' => ['field' => 'favourite_count', 'type' => 'range'],
             'totalLength' => ['field' => 'beatmaps.total_length', 'type' => 'range'],
             'statusRange' => ['field' => 'beatmaps.approved', 'type' => 'range'],
             'updated' => ['field' => 'last_update', 'type' => 'range'],
@@ -422,6 +433,34 @@ class BeatmapsetSearch extends RecordSearch
         $query->must($subQuery);
     }
 
+    private function addTagsFilter(BoolQuery $query): void
+    {
+        $tags = $this->params->tags;
+        if ($tags === null) {
+            return;
+        }
+
+        // workaround multi tag parsing when there's an empty tag.
+        $tags = array_reject_null($tags);
+
+        $tagMap = [];
+        foreach ($tags as $tag) {
+            $key = mb_strtolower(mb_trim($tag, '"'));
+            $tagMap[$key] = $tag;
+        }
+
+        $exactTags = Tag::whereIn('name', array_keys($tagMap))->limit(10)->pluck('name');
+
+        foreach ($exactTags as $tag) {
+            $query->filter(['term' => ['beatmaps.top_tags.raw' => $tag]]);
+            unset($tagMap[mb_strtolower($tag)]);
+        }
+
+        foreach (array_values($tagMap) as $tag) {
+            $query->filter(QueryHelper::queryString($tag, ['beatmaps.top_tags'], 'and'));
+        }
+    }
+
     private function getPlayedBeatmapIds(?array $rank = null)
     {
         $query = Solo\Score
@@ -438,7 +477,7 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         if ($rank === null) {
-            return $query->distinct('beatmap_id')->pluck('beatmap_id');
+            return $query->distinct('beatmap_id')->pluck('beatmap_id')->all();
         }
 
         $topScores = [];

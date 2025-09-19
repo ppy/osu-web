@@ -5,15 +5,16 @@
 
 return [
     'mode' => [
+        'artist_track' => '',
         'beatmapset' => 'المقطوعة',
         'forum_post' => 'المنتدى',
         'other' => 'أخرى',
+        'team' => '',
         'user' => 'اللاعب',
         'wiki_page' => 'ويكي',
     ],
 
     'result' => [
-        'empty' => 'لا نتائج',
         'empty_for' => 'لا يوجد نتائج لـ:modes',
         'more' => 'المزيد من نتائج بحت :mode',
         'title' => 'نتائج بحث :mode',

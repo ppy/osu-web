@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => 'tanggalin',
             'rules' => 'Pakitiyak na ang iyong avatar ay sumusunod sa :link.<br/>Nangangahulugan ito na dapat ay <strong>angkop para sa lahat ng edad</strong>. i.e. walang kahubaran, kabastusan, o nagpapahiwatig na nilalaman.',
             'rules_link' => 'ang patakaran ng komunidad
 	
@@ -89,6 +90,7 @@ return [
             'beatmap_owner_change' => 'guest na difficulty',
             'beatmapset:modding' => 'pagmo-mod ng beatmap',
             'channel_message' => 'mga pribadong mensahe',
+            'channel_team' => '',
             'comment_new' => 'mga bagong komento',
             'forum_topic_reply' => 'tugon sa paksa',
             'mail' => 'koreo',

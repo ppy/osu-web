@@ -26,6 +26,9 @@ return [
         'placeholder' => '',
         'title' => '',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => '',
             'more' => '',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => '',
+            'artist_track' => '',
             'beatmapset' => '',
             'forum_post' => '',
+            'team' => '',
             'user' => '',
             'wiki_page' => '',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [
@@ -133,14 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => '',
             'popular' => '',
             'by_user' => '',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => '',
             'support' => '',
             'store' => '',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

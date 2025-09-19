@@ -22,7 +22,7 @@
   }
 
   &::after {
-    .thicker-box-shadow;
+    .thicker-box-shadow();
     opacity: 0;
   }
 
@@ -33,9 +33,10 @@
   &--card {
     padding: 20px;
 
-    &::before, &::after {
+    &::before,
+    &::after {
       .full-size();
-      content: '';
+      content: "";
       will-change: opacity;
       transition: opacity 120ms;
       pointer-events: none;
@@ -76,7 +77,7 @@
   &__oos-bar {
     width: 233px;
     height: 136px;
-    .at2x-simple('~@images/layout/store-out-of-stock-bar.png');
+    .at2x-simple("~@images/layout/store-out-of-stock-bar.png");
     background-size: contain;
     position: absolute;
     bottom: 0;

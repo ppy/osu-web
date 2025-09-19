@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Você deve definir uma pontuação num beatmap para adicionar uma marcação.',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Este canal é apenas para avisos.',
         'blocked' => 'Não é possível enviar uma mensagem para um usuário que foi bloqueado ou te bloqueou.',
         'friends_only' => 'O usuário está bloqueando mensagens de pessoas fora de sua lista de amigos.',
         'moderated' => 'O canal atual está sendo moderado.',
         'no_access' => 'Você não tem acesso a esse canal.',
+        'no_announce' => 'Você não tem permissão para publicar anunciados.',
         'receive_friends_only' => 'O usuário pode não ser capaz de te responder, porque você só está aceitando mensagens de pessoas em sua lista de amigos.',
         'restricted' => 'Você não pode enviar mensagens enquanto silenciado, restrito ou banido.',
         'silenced' => 'Você não pode enviar mensagens enquanto silenciado, restrito ou banido.',
@@ -107,6 +113,7 @@ return [
                 'deleted' => 'Não é possível editar uma publicação excluída.',
                 'locked' => 'A edição desta publicação está bloqueada.',
                 'no_forum_access' => 'O acesso ao fórum solicitado é necessário.',
+                'no_permission' => 'Sem permissão para editar.',
                 'not_owner' => 'Somente o autor da publicação pode editar a publicação.',
                 'topic_locked' => 'Não é possível editar publicações de um tópico trancado.',
             ],
@@ -170,12 +177,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Apenas o proprietário da sala pode fechá-lo.',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Não é possível fixar este tipo de pontuação",
             'failed' => "Não é possível fixar uma pontuação que falhou.",
             'not_owner' => 'Somente o proprietário da pontuação pode fixar sua pontuação.',
             'too_many' => 'Muitas pontuações fixadas.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "Você já faz parte do time.",
+                'already_other_member' => "Você já faz parte de um time diferente.",
+                'currently_applying' => 'Você tem pedido de adesão de equipe pendente.',
+                'team_closed' => 'A equipe não está aceitando nenhum pedido de adesão.',
+                'team_full' => "A equipe está cheia e não pode mais aceitar nenhum membro.",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "O líder da equipe não pode sair da equipe.",
+            'not_member' => 'Não é um membro da equipe.',
+        ],
+        'store' => [
+            'require_supporter_tag' => 'osu!supporter tag necessária para se criar uma equipe.',
         ],
     ],
 

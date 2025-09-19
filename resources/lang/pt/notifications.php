@@ -11,7 +11,7 @@ return [
     'none' => 'Sem notificações',
     'see_all' => 'ver todas as notificações',
     'see_channel' => 'ir para a conversa',
-    'verifying' => 'Por favor verifica a sessão para ver as notificações',
+    'verifying' => 'Verifica a sessão para ver as notificações.',
 
     'action_type' => [
         '_' => 'tudo',
@@ -20,17 +20,19 @@ return [
         'channel' => 'conversa',
         'forum_topic' => 'fórum',
         'news_post' => 'notícias',
+        'team' => 'equipa',
         'user' => 'perfil',
     ],
 
     'filters' => [
         '_' => 'todas',
-        'user' => 'perfil',
         'beatmapset' => 'beatmaps',
-        'forum_topic' => 'fórum',
-        'news_post' => 'notícias',
         'build' => 'versões',
         'channel' => 'chat',
+        'forum_topic' => 'fórum',
+        'news_post' => 'notícias',
+        'team' => 'equipa',
+        'user' => 'perfil',
     ],
 
     'item' => [
@@ -121,6 +123,16 @@ return [
                     'channel_message_group' => 'de :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => 'Nova mensagem da equipa',
+
+                'team' => [
+                    'channel_team' => ':username diz ":title"',
+                    'channel_team_compact' => ':username diz ":title"',
+                    'channel_team_group' => ':username diz ":title"',
+                ],
+            ],
         ],
 
         'build' => [
@@ -156,6 +168,22 @@ return [
                 '_' => 'Nova resposta do fórum',
                 'forum_topic_reply' => ':username respondeu ao tópico do fórum ":title".',
                 'forum_topic_reply_compact' => ':username respondeu',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => 'Pedido de adesão à equipa',
+
+                'team_application_accept' => "Agora pertences à equipa :title",
+                'team_application_accept_compact' => "Agora pertences à equipa :title",
+
+                'team_application_group' => 'Atualizações em pedidos de adesão à equipa',
+
+                'team_application_reject' => 'O teu pedido de adesão à equipa :title foi recusado',
+                'team_application_reject_compact' => 'O teu pedido de adesão à equipa :title foi recusado',
+                'team_application_store' => ':title pediu para se juntar à tua equipa',
+                'team_application_store_compact' => ':title pediu para se juntar à tua equipa',
             ],
         ],
 
@@ -217,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Há um novo comunicado em ":name"',
+                'channel_announcement' => 'Há um novo comunicado em ":name"',
             ],
-
             'channel' => [
-                'pm' => 'Tu recebeste uma nova mensagem de :username',
+                'channel_message' => 'Recebeste uma nova mensagem de :username',
+            ],
+            'channel_team' => [
+                'channel_team' => 'Há uma nova mensagem na equipa ":name"',
             ],
         ],
 
@@ -240,6 +270,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Há novas respostas em ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Agora pertences à equipa :title",
+                'team_application_reject' => 'O teu pedido de adesão à equipa :title foi recusado',
+                'team_application_store' => ':title pediu para se juntar à tua equipa',
             ],
         ],
 

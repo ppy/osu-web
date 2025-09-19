@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatārs',
+            'reset' => 'atiestatīt',
             'rules' => 'Lūdzu, pārliecinieties, ka jūsu profila attēls atbilst :link.<br/>Tas nozīmē, ka attēlam jābūt <strong>piemērotam visiem vecumiem</strong>, t.i., bez kailuma, rupjībām vai ierosinoša satura.',
             'rules_link' => 'kopienas noteikumi',
         ],
@@ -19,7 +20,7 @@ return [
             'new_confirmation' => 'e-pasta apstiprinājums',
             'title' => 'E-pasts',
             'locked' => [
-                '_' => 'Lūdzu, sazinieties ar :accounts ja nepieciešams atjaunināt jūsu e-pasta adresi.',
+                '_' => 'Lūdzu, sazinieties ar :accounts, ja vēlies atjaunināt savu e-pasta adresi.',
                 'accounts' => 'kontu atbalsta komanda',
             ],
         ],
@@ -63,21 +64,21 @@ return [
     ],
 
     'github_user' => [
-        'info' => "Ja esat ieguldītājs osu! atvērtā koda repozitorijos, sasaistot savu GitHub kontu šeit un jūsu izmaiņu žurnāla ieraksti tiks saistīti ar jūsu osu! profilu. GitHub kontus, kuriem nav ieguldījumu vēstures osu!, nevar sasaistīt.",
+        'info' => "Ja esi ieguldītājs osu! atvērtā koda repozitorijos, sasaistot savu GitHub kontu šeit, tavi izmaiņu žurnāla ieraksti tiks saistīti ar tavu osu! profilu. GitHub kontus, kuriem nav ieguldījumu vēstures osu!, nevar sasaistīt.",
         'link' => 'Pievienot GitHub kontu',
         'title' => 'GitHub',
-        'unlink' => 'Atvienot GitHub kontu',
+        'unlink' => 'Atsaistīt GitHub kontu',
 
         'error' => [
             'already_linked' => 'Šis GitHub konts jau ir pievienots citam lietotājam.',
             'no_contribution' => 'Nevar sasaistīt GitHub kontu bez jebkādas ieguldījumu vēstures osu! repozitorijos.',
-            'unverified_email' => 'Lūdzu, apstriprinā savu primāro e-pasta adresi GitHub un pēc tam mēģiniet vēlreiz sasaistīt kontu.',
+            'unverified_email' => 'Lūdzu, apstiprini savu primāro e-pasta adresi GitHub un pēc tam mēģini vēlreiz sasaistīt kontu.',
         ],
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'saņemt paziņojumus par jaunām problēmām, kas saistītas ar kvalificētām šādu režīmu sitkartēm',
-        'beatmapset_disqualify' => 'saņemt paziņojumus, kad tiek diskvalificētas šādu režīmu sitkartes',
+        'beatmapset_discussion_qualified_problem' => 'saņemt paziņojumus par jaunām problēmām, kas saistītas ar kvalificētām šādu spēles veida ritma-kartēmmap',
+        'beatmapset_disqualify' => 'saņemt paziņojumus, kad tiek diskvalificētas šāda spēles veida  ritma-kartes',
         'comment_reply' => 'saņemt paziņojumus par atbildēm uz saviem komentāriem',
         'title' => 'Paziņojumi',
         'topic_auto_subscribe' => 'automātiski ieslēgt paziņojumus foruma tematiem, kurus esiet izveidojis',
@@ -85,13 +86,14 @@ return [
         'options' => [
             '_' => 'piegādes opcijas',
             'beatmap_owner_change' => 'viesa grūtības līmenis',
-            'beatmapset:modding' => 'bītmapju modifikācijas',
-            'channel_message' => 'privātās čata ziņas',
+            'beatmapset:modding' => 'ritma-karšu modifikācijas',
+            'channel_message' => 'privātās tērzētavas ziņas',
+            'channel_team' => 'komandas tērzētavas ziņas',
             'comment_new' => 'jauni komentāri',
             'forum_topic_reply' => 'tēmas atbilde',
             'mail' => 'pasts',
-            'mapping' => 'bītmapes kartētājs',
-            'push' => 'push',
+            'mapping' => 'ritma-kartes izveidotājs',
+            'push' => 'piespiestu',
         ],
     ],
 
@@ -102,12 +104,12 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'slēpt brīdinājumus par nepiemērotu saturu bītmapēs',
-        'beatmapset_title_show_original' => 'rādīt bītmapes metadatus oriģinālvalodā',
+        'beatmapset_show_nsfw' => 'slēpt brīdinājumus par nepiemērotu saturu ritma-mapēs',
+        'beatmapset_title_show_original' => 'rādīt ritma-mapes metadatus oriģinālvalodā',
         'title' => 'Opcijas',
 
         'beatmapset_download' => [
-            '_' => 'noklusējuma bītmapes lejupielādes tips',
+            '_' => 'noklusējuma ritma-mapes lejupielādes tips',
             'all' => 'ar video, ja pieejams',
             'direct' => 'atvērt osu!direct',
             'no_video' => 'bez video',
@@ -129,7 +131,7 @@ return [
     ],
 
     'security' => [
-        'current_session' => 'Pašreizējais',
+        'current_session' => 'pašreizējais',
         'end_session' => 'Beigt sesiju',
         'end_session_confirmation' => 'Šis beigs jūsu sesiju uz šo ierīci. Vai esat pārliecināts?',
         'last_active' => 'Pēdējais aktīvs:',

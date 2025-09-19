@@ -7,6 +7,7 @@ return [
     'cancel' => 'Batal',
 
     'authorise' => [
+        'app_owner' => 'aplikasi milik :owner',
         'request' => 'meminta izin untuk mengakses akunmu.',
         'scopes_title' => 'Ke depannya, aplikasi ini akan mampu untuk:',
         'title' => 'Permohonan Otorisasi',

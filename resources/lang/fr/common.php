@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Admin',
         'authorise' => 'Autoriser',
         'authorising' => 'Autorisation en cours...',
+        'back' => 'Retour',
         'back_to_previous' => 'Retour à la position précédente',
         'back_to_top' => 'Haut de page',
         'cancel' => 'Annuler',
@@ -57,7 +57,7 @@ return [
         'show_more_options' => 'afficher plus d’options',
         'submit' => 'Envoyer',
         'unpin' => 'désépingler',
-        'update' => 'Enregistrer',
+        'update' => 'Mettre à jour',
         'upload_image' => 'mettre en ligne une image',
 
         'watch' => [
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => 'm',
+        ],
+        'year' => [
+            'php' => 'a',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

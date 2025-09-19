@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => '',
+        'used' => '',
+        'word_not_allowed' => '',
+
+        'attributes' => [
+            'default_ruleset_id' => '',
+            'is_open' => '',
+            'name' => '',
+            'short_name' => '',
+            'url' => '',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Slaptažodyje negali būti vartotojo vardas.',
         'email_already_used' => 'El. pašto adresas jau naudojamas.',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Reitinguoti beatmap\'ai negali būti pranešti',
         'not_in_channel' => 'Jūs neesate šiame kanale.',
+        'in_team' => '',
         'reason_not_valid' => ':reason negalioja šiam pranešimo tipui.',
         'self' => "Negalite pranešti savęs!",
     ],

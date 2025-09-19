@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirmation' => '确定？',
+    'confirmation' => '你确定吗？',
     'confirmation_unsaved' => '未保存的更改将丢失。您确定吗？',
     'saved' => '已保存',
 
@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => '管理员',
         'authorise' => '授权',
         'authorising' => '授权中……',
+        'back' => '返回',
         'back_to_previous' => '返回上一位置',
         'back_to_top' => '回到顶部',
         'cancel' => '取消',
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => '月',
+        ],
+        'year' => [
+            'php' => '年',
+        ],
         'year_month' => [
             'moment' => 'YYYY年 MMMM',
             'php' => 'y年 MMMM',

@@ -113,6 +113,7 @@ return [
             'copyright' => 'Tekijänoikeudet (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Yksityisyys',
+            'rules' => '',
             'server_status' => 'Palvelimen tilanne',
             'source_code' => 'Lähdekoodi',
             'terms' => 'Käyttöehdot',
@@ -199,6 +200,9 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Lazer-tila näyttää uuden pisteytysalgoritmin avulla saadut tulokset',
             'logout' => 'Kirjaudu ulos',
             'profile' => 'Oma profiili',
+            'scoring_mode_toggle' => 'Klassinen pisteytys',
+            'scoring_mode_toggle_tooltip' => 'Säädä pistemäärät tuntumaan enemmän klassiselta rajoittamattomalta pisteytykseltä',
+            'team' => 'Minun tiimini',
         ],
     ],
 

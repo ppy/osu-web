@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Ovaj kanal je samo za obavijesti.',
         'blocked' => 'Ne možeš poslati poruku korisniku koji te blokira ili kojeg si blokirao/la.',
         'friends_only' => 'Korisnik blokira poruke od ljudi koji nisu na njegovoj/njezinoj listi prijatelja.',
         'moderated' => 'Ovaj kanal je trenutno nadziran.',
         'no_access' => 'Nemaš pristup tom kanalu.',
+        'no_announce' => '',
         'receive_friends_only' => 'Korisnik možda neće moći odgovoriti zato što samo prihvaćaš poruke od ljudi koji su na tvojoj listi prijatelja.',
         'restricted' => 'Ne možeš slati poruke dok si utišan, ograničen ili izbačen/a.',
         'silenced' => 'Ne možeš slati poruke dok si utišan, ograničen ili izbačen/a.',
@@ -107,6 +113,7 @@ return [
                 'deleted' => 'Ne možeš urediti izbrisanu objavu.',
                 'locked' => 'Ova objava je zaključena od uređivanja.',
                 'no_forum_access' => 'Potreban je pristup zatraženom forumu.',
+                'no_permission' => '',
                 'not_owner' => 'Samo autor može urediti objavu.',
                 'topic_locked' => 'Ne možeš urediti objavu zaključane teme.',
             ],
@@ -170,12 +177,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "",
             'failed' => "",
             'not_owner' => 'Samo vlasnik rezultata može prikvačiti rezultat.',
             'too_many' => 'Prikvačeno previše rezultata.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "",
+                'already_other_member' => "",
+                'currently_applying' => '',
+                'team_closed' => '',
+                'team_full' => "",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "",
+            'not_member' => '',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

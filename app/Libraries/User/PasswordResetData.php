@@ -24,9 +24,9 @@ class PasswordResetData
         $this->cacheKey = static::cacheKey($this->user, $username);
     }
 
-    public static function create(?User $user, string $username): ?string
+    public static function create(?User $user, ?string $username): ?string
     {
-        if ($user === null) {
+        if ($user === null || $username === null) {
             return osu_trans('password_reset.error.user_not_found');
         }
 

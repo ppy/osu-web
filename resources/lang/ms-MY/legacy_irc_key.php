@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirm_new' => '',
-    'new' => '',
-    'none' => '',
+    'confirm_new' => 'Cipta kata laluan IRC baharu?',
+    'new' => 'Kata Laluan IRC Legasi Baharu',
+    'none' => 'Kata Laluan IRC tidak ditetapkan.',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
-        'token' => '',
-        'username' => '',
+        'server_host' => 'pelayan',
+        'server_port' => 'port',
+        'token' => 'kata laluan pelayan',
+        'username' => 'nama pengguna',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Sorok Kata Laluan',
+        'show' => 'Tunjuk Kata Laluan',
+        'delete' => 'Padam',
     ],
 ];

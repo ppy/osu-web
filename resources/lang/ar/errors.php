@@ -7,6 +7,7 @@ return [
     'load_failed' => 'تعذر تحميل البيانات.',
     'missing_route' => 'رابط غير صالح أو طريقة طلب غير صحيحة.',
     'no_restricted_access' => 'أنت لست قادراً على تنفيذ هذا الإجراء عندما يكون حسابك في حالة مقيدة.',
+    'param_too_large' => '',
     'supporter_only' => 'يجب أن تكون osu!supporter لاستخدام هذه الميزة.',
     'unknown' => 'حدث خطأ غير معروف.',
 
@@ -28,9 +29,15 @@ return [
     'checkout' => [
         'generic' => 'حدث خطأ أثناء اعداد طلبك.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'لم نمتكن من جلب اي نتائج, حاول مجددا لاحقا.',
         'invalid_cursor_exception' => 'معلوم المؤشر المحدد غير صالح.',
         'operation_timeout_exception' => 'حاليا البحث مشغول اكثر من العادة, حاول مجددا لاحقا.',
+    ],
+    'user_report' => [
+        'recently_reported' => "لقد سبق لك التبليغ عن هذا مؤخراً.",
     ],
 ];

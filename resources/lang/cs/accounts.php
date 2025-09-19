@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => 'resetovat',
             'rules' => 'Ujisti se prosím, že tvůj avatar dodržuje :link.<br/>To znamená, že musí být <strong>vhodný pro všechny věkové kategorie</strong>. Tj. žádná nahota, žádný urážlivý či sugestivní obsah.',
             'rules_link' => 'kritéria vizuálního obsahu',
         ],
@@ -87,6 +88,7 @@ return [
             'beatmap_owner_change' => 'obtížnost hosta',
             'beatmapset:modding' => 'módování beatmap',
             'channel_message' => 'soukromé zprávy',
+            'channel_team' => 'zprávy týmového chatu',
             'comment_new' => 'nové komentáře',
             'forum_topic_reply' => 'odpověď v tématu',
             'mail' => 'e-mail',

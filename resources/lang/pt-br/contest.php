@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'comentários',
         'hide_judged' => 'esconder entradas julgadas',
         'nav_title' => 'juiz',
         'no_current_vote' => 'você ainda não votou.',
@@ -29,7 +30,9 @@ return [
         '_' => 'Resultado do julgamento',
         'creator' => 'criador',
         'score' => 'Pontuação',
+        'score_std' => 'Pontuação padronizada',
         'total_score' => 'pontuação total',
+        'total_score_std' => 'Nota total padronizada',
     ],
 
     'voting' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'votos',
         'count' => ':count voto|:count votos',
         'points' => ':count ponto|:count pontos',
+        'points_float' => ':points pontos',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Inscrição Aberta',
         'voting' => 'Votação Iniciada',
         'results' => 'Resultados',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => 'Visualizar infos e postagens',
+        ],
     ],
 ];

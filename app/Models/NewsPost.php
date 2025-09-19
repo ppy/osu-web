@@ -70,7 +70,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     {
         $query = static::published();
 
-        $limit = clamp(get_int($params['limit'] ?? null) ?? 20, 1, 21);
+        $limit = \Number::clamp(get_int($params['limit'] ?? null) ?? 20, 1, 21);
 
         $cursorHelper = static::makeDbCursorHelper();
         $cursor = cursor_from_params($params);
@@ -255,7 +255,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
             return;
         }
 
-        if ($absolute && !starts_with($url, ['https://', 'http://'])) {
+        if ($absolute && !is_http($url)) {
             if ($url[0] === '/') {
                 $url = $GLOBALS['cfg']['app']['url'].$url;
             } else {
@@ -264,6 +264,21 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
         }
 
         return $url;
+    }
+
+    public function firstImageWith2x(): array
+    {
+        $url = presence($this->firstImage());
+
+        if ($url !== null) {
+            $origUrl = proxy_media_original_url($url);
+            $url2x = proxy_media(retinaify($origUrl));
+        }
+
+        return [
+            '1x' => $url,
+            '2x' => $url2x ?? null,
+        ];
     }
 
     public function newer()

@@ -9,6 +9,16 @@ return [
         'title' => '国家或地区',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '难度',
+        'top_10p' => '前 10% 成绩',
+        'top_50p' => '前 50% 成绩',
+        'unavailable' => [
+            'future' => '在指定日期还没有每日挑战！',
+            'past' => '在指定日期没有每日挑战！',
+        ],
+    ],
+
     'filter' => [
         'title' => '显示',
 
@@ -24,24 +34,28 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => '该玩家的排名历史数据少于 30 天。',
     ],
 
     'type' => [
-        'charts' => '高光',
+        'charts' => '季赛（旧版）',
         'country' => '国家/地区',
+        'daily_challenge' => '每日挑战',
+        'global' => '全球',
         'kudosu' => 'Kudosu',
         'multiplayer' => '多人游戏',
-        'performance' => '表现',
-        'score' => '总分',
         'seasons' => '季赛',
+        'team' => '战队',
     ],
 
     'seasons' => [
         'empty' => '本季赛暂无可用房间。',
-        'ongoing' => '本季赛仍在进行中（将加入更多歌单）。',
+        'ongoing' => '当前季赛仍在进行中（将陆续追加更多歌单）。',
         'room_count' => '歌单数量',
         'url' => '显示该季赛更多信息。',
+        'validation' => [
+            'not_enough_factors' => '当前得分系数不足，无法完成有效计算',
+        ],
     ],
 
     'spotlight' => [
@@ -55,10 +69,12 @@ return [
         'accuracy' => '准确率',
         'active_users' => '活跃用户',
         'country' => '国家/地区',
+        'division' => '排位',
+        'members' => '队员',
         'play_count' => '游戏次数',
-        'performance' => '表现',
+        'performance' => '表现分',
         'total_score' => '总分',
-        'ranked_score' => '进榜总分',
+        'ranked_score' => '计分成绩总分',
         'average_score' => '平均得分',
         'average_performance' => '平均表现',
         'ss' => '',

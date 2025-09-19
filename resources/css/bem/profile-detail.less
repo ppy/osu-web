@@ -38,11 +38,16 @@
     display: flex;
     gap: 10px;
     flex-direction: column;
+    --align-items-desktop: flex-end;
+
+    &--top {
+      --align-items-desktop: flex-start;
+    }
 
     @media @desktop {
       flex-direction: row;
       justify-content: space-between;
-      align-items: flex-end;
+      align-items: var(--align-items-desktop);
     }
   }
 

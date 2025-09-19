@@ -29,7 +29,7 @@
     gap: 20px;
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 0;
       width: 100%;
@@ -44,15 +44,18 @@
 
     .@{_top}--breadcrumb & + &::before {
       .fas();
-      content: "\f105"; // fa-angle-right
+      content: @fa-var-angle-right;
 
       padding-right: @header-nav-gap;
     }
   }
 
   &__link {
-    position: relative;
+    align-items: baseline;
+    display: flex;
+    gap: 2px 5px;
     padding: var(--header-nav-item-padding-y) 0;
+    position: relative;
 
     &::before {
       display: none;
@@ -61,7 +64,7 @@
 
     @media @desktop {
       &::before {
-        content: '';
+        content: "";
         position: absolute;
         bottom: -2px;
         height: 5px;

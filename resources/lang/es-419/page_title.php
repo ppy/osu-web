@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'apoya el juego',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => 'partidos',
+        ],
         'legal_controller' => [
             '_' => 'información',
         ],
         'livestreams_controller' => [
             '_' => 'transmisiones en vivo',
-        ],
-        'matches_controller' => [
-            '_' => 'partidas',
         ],
         'news_controller' => [
             '_' => 'novedades',
@@ -107,11 +107,18 @@ return [
         'seasons_controller' => [
             '_' => 'clasificaciones',
         ],
+        'teams_controller' => [
+            '_' => 'equipos',
+            'create' => 'crear equipo',
+            'edit' => 'configuración del equipo',
+            'leaderboard' => 'tabla de clasificación del equipo',
+            'show' => 'información del equipo',
+        ],
         'tournaments_controller' => [
             '_' => 'torneos',
         ],
         'user_cover_presets_controller' => [
-            '_' => 'preselecciones de las portadas de usuario',
+            '_' => 'portadas preestablecidas para el usuario',
         ],
         'users_controller' => [
             '_' => 'información del jugador',
@@ -122,6 +129,11 @@ return [
             '_' => 'wiki',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => 'historial de la sala',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'autorizar aplicación',
@@ -129,6 +141,11 @@ return [
     ],
     'store' => [
         '_' => 'tienda',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'miembros del equipo',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

@@ -35,4 +35,8 @@ return [
     'modding' => [
         'title' => 'discussioni beatmap',
     ],
+
+    'store' => [
+        'too_many' => 'Limite raggiunto di follow.',
+    ],
 ];

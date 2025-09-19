@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ScorePin from 'components/score-pin';
-import SoloScoreJson from 'interfaces/solo-score-json';
+import ScoreJson from 'interfaces/score-json';
 import UserJson from 'interfaces/user-json';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
@@ -14,7 +14,7 @@ import { PopupMenuPersistent } from './popup-menu-persistent';
 import { ReportReportable } from './report-reportable';
 
 interface Props {
-  score: SoloScoreJson;
+  score: ScoreJson;
   user: UserJson;
 }
 
@@ -43,7 +43,6 @@ export class PlayDetailMenu extends React.Component<Props> {
         {hasReplay(score) && (
           <a
             className='simple-menu__item js-login-required--click'
-            data-turbolinks={false}
             href={scoreDownloadUrl(score)}
             onClick={dismiss}
           >

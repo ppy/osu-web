@@ -7,6 +7,7 @@ return [
     'load_failed' => 'Daten konnten nicht geladen werden.',
     'missing_route' => 'Ungültige URL oder falsches Anfrageverfahren.',
     'no_restricted_access' => 'Diese Aktion steht nicht zur Verfügung, während der Account restricted ist.',
+    'param_too_large' => 'Der Parameter :name darf maximal :count_delimited Item enthalten|Der Parameter :name darf maximal :count_delimited Items enthalten',
     'supporter_only' => 'Du musst ein osu!supporter sein, um dieses Feature zu nutzen.',
     'unknown' => 'Unbekannter Fehler aufgetreten.',
 
@@ -28,9 +29,15 @@ return [
     'checkout' => [
         'generic' => 'Bei der Vorbereitung deiner Bestellung ist ein Fehler aufgetreten.',
     ],
+    'scores' => [
+        'invalid_id' => 'Ungültige Score-ID.',
+    ],
     'search' => [
         'default' => 'Keine Ergebnisse gefunden, versuche es später erneut.',
         'invalid_cursor_exception' => 'Ungültiger Cursor-Parameter angegeben.',
         'operation_timeout_exception' => 'Die Suche ist derzeit höher ausgelastet als normal, versuche es später erneut.',
+    ],
+    'user_report' => [
+        'recently_reported' => "Du hast dies vor kurzem bereits gemeldet.",
     ],
 ];

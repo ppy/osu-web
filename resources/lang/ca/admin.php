@@ -53,6 +53,11 @@ return [
                 'beatmapsets' => '',
                 'forum' => '',
                 'general' => '',
+
+                'users' => [
+                    'header' => 'Usuari',
+                    'cover_presets' => 'Coberta Preseleccionada del Perfil',
+                ],
             ],
         ],
     ],

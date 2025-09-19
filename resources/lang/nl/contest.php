@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => '',
         'hide_judged' => 'verberg beoordeelde items',
         'nav_title' => 'beoordeel',
         'no_current_vote' => 'je hebt nog niet gestemd.',
@@ -29,7 +30,9 @@ return [
         '_' => 'Beoordelingsresultaten',
         'creator' => 'maker',
         'score' => 'Score',
+        'score_std' => '',
         'total_score' => 'totale score',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'stemmen',
         'count' => ':count_delimited stem|:count_delimited stemmen',
         'points' => ':count_delimited punt|:count_delimited punten',
+        'points_float' => '',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Inzendingen Open',
         'voting' => 'Stemmen Gestard',
         'results' => 'Resultaten uit',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

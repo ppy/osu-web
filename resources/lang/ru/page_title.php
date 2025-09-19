@@ -11,8 +11,8 @@ return [
         'error' => [
             '400' => 'неверный запрос',
             '404' => 'не найдено',
-            '403' => 'отказано',
-            '401' => 'вы не авторизованы',
+            '403' => 'доступ ограничен',
+            '401' => 'необходима авторизация',
             '401-verification' => 'подтверждение аккаунта',
             '405' => 'не найдено',
             '422' => 'неверный запрос',
@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'поддержать игру',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => 'матчи',
+        ],
         'legal_controller' => [
             '_' => 'информация',
         ],
         'livestreams_controller' => [
             '_' => 'прямые трансляции',
-        ],
-        'matches_controller' => [
-            '_' => 'матчи',
         ],
         'news_controller' => [
             '_' => 'новости',
@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => 'рейтинг',
         ],
+        'teams_controller' => [
+            '_' => 'команды',
+            'create' => 'создать команду',
+            'edit' => 'настройки команды',
+            'leaderboard' => 'командная рейтинговая таблица',
+            'show' => 'информация о команде',
+        ],
         'tournaments_controller' => [
             '_' => 'турниры',
         ],
@@ -122,6 +129,11 @@ return [
             '_' => 'вики',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => 'история комнаты',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'авторизация приложения',
@@ -129,6 +141,11 @@ return [
     ],
     'store' => [
         '_' => 'магазин',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'участники команды',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

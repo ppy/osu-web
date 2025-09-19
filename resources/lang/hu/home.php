@@ -26,6 +26,9 @@ return [
         'placeholder' => 'keresendő szöveg',
         'title' => 'Keresés',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Beatmapek kereséséhez jelentkezz be',
             'more' => ':count talált beatmap',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'mind',
+            'artist_track' => '',
             'beatmapset' => 'beatmap',
             'forum_post' => 'fórum',
+            'team' => '',
             'user' => 'játékos',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [
@@ -133,14 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Új rangsorolt beatmapek',
             'popular' => 'Népszerű beatmapek',
             'by_user' => ':user által',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'osu! letöltése',
             'support' => 'osu! támogatása',
             'store' => 'osu!bolt',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

@@ -26,6 +26,9 @@ return [
         'placeholder' => 'пішыце тут',
         'title' => 'Пошук',
 
+        'artist_track' => [
+            'more_simple' => 'Паглядзець усе вынікі пошуку сярод песен абраных выканаўцаў',
+        ],
         'beatmapset' => [
             'login_required' => 'Увайдзіце, каб шукаць бітмапы',
             'more' => 'больш :count вынікаў пошуку бітмап',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'усе',
+            'artist_track' => 'песні выбраных выканаўцаў',
             'beatmapset' => 'бітмапы',
             'forum_post' => 'форум',
+            'team' => 'каманда',
             'user' => 'гульцы',
             'wiki_page' => 'вікі',
+        ],
+
+        'team' => [
+            'more_simple' => 'Паглядзець усе вынікі пошуку сярод каманд',
         ],
 
         'user' => [
@@ -74,11 +83,11 @@ return [
 
     'download' => [
         'action' => 'Спампаваць osu!',
-        'action_lazer' => 'Скачаць osu!(lazer)',
+        'action_lazer' => 'Спампаваць osu!(lazer)',
         'action_lazer_description' => 'наступнае глабальнае абнаўленне osu!',
         'action_lazer_info' => 'артыкул з падрабязнай інфармацыяй',
         'action_lazer_title' => 'паспрабаваць osu!(lazer)',
-        'action_title' => 'скачаць osu!',
+        'action_title' => 'спампаваць osu!',
         'for_os' => 'для :os',
         'macos-fallback' => 'для macOS',
         'mirror' => 'люстэрка',
@@ -106,7 +115,7 @@ return [
                 'description' => 'прытрымлівайцеся падказак гульні, каб увайсці або стварыць акаўнт',
             ],
             'download' => [
-                'title' => 'спампаваць гульню',
+                'title' => 'спампуйце гульню',
                 'description' => 'націсніце на кнопку ніжэй, каб спампаваць усталёўшчык, а потым запусціце яго!',
             ],
             'beatmaps' => [
@@ -133,14 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Новыя ранкаваныя бітмапы',
             'popular' => 'Папулярныя бітмапы',
             'by_user' => 'ад :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'Спампаваць osu!',
             'support' => 'Падтрымаць osu!',
             'store' => 'Крама osu!',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

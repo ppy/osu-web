@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => '',
+
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Nabigong i-update ang boto',
@@ -16,7 +22,7 @@ return [
         'delete' => 'tanggalin',
         'deleted' => 'Tinanggal ni :editor :delete_time.',
         'deny_kudosu' => 'itanggi ang kudosu',
-        'edit' => 'I-edit',
+        'edit' => 'baguhin',
         'edited' => 'Huling na-edit ni :editor :update_time.',
         'guest' => 'Guest difficulty ni :user',
         'kudosu_denied' => 'Natanggi sa pagtamo ng kudosu.',
@@ -25,12 +31,14 @@ return [
         'message_placeholder_silenced' => "Hindi maaaring magpost ng diskusyon habang pinatahimik.",
         'message_type_select' => 'Piliin ang tipo ng komento',
         'reply_notice' => 'Pindutin ang Enter para magreply.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'I-type ang mensahe dito',
         'require-login' => 'Paki-sign-in upang mag-post o tumugon',
         'resolved' => 'Nalutas',
         'restore' => 'ibalik',
         'show_deleted' => 'Ipakita ang tinanggal',
         'title' => 'Diskusyon',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Icollapse lahat',

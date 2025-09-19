@@ -4,6 +4,10 @@
 --}}
 @php
     use App\Models\Store\Product;
+    use App\Models\SupporterTag;
+
+    static $getDurationText = fn (string $duration): string =>
+        SupporterTag::getDurationText($duration, null, osu_trans('common.array_and.two_words_connector'));
 @endphp
 
 @extends('master')
@@ -37,19 +41,29 @@
                                 {!! osu_trans('community.support.supporter_status.not_yet') !!}
                             </div>
                             @endif
-                            @if ($supporterStatus['tags'] > 0)
+                            @if ($supporterStatus['duration'] > 0)
                             <div class="supporter-status__text">
-                                {!! osu_trans('community.support.supporter_status.contribution', [
+                                {!! osu_trans('community.support.supporter_status.contribution_with_duration', [
                                     'dollars' => "<strong>{$supporterStatus['dollars']}</strong>",
-                                    'tags' => "<strong>{$supporterStatus['tags']}</strong>"
+                                    'duration' => tag(
+                                        'strong',
+                                        content: e($getDurationText($supporterStatus['duration'])),
+                                    ),
                                 ]) !!}
                             </div>
                             @endif
-                            @if ($supporterStatus['giftedTags'] > 0)
+                            @if ($supporterStatus['giftedDuration'] > 0)
                             <div class="supporter-status__text">
-                                {!! osu_trans('community.support.supporter_status.gifted', [
-                                    'giftedDollars' => "<strong>{$supporterStatus['giftedDollars']}</strong>",
-                                    'giftedTags' => "<strong>{$supporterStatus['giftedTags']}</strong>"
+                                {!! osu_trans('community.support.supporter_status.gifted._', [
+                                    'dollars' => "<strong>{$supporterStatus['giftedDollars']}</strong>",
+                                    'duration' => tag(
+                                        'strong',
+                                        content: e($getDurationText($supporterStatus['giftedDuration'])),
+                                    ),
+                                    'users' => tag(
+                                        'strong',
+                                        content: e(osu_trans_choice('community.support.supporter_status.gifted.users', $supporterStatus['giftedUsers'])),
+                                    ),
                                 ]) !!}
                             </div>
                             @endif

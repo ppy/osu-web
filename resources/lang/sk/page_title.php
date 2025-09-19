@@ -80,13 +80,13 @@ return [
             'support_the_game' => 'podporiť hru',
             'testflight' => '',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'informácie',
         ],
         'livestreams_controller' => [
-            '_' => '',
-        ],
-        'matches_controller' => [
             '_' => '',
         ],
         'news_controller' => [
@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => '',
         ],
+        'teams_controller' => [
+            '_' => '',
+            'create' => '',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => '',
+        ],
         'tournaments_controller' => [
             '_' => '',
         ],
@@ -122,6 +129,11 @@ return [
             '_' => 'wiki',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => '',
@@ -129,6 +141,11 @@ return [
     ],
     'store' => [
         '_' => 'obchod',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

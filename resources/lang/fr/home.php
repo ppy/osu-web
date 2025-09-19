@@ -26,6 +26,9 @@ return [
         'placeholder' => 'tapez pour rechercher',
         'title' => 'rechercher',
 
+        'artist_track' => [
+            'more_simple' => 'Voir plus de résultats de recherche de pistes de Featured Artists',
+        ],
         'beatmapset' => [
             'login_required' => 'Connectez-vous pour rechercher des beatmaps',
             'more' => ':count résultats de recherche de beatmap en plus',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'tout',
+            'artist_track' => 'piste de Featured Artist',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
+            'team' => 'équipe',
             'user' => 'joueur',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => 'Voir plus de résultats de recherche d\'équipes',
         ],
 
         'user' => [
@@ -133,14 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => 'Beatmap du défi du jour',
             'new' => 'Nouvelles beatmaps classées',
             'popular' => 'Beatmaps populaires',
             'by_user' => 'par :user',
+            'resets' => 'fin :ends',
         ],
         'buttons' => [
             'download' => 'Télécharger osu!',
             'support' => 'Soutenir osu!',
             'store' => 'osu!store',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => 'Ouvrir la console admin',
+            ],
         ],
     ],
 ];

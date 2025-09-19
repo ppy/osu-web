@@ -37,6 +37,12 @@ return [
         'new' => 'آخرین پاسخ',
     ],
 
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
+    ],
+
     'users' => [
         'relevance' => 'مرتبط',
         'username' => 'نام',

@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Сапраўды аднавіць тэму?',
         'deleted' => 'выдаленая тэма',
         'go_to_latest' => 'праглядзець апошні допіс',
+        'go_to_unread' => 'перайсці да першага непрачытанага адказу',
         'has_replied' => 'Вы адказалі на гэтую тэму',
         'in_forum' => 'у :forum',
         'latest_post' => ':when ад :user',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'Тэг «вырашана» выдалены',
             'to_1' => 'Дадаць тэг «вырашана»',
             'to_1_done' => 'Тэг «вырашана» даданы',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => 'Выдаліць тэг "osu!lazer"',
+            'to_0_done' => 'Выдалены тэг "osu!lazer"',
+            'to_1' => 'Дадаць тэг "osu!lazer"',
+            'to_1_done' => 'Дададзены тэг "osu!lazer"',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => 'Выдаліць тэг "osu!stable"',
+            'to_0_done' => 'Выдалены тэг "osu!stable"',
+            'to_1' => 'Дадаць тэг "osu!stable"',
+            'to_1_done' => 'Дададзены тэг "osu!stable"',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => 'Выдаліць тэг "osu!web"',
+            'to_0_done' => 'Выдалены тэг "osu!web"',
+            'to_1' => 'Дадаць тэг "osu!web"',
+            'to_1_done' => 'Дададзены тэг "osu!web"',
         ],
 
         'lock' => [

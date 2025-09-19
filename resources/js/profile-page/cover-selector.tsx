@@ -41,6 +41,7 @@ export default class CoverSelector extends React.Component<Props> {
   componentWillUnmount() {
     this.uploaderRef.current?.destroy();
     $.unsubscribe(`.${this.eventId}`);
+    this.props.controller.setDisplayCoverUrl(null);
   }
 
   render() {
@@ -48,6 +49,9 @@ export default class CoverSelector extends React.Component<Props> {
 
     return (
       <div ref={this.dropzoneRef} className='profile-cover-change-popup'>
+        <h2 className='title title--profile-edit-popup'>
+          {trans('users.show.edit.cover.title')}
+        </h2>
         <div className='profile-cover-change-popup__defaults'>
           {this.props.controller.userCoverPresets.map((preset) =>
             (<CoverSelection

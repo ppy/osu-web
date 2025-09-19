@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'коментари',
         'hide_judged' => 'скрий гласуваните',
         'nav_title' => 'жури',
         'no_current_vote' => 'не сте гласували все още.',
@@ -29,7 +30,9 @@ return [
         '_' => 'Резултат от жури',
         'creator' => 'създател',
         'score' => 'Резултат',
+        'score_std' => 'Стандартизиран резултат',
         'total_score' => 'общ резултат',
+        'total_score_std' => 'общ стандартизиран резултат',
     ],
 
     'voting' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'гласове',
         'count' => ':count_delimited глас|:count_delimited гласa',
         'points' => ':count_delimited точка|:count_delimited точки',
+        'points_float' => ':points точки',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Отворено записване',
         'voting' => 'Гласуването започна',
         'results' => 'Резултатите са обявени',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => 'Преглед на информация и записи',
+        ],
     ],
 ];

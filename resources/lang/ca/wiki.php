@@ -10,7 +10,7 @@ return [
         'missing' => 'No s\'ha pogut trobar la pàgina sol·licitada ":keyword".',
         'missing_title' => 'No trobat',
         'missing_translation' => 'No s\'ha pogut trobar la pàgina sol·licitada per a l\'idioma seleccionat.',
-        'needs_cleanup_or_rewrite' => 'Aquesta pàgina no compleix els estàndards de l\'osu! wiki i s\'ha de netejar o reescriure. Si podeu ajudar, considereu actualitzar l\'article!',
+        'needs_cleanup_or_rewrite' => 'Aquesta pàgina no compleix els estàndards d\'osu! wiki i s\'ha de netejar o reescriure. Si podeu ajudar, considereu actualitzar l\'article!',
         'search' => 'Cerca a les pàgines existents :link.',
         'stub' => 'Aquest article és incomplet i espera que algú l\'expandeixi.',
         'toc' => 'Continguts',

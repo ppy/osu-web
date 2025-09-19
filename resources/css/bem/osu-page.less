@@ -39,7 +39,9 @@
     padding-bottom: 20px;
     color: @osu-colour-c1;
 
-    h1, h3, h4 {
+    h1,
+    h3,
+    h4 {
       font-style: normal;
       color: white;
     }
@@ -154,11 +156,13 @@
       animation: forum-topic-reply-flash 500ms ease-in-out;
 
       @keyframes forum-topic-reply-flash {
-        50% { background-color: @osu-colour-b1; }
+        50% {
+          background-color: @osu-colour-b1;
+        }
       }
     }
 
-    &[data-state=stick] {
+    &[data-state="stick"] {
       position: fixed;
       z-index: @z-index--forum-topic-reply-stick;
       bottom: 0; // weird flashing in firefox android on certain scroll if using top
@@ -259,7 +263,10 @@
 
     flex: 1 0 auto;
     display: flex;
-    height: calc((var(--vh, 1vh) * 100) - (@header-container-min-height + 60px)); // viewport height - (header + footer + margins)
+    // viewport height - (header + footer + margins)
+    height: calc(
+      (var(--vh, 1vh) * 100) - (@header-container-min-height + 60px)
+    );
 
     @media @mobile {
       height: calc((var(--vh, 1vh) * 100) - var(--navbar-height));

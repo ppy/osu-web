@@ -55,6 +55,7 @@ return [
         'contact' => 'Contacto:',
         'date' => 'Fecha:',
         'echeck_delay' => 'Como tu pago fue un eCheck, ¡por favor permite hasta 10 días adicionales para que el pago se realice a través de PayPal!',
+        'echeck_denied' => 'PayPal ha rechazado el pago con eCheck.',
         'hide_from_activity' => 'las etiquetas de osu!supporter en esta orden no se muestran en tus actividades recientes.',
         'sent_via' => 'Enviado vía:',
         'shipping_to' => 'Envío a:',
@@ -173,6 +174,7 @@ return [
 
         'add_to_cart' => 'Agregar al carrito',
         'notify' => '¡Notificarme cuando esté disponible!',
+        'out_of_stock' => 'Agotado',
 
         'notification_success' => 'recibirás una notificación cuando tengamos nuevas unidades. Haz clic :link para cancelar',
         'notification_remove_text' => 'aquí',

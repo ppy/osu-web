@@ -13,17 +13,22 @@ use App\Libraries\Search\ScoreSearch;
 use App\Libraries\Session\Store as SessionStore;
 use App\Models\Beatmapset;
 use App\Models\Build;
+use App\Models\Multiplayer\PlaylistItem;
+use App\Models\Multiplayer\ScoreLink;
 use App\Models\OAuth\Client;
+use App\Models\OAuth\Token;
+use App\Models\ScoreToken;
 use App\Models\User;
 use Artisan;
+use Carbon\CarbonInterface;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Testing\Fakes\MailFake;
 use Laravel\Passport\Passport;
-use Laravel\Passport\Token;
 use Queue;
 use ReflectionMethod;
 use ReflectionProperty;
@@ -31,6 +36,24 @@ use ReflectionProperty;
 class TestCase extends BaseTestCase
 {
     use ArraySubsetAsserts, CreatesApplication, DatabaseTransactions;
+
+    protected $connectionsToTransact = [
+        'mysql',
+        'mysql-chat',
+        'mysql-mp',
+        'mysql-store',
+        'mysql-updates',
+    ];
+
+    protected array $expectedCountsCallbacks = [];
+
+    public static function regularOAuthScopesDataProvider()
+    {
+        // just skip over any scopes that require special conditions for now.
+        return static::allPassportScopeIds()
+            ->diff(['chat.read', ...Token::SCOPES_REQUIRE_DELEGATION])
+            ->map(fn ($scope) => [$scope]);
+    }
 
     public static function withDbAccess(callable $callback): void
     {
@@ -57,6 +80,16 @@ class TestCase extends BaseTestCase
         );
     }
 
+    protected static function chatScopes(): Collection
+    {
+        return static::allPassportScopeIds()->filter(fn ($scope) => str_starts_with($scope, 'chat.'));
+    }
+
+    protected static function allPassportScopeIds(): Collection
+    {
+        return Passport::scopes()->pluck('id');
+    }
+
     protected static function reindexScores()
     {
         $search = new ScoreSearch();
@@ -79,30 +112,32 @@ class TestCase extends BaseTestCase
         }
     }
 
-    protected $connectionsToTransact = [
-        'mysql',
-        'mysql-chat',
-        'mysql-mp',
-        'mysql-store',
-        'mysql-updates',
-    ];
-
-    protected array $expectedCountsCallbacks = [];
-
-    public static function regularOAuthScopesDataProvider()
+    protected static function roomAddPlay(User $user, PlaylistItem $playlistItem, array $scoreParams): ScoreLink
     {
-        $data = [];
+        return $playlistItem->room->completePlay(
+            static::roomStartPlay($user, $playlistItem),
+            [
+                'accuracy' => 0.5,
+                'beatmap_id' => $playlistItem->beatmap_id,
+                'ended_at' => json_time(new \DateTime()),
+                'max_combo' => 1,
+                'ruleset_id' => $playlistItem->ruleset_id,
+                'statistics' => ['good' => 1],
+                'total_score' => 10,
+                'user_id' => $user->getKey(),
+                ...$scoreParams,
+            ],
+        );
+    }
 
-        foreach (Passport::scopes()->pluck('id') as $scope) {
-            // just skip over any scopes that require special conditions for now.
-            if (in_array($scope, ['chat.read', 'chat.write', 'chat.write_manage', 'delegate'], true)) {
-                continue;
-            }
-
-            $data[] = [$scope];
-        }
-
-        return $data;
+    protected static function roomStartPlay(User $user, PlaylistItem $playlistItem): ScoreToken
+    {
+        return $playlistItem->room->startPlay($user, $playlistItem, [
+            'beatmap_hash' => $playlistItem->beatmap->checksum,
+            'beatmap_id' => $playlistItem->beatmap_id,
+            'build_id' => 0,
+            'ruleset_id' => $playlistItem->ruleset_id,
+        ]);
     }
 
     protected function setUp(): void
@@ -113,6 +148,10 @@ class TestCase extends BaseTestCase
 
         // change config setting because we need more than 1 for the tests.
         config_set('osu.oauth.max_user_clients', 100);
+
+        // Disable caching for the BeatmapTagsController and TagsController tests
+        // because otherwise multiple run of the tests may use stale cache data.
+        config_set('osu.beatmap_tags.cache_duration', 0);
 
         // Force connections to reset even if transactional tests were not used.
         // Should fix tests going wonky when different queue drivers are used, or anything that
@@ -131,40 +170,35 @@ class TestCase extends BaseTestCase
     /**
      * Act as a User with OAuth scope permissions.
      */
-    protected function actAsScopedUser(?User $user, ?array $scopes = ['*'], ?Client $client = null): void
+    protected function actAsScopedUser(?User $user, ?array $scopes = ['*'], ?Client $client = null): static
     {
-        $this->actingWithToken($this->createToken(
+        return $this->actingWithToken($this->createToken(
             $user,
             $scopes,
             $client ?? Client::factory()->create(),
         ));
     }
 
-    protected function actAsUser(?User $user, bool $verified = false, $driver = null)
+    protected function actAsUser(?User $user, bool $verified = false, $driver = null): static
     {
-        if ($user === null) {
-            return;
+        if ($user !== null) {
+            $this->be($user, $driver)->withSession(['verified' => $verified]);
         }
 
-        $this->be($user, $driver);
-
-        $this->withSession(['verified' => $verified]);
+        return $this;
     }
 
     /**
      * This is for tests that will skip the request middleware stack.
-     *
-     * @param Token $token OAuth token.
-     * @param string $driver Auth driver to use.
-     * @return void
      */
-    protected function actAsUserWithToken(Token $token, $driver = null)
+    protected function actAsUserWithToken(Token $token, ?string $driver = null): static
     {
         $guard = app('auth')->guard($driver);
         $user = $token->getResourceOwner();
 
-        if ($user !== null) {
-            // guard doesn't accept null user.
+        if ($user === null) {
+            $guard->logout();
+        } else {
             $guard->setUser($user);
             $user->withAccessToken($token);
         }
@@ -175,36 +209,24 @@ class TestCase extends BaseTestCase
         request()->attributes->set(AuthApi::REQUEST_OAUTH_TOKEN_KEY, $token);
 
         app('auth')->shouldUse($driver);
-    }
-
-    protected function actingAsVerified($user)
-    {
-        $this->actAsUser($user, true);
 
         return $this;
     }
 
-    protected function actingWithToken($token)
+    protected function actingAsVerified($user): static
     {
-        $this->actAsUserWithToken($token);
-
-        $encodedToken = EncodeToken::encodeAccessToken($token);
-
-        return $this->withHeaders([
-            'Authorization' => "Bearer {$encodedToken}",
-        ]);
+        return $this->actAsUser($user, true);
     }
 
-    protected function createAllowedScopesDataProvider(array $allowedScopes)
+    protected function actingWithToken($token): static
     {
-        $data = Passport::scopes()->pluck('id')->map(function ($scope) use ($allowedScopes) {
-            return [[$scope], in_array($scope, $allowedScopes, true)];
-        })->all();
+        return $this->actAsUserWithToken($token)
+            ->withToken(EncodeToken::encodeAccessToken($token));
+    }
 
-        // scopeless tokens should fail in general.
-        $data[] = [[], false];
-
-        return $data;
+    protected function assertEqualsUpToOneSecond(CarbonInterface $expected, CarbonInterface $actual): void
+    {
+        $this->assertTrue($expected->diffInSeconds($actual, true) < 2);
     }
 
     protected function createVerifiedSession($user): SessionStore
@@ -340,11 +362,20 @@ class TestCase extends BaseTestCase
         $this->invokeSetProperty(app('queue'), 'jobs', []);
     }
 
-    protected function withInterOpHeader($url)
+    protected function withInterOpHeader($url, ?callable $callback = null)
     {
-        return $this->withHeaders([
-            'X-LIO-Signature' => hash_hmac('sha1', $url, $GLOBALS['cfg']['osu']['legacy']['shared_interop_secret']),
+        if ($callback === null) {
+            $timestampedUrl = $url;
+        } else {
+            $connector = strpos($url, '?') === false ? '?' : '&';
+            $timestampedUrl = $url.$connector.'timestamp='.time();
+        }
+
+        $this->withHeaders([
+            'X-LIO-Signature' => hash_hmac('sha1', $timestampedUrl, $GLOBALS['cfg']['osu']['legacy']['shared_interop_secret']),
         ]);
+
+        return $callback === null ? $this : $callback($timestampedUrl);
     }
 
     protected function withPersistentSession(SessionStore $session): static

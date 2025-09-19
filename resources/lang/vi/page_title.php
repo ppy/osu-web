@@ -80,15 +80,15 @@ return [
             'support_the_game' => 'ủng hộ osu',
             'testflight' => 'thử nghệm bay',
         ],
+        'legacy_matches_controller' => [
+            '_' => 'trận đấu',
+        ],
         'legal_controller' => [
             '_' => 'thông tin
 ',
         ],
         'livestreams_controller' => [
             '_' => 'nguồn trực tiếp',
-        ],
-        'matches_controller' => [
-            '_' => 'kết quả',
         ],
         'news_controller' => [
             '_' => 'tin tức',
@@ -108,6 +108,13 @@ return [
         'seasons_controller' => [
             '_' => 'xếp hạng',
         ],
+        'teams_controller' => [
+            '_' => 'đội',
+            'create' => 'tạo đội',
+            'edit' => 'cài đặt đội',
+            'leaderboard' => 'bảng xếp hạng đội',
+            'show' => 'thông tin về đội',
+        ],
         'tournaments_controller' => [
             '_' => 'giải đấu',
         ],
@@ -123,6 +130,11 @@ return [
             '_' => 'wiki',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => 'lịch sử phòng',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'uỷ quyền ứng dụng',
@@ -130,6 +142,11 @@ return [
     ],
     'store' => [
         '_' => 'cửa hàng',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'thành viên trong đội',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

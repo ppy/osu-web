@@ -19,12 +19,12 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Amministratore',
         'authorise' => 'Autorizza',
         'authorising' => 'Autorizzazione...',
+        'back' => 'Indietro',
         'back_to_previous' => 'Torna alla posizione precedente',
         'back_to_top' => 'Torna in cima',
-        'cancel' => 'Cancella',
+        'cancel' => 'Annulla',
         'change' => 'cambia',
         'clear' => 'Svuota',
         'click_to_copy' => 'clicca per copiare negli appunti',
@@ -49,7 +49,7 @@ return [
         'save' => 'Salva',
         'saving' => 'Salvataggio in corso...',
         'search' => 'Cerca',
-        'see_more' => 'mostra altro',
+        'see_more' => 'vedi altro',
         'show' => 'mostra',
         'show_deleted' => 'Mostra eliminati',
         'show_less' => 'mostra meno',
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => 'm',
+        ],
+        'year' => [
+            'php' => 'a',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

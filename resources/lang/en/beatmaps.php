@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'Invalid ruleset specified.',
+
+    'change_owner' => [
+        'too_many' => 'Too many guest mappers.',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Failed updating vote',
@@ -25,12 +31,14 @@ return [
         'message_placeholder_silenced' => "Can't post discussion while silenced.",
         'message_type_select' => 'Select Comment Type',
         'reply_notice' => 'Press enter to reply.',
+        'reply_resolve_notice' => 'Press enter to reply. Press ctrl+enter to reply and resolve.',
         'reply_placeholder' => 'Type your response here',
         'require-login' => 'Please sign in to post or reply',
         'resolved' => 'Resolved',
         'restore' => 'restore',
         'show_deleted' => 'Show deleted',
         'title' => 'Discussions',
+        'unresolved_count' => ':count_delimited unresolved issue|:count_delimited unresolved issues',
 
         'collapse' => [
             'all-collapse' => 'Collapse all',

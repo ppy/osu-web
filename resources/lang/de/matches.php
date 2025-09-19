@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner mit :difference Punkten Unterschied',
 
         'events' => [
-            'player-left' => ':user hat das Match verlassen',
-            'player-joined' => ':user ist dem Match beigetreten',
-            'player-kicked' => ':user wurde aus dem Match entfernt',
-            'match-created' => ':user hat das Match erstellt',
-            'match-disbanded' => 'das Match wurde aufgelöst',
-            'host-changed' => ':user wurde zum Host',
-
-            'player-left-no-user' => 'ein Spieler hat das Match verlassen',
-            'player-joined-no-user' => 'ein Spieler ist dem Match beigetreten',
-            'player-kicked-no-user' => 'ein Spieler wurde aus dem Match entfernt',
-            'match-created-no-user' => 'das Match wurde erstellt',
-            'match-disbanded-no-user' => 'das Match wurde aufgelöst',
-            'host-changed-no-user' => 'der Host wurde gewechselt',
+            'game_aborted' => 'Das Spiel wurde abgebrochen',
+            'game_aborted_no_user' => 'Das Spiel wurde abgebrochen',
+            'game_completed' => 'Das Spiel ist beendet',
+            'game_completed_no_user' => 'Das Spiel ist beendet',
+            'host_changed' => ':user wurde zum Spielleiter',
+            'host_changed_no_user' => 'Es gibt einen neuen Spielleiter',
+            'player_joined' => ':user ist dem Match beigetreten',
+            'player_joined_no_user' => 'Ein Spieler ist dem Match beigetreten',
+            'player_kicked' => ':user wurde aus dem Match entfernt',
+            'player_kicked_no_user' => 'Ein Spieler wurde aus dem Match entfernt',
+            'player_left' => ':user hat das Match verlassen',
+            'player_left_no_user' => 'Ein Spieler hat das Match verlassen',
+            'room_created' => ':user hat das Match erstellt',
+            'room_created_no_user' => 'Das Match wurde erstellt',
+            'room_disbanded' => 'Das Match wurde aufgelöst',
+            'room_disbanded_no_user' => 'Das Match wurde aufgelöst',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+        'team_types' => [
+            'head_to_head' => 'Head-to-head',
+            'tag_coop' => 'Tag Co-op',
+            'tag_team_versus' => 'Tag Team VS',
+            'team_versus' => 'Team VS',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => 'Freestyle',
+
         'scoring-type' => [
             'score' => 'Höchste Punktzahl',
             'accuracy' => 'Höchste Genauigkeit',

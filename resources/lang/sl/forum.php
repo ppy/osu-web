@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'Res želiš povrniti temo?',
         'deleted' => 'odstranjena tema',
         'go_to_latest' => 'ogled zadnje objave',
+        'go_to_unread' => '',
         'has_replied' => 'Odgovoril si na to temo',
         'in_forum' => 'v :forum',
         'latest_post' => ':when od :user',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => 'Odstranjena oznaka "razrešeno"',
             'to_1' => 'Dodaj oznako "razrešeno"',
             'to_1_done' => 'Dodana oznaka "razrešeno"',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'lock' => [

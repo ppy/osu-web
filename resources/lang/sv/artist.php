@@ -46,8 +46,8 @@ return [
             '_' => 'spårsökning',
 
             'exclusive_only' => [
-                'all' => '',
-                'exclusive_only' => '',
+                'all' => 'Alla',
+                'exclusive_only' => 'osu! original',
             ],
 
             'form' => [
@@ -57,7 +57,7 @@ return [
                 'bpm_gte' => 'Minsta BPM',
                 'bpm_lte' => 'Högsta BPM',
                 'empty' => 'Inga spår som matchade sökfiltret hittades.',
-                'exclusive_only' => '',
+                'exclusive_only' => 'Typ',
                 'genre' => 'Genre',
                 'genre_all' => 'Alla',
                 'length_gte' => 'Minsta längd',

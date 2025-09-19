@@ -6,6 +6,6 @@
 return [
     'create' => [
         'beatmap_hash_invalid' => 'beatmap_hash tidak valid atau hilang',
-        'submission_disabled' => 'pengumpulan skor dinonaktifkan',
+        'submission_disabled' => 'submisi skor dinonaktifkan',
     ],
 ];

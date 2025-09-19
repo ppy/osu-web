@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => ':attribute 에 사용할 수 없는 문자가 있어요.',
+        'used' => ':attribute 는 이미 사용되고 있어요.',
+        'word_not_allowed' => ':attribute 는 허용되지 않아요.',
+
+        'attributes' => [
+            'default_ruleset_id' => '기본 룰셋',
+            'is_open' => '팀 참가',
+            'name' => '이름',
+            'short_name' => '짧은 이름',
+            'url' => 'URL',
+        ],
+    ],
+
     'user' => [
         'contains_username' => '비밀번호에 아이디를 포함할 수 없습니다.',
         'email_already_used' => '이미 사용중인 이메일 주소입니다.',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => '랭크된 비트맵은 신고할 수 없습니다.',
         'not_in_channel' => '이 채널에 있지 않습니다.',
+        'in_team' => '이 팀의 일원이 되었어요.',
         'reason_not_valid' => ':reason 은(는) 이 신고 형식에 맞지 않습니다.',
         'self' => "자기 자신은 신고할 수 없습니다!",
     ],

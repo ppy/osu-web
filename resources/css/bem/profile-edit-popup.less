@@ -1,0 +1,21 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.profile-edit-popup {
+  .default-border-radius();
+  .default-box-shadow();
+
+  position: absolute;
+  top: 0;
+  right: 100%;
+
+  width: 400px;
+  max-width: calc(100vw - 50px);
+
+  background: hsl(var(--hsl-b6));
+  z-index: @z-index--profile-page-cover-selector;
+
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+}

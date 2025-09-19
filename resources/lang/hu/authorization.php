@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Ez a csatorna csak bejelentéseknek vannak fenntartva.',
         'blocked' => 'Nem küldhetsz üzenetet olyan felhasználónak akiket letiltottál, vagy téged tiltottak le.',
         'friends_only' => 'A felhasználó letiltotta a baráti listáján nem szereplő emberek üzeneteinek fogadását.',
         'moderated' => 'A csatorna jelenleg moderálva van.',
         'no_access' => 'Nincs hozzáférésed a csatornához.',
+        'no_announce' => 'Nincs jogosultságod bejelentés megosztásához.',
         'receive_friends_only' => 'user lehet nem fog tudni visszaírni, mert csak a barátlistádon lévő emberektől fogadsz üzeneteket.',
         'restricted' => 'Nem küldhetsz üzeneteket némított, felfüggesztett vagy kitiltott állapotban.',
         'silenced' => 'Némítva, felfüggesztve vagy kitiltva nem küldhetsz üzeneteket.',
@@ -107,6 +113,7 @@ return [
                 'deleted' => 'Törölt posztot nem lehet szerkeszteni.',
                 'locked' => 'A posztot nem lehet szerkeszteni.',
                 'no_forum_access' => 'A kért fórumhoz hozzáférési jog szükséges.',
+                'no_permission' => '',
                 'not_owner' => 'Csak a szerző szerkesztheti a posztot.',
                 'topic_locked' => 'Lezárt téma posztját nem lehet szerkeszteni.',
             ],
@@ -170,12 +177,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Nem lehet ilyen típusú pontszámot kitűzni",
             'failed' => "Nem passzolt pontszám nem rögzíthető.",
             'not_owner' => 'Csak eredménnyel rendelkezők tűzhetnek ki eredményeket.',
             'too_many' => 'Túl sok kitűzött eredmény.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "Már a csapat tagja vagy.",
+                'already_other_member' => "Már egy másik csapat tagja vagy.",
+                'currently_applying' => '',
+                'team_closed' => 'A csapat jelenleg nem fogad új jelentkezőket.',
+                'team_full' => "A csapat tele van és nem fogad új jelentkezőket.",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "A csapatvezető nem léphet ki a csapatból.",
+            'not_member' => '',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

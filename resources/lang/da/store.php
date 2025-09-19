@@ -55,6 +55,7 @@ return [
         'contact' => '',
         'date' => '',
         'echeck_delay' => 'Siden du betalte med en eCheck, vent venligst op til 10 ekstra dage for at betalingen kommer igennem med PayPal!',
+        'echeck_denied' => '',
         'hide_from_activity' => '',
         'sent_via' => '',
         'shipping_to' => '',
@@ -173,6 +174,7 @@ return [
 
         'add_to_cart' => 'Lig i Indkøbskurven',
         'notify' => 'Giv mig besked, når varen er tilgængelig igen!',
+        'out_of_stock' => '',
 
         'notification_success' => 'du vil modtage en besked når varen er på lager igen. klik :link for at annullere',
         'notification_remove_text' => 'here',

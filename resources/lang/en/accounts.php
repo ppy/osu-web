@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => 'reset',
             'rules' => 'Please ensure your avatar adheres to :link.<br/>This means it must be <strong>suitable for all ages</strong>. i.e. no nudity, offensive or suggestive content.',
             'rules_link' => 'the Visual content considerations',
         ],
@@ -80,13 +81,14 @@ return [
         'beatmapset_disqualify' => 'receive notifications for when beatmaps of the following modes are disqualified',
         'comment_reply' => 'receive notifications for replies to your comments',
         'title' => 'Notifications',
-        'topic_auto_subscribe' => 'automatically enable notifications on new forum topics that you create',
+        'topic_auto_subscribe' => 'automatically enable notifications on new forum topics that you create or replied to',
 
         'options' => [
             '_' => 'delivery options',
             'beatmap_owner_change' => 'guest difficulty',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'private chat messages',
+            'channel_team' => 'team chat messages',
             'comment_new' => 'new comments',
             'forum_topic_reply' => 'topic reply',
             'mail' => 'mail',
@@ -143,6 +145,21 @@ return [
 
     'update_password' => [
         'update' => 'update',
+    ],
+
+    'user_totp' => [
+        'title' => 'Authenticator App',
+        'usage_note' => 'Use authenticator app instead of email for verification. Email verification will still be available as a fallback. Verification using authenticator app is not yet available for osu!(lazer) - it will still be done through email.',
+
+        'button' => [
+            'remove' => 'Remove',
+            'setup' => 'Add Authenticator App',
+        ],
+        'status' => [
+            'label' => 'status',
+            'not_set' => 'Not configured',
+            'set' => 'Configured',
+        ],
     ],
 
     'verification_completed' => [

@@ -20,17 +20,19 @@ return [
         'channel' => '채팅',
         'forum_topic' => '포럼',
         'news_post' => '뉴스',
+        'team' => '팀',
         'user' => '프로필',
     ],
 
     'filters' => [
         '_' => '전체',
-        'user' => '프로필',
         'beatmapset' => '비트맵',
-        'forum_topic' => '포럼',
-        'news_post' => '뉴스',
         'build' => '빌드 버전',
         'channel' => '채팅',
+        'forum_topic' => '포럼',
+        'news_post' => '뉴스',
+        'team' => '팀',
+        'user' => '프로필',
     ],
 
     'item' => [
@@ -121,6 +123,16 @@ return [
                     'channel_message_group' => ':username님으로 부터',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '새 팀 메시지',
+
+                'team' => [
+                    'channel_team' => ':username 님의 대화 ":title"',
+                    'channel_team_compact' => ':username 님의 대화 ":title"',
+                    'channel_team_group' => ':username 님의 대화 ":title"',
+                ],
+            ],
         ],
 
         'build' => [
@@ -156,6 +168,22 @@ return [
                 '_' => '새로운 포럼 답글',
                 'forum_topic_reply' => ':username님이 포럼 주제 ":title"에 답글을 달았습니다.',
                 'forum_topic_reply_compact' => ':username님이 답글을 달았습니다.',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => '팀 가입 요청',
+
+                'team_application_accept' => "당신은 이제 :title 팀의 멤버입니다.",
+                'team_application_accept_compact' => "당신은 이제 :title 팀의 멤버입니다.",
+
+                'team_application_group' => '팀 참가 요청이 있어요',
+
+                'team_application_reject' => '팀 :title에 보낸 가입 요청이 거부되었습니다.',
+                'team_application_reject_compact' => '팀 :title에 보낸 가입 요청이 거부되었습니다.',
+                'team_application_store' => ':title 님이 팀에 참가하고 싶어해요',
+                'team_application_store_compact' => ':title 님이 팀에 참가하고 싶어해요',
             ],
         ],
 
@@ -217,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '":name"에 새로운 공지가 있습니다',
+                'channel_announcement' => '":name"에 새로운 공지가 있습니다.',
             ],
-
             'channel' => [
-                'pm' => ':username님에게 새로운 메시지를 받았습니다.',
+                'channel_message' => ':username 님에게 새로운 메시지를 받았습니다.',
+            ],
+            'channel_team' => [
+                'channel_team' => '팀 ":name"에 새로운 메시지가 있습니다.',
             ],
         ],
 
@@ -240,6 +270,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => '":title"에 새로운 답글이 달렸습니다.',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "당신은 이제 :title 팀의 멤버입니다.",
+                'team_application_reject' => '팀 :title에 보낸 가입 요청이 거부되었습니다.',
+                'team_application_store' => ':title 님이 팀에 참가하고 싶어해요',
             ],
         ],
 

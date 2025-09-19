@@ -3,6 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('master', [
+    'currentHue' => $user->user_style,
     'pageDescription' => page_description($user->username),
     'titlePrepend' => App\Libraries\Opengraph\UserOpengraph::escapeForTitle($user->username),
 ])
@@ -10,7 +11,7 @@
 @section('content')
     @include('users._restricted_banner', compact('user'))
 
-    <div class="js-react--modding-profile osu-layout osu-layout--full"></div>
+    <div class="js-react--modding-profile u-contents"></div>
 @endsection
 
 @section ("script")

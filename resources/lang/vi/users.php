@@ -8,7 +8,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Lịch Sử Modding Của :user",
-        'title_compact' => 'Modding',
+        'title_compact' => 'Sửa đổi',
 
         'discussions' => [
             'title_recent' => 'Cuộc thảo luận gần đây',
@@ -59,8 +59,8 @@ return [
             'password' => 'mật khẩu',
             'password_confirmation' => 'xác nhận mật khẩu',
             'submit' => 'tạo tài khoản',
-            'user_email' => 'email',
-            'user_email_confirmation' => 'xác nhận email',
+            'user_email' => 'thư điện tử',
+            'user_email_confirmation' => 'xác nhận thư điện tử',
             'username' => 'tên người dùng',
 
             'tos_notice' => [
@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => 'Đã kết thúc',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Beatmap: :counts',
         'modding_description_empty' => 'Người dùng không có bất kỳ beatmap nào...',
@@ -159,14 +166,24 @@ return [
             'cancel' => 'Hủy',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => 'Vui lòng gửi mọi khiếu nại về vi phạm bản quyền bằng cách gửi yêu cầu DMCA đến :mail theo :policy.',
+                'policy' => 'chính sách bản quyền của osu!',
+            ],
+            'message_2' => 'Đây áp dụng cho các trường hợp bài hát, hình ảnh hoặc beatmap bị sử dụng mà không có quyền cho phép.',
+        ],
+
         'options' => [
             'cheating' => 'Chơi xấu / Gian lận',
-            'multiple_accounts' => 'Sử dụng nhiều tài khoản',
+            'copyright_infringement' => 'Vi phạm bản quyền',
+            'inappropriate_chat' => 'Hành vi trò chuyện không phù hợp',
             'insults' => 'Xúc phạm tôi / những người khác',
-            'spam' => 'Spamming',
-            'unwanted_content' => 'Có những nội dung không phù hợp',
+            'multiple_accounts' => 'Sử dụng nhiều tài khoản',
             'nonsense' => 'Phi lý',
             'other' => 'Khác (nhập dưới đây)',
+            'spam' => 'Spamming',
+            'unwanted_content' => 'Có những nội dung không phù hợp',
         ],
     ],
     'restricted_banner' => [
@@ -196,10 +213,30 @@ return [
             'to_0' => 'Ẩn ảnh bìa',
             'to_1' => 'Hiện ảnh bìa',
         ],
+        'daily_challenge' => [
+            'daily' => 'Chuỗi chơi hằng ngày',
+            'daily_streak_best' => 'Chuỗi chơi hằng ngày tốt nhất',
+            'daily_streak_current' => 'Chuỗi chơi hằng ngày hiện tại',
+            'playcount' => 'Tổng Số Lần Tham Gia',
+            'title' => 'Thử thách\nhằng ngày',
+            'top_10p_placements' => '10% vị trí hàng đầu',
+            'top_50p_placements' => '50% vị trí hàng đầu',
+            'weekly' => 'Chuỗi chơi hàng tuần',
+            'weekly_streak_best' => 'Chuỗi chơi hàng tuần tốt nhất',
+            'weekly_streak_current' => 'Chuỗi chơi hàng tuần hiện tại',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Đổi Ảnh Bìa Trang Cá Nhân',
                 'defaults_info' => 'Sẽ có thêm lựa chọn ảnh bìa trong tương lai',
+                'holdover_remove_confirm' => "Ảnh bìa đã chọn trước đó giờ không thể chọn được nữa. Bạn không thể chọn lại sau khi đã đổi sang ảnh bìa khác. Tiếp tục?",
+                'title' => 'Ảnh bìa',
+
                 'upload' => [
                     'broken_file' => 'Không xử lý được hình ảnh. Kiểm tra hình ảnh đã tải lên và thử lại sau.',
                     'button' => 'Tải ảnh lên',
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'chế độ chơi mặc định',
                 'set' => 'đặt :mode làm chế độ chơi mặc định của trang cá nhân',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Muốn đặt về màu mặc định? Sẽ cần supporter tag để đổi sang màu khác.',
+                'title' => 'Màu sắc',
+
+                'supporter' => [
+                    '_' => 'Tùy chọn màu chủ đề chỉ dành cho :link',
+                    'link' => 'osu!supporter',
+                ],
             ],
         ],
 
@@ -359,7 +406,7 @@ return [
                 'title' => 'Màn chơi nhiều người chơi',
             ],
             'top_ranks' => [
-                'download_replay' => 'Tải Xuống Replay',
+                'download_replay' => 'Tải Xuống Phần Phát Lại',
                 'not_ranked' => 'Chỉ có beatmap được xếp hạng mới có pp.',
                 'pp_weight' => 'trọng số :percentage',
                 'view_details' => 'Xem chi tiết',
@@ -449,8 +496,13 @@ return [
             'global_simple' => 'Hạng Toàn Cầu',
             'highest' => 'Hạng cao nhất: :rank vào :date',
         ],
+        'season_stats' => [
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Tổng điểm',
+        ],
         'stats' => [
             'hit_accuracy' => 'Độ Chính Xác',
+            'hits_per_play' => 'Số lần nhấn mỗi khi chơi',
             'level' => 'Level :level',
             'level_progress' => 'Tiến độ qua level tiếp theo',
             'maximum_combo' => 'Combo Cao Nhất',

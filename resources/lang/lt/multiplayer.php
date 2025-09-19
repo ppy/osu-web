@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Dar nežaista osu!(lazer) :type_group!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'grojaraščių',
         'realtime' => 'žaidimų tinkle',
     ],
@@ -16,9 +17,12 @@ return [
         'map_count' => ':count_delimited bitmapas|:count_delimited bitmapai',
         'player_count' => ':count_delimited žaidėjas|:count_delimited žaidėjų',
         'time_left' => ':time liko',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => 'Per ilga trūkmė.',
+            'name_too_long' => 'Kambario pavadinimas per ilgas',
         ],
 
         'status' => [

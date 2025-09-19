@@ -7,6 +7,7 @@ return [
     'cancel' => 'Atšaukti',
 
     'authorise' => [
+        'app_owner' => '',
         'request' => 'prašo priėjimo prie jūsų paskyros.',
         'scopes_title' => 'Ši aplikacija galės:',
         'title' => 'Įgaliojimo Prašymas',

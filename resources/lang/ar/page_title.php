@@ -64,11 +64,11 @@ return [
             '_' => 'التعليقات',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'نتائج تحكيم المسابقة',
         ],
         'contests_controller' => [
             '_' => 'المسابقات',
-            'judge' => '',
+            'judge' => 'تحكيم المسابقة',
         ],
         'groups_controller' => [
             'show' => 'المجموعات',
@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'أِدعَم اللعبة',
             'testflight' => 'مشروع الأختبار',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'المعلومات',
         ],
         'livestreams_controller' => [
             '_' => 'البث المباشر',
-        ],
-        'matches_controller' => [
-            '_' => 'المباريات',
         ],
         'news_controller' => [
             '_' => 'الأخبار',
@@ -107,11 +107,18 @@ return [
         'seasons_controller' => [
             '_' => 'الترتيب',
         ],
+        'teams_controller' => [
+            '_' => '',
+            'create' => '',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'البطولات',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'أغلفة المستخدم المعدَّة',
         ],
         'users_controller' => [
             '_' => 'معلومات اللاعب',
@@ -122,6 +129,11 @@ return [
             '_' => 'ويكي',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'صادِق التطبيق',
@@ -129,6 +141,11 @@ return [
     ],
     'store' => [
         '_' => 'المتجر',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

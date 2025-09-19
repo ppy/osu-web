@@ -2,8 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Notification from 'models/notification';
-import NotificationDetails from 'models/notification-details';
 import { isBeatmapOwnerChangeNotification } from 'models/notification/beatmap-owner-change-notification';
+import NotificationDetails from 'models/notification-details';
 import { trans, transArray, transChoice, transExists } from 'utils/lang';
 
 type Replacements = { title: string } & Partial<Record<string, string|number>>;
@@ -90,6 +90,8 @@ export function formatMessageGroup(item: Notification) {
     };
 
     return trans(`notifications.item.${item.displayType}.${item.category}.${item.category}_group`, replacements);
+  } else if (item.category === 'team_application') {
+    return trans('notifications.item.team.team_application.team_application_group');
   }
 
   return item.title;

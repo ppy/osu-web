@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => 'επαναφορά',
             'rules' => 'Παρακαλώ βεβαιωθείτε ότι το avatar σας συμφωνεί με :link. <br/>Αυτό σημαίνει ότι πρέπει να είναι <strong>κατάλληλο για όλες τις ηλικές</strong>.',
             'rules_link' => 'τους κανόνες κοινότητας',
         ],
@@ -63,15 +64,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
-        'link' => '',
-        'title' => '',
-        'unlink' => '',
+        'info' => "Αν συνεισφέρεται στα repositories ανοικτού κώδικα της osu!, με την σύνδεση του λογαριασμού GitHub σας θα συσχετίσετε τις καταχωρίσεις αλλαγών σας με το osu! προφίλ σας. Οι λογαριασμοί GitHub με κανένα ιστορικό συνεισφοράς στο osu! δεν μπορούν να συνδεθούν. ",
+        'link' => 'Σύνδεση λογαριασμού GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'Αποσύνδεση του λογαριασμού GitHub',
 
         'error' => [
-            'already_linked' => '',
-            'no_contribution' => '',
-            'unverified_email' => '',
+            'already_linked' => 'Αυτός ο λογαριασμός GitHub είναι ήδη συνδεδεμένος με διαφορετικό χρήστη.',
+            'no_contribution' => 'Αδύνατη η σύνδεση του λογαριασμού GitHub χωρίς κανένα ιστορικό συνεισφοράς στο osu! repositories.',
+            'unverified_email' => 'Σας παρακαλούμε να επαληθεύστε το κύριο email σας στο GitHub, και έπειτα προσπαθήστε να συνδέσετε τον λογαριασμό σας ξανά. ',
         ],
     ],
 
@@ -87,6 +88,7 @@ return [
             'beatmap_owner_change' => 'δυσκολία επισκέπτη',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'ιδιωτικά μηνύματα',
+            'channel_team' => 'μηνύματα συνομιλίας ομάδας',
             'comment_new' => 'νέα σχόλια',
             'forum_topic_reply' => 'απάντηση θέματος',
             'mail' => 'mail',

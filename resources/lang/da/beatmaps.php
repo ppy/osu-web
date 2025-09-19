@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => '',
+
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Kunne ikke afgive stemme',
@@ -25,12 +31,14 @@ return [
         'message_placeholder_silenced' => "Kan ikke skrive diskussion, mens du er tavs.",
         'message_type_select' => 'Vælg kommentar-type',
         'reply_notice' => 'Tryk enter for at svare.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Skriv dit svar her',
         'require-login' => 'Log ind for at lave et opslag eller svare',
         'resolved' => 'Løst',
         'restore' => 'gendan',
         'show_deleted' => 'Vis slettede',
         'title' => 'Diskussioner',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Sammenfold alle',
@@ -79,12 +87,12 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
+            'disqualify' => 'Post Diskvalifikation',
+            'hype' => 'Post Hype!',
+            'mapper_note' => 'Post Notat',
+            'nomination_reset' => 'Fjern alle nominationer',
+            'praise' => 'Post Ros',
+            'problem' => 'Post Problem',
             'problem_warning' => '',
             'review' => '',
             'suggestion' => '',

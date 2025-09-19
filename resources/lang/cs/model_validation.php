@@ -8,7 +8,7 @@ return [
     'not_negative' => ':attribute nesmí být záporný.',
     'required' => ':attribute je vyžadován.',
     'too_long' => ':attribute přesáhl maximální délku - může mít maximálně :limit znaků.',
-    'url' => 'Zadejte prosím platnou URL adresu.',
+    'url' => 'Zadej prosím platnou URL adresu.',
     'wrong_confirmation' => 'Potvrzení se neshoduje.',
 
     'beatmapset_discussion' => [
@@ -122,12 +122,26 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => 'Byl překročen limit povolených možností.',
-            'url' => 'Zadejte prosím platné adresy URL.',
+            'url' => 'Zadej prosím platné URL adresy.',
 
             'attributes' => [
                 'name' => 'Název aplikace',
                 'redirect' => 'URL zpětného volání aplikace',
             ],
+        ],
+    ],
+
+    'team' => [
+        'invalid_characters' => ':attribute obsahuje neplatné znaky.',
+        'used' => 'Toto :attribute je již používáno.',
+        'word_not_allowed' => 'Toto :attribute není povoleno.',
+
+        'attributes' => [
+            'default_ruleset_id' => 'Výchozí ruleset',
+            'is_open' => 'Přihlašování do týmu',
+            'name' => 'Jméno',
+            'short_name' => 'Krátké jméno',
+            'url' => 'URL',
         ],
     ],
 
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Hodnocené beatmapy nemohou být nahlášeny',
         'not_in_channel' => 'Nejste v tomto kanálu.',
+        'in_team' => 'Jsi součástí tohoto týmu.',
         'reason_not_valid' => ':reason není platný pro tento typ nahlášení.',
         'self' => "Nemůžete nahlásit sám sebe!",
     ],

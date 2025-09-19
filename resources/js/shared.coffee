@@ -50,7 +50,7 @@ $(document).on 'blur', '.content-editable-submit', (e) ->
   el.remove()
 
 #populate last-submitted values
-$(document).on 'turbolinks:load', ->
+$(document).on 'turbo:load', ->
   $('.content-editable-submit').each (_i, el) ->
     $el = $(el)
     $el.data('last-submitted-value', $el.html())
@@ -58,7 +58,7 @@ $(document).on 'turbolinks:load', ->
 # fadeOut effect for popup
 $(document).on 'click', '#popup-container, #overlay', (e) ->
   $('#overlay').fadeOut()
-  $popup = $(e.target).closest('.popup-active')
+  $popup = $('.popup-active')
   $popup.fadeOut null, -> $popup.remove()
 
 

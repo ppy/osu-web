@@ -20,17 +20,19 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'forum',
         'news_post' => 'news',
+        'team' => 'team',
         'user' => 'profile',
     ],
 
     'filters' => [
         '_' => 'all',
-        'user' => 'profile',
         'beatmapset' => 'beatmaps',
-        'forum_topic' => 'forum',
-        'news_post' => 'news',
         'build' => 'builds',
         'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'news',
+        'team' => 'team',
+        'user' => 'profile',
     ],
 
     'item' => [
@@ -121,6 +123,16 @@ return [
                     'channel_message_group' => 'from :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => 'New team message',
+
+                'team' => [
+                    'channel_team' => ':username says ":title"',
+                    'channel_team_compact' => ':username says ":title"',
+                    'channel_team_group' => ':username says ":title"',
+                ],
+            ],
         ],
 
         'build' => [
@@ -156,6 +168,22 @@ return [
                 '_' => 'New forum reply',
                 'forum_topic_reply' => ':username replied to ":title"',
                 'forum_topic_reply_compact' => ':username replied',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => 'Team join request',
+
+                'team_application_accept' => "You're now member of team :title",
+                'team_application_accept_compact' => "You're now member of team :title",
+
+                'team_application_group' => 'Team join request updates',
+
+                'team_application_reject' => 'Your request to join team :title has been declined',
+                'team_application_reject_compact' => 'Your request to join team :title has been declined',
+                'team_application_store' => ':title requested to join your team',
+                'team_application_store_compact' => ':title requested to join your team',
             ],
         ],
 
@@ -217,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'There is a new announcement in ":name"',
+                'channel_announcement' => 'There is a new announcement in ":name"',
             ],
-
             'channel' => [
-                'pm' => 'You\'ve received a new message from :username',
+                'channel_message' => 'You\'ve received a new message from :username',
+            ],
+            'channel_team' => [
+                'channel_team' => 'There is a new message in team ":name"',
             ],
         ],
 
@@ -240,6 +270,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'There are new replies in ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "You're now member of team :title",
+                'team_application_reject' => 'Your request to join team :title has been declined',
+                'team_application_store' => ':title requested to join your team',
             ],
         ],
 

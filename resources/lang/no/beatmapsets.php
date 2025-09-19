@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Ro ned, spill mer.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -40,8 +41,8 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Probasjonære nominatorer kan ikke nominere flere regler.',
+        'full_nomination_required' => 'Du må være en full nominator for å foreta endelig nominasjon av en regel.',
         'hybrid_requires_modes' => 'Et hybrid beatmap krever at du velger minst en spillmodus å nominere for.',
         'incorrect_mode' => 'Du har ikke tillatelse til å nominere for modus: :mode',
         'invalid_limited_nomination' => '',
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Er du sikker på at du vil nominere dette beatmappet?',
+            'different_nominator_warning' => '',
             'header' => 'Nominer Beatmap',
             'hybrid_warning' => 'merk: du kan kun nominere èn gang. Vær så snill å forsikre deg om at du nominerer for alle spill-modusene du har tenkt å nominere på',
             'current_main_ruleset' => '',
@@ -67,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Vis omslagsbilde i full størrelse',
+            'page' => '',
         ],
 
         'deleted_banner' => [
@@ -138,6 +141,7 @@ return [
             'description' => 'Beskrivelse',
             'genre' => 'Sjanger',
             'language' => 'Språk',
+            'mapper_tags' => '',
             'no_scores' => 'Data blir fortsatt kalkulert...',
             'nominators' => 'Nominerende',
             'nsfw' => 'Eksplisitt innhold',
@@ -146,7 +150,7 @@ return [
             'source' => 'Kilde',
             'storyboard' => 'Dette beatmappet inneholder storyboard',
             'success-rate' => 'Suksessrate',
-            'tags' => 'Stikkord',
+            'user_tags' => '',
             'video' => 'Dette beatmappet inneholder video',
         ],
 
@@ -169,6 +173,7 @@ return [
             'global' => 'Global Rangering',
             'supporter-link' => 'Klikk <a href=":link">her</a> for å se alle de fancy funskjonene du får tildelt!',
             'supporter-only' => 'Du må være en osu!supporter for å ha tilgang til venne- og landsrangering!',
+            'team' => '',
             'title' => 'Poengliste',
 
             'headers' => [
@@ -190,6 +195,7 @@ return [
                 'friend' => 'Ingen av vennene dine har satt en poengsum på denne mappen enda!',
                 'global' => 'Ingen poengsummer enda. Kanskje du skulle prøve å sette noen?',
                 'loading' => 'Laster poengsummer...',
+                'team' => '',
                 'unranked' => 'Urangert beatmap.',
             ],
             'score' => [

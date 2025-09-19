@@ -33,6 +33,7 @@
     "touch"
   ],
   "post_count": 100,
+  "profile_hue": 42,
   "profile_order": [
     "me",
     "recent_activity",
@@ -168,7 +169,7 @@ Field            | Type                               | Description
 ---------------- | ---------------------------------- | -----------------------------------------------------------
 cover_url        | string                             | url of profile cover. Deprecated, use cover.url instead.
 discord          | string?                            | |
-has_supported    | boolean                            | whether or not ever being a supporter in the past
+has_supported    | boolean                            | Whether or not the user has a current or past osu!supporter tag.
 interests        | string?                            | |
 join_date        | [Timestamp](#timestamp)            | |
 location         | string?                            | |
@@ -178,6 +179,7 @@ occupation       | string?                            | |
 playmode         | [Ruleset](#ruleset)                | |
 playstyle        | string[]                           | Device choices of the user.
 post_count       | integer                            | Number of forum posts
+profile_hue      | integer?                           | Custom colour hue in HSL degrees (0–359).
 profile_order    | [ProfilePage](#user-profilepage)[] | ordered array of sections in user profile page
 title            | string?                            | user-specific title
 title_url        | string?                            | |

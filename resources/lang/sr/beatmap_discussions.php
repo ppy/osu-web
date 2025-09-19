@@ -66,6 +66,13 @@ return [
         'version' => 'Тежина',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Пријавите се да би сте одговорили',

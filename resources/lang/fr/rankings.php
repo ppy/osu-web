@@ -9,6 +9,16 @@ return [
         'title' => 'Pays',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Difficulté',
+        'top_10p' => 'Score du Top 10%',
+        'top_50p' => 'Score du Top 50%',
+        'unavailable' => [
+            'future' => 'Pas de défi du jour à cette date pour le moment !',
+            'past' => 'Pas de défi du jour à cette date !',
+        ],
+    ],
+
     'filter' => [
         'title' => 'Afficher',
 
@@ -24,17 +34,18 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Ce joueur a moins de 30 jours d\'activité dans le classement.',
     ],
 
     'type' => [
         'charts' => 'spotlights (ancien)',
         'country' => 'pays',
+        'daily_challenge' => 'défi du jour',
+        'global' => 'global',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multijoueur',
-        'performance' => 'performance',
-        'score' => 'score',
         'seasons' => 'saisons',
+        'team' => 'équipe',
     ],
 
     'seasons' => [
@@ -42,6 +53,9 @@ return [
         'ongoing' => 'Cette saison est toujours en cours (d\'autres playlists seront ajoutées).',
         'room_count' => 'Nombre de playlists',
         'url' => 'Afficher plus d\'informations sur cette saison.',
+        'validation' => [
+            'not_enough_factors' => 'Il n\'y a pas suffisamment de facteurs de score pour établir un calcul correct',
+        ],
     ],
 
     'spotlight' => [
@@ -55,6 +69,8 @@ return [
         'accuracy' => 'Précision',
         'active_users' => 'Utilisateurs actifs',
         'country' => 'Pays',
+        'division' => 'Division',
+        'members' => 'Membres',
         'play_count' => 'Nombres de parties',
         'performance' => 'Performance',
         'total_score' => 'Score total',

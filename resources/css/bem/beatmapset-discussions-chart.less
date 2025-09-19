@@ -5,15 +5,13 @@
   @_top: beatmapset-discussions-chart;
 
   --icon-area-height: 30px;
-  width: 100%;
-  height: 150px;
+  height: 115px;
   position: relative;
   padding: 0 40px;
-  background-color: @osu-colour-b4;
 
   &::before {
     --border-size: 2px;
-    content: '';
+    content: "";
     position: absolute;
     width: 100%;
     bottom: 0;
@@ -32,7 +30,7 @@
   &__item {
     .link-plain();
     position: absolute;
-    top: 0;
+    bottom: 0;
     height: 100%;
     width: 6px;
     transform: translateX(-3px);
@@ -43,16 +41,21 @@
 
     &::before {
       display: block;
-      content: '';
+      content: "";
       flex: 1;
       width: 1px;
-      background-image: linear-gradient(to top, hsl(var(--hsl-c1)), hsl(var(--hsl-c1)) 10%, hsla(var(--hsl-c1), 0) 70%);
+      background-image: linear-gradient(
+        to top,
+        hsl(var(--hsl-c1)),
+        hsl(var(--hsl-c1)) 14%,
+        hsla(var(--hsl-c1), 0) 98%
+      );
       transform: scaleX(var(--line-scale));
     }
 
     &::after {
       .fa();
-      content: var(--icon, '');
+      content: var(--icon, "");
       font-size: 12px; // icon size
       font-weight: var(--icon-weight);
       color: var(--icon-colour);

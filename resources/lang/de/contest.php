@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'Kommentare',
         'hide_judged' => 'bewertete Einträge ausblenden',
         'nav_title' => 'Bewerten',
         'no_current_vote' => 'Du hast noch nicht abgestimmt.',
@@ -29,7 +30,9 @@ return [
         '_' => 'Jury-Ergebnisse',
         'creator' => 'Ersteller',
         'score' => 'Ergebnis',
+        'score_std' => 'Standardisierte Punktzahl',
         'total_score' => 'Gesamtergebnis',
+        'total_score_std' => 'Standardisierte Gesamtpunktzahl',
     ],
 
     'voting' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'Stimmen',
         'count' => ':count_delimited Stimme|:count_delimited Stimmen',
         'points' => ':count_delimited Punkt|:count_delimited Punkte',
+        'points_float' => ':points Punkte',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Einsendungen offen',
         'voting' => 'Abstimmung gestartet',
         'results' => 'Ergebnisse bekanntgegeben',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => 'Info und Einsendungen anzeigen',
+        ],
     ],
 ];

@@ -13,14 +13,11 @@ return [
         'blurb' => [
             'important' => 'קרא את זה לפני שאתה מוריד',
             'install_instruction' => '',
-            'note' => [
-                '_' => 'שימו לב שמומלץ מאוד ל- :scary, מאחר והמפות הישנות ביותר הן באיכות הרבה יותר נמוכה מאשר המפות האחרונות.',
-                'scary' => 'הורד את החבילות מהאחרונות למוקדמות',
-            ],
         ],
     ],
 
     'show' => [
+        'created_by' => 'נוצר על ידי :author',
         'download' => 'הורד',
         'item' => [
             'cleared' => 'סוים בהצלחה',
@@ -39,7 +36,7 @@ return [
         'loved' => '',
         'standard' => 'רגיל',
         'theme' => 'ערכת נושא',
-        'tournament' => '',
+        'tournament' => 'טורניר',
     ],
 
     'require_login' => [

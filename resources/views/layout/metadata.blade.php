@@ -16,12 +16,15 @@
 <link rel="manifest" href="{{ $appUrl }}/site.webmanifest">
 <link rel="mask-icon" href="{{ $appUrl }}/images/favicon/safari-pinned-tab.svg" color="#e2609a">
 <meta name="msapplication-TileColor" content="#603cba">
-<meta name="theme-color" content="hsl({{ $currentHue }}, 10%, 40%)"> {{-- @osu-colour-b1 --}}
+<meta name="theme-color" content="{{ hsl_to_hex($currentHue, 0.1, 0.4) }}"> {{-- @osu-colour-b1 --}}
 
 <meta charset="utf-8">
 <meta name="description" content="{{ $opengraph['description'] ?? osu_trans('layout.defaults.page_description') }}">
 <meta name="keywords" content="osu, peppy, ouendan, elite, beat, agents, ds, windows, game, taiko, tatsujin, simulator, sim, xna, ddr, beatmania, osu!, osume">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="turbo-cache-control" content="no-preview">
+<meta name="turbo-prefetch" content="false">
 
 <link rel="search" type="application/opensearchdescription+xml" title="osu! search" href="{{ $appUrl }}/opensearch.xml">
 
@@ -47,9 +50,7 @@
 @endif
 
 <meta name="csrf-param" content="_token">
-<meta name="csrf-token" content="{{ csrf_token() }}">
-
-<meta name="turbolinks-cache-control" content="no-preview">
+<meta name="csrf-token" content="{{ $currentUser === null ? '' : csrf_token() }}">
 
 @switch($currentLocale)
     @case('vi')
@@ -84,28 +85,27 @@
         @break
 @endswitch
 
-<link rel="stylesheet" media="all" href="{{ unmix('css/app.css') }}" data-turbolinks-track="reload">
+<link rel="stylesheet" media="all" href="{{ unmix('css/app.css') }}" data-turbo-track="reload">
 
 <script>
     var currentLocale = {!! json_encode($currentLocale) !!};
     var fallbackLocale = {!! json_encode($fallbackLocale) !!};
-    var experimentalHost = {!! json_encode(osu_url('experimental_host')) !!}
 </script>
 
-<script src="{{ unmix('js/runtime.js') }}" data-turbolinks-track="reload"></script>
-<script src="{{ unmix('js/vendor.js') }}" data-turbolinks-track="reload"></script>
+<script src="{{ unmix('js/runtime.js') }}" data-turbo-eval="false"></script>
+<script src="{{ unmix('js/vendor.js') }}" data-turbo-eval="false"></script>
 
-<script src="{{ unmix("js/locales/{$currentLocale}.js") }}" data-turbolinks-track="reload"></script>
+<script src="{{ unmix("js/locales/{$currentLocale}.js") }}" data-turbo-track="reload"></script>
 @if ($fallbackLocale !== $currentLocale)
-    <script src="{{ unmix("js/locales/{$fallbackLocale}.js") }}" data-turbolinks-track="reload"></script>
+    <script src="{{ unmix("js/locales/{$fallbackLocale}.js") }}" data-turbo-track="reload"></script>
 @endif
 
-<script src="{{ unmix('js/commons.js') }}" data-turbolinks-track="reload"></script>
-<script src="{{ unmix('js/app.js') }}" data-turbolinks-track="reload"></script>
+<script src="{{ unmix('js/commons.js') }}" data-turbo-eval="false"></script>
+<script src="{{ unmix('js/app.js') }}" data-turbo-eval="false"></script>
 
 <script
     src="{{ unmix("js/moment-locales/{$currentLocaleMeta->moment()}.js") }}"
-    data-turbolinks-track="reload"
+    data-turbo-eval="false"
 ></script>
 
 @if (isset($atom))

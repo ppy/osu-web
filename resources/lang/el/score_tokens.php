@@ -5,7 +5,7 @@
 
 return [
     'create' => [
-        'beatmap_hash_invalid' => '',
-        'submission_disabled' => '',
+        'beatmap_hash_invalid' => 'μη έγκυρο ή λείπει beatmap_hash',
+        'submission_disabled' => 'η υποβολή βαθμολογίας είναι απενεργοποιημένη',
     ],
 ];

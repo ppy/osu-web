@@ -26,6 +26,9 @@ return [
         'placeholder' => 'zadajte pre vyhľadávanie',
         'title' => 'Hľadať',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => '',
             'more' => ':count ďalších výsledkov vyhladávaní máp',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'všetko',
+            'artist_track' => '',
             'beatmapset' => 'beatmapy',
             'forum_post' => 'fórum',
+            'team' => '',
             'user' => 'hráč',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [
@@ -76,13 +85,13 @@ return [
         'action' => 'Sťahovať!',
         'action_lazer' => '',
         'action_lazer_description' => '',
-        'action_lazer_info' => '',
-        'action_lazer_title' => '',
-        'action_title' => '',
-        'for_os' => '',
+        'action_lazer_info' => 'klikni sem pre viac informácií',
+        'action_lazer_title' => 'skús osu!(lazer)',
+        'action_title' => 'stiahnite is osu!',
+        'for_os' => 'pre :os',
         'macos-fallback' => 'macOS užívateľ',
         'mirror' => 'mirror',
-        'or' => '',
+        'or' => 'alebo',
         'os_version_or_later' => '',
         'other_os' => '',
         'quick_start_guide' => '',
@@ -133,14 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Nové Hodnotené Beatmapy',
             'popular' => 'Populárne Beatmapy',
             'by_user' => 'od :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'Sťahovať osu!',
             'support' => 'Podpor osu!',
             'store' => 'osu!store',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

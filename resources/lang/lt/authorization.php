@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Šis kanalas tik skelbimams.',
         'blocked' => 'Negalima išsiųsti žinučių vartotojui, kuris yra jūs užblokavęs, ar jūs esat užblokavę.',
         'friends_only' => 'Vartotojas šiuo metu užblokavo žinutės iš žmonių, kurie nėra vartotojo draugų sąraše.',
         'moderated' => 'Šiuo momentu šis kanalas yra prižiūrimas.',
         'no_access' => 'Jūs neturite leidimo įeiti į šį kanalą.',
+        'no_announce' => '',
         'receive_friends_only' => 'Naudotojas gali negalėti atsakyti, nes priėmat žinutes tik iš žmonių jūsų draugų sąraše.',
         'restricted' => 'Būnant užblokuotam, apribotam, užtildytam, jūs negalite siųsti žinučių.',
         'silenced' => 'Būnant užblokuotam, apribotam, užtildytam, jūs negalite siųsti žinučių.',
@@ -107,6 +113,7 @@ return [
                 'deleted' => 'Ištrinto įrašo negalima redaguoti.',
                 'locked' => 'Įrašo redagavimas buvo uždraustas.',
                 'no_forum_access' => 'Prieiga prie norimo forumo reikalauja papildomų teisių.',
+                'no_permission' => '',
                 'not_owner' => 'Tik įrašo autorius gali ištrinti įrašą.',
                 'topic_locked' => 'Po temos užrakinimo trinti įrašų negalima.',
             ],
@@ -170,12 +177,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Negalima prisegti šio tipo rezultato",
             'failed' => "",
             'not_owner' => 'Tik rezultato savininkas gali prisegti rezultatą.',
             'too_many' => 'Prisegta perdaug rezultatų.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "",
+                'already_other_member' => "",
+                'currently_applying' => '',
+                'team_closed' => '',
+                'team_full' => "",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "",
+            'not_member' => '',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

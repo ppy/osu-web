@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '진행 중',
+            'ended' => '종료됨',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => '비트맵: :counts',
         'modding_description_empty' => '이 유저는 아무런 비트맵이 없어요...',
@@ -159,14 +166,24 @@ return [
             'cancel' => '취소',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '저작권 침해 신고는 :policy 당 한 건씩 DMCA 요청을 통해 :mail 로 발신해 주세요.',
+                'policy' => 'osu! 저작권 정책',
+            ],
+            'message_2' => '본 약관은 적절한 권한 없이 사용되는 오디오 트랙, 시각적 콘텐츠 또는 비트맵 레벨 콘텐츠에 적용됩니다.',
+        ],
+
         'options' => [
             'cheating' => '부정 행위 / 치트 사용',
-            'multiple_accounts' => '다중 계정 사용',
+            'copyright_infringement' => '저작권 침해',
+            'inappropriate_chat' => '부적절한 언행',
             'insults' => '자신 / 다른 사람을 모욕 함',
-            'spam' => '도배',
-            'unwanted_content' => '부적절한 콘텐츠에 링크 걸기',
+            'multiple_accounts' => '다중 계정 사용',
             'nonsense' => '허튼소리',
             'other' => '기타 (아래에 입력해 주세요)',
+            'spam' => '도배',
+            'unwanted_content' => '부적절한 콘텐츠에 링크 걸기',
         ],
     ],
     'restricted_banner' => [
@@ -196,10 +213,31 @@ return [
             'to_0' => '커버 숨기기',
             'to_1' => '커버 표시',
         ],
+        'daily_challenge' => [
+            'daily' => '연속 진행일',
+            'daily_streak_best' => '최다 연속 진행일
+',
+            'daily_streak_current' => '현재 연속 진행일',
+            'playcount' => '참여 일수',
+            'title' => '일일미션',
+            'top_10p_placements' => '상위 10%',
+            'top_50p_placements' => '상위 50%',
+            'weekly' => '연속 진행주',
+            'weekly_streak_best' => '최다 연속 진행주',
+            'weekly_streak_current' => '현재 연속 진행주',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => '프로필 표지 변경',
                 'defaults_info' => '이후에 더 많은 표지 설정이 추가됩니다',
+                'holdover_remove_confirm' => "이전에 선택한 배경을 이제는 선택할 수 없어 다른 배경으로 바꾸면 다시 되돌릴 수 없습니다. 계속할까요?",
+                'title' => '표지',
+
                 'upload' => [
                     'broken_file' => '이미지 처리 실패. 업로드하려는 이미지를 확인하시고 다시 시도해주세요.',
                     'button' => '이미지 업로드',
@@ -219,6 +257,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => '메인 게임 모드',
                 'set' => ':mode를 메인 게임 모드로 설정',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '기본 색상으로 초기화할까요? 다른 색상으로 바꾸려면 osu! 서포터가 되어야 합니다.',
+                'title' => '색상',
+
+                'supporter' => [
+                    '_' => '커스텀 색상 테마는 :link만 사용할 수 있습니다.',
+                    'link' => 'osu! 서포터',
+                ],
             ],
         ],
 
@@ -449,8 +497,13 @@ return [
             'global_simple' => '세계 순위',
             'highest' => '최고 순위: :rank, :date에 달성',
         ],
+        'season_stats' => [
+            'division_top_percentage' => '상위 :value',
+            'total_score' => '총 점수',
+        ],
         'stats' => [
             'hit_accuracy' => '정확도',
+            'hits_per_play' => '플레이 당 히트 수',
             'level' => '레벨 :level',
             'level_progress' => '다음 레벨까지의 진척도',
             'maximum_combo' => '최대 콤보',

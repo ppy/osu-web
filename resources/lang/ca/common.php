@@ -9,7 +9,7 @@ return [
     'saved' => 'Guardat',
 
     'array_and' => [
-        'words_connector' => ',',
+        'words_connector' => ', ',
         'two_words_connector' => ' i ',
         'last_word_connector' => ', i ',
     ],
@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Administrador',
         'authorise' => 'Autoritzar',
         'authorising' => 'Autoritzant...',
+        'back' => 'Enrere',
         'back_to_previous' => 'Tornar a la posició anterior',
         'back_to_top' => 'Torna al principi',
         'cancel' => 'Cancel·la',
@@ -30,7 +30,7 @@ return [
         'click_to_copy' => 'clica per copiar al porta-retalls',
         'click_to_copy_copied' => 'copiat al porta-retalls!',
         'close' => 'Tanca',
-        'collapse' => 'redueix',
+        'collapse' => 'plega',
         'delete' => 'Eliminar',
         'edit' => 'Editar',
         'expand' => 'expandir',
@@ -51,12 +51,12 @@ return [
         'search' => 'Cercar',
         'see_more' => 'veure més',
         'show' => 'mostrar',
-        'show_deleted' => 'Mostrar eliminats',
+        'show_deleted' => 'Mostra els eliminats',
         'show_less' => 'mostra\'n menys',
         'show_more' => 'mostra\'n més',
         'show_more_options' => 'mostrar més opcions',
         'submit' => 'Enviar',
-        'unpin' => 'desanclar',
+        'unpin' => 'desfixar',
         'update' => 'Actualitzar',
         'upload_image' => 'pujar imatge',
 
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => 'm',
+        ],
+        'year' => [
+            'php' => 'a',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

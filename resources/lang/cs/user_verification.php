@@ -12,11 +12,11 @@ return [
 
         'info' => [
             'check_spam' => "Pokud email nevidíš, zkus se podívat do složky se spamem.",
-            'recover' => "Pokud nemáš přístup ke svému emailu nebo jsi zapomněl jaký jsi použil, prosím postupuj podle :link.",
-            'recover_link' => 'proces pro obnovení emailu zde',
+            'recover' => "Pokud nemáš přístup ke svému emailu nebo jsi zapomněl, jaký jsi použil, postupuj prosím podle :link.",
+            'recover_link' => 'procesu pro obnovení emailu zde',
             'reissue' => 'Můžeš také :reissue_link nebo :logout_link.',
             'reissue_link' => 'vyžádat další kód',
-            'logout_link' => 'odhlásit se',
+            'logout_link' => 'se odhlásit',
         ],
     ],
 

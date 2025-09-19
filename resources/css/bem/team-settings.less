@@ -1,0 +1,69 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.team-settings {
+  display: grid;
+  gap: 15px 5px;
+
+  @media @desktop {
+    gap: 5px;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__description-preview {
+    --padding: 10px;
+    padding: var(--padding) 0;
+    background-color: hsl(var(--hsl-b3));
+    border-radius: @border-radius-large;
+  }
+
+  &__errors {
+    color: hsl(var(--hsl-red-1));
+    margin-top: 1em;
+    padding: 0 0 0 2em;
+  }
+
+  &__help {
+    color: hsl(var(--hsl-c2));
+    font-size: @font-size--normal;
+  }
+
+  &__image {
+    min-width: 0;
+    max-width: 100%;
+    border-radius: @border-radius-large;
+    object-fit: contain;
+  }
+
+  &__item {
+    --align-items-desktop: start;
+    --grid-rows: none;
+    --grid-rows-desktop: none;
+    --grid-columns: 1fr;
+    --grid-columns-desktop: 2fr 1fr;
+    display: grid;
+    gap: 5px 15px;
+    grid-template-columns: var(--grid-columns);
+    grid-template-rows: var(--grid-rows);
+
+    &--buttons {
+      --grid-columns-desktop: 1fr auto;
+    }
+
+    &--description {
+      --align-items-desktop: stretch;
+      --grid-columns-desktop: 1fr 1fr;
+      --grid-rows: calc(var(--vh, 1vh) * 70) auto;
+    }
+
+    @media @desktop {
+      --grid-columns: var(--grid-columns-desktop);
+      --grid-rows: var(--grid-rows-desktop);
+      align-items: var(--align-items-desktop);
+    }
+  }
+}

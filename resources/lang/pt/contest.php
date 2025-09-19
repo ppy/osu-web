@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'comentários',
         'hide_judged' => 'esconder inscrições avaliadas',
         'nav_title' => 'avaliar',
         'no_current_vote' => 'Ainda não votaste.',
@@ -29,13 +30,15 @@ return [
         '_' => 'Resultados da apreciação',
         'creator' => 'criador',
         'score' => 'Pontuação',
+        'score_std' => '',
         'total_score' => 'pontuação total',
+        'total_score_std' => '',
     ],
 
     'voting' => [
         'judge_link' => 'Tu fazes parte do júri deste concurso. Avalia aqui as participações!',
         'judged_notice' => 'Este concurso está a usar o sistema de apreciação. O júri está neste momento a tratar das participações.',
-        'login_required' => 'Por favor inicia sessão para votar.',
+        'login_required' => 'Inicia sessão para votar.',
         'over' => 'A votação para este concurso terminou',
         'show_voted_only' => 'Mostrar votados',
 
@@ -62,9 +65,9 @@ return [
 
     'entry' => [
         '_' => 'inscrição',
-        'login_required' => 'Por favor inicia sessão para entrar no concurso.',
+        'login_required' => 'Inicia sessão para entrar no concurso.',
         'silenced_or_restricted' => 'Não podes entrar em concursos enquanto estiveres restrito ou silenciado.',
-        'preparation' => 'Estamos de momento a preparar este concurso. Por favor, espera pacientemente!',
+        'preparation' => 'Estamos de momento a preparar este concurso. Agradecemos a tua paciência!',
         'drop_here' => 'Larga a tua inscrição aqui',
         'download' => 'Transferir .osz',
 
@@ -86,6 +89,7 @@ return [
         'list' => 'votos',
         'count' => ':count voto|:count votos',
         'points' => ':count ponto|:count pontos',
+        'points_float' => '',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Entrada aberta',
         'voting' => 'A votação começou',
         'results' => 'Resultados',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

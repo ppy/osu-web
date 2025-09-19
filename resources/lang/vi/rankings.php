@@ -9,6 +9,16 @@ return [
         'title' => 'Quốc gia',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Độ khó',
+        'top_10p' => 'Điểm thuộc top 10%',
+        'top_50p' => 'Điểm thuộc top 50%',
+        'unavailable' => [
+            'future' => 'Chưa có thử thách hàng ngày vào ngày cụ thể!',
+            'past' => 'Chưa có thử thách hàng ngày vào ngày cụ thể!',
+        ],
+    ],
+
     'filter' => [
         'title' => 'Hiển thị',
 
@@ -24,24 +34,28 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Người dùng này có lịch sử xếp hạng ít hơn 30 ngày.',
     ],
 
     'type' => [
         'charts' => 'tiêu điểm',
         'country' => 'quốc gia',
+        'daily_challenge' => 'thử thách hằng ngày',
+        'global' => 'toàn cầu',
         'kudosu' => 'kudosu',
         'multiplayer' => 'nhiều người chơi',
-        'performance' => 'thành tích',
-        'score' => 'số điểm',
         'seasons' => 'mùa',
+        'team' => 'đội',
     ],
 
     'seasons' => [
         'empty' => 'Hiện tại chưa có phòng nào ở mùa này.',
         'ongoing' => 'Mùa đang diễn ra (sẽ có nhiều playlist được thêm vào).',
-        'room_count' => 'Số playlist',
+        'room_count' => 'Số danh sách phát',
         'url' => 'Hiện thêm thông tin về mùa đó.',
+        'validation' => [
+            'not_enough_factors' => 'không có đủ các hệ số điểm để tính toán một cách bình thường',
+        ],
     ],
 
     'spotlight' => [
@@ -55,6 +69,8 @@ return [
         'accuracy' => 'Độ chính xác',
         'active_users' => 'Số người đang hoạt động',
         'country' => 'Quốc gia',
+        'division' => 'Phân hạng',
+        'members' => 'Thành viên',
         'play_count' => 'Số lần chơi',
         'performance' => 'Thành tích',
         'total_score' => 'Tổng số điểm',

@@ -91,13 +91,14 @@ export class BeatmapsetSearchFilters {
   constructor(url: string) {
     const filters = filtersFromUrl(url);
     for (const key of keyNames) {
-      this[key] = filters[key] ?? null;
+      const value = filters[key] ?? null;
+      this[key] = value === this.getDefault(key) ? null : value;
     }
 
     makeObservable(this);
 
     intercept(this, 'query', (change) => {
-      change.newValue = presence((change.newValue as FilterValueType)?.trim());
+      change.newValue = presence((change.newValue)?.trim()) ?? null;
 
       return change;
     });
@@ -145,6 +146,6 @@ export class BeatmapsetSearchFilters {
       this.sort = null;
     }
 
-    this[key] = value;
+    this[key] = value === this.getDefault(key) ? null : value;
   }
 }

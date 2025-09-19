@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { Cart, CartCreatePayload } from '@shopify/hydrogen-react/storefront-api-types';
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import { toShopifyVariantGid } from 'shopify-gid';
@@ -8,7 +9,7 @@ import { createClickCallback } from 'utils/html';
 import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { popup } from 'utils/popup';
-import client from './shopify-client';
+import storefrontClient from './shopify-client';
 
 declare global {
   interface Window {
@@ -23,7 +24,7 @@ export class Store {
     $(document).on('click', '.js-store-checkout', (event: ClickEvent) => void this.beginCheckout(event));
     $(document).on('click', '.js-store-resume-checkout', (event: ClickEvent) => this.resumeCheckout(event));
 
-    $(document).on('turbolinks:load', () => {
+    $(document).on('turbo:load', () => {
       $('.js-store-checkout').prop('disabled', false);
     });
 
@@ -55,22 +56,49 @@ export class Store {
       return;
     }
 
-    Turbolinks.visit(route('store.checkout.show', { checkout: orderId }));
+    Turbo.visit(route('store.checkout.show', { checkout: orderId }));
   }
 
   async beginShopifyCheckout(orderId: string) {
     showLoadingOverlay();
     showLoadingOverlay.flush();
 
-    let checkout: any;
-    try {
-      // create shopify checkout.
-      // error returned will be a JSON string in error.message
-      checkout = await client().checkout.create({
-        customAttributes: [{ key: 'orderId', value: orderId }],
-        lineItems: this.collectShopifyItems(),
-      });
-    } catch (error) {
+    const operation = `
+      mutation CreateCart($input: CartInput) {
+        cartCreate(input: $input) {
+          cart {
+            id
+            checkoutUrl
+            lines(first: 10) {
+              edges {
+                node {
+                  id
+                  merchandise {
+                    ... on ProductVariant {
+                      id
+                      title
+                    }
+                  }
+                }
+              }
+            }
+            cost {
+              totalAmount {
+                amount
+                currencyCode
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    // create shopify checkout.
+    // error returned will be a JSON string in error.message
+    const response = await storefrontClient().request(operation, { variables: { input: this.shopifyCartInput(orderId) } });
+    const data = response.data as { cartCreate: CartCreatePayload };
+
+    if (response.errors != null || data.cartCreate.cart == null) {
       hideLoadingOverlay();
       popup(trans('errors.checkout.generic'), 'danger');
       return;
@@ -79,47 +107,78 @@ export class Store {
     const params = {
       orderId,
       provider: 'shopify',
-      shopifyCheckoutId: checkout.id,
+      shopifyCheckoutId: data.cartCreate.cart.id,
     };
 
     await $.post(route('store.checkout.store'), params);
-    window.location.href = checkout.webUrl;
+    window.location.href = data.cartCreate.cart.checkoutUrl;
   }
 
   resumeCheckout(event: ClickEvent) {
     if (event.target == null) return;
 
     const target = event.target;
-    const { provider, providerReference, status } = target.dataset;
+    const { provider, providerReference, shopifyUrl, status } = target.dataset;
 
+    // TODO: replace the links with just links...
     if (provider === 'shopify' && status !== 'cancelled') {
-      if (providerReference != null) {
+      if (shopifyUrl != null) {
+        window.location.href = shopifyUrl;
+      } else if (providerReference != null) {
         this.resumeShopifyCheckout(providerReference);
       } else {
         // TODO: show error.
       }
     } else {
-      Turbolinks.visit(route('store.invoice.show', { invoice: target.dataset.orderId }));
+      Turbo.visit(route('store.invoice.show', { invoice: target.dataset.orderId }));
     }
   }
 
-  async resumeShopifyCheckout(checkoutId: string) {
+  async resumeShopifyCheckout(cartId: string) {
     showLoadingOverlay();
     showLoadingOverlay.flush();
 
-    const checkout = await client().checkout.fetch(checkoutId);
-    if (checkout != null) {
-      window.location.href = checkout.webUrl;
-    } else {
+    const operation = `
+      query ($cartId: ID!) {
+        cart(id: $cartId) {
+          id
+          checkoutUrl
+          attributes {
+            key
+            value
+          }
+        }
+      }
+    `;
+
+    const response = await storefrontClient().request(operation, { variables: { cartId } });
+    const data = response.data as { cart?: Cart };
+
+    if (response.errors != null || data.cart == null) {
+      hideLoadingOverlay();
+      popup(trans('errors.checkout.generic'), 'danger');
+      return;
+    }
+
+    if (data.cart == null) {
       popup(trans('store.order.shopify_expired'), 'info');
       hideLoadingOverlay();
+    } else {
+      window.location.href = data.cart.checkoutUrl;
     }
   }
 
-  private collectShopifyItems() {
+  private collectShopifyCartLines() {
     return $('.js-store-order-item').map((_, element) => ({
+      merchandiseId: toShopifyVariantGid(element.dataset.shopifyId),
       quantity: Number(element.dataset.quantity),
-      variantId: toShopifyVariantGid(element.dataset.shopifyId),
     })).get();
+  }
+
+  private shopifyCartInput(orderId: string) {
+    return {
+      attributes: [{ key: 'orderId', value: orderId }],
+      lines: this.collectShopifyCartLines(),
+    };
   }
 }

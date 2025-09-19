@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Slow down, play more.',
+        'no_mirrors' => 'No download servers available.',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Are you sure you want to nominate this beatmap?',
+            'different_nominator_warning' => 'Qualifying this beatmap with different nominators will reset its qualification queue position.',
             'header' => 'Nominate Beatmap',
             'hybrid_warning' => 'note: you may only nominate once, so please ensure that you are nominating for all game modes you intend to',
             'current_main_ruleset' => 'The main ruleset is currently: :ruleset',
@@ -67,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'View full size cover image',
+            'page' => 'View admin page',
         ],
 
         'deleted_banner' => [
@@ -138,6 +141,7 @@ return [
             'description' => 'Description',
             'genre' => 'Genre',
             'language' => 'Language',
+            'mapper_tags' => 'Mapper Tags',
             'no_scores' => 'Data still being calculated...',
             'nominators' => 'Nominators',
             'nsfw' => 'Explicit content',
@@ -146,7 +150,7 @@ return [
             'source' => 'Source',
             'storyboard' => 'This beatmap contains storyboard',
             'success-rate' => 'Success Rate',
-            'tags' => 'Tags',
+            'user_tags' => 'User Tags',
             'video' => 'This beatmap contains video',
         ],
 
@@ -169,6 +173,7 @@ return [
             'global' => 'Global Ranking',
             'supporter-link' => 'Click <a href=":link">here</a> to see all the fancy features that you get!',
             'supporter-only' => 'You need to be an osu!supporter to access the friend, country, or mod-specific rankings!',
+            'team' => 'Team Ranking',
             'title' => 'Scoreboard',
 
             'headers' => [
@@ -190,6 +195,7 @@ return [
                 'friend' => 'None of your friends have set a score on this map yet!',
                 'global' => 'No scores yet. Maybe you should try setting some?',
                 'loading' => 'Loading scores...',
+                'team' => 'No one from your team has set a score on this map yet!',
                 'unranked' => 'Unranked beatmap.',
             ],
             'score' => [

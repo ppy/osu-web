@@ -20,18 +20,20 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'forum',
         'news_post' => 'nyheter',
+        'team' => '',
         'user' => 'profil',
     ],
 
     'filters' => [
         '_' => 'alle',
-        'user' => 'profil',
         'beatmapset' => 'beatmapper
 ',
-        'forum_topic' => 'forum',
-        'news_post' => 'nyheter',
         'build' => 'versjon',
         'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'nyheter',
+        'team' => '',
+        'user' => 'profil',
     ],
 
     'item' => [
@@ -122,6 +124,16 @@ return [
                     'channel_message_group' => 'fra :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -157,6 +169,22 @@ return [
                 '_' => 'Nytt forum svar',
                 'forum_topic_reply' => ':username svarte på forumemne ":title".',
                 'forum_topic_reply_compact' => ':username svarte',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+
+                'team_application_group' => '',
+
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -218,11 +246,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Det er en ny kunngjøring i ":name',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => 'Du fått en ny melding fra :username',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -241,6 +271,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Det finnes nye svar i ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
+                'team_application_store' => '',
             ],
         ],
 

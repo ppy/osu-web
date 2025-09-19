@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Ευχαριστούμε για την υποστήριξή σας μέχρι τώρα! Έχετε συνεισφέρει το χρηματικό ποσό των :dollars σε :tags συναλλαγές!',
-            'gifted' => ":giftedTags από τις αγορές των tag που έχετε κάνει έχουν δωριστεί (συνολικά :giftedDollars), πόσο γενναιόδωρο!",
+            'contribution_with_duration' => 'Σας ευχαριστούμε για την συνεχή σας υποστήριξη! Μέχρι στιγμής, έχετε συνεισφέρει ένα σύνολο :dollars, κερδίζοντας την ετικέτα \'\'Supporter\'\' για :duration',
             'not_yet' => "Δεν έχετε supporter tag. :(",
             'valid_until' => 'Το τρέχον supporter tag σας είναι έγκυρο μέχρι τις :date!',
             'was_valid_until' => 'Το supporter tag σας ήταν έγκυρο μέχρι :date.',
+
+            'gifted' => [
+                '_' => 'Από τις συνολικές σου συνεισφορές, έχεις δωρίσει ετικέτες αξίας :dollars σε :users που καλύπτουν :duration. Αυτό είναι απίστευτα γενναιόδωρο!',
+                'users' => ':count_delimited άλλος χρήστης|:count_delimited άλλοι χρήστες',
+            ],
         ],
     ],
 ];

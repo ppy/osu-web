@@ -14,10 +14,11 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'comments' => 'коментари',
+        'hide_judged' => 'сакриј оцењене пријаве',
+        'nav_title' => 'судија',
+        'no_current_vote' => 'ниси још гласао.',
+        'update' => 'ажурирај',
         'validation' => [
             'missing_score' => '',
             'contest_vote_judged' => '',
@@ -27,9 +28,11 @@ return [
 
     'judge_results' => [
         '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        'creator' => 'аутор',
+        'score' => 'Резултат',
+        'score_std' => '',
+        'total_score' => 'укупан резултат',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'гласови',
         'count' => ':count_delimited глас|:count_delimited гласова',
         'points' => ':count_delimited поен|:count_delimited поени',
+        'points_float' => '',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Пријаве су отворене',
         'voting' => 'Гласање је почело',
         'results' => 'Резултати су изашли',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

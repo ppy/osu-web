@@ -17,6 +17,7 @@ import core from 'osu-core-singleton';
 import ChannelStore from 'stores/channel-store';
 import { isJqXHR, onError } from 'utils/ajax';
 import { hideLoadingOverlay } from 'utils/loading-overlay';
+import { updateHistory } from 'utils/turbolinks';
 import { updateQueryString } from 'utils/url';
 import ChannelId, { AddChannelType } from './channel-id';
 import ChannelJoinEvent from './channel-join-event';
@@ -83,7 +84,7 @@ export default class ChatStateStore implements DispatchListener {
 
     makeObservable(this);
 
-    document.addEventListener('turbolinks:before-cache', this.handleBeforeCache);
+    document.addEventListener('turbo:before-cache', this.handleBeforeCache);
 
     observe(channelStore.channels, (changes) => {
       // refocus channels if any gets removed
@@ -99,6 +100,7 @@ export default class ChatStateStore implements DispatchListener {
       } else {
         this.pingService.stop();
         dispatch(new SocketMessageSendAction({ event: 'chat.end' }));
+        this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
       }
     });
 
@@ -111,8 +113,6 @@ export default class ChatStateStore implements DispatchListener {
         }
 
         runInAction(() => {
-          this.selectedChannel?.load();
-
           this.isReady = true;
         });
       }
@@ -173,7 +173,7 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   @action
-  selectChannel(channelId: ChannelId, mode: 'advanceHistory' | 'replaceHistory' | null = 'advanceHistory') {
+  selectChannel(channelId: ChannelId, mode: 'push' | 'replace' | null = 'push') {
     this.waitAddChannelId = null; // reset any waiting for channel.
     // Mark the channel being switched away from as read.
     // Marking as read is done here to avoid constantly sending mark-as-read requests
@@ -204,10 +204,10 @@ export default class ChatStateStore implements DispatchListener {
 
     this.selectChannel(this.channelList[0].channelId, null);
     // Remove channel_id from location on selectFirst();
-    Turbolinks.controller.replaceHistory(updateQueryString(null, {
+    updateHistory(updateQueryString(null, {
       channel_id: null,
       sendto: null,
-    }));
+    }), 'replace');
   }
 
   @action
@@ -273,7 +273,6 @@ export default class ChatStateStore implements DispatchListener {
   private handleSocketStateChanged(event: SocketStateChangedAction) {
     this.isConnected = event.connected;
     if (!event.connected) {
-      this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
       this.isReady = false;
     }
   }
@@ -295,7 +294,6 @@ export default class ChatStateStore implements DispatchListener {
   @action
   private async updateChannelList() {
     const json = await getUpdates(this.channelStore.lastReceivedMessageId, this.lastHistoryId);
-    if (!json) return; // FIXME: fix response
 
     runInAction(() => {
       const newHistoryId = maxBy(json.silences, 'id')?.id;
@@ -308,7 +306,7 @@ export default class ChatStateStore implements DispatchListener {
     });
   }
 
-  private updateUrl(channel: Channel | AddChannelType, mode: 'advanceHistory' | 'replaceHistory' | null) {
+  private updateUrl(channel: Channel | AddChannelType, mode: 'push' | 'replace' | null) {
     if (mode == null) return;
 
     let hash = '';
@@ -324,6 +322,6 @@ export default class ChatStateStore implements DispatchListener {
       }
     }
 
-    Turbolinks.controller[mode](updateQueryString(null, params, hash));
+    updateHistory(updateQueryString(null, params, hash), mode);
   }
 }

@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Devi fare un punteggio su una beatmap per assegnare un\'etichetta.',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Questo canale è solamente per gli annunci.',
-        'blocked' => 'Non puoi inviare messaggi ad un utente che ti sta bloccando o che hai bloccato.',
+        'blocked' => 'Non puoi inviare messaggi a un utente che ti sta bloccando o che hai bloccato.',
         'friends_only' => 'L\'utente sta bloccando i messaggi da chi non è nella sua lista amici.',
         'moderated' => 'Questo canale è attualmente moderato.',
         'no_access' => 'Non hai accesso a quel canale.',
+        'no_announce' => 'Non hai il permesso di pubblicare un annuncio.',
         'receive_friends_only' => 'L\'utente potrebbe non essere in grado di rispondere perché stai accettando messaggi solo da persone della tua lista amici.',
         'restricted' => 'Non puoi inviare messaggi mentre sei silenziato, limitato o bannato.',
         'silenced' => 'Non puoi inviare messaggi mentre sei silenziato, limitato o bannato.',
@@ -107,6 +113,7 @@ return [
                 'deleted' => 'Non puoi modificare un post eliminato.',
                 'locked' => 'Non è permesso effettuare modifiche in questo post.',
                 'no_forum_access' => 'È necessario accedere al forum richiesto.',
+                'no_permission' => 'Nessun permesso per modificare.',
                 'not_owner' => 'Solo l\'autore del post lo può modificare.',
                 'topic_locked' => 'Non puoi modificare i post di un topic bloccato.',
             ],
@@ -170,12 +177,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Solo il proprietario della stanza può chiuderla.',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Impossibile fissare questo tipo di punteggio",
             'failed' => "Non puoi fissare un punteggio incompleto.",
             'not_owner' => 'Solo il proprietario del punteggio può fissarlo.',
             'too_many' => 'Hai già fissato troppi punteggi.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "Fai già parte della squadra.",
+                'already_other_member' => "Fai già parte di un'altra squadra.",
+                'currently_applying' => 'Hai in sospeso una richiesta di partecipazione da una squadra.',
+                'team_closed' => 'Attualmente la squadra non accetta richieste di partecipazione.',
+                'team_full' => "La squadra è al completo e non può accettare ulteriori membri.",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "Il capitano non può abbandonare la squadra.",
+            'not_member' => 'Non un membro della squadra.',
+        ],
+        'store' => [
+            'require_supporter_tag' => 'È necessario un tag osu!supporter per creare una squadra.',
         ],
     ],
 

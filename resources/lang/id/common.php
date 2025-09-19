@@ -5,7 +5,7 @@
 
 return [
     'confirmation' => 'Apakah kamu yakin?',
-    'confirmation_unsaved' => 'Segala perubahan yang tidak disimpan akan hilang. Apakah kamu yakin?',
+    'confirmation_unsaved' => 'Segala perubahan yang belum disimpan akan hilang. Apakah kamu yakin?',
     'saved' => 'Tersimpan',
 
     'array_and' => [
@@ -19,21 +19,21 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Admin',
         'authorise' => 'Izinkan',
         'authorising' => 'Mengotorisir...',
+        'back' => 'Kembali',
         'back_to_previous' => 'Kembali ke posisi sebelumnya',
         'back_to_top' => 'Kembali ke atas',
         'cancel' => 'Batal',
         'change' => 'ubah',
         'clear' => 'Hapus',
-        'click_to_copy' => 'klik untuk menyalin',
+        'click_to_copy' => 'klik untuk menyalin ke papan klip',
         'click_to_copy_copied' => 'tersalin!',
         'close' => 'Tutup',
         'collapse' => 'tutup',
         'delete' => 'Hapus',
         'edit' => 'Sunting',
-        'expand' => 'perluas',
+        'expand' => 'lebarkan',
         'hide' => 'sembunyikan',
         'permalink' => 'tautan',
         'pin' => 'sematkan',
@@ -43,7 +43,7 @@ return [
         'reply' => 'Balas',
         'reply_reopen' => 'Balas dan Buka Kembali',
         'reply_resolve' => 'Balas dan Tutup',
-        'reset' => 'Atur Ulang',
+        'reset' => 'Atur ulang',
         'restore' => 'Pulihkan',
         'retry' => 'Coba lagi',
         'save' => 'Simpan',
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => 'bln',
+        ],
+        'year' => [
+            'php' => 'thn',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',
@@ -158,7 +164,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => 'Kamu terdaftar masuk sebagai :user. :logout_link.',
+        '_' => 'Kamu terhubung masuk sebagai :user. :logout_link.',
         'logout_link' => 'Klik di sini untuk masuk sebagai pengguna lain',
     ],
 ];

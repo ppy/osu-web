@@ -47,11 +47,12 @@ const channelSorts = {
     return a.lastMessageId > b.lastMessageId ? -1 : 1;
   },
   PUBLIC: alphabeticalSort,
+  TEAM: alphabeticalSort,
 };
 
 @dispatchListener
 export default class ChannelStore implements DispatchListener {
-  @observable channels = observable.map<number, Channel>();
+  @observable channels = new Map<number, Channel>();
   lastReceivedMessageId = 0;
 
   // list of channels to temporarily ignore incoming messages from because we just left them.

@@ -20,17 +20,19 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'fórum',
         'news_post' => 'notícias',
+        'team' => 'equipe',
         'user' => 'perfil',
     ],
 
     'filters' => [
         '_' => 'tudo',
-        'user' => 'perfil',
         'beatmapset' => 'beatmaps',
-        'forum_topic' => 'fórum',
-        'news_post' => 'notícias',
         'build' => 'versões',
         'channel' => 'chat',
+        'forum_topic' => 'fórum',
+        'news_post' => 'notícias',
+        'team' => 'equipe',
+        'user' => 'perfil',
     ],
 
     'item' => [
@@ -121,6 +123,16 @@ return [
                     'channel_message_group' => 'de :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => 'Nova mensagem do time',
+
+                'team' => [
+                    'channel_team' => ':username diz ":title"',
+                    'channel_team_compact' => ':username diz ":title"',
+                    'channel_team_group' => ':username diz ":title"',
+                ],
+            ],
         ],
 
         'build' => [
@@ -156,6 +168,22 @@ return [
                 '_' => 'Nova resposta no fórum',
                 'forum_topic_reply' => ':username respondeu ao tópico ":title" do fórum.',
                 'forum_topic_reply_compact' => ':username respondeu',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => 'Solicitação para participar de equipe',
+
+                'team_application_accept' => "Você agora é membro da equipe :title",
+                'team_application_accept_compact' => "Você agora é membro da equipe :title",
+
+                'team_application_group' => 'Atualizações de solicitações para se juntar ao time',
+
+                'team_application_reject' => 'Seu pedido para se juntar à equipe :title foi recusado',
+                'team_application_reject_compact' => 'Seu pedido para se juntar à equipe :title foi recusado',
+                'team_application_store' => ':title pediu para se juntar ao seu time',
+                'team_application_store_compact' => ':title pediu para se juntar ao seu time',
             ],
         ],
 
@@ -217,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Há um novo anúncio em ":name"',
+                'channel_announcement' => 'Há um novo anúncio em ":name"',
             ],
-
             'channel' => [
-                'pm' => 'Você recebeu uma nova mensagem de :username',
+                'channel_message' => 'Você recebeu uma nova mensagem de :username',
+            ],
+            'channel_team' => [
+                'channel_team' => 'Há uma nova mensagem no time ":name"',
             ],
         ],
 
@@ -240,6 +270,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Há novas respostas em ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Você agora é membro da equipe :title",
+                'team_application_reject' => 'Seu pedido para se juntar à equipe :title foi recusado',
+                'team_application_store' => ':title pediu para se juntar ao seu time',
             ],
         ],
 

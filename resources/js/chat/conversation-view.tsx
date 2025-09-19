@@ -46,8 +46,9 @@ export default class ConversationView extends React.Component<Props> {
     let currentGroup: Message[] = [];
     let unreadMarkerShown = false;
     let currentDay: string;
+    const messages = this.messages;
 
-    each(channel.messages, (message: Message, key: number) => {
+    each(messages, (message: Message, key: number) => {
       // check if the last read indicator needs to be shown
       if (!unreadMarkerShown
         && typeof message.messageId === 'number'
@@ -84,7 +85,7 @@ export default class ConversationView extends React.Component<Props> {
         currentGroup.push(message);
       }
 
-      if (key === channel.messages.length - 1) {
+      if (key === messages.length - 1) {
         conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
       }
     });
@@ -95,6 +96,12 @@ export default class ConversationView extends React.Component<Props> {
   @computed
   private get currentChannel() {
     return core.dataStore.chatState.selectedChannel;
+  }
+
+  private get messages() {
+    const channel = this.currentChannel;
+    if (channel == null) return [];
+    return channel.messages.filter((message) => !core.currentUserModel.blocks.has(message.senderId));
   }
 
   constructor(props: Props) {
@@ -259,16 +266,33 @@ export default class ConversationView extends React.Component<Props> {
   renderUsers() {
     if (this.currentChannel?.type !== 'ANNOUNCE') return null;
 
+    const users = this.currentChannel.users;
+
+    if (users != null && users.length === 0) {
+      return null;
+    }
+
     return (
-      <div className={classWithModifiers('chat-conversation__users', { loading: this.currentChannel.announcementUsers == null })}>
-        {this.currentChannel.announcementUsers == null ? (
-          <>
-            <Spinner modifiers='self-center' /><span>{trans('chat.loading_users')}</span>
-          </>
-        ) : (
-          this.currentChannel.announcementUsers.map((user) => (
-            <UserCardBrick key={user.id} user={user.toJson()} />
-          ))
+      <div className='chat-conversation__users-container'>
+        <div className={classWithModifiers('chat-conversation__users', { loading: users == null })}>
+          {users == null ? (
+            <>
+              <Spinner modifiers='self-center' /><span>{trans('chat.loading_users')}</span>
+            </>
+          ) : (
+            users.map((user) => (
+              <UserCardBrick key={user.id} user={user} />
+            ))
+          )}
+        </div>
+        {users != null && this.currentChannel.usersCursor != null && (
+          <div className='chat-conversation__more-users'>
+            <ShowMoreLink
+              callback={this.currentChannel.loadUsers}
+              hasMore
+              loading={this.currentChannel.loadUsersXhr != null}
+            />
+          </div>
         )}
       </div>
     );

@@ -113,6 +113,7 @@ return [
             'copyright' => 'Copyright (DMCA)',
             'jp_sctl' => '特定商取引法',
             'privacy' => 'Privacy',
+            'rules' => 'Rules',
             'server_status' => 'Server Status',
             'source_code' => 'Source Code',
             'terms' => 'Terms',
@@ -199,6 +200,9 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Lazer mode shows scores set from lazer with a new scoring algorithm',
             'logout' => 'Sign Out',
             'profile' => 'My Profile',
+            'scoring_mode_toggle' => 'Classic scoring',
+            'scoring_mode_toggle_tooltip' => 'Adjust score values to feel more like classic uncapped scoring',
+            'team' => 'My Team',
         ],
     ],
 

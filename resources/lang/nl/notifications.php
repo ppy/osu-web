@@ -20,17 +20,19 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'forum',
         'news_post' => 'nieuws',
+        'team' => '',
         'user' => 'profiel',
     ],
 
     'filters' => [
         '_' => 'alle',
-        'user' => 'profiel',
         'beatmapset' => 'beatmaps',
-        'forum_topic' => 'forum',
-        'news_post' => 'nieuws',
         'build' => 'versie',
         'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'nieuws',
+        'team' => '',
+        'user' => 'profiel',
     ],
 
     'item' => [
@@ -121,6 +123,16 @@ return [
                     'channel_message_group' => 'van :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -156,6 +168,22 @@ return [
                 '_' => 'Nieuw forum antwoord',
                 'forum_topic_reply' => ':username antwoordde op forumonderwerp ":title".',
                 'forum_topic_reply_compact' => ':username antwoordde',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => 'Teamlid worden',
+
+                'team_application_accept' => "Je bent nu lid van het team :title",
+                'team_application_accept_compact' => "Je bent nu lid van :title",
+
+                'team_application_group' => '',
+
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -217,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Er is een nieuwe aankondiging in ":name"',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => 'Je hebt een nieuw bericht ontvangen van :username',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -240,6 +270,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Er zijn nieuwe antwoorden in ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
+                'team_application_store' => '',
             ],
         ],
 

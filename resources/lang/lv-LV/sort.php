@@ -4,41 +4,47 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    '_' => '',
+    '_' => 'Filtrēt pēc',
 
-    'all' => '',
-    'friends' => '',
-    'last_visit' => '',
-    'new' => '',
-    'old' => '',
-    'rank' => '',
-    'top' => '',
-    'username' => '',
+    'all' => 'Visi',
+    'friends' => 'Draugi',
+    'last_visit' => 'Visnesenāk aktīvi',
+    'new' => 'Nesen',
+    'old' => 'Vecs',
+    'rank' => 'Novietojums',
+    'top' => 'Virsotne',
+    'username' => 'Lietotājvārds',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'Albums',
+        'artist' => 'Mākslinieks',
+        'bpm' => 'BPM',
+        'genre' => 'Žanrs',
+        'length' => 'Garums',
+        'relevance' => 'Aktualitāte',
+        'title' => 'Nosaukums',
+        'update' => 'Atjaunināt',
     ],
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Publicēšanas laiks',
+        'relevance' => 'Aktualitāte',
     ],
 
     'forum_topics' => [
-        'created' => '',
-        'feature_votes' => '',
-        'new' => '',
+        'created' => 'Izveidots',
+        'feature_votes' => 'Zvaigžņu prioritāte',
+        'new' => 'Pēdējā atbilde',
+    ],
+
+    'teams' => [
+        'relevance' => 'Aktualitāte',
+        'name' => 'Vārds',
+        'short-name' => 'Īsais vārds',
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'Aktualitāte',
+        'username' => 'Vārds',
     ],
 ];

@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Bạn phải đạt điểm trên một beatmap để thêm thẻ.',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Kênh này chỉ dành cho các thông báo.',
         'blocked' => 'Không thể nhắn tin cho người dùng đã chặn bạn hoặc nếu bạn đã chặn người đó.',
         'friends_only' => 'Người dùng này đang chặn tin nhắn từ những người không trong danh sách bạn của họ.',
         'moderated' => 'Kênh hiện đang được kiểm duyệt.',
         'no_access' => 'Bạn không có quyền truy cập vào kênh này.',
+        'no_announce' => 'Bạn không có quyền đăng thông báo.',
         'receive_friends_only' => 'Người này có thể không trả lời được vì bạn đang chỉ chấp nhận tin nhắn từ người trong danh sách bạn bè.',
         'restricted' => 'Bạn không thể gửi tin nhắn trong khi bị silenced, bị hạn chế hoặc bị cấm (ban).',
         'silenced' => 'Bạn không thể gửi tin nhắn trong khi bị silenced, bị hạn chế hoặc bị cấm (ban).',
@@ -107,6 +113,7 @@ return [
                 'deleted' => 'Không thể chỉnh sửa bài đăng đã bị xóa.',
                 'locked' => 'Bài đăng đã bị khóa chỉnh sửa.',
                 'no_forum_access' => 'Yêu cầu quyền truy cập vào forum mong muốn.',
+                'no_permission' => '',
                 'not_owner' => 'Chỉ có người đăng mới có thể chỉnh sửa bài đăng.',
                 'topic_locked' => 'Không thể chỉnh sửa bài đăng của một chủ đề bị khóa.',
             ],
@@ -170,12 +177,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Chỉ chủ phòng mới có thể đóng phòng.',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Không thể ghim điểm này",
-            'failed' => "Không thể ghim điểm cá nhân chưa hoàn thành.",
+            'failed' => "Không thể ghim điểm chưa hoàn thành.",
             'not_owner' => 'Chỉ có người sở hữu có thể ghim điểm.',
             'too_many' => 'Ghim quá nhiều điểm.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "Bạn đã là một phần của đội rồi.",
+                'already_other_member' => "Bạn đã là một phần của một đội khác rồi.",
+                'currently_applying' => 'Bạn có yêu cầu gia nhập đội đang chờ.',
+                'team_closed' => 'Đội này hiện không chấp nhận bất kì yêu cầu gia nhập nào.',
+                'team_full' => "Đội đã đầy và không thể chấp nhận thêm thành viên nữa.",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "Đội trưởng không thể rời khỏi đội.",
+            'not_member' => 'Không phải thành viên của một đội.',
+        ],
+        'store' => [
+            'require_supporter_tag' => 'cần tag osu!supporter để tạo đội.',
         ],
     ],
 

@@ -33,7 +33,8 @@ class RankingsRecalculateCountryStats extends Command
      */
     public function handle()
     {
-        $countries = Country::where('rankedscore', '>', 0)->get();
+        $countriesQuery = Country::where('rankedscore', '>', 0);
+        $countries = $countriesQuery->get();
         $bar = $this->output->createProgressBar(count($countries) * count(Beatmap::MODES));
 
         foreach ($countries as $country) {
@@ -42,6 +43,8 @@ class RankingsRecalculateCountryStats extends Command
                 $bar->advance();
             }
         }
+
+        CountryStatistics::whereNotIn('country_code', $countriesQuery->clone()->select('acronym'))->delete();
 
         $bar->finish();
     }

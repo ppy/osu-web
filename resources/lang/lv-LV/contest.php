@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'komentāri',
         'hide_judged' => 'paslēpt vērtētos ierakstus',
         'nav_title' => 'tiesāt',
         'no_current_vote' => 'tu vēl nebalsoji.',
@@ -29,7 +30,9 @@ return [
         '_' => 'Vērtēšanas rezultāti',
         'creator' => 'autors',
         'score' => 'Rezultāts',
+        'score_std' => 'Standartizēti Rezultāti',
         'total_score' => 'Kopējais rezultāts',
+        'total_score_std' => 'kopējais standartizēto rezultātu skaits',
     ],
 
     'voting' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'balsis',
         'count' => ':count_delimited balss|:count_delimited balsis',
         'points' => ':count_delimited punkts|:count_delimited punkti',
+        'points_float' => ':points punkti',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Pieteikums Atvērts',
         'voting' => 'Balsošana Sākās',
         'results' => 'Rezultāti Pieejami',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => 'Apskatīt informāciju un ierakstes',
+        ],
     ],
 ];

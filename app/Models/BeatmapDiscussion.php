@@ -71,14 +71,8 @@ class BeatmapDiscussion extends Model
     // FIXME: This and other static search functions should be extracted out.
     public static function search($rawParams = [])
     {
-        $pagination = pagination(cursor_from_params($rawParams) ?? $rawParams);
+        [$query, $params] = static::searchQueryAndParams(cursor_from_params($rawParams) ?? $rawParams);
 
-        $params = [
-            'limit' => $pagination['limit'],
-            'page' => $pagination['page'],
-        ];
-
-        $query = static::limit($params['limit'])->offset($pagination['offset']);
         $isModerator = $rawParams['is_moderator'] ?? false;
 
         if (present($rawParams['user'] ?? null)) {
@@ -255,6 +249,7 @@ class BeatmapDiscussion extends Model
     public function canGrantKudosu()
     {
         return in_array($this->attributes['message_type'] ?? null, static::KUDOSUABLE_TYPES, true) &&
+            $this->beatmapset !== null &&
             $this->user_id !== $this->beatmapset->user_id &&
             !$this->trashed() &&
             !$this->kudosu_denied;
@@ -274,7 +269,7 @@ class BeatmapDiscussion extends Model
 
         // inb4 timing problem
         $currentVotes = $this->canGrantKudosu() ?
-            (int) $this->beatmapDiscussionVotes()->sum('score') :
+            (int) $this->beatmapDiscussionVotes()->where('score', '>', 0)->sum('score') :
             0;
         // remove kudosu by bots here instead of in canGrantKudosu due to
         // the function is also called by transformer without user preloaded
@@ -638,10 +633,8 @@ class BeatmapDiscussion extends Model
 
     public function managedBy(User $user): bool
     {
-        $id = $user->getKey();
-
-        return $this->beatmapset->user_id === $id
-            || ($this->beatmap !== null && $this->beatmap->user_id === $id);
+        return $this->beatmapset->user_id === $user->getKey()
+            || ($this->beatmap !== null && $this->beatmap->isOwner($user));
     }
 
     public function userRecentVotesCount($user, $increment = false)

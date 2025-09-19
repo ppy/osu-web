@@ -53,6 +53,11 @@ return [
                 'beatmapsets' => '',
                 'forum' => '',
                 'general' => '',
+
+                'users' => [
+                    'header' => 'Карыстальнік',
+                    'cover_presets' => 'Шаблоны вокладак профілю',
+                ],
             ],
         ],
     ],

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirmation' => 'Είστε σίγουροι;',
+    'confirmation' => 'Είσαι σίγουρος;',
     'confirmation_unsaved' => 'Μη αποθηκευμένες αλλαγές θα χαθούν. Είστε σίγουροι;',
     'saved' => 'Αποθηκεύτηκε',
 
@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Διαχειριστής',
         'authorise' => 'Εξουσιοδότηση',
         'authorising' => 'Εξουσιοδότηση...',
+        'back' => 'Πίσω',
         'back_to_previous' => 'Επιστροφή στην προηγούμενη κατάσταση',
         'back_to_top' => 'Πίσω στην αρχή',
         'cancel' => 'Ακύρωση',
@@ -39,7 +39,7 @@ return [
         'pin' => 'καρφίτσωμα',
         'post' => 'Δημοσίευση',
         'read_more' => 'διαβάστε περισσότερα',
-        'refresh' => '',
+        'refresh' => 'Ανανέωση',
         'reply' => 'Απάντηση',
         'reply_reopen' => 'Απάντηση και εκ νέου άνοιγμα',
         'reply_resolve' => 'Απάντηση και Αρχειοθέτηση',
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => 'μην',
+        ],
+        'year' => [
+            'php' => 'χρ',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

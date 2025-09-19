@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'комментарии',
         'hide_judged' => 'скрыть оценённые заявки',
         'nav_title' => 'судья',
         'no_current_vote' => 'вы пока ещё не проголосовали.',
@@ -22,14 +23,16 @@ return [
             'missing_score' => 'балл отсутствует',
             'contest_vote_judged' => 'нельзя проголосовать в конкурсе, который вы судили',
         ],
-        'voted' => 'Вы уже выставили баллы за эту заявку.',
+        'voted' => 'Вы уже проголосовали за эту заявку.',
     ],
 
     'judge_results' => [
         '_' => 'Результаты судейства',
         'creator' => 'создатель',
         'score' => 'Баллы',
+        'score_std' => 'Стандартизированные очки',
         'total_score' => 'суммарный балл',
+        'total_score_std' => 'всего стандартизированных очков',
     ],
 
     'voting' => [
@@ -50,7 +53,7 @@ return [
         ],
 
         'progress' => [
-            '_' => ':used / :max голосов использовано',
+            '_' => ':used / :max голосов отдано',
         ],
 
         'requirement' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'голоса',
         'count' => ':count_delimited голос|:count_delimited голоса|:count_delimited голосов',
         'points' => ':count_delimited очко|:count_delimited очка|:count_delimited очков',
+        'points_float' => ':points очков',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Заявки открыты',
         'voting' => 'Голосование началось',
         'results' => 'Результаты опубликованы',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => 'Открыть общую информацию и заявки',
+        ],
     ],
 ];

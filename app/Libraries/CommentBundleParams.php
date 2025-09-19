@@ -7,6 +7,7 @@ namespace App\Libraries;
 
 use App\Models\Comment;
 use App\Models\User;
+use App\Models\UserProfileCustomization;
 
 class CommentBundleParams
 {
@@ -36,7 +37,7 @@ class CommentBundleParams
         $this->cursor = null;
         $this->limit = static::DEFAULT_LIMIT;
         $this->page = static::DEFAULT_PAGE;
-        $this->sort = $user->userProfileCustomization->comments_sort ?? null;
+        $this->sort = UserProfileCustomization::forUser($user)['comments_sort'];
 
         $this->setAll($params);
     }
@@ -52,7 +53,7 @@ class CommentBundleParams
         }
 
         if (array_key_exists('limit', $params)) {
-            $this->limit = clamp(get_int($params['limit']), 1, 100);
+            $this->limit = \Number::clamp(get_int($params['limit']) ?? 50, 1, 100);
         }
 
         if (array_key_exists('page', $params)) {

@@ -7,6 +7,7 @@ return [
     'load_failed' => 'No s\'han pogut carregar les dades.',
     'missing_route' => 'URL invàlida o mètode de sol·licitud incorrecte.',
     'no_restricted_access' => 'No pots fer aquesta acció mentre el teu compte es troba restringit.',
+    'param_too_large' => 'El paràmetre :name té un màxim d\':count_delimited ítem|El paràmetre :name té un màxim de :count_delimited ítems',
     'supporter_only' => 'Has de ser un osu!supporter per a fer servir aquesta funció.',
     'unknown' => 'Hi ha hagut un error desconegut.',
 
@@ -28,9 +29,15 @@ return [
     'checkout' => [
         'generic' => 'S\'ha produït un error mentre preparàvem la teva compra.',
     ],
+    'scores' => [
+        'invalid_id' => 'Id de la puntuació no vàlida.',
+    ],
     'search' => [
         'default' => 'No s\'ha pogut trobar cap resultat. Torna-ho a provar més tard.',
         'invalid_cursor_exception' => 'El paràmetre de cursor és invàlid.',
         'operation_timeout_exception' => 'La cerca es troba més congestionada que d\'habitual, prova-ho més tard.',
+    ],
+    'user_report' => [
+        'recently_reported' => "Ja l'heu denunciat fa poc.",
     ],
 ];

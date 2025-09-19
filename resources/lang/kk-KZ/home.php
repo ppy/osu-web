@@ -26,6 +26,9 @@ return [
         'placeholder' => 'іздеу үшін жазыңыз',
         'title' => 'іздеу',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Карталарды іздеу үшін аккаунтыңызға кіріңіз',
             'more' => 'басқа :count карта табылды',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'бәрі',
+            'artist_track' => '',
             'beatmapset' => 'карта',
             'forum_post' => 'форум',
+            'team' => '',
             'user' => 'ойыншы',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [
@@ -133,14 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => '',
             'popular' => '',
             'by_user' => '',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => '',
             'support' => '',
             'store' => '',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

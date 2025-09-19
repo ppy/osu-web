@@ -3,7 +3,6 @@
 
 import BbcodePreview from 'core-legacy/bbcode-preview'
 import BeatmapPack from 'core-legacy/beatmap-pack'
-import ChangelogChartLoader from 'core-legacy/changelog-chart-loader'
 import CheckboxValidation from 'core-legacy/checkbox-validation'
 import FancyGraph from 'core-legacy/fancy-graph'
 import FormClear from 'core-legacy/form-clear'
@@ -24,15 +23,10 @@ import LandingGraph from 'core-legacy/landing-graph'
 import Menu from 'core-legacy/menu'
 import NavButton from 'core-legacy/nav-button'
 import Nav2 from 'core-legacy/nav2'
-import PostPreview from 'core-legacy/post-preview'
 import Search from 'core-legacy/search'
 import { StoreCheckout } from 'core-legacy/store-checkout'
 import TooltipDefault from 'core-legacy/tooltip-default'
-import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { navigate } from 'utils/turbolinks'
-
-Turbolinks.start()
-Turbolinks.setProgressBarDelay(0)
 
 moment.relativeTimeThreshold('ss', 44)
 moment.relativeTimeThreshold('s', 120)
@@ -43,20 +37,11 @@ moment.relativeTimeThreshold('M', 24)
 jQuery.timeago.inWords = (distanceMillis) ->
   moment.duration(-1 * distanceMillis).humanize(true)
 
-# loading animation overlay
-# fired from turbolinks
-$(document).on 'turbolinks:request-start', showLoadingOverlay
-$(document).on 'turbolinks:request-end', hideLoadingOverlay
-# form submission is not covered by turbolinks
-$(document).on 'submit', 'form', (e) ->
-  showLoadingOverlay() if e.currentTarget.dataset.loadingOverlay != '0'
-
-$(document).on 'turbolinks:load', ->
+$(document).on 'turbo:load', ->
   BeatmapPack.initialize()
   StoreCheckout.initialize()
 
 window.bbcodePreview ?= new BbcodePreview
-window.changelogChartLoader ?= new ChangelogChartLoader
 window.checkboxValidation ?= new CheckboxValidation
 window.fancyGraph ?= new FancyGraph
 window.formClear ?= new FormClear
@@ -72,7 +57,6 @@ window.globalDrag ?= new GlobalDrag
 window.landingGraph ?= new LandingGraph
 window.menu ?= new Menu
 window.navButton ?= new NavButton
-window.postPreview ?= new PostPreview
 window.search ?= new Search
 window.tooltipDefault ?= new TooltipDefault
 

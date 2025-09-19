@@ -13,6 +13,15 @@ use ZipStream\ZipStream;
 
 class ContestsController extends Controller
 {
+    public function calculate($contestId)
+    {
+        Contest::findOrFail($contestId)->calculateScoresStd();
+
+        \Session::flash('popup', 'Standardised scores calculated.');
+
+        return response()->noContent();
+    }
+
     public function index()
     {
         return ext_view('admin.contests.index', [
@@ -34,14 +43,15 @@ class ContestsController extends Controller
         if ($contest->isJudged()) {
             $judgeVoteCounts = ContestJudgeVote::whereIn('contest_entry_id', $contest->entries()->pluck('id'))
                 ->groupBy('user_id')
-                ->selectRaw('COUNT(*) as judge_votes_count, user_id')
-                ->get();
+                ->selectRaw('COUNT(*) as judge_vote_count, user_id')
+                ->get()
+                ->keyBy('user_id');
         }
 
         return ext_view('admin.contests.show', [
             'contest' => $contest,
             'entries' => json_collection($entries, 'UserContestEntry', ['user']),
-            'judgeVoteCounts' => $judgeVoteCounts ??= null,
+            'judgeVoteCounts' => $judgeVoteCounts ?? null,
         ]);
     }
 

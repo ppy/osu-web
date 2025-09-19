@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => 'Określono nieprawidłowy atrybut „:attribute”.',
+    'invalid' => 'Nieprawidłowa wartość atrybutu „:attribute”.',
     'not_negative' => 'Atrybut „:attribute” nie może być ujemny.',
     'required' => 'Atrybut „:attribute” jest wymagany.',
     'too_long' => 'Atrybut „:attribute” przekroczył maksymalną liczbę znaków - możliwe jest użycie tylko :limit znaków.',
@@ -14,7 +14,7 @@ return [
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Został ustawiony znacznik czasu, ale nie odnaleziono poziomu trudności beatmapy.',
         'beatmapset_no_hype' => "Nie możesz nagłośnić tej beatmapy.",
-        'hype_requires_null_beatmap' => 'Priorytet musi zostać nadany w sekcji Główne (wszystkie poziomy trudności).',
+        'hype_requires_null_beatmap' => 'Beatmapa może zostać nagłośniona wyłącznie w sekcji „Główne (wszystkie poziomy trudności)”.',
         'invalid_beatmap_id' => 'Ustawiono nieprawidłowy poziom trudności.',
         'invalid_beatmapset_id' => 'Ustawiono nieprawidłową beatmapę.',
         'locked' => 'Dyskusja została zablokowana.',
@@ -28,8 +28,8 @@ return [
             'discussion_locked' => "Tworzenie dyskusji dla tej beatmapy zostało zablokowane i nie można jej nagłośnić.",
             'guest' => 'Musisz się zalogować, aby nagłośnić tę beatmapę.',
             'hyped' => 'Już nagłośniono tę beatmapę.',
-            'limit_exceeded' => 'Zużyto całą liczbę nagłośnień.',
-            'not_hypeable' => 'Nie można nagłośnić tej beatmapy',
+            'limit_exceeded' => 'Osiągnięto limit możliwych do nagłośnienia beatmap.',
+            'not_hypeable' => 'Ta beatmapa nie może zostać nagłośniona',
             'owner' => 'Nie możesz nagłośnić własnej beatmapy.',
         ],
 
@@ -50,7 +50,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Nie możesz odpowiedzieć na usunięty komentarz.',
-        'top_only' => 'Nie możesz przypiąć komentarza.',
+        'top_only' => 'Nie możesz przypiąć odpowiedzi do komentarza.',
 
         'attributes' => [
             'message' => 'Wiadomość',
@@ -63,8 +63,8 @@ return [
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Możesz głosować tylko na prośby o funkcję.',
-            'not_enough_feature_votes' => 'Niewystarczająco dużo głosów.',
+            'not_feature_topic' => 'Możesz głosować tylko w wątkach z prośbami o nowe funkcjonalności.',
+            'not_enough_feature_votes' => 'Niewystarczająca liczba głosów.',
         ],
 
         'poll_vote' => [
@@ -75,7 +75,7 @@ return [
             'beatmapset_post_no_delete' => 'Nie możesz usunąć posta z metadanymi beatmapy.',
             'beatmapset_post_no_edit' => 'Nie możesz edytować posta z metadanymi beatmapy.',
             'first_post_no_delete' => 'Nie możesz usunąć posta rozpoczynającego',
-            'missing_topic' => 'Post nie zawiera tematu.',
+            'missing_topic' => 'Post nie zawiera wątku.',
             'only_quote' => 'Twoja odpowiedź zawiera tylko cytat.',
 
             'attributes' => [
@@ -85,7 +85,7 @@ return [
 
         'topic' => [
             'attributes' => [
-                'topic_title' => 'Tytuł tematu',
+                'topic_title' => 'Tytuł wątku',
             ],
         ],
 
@@ -105,12 +105,12 @@ return [
 
         'topic_vote' => [
             'required' => 'Wybierz jedną z opcji, aby zagłosować.',
-            'too_many' => 'Wybrano więcej opcji, niż jest to dozwolone.',
+            'too_many' => 'Wybrano więcej opcji niż jest to dozwolone.',
         ],
     ],
 
     'legacy_api_key' => [
-        'exists' => 'Nie możesz aktualnie posiadać więcej niż jeden klucz API.',
+        'exists' => 'Nie możesz aktualnie posiadać więcej niż jednego klucza API.',
 
         'attributes' => [
             'api_key' => 'klucz api',
@@ -128,6 +128,20 @@ return [
                 'name' => 'Nazwa aplikacji',
                 'redirect' => 'Adres URL wywołań zwrotnych aplikacji',
             ],
+        ],
+    ],
+
+    'team' => [
+        'invalid_characters' => 'Atrybut „:attribute” zawiera nieprawidłowe znaki.',
+        'used' => 'Obecna wartość atrybutu „:attribute” jest już w użyciu.',
+        'word_not_allowed' => 'Obecna wartość atrybutu „:attribute” nie jest dozwolona.',
+
+        'attributes' => [
+            'default_ruleset_id' => 'Domyślny tryb gry',
+            'is_open' => 'Dostępność',
+            'name' => 'Nazwa',
+            'short_name' => 'Krótka nazwa',
+            'url' => 'Adres URL',
         ],
     ],
 
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Nie można zgłosić rankingowych beatmap.',
         'not_in_channel' => 'Nie jesteś na tym kanale.',
+        'in_team' => 'Jesteś członkiem tego zespołu.',
         'reason_not_valid' => 'Powód „:reason” nie jest właściwy dla tego typu zgłoszenia.',
         'self' => "Nie możesz zgłosić swojego konta!",
     ],

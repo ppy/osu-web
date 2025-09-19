@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Igre osu!(lazer) :type_group še niso bile odigrane!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'seznam pesmi',
         'realtime' => 'večigralski način',
     ],
@@ -16,9 +17,12 @@ return [
         'map_count' => ':count_delimited beatmapa|:count_delimited beatmap',
         'player_count' => ':count_delimited igralec|:count_delimited igralcev',
         'time_left' => 'še :time',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => 'Dolžina je predolga.',
+            'name_too_long' => '',
         ],
 
         'status' => [

@@ -27,7 +27,7 @@ return [
     ],
 
     'forum_posts' => [
-        'created' => 'Czas publikacji',
+        'created' => 'Data publikacji',
         'relevance' => 'Trafność',
     ],
 
@@ -35,6 +35,12 @@ return [
         'created' => 'Data utworzenia',
         'feature_votes' => 'Priorytet',
         'new' => 'Ostatnia odpowiedź',
+    ],
+
+    'teams' => [
+        'relevance' => 'Trafność',
+        'name' => 'Nazwa',
+        'short-name' => 'Krótka nazwa',
     ],
 
     'users' => [

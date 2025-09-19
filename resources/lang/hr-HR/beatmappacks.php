@@ -13,14 +13,11 @@ return [
         'blurb' => [
             'important' => 'PROČITAJ OVO PRIJE PREUZIMANJA',
             'install_instruction' => 'Instalacija: Nakon što je paket preuzet, raspakiraj sadržaj paketa u svoju osu! Songs mapu i osu! će učiniti ostalo.',
-            'note' => [
-                '_' => 'Također imajte na umu da je jako preporučeno :scary, budući da su starije mape općenito mnogo slabije kvalitete od novijih.',
-                'scary' => 'preuzeti pakete od najnovijih do najranijih',
-            ],
         ],
     ],
 
     'show' => [
+        'created_by' => '',
         'download' => 'Preuzmi',
         'item' => [
             'cleared' => 'očišćeno',

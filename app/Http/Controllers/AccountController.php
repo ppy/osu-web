@@ -5,7 +5,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\ImageProcessorException;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\SessionVerification;
@@ -14,6 +13,7 @@ use App\Libraries\User\CountryChange;
 use App\Libraries\User\CountryChangeTarget;
 use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
+use App\Models\Beatmap;
 use App\Models\GithubUser;
 use App\Models\OAuth\Client;
 use App\Models\UserAccountHistory;
@@ -58,8 +58,11 @@ class AccountController extends Controller
             'updateOptions',
         ]]);
 
-        $this->middleware('throttle:60,10', ['only' => [
+        $this->middleware('throttle:3,5', ['only' => [
             'reissueCode',
+        ]]);
+
+        $this->middleware('throttle:60,10', ['only' => [
             'updateEmail',
             'updatePassword',
             'verify',
@@ -73,11 +76,7 @@ class AccountController extends Controller
     {
         $user = auth()->user();
 
-        try {
-            AvatarHelper::set($user, Request::file('avatar_file'));
-        } catch (ImageProcessorException $e) {
-            return error_popup($e->getMessage());
-        }
+        AvatarHelper::set($user, Request::file('avatar_file'));
 
         return json_item($user, new CurrentUserTransformer());
     }
@@ -94,12 +93,8 @@ class AccountController extends Controller
             return error_popup(osu_trans('errors.supporter_only'));
         }
 
-        try {
-            $user->cover()->set($params['cover_id'], $params['cover_file']);
-            $user->save();
-        } catch (ImageProcessorException $e) {
-            return error_popup($e->getMessage());
-        }
+        $user->cover()->set($params['cover_id'], $params['cover_file']);
+        $user->save();
 
         return json_item($user, new CurrentUserTransformer());
     }
@@ -155,7 +150,13 @@ class AccountController extends Controller
             'user_twitter:string',
             'user_website:string',
             'user_discord:string',
+            'user_style:int',
         ]);
+
+        // setting it to null (default) is always allowed
+        if (isset($params['user_style']) && !$user->osu_subscriber) {
+            return error_popup(osu_trans('errors.supporter_only'));
+        }
 
         try {
             $user->fill($params)->saveOrExplode();
@@ -171,7 +172,7 @@ class AccountController extends Controller
         $newCountry = get_string(Request::input('country_acronym'));
         $user = Auth::user();
 
-        if (CountryChangeTarget::get($user) !== $newCountry) {
+        if ($newCountry === null || CountryChangeTarget::get($user) !== $newCountry) {
             abort(403, 'specified country_acronym is not allowed');
         }
 
@@ -248,6 +249,10 @@ class AccountController extends Controller
             'user_notify:bool',
         ]);
 
+        if (isset($userParams['playmode']) && !Beatmap::isModeValid($userParams['playmode'])) {
+            abort(422, 'invalid value specified for user[playmode]');
+        }
+
         $profileParams = get_params($params, 'user_profile_customization', [
             'audio_autoplay:bool',
             'audio_muted:bool',
@@ -262,10 +267,14 @@ class AccountController extends Controller
             'forum_posts_show_deleted:bool',
             'legacy_score_only:bool',
             'profile_cover_expanded:bool',
+            'scoring_mode:string',
             'user_list_filter:string',
             'user_list_sort:string',
             'user_list_view:string',
         ]);
+
+        $profileCustomization = $user->userProfileCustomization()->createOrFirst();
+        $user->setRelation('userProfileCustomization', $profileCustomization);
 
         try {
             if (!empty($userParams)) {
@@ -273,12 +282,12 @@ class AccountController extends Controller
             }
 
             if (!empty($profileParams)) {
-                $user->profileCustomization()->fill($profileParams)->saveOrExplode();
+                $profileCustomization->fill($profileParams)->saveOrExplode();
             }
         } catch (ModelNotSavedException $e) {
             return ModelNotSavedException::makeResponse($e, [
                 'user' => $user,
-                'user_profile_customization' => $user->profileCustomization(),
+                'user_profile_customization' => $profileCustomization,
             ]);
         }
 
@@ -301,6 +310,14 @@ class AccountController extends Controller
         } else {
             return ModelNotSavedException::makeResponse(null, compact('user'));
         }
+    }
+
+    public function verificationMailFallback()
+    {
+        return SessionVerification\Controller::mailFallback(
+            SessionVerification\State::getCurrent(),
+            SessionVerification\Controller::FALLBACK_MODES['user_initiated'],
+        );
     }
 
     public function verify()

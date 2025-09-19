@@ -21,7 +21,7 @@
     transition-duration: 0s;
     border-bottom: 1px solid @osu-colour-h1;
 
-    &[data-visibility=hidden] {
+    &[data-visibility="hidden"] {
       transition-duration: 250ms;
     }
   }
@@ -39,7 +39,7 @@
 
   &__triangles {
     .full-size();
-    background-image: url('~@images/layout/nav2-background-hue0.png');
+    background-image: url("~@images/layout/nav2-background-hue0.png");
     background-position: bottom center;
     background-repeat: repeat-x;
     filter: hue-rotate(var(--base-hue-deg)) saturate(0.6);

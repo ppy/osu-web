@@ -9,6 +9,16 @@ return [
         'title' => 'Țară',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Dificultate',
+        'top_10p' => 'Scor Top 10%',
+        'top_50p' => 'Scor Top 50%',
+        'unavailable' => [
+            'future' => 'Nu există nici o provocare zilnică la data specificată încă!',
+            'past' => 'Nu există nici o provocare zilnică la data specificată!',
+        ],
+    ],
+
     'filter' => [
         'title' => 'Afișează',
 
@@ -24,17 +34,18 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Acest utilizator are mai puțin de 30 de zile de istoric în clasamente.',
     ],
 
     'type' => [
         'charts' => 'promovări',
         'country' => 'național',
+        'daily_challenge' => 'provocare zilnică',
+        'global' => 'global',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
-        'performance' => 'performanță',
-        'score' => 'scor',
         'seasons' => 'sezoane',
+        'team' => 'echipă',
     ],
 
     'seasons' => [
@@ -42,6 +53,9 @@ return [
         'ongoing' => 'Acest sezon este în curs de desfășurare (vor fi adăugate mai multe playlist-uri).',
         'room_count' => 'Număr playlist-uri',
         'url' => 'Afișează mai multe informații despre acel sezon.',
+        'validation' => [
+            'not_enough_factors' => 'nu există suficienți factori de evaluare a scorului pentru un calcul corect',
+        ],
     ],
 
     'spotlight' => [
@@ -55,6 +69,8 @@ return [
         'accuracy' => 'Precizie',
         'active_users' => 'Utilizatori activi',
         'country' => 'Țară',
+        'division' => 'Divizie',
+        'members' => 'Membri',
         'play_count' => 'Număr de Încercări',
         'performance' => 'Performanță',
         'total_score' => 'Scor total',

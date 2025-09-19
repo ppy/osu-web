@@ -15,7 +15,7 @@ import { bottomPage } from 'utils/html';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { nextVal } from 'utils/seq';
 import { present } from 'utils/string';
-import { switchNever } from 'utils/switch-never';
+import { SwitchError } from 'utils/switch-never';
 import { currentUrl } from 'utils/turbolinks';
 import AccountStanding from './account-standing';
 import Beatmapsets from './beatmapsets';
@@ -120,37 +120,39 @@ export default class Main extends React.Component<Props> {
     // pageScan does not need to run at 144 fps...
     $(window).on(scrollEventId, throttle(() => this.pageScan(), 20));
 
-    if (this.pages.current != null) {
-      $(this.pages.current).sortable({
-        cursor: 'move',
-        handle: '.js-profile-page-extra--sortable-handle',
-        items: '.js-sortable--page',
-        revert: 150,
-        scrollSpeed: 10,
-        update: this.updateOrder,
-      });
-    }
+    this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => {
+      if (this.pages.current != null) {
+        $(this.pages.current).sortable({
+          cursor: 'move',
+          handle: '.js-profile-page-extra--sortable-handle',
+          items: '.js-sortable--page',
+          revert: 150,
+          scrollSpeed: 10,
+          update: this.updateOrder,
+        });
+      }
 
-    if (this.tabs.current != null) {
-      $(this.tabs.current).sortable({
-        axis: 'x',
-        cursor: 'move',
-        disabled: !this.controller.withEdit,
-        items: '.js-sortable--tab',
-        revert: 150,
-        scrollSpeed: 0,
-        start: () => {
-          // Somehow click event still goes through when dragging.
-          // This prevents triggering onTabClick.
-          window.clearTimeout(this.timeouts.draggingTab);
-          this.draggingTab = true;
-        },
-        stop: () => {
-          this.timeouts.draggingTab = window.setTimeout(() => this.draggingTab = false, 500);
-        },
-        update: this.updateOrder,
-      });
-    }
+      if (this.tabs.current != null) {
+        $(this.tabs.current).sortable({
+          axis: 'x',
+          cursor: 'move',
+          disabled: !this.controller.withEdit,
+          items: '.js-sortable--tab',
+          revert: 150,
+          scrollSpeed: 0,
+          start: () => {
+            // Somehow click event still goes through when dragging.
+            // This prevents triggering onTabClick.
+            window.clearTimeout(this.timeouts.draggingTab);
+            this.draggingTab = true;
+          },
+          stop: () => {
+            this.timeouts.draggingTab = window.setTimeout(() => this.draggingTab = false, 500);
+          },
+          update: this.updateOrder,
+        });
+      }
+    }));
 
     // preserve scroll if existing saved state but force position to reset
     // on refresh to avoid browser setting scroll position at the bottom on reload.
@@ -201,21 +203,15 @@ export default class Main extends React.Component<Props> {
           </div>
 
           <div ref={this.pagesOffsetRef} className='page-extra-tabs'>
-            {this.displayExtraTabs &&
-              <div ref={this.tabs} className='page-mode page-mode--profile-page-extra'>
-                {this.displayedExtraPages.map((m) => (
-                  <a
-                    key={m}
-                    className={`page-mode__item ${this.isSortablePage(m) ? 'js-sortable--tab' : ''}`}
-                    data-page-id={m}
-                    href={`#${m}`}
-                    onClick={this.onTabClick}
-                  >
-                    <ExtraTab controller={this.controller} page={m} />
-                  </a>
-                ))}
-              </div>
-            }
+            {this.displayExtraTabs && (
+              <>
+                {
+                  /* no sortable on mobile due to vertical scroll */
+                  this.renderExtraTabs('u-hidden-desktop')
+                }
+                {this.renderExtraTabs('hidden-xs', this.tabs)}
+              </>
+            )}
           </div>
 
           {/* value needs to be the same instance of an observable on each render */}
@@ -273,8 +269,7 @@ export default class Main extends React.Component<Props> {
         return <AccountStanding {...baseProps} />;
 
       default:
-        switchNever(name);
-        throw new Error('unsupported extra page');
+        throw new SwitchError(name);
     }
   };
 
@@ -435,6 +430,27 @@ export default class Main extends React.Component<Props> {
 
       this.scrollTo = { scrollBy: 0 };
     });
+  }
+
+  private renderExtraTabs(extraClass: string, ref?: React.RefObject<HTMLDivElement>) {
+    return (
+      <div
+        ref={ref}
+        className={`page-mode page-mode--profile-page-extra ${extraClass}`}
+      >
+        {this.displayedExtraPages.map((m) => (
+          <a
+            key={m}
+            className={`page-mode__item ${ref != null && this.isSortablePage(m) ? 'js-sortable--tab' : ''}`}
+            data-page-id={m}
+            href={`#${m}`}
+            onClick={this.onTabClick}
+          >
+            <ExtraTab controller={this.controller} page={m} />
+          </a>
+        ))}
+      </div>
+    );
   }
 
   private readonly updateOrder = (event: Event) => {

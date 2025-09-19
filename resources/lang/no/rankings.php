@@ -9,6 +9,16 @@ return [
         'title' => 'Land',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'top_10p' => '',
+        'top_50p' => '',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
+    ],
+
     'filter' => [
         'title' => 'Vis',
 
@@ -24,17 +34,18 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Denne brukeren har mindre enn 30 dager av nylig rang historie.',
     ],
 
     'type' => [
         'charts' => 'Rampelyset',
         'country' => 'Land',
+        'daily_challenge' => '',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'flerspiller',
-        'performance' => 'Prestasjon',
-        'score' => 'Poengsum',
         'seasons' => 'sesonger',
+        'team' => '',
     ],
 
     'seasons' => [
@@ -42,6 +53,9 @@ return [
         'ongoing' => 'Denne sesongen er pågående (flere spillelister vil bli lagt til).',
         'room_count' => 'Antall spillelister',
         'url' => 'Vis mer informasjon om den sesongen.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -55,6 +69,8 @@ return [
         'accuracy' => 'Presisjon',
         'active_users' => 'Aktive Brukere',
         'country' => 'Land',
+        'division' => '',
+        'members' => '',
         'play_count' => 'Spillforsøk',
         'performance' => 'Prestasjon',
         'total_score' => 'Total Poengsum',

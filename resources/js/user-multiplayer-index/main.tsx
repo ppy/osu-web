@@ -19,7 +19,10 @@ import RoomListStore from 'stores/room-list-store';
 import { trans } from 'utils/lang';
 
 interface Props {
-  store: RoomListStore;
+  store: {
+    active: RoomListStore;
+    ended: RoomListStore;
+  };
   typeGroup: MultiplayerTypeGroup;
   user: UserExtendedJson & Required<Pick<UserExtendedJson, ProfileHeaderIncludes>>;
 }
@@ -49,11 +52,30 @@ export default function Main(props: Props) {
         <div className='user-profile-pages user-profile-pages--no-tabs'>
           <div className='page-extra'>
             <h2 className='title title--page-extra'>{trans(`users.show.extra.${props.typeGroup}.title`)}</h2>
-            <RoomList
-              showMoreUrl={route('users.multiplayer.index', { typeGroup: props.typeGroup, user: props.user.id })}
-              store={props.store}
-              typeGroup={props.typeGroup}
-            />
+
+            <div className='page-extra__user-multiplayer-rooms'>
+              <div>
+                <h3 className='title title--page-extra-small'>
+                  {trans('users.multiplayer.index.active')}
+                </h3>
+                <RoomList
+                  emptyMessage={trans('multiplayer.empty.active', { type_group: trans(`multiplayer.empty.${props.typeGroup}`) })}
+                  showMoreUrl={route('users.multiplayer.index', { is_active: true, typeGroup: props.typeGroup, user: props.user.id })}
+                  store={props.store.active}
+                />
+              </div>
+
+              <div>
+                <h3 className='title title--page-extra-small'>
+                  {trans('users.multiplayer.index.ended')}
+                </h3>
+                <RoomList
+                  emptyMessage={trans('multiplayer.empty.ended', { type_group: trans(`multiplayer.empty.${props.typeGroup}`) })}
+                  showMoreUrl={route('users.multiplayer.index', { is_active: false, typeGroup: props.typeGroup, user: props.user.id })}
+                  store={props.store.ended}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

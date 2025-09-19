@@ -7,12 +7,14 @@ import AccountEdit from 'core/account-edit';
 import AccountEditAvatar from 'core/account-edit-avatar';
 import AccountEditBlocklist from 'core/account-edit-blocklist';
 import AnimateNav from 'core/animate-nav';
+import BbcodeAutoPreview from 'core/bbcode-auto-preview';
+import BladePopup from 'core/blade-popup';
 import BrowserTitleWithNotificationCount from 'core/browser-title-with-notification-count';
 import Captcha from 'core/captcha';
+import ChangelogChartLoader from 'core/changelog-chart-loader';
 import ClickMenu from 'core/click-menu';
 import CurrentUserObserver from 'core/current-user-observer';
 import Enchant from 'core/enchant';
-import FixRelativeLink from 'core/fix-relative-link';
 import ForumPoll from 'core/forum/forum-poll';
 import ForumPostEdit from 'core/forum/forum-post-edit';
 import ForumPostInput from 'core/forum/forum-post-input';
@@ -21,6 +23,7 @@ import Localtime from 'core/localtime';
 import MobileToggle from 'core/mobile-toggle';
 import OsuAudio from 'core/osu-audio/main';
 import ReactTurbolinks from 'core/react-turbolinks';
+import Spoilerbox from 'core/spoilerbox';
 import StickyFooter from 'core/sticky-footer';
 import StickyHeader from 'core/sticky-header';
 import SyncHeight from 'core/sync-height';
@@ -36,7 +39,7 @@ import UserVerification from 'core/user/user-verification';
 import ReferenceLinkTooltip from 'core/wiki/reference-link-tooltip';
 import WindowFocusObserver from 'core/window-focus-observer';
 import WindowSize from 'core/window-size';
-import CurrentUserJson from 'interfaces/current-user-json';
+import type CurrentUserJson from 'interfaces/current-user-json';
 import { action, computed, makeObservable, observable } from 'mobx';
 import NotificationsWorker from 'notifications/worker';
 import SocketWorker from 'socket-worker';
@@ -49,9 +52,12 @@ export default class OsuCore {
   readonly accountEditAvatar;
   readonly accountEditBlocklist;
   readonly animateNav;
+  readonly bbcodeAutoPreview;
   readonly beatmapsetSearchController;
+  readonly bladePopup;
   readonly browserTitleWithNotificationCount;
   readonly captcha;
+  readonly changelogChartLoader;
   readonly chatWorker;
   readonly clickMenu;
   @observable currentUser?: CurrentUserJson;
@@ -59,7 +65,7 @@ export default class OsuCore {
   readonly currentUserObserver;
   readonly dataStore;
   readonly enchant;
-  readonly fixRelativeLink;
+  firstCurrentUserSet = false;
   readonly forumPoll;
   readonly forumPostEdit;
   readonly forumPostInput;
@@ -72,6 +78,7 @@ export default class OsuCore {
   readonly referenceLinkTooltip;
   readonly scorePins;
   readonly socketWorker;
+  readonly spoilerbox;
   readonly stickyFooter;
   readonly stickyHeader;
   readonly syncHeight;
@@ -97,20 +104,18 @@ export default class OsuCore {
   constructor() {
     // Set current user on first page load. Further updates are done in
     // reactTurbolinks before the new page is rendered.
-    // This needs to be fired before everything else (turbolinks:load etc).
-    const isLoading = document.readyState === 'loading';
-    if (isLoading) {
-      document.addEventListener('DOMContentLoaded', this.updateCurrentUser);
-    }
+    // This needs to be fired before everything else (turbo:load etc).
     $.subscribe('user:update', this.onCurrentUserUpdate);
 
     this.animateNav = new AnimateNav();
+    this.bbcodeAutoPreview = new BbcodeAutoPreview();
+    this.bladePopup = new BladePopup();
     this.captcha = new Captcha();
+    this.changelogChartLoader = new ChangelogChartLoader();
     this.chatWorker = new ChatWorker();
     this.clickMenu = new ClickMenu();
     this.currentUserObserver = new CurrentUserObserver(this);
     this.currentUserModel = new UserModel(this);
-    this.fixRelativeLink = new FixRelativeLink();
     this.forumPoll = new ForumPoll();
     this.forumPostEdit = new ForumPostEdit();
     this.forumPostInput = new ForumPostInput();
@@ -120,6 +125,7 @@ export default class OsuCore {
     this.browserTitleWithNotificationCount = new BrowserTitleWithNotificationCount(this);
     this.referenceLinkTooltip = new ReferenceLinkTooltip();
     this.scorePins = new ScorePins();
+    this.spoilerbox = new Spoilerbox();
     this.stickyFooter = new StickyFooter();
     this.stickyHeader = new StickyHeader();
     this.syncHeight = new SyncHeight();
@@ -150,10 +156,6 @@ export default class OsuCore {
     this.notificationsWorker = new NotificationsWorker(this.socketWorker);
 
     makeObservable(this);
-
-    if (!isLoading) {
-      this.updateCurrentUser();
-    }
   }
 
   @action

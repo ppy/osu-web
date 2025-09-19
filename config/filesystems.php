@@ -1,5 +1,7 @@
 <?php
 
+$appUrl = env('APP_URL', 'http://localhost');
+
 $s3Default = [
     'bucket' => env('S3_BUCKET'),
     'driver' => 's3',
@@ -10,17 +12,17 @@ $s3Default = [
     'use_path_style_endpoint' => get_bool(env('S3_USE_PATH_STYLE_ENDPOINT')) ?? false,
 ];
 
+$replays = [];
 foreach (['osu', 'taiko', 'fruits', 'mania'] as $mode) {
-    $replays[$mode] = [
-        'local' => [
-            'driver' => 'local',
-            'root' => public_path().'/uploads-replay/'.$mode,
-        ],
+    $replays["local-legacy-replay-{$mode}"] = [
+        'driver' => 'local',
+        'root' => public_path("uploads/legacy-replay/{$mode}"),
+        'visibility' => 'public',
+    ];
 
-        's3' => [
-            ...$s3Default,
-            'bucket' => "replay-{$mode}",
-        ],
+    $replays["s3-legacy-replay-{$mode}"] = [
+        ...$s3Default,
+        'bucket' => "replay-{$mode}",
     ];
 }
 
@@ -66,23 +68,27 @@ return [
     */
 
     'disks' => [
-        'replays' => $replays,
+        ...$replays,
 
         'local' => [
             'driver' => 'local',
-            'root' => public_path().'/uploads',
-            'base_url' => env('APP_URL', 'http://localhost').'/uploads',
+            'root' => public_path('uploads/default'),
+            'base_url' => "{$appUrl}/uploads/default",
+            'visibility' => 'public',
         ],
 
         'local-avatar' => [
             'driver' => 'local',
-            'root' => public_path().'/uploads-avatar',
-            'base_url' => env('APP_URL', 'http://localhost').'/uploads-avatar',
+            'root' => public_path('uploads/avatar'),
+            'base_url' => "{$appUrl}/uploads/avatar",
+            'visibility' => 'public',
         ],
 
         'local-solo-replay' => [
             'driver' => 'local',
-            'root' => public_path().'/uploads-solo-replay/',
+            'root' => public_path('uploads/solo-replay'),
+            'base_url' => "{$appUrl}/uploads/solo-replay",
+            'visibility' => 'public',
         ],
 
         's3' => [

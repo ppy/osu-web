@@ -7,6 +7,7 @@ return [
     'load_failed' => 'Veri yüklenemedi.',
     'missing_route' => 'Geçersiz URL ya da hatalı istek metodu.',
     'no_restricted_access' => 'Hesabınız kısıtlanmış durumdayken bu işlemi gerçekleştiremezsiniz.',
+    'param_too_large' => '',
     'supporter_only' => 'Bu özelliği kullanabilmeniz için supporter olmanız gerekmektedir.',
     'unknown' => 'Bilinmeyen bir hata oluştu.',
 
@@ -28,9 +29,15 @@ return [
     'checkout' => [
         'generic' => 'Checkout\'unuzu hazırlarken bir hata oluştu.',
     ],
+    'scores' => [
+        'invalid_id' => 'Geçersiz skor ID\'si.',
+    ],
     'search' => [
         'default' => 'Hiç bir sonuç bulunamadı, sonra tekrar deneyiniz.',
         'invalid_cursor_exception' => 'Geçersiz imleç parametresi belirtildi.',
         'operation_timeout_exception' => 'Arama, şu an her zamankinden daha yoğun, lütfen sonra tekrar deneyiniz.',
+    ],
+    'user_report' => [
+        'recently_reported' => "Bunu yakın bir zamanda zaten rapor ettin.",
     ],
 ];

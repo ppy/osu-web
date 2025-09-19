@@ -7,6 +7,7 @@ return [
     'load_failed' => 'Misslyckades att ladda data.',
     'missing_route' => 'Ogiltig url eller felaktig metod av begäran.',
     'no_restricted_access' => 'Du kan inte utföra denna åtgärd medan ditt konto är begränsat.',
+    'param_too_large' => '',
     'supporter_only' => 'Du måste vara en osu!supporter för att använda denna funktion.',
     'unknown' => 'Okänt fel uppstod.',
 
@@ -28,9 +29,15 @@ return [
     'checkout' => [
         'generic' => 'Ett fel inträffade när din transaktion förbereddes.',
     ],
+    'scores' => [
+        'invalid_id' => 'Ogiltigt poäng id.',
+    ],
     'search' => [
         'default' => 'Kunde inte få några resultat, försök igen senare.',
         'invalid_cursor_exception' => 'Ogiltig markörparameter angiven.',
         'operation_timeout_exception' => 'Sökfunktionen är för närvarande mer upptagen än vanligt, försök igen senare.',
+    ],
+    'user_report' => [
+        'recently_reported' => "Du har redan rapporterat det här nyligen.",
     ],
 ];

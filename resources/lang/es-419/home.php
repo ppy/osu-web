@@ -26,6 +26,9 @@ return [
         'placeholder' => 'escribe para buscar',
         'title' => 'buscar',
 
+        'artist_track' => [
+            'more_simple' => 'Ver más resultados de las canciones de los artistas destacados',
+        ],
         'beatmapset' => [
             'login_required' => 'Inicia sesión para buscar mapas',
             'more' => 'Hay :count mapas más en los resultados',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'todos',
+            'artist_track' => 'artistas destacados',
             'beatmapset' => 'mapa',
             'forum_post' => 'foro',
+            'team' => 'equipos',
             'user' => 'jugador',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => 'Ver más resultados de equipos',
         ],
 
         'user' => [
@@ -133,14 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => 'Mapa del desafío diario',
             'new' => 'Nuevos mapas clasificados',
             'popular' => 'Mapas populares',
             'by_user' => 'por :user',
+            'resets' => 'nuevo mapa :ends',
         ],
         'buttons' => [
             'download' => 'Descargar osu!',
             'support' => 'Apoyar a osu!',
             'store' => 'osu!store',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => 'Abrir la consola de administración',
+            ],
         ],
     ],
 ];

@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner por :difference',
 
         'events' => [
-            'player-left' => ':user abandonou a partida',
-            'player-joined' => ':user juntou-se à partida',
-            'player-kicked' => ':user foi expulso da partida',
-            'match-created' => ':user criou a partida',
-            'match-disbanded' => 'a partida foi dissolvida',
-            'host-changed' => ':user tornou-se no anfitrião',
-
-            'player-left-no-user' => 'um jogador abandonou a partida',
-            'player-joined-no-user' => 'um jogador juntou-se à partida',
-            'player-kicked-no-user' => 'um jogador foi expulso da partida',
-            'match-created-no-user' => 'a partida foi criada',
-            'match-disbanded-no-user' => 'a partida foi dissolvida',
-            'host-changed-no-user' => 'o anfitrião foi alterado',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Frente-a-frente',
-            'tag-coop' => 'Tag cooperativo',
-            'team-vs' => 'Equipa VS',
-            'tag-team-vs' => 'Equipa Tag VS',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => 'Maior pontuação',
             'accuracy' => 'Maior precisão',

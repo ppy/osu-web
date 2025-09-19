@@ -26,6 +26,9 @@ return [
         'placeholder' => 'куцајте за претрагу',
         'title' => 'претрага',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'Пријавите се да тражите мапе',
             'more' => ':count додатних резултата за мапе',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'све',
+            'artist_track' => '',
             'beatmapset' => 'мапа',
             'forum_post' => 'форум',
+            'team' => '',
             'user' => 'играч',
             'wiki_page' => 'вики',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [
@@ -129,19 +138,26 @@ return [
             'stats' => [
                 'friends' => 'Онлајн Пријатељи',
                 'games' => 'Игре',
-                'online' => 'Онлајн Корисници',
+                'online' => 'Онлајн Корисника',
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => 'Нове рангиране мапе',
             'popular' => 'Популарне мапе',
             'by_user' => 'од корисника :user
 ',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'Преузмите osu!',
             'support' => 'Подржите osu!',
             'store' => 'osu!продавница',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

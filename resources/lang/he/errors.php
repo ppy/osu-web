@@ -7,6 +7,7 @@ return [
     'load_failed' => '',
     'missing_route' => '',
     'no_restricted_access' => 'אינך יכול לבצע את הפעולה הזאת כאשר החשבון שלך במצב מוגבל.',
+    'param_too_large' => '',
     'supporter_only' => 'אתה חייב להיות osu!supporter כדי להשתמש בתכונה זו.',
     'unknown' => 'אירעה שגיאה לא ידועה.',
 
@@ -28,9 +29,15 @@ return [
     'checkout' => [
         'generic' => 'אירעה שגיאה בעת הכנת ההזמנה שלך.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'לא נמצאו תוצאות, נסה שוב מאוחר יותר.',
         'invalid_cursor_exception' => '',
         'operation_timeout_exception' => 'החיפוש עמוס יותר מאשר מבדרך כלל, נסה שוב מאוחר יותר.',
+    ],
+    'user_report' => [
+        'recently_reported' => "",
     ],
 ];

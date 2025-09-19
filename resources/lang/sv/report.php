@@ -6,7 +6,7 @@
 return [
     'beatmapset' => [
         'button' => 'Anmäl',
-        'title' => 'Vill du anmäla :usernames beatmap?',
+        'title' => 'Vill du anmäla :username\'s beatmap?',
     ],
 
     'beatmapset_discussion_post' => [
@@ -24,9 +24,19 @@ return [
         'title' => 'Anmäla inlägg från :username?',
     ],
 
+    'message' => [
+        'button' => 'Anmäl meddelande',
+        'title' => 'Anmäl :username\'s meddelande?',
+    ],
+
     'scores' => [
         'button' => 'Anmäl poäng',
         'title' => 'Anmäl resultat från :username?',
+    ],
+
+    'team' => [
+        'button' => 'Rapportera lag',
+        'title' => 'Rapportera :username`s lag?',
     ],
 
     'user' => [

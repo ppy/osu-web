@@ -6,7 +6,7 @@
 namespace App\Libraries\Search;
 
 use App\Models\Beatmapset;
-use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 
 class BeatmapsetQueryParser
 {
@@ -15,7 +15,8 @@ class BeatmapsetQueryParser
         $options = [];
 
         // reference: https://github.com/ppy/osu/blob/f6baf49ad6b42c662a729ad05e18bd99bc48b4c7/osu.Game/Screens/Select/FilterQueryParser.cs
-        $keywords = preg_replace_callback('#\b(?<key>\w+)(?<op>(:|=|(>|<)(:|=)?))(?<value>(".*")|(\S*))#i', function ($m) use (&$options) {
+        // adjusted for multiple quoted options (with side effect of inner quotes must be escaped)
+        $keywords = preg_replace_callback('#\b(?<key>\w+)(?<op>(:|=|(>|<)(:|=)?))(?<value>("{1,2})(?:\\\"|.)*?\7|\S*)#i', function ($m) use (&$options) {
             $key = strtolower($m['key']);
             $op = str_replace(':', '=', $m['op']);
             switch ($key) {
@@ -40,6 +41,12 @@ class BeatmapsetQueryParser
                     break;
                 case 'bpm':
                     $option = static::makeFloatRangeOption($op, $m['value'], 0.01 / 2);
+                    break;
+                case 'circles':
+                    $option = static::makeIntRangeOption($op, $m['value']);
+                    break;
+                case 'sliders':
+                    $option = static::makeIntRangeOption($op, $m['value']);
                     break;
                 case 'length':
                     $parsed = get_length_seconds($m['value']);
@@ -67,11 +74,17 @@ class BeatmapsetQueryParser
                 case 'difficulty':
                     $option = static::makeTextOption($op, $m['value']);
                     break;
+                case 'favourites':
+                    $option = static::makeIntRangeOption($op, $m['value']);
+                    break;
                 case 'artist':
                     $option = static::makeTextOption($op, $m['value']);
                     break;
                 case 'source':
                     $option = static::makeTextOption($op, $m['value']);
+                    break;
+                case 'tag':
+                    $option = [static::makeTextOption($op, $m['value'])];
                     break;
                 case 'title':
                     $option = static::makeTextOption($op, $m['value']);
@@ -111,43 +124,38 @@ class BeatmapsetQueryParser
         $value = presence(trim($value, '"'));
 
         if (preg_match('#^\d{4}$#', $value) === 1) {
-            $startTime = Carbon::create($value, 1, 1, 0, 0, 0, 'UTC');
-            $endTimeFunction = 'addYears';
+            $startTime = CarbonImmutable::create($value, 1, 1, 0, 0, 0, 'UTC');
+            $endTime = $startTime->addYears(1);
         } elseif (preg_match('#^(?<year>\d{4})[-./]?(?<month>\d{1,2})$#', $value, $m) === 1) {
-            $startTime = Carbon::create($m['year'], $m['month'], 1, 0, 0, 0, 'UTC');
-            $endTimeFunction = 'addMonths';
+            $startTime = CarbonImmutable::create($m['year'], $m['month'], 1, 0, 0, 0, 'UTC');
+            $endTime = $startTime->addMonths(1);
         } elseif (preg_match('#^(?<year>\d{4})[-./]?(?<month>\d{1,2})[-./]?(?<day>\d{1,2})$#', $value, $m) === 1) {
-            $startTime = Carbon::create($m['year'], $m['month'], $m['day'], 0, 0, 0, 'UTC');
-            $endTimeFunction = 'addDays';
+            $startTime = CarbonImmutable::create($m['year'], $m['month'], $m['day'], 0, 0, 0, 'UTC');
+            $endTime = $startTime->addDays(1);
         } else {
-            $startTime = parse_time_to_carbon($value)?->utc();
-            $endTimeFunction = 'addSeconds';
+            $startTime = parse_time_to_carbon($value)?->toImmutable()->utc();
+            $endTime = $startTime?->addSeconds(1);
         }
 
-        if (isset($startTime) && isset($endTimeFunction)) {
-            switch ($operator) {
-                case '=':
-                    return [
-                        'gte' => json_time($startTime),
-                        'lt' => json_time($startTime->$endTimeFunction()),
-                    ];
-                case '<':
-                    return [
-                        'lt' => json_time($startTime),
-                    ];
-                case '<=':
-                    return [
-                        'lt' => json_time($startTime->$endTimeFunction()),
-                    ];
-                case '>':
-                    return [
-                        'gte' => json_time($startTime->$endTimeFunction()),
-                    ];
-                case '>=':
-                    return [
-                        'gte' => json_time($startTime),
-                    ];
-            }
+        if (isset($startTime) && isset($endTime)) {
+            return match ($operator) {
+                '=' => [
+                    'gte' => $startTime->getTimestampMs(),
+                    'lt' => $endTime->getTimestampMs(),
+                ],
+                '<' => [
+                    'lt' => $startTime->getTimestampMs(),
+                ],
+                '<=' => [
+                    'lt' => $endTime->getTimestampMs(),
+                ],
+                '>' => [
+                    'gte' => $endTime->getTimestampMs(),
+                ],
+                '>=' => [
+                    'gte' => $startTime->getTimestampMs(),
+                ],
+            };
         }
 
         return null;
@@ -233,7 +241,7 @@ class BeatmapsetQueryParser
     private static function makeTextOption(string $operator, string $value): ?string
     {
         return $operator === '='
-            ? presence(preg_replace('/^"(.*)"$/', '$1', $value))
+            ? presence(strtr(preg_replace('/^"(.*)"$/', '$1', $value), ['\\"' => '"']))
             : null;
     }
 

@@ -80,6 +80,7 @@ return [
         'confirm_restore' => 'トピックを本当に復元しますか？',
         'deleted' => '削除されたトピック',
         'go_to_latest' => '最新の投稿を見る',
+        'go_to_unread' => '最初の未読投稿を表示',
         'has_replied' => 'このトピックに返信しました',
         'in_forum' => ':forum',
         'latest_post' => ':when by :user',
@@ -292,6 +293,27 @@ return [
             'to_0_done' => '"resolved" タグを外しました',
             'to_1' => '"resolved" タグを追加する',
             'to_1_done' => '"resolved" タグを追加しました',
+        ],
+
+        'issue_tag_osulazer' => [
+            'to_0' => '"osu!lazer" タグを削除',
+            'to_0_done' => '"osu!lazer" タグを削除しました',
+            'to_1' => '"osu!lazer" タグを追加',
+            'to_1_done' => '"osu!lazer" タグを追加しました',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '"osu!stable" タグを削除',
+            'to_0_done' => '"osu!stable" タグを削除しました',
+            'to_1' => '"osu!stable" タグを追加',
+            'to_1_done' => '"osu!stable" タグを追加しました',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '"osu!web" タグを削除',
+            'to_0_done' => '"osu!web" タグを削除しました',
+            'to_1' => '"osu!web" タグを追加',
+            'to_1_done' => '"osu!web" タグを追加しました',
         ],
 
         'lock' => [

@@ -4,58 +4,59 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'cancel' => '',
+    'cancel' => 'Batal',
 
     'authorise' => [
-        'request' => '',
-        'scopes_title' => '',
-        'title' => '',
+        'app_owner' => 'aplikasi oleh :owner',
+        'request' => 'meminta izin untuk mencapai akaun anda.',
+        'scopes_title' => 'Aplikasi ini akan boleh:',
+        'title' => 'Permintaan Izin',
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Adakah anda pasti ingin membatalkan izin pelanggan ini?',
+        'scopes_title' => 'Aplikasi ini boleh:',
+        'owned_by' => 'Milik :user',
+        'none' => 'Tiada Pelanggan',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Batal Capaian',
+            'true' => 'Capaian Dibatalkan',
         ],
     ],
 
     'client' => [
-        'id' => '',
-        'name' => '',
-        'redirect' => '',
-        'reset' => '',
-        'reset_failed' => '',
-        'secret' => '',
+        'id' => 'ID Pelanggan',
+        'name' => 'Nama Aplikasi',
+        'redirect' => 'URL Panggil Balik Aplikasi',
+        'reset' => 'Tetap semula rahsia pelanggan',
+        'reset_failed' => 'Penetapan semula rahsia pelanggan gagal',
+        'secret' => 'Rahsia Pelanggan',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Tunjuk rahsia pelanggan',
+            'true' => 'Sorok rahsia pelanggan',
         ],
     ],
 
     'new_client' => [
-        'header' => '',
-        'register' => '',
+        'header' => 'Daftarkan aplikasi OAuth baru',
+        'register' => 'Daftarkan aplikasi',
         'terms_of_use' => [
-            '_' => '',
-            'link' => '',
+            '_' => 'Dengan penggunaan API ini, anda bersetuju dengan :link.',
+            'link' => 'Syarat Penggunaan',
         ],
     ],
 
     'own_clients' => [
-        'confirm_delete' => '',
-        'confirm_reset' => '',
-        'new' => '',
-        'none' => '',
+        'confirm_delete' => 'Adakah anda pasti ingin memadam pelanggan ini?',
+        'confirm_reset' => 'Adakah anda pasti ingin menetap semula rahsia pelanggan? Tindakan ini akan membatalkan semua token yang ada.',
+        'new' => 'Aplikasi OAuth Baharu',
+        'none' => 'Tiada Pelanggan',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Padam',
+            'true' => 'Dipadam',
         ],
     ],
 ];

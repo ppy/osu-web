@@ -6,103 +6,110 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => '',
-            'system_generated' => '',
-            'wrong_user' => '',
+            'null_user' => 'Daftar masuk untuk menyunting.',
+            'system_generated' => 'Hantaran janaan tatanan tidak boleh disunting.',
+            'wrong_user' => 'Pemilik hantaran sahaja boleh menyunting.',
         ],
     ],
 
     'events' => [
-        'empty' => '',
+        'empty' => 'Tiada yang terjadi... lagi.',
     ],
 
     'index' => [
-        'deleted_beatmap' => '',
-        'none_found' => '',
-        'title' => '',
+        'deleted_beatmap' => 'dipadam',
+        'none_found' => 'Tiada perbincangan sepadan dengan ukur tara carian ditemui.',
+        'title' => 'Perbincangan Peta Rentak',
 
         'form' => [
-            '_' => '',
-            'deleted' => '',
-            'mode' => '',
-            'only_unresolved' => '',
-            'show_review_embeds' => '',
-            'types' => '',
-            'username' => '',
+            '_' => 'Cari',
+            'deleted' => 'Sertakan perbincangan terpadam',
+            'mode' => 'Mod peta rentak',
+            'only_unresolved' => 'Tunjuk perbincangan tidak selesai sahaja',
+            'show_review_embeds' => 'Tunjuk hantaran ulasan',
+            'types' => 'Jenis pesanan',
+            'username' => 'Nama pengguna',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                '_' => 'Taraf Peta Rentak',
+                'all' => 'Semua',
+                'disqualified' => 'Tersingkar',
+                'never_qualified' => 'Tidak Pernah Layak',
+                'qualified' => 'Layak',
+                'ranked' => 'Berpangkat',
             ],
 
             'user' => [
-                'label' => '',
-                'overview' => '',
+                'label' => 'Pengguna',
+                'overview' => 'Gambaran kegiatan',
             ],
         ],
     ],
 
     'item' => [
-        'created_at' => '',
-        'deleted_at' => '',
-        'message_type' => '',
-        'permalink' => '',
+        'created_at' => 'Tarikh hantaran',
+        'deleted_at' => 'Tarikh dipadam',
+        'message_type' => 'Jenis',
+        'permalink' => 'Pautan Kekal',
     ],
 
     'nearby_posts' => [
-        'confirm' => '',
-        'notice' => '',
-        'unsaved' => '',
+        'confirm' => 'Tiada hantaran yang menumpukan perhatian terhadap kebimbangan saya',
+        'notice' => 'Terdapat hantaran pada :timestamp (:existing_timestamps). Sila semak sebelum membuat hantaran.',
+        'unsaved' => ':count pada ulasan ini',
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'button' => 'Pemilik Kesukaran',
+        'reset_confirm' => 'Tetap semula pemilik kesukaran ini?',
+        'user' => 'Pemilik',
+        'version' => 'Kesukaran',
+    ],
+
+    'refresh' => [
+        'checking' => 'Menyemak untuk pengemaskinian...',
+        'has_updates' => 'Perbincangan ini mempunyai pengemaskinian, klik untuk segar semula.',
+        'no_updates' => 'Tiada pengemaskinian.',
+        'updating' => 'Mengemas kini...',
     ],
 
     'reply' => [
         'open' => [
-            'guest' => '',
-            'user' => '',
+            'guest' => 'Daftar Masuk untuk Menjawab',
+            'user' => 'Jawab',
         ],
     ],
 
     'review' => [
-        'block_count' => '',
-        'go_to_parent' => '',
-        'go_to_child' => '',
+        'block_count' => ':used / :max blok diguna',
+        'go_to_parent' => 'Lihat Hantaran Ulasan',
+        'go_to_child' => 'Lihat Perbincangan',
         'validation' => [
-            'block_too_large' => '',
-            'external_references' => '',
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'invalid_discussion_type' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'block_too_large' => 'setiap blok hanya boleh mengandungi hingga :limit aksara',
+            'external_references' => 'ulasan mengandungi rujukan kepada isu yang tiada tempat pada ulasan ini',
+            'invalid_block_type' => 'jenis blok tidak sah',
+            'invalid_document' => 'ulasan tidak sah',
+            'invalid_discussion_type' => 'jenis perbincangan tidak sah',
+            'minimum_issues' => 'ulasan mesti mengandungi minimum :count isu',
+            'missing_text' => 'blok tiada teks',
+            'too_many_blocks' => 'ulasan hanya boleh mengandungi :count perenggan/isu',
         ],
     ],
 
     'system' => [
         'resolved' => [
-            'true' => '',
-            'false' => '',
+            'true' => 'Ditanda selesai oleh :user',
+            'false' => 'Dibuka semula oleh :user',
         ],
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'umum',
+        'general_all' => 'umum (semua)',
     ],
 
     'user_filter' => [
-        'everyone' => '',
-        'label' => '',
+        'everyone' => 'Semua orang',
+        'label' => 'Tapis menurut pengguna',
     ],
 ];

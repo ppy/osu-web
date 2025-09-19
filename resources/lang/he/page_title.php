@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'תמוך במשחק',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'מידע',
         ],
         'livestreams_controller' => [
             '_' => 'שידורים חיים',
-        ],
-        'matches_controller' => [
-            '_' => 'התאמות',
         ],
         'news_controller' => [
             '_' => 'חדשות',
@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => '',
         ],
+        'teams_controller' => [
+            '_' => '',
+            'create' => '',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'טורנירים',
         ],
@@ -122,6 +129,11 @@ return [
             '_' => 'מאגר נתונים',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => '',
@@ -129,6 +141,11 @@ return [
     ],
     'store' => [
         '_' => 'חנות osu!',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

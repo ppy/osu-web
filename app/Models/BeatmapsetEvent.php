@@ -83,14 +83,8 @@ class BeatmapsetEvent extends Model
 
     public static function search($rawParams = [])
     {
-        $pagination = pagination($rawParams);
+        [$query, $params] = static::searchQueryAndParams($rawParams);
 
-        $params = [
-            'limit' => $pagination['limit'],
-            'page' => $pagination['page'],
-        ];
-
-        $query = static::limit($params['limit'])->offset($pagination['offset']);
         $searchByUser = present($rawParams['user'] ?? null);
         $isModerator = $rawParams['is_moderator'] ?? false;
 
@@ -111,8 +105,9 @@ class BeatmapsetEvent extends Model
             $query->where('beatmapset_id', '=', $params['beatmapset_id']);
         }
 
-        if (isset($rawParams['sort'])) {
-            $sort = explode('_', strtolower($rawParams['sort']));
+        $sortParam = presence(get_string($rawParams['sort'] ?? null));
+        if (isset($sortParam)) {
+            $sort = explode('_', strtolower($sortParam));
 
             if (in_array($sort[0] ?? null, ['id'], true)) {
                 $sortField = $sort[0];
@@ -123,8 +118,8 @@ class BeatmapsetEvent extends Model
             }
         }
 
-        $sortField ?? ($sortField = 'id');
-        $sortOrder ?? ($sortOrder = 'desc');
+        $sortField ??= 'id';
+        $sortOrder ??= 'desc';
 
         if ($sortField !== 'id' && $sortOrder !== 'desc') {
             $params['sort'] = "{$sortField}_{$sortOrder}";
@@ -311,7 +306,7 @@ class BeatmapsetEvent extends Model
 
     public function getCommentAttribute($value)
     {
-        return json_decode($value, true) ?? $value;
+        return json_decode($value ?? '', true) ?? $value;
     }
 
     public function setCommentAttribute($value)

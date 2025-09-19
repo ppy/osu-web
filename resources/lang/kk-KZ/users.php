@@ -32,39 +32,39 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => '',
-        'comment_text' => '',
-        'blocked_count' => '',
-        'hide_profile' => '',
+        'banner_text' => 'Сіз бұл қолданушыны бұғаттадыңыз.',
+        'comment_text' => 'Бұл пікір жасырылған.',
+        'blocked_count' => 'бұғатталған қолданушылар (:count)',
+        'hide_profile' => 'Профильді жасыру',
         'hide_comment' => 'жасыру',
-        'forum_post_text' => '',
-        'not_blocked' => '',
-        'show_profile' => '',
-        'show_comment' => '',
-        'too_many' => '',
+        'forum_post_text' => 'Бұл пост жасырылған.',
+        'not_blocked' => 'Бұл қолданушы бұғатталмаған.',
+        'show_profile' => 'Профильді көрсету',
+        'show_comment' => 'көрсету',
+        'too_many' => 'Бұғаттау саны шегіне жетті.',
         'button' => [
-            'block' => '',
-            'unblock' => '',
+            'block' => 'Бұғаттау',
+            'unblock' => 'Бұғаттан шығару',
         ],
     ],
 
     'card' => [
-        'gift_supporter' => '',
-        'loading' => '',
-        'send_message' => '',
+        'gift_supporter' => 'Osu! supporter тегін сыйлау',
+        'loading' => 'Жүктеуде...',
+        'send_message' => 'Хат жіберу',
     ],
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
+            'password' => 'құпиясөз',
+            'password_confirmation' => 'құпиясөз растау',
+            'submit' => 'аккаунт ашу',
+            'user_email' => 'пошта',
+            'user_email_confirmation' => 'пошта растау',
             'username' => 'пайдаланушы аты',
 
             'tos_notice' => [
-                '_' => '',
+                '_' => 'сіз аккаунт ашу арқылы :link-пен келісесіз',
                 'link' => '',
             ],
         ],
@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => '',
         'modding_description_empty' => '',
@@ -159,14 +166,24 @@ return [
             'cancel' => '',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => '',
-            'multiple_accounts' => '',
+            'copyright_infringement' => '',
+            'inappropriate_chat' => '',
             'insults' => '',
-            'spam' => '',
-            'unwanted_content' => '',
+            'multiple_accounts' => '',
             'nonsense' => '',
             'other' => '',
+            'spam' => '',
+            'unwanted_content' => '',
         ],
     ],
     'restricted_banner' => [
@@ -196,10 +213,30 @@ return [
             'to_0' => '',
             'to_1' => '',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'playcount' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => '',
                 'defaults_info' => '',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => '',
                     'button' => '',
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => '',
                 'set' => '',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 
@@ -449,8 +496,13 @@ return [
             'global_simple' => '',
             'highest' => '',
         ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
+        ],
         'stats' => [
             'hit_accuracy' => '',
+            'hits_per_play' => '',
             'level' => '',
             'level_progress' => '',
             'maximum_combo' => '',

@@ -24,7 +24,17 @@ return [
         'title' => '',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
+        'button' => '',
+        'title' => '',
+    ],
+
+    'team' => [
         'button' => '',
         'title' => '',
     ],

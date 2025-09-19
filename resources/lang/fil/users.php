@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Mga beatmap :counts',
         'modding_description_empty' => 'Ang user ay walang anumang mga beatmap...',
@@ -159,14 +166,24 @@ return [
             'cancel' => 'Ikansela',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Hindi tamang gawain / Pandaraya',
-            'multiple_accounts' => 'Gumagamit ng maraming account',
+            'copyright_infringement' => '',
+            'inappropriate_chat' => '',
             'insults' => 'Iniinsulto ako o ang iba',
-            'spam' => 'Nag-iispam',
-            'unwanted_content' => 'Paglink ng hindi pwedeng content.',
+            'multiple_accounts' => 'Gumagamit ng maraming account',
             'nonsense' => 'Bagay na walang kapararakan',
             'other' => 'Iba( i type sa baba)',
+            'spam' => 'Nag-iispam',
+            'unwanted_content' => 'Paglink ng hindi pwedeng content',
         ],
     ],
     'restricted_banner' => [
@@ -196,10 +213,30 @@ return [
             'to_0' => 'Itago ang cover',
             'to_1' => 'Ipakita ang cover',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'playcount' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Palitan ang cover',
                 'defaults_info' => 'Higit pang mga larawang cover ang ilalabas sa hinaharap',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Hindi matagumpay ang pagproseso ng imahe. Suriin ang inilalathalang imahe at subukang muli.',
                     'button' => 'Mag-upload ng imahe',
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'default na game mode',
                 'set' => 'i-set ang :mode bilang default na game mode',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => 'Kulay',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 
@@ -446,11 +493,16 @@ return [
             'country' => 'Pambansang Ranggo para sa :mode',
             'country_simple' => 'Pambansang Ranggo',
             'global' => 'Pandaigdigang ranggo para sa :mode',
-            'global_simple' => 'Pambansang Ranggo',
+            'global_simple' => 'Pandaigdigang Ranggo',
             'highest' => 'Pinakamataas na ranggo: :rank sa :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Katumpakan sa Pagtama',
+            'hits_per_play' => '',
             'level' => 'Antas :level',
             'level_progress' => 'Progreso sa susunod na antas',
             'maximum_combo' => 'Pinakamataas na Combo',

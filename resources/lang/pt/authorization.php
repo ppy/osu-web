@@ -5,8 +5,8 @@
 
 return [
     'play_more' => 'Que tal jogar osu! como alternativa?',
-    'require_login' => 'Por favor inicia sessão para proceder.',
-    'require_verification' => 'Por favor verifica para proceder.',
+    'require_login' => 'Inicia sessão para proceder.',
+    'require_verification' => 'Verifica para proceder.',
     'restricted' => "Não é possível fazeres isso enquanto estiveres restrito.",
     'silenced' => "Não é possível fazeres isso enquanto estiveres silenciado.",
     'unauthorized' => 'Acesso negado.',
@@ -17,7 +17,7 @@ return [
             'has_reply' => 'Não é possível apagares uma discussão com respostas',
         ],
         'nominate' => [
-            'exhausted' => 'Alcançaste o teu limite de nomeações por dia, por favor tenta outra vez amanhã.',
+            'exhausted' => 'Alcançaste o teu limite de nomeações por dia. Tenta novamente amanhã.',
             'incorrect_state' => 'Erro ao executar essa ação, tenta recarregar a página.',
             'owner' => "Não é possível nomeares o teu próprio beatmap.",
             'set_metadata' => 'Tens de definir o género e a língua antes de nomeares.',
@@ -32,7 +32,7 @@ return [
 
         'vote' => [
             'bot' => "Não é possível votar numa discussão criada por um bot",
-            'limit_exceeded' => 'Por favor espera um momento antes de pores mais votos',
+            'limit_exceeded' => 'Espera um pouco antes de votares mais.',
             'owner' => "Não é possível votares na tua própria discussão.",
             'wrong_beatmapset_state' => 'Só é possível votares em discussões com beatmaps que estejam a aguardar aprovação.',
         ],
@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Precisas de estabelecer uma pontuação num beatmap para adicionar uma etiqueta.',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Este canal é apenas para novos comunicados.',
         'blocked' => 'Não é possível enviar uma mensagem a um utilizador que te esteja a bloquear ou que o tenhas bloqueado.',
         'friends_only' => 'O utilizador está a bloquear mensagens de pessoas que não façam parte da sua lista de amigos.',
         'moderated' => 'Este canal está atualmente moderado.',
         'no_access' => 'Tu não tens acesso a esse canal.',
+        'no_announce' => 'Não tens permissão para publicar um anúncio.',
         'receive_friends_only' => 'O utilizador pode não conseguir responder porque só estás a aceitar mensagens de pessoas da tua lista de amigos.',
         'restricted' => 'Não podes enviar mensagens enquanto estiveres silenciado, restrito ou banido.',
         'silenced' => 'Não podes enviar mensagens enquanto estiveres silenciado, restringido ou banido.',
@@ -107,25 +113,26 @@ return [
                 'deleted' => 'Não é possível editar uma publicação eliminada.',
                 'locked' => 'Esta publicação está bloqueada de ser editada.',
                 'no_forum_access' => 'Um acesso ao fórum solicitado é obrigatório.',
+                'no_permission' => 'Não tens permissão para editar.',
                 'not_owner' => 'Só o próprio criador é que pode editar a publicação.',
                 'topic_locked' => 'Não é possível eliminares uma publicação dum tópico bloqueado.',
             ],
 
             'store' => [
-                'play_more' => 'Tenta jogar o jogo antes de publicar nos fóruns por favor! Se tiveres um problema ao jogar, por favor publica no fórum de Ajuda e Suporte.',
+                'play_more' => 'Experimenta jogar o jogo antes de publicar nos fóruns! Se tiveres um problema ao jogar, publica no fórum de Ajuda e Suporte.',
                 'too_many_help_posts' => "Precisas de jogar mais tempo o jogo antes de criares publicações adicionais. Se ainda estiveres a ter problemas ao jogares o jogo, envia um email para support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Por favor edita a tua ultima publicação em vez de publicar novamente.',
+                'double_post' => 'Edita a tua última publicação em vez de publicares novamente.',
                 'locked' => 'Não é possível responderes a um segmento de mensagens bloqueado.',
                 'no_forum_access' => 'Um acesso ao fórum solicitado é obrigatório.',
                 'no_permission' => 'Não tens permissão para responder.',
 
                 'user' => [
-                    'require_login' => 'Por favor inicia sessão para responder.',
+                    'require_login' => 'Inicia sessão para responder.',
                     'restricted' => "Não é possível responderes enquanto estiveres restrito.",
                     'silenced' => "Não é possível responderes enquanto estiveres silenciado.",
                 ],
@@ -144,7 +151,7 @@ return [
                 'voted' => 'A troca de voto não é permitida.',
 
                 'user' => [
-                    'require_login' => 'Por favor inicia sessão para votar.',
+                    'require_login' => 'Inicia sessão para votar.',
                     'restricted' => "Não é possível votares enquanto estiveres restrito.",
                     'silenced' => "Não é possível votares enquanto estiveres silenciado.",
                 ],
@@ -170,12 +177,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Só o dono da sala pode fechá-la.',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Não é possível afixar este tipo de pontuação",
             'failed' => "Não é possível afixar uma pontuação reprovada.",
             'not_owner' => 'Só o dono da pontuação é que a pode fixar.',
             'too_many' => 'Afixaste demasiadas pontuações.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "Já fazes parte da equipa.",
+                'already_other_member' => "Já fazes parte duma equipa diferente.",
+                'currently_applying' => 'Tens um pedido pendente de adesão à equipa.',
+                'team_closed' => 'De momento, a equipa não está a aceitar pedidos de adesão.',
+                'team_full' => "A equipa está lotada e não pode aceitar mais membros.",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "O líder não pode abandonar a equipa.",
+            'not_member' => 'Não fazes parte da equipa.',
+        ],
+        'store' => [
+            'require_supporter_tag' => 'A etiqueta osu!supporter é necessária para criar uma equipa.',
         ],
     ],
 

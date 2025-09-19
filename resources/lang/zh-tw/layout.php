@@ -31,11 +31,11 @@ return [
         ],
 
         'changelog' => [
-            'index' => '列表',
+            'index' => '清單',
         ],
 
         'help' => [
-            'index' => '主頁',
+            'index' => '索引',
             'sitemap' => '網站地圖',
         ],
 
@@ -61,7 +61,7 @@ return [
         'close' => '關閉 (Esc)',
         'fullscreen' => '切換全螢幕',
         'zoom' => '放大/縮小',
-        'previous' => '前一個（左箭頭）',
+        'previous' => '上一個（左箭頭）',
         'next' => '下一個（右箭頭）',
     ],
 
@@ -97,11 +97,11 @@ return [
             '_' => '網站地圖',
             'home' => '首頁',
             'changelog-index' => '更新日誌',
-            'beatmaps' => '圖譜列表',
+            'beatmaps' => '圖譜清單',
             'download' => '下載 osu!',
         ],
         'help' => [
-            '_' => '幫助 & 社區',
+            '_' => '說明與社群',
             'faq' => '常見問題',
             'forum' => '論壇',
             'livestreams' => '直播',
@@ -113,6 +113,7 @@ return [
             'copyright' => '版權（DMCA）',
             'jp_sctl' => '',
             'privacy' => '隱私政策',
+            'rules' => '規則',
             'server_status' => '伺服器狀態',
             'source_code' => '原始碼',
             'terms' => '服務條款',
@@ -153,7 +154,7 @@ return [
             'description' => "我們會自動回報任何一個錯誤，請返回到上一個頁面。",
         ],
         'fatal' => [
-            'error' => '哎呀，服務器被外星人帶走了',
+            'error' => '噢不！出大問題了！（嚴重錯誤）;_;',
             'description' => "我們會自動回報任何一個錯誤，請返回到上一個頁面。",
         ],
         '503' => [
@@ -178,14 +179,14 @@ return [
             'username' => '使用者名稱',
 
             'error' => [
-                'email' => "用戶名或電郵地址不存在",
+                'email' => "使用者名稱或電子郵件地址不存在",
                 'password' => '密碼錯誤',
             ],
         ],
 
         'register' => [
             'download' => '下載',
-            'info' => '立即下載 osu! 來創造您專屬的帳號!',
+            'info' => '立即下載 osu! 並註冊帳號吧！',
             'title' => "沒有帳號？",
         ],
     ],
@@ -196,14 +197,17 @@ return [
             'follows' => '追蹤清單',
             'friends' => '好友',
             'legacy_score_only_toggle' => 'Lazer 模式',
-            'legacy_score_only_toggle_tooltip' => 'Lazer 模式透過使用 Lazer 客戶端中新評分演算法來顯示您的成績。',
+            'legacy_score_only_toggle_tooltip' => 'Lazer 模式會顯示使用新的計分演算法，在 Lazer 中取得的分數。',
             'logout' => '登出',
             'profile' => '我的資料',
+            'scoring_mode_toggle' => 'Classic 計分',
+            'scoring_mode_toggle_tooltip' => '將分數調整至像是 classic 不封頂的的計分',
+            'team' => '我的隊伍',
         ],
     ],
 
     'popup_search' => [
-        'initial' => '請輸入以搜尋!',
-        'retry' => '搜索失敗，點擊以重試。',
+        'initial' => '請輸入以搜尋！',
+        'retry' => '搜尋失敗。按這裡重試。',
     ],
 ];

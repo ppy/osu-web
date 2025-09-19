@@ -2,19 +2,17 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .osu-layout {
-  ._page {
-    .default-box-shadow();
-    background-color: @osu-colour-b5;
-  }
-
   display: flex;
   flex-direction: column;
 
-  transition: filter 200ms ease-in-out, opacity 200ms ease-in-out; // for fading in after &--masked is removed
+  // for fading in after &--masked is removed
+  transition:
+    filter 200ms ease-in-out,
+    opacity 200ms ease-in-out;
 
   &--body {
-    --nav-logo: url('~@images/layout/osu-logo-white.svg');
-    --nav-logo-bg: url('~@images/layout/osu-logo-triangles.svg');
+    --nav-logo: url("~@images/layout/osu-logo-white.svg");
+    --nav-logo-bg: url("~@images/layout/osu-logo-triangles.svg");
 
     background-color: @osu-colour-b6;
   }
@@ -33,14 +31,14 @@
       height: 100%;
       top: 0;
       left: 0;
-      content: " ";
+      content: "";
       z-index: @z-index--body-background;
     }
   }
 
   &--body-lazer {
-    --nav-logo: url('~@images/layout/osu-lazer-logo-white.svg');
-    --nav-logo-bg: url('~@images/layout/osu-lazer-logo-triangles.svg');
+    --nav-logo: url("~@images/layout/osu-lazer-logo-white.svg");
+    --nav-logo-bg: url("~@images/layout/osu-lazer-logo-triangles.svg");
   }
 
   &--full {
@@ -55,35 +53,10 @@
     pointer-events: none;
     backface-visibility: hidden; // prevents flashing in some browers on resize/transition start
 
-    @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+    @media screen and (-ms-high-contrast: active),
+      screen and (-ms-high-contrast: none) {
       /* IE10+ fallback */
       opacity: 0;
-    }
-  }
-
-  &__col {
-    width: calc(100% - 10px);
-    margin: 5px;
-
-    &--sm-6 {
-      @media @desktop {
-        width: calc((6 / 12 * 100%) - 10px);
-      }
-    }
-
-    &--sm-4 {
-      @media @desktop {
-        width: calc((4 / 12 * 100%) - 10px);
-      }
-    }
-  }
-
-  &__col-container {
-    display: flex;
-    flex-wrap: wrap;
-
-    &--with-gutter {
-      margin: -5px;
     }
   }
 
@@ -91,48 +64,6 @@
     overflow: hidden;
     flex: 1 0 auto;
     position: relative;
-  }
-
-  &__row {
-    ._width(@extra-margin: 0px) {
-      width: calc(100% - (@extra-margin * 2));
-      max-width: (@container-sm - @extra-margin * 2);
-    }
-
-    ._width-desktop(@extra-margin: 0px) {
-      width: calc(100% - ((@extra-margin + @grid-gutter-width) * 2));
-      max-width: (@container-sm - @extra-margin * 2);
-    }
-
-    align-self: center;
-    margin-left: auto;
-    margin-right: auto;
-
-    ._width;
-    @media @desktop {
-      ._width-desktop;
-    }
-
-    &--full {
-      display: flex;
-      flex-direction: column;
-      flex: 1 0 auto;
-    }
-
-    &--page {
-      ._page();
-      padding: 20px;
-    }
-
-    &--page-compact {
-      ._page();
-    }
-
-    &--landing-sitemap {
-      max-width: 800px;
-      margin: 35px 0 40px;
-      width: calc(100% - 20px);
-    }
   }
 
   &__section {

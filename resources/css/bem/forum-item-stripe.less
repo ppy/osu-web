@@ -2,49 +2,56 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .forum-item-stripe {
+  --width: 7px;
+  --width-desktop: 9px;
+  --arrow-opacity: 0;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 10px;
-  padding-right: 5px;
-  height: 100%;
-  overflow: hidden;
+  inset: 0 auto 0 0;
+  padding-right: @border-radius-base;
+  width: var(--width);
   .center-content();
-  color: transparent;
   transition: @forum-item-animate;
+  background-color: inherit;
 
   &::after {
-    content: '';
-    .full-size();
+    content: "";
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: @border-radius-base;
     border-radius: @border-radius-base 0 0 @border-radius-base;
-    background-color: var(--forum-item-background-color);
-    top: 0;
-    will-change: transform;
-    transition: @forum-item-animate;
-    left: 3px;
-
-    @media @desktop {
-      left: 5px;
-    }
+    background-color: inherit;
   }
 
   &::before {
-    content: '';
+    content: "";
     .full-size();
     border-radius: @border-radius-base 0 0 @border-radius-base;
     background-color: var(--forum-bg);
   }
 
-  .forum-item:hover &, .forum-topic-entry:hover & {
+  .forum-item:hover &,
+  .forum-topic-entry:hover & {
+    --width-desktop: 24px;
+    --arrow-opacity: 1;
+  }
+
+  @media @desktop {
+    width: var(--width-desktop);
+  }
+
+  &__arrow {
+    .fas();
     color: var(--forum-item-background-color-hover);
-    width: 25px;
+    position: relative;
+    opacity: var(--arrow-opacity);
+    display: none;
 
-    &::after {
-      background-color: var(--forum-item-background-color-hover);
+    &::before {
+      content: @fa-var-angle-right;
+    }
 
-      @media @desktop {
-        transform: translateX(15px);
-      }
+    @media @desktop {
+      display: block;
     }
   }
 }

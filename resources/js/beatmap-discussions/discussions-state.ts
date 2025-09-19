@@ -1,22 +1,34 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
+import { BeatmapsetStatus } from 'interfaces/beatmapset-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import Ruleset from 'interfaces/ruleset';
+import UserJson from 'interfaces/user-json';
+import WithBeatmapOwners from 'interfaces/with-beatmap-owners';
 import { intersectionWith, maxBy, sum } from 'lodash';
-import { action, computed, makeObservable, observable, reaction } from 'mobx';
-import moment from 'moment';
+import { action, computed, makeObservable, observable } from 'mobx';
+import { deletedUserJson } from 'models/user';
 import core from 'osu-core-singleton';
 import BeatmapsetDiscussionsShowStore from 'stores/beatmapset-discussions-show-store';
 import { findDefault, group, sortWithMode } from 'utils/beatmap-helper';
-import { canModeratePosts, makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
+import { canModeratePosts, makeUrl, parseUrl, stateFromDiscussion } from 'utils/beatmapset-discussion-helper';
 import { parseJsonNullable, storeJson } from 'utils/json';
 import { Filter, filters } from './current-discussions';
 import DiscussionMode, { discussionModes } from './discussion-mode';
 import DiscussionPage, { isDiscussionPage } from './discussion-page';
 
+const defaultFilterPraise = new Set<BeatmapsetStatus>(['approved', 'ranked']);
 const jsonId = 'json-discussions-state';
+
+function deletedUser(userId: number) {
+  const user: UserJson = structuredClone(deletedUserJson) as UserJson; // structuredClone copies the Readonly type but is actually mutable.
+  user.id = userId;
+
+  return user;
+}
 
 export interface UpdateOptions {
   beatmap_discussion_post_ids: number[];
@@ -44,12 +56,13 @@ function isFilter(value: unknown): value is Filter {
 
 export default class DiscussionsState {
   @observable currentBeatmapId: number;
-  @observable currentFilter: Filter = 'total'; // TODO: filter should always be total when page is events (also no highlight)
+  @observable currentDiscussionId?: number;
+  @observable currentFilter: Filter = 'total';
   @observable currentPage: DiscussionPage = 'general';
+  @observable currentPostId?: number;
   @observable discussionCollapsed = new Map<number, boolean>();
   @observable discussionDefaultCollapsed = false;
   @observable highlightedDiscussionId: number | null = null;
-  @observable jumpToDiscussion = false;
   @observable pinnedNewDiscussion = false;
 
   @observable readPostIds = new Set<number>();
@@ -59,7 +72,6 @@ export default class DiscussionsState {
 
   private previousFilter: Filter = 'total';
   private previousPage: DiscussionPage = 'general';
-  private readonly urlStateDisposer;
 
   get beatmapset() {
     return this.store.beatmapset;
@@ -232,17 +244,17 @@ export default class DiscussionsState {
   }
 
   @computed
-  get lastUpdate() {
+  get lastUpdateDate() {
     const maxDiscussions = maxBy(this.beatmapset.discussions, 'updated_at')?.updated_at;
     const maxEvents = maxBy(this.beatmapset.events, 'created_at')?.created_at;
 
-    const maxLastUpdate = Math.max(
+    const lastUpdateMs = Math.max(
       Date.parse(this.beatmapset.last_updated),
       maxDiscussions != null ? Date.parse(maxDiscussions) : 0,
       maxEvents != null ? Date.parse(maxEvents) : 0,
     );
 
-    return moment(maxLastUpdate).unix();
+    return new Date(lastUpdateMs);
   }
 
   get calculatedMainRuleset() {
@@ -265,8 +277,41 @@ export default class DiscussionsState {
   }
 
   @computed
+  get nominators() {
+    const nominators: UserJson[] = [];
+    for (let i = this.beatmapset.events.length - 1; i >= 0; i--) {
+      const event = this.beatmapset.events[i];
+      if (event.type === 'disqualify' || event.type === 'nomination_reset') {
+        break;
+      }
+
+      if (event.type === 'nominate' && event.user_id != null) {
+        const user = this.store.users.get(event.user_id);
+        if (user != null) {
+          nominators.unshift(user);
+        }
+      }
+    }
+
+    return nominators;
+  }
+
+  @computed
   get nonDeletedDiscussions() {
     return this.discussionsArray.filter((discussion) => discussion.deleted_at == null);
+  }
+
+  @computed
+  get previousNominatorIds() {
+    // TODO: use findLast in es2023
+    for (let i = this.beatmapset.events.length - 1; i >= 0; i--) {
+      const event = this.beatmapset.events[i];
+      if (event.type === 'disqualify') {
+        return typeof event.comment === 'string' ? [] : event.comment.nominator_ids ?? [];
+      }
+    }
+
+    return null;
   }
 
   @computed
@@ -329,9 +374,12 @@ export default class DiscussionsState {
   @computed
   get url() {
     return makeUrl({
-      beatmap: this.currentBeatmap,
+      beatmapId: this.currentBeatmapId,
+      beatmapsetId: this.currentBeatmap.beatmapset_id,
+      discussionId: this.currentDiscussionId,
       filter: this.currentFilter,
       mode: this.currentPage,
+      postId: this.currentPostId,
       user: this.selectedUserId ?? undefined,
     });
   }
@@ -342,7 +390,6 @@ export default class DiscussionsState {
     if (existingState != null) {
       Object.assign(this, existingState);
     } else {
-      this.jumpToDiscussion = true;
       for (const discussion of store.beatmapset.discussions) {
         if (discussion.posts != null) {
           for (const post of discussion.posts) {
@@ -355,7 +402,12 @@ export default class DiscussionsState {
     this.currentBeatmapId = (findDefault({ group: this.groupedBeatmaps }) ?? this.firstBeatmap).id;
 
     // Current url takes priority over saved state.
-    const query = parseUrl(null, store.beatmapset.discussions);
+    const query = parseUrl(
+      null,
+      store.beatmapset.discussions,
+      defaultFilterPraise.has(store.beatmapset.status) ? 'praises' : 'total',
+    );
+
     if (query != null) {
       // TODO: maybe die instead?
       this.currentPage = query.mode;
@@ -363,16 +415,20 @@ export default class DiscussionsState {
       if (query.beatmapId != null) {
         this.currentBeatmapId = query.beatmapId;
       }
+
+      this.currentDiscussionId = query.discussionId;
+      if (this.currentDiscussionId != null) {
+        this.currentPostId = query.postId;
+      }
+
       this.selectedUserId = query.user ?? null;
     }
 
     makeObservable(this);
+  }
 
-    this.urlStateDisposer = reaction(() => this.url, (current, prev) => {
-      if (current !== prev) {
-        Turbolinks.controller.advanceHistory(this.url);
-      }
-    });
+  beatmapOwners(beatmap: WithBeatmapOwners<BeatmapJson>) {
+    return beatmap.owners.map((user) => this.store.users.get(user.id) ?? deletedUser(user.id));
   }
 
   @action
@@ -389,6 +445,9 @@ export default class DiscussionsState {
     }
 
     this.currentPage = page;
+
+    this.currentDiscussionId = undefined;
+    this.currentPostId = undefined;
   }
 
   @action
@@ -401,6 +460,9 @@ export default class DiscussionsState {
     }
 
     this.currentFilter = filter;
+
+    this.currentDiscussionId = undefined;
+    this.currentPostId = undefined;
   }
 
   @action
@@ -409,10 +471,41 @@ export default class DiscussionsState {
     if (beatmap != null) {
       this.currentBeatmapId = beatmap.id;
     }
+
+    this.currentDiscussionId = undefined;
+    this.currentPostId = undefined;
   }
 
-  destroy() {
-    this.urlStateDisposer();
+  @action
+  changeToDiscussion(discussionId: number, postId?: number) {
+    const discussion = this.store.discussions.get(discussionId);
+
+    if (discussion == null) return;
+
+    const {
+      beatmapId,
+      mode,
+    } = stateFromDiscussion(discussion);
+
+    // unset type filter if discussion would have been filtered out.
+    if (!this.discussionsByMode[mode].some((d) => d.id === discussion.id)) {
+      this.currentFilter = 'total';
+    }
+
+    // unset user filter if new discussion would have been filtered out.
+    if (this.selectedUserId != null && this.selectedUserId !== discussion.user_id) {
+      this.selectedUserId = null;
+    }
+
+    if (beatmapId != null) {
+      this.currentBeatmapId = beatmapId;
+    }
+
+    this.currentPage = mode;
+    this.highlightedDiscussionId = discussion.id;
+
+    this.currentDiscussionId = discussion.id;
+    this.currentPostId = postId;
   }
 
   @action
@@ -448,12 +541,13 @@ export default class DiscussionsState {
     // the original type when deserializing.
     return {
       currentBeatmapId: this.currentBeatmapId,
+      currentDiscussionId: this.currentDiscussionId,
       currentFilter: this.currentFilter,
       currentPage: this.currentPage,
+      currentPostId: this.currentPostId,
       discussionCollapsed: [...this.discussionCollapsed],
       discussionDefaultCollapsed: this.discussionDefaultCollapsed,
       highlightedDiscussionId: this.highlightedDiscussionId,
-      jumpToDiscussion: this.jumpToDiscussion,
       pinnedNewDiscussion: this.pinnedNewDiscussion,
       readPostIds: [...this.readPostIds],
       selectedUserId: this.selectedUserId,

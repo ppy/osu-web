@@ -32,9 +32,15 @@ return [
     ],
 
     'forum_topics' => [
-        'created' => '',
+        'created' => 'Vytvorené',
         'feature_votes' => '',
         'new' => 'Posledná odpoveď',
+    ],
+
+    'teams' => [
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
     ],
 
     'users' => [

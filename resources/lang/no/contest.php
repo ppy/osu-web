@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => '',
         'hide_judged' => 'skjul dømmede innslag',
         'nav_title' => 'dommer',
         'no_current_vote' => 'du har ikke stemt enda.',
@@ -29,7 +30,9 @@ return [
         '_' => 'Resultatene fra juryen',
         'creator' => 'skaper',
         'score' => 'Score',
+        'score_std' => '',
         'total_score' => 'total score',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'stemmer',
         'count' => ':count_delimited stemme|:count_delimited stemmer',
         'points' => ':count_delimited poeng|:count_delimited poeng',
+        'points_float' => '',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Påmelding åpen',
         'voting' => 'Avstemningen har begynt',
         'results' => 'Resultat er ute',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

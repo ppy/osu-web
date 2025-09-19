@@ -23,7 +23,7 @@ return [
 
     'links' => [
         'beatmaps' => 'Powiązane beatmapy',
-        'osu' => 'Konto osu!',
+        'osu' => 'Profil osu!',
         'site' => 'Oficjalna strona internetowa',
     ],
 
@@ -47,7 +47,7 @@ return [
 
             'exclusive_only' => [
                 'all' => 'Wszystkie',
-                'exclusive_only' => 'osu! original',
+                'exclusive_only' => 'Ekskluzywne dla osu!',
             ],
 
             'form' => [

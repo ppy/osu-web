@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => '',
+
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Kunne ikke oppdatere stemme',
@@ -25,12 +31,14 @@ return [
         'message_placeholder_silenced' => "Kan ikke publisere diskusjonen mens du er dempet.",
         'message_type_select' => 'Velg kommentartype',
         'reply_notice' => 'Trykk enter for å svare.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Skriv din respons her',
         'require-login' => 'Vennligst logg inn for å skrive et innlegg eller svare',
         'resolved' => 'Løst',
         'restore' => 'gjenopprett',
         'show_deleted' => 'Vis slettede',
         'title' => 'Diskusjoner',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Skjul alle',
@@ -213,8 +221,9 @@ return [
 
         'rank_estimate' => [
             '_' => 'Dette kartet er estimert til å bli rangert som :date hvis ingen problemer er funnet. Det er #:position i :queue.',
-            'unresolved_problems' => '',
-            'problems' => '',
+            'unresolved_problems' => 'Dette kartet er for øyeblikket forhindret fra å forlate den kvalifiserte seksjonen inntil :problems er løst.',
+            'problems' => 'disse problemene
+',
             'on' => 'den :date',
             'queue' => 'rangerings kø ',
             'soon' => 'snart',
@@ -283,7 +292,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'ikke valgt',
     ],
     'status' => [
         'any' => 'Alle',

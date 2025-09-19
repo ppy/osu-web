@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Нема osu!(lazer) :type_group игара још увек!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'плејлисте',
         'realtime' => 'мултиплејер',
     ],
@@ -16,9 +17,12 @@ return [
         'map_count' => ':count_delimited мапа|:count_delimited мапе',
         'player_count' => ':count_delimited мапа|:count_delimited мапе',
         'time_left' => ':time је преостало',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => 'Трајање је предугачко.',
+            'name_too_long' => 'Име собе је предугачко.',
         ],
 
         'status' => [

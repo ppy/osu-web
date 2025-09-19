@@ -4,8 +4,6 @@
 .contest-art-entry {
   @_top: contest-art-entry;
 
-  margin: 10px;
-  transform: translateZ(0);
   --thumbnail-border-colour: transparent;
   --thumbnail-height-multiplier: 1;
   --thumbnail-scale: 1;
@@ -14,6 +12,12 @@
   --trophy-colour: chocolate;
   --vote-link-banner-bg: hsl(var(--hsl-b2));
   --vote-link-banner-scale: 1;
+  margin: 10px;
+  transform: translateZ(0);
+  width: calc(
+    var(--thumbnail-size) * var(--thumbnail-scale) *
+      var(--thumbnail-width-multiplier)
+  );
 
   &--placed-1 {
     --thumbnail-scale: 1;
@@ -71,6 +75,10 @@
     text-align: center;
   }
 
+  &__result-name {
+    display: block;
+  }
+
   &__result-place {
     padding-right: 5px;
 
@@ -92,8 +100,11 @@
   }
 
   &__thumbnail {
-    width: calc(var(--thumbnail-size) * var(--thumbnail-scale) * var(--thumbnail-width-multiplier));
-    height: calc(var(--thumbnail-size) * var(--thumbnail-scale) * var(--thumbnail-height-multiplier));
+    width: 100%;
+    height: calc(
+      var(--thumbnail-size) * var(--thumbnail-scale) *
+        var(--thumbnail-height-multiplier)
+    );
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
     background-size: cover;
     background-position: top;
@@ -113,7 +124,9 @@
   }
 
   &__vote-link-banner {
-    --base-size: calc(0.25 * var(--thumbnail-size) * var(--vote-link-banner-scale));
+    --base-size: calc(
+      0.25 * var(--thumbnail-size) * var(--vote-link-banner-scale)
+    );
     position: absolute;
     right: 0;
     bottom: 0;
@@ -125,13 +138,14 @@
     justify-content: center;
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       width: 100%;
       height: 100%;
       border-style: solid;
       border-width: 0 0 var(--base-size) var(--base-size);
-      border-color: transparent transparent var(--vote-link-banner-bg) transparent;
+      border-color: transparent transparent var(--vote-link-banner-bg)
+        transparent;
     }
   }
 }

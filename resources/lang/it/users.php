@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => 'Regala osu!supporter',
+        'gift_supporter' => 'Regala il tag supporter',
         'loading' => 'Caricamento...',
         'send_message' => 'Invia messaggio',
     ],
@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Il tuo account non viene usato da molto tempo.",
             'inactive_different_country' => "Il tuo account non è stato utilizzato per molto tempo.",
         ],
     ],
@@ -121,6 +121,13 @@ return [
         'beta' => [
             'main' => 'L\'accesso alla beta è attualmente limitato ad utenti privilegiati.',
             'small' => '(gli osu!supporter lo avranno a breve)',
+        ],
+    ],
+
+    'multiplayer' => [
+        'index' => [
+            'active' => 'In corso',
+            'ended' => 'Terminate',
         ],
     ],
 
@@ -159,14 +166,24 @@ return [
             'cancel' => 'Annulla',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => 'Segnala le violazioni del copyright attraverso un reclamo DMCA a :mail, come da :policy.',
+                'policy' => 'normativa sulla privacy di osu!',
+            ],
+            'message_2' => 'Questo vale per i casi in cui le tracce audio, il contenuto visivo o il contenuto del livello beatmap vengono utilizzati senza il corretto permesso.',
+        ],
+
         'options' => [
             'cheating' => 'Gioco scorretto / Cheating',
-            'multiple_accounts' => 'Uso di account multipli',
+            'copyright_infringement' => 'Violazione del copyright',
+            'inappropriate_chat' => 'Comportamento inappropriato in chat',
             'insults' => 'Insulti a me / altri',
-            'spam' => 'Spamming',
-            'unwanted_content' => 'Condivisione di contenuti inappropriati',
+            'multiple_accounts' => 'Uso di account multipli',
             'nonsense' => 'Senza senso',
             'other' => 'Altro (scrivi sotto)',
+            'spam' => 'Spamming',
+            'unwanted_content' => 'Contenuto inappropriato',
         ],
     ],
     'restricted_banner' => [
@@ -193,19 +210,39 @@ return [
             'count' => ':count_delimited commento|:count_delimited commenti',
         ],
         'cover' => [
-            'to_0' => 'Nascondi copertina',
+            'to_0' => 'Nascondi immagine di copertina',
             'to_1' => 'Mostra copertina',
+        ],
+        'daily_challenge' => [
+            'daily' => 'Serie Giornaliera',
+            'daily_streak_best' => 'Migliore Serie Giornaliera',
+            'daily_streak_current' => 'Attuale Serie Giornaliera',
+            'playcount' => 'Partecipazione Totale',
+            'title' => 'Sfida\nGiornaliera',
+            'top_10p_placements' => 'Piazzamenti nel primo 10%',
+            'top_50p_placements' => 'Piazzamenti nel primo 50%',
+            'weekly' => 'Serie Settimanale',
+            'weekly_streak_best' => 'Migliore Serie Settimanale',
+            'weekly_streak_current' => 'Attuale Serie Settimanale',
+
+            'unit' => [
+                'day' => ':valueg',
+                'week' => ':values',
+            ],
         ],
         'edit' => [
             'cover' => [
                 'button' => 'Cambia copertina del profilo',
                 'defaults_info' => 'Più opzioni per la copertina saranno disponibili in futuro',
+                'holdover_remove_confirm' => "La copertina precedentemente selezionata non è più disponibile. Non puoi riselezionarla dopo essere passato a una copertina diversa. Procedere?",
+                'title' => 'Immagine di copertina',
+
                 'upload' => [
                     'broken_file' => 'Elaborazione dell\'immagine non riuscita. Controlla l\'immagine caricata e riprova.',
                     'button' => 'Carica immagine',
                     'dropzone' => 'Trascina qui per caricarla',
                     'dropzone_info' => 'Puoi anche trascinare qui l\'immagine per caricarla',
-                    'size_info' => 'L\'immagine di copertina dovrebbe essere 2400x640',
+                    'size_info' => 'L\'immagine di copertina dovrebbe essere 2000x500',
                     'too_large' => 'Il file caricato è troppo grande.',
                     'unsupported_format' => 'Formato non supportato.',
 
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'modalità predefinita',
                 'set' => 'imposta :mode come modalità predefinita',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Ripristinare il colore predefinito? Sarà necessario il tag supporter per cambiarlo in un altro colore.',
+                'title' => 'Colore',
+
+                'supporter' => [
+                    '_' => 'Temi con colore personalizzato disponibili solo per gli :link',
+                    'link' => 'osu!supporter',
+                ],
             ],
         ],
 
@@ -362,7 +409,7 @@ return [
                 'download_replay' => 'Scarica Replay',
                 'not_ranked' => 'Solo le beatmap classificate conferiscono pp',
                 'pp_weight' => 'valutata :percentage',
-                'view_details' => 'Visualizza Dettagli',
+                'view_details' => 'Visualizza dettagli',
                 'title' => 'Rank',
 
                 'best' => [
@@ -449,8 +496,13 @@ return [
             'global_simple' => 'Classifica Globale',
             'highest' => 'Posizione più alta: :rank il :date',
         ],
+        'season_stats' => [
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Punteggio totale',
+        ],
         'stats' => [
             'hit_accuracy' => 'Precisione dei Colpi',
+            'hits_per_play' => 'Colpi Per Partita',
             'level' => 'Livello :level',
             'level_progress' => 'Avanzamento al livello successivo',
             'maximum_combo' => 'Combo Massima',

@@ -11,16 +11,13 @@ return [
         'title' => '비트맵 팩',
 
         'blurb' => [
-            'important' => '다운로드 하기 전에 읽어주세요',
-            'install_instruction' => '설치: 다운로드가 끝나면 압축을 풀고 내용물을 osu! 폴더 내의 Songs 폴더에 저장해주세요. 나머지는 osu!에서 알아서 해드립니다.',
-            'note' => [
-                '_' => '옛날 맵들은 최신 맵보다 질적으로 떨어질 수 있기 때문에 저희는 :scary을 강력히 추천합니다.',
-                'scary' => '최근에 나온 맵팩 순으로 내려받는 것',
-            ],
+            'important' => '다운로드 전에 반드시 읽어주세요',
+            'install_instruction' => '설치: 팩 다운로드 후, 팩의 내용물을 osu! 폴더 내의 Songs 폴더에 저장해 주시면 osu!가 나머지 작업을 합니다.',
         ],
     ],
 
     'show' => [
+        'created_by' => ':author 님이 제작',
         'download' => '다운로드',
         'item' => [
             'cleared' => '클리어한 맵',

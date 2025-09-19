@@ -5,22 +5,19 @@
 
 return [
     'index' => [
-        'description' => 'Iepriekš sagatavotas bītmapju kolekcijas ar savstarpēji kopīgu tēmu.',
+        'description' => 'Iepriekš sagatavotas ritma-karšu kolekcijas ar savstarpēji kopīgu tēmu.',
         'empty' => 'Drīzumā!',
         'nav_title' => 'saraksts',
-        'title' => 'Bītmapju Pakas',
+        'title' => 'Ritma-Karšu Pakas',
 
         'blurb' => [
-            'important' => 'IZLASIET ŠO PIRMS LEJUPIELĀDES',
-            'install_instruction' => 'Instalācija: Kad paka ir lejupielādēta, izvelciet tās saturu savā osu! Songs direktorijā, un osu! izdarīs visu pārējo.',
-            'note' => [
-                '_' => 'Ņemiet vērā, ka ir ļoti ieteicams :scary, jo vecākas mapes parasti ir daudz zemākas kvalitātes nekā jaunākas.',
-                'scary' => 'lejupielādēt pakas secībā no jaunākās līdz agrākajai',
-            ],
+            'important' => 'IZLASI ŠO PIRMS LEJUPIELĀDES',
+            'install_instruction' => 'Instalācija: Kad paka ir lejupielādēta, izvelc tās saturu savā osu! Dziesmas direktorijā, un osu! izdarīs visu pārējo.',
         ],
     ],
 
     'show' => [
+        'created_by' => 'no :author',
         'download' => 'Lejupielādēt',
         'item' => [
             'cleared' => 'nokārtots',
@@ -28,15 +25,15 @@ return [
         ],
         'no_diff_reduction' => [
             '_' => ':link nevar izmantot, lai nokārtotu šo paku.',
-            'link' => 'Grūtības samazināšanas modi',
+            'link' => 'Grūtības samazināšanas modifikācijas',
         ],
     ],
 
     'mode' => [
         'artist' => 'Mākslinieks/Albums',
         'chart' => 'Uzmanības Centrā',
-        'featured' => 'Attēlotais Mākslinieks',
-        'loved' => 'Project Loved',
+        'featured' => 'Kontraktētais Mākslinieks',
+        'loved' => 'Iemīļoto Projekts',
         'standard' => 'Standarta',
         'theme' => 'Tēma',
         'tournament' => 'Turnīrs',

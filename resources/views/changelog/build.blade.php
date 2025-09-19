@@ -7,7 +7,7 @@
 ])
 
 @section('content')
-    <div class="js-react--changelog-build osu-layout osu-layout--full"></div>
+    <div class="js-react--changelog-build u-contents"></div>
 
     <script id="json-build" type="application/json">
         {!! json_encode($buildJson) !!}

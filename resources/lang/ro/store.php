@@ -55,6 +55,7 @@ return [
         'contact' => 'Contact:',
         'date' => 'Dată:',
         'echeck_delay' => 'Pentru că plata ta a fost făcută electronic, te rugăm să aștepți încă 10 zile pentru ca plata să se afișeze prin PayPal!',
+        'echeck_denied' => 'Plata eCheck a fost respinsă de către PayPal.',
         'hide_from_activity' => 'Statusul de suporter osu! din această comandă nu sunt afișate în activitățile tale recente.',
         'sent_via' => 'Trimis Prin:',
         'shipping_to' => 'Livrare Către:',
@@ -173,6 +174,7 @@ return [
 
         'add_to_cart' => 'Adaugă în coș',
         'notify' => 'Anunță-mă când este disponibil!',
+        'out_of_stock' => 'Nu este în stoc',
 
         'notification_success' => 'vei fi anunțat când vom avea un stoc nou. Dă clic pe :link pentru a anula',
         'notification_remove_text' => 'aici',

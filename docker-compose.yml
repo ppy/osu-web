@@ -1,11 +1,10 @@
 x-env: &x-env
   APP_KEY: "${APP_KEY}"
-  BEATMAPS_DIFFICULTY_CACHE_SERVER_URL: http://beatmap-difficulty-lookup-cache
+  BEATMAPS_DIFFICULTY_CACHE_SERVER_URL: http://beatmap-difficulty-lookup-cache:8080
   BROADCAST_DRIVER: redis
   DB_CONNECTION_STRING: Server=db;Database=osu;Uid=osuweb;
   DB_HOST: db
   ES_HOST: http://elasticsearch:9200
-  ES_SCORES_HOST: http://elasticsearch:9200
   ES_SOLO_SCORES_HOST: http://elasticsearch:9200
   GITHUB_TOKEN: "${GITHUB_TOKEN}"
   NOTIFICATION_REDIS_HOST: redis
@@ -47,6 +46,15 @@ services:
     <<: *x-web
     command: ['job']
 
+  testjs:
+    <<: *x-web
+    volumes:
+      - .:/app
+      - ./storage/testjs-assets:/app/public/assets
+      - ./storage/testjs-builds:/app/resources/builds
+    profiles: ['testjs']
+    command: ['test', 'js']
+
   schedule:
     <<: *x-web
     command: ['schedule']
@@ -61,7 +69,7 @@ services:
   beatmap-difficulty-lookup-cache:
     image: pppy/osu-beatmap-difficulty-lookup-cache
     ports:
-      - "${BEATMAPS_DIFFICULTY_CACHE_EXTERNAL_PORT:-127.0.0.1:5001}:80"
+      - "${BEATMAPS_DIFFICULTY_CACHE_EXTERNAL_PORT:-127.0.0.1:5001}:8080"
 
   notification-server:
     image: pppy/osu-notification-server
@@ -102,7 +110,6 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     ports:
       - "${MYSQL_EXTERNAL_PORT:-127.0.0.1:3306}:3306"
-    command: --default-authentication-plugin=mysql_native_password
     healthcheck:
       # important to use 127.0.0.1 instead of localhost as mysql starts twice.
       # the first time it listens on sockets but isn't actually ready

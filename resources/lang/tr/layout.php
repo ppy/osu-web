@@ -113,6 +113,7 @@ return [
             'copyright' => 'Telif Hakkı (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Gizlilik',
+            'rules' => 'Kurallar',
             'server_status' => 'Sunucu Durumu',
             'source_code' => 'Kaynak Kodu',
             'terms' => 'Koşullar',
@@ -199,6 +200,9 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Lazer modu yeni bir puanlama algoritmasıyla lazerden belirnenen skorları gösterir',
             'logout' => 'Çıkış Yap',
             'profile' => 'Profilim',
+            'scoring_mode_toggle' => 'Klasik skorlama',
+            'scoring_mode_toggle_tooltip' => 'Skorları klasik sınırsız skorlamaya benzeyecek şekilde ayarla',
+            'team' => 'Takımım',
         ],
     ],
 

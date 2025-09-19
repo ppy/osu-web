@@ -4,9 +4,9 @@
 export default class AnimateNav {
   constructor() {
     $(document)
-      .on('turbolinks:before-cache', () => {
+      .on('turbo:before-cache', () => {
         document.body.classList.remove('js-animate-nav');
-      }).on('turbolinks:load', () => {
+      }).on('turbo:load', () => {
         window.setTimeout(() => {
           document.body.classList.add('js-animate-nav');
         }, 0);

@@ -7,6 +7,7 @@ return [
     'cancel' => '取消',
 
     'authorise' => [
+        'app_owner' => ':owner 提供的应用程序',
         'request' => '正在请求访问你的账户',
         'scopes_title' => '该应用将可以：',
         'title' => '授权请求',

@@ -2,11 +2,43 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .admin-contest {
-  @top: admin-contest;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 
-  &__meta-row {
-    margin-bottom: 5px;
-    color: @osu-colour-f1;
+  &__description {
+    background-color: hsl(var(--hsl-b4));
+    font-size: @font-size--title-small;
+    padding: 10px;
+
+    &--judges {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 5px;
+    }
+
+    @media @narrow-up {
+      padding: 20px;
+    }
+  }
+
+  &__meta-title {
+    color: hsl(var(--hsl-f1));
+    font-weight: bold;
+
+    @media @narrow-up {
+      justify-self: flex-end;
+    }
+  }
+
+  &__meta {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 5px 10px;
+
+    @media @narrow-up {
+      grid-template-columns: auto 1fr;
+    }
   }
 
   &__table {
@@ -23,6 +55,27 @@
     }
     &--button {
       width: 50px;
+    }
+  }
+
+  &__title {
+    color: hsl(var(--hsl-f1));
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  &__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: flex-end;
+  }
+
+  &__vote-count {
+    color: hsl(var(--hsl-red-2));
+
+    &--complete {
+      color: hsl(var(--hsl-green-2));
     }
   }
 }

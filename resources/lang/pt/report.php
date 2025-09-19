@@ -24,9 +24,19 @@ return [
         'title' => 'Queres denunciar a publicação de :username?',
     ],
 
+    'message' => [
+        'button' => 'Relatar mensagem',
+        'title' => 'Relatar mensagem de :username?',
+    ],
+
     'scores' => [
         'button' => 'Denunciar pontuação',
         'title' => 'Denunciar a pontuação de :username?',
+    ],
+
+    'team' => [
+        'button' => 'Denunciar Equipa',
+        'title' => 'Queres denunciar a equipa de :username?',
     ],
 
     'user' => [

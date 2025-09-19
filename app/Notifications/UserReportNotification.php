@@ -10,6 +10,7 @@ use App\Models\UserReport;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Channels\SlackWebhookChannel;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notification;
 
@@ -36,11 +37,11 @@ class UserReportNotification extends Notification implements ShouldQueue
             ->attachment(function ($attachment) use ($notifiable) {
                 $reportable = $notifiable->reportable;
                 $reportableUrl = null;
-                if (method_exists($reportable, 'url')) {
+                if ($reportable !== null && method_exists($reportable, 'url')) {
                     $reportableUrl = $reportable->url();
                 }
 
-                $user = optional($notifiable->user)->username ?? "User {$notifiable->user_id}";
+                $user = $notifiable->user?->username ?? "User {$notifiable->user_id}";
                 $userUrl = route('users.show', ['user' => $notifiable->user_id]);
 
                 $reportedText =
@@ -55,7 +56,7 @@ class UserReportNotification extends Notification implements ShouldQueue
                     'Reason' => $notifiable->reason,
                 ];
 
-                $additionalInfo = $reportable->reportableAdditionalInfo();
+                $additionalInfo = $reportable?->reportableAdditionalInfo();
                 if ($additionalInfo !== null) {
                     $fields['Additional Info'] = $additionalInfo;
                 }
@@ -69,7 +70,8 @@ class UserReportNotification extends Notification implements ShouldQueue
 
     public function via($notifiable)
     {
-        return ['slack'];
+        // see https://github.com/laravel/slack-notification-channel/issues/68#issuecomment-2569304703
+        return SlackWebhookChannel::class;
     }
 
     private function discordMarkdownLink(string $url, string $text): string

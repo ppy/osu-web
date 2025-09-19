@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Jūsų paskyra nenaudojama jau ilgą laiką.",
             'inactive_different_country' => "Jūsų paskyra buvo nenaudojama ilga laiką.",
         ],
     ],
@@ -121,6 +121,13 @@ return [
         'beta' => [
             'main' => 'Šiuo metu beta prieiga galima tik išskirtiniams vartotojams.',
             'small' => '(osu! rėmėjai bus įleisti greitu metu)',
+        ],
+    ],
+
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
         ],
     ],
 
@@ -159,14 +166,24 @@ return [
             'cancel' => 'Atšaukti',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Sukčiavimas',
-            'multiple_accounts' => 'Naudoja kelias paskyras',
+            'copyright_infringement' => '',
+            'inappropriate_chat' => '',
             'insults' => 'Įžeidinėja manę / kitus',
-            'spam' => 'Siuntinėja šlamštą',
-            'unwanted_content' => 'Nuorodos į netinkamą turinį',
+            'multiple_accounts' => 'Naudoja kelias paskyras',
             'nonsense' => 'Nesąmonės',
             'other' => 'Kita (nurodykite žemiau)',
+            'spam' => 'Siuntinėja šlamštą',
+            'unwanted_content' => 'Nuorodos į netinkamą turinį',
         ],
     ],
     'restricted_banner' => [
@@ -196,10 +213,30 @@ return [
             'to_0' => 'Slėpti viršelį',
             'to_1' => 'Rodyti viršelį',
         ],
+        'daily_challenge' => [
+            'daily' => 'Kasdieninių Įveikimų Serija',
+            'daily_streak_best' => 'Didžiausia Kasdieninių Įveikimų Serija',
+            'daily_streak_current' => 'Dabartinė Kasdieninių Įveikimų Serija',
+            'playcount' => 'Iš Viso Dalyvauta',
+            'title' => 'Kasdienis\nIššūkis',
+            'top_10p_placements' => 'Top 10% Pasiekimų',
+            'top_50p_placements' => 'Top 50% Pasiekimų',
+            'weekly' => 'Savaitinė Įveikimų Serija',
+            'weekly_streak_best' => 'Didžiausia Savaitinių Įveikimų Serija',
+            'weekly_streak_current' => 'Dabartinė Savaitinių Įveikimų Serija',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Keisti profilio viršelį',
                 'defaults_info' => 'Daugiau viršelio pasirinkimų pridėsime ateityje',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Nepavyko apdoroti paveiksliuko. Patikrink įkeltą paveiksliuką ir mėgink dar kart.',
                     'button' => 'Įkelti paveiksliuką',
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'pagrindinis žaidimo rėžimas',
                 'set' => 'nustatyti :mode kaip pagrindiniu profilio žaidimo rėžimu',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => 'Spalva',
+
+                'supporter' => [
+                    '_' => 'Spalvų pasirinkimas galimas tik :link',
+                    'link' => 'osu!rėmėjai',
+                ],
             ],
         ],
 
@@ -283,8 +330,8 @@ return [
                     'title' => 'Nesenai žaisti (24h)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Sužaidimų Peržiūrų Istorija',
-                    'count_label' => 'Sužaidimai Žiūrėti',
+                    'title' => 'Įrašų Peržiūros Istorija',
+                    'count_label' => 'Įrašai Žiūrėti',
                 ],
             ],
             'kudosu' => [
@@ -359,14 +406,14 @@ return [
                 'title' => 'Tinklo Žaidimai',
             ],
             'top_ranks' => [
-                'download_replay' => 'Atsiųsti Sužaidimą',
+                'download_replay' => 'Atsiųsti Įrašą',
                 'not_ranked' => 'Tik reitinguoti beatmap\'ai duoda pp',
                 'pp_weight' => 'prilygintas :percentage',
                 'view_details' => 'Išsamiau',
                 'title' => 'Reitingai',
 
                 'best' => [
-                    'title' => 'Geriausi rezultatai',
+                    'title' => 'Geriausi Rezultatai',
                 ],
                 'first' => [
                     'title' => 'Pirmos vietos',
@@ -449,8 +496,13 @@ return [
             'global_simple' => 'Pasaulinis Reitingas',
             'highest' => 'Aukščiausias reitingas: :rank kada: :date',
         ],
+        'season_stats' => [
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Visi taškai',
+        ],
         'stats' => [
             'hit_accuracy' => 'Paspaudimų Tikslumas',
+            'hits_per_play' => 'Pataikymai Per Sužaidimą',
             'level' => 'Lygis :level',
             'level_progress' => 'Progresas į kitą lygį',
             'maximum_combo' => 'Didžiausias Kombo',
@@ -459,7 +511,7 @@ return [
             'play_time' => 'Bendras žaidimo laikas
 ',
             'ranked_score' => 'Reitinguoti taškai',
-            'replays_watched_by_others' => 'Sužaidimų peržiūros iš kitų',
+            'replays_watched_by_others' => 'Įrašų peržiūros iš kitų',
             'score_ranks' => 'Taškų Įvertinimai',
             'total_hits' => 'Visi Pataikymai',
             'total_score' => 'Visi taškai',

@@ -17,6 +17,7 @@ use Sentry\State\Scope;
  * @property \Carbon\Carbon $date
  * @property int $epicfactor
  * @property int $event_id
+ * @property bool|null $legacy_score_event
  * @property int $private
  * @property string $text
  * @property string|null $text_clean
@@ -73,12 +74,11 @@ class Event extends Model
 
                 // not escaped because it's not in the old system either
                 $achievementName = $achievement->name;
-                $userUrl = e(route('users.show', $user, false));
-                $userName = e($user->username);
+                $userLink = static::userLink($options['user']);
 
                 $params = [
                     // taken from medal
-                    'text' => "<b><a href='{$userUrl}'>{$userName}</a></b> unlocked the \"<b>{$achievementName}</b>\" medal!",
+                    'text' => "<b>{$userLink['html']}</b> unlocked the \"<b>{$achievementName}</b>\" medal!",
                     'user_id' => $user->getKey(),
                     'private' => false,
                     'epicfactor' => 4,
@@ -88,20 +88,14 @@ class Event extends Model
 
             case 'beatmapsetApprove':
                 $beatmapset = $options['beatmapset'];
-
-                $beatmapsetUrl = e(route('beatmapsets.show', $beatmapset, false));
-                $beatmapsetTitle = e($beatmapset->artist.' - '.$beatmapset->title);
-                $userName = e($beatmapset->user->username);
-                $userUrl = e(route('users.show', $beatmapset->user, false));
+                $beatmapsetLink = static::beatmapsetLink($beatmapset);
+                $userLink = static::userLink($options['beatmapset']->user);
                 $approval = e($beatmapset->status());
 
-                $textCleanBeatmapsetUrl = $GLOBALS['cfg']['app']['url'].$beatmapsetUrl;
-                $textCleanUserUrl = $GLOBALS['cfg']['app']['url'].$userUrl;
-                $textClean = "[{$textCleanBeatmapsetUrl} {$beatmapsetTitle}] by [{$textCleanUserUrl} {$userName}] has just been {$approval}!";
-
+                $template = '%s by %s has just been %s!';
                 $params = [
-                    'text' => "<a href='{$beatmapsetUrl}'>{$beatmapsetTitle}</a> by <b><a href='{$userUrl}'>{$userName}</a></b> has just been {$approval}!",
-                    'text_clean' => $textClean,
+                    'text' => sprintf($template, $beatmapsetLink['html'], tag('b', [], $userLink['html']), $approval),
+                    'text_clean' => sprintf($template, $beatmapsetLink['clean'], $userLink['clean'], $approval),
                     'beatmap_id' => 0,
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $beatmapset->user->getKey(),
@@ -113,11 +107,10 @@ class Event extends Model
 
             case 'beatmapsetDelete':
                 $beatmapset = $options['beatmapset'];
-                $beatmapsetUrl = e(route('beatmapsets.show', $beatmapset, false));
-                $beatmapsetTitle = e($beatmapset->artist.' - '.$beatmapset->title);
+                $beatmapsetLink = static::beatmapsetLink($beatmapset);
 
                 $params = [
-                    'text' => "<a href='{$beatmapsetUrl}'>{$beatmapsetTitle}</a> has been deleted.",
+                    'text' => "{$beatmapsetLink['html']} has been deleted.",
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $options['user']->getKey(),
                     'private' => false,
@@ -126,14 +119,117 @@ class Event extends Model
 
                 break;
 
-            case 'usernameChange':
-                $user = static::userParams($options['user']);
-                $oldUsername = e($options['history']->username_last);
-                $newUsername = e($options['history']->username);
+            case 'beatmapsetRevive':
+                $beatmapset = $options['beatmapset'];
+                $beatmapsetLink = static::beatmapsetLink($beatmapset);
+                $userLink = static::userLink($beatmapset->user);
+
+                $template = '%s has been revived from eternal slumber by %s.';
                 $params = [
-                    'text' => "<b><a href='{$user['url']}'>{$oldUsername}</a></b> has changed their username to {$newUsername}!",
-                    'user_id' => $user['id'],
-                    'date' => $options['history']->timestamp,
+                    'text' => sprintf($template, $beatmapsetLink['html'], tag('b', [], $userLink['html'])),
+                    'text_clean' => sprintf($template, $beatmapsetLink['clean'], $userLink['clean']),
+                    'beatmapset_id' => $beatmapset->getKey(),
+                    'user_id' => $beatmapset->user->getKey(),
+                    'private' => false,
+                    'epicfactor' => 5,
+                ];
+
+                break;
+
+            case 'beatmapsetUpdate':
+                $beatmapset = $options['beatmapset'];
+                $beatmapsetLink = static::beatmapsetLink($beatmapset);
+                // retrieved separately from options because it doesn't necessarily need to be the same user
+                // as $beatmapset->user in some cases (see: direct guest difficulty update)
+                $user = $options['user'];
+                $userLink = static::userLink($user);
+
+                $template = '%s has updated the beatmap "%s"';
+                $params = [
+                    'text' => sprintf($template, tag('b', [], $userLink['html']), $beatmapsetLink['html']),
+                    'text_clean' => sprintf($template, $userLink['clean'], $beatmapsetLink['clean']),
+                    'beatmapset_id' => $beatmapset->getKey(),
+                    'user_id' => $user->getKey(),
+                    'private' => false,
+                    'epicfactor' => 2,
+                ];
+
+                break;
+
+            case 'beatmapsetUpload':
+                $beatmapset = $options['beatmapset'];
+                $beatmapsetLink = static::beatmapsetLink($beatmapset);
+                $userLink = static::userLink($beatmapset->user);
+
+                $template = '%s has submitted a new beatmap "%s"';
+                $params = [
+                    'text' => sprintf($template, tag('b', [], $userLink['html']), $beatmapsetLink['html']),
+                    'text_clean' => sprintf($template, $userLink['clean'], $beatmapsetLink['clean']),
+                    'beatmapset_id' => $beatmapset->getKey(),
+                    'user_id' => $beatmapset->user->getKey(),
+                    'private' => false,
+                    'epicfactor' => 4,
+                ];
+
+                break;
+
+            case 'rank':
+                $beatmap = $options['beatmap'];
+                $ruleset = $options['ruleset'];
+                $rulesetName = osu_trans("beatmaps.mode.{$ruleset}");
+                $beatmapLink = static::beatmapLink($beatmap, $ruleset);
+                $user = $options['user'];
+                $userLink = static::userLink($user);
+                $positionAfter = $options['position_after'];
+                $positionText = $positionAfter <= 50 ? "<b>rank #{$positionAfter}</b>" : "rank #{$positionAfter}";
+                $rank = $options['rank'];
+                $legacyScoreEvent = $options['legacy_score_event'];
+
+                $params = [
+                    'text' => "<img src='/images/{$rank}_small.png'/> <b>{$userLink['html']}</b> achieved {$positionText} on {$beatmapLink['html']} ({$rulesetName})",
+                    'text_clean' => "{$userLink['clean']} achieved rank #{$positionAfter} on {$beatmapLink['clean']} ({$rulesetName})",
+                    'beatmap_id' => $beatmap->getKey(),
+                    'beatmapset_id' => $beatmap->beatmapset->getKey(),
+                    'user_id' => $user->getKey(),
+                    'private' => false,
+                    // copy-pasted from https://github.com/peppy/osu-web-10/blob/2821062bbb668bc85fd655bd1c777d6e610c51b7/www/web/osu-submit-20190809.php#L1208
+                    'epicfactor' => ($positionAfter === 1 && $ruleset === 'osu' && $beatmap->passcount > 250 ? 8 : ($positionAfter < 10 ? 4 : ($positionAfter < 40 ? 2 : 1))),
+                    'legacy_score_event' => $legacyScoreEvent,
+                ];
+                break;
+
+            case 'rankLost':
+                $beatmap = $options['beatmap'];
+                $ruleset = $options['ruleset'];
+                $user = $options['user'];
+                $legacyScoreEvent = $options['legacy_score_event'];
+
+                $rulesetName = osu_trans("beatmaps.mode.{$ruleset}");
+                $beatmapLink = static::beatmapLink($beatmap, $ruleset);
+                $userLink = static::userLink($user);
+
+                $template = '%s has lost first place on %s (%s)';
+                $params = [
+                    'text' => sprintf($template, tag('b', [], $userLink['html']), $beatmapLink['html'], $rulesetName),
+                    'text_clean' => sprintf($template, $userLink['clean'], $beatmapLink['clean'], $rulesetName),
+                    'beatmap_id' => $beatmap->getKey(),
+                    'beatmapset_id' => $beatmap->beatmapset->getKey(),
+                    'user_id' => $user->getKey(),
+                    'private' => false,
+                    'epicfactor' => 2,
+                    'legacy_score_event' => $legacyScoreEvent,
+                ];
+                break;
+
+            case 'usernameChange':
+                $user = $options['user'];
+                $history = $options['history'];
+                $userLink = static::userLink($user, $history);
+                $newUsername = e($history->username);
+                $params = [
+                    'text' => "<b>{$userLink['html']}</b> has changed their username to {$newUsername}!",
+                    'user_id' => $user->getKey(),
+                    'date' => $history->timestamp,
                     'private' => false,
                     'epicfactor' => 4,
                 ];
@@ -141,10 +237,11 @@ class Event extends Model
                 break;
 
             case 'userSupportGift':
-                $user = static::userParams($options['user']);
+                $user = $options['user'];
+                $userLink = static::userLink($user);
                 $params = [
-                    'text' => "<b><a href='{$user['url']}'>{$user['username']}</a></b> has received the gift of osu! supporter!",
-                    'user_id' => $user['id'],
+                    'text' => "<b>{$userLink['html']}</b> has received the gift of osu! supporter!",
+                    'user_id' => $user->getKey(),
                     'date' => $options['date'],
                     'private' => false,
                     'epicfactor' => 2,
@@ -153,10 +250,11 @@ class Event extends Model
                 break;
 
             case 'userSupportFirst':
-                $user = static::userParams($options['user']);
+                $user = $options['user'];
+                $userLink = static::userLink($user);
                 $params = [
-                    'text' => "<b><a href='{$user['url']}'>{$user['username']}</a></b> has become an osu! supporter - thanks for your generosity!",
-                    'user_id' => $user['id'],
+                    'text' => "<b>{$userLink['html']}</b> has become an osu! supporter - thanks for your generosity!",
+                    'user_id' => $user->getKey(),
                     'date' => $options['date'],
                     'private' => false,
                     'epicfactor' => 2,
@@ -165,10 +263,11 @@ class Event extends Model
                 break;
 
             case 'userSupportAgain':
-                $user = static::userParams($options['user']);
+                $user = $options['user'];
+                $userLink = static::userLink($user);
                 $params = [
-                    'text' => "<b><a href='{$user['url']}'>{$user['username']}</a></b> has once again chosen to support osu! - thanks for your generosity!",
-                    'user_id' => $user['id'],
+                    'text' => "<b>{$userLink['html']}</b> has once again chosen to support osu! - thanks for your generosity!",
+                    'user_id' => $user->getKey(),
                     'date' => $options['date'],
                     'private' => false,
                     'epicfactor' => 2,
@@ -423,17 +522,41 @@ class Event extends Model
         return $this;
     }
 
-    public function scopeRecent($query)
+    public function scopeRecent($query, null | true $legacyOnly)
     {
-        return $query->orderBy('event_id', 'desc')->limit(5);
+        return $query->orderBy('event_id', 'desc')
+            ->whereNull('legacy_score_event')
+            ->orWhere('legacy_score_event', '=', $legacyOnly === true)
+            ->limit(5);
     }
 
-    private static function userParams($user)
+    private static function userLink($user, $usernameChange = null)
     {
+        $url = route('users.show', $user, false);
+        $username = $usernameChange->username_last ?? $user->username;
         return [
-            'id' => $user->getKey(),
-            'username' => e($user->username),
-            'url' => e(route('users.show', $user, false)),
+            'html' => sprintf('<a href=\'%s\'>%s</a>', e($url), e($username)),
+            'clean' => "[{$GLOBALS['cfg']['app']['url']}{$url} {$username}]",
+        ];
+    }
+
+    private static function beatmapsetLink($beatmapset)
+    {
+        $url = route('beatmapsets.show', $beatmapset, false);
+        $title = $beatmapset->artist.' - '.$beatmapset->title;
+        return [
+            'html' => sprintf('<a href=\'%s\'>%s</a>', e($url), e($title)),
+            'clean' => "[{$GLOBALS['cfg']['app']['url']}{$url} {$title}]",
+        ];
+    }
+
+    private static function beatmapLink($beatmap, $ruleset)
+    {
+        $url = route('beatmaps.show', ['beatmap' => $beatmap, 'ruleset' => $ruleset], false);
+        $title = "{$beatmap->beatmapset->artist} - {$beatmap->beatmapset->title} [{$beatmap->version}]";
+        return [
+            'html' => sprintf('<a href=\'%s\'>%s</a>', e($url), e($title)),
+            'clean' => "[{$GLOBALS['cfg']['app']['url']}{$url} {$title}]",
         ];
     }
 }

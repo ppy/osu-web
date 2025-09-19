@@ -6,19 +6,19 @@
 namespace App\Providers;
 
 use App\Console\Commands\MigrateFreshAllCommand;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Console\Migrations\FreshCommand;
+use Illuminate\Database\MigrationServiceProvider as BaseProvider;
 
-class MigrationServiceProvider extends ServiceProvider
+class MigrationServiceProvider extends BaseProvider
 {
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
-    public function register()
+    #[\Override]
+    public function registerMigrateFreshCommand()
     {
-        $this->app->extend('command.migrate.fresh', function () {
-            return new MigrateFreshAllCommand();
-        });
+        foreach ([FreshCommand::class, MigrateFreshAllCommand::class] as $class) {
+            $this->app->singleton(
+                $class,
+                fn ($app) => new MigrateFreshAllCommand($app['migrator']),
+            );
+        }
     }
 }

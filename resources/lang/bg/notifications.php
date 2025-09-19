@@ -20,17 +20,19 @@ return [
         'channel' => 'чат',
         'forum_topic' => 'форум',
         'news_post' => 'новини',
+        'team' => 'отбор',
         'user' => 'профил',
     ],
 
     'filters' => [
         '_' => 'всички',
-        'user' => 'профил',
         'beatmapset' => 'бийтмапове',
-        'forum_topic' => 'форум',
-        'news_post' => 'новини',
         'build' => 'промени',
         'channel' => 'чат',
+        'forum_topic' => 'форум',
+        'news_post' => 'новини',
+        'team' => 'отбор',
+        'user' => 'профил',
     ],
 
     'item' => [
@@ -121,6 +123,16 @@ return [
                     'channel_message_group' => 'от :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => 'Ново отборно съобщение',
+
+                'team' => [
+                    'channel_team' => ':username каза ":title"',
+                    'channel_team_compact' => ':username каза ":title"',
+                    'channel_team_group' => ':username каза ":title"',
+                ],
+            ],
         ],
 
         'build' => [
@@ -156,6 +168,22 @@ return [
                 '_' => 'Отговор във форум',
                 'forum_topic_reply' => ':username отговори в ":title"',
                 'forum_topic_reply_compact' => ':username отговори',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => 'Заявка за влизане в отбор',
+
+                'team_application_accept' => "Вече сте член на :title",
+                'team_application_accept_compact' => "Вече сте член на :title",
+
+                'team_application_group' => 'Обновявания на заявките за присъединяване към екип',
+
+                'team_application_reject' => 'Заявлението Ви за отбора :title беше отказано',
+                'team_application_reject_compact' => 'Заявлението Ви за отбора :title беше отказано',
+                'team_application_store' => ':title заяви да влезе в отбора Ви',
+                'team_application_store_compact' => ':title заяви да влезе в отбора Ви',
             ],
         ],
 
@@ -217,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Има ново съобщение в ":name"',
+                'channel_announcement' => 'Има ново съобщение в ":name"',
             ],
-
             'channel' => [
-                'pm' => 'Получи ново съобщение от :username',
+                'channel_message' => 'Получихте съобщение от :username',
+            ],
+            'channel_team' => [
+                'channel_team' => 'Имате ново съобщение от отбора \':name\'',
             ],
         ],
 
@@ -240,6 +270,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Има нов отговор в ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Вече сте член на :title",
+                'team_application_reject' => 'Заявлението Ви за отбора :title беше отказано',
+                'team_application_store' => ':title заяви да влезе в отбора Ви',
             ],
         ],
 

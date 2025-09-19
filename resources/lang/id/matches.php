@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner dengan selisih skor :difference',
 
         'events' => [
-            'player-left' => ':user meninggalkan ruang pertandingan',
-            'player-joined' => ':user bergabung ke dalam ruang pertandingan',
-            'player-kicked' => ':user telah dikeluarkan dari ruang pertandingan',
-            'match-created' => ':user membuat ruang pertandingan',
-            'match-disbanded' => 'pertandingan dibubarkan',
-            'host-changed' => ':user menjadi host',
-
-            'player-left-no-user' => 'seorang pengguna meninggalkan ruang pertandingan',
-            'player-joined-no-user' => 'seorang pengguna bergabung ke dalam ruang pertandingan',
-            'player-kicked-no-user' => 'seorang pengguna telah dikeluarkan dari ruang pertandingan',
-            'match-created-no-user' => 'ruang pertandingan dibuat',
-            'match-disbanded-no-user' => 'ruang pertandingan dibubarkan',
-            'host-changed-no-user' => 'host diubah',
+            'game_aborted' => 'permainan dibatalkan',
+            'game_aborted_no_user' => 'permainan dibatalkan',
+            'game_completed' => 'permainan berakhir',
+            'game_completed_no_user' => 'permainan berakhir',
+            'host_changed' => ':user menjadi host',
+            'host_changed_no_user' => 'host diubah',
+            'player_joined' => ':user bergabung ke dalam ruang pertandingan',
+            'player_joined_no_user' => 'seorang pengguna bergabung ke dalam ruang pertandingan',
+            'player_kicked' => ':user dikeluarkan dari ruang pertandingan',
+            'player_kicked_no_user' => 'seorang pengguna dikeluarkan dari ruang pertandingan',
+            'player_left' => ':user meninggalkan ruang pertandingan',
+            'player_left_no_user' => 'seorang pengguna meninggalkan ruang pertandingan',
+            'room_created' => ':user membuat ruang pertandingan',
+            'room_created_no_user' => 'ruang pertandingan dibuat',
+            'room_disbanded' => 'ruang pertandingan dibubarkan',
+            'room_disbanded_no_user' => 'ruang pertandingan dibubarkan',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+        'team_types' => [
+            'head_to_head' => 'Head-to-head',
+            'tag_coop' => 'Tag Co-op',
+            'tag_team_versus' => 'Tag Team VS',
+            'team_versus' => 'Team VS',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => 'Freestyle',
+
         'scoring-type' => [
             'score' => 'Skor Tertinggi',
             'accuracy' => 'Akurasi Tertinggi',

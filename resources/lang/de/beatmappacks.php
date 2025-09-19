@@ -13,14 +13,11 @@ return [
         'blurb' => [
             'important' => 'VOR DEM HERUNTERLADEN BITTE LESEN',
             'install_instruction' => 'Installation: Sobald ein Beatmap-Pack heruntergeladen wurde, entpacke den Inhalt des Packs in dein osu! Songs-Verzeichnis und osu! wird den Rest erledigen.',
-            'note' => [
-                '_' => 'Außerdem ist es sehr empfehlenswert dir :scary, weil ältere Beatmaps eine geringere Qualität aufweisen als aktuellere Beatmaps.',
-                'scary' => 'die neusten Beatmap-Packs zuerst herunterzuladen',
-            ],
         ],
     ],
 
     'show' => [
+        'created_by' => 'von :author',
         'download' => 'Herunterladen',
         'item' => [
             'cleared' => 'geschafft',

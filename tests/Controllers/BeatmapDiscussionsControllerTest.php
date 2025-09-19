@@ -223,7 +223,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
     {
         return [
             'bng can change to down vote' => ['bng', 200, -2],
-            'regular user cannot change to down vote' => [null, 403, 0],
+            'regular user can change to down vote' => [null, 200, -2],
         ];
     }
 
@@ -231,7 +231,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
     {
         return [
             'bng can down vote' => ['bng', 200, 1, -1],
-            'regular user cannot down vote' => [null, 403, 0, 0],
+            'regular user can down vote' => [null, 200, 1, -1],
         ];
     }
 

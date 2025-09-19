@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => '',
+
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Дауысты жаңарту іске аспады',
@@ -25,12 +31,14 @@ return [
         'message_placeholder_silenced' => "Бітеулі кезде пікірталас жүргізуге болмайды.",
         'message_type_select' => 'Пікір Типін таңдаңыз',
         'reply_notice' => 'Жауап беру үшін enter пернесін басыңыз.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Жауабыңызды осы жерге теріңіз',
         'require-login' => 'Жазба қалдыру немесе жауап беру үшін аккаунтыңызға кіріңіз',
         'resolved' => 'Шешілді',
         'restore' => 'қалпына келтіру',
         'show_deleted' => 'Жойылғандарды көрсету',
         'title' => 'Пікірталастар',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Бәрін жасыру',

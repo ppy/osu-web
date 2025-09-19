@@ -55,6 +55,7 @@ return [
         'contact' => '연락처:',
         'date' => '날짜:',
         'echeck_delay' => 'eCheck로 결제하셨다면 10일까지 PayPal을 통해 결제할 수 있도록 허용해주세요.',
+        'echeck_denied' => 'eCheck 결제가 PayPal에서 거부되었습니다.',
         'hide_from_activity' => '이 주문에 포함된 osu! 서포터 내역은 나의 최근 활동에 표시되지 않습니다.',
         'sent_via' => '배송 수단:',
         'shipping_to' => '배송지:',
@@ -173,6 +174,7 @@ return [
 
         'add_to_cart' => '장바구니에 추가',
         'notify' => '구매할 수 있을 때 알려주세요!',
+        'out_of_stock' => '재고 없음',
 
         'notification_success' => '재고가 들어오면 알려드리겠습니다. 취소하려면 :link를 누르세요.',
         'notification_remove_text' => '여기',

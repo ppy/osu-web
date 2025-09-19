@@ -53,6 +53,11 @@ return [
                 'beatmapsets' => '',
                 'forum' => '',
                 'general' => '',
+
+                'users' => [
+                    'header' => 'Lietotājs',
+                    'cover_presets' => 'Profila Pārklājuma Priekšiestatījumi',
+                ],
             ],
         ],
     ],

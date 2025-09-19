@@ -5,8 +5,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\User\CountryChange;
 use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\User\ForceReactivation;
+use App\Models\Country;
 use App\Models\User;
 use App\Transformers\CurrentUserTransformer;
 use Auth;
@@ -27,10 +29,14 @@ class SessionsController extends Controller
     {
         $request = request();
 
-        $params = get_params($request->all(), null, ['username:string', 'password:string', 'remember:bool', 'cf-turnstile-response:string']);
-        $username = presence(trim($params['username'] ?? null));
-        $password = presence($params['password'] ?? null);
-        $remember = $params['remember'] ?? false;
+        $params = get_params(
+            $request->all(),
+            null,
+            ['username:string', 'password', 'cf-turnstile-response'],
+            ['null_missing' => true],
+        );
+        $username = presence(trim($params['username'] ?? ''));
+        $password = $params['password'];
 
         if ($username === null) {
             DatadogLoginAttempt::log('missing_username');
@@ -45,7 +51,7 @@ class SessionsController extends Controller
         }
 
         if (captcha_login_triggered()) {
-            $token = presence($params['cf-turnstile-response'] ?? null);
+            $token = $params['cf-turnstile-response'];
             $validCaptcha = false;
 
             if ($token !== null) {
@@ -88,10 +94,21 @@ class SessionsController extends Controller
                 return ujs_redirect(route('password-reset'));
             }
 
+            // try fixing user country if it's currently set to unknown
+            if ($user->country_acronym === Country::UNKNOWN) {
+                try {
+                    CountryChange::handle($user, request_country(), 'automated unknown country fixup on login');
+                } catch (\Throwable $e) {
+                    // report failures but continue anyway
+                    log_error($e);
+                }
+            }
+
             DatadogLoginAttempt::log(null);
-            $this->login($user, $remember);
+            $this->login($user);
 
             return [
+                'csrf_token' => csrf_token(),
                 'header' => view('layout._header_user')->render(),
                 'header_popup' => view('layout._popup_user')->render(),
                 'user' => json_item($user, new CurrentUserTransformer()),

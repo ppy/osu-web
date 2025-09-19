@@ -20,17 +20,19 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'fórum',
         'news_post' => 'novinky',
+        'team' => 'tým',
         'user' => 'profil',
     ],
 
     'filters' => [
         '_' => 'vše',
-        'user' => 'profil',
         'beatmapset' => 'beatmapy',
-        'forum_topic' => 'fórum',
-        'news_post' => 'novinky',
         'build' => 'sestavení',
         'channel' => 'chat',
+        'forum_topic' => 'fórum',
+        'news_post' => 'novinky',
+        'team' => 'tým',
+        'user' => 'profil',
     ],
 
     'item' => [
@@ -121,6 +123,16 @@ return [
                     'channel_message_group' => 'od :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => 'Nová týmová zpráva',
+
+                'team' => [
+                    'channel_team' => ':username říká ":title"',
+                    'channel_team_compact' => ':username říká ":title"',
+                    'channel_team_group' => ':username říká ":title"',
+                ],
+            ],
         ],
 
         'build' => [
@@ -156,6 +168,22 @@ return [
                 '_' => 'Nová odpověď na fórum',
                 'forum_topic_reply' => ':username odpověděl na ":title"',
                 'forum_topic_reply_compact' => ':username odpověděl',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => 'Žádost o připojení k týmu',
+
+                'team_application_accept' => "Jsi nyní členem týmu :title",
+                'team_application_accept_compact' => "Jsi nyní členem týmu :title",
+
+                'team_application_group' => 'Novinky pro žádosti o připojení k týmu',
+
+                'team_application_reject' => 'Tvoje žádost o připojení k týmu :title byla zamítnuta',
+                'team_application_reject_compact' => 'Tvoje žádost o připojení k týmu :title byla zamítnuta',
+                'team_application_store' => ':title požádal o připojení k tvému týmu',
+                'team_application_store_compact' => ':title požádal o připojení k tvému týmu',
             ],
         ],
 
@@ -217,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Nové oznámení v „:name“',
+                'channel_announcement' => 'Nové oznámení v ":name"',
             ],
-
             'channel' => [
-                'pm' => 'Obdrželi jste novou zprávu od :username',
+                'channel_message' => 'Obdržel jsi novou zprávu od :username',
+            ],
+            'channel_team' => [
+                'channel_team' => 'Nová zpráva v týmu ":name"',
             ],
         ],
 
@@ -240,6 +270,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Nové odpovědi v ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Jsi nyní členem týmu :title",
+                'team_application_reject' => 'Tvoje žádost o připojení k týmu :title byla zamítnuta',
+                'team_application_store' => ':title požádal o připojení k tvému týmu',
             ],
         ],
 

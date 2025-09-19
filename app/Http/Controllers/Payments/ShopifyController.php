@@ -5,15 +5,15 @@
 
 namespace App\Http\Controllers\Payments;
 
-use App\Exceptions\InvalidSignatureException;
-use App\Exceptions\ModelNotSavedException;
 use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\ShopifySignature;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use Carbon\Carbon;
 use Log;
+use Sentry\Severity;
 use Sentry\State\Scope;
+use Shopify\Utils;
 
 class ShopifyController extends Controller
 {
@@ -22,9 +22,7 @@ class ShopifyController extends Controller
     public function callback()
     {
         $signature = new ShopifySignature(request());
-        if (!$signature->isValid()) {
-            throw new InvalidSignatureException();
-        }
+        $signature->assertValid();
 
         // X-Shopify-Hmac-Sha256
         // X-Shopify-Order-Id
@@ -39,7 +37,7 @@ class ShopifyController extends Controller
             $params = $this->getParams();
             // just log info that can be used for lookup if necessary.
             $data = [
-                'shopify_gid' => $params['id'],
+                'shopify_gid' => $params['admin_graphql_api_id'],
                 'shopify_order_number' => $params['order_number'],
                 'webhook_type' => $type,
             ];
@@ -61,7 +59,7 @@ class ShopifyController extends Controller
                 });
                 break;
             case 'orders/fulfilled':
-                $order->update(['status' => Order::STATUS_SHIPPED, 'shipped_at' => now()]);
+                $order->update(['status' => Order::STATUS_SHIPPED, 'shipped_at' => now(), ...$this->getShopifyParams()]);
                 break;
             case 'orders/create':
                 if ($order->isShipped() && $this->isDuplicateOrder()) {
@@ -69,6 +67,9 @@ class ShopifyController extends Controller
                 }
 
                 (new OrderCheckout($order))->completeCheckout();
+
+                $order->update($this->getShopifyParams());
+
                 break;
             case 'orders/paid':
                 $this->updateOrderPayment($order);
@@ -102,6 +103,44 @@ class ShopifyController extends Controller
                 return get_int($attribute['value']);
             }
         }
+    }
+
+    private function getShopifyParams(): array
+    {
+        $params = get_params($this->getParams(), null, [
+            'admin_graphql_api_id:string',
+            'order_number:string',
+            'order_status_url:string',
+        ], ['null_missing' => true]);
+
+        // Log warning if the webhook isn't sending the expected data anymore.
+        foreach ($params as $key => $value) {
+            if ($value === null) {
+                app('sentry')->getClient()->captureMessage(
+                    "Missing {$key} in Shopify webhook.",
+                    new Severity(Severity::WARNING),
+                    (new Scope())->setExtra('order_id', $this->getOrderId())
+                );
+            }
+        }
+
+        $key = Utils::getQueryParams($params['order_status_url'] ?? '')['key'] ?? null;
+        if ($key !== null) {
+            $params['admin_graphql_api_id'] .= "?key={$key}";
+        } else {
+            app('sentry')->getClient()->captureMessage(
+                'Missing key param in order_status_url in Shopify webhook.',
+                new Severity(Severity::WARNING),
+                (new Scope())->setExtra('order_id', $this->getOrderId())
+            );
+        }
+
+        // Don't overwrite existing values with null/empty string later.
+        return array_filter([
+            'reference' => $params['admin_graphql_api_id'],
+            'shopify_order_number' => $params['order_number'],
+            'shopify_url' => $params['order_status_url'],
+        ], fn ($value) => present($value));
     }
 
     private function getParams()
@@ -145,17 +184,16 @@ class ShopifyController extends Controller
     private function updateOrderPayment(Order $order)
     {
         $params = $this->getParams();
+        $shopifyParams = $this->getShopifyParams();
+
         $payment = new Payment([
             'provider' => Order::PROVIDER_SHOPIFY,
-            'transaction_id' => $order->getProviderReference(),
+            'transaction_id' => $shopifyParams['shopify_order_number'],
             'country_code' => array_get($params, 'billing_address.country_code'),
-            'paid_at' => Carbon::parse(array_get($params, 'processed_at')),
+            'paid_at' => Carbon::parse(array_get($params, 'processed_at'))->utc(),
         ]);
 
-        if (!$order->payments()->save($payment)) {
-            throw new ModelNotSavedException();
-        }
-
+        $order->fill($shopifyParams);
         $order->paid($payment);
     }
 }

@@ -12,12 +12,6 @@ use League\CommonMark\Renderer\NodeRendererInterface;
 
 class InlineRenderer implements NodeRendererInterface
 {
-    /**
-     * @param Node $node
-     * @param ChildNodeRendererInterface $childRenderer
-     *
-     * @return string
-     */
     public function render(Node $node, ChildNodeRendererInterface $childRenderer): string
     {
         if ($node instanceof AbstractStringContainer) {

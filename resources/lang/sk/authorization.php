@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Tento kanál je iba pre oznamy.',
         'blocked' => 'Nie je možné poslať správu používateľovi, ktorý blokuje teba, alebo ty blokuješ jeho.',
         'friends_only' => 'Používateľ blokuje správy od ľudí, ktorí nie sú na ich ich liste priateľstva.',
         'moderated' => 'Kanál je momentálne moderovaný.',
         'no_access' => 'Nemáte prístup k tomuto kanálu.',
+        'no_announce' => '',
         'receive_friends_only' => 'Používateľ nemusí byť schopný odpovedať, keďže prijímate iba správy od ľudí vo Vašom zozname priateľov.',
         'restricted' => 'Nemôžete posielať správy, keď ste umlčaný, obmedzený alebo zabanovaný.',
         'silenced' => 'Nemôžete posielať správy, keď ste umlčaný, obmedzený alebo zabanovaný.',
@@ -107,6 +113,7 @@ return [
                 'deleted' => 'Nemôžete upraviť odstránený príspevok.',
                 'locked' => 'Príspevok je uzamknutý pre upravovanie.',
                 'no_forum_access' => 'Nemáš prístup k danému fóru.',
+                'no_permission' => '',
                 'not_owner' => 'Upravovať môže iba autor príspevku.',
                 'topic_locked' => 'Nie je možné upraviť príspevok zamknutej témy.',
             ],
@@ -170,12 +177,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Tento typ skóre sa nedá pripnúť",
             'failed' => "",
             'not_owner' => 'Skóre môže pripnúť iba pôvodný hráč.',
             'too_many' => 'Už bolo pripnuté maximum skóre.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "",
+                'already_other_member' => "",
+                'currently_applying' => '',
+                'team_closed' => '',
+                'team_full' => "",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "",
+            'not_member' => '',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

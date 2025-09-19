@@ -18,7 +18,7 @@ class OrderItemTest extends TestCase
      */
     public function testDelete(string $status, ?string $expectedException)
     {
-        [$product, $orderItem] = $this->createProductAndOrderItem(5, false);
+        [, $orderItem] = $this->createProductAndOrderItem(5, false);
 
         $orderItem->order->update(['status' => $status]);
 
@@ -35,52 +35,44 @@ class OrderItemTest extends TestCase
     {
         [$product, $orderItem] = $this->createProductAndOrderItem(5, false);
 
+        $this->expectCountChange(fn () => $product->fresh()->stock, -2);
+
         $orderItem->reserveProduct();
 
-        $orderItem->refresh();
-        $product->refresh();
-
-        $this->assertTrue($orderItem->reserved);
-        $this->assertSame($product->stock, 3);
+        $this->assertTrue($orderItem->fresh()->reserved);
     }
 
     public function testReserveReservedProduct()
     {
         [$product, $orderItem] = $this->createProductAndOrderItem(5, true);
 
+        $this->expectCountChange(fn () => $product->fresh()->stock, 0);
+
         $orderItem->reserveProduct();
 
-        $orderItem->refresh();
-        $product->refresh();
-
-        $this->assertTrue($orderItem->reserved);
-        $this->assertSame($product->stock, 5);
+        $this->assertTrue($orderItem->fresh()->reserved);
     }
 
     public function testReleaseUnreservedProduct()
     {
         [$product, $orderItem] = $this->createProductAndOrderItem(5, false);
 
+        $this->expectCountChange(fn () => $product->fresh()->stock, 0);
+
         $orderItem->releaseProduct();
 
-        $orderItem->refresh();
-        $product->refresh();
-
-        $this->assertFalse($orderItem->reserved);
-        $this->assertSame($product->stock, 5);
+        $this->assertFalse($orderItem->fresh()->reserved);
     }
 
     public function testReleaseReservedProduct()
     {
         [$product, $orderItem] = $this->createProductAndOrderItem(5, true);
 
+        $this->expectCountChange(fn () => $product->fresh()->stock, 2);
+
         $orderItem->releaseProduct();
 
-        $orderItem->refresh();
-        $product->refresh();
-
-        $this->assertFalse($orderItem->reserved);
-        $this->assertSame($product->stock, 7);
+        $this->assertFalse($orderItem->fresh()->reserved);
     }
 
     public function testReserveInsufficientStock()
@@ -95,13 +87,11 @@ class OrderItemTest extends TestCase
     {
         [$product, $orderItem] = $this->createProductAndOrderItem(0, true);
 
+        $this->expectCountChange(fn () => $product->fresh()->stock, 0);
+
         $orderItem->releaseProduct();
 
-        $orderItem->refresh();
-        $product->refresh();
-
-        $this->assertFalse($orderItem->reserved);
-        $this->assertSame($product->stock, 0);
+        $this->assertFalse($orderItem->fresh()->reserved);
     }
 
     public static function deleteDataProvider()

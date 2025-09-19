@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'commenti',
         'hide_judged' => 'nascondi le voci valutate',
         'nav_title' => 'giudice',
         'no_current_vote' => 'non hai ancora votato.',
@@ -29,7 +30,9 @@ return [
         '_' => 'Risultati della valutazione',
         'creator' => 'autore',
         'score' => 'Punteggio',
+        'score_std' => 'Punteggio standardizzato',
         'total_score' => 'punteggio totale',
+        'total_score_std' => 'punteggio standardizzato totale',
     ],
 
     'voting' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'voti',
         'count' => ':count_delimited voto|:count_delimited voti',
         'points' => ':count_delimited punto|:count_delimited punti',
+        'points_float' => ':points punti',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Iscrizioni Aperte',
         'voting' => 'Votazione Iniziata',
         'results' => 'Risultati Pubblicati',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => 'Vedi info e voci',
+        ],
     ],
 ];

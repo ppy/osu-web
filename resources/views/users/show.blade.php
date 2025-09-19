@@ -5,6 +5,7 @@
 
 @extends('master', [
     'canonicalUrl' => $user->url($mode),
+    'currentHue' => $user->user_style,
     'titlePrepend' => App\Libraries\Opengraph\UserOpengraph::escapeForTitle($user->username),
 ])
 
@@ -12,7 +13,7 @@
     @include('users._restricted_banner', compact('user'))
 
     <div
-        class="js-react--profile-page osu-layout osu-layout--full"
+        class="js-react--profile-page u-contents"
         data-initial-data="{{ json_encode($initialData) }}"
     ></div>
 @endsection

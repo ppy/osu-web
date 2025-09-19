@@ -6,7 +6,7 @@
 namespace Tests\Libraries\Payments;
 
 use App\Exceptions\InvalidSignatureException;
-use App\Libraries\Payments\PaymentProcessorException;
+use App\Exceptions\Store\PaymentProcessorException;
 use App\Libraries\Payments\PaymentSignature;
 use App\Libraries\Payments\XsollaPaymentProcessor;
 use App\Models\Store\Order;
@@ -15,6 +15,8 @@ use Tests\TestCase;
 
 class XsollaPaymentProcessorTest extends TestCase
 {
+    private Order $order;
+
     public function testWhenEverythingIsFine()
     {
         $params = $this->getTestParams();
@@ -36,14 +38,12 @@ class XsollaPaymentProcessorTest extends TestCase
                 ],
             ],
         ]);
+
         $subject = new XsollaPaymentProcessor($params, $this->validSignature());
 
-        // want to examine the contents of validationErrors
-        $thrown = $this->runSubject($subject);
+        $this->expectExceptionCallable(fn () => $subject->run(), PaymentProcessorException::class);
 
-        $errors = $subject->validationErrors()->all();
-        $this->assertTrue($thrown);
-        $this->assertArrayHasKey('purchase.checkout.amount', $errors);
+        $this->assertArrayHasKey('purchase.checkout.amount', $subject->validationErrors()->all());
     }
 
     public function testWhenUserIdMismatch()
@@ -58,13 +58,12 @@ class XsollaPaymentProcessorTest extends TestCase
                 'external_id' => $orderNumber,
             ],
         ]);
+
         $subject = new XsollaPaymentProcessor($params, $this->validSignature());
 
-        $thrown = $this->runSubject($subject);
+        $this->expectExceptionCallable(fn () => $subject->run(), PaymentProcessorException::class);
 
-        $errors = $subject->validationErrors()->all();
-        $this->assertTrue($thrown);
-        $this->assertArrayHasKey('order', $errors);
+        $this->assertArrayHasKey('order', $subject->validationErrors()->all());
     }
 
     public function testWhenOrderNumberMalformed()
@@ -76,13 +75,12 @@ class XsollaPaymentProcessorTest extends TestCase
                 'external_id' => $orderNumber,
             ],
         ]);
+
         $subject = new XsollaPaymentProcessor($params, $this->validSignature());
 
-        $thrown = $this->runSubject($subject);
+        $this->expectExceptionCallable(fn () => $subject->run(), PaymentProcessorException::class);
 
-        $errors = $subject->validationErrors()->all();
-        $this->assertTrue($thrown);
-        $this->assertArrayHasKey('order', $errors);
+        $this->assertArrayHasKey('order', $subject->validationErrors()->all());
     }
 
     public function testWhenSignatureInvalid()
@@ -91,12 +89,13 @@ class XsollaPaymentProcessorTest extends TestCase
         $subject = new XsollaPaymentProcessor($params, $this->invalidSignature());
 
         $this->expectException(InvalidSignatureException::class);
-        $this->runSubject($subject);
+
+        $subject->run();
     }
 
     public function testWhenOrderProcessingState()
     {
-        $this->order = Order::factory()->processing()->create();
+        $this->order = Order::factory()->paymentRequested()->create();
         $params = $this->getTestParams();
         $subject = new XsollaPaymentProcessor($params, $this->validSignature());
         $subject->run();
@@ -111,19 +110,16 @@ class XsollaPaymentProcessorTest extends TestCase
         $params = $this->getTestParams();
         $subject = new XsollaPaymentProcessor($params, $this->validSignature());
 
-        // want to examine the contents of validationErrors
-        $thrown = $this->runSubject($subject);
+        $this->expectExceptionCallable(fn () => $subject->run(), PaymentProcessorException::class);
 
-        $errors = $subject->validationErrors()->all();
-        $this->assertTrue($thrown);
-        $this->assertArrayHasKey('order.items', $errors);
+        $this->assertArrayHasKey('order.items', $subject->validationErrors()->all());
     }
 
     protected function setUp(): void
     {
         parent::setUp();
         config_set('payments.xsolla.api_key', 'api_key');
-        $this->order = Order::factory()->checkout()->create();
+        $this->order = Order::factory()->paymentApproved()->create();
     }
 
     private function getTestParams(array $overrides = [])
@@ -148,25 +144,11 @@ class XsollaPaymentProcessorTest extends TestCase
         return array_merge($base, $overrides);
     }
 
-    // wrapper to catch the exception
-    // so that the contents of validationErrors can be examined.
-    private function runSubject($subject)
-    {
-        try {
-            $subject->run();
-        } catch (PaymentProcessorException $e) {
-            return true;
-        }
-
-        return false;
-    }
-
     private function validSignature()
     {
         return new class implements PaymentSignature {
-            public function isValid()
+            public function assertValid(): void
             {
-                return true;
             }
         };
     }
@@ -174,9 +156,9 @@ class XsollaPaymentProcessorTest extends TestCase
     private function invalidSignature()
     {
         return new class implements PaymentSignature {
-            public function isValid()
+            public function assertValid(): void
             {
-                return false;
+                throw new InvalidSignatureException();
             }
         };
     }

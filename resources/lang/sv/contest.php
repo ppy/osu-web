@@ -14,12 +14,13 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'kommentarer',
         'hide_judged' => 'dölj bedömda bidrag',
         'nav_title' => 'bedöm',
         'no_current_vote' => 'du har inte röstat ännu.',
         'update' => 'uppdatera',
         'validation' => [
-            'missing_score' => '',
+            'missing_score' => 'saknar resultat',
             'contest_vote_judged' => 'kan inte rösta i bedömda tävlingar',
         ],
         'voted' => 'Du har redan röstat på detta bidrag.',
@@ -29,7 +30,9 @@ return [
         '_' => 'Bedömningsresultat',
         'creator' => 'skapare',
         'score' => 'Poäng',
+        'score_std' => '',
         'total_score' => 'total poäng',
+        'total_score_std' => '',
     ],
 
     'voting' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'röster',
         'count' => ':count_delimited rösta|:count_delimited röster ',
         'points' => ':count_delimited poäng|:count_delimited poäng',
+        'points_float' => '',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Öppen för bidrag',
         'voting' => 'Röstning startad',
         'results' => 'Resultat ute',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

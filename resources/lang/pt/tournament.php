@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'none_running' => 'Não há torneios a decorrer de momento, por favor volta mais tarde!',
+        'none_running' => 'Não há torneios a decorrer de momento. Volta mais tarde!',
         'registration_period' => 'Inscrição: :start até :end',
 
         'header' => [
@@ -24,9 +24,9 @@ return [
 
     'show' => [
         'banner' => 'Apoia a tua equipa',
-        'entered' => 'Estás inscrito(a) para este torneio.<br><br>Nota que isto não significa que foste atribuído(a) a uma equipa.<br><br>Instruções adicionais serão enviadas para ti via email próximas à data do torneio, por isso e por favor assegura-te que o endereço de email da tua conta osu! é válida!',
+        'entered' => 'Estás inscrito(a) para este torneio.<br><br>Nota que isto não significa que foste atribuído(a) a uma equipa.<br><br>Instruções adicionais serão enviadas por email próximas à data do torneio, portanto assegura-te que o endereço de email da tua conta osu! é válida!',
         'info_page' => 'Página de informações',
-        'login_to_register' => 'Por favor :login para veres os detalhes da inscrição!',
+        'login_to_register' => ':login para veres os detalhes da inscrição!',
         'not_yet_entered' => 'Não estás inscrito(a) para este torneio.',
         'rank_too_low' => 'Desculpa, não cumpres os requisitos de classificação para este torneio!',
         'registration_ends' => 'As inscrições fecham em :date',

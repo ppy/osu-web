@@ -55,6 +55,7 @@ return [
         'contact' => 'Contact:',
         'date' => 'Date:',
         'echeck_delay' => 'As your payment was an eCheck, please allow up to 10 extra days for the payment to clear through PayPal!',
+        'echeck_denied' => 'The eCheck payment was rejected by PayPal.',
         'hide_from_activity' => 'osu!supporter tags in this order are not displayed in your recent activities.',
         'sent_via' => 'Sent Via:',
         'shipping_to' => 'Shipping To:',
@@ -123,7 +124,7 @@ return [
         ],
 
         'item' => [
-            'quantity' => 'Quantity',
+            'quantity' => 'quantity',
 
             'display_name' => [
                 'supporter_tag' => ':name for :username (:duration)',
@@ -173,6 +174,7 @@ return [
 
         'add_to_cart' => 'Add to Cart',
         'notify' => 'Notify me when available!',
+        'out_of_stock' => 'Out of stock',
 
         'notification_success' => 'you will be notified when we have new stock. click :link to cancel',
         'notification_remove_text' => 'here',

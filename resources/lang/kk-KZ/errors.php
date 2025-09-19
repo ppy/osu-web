@@ -7,6 +7,7 @@ return [
     'load_failed' => '',
     'missing_route' => '',
     'no_restricted_access' => '',
+    'param_too_large' => '',
     'supporter_only' => '',
     'unknown' => '',
 
@@ -28,9 +29,15 @@ return [
     'checkout' => [
         'generic' => '',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => '',
         'invalid_cursor_exception' => '',
         'operation_timeout_exception' => '',
+    ],
+    'user_report' => [
+        'recently_reported' => "",
     ],
 ];

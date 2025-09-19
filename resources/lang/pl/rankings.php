@@ -9,6 +9,16 @@ return [
         'title' => 'Kraj',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Poziom trudności',
+        'top_10p' => 'Wynik 90. percentyla',
+        'top_50p' => 'Wynik 50. percentyla',
+        'unavailable' => [
+            'future' => 'Wyzwanie dnia w określonej dacie jeszcze się nie rozpoczęło!',
+            'past' => 'Brak wyzwania dnia w określonej dacie!',
+        ],
+    ],
+
     'filter' => [
         'title' => 'Pokaż',
 
@@ -24,17 +34,18 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Ten użytkownik jest pozycjonowany w rankingu globalnym przez okres krótszy niż 30 dni.',
     ],
 
     'type' => [
-        'charts' => 'Wyróżnionych',
+        'charts' => 'wyróżnionych',
         'country' => 'krajowy',
+        'daily_challenge' => 'wyzwanie dnia',
+        'global' => 'globalny',
         'kudosu' => 'kudosu',
         'multiplayer' => 'wieloosobowy',
-        'performance' => 'globalny',
-        'score' => 'punktowy',
         'seasons' => 'sezony',
+        'team' => 'zespołów',
     ],
 
     'seasons' => [
@@ -42,6 +53,9 @@ return [
         'ongoing' => 'Ten sezon nadal trwa - wkrótce zostanie dodanych więcej gier.',
         'room_count' => 'Liczba gier',
         'url' => 'Dowiedz się więcej o tym sezonie.',
+        'validation' => [
+            'not_enough_factors' => 'brak wystarczającej liczby parametrów do przeprowadzenia obliczeń',
+        ],
     ],
 
     'spotlight' => [
@@ -55,6 +69,8 @@ return [
         'accuracy' => 'Celność',
         'active_users' => 'Aktywni użytkownicy',
         'country' => 'Kraj',
+        'division' => 'Ranga',
+        'members' => 'Liczba członków',
         'play_count' => 'Liczba zagrań',
         'performance' => 'Liczba pp',
         'total_score' => 'Łączna liczba punktów',

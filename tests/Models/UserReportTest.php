@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Tests\Models;
 
+use App\Exceptions\InvariantException;
 use App\Exceptions\ValidationException;
 use App\Libraries\MorphMap;
 use App\Models\BeatmapDiscussion;
@@ -15,18 +16,39 @@ use App\Models\Beatmapset;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Forum;
+use App\Models\Team;
 use App\Models\Traits\ReportableInterface;
 use App\Models\User;
 use App\Models\UserReport;
+use Carbon\Carbon;
 use Exception;
 use Tests\TestCase;
 
 class UserReportTest extends TestCase
 {
+    public static function reportableClasses(): array
+    {
+        $reportables = [];
+
+        foreach (MorphMap::MAP as $class => $_name) {
+            if (isset(class_implements($class)[ReportableInterface::class])) {
+                $reportables[] = [$class];
+            }
+        }
+
+        // Sanity check to make sure there are models to test.
+        if (count($reportables) === 0) {
+            throw new Exception('No reportables found');
+        }
+
+        return $reportables;
+    }
+
     private static function getReportableUser(ReportableInterface $reportable)
     {
         return match ($reportable::class) {
             Message::class => $reportable->sender,
+            Team::class => $reportable->leader,
             User::class => $reportable,
             default => $reportable->user,
         };
@@ -37,26 +59,32 @@ class UserReportTest extends TestCase
         $modelFactory = $class::factory();
         $userColumn = 'user_id';
 
-        if ($class === Beatmapset::class) {
-            $modelFactory = $modelFactory->pending();
-        }
+        switch ($class) {
+            case Beatmapset::class:
+                $modelFactory = $modelFactory->pending();
+                break;
 
-        if ($class === BeatmapDiscussionPost::class) {
-            $modelFactory = $modelFactory->state([
-                'beatmap_discussion_id' => BeatmapDiscussion::factory()->general()->state([
-                    'beatmapset_id' => Beatmapset::factory(),
-                ]),
-            ]);
-        }
+            case BeatmapDiscussionPost::class:
+                $modelFactory = $modelFactory->state([
+                    'beatmap_discussion_id' => BeatmapDiscussion::factory()->general()->state([
+                        'beatmapset_id' => Beatmapset::factory(),
+                    ]),
+                ]);
+                break;
 
-        if ($class === Forum\Post::class) {
-            $userColumn = 'poster_id';
-        }
+            case Forum\Post::class:
+                $userColumn = 'poster_id';
+                break;
 
-        if ($class === Message::class) {
-            $modelFactory = $modelFactory->state([
-                'channel_id' => Channel::factory()->type('public'),
-            ]);
+            case Message::class:
+                $modelFactory = $modelFactory->state([
+                    'channel_id' => Channel::factory()->type('public'),
+                ]);
+                break;
+
+            case Team::class:
+                $userColumn = 'leader_id';
+                break;
         }
 
         return $class === User::class
@@ -101,6 +129,16 @@ class UserReportTest extends TestCase
 
         $this->expectException(ValidationException::class);
         $message->reportBy($reporter, static::reportParams());
+    }
+
+    public function testCannotReportIfInTeam(): void
+    {
+        $team = Team::factory()->create();
+        $reporter = User::factory()->create();
+        $team->addMember($team->applications()->create(['user_id' => $reporter->getKey()]));
+
+        $this->expectException(ValidationException::class);
+        $team->reportBy($reporter, static::reportParams());
     }
 
     /**
@@ -170,9 +208,11 @@ class UserReportTest extends TestCase
         if ($reportable instanceof BestModel) {
             $this->assertSame($reportable->getKey(), $report->score_id);
         }
-        $reportableUserId = $reportable instanceof Forum\Post
-            ? $reportable->poster_id
-            : $reportable->user_id;
+        $reportableUserId = match ($reportable::class) {
+            Forum\Post::class => $reportable->poster_id,
+            Team::class => $reportable->leader_id,
+            default => $reportable->user_id
+        };
         $this->assertSame($reportableUserId, $report->user_id);
         $this->assertTrue($report->reportable->is($reportable));
     }
@@ -192,21 +232,39 @@ class UserReportTest extends TestCase
         $this->assertTrue(true, 'should not fail getting notification routing url');
     }
 
-    public static function reportableClasses(): array
+    public function testReportingAgainAfterAWhile(): void
     {
-        $reportables = [];
+        $reportable = static::makeReportable(User::class);
+        $reporter = User::factory()->create();
 
-        foreach (MorphMap::MAP as $class => $_name) {
-            if (isset(class_implements($class)[ReportableInterface::class])) {
-                $reportables[] = [$class];
-            }
-        }
+        $oldReport = $reportable->reportBy($reporter, static::reportParams([
+            'comments' => 'test',
+        ]));
+        $oldReport->update(['timestamp' => Carbon::now()->subYears(1)]);
 
-        // Sanity check to make sure there are models to test.
-        if (count($reportables) === 0) {
-            throw new Exception('No reportables found');
-        }
+        $this->expectCountChange(fn () => $reportable->fresh()->reportedIn()->count(), 1);
 
-        return $reportables;
+        $reportable->reportBy($reporter, static::reportParams([
+            'comments' => 'test',
+        ]));
+    }
+
+    public function testReportingAgainImmediate(): void
+    {
+        $reportable = static::makeReportable(User::class);
+        $reporter = User::factory()->create();
+
+        $oldReport = $reportable->reportBy($reporter, static::reportParams([
+            'comments' => 'test',
+        ]));
+        $oldReport->update(['timestamp' => Carbon::now()->subMinute(1)]);
+
+        $this->expectCountChange(fn () => $reportable->fresh()->reportedIn()->count(), 0);
+
+        $this->expectExceptionCallable(function () use ($reportable, $reporter) {
+            $reportable->reportBy($reporter, static::reportParams([
+                'comments' => 'test',
+            ]));
+        }, InvariantException::class, osu_trans('errors.user_report.recently_reported'));
     }
 }

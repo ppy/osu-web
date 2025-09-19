@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'not_found' => "",
+    'not_found' => "Tanımlanmış :model bulunamadı.",
 
     'name' => [
-        'App\Models\Beatmap' => '',
-        'App\Models\Beatmapset' => '',
+        'App\Models\Beatmap' => 'beatmap zorluğu',
+        'App\Models\Beatmapset' => 'Beatmap (Harita)',
     ],
 ];

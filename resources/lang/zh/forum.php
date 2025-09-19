@@ -15,7 +15,7 @@ return [
         'create' => [
             '_' => '设置封面',
             'button' => '上传封面',
-            'info' => '图片尺寸应为 :dimensions 。 也可以将图片拖动到这里上传。',
+            'info' => '图片尺寸应为 :dimensions。也可以将图片拖放到这里上传。',
         ],
 
         'destroy' => [
@@ -80,6 +80,7 @@ return [
         'confirm_restore' => '恢复此主题？',
         'deleted' => '已删除的主题',
         'go_to_latest' => '查看最新的帖子',
+        'go_to_unread' => '查看第一条未读帖',
         'has_replied' => '你已回复过此主题',
         'in_forum' => '在 :forum',
         'latest_post' => ':when :user',
@@ -116,7 +117,7 @@ return [
 
             'placeholder' => [
                 'body' => '在这里输入正文',
-                'title' => '点击这里设置标题',
+                'title' => '点击这里输入标题',
             ],
         ],
 
@@ -228,17 +229,17 @@ return [
 
             'poll' => [
                 'hide_results' => '隐藏投票结果。',
-                'hide_results_info' => '这些内容只在投票结束之后显示。',
+                'hide_results_info' => '相关内容将在投票结束后显示。',
                 'length' => '投票持续',
                 'length_days_suffix' => '天',
                 'length_info' => '如果无期限则留空',
                 'max_options' => '最大可选数',
-                'max_options_info' => '填写每个人最多可以选的选项数。',
+                'max_options_info' => '投票可选选项上限。',
                 'options' => '选项',
-                'options_info' => '一个选项占一行，最多10个选项。',
+                'options_info' => '每个选项单独一行，最多可输入 10 个选项。',
                 'title' => '问题',
                 'vote_change' => '允许修改',
-                'vote_change_info' => '如果选中，则用户可以更改他们的投票。',
+                'vote_change_info' => '如果开启此功能，用户可修改已提交的投票。',
             ],
         ],
 
@@ -294,6 +295,27 @@ return [
             'to_1_done' => '已添加 "已解决" 标签',
         ],
 
+        'issue_tag_osulazer' => [
+            'to_0' => '删除 "osu!lazer" 标签',
+            'to_0_done' => '已删除 "osu!lazer" 标签',
+            'to_1' => '添加 "osu!lazer" 标签',
+            'to_1_done' => '已添加 "osu!lazer" 标签',
+        ],
+
+        'issue_tag_osustable' => [
+            'to_0' => '删除 "osu!stable" 标签',
+            'to_0_done' => '已删除 "osu!stable" 标签',
+            'to_1' => '添加 "osu!stable" 标签',
+            'to_1_done' => '已添加 "osu!stable" 标签',
+        ],
+
+        'issue_tag_osuweb' => [
+            'to_0' => '删除 "osu!web" 标签',
+            'to_0_done' => '已删除 "osu!web" 标签',
+            'to_1' => '添加 "osu!web" 标签',
+            'to_1_done' => '已添加 "osu!web" 标签',
+        ],
+
         'lock' => [
             'is_locked' => '主题已被锁定，不能回复',
             'to_0' => '解锁主题',
@@ -331,17 +353,17 @@ return [
 
             'feature_vote' => [
                 'current' => '当前优先级: +:count',
-                'do' => '提升这个请求',
+                'do' => '推动此提案',
 
                 'info' => [
-                    '_' => '这是一个 :feature_request。:supporters 可以为新功能请求投票。',
-                    'feature_request' => '新功能请求',
+                    '_' => '这是一个 :feature_request。:supporters 可以为新功能提案投票。',
+                    'feature_request' => '新功能提案',
                     'supporters' => 'osu! 支持者',
                 ],
 
                 'user' => [
-                    'count' => '{0} 0 票|{1} :count_delimited 票|[2,*] :count_delimited 票',
-                    'current' => '还有 :votes 张选票。',
+                    'count' => '{0} 0|{1} :count_delimited|[2,*] :count_delimited',
+                    'current' => '您还有 :votes 张选票。',
                     'not_enough' => "没有票了",
                 ],
             ],
@@ -359,8 +381,8 @@ return [
                 ],
 
                 'detail' => [
-                    'end_time' => ':time 结束',
-                    'ended' => ':time 结束',
+                    'end_time' => '将于 :time 结束',
+                    'ended' => '结束于 :time',
                     'results_hidden' => '投票结束后才显示结果。',
                     'total' => '总票数: :count',
                 ],
@@ -368,7 +390,7 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching' => '未订阅',
+            'to_not_watching' => '不订阅',
             'to_watching' => '订阅',
             'to_watching_mail' => '订阅并启用邮件通知',
             'tooltip_mail_disable' => '通知已启用。点击禁用',

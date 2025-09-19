@@ -1,7 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-.no-print, .no-print * {
+.no-print,
+.no-print * {
   @media print {
     display: none !important;
   }
@@ -42,6 +43,10 @@
   display: block;
   aspect-ratio: 16 / 9;
   width: 100%;
+
+  &--bbcode {
+    max-width: 425px;
+  }
 }
 
 .u-fancy-scrollbar {
@@ -62,6 +67,12 @@
   display: none !important;
 }
 
+.u-hidden-desktop {
+  @media @desktop {
+    display: none !important;
+  }
+}
+
 .u-hidden-narrow {
   @media @narrow {
     display: none !important;
@@ -70,6 +81,10 @@
 
 .u-hover {
   pointer-events: auto !important;
+}
+
+.u-hover-none {
+  pointer-events: none !important;
 }
 
 .u-invisible {

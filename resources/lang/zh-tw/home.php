@@ -26,6 +26,9 @@ return [
         'placeholder' => '請輸入以搜尋',
         'title' => '搜尋',
 
+        'artist_track' => [
+            'more_simple' => '查看更多精選藝術家曲目的搜尋結果',
+        ],
         'beatmapset' => [
             'login_required' => '登入以搜尋圖譜',
             'more' => '搜尋到 :count 張圖譜',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => '所有',
+            'artist_track' => '精選藝術家曲目',
             'beatmapset' => '圖譜',
             'forum_post' => '論壇',
+            'team' => '團隊',
             'user' => '玩家',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '查看更多團隊搜尋結果',
         ],
 
         'user' => [
@@ -91,7 +100,7 @@ return [
 
         'help' => [
             '_' => '如果您在啟動遊戲或註冊帳號時遇到問題，請:help_forum_link或:support_button。',
-            'help_forum_link' => '查看幫助論壇',
+            'help_forum_link' => '查看說明論壇',
             'support_button' => '聯絡支援團隊',
         ],
 
@@ -133,14 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '每日挑戰圖譜',
             'new' => '新進榜圖譜',
             'popular' => '熱門圖譜',
             'by_user' => '由 :user',
+            'resets' => '重設時間：:ends',
         ],
         'buttons' => [
             'download' => '下載 osu!',
             'support' => '贊助 osu!',
             'store' => 'osu! 商店',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '開啟管理控制台',
+            ],
         ],
     ],
 ];

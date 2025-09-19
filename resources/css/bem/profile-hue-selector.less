@@ -1,0 +1,48 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.profile-hue-selector {
+  @handle-width: 18px;
+  position: relative;
+  height: 36px;
+  margin: 0 (@handle-width / 2);
+  display: grid;
+
+  &.ui-slider-disabled {
+    opacity: 0.6;
+  }
+
+  &__handle {
+    --border-colour: hsl(var(--hsl-c1));
+    border: 2px solid var(--border-colour);
+
+    &--default {
+      --border-colour: hsl(var(--hsl-b1));
+    }
+
+    .ui-slider &.ui-slider-handle {
+      .default-border-radius();
+      margin-left: (@handle-width / -2);
+      top: 0;
+      width: @handle-width;
+      height: 100%;
+      background-color: hsl(
+        var(--hue),
+        var(--c-saturation-2),
+        var(--c-lightness-2)
+      );
+    }
+  }
+
+  &__range {
+    .default-border-radius();
+    margin: 7px 0;
+
+    --start-colour: hsl(0, var(--c-saturation-3), var(--c-lightness-3));
+    background: linear-gradient(
+      to right in hsl longer hue,
+      var(--start-colour),
+      var(--start-colour)
+    );
+  }
+}

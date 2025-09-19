@@ -5,15 +5,16 @@
 
 return [
     'mode' => [
+        'artist_track' => 'Pistes de Featured Artists',
         'beatmapset' => 'Beatmap',
         'forum_post' => 'Forum',
         'other' => 'Autre',
+        'team' => 'Équipe',
         'user' => 'Joueur',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => 'Aucun résultat',
         'empty_for' => 'Aucun résultat pour :modes',
         'more' => 'Plus de résultats de recherche : :mode',
         'title' => 'Résultats de recherche : :mode',

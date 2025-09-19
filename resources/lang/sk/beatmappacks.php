@@ -13,14 +13,11 @@ return [
         'blurb' => [
             'important' => 'PREČÍTAJTE SI PRED SŤAHOVANÍM',
             'install_instruction' => 'Inštalácia: Keď bol nainštalovaný balíček, extrahujte vnútro balíčka do osu! Songs zložky a osu! urobí zbytok.',
-            'note' => [
-                '_' => 'Taktiež je veľmi odporúčané :scary, keďže staré mapy sú oveľa menej kvalitné v porovnaní s tými nedávnymi.',
-                'scary' => 'sťahovať balíky od najnovších po najstaršie',
-            ],
         ],
     ],
 
     'show' => [
+        'created_by' => '',
         'download' => 'Stiahnúť',
         'item' => [
             'cleared' => 'splnené',

@@ -20,17 +20,19 @@ return [
         'channel' => 'чат',
         'forum_topic' => 'форум',
         'news_post' => 'новини',
+        'team' => 'команда',
         'user' => 'профіль',
     ],
 
     'filters' => [
         '_' => 'усе',
-        'user' => 'профіль',
         'beatmapset' => 'мапи',
-        'forum_topic' => 'форум',
-        'news_post' => 'новини',
         'build' => 'збiрки',
         'channel' => 'чат',
+        'forum_topic' => 'форум',
+        'news_post' => 'новини',
+        'team' => 'команда',
+        'user' => 'профіль',
     ],
 
     'item' => [
@@ -51,15 +53,15 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Новий допис на ":title" від :username',
                 'beatmapset_discussion_post_new_compact' => 'Новий допис від :username ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Новий допис від :username',
-                'beatmapset_discussion_review_new' => 'Новий відгук на ":title" від :username, що містить проблеми: :problems, пропозиції: :suggestions, похвали: :praises',
-                'beatmapset_discussion_review_new_compact' => 'Новий відгук від :username, що містить проблеми: :problems, пропозиції: :suggestions, похвали: :praises',
+                'beatmapset_discussion_review_new' => 'Новий відгук на ":title" від :username, що містить :review_counts',
+                'beatmapset_discussion_review_new_compact' => 'Новий відгук від :username, що містить :review_counts',
                 'beatmapset_discussion_unlock' => 'Мапа ":title" розблокована для обговорень',
                 'beatmapset_discussion_unlock_compact' => 'Обговорення відкрито',
 
                 'review_count' => [
-                    'praises' => ':count_delimited похвал|:count_delimited похвали',
-                    'problems' => ':count_delimited проблем|:count_delimited проблеми',
-                    'suggestions' => ':count_delimited пропозиція|:count_delimited пропозицій',
+                    'praises' => ':count_delimited похвалу|:count_delimited похвали|:count_delimited похвал',
+                    'problems' => ':count_delimited проблему|:count_delimited проблеми|:count_delimited проблем',
+                    'suggestions' => ':count_delimited пропозицію|:count_delimited пропозиції|:count_delimited пропозицій',
                 ],
             ],
 
@@ -81,8 +83,8 @@ return [
                 'beatmapset_nominate_compact' => 'Карту було номіновано',
                 'beatmapset_qualify' => 'Карта ":title" отримала достатньо номінацій, і очікує отримання рейтингу',
                 'beatmapset_qualify_compact' => 'Карта увійшла до черги рейтингу',
-                'beatmapset_rank' => '":title" стала ранговою',
-                'beatmapset_rank_compact' => 'Мапа стала ранговою',
+                'beatmapset_rank' => '":title" стала рейтинговою',
+                'beatmapset_rank_compact' => 'Мапа стала рейтинговою',
                 'beatmapset_remove_from_loved' => '":title" вилучена з Улюблених',
                 'beatmapset_remove_from_loved_compact' => 'Бітмапа була вилучена з Улюблених',
                 'beatmapset_reset_nominations' => 'Номінацію для мапи ":title" було скинуто через проблему від :username',
@@ -106,7 +108,7 @@ return [
                 '_' => 'Нове оголошення',
 
                 'announce' => [
-                    'channel_announcement' => ':username сказав ":title"',
+                    'channel_announcement' => ':username каже ":title"',
                     'channel_announcement_compact' => ':title',
                     'channel_announcement_group' => 'Оголошення від :username',
                 ],
@@ -116,9 +118,19 @@ return [
                 '_' => 'Нове повідомлення',
 
                 'pm' => [
-                    'channel_message' => ':username сказав ":title"',
+                    'channel_message' => ':username каже ":title"',
                     'channel_message_compact' => ':title',
                     'channel_message_group' => 'від :username',
+                ],
+            ],
+
+            'channel_team' => [
+                '_' => 'Нове повідомлення команди',
+
+                'team' => [
+                    'channel_team' => ':username каже ":title"',
+                    'channel_team_compact' => ':username каже ":title"',
+                    'channel_team_group' => ':username каже ":title"',
                 ],
             ],
         ],
@@ -156,6 +168,22 @@ return [
                 '_' => 'Нова відповідь на форумі',
                 'forum_topic_reply' => ':username відповів в темі ":title".',
                 'forum_topic_reply_compact' => ':username відповів',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => 'Запит на вступ до команди',
+
+                'team_application_accept' => "Тепер ви член команди :title",
+                'team_application_accept_compact' => "Тепер ви член команди :title",
+
+                'team_application_group' => 'Оновлення запитів до команди',
+
+                'team_application_reject' => 'Ваш запит на вступ до команди :title був відхилений',
+                'team_application_reject_compact' => 'Ваш запит на вступ до команди :title був відхилений',
+                'team_application_store' => ':title запросив приєднання до вашої команди',
+                'team_application_store_compact' => ':title запросив приєднання до вашої команди',
             ],
         ],
 
@@ -205,7 +233,7 @@ return [
                 'beatmapset_love' => '":title" підвищено до коханого',
                 'beatmapset_nominate' => '":title" було номіновано',
                 'beatmapset_qualify' => '":title" отримав достатню кількість номінацій і увійшов до черги рейтингу',
-                'beatmapset_rank' => '":title" було оцінено',
+                'beatmapset_rank' => '":title" стала рейтинговою',
                 'beatmapset_remove_from_loved' => '":title" була вилучена з Улюблених',
                 'beatmapset_reset_nominations' => 'Номінація ":title" була скинута',
             ],
@@ -217,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Нове оголошення в ":name"',
+                'channel_announcement' => 'Нове оголошення в ":name"',
             ],
-
             'channel' => [
-                'pm' => 'Ви отримали нове повідомлення від :username',
+                'channel_message' => 'Ви отримали нове повідомлення від :username ',
+            ],
+            'channel_team' => [
+                'channel_team' => 'Нове повідомлення в команді ":name"',
             ],
         ],
 
@@ -240,6 +270,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Є нові відповіді в ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Тепер ви член команди :title",
+                'team_application_reject' => 'Ваш запит на вступ до команди :title був відхилений',
+                'team_application_store' => ':title запросив приєднання до вашої команди',
             ],
         ],
 

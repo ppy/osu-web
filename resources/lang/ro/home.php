@@ -26,6 +26,9 @@ return [
         'placeholder' => 'tastează pentru a căuta',
         'title' => 'Caută',
 
+        'artist_track' => [
+            'more_simple' => 'Vezi mai multe rezultate de căutare pentru artiști oficiali',
+        ],
         'beatmapset' => [
             'login_required' => 'Conectați-vă pentru a căuta beatmap-uri',
             'more' => 'Încă :count beatmap-uri rezultate pentru această căutare',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'tot',
+            'artist_track' => 'melodie artist oficial',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
+            'team' => 'echipă',
             'user' => 'jucător',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => 'Vezi mai multe rezultate de căutare pentru echipe',
         ],
 
         'user' => [
@@ -133,14 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => 'Beatmap Provocare Zilnică',
             'new' => 'Beatmap-uri Clasate Noi',
             'popular' => 'Beatmap-uri Populare',
             'by_user' => 'de :user',
+            'resets' => 'se resetează :ends',
         ],
         'buttons' => [
             'download' => 'Descarcă osu!',
             'support' => 'Sprijină osu!',
             'store' => 'Magazinul osu!',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

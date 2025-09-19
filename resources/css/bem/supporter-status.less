@@ -2,12 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .supporter-status {
-  @top: supporter-status;
   @animation-rate: 937.5ms; // 64bpm (aka 128bpm at half-time)
   color: white;
 
   @keyframes support-fill-pour {
-    0% { width: 0; }
+    0% {
+      width: 0;
+    }
   }
 
   display: flex;
@@ -44,12 +45,13 @@
   }
 
   &__pippi {
-    .at2x-simple('~@images/layout/supporter/header-pippi.png');
-    background-size: cover;
-    background-position: center;
+    .at2x-simple("~@images/layout/supporter/header-pippi.png");
+    background-size: contain;
+    background-position: center bottom;
+    background-repeat: no-repeat;
     height: 348px;
     width: 375px;
-    align-items: flex-end;
+    flex: none;
     max-width: 100%;
   }
 

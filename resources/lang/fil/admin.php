@@ -53,6 +53,11 @@ return [
                 'beatmapsets' => '',
                 'forum' => '',
                 'general' => '',
+
+                'users' => [
+                    'header' => 'User',
+                    'cover_presets' => 'Mga Preset ng Profile Cover',
+                ],
             ],
         ],
     ],

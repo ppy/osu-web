@@ -5,9 +5,8 @@
 
 namespace App\Libraries\Fulfillments;
 
-use App\Events\Fulfillments\UsernameChanged;
-use App\Events\Fulfillments\UsernameReverted;
 use App\Exceptions\ChangeUsernameException;
+use App\Exceptions\Store\FulfillmentException;
 use App\Models\Event;
 
 class UsernameChangeFulfillment extends OrderFulfiller
@@ -18,14 +17,15 @@ class UsernameChangeFulfillment extends OrderFulfiller
 
     public function run()
     {
-        $this->throwOnFail($this->validateRun());
+        $this->assertValidRun();
 
         $user = $this->order->user;
+
         try {
             $history = $user->changeUsername($this->getNewUserName(), $this->getChangeType());
         } catch (ChangeUsernameException $ex) {
             $this->validationErrors()->merge($ex->getErrors());
-            $this->throwOnFail();
+            throw new FulfillmentException($this->order, $this->validationErrors(), $ex);
         }
 
         Event::generate('usernameChange', [
@@ -33,19 +33,20 @@ class UsernameChangeFulfillment extends OrderFulfiller
             'history' => $history,
         ]);
 
-        event("store.fulfillments.run.{$this->taggedName()}", new UsernameChanged($user, $this->order));
+        $this->incrementRun();
     }
 
     public function revoke()
     {
-        $this->throwOnFail($this->validateRevoke());
+        $this->assertValidRevoke();
 
         $user = $this->order->user;
         $user->revertUsername();
-        event("store.fulfillments.revert.{$this->taggedName()}", new UsernameReverted($user, $this->order));
+
+        $this->incrementRevoke();
     }
 
-    private function validateRun()
+    private function assertValidRun(): void
     {
         $this->validationErrors()->reset();
 
@@ -66,10 +67,10 @@ class UsernameChangeFulfillment extends OrderFulfiller
             );
         }
 
-        return $this->validationErrors()->isEmpty();
+        $this->assertNoValidationErrors();
     }
 
-    private function validateRevoke()
+    private function assertValidRevoke(): void
     {
         $this->validationErrors()->reset();
 
@@ -86,7 +87,7 @@ class UsernameChangeFulfillment extends OrderFulfiller
             );
         }
 
-        return $this->validationErrors()->isEmpty();
+        $this->assertNoValidationErrors();
     }
 
     private function getChangeType()

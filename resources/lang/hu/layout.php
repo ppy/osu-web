@@ -113,6 +113,7 @@ return [
             'copyright' => 'Szerzői jog (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Adatvédelem',
+            'rules' => '',
             'server_status' => 'Szerver Állapot',
             'source_code' => 'Forráskód',
             'terms' => 'Felhasználási Feltételek',
@@ -199,6 +200,9 @@ return [
             'legacy_score_only_toggle_tooltip' => 'A Lazer mód a Lazer által beállított pontszámokat mutatja egy új pontozási algoritmussal',
             'logout' => 'Kijelentkezés',
             'profile' => 'Profilom',
+            'scoring_mode_toggle' => 'Klasszikus pontozás',
+            'scoring_mode_toggle_tooltip' => 'Módosítja a pontszámértékeket úgy, hogy közelebb álljon a klasszikus korlátlan pontozáshoz',
+            'team' => 'Csapatom',
         ],
     ],
 

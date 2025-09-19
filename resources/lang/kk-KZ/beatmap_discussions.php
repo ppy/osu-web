@@ -66,6 +66,13 @@ return [
         'version' => 'Деңгейі',
     ],
 
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => 'Жаңарту жоқ.',
+        'updating' => 'Жаңарту...',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Жауап беру үшін аккаунтқа кіріңіз',

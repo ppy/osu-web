@@ -7,6 +7,7 @@ return [
     'load_failed' => 'Ni bilo mogoče naložiti podatkov.',
     'missing_route' => 'Neveljaven url ali napačna metoda prošnje.',
     'no_restricted_access' => 'Ni mogoče opraviti tega dejanja medtem, ko je tvoj račun v omejenem stanju.',
+    'param_too_large' => '',
     'supporter_only' => 'Za uporabo te funkcije moraš biti osu!supporter.',
     'unknown' => 'Prišlo je do neznane napake.',
 
@@ -28,9 +29,15 @@ return [
     'checkout' => [
         'generic' => 'Napaka med zaključevanjem tvojega nakupa.',
     ],
+    'scores' => [
+        'invalid_id' => '',
+    ],
     'search' => [
         'default' => 'Ni bilo mogoče pridobiti nobenega rezultata, poskusi znova pozneje.',
         'invalid_cursor_exception' => 'Neveljavni določeni parametri kazalnika.',
         'operation_timeout_exception' => 'Iskalnik je trenutno bolj zaseden kot ponavadi, poskusi znova pozneje.',
+    ],
+    'user_report' => [
+        'recently_reported' => "",
     ],
 ];

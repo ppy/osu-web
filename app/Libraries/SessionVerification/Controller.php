@@ -12,98 +12,145 @@ use App\Models\LoginAttempt;
 
 class Controller
 {
+    const FALLBACK_MODES = [
+        'totp_gone' => [
+            'messageKey' => 'user_verification.errors.totp_gone',
+            'statusCode' => 422,
+        ],
+        'user_initiated' => [
+            'messageKey' => null,
+            'statusCode' => 200,
+        ],
+    ];
+
+    public static function mailFallback(State $state, array $options)
+    {
+        $method = $state->getMethod();
+        if ($method !== 'mail') {
+            $state->session->setVerificationMethod('mail');
+            $state->issueMail(true);
+        }
+
+        $message = $options['messageKey'] === null
+            ? null
+            : osu_trans($options['messageKey']);
+
+        return is_api_request()
+            ? response(['method' => $state->getMethod()], $options['statusCode'])
+            : response([
+                'authentication' => 'verify',
+                'box' => view(
+                    'users._verify_box',
+                    compact('message', 'state')
+                )->render(),
+            ], $options['statusCode'], ['x-turbo-action' => 'session-verification-mail-fallback']);
+    }
+
     public static function initiate()
     {
         static $statusCode = 401;
 
         app('route-section')->setError("{$statusCode}-verification");
 
-        $user = Helper::currentUserOrFail();
-        $email = $user->user_email;
+        $state = State::getCurrent();
+        $method = $state->getMethod();
 
-        $session = Helper::currentSession();
-        Helper::issue($session, $user, true);
-
-        if (is_api_request()) {
-            return response(null, $statusCode);
+        if ($method === 'mail') {
+            $state->issueMail(true);
         }
 
-        if (\Request::ajax()) {
+        if (is_api_request()) {
+            return response(compact('method'), $statusCode);
+        }
+
+        $request = \Request::instance();
+        if ($request->ajax() || ($request->getMethod() !== 'GET' && is_turbo_request($request))) {
             return response([
                 'authentication' => 'verify',
                 'box' => view(
                     'users._verify_box',
-                    compact('email')
+                    compact('state')
                 )->render(),
-            ], $statusCode);
+            ], $statusCode, ['x-turbo-action' => 'session-verification']);
         }
 
-        return ext_view('users.verify', compact('email'), null, $statusCode);
+        return ext_view('users.verify', compact('state'), null, $statusCode);
     }
 
     public static function reissue()
     {
-        $session = Helper::currentSession();
-        if ($session->isVerified()) {
+        $state = State::getCurrent();
+        if ($state->session->isVerified() || $state->getMethod() !== 'mail') {
             return response(null, 422);
         }
 
-        Helper::issue($session, Helper::currentUserOrFail());
+        $state->issueMail(false);
 
         return response(['message' => osu_trans('user_verification.errors.reissued')], 200);
     }
 
     public static function verify()
     {
-        $session = Helper::currentSession();
-        if ($session->isVerified()) {
+        $state = State::getCurrent();
+        if ($state->session->isVerified()) {
             return response(null, 204);
         }
 
         $key = strtr(get_string(\Request::input('verification_key')) ?? '', [' ' => '']);
-        $user = Helper::currentUserOrFail();
-        $state = State::fromSession($session);
 
         try {
-            if ($state === null) {
-                throw new UserVerificationException('expired', true);
+            if ($state->getMethod() === 'totp') {
+                $totp = $state->user->userTotpKey;
+
+                if ($totp === null) {
+                    // erased between verification start and here
+                    return static::mailFallback($state, static::FALLBACK_MODES['totp_gone']);
+                }
+                $totp->assertValidKey($key);
+            } else {
+                $mailState = MailState::fromSession($state->session);
+
+                if ($mailState === null) {
+                    throw new UserVerificationException('expired', true);
+                }
+                $mailState->verify($key);
             }
-            $state->verify($key);
         } catch (UserVerificationException $e) {
-            Helper::logAttempt('input', 'fail', $e->reasonKey());
+            $reason = $e->reasonKey();
+            Helper::logAttempt('input', 'fail', $reason);
 
-            if ($e->reasonKey() === 'incorrect_key') {
-                LoginAttempt::logAttempt(\Request::getClientIp(), $user, 'verify-mismatch', $key);
+            if ($reason === 'incorrect_key') {
+                LoginAttempt::logAttempt(\Request::getClientIp(), $state->user, 'verify-mismatch', $key);
             }
 
-            if ($e->shouldReissue()) {
-                Helper::issue($session, $user);
+            if ($e->shouldReissueMail()) {
+                $state->issueMail(false);
             }
 
-            return error_popup($e->getMessage());
+            throw $e;
         }
 
         Helper::logAttempt('input', 'success');
-        Helper::markVerified($session, $state);
+        $state->markVerified($mailState ?? null);
 
         return response(null, 204);
     }
 
     public static function verifyLink()
     {
-        $state = State::fromVerifyLink(get_string(\Request::input('key')) ?? '');
+        $mailState = MailState::fromVerifyLink(get_string(\Request::input('key')) ?? '');
 
-        if ($state === null) {
+        if ($mailState === null) {
             Helper::logAttempt('link', 'fail', 'incorrect_key');
 
             return ext_view('accounts.verification_invalid', null, null, 404);
         }
 
-        $session = $state->findSession();
+        $session = $mailState->findSession();
         // Otherwise pretend everything is okay if session is missing
         if ($session !== null) {
             Helper::logAttempt('link', 'success');
-            Helper::markVerified($session, $state);
+            Helper::markVerified($session, $mailState);
         }
 
         return ext_view('accounts.verification_completed');

@@ -6,14 +6,18 @@ import BasicSelectOptions from 'components/basic-select-options';
 import BeatmapsetEvents, { Props as BeatmapsetEventsProps } from 'components/beatmapset-events';
 import BlockButton from 'components/block-button';
 import ChatIcon from 'components/chat-icon';
+import ClickToCopy from 'components/click-to-copy';
 import CountdownTimer from 'components/countdown-timer';
 import { LandingNews } from 'components/landing-news';
 import MainNotificationIcon from 'components/main-notification-icon';
+import MenuImages from 'components/menu-images';
 import QuickSearchButton from 'components/quick-search-button';
 import RankingCountryFilter from 'components/ranking-country-filter';
 import RankingUserFilter from 'components/ranking-user-filter';
 import RankingVariantFilter from 'components/ranking-variant-filter';
-import SpotlightSelectOptions from 'components/spotlight-select-options';
+import ScoringModeToggle from 'components/scoring-mode-toggle';
+import TeamExtraMenu from 'components/team-extra-menu';
+import TracklistTrack from 'components/tracklist-track';
 import { UserCard } from 'components/user-card';
 import { startListening, UserCardTooltip } from 'components/user-card-tooltip';
 import { UserCards } from 'components/user-cards';
@@ -42,6 +46,14 @@ function reqStr(input: string|undefined) {
   return input;
 }
 
+core.reactTurbolinks.register('artist-track', (container) => (
+  <TracklistTrack {...reqJson(container.dataset.props)} />
+));
+
+core.reactTurbolinks.register('click-to-copy', (container) => (
+  <ClickToCopy {...reqJson(container.dataset.props)} />
+));
+
 core.reactTurbolinks.register('countdownTimer', (container) => (
   <CountdownTimer deadline={reqStr(container.dataset.deadline)} />
 ));
@@ -66,12 +78,8 @@ core.reactTurbolinks.register('beatmapset-panel', (container) => {
   return <BeatmapsetPanel {...observable(props)} />;
 });
 
-core.reactTurbolinks.register('basic-select-options', () => (
-  <BasicSelectOptions {...parseJson('json-basic-select-options')} />
-));
-
-core.reactTurbolinks.register('spotlight-select-options', () => (
-  <SpotlightSelectOptions {...parseJson('json-spotlight-select-options')} />
+core.reactTurbolinks.register('basic-select-options', (container) => (
+  <BasicSelectOptions {...reqJson(container.dataset.basicSelectOptions)} />
 ));
 
 core.reactTurbolinks.register('chat-icon', (container) => (
@@ -80,6 +88,10 @@ core.reactTurbolinks.register('chat-icon', (container) => (
 
 core.reactTurbolinks.register('main-notification-icon', (container) => (
   <MainNotificationIcon type={container.dataset.type} />
+));
+
+core.reactTurbolinks.register('menu-images', () => (
+  <MenuImages images={observable(parseJson('json-menu-images'))} />
 ));
 
 core.reactTurbolinks.register('notification-widget', (container) => (
@@ -107,6 +119,10 @@ core.reactTurbolinks.register('ranking-variant-filter', () => (
   <RankingVariantFilter {...parseJson('json-variant-filter')} />
 ));
 
+core.reactTurbolinks.register('scoring-mode-toggle', (container) => (
+  <ScoringModeToggle className={container.dataset.class ?? ''} />
+));
+
 core.reactTurbolinks.register('store-supporter-tag', (container) => {
   const maxMessageLength = getInt(container.dataset.maxMessageLength);
   if (maxMessageLength == null) {
@@ -115,6 +131,10 @@ core.reactTurbolinks.register('store-supporter-tag', (container) => {
 
   return <StoreSupporterTag maxMessageLength={maxMessageLength} />;
 });
+
+core.reactTurbolinks.register('team-extra-menu', (container) => (
+  <TeamExtraMenu {...reqJson(container.dataset.props)} />
+));
 
 core.reactTurbolinks.register('user-card', (container) => (
   <UserCard

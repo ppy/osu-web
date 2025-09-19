@@ -20,17 +20,19 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'forum',
         'news_post' => 'mga balita',
+        'team' => '',
         'user' => 'profile',
     ],
 
     'filters' => [
         '_' => 'lahat',
-        'user' => 'profile',
         'beatmapset' => 'mga beatmap',
-        'forum_topic' => 'forum',
-        'news_post' => 'mga balita',
         'build' => 'mga build',
         'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'mga balita',
+        'team' => '',
+        'user' => 'profile',
     ],
 
     'item' => [
@@ -121,6 +123,16 @@ return [
                     'channel_message_group' => 'mula kay :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -156,6 +168,22 @@ return [
                 '_' => 'Bagong reply sa forum',
                 'forum_topic_reply' => 'Tumugon si :username sa ":title"',
                 'forum_topic_reply_compact' => 'Tumugon si :username',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+
+                'team_application_group' => '',
+
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -217,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'May bagong anunsyo sa ":name"',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => 'Nakatanggap ka ng bagong mensahe mula kay :username',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -240,6 +270,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'May mga bagong tugon sa ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
+                'team_application_store' => '',
             ],
         ],
 

@@ -116,7 +116,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Sortieroptionen',
-                'description' => 'Länder-, Freundes- und modspezifische Ranglisten im Spiel einsehen!',
+                'description' => 'Sieh dir Ranglisten basierend auf Ländern, deiner Freundesliste oder spezifischer Modkombinationen im Spiel an!',
             ],
 
             'more_favourites' => [
@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Danke für deine bisherige Unterstützung! Du hast insgesamt :dollars durch :tags Supporter-Tag(s) beigesteuert!',
-            'gifted' => ":giftedTags deiner Supporter-Einkäufe waren Geschenke (im Wert von :giftedDollars), wie großzügig von dir!",
+            'contribution_with_duration' => 'Danke für deine ständige Unterstützung! Bis jetzt hast du insgesamt :dollars beigetragen, wodurch du das osu!supporter-Tag für :duration bekommen hast.',
             'not_yet' => "Du hast noch kein osu!supporter-Tag :(",
             'valid_until' => 'Dein aktuelles osu!supporter-Tag endet am :date!',
             'was_valid_until' => 'Dein osu!supporter-Tag war bis :date gültig.',
+
+            'gifted' => [
+                '_' => 'Von deinem Gesamtbeitrag hast du Tags im Wert von :dollars an :users verschenkt, die :duration abdecken. Wie großzügig!',
+                'users' => ':count_delimited anderen Nutzer|:count_delimited andere Nutzer',
+            ],
         ],
     ],
 ];

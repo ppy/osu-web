@@ -92,6 +92,29 @@ class RoomTest extends TestCase
         (new Room())->startGame($user, $params);
     }
 
+    public function testStartGameWithInvalidRuleset()
+    {
+        $beatmap = Beatmap::factory()->create([
+            'playmode' => 2,
+        ]);
+        $user = User::factory()->create();
+
+        $params = [
+            'duration' => 60,
+            'name' => 'test',
+            'playlist' => [
+                [
+                    'beatmap_id' => $beatmap->getKey(),
+                    'ruleset_id' => 0,
+                ],
+            ],
+        ];
+
+        $this->expectException(InvariantException::class);
+        $this->expectExceptionMessageMatches('/^invalid ruleset_id for beatmap \d+$/');
+        (new Room())->startGame($user, $params);
+    }
+
     public function testRoomHasEnded()
     {
         $user = User::factory()->create();
@@ -101,7 +124,7 @@ class RoomTest extends TestCase
         ]);
 
         $this->expectException(InvariantException::class);
-        $room->startPlay($user, $playlistItem, 0);
+        static::roomStartPlay($user, $playlistItem);
     }
 
     public function testStartPlay(): void
@@ -114,7 +137,7 @@ class RoomTest extends TestCase
         $this->expectCountChange(fn () => $room->userHighScores()->count(), 1);
         $this->expectCountChange(fn () => $playlistItem->scoreTokens()->count(), 1);
 
-        $room->startPlay($user, $playlistItem, 0);
+        static::roomStartPlay($user, $playlistItem);
         $room->refresh();
 
         $this->assertSame($user->getKey(), $playlistItem->scoreTokens()->last()->user_id);
@@ -127,14 +150,14 @@ class RoomTest extends TestCase
         $playlistItem1 = PlaylistItem::factory()->create(['room_id' => $room]);
         $playlistItem2 = PlaylistItem::factory()->create(['room_id' => $room]);
 
-        $room->startPlay($user, $playlistItem1, 0);
+        static::roomStartPlay($user, $playlistItem1);
         $this->assertTrue(true);
 
-        $room->startPlay($user, $playlistItem2, 0);
+        static::roomStartPlay($user, $playlistItem2);
         $this->assertTrue(true);
 
         $this->expectException(InvariantException::class);
-        $room->startPlay($user, $playlistItem1, 0);
+        static::roomStartPlay($user, $playlistItem1);
     }
 
     public function testMaxAttemptsForItemReached()
@@ -151,19 +174,19 @@ class RoomTest extends TestCase
         ]);
 
         $initialCount = $playlistItem1->scoreTokens()->count();
-        $room->startPlay($user, $playlistItem1, 0);
+        static::roomStartPlay($user, $playlistItem1);
         $this->assertSame($initialCount + 1, $playlistItem1->scoreTokens()->count());
 
         $initialCount = $playlistItem1->scoreTokens()->count();
         try {
-            $room->startPlay($user, $playlistItem1, 0);
+            static::roomStartPlay($user, $playlistItem1);
         } catch (Exception $ex) {
             $this->assertTrue($ex instanceof InvariantException);
         }
         $this->assertSame($initialCount, $playlistItem1->scoreTokens()->count());
 
         $initialCount = $playlistItem2->scoreTokens()->count();
-        $room->startPlay($user, $playlistItem2, 0);
+        static::roomStartPlay($user, $playlistItem2);
         $this->assertSame($initialCount + 1, $playlistItem2->scoreTokens()->count());
     }
 
@@ -213,6 +236,39 @@ class RoomTest extends TestCase
         $this->assertSame('good word', $room->name);
     }
 
+    /**
+     * @dataProvider difficultyRangeDataProvider
+     */
+    public function testRoomDifficultyRange(bool $preloadPlaylist, bool $preloadBeatmaps, bool $allItemsExpired, float $minDifficulty, float $maxDifficulty)
+    {
+        $room = Room::factory()->create();
+
+        $firstBeatmap = Beatmap::factory()->create(['difficultyrating' => 1]);
+        $secondBeatmap = Beatmap::factory()->create(['difficultyrating' => 3]);
+        $thirdBeatmap = Beatmap::factory()->create(['difficultyrating' => 5]);
+        $fourthBeatmap = Beatmap::factory()->create(['difficultyrating' => 7]);
+
+        $firstItem = PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $firstBeatmap->getKey(), 'expired' => true]);
+        $secondItem = PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $secondBeatmap->getKey(), 'expired' => $allItemsExpired]);
+        $thirdItem = PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $thirdBeatmap->getKey(), 'expired' => $allItemsExpired]);
+        $fourthItem = PlaylistItem::factory()->create(['room_id' => $room, 'beatmap_id' => $fourthBeatmap->getKey(), 'expired' => true]);
+
+        if ($preloadPlaylist) {
+            $room->setRelation('playlist', collect([$firstItem, $secondItem, $thirdItem, $fourthItem]));
+        }
+
+        if ($preloadBeatmaps) {
+            $firstItem->setRelation('beatmap', $firstBeatmap);
+            $secondItem->setRelation('beatmap', $secondBeatmap);
+            $thirdItem->setRelation('beatmap', $thirdBeatmap);
+            $fourthItem->setRelation('beatmap', $fourthBeatmap);
+        }
+
+        $difficultyRange = $room->difficultyRange();
+        $this->assertSame($minDifficulty, $difficultyRange['min']);
+        $this->assertSame($maxDifficulty, $difficultyRange['max']);
+    }
+
     public static function startGameDurationDataProvider()
     {
         static $dayMinutes = 1440;
@@ -230,6 +286,18 @@ class RoomTest extends TestCase
             '3 months (with supporter)' => [$dayMinutes * $maxDurationSupporter, true, false],
             'more than 3 months' => [$dayMinutes * $maxDurationSupporter + 1, false, true],
             'more than 3 months (with supporter)' => [$dayMinutes * $maxDurationSupporter + 1, true, true],
+        ];
+    }
+
+    public static function difficultyRangeDataProvider()
+    {
+        return [
+            'room with some non-expired items uses non-expired items for range (nothing preloaded)' => [false, false, false, 3.0, 5.0],
+            'room with some non-expired items uses non-expired items for range (only playlist preloaded)' => [true, false, false, 3.0, 5.0],
+            'room with some non-expired items uses non-expired items for range (everything preloaded)' => [true, true, false, 3.0, 5.0],
+            'room with all expired items uses all items for range (nothing preloaded)' => [false, false, true, 1.0, 7.0],
+            'room with all expired items uses all items for range (only playlist preloaded)' => [true, false, true, 1.0, 7.0],
+            'room with all expired items uses all items for range (everything preloaded)' => [true, true, true, 1.0, 7.0],
         ];
     }
 }

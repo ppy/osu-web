@@ -53,6 +53,11 @@ return [
                 'beatmapsets' => '',
                 'forum' => '',
                 'general' => '',
+
+                'users' => [
+                    'header' => 'Χρήστης',
+                    'cover_presets' => 'Προεπιλογές Εξώφυλλου Προφίλ',
+                ],
             ],
         ],
     ],

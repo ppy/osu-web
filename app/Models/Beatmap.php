@@ -6,15 +6,17 @@
 namespace App\Models;
 
 use App\Exceptions\InvariantException;
-use App\Jobs\EsDocument;
+use App\Jobs\EsDocumentUnique;
 use App\Libraries\Transactions\AfterCommit;
-use DB;
+use App\Traits\Memoizes;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $approved
- * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussions BeatmapDiscussion
+ * @property-read Collection<BeatmapDiscussion> $beatmapDiscussions
+ * @property-read Collection<BeatmapOwner> $beatmapOwners
  * @property int $beatmap_id
  * @property Beatmapset $beatmapset
  * @property int|null $beatmapset_id
@@ -29,27 +31,30 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property float $diff_drain
  * @property float $diff_overall
  * @property float $diff_size
- * @property \Illuminate\Database\Eloquent\Collection $difficulty BeatmapDifficulty
- * @property \Illuminate\Database\Eloquent\Collection $difficultyAttribs BeatmapDifficultyAttrib
+ * @property-read Collection<BeatmapDifficulty> $difficulty
+ * @property-read Collection<BeatmapDifficultyAttrib> $difficultyAttribs
  * @property float $difficultyrating
- * @property \Illuminate\Database\Eloquent\Collection $failtimes BeatmapFailtimes
+ * @property-read Collection<BeatmapFailtimes> $failtimes
  * @property string|null $filename
  * @property int $hit_length
  * @property \Carbon\Carbon $last_update
  * @property int $max_combo
  * @property mixed $mode
+ * @property int $osu_file_version
+ * @property-read Collection<User> $owners
  * @property int $passcount
  * @property int $playcount
  * @property int $playmode
  * @property int $score_version
  * @property int $total_length
+ * @property User $user
  * @property int $user_id
  * @property string $version
  * @property string|null $youtube_preview
  */
 class Beatmap extends Model implements AfterCommit
 {
-    use SoftDeletes;
+    use Memoizes, SoftDeletes;
 
     public $convert = false;
 
@@ -107,6 +112,11 @@ class Beatmap extends Model implements AfterCommit
         return $this->difficultyAttribs()->noMods()->maxCombo();
     }
 
+    public function beatmapOwners()
+    {
+        return $this->hasMany(BeatmapOwner::class);
+    }
+
     public function beatmapset()
     {
         return $this->belongsTo(Beatmapset::class, 'beatmapset_id')->withTrashed();
@@ -115,6 +125,11 @@ class Beatmap extends Model implements AfterCommit
     public function beatmapDiscussions()
     {
         return $this->hasMany(BeatmapDiscussion::class);
+    }
+
+    public function beatmapTags()
+    {
+        return $this->hasMany(BeatmapTag::class);
     }
 
     public function difficulty()
@@ -151,21 +166,46 @@ class Beatmap extends Model implements AfterCommit
 
     public function scopeWithMaxCombo($query)
     {
-        $mods = BeatmapDifficultyAttrib::NO_MODS;
-        $attrib = BeatmapDifficultyAttrib::MAX_COMBO;
-        $attribTable = (new BeatmapDifficultyAttrib())->tableName();
-        $mode = $this->qualifyColumn('playmode');
-        $id = $this->qualifyColumn('beatmap_id');
+        $valueQuery = BeatmapDifficultyAttrib
+            ::select('value')
+            ->whereColumn([
+                'beatmap_id' => $this->qualifyColumn('beatmap_id'),
+                'mode' => $this->qualifyColumn('playmode'),
+            ])
+            ->where([
+                'attrib_id' => BeatmapDifficultyAttrib::MAX_COMBO,
+                'mods' => BeatmapDifficultyAttrib::NO_MODS,
+            ]);
 
-        return $query
-            ->select(DB::raw("*, (
-                SELECT value
-                FROM {$attribTable}
-                WHERE beatmap_id = {$id}
-                    AND mode = {$mode}
-                    AND mods = {$mods}
-                    AND attrib_id = {$attrib}
-            ) AS attrib_max_combo"));
+        return $query->addSelect(['attrib_max_combo' => $valueQuery]);
+    }
+
+    public function scopeWithUserPlaycount(Builder $query, ?int $userId): Builder
+    {
+        if ($userId === null) {
+            $countQuery = \DB::query()->selectRaw('null');
+        } else {
+            $countQuery = BeatmapPlaycount
+                ::where('user_id', $userId)
+                ->whereColumn('beatmap_id', $this->qualifyColumn('beatmap_id'))
+                ->select('playcount');
+        }
+
+        return $query->addSelect(['user_playcount' => $countQuery]);
+    }
+
+    public function scopeWithUserTagIds($query, ?int $userId)
+    {
+        if ($userId === null) {
+            $tagQuery = \DB::query()->selectRaw('null');
+        } else {
+            $tagQuery = BeatmapTag
+                ::where('user_id', $userId)
+                ->whereColumn('beatmap_id', $this->qualifyColumn('beatmap_id'));
+            $tagQuery->selectRaw("json_arrayagg({$tagQuery->qualifyColumn('tag_id')})");
+        }
+
+        return $query->addSelect(['user_tag_ids' => $tagQuery]);
     }
 
     public function failtimes()
@@ -208,7 +248,7 @@ class Beatmap extends Model implements AfterCommit
         $beatmapset = $this->beatmapset;
 
         if ($beatmapset !== null) {
-            dispatch(new EsDocument($beatmapset));
+            dispatch(new EsDocumentUnique($beatmapset));
         }
     }
 
@@ -217,9 +257,14 @@ class Beatmap extends Model implements AfterCommit
         return $this->approved > 0;
     }
 
-    public function canBeConverted()
+    public function canBeConvertedTo(int $rulesetId)
     {
-        return $this->playmode === static::MODES['osu'];
+        return $this->playmode === static::MODES['osu'] || $this->playmode === $rulesetId;
+    }
+
+    public function expireTopTagIds()
+    {
+        \Cache::delete("beatmap_top_tag_ids:{$this->getKey()}");
     }
 
     public function getAttribute($key)
@@ -262,6 +307,8 @@ class Beatmap extends Model implements AfterCommit
             'baseDifficultyRatings',
             'baseMaxCombo',
             'beatmapDiscussions',
+            'beatmapOwners',
+            'beatmapTags',
             'beatmapset',
             'difficulty',
             'difficultyAttribs',
@@ -272,6 +319,53 @@ class Beatmap extends Model implements AfterCommit
             'scoresBestTaiko',
             'user' => $this->getRelationValue($key),
         };
+    }
+
+    public function getUserPlaycount(): int
+    {
+        if (!array_key_exists('user_playcount', $this->attributes)) {
+            throw new \Exception('withUserPlaycount scope is required');
+        }
+
+        return $this->attributes['user_playcount'] ?? 0;
+    }
+
+    /**
+     * Requires calling withUserTagIds scope to populate user_tag_ids
+     *
+     * @return int[]
+     */
+    public function getUserTagIds(): array
+    {
+        return json_decode($this->attributes['user_tag_ids'] ?? '', true) ?? [];
+    }
+
+    /**
+     * @return Collection<User>
+     */
+    public function getOwners(): Collection
+    {
+        $owners = $this->beatmapOwners->loadMissing('user')->map(
+            fn ($beatmapOwner) => $beatmapOwner->user ?? new DeletedUser(['user_id' => $beatmapOwner->user_id])
+        );
+
+        // TODO: remove when everything writes to beatmap_owners.
+        if (!$owners->contains(fn ($beatmapOwner) => $beatmapOwner->user_id === $this->user_id)) {
+            $owners->prepend($this->user ?? new DeletedUser(['user_id' => $this->user_id]));
+        }
+
+        return $owners;
+    }
+
+    public function isOwner(User $user): bool
+    {
+        if ($this->user_id === $user->getKey()) {
+            return true;
+        }
+
+        return $this->relationLoaded('beatmapOwners')
+            ? $this->beatmapOwners->contains('user_id', $user->getKey())
+            : $this->beatmapOwners()->where('user_id', $user->getKey())->exists();
     }
 
     public function maxCombo()
@@ -300,27 +394,42 @@ class Beatmap extends Model implements AfterCommit
         return $maxCombo?->value;
     }
 
-    public function setOwner($newUserId)
+    public function slowTopTagIds(): array
     {
-        if ($newUserId === null) {
-            throw new InvariantException('user_id must be specified');
-        }
+        return $this->memoize(__FUNCTION__, function () {
+            $countById = [];
+            foreach ($this->beatmapTags as $vote) {
+                $countById[$vote->tag_id] ??= ['tag_id' => $vote->tag_id, 'count' => 0];
+                $countById[$vote->tag_id]['count']++;
+            }
+            // slowTopTagIds is only used by indexing so it should be fine to filter out tags under the threshold for now.
+            $minVotes = $GLOBALS['cfg']['osu']['beatmap_tags']['min_votes_display'];
+            $countById = array_filter($countById, fn ($count) => $count >= $minVotes);
 
-        if (User::find($newUserId) === null) {
-            throw new InvariantException('invalid user_id');
-        }
+            usort($countById, fn ($a, $b) => $a['count'] === $b['count']
+                ? $a['tag_id'] - $b['tag_id']
+                : $b['count'] - $a['count']);
 
-        if ($newUserId === $this->user_id) {
-            throw new InvariantException('the specified user_id is already the owner');
-        }
-
-        $this->fill(['user_id' => $newUserId])->saveOrExplode();
-        $this->beatmapset->update(['eligible_main_rulesets' => null]);
+            return array_slice($countById, 0, $GLOBALS['cfg']['osu']['beatmap_tags']['top_count']);
+        });
     }
 
     public function status()
     {
         return array_search($this->approved, Beatmapset::STATES, true);
+    }
+
+    public function topTagIds()
+    {
+        // TODO: Add option to multi query when beatmapset requests all tags for beatmaps?
+        return $this->memoize(
+            __FUNCTION__,
+            fn () => \Cache::remember(
+                "beatmap_top_tag_ids:{$this->getKey()}",
+                $GLOBALS['cfg']['osu']['beatmap_tags']['cache_duration'],
+                fn () => $this->beatmapTags()->topTagIds()->limit($GLOBALS['cfg']['osu']['beatmap_tags']['top_count'])->get()->toArray(),
+            ),
+        );
     }
 
     private function getDifficultyrating()
@@ -366,7 +475,7 @@ class Beatmap extends Model implements AfterCommit
                 } elseif ($percentSliderOrSpinner > 0.6) {
                     return $accuracy > 4 ? 5 : 4;
                 } else {
-                    return clamp($accuracy + 1, 4, 7);
+                    return \Number::clamp($accuracy + 1, 4, 7);
                 }
             } else {
                 return max(1, $roundedValue);

@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => 'resetovať',
             'rules' => 'Prosím uistite sa, že váš avatar sedí s :link.<br/>To znamená, že musí byť <strong>primeraný pre každý vek</strong>. To je žiadna nudita, vulgarizmy alebo sugestívny obsah.',
             'rules_link' => 'pravidlá komunity',
         ],
@@ -19,8 +20,8 @@ return [
             'new_confirmation' => 'potvrdenie emailu',
             'title' => 'Email',
             'locked' => [
-                '_' => 'Prosím kontaktuje :accounts ak potrebujete aktualizovať svoj email.',
-                'accounts' => 'tím podpory účtu',
+                '_' => 'Prosím kontaktujte :accounts, ak potrebujete aktualizovať svoj email.',
+                'accounts' => 'tím podpory pre účty',
             ],
         ],
 
@@ -42,7 +43,7 @@ return [
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "Krajina vášho účtu nezodpovedá krajine vášho bydliska. :update_link.",
+                '_' => "Zdá sa, že krajina vášho účtu nezodpovedá krajine vášho bydliska. :update_link.",
                 'update_link' => 'Aktualizovať na :country',
             ],
 
@@ -87,6 +88,7 @@ return [
             'beatmap_owner_change' => 'obtiažnosť hosťa',
             'beatmapset:modding' => 'módovanie beatmáp',
             'channel_message' => 'správy súkromného chatu',
+            'channel_team' => '',
             'comment_new' => 'nové komentáre
 ',
             'forum_topic_reply' => 'odpoveď na tému',

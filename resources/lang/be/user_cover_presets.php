@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Адключыць выбраныя',
+        'batch_enable' => 'Уключыць выбраныя',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':action :items?',
+            'disable' => 'Адключыць',
+            'enable' => 'Уключыць',
+            'items' => ':count_delimited вокладка|:count_delimited вокладкі|:count_delimited вокладкак',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Файлы',
+            'submit' => 'Захаваць',
+            'title' => 'Дадаць новую',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'Націсніце, каб выключыць',
+            'click_to_enable' => 'Націсніце, каб уключыць',
+            'enabled' => 'Уключана',
+            'disabled' => 'Выключана',
+            'image_store' => 'Выбраць малюнак',
+            'image_update' => 'Замяніць малюнак',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'Пры стварэнні вокладкі адбылася памылка: :error',
+        'ok' => 'Вокладкі створаны',
     ],
 ];

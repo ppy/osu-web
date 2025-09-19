@@ -27,6 +27,7 @@ return [
                 'GROUP' => '',
                 'PM' => '',
                 'PUBLIC' => '',
+                'TEAM' => '',
             ],
         ],
     ],

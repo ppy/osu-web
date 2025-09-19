@@ -23,6 +23,7 @@ export default class RankingVariantFilter extends React.PureComponent<Props> {
         </div>
         <Sort
           currentValue={this.props.current ?? 'all'}
+          modifiers='ranking-header'
           onChange={this.onChange}
           showTitle={false}
           transPrefix={`beatmaps.variant.${this.props.current_ruleset}.`}

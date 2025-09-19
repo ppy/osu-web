@@ -64,11 +64,11 @@ return [
             '_' => 'ความคิดเห็น',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'ผลการตัดสินการแข่งขัน',
         ],
         'contests_controller' => [
             '_' => 'การแข่งขัน',
-            'judge' => '',
+            'judge' => 'การตัดสินการแข่งขัน',
         ],
         'groups_controller' => [
             'show' => 'กลุ่ม',
@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'สนับสนุนเกมนี้',
             'testflight' => 'บินเที่ยว',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'ข้อมูล',
         ],
         'livestreams_controller' => [
             '_' => 'การถ่ายทอดสด',
-        ],
-        'matches_controller' => [
-            '_' => 'แมตซ์',
         ],
         'news_controller' => [
             '_' => 'ข่าวสาร',
@@ -107,12 +107,19 @@ return [
         'seasons_controller' => [
             '_' => 'การจัดอันดับ',
         ],
+        'teams_controller' => [
+            '_' => 'ทีม',
+            'create' => 'สร้างทีม',
+            'edit' => 'การตั้งค่าทีม',
+            'leaderboard' => '',
+            'show' => 'ข้อมูลทีม',
+        ],
         'tournaments_controller' => [
             '_' => '
 ทัวร์นาเมนต์',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'พรีเซ็ตปกของผู้ใช้',
         ],
         'users_controller' => [
             '_' => 'ข้อมูลผู้เล่น',
@@ -123,6 +130,11 @@ return [
             '_' => 'วิกิ',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'อนุญาตแอป',
@@ -130,6 +142,11 @@ return [
     ],
     'store' => [
         '_' => 'ร้านค้า',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'สมาชิกทีม',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

@@ -1,9 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { pull } from 'lodash';
+import UserRelationJson from 'interfaces/user-relation-json';
+import { pull, remove } from 'lodash';
 import { action, computed, makeObservable } from 'mobx';
 import OsuCore from 'osu-core';
+import { fail } from 'utils/fail';
 
 export default class UserModel {
   @computed
@@ -51,5 +53,20 @@ export default class UserModel {
     } else {
       pull(currentUser.follow_user_mapping, userId);
     }
+  }
+
+  @action
+  updateUserRelation(userRelation: UserRelationJson | undefined, relationType: 'blocks' | 'friends', userId: number) {
+    const currentUser = this.core.currentUser ?? fail('trying to update user relation of guest user');
+    const relations = currentUser[relationType];
+
+    if (userRelation == null) {
+      remove(relations, (relation) => relation.target_id === userId);
+    } else {
+      relations.push(userRelation);
+    }
+
+    const otherRelations = currentUser[relationType === 'blocks' ? 'friends' : 'blocks'];
+    remove(otherRelations, (relation) => relation.target_id === userId);
   }
 }

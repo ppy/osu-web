@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => '',
+
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => '',
@@ -25,12 +31,14 @@ return [
         'message_placeholder_silenced' => "",
         'message_type_select' => '',
         'reply_notice' => '',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => '',
         'require-login' => '',
         'resolved' => '',
         'restore' => '',
         'show_deleted' => '',
         'title' => '',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => '',

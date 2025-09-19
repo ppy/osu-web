@@ -6,9 +6,10 @@
 namespace Tests;
 
 use Facebook\WebDriver\Chrome\ChromeOptions;
+use Facebook\WebDriver\Exception\TimeoutException;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
-use Facebook\WebDriver\WebDriverDimension;
+use Illuminate\Support\Collection;
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\TestCase as BaseTestCase;
 
@@ -29,8 +30,8 @@ abstract class DuskTestCase extends BaseTestCase
             static::$chromeDriver = $chromeDriver;
         }
 
-        if (!present(env('DUSK_WEBDRIVER_URL'))) {
-            static::startChromeDriver();
+        if (!present(env('DUSK_DRIVER_URL'))) {
+            static::startChromeDriver(['--port=9515']);
         }
     }
 
@@ -45,31 +46,49 @@ abstract class DuskTestCase extends BaseTestCase
         $browser->driver->manage()->deleteAllCookies();
     }
 
+    protected function browseWithRetries(callable $callback): void
+    {
+        $attempts = 1;
+        while (true) {
+            try {
+                $this->browse($callback);
+                break;
+            } catch (TimeoutException $e) {
+                if ($attempts++ > 5) {
+                    throw $e;
+                }
+                static::closeAll();
+            }
+        }
+    }
+
     /**
      * Create the RemoteWebDriver instance.
      *
      * @return \Facebook\WebDriver\Remote\RemoteWebDriver
      */
-    protected function driver()
+    protected function driver(): RemoteWebDriver
     {
-        $options = (new ChromeOptions())->addArguments([
-            '--disable-gpu',
-            '--headless',
-        ]);
+        // this is a copy of the original with --no-sandbox added (and linted)
+        $options = (new ChromeOptions())->addArguments(collect([
+            $this->shouldStartMaximized() ? '--start-maximized' : '--window-size=1920,1080',
+            '--disable-search-engine-choice-screen',
+            '--disable-smooth-scrolling',
+        ])->unless($this->hasHeadlessDisabled(), function (Collection $items) {
+            return $items->merge([
+                '--disable-gpu',
+                '--headless=new',
+                '--no-sandbox',
+            ]);
+        })->all());
 
-        $driver = RemoteWebDriver::create(
-            presence(env('DUSK_WEBDRIVER_URL')) ?? 'http://localhost:9515',
+        return RemoteWebDriver::create(
+            $_ENV['DUSK_DRIVER_URL'] ?? env('DUSK_DRIVER_URL') ?? 'http://localhost:9515',
             DesiredCapabilities::chrome()->setCapability(
                 ChromeOptions::CAPABILITY,
                 $options
             )
         );
-
-        // TODO: move this out when/if adding additional tests for mobile layout?
-        $driver->manage()->window()
-            ->setSize(new WebDriverDimension(1920, 1080)); // ensure we get desktop layout
-
-        return $driver;
     }
 
     protected function setUp(): void

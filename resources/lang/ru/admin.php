@@ -53,6 +53,11 @@ return [
                 'beatmapsets' => '',
                 'forum' => '',
                 'general' => '',
+
+                'users' => [
+                    'header' => 'Пользователь',
+                    'cover_presets' => 'Пресеты обложек профиля',
+                ],
             ],
         ],
     ],

@@ -13,14 +13,11 @@ return [
         'blurb' => [
             'important' => 'LÄS DETTA INNAN NEDLADDNING',
             'install_instruction' => 'Installation: När ett paket har laddats ner, extrahera innehållet i paketet i osu! Låt-mappen och osu! kommer att göra resten.',
-            'note' => [
-                '_' => 'Notera att det är som högst rekommenderat att :scary, eftersom de äldsta mapparna är av mycket lägre kvalité jämfört med de nyaste mapparna.',
-                'scary' => 'ladda ner samlingarna från senaste till tidigaste',
-            ],
         ],
     ],
 
     'show' => [
+        'created_by' => 'av :author',
         'download' => 'Ladda ner',
         'item' => [
             'cleared' => 'avklarad',

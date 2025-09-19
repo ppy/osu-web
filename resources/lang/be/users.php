@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Ваш улікавы запіс даўно не выкарыстоўваўся.",
             'inactive_different_country' => "Ваш акаўнт не выкарыстоўваўся доўгі час.",
         ],
     ],
@@ -124,14 +124,21 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
-        'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description' => 'Карты карыстальніка: :counts',
+        'modding_description_empty' => 'Карыстальнік не мае бітмапаў...',
 
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'Рэйтынг (:ruleset): :global | :country',
+            'country' => 'У краіне :rank',
+            'global' => 'Глабальны :rank',
         ],
     ],
 
@@ -159,14 +166,24 @@ return [
             'cancel' => 'Скасаваць',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Несумленная гульня / Чыты',
-            'multiple_accounts' => 'Выкарыстанне некалькіх акаўнтаў',
+            'copyright_infringement' => '',
+            'inappropriate_chat' => 'Непрыстойныя паводзіны ў чаце',
             'insults' => 'Абраза мяне / іншых',
-            'spam' => 'Спам',
-            'unwanted_content' => 'Неадпаведна звязанае змесціва',
+            'multiple_accounts' => 'Выкарыстанне некалькіх акаўнтаў',
             'nonsense' => 'Лухта',
             'other' => 'Іншы (пішыце ніжэй)',
+            'spam' => 'Спам',
+            'unwanted_content' => 'Неадпаведна звязанае змесціва',
         ],
     ],
     'restricted_banner' => [
@@ -196,10 +213,30 @@ return [
             'to_0' => 'Схаваць вокладку',
             'to_1' => 'Паказаць вокладку',
         ],
+        'daily_challenge' => [
+            'daily' => 'Штодзённая серыя',
+            'daily_streak_best' => 'Лепшая штодзённая серыя',
+            'daily_streak_current' => 'Цяперашняя штодзённая серыя',
+            'playcount' => 'Усяго згуляна',
+            'title' => 'Карта\nдня',
+            'top_10p_placements' => 'Топ 10% пазіцый',
+            'top_50p_placements' => 'Топ 50% пазіцый',
+            'weekly' => 'Тыднёвая серыя',
+            'weekly_streak_best' => 'Лепшая тыднёвая серыя',
+            'weekly_streak_current' => 'Цяперашняя тыднёвая серыя',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Змяніць фон профілю',
                 'defaults_info' => 'Больш параметраў фону будуць доступны ў будучыні',
+                'holdover_remove_confirm' => "Раней абраная вокладка больш недаступная. Вы не зможаце яе выбраць пасля змены на іншую. Працягнуць?",
+                'title' => 'Вокладка',
+
                 'upload' => [
                     'broken_file' => 'Не атрымалася апрацаваць выяву. Паспрабуйце яшчэ раз.',
                     'button' => 'Запампаваць выяву',
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'прадвызначаны рэжым гульні',
                 'set' => 'усталяваць :mode як прадвызначаны рэжым гульні',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Вы ўпэўненыя, што хочаце скінуць колер профілю да стандартнага? Змяняць колер можна толькі з тэгам osu!supporter.',
+                'title' => 'Колер',
+
+                'supporter' => [
+                    '_' => 'Змяненне колеру профілю даступна толькі з тэгам :link',
+                    'link' => 'osu!supporter',
+                ],
             ],
         ],
 
@@ -449,8 +496,13 @@ return [
             'global_simple' => 'Глабальны рэйтынг',
             'highest' => 'Найвышэйшы ранг: :rank, :date',
         ],
+        'season_stats' => [
+            'division_top_percentage' => 'Топ :value',
+            'total_score' => 'Усяго ачкоў',
+        ],
         'stats' => [
             'hit_accuracy' => 'Дакладнасць трапленняў',
+            'hits_per_play' => '',
             'level' => 'Узровень :level',
             'level_progress' => 'Прагрэс да новага ўзроўню',
             'maximum_combo' => 'Максімальнае комба',

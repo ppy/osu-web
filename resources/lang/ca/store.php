@@ -31,7 +31,7 @@ return [
         'cart_problems' => 'Oh, hi ha problemes amb la teva cistella!',
         'cart_problems_edit' => 'Fes clic aquí per a editar-ho.',
         'declined' => 'El pagament s\'ha cancel·lat.',
-        'delayed_shipping' => 'Ara mateix no podem atendre totes les comandes! La teva compra és benvinguda, però considera un **retard addicional de 1-2 setmanes** mentre ens posem al dia amb les comandes actuals.',
+        'delayed_shipping' => 'Ara mateix no podem atendre totes les comandes! La teva compra és benvinguda, però considera un **retard addicional d\'1-2 setmanes** mentre ens posem al dia amb les comandes actuals.',
         'hide_from_activity' => 'Amaga totes les etiquetes osu!supporter en aquesta ordre de la meva activitat',
         'old_cart' => 'La teva cistella sembla desactualitzada i s\'ha reiniciat, torna-ho a intentar.',
         'pay' => 'Pagament amb Paypal',
@@ -43,7 +43,7 @@ return [
         ],
 
         'pending_checkout' => [
-            'line_1' => 'S\'ha iniciat una compra anterior però no s\'ha acabat.',
+            'line_1' => 'S\'ha iniciat una compra anterior, però no s\'ha acabat.',
             'line_2' => 'Continua la teva comanda seleccionant un mètode de pagament.',
         ],
     ],
@@ -55,7 +55,8 @@ return [
         'contact' => 'Contacte:',
         'date' => 'Data:',
         'echeck_delay' => 'Com que el seu pagament va ser un eCheck, si us plau permeti fins a 10 dies addicionals perquè el pagament es faci a través de PayPal!',
-        'hide_from_activity' => 'Les etiquetes d\'osu!supporter en aquesta ordre no es mostren a les teves activitats recents.',
+        'echeck_denied' => 'PayPal ha rebutjat el pagament amb eCheck.',
+        'hide_from_activity' => 'les etiquetes osu!supporter en aquesta ordre no es mostren a les teves activitats recents.',
         'sent_via' => 'Enviat via:',
         'shipping_to' => 'Enviament a:',
         'title' => 'Factura',
@@ -83,7 +84,7 @@ return [
             ],
             'processing' => [
                 'title' => 'El teu pagament encara no s\'ha confirmat!',
-                'line_1' => 'Si ja has pagat, potser volem rebre la confirmació del pagament. Sisplau, refresca aquesta pàgina en un parell de minuts!',
+                'line_1' => 'Si ja has pagat, potser volem rebre la confirmació del pagament. Si us plau, refresca aquesta pàgina en un parell de minuts!',
                 'line_2' => [
                     '_' => 'Si heu trobat un problema durant la compra, :link',
                     'link_text' => 'fes clic aquí per a continuar la comanda',
@@ -173,6 +174,7 @@ return [
 
         'add_to_cart' => 'Afegeix a la cistella',
         'notify' => 'Avisa\'m quan estigui disponible!',
+        'out_of_stock' => 'Exhaurit',
 
         'notification_success' => 't\'avisarem quan tinguem noves existències. clica :link per cancel·lar',
         'notification_remove_text' => 'aquí',
@@ -185,7 +187,7 @@ return [
         'gift_message' => 'afegeix un missatge opcional al teu regal! (fins a :length caràcters)',
 
         'require_login' => [
-            '_' => 'Has de ser :link per obtenir una etiqueta d\'osu!supporter!',
+            '_' => 'Has de ser :link per obtenir una etiqueta osu!supporter!',
             'link_text' => 'sessió iniciada',
         ],
     ],

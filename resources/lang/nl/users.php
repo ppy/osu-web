@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Beatmaps: :counts',
         'modding_description_empty' => 'Gebruiker heeft geen beatmaps...',
@@ -159,14 +166,24 @@ return [
             'cancel' => 'Annuleren',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Valsspelen',
-            'multiple_accounts' => 'Meerdere accounts gebruiken',
+            'copyright_infringement' => '',
+            'inappropriate_chat' => '',
             'insults' => 'Beledigen van mij / anderen',
-            'spam' => 'Spammen',
-            'unwanted_content' => 'Linken van ongepaste inhoud',
+            'multiple_accounts' => 'Meerdere accounts gebruiken',
             'nonsense' => 'Nonsense',
             'other' => 'Anders (type hieronder)',
+            'spam' => 'Spammen',
+            'unwanted_content' => 'Linken van ongepaste inhoud',
         ],
     ],
     'restricted_banner' => [
@@ -196,10 +213,30 @@ return [
             'to_0' => 'Omslagfoto verbergen',
             'to_1' => 'Omslagfoto tonen',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'playcount' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Verander Profiel Cover',
                 'defaults_info' => 'In de toekomst zullen er meer cover opties beschikbaar zijn',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Afbeelding verwerken mislukt. Controleer de geüploade afbeelding en probeer opnieuw.',
                     'button' => 'Upload afbeelding',
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'standaard spelmode',
                 'set' => 'zet :mode als standaard profiel spelmode',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 
@@ -283,8 +330,8 @@ return [
                     'title' => 'Recent gespeeld',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Replays Gekeken Geschiedenis',
-                    'count_label' => 'Replays Bekeken',
+                    'title' => 'Kijkgeschiedenis Replays',
+                    'count_label' => 'Aantal Replays Bekeken',
                 ],
             ],
             'kudosu' => [
@@ -359,7 +406,7 @@ return [
                 'title' => 'Multiplayerspellen',
             ],
             'top_ranks' => [
-                'download_replay' => 'Download Replay',
+                'download_replay' => 'Replay Downloaden',
                 'not_ranked' => 'Enkel gerankte beatmaps geven pp.',
                 'pp_weight' => 'gewogen :percentage',
                 'view_details' => 'Details Bekijken',
@@ -449,8 +496,13 @@ return [
             'global_simple' => 'Wereldwijde Ranking',
             'highest' => 'Hoogste rank: :rank op :date',
         ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
+        ],
         'stats' => [
             'hit_accuracy' => 'Hit Precisie',
+            'hits_per_play' => '',
             'level' => 'Level :level',
             'level_progress' => 'Voortgang naar volgend level',
             'maximum_combo' => 'Hoogste Combo',

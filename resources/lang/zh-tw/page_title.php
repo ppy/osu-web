@@ -51,7 +51,7 @@ return [
         ],
         'beatmapsets_controller' => [
             'discussion' => '圖譜討論',
-            'index' => '圖譜列表',
+            'index' => '圖譜清單',
             'show' => '圖譜資訊',
         ],
         'changelog_controller' => [
@@ -75,19 +75,19 @@ return [
         ],
         'home_controller' => [
             'get_download' => '下載',
-            'index' => '主頁',
+            'index' => '儀表板',
             'search' => '搜尋',
             'support_the_game' => '贊助 osu!',
             'testflight' => 'testflight 測試',
+        ],
+        'legacy_matches_controller' => [
+            '_' => '對戰',
         ],
         'legal_controller' => [
             '_' => '資訊',
         ],
         'livestreams_controller' => [
             '_' => '直播',
-        ],
-        'matches_controller' => [
-            '_' => '對戰',
         ],
         'news_controller' => [
             '_' => '新聞',
@@ -96,7 +96,7 @@ return [
             '_' => '歷史通知紀錄',
         ],
         'password_reset_controller' => [
-            '_' => '重置密碼',
+            '_' => '重設密碼',
         ],
         'ranking_controller' => [
             '_' => '排行榜',
@@ -106,6 +106,13 @@ return [
         ],
         'seasons_controller' => [
             '_' => '排行榜',
+        ],
+        'teams_controller' => [
+            '_' => '隊伍',
+            'create' => '建立隊伍',
+            'edit' => '團隊設定',
+            'leaderboard' => '團隊排行榜',
+            'show' => '隊伍資訊',
         ],
         'tournaments_controller' => [
             '_' => '官方比賽',
@@ -122,6 +129,11 @@ return [
             '_' => 'wiki',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '房間歷史記錄',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => '授權應用程式',
@@ -129,6 +141,11 @@ return [
     ],
     'store' => [
         '_' => '商店',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '團隊成員',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

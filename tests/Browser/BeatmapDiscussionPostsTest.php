@@ -49,7 +49,7 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
     protected function writeReply(Browser $browser, $reply)
     {
         $browser->with(static::NEW_REPLY_SELECTOR, function (Browser $newReply) use ($reply) {
-            $newReply->press(trans('beatmap_discussions.reply.open.user'))
+            $newReply->press(osu_trans('beatmap_discussions.reply.open.user'))
                 ->waitFor('textarea')
                 ->type('textarea', $reply);
         });

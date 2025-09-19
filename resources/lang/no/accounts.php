@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Profilbilde',
+            'reset' => '',
             'rules' => 'Vennligst sørg for at profilbildet ditt følger :link<br/>Dette betyr at det må være <strong>passende for alle aldersgrupper</strong>. d.v.s. ingen nakenhet, upassende språk eller innhold.',
             'rules_link' => 'Samfunns regler',
         ],
@@ -87,6 +88,7 @@ return [
             'beatmap_owner_change' => 'gjeste-kart',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'private meldinger',
+            'channel_team' => '',
             'comment_new' => 'nye kommentar',
             'forum_topic_reply' => 'emne svar',
             'mail' => 'e-post',

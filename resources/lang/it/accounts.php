@@ -10,8 +10,9 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => 'resetta',
             'rules' => 'Assicurati che la tua immagine di profilo aderisca alle :link.<br/>Questo significa che dev\'essere <strong>adatta a tutte le età</strong> (quindi niente nudità, profanità o contenuti provocanti).',
-            'rules_link' => 'regole della comunità',
+            'rules_link' => 'considerazioni sui contenuti visivi',
         ],
 
         'email' => [
@@ -19,7 +20,7 @@ return [
             'new_confirmation' => 'conferma email',
             'title' => 'Email',
             'locked' => [
-                '_' => 'Per favore contatta il :accounts se hai bisogno di aggiornare il tuo indirizzo email.',
+                '_' => 'Per favore contatta il :accounts se devi aggiornare il tuo indirizzo email.',
                 'accounts' => 'team di supporto account',
             ],
         ],
@@ -87,6 +88,7 @@ return [
             'beatmap_owner_change' => 'difficoltà guest',
             'beatmapset:modding' => 'modding delle beatmap',
             'channel_message' => 'messaggi privati',
+            'channel_team' => 'messaggi chat della squadra',
             'comment_new' => 'nuovi commenti',
             'forum_topic_reply' => 'risposta al topic',
             'mail' => 'mail',

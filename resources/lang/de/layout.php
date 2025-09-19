@@ -113,6 +113,7 @@ return [
             'copyright' => 'Urheberrecht (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Privatsphäre',
+            'rules' => 'Regeln',
             'server_status' => 'Serverstatus',
             'source_code' => 'Quellcode',
             'terms' => 'Nutzungsbedingungen',
@@ -199,6 +200,9 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Der Lazer-Modus zeigt Scores aus Lazer mit einem neuen Bewertungsalgorithmus an.',
             'logout' => 'Ausloggen',
             'profile' => 'Mein Profil',
+            'scoring_mode_toggle' => 'Klassisches Punktesystem',
+            'scoring_mode_toggle_tooltip' => 'Punktestände entsprechen dem klassischen, unbegrenzten Punktesystem',
+            'team' => 'Mein Team',
         ],
     ],
 

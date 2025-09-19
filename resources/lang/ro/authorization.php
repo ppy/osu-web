@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Trebuie să ai un scor pe acest beatmap pentru a adăuga o etichetă.',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Acest canal este doar pentru anunțuri.',
         'blocked' => 'Nu poți trimite mesaje unui utilizator care te-a blocat sau pe care l-ai blocat.',
         'friends_only' => 'Utilizatorul blochează mesajele de la oameni care nu sunt pe lista lor de prieteni.',
         'moderated' => 'Acest canal este moderat în prezent.',
         'no_access' => 'Nu ai acces la acest canal.',
+        'no_announce' => 'Nu aveți permisiunea de a posta anunțuri.',
         'receive_friends_only' => 'Este posibil ca utilizatorul să nu poată răspunde, deoarece acceptați doar mesaje de la persoane adăugate la prieteni.',
         'restricted' => 'Nu poți trimite mesaje cât timp ești mut, restricționat sau interzis.',
         'silenced' => 'Nu poți trimite mesaje cât timp ești mut, restricționat sau interzis.',
@@ -107,6 +113,7 @@ return [
                 'deleted' => 'Această postare nu poate fi editată.',
                 'locked' => 'Postarea nu poate fi editată.',
                 'no_forum_access' => 'Accesul la forum-ul solicitat este necesar.',
+                'no_permission' => '',
                 'not_owner' => 'Doar creatorul poate edita această postare.',
                 'topic_locked' => 'Nu poți edita o postare al unui subiect închis.',
             ],
@@ -170,12 +177,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Doar proprietarul camerei o poate închide.',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Nu se poate fixa acest tip de scor",
             'failed' => "Nu se pot fixa scoruri eșuate",
             'not_owner' => 'Numai creatorul scorului poate fixa acest scor.',
             'too_many' => 'Ai fixat prea multe scoruri.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "Deja faci parte din echipă.",
+                'already_other_member' => "Deja faci parte dintr-o altă echipă.",
+                'currently_applying' => 'Ai o cerere de înscriere în echipa care este în așteptare.',
+                'team_closed' => 'Echipa nu acceptă cereri de înscriere.',
+                'team_full' => "Echipa este plină și nu mai poate accepta alți membri.",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "Liderul echipei nu poate părăsi echipa.",
+            'not_member' => 'Nu este membru al echipei.',
+        ],
+        'store' => [
+            'require_supporter_tag' => 'Statusul de suporter osu! este necesar pentru a crea o echipă.',
         ],
     ],
 

@@ -35,24 +35,24 @@ return [
             '_' => 'artistes destacats',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'publicacions de discussió de beatmaps',
+            '_' => 'publicacions de discussió de mapes',
         ],
         'beatmap_discussions_controller' => [
-            '_' => 'discussions de beatmaps',
+            '_' => 'discussions de mapes',
         ],
         'beatmap_packs_controller' => [
-            '_' => 'paquets de beatmaps',
+            '_' => 'paquets de mapes',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => 'vots de discussions de beatmaps',
+            '_' => 'vots de discussions de mapes',
         ],
         'beatmapset_events_controller' => [
-            '_' => 'historial de beatmaps',
+            '_' => 'historial de mapes',
         ],
         'beatmapsets_controller' => [
-            'discussion' => 'discusió de beatmap',
-            'index' => 'llista de beatmaps',
-            'show' => 'info del beatmap',
+            'discussion' => 'discusió de mapes',
+            'index' => 'llista de mapes',
+            'show' => 'info del mapes',
         ],
         'changelog_controller' => [
             '_' => 'registre de canvis',
@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'dona suport al joc',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => 'coincideix amb',
+        ],
         'legal_controller' => [
             '_' => 'informació',
         ],
         'livestreams_controller' => [
             '_' => 'transmissions en directe',
-        ],
-        'matches_controller' => [
-            '_' => 'coincidències',
         ],
         'news_controller' => [
             '_' => 'notícies',
@@ -107,6 +107,13 @@ return [
         'seasons_controller' => [
             '_' => 'classificacions',
         ],
+        'teams_controller' => [
+            '_' => 'equips',
+            'create' => 'Crea un equip',
+            'edit' => 'configuració de l\'equip',
+            'leaderboard' => 'Taula de puntuacions de l\'equip',
+            'show' => 'info de l\'equip',
+        ],
         'tournaments_controller' => [
             '_' => 'tornejos',
         ],
@@ -122,6 +129,11 @@ return [
             '_' => 'wiki',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => 'historial de la sala',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'autoritza l\'aplicació',
@@ -129,6 +141,11 @@ return [
     ],
     'store' => [
         '_' => 'botiga',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'Membres de l\'equip',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

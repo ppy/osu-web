@@ -5,6 +5,7 @@ import ScoreModJson from 'interfaces/score-mod-json';
 import modNames from 'mod-names.json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { modDetails } from 'utils/score-helper';
 
 // English only until the labels are translated.
 const numberFormatter = new Intl.NumberFormat('en');
@@ -17,6 +18,13 @@ function format(value: unknown) {
   }
 
   return String(value);
+}
+
+function formatNumberWithPrecision(value: number, precision: number)  {
+  return value.toLocaleString('en', {
+    maximumFractionDigits: precision,
+    minimumFractionDigits: precision,
+  });
 }
 
 function settingsLabel(modJson: NonNullable<typeof modNames[string]>, scoreModJson: ScoreModJson) {
@@ -39,23 +47,90 @@ function settingsLabel(modJson: NonNullable<typeof modNames[string]>, scoreModJs
     : ` (${settings.join(', ')})`;
 }
 
+interface ExtendedContentDisplayCandidate {
+  acronym: string;
+  significantDigits: number;
+}
+
+function getExtendedContent(scoreModJson: ScoreModJson): string | null {
+  switch (scoreModJson.acronym) {
+    case 'HT':
+    case 'DC':
+    case 'DT':
+    case 'NC':
+    {
+      const speedChange = scoreModJson.settings?.speed_change as number;
+      return speedChange != null ? `${formatNumberWithPrecision(speedChange, 2)}×` : null;
+    }
+
+    case 'DA':
+    {
+      const displayCandidates: Partial<Record<string, ExtendedContentDisplayCandidate>> = {
+        approach_rate: {
+          acronym: 'AR',
+          significantDigits: 1,
+        },
+        circle_size: {
+          acronym: 'CS',
+          significantDigits: 1,
+        },
+        drain_rate: {
+          acronym: 'HP',
+          significantDigits: 1,
+        },
+        overall_difficulty: {
+          acronym: 'OD',
+          significantDigits: 1,
+        },
+        scroll_speed: {
+          acronym: 'SS',
+          significantDigits: 2,
+        },
+      };
+
+      let displayCandidate: ExtendedContentDisplayCandidate | undefined;
+      let displayValue: number | undefined;
+
+      for (const [key, setting] of Object.entries(displayCandidates)) {
+        const settingValue = scoreModJson.settings?.[key];
+        if (typeof settingValue === 'number') {
+          if (displayCandidate !== undefined) {
+            return null;
+          }
+
+          displayValue = settingValue;
+          displayCandidate = setting;
+        }
+      }
+
+      if (displayCandidate != null && displayValue != null) {
+        return `${displayCandidate.acronym}${formatNumberWithPrecision(displayValue, displayCandidate.significantDigits)}`;
+      }
+
+      return null;
+    }
+
+    default:
+      return null;
+  }
+}
+
 interface Props {
   mod: ScoreModJson;
 }
 
 export default function Mod({ mod }: Props) {
-  const modJson = modNames[mod.acronym] ?? {
-    acronym: mod.acronym,
-    name: '',
-    setting_labels: {},
-    type: 'Fun',
-  };
+  const modJson = modDetails(mod);
+  const extendedContent = getExtendedContent(mod);
 
   return (
-    <div
-      className={classWithModifiers('mod', modJson.acronym, `type-${modJson.type}`)}
-      data-acronym={modJson.acronym}
-      title={`${modJson.name}${settingsLabel(modJson, mod)}`}
-    />
+    <div className={classWithModifiers('mod', `type-${modJson.type}`)} title={`${modJson.name}${settingsLabel(modJson, mod)}`}>
+      <div
+        className={classWithModifiers('mod__icon', mod.acronym)}
+        data-acronym={modJson.acronym}
+      />
+      {extendedContent !== null && <div className='mod__extender'><span>{extendedContent}</span></div>}
+      {Object.entries(mod.settings ?? {}).length > 0 && <div className='mod__customised-indicator' />}
+    </div>
   );
 }

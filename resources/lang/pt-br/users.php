@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => 'Ativo',
+            'ended' => 'Encerrado',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Beatmaps: :counts',
         'modding_description_empty' => 'O usuário não possui nenhum beatmap...',
@@ -159,14 +166,24 @@ return [
             'cancel' => 'Cancelar',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => 'Por favor, denuncie a violação de direitos autorais através de uma reivindicação DMCA para :mail como :policy.',
+                'policy' => 'A política de direitos autorais do osu!',
+            ],
+            'message_2' => 'Isso se aplica a casos onde conteúdos de faixas de áudio, visual ou nível de beatmap são usados sem permissão correta.',
+        ],
+
         'options' => [
             'cheating' => 'Jogando sujo / Trapaceando',
-            'multiple_accounts' => 'Usando diversas contas',
+            'copyright_infringement' => 'Violação de direitos autorais',
+            'inappropriate_chat' => 'Comportamento inadequado em conversa',
             'insults' => 'Me insultando / outros',
-            'spam' => 'Spam',
-            'unwanted_content' => 'Enviando links com conteúdo inapropriado',
+            'multiple_accounts' => 'Usando diversas contas',
             'nonsense' => 'Sem sentido',
             'other' => 'Outro (escreva abaixo)',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Enviando links com conteúdo inapropriado',
         ],
     ],
     'restricted_banner' => [
@@ -196,10 +213,30 @@ return [
             'to_0' => 'Ocultar capa',
             'to_1' => 'Mostrar capa',
         ],
+        'daily_challenge' => [
+            'daily' => 'Sequência diária',
+            'daily_streak_best' => 'Melhor sequência diária',
+            'daily_streak_current' => 'Sequência diária atual',
+            'playcount' => 'Participação total',
+            'title' => 'Desafio\ndiário',
+            'top_10p_placements' => 'Melhores 10% nos colocados',
+            'top_50p_placements' => 'Melhores 50% nos colocados',
+            'weekly' => 'Sequência semanal',
+            'weekly_streak_best' => 'Melhor sequência semanal',
+            'weekly_streak_current' => 'Sequência semanal atual',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Mudar Capa de Perfil',
                 'defaults_info' => 'Mais opções de capa virão no futuro',
+                'holdover_remove_confirm' => "Esta capa selecionada anteriormente não está disponível para seleção. Você não pode selecionar ela após alterar para outra. Trocar?",
+                'title' => 'Capa',
+
                 'upload' => [
                     'broken_file' => 'Falha ao processar imagem. Verifique a imagem enviada e tente novamente.',
                     'button' => 'Enviar imagem',
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'modo de jogo padrão',
                 'set' => 'definir :mode como modo de jogo padrão',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Redefinir cor para padrão? A etiqueta de apoiador será necessário para alterar a cor.',
+                'title' => 'Cor',
+
+                'supporter' => [
+                    '_' => 'Temas de cores personalizados disponíveis apenas para :link',
+                    'link' => 'osu!supporters',
+                ],
             ],
         ],
 
@@ -449,8 +496,13 @@ return [
             'global_simple' => 'Ranking Global',
             'highest' => 'Maior classificação: :rank em :date',
         ],
+        'season_stats' => [
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Pontuação total',
+        ],
         'stats' => [
             'hit_accuracy' => 'Precisão',
+            'hits_per_play' => 'Acertos por Jogadas',
             'level' => 'Nível :level',
             'level_progress' => 'Progresso para o próximo nível',
             'maximum_combo' => 'Combo Máximo',

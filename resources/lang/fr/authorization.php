@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Vous devez réaliser un score sur une beatmap pour ajouter un tag.',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Ce canal est uniquement pour les annonces.',
         'blocked' => 'Vous ne pouvez pas envoyer un message à un utilisateur qui vous a bloqué ou que vous avez bloqué.',
         'friends_only' => 'Cet utilisateur bloque les messages des utilisateurs qui ne sont pas dans sa liste d’amis.',
         'moderated' => 'Ce canal est actuellement restreint par un modérateur.',
         'no_access' => 'Vous n’avez pas accès à ce canal.',
+        'no_announce' => 'Vous n\'avez pas la permission de publier une annonce.',
         'receive_friends_only' => 'L\'utilisateur n\'est peut-être pas en mesure de répondre parce que vous n\'acceptez que les messages des utilisateurs de votre liste d\'amis.',
         'restricted' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
         'silenced' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
@@ -107,6 +113,7 @@ return [
                 'deleted' => 'Impossible de modifier un post supprimé.',
                 'locked' => 'Ce post ne peut pas être édité.',
                 'no_forum_access' => 'L\'accès au forum demandé est requis.',
+                'no_permission' => 'Vous n\'êtes pas autorisé à éditer.',
                 'not_owner' => 'Seul l\'auteur de ce post peut l\'éditer.',
                 'topic_locked' => 'Impossible d\'éditer un post sur un sujet verrouillé.',
             ],
@@ -170,12 +177,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Seul le propriétaire de la salle peut la fermer.',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Impossible d'épingler ce type de score",
             'failed' => "Impossible d'épingler un échec.",
             'not_owner' => 'Seul le propriétaire du score peut épingler ce score.',
             'too_many' => 'Trop de scores épinglés.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "Vous faites déjà partie de l'équipe.",
+                'already_other_member' => "Vous faites déjà partie d'une autre équipe.",
+                'currently_applying' => 'Vous avez déjà demandé à rejoindre une autre équipe.',
+                'team_closed' => 'Cette équipe n\'accepte pas les candidatures pour l\'instant.',
+                'team_full' => "L'équipe est complète et ne peut plus accepter de nouveaux membres.",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "Le chef d'équipe ne peut pas quitter l'équipe.",
+            'not_member' => 'Pas un membre de l\'équipe.',
+        ],
+        'store' => [
+            'require_supporter_tag' => 'Un tag osu!supporter est requis pour créer une équipe.',
         ],
     ],
 

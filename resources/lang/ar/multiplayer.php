@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'لا توجد العاب osu!(lazer) :type_group لعبت حتى الأن!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'قائمة التشغيل',
         'realtime' => 'لعب جماعي',
     ],
@@ -16,9 +17,12 @@ return [
         'map_count' => ':count_delimited الخريطة|:count_delimited خرائط',
         'player_count' => ':count_delimited لاعب|:count_delimited لاعبين',
         'time_left' => 'تبقى:time',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => 'المدة طويلة جداً.',
+            'name_too_long' => '',
         ],
 
         'status' => [

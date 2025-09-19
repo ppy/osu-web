@@ -22,7 +22,7 @@ return [
             'text' => '您的購物車是空的。',
             'return_link' => [
                 '_' => '返回到 :link 來找些好東西！',
-                'link_text' => '商店列表',
+                'link_text' => '商店清單',
             ],
         ],
     ],
@@ -55,6 +55,7 @@ return [
         'contact' => '聯絡:',
         'date' => '日期：',
         'echeck_delay' => '由於您是用 eCheck 付款，請等待至多 10 天以使該支付通過 PayPal 完成！',
+        'echeck_denied' => '您的電子支票付款已被 PayPal 拒絕。',
         'hide_from_activity' => '這項 osu! 贊助者訂單未在您的最近活動中顯示。',
         'sent_via' => '透過:',
         'shipping_to' => '運送至：',
@@ -86,7 +87,7 @@ return [
                 'line_1' => '如果您已經付款，我們可能還在等待收到您付款的確認。請在一兩分鐘內重新載入此頁面！',
                 'line_2' => [
                     '_' => '如果您在結帳時遇到問題，請查看 :link',
-                    'link_text' => '點擊這裡繼續您的結帳',
+                    'link_text' => '按這裡繼續您的結帳',
                 ],
             ],
             'shipped' => [
@@ -173,6 +174,7 @@ return [
 
         'add_to_cart' => '加入到購物車',
         'notify' => '可訂購時通知我 !',
+        'out_of_stock' => '缺貨',
 
         'notification_success' => '當商品有貨時會收到通知，點擊 :link 以取消該通知',
         'notification_remove_text' => '這裡',
@@ -191,7 +193,7 @@ return [
     ],
 
     'username_change' => [
-        'check' => '输入使用者名稱並檢查是否可用',
+        'check' => '輸入使用者名稱並檢查是否可用！',
         'checking' => '正在檢查 :username 是否可用。。。',
         'placeholder' => '請求的使用者名稱',
         'label' => '新的使用者名稱',

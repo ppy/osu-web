@@ -13,7 +13,7 @@ interface UnknownErrorJson {
   validation_error?: Record<string, string>[];
 }
 
-const jqXHRProperties = ['status', 'statusText', 'readyState', 'responseText'];
+const jqXHRProperties = ['status', 'statusText', 'readyState'];
 
 export function emitError(element: HTMLElement = document.body) {
   return (xhr: JQuery.jqXHR, status: string, errorThrown: unknown) => $(element).trigger('ajax:error', [xhr, status, errorThrown]);
@@ -54,7 +54,7 @@ export function xhrErrorMessage(xhr?: JQuery.jqXHR) {
 
   const json = xhr.responseJSON as UnknownErrorJson;
   if (json.validation_error != null) {
-    return `${Object.values(json.validation_error).flat().join(', ')}.`;
+    return `${json.validation_error.flatMap((err) => Object.values(err)).join(', ')}.`;
   }
 
   let message = json.error ?? json.message ?? '';

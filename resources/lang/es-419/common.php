@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Administrador',
         'authorise' => 'Autorizar',
         'authorising' => 'Autorizando...',
+        'back' => 'Volver',
         'back_to_previous' => 'Volver a la posición anterior',
         'back_to_top' => 'Volver al principio',
         'cancel' => 'Cancelar',
@@ -43,7 +43,7 @@ return [
         'reply' => 'Responder',
         'reply_reopen' => 'Responder y reabrir',
         'reply_resolve' => 'Responder y resolver',
-        'reset' => 'Reiniciar',
+        'reset' => 'Restablecer',
         'restore' => 'Restaurar',
         'retry' => 'Volver a intentar',
         'save' => 'Guardar',
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => 'm',
+        ],
+        'year' => [
+            'php' => 'a',
+        ],
         'year_month' => [
             'moment' => 'MMMM [de] YYYY',
             'php' => 'MMMM y',

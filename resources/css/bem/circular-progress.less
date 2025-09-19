@@ -71,7 +71,7 @@
     margin-top: @thickness;
     margin-left: @thickness;
     display: block;
-    content: '';
+    content: "";
     border-radius: 50%;
     background-color: var(--circle-center-fill);
     width: 1em - (@thickness * 2);
@@ -81,15 +81,14 @@
   &__label {
     position: absolute;
     z-index: 1;
-    width: 1 / @label-size;
-    line-height: 1 / @label-size;
+    width: (1 / @label-size);
+    line-height: (1 / @label-size);
     font-size: @label-size;
     text-align: center;
     white-space: nowrap;
     color: var(--label-colour);
     display: var(--label-display);
   }
-
 
   &__circle {
     position: absolute;

@@ -33,7 +33,6 @@ return [
         'cache_purge_method' => env('AVATAR_CACHE_PURGE_METHOD'),
         'cache_purge_authorization_key' => env('AVATAR_CACHE_PURGE_AUTHORIZATION_KEY'),
         'default' => env('DEFAULT_AVATAR', env('APP_URL', 'http://localhost').'/images/layout/avatar-guest@2x.png'),
-        'storage' => env('AVATAR_STORAGE', 'local-avatar'),
     ],
 
     'bbcode' => [
@@ -44,6 +43,7 @@ return [
     'beatmaps' => [
         'max' => 50,
         'max_scores' => 100,
+        'owners_max' => get_int(env('BEATMAPS_OWNERS_MAX')) ?? 10,
 
         'difficulty_cache' => [
             'server_url' => presence(env('BEATMAPS_DIFFICULTY_CACHE_SERVER_URL')) ?? 'http://localhost:5001',
@@ -53,6 +53,11 @@ return [
         'mirrors_to_use' => array_map('intval', explode(' ', env('BM_PROCESSOR_MIRRORS', '1'))),
         'thumbnailer' => env('BM_PROCESSOR_THUMBNAILER', 'http://localhost:4001'),
         'sentry' => env('BM_PROCESSOR_SENTRY'),
+    ],
+    'beatmap_tags' => [
+        'cache_duration' => 60 * (get_int(env('BEATMAP_TAGS_CACHE_DURATION')) ?? 60), // in minutes, converted to seconds
+        'min_votes_display' => get_int(env('BEATMAP_TAGS_MIN_VOTES_DISPLAY')) ?? 5,
+        'top_count' => get_int(env('BEATMAP_TAGS_TOP_COUNT')) ?? 50,
     ],
     'beatmapset' => [
         'discussion_kudosu_per_user' => get_int(env('BEATMAPSET_DISCUSSION_KUDOSU_PER_USER')) ?? 10,
@@ -64,6 +69,7 @@ return [
         'favourite_limit' => intval(env('BEATMAPSET_USER_FAVOURITE_LIMIT', 100)),
         'favourite_limit_supporter' => intval(env('BEATMAPSET_USER_FAVOURITE_LIMIT_SUPPORTER', 1000)),
         'guest_advanced_search' => get_bool(env('BEATMAPSET_GUEST_ADVANCED_SEARCH')) ?? false,
+        'maximum_disqualified_rank_penalty_days' => get_int(env('BEATMAPSET_MAXIMUM_DISQUALIFIED_RANK_PENALTY_DAYS')) ?? 7,
         'minimum_days_for_rank' => get_int(env('BEATMAPSET_MINIMUM_DAYS_FOR_RANK')) ?? 7,
         'rank_per_day' => get_int(env('BEATMAPSET_RANK_PER_DAY')) ?? 8,
         'rank_per_run' => get_int(env('BEATMAPSET_RANK_PER_RUN')) ?? 2,
@@ -125,6 +131,7 @@ return [
         'issue_forum_ids' => array_map('intval', explode(' ', env('ISSUE_FORUM_IDS', '4 5 29 30 101'))),
         'max_post_length' => get_int(env('FORUM_POST_MAX_LENGTH')) ?? 60000,
         'minimum_plays' => get_int(env('FORUM_POST_MINIMUM_PLAYS')) ?? 200,
+        'beatmap_description_forum_id' => get_int(env('BEATMAP_DESCRIPTION_FORUM_ID')) ?? 6,
         'necropost_months' => 6,
         'old_months' => 1,
         'poll_edit_hours' => get_int(env('FORUM_POLL_EDIT_HOURS')) ?? 1,
@@ -151,6 +158,7 @@ return [
     ],
     'multiplayer' => [
         'max_attempts_limit' => get_int(env('MULTIPLAYER_MAX_ATTEMPTS_LIMIT')) ?? 128,
+        'room_close_grace_period_minutes' => get_int(env('MULTIPLAYER_ROOM_CLOSE_GRACE_PERIOD_MINUTES')) ?? 5,
     ],
     'notification' => [
         'endpoint' => presence(env('NOTIFICATION_ENDPOINT'), '/home/notifications/feed'),
@@ -179,22 +187,11 @@ return [
             'user' => 100,
         ],
     ],
-    'score_replays' => [
-        'storage' => env('SCORE_REPLAYS_STORAGE', 'local'),
-    ],
     'scores' => [
         'es_cache_duration' => 60 * (get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5), // in minutes, converted to seconds
-        'experimental_rank_as_default' => get_bool(env('SCORES_EXPERIMENTAL_RANK_AS_DEFAULT')) ?? false,
-        'experimental_rank_as_extra' => get_bool(env('SCORES_EXPERIMENTAL_RANK_AS_EXTRA')) ?? false,
+        'index_max_id_distance' => get_int(env('SCORE_INDEX_MAX_ID_DISTANCE')) ?? 10_000_000,
         'processing_queue' => presence(env('SCORES_PROCESSING_QUEUE')) ?? 'osu-queue:score-statistics',
         'submission_enabled' => get_bool(env('SCORES_SUBMISSION_ENABLED')) ?? true,
-
-        'rank_cache' => [
-            'local_server' => get_bool(env('SCORES_RANK_CACHE_LOCAL_SERVER')) ?? false,
-            'min_users' => get_int(env('SCORES_RANK_CACHE_MIN_USERS')) ?? 35000,
-            'server_url' => presence(env('SCORES_RANK_CACHE_SERVER_URL')),
-            'timeout' => get_int(env('SCORES_RANK_CACHE_TIMEOUT')) ?? 10,
-        ],
     ],
 
     'seasonal' => [
@@ -202,27 +199,25 @@ return [
         'ends_at' => env('SEASONAL_ENDS_AT'),
     ],
 
+    'sentry' => [
+        'min_log_duration' => get_float(env('OSU_SENTRY_MIN_LOG_DURATION_MS') ?? 500) / 1000,
+    ],
     'store' => [
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE') ?? '')),
     ],
+    'team' => [
+        'create_require_supporter' => get_bool(env('TEAM_CREATE_REQUIRE_SUPPORTER')) ?? false,
+        'max_members' => get_int(env('TEAM_MAX_MEMBERS')) ?? 40,
+    ],
+    'totp' => [
+        'issuer_name' => env('TOTP_ISSUER_NAME', 'osu!dev'),
+    ],
     'twitch_client_id' => presence(env('TWITCH_CLIENT_ID')),
     'twitch_client_secret' => presence(env('TWITCH_CLIENT_SECRET')),
-    'tournament_banner' => [
-        'current' => [
-            'id' => get_int(env('TOURNAMENT_BANNER_CURRENT_ID')),
-            'prefix' => env('TOURNAMENT_BANNER_CURRENT_PREFIX'),
-        ],
-        'previous' => [
-            'id' => get_int(env('TOURNAMENT_BANNER_PREVIOUS_ID')),
-            'prefix' => env('TOURNAMENT_BANNER_PREVIOUS_PREFIX'),
-            'winner_id' => env('TOURNAMENT_BANNER_PREVIOUS_WINNER_ID'),
-        ],
-    ],
     'urls' => [
         'base' => 'https://osu.ppy.sh',
         'bounty-form' => env('OS_BOUNTY_URL'),
         'dev' => 'https://discord.gg/ppy',
-        'experimental_host' => presence(env('OSU_EXPERIMENTAL_HOST')),
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
         'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',
         'lazer_dl.android' => presence(env('OSU_URL_LAZER_ANDROID')) ?? 'https://github.com/ppy/osu/releases/latest/download/sh.ppy.osulazer.apk',
@@ -232,6 +227,7 @@ return [
         'lazer_dl.windows_x64' => presence(env('OSU_URL_LAZER_WINDOWS_X64')) ?? 'https://github.com/ppy/osu/releases/latest/download/install.exe',
         'lazer_dl_other' => presence(env('OSU_URL_LAZER_OTHER')) ?? 'https://github.com/ppy/osu/#running-osu',
         'lazer_info' => presence(env('OSU_URL_LAZER_INFO')),
+        'menu_content' => presence(env('OSU_URL_MENU_CONTENT_JSON')) ?? 'https://assets.ppy.sh/menu-content.json',
         'osx' => 'https://osx.ppy.sh',
         'server_status' => 'https://status.ppy.sh',
         'smilies' => '/forum/images/smilies',
@@ -258,6 +254,7 @@ return [
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),
         'verification_key_length_hex' => 8,
         'verification_key_tries_limit' => 8,
+        'max_follows' => get_int(env('USER_MAX_FOLLOWS')) ?? 5000,
         'max_friends' => get_int(env('USER_MAX_FRIENDS')) ?? 250,
         'max_friends_supporter' => get_int(env('USER_MAX_FRIENDS_SUPPORTER')) ?? 500,
         'max_login_attempts' => get_int(env('USER_MAX_LOGIN_ATTEMPTS')) ?? 10,
@@ -311,5 +308,11 @@ return [
         'featured_stream' => intval(env('FEATURED_UPDATE_STREAM', 5)),
         'github_token' => env('CHANGELOG_GITHUB_TOKEN'),
         'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),
+    ],
+    'rankings' => [
+        'country_performance_user_count' => intval(env('COUNTRY_PERFORMANCE_USER_COUNT', 1000)),
+        'country_performance_weighting_factor' => floatval(env('COUNTRY_PERFORMANCE_WEIGHTING_FACTOR', 0.99)),
+        'team_performance_user_count' => get_int(env('TEAM_PERFORMANCE_USER_COUNT')) ?? 48,
+        'team_performance_weighting_factor' => get_float(env('TEAM_PERFORMANCE_WEIGHTING_FACTOR')) ?? 0.96,
     ],
 ];

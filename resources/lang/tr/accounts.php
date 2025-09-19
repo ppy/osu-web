@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => 'sıfırla',
             'rules' => 'Lütfen avatarınızın :link uyduğundan emin olun.<br/>Bu, avatarın <strong>her yaş grubuna uygun olması</strong> gerektiği anlamına gelir. Yani çıplaklık, küfür veya müstehcen içerik bulunmamalıdır.',
             'rules_link' => 'topluluk kurallarına',
         ],
@@ -87,6 +88,7 @@ return [
             'beatmap_owner_change' => 'konuk zorluk',
             'beatmapset:modding' => 'beatmap modlama',
             'channel_message' => 'özel sohbet mesajları',
+            'channel_team' => 'takım sohbet mesajları',
             'comment_new' => 'yeni yorumlar',
             'forum_topic_reply' => 'konu yanıtı',
             'mail' => 'posta',

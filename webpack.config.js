@@ -9,7 +9,6 @@ const fs = require('fs');
 const path = require('path');
 
 const Autoprefixer = require('autoprefixer');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const dotenv = require('dotenv');
@@ -93,10 +92,9 @@ const plugins = [
     moment: 'moment',
     React: 'react',
     ReactDOM: 'react-dom',
-    Turbolinks: 'turbolinks',
   }),
   new webpack.DefinePlugin({
-    'process.env.DOCS_URL': JSON.stringify(process.env.DOCS_URL || 'https://docs.ppy.sh'),
+    docsUrl: JSON.stringify(process.env.DOCS_URL ?? 'https://docs.ppy.sh'),
   }),
   new webpack.IgnorePlugin({
     // don't add moment locales to bundle.
@@ -110,7 +108,7 @@ const plugins = [
     patterns: [
       { from: 'resources/builds/locales', to: outputFilename('js/locales/[name]') },
       { from: 'node_modules/moment/locale', to: outputFilename('js/moment-locales/[name]') },
-      { from: 'node_modules/@discordapp/twemoji/dist/svg/*-*.svg', to: 'images/flags/[name][ext]' },
+      { from: 'node_modules/@discordapp/twemoji/dist/svg/1f1??-1f1??.svg', to: 'images/flags/[name][ext]' },
     ],
   }),
 ];
@@ -131,13 +129,14 @@ if (writeManifest) {
 
 // TODO: should have a different flag for this
 if (!inProduction) {
+  const { CleanWebpackPlugin } = require('clean-webpack-plugin');
   plugins.push(new CleanWebpackPlugin());
-}
 
-const notifierConfigPath = resolvePath('.webpack-build-notifier-config.js');
-if (fs.existsSync(notifierConfigPath)) {
-  const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
-  plugins.push(new WebpackBuildNotifierPlugin(require(notifierConfigPath)));
+  const notifierConfigPath = resolvePath('.webpack-build-notifier-config.js');
+  if (fs.existsSync(notifierConfigPath)) {
+    const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
+    plugins.push(new WebpackBuildNotifierPlugin(require(notifierConfigPath)));
+  }
 }
 
 // #endregion
@@ -206,7 +205,7 @@ const resolve = {
   modules: [
     resolvePath('resources/builds'),
     resolvePath('resources/js'),
-    resolvePath('node_modules'),
+    'node_modules',
   ],
   plugins: [new TsconfigPathsPlugin()],
 };

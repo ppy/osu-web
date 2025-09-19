@@ -13,14 +13,11 @@ return [
         'blurb' => [
             'important' => '',
             'install_instruction' => '',
-            'note' => [
-                '_' => '',
-                'scary' => '',
-            ],
         ],
     ],
 
     'show' => [
+        'created_by' => '',
         'download' => '',
         'item' => [
             'cleared' => '',

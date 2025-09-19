@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Nur langsam, spiel mehr.',
+        'no_mirrors' => 'Keine Download-Server verfügbar.',
     ],
 
     'featured_artist_badge' => [
@@ -40,20 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Probationäre Ernenner können nicht mehrere Regelsätze nominieren.',
+        'full_nomination_required' => 'Du musst ein Vollberechtigter Ernenner sein um die finale nomination eines Regelsatzes durchzuführen.',
         'hybrid_requires_modes' => 'Für ein Hybrid-Beatmapset musst du mindestens einen Spielmodus auswählen, den du nominieren möchtest.',
         'incorrect_mode' => 'Du hast keine Berechtigung diesen Modus zu nominieren: :mode',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Diese Beatmap hat invalide Nominationen und kann in diesem Zustand nicht qualifiziert werden.',
+        'invalid_ruleset' => 'Diese Nominierung hat inkompatible Spielmodi.',
         'too_many' => 'Nominierungsvoraussetzung bereits erfüllt.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'Nomininierungsanforderungen für nicht-Hauptspielmodi sind schon erfüllt.',
 
         'dialog' => [
             'confirmation' => 'Bist du sicher, dass du diese Beatmap nominieren möchtest?',
+            'different_nominator_warning' => 'Das Qualifizieren dieser Beatmap mit anderen Nominatoren wird dessen Position in der Qualifikationswarteschlange zurücksetzen.',
             'header' => 'Beatmap nominieren',
             'hybrid_warning' => 'Hinweis: du kannst nur einmalig nominieren, also stelle bitte sicher, dass du für alle Spielmodi nominierst, die du beabsichtigst',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'Der Hauptspielmodus ist derzeit: :ruleset',
             'which_modes' => 'Für welche Modi willst du nominieren?',
         ],
     ],
@@ -67,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Titelbild in Originalgröße anzeigen',
+            'page' => 'Admin-Seite anzeigen',
         ],
 
         'deleted_banner' => [
@@ -138,6 +141,7 @@ return [
             'description' => 'Beschreibung',
             'genre' => 'Genre',
             'language' => 'Sprache',
+            'mapper_tags' => 'Mappertags',
             'no_scores' => 'Die Daten werden noch verarbeitet...',
             'nominators' => 'Nominatoren',
             'nsfw' => 'Expliziter Inhalt',
@@ -146,7 +150,7 @@ return [
             'source' => 'Quelle',
             'storyboard' => 'Diese Beatmap enthält ein Storyboard',
             'success-rate' => 'Erfolgsrate',
-            'tags' => 'Tags',
+            'user_tags' => 'Nutzertags',
             'video' => 'Diese Beatmap enthält ein Video',
         ],
 
@@ -169,6 +173,7 @@ return [
             'global' => 'Globale Rangliste',
             'supporter-link' => '<a href=":link">Hier</a> klicken, um all die tollen Features zu entdecken!',
             'supporter-only' => 'Du musst osu!supporter sein, um Freundes-, Länder-, oder Mod-Ranglisten zu sehen!',
+            'team' => 'Team-Rangliste',
             'title' => 'Punkte-Anzeige',
 
             'headers' => [
@@ -190,6 +195,7 @@ return [
                 'friend' => 'Keiner deiner Freunde hat einen Rang auf dieser Beatmap!',
                 'global' => 'Noch niemand auf der Rangliste. Wie wärs?',
                 'loading' => 'Lade Scores...',
+                'team' => 'Keiner aus deinem Team hat bisher einen Score auf dieser Beatmap erzielt!',
                 'unranked' => 'Unranked Beatmap.',
             ],
             'score' => [
@@ -208,11 +214,11 @@ return [
             'drain' => 'HP-Drain',
             'accuracy' => 'Präzision',
             'ar' => 'Approach-Rate',
-            'stars' => 'Sternebewertung',
+            'stars' => 'Sterne',
             'total_length' => 'Länge (Drain length: :hit_length)',
             'bpm' => 'BPM',
-            'count_circles' => 'Circle-Anzahl',
-            'count_sliders' => 'Slider-Anzahl',
+            'count_circles' => 'Anzahl der Circles',
+            'count_sliders' => 'Anzahl der Slider',
             'offset' => 'Online-Offset: :offset',
             'user-rating' => 'User-Bewertungen',
             'rating-spread' => 'Bewertungsverteilung',

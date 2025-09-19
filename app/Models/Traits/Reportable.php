@@ -5,10 +5,10 @@
 
 namespace App\Models\Traits;
 
+use App\Exceptions\InvariantException;
 use App\Models\User;
 use App\Models\UserReport;
 use App\Notifications\UserReportNotification;
-use PDOException;
 
 /**
  * @property-read \Illuminate\Database\Eloquent\Collection<UserReport> $reportedIn
@@ -36,26 +36,24 @@ trait Reportable
      */
     public function reportBy(User $reporter, array $params = []): ?UserReport
     {
-        try {
-            $attributes = $this->newReportableExtraParams();
-            $attributes['comments'] = $params['comments'] ?? '';
-            $attributes['reporter_id'] = $reporter->getKey();
+        $attributes = $this->newReportableExtraParams();
+        $attributes['comments'] = $params['comments'] ?? '';
+        $attributes['reporter_id'] = $reporter->getKey();
 
-            if (present($params['reason'] ?? null)) {
-                $attributes['reason'] = $params['reason'];
-            }
-
-            $userReport = $this->reportedIn()->create($attributes);
-            $userReport->notify(new UserReportNotification($reporter));
-
-            return $userReport;
-        } catch (PDOException $e) {
-            // ignore duplicate reports
-            if (!is_sql_unique_exception($e)) {
-                throw $e;
-            }
-
-            return null;
+        if (present($params['reason'] ?? null)) {
+            $attributes['reason'] = $params['reason'];
         }
+
+        $existingReport = $this->reportedIn()->where([
+            'reporter_id' => $attributes['reporter_id'],
+        ])->orderBy('report_id', 'DESC')->first();
+        if ($existingReport !== null && $existingReport->isRecent()) {
+            throw new InvariantException(osu_trans('errors.user_report.recently_reported'));
+        }
+
+        $userReport = $this->reportedIn()->create($attributes);
+        $userReport->notify(new UserReportNotification($reporter));
+
+        return $userReport;
     }
 }

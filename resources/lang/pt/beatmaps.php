@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'Conjunto de regras inválido.',
+
+    'change_owner' => [
+        'too_many' => 'Há demasiados mapeadores convidados.',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Falha ao atualizar voto',
@@ -25,12 +31,14 @@ return [
         'message_placeholder_silenced' => "Não é possível publicar uma discussão enquanto estiveres silenciado.",
         'message_type_select' => 'Selecionar tipo de comentário',
         'reply_notice' => 'Prime ENTER para responder.',
+        'reply_resolve_notice' => 'Prime enter para responder. Prime ctrl+enter para responder e resolver.',
         'reply_placeholder' => 'Escreve a tua resposta aqui',
-        'require-login' => 'Por favor inicia sessão para publicar ou responder',
+        'require-login' => 'Inicia sessão para publicar ou responder.',
         'resolved' => 'Resolvida',
         'restore' => 'restaurar',
         'show_deleted' => 'Exibir eliminados',
         'title' => 'Discussões',
+        'unresolved_count' => ':count_delimited casos não resolvidos',
 
         'collapse' => [
             'all-collapse' => 'Colapsar tudo',
@@ -284,14 +292,14 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'não definido',
     ],
     'status' => [
         'any' => 'Qualquer',
         'approved' => 'Aprovados',
         'favourites' => 'Favoritos',
         'graveyard' => 'Cemitério',
-        'leaderboard' => 'Possui uma tabela de classificações',
+        'leaderboard' => 'Tem classificações',
         'loved' => 'Adorados',
         'mine' => 'Os meus mapas',
         'pending' => 'Pendente',

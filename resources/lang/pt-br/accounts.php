@@ -5,13 +5,14 @@
 
 return [
     'edit' => [
-        'title_compact' => 'configurações de conta',
+        'title_compact' => 'opções da conta',
         'username' => 'nome de usuário',
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Por favor tenha certeza que seu avatar respeite :link.<br/>Isso significa que deve ser <strong>adequado para todas as idades</strong>. ou seja, sem nudez, palavrões ou conteúdo sugestivo.',
-            'rules_link' => 'as regras da comunidade',
+            'reset' => 'redefinir',
+            'rules' => 'Por favor, tenha certeza que seu avatar respeite :link.<br/>Isso significa que deve ser <strong>adequado para todas as idades</strong>, ou seja, sem nudez e sem conteúdo ofensivo ou sugestivo.',
+            'rules_link' => 'as Considerações de conteúdo visual',
         ],
 
         'email' => [
@@ -19,7 +20,7 @@ return [
             'new_confirmation' => 'confirmar email',
             'title' => 'Email',
             'locked' => [
-                '_' => 'Por favor, contate :accounts se precisar atualizar o seu email.',
+                '_' => 'Por favor, contate a :accounts se precisar atualizar o seu email.',
                 'accounts' => 'equipe de suporte de contas',
             ],
         ],
@@ -43,7 +44,7 @@ return [
 
             'country_change' => [
                 '_' => "Parece que o país da sua conta não corresponde ao país em que você reside atualmente. :update_link.",
-                'update_link' => 'Mudar para :country',
+                'update_link' => 'Atualizar para :country',
             ],
 
             'user' => [
@@ -63,15 +64,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "Se você é um colaborador dos repositórios open-source do osu!, vincular sua conta do GitHub aqui associará suas entradas de changelog ao seu perfil do osu!. Contas do GitHub sem histórico de contribuições para o osu! não podem ser vinculadas.",
+        'info' => "Se você é um contribuidor dos repositórios de código aberto do osu!, vincular sua conta do GitHub aqui associará suas entradas ao registro de alterações com seu perfil do osu!. Contas do GitHub sem histórico de contribuições para o osu! não podem ser vinculadas.",
         'link' => 'Conectar conta do GitHub',
         'title' => 'GitHub',
         'unlink' => 'Desconectar conta do GitHub',
 
         'error' => [
-            'already_linked' => 'Esta conta do GitHub já está conectada a um usuário diferente.',
+            'already_linked' => 'Esta conta do GitHub já está vinculada a um usuário diferente.',
             'no_contribution' => 'Não é possível vincular a conta GitHub sem qualquer histórico de contribuição nos repositórios do osu!.',
-            'unverified_email' => 'Por favor, verifique seu e-mail principal no GitHub e tente vincular sua conta novamente.',
+            'unverified_email' => 'Por favor, verifique seu e-mail principal no GitHub e, após isso, tente vincular sua conta novamente.',
         ],
     ],
 
@@ -87,9 +88,10 @@ return [
             'beatmap_owner_change' => 'dificuldade do convidado',
             'beatmapset:modding' => 'modding em beatmap',
             'channel_message' => 'mensagens privadas',
+            'channel_team' => 'mensagens do bate-papo do time',
             'comment_new' => 'novos comentários',
             'forum_topic_reply' => 'resposta em tópico',
-            'mail' => 'email',
+            'mail' => 'Caixa de Entrada',
             'mapping' => 'mapper do beatmap',
             'push' => 'push',
         ],
@@ -134,7 +136,7 @@ return [
         'end_session_confirmation' => 'Isso vai encerrar imediatamente sua sessão neste dispositivo. Você tem certeza?',
         'last_active' => 'Última atividade:',
         'title' => 'Segurança',
-        'web_sessions' => 'web sessão',
+        'web_sessions' => 'sessões web',
     ],
 
     'update_email' => [

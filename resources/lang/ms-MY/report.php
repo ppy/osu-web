@@ -5,32 +5,42 @@
 
 return [
     'beatmapset' => [
-        'button' => 'Laporkan',
-        'title' => '',
+        'button' => 'Lapor',
+        'title' => 'Laporkan peta rentak :username?',
     ],
 
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Lapor',
+        'title' => 'Laporkan hantaran :username?',
     ],
 
     'comment' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Laporkan',
+        'title' => 'Laporkan komen :username?',
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Lapor',
+        'title' => 'Laporkan hantaran :username?',
+    ],
+
+    'message' => [
+        'button' => 'Laporkan Mesej',
+        'title' => 'Laporkan mesej :username?',
     ],
 
     'scores' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Laporkan Markah',
+        'title' => 'Laporkan markah :username?',
+    ],
+
+    'team' => [
+        'button' => 'Laporkan Pasukan',
+        'title' => 'Laporkan pasukan :username?',
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Lapor',
+        'title' => 'Laporkan :username?',
     ],
 ];

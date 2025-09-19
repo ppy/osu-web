@@ -1,11 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { action, computed, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import ContestJudgeStore from 'stores/contest-judge-store';
-import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import Entry from './entry';
 
@@ -17,7 +16,6 @@ interface Props {
 export default class Main extends React.Component<Props> {
   @observable private hideJudged = false;
 
-  @computed
   private get filteredEntries() {
     const entries = [...this.props.store.entries.values()];
 
@@ -36,12 +34,15 @@ export default class Main extends React.Component<Props> {
 
   render() {
     return (
-      <>
-        <div className='contest-judge contest-judge--header'>
+      <div className='contest-judge'>
+        <div className='contest-judge__header'>
           {this.renderShowJudgedToggle()}
+          {!this.props.store.canJudge && (
+            <div>{trans('authorization.contest.judging_not_active')}</div>
+          )}
         </div>
 
-        <div className='contest-judge contest-judge--items'>
+        <div className='contest-judge__items'>
           {this.filteredEntries.map((entry) => (
             <Entry
               key={entry.id}
@@ -50,27 +51,24 @@ export default class Main extends React.Component<Props> {
             />
           ))}
         </div>
-      </>
+      </div>
     );
   }
 
   private renderShowJudgedToggle() {
-    const iconClass = this.hideJudged
-      ? 'fas fa-check-square'
-      : 'far fa-square';
-
     return (
-      <button
-        className={classWithModifiers('sort__item', ['button', 'contest-judge'])}
-        onClick={this.toggleShowJudged}
-        type='button'
-      >
-        <span className='sort__item-icon'>
-          <span className={iconClass} />
-        </span>
-
+      <label className='contest-judge__switch'>
+        <div className='osu-switch-v2'>
+          <input
+            checked={this.hideJudged}
+            className='osu-switch-v2__input'
+            onChange={this.toggleShowJudged}
+            type='checkbox'
+          />
+          <span className='osu-switch-v2__content' />
+        </div>
         {trans('contest.judge.hide_judged')}
-      </button>
+      </label>
     );
   }
 

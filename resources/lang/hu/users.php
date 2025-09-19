@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Beatmapek: :counts',
         'modding_description_empty' => 'A felhasználónak nincsenek beatmapjai...',
@@ -159,14 +166,24 @@ return [
             'cancel' => 'Mégse',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Tisztességtelen játék / Csalás',
-            'multiple_accounts' => 'Több fiók használata',
+            'copyright_infringement' => '',
+            'inappropriate_chat' => '',
             'insults' => 'Engem / másokat sérteget',
-            'spam' => 'Spam',
-            'unwanted_content' => 'Nem megfelelő tartalom linkelése',
+            'multiple_accounts' => 'Több fiók használata',
             'nonsense' => 'Nonszensz',
             'other' => 'Egyéb (alá írd)',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Nem megfelelő tartalom linkelése',
         ],
     ],
     'restricted_banner' => [
@@ -196,10 +213,30 @@ return [
             'to_0' => 'Lefedés',
             'to_1' => 'Felfedés',
         ],
+        'daily_challenge' => [
+            'daily' => 'Napi Streak',
+            'daily_streak_best' => 'Legjobb Napi Streak',
+            'daily_streak_current' => 'Jelenlegi Napi Streak',
+            'playcount' => 'Összes Részvétel',
+            'title' => 'Napi\nKihívás',
+            'top_10p_placements' => 'Top 10% Helyek',
+            'top_50p_placements' => 'Top 50% Helyek',
+            'weekly' => 'Heti Streak',
+            'weekly_streak_best' => 'Legjobb Heti Streak',
+            'weekly_streak_current' => 'Jelenlegi Heti Streak',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Profil Borító Változtatása',
                 'defaults_info' => 'További borító lehetőségek a jövőben lesznek elérhetőek',
+                'holdover_remove_confirm' => "A korábban kiválasztott borító már nem választható.  Másik borítóra váltás után nem választhatja vissza.  Folytatja?",
+                'title' => 'Borító',
+
                 'upload' => [
                     'broken_file' => 'Kép feldolgozása sikertelen. Ellenőrizd a feltöltött képet és próbáld meg újra.',
                     'button' => 'Kép feltöltése',
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'alapértelmezett játékmód',
                 'set' => ':mode beállítása alapértelmezettnek',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Alaphelyzetbe állítod a színt? Csak támogatói címmel tudod majd megváltoztatni más színre.',
+                'title' => 'Szín',
+
+                'supporter' => [
+                    '_' => 'Egyéni színtémák csak :link számára érhetőek el',
+                    'link' => 'osu!támogatók',
+                ],
             ],
         ],
 
@@ -449,8 +496,13 @@ return [
             'global_simple' => 'Globális Rangsor',
             'highest' => 'Legnagyobb rank: :rank elérve :date dátumkor',
         ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
+        ],
         'stats' => [
             'hit_accuracy' => 'Találati Pontosság',
+            'hits_per_play' => '',
             'level' => 'Szint: :level',
             'level_progress' => 'Haladás a következő szintre',
             'maximum_combo' => 'Legmagasabb Kombó',

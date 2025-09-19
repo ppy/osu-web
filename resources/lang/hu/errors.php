@@ -7,6 +7,7 @@ return [
     'load_failed' => 'Nem sikerült betölteni az adatokat.',
     'missing_route' => 'Helytelen url vagy lekérési mód.',
     'no_restricted_access' => 'Felfüggesztett állapot erre nem vagy alkalmas.',
+    'param_too_large' => '',
     'supporter_only' => 'Támogatónak kell lenned a funkció használatához.',
     'unknown' => 'Ismeretlen hiba történt.',
 
@@ -28,9 +29,15 @@ return [
     'checkout' => [
         'generic' => 'Hiba történt a fizetés előkészítése közben.',
     ],
+    'scores' => [
+        'invalid_id' => 'Érvénytelen eredmény azonosító.',
+    ],
     'search' => [
         'default' => 'Nem sikerült bármi eredményt kapni, kérlek próbáld meg később.',
         'invalid_cursor_exception' => 'Érvénytelen kurzorparaméter van megadva.',
         'operation_timeout_exception' => 'A keresés a szokásosnál jobban leterhelt, kérlek próbáld meg később.',
+    ],
+    'user_report' => [
+        'recently_reported' => "Már bejelentetted nem rég.",
     ],
 ];

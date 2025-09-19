@@ -8,8 +8,6 @@ namespace App\Models\Chat;
 use App\Events\ChatChannelEvent;
 use App\Exceptions\API;
 use App\Exceptions\InvariantException;
-use App\Jobs\Notifications\ChannelAnnouncement;
-use App\Jobs\Notifications\ChannelMessage;
 use App\Libraries\AuthorizationResult;
 use App\Libraries\Chat\MessageTask;
 use App\Models\LegacyMatch\LegacyMatch;
@@ -18,7 +16,6 @@ use App\Models\User;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Carbon\Carbon;
-use ChaseConey\LaravelDatadogHelper\Datadog;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 use LaravelRedis;
@@ -83,6 +80,7 @@ class Channel extends Model
         'temporary' => 'TEMPORARY',
         'pm' => 'PM',
         'group' => 'GROUP',
+        'team' => 'TEAM',
     ];
 
     public static function ack(int $channelId, int $userId, ?int $timestamp = null, ?Redis $redis = null): void
@@ -126,7 +124,7 @@ class Channel extends Model
                 (new ChatChannelEvent($channel, $user, 'join'))->broadcast(true);
             }
 
-            $connection->afterCommit(fn () => Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]));
+            $connection->afterCommit(fn () => datadog_increment('chat.channel.create', ['type' => $channel->type]));
         });
 
         return $channel;
@@ -160,7 +158,7 @@ class Channel extends Model
             $channel->addUser($user2);
             $channel->setPmUsers([$user1, $user2]);
 
-            $connection->afterCommit(fn () => Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]));
+            $connection->afterCommit(fn () => datadog_increment('chat.channel.create', ['type' => $channel->type]));
         });
 
         return $channel;
@@ -292,13 +290,9 @@ class Channel extends Model
         });
     }
 
-    public function visibleUsers(?User $user)
+    public function visibleUsers(): Collection
     {
-        if ($this->isPM() || $this->isAnnouncement() && priv_check_user($user, 'ChatAnnounce', $this)->can()) {
-            return $this->users();
-        }
-
-        return new Collection();
+        return $this->isPM() ? $this->users() : new Collection();
     }
 
     public function scopePublic($query)
@@ -369,6 +363,11 @@ class Channel extends Model
     public function isGroup()
     {
         return $this->type === static::TYPES['group'];
+    }
+
+    public function isTeam(): bool
+    {
+        return $this->type === static::TYPES['team'];
     }
 
     public function isBanchoMultiplayerChat()
@@ -478,16 +477,12 @@ class Channel extends Model
 
             $this->unhide();
 
-            if ($this->isPM()) {
-                (new ChannelMessage($message, $sender))->dispatch();
-            } elseif ($this->isAnnouncement()) {
-                (new ChannelAnnouncement($message, $sender))->dispatch();
-            }
+            $message->dispatchNotification();
 
             MessageTask::dispatch($message);
         });
 
-        Datadog::increment('chat.channel.send', 1, ['target' => $this->type]);
+        datadog_increment('chat.channel.send', ['target' => $this->type]);
 
         return $message;
     }
@@ -517,7 +512,7 @@ class Channel extends Model
 
         (new ChatChannelEvent($this, $user, 'join'))->broadcast(true);
 
-        Datadog::increment('chat.channel.join', 1, ['type' => $this->type]);
+        datadog_increment('chat.channel.join', ['type' => $this->type]);
     }
 
     public function removeUser(User $user)
@@ -542,7 +537,7 @@ class Channel extends Model
 
         (new ChatChannelEvent($this, $user, 'part'))->broadcast(true);
 
-        Datadog::increment('chat.channel.part', 1, ['type' => $this->type]);
+        datadog_increment('chat.channel.part', ['type' => $this->type]);
     }
 
     public function hasUser(User $user)
@@ -594,7 +589,7 @@ class Channel extends Model
         ]);
 
         if ($count > 0) {
-            Datadog::increment('chat.channel.join', 1, ['type' => $this->type], $count);
+            datadog_increment('chat.channel.join', ['type' => $this->type], $count);
         }
     }
 

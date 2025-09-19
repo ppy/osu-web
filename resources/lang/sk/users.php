@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Daruj štítok podporovateľa',
         'loading' => 'Načitávanie...',
         'send_message' => 'poslať správu',
     ],
@@ -72,19 +72,19 @@ return [
 
     'disabled' => [
         'title' => 'Ups! Vyzerá to tak, že tvoj účet bol zakázaný.',
-        'warning' => "",
+        'warning' => "V tom prípade, že ste porušili pravidlo, vezmite si prosím na vedomie, že všeobecne platí jednomesačné obdobie, počas ktorého nebudeme brať do úvahy žiadne žiadosti o amnestiu. Po tomto období nás môžete kontaktovať, ak to budete považovať za potrebné. Upozorňujeme, že vytváranie nových účtov po tom, čo ste mali jeden deaktivovný, bude mať za následok <strong>predĺženie tohto jednomesačného obmedzenia</strong>. Upozorňujeme tiež, že <strong>každým vytvoreným účtom ďalej porušujete pravidlá</strong>. Dôrazne vám odporúčame, aby ste sa nevydali touto cestou!",
 
         'if_mistake' => [
-            '_' => '',
+            '_' => 'Ak si myslíte, že ide o chybu, kontaktujte nás (prostredníctvom :email alebo kliknutím na „?“ v pravom dolnom rohu tejto stránky). Upozorňujeme, že vždy sme si plne istí našimi krokmi, pretože sú založené na veľmi spoľahlivých údajoch. Vyhradzujeme si právo nebrať do úvahy vašu žiadosť, ak budeme mať pocit, že ste úmyselne nečestní.',
             'email' => 'e-mail',
         ],
 
         'reasons' => [
-            'compromised' => '',
-            'opening' => '',
+            'compromised' => 'Váš účet bol považovaný za napadnutý. Môže byť dočasne deaktivovaný, kým sa potvrdí jeho totožnosť.',
+            'opening' => 'Existuje niekoľko dôvodov, ktoré môžu viesť k deaktivácii vášho účtu:',
 
             'tos' => [
-                '_' => '',
+                '_' => 'Porušili ste jedno alebo viacero našich pravidiel :community_rules alebo :tos.',
                 'community_rules' => 'pravidlá komunity',
                 'tos' => 'zmluvné podmienky',
             ],
@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => '',
         'modding_description_empty' => '',
@@ -159,14 +166,24 @@ return [
             'cancel' => 'Zrušiť',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Nečestné hranie / Podvádzanie',
-            'multiple_accounts' => '',
+            'copyright_infringement' => '',
+            'inappropriate_chat' => '',
             'insults' => 'Urážanie mňa / iných',
-            'spam' => 'Spam',
-            'unwanted_content' => 'Posiela nevhodný obsah',
+            'multiple_accounts' => '',
             'nonsense' => 'Nezmysel',
             'other' => 'Iné (uveď nižšie)',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Posiela nevhodný obsah',
         ],
     ],
     'restricted_banner' => [
@@ -196,10 +213,30 @@ return [
             'to_0' => '',
             'to_1' => '',
         ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'playcount' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Zmeniť pozadie profilu',
                 'defaults_info' => 'Viac možností pozadia bude dostupných v budúcnosti',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'Spracovanie obrázku zlyhalo. Skontroluj si obrázok a skús to znova.',
                     'button' => 'Nahrať obrázok',
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'štandardný herný mód',
                 'set' => 'nastaviť :mode ako predvolený herný mód profilu',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 
@@ -449,8 +496,13 @@ return [
             'global_simple' => 'Celkové umiestnenie',
             'highest' => '',
         ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'total_score' => '',
+        ],
         'stats' => [
             'hit_accuracy' => 'Presnosť Zásahov',
+            'hits_per_play' => '',
             'level' => 'Úroveň :level',
             'level_progress' => 'Percentá do ďalšieho levelu',
             'maximum_combo' => 'Maximálne Kombo',

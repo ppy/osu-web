@@ -1,0 +1,18 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.menu-image {
+  --index: 0;
+  width: 100%;
+  height: 100%;
+  left: calc(100% * var(--index));
+  position: absolute;
+
+  &__image {
+    object-fit: contain;
+    height: 100%;
+    max-width: 100%;
+    margin: auto;
+    display: block;
+  }
+}

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => 'Paano kung maglaro ng ilang osu! sa halip?',
+    'play_more' => 'Nasubukan mo na bang osu! ang simulan mong laruin?',
     'require_login' => 'Paki-sign-in para tumuloy.',
     'require_verification' => 'Paki-verify para tumuloy.',
     'restricted' => "Hindi magagawa iyon habang pinaghihigpitan.",
@@ -47,8 +47,8 @@ return [
 
         'edit' => [
             'not_owner' => 'Ang poster lang ang makakapag-edit ng post.',
-            'resolved' => 'Hindi mo maaaring i-edit ang isang post ng naresolbang talakayan.',
-            'system_generated' => 'Ang awtomatikong post na nabuo ay hindi maaaring i-edit.',
+            'resolved' => 'Hindi mo maaaring baguhin ang isang post ng naresolbang talakayan.',
+            'system_generated' => 'Ang awtomatikong post na nabuo ay hindi maaaring baguhin.',
         ],
     ],
 
@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Dapat may iskor ka sa beatmap na ito upang malagyan ng tag.',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Ang channel na ito ay para sa mga anunsyo lamang.',
         'blocked' => 'Hindi makapag-mensahe sa isang user na humaharang sa iyo o hinarang mo.',
         'friends_only' => 'Hinaharang ng user ang mga mensahe mula sa mga taong wala sa listahan ng kanilang mga kaibigan.',
         'moderated' => 'Ang channel na ito ay kasalukuyang naka-moderate.',
         'no_access' => 'Wala kang access sa channel na iyon.',
+        'no_announce' => 'Wala kang permiso para magpost ng annunsyo.',
         'receive_friends_only' => 'Ang user ay maaaring hindi makatugon dahil tumatanggap ka lang ng mga mensahe mula sa mga tao sa listahan ng iyong mga kaibigan.',
         'restricted' => 'Hindi ka maaaring magpadala ng mga mensahe habang pinatahimik, pinaghihigpitan o pinagbawalan.',
         'silenced' => 'Hindi ka maaaring magpadala ng mga mensahe habang pinatahimik, pinaghihigpitan o pinagbawalan.',
@@ -107,6 +113,7 @@ return [
                 'deleted' => 'Hindi ma-edit ang natangal na post.',
                 'locked' => 'Ang post ay naka-lock mula sa pag-edit.',
                 'no_forum_access' => 'Ang pag-access sa hiniling na forum ay kinakailangan.',
+                'no_permission' => '',
                 'not_owner' => 'Ang poster lang ang makakapag-edit ng post.',
                 'topic_locked' => 'Hindi ma-edit ang post ng isang naka-lock na paksa.',
             ],
@@ -170,12 +177,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Tanging may-ari ng room na ito ang makakapagsara.',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Hindi ma-pin ang ganitong uri ng iskor",
             'failed' => "Hindi ma-pin ang hindi pumasa na iskor.",
             'not_owner' => 'Tanging ang may-ari ng iskor ang maaaring mag-pin ng iskor.',
             'too_many' => 'Nag-pin ng masyadong maraming mga iskor.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "Ikaw ay nakaparte na sa team.",
+                'already_other_member' => "Ikaw ay nakaparte na sa ibang team.",
+                'currently_applying' => 'Ikaw ay mayroong naka-pending na team join request.',
+                'team_closed' => '',
+                'team_full' => "",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "",
+            'not_member' => '',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
         ],
     ],
 

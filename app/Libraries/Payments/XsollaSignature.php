@@ -5,6 +5,7 @@
 
 namespace App\Libraries\Payments;
 
+use App\Exceptions\InvalidSignatureException;
 use Illuminate\Http\Request;
 
 class XsollaSignature implements PaymentSignature
@@ -13,14 +14,19 @@ class XsollaSignature implements PaymentSignature
     {
     }
 
-    public function isValid()
+    public function assertValid(): void
     {
         $received = $this->receivedSignature();
-        \Log::debug("XsollaSignature::isValidSignature calc: {$this->calculatedSignature()}, signed: {$received}");
 
-        return $received === null
-            ? false
-            : hash_equals($this->calculatedSignature(), $received);
+        if ($received === null) {
+            throw new InvalidSignatureException('missing signature');
+        }
+
+        $calculated = $this->calculatedSignature();
+
+        if (!hash_equals($calculated, $received)) {
+            throw new InvalidSignatureException('hash mismatch', compact('calculated', 'received'));
+        }
     }
 
     public static function calculateSignature(string $content)

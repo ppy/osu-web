@@ -2,6 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BigButton from 'components/big-button';
+import InputContainer from 'components/input-container';
+import TextareaAutosize from 'components/textarea-autosize';
 import ContestEntryJson from 'interfaces/contest-entry-json';
 import ContestScoringCategoryJson from 'interfaces/contest-scoring-category-json';
 import { route } from 'laroute';
@@ -12,45 +14,48 @@ import * as React from 'react';
 import ContestJudgeStore from 'stores/contest-judge-store';
 import { onError } from 'utils/ajax';
 import { trans } from 'utils/lang';
-import { CurrentUserJudgeVote } from './current-user-judge-vote';
+import CurrentUserJudgeVote from './current-user-judge-vote';
 
 interface Props {
   entry: ContestEntry;
   store: ContestJudgeStore;
 }
 
+const commentsMaxLength = 1000;
+
 @observer
 export default class Entry extends React.Component<Props> {
-  @observable private readonly currentVote = new CurrentUserJudgeVote();
-  @observable private readonly initialVote = new CurrentUserJudgeVote();
-  @observable private posting = false;
-  @observable private xhr?: JQuery.jqXHR;
+  @observable private readonly currentVote;
+  @observable private readonly initialVote;
+  @observable private readonly store;
+  @observable private xhr?: JQuery.jqXHR<ContestEntryJson>;
 
   constructor(props: Props) {
     super(props);
 
-    const voteFromJson = props.entry.current_user_judge_vote;
-    if (voteFromJson != null) {
-      this.currentVote.updateWithJson(voteFromJson);
-      this.initialVote.updateWithJson(voteFromJson);
-    }
+    this.store = this.props.store;
+
+    const json = props.entry.current_user_judge_vote;
+    this.currentVote = new CurrentUserJudgeVote(json);
+    this.initialVote = new CurrentUserJudgeVote(json);
 
     makeObservable(this);
   }
 
   @computed
-  private get disabled() {
-    const scoresHaveChanged = this.props.store.scoringCategories.some((category) => {
-      const initialScore = this.initialVote.scores.get(category.id);
-      const score = this.currentVote.scores.get(category.id);
+  private get canSubmit() {
+    return this.store.canJudge
+      && !this.commentTooLong
+      && this.currentVote.scores.size === this.store.scoringCategories.length
+      && (this.currentVote.comment !== this.initialVote.comment
+          || this.store.scoringCategories.some((category) => (
+            this.initialVote.scores.get(category.id)?.value !== this.currentVote.scores.get(category.id)?.value
+          ))
+      );
+  }
 
-      return initialScore?.value !== score?.value;
-    });
-
-    return !(
-      this.currentVote.scores.size === this.props.store.scoringCategories.length
-        && (scoresHaveChanged || this.currentVote.comment !== this.initialVote.comment)
-    );
+  private get commentTooLong() {
+    return this.currentVote.comment.length > commentsMaxLength;
   }
 
   render() {
@@ -65,46 +70,33 @@ export default class Entry extends React.Component<Props> {
           {this.props.entry.title}
         </div>
 
-        {this.props.store.scoringCategories.map((category) => {
-          const currentScore = this.currentVote.scores.get(category.id);
+        <div className='contest-judge-entry__categories'>
+          {this.store.scoringCategories.map(this.renderCategory)}
+        </div>
 
-          return (
-            <div key={category.id}>
-              <div className='contest-judge-entry__label'>
-                <div className='contest-judge-entry__description-icon' title={category.description}>
-                  <i className='fas fa-question-circle' />
-                </div>
-
-                {category.name}
-              </div>
-
-              {this.renderRangeInput(category, currentScore?.value ?? 0)}
-
-              <div className='contest-judge-entry__value'>
-                {
-                  currentScore != null
-                    ? `${currentScore.value}/${category.max_value}`
-                    : trans('contest.judge.no_current_vote')
-                }
-              </div>
-            </div>
-          );
-        })}
-
-        <div className='contest-judge-entry__textarea-wrapper'>
-          <textarea
-            className='contest-judge-entry__textarea'
+        <InputContainer
+          hasError={this.commentTooLong}
+          input={this.currentVote.comment}
+          labelKey='contest.judge.comments'
+          maxLength={commentsMaxLength}
+          modifiers='judging'
+          showError
+        >
+          <TextareaAutosize
+            className='input-text'
+            disabled={!this.store.canJudge}
+            maxRows={20}
             onChange={this.handleCommentChange}
             rows={6}
             value={this.currentVote.comment}
           />
-        </div>
+        </InputContainer>
 
         <div className='contest-judge-entry__button'>
           <BigButton
-            disabled={this.disabled}
+            disabled={!this.canSubmit}
             icon='fas fa-check'
-            isBusy={this.posting}
+            isBusy={this.xhr != null}
             props={{ onClick: this.submitVote }}
             text={trans('contest.judge.update')}
           />
@@ -115,7 +107,7 @@ export default class Entry extends React.Component<Props> {
 
   @action
   private readonly handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    this.currentVote.updateComment(e.currentTarget.value);
+    this.currentVote.comment = e.currentTarget.value;
   };
 
   @action
@@ -127,27 +119,45 @@ export default class Entry extends React.Component<Props> {
     this.currentVote.scores.set(categoryId, score);
   };
 
-  private renderRangeInput(category: ContestScoringCategoryJson, initialValue: number) {
+  private readonly renderCategory = (category: ContestScoringCategoryJson) => {
+    const currentScore = this.currentVote.scores.get(category.id);
+
     return (
-      <div className='contest-judge-entry-range-input'>
+      <div key={category.id} className='contest-judge-entry__category'>
+        <div className='contest-judge-entry__label'>
+          <div title={category.description}>
+            <i className='fas fa-question-circle' />
+          </div>
+
+          {category.name}
+        </div>
+
         <input
+          className='contest-judge-entry__slider'
           data-category-id={category.id}
+          disabled={!this.store.canJudge}
           max={category.max_value}
           onChange={this.handleRangeInputChange}
           type='range'
-          value={initialValue}
+          value={currentScore?.value ?? 0}
         />
+
+        <div className='contest-judge-entry__value'>
+          {
+            currentScore != null
+              ? `${currentScore.value}/${category.max_value}`
+              : trans('contest.judge.no_current_vote')
+          }
+        </div>
       </div>
     );
-  }
+  };
 
   @action
   private readonly submitVote = () => {
-    if (this.xhr != null) return;
+    if (this.xhr != null || !this.canSubmit) return;
 
-    this.posting = true;
-
-    this.xhr = $.ajax(route('contest-entries.judge-vote', { contest_entry: this.props.entry.id }), {
+    this.xhr = $.ajax(route('contests.entries.judge-vote', { contest: this.props.entry.contest_id, contest_entry: this.props.entry.id }), {
       data: {
         comment: this.currentVote.comment,
         scores: [...this.currentVote.scores.values()],
@@ -157,14 +167,13 @@ export default class Entry extends React.Component<Props> {
 
     this.xhr
       .fail(onError)
-      .done((json: ContestEntryJson) => runInAction(() => {
-        this.props.store.updateEntry(json);
+      .done((json) => runInAction(() => {
+        this.store.updateEntry(json);
 
         if (json.current_user_judge_vote != null) {
           this.initialVote.updateWithJson(json.current_user_judge_vote);
         }
       })).always(action(() => {
-        this.posting = false;
         this.xhr = undefined;
       }));
   };

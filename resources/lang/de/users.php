@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => 'Aktiv',
+            'ended' => 'Beendet',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Beatmaps: :counts',
         'modding_description_empty' => 'Der Nutzer hat keine Beatmaps.',
@@ -159,14 +166,24 @@ return [
             'cancel' => 'Abbrechen',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => 'Bitte melde Urheberrechtsverstöße durch einen DMCA-Antrag an :mail wie in :policy beschrieben.',
+                'policy' => 'der osu!-Urheberrechtsrichtlinie',
+            ],
+            'message_2' => 'Dies betrifft Fälle, in denen Audiospuren, visuelle Inhalte oder Inhalte aus Beatmapleveln ohne korrekte Genehmigung verwendet werden.',
+        ],
+
         'options' => [
             'cheating' => 'Cheating',
-            'multiple_accounts' => 'Verwendet mehrere Konten',
+            'copyright_infringement' => 'Urheberrechtsverletzung',
+            'inappropriate_chat' => 'Unangemessenes Verhalten im Chat',
             'insults' => 'Beleidigt mich / andere',
-            'spam' => 'Spamming',
-            'unwanted_content' => 'Verlinkt unangemessene Inhalte',
+            'multiple_accounts' => 'Verwendet mehrere Konten',
             'nonsense' => 'Unsinn',
             'other' => 'Anderes (unten angeben)',
+            'spam' => 'Spamming',
+            'unwanted_content' => 'Unangemessene Inhalte',
         ],
     ],
     'restricted_banner' => [
@@ -196,16 +213,36 @@ return [
             'to_0' => 'Cover verbergen',
             'to_1' => 'Cover anzeigen',
         ],
+        'daily_challenge' => [
+            'daily' => 'Tägliche Serie',
+            'daily_streak_best' => 'Beste Tagesserie',
+            'daily_streak_current' => 'Aktuelle Tagesserie',
+            'playcount' => 'Gesamtbeteiligung',
+            'title' => 'Tägliche\nHerausforderung',
+            'top_10p_placements' => 'Platzierungen in den Top 10 %',
+            'top_50p_placements' => 'Platzierungen in den Top 50 %',
+            'weekly' => 'Wöchentliche Serie',
+            'weekly_streak_best' => 'Beste Wochenserie',
+            'weekly_streak_current' => 'Aktuelle Wochenserie',
+
+            'unit' => [
+                'day' => ':value T',
+                'week' => ':value W',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Profilbanner ändern',
                 'defaults_info' => 'In der Zukunft wird es mehr Optionen für das Banner geben',
+                'holdover_remove_confirm' => "Das davor ausgewählte Cover ist nicht mehr zur Auswahl verfügbar. Du kannst es nach dem Wechsel zu einem anderen Cover nicht wieder auswählen. Trotzdem fortfahren?",
+                'title' => 'Banner',
+
                 'upload' => [
                     'broken_file' => 'Verarbeitung des Bildes fehlgeschlagen. Überprüfe das hochgeladene Bild und versuch es erneut.',
                     'button' => 'Bild hochladen',
                     'dropzone' => 'Zum Hochladen hier ablegen',
                     'dropzone_info' => 'Du kannst das Bild auch hier ablegen, um es hochzuladen',
-                    'size_info' => 'Banner sollte 2400x640 groß sein',
+                    'size_info' => 'Banner sollte 2000x500 groß sein',
                     'too_large' => 'Datei ist zu groß.',
                     'unsupported_format' => 'Format wird nicht unterstützt.',
 
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'Standard-Spielmodus',
                 'set' => 'Wähle :mode als Standard-Spielmodus',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Zur Standardfarbe zurückkehren? Für die Wahl einer anderen Farbe wird ein Supporter-Tag benötigt.',
+                'title' => 'Farbe',
+
+                'supporter' => [
+                    '_' => 'Eigene Farbschemata nur für :link verfügbar',
+                    'link' => 'osu!supporter',
+                ],
             ],
         ],
 
@@ -268,7 +315,7 @@ return [
                 'show_more' => 'mehr Events anzeigen',
             ],
             'historical' => [
-                'title' => 'Historisch',
+                'title' => 'Historie',
 
                 'monthly_playcounts' => [
                     'title' => 'Spielverlauf',
@@ -279,7 +326,7 @@ return [
                     'title' => 'Meistgespielte Beatmaps',
                 ],
                 'recent_plays' => [
-                    'accuracy' => 'genauigkeit: :percentage',
+                    'accuracy' => 'Genauigkeit: :percentage',
                     'title' => 'Zuletzt gespielt (24h)',
                 ],
                 'replays_watched_counts' => [
@@ -363,7 +410,7 @@ return [
                 'not_ranked' => 'Nur Ranked Beatmaps geben PP.',
                 'pp_weight' => ':percentage gewichtet',
                 'view_details' => 'Details anzeigen',
-                'title' => 'Ränge',
+                'title' => 'Scores',
 
                 'best' => [
                     'title' => 'Beste Performance',
@@ -390,7 +437,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Accountstatus',
-                'bad_standing' => "Der Account von :username ist zurzeit eingeschränkt :(",
+                'bad_standing' => "Der Account von :username hat zurzeit keinen guten Ruf :(",
                 'remaining_silence' => ':username kann in :duration wieder sprechen.',
 
                 'recent_infringements' => [
@@ -444,13 +491,18 @@ return [
         ],
         'rank' => [
             'country' => 'Länderrang im Modus :mode',
-            'country_simple' => 'Landesrangliste',
+            'country_simple' => 'Nationaler Rang',
             'global' => 'Globaler Rang im Modus :mode',
-            'global_simple' => 'Globale Rangliste',
+            'global_simple' => 'Globaler Rang',
             'highest' => 'Höchster Rang: :rank am :date',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Gesamtpunktzahl',
         ],
         'stats' => [
             'hit_accuracy' => 'Genauigkeit',
+            'hits_per_play' => 'Treffer pro Spiel',
             'level' => 'Level :level',
             'level_progress' => 'Fortschritt bis zum nächsten Level',
             'maximum_combo' => 'Höchste Combo',

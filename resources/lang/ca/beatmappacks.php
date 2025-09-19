@@ -5,22 +5,19 @@
 
 return [
     'index' => [
-        'description' => 'Col·leccions preempaquetades de beatmaps basades en un tema comú.',
+        'description' => 'Col·leccions preempaquetades de mapes basades en un tema comú.',
         'empty' => 'Pròximament!',
         'nav_title' => 'llistat',
-        'title' => 'Paquets de beatmaps',
+        'title' => 'Paquets de Mapes',
 
         'blurb' => [
             'important' => 'LLEGEIX AIXÒ ABANS DE DESCARREGAR',
             'install_instruction' => 'Instal·lació: Un cop descarregat un paquet, extreu-ne el contingut al directori Songs d\'osu! i aquest farà la resta.',
-            'note' => [
-                '_' => 'També tingues en compte que és molt recomanable :scary, ja que els beatmaps més antics són de molta menor qualitat que els beatmaps més recents.',
-                'scary' => 'descarregar els paquets dels més recents als més antics',
-            ],
         ],
     ],
 
     'show' => [
+        'created_by' => 'per :author',
         'download' => 'Descarregar',
         'item' => [
             'cleared' => 'completat',
@@ -34,10 +31,10 @@ return [
 
     'mode' => [
         'artist' => 'Artista/Àlbum',
-        'chart' => 'Spotlights',
+        'chart' => 'En el focus',
         'featured' => 'Artista Destacat',
-        'loved' => 'Project Loved',
-        'standard' => 'Standard',
+        'loved' => 'Projecte Amat',
+        'standard' => 'Estàndard',
         'theme' => 'Tema',
         'tournament' => 'Torneig',
     ],

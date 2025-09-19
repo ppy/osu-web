@@ -5,10 +5,14 @@
 
 namespace App\Models\Chat;
 
+use App\Jobs\Notifications\ChannelAnnouncement;
+use App\Jobs\Notifications\ChannelMessage;
+use App\Jobs\Notifications\ChannelTeam;
 use App\Models\Traits\Reportable;
 use App\Models\Traits\ReportableInterface;
 use App\Models\User;
 use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Collection;
 
 /**
@@ -86,12 +90,27 @@ class Message extends Model implements ReportableInterface
         };
     }
 
+    public function dispatchNotification(): void
+    {
+        $class = match ($this->channel->type) {
+            Channel::TYPES['announce'] => ChannelAnnouncement::class,
+            Channel::TYPES['pm'] => ChannelMessage::class,
+            Channel::TYPES['team'] => ChannelTeam::class,
+            default => null,
+        };
+
+        if ($class !== null) {
+            new $class($this, $this->sender)->dispatch();
+        }
+    }
+
     public function reportableAdditionalInfo(): ?string
     {
         $history = static
             ::where('message_id', '<=', $this->getKey())
             ->whereHas('channel', fn ($ch) => $ch->where('type', '<>', Channel::TYPES['pm']))
             ->where('user_id', $this->user_id)
+            ->where('timestamp', '>', CarbonImmutable::now()->subDays(1))
             ->orderBy('timestamp', 'DESC')
             ->with('channel')
             ->limit(5)

@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Inga osu!(lazer) :type_group -spel spelade än!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'spellista',
         'realtime' => 'flerspelarläge',
     ],
@@ -16,9 +17,12 @@ return [
         'map_count' => ':count_delimited map|:count_delimited maps',
         'player_count' => ':count_delimited spelare|:count_delimited spelare',
         'time_left' => ':time kvar',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => 'Varaktigheten är för lång.',
+            'name_too_long' => 'Rum namn är för långt.',
         ],
 
         'status' => [

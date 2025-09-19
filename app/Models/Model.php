@@ -22,15 +22,30 @@ abstract class Model extends BaseModel
     use HasFactory, Traits\FasterAttributes, Validatable;
 
     const MAX_FIELD_LENGTHS = [];
+    const int PER_PAGE = 50;
 
     protected $connection = 'mysql';
     protected $guarded = [];
-    protected $macros;
+    protected array $macros = [];
+    protected $perPage = self::PER_PAGE;
     protected $primaryKeys;
 
     public static function booted()
     {
         static::addGlobalScope(new MacroableModelScope());
+    }
+
+    protected static function searchQueryAndParams(array $params)
+    {
+        $limit = \Number::clamp(get_int($params['limit'] ?? null) ?? static::PER_PAGE, 5, 50);
+        $page = max(get_int($params['page'] ?? null), 1);
+
+        $offset = max_offset($page, $limit);
+        $page = 1 + $offset / $limit;
+
+        $query = static::limit($limit)->offset($offset);
+
+        return [$query, compact('limit', 'page')];
     }
 
     public function getForeignKey()
@@ -47,15 +62,14 @@ abstract class Model extends BaseModel
         return $this->getRawAttribute($this->primaryKey);
     }
 
-    public function getMacros()
+    public function getMacros(): array
     {
-        static $baseMacros = [
+        return [
+            ...$this->macros,
             'getWithHasMore',
             'last',
             'realCount',
         ];
-
-        return array_merge($this->macros ?? [], $baseMacros);
     }
 
     public function getMorphClass()

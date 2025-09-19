@@ -50,7 +50,7 @@ export class WikiSearchController {
       return;
     }
 
-    Turbolinks.visit(route('search', {
+    Turbo.visit(route('search', {
       mode: 'wiki_page',
       query,
     }));
@@ -76,9 +76,9 @@ export class WikiSearchController {
   }
 
   @action
-  unselect(leaveOpen: boolean) {
+  unselect(close: boolean) {
     this.selectIndex(-1);
-    this.shouldShowSuggestions = this.shouldShowSuggestions && !leaveOpen;
+    this.shouldShowSuggestions = this.shouldShowSuggestions && !close;
   }
 
   @action

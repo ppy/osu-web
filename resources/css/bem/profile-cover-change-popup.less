@@ -2,28 +2,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .profile-cover-change-popup {
-  .default-border-radius();
-  .default-box-shadow();
-
-  position: absolute;
-  top: 0;
-  right: 100%;
-
-  width: 400px;
-  max-width: calc(100vw - 50px);
-
-  background: @osu-colour-b6;
-  color: #fff;
-  z-index: @z-index--profile-page-cover-selector;
-
   font-size: @font-size--small;
   text-align: center;
+  display: grid;
+  gap: 10px;
+  position: relative;
 
   &__defaults {
     display: grid;
     grid-template-columns: 1fr 1fr;
 
-    padding: 10px;
     gap: 4px;
   }
 
@@ -39,7 +27,6 @@
     justify-content: center;
     align-items: center;
 
-    color: #fff;
     font-size: 24px;
     padding: 20px;
 
@@ -59,7 +46,7 @@
     // placeholder to prevent triggering dragleave when entering child element
     &::after {
       .full-size();
-      content: '';
+      content: "";
     }
   }
 }

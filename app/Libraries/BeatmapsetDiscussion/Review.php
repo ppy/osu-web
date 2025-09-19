@@ -89,7 +89,7 @@ class Review
         return (new static($beatmapset, $user, $document, $discussion))->process();
     }
 
-    private function createDiscussion(string $discussionType, string $message, int $beatmapId = null, string $timestamp = null)
+    private function createDiscussion(string $discussionType, string $message, ?int $beatmapId = null, ?string $timestamp = null)
     {
         $userId = $this->user->getKey();
 

@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => '아직 아무런 osu!(lazer) :type_group 게임이 진행되지 않았습니다!',
+        'active' => '현재 진행 중인 osu!(lazer) :type_group 게임이 없어요!',
+        'ended' => '아직 완료된 osu!(lazer) :type_group 게임이 없어요!',
         'playlists' => '플레이리스트',
         'realtime' => '멀티플레이어',
     ],
@@ -16,9 +17,12 @@ return [
         'map_count' => ':count_delimited개의 맵',
         'player_count' => ':count_delimited명의 플레이어',
         'time_left' => ':time 남음',
+        'view_history' => '기록 보기',
+        'view_summary' => '요약 보기',
 
         'errors' => [
             'duration_too_long' => '기간이 너무 깁니다.',
+            'name_too_long' => '방 이름이 너무 깁니다.',
         ],
 
         'status' => [

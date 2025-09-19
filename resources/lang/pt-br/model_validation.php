@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => ':attribute contém caracteres inválidos.',
+        'used' => 'Essa escolha de :attribute já está sendo usada.',
+        'word_not_allowed' => 'Essa escolha de :attribute não é permitida.',
+
+        'attributes' => [
+            'default_ruleset_id' => 'Regras padrão',
+            'is_open' => 'Aplicação para equipe',
+            'name' => 'Nome',
+            'short_name' => 'Nome curto',
+            'url' => 'URL',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Senha não deve conter seu nome de usuário.',
         'email_already_used' => 'Email já utilizado.',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Beatmaps ranqueados não podem ser reportados',
         'not_in_channel' => 'Você não está nesse canal.',
+        'in_team' => 'Você não faz parte da equipe.',
         'reason_not_valid' => ':reason não é valido para este tipo de denúncia.',
         'self' => "Você não pode se denunciar!",
     ],

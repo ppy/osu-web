@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => 'Aktivní',
+            'ended' => 'Skončila',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Beatmap: :counts',
         'modding_description_empty' => 'Uživatel nemá žádné beatmapy...',
@@ -159,14 +166,24 @@ return [
             'cancel' => 'Zrušit',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => 'Prosím nahlaste porušení autorských práv prostřednictvím DMCA požadavku na :mail podle :policy.',
+                'policy' => 'osu! pravidla autorských práv',
+            ],
+            'message_2' => 'To platí pro případy, kdy jsou zvukové stopy, vizuální obsah nebo obsah úrovně beatmapy použity bez správného oprávnění.',
+        ],
+
         'options' => [
             'cheating' => 'Podvádění',
-            'multiple_accounts' => 'Používání více účtů',
+            'copyright_infringement' => 'Porušení autorských práv',
+            'inappropriate_chat' => 'Nevhodné chování v chatu',
             'insults' => 'Uráží mě / ostatní',
-            'spam' => 'Spamování',
-            'unwanted_content' => 'Odkazování na nevhodný obsah',
+            'multiple_accounts' => 'Používání více účtů',
             'nonsense' => 'Nesmysl',
             'other' => 'Jiný (napište níže)',
+            'spam' => 'Spamování',
+            'unwanted_content' => 'Nevhodný obsah',
         ],
     ],
     'restricted_banner' => [
@@ -196,10 +213,30 @@ return [
             'to_0' => 'Skrýt záhlaví',
             'to_1' => 'Zobrazit záhlaví',
         ],
+        'daily_challenge' => [
+            'daily' => 'Dnů v řadě',
+            'daily_streak_best' => 'Nejvíce dnů v řadě',
+            'daily_streak_current' => 'Aktuálně dnů v řadě',
+            'playcount' => 'Celková účast',
+            'title' => 'Denní\nvýzva',
+            'top_10p_placements' => 'Umístění v Top 10%',
+            'top_50p_placements' => 'Umístění v Top 50%',
+            'weekly' => 'Týdnů v řadě',
+            'weekly_streak_best' => 'Nejvíce týdnů v řadě',
+            'weekly_streak_current' => 'Aktuálně týdnů v řadě',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuet',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Změnit záhlaví profilu',
                 'defaults_info' => 'Více možností záhlaví bude k dispozici v budoucnu',
+                'holdover_remove_confirm' => "Toto dříve vybrané záhlaví již není k dispozici k výběru. Nebude možné jej znovu vybrat po přepnutí na jiné záhlaví. Pokračovat?",
+                'title' => 'Záhlaví',
+
                 'upload' => [
                     'broken_file' => 'Zpracování obrázku selhalo. Ověř si obrázek a zkus to znovu.',
                     'button' => 'Nahrát obrázek',
@@ -211,7 +248,7 @@ return [
 
                     'restriction_info' => [
                         '_' => 'Nahrávání je dostupné pouze pro :link',
-                        'link' => 'osu!supporters',
+                        'link' => 'osu!supportery',
                     ],
                 ],
             ],
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'výchozí herní mód',
                 'set' => 'nastavit :mode jako výchozí herní mód profilu',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Obnovit barvu na výchozí? Pro změnu na jinou barvu bude vyžadován supporter tag.',
+                'title' => 'Barva',
+
+                'supporter' => [
+                    '_' => 'Vlastní barevné motivy dostupné pouze pro :link',
+                    'link' => 'osu!supportery',
+                ],
             ],
         ],
 
@@ -360,7 +407,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Stáhnout záznam',
-                'not_ranked' => 'Pouze hodnocené mapy vydávají pp.',
+                'not_ranked' => 'Pouze hodnocené mapy udělují pp',
                 'pp_weight' => 'váženo na :percentage',
                 'view_details' => 'Zobrazit detaily',
                 'title' => 'Umístění',
@@ -449,8 +496,13 @@ return [
             'global_simple' => 'Světové hodnocení',
             'highest' => 'Nejvyšší rank :rank v :date',
         ],
+        'season_stats' => [
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Celkové skóre',
+        ],
         'stats' => [
             'hit_accuracy' => 'Přesnost zásahů',
+            'hits_per_play' => 'Zásahů za hru',
             'level' => 'Úroveň :level',
             'level_progress' => 'postup do dalšího levelu',
             'maximum_combo' => 'Maximální Combo',
@@ -481,8 +533,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'from_client' => 'prosím, zaregistrujte se přes herního klienta!',
-        'from_web' => 'prosím dokončete registraci na webové stránce osu!',
+        'from_client' => 'prosím, zaregistruj se přes herního klienta!',
+        'from_web' => 'prosím dokonči registraci na webové stránce osu!',
         'saved' => 'Uživatelem vytvořen',
     ],
     'verify' => [

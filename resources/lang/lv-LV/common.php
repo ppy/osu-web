@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Admin',
         'authorise' => 'Autorizēt',
         'authorising' => 'Autorizē...',
+        'back' => 'Atpakaļ',
         'back_to_previous' => 'Atgriezties iepriekšējā pozīcijā',
         'back_to_top' => 'Atpakaļ uz augšu',
         'cancel' => 'Atcelt',
@@ -39,7 +39,7 @@ return [
         'pin' => 'piespraust',
         'post' => 'Publicēt',
         'read_more' => 'lasīt vairāk',
-        'refresh' => '',
+        'refresh' => 'Atsvaidzināt',
         'reply' => 'Atbildēt',
         'reply_reopen' => 'Atbildēt un Atvērt atkārtoti',
         'reply_resolve' => 'Atbildēt un atrisināt',
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => 'm',
+        ],
+        'year' => [
+            'php' => 'g',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

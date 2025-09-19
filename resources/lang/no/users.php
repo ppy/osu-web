@@ -32,7 +32,7 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => 'Du har blokkerte denne brukeren.',
+        'banner_text' => 'Du har blokkert denne brukeren.',
         'comment_text' => 'Denne kommentaren er skjult.',
         'blocked_count' => 'blokkerte brukere (:count)',
         'hide_profile' => 'Skjul profil',
@@ -41,7 +41,7 @@ return [
         'not_blocked' => 'Den brukeren er ikke blokkert.',
         'show_profile' => 'Vis profil',
         'show_comment' => 'vis',
-        'too_many' => 'Maks antall blokkerte personer nådd.',
+        'too_many' => 'Maks antall blokkerte brukere nådd.',
         'button' => [
             'block' => 'Blokker',
             'unblock' => 'Fjern blokkering',
@@ -51,16 +51,16 @@ return [
     'card' => [
         'gift_supporter' => 'Gi osu!supporter i gave',
         'loading' => 'Laster...',
-        'send_message' => 'send melding',
+        'send_message' => 'Send melding',
     ],
 
     'create' => [
         'form' => [
             'password' => 'passord',
-            'password_confirmation' => 'passord bekreftelse',
+            'password_confirmation' => 'passordbekreftelse',
             'submit' => 'opprett konto',
-            'user_email' => 'epost',
-            'user_email_confirmation' => 'epostbekreftelse',
+            'user_email' => 'e-post',
+            'user_email_confirmation' => 'e-postbekreftelse',
             'username' => 'brukernavn',
 
             'tos_notice' => [
@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Kontoen din har ikke blitt brukt på lang tid.",
             'inactive_different_country' => "Kontoen din har ikke blitt brukt på lang tid.",
         ],
     ],
@@ -121,6 +121,13 @@ return [
         'beta' => [
             'main' => 'Tilgang til beta er for øyeblikket begrenset til privilegerte brukere.',
             'small' => '(osu!supportere vil komme inn snart)',
+        ],
+    ],
+
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
         ],
     ],
 
@@ -159,14 +166,24 @@ return [
             'cancel' => 'Avbryt',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Juksing',
-            'multiple_accounts' => 'Bruker flere kontoer',
+            'copyright_infringement' => '',
+            'inappropriate_chat' => 'Upassende chat atferd',
             'insults' => 'Fornærmer meg / andre',
-            'spam' => 'Spamming',
-            'unwanted_content' => 'Deling av upassende innhold',
+            'multiple_accounts' => 'Bruker flere kontoer',
             'nonsense' => 'Tull',
             'other' => 'Annet (skriv under)',
+            'spam' => 'Spamming',
+            'unwanted_content' => 'Deling av upassende innhold',
         ],
     ],
     'restricted_banner' => [
@@ -196,10 +213,30 @@ return [
             'to_0' => 'Skjul banner',
             'to_1' => 'Vis banner',
         ],
+        'daily_challenge' => [
+            'daily' => 'Daglig Streak',
+            'daily_streak_best' => 'Beste Daglig Streak',
+            'daily_streak_current' => 'Nåværende Daglig Streak',
+            'playcount' => 'Total Deltagelse',
+            'title' => 'Daglig\nUtfordring',
+            'top_10p_placements' => 'Topp 10% Plassering',
+            'top_50p_placements' => 'Topp 50% Plassering',
+            'weekly' => 'Ukentlig Streak',
+            'weekly_streak_best' => 'Beste Ukentlig Streak',
+            'weekly_streak_current' => 'Nåværende Ukentlig Streak',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Endre profilbanner',
                 'defaults_info' => 'Flere banneralternativer vil være tilgjengelige i framtiden',
+                'holdover_remove_confirm' => "Den forrige valgte forsiden er ikke tilgjenglig for utvalg lenger. Du kan ikke velge den tilbake etter at du har byttet til et annet forside. Fortsett?",
+                'title' => 'Forside',
+
                 'upload' => [
                     'broken_file' => 'Kunne ikke prosessere bildet. Verifiser opplastet bilde og prøv igjen.',
                     'button' => 'Last opp bilde',
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'standard spillmodus',
                 'set' => 'angi ::mode som standard spillmodus',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Tilbakestille fargen til standard? Supporter-tag kreves for å endre den til en annen farge.',
+                'title' => 'Farge',
+
+                'supporter' => [
+                    '_' => 'Egendefinerte fargetemaer kun tilgjengelig for :link',
+                    'link' => 'osu!supportere',
+                ],
             ],
         ],
 
@@ -449,8 +496,13 @@ return [
             'global_simple' => 'Global Rangering',
             'highest' => 'Høyeste rangering: :rank den :date',
         ],
+        'season_stats' => [
+            'division_top_percentage' => 'Topp :value',
+            'total_score' => 'Total poengsum',
+        ],
         'stats' => [
             'hit_accuracy' => 'Presisjon',
+            'hits_per_play' => 'Treff per spill',
             'level' => 'Nivå :level',
             'level_progress' => 'Fremgang til neste nivå',
             'maximum_combo' => 'Maks kombo nådd',

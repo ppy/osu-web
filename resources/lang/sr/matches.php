@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner са :difference',
 
         'events' => [
-            'player-left' => ':user је напустио меч',
-            'player-joined' => ':user се придружио мечу',
-            'player-kicked' => ':user је избачен из меча',
-            'match-created' => ':user је направио меч',
-            'match-disbanded' => 'меч је прекинут',
-            'host-changed' => ':user је постао водитељ',
-
-            'player-left-no-user' => 'играч је изашао из меча',
-            'player-joined-no-user' => 'играч је ушао у меч',
-            'player-kicked-no-user' => 'играч је избачен из меча',
-            'match-created-no-user' => 'меч је био направљен',
-            'match-disbanded-no-user' => 'меч је био прекинут',
-            'host-changed-no-user' => 'водитељ је био промењен',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Директно такмичење',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Тим против тима',
-            'tag-team-vs' => 'Tag Тим VS',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => 'Највећи Резултат',
             'accuracy' => 'Највећа Прецизност',

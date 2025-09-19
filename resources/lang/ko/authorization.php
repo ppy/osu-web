@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => 'osu!를 조금 더 해보시는 건 어떨까요?',
+    'play_more' => '대신에 osu! 몇 판을 즐겨보시는 게 어떨까요?',
     'require_login' => '계속하려면 로그인해 주세요.',
     'require_verification' => '계속하려면 인증해 주세요.',
     'restricted' => "제한된 상태에서는 할 수 없습니다.",
@@ -18,7 +18,7 @@ return [
         ],
         'nominate' => [
             'exhausted' => '오늘은 더 이상 추천할 수 없습니다. 내일 다시 시도해주세요.',
-            'incorrect_state' => '해당 작업을 수행하는 중 오류가 발생했습니다. 페이지를 새로 고쳐주세요.',
+            'incorrect_state' => '요청하신 작업 수행 중 오류가 발생했으니, 본 페이지를 새로고침해 주세요.',
             'owner' => "자신의 비트맵을 추천할 수 없습니다.",
             'set_metadata' => '추천하려면 먼저 장르와 언어를 지정해야 합니다.',
         ],
@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '비트맵에 태그를 추가하려면 점수를 지정해야 합니다.',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => '이 채널은 공지 전용입니다.',
         'blocked' => '당신을 차단하였거나 당신이 차단한 유저에게 메시지를 보낼 수 없습니다.',
         'friends_only' => '해당 유저는 친구가 아닌 유저의 메시지를 차단한 상태입니다.',
         'moderated' => '채널은 현재 관리 중입니다.',
         'no_access' => '해당 채널에 대한 접근 권한이 없습니다.',
+        'no_announce' => '공지를 게시할 권한이 없습니다.',
         'receive_friends_only' => '친구 목록에 있는 사람들의 메시지만 수락하기 때문에 유저가 답장하지 못할 수 있습니다.',
         'restricted' => '침묵, 제한, 차단 상태에서는 메시지를 전송할 수 없습니다.',
         'silenced' => '침묵, 제한, 차단 상태에서는 메시지를 전송할 수 없습니다.',
@@ -107,6 +113,7 @@ return [
                 'deleted' => '삭제된 답글은 수정할 수 없습니다.',
                 'locked' => '이 답글은 잠겨있어 수정할 수 없습니다.',
                 'no_forum_access' => '요청하신 포럼에 대한 접근 권한이 필요합니다.',
+                'no_permission' => '수정 권한이 없어요.',
                 'not_owner' => '본인이 쓴 답글만 수정할 수 있습니다.',
                 'topic_locked' => '잠긴 주제에 달린 답글은 수정할 수 없습니다.',
             ],
@@ -170,12 +177,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => '방 소유자만 닫을 수 있습니다.',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "이러한 유형의 점수는 고정할 수 없습니다",
             'failed' => "클리어 하지 못한 점수는 고정할 수 없습니다.",
             'not_owner' => '점수 소유자만 점수를 고정할 수 있습니다.',
             'too_many' => '너무 많은 점수를 고정했습니다.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "이미 팀에 소속되어 있습니다.",
+                'already_other_member' => "이미 다른 팀에 소속되어 있습니다.",
+                'currently_applying' => '대기 중인 팀 가입 요청이 있습니다.',
+                'team_closed' => '이 팀은 현재 가입 요청을 받고 있지 않습니다.',
+                'team_full' => "이 팀은 가득 차 더 이상 팀원을 받을 수 없습니다.",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "팀 리더는 팀을 떠날 수 없습니다.",
+            'not_member' => '팀의 멤버가 아닙니다.',
+        ],
+        'store' => [
+            'require_supporter_tag' => '팀을 만들려면 osu! 서포터 태그가 필요합니다.',
         ],
     ],
 

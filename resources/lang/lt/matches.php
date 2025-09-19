@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner skirtumu :difference',
 
         'events' => [
-            'player-left' => ':user išėjo iš mačo',
-            'player-joined' => ':user prisijungė prie mačo',
-            'player-kicked' => ':user buvo išmestas iš mačo',
-            'match-created' => ':user sukūrė mačą',
-            'match-disbanded' => 'mačas buvo sustabdytas',
-            'host-changed' => ':user tapo šeimininku',
-
-            'player-left-no-user' => 'žaidėjas išėjo iš mačo',
-            'player-joined-no-user' => 'žaidėjas prisijungė prie mačo',
-            'player-kicked-no-user' => 'žaidėjas buvo išmestas iš mačo',
-            'match-created-no-user' => 'mačas buvo sukurtas',
-            'match-disbanded-no-user' => 'mačas buvo sustabdytas',
-            'host-changed-no-user' => 'pasikeitė šeimininkas',
+            'game_aborted' => '',
+            'game_aborted_no_user' => '',
+            'game_completed' => '',
+            'game_completed_no_user' => '',
+            'host_changed' => '',
+            'host_changed_no_user' => '',
+            'player_joined' => '',
+            'player_joined_no_user' => '',
+            'player_kicked' => '',
+            'player_kicked_no_user' => '',
+            'player_left' => '',
+            'player_left_no_user' => '',
+            'room_created' => '',
+            'room_created_no_user' => '',
+            'room_disbanded' => '',
+            'room_disbanded_no_user' => '',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Kiekvienas už save',
-            'tag-coop' => 'Pakaitinis Ko-op',
-            'team-vs' => 'Komandinis',
-            'tag-team-vs' => 'Komandinis Pakaitinis',
+        'team_types' => [
+            'head_to_head' => '',
+            'tag_coop' => '',
+            'tag_team_versus' => '',
+            'team_versus' => '',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => '',
+
         'scoring-type' => [
             'score' => 'Daugiausiai Taškų',
             'accuracy' => 'Didžiausias Tikslumas',

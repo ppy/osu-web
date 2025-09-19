@@ -7,6 +7,7 @@ return [
     'cancel' => '취소',
 
     'authorise' => [
+        'app_owner' => ':owner 님의 앱',
         'request' => '이(가) 당신의 계정에 접근할 수 있는 권한을 요청합니다.',
         'scopes_title' => '이 애플리케이션은 다음 기능을 할 수 있습니다:',
         'title' => '권한 요청',

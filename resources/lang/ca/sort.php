@@ -16,9 +16,9 @@ return [
     'username' => 'Nom d’usuari',
 
     'artist_tracks' => [
-        'album' => 'Album',
+        'album' => 'Àlbum',
         'artist' => 'Artista',
-        'bpm' => 'BPM',
+        'bpm' => 'PPM',
         'genre' => 'Gènere',
         'length' => 'Duració',
         'relevance' => 'Rellevància',
@@ -35,6 +35,12 @@ return [
         'created' => 'Creació',
         'feature_votes' => 'Prioritat de l\'estrella',
         'new' => 'Última resposta',
+    ],
+
+    'teams' => [
+        'relevance' => 'Rellevància',
+        'name' => 'Nom',
+        'short-name' => 'Nom curt',
     ],
 
     'users' => [

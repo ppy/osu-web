@@ -27,6 +27,7 @@ return [
                 'GROUP' => 'Ryhmät',
                 'PM' => 'Yksityisviestit',
                 'PUBLIC' => 'Kanavat',
+                'TEAM' => 'Tiimi',
             ],
         ],
     ],

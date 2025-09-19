@@ -20,17 +20,19 @@ return [
         'channel' => 'чат',
         'forum_topic' => 'форум',
         'news_post' => 'навіны',
+        'team' => 'каманда',
         'user' => 'профіль',
     ],
 
     'filters' => [
         '_' => 'усе',
-        'user' => 'профіль',
         'beatmapset' => 'бітмапы',
-        'forum_topic' => 'форум',
-        'news_post' => 'навіны',
         'build' => 'зборкі',
         'channel' => 'чат',
+        'forum_topic' => 'форум',
+        'news_post' => 'навіны',
+        'team' => 'каманда',
+        'user' => 'профіль',
     ],
 
     'item' => [
@@ -57,9 +59,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'Абмеркаванне было адкрыта',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited пахвала|:count_delimited пахвалы',
+                    'problems' => ':count_delimited праблема|:count_delimited праблемы',
+                    'suggestions' => ':count_delimited прапанова|:count_delimited прапановы',
                 ],
             ],
 
@@ -121,6 +123,16 @@ return [
                     'channel_message_group' => 'ад :username',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => 'Новае паведамленне ад каманды',
+
+                'team' => [
+                    'channel_team' => ':username напісаў ":title"',
+                    'channel_team_compact' => ':username напісаў ":title"',
+                    'channel_team_group' => ':username напісаў ":title"',
+                ],
+            ],
         ],
 
         'build' => [
@@ -156,6 +168,22 @@ return [
                 '_' => 'Новы адказ на форуме',
                 'forum_topic_reply' => 'карыстальнік :username адказаў у тэме ":title".',
                 'forum_topic_reply_compact' => ':username адказаў',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => 'Запыт на ўступленне ў каманду',
+
+                'team_application_accept' => "Вы сталі ўдзельнікам каманды :title",
+                'team_application_accept_compact' => "Вы сталі ўдзельнікам каманды :title",
+
+                'team_application_group' => 'Абнаўлення па запытах на ўступленне ў каманду',
+
+                'team_application_reject' => 'Ваш запыт на ўступленне ў каманду :title адхілены',
+                'team_application_reject_compact' => 'Ваш запыт на ўступленне ў каманду :title адхілены',
+                'team_application_store' => ':title падаў запыт на ўступленне ў вашу каманду',
+                'team_application_store_compact' => ':title падаў запыт на ўступленне ў вашу каманду',
             ],
         ],
 
@@ -217,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => 'Новая аб\'ява ў ":name"',
+                'channel_announcement' => 'Новая аб\'ява ў канале ":name"',
             ],
-
             'channel' => [
-                'pm' => 'Вы атрымалі новае паведамленне ад :username',
+                'channel_message' => 'Вы атрымалі новае паведамленне ад :username',
+            ],
+            'channel_team' => [
+                'channel_team' => 'Новае паведамленне ў чаце каманды ":name"',
             ],
         ],
 
@@ -240,6 +270,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => 'Ёсць новыя адказы ў ":title"',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Вы сталі ўдзельнікам каманды :title",
+                'team_application_reject' => 'Ваш запыт на ўступленне ў каманду :title адхілены',
+                'team_application_store' => ':title падаў запыт на ўступленне ў вашу каманду',
             ],
         ],
 

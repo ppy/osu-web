@@ -9,7 +9,7 @@ return [
     ],
 
     'defaults' => [
-        'page_description' => 'osu! - 节奏跃然指上！内含来自「押忍！战斗应援团」、「精英节拍特工」、太鼓的以及 osu! 原创的游戏模式，以及为其设计的全功能谱面编辑器。',
+        'page_description' => 'osu! - 节奏跃然指上！内含来自「押忍！战斗应援团」、「精英节拍特工」、「太鼓达人」及原创的 osu! 游戏玩法，更有全功能谱面编辑器等你来创作。',
     ],
 
     'header' => [
@@ -61,8 +61,8 @@ return [
         'close' => '关闭（ESC）',
         'fullscreen' => '切换全屏',
         'zoom' => '放大/缩小',
-        'previous' => '前一个（左箭头）',
-        'next' => '后一个（右箭头）',
+        'previous' => '前一张（左箭头）',
+        'next' => '后一张（右箭头）',
     ],
 
     'menu' => [
@@ -75,7 +75,7 @@ return [
         ],
         'help' => [
             '_' => '帮助',
-            'getAbuse' => '报告不当行为',
+            'getAbuse' => '举报不当行为',
             'getFaq' => '常见问题',
             'getRules' => '规章制度',
             'getSupport' => '帮助中心',
@@ -113,6 +113,7 @@ return [
             'copyright' => '版权（DMCA）',
             'jp_sctl' => '',
             'privacy' => '隐私政策',
+            'rules' => '规定',
             'server_status' => '服务器状态',
             'source_code' => '源代码',
             'terms' => '服务条款',
@@ -129,12 +130,12 @@ return [
             'description' => "抱歉，您正在尝试访问的页面不存在！",
         ],
         '403' => [
-            'error' => "这里不是你该来的地方。",
-            'description' => '不过，你可以选择往回走。',
+            'error' => "(＞人＜;) 这里不是触手该来的地方~",
+            'description' => '请返回上一页',
         ],
         '401' => [
-            'error' => "这里不是你该来的地方。",
-            'description' => '不过，你可以选择往回走。或者试试登录？',
+            'error' => "(＞人＜;) 这里不是触手该来的地方~",
+            'description' => '试试返回上一页，或者登录看看？',
         ],
         '405' => [
             'error' => '无法找到网页',
@@ -150,11 +151,11 @@ return [
         ],
         '500' => [
             'error' => '哎呀，服务器崩溃了！;_;',
-            'description' => "服务器一旦出错，我们都会收到通知。请返回到上一个页面。",
+            'description' => "所有错误均已被系统自动捕获并记录。请返回到上一个页面。",
         ],
         'fatal' => [
             'error' => '哎呀，服务器被外星人带走了！;_;',
-            'description' => "服务器一旦出错，我们都会收到通知。请返回到上一个页面。",
+            'description' => "所有错误均已被系统自动捕获并记录。请返回到上一个页面。",
         ],
         '503' => [
             'error' => '服务器维护中！',
@@ -196,9 +197,12 @@ return [
             'follows' => '订阅',
             'friends' => '好友',
             'legacy_score_only_toggle' => 'Lazer 模式',
-            'legacy_score_only_toggle_tooltip' => 'Lazer 模式使用来自 Lazer 客户端的新记分算法显示您的分数',
+            'legacy_score_only_toggle_tooltip' => 'Lazer 模式使用来自 Lazer 客户端的新记分算法显示您的成绩',
             'logout' => '登出',
             'profile' => '资料',
+            'scoring_mode_toggle' => '经典计分',
+            'scoring_mode_toggle_tooltip' => '调整分数，让它感觉上更像经典的无上限计分分数。',
+            'team' => '战队',
         ],
     ],
 

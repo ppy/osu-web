@@ -13,14 +13,11 @@ return [
         'blurb' => [
             'important' => 'PERSKAITYK PRIEŠ ATSISIŲSDAMAS',
             'install_instruction' => 'Diegimas: Kai persisiųsi rinkinį, išskleisk rinkinio tūrinį į osu! dainų katalogą ir osu! padarys visą kitą.',
-            'note' => [
-                '_' => 'Taip pat yra rekomenduojama :scary, nes senesni bitmapai yra daug blogesnės kokybės lyginant su naujesniais.',
-                'scary' => 'siųstis nuo naujausiu iki seniausių',
-            ],
         ],
     ],
 
     'show' => [
+        'created_by' => '',
         'download' => 'Atsisiųsti',
         'item' => [
             'cleared' => 'išvalyta',

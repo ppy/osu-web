@@ -22,10 +22,13 @@ return [
         'advanced_link' => 'Pokročilé vyhledávání',
         'button' => 'Hledat',
         'empty_result' => 'Nebylo nic nenalezeno!',
-        'keyword_required' => 'Je vyžadováno hledané slovo',
-        'placeholder' => 'zadejte hledaný výraz',
+        'keyword_required' => 'Je vyžadován hledaný výraz',
+        'placeholder' => 'zadej hledaný výraz',
         'title' => 'hledat',
 
+        'artist_track' => [
+            'more_simple' => 'Zobrazit další výsledky hledání skladeb oficiálních umělců',
+        ],
         'beatmapset' => [
             'login_required' => 'Pro hledání beatmap se přihlaste',
             'more' => ':count dalších výsledků vyhledávání map',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => 'vše',
+            'artist_track' => 'skladba oficiálního umělce',
             'beatmapset' => 'beatmapa',
             'forum_post' => 'fórum',
+            'team' => 'tým',
             'user' => 'hráč',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => 'Zobrazit další výsledky vyhledávání týmů',
         ],
 
         'user' => [
@@ -133,14 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => 'Beatmapa denní výzvy',
             'new' => 'Nově hodnocené beatmapy',
             'popular' => 'Populární beatmapy',
             'by_user' => 'od :user',
+            'resets' => 'obnoví se :ends',
         ],
         'buttons' => [
             'download' => 'Stáhnout osu!',
             'support' => 'Podpoř osu!',
             'store' => 'osu!store',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => 'Otevřít administrátorskou konzoli',
+            ],
         ],
     ],
 ];

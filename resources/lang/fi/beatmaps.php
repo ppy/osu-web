@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'Virheellinen pelimuoto valittu.',
+
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Äänen päivitys ei onnistunut',
@@ -12,7 +18,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'salli kudosu',
-        'beatmap_information' => 'Rytmikarttasivu',
+        'beatmap_information' => 'Beatmap-sivu',
         'delete' => 'poista',
         'deleted' => 'Poistanut :editor :delete_time.',
         'deny_kudosu' => 'hylkää kudosu',
@@ -21,16 +27,18 @@ return [
         'guest' => 'Vieraileva vaikeustaso - :user',
         'kudosu_denied' => 'Evätty saamasta kudosua.',
         'message_placeholder_deleted_beatmap' => 'Tämä vaikeustaso on poistettu, joten siitä ei voi enää keskustella.',
-        'message_placeholder_locked' => 'Tämän rytmikartan keskustelu on poistettu käytöstä.',
+        'message_placeholder_locked' => 'Keskustelu tälle beatmapille on poistettu käytöstä.',
         'message_placeholder_silenced' => "Keskusteluun ei voi osallistua mykistettynä.",
         'message_type_select' => 'Valitse kommentin tyyppi',
         'reply_notice' => 'Vastaa painamalla enter-näppäintä.',
+        'reply_resolve_notice' => 'Paina enteriä vastataksesi. Paina ctrl+enteriä vastataksesi ja ratkaistaksesi.',
         'reply_placeholder' => 'Kirjoita vastauksesi tähän',
         'require-login' => 'Kirjaudu sisään lähettääksesi viestejä tai vastauksia',
         'resolved' => 'Ratkaistu',
         'restore' => 'palauta',
         'show_deleted' => 'Näytä poistetut',
         'title' => 'Keskustelut',
+        'unresolved_count' => ':count_delimited ratkaisematon ongelma|:count_delimited ratkaisematonta ongelmaa',
 
         'collapse' => [
             'all-collapse' => 'Sulje kaikki',
@@ -141,7 +149,7 @@ return [
 
         'stats' => [
             'deleted' => 'Poistettu',
-            'mapper_notes' => 'Huomautukset',
+            'mapper_notes' => 'Muistiinpanot',
             'mine' => 'Omat',
             'pending' => 'Vireillä',
             'praises' => 'Kehut',
@@ -187,8 +195,8 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => 'Olet jo pannut ehdolle tämän rytmikartan.',
-        'cannot_nominate' => 'Et voi panna ehdolle tähän pelimuotoon kuuluvia rytmikarttoja.',
+        'already_nominated' => 'Olet jo asettanut ehdolle tämän rytmikartan.',
+        'cannot_nominate' => 'Et voi asettaa ehdolle tähän pelimuotoon kuuluvia rytmikarttoja.',
         'delete' => 'Poista',
         'delete_own_confirm' => 'Oletko varma? Rytmikartta poistetaan ja sinut uudelleenohjataan takaisin profiiliisi.',
         'delete_other_confirm' => 'Oletko varma? Rytmikartta poistetaan ja sinut uudelleenohjataan takaisin käyttäjän profiiliin.',
@@ -202,7 +210,7 @@ return [
         'love_confirm' => 'Rakasta tätä rytmikarttaa?',
         'nominate' => 'Aseta ehdolle',
         'nominate_confirm' => 'Aseta tämä rytmikartta ehdolle?',
-        'nominated_by' => 'ehdollepannut: :users',
+        'nominated_by' => 'ehdollepannut :users',
         'not_enough_hype' => "Hurrausta ei ole riittävästi.",
         'remove_from_loved' => 'Poista rakastetuista rytmikartoista',
         'remove_from_loved_prompt' => 'Rakastetuista rytmikartoista poistamisen syy:',
@@ -283,7 +291,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'ei määritetty',
     ],
     'status' => [
         'any' => 'Kaikki',
@@ -312,7 +320,7 @@ return [
         'metal' => 'Metalli',
         'classical' => 'Klassinen',
         'folk' => 'Kansanmusiikki',
-        'jazz' => 'Jazz',
+        'jazz' => 'Jatsi',
     ],
     'language' => [
         'any' => 'Kaikki',
@@ -329,7 +337,7 @@ return [
         'polish' => 'puola',
         'instrumental' => 'Instrumentaalinen',
         'other' => 'Muu',
-        'unspecified' => 'Täsmentämätön',
+        'unspecified' => 'Määrittelemätön',
     ],
 
     'nsfw' => [
@@ -339,7 +347,7 @@ return [
 
     'played' => [
         'any' => 'Kaikki',
-        'played' => 'Pelatut',
+        'played' => 'Pelattu',
         'unplayed' => 'Pelaamaton',
     ],
     'extra' => [
@@ -358,8 +366,8 @@ return [
         'D' => '',
     ],
     'panel' => [
-        'playcount' => 'Pelikertoja: :count',
-        'favourites' => 'Suosikkeja: :count',
+        'playcount' => ':count Pelikertaa',
+        'favourites' => ':count Suosikkia',
     ],
     'variant' => [
         'mania' => [

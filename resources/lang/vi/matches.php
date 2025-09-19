@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner thắng với :difference điểm',
 
         'events' => [
-            'player-left' => ':user đã rời khỏi trận đấu',
-            'player-joined' => ':user đã tham gia trận đấu',
-            'player-kicked' => ':user đã bị kick khỏi trận đấu',
-            'match-created' => ':user đã tạo trận đấu',
-            'match-disbanded' => 'trận đấu đã giải tán',
-            'host-changed' => ':user đã trở thành chủ trận đấu',
-
-            'player-left-no-user' => 'một người chơi đã rời khỏi trận đấu',
-            'player-joined-no-user' => 'một người chơi đã tham gia trận đấu',
-            'player-kicked-no-user' => 'một người chơi đã bị kick khỏi trận đấu',
-            'match-created-no-user' => 'trận đấu đã được tạo',
-            'match-disbanded-no-user' => 'trận đấu đã giải tán',
-            'host-changed-no-user' => 'đã thay đổi chủ trận đấu',
+            'game_aborted' => 'trò chơi đã bị hủy',
+            'game_aborted_no_user' => 'trò chơi đã bị hủy',
+            'game_completed' => 'trò chơi đã kết thúc',
+            'game_completed_no_user' => 'trò chơi đã kết thúc',
+            'host_changed' => ':user trở thành chủ phòng',
+            'host_changed_no_user' => 'chủ phòng đã thay đổi',
+            'player_joined' => ':user đã tham gia trận đấu',
+            'player_joined_no_user' => 'một người chơi đã tham gia trận đấu',
+            'player_kicked' => ':user đã bị đá khỏi trận đấu',
+            'player_kicked_no_user' => 'một người chơi đã bị đá khỏi trận đấu',
+            'player_left' => ':user đã rời trận đấu',
+            'player_left_no_user' => 'một người chơi đã rời trận đấu',
+            'room_created' => ':user đã tạo trận đấu',
+            'room_created_no_user' => 'ván đấu đã được tạo',
+            'room_disbanded' => 'ván đấu đã bị giải tán',
+            'room_disbanded_no_user' => 'ván đấu đã bị giải tán',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+        'team_types' => [
+            'head_to_head' => 'Đối đầu',
+            'tag_coop' => 'Co-op',
+            'tag_team_versus' => 'Thẻ Đội VS',
+            'team_versus' => 'Đội VS',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => 'Tự do',
+
         'scoring-type' => [
             'score' => 'Điểm cao nhất',
             'accuracy' => 'Độ Chính Xác Cao Nhất',

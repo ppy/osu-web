@@ -47,7 +47,7 @@ return [
 
             'exclusive_only' => [
                 'all' => 'ทั้งหมด',
-                'exclusive_only' => '',
+                'exclusive_only' => 'osu! ต้นฉบับ',
             ],
 
             'form' => [

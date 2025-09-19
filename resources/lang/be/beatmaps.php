@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'Азначаны недапушчальны рэжым гульні.',
+
+    'change_owner' => [
+        'too_many' => 'Занадта шмат гасцявых маппераў.',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Не атрымалася абнавіць голас',
@@ -25,12 +31,14 @@ return [
         'message_placeholder_silenced' => "Нельга размясціць дыскусію ў адключаным рэжыме.",
         'message_type_select' => 'Выбраць тып каментарыя',
         'reply_notice' => 'Каб адказаць, націсніце «Enter».',
+        'reply_resolve_notice' => 'Націсніце enter для адказу. Націсніце ctrl+enter для адказу і рашэння праблемы.',
         'reply_placeholder' => 'Напішыце свой адказ тут',
         'require-login' => 'Увайдзіце, каб апублікаваць або адказаць',
         'resolved' => 'Вырашана',
         'restore' => 'аднавіць',
         'show_deleted' => 'Паказ выдаленыя',
         'title' => 'Абмеркаванні',
+        'unresolved_count' => ':count_delimited невырашаная праблема|:count_delimited невырашаных праблем',
 
         'collapse' => [
             'all-collapse' => 'Згарнуць усё',
@@ -79,15 +87,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'disqualify' => 'Адправіць дыскваліфікацыю',
+            'hype' => 'Адправіць хайп!',
+            'mapper_note' => 'Адправіць нататку',
+            'nomination_reset' => 'Выдаліць усе намінацыі ',
+            'praise' => 'Адправіць пахвалу',
+            'problem' => 'Адправіць праблему',
+            'problem_warning' => 'Адправіць праблему',
+            'review' => 'Адправіць водгук',
+            'suggestion' => 'Адправіць прапанову',
         ],
 
         'mode' => [
@@ -213,8 +221,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Гэтая карта cможа маць рэйтынг :date, калі праблем не знойдзена. Гэта #:position у :queue.',
-            'unresolved_problems' => '',
-            'problems' => '',
+            'unresolved_problems' => 'Гэтая карта застанецца ў чарзе кваліфікаваных, пакуль не будуць вырашаны :problems.',
+            'problems' => 'гэтыя праблемы',
             'on' => ':date',
             'queue' => 'чаргу ў рэйтынг',
             'soon' => 'хутка',
@@ -283,7 +291,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'не зададзены',
     ],
     'status' => [
         'any' => 'Усе',

@@ -24,9 +24,19 @@ return [
         'title' => 'Prijavi objavo igralca :username?',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Prijavi rezultat',
         'title' => 'Prijavi rezultat igralca :username?',
+    ],
+
+    'team' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'user' => [

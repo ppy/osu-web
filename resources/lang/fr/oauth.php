@@ -7,6 +7,7 @@ return [
     'cancel' => 'Annuler',
 
     'authorise' => [
+        'app_owner' => 'Application créée par :owner',
         'request' => 'demande la permission d\'accéder à votre compte.',
         'scopes_title' => 'Cette application pourra :',
         'title' => 'Demande d’autorisation',

@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Vēl neviena osu!(lazer) :type_group spēle nav spēlēta!',
+        'active' => 'Pagaidām nav neviena notiekošā osu!(shitzer) :type_group spēlē!',
+        'ended' => 'Pagaidām nav neviena pabeigtā osu!(shitzer) :type_group spēlē!',
         'playlists' => 'sarakstu',
         'realtime' => 'daudzspēlētāju režīma',
     ],
@@ -16,9 +17,12 @@ return [
         'map_count' => ':count_delimited mape|:count_delimited mapes',
         'player_count' => ':count_delimited spēlētājs|:count_delimited spēlētāji',
         'time_left' => 'atlicis :time',
+        'view_history' => 'Apskatīt Vēsturi',
+        'view_summary' => 'Apskatīt Apkopojumu',
 
         'errors' => [
             'duration_too_long' => 'Ilgums ir pārāk garš.',
+            'name_too_long' => 'Istabas vārds ir par garu.',
         ],
 
         'status' => [

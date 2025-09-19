@@ -12,7 +12,7 @@ class ValidationException extends Exception
 {
     private $errors;
 
-    public function __construct(ValidationErrors $errors = null, Exception $previous = null)
+    public function __construct(?ValidationErrors $errors = null, ?Exception $previous = null)
     {
         $message = null;
         if ($errors !== null) {

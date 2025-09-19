@@ -113,6 +113,7 @@ return [
             'copyright' => 'Copyright (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Privacidade',
+            'rules' => 'Regras',
             'server_status' => 'Estado dos Servidores',
             'source_code' => 'Código-fonte',
             'terms' => 'Termos de Serviço',
@@ -199,6 +200,9 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Modo Lazer mostra as pontuações definidas pelo lazer com um novo algoritmo de pontuação',
             'logout' => 'Desconectar',
             'profile' => 'Meu Perfil',
+            'scoring_mode_toggle' => 'Pontuação clássica',
+            'scoring_mode_toggle_tooltip' => 'Ajuste o valor das pontuações para parecerem  uma pontuação ilimitada clássica',
+            'team' => 'Meu Time',
         ],
     ],
 

@@ -27,6 +27,7 @@ return [
                 'GROUP' => '群組',
                 'PM' => '私訊',
                 'PUBLIC' => '頻道',
+                'TEAM' => '隊伍',
             ],
         ],
     ],
@@ -64,6 +65,6 @@ return [
     ],
 
     'join_channels' => [
-        'loading' => '正在載入頻道列表...',
+        'loading' => '正在載入頻道清單...',
     ],
 ];

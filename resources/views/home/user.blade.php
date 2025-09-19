@@ -6,6 +6,7 @@
     use App\Models\NewsPost;
 
     $newsPostLargePreviews = NewsPost::LANDING_LIMIT;
+    $currentUser = Auth::user();
 @endphp
 @extends('master')
 
@@ -13,6 +14,24 @@
     @include('home._user_header_default')
 
     <div class="osu-page">
+        @if (count($menuImages) > 0)
+            <div class="js-react--menu-images u-contents">
+                <div class="menu-images menu-images--placeholder">
+                    <div class="menu-images__images">
+                        {!! spinner() !!}
+                    </div>
+                    @if (count($menuImages) > 1)
+                        <div class="menu-images__indicators">
+                            @foreach ($menuImages as $_i)
+                                <div class="menu-images__indicator">
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+            </div>
+        @endif
+
         <div class="user-home">
             <div class="user-home__news">
                 <h2 class="user-home__news-title">{{ osu_trans('home.user.news.title') }}</h2>
@@ -78,6 +97,18 @@
                     </div>
                 </div>
 
+                @if ($dailyChallenge)
+                    <h3 class="user-home__beatmap-list-title">
+                        <a href="{{ wiki_url("Gameplay/Daily_challenge") }}">
+                            {{ osu_trans('home.user.beatmaps.daily_challenge') }}
+                        </a>
+                    </h3>
+
+                    <div class="user-home__beatmapsets">
+                        @include('home._user_beatmapset', ['type' => 'daily_challenge', 'beatmapset' => $dailyChallenge->currentPlaylistItem->beatmap->beatmapset, 'dailyChallenge' => $dailyChallenge])
+                    </div>
+                @endif
+
                 <h3 class='user-home__beatmap-list-title'>
                     {{ osu_trans('home.user.beatmaps.new') }}
                 </h3>
@@ -99,5 +130,36 @@
                 </div>
             </div>
         </div>
+
+        @if ($currentUser !== null && $currentUser->isAdmin())
+            <div class="admin-menu">
+                <button class="admin-menu__button js-menu" data-menu-target="admin-menu-forums-show">
+                    <span class="fas fa-angle-up"></span>
+                    <span class="admin-menu__button-icon fas fa-tools"></span>
+                </button>
+
+                <div class="admin-menu__menu js-menu" data-menu-id="admin-menu-forums-show" data-visibility="hidden">
+                    <a class="admin-menu-item" href="{{ route('admin.root') }}" target="_blank">
+                        <span class="admin-menu-item__content">
+                            <span class="admin-menu-item__label admin-menu-item__label--icon">
+                                <span class="fas fa-terminal"></span>
+                            </span>
+
+                            <span class="admin-menu-item__label admin-menu-item__label--text">
+                                {{ osu_trans('home.user.show.admin.page') }}
+                            </span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        @endif
     </div>
+@endsection
+
+@section("script")
+    @parent
+
+    <script id="json-menu-images" type="application/json">
+        {!! json_encode($menuImages) !!}
+    </script>
 @endsection

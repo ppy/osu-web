@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Chậm lại, chơi nhiều hơn.',
+        'no_mirrors' => 'Không có sẵn máy chủ tải xuống nào cả.',
     ],
 
     'featured_artist_badge' => [
@@ -40,20 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Những người đề cử tập sự không thể đề cử nhiều ruleset cùng lúc.',
+        'full_nomination_required' => 'Bạn phải là người đề cử chính để thực hiện đề cử cuối cùng của một ruleset.',
         'hybrid_requires_modes' => 'Bạn cần chọn ít nhất một chế độ chơi trong beatmap có nhiều chế độ để đề cử.',
         'incorrect_mode' => 'Bạn không có sự cho phép để đề cử cho chế độ: :mode',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Beatmap này có những đề cử không hợp lệ và không thể đủ tư cách trong trạng thái này.',
+        'invalid_ruleset' => 'Đề cử này có các ruleset không hợp lệ.',
         'too_many' => 'Yêu cầu đề cử đã được đáp ứng.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'Yêu cầu đề cử cho ruleset không chính đã được đáp ứng.',
 
         'dialog' => [
             'confirmation' => 'Bạn có chắc chắn muốn đề cử beatmap này không?',
+            'different_nominator_warning' => 'Việc đủ điều kiện cho beatmap này với các người đề cử khác sẽ làm reset vị trí trong hàng đợi đủ điều kiện của nó.',
             'header' => 'Đề cử Beatmap',
             'hybrid_warning' => 'lưu ý: bạn chỉ có thể đề cử một lần, vì vậy hãy đảm bảo rằng bạn đang đề cử cho tất cả các chế độ chơi mà bạn dự định',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'Ruleset chính hiện tại là: :ruleset',
             'which_modes' => 'Đề cử cho những chế độ nào?',
         ],
     ],
@@ -67,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Xem ảnh bìa kích thước đầy đủ',
+            'page' => '',
         ],
 
         'deleted_banner' => [
@@ -138,6 +141,7 @@ return [
             'description' => 'Mô Tả',
             'genre' => 'Thể Loại',
             'language' => 'Ngôn Ngữ',
+            'mapper_tags' => 'Thẻ người tạo bản đồ',
             'no_scores' => 'Vẫn đang tính toán dữ liệu...',
             'nominators' => 'Người đề cử',
             'nsfw' => 'Nội dung không lành mạnh',
@@ -146,7 +150,7 @@ return [
             'source' => 'Nguồn',
             'storyboard' => 'Beatmap này chứa storyboard',
             'success-rate' => 'Tỉ Lệ Thành Công',
-            'tags' => 'Tags',
+            'user_tags' => 'Thẻ người dùng',
             'video' => 'Beatmap này chứa video',
         ],
 
@@ -169,6 +173,7 @@ return [
             'global' => 'Hạng Toàn Cầu',
             'supporter-link' => 'Nhấp vào <a href=":link">đây</a> để biết thêm những tính năng bạn có thể nhận!',
             'supporter-only' => 'Bạn cần là người ủng hộ để truy cập xếp hạng bạn bè và quốc gia!',
+            'team' => 'Xếp hạng đội',
             'title' => 'Bảng Xếp hạng',
 
             'headers' => [
@@ -190,6 +195,7 @@ return [
                 'friend' => 'Chưa có bạn bè nào của bạn lập điểm số tại beatmap này!',
                 'global' => 'Chưa có điểm số. Hãy thử lập một vài điểm số xem?',
                 'loading' => 'Đang tải điểm số...',
+                'team' => 'Chưa có ai từ đội của bạn lập điểm số tại beatmap này!',
                 'unranked' => 'Beatmap chưa được xếp hạng.',
             ],
             'score' => [

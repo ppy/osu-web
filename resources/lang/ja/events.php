@@ -12,7 +12,7 @@ return [
     'beatmapset_update' => '<strong><em>:user</em></strong>がビートマップ"<em>:beatmapset</em>"を更新しました',
     'beatmapset_upload' => '<strong><em>:user</em></strong>がビートマップ":beatmapset"を新しく投稿しました',
     'empty' => "このユーザーはまだ何も活動記録がありません！",
-    'rank' => '<strong><em>:user</em></strong>が<em>:beatmap</em>で#:rank位を取得しました！（:mode）',
+    'rank' => '<strong><em>:user</em></strong>が<em>:beatmap</em>で:rankを取得しました！（:mode）',
     'rank_lost' => '<strong><em>:user</em></strong>が<em>:beatmap</em>の一位を失いました・・・（:mode）',
     'user_support_again' => '<strong>:user</strong>が再びosu!をサポートすることを選びました！- あなたの寛大さに感謝します！',
     'user_support_first' => '<strong>:user</strong>はosu!サポーターになりました！ - あなたの寛大さに感謝します！',
@@ -27,6 +27,6 @@ return [
     ],
 
     'value' => [
-        'rank' => '',
+        'rank' => ':rank位',
     ],
 ];

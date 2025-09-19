@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'comentarios',
         'hide_judged' => 'ocultar las inscripciones evaluadas',
         'nav_title' => 'evaluar',
         'no_current_vote' => 'aún no has votado.',
@@ -29,7 +30,9 @@ return [
         '_' => 'Resultados de la evaluación',
         'creator' => 'creador',
         'score' => 'Puntuación',
+        'score_std' => 'Puntuación estandarizada',
         'total_score' => 'puntuación total',
+        'total_score_std' => 'puntuación estandarizada total',
     ],
 
     'voting' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'votos',
         'count' => ':count_delimited voto|:count_delimited votos',
         'points' => ':count_delimited punto|:count_delimited puntos',
+        'points_float' => ':points puntos',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Inscripción abierta',
         'voting' => 'Votación iniciada',
         'results' => 'Resultados',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => 'Ver información y envíos',
+        ],
     ],
 ];

@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Upočasni se, igraj več.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -51,6 +52,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Ali si prepričan za nominacijo te beatmape?',
+            'different_nominator_warning' => '',
             'header' => 'Nominiraj beatmapo',
             'hybrid_warning' => 'opomba: nominiraš lahko le enkrat, zato poskrbi, da nominiraš za vse nameravane igralne načine',
             'current_main_ruleset' => '',
@@ -67,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => '',
+            'page' => '',
         ],
 
         'deleted_banner' => [
@@ -138,6 +141,7 @@ return [
             'description' => 'Opis',
             'genre' => 'Žanr',
             'language' => 'Jezik',
+            'mapper_tags' => '',
             'no_scores' => 'Podatki v preračunavanju...',
             'nominators' => 'Nominatorji',
             'nsfw' => 'Eksplicitna vsebina',
@@ -146,7 +150,7 @@ return [
             'source' => 'Vir',
             'storyboard' => 'Ta beatmapa vsebuje storyboard',
             'success-rate' => 'Stopnja uspešnosti',
-            'tags' => 'Oznake',
+            'user_tags' => '',
             'video' => 'Ta beatmapa vsebuje videoposnetek',
         ],
 
@@ -169,6 +173,7 @@ return [
             'global' => 'Svetovna lestvica',
             'supporter-link' => 'Klikni <a href=":link">tukaj</a>, kakšne funkcije lahko dobiš!',
             'supporter-only' => 'Za dostop do državnih, prijateljskih in mod specifičnih lestvic potrebuješ osu!supporter značko!',
+            'team' => '',
             'title' => 'Točkovnik',
 
             'headers' => [
@@ -190,6 +195,7 @@ return [
                 'friend' => 'Nihče od tvojih prijateljev še ni dosegel rezultata na tej beatmapi!',
                 'global' => 'Ni še rezultatov. Mogoče lahko ti poskusiš za rezultat?',
                 'loading' => 'Nalaganje rezultatov...',
+                'team' => '',
                 'unranked' => 'Neuvrščena beatmapa.',
             ],
             'score' => [
@@ -221,7 +227,7 @@ return [
         ],
 
         'status' => [
-            'ranked' => 'Rankirano',
+            'ranked' => 'Uvrščeno',
             'approved' => 'Odobreno',
             'loved' => 'Loved',
             'qualified' => 'Kvalificirano',

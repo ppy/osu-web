@@ -5,7 +5,7 @@
 
 return [
     'create' => [
-        'beatmap_hash_invalid' => '',
-        'submission_disabled' => '',
+        'beatmap_hash_invalid' => 'неважећи или недостаје beatmap_hash',
+        'submission_disabled' => 'подношење резултата је онемогућено',
     ],
 ];

@@ -131,6 +131,20 @@ return [
         ],
     ],
 
+    'team' => [
+        'invalid_characters' => 'Αυτό το :attribute περιέχει μη έγκυρους χαρακτήρες.',
+        'used' => 'Αυτή η επιλογή :attribute χρησιμοποιείται ήδη.',
+        'word_not_allowed' => 'Αυτή η επιλογή :attribute δεν επιτρέπεται.',
+
+        'attributes' => [
+            'default_ruleset_id' => 'Προεπιλεγμένο σύνολο κανόνων',
+            'is_open' => 'Εφαρμογή ομάδας',
+            'name' => 'Όνομα',
+            'short_name' => 'Σύντομο όνομα',
+            'url' => 'URL',
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Ο κωδικός δεν πρέπει να περιέχει το όνομα χρήστη.',
         'email_already_used' => 'Το email είναι ήδη σε χρήση.',
@@ -176,6 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Δεν μπορούν να αναφερθούν βαθμολογικοί beatmaps',
         'not_in_channel' => 'Δεν βρίσκεστε σε αυτό το κανάλι.',
+        'in_team' => 'Είσαι μέλος της ομάδας.',
         'reason_not_valid' => 'Το:reason δεν είναι έγκυρο για αυτόν τον τύπο αναφοράς.',
         'self' => "Δεν μπορείτε να αποκλέισετε τον εαυτό σας!",
     ],

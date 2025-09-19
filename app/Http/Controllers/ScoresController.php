@@ -6,10 +6,13 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Ruleset;
+use App\Models\Beatmap;
 use App\Models\Score\Best\Model as ScoreBest;
+use App\Models\ScoreReplayStats;
 use App\Models\Solo\Score as SoloScore;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
+use Illuminate\Auth\AuthenticationException;
 
 class ScoresController extends Controller
 {
@@ -20,47 +23,67 @@ class ScoresController extends Controller
         parent::__construct();
 
         $this->middleware('auth', ['except' => [
+            'download',
+            'index',
             'show',
-            'userRankLookup',
         ]]);
 
         $this->middleware('require-scopes:public');
     }
 
+    private static function parseIdOrFail(string $id): int
+    {
+        if (ctype_digit($id)) {
+            $ret = (int) $id;
+
+            if ($ret > 0) {
+                return $ret;
+            }
+        }
+
+        abort(404, osu_trans('errors.scores.invalid_id'));
+    }
+
     public function download($rulesetOrSoloId, $id = null)
     {
+        $currentUser = \Auth::user();
+        if (!is_api_request() && $currentUser === null) {
+            throw new AuthenticationException('User is not logged in.');
+        }
+
         $shouldRedirect = !is_api_request() && !from_app_url();
         if ($id === null) {
             if ($shouldRedirect) {
                 return ujs_redirect(route('scores.show', ['rulesetOrScore' => $rulesetOrSoloId]));
             }
             $soloScore = SoloScore::where('has_replay', true)->findOrFail($rulesetOrSoloId);
-
-            $score = $soloScore->legacyScore() ?? $soloScore;
         } else {
             if ($shouldRedirect) {
                 return ujs_redirect(route('scores.show', ['rulesetOrScore' => $rulesetOrSoloId, 'score' => $id]));
             }
             // don't limit downloading replays of restricted users for review purpose
-            $score = ScoreBest::getClass($rulesetOrSoloId)
-                ::where('score_id', $id)
-                ->where('replay', true)
-                ->firstOrFail();
+            $soloScore = SoloScore::where([
+                'has_replay' => true,
+                'legacy_score_id' => $id,
+                'ruleset_id' => Beatmap::MODES[$rulesetOrSoloId] ?? abort(404, 'unknown ruleset name'),
+            ])->firstOrFail();
         }
+
+        $score = $soloScore->legacyScore() ?? $soloScore;
 
         $file = $score->getReplayFile();
         if ($file === null) {
             abort(404);
         }
 
-        $currentUser = \Auth::user();
         if (
-            !$currentUser->isRestricted()
+            $currentUser !== null
+            && !$currentUser->isRestricted()
             && $currentUser->getKey() !== $score->user_id
             && ($currentUser->token()?->client->password_client ?? false)
         ) {
             $countLock = \Cache::lock(
-                "view:score_replay:{$score->getKey()}:{$currentUser->getKey()}",
+                "view:score_replay:{$soloScore->getKey()}:{$currentUser->getKey()}",
                 static::REPLAY_DOWNLOAD_COUNT_INTERVAL,
             );
 
@@ -77,6 +100,12 @@ class ScoresController extends Controller
                         ->firstOrCreate([], ['play_count' => 0])
                         ->incrementInstance('play_count');
                 }
+
+                if ($soloScore !== null) {
+                    ScoreReplayStats
+                        ::createOrFirst(['score_id' => $soloScore->getKey()], ['user_id' => $soloScore->user_id])
+                        ->incrementInstance('watch_count');
+                }
             }
         }
 
@@ -89,25 +118,106 @@ class ScoresController extends Controller
         }, $this->makeReplayFilename($score), $responseHeaders);
     }
 
+    /**
+     * Get Scores
+     *
+     * Returns all passed scores. Up to 1000 scores will be returned in order of oldest to latest.
+     * Most recent scores will be returned if `cursor_string` parameter is not specified.
+     *
+     * Obtaining new scores that arrived after the last request can be done by passing `cursor_string`
+     * parameter from the previous request.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field         | Type                          | Notes
+     * ------------- | ----------------------------- | -----
+     * scores        | [Score](#score)[]             | |
+     * cursor_string | [CursorString](#cursorstring) | Same value as the request will be returned if there's no new scores
+     *
+     * @group Scores
+     *
+     * @queryParam ruleset The [Ruleset](#ruleset) to get scores for.
+     * @queryParam cursor_string Next set of scores
+     */
+    public function index()
+    {
+        $params = \Request::all();
+        $cursor = cursor_from_params($params);
+        $isOldScores = false;
+        if (isset($cursor['id']) && ($idFromCursor = get_int($cursor['id'])) !== null) {
+            $currentMaxId = SoloScore::max('id');
+            $idDistance = $currentMaxId - $idFromCursor;
+            if ($idDistance > $GLOBALS['cfg']['osu']['scores']['index_max_id_distance']) {
+                abort(422, 'cursor is too old');
+            }
+            $isOldScores = $idDistance > 10_000;
+        }
+
+        $rulesetId = null;
+        if (isset($params['ruleset'])) {
+            $rulesetId = Beatmap::modeInt(get_string($params['ruleset']));
+
+            if ($rulesetId === null) {
+                abort(422, 'invalid ruleset parameter');
+            }
+        }
+
+        return \Cache::remember(
+            'score_index:'.($rulesetId ?? '').':'.json_encode($cursor),
+            $isOldScores ? 600 : 5,
+            function () use ($cursor, $isOldScores, $rulesetId) {
+                $cursorHelper = SoloScore::makeDbCursorHelper('old');
+                $scoresQuery = SoloScore::forListing()->limit(1_000);
+                if ($rulesetId !== null) {
+                    $scoresQuery->where('ruleset_id', $rulesetId);
+                }
+                if ($cursor === null || $cursorHelper->prepare($cursor) === null) {
+                    // fetch the latest scores when no or invalid cursor is specified
+                    // and reverse result to match the other query (latest score last)
+                    $scores = array_reverse($scoresQuery->orderByDesc('id')->get()->all());
+                } else {
+                    $scores = $scoresQuery->cursorSort($cursorHelper, $cursor)->get()->all();
+                }
+
+                if ($isOldScores) {
+                    $filteredScores = $scores;
+                } else {
+                    $filteredScores = [];
+                    foreach ($scores as $score) {
+                        // only return up to but not including the earliest unprocessed scores
+                        if ($score->isProcessed()) {
+                            $filteredScores[] = $score;
+                        } else {
+                            break;
+                        }
+                    }
+                }
+
+                return [
+                    'scores' => json_collection($filteredScores, new ScoreTransformer(false)),
+                    // return previous cursor if no result, assuming there's no new scores yet
+                    ...cursor_for_response($cursorHelper->next($filteredScores) ?? $cursor),
+                ];
+            },
+        );
+    }
+
     public function show($rulesetOrSoloId, $legacyId = null)
     {
         if ($legacyId === null) {
-            $scoreQuery = SoloScore::whereKey($rulesetOrSoloId);
+            $scoreQuery = SoloScore::whereKey(static::parseIdOrFail($rulesetOrSoloId));
         } else {
-            // `SoloScore` tables can have records with `legacy_score_id = 0`
-            // which correspond to rows from `osu_scores_*` (non-high) tables.
-            // do not attempt to perform lookups for zero to avoid weird results.
-            // negative IDs should never occur (ID columns in score tables are all `bigint unsigned`).
-            if ($legacyId <= 0) {
-                abort(404, 'invalid score ID');
-            }
-
             $scoreQuery = SoloScore::where([
                 'ruleset_id' => Ruleset::tryFromName($rulesetOrSoloId) ?? abort(404, 'unknown ruleset name'),
-                'legacy_score_id' => $legacyId,
+                'legacy_score_id' => static::parseIdOrFail($legacyId),
             ]);
         }
-        $score = $scoreQuery->whereHas('beatmap.beatmapset')->visibleUsers()->firstOrFail();
+        if (\Auth::user()?->isAdmin() !== true) {
+            $scoreQuery->visibleUsers();
+        }
+        $score = $scoreQuery->whereHas('beatmap.beatmapset')->firstOrFail();
 
         $userIncludes = array_map(function ($include) {
             return "user.{$include}";
@@ -116,6 +226,7 @@ class ScoresController extends Controller
         $scoreJson = json_item($score, new ScoreTransformer(), array_merge([
             'beatmap.max_combo',
             'beatmap.user',
+            'beatmap.owners',
             'beatmapset',
             'rank_global',
         ], $userIncludes));
@@ -125,31 +236,6 @@ class ScoresController extends Controller
         }
 
         return ext_view('scores.show', compact('score', 'scoreJson'));
-    }
-
-    public function userRankLookup()
-    {
-        $params = get_params(request()->all(), null, [
-            'beatmapId:int',
-            'score:int',
-            'rulesetId:int',
-        ]);
-
-        foreach (['beatmapId', 'score', 'rulesetId'] as $key) {
-            if (!isset($params[$key])) {
-                abort(422, "required parameter '{$key}' is missing");
-            }
-        }
-
-        $score = ScoreBest
-            ::getClassByRulesetId($params['rulesetId'])
-            ::where([
-                'beatmap_id' => $params['beatmapId'],
-                'hidden' => false,
-                'score' => $params['score'],
-            ])->firstOrFail();
-
-        return response()->json($score->userRank(['cached' => false]) - 1);
     }
 
     private function makeReplayFilename(ScoreBest|SoloScore $score): string

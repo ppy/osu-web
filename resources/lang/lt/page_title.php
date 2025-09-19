@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'paremk žaidimą',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'informacija',
         ],
         'livestreams_controller' => [
             '_' => 'tiesoginės transliacijos',
-        ],
-        'matches_controller' => [
-            '_' => 'mačai',
         ],
         'news_controller' => [
             '_' => 'naujienos',
@@ -102,10 +102,17 @@ return [
             '_' => 'reitingai',
         ],
         'scores_controller' => [
-            '_' => 'pp',
+            '_' => 'rezultatyvumas',
         ],
         'seasons_controller' => [
             '_' => 'reitingai',
+        ],
+        'teams_controller' => [
+            '_' => '',
+            'create' => '',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => '',
         ],
         'tournaments_controller' => [
             '_' => 'turnyrai',
@@ -122,6 +129,11 @@ return [
             '_' => 'wiki',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => '',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'įgalioti aplikaciją',
@@ -129,6 +141,11 @@ return [
     ],
     'store' => [
         '_' => 'parduotuvė',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

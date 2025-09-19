@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'Ogiltigt regelset specificerat.',
+
+    'change_owner' => [
+        'too_many' => 'För många gäst mappare.',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Kunde ej uppdatera röst',
@@ -25,12 +31,14 @@ return [
         'message_placeholder_silenced' => "Kan inte lägga upp diskussionen medan du är tystad.",
         'message_type_select' => 'Välj kommentarstyp',
         'reply_notice' => 'Tryck enter för att svara.',
+        'reply_resolve_notice' => 'Tryck enter för att svara. Tryck ctrl+enter för att svara och lösa.',
         'reply_placeholder' => 'Skriv ditt svar här',
         'require-login' => 'Var vänlig logga in för att skicka inlägg eller svara',
         'resolved' => 'Löst',
         'restore' => 'återställ',
         'show_deleted' => 'Visa borttagna',
         'title' => 'Diskussioner',
+        'unresolved_count' => ':count_delimited olösta problem|:count_delimited olösta problem',
 
         'collapse' => [
             'all-collapse' => 'Kollapsa allt',
@@ -79,15 +87,15 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
+            'disqualify' => 'Lägg ut diskvalificering',
+            'hype' => 'Lägg ut Hype!',
+            'mapper_note' => 'Lägg ut Anteckning',
             'nomination_reset' => 'Ta bort alla Nomineringar',
-            'praise' => '',
-            'problem' => '',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'praise' => 'Lägg ut Beröm',
+            'problem' => 'Lägg ut Problem',
+            'problem_warning' => 'Lägg Upp Problem',
+            'review' => 'Lägg Upp Recension',
+            'suggestion' => 'Lägg Upp Förslag',
         ],
 
         'mode' => [
@@ -213,8 +221,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Denna beatmap uppskattas vara rankad :date, så länge inga fel uppstår. Den är #:position i :queue.',
-            'unresolved_problems' => '',
-            'problems' => '',
+            'unresolved_problems' => 'Denna låt är för närvarande blockerad från att lämna den Kvalificerade sektionen tills :problems är löst.',
+            'problems' => 'dessa problem',
             'on' => 'den :date',
             'queue' => 'rankkö',
             'soon' => 'snart',
@@ -283,7 +291,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'inte inställt',
     ],
     'status' => [
         'any' => 'Alla',

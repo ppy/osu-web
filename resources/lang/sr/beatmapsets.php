@@ -18,6 +18,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Успорите, играјте више.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -52,6 +53,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Да ли сте сигурни да желите да номинујете ову мапу?',
+            'different_nominator_warning' => '',
             'header' => 'Номинујте ову мапу',
             'hybrid_warning' => 'напомена: можете номиновати само једном, па вас молимо да се уверите да номинујете за све модове игре које намеравате да играте',
             'current_main_ruleset' => '',
@@ -68,6 +70,7 @@ return [
 
         'admin' => [
             'full_size_cover' => '',
+            'page' => '',
         ],
 
         'deleted_banner' => [
@@ -139,6 +142,7 @@ return [
             'description' => 'Опис',
             'genre' => 'Жанр',
             'language' => 'Језик',
+            'mapper_tags' => '',
             'no_scores' => 'Подаци се још израчунавају...',
             'nominators' => 'Номинатори',
             'nsfw' => 'Експлицитни садржај',
@@ -147,7 +151,7 @@ return [
             'source' => 'Извор',
             'storyboard' => 'Ова мапа садржи storyboard',
             'success-rate' => 'Стопа Успеха',
-            'tags' => 'Oznake',
+            'user_tags' => '',
             'video' => 'Ова мапа садржи видео',
         ],
 
@@ -170,6 +174,7 @@ return [
             'global' => 'Глобални Ранг',
             'supporter-link' => 'Кликните <a href=":link">овде</a> да видите све фенси функције које добијате!',
             'supporter-only' => 'Мораш бити osu!supporter да приступите рангирању специфичним за пријатеље, државу или мод!',
+            'team' => '',
             'title' => 'Scoreboard',
 
             'headers' => [
@@ -191,6 +196,7 @@ return [
                 'friend' => 'Нико од твојих пријатеља још није поставио резултат на овој мапи!',
                 'global' => 'Још нема резултата. Можда би требало да покушате да поставите неке?',
                 'loading' => 'Учитавање резултата...',
+                'team' => '',
                 'unranked' => 'Нерангиране мапе.',
             ],
             'score' => [

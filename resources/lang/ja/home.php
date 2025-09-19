@@ -26,6 +26,9 @@ return [
         'placeholder' => '検索キーワードを入力',
         'title' => '検索',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => 'ログインしてビートマップを検索',
             'more' => '他:count件のビートマップ検索結果',
@@ -51,10 +54,16 @@ return [
 
         'mode' => [
             'all' => '全て',
+            'artist_track' => '',
             'beatmapset' => 'ビートマップ',
             'forum_post' => 'フォーラム',
+            'team' => 'チーム',
             'user' => 'プレイヤー',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'more_simple' => '',
         ],
 
         'user' => [
@@ -133,14 +142,21 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => '最新のRankedビートマップ',
             'popular' => '人気のビートマップ',
             'by_user' => 'by :user',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => 'osu!をダウンロード',
             'support' => 'osu!を支援する',
             'store' => 'osu!ストア',
+        ],
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
         ],
     ],
 ];

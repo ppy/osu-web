@@ -5,15 +5,16 @@
 
 return [
     'mode' => [
+        'artist_track' => 'Featured Artist Track',
         'beatmapset' => 'Beatmap',
         'forum_post' => 'Forum',
         'other' => 'Other',
+        'team' => 'Team',
         'user' => 'Player',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => 'No results',
         'empty_for' => 'No results for :modes',
         'more' => 'More :mode Search Results',
         'title' => ':mode Search Results',

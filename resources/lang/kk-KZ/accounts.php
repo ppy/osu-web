@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Аватар',
+            'reset' => '',
             'rules' => 'Өтініш, аватарыңыз :link бойынша келуін қадағалаңыз.<br/>Ол <strong>барлық жастарға сай болуы керек</strong>, яғни жалаңаштық, бейпіл сөздер немесе ерсі контент болмауы тиіс.',
             'rules_link' => 'қауымдастық ережелері',
         ],
@@ -87,6 +88,7 @@ return [
             'beatmap_owner_change' => 'қонақтық қиындық',
             'beatmapset:modding' => 'карта модтау',
             'channel_message' => 'жеке хабарламалар',
+            'channel_team' => '',
             'comment_new' => 'жаңа пікірлер',
             'forum_topic_reply' => 'тақырып жауабы',
             'mail' => 'email',

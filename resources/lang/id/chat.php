@@ -19,7 +19,7 @@ return [
         'confirm_part' => 'Apakah kamu ingin menyembunyikan kanal percakapan ini? Kamu akan tetap menerima pesan dari kanal percakapan ini.',
         'create' => 'buat pengumuman',
         'join' => 'gabung kanal baru',
-        'none' => 'tidak ada kanal percakapan',
+        'none' => 'tidak ada kanal',
 
         'list' => [
             'title' => [
@@ -27,6 +27,7 @@ return [
                 'GROUP' => 'Grup',
                 'PM' => 'Pesan pribadi',
                 'PUBLIC' => 'Kanal Percakapan',
+                'TEAM' => 'Tim',
             ],
         ],
     ],
@@ -58,7 +59,7 @@ return [
     ],
 
     'no-conversations' => [
-        'howto' => "Mulailah percakapan baru melalui tombol yang tertera pada laman profil atau kartu pop-up pengguna.",
+        'howto' => "Mulailah percakapan baru dari halaman profil atau kartu pop-up pengguna.",
         'lazer' => 'Kanal percakapan publik yang kamu buka melalui <a href=":link">osu!lazer</a> juga akan terlihat di sini.',
         'title' => 'belum ada percakapan',
     ],

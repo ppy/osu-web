@@ -2,9 +2,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import CountryJson from './country-json';
+import DailyChallengeUserStatsJson from './daily-challenge-user-stats-json';
 import ProfileBannerJson from './profile-banner';
 import RankHighestJson from './rank-highest-json';
 import RankHistoryJson from './rank-history-json';
+import SeasonStatsJson from './season-stats-json';
+import TeamJson from './team-json';
 import UserAccountHistoryJson from './user-account-history-json';
 import UserAchievementJson from './user-achievement-json';
 import UserBadgeJson from './user-badge-json';
@@ -27,6 +30,8 @@ interface UserJsonAvailableIncludes {
   comments_count: number;
   country: CountryJson | null;
   cover: UserCoverJson;
+  current_season_stats: SeasonStatsJson | null;
+  daily_challenge_user_stats: DailyChallengeUserStatsJson;
   favourite_beatmapset_count: number;
   follow_user_mapping: number[];
   follower_count: number;
@@ -64,6 +69,7 @@ interface UserJsonAvailableIncludes {
   statistics: UserStatisticsJson;
   statistics_rulesets: UserStatisticsRulesetsJson;
   support_level: number;
+  team: TeamJson;
   unread_pm_count: number;
   user_achievements: UserAchievementJson[];
   user_preferences: UserPreferencesJson;

@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Din konto har inte använts på länge.",
             'inactive_different_country' => "Ditt konto har inte använts på länge.",
         ],
     ],
@@ -121,6 +121,13 @@ return [
         'beta' => [
             'main' => 'Beta-åtkomst är för nuvarande begränsad till privilegierade användare.',
             'small' => '(osu!supportrar kommer att komma in snart)',
+        ],
+    ],
+
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
         ],
     ],
 
@@ -159,14 +166,24 @@ return [
             'cancel' => 'Avbryt',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Fusk',
-            'multiple_accounts' => 'Använder flera konton',
+            'copyright_infringement' => '',
+            'inappropriate_chat' => 'Olämpligt chattbeteende',
             'insults' => 'Förolämpar mig / andra',
-            'spam' => 'Spammning',
-            'unwanted_content' => 'Länkar olämpligt innehåll',
+            'multiple_accounts' => 'Använder flera konton',
             'nonsense' => 'Dumheter',
             'other' => 'Andra (skriv nedan)',
+            'spam' => 'Spammning',
+            'unwanted_content' => 'Länkar olämpligt innehåll',
         ],
     ],
     'restricted_banner' => [
@@ -196,10 +213,30 @@ return [
             'to_0' => 'Dölj omslagsbild',
             'to_1' => 'Visa omslagsbild',
         ],
+        'daily_challenge' => [
+            'daily' => 'Daglig Streak',
+            'daily_streak_best' => 'Bästa Dagliga Streak',
+            'daily_streak_current' => 'Nuvarande Dagliga Streak',
+            'playcount' => 'Totalt deltagande',
+            'title' => 'Daglig\nUtmaning',
+            'top_10p_placements' => 'Topp 10% Placeringar',
+            'top_50p_placements' => 'Topp 50% Placeringar',
+            'weekly' => 'Vecko Streak',
+            'weekly_streak_best' => 'Bästa Vecko Streak',
+            'weekly_streak_current' => 'Nuvarande Vecko Streak',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Ändra Profilomslag',
                 'defaults_info' => 'Fler omslagsalternativ kommer finnas i framtiden',
+                'holdover_remove_confirm' => "Det tidigare valda omslaget kan inte längre väljas. Du kan inte välja tillbaka det efter att du har bytt till ett annat omslag. Vill du fortsätta?",
+                'title' => 'Omslag',
+
                 'upload' => [
                     'broken_file' => 'Misslyckades med att processa bilden. Verifiera uppladdad bild och försök igen.',
                     'button' => 'Ladda upp bild',
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'standardspelläge',
                 'set' => 'sätt :mode som profilens förvalda spelläge',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Återställ färger till standard? En supporter tagg behövs för att byta till en annan färg.',
+                'title' => 'Färg',
+
+                'supporter' => [
+                    '_' => 'Anpassade färgteman endast tillgängliga för :link',
+                    'link' => 'osu!supportrar',
+                ],
             ],
         ],
 
@@ -449,8 +496,13 @@ return [
             'global_simple' => 'Global rankning',
             'highest' => 'Högsta rank: :rank den :date',
         ],
+        'season_stats' => [
+            'division_top_percentage' => 'Topp :value',
+            'total_score' => 'Totalpoäng',
+        ],
         'stats' => [
             'hit_accuracy' => 'Träffsäkerhet',
+            'hits_per_play' => '',
             'level' => 'Nivå :level',
             'level_progress' => 'Framsteg till nästa nivå',
             'maximum_combo' => 'Högsta kombo',

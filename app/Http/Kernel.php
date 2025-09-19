@@ -16,6 +16,7 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         Middleware\DatadogMetrics::class,
+        Middleware\SentryMetrics::class,
     ];
 
     protected $middlewareGroups = [
@@ -37,7 +38,6 @@ class Kernel extends HttpKernel
             Middleware\UpdateUserInfo::class,
             Middleware\VerifyUserAlways::class,
             Middleware\CheckUserBanStatus::class,
-            Middleware\TurbolinksSupport::class,
         ],
         'lio' => [
             Middleware\LegacyInterOpAuth::class,

@@ -6,7 +6,10 @@
 namespace App\Models\Multiplayer;
 
 use App\Models\Model;
+use App\Models\Solo\Score;
 use App\Models\Traits\WithDbCursorHelper;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -85,7 +88,8 @@ class PlaylistItemUserHighScore extends Model
             $ret[$type] = [
                 'query' => static
                     ::cursorSort($cursorHelper, $placeholder)
-                    ->whereHas('scoreLink')
+                    ->whereHas('scoreLink.score')
+                    ->whereHas('user', fn ($userQuery) => $userQuery->default())
                     ->where('playlist_item_id', $scoreLink->playlist_item_id)
                     ->where('user_id', '<>', $scoreLink->user_id),
                 'cursorHelper' => $cursorHelper,
@@ -100,9 +104,33 @@ class PlaylistItemUserHighScore extends Model
         return $this->belongsTo(PlaylistItem::class);
     }
 
+    public function score(): BelongsTo
+    {
+        return $this->belongsTo(Score::class, 'score_id');
+    }
+
     public function scoreLink()
     {
         return $this->belongsTo(ScoreLink::class, 'score_id');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function scopeForRanking(Builder $query): Builder
+    {
+        return $query
+            ->passing()
+            ->whereHas('user', fn ($q) => $q->default())
+            ->orderByDesc('total_score')
+            ->orderBy('score_id');
+    }
+
+    public function scopePassing(Builder $query): Builder
+    {
+        return $query->where('total_score', '>', 0);
     }
 
     public function updateUserAttempts()
@@ -114,7 +142,11 @@ class PlaylistItemUserHighScore extends Model
     {
         $score = $scoreLink->score;
 
-        if ($score === null || !$score->passed || $score->total_score < $this->total_score) {
+        if ($score === null || $score->total_score <= $this->total_score) {
+            return false;
+        }
+
+        if (!$score->passed && !$scoreLink->playlistItem->room->isRealtime()) {
             return false;
         }
 
@@ -123,5 +155,18 @@ class PlaylistItemUserHighScore extends Model
             'score_id' => $score->getKey(),
             'total_score' => $score->total_score,
         ])->save();
+    }
+
+    public function userRank(): ?int
+    {
+        if ($this->total_score === null || $this->score_id === null) {
+            return null;
+        }
+
+        $query = static::where('playlist_item_id', $this->playlist_item_id)
+            ->forRanking()
+            ->cursorSort('score_asc', $this);
+
+        return 1 + $query->count();
     }
 }

@@ -24,9 +24,19 @@ return [
         'title' => 'گزارش پست :username؟',
     ],
 
+    'message' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'گزارش کردن امتیاز',
         'title' => 'گزارش امتیاز :username؟',
+    ],
+
+    'team' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'user' => [

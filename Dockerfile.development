@@ -1,4 +1,4 @@
-FROM debian:11
+FROM debian:12
 
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-https lsb-release ca-certificates curl gnupg
@@ -12,37 +12,36 @@ RUN echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesou
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     build-essential \
+    chromium \
     chromium-driver \
     default-mysql-client \
     git \
     gosu \
     jhead \
     nodejs \
-    php8.3 \
-    php8.3-common \
-    php8.3-curl \
-    php8.3-ds \
-    php8.3-gd \
-    php8.3-intl \
-    php8.3-mbstring \
-    php8.3-mysql \
-    php8.3-redis \
-    php8.3-sqlite3 \
-    php8.3-swoole \
-    php8.3-tokenizer \
-    php8.3-xml \
-    php8.3-zip \
+    php8.4 \
+    php8.4-common \
+    php8.4-curl \
+    php8.4-ds \
+    php8.4-gd \
+    php8.4-intl \
+    php8.4-mbstring \
+    php8.4-mysql \
+    php8.4-redis \
+    php8.4-sqlite3 \
+    php8.4-swoole \
+    php8.4-tokenizer \
+    php8.4-xml \
+    php8.4-zip \
     zip
 
 RUN npm install -g yarn
 
 RUN curl -L "https://getcomposer.org/download/latest-2.x/composer.phar" > /usr/local/bin/composer && chmod 755 /usr/local/bin/composer
-RUN mv /usr/bin/chromium /usr/bin/chromium.orig
-COPY chromium /usr/bin/
 
 WORKDIR /app
 
-RUN groupadd osuweb && useradd -g osuweb osuweb
+RUN groupadd osuweb && useradd -g osuweb -d /app/.docker osuweb
 
 ENTRYPOINT ["/app/docker/development/entrypoint.sh"]
 CMD ["octane"]

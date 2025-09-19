@@ -8,11 +8,19 @@
   --avatar-size-extended-desktop: @profile-avatar-size;
   --avatar-size-extended: var(--content-height);
   --avatar-size: var(--content-height);
+
+  --avatar-height: var(--avatar-size);
+  --avatar-width: var(--avatar-size);
+
+  --bg: none;
+
   --content-height: 65px;
+  --vertical-padding: 10px;
+
   --info-margin-extended-desktop: 20px;
   --info-margin-extended: 10px;
   --info-margin: 10px;
-  --vertical-padding: 10px;
+
   display: flex;
   flex-direction: column;
   flex: none;
@@ -29,6 +37,12 @@
     background-color: hsl(var(--hsl-b4));
   }
 
+  &--team {
+    --avatar-width: calc(var(--avatar-height) * 2);
+    --bg: url("~@images/headers/generic.jpg");
+    background-color: hsl(var(--hsl-b4));
+  }
+
   @media @desktop {
     --avatar-radius-extended: var(--avatar-radius-extended-desktop);
     --avatar-size-extended: var(--avatar-size-extended-desktop);
@@ -38,17 +52,22 @@
   &__avatar {
     .own-layer(); // required by safari for border-radius to be applied correctly
     flex: none;
-    width: var(--avatar-size);
-    height: var(--avatar-size);
+    width: var(--avatar-width);
+    height: var(--avatar-height);
     border-radius: var(--avatar-radius);
     overflow: hidden;
-    align-self: flex-end;
-    margin-bottom: var(--vertical-padding);
+    align-self: flex-start;
     .default-box-shadow();
+
+    @media @desktop {
+      margin-bottom: var(--vertical-padding);
+      align-self: flex-end;
+    }
   }
 
   &__bg {
     position: relative;
+    background-image: var(--bg);
     background-size: cover;
     background-position: center;
     height: 100px;
@@ -74,56 +93,58 @@
   &__details {
     --gutter-size: @gutter-v2;
     --gutter-size-desktop: @gutter-v2-desktop;
-    padding: 0 var(--gutter-size);
+    --details-vertical-padding: var(--vertical-padding);
+    padding: var(--details-vertical-padding) var(--gutter-size);
     display: flex;
     align-items: center;
     position: relative;
-    height: calc(var(--content-height) + var(--vertical-padding) * 2);
 
     @media @desktop {
       --gutter-size: var(--gutter-size-desktop);
+      --details-vertical-padding: 0; // handled by container height
+      height: calc(var(--content-height) + var(--vertical-padding) * 2);
     }
   }
 
   &__flag {
     .link-plain();
     .link-white();
-    display: flex;
+    display: grid;
+    gap: 4px;
     align-items: center;
-  }
 
-  &__flag-flag {
-    font-size: var(--icon-height); // icon size
+    @media @desktop {
+      grid-template-columns: auto 1fr;
+    }
   }
 
   &__flag-text {
+    font-size: @font-size--title-small;
     display: none;
 
     @media @desktop {
       display: block;
-      padding-left: 4px;
-      font-size: @font-size--title-small;
     }
   }
 
   &__flags {
-    --icon-font-size: @font-size--small;
-    --icon-height-desktop: 20px;
-    --icon-height: 15px;
-
     display: flex;
+    flex-wrap: wrap;
     gap: 5px;
     margin-top: 10px;
+    font-size: 15px; // icon size
 
     @media @desktop {
-      --icon-height: var(--icon-height-desktop);
+      flex-wrap: nowrap;
+      gap: 10px;
       margin-top: 5px;
+      font-size: @flag-size-medium; // icon size
     }
   }
 
   &__icon {
-    font-size: var(--icon-font-size); // icon size
-    height: var(--icon-height);
+    font-size: 0.75em; // icon size
+    height: (1em * 1em / $font-size); // revert sizing from font-size
     color: @osu-colour-c1;
     display: flex;
     text-shadow: none;
@@ -139,19 +160,21 @@
   }
 
   &__icons {
-    align-items: baseline;
-    gap: 2px;
-    margin-left: 5px;
-
     &--flag-inline {
       display: contents;
+
       @media @desktop {
         display: none;
       }
     }
 
     &--name-inline {
+      align-items: baseline;
+      gap: 2px;
+      margin-left: 5px;
+      font-size: 15px; // icon size
       display: none;
+
       @media @desktop {
         display: flex;
       }
@@ -165,6 +188,7 @@
     flex-direction: column;
     align-items: flex-start;
     flex: 1;
+    min-width: 0;
   }
 
   &__level {
@@ -172,9 +196,6 @@
   }
 
   &__name {
-    --icon-height: 15px;
-    --icon-font-size: @font-size--small;
-
     padding: 0;
     margin: -5px 0 0;
     font-weight: normal;

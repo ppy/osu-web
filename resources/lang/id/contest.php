@@ -14,13 +14,14 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'komentar',
         'hide_judged' => 'sembunyikan entri yang telah dinilai',
         'nav_title' => 'juri',
         'no_current_vote' => 'kamu belum memberikan suaramu.',
         'update' => 'perbarui',
         'validation' => [
             'missing_score' => 'skor hilang',
-            'contest_vote_judged' => 'tidak dapat memilih dalam kontes berjuri',
+            'contest_vote_judged' => 'kamu tidak dapat memberikan suara pada kontes yang dinilai oleh juri',
         ],
         'voted' => 'Kamu telah memberikan suara untuk entri ini.',
     ],
@@ -29,7 +30,9 @@ return [
         '_' => 'Hasil penjurian',
         'creator' => 'pembuat',
         'score' => 'Skor',
+        'score_std' => 'Skor Terstandardisasi',
         'total_score' => 'jumlah skor',
+        'total_score_std' => 'total skor terstandardisasi',
     ],
 
     'voting' => [
@@ -45,12 +48,12 @@ return [
 
         'button' => [
             'add' => 'Pilih',
-            'remove' => 'Hapus pilihan',
+            'remove' => 'Lepas pilihan',
             'used_up' => 'Kamu telah menggunakan seluruh hak suaramu',
         ],
 
         'progress' => [
-            '_' => ':used / :max suara telah dipergunakan',
+            '_' => ':used / :max suara telah digunakan',
         ],
 
         'requirement' => [
@@ -86,6 +89,7 @@ return [
         'list' => 'suara',
         'count' => ':count_delimited suara|:count_delimited suara',
         'points' => ':count_delimited poin|:count_delimited poin',
+        'points_float' => ':points poin',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Menerima Entri',
         'voting' => 'Dalam Tahap Pemungutan Suara',
         'results' => 'Telah Berakhir',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => 'Lihat info dan entri',
+        ],
     ],
 ];

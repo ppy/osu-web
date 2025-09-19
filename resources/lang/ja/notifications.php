@@ -15,22 +15,24 @@ return [
 
     'action_type' => [
         '_' => '全て',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        'beatmapset' => 'ビートマップ',
+        'build' => 'ビルド',
+        'channel' => 'チャット',
+        'forum_topic' => 'フォーラム',
+        'news_post' => 'ニュース',
+        'team' => 'チーム',
+        'user' => 'プロフィール',
     ],
 
     'filters' => [
         '_' => '全て',
-        'user' => 'プロフィール',
         'beatmapset' => 'ビートマップ',
-        'forum_topic' => 'フォーラム',
-        'news_post' => 'お知らせ',
         'build' => 'ビルド',
         'channel' => 'チャット',
+        'forum_topic' => 'フォーラム',
+        'news_post' => 'お知らせ',
+        'team' => 'チーム',
+        'user' => 'プロフィール',
     ],
 
     'item' => [
@@ -57,9 +59,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'ディスカッションはアンロックされました。',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited 件の称賛|:count_delimited 件の称賛',
+                    'problems' => ':count_delimited 件の問題|:count_delimited 件の問題',
+                    'suggestions' => ':count_delimited 件の提案|:count_delimited 件の提案',
                 ],
             ],
 
@@ -121,6 +123,16 @@ return [
                     'channel_message_group' => ':username より',
                 ],
             ],
+
+            'channel_team' => [
+                '_' => '新しいチームメッセージ',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
+                ],
+            ],
         ],
 
         'build' => [
@@ -156,6 +168,22 @@ return [
                 '_' => '新しいフォーラムの返信',
                 'forum_topic_reply' => ':usernameがフォーラムトピック「:title」に返信しました。',
                 'forum_topic_reply_compact' => ':username の返信',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                '_' => 'チームへの参加リクエスト',
+
+                'team_application_accept' => "あなたは既にチーム :title に参加しています",
+                'team_application_accept_compact' => "あなたは既にチーム :title に参加しています",
+
+                'team_application_group' => '',
+
+                'team_application_reject' => 'チーム :title への参加リクエストが却下されました',
+                'team_application_reject_compact' => 'チーム :title への参加リクエストが却下されました',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -217,11 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => ':name に新しいお知らせがあります',
+                'channel_announcement' => '',
             ],
-
             'channel' => [
-                'pm' => ':usernameから新しいメッセージを受信しました',
+                'channel_message' => '',
+            ],
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -240,6 +270,14 @@ return [
         'forum_topic' => [
             'forum_topic_reply' => [
                 'forum_topic_reply' => '「:title」に新しい返信があります',
+            ],
+        ],
+
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "あなたは既にチーム :title に参加しています",
+                'team_application_reject' => 'チーム :title への参加リクエストが却下されました',
+                'team_application_store' => '',
             ],
         ],
 

@@ -17,6 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'تَمهل, ألعب أكثر.',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -40,20 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'لا يمكن للمرشِّح تحت فترة التجربة ترشيح عدة قواعد.',
+        'full_nomination_required' => 'عليك أن تكون مرشِّحاً مكتملاً من أجل الترشيح النهائي لقاعدة.',
         'hybrid_requires_modes' => 'تحتاج الخرائط الهجينة إلى تحديد وضع تشغيل واحد على الأقل لِتَرشيحِها.',
         'incorrect_mode' => 'ليس لديك الصلاحيّات الكافية للترشيح للوضوع: :mode',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'لخريطة الإيقاع هذه ترشيحات لاغية تمنع تأهيلها حالياً.',
+        'invalid_ruleset' => 'يشمل هذا الترشيح أنماط لاغية.',
         'too_many' => 'تم بالفعل استيفاء شرط الترشيح.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'تم استيفاء متطلّب ترشيح النمط غير الأساسي بالفعل.',
 
         'dialog' => [
             'confirmation' => 'هل أنت متأكد من أنك تريد ترشيح هذه الخريطة؟',
+            'different_nominator_warning' => '',
             'header' => 'ترشيح خريطة',
             'hybrid_warning' => 'ملاحظة: يمكنك أن ترشح مرة واحدة فقط، لذا يرجى التأكد من أنك ترشح لجميع أنماط اللعبة التي تنويها',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'النمط الرئيسي حالياً: :ruleset',
             'which_modes' => 'ترشيح لأي وضع؟',
         ],
     ],
@@ -67,6 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'عرض صورة الغلاف بحجمها الكامل',
+            'page' => '',
         ],
 
         'deleted_banner' => [
@@ -138,6 +141,7 @@ return [
             'description' => 'الوصف',
             'genre' => 'النوع',
             'language' => 'اللغة',
+            'mapper_tags' => '',
             'no_scores' => 'لا تزال البيانات تُحسب...',
             'nominators' => 'المُرَشِحون',
             'nsfw' => 'محتوى حساس',
@@ -146,7 +150,7 @@ return [
             'source' => 'المصدر',
             'storyboard' => 'تحتوي هذه الخريطة على لوحة قصصية',
             'success-rate' => 'معدل النجاح',
-            'tags' => 'العلامات',
+            'user_tags' => '',
             'video' => 'تحتوي هذه الخريطة على فيديو',
         ],
 
@@ -169,6 +173,7 @@ return [
             'global' => 'الترتيب العالمي',
             'supporter-link' => 'اضغط <a href=":link">هنا</a> لمشاهدة كل الميزات الرائعة التي تحصل عليها!',
             'supporter-only' => 'تحتاج ان تكون osu!supporter للوصول الى ترتيب الدولة والأصدقاء!',
+            'team' => '',
             'title' => 'لوح النتائج',
 
             'headers' => [
@@ -190,6 +195,7 @@ return [
                 'friend' => 'لا احد من اصدقائك حصل على نتيجة بهذه الخريطة بعد!',
                 'global' => 'لا نتيجة بعد. ربما عليك الحصول على واحدة؟',
                 'loading' => 'جارِ تحميل النتائج...',
+                'team' => '',
                 'unranked' => 'خريطة ليست مصنفة.',
             ],
             'score' => [

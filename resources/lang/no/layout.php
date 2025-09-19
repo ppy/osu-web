@@ -113,6 +113,7 @@ return [
             'copyright' => 'Opphavsrett (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Personvern',
+            'rules' => '',
             'server_status' => 'Serverstatus',
             'source_code' => 'Kildekode',
             'terms' => 'Vilkår for bruk',
@@ -199,6 +200,9 @@ return [
             'legacy_score_only_toggle_tooltip' => 'Lazer modus viser scorer satt fra lazer med en ny scoringsalgoritme',
             'logout' => 'Logg Ut',
             'profile' => 'Min Profil',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
+            'team' => '',
         ],
     ],
 

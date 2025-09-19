@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "あなたのアカウントは長い間使用されていません。",
             'inactive_different_country' => "あなたのアカウントは長期間使用されていません。",
         ],
     ],
@@ -110,7 +110,9 @@ return [
         'failed' => 'ログインに失敗しました',
         'forgot' => 'パスワードを忘れましたか？',
         'info' => 'ログインして続行してください',
-        'invalid_captcha' => 'Captcha が無効です。ページを更新して再度お試し下さい。',
+        'invalid_captcha' => 'ログイン試行回数の上限に到達しました。
+CAPTCHA認証を成功させてから再試行してください。
+(表示されない場合はページを更新してください)',
         'locked_ip' => 'あなたのIPアドレスは規制されています。数分後もう一度お試しください。',
         'password' => 'パスワード',
         'register' => "osu!アカウントを持っていませんか？新しいアカウントを作るにはこちらから",
@@ -121,6 +123,13 @@ return [
         'beta' => [
             'main' => 'ベータアクセスは権限があるユーザーのみに付与されます。',
             'small' => '(osu!サポーターはすぐ手に入ります)',
+        ],
+    ],
+
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
         ],
     ],
 
@@ -159,19 +168,30 @@ return [
             'cancel' => 'キャンセル',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => 'osu!の著作権ポリシー',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'チート',
-            'multiple_accounts' => '複数のアカウントを管理している',
+            'copyright_infringement' => '著作権侵害',
+            'inappropriate_chat' => '不適切なチャット行為',
             'insults' => 'あなた/他の人への侮辱',
-            'spam' => 'スパム',
-            'unwanted_content' => '不適切なコンテンツへのリンク',
+            'multiple_accounts' => '複数のアカウントを管理している',
             'nonsense' => 'ナンセンスな行為',
             'other' => 'その他（下記に入力）',
+            'spam' => 'スパム',
+            'unwanted_content' => '不適切なコンテンツ',
         ],
     ],
     'restricted_banner' => [
         'title' => 'アカウントが制限されました！',
-        'message' => '制限中は他のプレイヤーと交流ができなくなり、スコアが他人には表示されなくなります。ほとんどの場合、自動的に行われた処理で通常２４時間以内に解除されます。この制限に異議を申し立てたい場合は<a href="mailto:accounts@ppy.sh">サポート</a>に問い合わせて下さい。',
+        'message' => '制限中はプレイヤーとの交流が禁止され、スコアは自分以外に表示されなくなります。この制限は機械的な処理によるものですので、通常 24 時間以内に解除されます。
+この対応に異議の申し立てを行いたい場合は、こちらのリンクまでお問い合せください。:link',
         'message_link' => '詳細については、こちらのページをご覧ください。',
     ],
     'show' => [
@@ -196,16 +216,36 @@ return [
             'to_0' => 'カバー画像を隠す',
             'to_1' => 'カバー画像を表示',
         ],
+        'daily_challenge' => [
+            'daily' => '連続記録',
+            'daily_streak_best' => '最高連続記録',
+            'daily_streak_current' => '現在の連続記録',
+            'playcount' => '参加合計',
+            'title' => 'デイリー\nチャレンジ',
+            'top_10p_placements' => '上位10%',
+            'top_50p_placements' => '上位50%',
+            'weekly' => '週間連続記録',
+            'weekly_streak_best' => '最高週間連続記録',
+            'weekly_streak_current' => '現在の週間連続記録',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'カバー画像の変更',
                 'defaults_info' => 'カバー画像の選択肢は増える予定です',
+                'holdover_remove_confirm' => "以前に選択したカバーは選択できなくなります。別のカバーに切り替えた後、再び選択することはできません。続行しますか？",
+                'title' => 'カバー画像',
+
                 'upload' => [
                     'broken_file' => '画像の処理に失敗しました。アップロードした画像を確認してもう一度やり直して下さい。',
                     'button' => '画像のアップロード',
                     'dropzone' => 'ここにドロップしてアップロード',
                     'dropzone_info' => 'ここにドラッグ＆ドロップでアップロードが可能です。',
-                    'size_info' => '推奨の画像サイズは2400x620です',
+                    'size_info' => '推奨の画像サイズは2000x500です',
                     'too_large' => 'アップロードファイルが大きすぎます。',
                     'unsupported_format' => 'サポートされていないフォーマットです。',
 
@@ -219,6 +259,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'メインのゲームモード',
                 'set' => ':modeをメインのゲームモードに設定する',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'カラーをデフォルトに戻しますか？別の色に変更するにはサポータータグが必要です。',
+                'title' => 'カラー',
+
+                'supporter' => [
+                    '_' => 'カラーテーマをカスタムできるのは :link のみです',
+                    'link' => 'osu!supporters',
+                ],
             ],
         ],
 
@@ -449,8 +499,13 @@ return [
             'global_simple' => '世界ランキング',
             'highest' => '最高ランク: :rank (:dateに取得)',
         ],
+        'season_stats' => [
+            'division_top_percentage' => 'トップ :value',
+            'total_score' => '合計スコア',
+        ],
         'stats' => [
             'hit_accuracy' => '精度',
+            'hits_per_play' => '1回プレイの平均ヒット数',
             'level' => 'レベル :level',
             'level_progress' => '次のレベルまで',
             'maximum_combo' => '最大コンボ',

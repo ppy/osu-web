@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Uživatel zatím nehrál žádné :type_group osu!(lazer) hry!',
+        'active' => 'Není právě v žádných probíhajících osu!(lazer) :type_group hrách!',
+        'ended' => 'Zatím není v žádných dokončených osu!(lazer) :type_group hrách!',
         'playlists' => 'playlist',
         'realtime' => 'multiplayer',
     ],
@@ -16,9 +17,12 @@ return [
         'map_count' => ':count_delimited mapa|:count_delimited mapy|:count_delimited map',
         'player_count' => ':count_delimited hráč|:count_delimited hráči|:count_delimited hráčů',
         'time_left' => ':time zbývá',
+        'view_history' => 'Zobrazit historii',
+        'view_summary' => 'Zobrazit shrnutí',
 
         'errors' => [
             'duration_too_long' => 'Doba je příliě dlouhá.',
+            'name_too_long' => 'Název místnosti je příliš dlouhý.',
         ],
 
         'status' => [

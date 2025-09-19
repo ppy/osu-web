@@ -14,6 +14,7 @@ return [
     ],
 
     'judge' => [
+        'comments' => 'коментарі',
         'hide_judged' => 'сховати оцінені заявки',
         'nav_title' => 'суддя',
         'no_current_vote' => 'ви ще не голосували.',
@@ -29,7 +30,9 @@ return [
         '_' => 'Судові результати',
         'creator' => 'автор',
         'score' => 'Бали',
-        'total_score' => 'загальний бал',
+        'score_std' => 'Стандартизований рахунок',
+        'total_score' => 'всього очок',
+        'total_score_std' => 'загальний стандартизований рахунок',
     ],
 
     'voting' => [
@@ -84,8 +87,9 @@ return [
 
     'vote' => [
         'list' => 'голосів',
-        'count' => ':count_delimited голос|:count_delimited голосів',
-        'points' => ':count_delimited очок|:count_delimited очків',
+        'count' => ':count_delimited голос|:count_delimited голоси|:count_delimited голосів',
+        'points' => ':count_delimited очко|:count_delimited очка|:count_delimited очків',
+        'points_float' => ':points очок',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'Відкриті заявки',
         'voting' => 'Голосування почалося',
         'results' => 'Результати опубліковані',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => 'Перегляд інформації та матеріалів',
+        ],
     ],
 ];

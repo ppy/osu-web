@@ -5,6 +5,7 @@
 
 namespace App\Libraries\Fulfillments;
 
+use App\Models\Store\OrderItem;
 use App\Models\User;
 use App\Models\UserDonation;
 use Carbon\Carbon;
@@ -13,7 +14,7 @@ use DB;
 /**
  * Applies a Supporter Tag donation from a store transaction.
  */
-class ApplySupporterTag extends OrderItemFulfillment
+class ApplySupporterTag implements Fulfillable
 {
     public static function addDuration(Carbon $time, int $duration): Carbon
     {
@@ -27,6 +28,10 @@ class ApplySupporterTag extends OrderItemFulfillment
     private User $donor;
     private User $target;
 
+    public function __construct(protected OrderItem $orderItem)
+    {
+    }
+
     public function cancelledTransactionId()
     {
         return "{$this->getTransactionId()}-cancel";
@@ -35,7 +40,7 @@ class ApplySupporterTag extends OrderItemFulfillment
     /**
      * Performs the opration.
      *
-     * @throws Illuminate\Database\Eloquent\ModelNotFoundException If the donor or target could not be found.
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException If the donor or target could not be found.
      */
     public function run()
     {
@@ -62,7 +67,7 @@ class ApplySupporterTag extends OrderItemFulfillment
     /**
      * Revokes the operation.
      *
-     * @throws Illuminate\Database\Eloquent\ModelNotFoundException If the donor or target could not be found.
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException If the donor or target could not be found.
      */
     public function revoke()
     {
@@ -119,16 +124,21 @@ class ApplySupporterTag extends OrderItemFulfillment
         $this->target->osu_subscriber = true;
     }
 
+    private function getTransactionId()
+    {
+        return "{$this->orderItem->order->transaction_id}-{$this->orderItem->id}";
+    }
+
     private function revokeSubscription()
     {
         $previous = static::addDuration($this->target->osu_subscriptionexpiry, -$this->duration);
         $this->target->osu_subscriptionexpiry = $previous;
-        $this->target->osu_subscriber = Carbon::now()->diffInMinutes($previous, false) > 0;
+        $this->target->osu_subscriber = Carbon::now()->diffInMinutes($previous) > 0;
     }
 
     private function setup()
     {
-        /** @var ExtraDataSupporterTag $extraData */
+        /** @var \App\Models\Store\ExtraDataSupporterTag $extraData */
         $extraData = $this->orderItem->extra_data;
 
         $this->amount = $this->orderItem->cost;

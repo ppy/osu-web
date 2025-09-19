@@ -5,7 +5,8 @@
 
 return [
     'empty' => [
-        '_' => 'Walang osu!(lazer) :type_group games na nalaro pa!',
+        'active' => '',
+        'ended' => '',
         'playlists' => 'playlist',
         'realtime' => 'multiplayer',
     ],
@@ -16,9 +17,12 @@ return [
         'map_count' => ':count_delimited map|:count_delimited maps',
         'player_count' => ':count_delimited player|:count_delimited players',
         'time_left' => ':time natira',
+        'view_history' => '',
+        'view_summary' => '',
 
         'errors' => [
             'duration_too_long' => 'Masyadong matagal.',
+            'name_too_long' => '',
         ],
 
         'status' => [

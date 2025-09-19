@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Admin',
         'authorise' => 'Avtorizacija',
         'authorising' => 'Avtoriziranje...',
+        'back' => '',
         'back_to_previous' => 'Vrni se na prejšnjo pozicijo',
         'back_to_top' => 'Nazaj na vrh',
         'cancel' => 'Prekliči',
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => '',
+        ],
+        'year' => [
+            'php' => '',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

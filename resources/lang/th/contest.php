@@ -14,27 +14,30 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'comments' => 'ความคิดเห็น',
+        'hide_judged' => 'ซ่อนรายการที่ได้รับการตัดสินไปแล้ว',
+        'nav_title' => 'ตัดสิน',
+        'no_current_vote' => 'คุณยังไม่ได้โหวต',
+        'update' => 'อัปเดต',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'คะแนนที่ขาดหายไป',
+            'contest_vote_judged' => 'ไม่สามารถโหวตในการแข่งขันที่มีการตัดสิน',
         ],
-        'voted' => '',
+        'voted' => 'คุณได้ส่งโหวตสำหรับรายการนี้ไปแล้ว',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'ผลการตัดสิน',
+        'creator' => 'ผู้สร้าง',
+        'score' => 'คะแนน',
+        'score_std' => '',
+        'total_score' => 'คะแนนรวมทั้งหมด',
+        'total_score_std' => '',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'คุณเป็นผู้ตัดสินของการแข่งขันนี้ ตัดสินรายการที่นี่!',
+        'judged_notice' => 'การแข่งขันนี้ใช้ระบบการตัดสินอยู่ ขณะนี้ผู้ตัดสินกำลังดำเนินการกับรายการต่างๆ',
         'login_required' => 'กรุณาเข้าสู่ระบบเพื่อทำการโหวต',
         'over' => 'การโหวตนั้นได้สิ้นสุดลงแล้ว',
         'show_voted_only' => 'แสดงโหวต',
@@ -86,6 +89,7 @@ return [
         'list' => 'โหวต',
         'count' => ':count_delimited โหวต|:count_delimited โหวตทั้งหมด',
         'points' => ':count_delimited แต้ม|:count_delimited แต้มทั้งหมด',
+        'points_float' => '',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'เปิดรับงาน',
         'voting' => 'เริ่มเปิดโหวต',
         'results' => 'ประกาศผล',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

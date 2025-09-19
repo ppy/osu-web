@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => '',
+
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Balsavimo nepavyko atnaujinti',
@@ -25,12 +31,14 @@ return [
         'message_placeholder_silenced' => "Negali rašyti diskusijose, kol esi užtildytas.",
         'message_type_select' => 'Pasirink Komentaro Tipą',
         'reply_notice' => 'Spausk Enter norint atsakyti.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Rašykite savo atsakymą čia',
         'require-login' => 'Atsakymui reikia prisijungti',
         'resolved' => 'Išspręsta',
         'restore' => 'atkurti',
         'show_deleted' => 'Peržiūrėti ištrintus',
         'title' => 'Diskusijos',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Sutraukti visus',
@@ -292,7 +300,7 @@ return [
         'graveyard' => 'Apleisti',
         'leaderboard' => 'Turi Rezultatų lentą',
         'loved' => 'Mylimi',
-        'mine' => 'Mano Bitmapai',
+        'mine' => 'Mano Beatmap\'ai',
         'pending' => 'Laukiantis',
         'wip' => 'WIP',
         'qualified' => 'Kvalifikuoti',

@@ -66,6 +66,13 @@ return [
         'version' => '난이도',
     ],
 
+    'refresh' => [
+        'checking' => '업데이트 확인 중...',
+        'has_updates' => '토론에 새로운 소식이 있으니, 여기를 눌러 새로고침해 주세요.',
+        'no_updates' => '업데이트가 없어요.',
+        'updating' => '업데이트 중...',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => '답글을 달려면 로그인하세요',

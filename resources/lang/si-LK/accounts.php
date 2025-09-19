@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => '',
+            'reset' => '',
             'rules' => '',
             'rules_link' => '',
         ],
@@ -87,6 +88,7 @@ return [
             'beatmap_owner_change' => '',
             'beatmapset:modding' => '',
             'channel_message' => '',
+            'channel_team' => '',
             'comment_new' => '',
             'forum_topic_reply' => '',
             'mail' => '',

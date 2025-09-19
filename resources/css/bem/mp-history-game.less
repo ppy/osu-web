@@ -3,7 +3,7 @@
 
 .mp-history-game {
   width: 100%;
-  .default-border-radius;
+  .default-border-radius();
 
   &__header {
     --border-radius: @border-radius-base @border-radius-base 0 0;
@@ -63,7 +63,7 @@
 
   &__metadata {
     color: @osu-colour-c1;
-    .default-text-shadow;
+    .default-text-shadow();
 
     margin: 0;
 
@@ -105,27 +105,22 @@
   }
 
   &__player-scores {
+    --shape-size: 0;
     padding: 10px;
     background-color: @osu-colour-b3;
-
-    &--no-teams, &:last-child {
-      border-radius: 0 0 @border-radius-base @border-radius-base;
-    }
-  }
-
-  &__player-score {
-    width: 100%;
-    height: 125px;
-
-    background-color: @osu-colour-b2;
-
-    margin-bottom: 5px;
-
-    .default-border-radius();
-    .default-box-shadow();
+    display: grid;
+    gap: 5px;
+    border-radius: 0 0 @border-radius-base @border-radius-base;
 
     @media @desktop {
-      height: auto;
+      // shape name mods combo acc score rank
+      grid-template-columns: var(--shape-size) 1fr auto auto auto auto auto;
+      column-gap: 0;
+    }
+
+    &--teams {
+      --shape-size: 50px;
+      border-radius: 0;
     }
   }
 
@@ -153,7 +148,6 @@
     width: 50%;
 
     padding: 20px;
-
 
     @media @desktop {
       width: unset;

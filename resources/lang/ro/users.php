@@ -124,6 +124,13 @@ return [
         ],
     ],
 
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
     'ogp' => [
         'modding_description' => 'Beatmap-uri: :counts',
         'modding_description_empty' => 'Utilizatorul nu are nici un beatmap...',
@@ -159,14 +166,24 @@ return [
             'cancel' => 'Anulează',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Trișat',
-            'multiple_accounts' => 'Utilizarea mai multor conturi',
+            'copyright_infringement' => '',
+            'inappropriate_chat' => 'Comportament necorespunzător în conversații',
             'insults' => 'M-a insultat pe mine / pe alții',
-            'spam' => 'Spam',
-            'unwanted_content' => 'Partajarea unui conținut nepotrivit',
+            'multiple_accounts' => 'Utilizarea mai multor conturi',
             'nonsense' => 'Nonsens',
             'other' => 'Altele (scrie mai jos)',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Partajarea unui conținut nepotrivit',
         ],
     ],
     'restricted_banner' => [
@@ -196,10 +213,30 @@ return [
             'to_0' => 'Ascunde coperta',
             'to_1' => 'Afișează coperta',
         ],
+        'daily_challenge' => [
+            'daily' => 'Serie Zilnică',
+            'daily_streak_best' => 'Cea Mai Bună Serie Zilnică',
+            'daily_streak_current' => 'Serie Zilnică Actuală',
+            'playcount' => 'Participare Totală',
+            'title' => 'Provocare\nZilnică',
+            'top_10p_placements' => 'Plasamente Top 10%',
+            'top_50p_placements' => 'Plasamente Top 50%',
+            'weekly' => 'Serie Săptămânală',
+            'weekly_streak_best' => 'Cea Mai Bună Serie Săptămânală',
+            'weekly_streak_current' => 'Serie Săptămânală Actuală',
+
+            'unit' => [
+                'day' => ':valuez',
+                'week' => ':values',
+            ],
+        ],
         'edit' => [
             'cover' => [
-                'button' => 'Schimbă coperta de profil',
+                'button' => 'Schimbă Coperta de Profil',
                 'defaults_info' => 'Mai multe opțiuni pentru coperți vor fi disponibile în viitor',
+                'holdover_remove_confirm' => "Coperta selectată anterior nu mai este disponibilă pentru selecție. Nu o veți mai putea selecta înapoi după ce treceți la o copertă diferită. Continuați?",
+                'title' => 'Copertă',
+
                 'upload' => [
                     'broken_file' => 'Imposibil de procesat imaginea. Verifică imaginea încărcată și încearcă din nou.',
                     'button' => 'Încarcă imaginea',
@@ -219,6 +256,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'mod de joc implicit',
                 'set' => 'setează :mode ca modul de joc implicit al profilului',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Resetați culoarea la cea implicită? Va fi necesar statusul de suporter pentru a o schimba la o culoare diferită.',
+                'title' => 'Culoare',
+
+                'supporter' => [
+                    '_' => 'Temele de culori personalizate sunt disponibile numai pentru :link',
+                    'link' => 'suporteri osu!',
+                ],
             ],
         ],
 
@@ -449,8 +496,13 @@ return [
             'global_simple' => 'Rang Global',
             'highest' => 'Rang maxim :rank atins pe :date',
         ],
+        'season_stats' => [
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Scor total',
+        ],
         'stats' => [
             'hit_accuracy' => 'Precizie',
+            'hits_per_play' => 'Clicuri Pe Scor',
             'level' => 'Nivelul :level',
             'level_progress' => 'Progres până la nivelul următor',
             'maximum_combo' => 'Combo Maxim',

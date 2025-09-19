@@ -6,7 +6,6 @@ import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import UserJson from 'interfaces/user-json';
 import { action, autorun, computed, makeObservable, observable } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
-import { deletedUserJson } from 'models/user';
 import * as React from 'react';
 import { makeUrl } from 'utils/beatmapset-discussion-helper';
 import { blackoutToggle } from 'utils/blackout';
@@ -41,7 +40,7 @@ export default class BeatmapList extends React.Component<Props> {
 
   componentDidMount() {
     $(document).on(`click.${this.eventId}`, this.onDocumentClick);
-    $(document).on(`turbolinks:before-cache.${this.eventId}`, this.handleBeforeCache);
+    $(document).on(`turbo:before-cache.${this.eventId}`, this.handleBeforeCache);
   }
 
   componentWillUnmount() {
@@ -58,7 +57,7 @@ export default class BeatmapList extends React.Component<Props> {
             href={makeUrl({ beatmap: this.props.discussionsState.currentBeatmap })}
             onClick={this.toggleSelector}
           >
-            <BeatmapListItem beatmap={this.props.discussionsState.currentBeatmap} mapper={null} modifiers='large' />
+            <BeatmapListItem beatmap={this.props.discussionsState.currentBeatmap} modifiers='large' showOwners={false} />
             <div className='beatmap-list__item-selector-button'>
               <span className='fas fa-chevron-down' />
             </div>
@@ -88,8 +87,8 @@ export default class BeatmapList extends React.Component<Props> {
           beatmap={beatmap}
           beatmapUrl={makeUrl({ beatmap, filter: this.props.discussionsState.currentFilter })}
           beatmapset={this.props.discussionsState.beatmapset}
-          mapper={this.props.users.get(beatmap.user_id) ?? deletedUserJson}
-          showNonGuestMapper={false}
+          showNonGuestOwner={false}
+          showOwners
         />
         {count != null &&
           <div className='beatmap-list__item-count'>

@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'プロフィール画像',
+            'reset' => 'リセット',
             'rules' => 'あなたのプロフィール画像が公序良俗に反したもので無いか確認してください。 :link.<br/>易しく言えば<strong>全ての年齢に適した</strong>、つまりヌードや冒涜的な表現などを想起させるものを含んでいない事を確認してください。',
             'rules_link' => 'コミュニティールール',
         ],
@@ -65,7 +66,7 @@ return [
     'github_user' => [
         'info' => "osu! のオープンソースリポジトリへのコントリビューターであれば、ここでGitHubアカウントをリンクすると、更新ログエントリがosu! プロフィールに関連付けられます。 osu! への貢献履歴がないGitHubアカウントはリンクできません。",
         'link' => 'GitHubアカウントをリンク',
-        'title' => '',
+        'title' => 'GitHub',
         'unlink' => 'GitHubアカウントのリンクを解除',
 
         'error' => [
@@ -87,6 +88,7 @@ return [
             'beatmap_owner_change' => 'ゲスト難易度',
             'beatmapset:modding' => 'ビートマップmodding',
             'channel_message' => 'プライベートチャットメッセージ',
+            'channel_team' => 'チームチャットメッセージ',
             'comment_new' => '新しいコメント',
             'forum_topic_reply' => 'トピックへの返信',
             'mail' => 'メール',

@@ -55,6 +55,7 @@ return [
         'contact' => 'جهة الإتصال:',
         'date' => 'التاريخ:',
         'echeck_delay' => 'بما ان دفعتك كانت الكترونية، يرجى السماح لنا حتى 10 أيام إضافية لدفع للمرور عن طريق باي بال!',
+        'echeck_denied' => '',
         'hide_from_activity' => 'إشارات osu!supporter لن تعرض بهذا الترتيب في نشاطك.',
         'sent_via' => 'ارسلت بواسطة:',
         'shipping_to' => 'تُشحن إلى:',
@@ -173,6 +174,7 @@ return [
 
         'add_to_cart' => 'أضف للسلة',
         'notify' => 'أرسل إشعاراً عند توفر هذا المنتج!',
+        'out_of_stock' => '',
 
         'notification_success' => 'سيتم إعلامك عندما يكون لدينا مخزون جديد. انقر فوق :link للإلغاء',
         'notification_remove_text' => 'هتا',

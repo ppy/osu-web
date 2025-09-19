@@ -5,15 +5,16 @@
 
 return [
     'mode' => [
-        'beatmapset' => 'Beatmap',
+        'artist_track' => 'Pista d\'artista destacat',
+        'beatmapset' => 'Mapa',
         'forum_post' => 'Fòrum',
         'other' => 'Altre',
+        'team' => 'Equip',
         'user' => 'Jugador',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => 'Sense resultats',
         'empty_for' => 'No hi ha resultats per als :modes',
         'more' => 'Més resultats de cerca de :mode',
         'title' => 'Resultats de cerca de :mode',

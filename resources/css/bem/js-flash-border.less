@@ -2,14 +2,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .js-flash-border {
-    transition: border 200ms;
-    border: 1px solid transparent;
+  transition: border 200ms;
+  border: 1px solid transparent;
 
-    &--on {
-      animation: js-flash-border 400ms 2;
-    }
+  &--on {
+    animation: js-flash-border 400ms 2;
+  }
 }
 
 @keyframes js-flash-border {
-  50% { border-color: @yellow; }
+  50% {
+    border-color: @yellow;
+  }
 }

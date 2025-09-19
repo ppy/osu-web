@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => '',
+
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Ažuriranje glasanja nije uspjelo',
@@ -25,12 +31,14 @@ return [
         'message_placeholder_silenced' => "Ne možeš objavljivati raspravu dok si utišan/a.",
         'message_type_select' => 'Odaberi vrstu komentara',
         'reply_notice' => 'Pritisni enter za odgovor.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Upiši svoj odgovor ovdje',
         'require-login' => 'Molimo da se prijaviš kako bi objavljivao ili odgovorio/la',
         'resolved' => 'Riješeno',
         'restore' => 'obnovi',
         'show_deleted' => 'Prikaži izbrisano',
         'title' => 'Rasprave',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Sažmi sve',

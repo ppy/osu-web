@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => '',
+
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Neuspešna posodobitev glasovanja',
@@ -25,12 +31,14 @@ return [
         'message_placeholder_silenced' => "Objava pogovora ni mogoča medtem, ko si utišan.",
         'message_type_select' => 'Izberi Tip Komentarja',
         'reply_notice' => 'Pritisni enter za odgovor.',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => 'Vnesi svoj odgovor tukaj',
         'require-login' => 'Za objavo ali odgovor se prijavi',
         'resolved' => 'Rešeno',
         'restore' => 'povrni',
         'show_deleted' => 'Prikaži izbrisano',
         'title' => 'Razprave',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => 'Strni vse',
@@ -257,7 +265,7 @@ return [
                 'difficulty' => 'Težavnost',
                 'favourites' => 'Priljubljeni',
                 'updated' => 'Posodobljeno',
-                'ranked' => 'Rankirano',
+                'ranked' => 'Uvrščeno',
                 'rating' => 'Ocena',
                 'plays' => 'Igranja',
                 'relevance' => 'Ustreznost',
@@ -296,7 +304,7 @@ return [
         'pending' => 'V čakanju',
         'wip' => 'WIP',
         'qualified' => 'Kvalificirano',
-        'ranked' => 'Rankirano',
+        'ranked' => 'Uvrščeno',
     ],
     'genre' => [
         'any' => 'Vse',

@@ -5,44 +5,47 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'izdzēsta bītmape',
-        'failed' => '',
-        'header' => '',
-        'in-progress' => '(notiek mačs)',
-        'in_progress_spinner_label' => 'notiek mačs',
+        'beatmap-deleted' => 'izdzēsta ritma-mape',
+        'failed' => 'IZGĀZĀS',
+        'header' => 'Daudzspēlētāju Mači',
+        'in-progress' => '(notiek spēle)',
+        'in_progress_spinner_label' => 'notiek spēle',
         'loading-events' => 'Ielādē notikumus...',
         'winner' => ':team uzvar',
         'winner_by' => ':winner ar starpību :difference',
 
         'events' => [
-            'player-left' => ':user pameta maču',
-            'player-joined' => ':user pievienojās mačam',
-            'player-kicked' => ':user tika izraidīts no mača',
-            'match-created' => ':user izveidoja maču',
-            'match-disbanded' => '',
-            'host-changed' => '',
-
-            'player-left-no-user' => 'spēlētājs pameta maču',
-            'player-joined-no-user' => 'spēlētājs pievienojās mačam',
-            'player-kicked-no-user' => 'spēlētājs tika izraidīts no mača',
-            'match-created-no-user' => 'mačs tika izveidots',
-            'match-disbanded-no-user' => '',
-            'host-changed-no-user' => '',
+            'game_aborted' => 'šī spēle tika atcelta',
+            'game_aborted_no_user' => 'šī spēle tika atcelta',
+            'game_completed' => 'šī spēle tika atcelta',
+            'game_completed_no_user' => 'šī spēle tika atcelta',
+            'host_changed' => ':user ir kļuvis par vadītāju',
+            'host_changed_no_user' => 'vadītājs nomainijās',
+            'player_joined' => ':user pievienojās spēlei',
+            'player_joined_no_user' => 'spēlētājs ir pievienojies spēlei',
+            'player_kicked' => ':user ir ticis izmests no spēlēs',
+            'player_kicked_no_user' => 'spēlētājs ir ticis izmests no spēles',
+            'player_left' => ':user pameta spēli',
+            'player_left_no_user' => 'spēlētājs pameta spēli',
+            'room_created' => ':user izveidoja spēli',
+            'room_created_no_user' => 'spēle tika izveidota',
+            'room_disbanded' => 'spēle tika izjaukta',
+            'room_disbanded_no_user' => 'spēle tika izjaukta',
         ],
 
         'score' => [
             'stats' => [
                 'accuracy' => 'Precizitāte',
-                'combo' => '',
-                'score' => '',
+                'combo' => 'Kombinācija',
+                'score' => 'Rezultāts',
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => '',
-            'tag-coop' => '',
-            'team-vs' => '',
-            'tag-team-vs' => '',
+        'team_types' => [
+            'head_to_head' => 'Viens-pret-vienu',
+            'tag_coop' => 'Stafetes kooperatīvs',
+            'tag_team_versus' => 'Stafetes Komanda VS',
+            'team_versus' => 'Komanda VS',
         ],
 
         'teams' => [
@@ -51,11 +54,13 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => 'Brīvais stills',
+
         'scoring-type' => [
-            'score' => '',
+            'score' => 'Visaugstākais Rezultāts',
             'accuracy' => 'Augstākā Precizitāte',
-            'combo' => 'Augstākais Kombo',
-            'scorev2' => '',
+            'combo' => 'Augstākā Kombinācija',
+            'scorev2' => 'Skaitīšana V2',
         ],
     ],
 ];

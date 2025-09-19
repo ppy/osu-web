@@ -25,9 +25,9 @@ return [
             '_' => 'Cari',
             'deleted' => 'Sertakan diskusi yang telah dihapus',
             'mode' => 'Mode beatmap',
-            'only_unresolved' => 'Hanya tampilkan topik diskusi yang belum terjawab',
+            'only_unresolved' => 'Tampilkan hanya topik diskusi yang belum terjawab',
             'show_review_embeds' => 'Tampilkan pos ulasan',
-            'types' => 'Tipe pesan',
+            'types' => 'Jenis pesan',
             'username' => 'Nama Pengguna',
 
             'beatmapset_status' => [
@@ -54,8 +54,8 @@ return [
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Saya tidak menemukan adanya postingan yang membahas isu yang ingin saya angkat',
-        'notice' => 'Terdapat postingan lain di sekitar :timestamp (:existing_timestamps). Mohon periksa apakah isu yang ingin kamu angkat telah dibahas oleh pengguna lain sebelumnya.',
+        'confirm' => 'Tidak ada satu pun dari postingan ini yang membahas masalah saya',
+        'notice' => 'Terdapat postingan lain di sekitar :timestamp (:existing_timestamps). Silakan periksa apakah masalah yang ingin kamu angkat telah dibahas oleh pengguna lain sebelumnya.',
         'unsaved' => ':count pada kajian ini',
     ],
 
@@ -64,6 +64,13 @@ return [
         'reset_confirm' => 'Atur ulang pemilik tingkat kesulitan ini?',
         'user' => 'Pemilik',
         'version' => 'Tingkat Kesulitan',
+    ],
+
+    'refresh' => [
+        'checking' => 'Memeriksa pembaruan...',
+        'has_updates' => 'Halaman diskusi ini memiliki pembaruan. Klik untuk memuat ulang halaman.',
+        'no_updates' => 'Tidak ada pembaruan.',
+        'updating' => 'Memperbarui...',
     ],
 
     'reply' => [
@@ -79,13 +86,13 @@ return [
         'go_to_child' => 'Lihat Topik Diskusi',
         'validation' => [
             'block_too_large' => 'masing-masing blok kajian terbatas pada :limit karakter',
-            'external_references' => 'kajian mengandung poin yang merujuk pada isu yang tidak berasal dari kajian ini',
+            'external_references' => 'kajian mengandung rujukan yang tertuju pada masalah yang tidak berasal dari kajian ini',
             'invalid_block_type' => 'tipe blok tidak valid',
             'invalid_document' => 'kajian tidak valid',
             'invalid_discussion_type' => 'tipe diskusi tidak valid',
-            'minimum_issues' => 'kajian harus mengandung setidaknya :count isu|kajian harus mengandung setidaknya :count isu',
+            'minimum_issues' => 'kajian harus mengandung setidaknya :count masalah|kajian harus mengandung setidaknya :count masalah',
             'missing_text' => 'blok tidak mengandung teks',
-            'too_many_blocks' => 'kajian hanya dapat mengandung maksimal :count paragraf/isu|kajian hanya dapat mengandung maksimal :count paragraf/isu',
+            'too_many_blocks' => 'kajian hanya dapat mengandung :count paragraf/masalah|kajian hanya dapat mengandung hingga :count paragraf/masalah',
         ],
     ],
 

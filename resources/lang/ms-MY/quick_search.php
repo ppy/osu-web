@@ -5,17 +5,18 @@
 
 return [
     'mode' => [
-        'beatmapset' => 'Beatmap',
+        'artist_track' => 'Runut Artis Sorotan',
+        'beatmapset' => 'Peta rentak',
         'forum_post' => 'Forum',
         'other' => 'Lainnya',
+        'team' => 'Pasukan',
         'user' => 'Pemain',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => 'Tiada hasil ditemukan',
-        'empty_for' => 'Tiada hasil pencarian :modes ditemukan',
-        'more' => 'Muat Lebih Banyak Hasil Pencarian :mode',
+        'empty_for' => 'Tiada hasil bagi :modes',
+        'more' => 'Hasil Carian :mode Lain',
         'title' => 'Hasil Carian :mode',
     ],
 ];

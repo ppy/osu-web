@@ -10,6 +10,7 @@ use App\Exceptions\ValidationException;
 use App\Http\Controllers\Controller;
 use App\Libraries\UserRegistration;
 use App\Models\Beatmap;
+use App\Models\Event;
 use App\Models\User;
 use App\Models\UserAchievement;
 use App\Transformers\CurrentUserTransformer;
@@ -27,13 +28,47 @@ class UsersController extends Controller
 
         abort_unless($unlocked, 422, 'user already unlocked the specified achievement');
 
-        \Datadog::increment(
-            $GLOBALS['cfg']['datadog-helper']['prefix_web'].'.user_achievement_unlock',
-            1,
-            ['id' => $achievementId],
-        );
+        datadog_increment('user_achievement_unlock', ['id' => $achievementId]);
 
         return $achievement->getKey();
+    }
+
+    public function rankAchieved($userId, $beatmapId, $rulesetId)
+    {
+        $params = get_params(
+            request()->all(),
+            null,
+            [
+                'position_after:int',
+                'rank:string',
+                'legacy_score_event:bool',
+            ]
+        );
+
+        abort_unless(isset($params['position_after']), 422, 'missing position_after parameter');
+        abort_unless(isset($params['rank']), 422, 'missing rank parameter');
+        abort_unless(isset($params['legacy_score_event']), 422, 'missing legacy_score_event parameter');
+
+        $params['beatmap'] = Beatmap::findOrFail($beatmapId);
+        $params['ruleset'] = Beatmap::modeStr($rulesetId);
+        $params['user'] = User::findOrFail($userId);
+
+        Event::generate('rank', $params);
+        return response([], 204);
+    }
+
+    public function firstPlaceLost($userId, $beatmapId, $rulesetId)
+    {
+        $legacyScoreEvent = get_bool(request('legacy_score_event'));
+        abort_unless(isset($legacyScoreEvent), 422, 'missing legacy_score_event parameter');
+
+        Event::generate('rankLost', [
+            'legacy_score_event' => $legacyScoreEvent,
+            'beatmap' => Beatmap::findOrFail($beatmapId),
+            'ruleset' => Beatmap::modeStr($rulesetId),
+            'user' => User::findOrFail($userId),
+        ]);
+        return response([], 204);
     }
 
     public function store()

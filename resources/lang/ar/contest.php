@@ -14,27 +14,30 @@ return [
     ],
 
     'judge' => [
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'comments' => '',
+        'hide_judged' => 'إخفاء المُدخلات المحكوم عليها',
+        'nav_title' => 'تحكيم',
+        'no_current_vote' => 'لم تصوت بعد.',
+        'update' => 'تحديث',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'درجة مفقودة',
+            'contest_vote_judged' => 'لا يمكنك التصويت في المسابقات ذات التحكيم',
         ],
-        'voted' => '',
+        'voted' => 'لقد سبق لك التصويت على هذا المُدخل.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'total_score' => '',
+        '_' => 'تحكيم النتائج',
+        'creator' => 'المنشئ',
+        'score' => 'درجة',
+        'score_std' => '',
+        'total_score' => 'مجموع الدرجات',
+        'total_score_std' => '',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'أنت حكم في هذه المسابقة. أُحكم على المُدخلات هنا!',
+        'judged_notice' => 'تستخدم هذه المسابقة نظام التحكيم. يقوم الحكّام بمعالجة المُدخلات حالياً.',
         'login_required' => 'يرجى تسجيل الدخول للتصويت.',
         'over' => 'لقد انتهى التصويت لهذه المسابقة',
         'show_voted_only' => 'إظهار التصويت',
@@ -86,6 +89,7 @@ return [
         'list' => 'الأصوات',
         'count' => ':count_delimited تصويت|:count_delimited الاصوات',
         'points' => ':count_delimited نقطة|:count_delimited نقاط',
+        'points_float' => '',
     ],
 
     'dates' => [
@@ -102,5 +106,11 @@ return [
         'entry' => 'المشاركة مفتوحة',
         'voting' => 'بدأ التصويت',
         'results' => 'النتائج خرجت',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

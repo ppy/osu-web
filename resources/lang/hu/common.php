@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Admin',
         'authorise' => 'Engedélyezés',
         'authorising' => 'Engedélyezés...',
+        'back' => 'Vissza',
         'back_to_previous' => 'Vissza az előző pozícióra',
         'back_to_top' => 'Vissza a lap tetejére',
         'cancel' => 'Mégse',
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => '',
+        ],
+        'year' => [
+            'php' => '',
+        ],
         'year_month' => [
             'moment' => 'YYYY MMMM',
             'php' => 'y MMMM',

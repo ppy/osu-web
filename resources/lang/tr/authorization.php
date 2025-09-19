@@ -60,12 +60,18 @@ return [
         ],
     ],
 
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => 'Beatmape etiket eklemek için önce oynaman gerek.',
+        ],
+    ],
+
     'chat' => [
-        'annnonce_only' => 'Bu kanal sadece duyurular içindir.',
         'blocked' => 'Sizi engelleyen ya da sizin engellediğiniz bir kullanıcıya mesaj gönderemezsiniz.',
         'friends_only' => 'Kullanıcı arkadaş listesinde bulunmayan kişilerden gelen mesajları engelliyor.',
         'moderated' => 'O kanal şu anda modere ediliyor.',
         'no_access' => 'Bu kanala erişiminiz yok.',
+        'no_announce' => 'Duyuru paylaşmaya yetkiniz yok.',
         'receive_friends_only' => 'Yalnızca arkadaş listenizdeki kişilerden gelen mesajları kabul ettiğiniz için kullanıcı yanıt veremeyebilir.',
         'restricted' => 'Susturulmuş, kısıtlanmış ya da banlanmış iken mesaj gönderemezsiniz.',
         'silenced' => 'Susturulmuşken, kısıtlıyken veya banlıyken mesaj gönderemezsiniz.',
@@ -107,6 +113,7 @@ return [
                 'deleted' => 'Silinmiş gönderi düzenlenemez.',
                 'locked' => 'Bu gönderi için düzenleme yasaklanmıştır.',
                 'no_forum_access' => 'İstenilen foruma erişim gereklidir.',
+                'no_permission' => '',
                 'not_owner' => 'Gönderi yalnızca gönderen tarafından düzenlenebilir.',
                 'topic_locked' => 'Kilitli bir konunun gönderisini düzenleyemezsiniz.',
             ],
@@ -170,12 +177,37 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => 'Sadece oda sahibi kapatabilir.',
+        ],
+    ],
+
     'score' => [
         'pin' => [
             'disabled_type' => "Bu tür skorlar sabitlenemez",
             'failed' => "Geçmeyen skor sabitlenemiyor.",
             'not_owner' => 'Sadece skor sahibi skoru sabitleyebilir.',
             'too_many' => 'Çok fazla skor sabitlendi.',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "Zaten takımın bir parçasısın.",
+                'already_other_member' => "Halihazırda başka bir takıma üyesin.",
+                'currently_applying' => 'Bekleyen bir takıma giriş isteğin var.',
+                'team_closed' => 'Takım şu anda girme isteklerini kabul etmiyor.',
+                'team_full' => "Takım dolu ve daha fazla üye alamaz.",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "Takım lideri takımı terk edemez.",
+            'not_member' => 'Takımın üyesi değil.',
+        ],
+        'store' => [
+            'require_supporter_tag' => 'Bir takım yaratabilmek için osu!supporter etiketine sahip olman gerek.',
         ],
     ],
 

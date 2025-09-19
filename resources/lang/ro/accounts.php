@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => 'resetează',
             'rules' => 'Te rugăm să te asiguri că avatar-ul tău respectă :link<br/>Asta înseamnă că trebuie să fie <strong>adecvat pentru toate vârstele</strong>. spre ex. fără nuditate, vulgarități sau conținut sugestiv.',
             'rules_link' => 'regulile comunității',
         ],
@@ -84,9 +85,10 @@ return [
 
         'options' => [
             '_' => 'opțiuni de livrare',
-            'beatmap_owner_change' => 'dificultatea oaspeților',
+            'beatmap_owner_change' => 'dificultate cu participare ca oaspete',
             'beatmapset:modding' => 'modding beatmap-uri',
             'channel_message' => 'mesaje chat private',
+            'channel_team' => 'mesaje chat echipă',
             'comment_new' => 'comentarii noi',
             'forum_topic_reply' => 'răspuns subiect',
             'mail' => 'mail',

@@ -15,19 +15,22 @@ return [
         'winner_by' => ':winner с :difference',
 
         'events' => [
-            'player-left' => ':user напусна състезанието',
-            'player-joined' => ':user се присъедини към състезанието',
-            'player-kicked' => ':user е изгонен от състезанието',
-            'match-created' => ':user създаде състезанието',
-            'match-disbanded' => 'състезанието е разпуснато',
-            'host-changed' => ':user стана домакин',
-
-            'player-left-no-user' => 'играч напусна състезанието',
-            'player-joined-no-user' => 'играч се присъедини към състезанието',
-            'player-kicked-no-user' => 'играч е изгонен от състезанието',
-            'match-created-no-user' => 'състезанието е създадено',
-            'match-disbanded-no-user' => 'състезанието е разпуснато',
-            'host-changed-no-user' => 'домакинът е променен',
+            'game_aborted' => 'играта беше прекратена',
+            'game_aborted_no_user' => 'играта беше прекратена',
+            'game_completed' => 'играта приключи',
+            'game_completed_no_user' => 'играта приключи',
+            'host_changed' => ':user стана домакин',
+            'host_changed_no_user' => 'домакинът е променен',
+            'player_joined' => ':user се присъедини',
+            'player_joined_no_user' => 'играч се присъедини',
+            'player_kicked' => ':user беше изгонен',
+            'player_kicked_no_user' => 'играч беше изгонен',
+            'player_left' => ':user напусна стаята',
+            'player_left_no_user' => 'играч напусна стаята',
+            'room_created' => ':user създаде стая',
+            'room_created_no_user' => 'създадена е стая',
+            'room_disbanded' => 'стаята е разпусната',
+            'room_disbanded_no_user' => 'стаята е разпусната',
         ],
 
         'score' => [
@@ -38,11 +41,11 @@ return [
             ],
         ],
 
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+        'team_types' => [
+            'head_to_head' => 'Всеки за себе си',
+            'tag_coop' => 'С редуване',
+            'tag_team_versus' => 'По отбори с редуване',
+            'team_versus' => 'По отбори',
         ],
 
         'teams' => [
@@ -51,6 +54,8 @@ return [
         ],
     ],
     'game' => [
+        'freestyle' => 'Свободен стил',
+
         'scoring-type' => [
             'score' => 'Най-висок резултат',
             'accuracy' => 'Най-висока прецизност',

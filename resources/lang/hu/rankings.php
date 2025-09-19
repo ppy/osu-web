@@ -9,6 +9,16 @@ return [
         'title' => 'Ország',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Nehézség',
+        'top_10p' => '',
+        'top_50p' => '',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
+    ],
+
     'filter' => [
         'title' => 'Mutat',
 
@@ -24,17 +34,18 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Ennek a felhasználónak kevesebb, mint 30 napos rangsorolási előzménye van.',
     ],
 
     'type' => [
         'charts' => 'Reflektorfény',
         'country' => 'Ország',
+        'daily_challenge' => 'napi kihívás',
+        'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'többjátékos',
-        'performance' => 'Teljesítmény',
-        'score' => 'Pontszám',
         'seasons' => 'szezonok',
+        'team' => 'csapat',
     ],
 
     'seasons' => [
@@ -42,6 +53,9 @@ return [
         'ongoing' => 'Ez a szezon még folyamatban van (lesznek még játéklisták).',
         'room_count' => 'Játéklista száma',
         'url' => 'További információk megjelenítése az adott szezonról.',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -55,6 +69,8 @@ return [
         'accuracy' => 'Pontosság',
         'active_users' => 'Aktív Felhasználók',
         'country' => 'Ország',
+        'division' => '',
+        'members' => 'Tagok',
         'play_count' => 'Játékszám',
         'performance' => 'Teljesítmény',
         'total_score' => 'Összpontszám',

@@ -53,6 +53,11 @@ return [
                 'beatmapsets' => '',
                 'forum' => '',
                 'general' => '',
+
+                'users' => [
+                    'header' => 'المستخدم',
+                    'cover_presets' => 'الإعدادات المسبقة للغلاف الشخصي',
+                ],
             ],
         ],
     ],

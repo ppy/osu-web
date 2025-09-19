@@ -10,6 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => 'Zurücksetzen',
             'rules' => 'Bitte stelle sicher, dass sich dein Avatar an :link hält.<br/>Das heißt, er muss <strong>für alle Altersklassen geeignet</strong> sein und darf keine Nacktheit oder anstößigen Inhalte enthalten.',
             'rules_link' => 'die Community-Regeln',
         ],
@@ -80,13 +81,14 @@ return [
         'beatmapset_disqualify' => 'Erhalte Benachrichtigungen, wenn Beatmaps der folgenden Modi disqualifiziert werden',
         'comment_reply' => 'Erhalte Benachrichtigungen für Antworten auf deine Kommentare',
         'title' => 'Benachrichtigungen',
-        'topic_auto_subscribe' => 'Benachrichtigungen zu den von dir erstellten Forenposts immer aktivieren',
+        'topic_auto_subscribe' => 'Benachrichtigungen zu den Forenposts, die du erstellt oder auf die du geantwortet hast, immer aktivieren',
 
         'options' => [
             '_' => 'Zustelloptionen',
             'beatmap_owner_change' => 'Guest-Difficulty',
             'beatmapset:modding' => 'Beatmap-Modding',
             'channel_message' => 'Private Chat-Nachrichten',
+            'channel_team' => 'Nachrichten im Team-Chat',
             'comment_new' => 'Neue Kommentare',
             'forum_topic_reply' => 'Antwort auf Forenthema',
             'mail' => 'Mail',

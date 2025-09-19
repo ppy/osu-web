@@ -22,7 +22,7 @@ export default class ForumTopicReply
 
     $.subscribe 'stickyFooter', @stickOrUnstick
 
-    $(document).on 'turbolinks:load', @initialize
+    $(document).on 'turbo:load', @initialize
 
 
   marker: -> document.querySelector('.js-sticky-footer[data-sticky-footer-target="forum-topic-reply"]')
@@ -102,7 +102,7 @@ export default class ForumTopicReply
     input.value = ''
     @bbcodePreview.hidePreview(target: input)
 
-    $newPost = $(data)
+    $newPost = $(data.posts)
 
     needReload = (@forum.postPosition($newPost[0]) - 1) != @forum.postPosition(@forum.endPost()) ||
       e.target.dataset.forceReload == '1'
@@ -110,8 +110,9 @@ export default class ForumTopicReply
     if needReload
       navigate $newPost.find('.js-post-url').attr('href')
     else
+      $('.js-forum-topic-watch').replaceWith(data.watch)
       @forum.setTotalPosts(@forum.totalPosts() + 1)
-      @forum.endPost().insertAdjacentHTML 'afterend', data
+      @forum.endPost().insertAdjacentHTML 'afterend', data.posts
 
       @forum.endPost().scrollIntoView()
 

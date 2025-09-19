@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Yönetici',
         'authorise' => 'Yetki ver',
         'authorising' => 'İzin Veriliyor...',
+        'back' => 'Geri',
         'back_to_previous' => 'Bir önceki pozisyona dön',
         'back_to_top' => 'Yukarıya geri dön',
         'cancel' => 'İptal',
@@ -39,7 +39,7 @@ return [
         'pin' => 'sabitle',
         'post' => 'Gönder',
         'read_more' => 'daha fazlası',
-        'refresh' => '',
+        'refresh' => 'Yenile',
         'reply' => 'Cevapla',
         'reply_reopen' => 'Cevapla ve Yeniden Aç',
         'reply_resolve' => 'Yanıtla ve Çözümle',
@@ -93,6 +93,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => '',
+        ],
+        'year' => [
+            'php' => '',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

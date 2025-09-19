@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'Modo de juego especificado no válido.',
+
+    'change_owner' => [
+        'too_many' => 'Demasiados mappers invitados.',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Error al actualizar los votos',
@@ -25,12 +31,14 @@ return [
         'message_placeholder_silenced' => "No puedes publicar una discusión mientras estés silenciado.",
         'message_type_select' => 'Seleccionar tipo de comentario',
         'reply_notice' => 'Presiona enter para responder.',
+        'reply_resolve_notice' => 'Presiona enter para responder. Presiona ctrl+enter para responder y resolver.',
         'reply_placeholder' => 'Escribe tu respuesta aquí',
         'require-login' => 'Inicia sesión para publicar o responder',
         'resolved' => 'Resuelto',
         'restore' => 'restaurar',
         'show_deleted' => 'Mostrar eliminados',
         'title' => 'Discusiones',
+        'unresolved_count' => ':count_delimited problemas sin resolver',
 
         'collapse' => [
             'all-collapse' => 'Contraer todo',
@@ -283,7 +291,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'no establecido',
     ],
     'status' => [
         'any' => 'Cualquiera',

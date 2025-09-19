@@ -16,7 +16,7 @@ return [
             '401-verification' => 'weryfikacja konta',
             '405' => 'nie znaleziono',
             '422' => 'nieprawidłowe żądanie',
-            '429' => 'zbyt wiele zapytań',
+            '429' => 'zbyt wiele żądań',
             '500' => 'coś się popsuło',
             '503' => 'przerwa techniczna',
         ],
@@ -24,7 +24,7 @@ return [
     'forum' => [
         '_' => 'forum',
         'topic_logs_controller' => [
-            'index' => 'rejestry wątków',
+            'index' => 'historia zdarzeń wątku',
         ],
     ],
     'main' => [
@@ -64,11 +64,11 @@ return [
             '_' => 'komentarze',
         ],
         'contest_entries_controller' => [
-            'judge_results' => 'wyniki oceniania konkursu',
+            'judge_results' => 'wyniki oceny prac konkursowych',
         ],
         'contests_controller' => [
             '_' => 'konkursy',
-            'judge' => 'ocenianie konkursu',
+            'judge' => 'ocena prac konkursowych',
         ],
         'groups_controller' => [
             'show' => 'grupy',
@@ -80,14 +80,14 @@ return [
             'support_the_game' => 'wspomóż grę',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => 'mecze',
+        ],
         'legal_controller' => [
             '_' => 'informacje',
         ],
         'livestreams_controller' => [
             '_' => 'na żywo',
-        ],
-        'matches_controller' => [
-            '_' => 'mecze',
         ],
         'news_controller' => [
             '_' => 'aktualności',
@@ -107,11 +107,18 @@ return [
         'seasons_controller' => [
             '_' => 'rankingi',
         ],
+        'teams_controller' => [
+            '_' => 'zespoły',
+            'create' => 'utwórz zespół',
+            'edit' => 'ustawienia zespołu',
+            'leaderboard' => 'ranking zespołu',
+            'show' => 'informacje o zespole',
+        ],
         'tournaments_controller' => [
             '_' => 'turnieje',
         ],
         'user_cover_presets_controller' => [
-            '_' => 'profil okładki użytkownika',
+            '_' => 'konfiguracja domyślnych teł profili',
         ],
         'users_controller' => [
             '_' => 'informacje o użytkowniku',
@@ -122,6 +129,11 @@ return [
             '_' => 'wiki',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            'events' => 'historia meczu',
+        ],
+    ],
     'passport' => [
         'authorization_controller' => [
             '_' => 'autoryzuj aplikację',
@@ -129,6 +141,11 @@ return [
     ],
     'store' => [
         '_' => 'sklep',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'członkowie zespołu',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

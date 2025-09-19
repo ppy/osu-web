@@ -7,6 +7,7 @@ return [
     'cancel' => 'Zrušiť',
 
     'authorise' => [
+        'app_owner' => '',
         'request' => '',
         'scopes_title' => '',
         'title' => '',
