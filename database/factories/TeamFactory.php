@@ -14,11 +14,21 @@ class TeamFactory extends Factory
 {
     protected $model = Team::class;
 
+    private static function generateShortName(): string
+    {
+        static $chars = [...range('!', '~'), ''];
+
+        return implode(array_map(
+            fn (): string => array_rand_val($chars),
+            array_fill(0, 4, ''),
+        ));
+    }
+
     public function definition(): array
     {
         return [
             'name' => fn () => strtr($this->faker->unique()->userName(), '.', ' '),
-            'short_name' => fn () => substr(strtr($this->faker->unique()->userName(), '.', ' '), 0, 4),
+            'short_name' => static::generateShortName(...),
             'leader_id' => User::factory(),
         ];
     }

@@ -45,7 +45,7 @@ class AvatarHelper
 
     private static function disk(): string
     {
-        return $GLOBALS['cfg']['osu']['avatar']['storage'];
+        return "{$GLOBALS['cfg']['filesystems']['default']}-avatar";
     }
 
     private static function purgeCache(int $id): void
