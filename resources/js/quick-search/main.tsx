@@ -207,12 +207,15 @@ interface Props {
   private renderResultLink(mode: ResultMode, active = false) {
     const count = this.count(mode);
 
-    let key = 'quick_search.result.';
-    key += count === 0
-      ? 'empty_for'
-      : otherModes.includes(mode)
-        ? 'title'
-        : 'more';
+    const keyPrefix = 'quick_search.result';
+    let text: string;
+
+    if (count === 0) {
+      text = trans(`${keyPrefix}.empty_for._`, { modes: trans(`quick_search.result.empty_for.${mode}`) });
+    } else {
+      const key = `${keyPrefix}.${otherModes.includes(mode) ? 'title' : 'more'}`;
+      text = trans(key, { mode: trans(`quick_search.mode.${mode}`) });
+    }
 
     return (
       <a
@@ -220,7 +223,7 @@ interface Props {
         href={route('search', { mode, query: this.props.worker.query })}
       >
         <div className='search-result-more__content'>
-          {trans(key, { mode: trans(`quick_search.mode.${mode}`) })}
+          {text}
           <span className='search-result-more__count'>
             {formatNumber(count)}
           </span>
