@@ -224,6 +224,31 @@ class ControllerTest extends TestCase
         $this->assertTrue($token->fresh()->isVerified());
     }
 
+    public function testVerifyMailExpired(): void
+    {
+        \Mail::fake();
+        $user = User::factory()->create();
+        $session = \Session::instance();
+
+        $this
+            ->be($user)
+            ->withPersistentSession($session)
+            ->get(route('account.edit'))
+            ->assertStatus(401);
+
+        $mailState = SessionVerification\MailState::fromSession($session);
+        $key = $mailState->key;
+        $mailState->delete();
+
+        $this
+            ->withPersistentSession($session)
+            ->post(route('account.verify'), ['verification_key' => $key])
+            ->assertStatus(422);
+
+        $this->assertFalse($session->isVerified());
+        \Mail::assertQueued(UserVerificationMail::class, 2);
+    }
+
     public function testVerifyMismatch(): void
     {
         $user = User::factory()->create();
