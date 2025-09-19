@@ -19,7 +19,7 @@ return [
         'title' => ':mode Search Results',
 
         'no_results' => [
-            '_' => 'No results for :modes',
+            '_' => 'No results for :mode',
 
             'artist_track' => 'Featured Artist Tracks',
             'beatmapset' => 'Beatmaps',

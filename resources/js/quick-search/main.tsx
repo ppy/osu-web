@@ -211,7 +211,7 @@ interface Props {
     let text: string;
 
     if (count === 0) {
-      text = trans(`${keyPrefix}.empty_for._`, { modes: trans(`quick_search.result.no_results.${mode}`) });
+      text = trans(`${keyPrefix}.empty_for._`, { mode: trans(`quick_search.result.no_results.${mode}`) });
     } else {
       const key = `${keyPrefix}.${otherModes.includes(mode) ? 'title' : 'more'}`;
       text = trans(key, { mode: trans(`quick_search.mode.${mode}`) });
