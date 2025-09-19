@@ -85,7 +85,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
         </div>
 
         <div className={`${bn}__group ${bn}__group--bottom`}>
-          <div className={`${bn}__score-detail ${bn}__score-detail--score`}>
+          <div className={`${bn}__score-detail`}>
             <div className={`${bn}__icon ${bn}__icon--extra`}>
               <div className={`score-rank score-rank--full score-rank--${scoreRank}`} />
             </div>
@@ -111,25 +111,27 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
             </div>
           </div>
 
-          <div className={`${bn}__score-detail ${bn}__score-detail--mods`}>
-            {score.mods.map((mod) => <Mod key={mod.acronym} mod={mod} />)}
-          </div>
+          <div className={`${bn}__mods-pp`}>
+            <div className={`${bn}__mods`}>
+              {score.mods.map((mod) => <Mod key={mod.acronym} mod={mod} />)}
+            </div>
 
-          <div className={`${bn}__pp`}>
-            {shouldShowPp(beatmap) ? (
-              <PpValue
-                score={score}
-                suffix={<span className={`${bn}__pp-unit`}>pp</span>}
-              />
-            ) : (
-              <span title={trans('users.show.extra.top_ranks.not_ranked')}>
-                {(beatmap.status === 'loved') ? (
-                  <span className='fas fa-heart' />
-                ) : (
-                  '-'
-                )}
-              </span>
-            )}
+            <div className={`${bn}__pp`}>
+              {shouldShowPp(beatmap) ? (
+                <PpValue
+                  score={score}
+                  suffix={<span className={`${bn}__pp-unit`}>pp</span>}
+                />
+              ) : (
+                <span title={trans('users.show.extra.top_ranks.not_ranked')}>
+                  {(beatmap.status === 'loved') ? (
+                    <span className='fas fa-heart' />
+                  ) : (
+                    '-'
+                  )}
+                </span>
+              )}
+            </div>
           </div>
 
           <div className={`${bn}__more`}>
