@@ -13,6 +13,7 @@ import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
 import { parseJson, storeJson } from 'utils/json';
 import { trans } from 'utils/lang';
+import { navigate } from 'utils/turbolinks';
 import { updateQueryString, wikiUrl } from 'utils/url';
 import Events from './events';
 import groupStore from './group-store';
@@ -140,6 +141,7 @@ export default class Main extends React.Component {
     }
   };
 
+  @action
   private readonly onNewSearch = () => {
     if (this.newParamsSameAsCurrent) {
       return;
@@ -147,12 +149,10 @@ export default class Main extends React.Component {
 
     // Update the query string of the URL when starting a new search. Remove
     // "sort" from the query if it's set to the default
-    Turbolinks.controller.replaceHistory(updateQueryString(null, {
+    navigate(updateQueryString(null, {
       ...this.newParams,
       sort: this.newParams.sort === 'id_desc' ? null : this.newParams.sort,
     }));
-
-    this.loadEvents(this.newParams);
   };
 
   private setMoreParamsFromJson(json: GroupHistoryJson) {
