@@ -53,6 +53,7 @@ return [
             'discussion' => 'beatmap discussion',
             'index' => 'beatmap listing',
             'show' => 'beatmap info',
+            'versions' => 'beatmap version history',
         ],
         'changelog_controller' => [
             '_' => 'changelog',
