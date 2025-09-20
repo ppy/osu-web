@@ -10,6 +10,8 @@ namespace Database\Factories;
 use App\Models\Beatmap;
 use App\Models\BeatmapOwner;
 use App\Models\Beatmapset;
+use App\Models\BeatmapTag;
+use App\Models\Tag;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -56,7 +58,7 @@ class BeatmapFactory extends Factory
             'checksum' => md5((string) rand()),
             'version' => fn () => $this->faker->domainWord(),
             'total_length' => rand(30, 200),
-            'hit_length' => fn (array $attr) => $attr['total_length'] - rand(0, 20),
+            'hit_length' => fn (array $attr) => max(0, $attr['total_length'] - rand(0, 20)),
             'countSpinner' => rand(0, 5),
             'countNormal' => rand(100, 2000),
             'bpm' => rand(100, 200),
@@ -123,5 +125,13 @@ class BeatmapFactory extends Factory
     public function wip(): static
     {
         return $this->state(['approved' => Beatmapset::STATES['wip']]);
+    }
+
+    public function withTag(int|Tag|null $tag = null, ?int $userId = null): static
+    {
+        return $this->has(BeatmapTag::factory()->state([
+            'tag_id' => $tag ?? Tag::factory(),
+            'user_id' => $userId ?? User::factory(),
+        ]));
     }
 }
