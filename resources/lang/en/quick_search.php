@@ -18,8 +18,8 @@ return [
         'more' => 'More :mode Search Results',
         'title' => ':mode Search Results',
 
-        'empty_for' => [
-            '_' => 'No results for :modes',
+        'no_results' => [
+            '_' => 'No results for :mode',
 
             'artist_track' => 'Featured Artist Tracks',
             'beatmapset' => 'Beatmaps',
