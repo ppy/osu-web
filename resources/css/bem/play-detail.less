@@ -139,7 +139,28 @@
   }
 
   &__mods {
-    flex: 1;
+    display: flex;
+    margin-top: 10px;
+    flex-wrap: wrap;
+
+    @media @desktop {
+      max-width: 400px; // avoid squashing too much of the left side
+      align-items: center;
+      padding: @_padding-vertical-desktop 10px;
+      margin-top: 0;
+      order: -1;
+      background-color: var(--bg-main);
+    }
+  }
+
+  &__mods-pp {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+
+    @media @desktop {
+      display: contents;
+    }
   }
 
   &__more {
@@ -157,9 +178,7 @@
   }
 
   &__pp {
-    position: absolute;
-    right: 20px;
-    bottom: 10px;
+    align-content: flex-end;
     flex: none;
     font-size: @font-size--title-small-3;
     font-weight: 700;
@@ -204,16 +223,6 @@
       align-items: center;
       padding: @_padding-vertical-desktop 10px;
       background-color: var(--bg-main);
-    }
-
-    &--mods {
-      margin-top: 10px;
-      padding-right: 0;
-
-      @media @desktop {
-        margin-top: 0;
-        order: -1;
-      }
     }
   }
 
