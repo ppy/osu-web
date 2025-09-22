@@ -1053,7 +1053,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         return ($token === null || $token->delegatesOwner() && $token->can('group_permissions'))
             && $forum->moderator_groups !== null && !empty(array_intersect($this->groupIds()['active'], $forum->moderator_groups));
-
     }
 
     public function isLimitedBN(?string $mode = null)
