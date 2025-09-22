@@ -242,16 +242,12 @@ class TopicsControllerTest extends TestCase
         }
     }
 
-    #[DataProvider('dataProviderForClientCredentialsWithPermissionGroupTests')]
-    public function testLockClientCredentialsWithoutGroupPermission(array $groups, array $forumGroups, bool $expectException): void
+    #[DataProvider('dataProviderForClientCredentialsWithoutPermissionGroupTests')]
+    public function testLockClientCredentialsWithoutGroupPermission(array $groups, array $forumGroups): void
     {
         $user = User::factory()->withGroups($groups)->create();
         $client = Client::factory()->create(['user_id' => $user]);
         $topic = Topic::factory()->for(Forum::factory()->moderatorGroups($forumGroups))->create();
-
-        if ($expectException) {
-            $this->expectException(InvalidScopeException::class);
-        }
 
         $this
             ->actAsScopedUser(null, ['delegate', 'forum.write_manage'], $client)
