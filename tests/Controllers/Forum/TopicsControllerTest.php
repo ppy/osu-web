@@ -232,7 +232,7 @@ class TopicsControllerTest extends TestCase
         }
 
         $response = $this
-            ->actAsScopedUser(null, ['delegate', 'forum.delegate', 'forum.write_manage'], $client)
+            ->actAsScopedUser(null, ['delegate', 'forum.write_manage', 'group_permissions'], $client)
             ->post(route('api.forum.topics.lock', $topic), ['lock' => true]);
 
         if ($success) {
@@ -303,7 +303,7 @@ class TopicsControllerTest extends TestCase
         }
 
         $response = $this
-            ->actAsScopedUser(null, ['delegate', 'forum.delegate', 'forum.write_manage'], $client)
+            ->actAsScopedUser(null, ['delegate', 'forum.write_manage', 'group_permissions'], $client)
             ->post(route('api.forum.topics.pin', $topic), ['pin' => Topic::TYPES['sticky']]);
 
         if ($success) {
@@ -380,7 +380,7 @@ class TopicsControllerTest extends TestCase
         $this->expectCountChange(fn () => $topic->fresh()->postCount(), $countChange);
 
         $response = $this
-            ->actAsScopedUser(null, ['delegate', 'forum.delegate', 'forum.write'], $client)
+            ->actAsScopedUser(null, ['delegate', 'forum.write', 'group_permissions'], $client)
             ->post(route('api.forum.topics.reply', $topic), [
                 'body' => 'This is test reply',
             ]);
@@ -562,7 +562,7 @@ class TopicsControllerTest extends TestCase
         $this->expectCountChange(fn () => TopicTrack::count(), $countChange);
 
         $response = $this
-            ->actAsScopedUser(null, ['delegate', 'forum.delegate', 'forum.write'], $client)
+            ->actAsScopedUser(null, ['delegate', 'forum.write', 'group_permissions'], $client)
             ->post(route('api.forum.topics.store', ['forum_id' => $forum]), [
                 'title' => 'Test post',
                 'body' => 'This is test post',
@@ -667,7 +667,7 @@ class TopicsControllerTest extends TestCase
         $this->expectCountChange(fn () => Topic::count(), 0);
 
         $response = $this
-            ->actAsScopedUser(null, ['delegate', 'forum.delegate', 'forum.write'], $client)
+            ->actAsScopedUser(null, ['delegate', 'forum.write', 'group_permissions'], $client)
             ->put(route('api.forum.topics.update', $topic), [
                 'forum_topic' => [
                     'topic_title' => 'A different title',

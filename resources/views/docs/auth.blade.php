@@ -498,10 +498,10 @@ $scopeDescriptions = [
     'chat.write' => "Allows sending chat messages on a user's behalf.",
     'chat.write_manage' => "Allows joining and leaving chat channels on a user's behalf.",
     'delegate' => "Allows acting as the owner of a client; only available for [Client Credentials Grant](#client-credentials-grant).",
-    'forum.delegate' => 'Allows `delegate` tokens to have forum group permissions.',
     'forum.write' => "Allows creating and editing forum posts on a user's behalf.",
     'forum.write_manage' => "Allows managing forum topics on a user's behalf.",
     'friends.read' => 'Allows reading of the user\'s friend list.',
+    'group_permissions' => 'Allows `delegate` tokens to inherit the Resource Owner's group permissions in some cases.',
     'identify' => 'Allows reading of the public profile of the user (`/me`).',
     'public' => 'Allows reading of publicly available data on behalf of the user.',
 ];
