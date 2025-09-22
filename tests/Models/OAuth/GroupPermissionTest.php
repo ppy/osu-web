@@ -71,9 +71,12 @@ class GroupPermissionTest extends TestCase
     #[DataProvider('dataProviderForTestForumModerator')]
     public function testForumModeratorWithOAuth(string $group, array $forumGroups, bool $inGroup)
     {
+
         $user = User::factory()->withGroup($group)->create();
+        $client = Client::factory()->create(['user_id' => $user]);
         $forum = Forum::factory()->moderatorGroups($forumGroups)->create();
-        $this->actAsUser($user);
+        $token = $this->createToken($user, ['*'], $client);
+        $this->actAsUserWithToken($token);
 
         $this->assertSame($inGroup, \Auth::user()->isForumModerator($forum));
     }
@@ -82,10 +85,8 @@ class GroupPermissionTest extends TestCase
     public function testForumModeratorWithoutOAuth(string $group, array $forumGroups, bool $inGroup)
     {
         $user = User::factory()->withGroup($group)->create();
-        $client = Client::factory()->create(['user_id' => $user]);
         $forum = Forum::factory()->moderatorGroups($forumGroups)->create();
-        $token = $this->createToken($user, ['*'], $client);
-        $this->actAsUserWithToken($token);
+        $this->actAsUser($user);
 
         $this->assertSame($inGroup, \Auth::user()->isForumModerator($forum));
     }
