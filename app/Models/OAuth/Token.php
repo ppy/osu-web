@@ -20,9 +20,10 @@ class Token extends PassportToken implements SessionVerificationInterface
     // PassportToken doesn't have factory
     use HasFactory, FasterAttributes;
 
-    const SCOPES_CLIENT_CREDENTIALS_ONLY = ['delegate', 'forum.delegate', 'forum.write_manage'];
+    const SCOPES_CLIENT_CREDENTIALS_ONLY = ['delegate', 'forum.write_manage', 'group_permissions'];
+    const SCOPES_EXCLUDE_FROM_ALL = ['delegate', 'group_permissions'];
     const SCOPES_OWN_CLIENT = ['chat.read', 'chat.write', 'chat.write_manage'];
-    const SCOPES_REQUIRE_DELEGATION = ['chat.write', 'chat.write_manage', 'delegate', 'forum.delegate', 'forum.write', 'forum.write_manage'];
+    const SCOPES_REQUIRE_DELEGATION = ['chat.write', 'chat.write_manage', 'delegate', 'forum.write', 'forum.write_manage', 'group_permissions'];
 
     protected $casts = [
         'expires_at' => 'datetime',
@@ -46,6 +47,19 @@ class Token extends PassportToken implements SessionVerificationInterface
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function can($scope)
+    {
+        static $excludeSet = new Set(static::SCOPES_EXCLUDE_FROM_ALL);
+
+        $scopes = $this->scopeSet();
+        if ($excludeSet->contains($scope)) {
+            return $scopes->contains($scope);
+        }
+
+        // We don't support Passport's inherited scopes for now.
+        return $scopes->contains('*') || $scopes->contains($scope);
     }
 
     /**

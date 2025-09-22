@@ -69,14 +69,25 @@ class GroupPermissionTest extends TestCase
     }
 
     #[DataProvider('dataProviderForTestForumModerator')]
-    public function testForumModeratorWithOAuth(string $group, array $forumGroups, bool $inGroup)
+    public function testForumModeratorWithOAuthAllScope(string $group, array $forumGroups)
     {
 
         $user = User::factory()->withGroup($group)->create();
         $client = Client::factory()->create(['user_id' => $user]);
         $forum = Forum::factory()->moderatorGroups($forumGroups)->create();
-        $token = $this->createToken($user, ['*'], $client);
-        $this->actAsUserWithToken($token);
+        $this->actAsUserWithToken($this->createToken($user, ['*'], $client));
+
+        $this->assertFalse(\Auth::user()->isForumModerator($forum));
+    }
+
+    #[DataProvider('dataProviderForTestForumModerator')]
+    public function testForumModeratorWithOAuthOtherScope(string $group, array $forumGroups, bool $inGroup)
+    {
+
+        $user = User::factory()->withGroups([$group, 'bot'])->create();
+        $client = Client::factory()->create(['user_id' => $user]);
+        $forum = Forum::factory()->moderatorGroups($forumGroups)->create();
+        $this->actAsUserWithToken($this->createToken(null, ['delegate', 'group_permissions'], $client));
 
         $this->assertSame($inGroup, \Auth::user()->isForumModerator($forum));
     }

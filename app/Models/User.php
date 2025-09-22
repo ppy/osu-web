@@ -1051,9 +1051,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         // using findUserGroup directly instead of isGroup and are available with OAuth.
         $token = $this->token();
 
-        return $token !== null && !($token->delegatesOwner() && $token->can('forum.delegate')) && !$token->isOwnToken()
-            ? false
-            : $forum->moderator_groups !== null && !empty(array_intersect($this->groupIds()['active'], $forum->moderator_groups));
+        return ($token === null || $token->delegatesOwner() && $token->can('group_permissions'))
+            && $forum->moderator_groups !== null && !empty(array_intersect($this->groupIds()['active'], $forum->moderator_groups));
+
     }
 
     public function isLimitedBN(?string $mode = null)
