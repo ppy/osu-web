@@ -5,6 +5,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 /**
  * @property int $achievement_id
  * @property string|null $description
@@ -31,6 +33,11 @@ class Achievement extends Model
     public $timestamps = false;
     public $incrementing = false;
 
+    public function userAchievements(): HasMany
+    {
+        return $this->hasMany(UserAchievement::class);
+    }
+
     public function scopeAchievable($query)
     {
         return $query
@@ -46,6 +53,7 @@ class Achievement extends Model
     public function getAttribute($key)
     {
         return match ($key) {
+            'achieved_count',
             'achievement_id',
             'description',
             'grouping',
@@ -60,7 +68,16 @@ class Achievement extends Model
             'enabled' => (bool) $this->getRawAttribute($key),
 
             'mode' => $this->getMode(),
+
+            'userAchievements' => $this->getRelationValue($key),
         };
+    }
+
+    public function refreshAchievedCount(): void
+    {
+        $countQuery = UserAchievement::where('achievement_id', $this->getKey())->selectRaw('COUNT(*)')->toRawSql();
+        $this->update(['achieved_count' => \DB::raw("({$countQuery})")]);
+        $this->refresh();
     }
 
     private function getMode(): ?string

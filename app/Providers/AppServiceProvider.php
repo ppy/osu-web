@@ -32,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
         'medals' => Singletons\Medals::class,
         'smilies' => Singletons\Smilies::class,
         'tags' => Singletons\Tags::class,
+        'user-count-by-ruleset' => Singletons\UserCountByRuleset::class,
         'user-cover-presets' => Singletons\UserCoverPresets::class,
     ];
 

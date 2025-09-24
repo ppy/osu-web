@@ -9,6 +9,7 @@ namespace App\Singletons;
 
 use App\Models\Achievement;
 use App\Traits\Memoizes;
+use App\Transformers\AchievementTransformer;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -79,6 +80,14 @@ class Medals
     public function bySlug(string $slug): ?Achievement
     {
         return $this->allBySlug()->get($slug);
+    }
+
+    public function json(): array
+    {
+        return $this->memoize(
+            __FUNCTION__,
+            fn () => json_collection($this->all(), new AchievementTransformer()),
+        );
     }
 
     private function allByNameIncludeDisabled(): Collection
