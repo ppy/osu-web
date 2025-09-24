@@ -275,6 +275,7 @@ return [
 
             'achievements' => [
                 'achieved-on' => 'Achieved on :date',
+                'achieved_by_percent_user' => 'Achieved by :percent of users',
                 'locked' => 'Locked',
                 'title' => 'Achievements',
             ],
