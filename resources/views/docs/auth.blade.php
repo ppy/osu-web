@@ -4,10 +4,14 @@
 --}}
 @php
     use App\Libraries\ApidocRouteHelper;
+    use App\Models\OAuth\Token;
+    use Ds\Set;
     use Knuckles\Camel\Output\OutputEndpointData;
 
     $baseUrl = $GLOBALS['cfg']['app']['url'];
     $wikiUrl = wiki_url('Bot_account', null, false);
+    $delegateScopes = new Set(Token::SCOPES_REQUIRE_DELEGATION);
+    $ownScopeBadges = array_map(fn ($scope) => ApidocRouteHelper::scopeBadge($scope), Token::SCOPES_OWN_CLIENT);
 
     $defaultHeaders = [
         'Accept' => 'application/json',
@@ -479,21 +483,8 @@ fetch("{{ $GLOBALS['cfg']['app']['url'] }}/api/[version]/[endpoint]", {
 </p>
 
 <p>
-    The following scopes currently support delegation:
+    Refer to the list of <a href="#scopes">Scopes</a> for which scopes support delegation.
 </p>
-
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{ ApidocRouteHelper::scopeBadge('chat.write') }}</td>
-        </tr>
-    </tbody>
-</table>
 
 <h2>Scopes</h2>
 
@@ -508,7 +499,9 @@ $scopeDescriptions = [
     'chat.write_manage' => "Allows joining and leaving chat channels on a user's behalf.",
     'delegate' => "Allows acting as the owner of a client; only available for [Client Credentials Grant](#client-credentials-grant).",
     'forum.write' => "Allows creating and editing forum posts on a user's behalf.",
+    'forum.write_manage' => "Allows managing forum topics on a user's behalf.",
     'friends.read' => 'Allows reading of the user\'s friend list.',
+    'group_permissions' => "Allows `delegate` tokens to inherit the Resource Owner's group permissions in some cases.",
     'identify' => 'Allows reading of the public profile of the user (`/me`).',
     'public' => 'Allows reading of publicly available data on behalf of the user.',
 ];
@@ -519,6 +512,7 @@ $scopeDescriptions = [
         <tr>
             <th>Name</th>
             <th>Description</th>
+            <th><a href="#client-credentials-delegation">Can Delegate?</a></th>
         </tr>
     </thead>
     <tbody>
@@ -528,6 +522,7 @@ $scopeDescriptions = [
                     <a class="badge badge-scope badge-scope-{{ $scope }}" name="scope-{{ $scope }}">{{ $scope }}</a>
                 </td>
                 <td>{!! markdown_plain($description) !!}</td>
+                <td>{{ $delegateScopes->contains($scope) ? 'Yes' : 'No' }}</td>
             </tr>
         @endforeach
         <tr>
@@ -536,7 +531,7 @@ $scopeDescriptions = [
 </table>
 
 <p>
-    <code>identify</code> is the default scope for the <a href="#authorization-code-grant">Authorization Code Grant</a> and always implicitly provided. The <a href="#client-credentials-grant">Client Credentials Grant</a> does not currently have any default scopes.
+    {{ ApidocRouteHelper::scopeBadge('identify') }} is the default scope for the <a href="#authorization-code-grant">Authorization Code Grant</a> and always implicitly provided. The <a href="#client-credentials-grant">Client Credentials Grant</a> does not currently have any default scopes.
 </p>
 
 <p>
@@ -544,7 +539,7 @@ $scopeDescriptions = [
 </p>
 
 <p>
-    Using the {{ ApidocRouteHelper::scopeBadge('chat.write') }} scope requires either
+    Using any of the {!! implode(' ', $ownScopeBadges) !!} scopes requires either
     <ul>
         <li>a <a href="{{ $wikiUrl }}">Chat Bot</a> account to send messages on behalf of other users.
         <li>Authorization code grant where the user is the same as the client's owner (send as yourself).

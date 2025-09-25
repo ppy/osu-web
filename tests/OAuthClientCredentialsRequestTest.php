@@ -55,7 +55,7 @@ class OAuthClientCredentialsRequestTest extends TestCase
             'cannot request empty scope' => ['', 400],
             'delegate scope allows chat.write' => ['chat.write delegate ', 200],
             'chat.write cannot be requested by itself' => ['chat.write', 400],
-            'mixing scope delegation is not allowed' => ['chat.write delegate forum.write', 400],
+            'mixing scope delegation is not allowed' => ['chat.write delegate friends.read', 400],
             'public scope is allowed' => ['public', 200],
         ];
     }

@@ -1024,7 +1024,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function isChatAnnouncer()
     {
-        return $this->findUserGroup(app('groups')->byIdentifier('announce'), true) !== null;
+        $token = $this->token();
+        return $token !== null && !$token->delegatesOwner() && !$token->isOwnToken()
+            ? false
+            : $this->findUserGroup(app('groups')->byIdentifier('announce'), true) !== null;
     }
 
     public function isGMT()
@@ -1040,6 +1043,16 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function isFullBN(?string $mode = null)
     {
         return $this->inGroupWithPlaymode('bng', $mode);
+    }
+
+    public function isForumModerator(Forum\Forum $forum): bool
+    {
+        // permission set directly though moderator_groups should behave like checks
+        // using findUserGroup directly instead of isGroup and are available with OAuth.
+        $token = $this->token();
+
+        return ($token === null || $token->delegatesOwner() && $token->can('group_permissions'))
+            && $forum->moderator_groups !== null && !empty(array_intersect($this->groupIds()['active'], $forum->moderator_groups));
     }
 
     public function isLimitedBN(?string $mode = null)
