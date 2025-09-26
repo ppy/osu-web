@@ -69,7 +69,10 @@ class LegacyMatchesController extends Controller
 
         [$matches, $hasMore] = LegacyMatch
             ::where('private', false)
-            ->when(request('active'), fn($q) => $q->whereNull('end_time'))
+            ->when(!is_null($active), fn ($q) =>
+                 $active
+                 ? $q->whereNull('end_time')
+                 : $q->whereNotNull('end_time'))
             ->cursorSort($cursorHelper, cursor_from_params($params))
             ->limit($limit)
             ->getWithHasMore();
