@@ -5,6 +5,7 @@ import HeaderLink from 'interfaces/header-link';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { parseJson } from 'utils/json';
 import { trans, transExists } from 'utils/lang';
 import { presence } from 'utils/string';
@@ -134,6 +135,11 @@ export default class HeaderV4 extends React.Component<Props> {
             <span className='fake-bold' data-content={link.title}>
               {link.title}
             </span>
+            {link.count != null && (
+              <span className="header-nav-item-count">
+                {formatNumber(link.count)}
+              </span>
+            )}
           </a>
         </li>
       );
@@ -177,6 +183,12 @@ export default class HeaderV4 extends React.Component<Props> {
             {...link.data}
           >
             {link.title}
+            {' '}
+            {link.count != null && (
+              <span className="header-nav-item-count">
+                {formatNumber(link.count)}
+              </span>
+            )}
           </a>
         </li>
       );

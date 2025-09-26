@@ -28,6 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'info',
             'discussions' => 'discussion',
+            'versions' => 'version history',
         ],
 
         'changelog' => [
