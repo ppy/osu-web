@@ -663,7 +663,7 @@ class UsersController extends Controller
         if (is_api_request()) {
             return $userArray;
         } else {
-            $achievements = json_collection(app('medals')->all(), 'Achievement');
+            $achievements = app('medals')->json();
             $currentUser = \Auth::user();
             if ($currentUser !== null && $currentUser->getKey() === $user->getKey()) {
                 $userCoverPresets = app('user-cover-presets')->json();
