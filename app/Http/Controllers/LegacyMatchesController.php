@@ -65,16 +65,25 @@ class LegacyMatchesController extends Controller
         $params = request()->all();
         $limit = \Number::clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
         $cursorHelper = LegacyMatch::makeDbCursorHelper($params['sort'] ?? null);
+        $active = get_bool($params['active'] ?? null);
 
         [$matches, $hasMore] = LegacyMatch
             ::where('private', false)
+            ->when(!is_null($active), fn ($q) =>
+                 $active
+                 ? $q->whereNull('end_time')
+                 : $q->whereNotNull('end_time'))
             ->cursorSort($cursorHelper, cursor_from_params($params))
             ->limit($limit)
             ->getWithHasMore();
 
         return [
             'matches' => json_collection($matches, 'LegacyMatch\LegacyMatch'),
-            'params' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
+            'params' => [
+                'limit' => $limit,
+                'sort' => $cursorHelper->getSortName(),
+                'active' => $active,
+            ],
             ...cursor_for_response($cursorHelper->next($matches, $hasMore)),
         ];
     }
