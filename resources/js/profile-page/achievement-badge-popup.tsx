@@ -6,8 +6,19 @@ import TimeWithTooltip from 'components/time-with-tooltip';
 import AchievementJson from 'interfaces/achievement-json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
 import AchievementBadgeIcon from './achievement-badge-icon';
+
+function formatAchievedPercent(percent: number) {
+  const precision = percent < 0.01
+    ? 4
+    : percent < 0.1
+      ? 3
+      : 2;
+
+  return formatNumber(percent, precision, { style: 'percent' });
+}
 
 interface Props {
   achievedAt?: string;
@@ -63,6 +74,13 @@ export default function AchievementBadgePopup({ achievedAt, achievement }: Props
           {trans('users.show.extra.achievements.locked')}
         </div>
       )}
+      {achievement.achieved_percent != null &&
+        <div className='tooltip-achievement__date'>
+          {trans('users.show.extra.achievements.achieved_by_percent_user', {
+            percent: formatAchievedPercent(achievement.achieved_percent),
+          })}
+        </div>
+      }
     </div>
   );
 }

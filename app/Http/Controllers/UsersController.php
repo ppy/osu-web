@@ -21,6 +21,7 @@ use App\Models\IpBan;
 use App\Models\Log;
 use App\Models\User;
 use App\Models\UserAccountHistory;
+use App\Transformers\AchievementTransformer;
 use App\Transformers\CurrentUserTransformer;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
@@ -663,7 +664,7 @@ class UsersController extends Controller
         if (is_api_request()) {
             return $userArray;
         } else {
-            $achievements = json_collection(app('medals')->all(), 'Achievement');
+            $achievements = json_collection(app('medals')->all(), new AchievementTransformer());
             $currentUser = \Auth::user();
             if ($currentUser !== null && $currentUser->getKey() === $user->getKey()) {
                 $userCoverPresets = app('user-cover-presets')->json();
