@@ -17,7 +17,6 @@ use App\Models\Solo;
 use App\Models\Tag;
 use App\Models\User;
 use Ds\Set;
-use Illuminate\Database\Eloquent\Builder;
 
 class BeatmapsetSearch extends RecordSearch
 {
@@ -390,19 +389,7 @@ class BeatmapsetSearch extends RecordSearch
                 $query->must(['match' => ['beatmaps.approved' => Beatmapset::STATES['graveyard']]]);
                 break;
             case 'mine':
-                if ($this->params->user !== null) {
-                    $maps = Beatmap
-                        ::whereHas(
-                            'beatmapOwners',
-                            fn (Builder $q): Builder => $q->where('user_id', $this->params->user->getKey())
-                        )
-                        ->select('beatmapset_id')
-                        ->distinct()
-                        ->pluck('beatmapset_id')
-                        ->all();
-                }
-                $query->must(['ids' => ['values' => $maps ?? []]]);
-                $queryForFilter = $mainQuery;
+                $query->must(['term' => ['beatmaps.user_id' => $this->params->user->getKey()]]);
                 break;
             default: // null, etc
                 $query
