@@ -36,6 +36,11 @@ class TokenTest extends TestCase
         return $data;
     }
 
+    public static function dataProviderForTestClientCredentialsOnly()
+    {
+        return array_map(fn ($scope) => [$scope], Token::SCOPES_CLIENT_CREDENTIALS_ONLY);
+    }
+
     public static function dataProviderForTestDelegationNotAllowedScopes()
     {
         return array_reject_null(static::allPassportScopeIds()->map(fn ($scope) => match (true) {
@@ -119,13 +124,15 @@ class TokenTest extends TestCase
         $this->createToken($user, ['chat.read', 'delegate'], $client);
     }
 
-    public function testClientCredentialsRequiredForDelegation()
+
+    #[DataProvider('dataProviderForTestClientCredentialsOnly')]
+    public function testClientCredentialsOnly(string $scope)
     {
         $user = User::factory()->create();
         $client = Client::factory()->create(['user_id' => $user]);
 
         $this->expectInvalidScopeException('client_credentials_only');
-        $this->createToken($user, ['delegate'], $client);
+        $this->createToken($user, [$scope], $client);
     }
 
     public function testClientCredentialResourceOwnerBot()
