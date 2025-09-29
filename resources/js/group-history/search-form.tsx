@@ -33,28 +33,26 @@ export default class SearchForm extends React.Component<Props> {
     return (
       <form className={bn} data-loading-overlay='0' onSubmit={this.onSubmit}>
         <div className={`${bn}__content ${bn}__content--inputs`}>
-          <InputContainer labelKey='group_history.form.group' modifiers='group-history-wide'>
-            <div className='form-select form-select--group-history'>
-              <select
-                className='form-select__input'
-                name='group'
-                onChange={this.onChange}
-                value={this.props.newParams.group ?? ''}
-              >
-                <option value=''>
-                  {trans('group_history.form.group_all')}
+          <InputContainer labelKey='group_history.form.group' modifiers={['group-history-wide', 'select']}>
+            <select
+              className='input-text'
+              name='group'
+              onChange={this.onChange}
+              value={this.props.newParams.group ?? ''}
+            >
+              <option value=''>
+                {trans('group_history.form.group_all')}
+              </option>
+              {groupStore.all.map((group) => (
+                <option key={group.id} value={group.identifier}>
+                  {group.name}
                 </option>
-                {groupStore.all.map((group) => (
-                  <option key={group.id} value={group.identifier}>
-                    {group.name}
-                  </option>
-                ))}
-              </select>
-            </div>
+              ))}
+            </select>
           </InputContainer>
           <InputContainer labelKey='group_history.form.user' modifiers='group-history-wide'>
             <input
-              className={`${bn}__input`}
+              className='input-text'
               name='user'
               onChange={this.onChange}
               placeholder={trans('group_history.form.user_prompt')}
@@ -63,7 +61,7 @@ export default class SearchForm extends React.Component<Props> {
           </InputContainer>
           <InputContainer labelKey='group_history.form.min_date'>
             <input
-              className={`${bn}__input`}
+              className='input-text'
               name='min_date'
               onChange={this.onChange}
               type='date'
@@ -72,7 +70,7 @@ export default class SearchForm extends React.Component<Props> {
           </InputContainer>
           <InputContainer labelKey='group_history.form.max_date'>
             <input
-              className={`${bn}__input`}
+              className='input-text'
               name='max_date'
               onChange={this.onChange}
               type='date'
