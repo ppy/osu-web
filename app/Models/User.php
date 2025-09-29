@@ -1045,10 +1045,13 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->inGroupWithPlaymode('bng', $mode);
     }
 
+    /**
+     * Check if the User is explicitly assigned Forum permissions via moderator_groups.
+     *
+     * Permission set directly though moderator_groups are available through OAuth with the group_permissions scope.
+     */
     public function isForumModerator(Forum\Forum $forum): bool
     {
-        // permission set directly though moderator_groups should behave like checks
-        // using findUserGroup directly instead of isGroup and are available with OAuth.
         $token = $this->token();
 
         return ($token === null || $token->delegatesOwner() && $token->can('group_permissions'))
