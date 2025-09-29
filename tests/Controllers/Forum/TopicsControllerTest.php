@@ -35,7 +35,7 @@ class TopicsControllerTest extends TestCase
             [['gmt'], ['loved'], true, false],
             [['gmt'], ['gmt'], true, false],
 
-            // with bot group, bot needs to be last for the factory.
+            // factory uses last assigned group as group_id, so bot has to be last.
             [['loved', 'bot'], [], false, false],
             [['loved', 'bot'], ['loved'], false, true],
             [['loved', 'bot'], ['gmt'], false, false],
