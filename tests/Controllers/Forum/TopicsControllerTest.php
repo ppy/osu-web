@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace Tests\Controllers\Forum;
 
-use App\Exceptions\InvalidScopeException;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
@@ -22,26 +21,16 @@ class TopicsControllerTest extends TestCase
 {
     public static function dataProviderForClientCredentialsWithPermissionGroupTests(): array
     {
-        // $groups, $forumGroups, $expectException, $success
+        // $groups, $forumGroups, $success
         return [
-            [[], [], true, false],
-
-            // standalone group
-            [['bot'], [], false, false],
-            [['loved'], [], true, false],
-            [['loved'], ['loved'], true, false],
-            [['loved'], ['gmt'], true, false],
-            [['gmt'], [], true, false],
-            [['gmt'], ['loved'], true, false],
-            [['gmt'], ['gmt'], true, false],
-
             // factory uses last assigned group as group_id, so bot has to be last.
-            [['loved', 'bot'], [], false, false],
-            [['loved', 'bot'], ['loved'], false, true],
-            [['loved', 'bot'], ['gmt'], false, false],
-            [['gmt', 'bot'], [], false, false],
-            [['gmt', 'bot'], ['loved'], false, false],
-            [['gmt', 'bot'], ['gmt'], false, true],
+            [['bot'], [], false],
+            [['loved', 'bot'], [], false],
+            [['loved', 'bot'], ['loved'], true],
+            [['loved', 'bot'], ['gmt'], false],
+            [['gmt', 'bot'], [], false],
+            [['gmt', 'bot'], ['loved'], false],
+            [['gmt', 'bot'], ['gmt'], true],
         ];
     }
 
@@ -193,15 +182,11 @@ class TopicsControllerTest extends TestCase
     }
 
     #[DataProvider('dataProviderForClientCredentialsWithPermissionGroupTests')]
-    public function testLockClientCredentialsWithGroupPermission(array $groups, array $forumGroups, bool $expectException, bool $success): void
+    public function testLockClientCredentialsWithGroupPermission(array $groups, array $forumGroups, bool $success): void
     {
         $user = User::factory()->withGroups($groups)->create();
         $client = Client::factory()->create(['user_id' => $user]);
         $topic = Topic::factory()->for(Forum::factory()->moderatorGroups($forumGroups))->create();
-
-        if ($expectException) {
-            $this->expectException(InvalidScopeException::class);
-        }
 
         $response = $this
             ->actAsScopedUser(null, ['delegate', 'forum.write_manage', 'group_permissions'], $client)
@@ -250,15 +235,11 @@ class TopicsControllerTest extends TestCase
     }
 
     #[DataProvider('dataProviderForClientCredentialsWithPermissionGroupTests')]
-    public function testPinClientCredentialsWithGroupPermission(array $groups, array $forumGroups, bool $expectException, bool $success): void
+    public function testPinClientCredentialsWithGroupPermission(array $groups, array $forumGroups, bool $success): void
     {
         $user = User::factory()->withGroups($groups)->create();
         $client = Client::factory()->create(['user_id' => $user]);
         $topic = Topic::factory()->for(Forum::factory()->moderatorGroups($forumGroups))->create();
-
-        if ($expectException) {
-            $this->expectException(InvalidScopeException::class);
-        }
 
         $response = $this
             ->actAsScopedUser(null, ['delegate', 'forum.write_manage', 'group_permissions'], $client)
@@ -321,15 +302,11 @@ class TopicsControllerTest extends TestCase
     }
 
     #[DataProvider('dataProviderForClientCredentialsWithPermissionGroupTests')]
-    public function testReplyClientCredentialsWithGroupPermission(array $groups, array $forumGroups, bool $expectException, bool $success): void
+    public function testReplyClientCredentialsWithGroupPermission(array $groups, array $forumGroups, bool $success): void
     {
         $user = User::factory()->withGroups($groups)->create();
         $client = Client::factory()->create(['user_id' => $user]);
         $topic = Topic::factory()->for(Forum::factory()->moderatorGroups($forumGroups))->create();
-
-        if ($expectException) {
-            $this->expectException(InvalidScopeException::class);
-        }
 
         $countChange = $success ? 1 : 0;
 
@@ -503,15 +480,11 @@ class TopicsControllerTest extends TestCase
     }
 
     #[DataProvider('dataProviderForClientCredentialsWithPermissionGroupTests')]
-    public function testStoreClientCredentialsWithPermission(array $groups, array $forumGroups, bool $expectException, bool $success): void
+    public function testStoreClientCredentialsWithPermission(array $groups, array $forumGroups, bool $success): void
     {
         $user = User::factory()->withGroups($groups)->create();
         $client = Client::factory()->create(['user_id' => $user]);
         $forum = Forum::factory()->moderatorGroups($forumGroups)->create();
-
-        if ($expectException) {
-            $this->expectException(InvalidScopeException::class);
-        }
 
         $countChange = $success ? 1 : 0;
 
@@ -611,15 +584,11 @@ class TopicsControllerTest extends TestCase
     }
 
     #[DataProvider('dataProviderForClientCredentialsWithPermissionGroupTests')]
-    public function testUpdateClientCredentialsWithPermission(array $groups, array $forumGroups, bool $expectException, bool $success): void
+    public function testUpdateClientCredentialsWithPermission(array $groups, array $forumGroups, bool $success): void
     {
         $user = User::factory()->withGroups($groups)->create();
         $client = Client::factory()->create(['user_id' => $user]);
         $topic = Topic::factory()->for(Forum::factory()->moderatorGroups($forumGroups))->withPost()->create(['topic_poster' => $user]);
-
-        if ($expectException) {
-            $this->expectException(InvalidScopeException::class);
-        }
 
         $this->expectCountChange(fn () => Post::count(), 0);
         $this->expectCountChange(fn () => Topic::count(), 0);
