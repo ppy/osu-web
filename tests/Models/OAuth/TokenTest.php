@@ -188,7 +188,6 @@ class TokenTest extends TestCase
     {
         $user = User::factory()->withGroup($group)->create();
         $client = Client::factory()->create(['user_id' => $user]);
-        $tokenUser = User::factory()->create();
 
         $this->expectInvalidScopeException($shouldThrow ? 'delegate_bot_only' : null);
 
