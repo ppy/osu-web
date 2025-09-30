@@ -1341,11 +1341,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->isModerator()) {
-            return 'ok';
-        }
-
-        if ($forum->moderator_groups !== null && !empty(array_intersect($user->groupIds()['active'], $forum->moderator_groups))) {
+        if ($user->isModerator() || $user->isForumModerator($forum)) {
             return 'ok';
         }
 
