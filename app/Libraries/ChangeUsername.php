@@ -16,7 +16,6 @@ class ChangeUsername
 
     protected $type;
 
-    /** @var User */
     protected $user;
 
     protected $username;
@@ -41,6 +40,7 @@ class ChangeUsername
     public function validate(): ValidationErrors
     {
         $this->validationErrors()->reset();
+
         if ($this->user->user_id <= 1) {
             return $this->validationErrors()->addTranslated('user_id', 'This user cannot be renamed');
         }
@@ -53,7 +53,8 @@ class ChangeUsername
             return $this->validationErrors()->addTranslated('username', static::requireSupportedMessage());
         }
 
-        if (User::cleanUsername($this->username) === $this->user->username_clean) {
+        // Block if new username is exactly the same as current (case-sensitive match)
+        if (strcasecmp($this->username, $this->user->username) === 0 && $this->username === $this->user->username) {
             return $this->validationErrors()->add('username', '.change_username.username_is_same');
         }
 
@@ -72,9 +73,17 @@ class ChangeUsername
     {
         return 'user';
     }
-
-    private function hasExtraValidations()
+    private function hasExtraValidations(): bool
     {
+        if ($this->isCapitalizationOnlyChange()) {
+            return false;
+        }
+
         return !in_array($this->type, static::LESS_VALIDATION_TYPES, true);
+    }
+    private function isCapitalizationOnlyChange(): bool
+    {
+        return strcasecmp($this->username, $this->user->username) === 0
+            && $this->username !== $this->user->username;
     }
 }
