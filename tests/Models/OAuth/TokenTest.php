@@ -6,7 +6,6 @@
 namespace Tests\Models\OAuth;
 
 use App\Events\UserSessionEvent;
-use App\Exceptions\InvalidScopeException;
 use App\Models\OAuth\Client;
 use App\Models\OAuth\Token;
 use App\Models\User;
@@ -35,6 +34,11 @@ class TokenTest extends TestCase
         }
 
         return $data;
+    }
+
+    public static function dataProviderForTestClientCredentialsOnly()
+    {
+        return array_map(fn ($scope) => [$scope], Token::SCOPES_CLIENT_CREDENTIALS_ONLY);
     }
 
     public static function dataProviderForTestDelegationNotAllowedScopes()
@@ -116,17 +120,19 @@ class TokenTest extends TestCase
         $user = User::factory()->withGroup('bot')->create();
         $client = Client::factory()->create(['user_id' => $user]);
 
-        $this->expectInvalidScopeException('delegate_client_credentials_only');
+        $this->expectInvalidScopeException('client_credentials_only');
         $this->createToken($user, ['chat.read', 'delegate'], $client);
     }
 
-    public function testClientCredentialsRequiredForDelegation()
+
+    #[DataProvider('dataProviderForTestClientCredentialsOnly')]
+    public function testClientCredentialsOnly(string $scope)
     {
         $user = User::factory()->create();
         $client = Client::factory()->create(['user_id' => $user]);
 
-        $this->expectInvalidScopeException('delegate_client_credentials_only');
-        $this->createToken($user, ['delegate'], $client);
+        $this->expectInvalidScopeException('client_credentials_only');
+        $this->createToken($user, [$scope], $client);
     }
 
     public function testClientCredentialResourceOwnerBot()
@@ -182,7 +188,6 @@ class TokenTest extends TestCase
     {
         $user = User::factory()->withGroup($group)->create();
         $client = Client::factory()->create(['user_id' => $user]);
-        $tokenUser = User::factory()->create();
 
         $this->expectInvalidScopeException($shouldThrow ? 'delegate_bot_only' : null);
 
@@ -234,15 +239,5 @@ class TokenTest extends TestCase
         $this->assertTrue($refreshToken->fresh()->revoked);
         $this->assertTrue($token->fresh()->revoked);
         Event::assertDispatched(UserSessionEvent::class, fn (UserSessionEvent $event) => $event->action === 'logout');
-    }
-
-    private function expectInvalidScopeException(?string $key)
-    {
-        if ($key === null) {
-            $this->expectNotToPerformAssertions();
-        } else {
-            $this->expectException(InvalidScopeException::class);
-            $this->expectExceptionMessage(osu_trans("model_validation/token.invalid_scope.{$key}"));
-        }
     }
 }

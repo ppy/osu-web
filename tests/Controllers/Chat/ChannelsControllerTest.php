@@ -12,9 +12,11 @@ use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Multiplayer\ScoreLink;
 use App\Models\Multiplayer\UserScoreAggregate;
+use App\Models\OAuth\Client;
 use App\Models\User;
 use Illuminate\Testing\AssertableJsonString;
 use Illuminate\Testing\Fluent\AssertableJson;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ChannelsControllerTest extends TestCase
@@ -25,6 +27,16 @@ class ChannelsControllerTest extends TestCase
     private Channel $privateChannel;
     private Channel $publicChannel;
     private Message $publicMessage;
+
+    public static function dataProviderForTestChannelStoreAnnouncement()
+    {
+        return [
+            [['*'], false, false, false],
+            [['*'], true, true, false],
+            [['chat.write_manage'], false, false, true],
+            [['chat.write_manage'], true, true, false],
+        ];
+    }
 
     //region GET /chat/channels - Get Channel List
     public function testChannelIndexWhenGuest()
@@ -46,13 +58,19 @@ class ChannelsControllerTest extends TestCase
     //endregion
 
     //region POST /chat/channels - Create and join channel
-    public function testChannelStoreAnnouncement()
+    #[DataProvider('dataProviderForTestChannelStoreAnnouncement')]
+    public function testChannelStoreAnnouncement(array $scopes, bool $ownClient, bool $success, bool $expectException)
     {
         $sender = User::factory()->withGroup('announce')->create();
+        $client = Client::factory()->create($ownClient ? ['user_id' => $sender] : []);
         $users = User::factory()->count(2)->create();
 
-        $this->actAsScopedUser($sender, ['*']);
-        $this
+        if ($expectException) {
+            $this->expectInvalidScopeException('bot_only');
+        }
+
+        $this->actAsScopedUser($sender, $scopes, $client);
+        $response = $this
             ->json('POST', route('api.chat.channels.store'), [
                 'channel' => [
                     'description' => 'really',
@@ -61,11 +79,17 @@ class ChannelsControllerTest extends TestCase
                 'message' => 'announcements!!!',
                 'target_ids' => $users->pluck('user_id')->toArray(),
                 'type' => Channel::TYPES['announce'],
-            ])
-            ->assertSuccessful()
-            ->assertJson(fn (AssertableJson $json) => $json
-                ->where('type', Channel::TYPES['announce'])
-                ->etc());
+            ]);
+
+        if ($success) {
+            $response
+                ->assertSuccessful()
+                ->assertJson(fn (AssertableJson $json) => $json
+                    ->where('type', Channel::TYPES['announce'])
+                    ->etc());
+        } else {
+            $response->assertStatus(403);
+        }
     }
 
     public function testChannelStoreInvalid()
