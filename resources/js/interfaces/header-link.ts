@@ -3,6 +3,7 @@
 
 export default interface HeaderLink {
   active?: boolean;
+  count?: number;
   data?: any;
   title: string;
   url: string;

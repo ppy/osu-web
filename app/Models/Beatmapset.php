@@ -1316,6 +1316,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
                 'nominations',
                 'related_users',
                 'related_users.groups',
+                'version_count',
             ]
         );
     }
