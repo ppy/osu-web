@@ -36,7 +36,7 @@ class LegacyMatchesController extends Controller
      * matches       | [Match](#match)[]             | |
      * params.limit  | integer                       | |
      * params.sort   | string                        | |
-     * params.active | boolean                       | | 
+     * params.active | boolean                       | |
      *
      * @usesCursor
      * @queryParam limit integer Maximum number of matches (50 default, 1 minimum, 50 maximum). No-example
