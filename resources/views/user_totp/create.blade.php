@@ -4,6 +4,16 @@
 --}}
 @extends('master')
 
+@section('cancel-create')
+    <a
+        class="btn-osu-big btn-osu-big--password-reset btn-osu-big--danger"
+        data-turbo-method="POST"
+        href="{{ route('authenticator-app.cancel-create') }}"
+    >
+        {{ osu_trans('common.buttons.cancel') }}
+    </a>
+@endsection
+
 @section('content')
     @include('layout._page_header_v4')
     <div class="osu-page osu-page--generic-compact">
@@ -56,6 +66,10 @@
                         {{ osu_trans('user_totp.create.finish') }}
                     </button>
                 </div>
+
+                <div class="password-reset__input-group">
+                    @yield('cancel-create')
+                </div>
             </form>
         @else
             <form
@@ -76,6 +90,10 @@
                     <button class="btn-osu-big btn-osu-big--password-reset">
                         {{ osu_trans('user_totp.create.start') }}
                     </button>
+                </div>
+
+                <div class="password-reset__input-group">
+                    @yield('cancel-create')
                 </div>
             </form>
         @endif
