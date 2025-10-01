@@ -85,10 +85,18 @@ class BBCodeFromDB
 
     public function parseCentre($text)
     {
-        $text = str_replace("[centre:{$this->uid}]", '<center>', $text);
-        $text = str_replace("[/centre:{$this->uid}]", '</center>', $text);
+        $text = str_replace("[centre:{$this->uid}]", '<div style='text-align:center;'>', $text);
+        $text = str_replace("[/centre:{$this->uid}]", '</div>', $text);
 
         return $text;
+    }
+    
+    public function parseRight($text)
+    {
+        $text = str_replace("[right:{$this->uid}]", "<div style='text-align:right;'>", $text);
+        $text = str_replace("[/right:{$this->uid}]", '</div>', $text);
+
+    return $text;
     }
 
     public function parseCode($text)
@@ -372,6 +380,7 @@ class BBCodeFromDB
         $text = $this->parseAudio($text);
         $text = $this->parseBold($text);
         $text = $this->parseCentre($text);
+        $text = $this->parseRight($text);
         $text = $this->parseInlineCode($text);
         $text = $this->parseColour($text);
         $text = $this->parseEmail($text);
@@ -433,7 +442,7 @@ class BBCodeFromDB
         // Don't care if too many characters are stripped;
         // just don't want tags to go into index because they mess up the highlighting.
 
-        static $pattern = '#\[/?(\*|\*:m|audio|b|box|color|spoilerbox|centre|code|email|heading|i|img|list|list:o|list:u|notice|profile|quote|s|strike|u|spoiler|size|url|youtube)(=.*?(?=:))?(:[a-zA-Z0-9]{1,5})?\]#';
+        static $pattern = '#\[/?(\*|\*:m|audio|b|box|color|spoilerbox|centre|right|code|email|heading|i|img|list|list:o|list:u|notice|profile|quote|s|strike|u|spoiler|size|url|youtube)(=.*?(?=:))?(:[a-zA-Z0-9]{1,5})?\]#';
 
         return preg_replace($pattern, '', $text);
     }
