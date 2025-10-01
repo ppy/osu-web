@@ -65,15 +65,15 @@ class BBCodeForDB
      */
     public function parseBlockSimple($text)
     {
-        foreach (['centre'] as $tag) {
-            $text = preg_replace(
-                "#\[{$tag}](.*?)\[/{$tag}\]#s",
-                "[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
-                $text
-            );
-        }
+    foreach (['centre', 'right'] as $tag) {
+        $text = preg_replace(
+            "#\[{$tag}](.*?)\[/{$tag}\]#s",
+            "[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
+            $text
+        );
+    }
 
-        return $text;
+    return $text;
     }
 
     public function parseBox($text)
