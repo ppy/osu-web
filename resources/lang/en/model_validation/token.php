@@ -10,7 +10,7 @@ return [
         'client_missing_owner' => 'The client is missing owner.',
         'client_unauthorized' => 'The client is not authorized.',
         'delegate_bot_only' => 'Delegation with Client Credentials is only available to chat bots.',
-        'delegate_client_credentials_only' => 'delegate scope is only valid for client_credentials tokens.',
+        'client_credentials_only' => 'This scope is only valid for client_credentials tokens.',
         'delegate_invalid_combination' => 'Delegation is not supported for this combination of scopes.',
         'delegate_required' => 'delegate scope is required.',
         'empty' => 'Tokens without scopes are not valid.',

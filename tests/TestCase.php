@@ -6,6 +6,7 @@
 namespace Tests;
 
 use App\Events\NewPrivateNotificationEvent;
+use App\Exceptions\InvalidScopeException;
 use App\Http\Middleware\AuthApi;
 use App\Jobs\Notifications\BroadcastNotificationBase;
 use App\Libraries\OAuth\EncodeToken;
@@ -138,6 +139,16 @@ class TestCase extends BaseTestCase
             'build_id' => 0,
             'ruleset_id' => $playlistItem->ruleset_id,
         ]);
+    }
+
+    protected function expectInvalidScopeException(?string $key)
+    {
+        if ($key === null) {
+            $this->expectNotToPerformAssertions();
+        } else {
+            $this->expectException(InvalidScopeException::class);
+            $this->expectExceptionMessage(osu_trans("model_validation/token.invalid_scope.{$key}"));
+        }
     }
 
     protected function setUp(): void

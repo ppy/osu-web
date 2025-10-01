@@ -20,7 +20,10 @@ class Token extends PassportToken implements SessionVerificationInterface
     // PassportToken doesn't have factory
     use HasFactory, FasterAttributes;
 
-    const SCOPES_REQUIRE_DELEGATION = ['chat.write', 'chat.write_manage', 'delegate'];
+    const SCOPES_CLIENT_CREDENTIALS_ONLY = ['delegate', 'forum.write_manage', 'group_permissions'];
+    const SCOPES_EXCLUDE_FROM_ALL = ['delegate', 'group_permissions'];
+    const SCOPES_OWN_CLIENT = ['chat.read', 'chat.write', 'chat.write_manage'];
+    const SCOPES_REQUIRE_DELEGATION = ['chat.write', 'chat.write_manage', 'delegate', 'forum.write', 'forum.write_manage', 'group_permissions'];
 
     protected $casts = [
         'expires_at' => 'datetime',
@@ -44,6 +47,19 @@ class Token extends PassportToken implements SessionVerificationInterface
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function can($scope)
+    {
+        static $excludeSet = new Set(static::SCOPES_EXCLUDE_FROM_ALL);
+
+        $scopes = $this->scopeSet();
+        if ($excludeSet->contains($scope)) {
+            return $scopes->contains($scope);
+        }
+
+        // We don't support Passport's inherited scopes for now.
+        return $scopes->contains('*') || $scopes->contains($scope);
     }
 
     /**
@@ -180,7 +196,11 @@ class Token extends PassportToken implements SessionVerificationInterface
 
     public function validate(): void
     {
-        static $scopesRequireDelegation = new Set(static::SCOPES_REQUIRE_DELEGATION);
+        static $clientCredentialsRequireDelegateScopes = new Set(static::SCOPES_REQUIRE_DELEGATION);
+        // only clients owned by bots are allowed to act on behalf of another user.
+        // the user's own client can send messages as themselves for authorization code flows.
+        static $ownClientScopes = new Set(static::SCOPES_OWN_CLIENT);
+        static $clientCredentialsOnlyScopes = new Set(static::SCOPES_CLIENT_CREDENTIALS_ONLY);
 
         $scopes = $this->scopeSet();
         if ($scopes->isEmpty()) {
@@ -211,29 +231,21 @@ class Token extends PassportToken implements SessionVerificationInterface
                 throw new InvalidScopeException('delegate_bot_only');
             }
 
-            if (!$scopes->intersect($scopesRequireDelegation)->isEmpty()) {
+            if (!$scopes->intersect($clientCredentialsRequireDelegateScopes)->isEmpty()) {
                 if (!$this->delegatesOwner()) {
                     throw new InvalidScopeException('delegate_required');
                 }
 
                 // delegation is only allowed if scopes given allow delegation.
-                if (!$scopes->diff($scopesRequireDelegation)->isEmpty()) {
+                if (!$scopes->diff($clientCredentialsRequireDelegateScopes)->isEmpty()) {
                     throw new InvalidScopeException('delegate_invalid_combination');
                 }
             }
         } else {
-            // delegation is only available for client_credentials.
-            if ($this->delegatesOwner()) {
-                throw new InvalidScopeException('delegate_client_credentials_only');
+            if (!$scopes->intersect($clientCredentialsOnlyScopes)->isEmpty()) {
+                throw new InvalidScopeException('client_credentials_only');
             }
 
-            // only clients owned by bots are allowed to act on behalf of another user.
-            // the user's own client can send messages as themselves for authorization code flows.
-            static $ownClientScopes = new Set([
-                'chat.read',
-                'chat.write',
-                'chat.write_manage',
-            ]);
             if (!$scopes->intersect($ownClientScopes)->isEmpty() && !($this->isOwnToken() || $client->user->isBot())) {
                 throw new InvalidScopeException('bot_only');
             }
