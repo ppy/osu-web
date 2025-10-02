@@ -20,40 +20,41 @@
     font-style: normal;
     font-weight: bold;
   }
-// centre, right blocks
-  &--centre {
+
+  &[data-align="center"] {
     text-align: center;
+
+    img,
+    iframe,
+    audio,
+    video,
+    .imagemap,
+    .js-spoilerbox,
+    .bbcode-spoilerbox {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 100%;
+      width: fit-content;
+    }
   }
 
-  &--right {
+  &[data-align="right"] {
     text-align: right;
-  }
 
-  // same as below
-  &--centre img,
-  &--centre iframe,
-  &--centre .imagemap,
-  &--centre .js-spoilerbox,
-  &--centre .bbcode-spoilerbox {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  // this seems unnecessary , but is a good precaution
-  &--right img,
-  &--right iframe,
-  &--right .imagemap,
-  &--right .js-spoilerbox,
-  &--right .bbcode-spoilerbox {
-    display: block;
-    margin-left: auto;
-    margin-right: 0;
-  }
-  &--centre .imagemap,
-  &--right .imagemap {
-    width: fit-content;
-    max-width: 100%;
+    img,
+    iframe,
+    audio,
+    video,
+    .imagemap,
+    .js-spoilerbox,
+    .bbcode-spoilerbox {
+      display: block;
+      margin-left: auto;
+      margin-right: 0;
+      max-width: 100%;
+      width: fit-content;
+    }
   }
 
   // heading tag
@@ -108,7 +109,10 @@
     }
   }
 
-  img {
+  img,
+  iframe,
+  audio,
+  video {
     max-width: 100%;
   }
 
