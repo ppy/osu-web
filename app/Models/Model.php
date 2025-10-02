@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model as BaseModel;
 
 abstract class Model extends BaseModel
 {
-    use HasFactory, Traits\FasterAttributes, Validatable;
+    use HasFactory, Traits\FasterAttributes, Traits\IncrementInstance, Validatable;
 
     const MAX_FIELD_LENGTHS = [];
     const int PER_PAGE = 50;
@@ -199,18 +199,6 @@ abstract class Model extends BaseModel
         return $this->runAfterCommitWrapper(function () {
             return parent::delete();
         });
-    }
-
-    /**
-     * Just like increment but only works on saved instance instead of falling back to entire model
-     */
-    public function incrementInstance()
-    {
-        if (!$this->exists) {
-            return false;
-        }
-
-        return $this->increment(...func_get_args());
     }
 
     public function save(array $options = [])
