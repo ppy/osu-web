@@ -28,7 +28,7 @@ class BeatmapsetFileFactory extends Factory
     public function definition(): array
     {
         return [
-            'file_size' => rand(10, 100),
+            'file_size' => rand(10, 100000),
             'sha2_hash' => fn (array $attrs): string => hash(
                 'sha256',
                 static::generateContent($attrs['file_size']),
