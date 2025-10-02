@@ -85,7 +85,7 @@ class BBCodeFromDB
 
     public function parseCentre($text)
     {
-        $text = str_replace("[centre:{$this->uid}]", '<div style='text-align:center;'>', $text);
+        $text = str_replace("[centre:{$this->uid}]", "<div style='text-align:center;'>", $text);
         $text = str_replace("[/centre:{$this->uid}]", '</div>', $text);
 
         return $text;
