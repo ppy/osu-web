@@ -25,6 +25,15 @@
                     {{ osu_trans('user_totp.edit.start') }}
                 </button>
             </div>
+
+            <div class="password-reset__input-group">
+                <a
+                    class="btn-osu-big btn-osu-big--password-reset btn-osu-big--danger"
+                    href="{{ route('account.edit').'#authenticator-app' }}"
+                >
+                    {{ osu_trans('common.buttons.cancel') }}
+                </a>
+            </div>
         </form>
     </div>
 @endsection

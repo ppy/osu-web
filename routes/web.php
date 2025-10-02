@@ -34,6 +34,7 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::resource('authenticator-app', 'UserTotpController', ['only' => ['create', 'store']]);
+    Route::post('authenticator-app/cancel-create', 'UserTotpController@cancelCreate')->name('authenticator-app.cancel-create');
     Route::get('authenticator-app/edit', 'UserTotpController@edit')->name('authenticator-app.edit');
     Route::delete('authenticator-app', 'UserTotpController@destroy')->name('authenticator-app.destroy');
     Route::post('authenticator-app/issue-uri', 'UserTotpController@issueUri')->name('authenticator-app.issue-uri');

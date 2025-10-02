@@ -35,6 +35,13 @@ class UserTotpController extends Controller
         }, ['except' => ['destroy', 'edit']]);
     }
 
+    public function cancelCreate(): Response
+    {
+        \Cache::forget($this->cacheKey());
+
+        return ujs_redirect(route('account.edit').'#authenticator-app');
+    }
+
     public function create(): Response
     {
         return ext_view('user_totp.create', [
