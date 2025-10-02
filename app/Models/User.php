@@ -1801,11 +1801,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         });
     }
 
-    public function nominationModes()
+    public function nominationModes(): ?array
     {
         return $this->memoize(__FUNCTION__, function () {
             if (!$this->isNAT() && !$this->isBNG()) {
-                return;
+                return null;
             }
 
             $modes = [];
