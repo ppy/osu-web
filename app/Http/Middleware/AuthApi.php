@@ -83,6 +83,11 @@ class AuthApi
         $token->setRelation('client', $client);
         $token->validate();
 
+        // increment hit count for about every 10 hits
+        if (rand(0, 9) === 0) {
+            $token->incrementInstance('hit_count', 10);
+        }
+
         $user = $token->getResourceOwner();
 
         if ($token->isClientCredentials()) {

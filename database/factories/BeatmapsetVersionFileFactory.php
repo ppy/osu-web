@@ -26,6 +26,14 @@ class BeatmapsetVersionFileFactory extends Factory
         ]);
     }
 
+    public function copyFrom(BeatmapsetVersionFile $versionFile): static
+    {
+        return $this->state([
+            'file_id' => $versionFile->file_id,
+            'filename' => $versionFile->filename,
+        ]);
+    }
+
     public function definition(): array
     {
         return [
