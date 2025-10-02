@@ -26,6 +26,7 @@ class Team extends Model implements AfterCommit, Indexable, Traits\ReportableInt
     const FLAG_MAX_DIMENSIONS = [512, 256];
 
     const MAX_FIELD_LENGTHS = [
+        'description' => 63000,
         'name' => 100,
         'short_name' => 4,
         'url' => 255,
