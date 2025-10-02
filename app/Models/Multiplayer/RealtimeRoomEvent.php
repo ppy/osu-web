@@ -9,6 +9,7 @@ namespace App\Models\Multiplayer;
 
 use App\Models\Model;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property \Carbon\Carbon|null $created_at
@@ -56,5 +57,12 @@ class RealtimeRoomEvent extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function scopeFilterValidPlaylistItemId(Builder $query): Builder
+    {
+        return $query
+            ->whereNull('playlist_item_id')
+            ->orHas('playlistItem');
     }
 }

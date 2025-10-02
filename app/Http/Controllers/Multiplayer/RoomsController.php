@@ -51,12 +51,16 @@ class RoomsController extends Controller
         ], ['null_missing' => true]);
         $params['limit'] = \Number::clamp($params['limit'] ?? 100, 1, 101);
 
-        $events = $room->events()->with([
-            'playlistItem.beatmap.beatmapset',
-            'playlistItem.detailEvent',
-            'playlistItem.scoreLinks.score',
-            'playlistItem.scoreLinks.score.processHistory',
-        ])->limit($params['limit']);
+        $events = $room
+            ->events()
+            ->filterValidPlaylistItemId()
+            ->with([
+                'playlistItem.beatmap.beatmapset',
+                'playlistItem.detailEvent',
+                'playlistItem.scoreLinks.score',
+                'playlistItem.scoreLinks.score.processHistory',
+            ])
+            ->limit($params['limit']);
 
         if (isset($params['after'])) {
             $events
