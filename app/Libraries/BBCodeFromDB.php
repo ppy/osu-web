@@ -85,7 +85,7 @@ class BBCodeFromDB
 
 	public function parseCentre($text)
 	{
-		$text = str_replace("[centre:{$this->uid}]", "<div class='bbcode--centre'>", $text);
+		$text = str_replace("[centre:{$this->uid}]", "<div data-align='center'>", $text);
 		$text = str_replace("[/centre:{$this->uid}]", '</div>', $text);
 
 		return $text;
@@ -93,7 +93,7 @@ class BBCodeFromDB
 
 	public function parseRight($text)
 	{
-		$text = str_replace("[right:{$this->uid}]", "<div class='bbcode--right'>", $text);
+		$text = str_replace("[right:{$this->uid}]", "<div data-align='right'>", $text);
 		$text = str_replace("[/right:{$this->uid}]", '</div>', $text);
 
 	return $text;
