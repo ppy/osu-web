@@ -64,8 +64,10 @@ class NominateBeatmapset
         $nomination = $this->beatmapset->beatmapsetNominations()->current()->where('user_id', $this->user->getKey());
         if (!$nomination->exists()) {
             $this->beatmapset->getConnection()->transaction(function () {
+                $modes = array_filter($this->user->nominationModes(), fn ($ruleset) => $this->nominatedRulesets->contains($ruleset), ARRAY_FILTER_USE_KEY);
+
                 $eventParams = [
-                    'comment' => ['modes' => $this->nominatedRulesets->toArray()],
+                    'comment' => ['modes' => array_keys($modes)],
                     'type' => BeatmapsetEvent::NOMINATE,
                     'user_id' => $this->user->getKey(),
                 ];
@@ -73,7 +75,7 @@ class NominateBeatmapset
                 $event = $this->beatmapset->events()->create($eventParams);
                 $this->beatmapset->beatmapsetNominations()->create([
                     'event_id' => $event->getKey(),
-                    'modes' => $eventParams['comment']['modes'],
+                    'modes' => $modes,
                     'user_id' => $this->user->getKey(),
                 ]);
 

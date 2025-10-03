@@ -732,6 +732,44 @@ class BeatmapsetTest extends TestCase
         Bus::assertDispatched(CheckBeatmapsetCovers::class);
     }
 
+    public function testQualifyingNominationBngLimitedPromoted()
+    {
+        $beatmapset = $this->createHybridBeatmapset();
+        $nominator = User::factory()->withGroup('bng_limited', ['osu', 'taiko'])->create();
+        $limitedNominator = User::factory()->withGroup('bng_limited', ['osu', 'taiko'])->create();
+        $fullNominator = User::factory()->withGroup('bng', ['osu', 'taiko'])->create();
+
+        $beatmapset->fresh()->nominate($nominator, ['taiko']);
+        $beatmapset->fresh()->nominate($fullNominator, ['osu']);
+
+        $nominator->addToGroup(app('groups')->byIdentifier('bng'), ['osu', 'taiko']);
+        $nominator->removeFromGroup(app('groups')->byIdentifier('bng_limited'));
+
+        $this->expectCountChange(fn () => $beatmapset->bssProcessQueues()->count(), 1);
+
+        $beatmapset->fresh()->nominate($limitedNominator, ['taiko']);
+
+        $this->assertTrue($beatmapset->fresh()->isQualified());
+        Bus::assertDispatched(CheckBeatmapsetCovers::class);
+    }
+
+    public function testQualifyingNominationBngResigned()
+    {
+        $beatmapset = $this->createHybridBeatmapset();
+        $nominator = User::factory()->withGroup('bng', ['osu', 'taiko'])->create();
+        $otherNominator = User::factory()->withGroup('bng_limited', ['osu', 'taiko'])->create();
+
+        $beatmapset->fresh()->nominate($nominator, ['osu', 'taiko']);
+        $nominator->removeFromGroup(app('groups')->byIdentifier('bng'));
+
+        $this->expectCountChange(fn () => $beatmapset->bssProcessQueues()->count(), 1);
+
+        $beatmapset->fresh()->nominate($otherNominator, ['taiko']);
+
+        $this->assertTrue($beatmapset->fresh()->isQualified());
+        Bus::assertDispatched(CheckBeatmapsetCovers::class);
+    }
+
     /**
      * @dataProvider qualifyingNominationsHybridDataProvider
      */

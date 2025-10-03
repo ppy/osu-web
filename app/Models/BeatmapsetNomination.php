@@ -10,7 +10,7 @@ namespace App\Models;
  * @property int $beatmapset_id
  * @property \Carbon\Carbon|null $created_at
  * @property int $id
- * @property array $modes
+ * @property ?array $modes
  * @property bool $reset
  * @property \Carbon\Carbon|null $reset_at
  * @property User|null $reset_by
@@ -44,5 +44,26 @@ class BeatmapsetNomination extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getModesAttribute($value): ?array
+    {
+        if ($value === null) {
+            return null;
+        }
+
+        $json = json_decode($value, true);
+        return array_is_list($json) ? $json : array_keys($json);
+    }
+
+    public function getNominationLevel(): ?array
+    {
+        $value = $this->getRawAttribute('modes');
+        if ($value === null) {
+            return null;
+        }
+
+        $json = json_decode($value, true);
+        return array_is_list($json) ? null : $json;
     }
 }

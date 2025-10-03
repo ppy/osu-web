@@ -12,6 +12,8 @@ use Illuminate\Database\Seeder;
 
 class GroupSeeder extends Seeder
 {
+    private const GROUPS_WITH_RULESETS = ['bng', 'bng_limited'];
+
     public function run(): void
     {
         Group::truncate();
@@ -20,6 +22,7 @@ class GroupSeeder extends Seeder
                 'group_desc' => '',
                 'group_name' => $identifier,
                 'group_type' => 2,
+                'has_playmodes' => in_array($identifier, static::GROUPS_WITH_RULESETS, true),
                 'identifier' => $identifier,
                 'short_name' => $identifier,
             ]);
