@@ -64,7 +64,7 @@ export default class GroupHistory extends React.Component<Props> {
       (): GroupHistoryJson => ({
         cursor_string: this.moreParams?.cursor_string ?? null,
         events: this.events,
-        groups: groupStore.all,
+        groups: [],
         params: this.currentParams,
       }),
       (newJson) => {
