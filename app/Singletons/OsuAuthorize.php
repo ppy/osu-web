@@ -329,7 +329,8 @@ class OsuAuthorize
                 return 'ok';
             }
 
-            if ($this->doCheckUser($user, 'BeatmapShow', $discussion->beatmap)->can()) {
+            $beatmap = $discussion->beatmap;
+            if ($beatmap !== null && $this->doCheckUser($user, 'BeatmapShow', $beatmap)->can()) {
                 return 'ok';
             }
         }
