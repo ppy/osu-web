@@ -11,7 +11,6 @@ import { action, autorun, computed, makeObservable, observable } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
-import { parseJson, storeJson } from 'utils/json';
 import { trans } from 'utils/lang';
 import { navigate } from 'utils/turbolinks';
 import { updateQueryString, wikiUrl } from 'utils/url';
@@ -23,10 +22,13 @@ import SearchForm from './search-form';
 type MoreParams = GroupHistoryJson['params'] & { cursor_string: string };
 
 export const formParamKeys = ['group', 'max_date', 'min_date', 'user'] as const;
-const jsonId = 'json-group-history';
+
+interface Props {
+  container: HTMLElement;
+}
 
 @observer
-export default class GroupHistory extends React.Component {
+export default class GroupHistory extends React.Component<Props> {
   @observable private currentParams: GroupHistoryJson['params'];
   @observable private events: UserGroupEventJson[];
   @observable private loading: 'more' | 'new' | false = false;
@@ -39,11 +41,11 @@ export default class GroupHistory extends React.Component {
     return formParamKeys.every((key) => this.newParams[key] === this.currentParams[key]);
   }
 
-  constructor(props: Record<string, never>) {
+  constructor(props: Props) {
     super(props);
     makeObservable(this);
 
-    const json = parseJson<GroupHistoryJson>(jsonId);
+    const json = JSON.parse(this.props.container.dataset.json ?? '') as GroupHistoryJson;
 
     groupStore.update(json.groups);
     this.currentParams = json.params;
@@ -58,12 +60,15 @@ export default class GroupHistory extends React.Component {
       this.newParams.group = null;
     }
 
-    disposeOnUnmount(this, autorun(() => storeJson<GroupHistoryJson>(jsonId, {
-      cursor_string: this.moreParams?.cursor_string ?? null,
-      events: this.events,
-      groups: groupStore.all,
-      params: this.currentParams,
-    })));
+    disposeOnUnmount(this, autorun(() => {
+      const newJson = {
+        cursor_string: this.moreParams?.cursor_string ?? null,
+        events: this.events,
+        groups: groupStore.all,
+        params: this.currentParams,
+      };
+      this.props.container.dataset.json = JSON.stringify(newJson);
+    }));
   }
 
   componentWillUnmount() {

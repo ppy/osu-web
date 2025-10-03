@@ -5,4 +5,4 @@ import GroupHistory from 'group-history';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 
-core.reactTurbolinks.register('group-history', () => <GroupHistory />);
+core.reactTurbolinks.register('group-history', (container) => <GroupHistory container={container} />);
