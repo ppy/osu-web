@@ -7,7 +7,7 @@ import StringWithComponent from 'components/string-with-component';
 import UserGroupEventJson from 'interfaces/user-group-event-json';
 import { route } from 'laroute';
 import { omit } from 'lodash';
-import { action, autorun, computed, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable, reaction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
@@ -60,15 +60,17 @@ export default class GroupHistory extends React.Component<Props> {
       this.newParams.group = null;
     }
 
-    disposeOnUnmount(this, autorun(() => {
-      const newJson = {
+    disposeOnUnmount(this, reaction(
+      (): GroupHistoryJson => ({
         cursor_string: this.moreParams?.cursor_string ?? null,
         events: this.events,
         groups: groupStore.all,
         params: this.currentParams,
-      };
-      this.props.container.dataset.json = JSON.stringify(newJson);
-    }));
+      }),
+      (newJson) => {
+        this.props.container.dataset.json = JSON.stringify(newJson);
+      },
+    ));
   }
 
   componentWillUnmount() {
