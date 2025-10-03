@@ -25,7 +25,7 @@ class Authorize extends Model
 
     public static function aclCheck($user, $authOption, $forum)
     {
-        $groupIds = $user->groupIds()['active'];
+        $groupIds = $user->groupIds();
         $authOptionId = AuthOption::where('auth_option', $authOption)->value('auth_option_id');
 
         // the group may contain direct acl entry
@@ -48,7 +48,7 @@ class Authorize extends Model
 
     public static function aclGetAllowedForums($user, $authOption)
     {
-        $groupIds = $user->groupIds()['active'];
+        $groupIds = $user->groupIds();
         $authOptionId = AuthOption::where('auth_option', $authOption)->value('auth_option_id');
 
         $directAclForumIds = model_pluck(static::directAcl($groupIds, $authOptionId), 'forum_id');

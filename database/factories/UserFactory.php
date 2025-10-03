@@ -135,7 +135,7 @@ class UserFactory extends Factory
                         app('groups')->resetMemoized();
                     }
 
-                    $user->findUserGroup($group, true)->update(['playmodes' => $playmodes]);
+                    $user->findUserGroup($group)->update(['playmodes' => $playmodes]);
                 }
             });
     }

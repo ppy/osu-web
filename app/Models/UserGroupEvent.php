@@ -171,7 +171,7 @@ class UserGroupEvent extends Model
         $query->where('hidden', false);
 
         $userGroupIds = priv_check_user($user, 'IsSpecialScope')->can()
-            ? $user->groupIds()['active']
+            ? $user->groupIds()
             : [];
 
         if (!empty($userGroupIds)) {
