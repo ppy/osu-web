@@ -9,10 +9,10 @@ export default interface GroupHistoryJson {
   events: UserGroupEventJson[];
   groups: GroupJson[];
   params: {
-    group: string | null;
-    max_date: string | null;
-    min_date: string | null;
+    group_id?: number | null;
+    max_date?: string | null;
+    min_date?: string | null;
     sort: string;
-    user: string | null;
+    user?: string | null;
   };
 }

@@ -17,21 +17,15 @@ class GroupHistoryController extends Controller
     {
         $rawParams = request()->all();
         $params = get_params($rawParams, null, [
-            'group',
+            'group_id:int',
             'max_date:time',
             'min_date:time',
             'user',
         ], ['null_missing' => true]);
         $query = UserGroupEvent::visibleForUser(auth()->user());
 
-        if ($params['group'] !== null) {
-            $groupId = app('groups')->byIdentifier($params['group'])?->getKey();
-
-            if ($groupId !== null) {
-                $query->where('group_id', $groupId);
-            } else {
-                $query->none();
-            }
+        if ($params['group_id'] !== null) {
+            $query->where('group_id', $params['group_id']);
         }
 
         if ($params['max_date'] !== null) {

@@ -21,7 +21,7 @@ import SearchForm from './search-form';
 
 type MoreParams = GroupHistoryJson['params'] & { cursor_string: string };
 
-export const formParamKeys = ['group', 'max_date', 'min_date', 'user'] as const;
+export const formParamKeys = ['group_id', 'max_date', 'min_date', 'user'] as const;
 
 interface Props {
   container: HTMLElement;
@@ -56,8 +56,8 @@ export default class GroupHistory extends React.Component<Props> {
     // If the "group" param doesn't match any group we can show as a select
     // option, set it to null in the new params. This prevents the new params
     // from initially being out of sync with the displayed form controls
-    if (json.params.group != null && !groupStore.byIdentifier.has(json.params.group)) {
-      this.newParams.group = null;
+    if (json.params.group_id != null && !groupStore.byId.has(json.params.group_id)) {
+      this.newParams.group_id = null;
     }
 
     disposeOnUnmount(this, reaction(
@@ -158,6 +158,7 @@ export default class GroupHistory extends React.Component<Props> {
     // "sort" from the query if it's set to the default
     navigate(updateQueryString(null, {
       ...this.newParams,
+      group_id: this.newParams.group_id?.toString(),
       sort: this.newParams.sort === 'id_desc' ? null : this.newParams.sort,
     }));
   };

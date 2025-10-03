@@ -7,6 +7,8 @@ import { action, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { trans } from 'utils/lang';
+import { getInt } from 'utils/math';
+import { presence } from 'utils/string';
 import groupStore from './group-store';
 import GroupHistoryJson from './json';
 import { formParamKeys } from '.';
@@ -36,15 +38,15 @@ export default class SearchForm extends React.Component<Props> {
           <InputContainer labelKey='group_history.form.group' modifiers={['group-history-wide', 'select']}>
             <select
               className='input-text'
-              name='group'
+              name='group_id'
               onChange={this.onChange}
-              value={this.props.newParams.group ?? ''}
+              value={this.props.newParams.group_id ?? ''}
             >
               <option value=''>
                 {trans('group_history.form.group_all')}
               </option>
               {groupStore.all.map((group) => (
-                <option key={group.id} value={group.identifier}>
+                <option key={group.id} value={group.id}>
                   {group.name}
                 </option>
               ))}
@@ -103,8 +105,14 @@ export default class SearchForm extends React.Component<Props> {
   private readonly onChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     event.preventDefault();
 
-    this.props.newParams[event.currentTarget.name as (typeof formParamKeys)[number]] =
-      event.currentTarget.value || null;
+    const name = event.currentTarget.name as Exclude<typeof formParamKeys[number], 'sort'>;
+    const value = presence(event.currentTarget.value);
+
+    if (name === 'group_id') {
+      this.props.newParams[name] = getInt(value);
+    } else {
+      this.props.newParams[name] = value;
+    }
   };
 
   @action
