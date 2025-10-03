@@ -4,6 +4,7 @@
 import GroupJson from 'interfaces/group-json';
 import { sortBy } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
+import { mapBy } from 'utils/map';
 
 class GroupStore {
   @observable byId = new Map<number, GroupJson>();
@@ -15,13 +16,7 @@ class GroupStore {
 
   @computed
   get byIdentifier() {
-    const byIdentifier = new Map<string, GroupJson>();
-
-    for (const group of this.byId.values()) {
-      byIdentifier.set(group.identifier, group);
-    }
-
-    return byIdentifier;
+    return mapBy(this.byId.values(), 'identifier');
   }
 
   constructor() {
