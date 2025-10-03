@@ -9,7 +9,7 @@ import * as React from 'react';
 import { trans } from 'utils/lang';
 import groupStore from './group-store';
 import GroupHistoryJson from './json';
-import { formParamKeys } from './main';
+import { formParamKeys } from '.';
 
 const bn = 'group-history-search-form';
 

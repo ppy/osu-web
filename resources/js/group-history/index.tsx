@@ -26,7 +26,7 @@ export const formParamKeys = ['group', 'max_date', 'min_date', 'user'] as const;
 const jsonId = 'json-group-history';
 
 @observer
-export default class Main extends React.Component {
+export default class GroupHistory extends React.Component {
   @observable private currentParams: GroupHistoryJson['params'];
   @observable private events: UserGroupEventJson[];
   @observable private loading: 'more' | 'new' | false = false;
