@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@discordapp/twemoji": "^14.0.2",
-    "@fortawesome/fontawesome-free": "^5.6.3",
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "@hotwired/turbo": "^8.0.12",
     "@shopify/hydrogen-react": "^2024.10.0",
     "@shopify/storefront-api-client": "^1.0.3",
