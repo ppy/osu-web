@@ -46,24 +46,15 @@ class BeatmapsetNomination extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function getModesAttribute($value): ?array
+    public function getModesAttribute(): ?array
     {
-        if ($value === null) {
-            return null;
-        }
-
-        $json = json_decode($value, true);
-        return array_is_list($json) ? $json : array_keys($json);
+        $json = $this->getArray('modes');
+        return $json === null || array_is_list($json) ? $json : array_keys($json);
     }
 
     public function getNominationLevel(): ?array
     {
-        $value = $this->getRawAttribute('modes');
-        if ($value === null) {
-            return null;
-        }
-
-        $json = json_decode($value, true);
-        return array_is_list($json) ? null : $json;
+        $json = $this->getArray('modes');
+        return $json === null || array_is_list($json) ? null : $json;
     }
 }
