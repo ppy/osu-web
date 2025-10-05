@@ -788,9 +788,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         });
     }
 
-    public function nominate(User $user, array $playmodes = [])
+    public function nominate(User $user, array $rulesets = [])
     {
-        (new NominateBeatmapset($this, $user, $playmodes))->handle();
+        (new NominateBeatmapset($this, $user, $rulesets))->handle();
     }
 
     public function love(User $user, ?array $beatmapIds = null)
