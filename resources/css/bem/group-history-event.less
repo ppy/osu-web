@@ -1,0 +1,59 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.group-history-event {
+  align-items: center;
+  display: flex;
+  font-size: @font-size--title-small;
+  gap: 15px;
+
+  @types: {
+    group_add: @fa-var-users, bold;
+    group_remove: @fa-var-users-slash, bold;
+    group_rename: @fa-var-users-cog, bold;
+    user_add: @fa-var-user-plus, normal;
+    user_add_playmodes: @fa-var-user-tag, normal;
+    user_remove: @fa-var-user-minus, normal;
+    user_remove_playmodes: @fa-var-user-tag, normal;
+    user_set_default: @fa-var-user-cog, normal;
+  };
+  each(@types, {
+    &--@{key} {
+      --icon: extract(@value, 1);
+      --message-weight: extract(@value, 2);
+    }
+  });
+
+  &__icon {
+    background-color: var(--group-colour, hsl(var(--hsl-b1)));
+    border-radius: 10000px;
+    color: hsl(var(--hsl-b6));
+    line-height: 1;
+    padding: 3px 6px;
+
+    &::before {
+      .fas();
+      .fa-fw();
+      content: var(--icon);
+    }
+  }
+
+  &__info {
+    align-items: flex-end;
+    color: hsl(var(--hsl-f1));
+    column-gap: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    font-size: @font-size--normal;
+
+    @media @desktop {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__message {
+    flex-grow: 1;
+    font-weight: var(--message-weight);
+  }
+}
