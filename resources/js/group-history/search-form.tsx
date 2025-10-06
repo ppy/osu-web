@@ -103,7 +103,7 @@ export default class SearchForm extends React.Component<Props> {
   private readonly onChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     event.preventDefault();
 
-    const name = event.currentTarget.name as Exclude<typeof formParamKeys[number], 'sort'>;
+    const name = event.currentTarget.name as typeof formParamKeys[number];
     const value = presence(event.currentTarget.value);
 
     if (name === 'group_id') {
