@@ -16,9 +16,7 @@ import { updateQueryString, wikiUrl } from 'utils/url';
 import Events from './events';
 import groupStore from './group-store';
 import GroupHistoryJson from './json';
-import SearchForm from './search-form';
-
-export const formParamKeys = ['group_id', 'max_date', 'min_date', 'user'] as const;
+import SearchForm, { formParamKeys } from './search-form';
 
 interface Props {
   container: HTMLElement;

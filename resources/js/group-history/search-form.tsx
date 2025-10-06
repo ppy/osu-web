@@ -11,9 +11,10 @@ import { getInt } from 'utils/math';
 import { presence } from 'utils/string';
 import groupStore from './group-store';
 import GroupHistoryJson from './json';
-import { formParamKeys } from '.';
 
 const bn = 'group-history-search-form';
+
+export const formParamKeys = ['group_id', 'max_date', 'min_date', 'user'] as const;
 
 interface Props {
   disabled: boolean;
