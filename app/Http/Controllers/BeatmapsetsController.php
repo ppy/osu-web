@@ -24,6 +24,7 @@ use Auth;
 use Carbon\Carbon;
 use DB;
 use Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @group Beatmapsets
@@ -354,6 +355,23 @@ class BeatmapsetsController extends Controller
         return $this->showJson($beatmapset);
     }
 
+    public function versions(string $id): Response
+    {
+        $beatmapset = Beatmapset::findOrFail($id)->load([
+            'versions' => fn ($q) => $q->orderByDesc('version_id'),
+            'versions.versionFiles',
+        ]);
+        $versions = $beatmapset->versions->keyBy('version_id');
+        foreach ($versions as $version) {
+            $version->setRelation('previousVersion', $versions[$version->previous_version_id] ?? null);
+        }
+
+        return ext_view('beatmapsets.versions', [
+            'beatmapset' => $beatmapset,
+            'versions' => $versions,
+        ]);
+    }
+
     private function getSearchResponse(?array $params = null)
     {
         $params = new BeatmapsetSearchRequestParams($params ?? request()->all(), auth()->user());
@@ -435,6 +453,7 @@ class BeatmapsetsController extends Controller
             'related_tags',
             'related_users',
             'user',
+            'version_count',
         ]);
     }
 }

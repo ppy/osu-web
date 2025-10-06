@@ -39,4 +39,38 @@ class BeatmapsetVersion extends Model
     {
         return $this->hasMany(BeatmapsetVersionFile::class);
     }
+
+    public function changes(): array
+    {
+        $previous = $this->previousVersion;
+        if ($previous === null) {
+            $added = $this->versionFiles->all();
+        } else {
+            $previousVersionFilesByFilename = $previous->versionFiles->keyBy('filename');
+            $currentVersionFiles = $this->versionFiles;
+
+            $added = [];
+            $updated = [];
+            foreach ($currentVersionFiles as $versionFile) {
+                $previousVersionFile = $previousVersionFilesByFilename[$versionFile->filename] ?? null;
+                if ($previousVersionFile === null) {
+                    $added[] = $versionFile;
+                } else {
+                    // no update otherwise
+                    if ($previousVersionFile->file_id !== $versionFile->file_id) {
+                        $updated[] = $versionFile;
+                    }
+                    $previousVersionFilesByFilename->forget($versionFile->filename);
+                }
+            }
+
+            $removed = $previousVersionFilesByFilename->values()->all();
+        }
+
+        return [
+            'added' => $added ?? [],
+            'removed' => $removed ?? [],
+            'updated' => $updated ?? [],
+        ];
+    }
 }

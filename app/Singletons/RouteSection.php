@@ -112,6 +112,9 @@ class RouteSection
             'store_controller' => [
                 '_' => 'store',
             ],
+            'user_totp_controller' => [
+                '_' => 'home',
+            ],
             'users_controller' => [
                 '_' => 'user',
             ],

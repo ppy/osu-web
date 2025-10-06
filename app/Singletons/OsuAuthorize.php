@@ -330,7 +330,8 @@ class OsuAuthorize
                 return 'ok';
             }
 
-            if ($this->doCheckUser($user, 'BeatmapShow', $discussion->beatmap)->can()) {
+            $beatmap = $discussion->beatmap;
+            if ($beatmap !== null && $this->doCheckUser($user, 'BeatmapShow', $beatmap)->can()) {
                 return 'ok';
             }
         }
@@ -1342,11 +1343,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->isModerator()) {
-            return 'ok';
-        }
-
-        if ($forum->moderator_groups !== null && !empty(array_intersect($user->groupIds()['active'], $forum->moderator_groups))) {
+        if ($user->isModerator() || $user->isForumModerator($forum)) {
             return 'ok';
         }
 

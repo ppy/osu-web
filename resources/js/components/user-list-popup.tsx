@@ -76,7 +76,7 @@ export default function UserListPopup(props: Props) {
           ))}
         </div>
       }
-      {props.count > props.users.length &&
+      {props.count > props.users.length && props.users.length > 0 &&
         <div className='user-list-popup__remainder-count'>
           {transChoice('common.count.plus_others', props.count - props.users.length)}
         </div>

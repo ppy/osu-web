@@ -1,0 +1,24 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.svg-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-color: currentColor;
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+
+  &--arrow-cycle {
+    mask-image: url("~@images/icons/primitives/arrow-cycle.svg");
+  }
+
+  &--plus {
+    mask-image: url("~@images/icons/primitives/plus.svg");
+  }
+
+  &--trash {
+    mask-image: url("~@images/icons/primitives/trash.svg");
+  }
+}

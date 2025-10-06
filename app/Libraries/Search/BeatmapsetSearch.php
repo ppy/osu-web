@@ -389,15 +389,7 @@ class BeatmapsetSearch extends RecordSearch
                 $query->must(['match' => ['beatmaps.approved' => Beatmapset::STATES['graveyard']]]);
                 break;
             case 'mine':
-                if ($this->params->user !== null) {
-                    $maps = $this->params->user->beatmaps()
-                        ->select('beatmapset_id')
-                        ->distinct()
-                        ->pluck('beatmapset_id')
-                        ->all();
-                }
-                $query->must(['ids' => ['values' => $maps ?? []]]);
-                $queryForFilter = $mainQuery;
+                $query->must(['term' => ['beatmaps.user_id' => $this->params->user->getKey()]]);
                 break;
             default: // null, etc
                 $query

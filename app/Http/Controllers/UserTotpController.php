@@ -35,6 +35,13 @@ class UserTotpController extends Controller
         }, ['except' => ['destroy', 'edit']]);
     }
 
+    public function cancelCreate(): Response
+    {
+        \Cache::forget($this->cacheKey());
+
+        return ujs_redirect(route('account.edit').'#authenticator-app');
+    }
+
     public function create(): Response
     {
         return ext_view('user_totp.create', [
@@ -69,7 +76,7 @@ class UserTotpController extends Controller
 
         if (!$currentUser->checkPassword($password)) {
             return response(['form_error' => [
-                'password' => [osu_trans('user_totp.issue_uri.invalid_password')],
+                'password' => [osu_trans('layout.popup_login.login.error.password')],
             ]], 422);
         }
 
