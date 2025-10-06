@@ -6,11 +6,10 @@ import ShowMoreLink from 'components/show-more-link';
 import StringWithComponent from 'components/string-with-component';
 import UserGroupEventJson from 'interfaces/user-group-event-json';
 import { route } from 'laroute';
-import { omit } from 'lodash';
 import { action, computed, makeObservable, observable, reaction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import * as React from 'react';
-import { onErrorWithCallback } from 'utils/ajax';
+import { onError } from 'utils/ajax';
 import { trans } from 'utils/lang';
 import { navigate } from 'utils/turbolinks';
 import { updateQueryString, wikiUrl } from 'utils/url';
@@ -18,8 +17,6 @@ import Events from './events';
 import groupStore from './group-store';
 import GroupHistoryJson from './json';
 import SearchForm from './search-form';
-
-type MoreParams = GroupHistoryJson['params'] & { cursor_string: string };
 
 export const formParamKeys = ['group_id', 'max_date', 'min_date', 'user'] as const;
 
@@ -29,10 +26,10 @@ interface Props {
 
 @observer
 export default class GroupHistory extends React.Component<Props> {
-  @observable private currentParams: GroupHistoryJson['params'];
-  @observable private events: UserGroupEventJson[];
-  @observable private loading: 'more' | 'new' | false = false;
-  @observable private moreParams: MoreParams | undefined;
+  @observable private readonly currentParams: GroupHistoryJson['params'];
+  @observable private cursor: null | string = null;
+  @observable private readonly events: UserGroupEventJson[];
+  @observable private loadingMore = false;
   @observable private readonly newParams: GroupHistoryJson['params'];
   private xhr?: JQuery.jqXHR<GroupHistoryJson>;
 
@@ -49,9 +46,9 @@ export default class GroupHistory extends React.Component<Props> {
 
     groupStore.update(json.groups);
     this.currentParams = json.params;
-    this.events = json.events;
     this.newParams = { ...this.currentParams };
-    this.setMoreParamsFromJson(json);
+    this.cursor = json.cursor_string;
+    this.events = json.events;
 
     // If the "group" param doesn't match any group we can show as a select
     // option, set it to null in the new params. This prevents the new params
@@ -62,7 +59,7 @@ export default class GroupHistory extends React.Component<Props> {
 
     disposeOnUnmount(this, reaction(
       (): GroupHistoryJson => ({
-        cursor_string: this.moreParams?.cursor_string ?? null,
+        cursor_string: this.cursor,
         events: this.events,
         groups: [],
         params: this.currentParams,
@@ -84,7 +81,6 @@ export default class GroupHistory extends React.Component<Props> {
         <div className='osu-page osu-page--generic-compact'>
           <SearchForm
             disabled={this.newParamsSameAsCurrent}
-            loading={this.loading === 'new'}
             newParams={this.newParams}
             onSearch={this.onNewSearch}
           />
@@ -93,8 +89,8 @@ export default class GroupHistory extends React.Component<Props> {
           <Events events={this.events} />
           <ShowMoreLink
             callback={this.onMore}
-            hasMore={this.moreParams != null}
-            loading={this.loading === 'more'}
+            hasMore={this.cursor != null}
+            loading={this.loadingMore}
             modifiers='group-history'
           />
         </div>
@@ -115,37 +111,31 @@ export default class GroupHistory extends React.Component<Props> {
   }
 
   @action
-  private loadEvents(params: GroupHistoryJson['params'] | MoreParams) {
-    this.xhr?.abort();
-    this.currentParams = omit(params, 'cursor_string');
-    this.loading = 'cursor_string' in params ? 'more' : 'new';
+  private readonly onMore = () => {
+    if (this.cursor == null || this.xhr != null) {
+      return;
+    }
+
+    this.loadingMore = true;
 
     this.xhr = $.ajax(
       route('group-history.index'),
       {
-        data: params,
+        data: { ...this.currentParams, cursor_string: this.cursor },
         dataType: 'json',
         method: 'GET',
       },
     )
       .done(action((response: GroupHistoryJson) => {
         groupStore.update(response.groups);
-        this.setMoreParamsFromJson(response);
-
-        if (this.loading === 'new') {
-          this.events = response.events;
-        } else {
-          this.events.push(...response.events);
-        }
+        this.cursor = response.cursor_string;
+        this.events.push(...response.events);
       }))
-      .fail(onErrorWithCallback(() => this.loadEvents(params)))
-      .always(action(() => this.loading = false));
-  }
-
-  private readonly onMore = () => {
-    if (this.moreParams != null) {
-      this.loadEvents(this.moreParams);
-    }
+      .fail(onError)
+      .always(action(() => {
+        this.loadingMore = false;
+        this.xhr = undefined;
+      }));
   };
 
   @action
@@ -162,10 +152,4 @@ export default class GroupHistory extends React.Component<Props> {
       sort: this.newParams.sort === 'id_desc' ? null : this.newParams.sort,
     }));
   };
-
-  private setMoreParamsFromJson(json: GroupHistoryJson) {
-    this.moreParams = json.cursor_string == null
-      ? undefined
-      : { ...json.params, cursor_string: json.cursor_string };
-  }
 }

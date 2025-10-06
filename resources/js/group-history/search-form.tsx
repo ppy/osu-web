@@ -17,7 +17,6 @@ const bn = 'group-history-search-form';
 
 interface Props {
   disabled: boolean;
-  loading: boolean;
   newParams: GroupHistoryJson['params'];
   onSearch: () => void;
 }
@@ -91,7 +90,6 @@ export default class SearchForm extends React.Component<Props> {
           <BigButton
             disabled={this.props.disabled}
             icon='fas fa-search'
-            isBusy={this.props.disabled && this.props.loading}
             isSubmit
             modifiers={['artist-track-search', 'rounded-thin-wide']}
             text={trans('common.buttons.search')}
