@@ -26,16 +26,7 @@ class NominateBeatmapset
             throw new UnsupportedNominationException();
         }
 
-        $beatmapsetRulesets = new Set($beatmapset->playmodesStr());
         $this->nominatedRulesets = new Set($rulesets);
-
-        if ($beatmapsetRulesets->intersect($this->nominatedRulesets)->count() === 0) {
-            throw new InvariantException(osu_trans('beatmapsets.nominate.hybrid_requires_modes'));
-        }
-
-        if ($this->nominatedRulesets->diff($beatmapsetRulesets)->count() > 0) {
-            throw new InvariantException(osu_trans('beatmapsets.nominate.invalid_ruleset'));
-        }
     }
 
     public static function requiredNominationsConfig()
@@ -61,10 +52,8 @@ class NominateBeatmapset
         $nomination = $this->beatmapset->beatmapsetNominations()->current()->where('user_id', $this->user->getKey());
         if (!$nomination->exists()) {
             $this->beatmapset->getConnection()->transaction(function () {
-                $modes = array_filter($this->user->nominationModes(), fn ($ruleset) => $this->nominatedRulesets->contains($ruleset), ARRAY_FILTER_USE_KEY);
-
                 $eventParams = [
-                    'comment' => ['modes' => array_keys($modes)],
+                    'comment' => ['modes' => $this->nominatedRulesets->toArray()],
                     'type' => BeatmapsetEvent::NOMINATE,
                     'user_id' => $this->user->getKey(),
                 ];
@@ -72,7 +61,11 @@ class NominateBeatmapset
                 $event = $this->beatmapset->events()->create($eventParams);
                 $this->beatmapset->beatmapsetNominations()->create([
                     'event_id' => $event->getKey(),
-                    'modes' => $modes,
+                    'modes' => array_filter(
+                        $this->user->nominationModes(),
+                        fn ($ruleset) => $this->nominatedRulesets->contains($ruleset),
+                        ARRAY_FILTER_USE_KEY,
+                    ),
                     'user_id' => $this->user->getKey(),
                 ]);
 
@@ -117,6 +110,15 @@ class NominateBeatmapset
 
     private function assertRulesetNomination()
     {
+        $beatmapsetRulesets = new Set($this->beatmapset->playmodesStr());
+        if ($beatmapsetRulesets->intersect($this->nominatedRulesets)->count() === 0) {
+            throw new InvariantException(osu_trans('beatmapsets.nominate.hybrid_requires_modes'));
+        }
+
+        if ($this->nominatedRulesets->diff($beatmapsetRulesets)->count() > 0) {
+            throw new InvariantException(osu_trans('beatmapsets.nominate.invalid_ruleset'));
+        }
+
         // NOTE: This assumption is only valid for the current nomination rules. (see requiredNominationsConfig)
         // LimitedBNs cannot be the only nominator for a non-main ruleset and since they only require 1 nomination,
         // it implies LimitedBNs can only nominate one ruleset (effectively the main).
