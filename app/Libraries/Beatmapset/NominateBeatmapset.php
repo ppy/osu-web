@@ -18,9 +18,6 @@ use Ds\Set;
 class NominateBeatmapset
 {
     /** @var Set<string> */
-    private Set $beatmapRulesets;
-
-    /** @var Set<string> */
     private Set $nominatedRulesets;
 
     public function __construct(private Beatmapset $beatmapset, private User $user, array $rulesets)
@@ -29,14 +26,14 @@ class NominateBeatmapset
             throw new UnsupportedNominationException();
         }
 
-        $this->beatmapRulesets = new Set($beatmapset->playmodesStr());
+        $beatmapsetRulesets = new Set($beatmapset->playmodesStr());
         $this->nominatedRulesets = new Set($rulesets);
 
-        if ($this->beatmapRulesets->intersect($this->nominatedRulesets)->count() === 0) {
+        if ($beatmapsetRulesets->intersect($this->nominatedRulesets)->count() === 0) {
             throw new InvariantException(osu_trans('beatmapsets.nominate.hybrid_requires_modes'));
         }
 
-        if ($this->nominatedRulesets->diff($this->beatmapRulesets)->count() > 0) {
+        if ($this->nominatedRulesets->diff($beatmapsetRulesets)->count() > 0) {
             throw new InvariantException(osu_trans('beatmapsets.nominate.invalid_ruleset'));
         }
     }
