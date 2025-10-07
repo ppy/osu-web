@@ -36,10 +36,12 @@ class LegacyMatchesController extends Controller
      * matches       | [Match](#match)[]             | |
      * params.limit  | integer                       | |
      * params.sort   | string                        | |
+     * params.active | boolean?                      | |
      *
      * @usesCursor
      * @queryParam limit integer Maximum number of matches (50 default, 1 minimum, 50 maximum). No-example
      * @queryParam sort string `id_desc` for newest first; `id_asc` for oldest first. Defaults to `id_desc`. No-example
+     * @queryParam active boolean `true` for active matches only; `false` for inactive matches only. Defaults to not specified, returning both. No-example
      * @response {
      *     "matches": [
      *         {
@@ -52,7 +54,8 @@ class LegacyMatchesController extends Controller
      *     ],
      *     "params": {
      *         "limit": 50,
-     *         "sort": "id_desc"
+     *         "sort": "id_desc",
+     *         "active": null
      *     },
      *     "cursor": {
      *         "match_id": 114428685

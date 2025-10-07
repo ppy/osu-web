@@ -34,6 +34,7 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::resource('authenticator-app', 'UserTotpController', ['only' => ['create', 'store']]);
+    Route::post('authenticator-app/cancel-create', 'UserTotpController@cancelCreate')->name('authenticator-app.cancel-create');
     Route::get('authenticator-app/edit', 'UserTotpController@edit')->name('authenticator-app.edit');
     Route::delete('authenticator-app', 'UserTotpController@destroy')->name('authenticator-app.destroy');
     Route::post('authenticator-app/issue-uri', 'UserTotpController@issueUri')->name('authenticator-app.issue-uri');
@@ -73,6 +74,8 @@ Route::group(['middleware' => ['web']], function () {
         route_redirect('beatmap-discussion-posts', 'beatmapsets.discussions.posts.index');
     });
 
+    Route::get('beatmapset-version-files/{beatmapset_version_file}/download', 'BeatmapsetVersionFilesController@download')->name('beatmapset-version-files.download');
+
     Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
         Route::resource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
         Route::get('search', 'BeatmapsetsController@search')->name('search');
@@ -106,6 +109,8 @@ Route::group(['middleware' => ['web']], function () {
             Route::put('love', 'BeatmapsetsController@love')->name('love');
             Route::delete('love', 'BeatmapsetsController@removeFromLoved')->name('remove-from-loved');
             Route::put('nominate', 'BeatmapsetsController@nominate')->name('nominate');
+
+            Route::get('versions', 'BeatmapsetsController@versions')->name('versions');
 
             Route::group(['namespace' => 'Beatmapsets'], function () {
                 Route::apiResource('favourites', 'FavouritesController', ['only' => ['store']]);

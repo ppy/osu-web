@@ -9,6 +9,7 @@ use App\Events\UserSessionEvent;
 use App\Exceptions\InvalidScopeException;
 use App\Interfaces\SessionVerificationInterface;
 use App\Models\Traits\FasterAttributes;
+use App\Models\Traits\IncrementInstance;
 use App\Models\User;
 use Ds\Set;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,7 +19,7 @@ use Laravel\Passport\Token as PassportToken;
 class Token extends PassportToken implements SessionVerificationInterface
 {
     // PassportToken doesn't have factory
-    use HasFactory, FasterAttributes;
+    use HasFactory, FasterAttributes, IncrementInstance;
 
     const SCOPES_CLIENT_CREDENTIALS_ONLY = ['delegate', 'forum.write_manage', 'group_permissions'];
     const SCOPES_EXCLUDE_FROM_ALL = ['delegate', 'group_permissions'];
@@ -76,6 +77,7 @@ class Token extends PassportToken implements SessionVerificationInterface
     {
         return match ($key) {
             'client_id',
+            'hit_count',
             'id',
             'name',
             'user_id',

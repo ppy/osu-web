@@ -53,6 +53,7 @@ return [
             'discussion' => 'beatmap discussion',
             'index' => 'beatmap listing',
             'show' => 'beatmap info',
+            'versions' => 'beatmap version history',
         ],
         'changelog_controller' => [
             '_' => 'changelog',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'contests',
             'judge' => 'contest judging',
+        ],
+        'group_history_controller' => [
+            '_' => 'group history',
         ],
         'groups_controller' => [
             'show' => 'groups',

@@ -56,7 +56,7 @@ class GroupHistoryControllerTest extends TestCase
         $this->assertContains($event->getKey(), $responseEventIds);
     }
 
-    public function textIndexListsEvents(): void
+    public function testIndexListsEvents(): void
     {
         $event = UserGroupEvent::factory()->create();
 
