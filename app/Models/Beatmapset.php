@@ -764,7 +764,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             // and any of the current nominators were not part of the most recent disqualified nominations.
             $disqualifyEvent = $this->events()->disqualifications()->last();
             if ($disqualifyEvent !== null) {
-                $previousNominators = new Set($disqualifyEvent->comment['nominator_ids']);
+                $previousNominators = new Set($disqualifyEvent->comment['nominator_ids'] ?? []);
                 $currentNominators = new Set($this->beatmapsetNominations()->current()->pluck('user_id'));
                 // Uses xor to make problems during testing stand out, like the number of nominations in the test being wrong.
                 if (!$currentNominators->xor($previousNominators)->isEmpty()) {
@@ -788,9 +788,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         });
     }
 
-    public function nominate(User $user, array $playmodes = [])
+    public function nominate(User $user, array $rulesets = [])
     {
-        (new NominateBeatmapset($this, $user, $playmodes))->handle();
+        (new NominateBeatmapset($this, $user, $rulesets))->handle();
     }
 
     public function love(User $user, ?array $beatmapIds = null)
@@ -1232,7 +1232,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         });
     }
 
-    public function nominationsByType()
+    public function nominationsByType(): array
     {
         $nominations = $this->beatmapsetNominations()
             ->current()
@@ -1247,8 +1247,12 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         foreach ($nominations as $nomination) {
             $userNominationModes = $nomination->user->nominationModes();
             // no permission
-            if ($userNominationModes === null) {
-                continue;
+            if (empty($userNominationModes)) {
+                // use old nomination level if it was saved.
+                $userNominationModes = $nomination->getNominationLevel();
+                if (empty($userNominationModes)) {
+                    continue;
+                }
             }
 
             // legacy nomination, only check group
