@@ -788,9 +788,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         });
     }
 
-    public function nominate(User $user, array $playmodes = [])
+    public function nominate(User $user, array $rulesets = [])
     {
-        (new NominateBeatmapset($this, $user, $playmodes))->handle();
+        (new NominateBeatmapset($this, $user, $rulesets))->handle();
     }
 
     public function love(User $user, ?array $beatmapIds = null)
@@ -1232,7 +1232,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         });
     }
 
-    public function nominationsByType()
+    public function nominationsByType(): array
     {
         $nominations = $this->beatmapsetNominations()
             ->current()
@@ -1247,8 +1247,12 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         foreach ($nominations as $nomination) {
             $userNominationModes = $nomination->user->nominationModes();
             // no permission
-            if ($userNominationModes === null) {
-                continue;
+            if (empty($userNominationModes)) {
+                // use old nomination level if it was saved.
+                $userNominationModes = $nomination->getNominationLevel();
+                if (empty($userNominationModes)) {
+                    continue;
+                }
             }
 
             // legacy nomination, only check group
