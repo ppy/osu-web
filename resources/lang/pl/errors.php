@@ -7,7 +7,7 @@ return [
     'load_failed' => 'Nie udało się załadować danych.',
     'missing_route' => 'Nieprawidłowy adres URL lub nieprawidłowa metoda żądania.',
     'no_restricted_access' => 'Nie możesz wykonać tej czynności podczas blokady konta.',
-    'param_too_large' => '',
+    'param_too_large' => 'Parametr „:name” może zawierać maksymalnie :count_delimited element|Parametr „:name” może zawierać maksymalnie :count_delimited elementy|Parametr „:name” może zawierać maksymalnie :count_delimited elementów',
     'supporter_only' => 'Do skorzystania z tej funkcji wymagany jest aktywny status donatora osu!.',
     'unknown' => 'Wystąpił nieoczekiwany błąd.',
 

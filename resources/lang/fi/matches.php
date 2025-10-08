@@ -15,22 +15,22 @@ return [
         'winner_by' => ':winner :difference pisteellä',
 
         'events' => [
-            'game_aborted' => '',
-            'game_aborted_no_user' => '',
-            'game_completed' => '',
-            'game_completed_no_user' => '',
-            'host_changed' => '',
-            'host_changed_no_user' => '',
-            'player_joined' => '',
-            'player_joined_no_user' => '',
-            'player_kicked' => '',
-            'player_kicked_no_user' => '',
-            'player_left' => '',
-            'player_left_no_user' => '',
-            'room_created' => '',
-            'room_created_no_user' => '',
-            'room_disbanded' => '',
-            'room_disbanded_no_user' => '',
+            'game_aborted' => 'peli peruutettiin',
+            'game_aborted_no_user' => 'peli peruutettiin',
+            'game_completed' => 'peli on päättynyt',
+            'game_completed_no_user' => 'peli on päättynyt',
+            'host_changed' => ':user on nyt isäntä',
+            'host_changed_no_user' => 'isäntä vaihdettiin',
+            'player_joined' => ':user liittyi peliin',
+            'player_joined_no_user' => 'pelaaja liittyi peliin',
+            'player_kicked' => ':user potkittiin pelistä',
+            'player_kicked_no_user' => 'pelaaja potkittiin pelistä',
+            'player_left' => ':user poistui pelistä',
+            'player_left_no_user' => 'pelaaja poistui pelistä',
+            'room_created' => ':user loi pelin',
+            'room_created_no_user' => 'peli luotiin',
+            'room_disbanded' => 'peli hajoitettiin',
+            'room_disbanded_no_user' => 'peli hajoitettiin',
         ],
 
         'score' => [
@@ -42,10 +42,10 @@ return [
         ],
 
         'team_types' => [
-            'head_to_head' => '',
-            'tag_coop' => '',
-            'tag_team_versus' => '',
-            'team_versus' => '',
+            'head_to_head' => 'Kaikki vastakkain',
+            'tag_coop' => 'Yhteistyöpeli',
+            'tag_team_versus' => 'Tiimi yhteistyöpeli VS',
+            'team_versus' => 'Tiimi VS',
         ],
 
         'teams' => [
@@ -54,7 +54,7 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '',
+        'freestyle' => 'Freestyle',
 
         'scoring-type' => [
             'score' => 'Korkeimmat Pisteet',

@@ -126,8 +126,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'Активные',
+            'ended' => 'Завершённые',
         ],
     ],
 
@@ -481,8 +481,8 @@ return [
             'placeholder' => 'Напишите о себе',
 
             'restriction_info' => [
-                '_' => 'Для использования этой функции нужен :link.',
-                'link' => 'тег osu!supporter',
+                '_' => 'Разблокировать эту функцию можно с помощью :link.',
+                'link' => 'тега osu!supporter',
             ],
         ],
         'post_count' => [

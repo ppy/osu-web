@@ -2,9 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 export function presence(value?: string | null) {
-  return present(value) ? value : null;
+  return value != null && value !== '' ? value : null;
 }
 
 export function present(value?: string | null) {
-  return value != null && value !== '';
+  return presence(value) != null;
 }

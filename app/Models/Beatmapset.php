@@ -39,6 +39,7 @@ use DB;
 use Ds\Set;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
@@ -107,6 +108,7 @@ use Illuminate\Database\QueryException;
  * @property User $user
  * @property \Illuminate\Database\Eloquent\Collection $userRatings BeatmapsetUserRating
  * @property int $user_id
+ * @property-read \Illuminate\Database\Eloquent\Collection<BeatmapsetVersion> $versions
  * @property int $versions_available
  * @property bool $video
  * @property \Illuminate\Database\Eloquent\Collection $watches BeatmapsetWatch
@@ -904,16 +906,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         });
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Relationships
-    |--------------------------------------------------------------------------
-    |
-    | One set has many beatmaps, which in turn have many mods
-    | One set has a single creator.
-    |
-    */
-
     public function allBeatmaps()
     {
         return $this->hasMany(Beatmap::class)->withTrashed();
@@ -947,6 +939,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public function language()
     {
         return $this->belongsTo(Language::class, 'language_id');
+    }
+
+    public function versions(): HasMany
+    {
+        return $this->hasMany(BeatmapsetVersion::class);
     }
 
     public function getAttribute($key)
@@ -1041,6 +1038,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             'track',
             'user',
             'userRatings',
+            'versions',
             'watches' => $this->getRelationValue($key),
         };
     }
@@ -1318,6 +1316,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
                 'nominations',
                 'related_users',
                 'related_users.groups',
+                'version_count',
             ]
         );
     }

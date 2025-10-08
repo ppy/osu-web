@@ -300,7 +300,7 @@ return [
         'graveyard' => 'Apleisti',
         'leaderboard' => 'Turi Rezultatų lentą',
         'loved' => 'Mylimi',
-        'mine' => 'Mano Bitmapai',
+        'mine' => 'Mano Beatmap\'ai',
         'pending' => 'Laukiantis',
         'wip' => 'WIP',
         'qualified' => 'Kvalifikuoti',

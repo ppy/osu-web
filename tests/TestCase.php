@@ -6,6 +6,7 @@
 namespace Tests;
 
 use App\Events\NewPrivateNotificationEvent;
+use App\Exceptions\InvalidScopeException;
 use App\Http\Middleware\AuthApi;
 use App\Jobs\Notifications\BroadcastNotificationBase;
 use App\Libraries\OAuth\EncodeToken;
@@ -140,6 +141,16 @@ class TestCase extends BaseTestCase
         ]);
     }
 
+    protected function expectInvalidScopeException(?string $key)
+    {
+        if ($key === null) {
+            $this->expectNotToPerformAssertions();
+        } else {
+            $this->expectException(InvalidScopeException::class);
+            $this->expectExceptionMessage(osu_trans("model_validation/token.invalid_scope.{$key}"));
+        }
+    }
+
     protected function setUp(): void
     {
         $this->beforeApplicationDestroyed(fn () => $this->runExpectedCountsCallbacks());
@@ -151,8 +162,7 @@ class TestCase extends BaseTestCase
 
         // Disable caching for the BeatmapTagsController and TagsController tests
         // because otherwise multiple run of the tests may use stale cache data.
-        config_set('osu.tags.beatmap_tags_cache_duration', 0);
-        config_set('osu.tags.tags_cache_duration', 0);
+        config_set('osu.beatmap_tags.cache_duration', 0);
 
         // Force connections to reset even if transactional tests were not used.
         // Should fix tests going wonky when different queue drivers are used, or anything that

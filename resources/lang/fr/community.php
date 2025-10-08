@@ -144,7 +144,7 @@ return [
             'was_valid_until' => 'Votre tag osu!supporter était valable jusqu\'au :date.',
 
             'gifted' => [
-                '_' => 'Parmi toutes vos contributions, vous avez offert pour une valeur totale de :dollars en tags osu!supporters, offerts à :users, pour une durée totale de :duration. Quelle générosité !',
+                '_' => 'Parmi toutes vos contributions, vous avez offert pour une valeur totale de :dollars en tags osu!supporter, offerts à :users, pour une durée totale de :duration. Quelle générosité !',
                 'users' => ':count_delimited autre personne|:count_delimited autres personnes',
             ],
         ],

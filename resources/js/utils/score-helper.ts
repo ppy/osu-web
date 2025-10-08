@@ -30,11 +30,11 @@ export function canBeReported(score: ScoreJson) {
 /**
  * Process score mods array for display
  *
- * Removes CL mod on legacy score if user has lazer mode disabled
- * and sort the mods.
+ * Sort the mods. Additionally removes CL mod on legacy score
+ * depending on user preference if the option is enabled.
  */
-export function filterMods(score: ScoreJson) {
-  const shownMods = shouldReturnLegacyValue(score)
+export function displayMods(score: ScoreJson, filterByPreference = true) {
+  const shownMods = filterByPreference && shouldReturnLegacyValue(score)
     ? score.mods.filter((mod) => mod.acronym !== 'CL')
     : score.mods;
 

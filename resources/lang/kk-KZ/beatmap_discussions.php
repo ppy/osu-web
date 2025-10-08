@@ -69,8 +69,8 @@ return [
     'refresh' => [
         'checking' => '',
         'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'no_updates' => 'Жаңарту жоқ.',
+        'updating' => 'Жаңарту...',
     ],
 
     'reply' => [

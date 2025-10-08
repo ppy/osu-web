@@ -2,6 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .form-select {
+  @_top: form-select;
+
   .default-border-radius();
   background-color: @osu-colour-b6;
   color: @osu-colour-c1;
@@ -40,6 +42,12 @@
     flex: 1;
   }
 
+  &--group-history {
+    background-color: inherit;
+    font-size: @font-size--title-small-3;
+    margin: -5px;
+  }
+
   &--simple-form {
     background-color: @osu-colour-b4;
     color: @osu-colour-c1;
@@ -52,5 +60,10 @@
     background-color: inherit;
     border-radius: inherit;
     max-width: 100%;
+    text-overflow: ellipsis;
+
+    .@{_top}--group-history & {
+      width: 100%;
+    }
   }
 }

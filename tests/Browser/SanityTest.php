@@ -16,6 +16,9 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapMirror;
 use App\Models\BeatmapPack;
 use App\Models\Beatmapset;
+use App\Models\BeatmapsetFile;
+use App\Models\BeatmapsetVersion;
+use App\Models\BeatmapsetVersionFile;
 use App\Models\Build;
 use App\Models\Changelog;
 use App\Models\Chat\Channel;
@@ -101,6 +104,9 @@ class SanityTest extends DuskTestCase
         // Clean up extra things that get created (i.e. as side-effects, etc)
         Beatmap::truncate();
         Beatmapset::truncate();
+        BeatmapsetFile::truncate();
+        BeatmapsetVersion::truncate();
+        BeatmapsetVersionFile::truncate();
         Channel::truncate();
         Count::truncate();
         AuthOption::truncate();
@@ -156,6 +162,12 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['beatmap_discussion_reply'] = BeatmapDiscussionPost::factory()->create([
             'beatmap_discussion_id' => self::$scaffolding['beatmap_discussion'],
             'user_id' => self::$scaffolding['user'],
+        ]);
+        $beatmapsetVersion = BeatmapsetVersion::factory()->create([
+            'beatmapset_id' => self::$scaffolding['beatmapset'],
+        ]);
+        self::$scaffolding['beatmapset_version_file'] = BeatmapsetVersionFile::factory()->create([
+            'version_id' => $beatmapsetVersion,
         ]);
         self::$scaffolding['pack'] = BeatmapPack::factory()->create();
 
@@ -551,6 +563,8 @@ class SanityTest extends DuskTestCase
             'account.edit',
             'account.github-users.callback',
             'account.github-users.create',
+            'authenticator-app.create',
+            'authenticator-app.edit',
             'chat.index',
             'client-verifications.create',
             'messages.users.show',

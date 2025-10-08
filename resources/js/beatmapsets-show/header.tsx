@@ -231,19 +231,13 @@ export default class Header extends React.Component<Props> {
 
   @action
   private readonly onEnterFavouriteIcon = () => {
-    if (this.filteredFavourites.length < 1) {
-      if (this.favouritePopupDisposer != null) {
-        this.favouritePopupDisposer();
-        $(this.favouriteIconRef.current ?? []).qtip('destroy', true);
-      }
-
-      return;
-    }
-
     this.favouritePopupDisposer ??= createTooltip(
       () => this.favouriteIconRef.current,
       () => ({
         count: this.controller.beatmapset.favourite_count,
+        title: this.controller.beatmapset.favourite_count > 0
+          ? trans('beatmapsets.show.stats.favourites')
+          : trans('beatmapsets.show.stats.no_favourites'),
         users: this.filteredFavourites,
       }),
       'right center',

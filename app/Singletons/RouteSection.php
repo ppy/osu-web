@@ -70,6 +70,9 @@ class RouteSection
             'friends_controller' => [
                 '_' => 'home',
             ],
+            'group_history_controller' => [
+                '_' => 'home',
+            ],
             'groups_controller' => [
                 '_' => 'home',
             ],
@@ -108,6 +111,9 @@ class RouteSection
             ],
             'store_controller' => [
                 '_' => 'store',
+            ],
+            'user_totp_controller' => [
+                '_' => 'home',
             ],
             'users_controller' => [
                 '_' => 'user',

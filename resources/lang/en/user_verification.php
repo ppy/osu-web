@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => 'Please enter the code from your authenticator app.',
+
+        'info' => [
+            'logout' => [
+                '_' => 'You can also :link.',
+                'link' => 'sign out',
+            ],
+            'mail_fallback' => [
+                '_' => 'If you can\'t access your app, :link.',
+                'link' => 'you can verify using email instead',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Verification code expired, new verification email sent.',
         'incorrect_key' => 'Incorrect verification code.',
         'retries_exceeded' => 'Incorrect verification code. Retry limit exceeded, new verification email sent.',
         'reissued' => 'Verification code reissued, new verification email sent.',
+        'totp_used_key' => 'Verification code has already been used. Please wait and use a new one.',
+        'totp_gone' => 'Authentication token has been removed, switching to email verification. Verification email has been sent.',
         'unknown' => 'Unknown problem occurred, new verification email sent.',
     ],
 ];

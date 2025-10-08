@@ -102,7 +102,7 @@ return [
             '_' => 'reitingai',
         ],
         'scores_controller' => [
-            '_' => 'pp',
+            '_' => 'rezultatyvumas',
         ],
         'seasons_controller' => [
             '_' => 'reitingai',

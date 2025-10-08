@@ -179,7 +179,7 @@ return [
 
     'room' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'เจ้าของห้องเท่านั้นที่สามารถปิดได้',
         ],
     ],
 
@@ -195,16 +195,16 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
+                'already_member' => "คุณเป็นส่วนหนึ่งของกลุ่มแล้ว",
                 'already_other_member' => "",
                 'currently_applying' => '',
                 'team_closed' => '',
-                'team_full' => "",
+                'team_full' => "กลุ่มนี้เต็มจำนวนและไม่สามารถรับสมาชิกเข้าเพิ่มได้",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "ผู้นำกลุ่มไม่สามารถออกจากกลุ่มได้",
+            'not_member' => 'ไม่ใช่สมาชิกของกลุ่ม',
         ],
         'store' => [
             'require_supporter_tag' => '',

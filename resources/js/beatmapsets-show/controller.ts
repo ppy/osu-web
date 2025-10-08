@@ -18,6 +18,10 @@ export type ScoreLoadingState = null | 'error' | 'loading' | 'supporter_only' | 
 
 type BeatmapJsonForBeatmapsetShow = BeatmapsetJsonForShow['converts'][number];
 
+interface Config {
+  tags_min_votes_display: number;
+}
+
 interface State {
   beatmapId?: BeatmapJsonForBeatmapsetShow['id'];
   beatmapset: BeatmapsetJsonForShow;
@@ -30,6 +34,7 @@ type TagJsonWithCount = TagJson & { count: number };
 export default class Controller {
   @observable hoveredBeatmap: null | BeatmapJsonForBeatmapsetShow = null;
   @observable state: State;
+  private readonly config: Config;
 
   @computed
   get beatmaps() {
@@ -92,7 +97,7 @@ export default class Controller {
     if (this.currentBeatmap.top_tag_ids != null) {
       for (const tagId of this.currentBeatmap.top_tag_ids) {
         const maybeTag = this.relatedTags.get(tagId.tag_id);
-        if (maybeTag == null) continue;
+        if (maybeTag == null || tagId.count < this.config.tags_min_votes_display) continue;
 
         userTags.push({ ...maybeTag, count: tagId.count } );
       }
@@ -133,6 +138,8 @@ export default class Controller {
     }
 
     this.state = state;
+
+    this.config = parseJson<Config>('json-config');
 
     makeObservable(this);
 

@@ -56,7 +56,7 @@ return [
 
                 'users' => [
                     'header' => 'Käyttäjä',
-                    'cover_presets' => '',
+                    'cover_presets' => 'Profiilin cover-esiasetukset',
                 ],
             ],
         ],
