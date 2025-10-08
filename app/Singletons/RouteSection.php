@@ -70,6 +70,9 @@ class RouteSection
             'friends_controller' => [
                 '_' => 'home',
             ],
+            'group_history_controller' => [
+                '_' => 'home',
+            ],
             'groups_controller' => [
                 '_' => 'home',
             ],

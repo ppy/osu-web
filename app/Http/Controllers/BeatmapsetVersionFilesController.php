@@ -29,7 +29,8 @@ class BeatmapsetVersionFilesController extends Controller
             function () use ($file) {
                 echo $file->content();
             },
-            $versionFile->filename,
+            // filename column includes path so it needs to be stripped out
+            basename($versionFile->filename),
             ['Content-Type' => 'application/octet-stream'],
         );
     }

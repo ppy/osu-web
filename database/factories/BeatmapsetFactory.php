@@ -146,7 +146,7 @@ class BeatmapsetFactory extends Factory
                 ]), 'events');
     }
 
-    public function withBeatmaps(?string $ruleset = null, int $count = 1, ?User $guestMapper = null)
+    public function withBeatmaps(?string $ruleset = null, int $count = 1, ?User $guestMapper = null, array $beatmapState = [])
     {
         return $this
             ->has(Beatmap::factory()
@@ -155,6 +155,7 @@ class BeatmapsetFactory extends Factory
                 ->state(fn (array $attr, Beatmapset $set) => [
                     'approved' => $set->approved,
                     'user_id' => $guestMapper?->getKey() ?? $set->user_id,
+                    ...$beatmapState,
                 ]));
     }
 }

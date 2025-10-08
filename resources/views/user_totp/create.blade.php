@@ -29,7 +29,7 @@
                 data-skip-ajax-error-popup="1"
             >
                 <div class="password-reset__input-group">
-                    <div class="qr-svg">
+                    <div class="qr-svg qr-svg--user-totp">
                         {!! qr_svg($uri) !!}
                     </div>
                     <p>
