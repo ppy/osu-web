@@ -13,7 +13,7 @@
 Represents a single configured gameplay mod.
 
 Field    | Type                             | Description
----------|----------------------------------|----------------------------------------------------
+-------- | -------------------------------- | -----------
 acronym  | string                           | The acronym of the mod.
 settings | [ModSetting](#mod-modsetting)[]? | The list of configured settings on the mod, if any.
 
@@ -22,7 +22,7 @@ settings | [ModSetting](#mod-modsetting)[]? | The list of configured settings on
 ### ModSetting
 
 Field | Type   | Description
-------|--------|--------------------------
+----- | ------ | -----------
 name  | string | The name of the setting.
 value | object | The value of the setting.
 
