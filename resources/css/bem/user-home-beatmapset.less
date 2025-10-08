@@ -4,22 +4,14 @@
 .user-home-beatmapset {
   .link-plain();
   .own-layer();
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   transition: 0.1s;
   color: @osu-colour-f1;
 
-  // undo padding from container
-  margin: 10px -20px;
-  padding: 0 20px;
-  width: calc(100% + 40px);
-
-  @media @desktop {
-    margin-left: -10px;
-    margin-right: -10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    width: calc(100% + 20px);
-  }
+  padding: 0 var(--padding-x);
+  width: 100%;
+  gap: 10px;
 
   &:hover {
     background-color: @osu-colour-b3;
@@ -32,8 +24,6 @@
 
   &__chevron {
     .center-content();
-    flex: none;
-    margin-left: 5px;
   }
 
   &__creator {
@@ -43,11 +33,8 @@
 
   &__meta {
     display: flex;
-    flex: 1;
     flex-direction: column;
     justify-content: center;
-    margin-left: 5px;
-    padding: 0 5px;
     color: #fff;
     font-weight: 400;
     min-width: 0;
