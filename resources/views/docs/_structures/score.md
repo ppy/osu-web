@@ -31,7 +31,7 @@ ruleset_id          | integer                             | The ID of the rulese
 started_at          | [Timestamp](#timestamp)?            | When the user started playing.
 statistics          | [ScoreStatistics](#scorestatistics) | The score statistics achieved in this score,
 total_score         | integer                             | Total score calculated using lazer's "standardised scoring" variant.
-type                | string                              |
+type                | string                              | |
 user_id             | integer                             | The ID of the user that achieved this score.
 
 <sup>1</sup> These two values are in most cases the same. The one exception where they may differ is osu!mania, because of the removal of the mechanic in which holding down a hold note grants combo for "ticks". See [relevant wiki article](https://osu.ppy.sh/wiki/en/Client/Release_stream/Lazer/Gameplay_differences_in_osu!(lazer)#hold-note-ticks-are-removed) for details.
