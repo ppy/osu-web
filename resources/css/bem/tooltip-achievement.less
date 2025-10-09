@@ -2,77 +2,72 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .tooltip-achievement {
-  @_top: tooltip-achievement;
-  @_badge-height: 120px;
-
-  text-align: center;
-
+  --padding-x: 16px;
   width: 100%;
-  padding: 20px 10px;
+  text-align: center;
+  line-height: 1;
+  font-size: @font-size--normal;
 
-  &__badge {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    font-size: 70px; // icon size
+  &__achieved {
+    padding: 16px var(--padding-x);
+    display: grid;
+    gap: 8px;
   }
 
-  &__content {
-    padding: 20px;
-    text-align: center;
+  &__badge {
+    .center-content();
+    font-size: 72px; // icon size
   }
 
   &__date {
-    margin-top: 10px;
-    font-size: @font-size--small;
-    color: #fff;
+    color: hsl(var(--hsl-c2));
+    opacity: 0.5;
   }
 
   &__description {
-    margin-top: 10px;
-    font-size: @font-size--normal;
-    color: #ccc;
+    font-size: @font-size--title-small;
+    color: hsl(var(--hsl-c2));
   }
 
   &__detail {
     transition: opacity 500ms;
     min-height: 90px;
+    grid-area: content;
+    display: grid;
+    gap: 16px;
 
     &--hover {
-      .full-size();
-      height: auto;
-      opacity: 0;
-
-      .@{_top}__detail-container--hoverable:hover & {
-        position: relative;
-        opacity: 1;
-      }
+      opacity: var(--opacity-hover);
     }
 
     &--normal {
-      .@{_top}__detail-container--hoverable:hover & {
-        .full-size();
-        opacity: 0;
-      }
+      opacity: var(--opacity-normal);
     }
   }
 
   &__detail-container {
-    position: relative;
+    display: grid;
+    grid-template-areas: "content";
+    line-height: normal;
+
+    &--hoverable {
+      --opacity-normal: 1;
+      --opacity-hover: 0;
+
+      &:hover {
+        --opacity-normal: 0;
+        --opacity-hover: 1;
+      }
+    }
   }
 
   &__grouping {
-    text-align: center;
-
-    padding: 10px;
-    color: #fff;
-
-    font-size: @font-size--normal;
+    color: hsl(var(--hsl-c2));
+    padding: 8px var(--padding-x);
   }
 
   &__instructions {
-    color: @osu-colour-l1;
+    color: hsl(var(--hsl-l1));
     font-size: @font-size--title-small;
     font-weight: 300;
 
@@ -86,9 +81,16 @@
     }
   }
 
+  &__middle {
+    border-radius: var(--border-radius);
+    background: hsl(var(--hsl-b5));
+    display: grid;
+    gap: 16px;
+    padding: 16px var(--padding-x);
+  }
+
   &__name {
-    font-size: @font-size--large;
-    font-weight: 300;
-    color: #fff;
+    font-size: @font-size--title;
+    font-weight: 400;
   }
 }
