@@ -70,31 +70,25 @@
                     @include('home._user_online_status')
                 </div>
                 <div class="user-home__buttons">
-                    <div class="user-home__button">
-                        @include('home._user_giant_button', [
-                            'href' => route('download'),
-                            'label' => osu_trans('home.user.buttons.download'),
-                            'icon' => 'download',
-                        ])
-                    </div>
+                    @include('home._user_giant_button', [
+                        'href' => route('download'),
+                        'label' => osu_trans('home.user.buttons.download'),
+                        'icon' => 'download',
+                    ])
 
-                    <div class="user-home__button">
-                        @include('home._user_giant_button', [
-                            'href' => route('support-the-game'),
-                            'label' => osu_trans('home.user.buttons.support'),
-                            'icon' => 'heart',
-                            'colour' => 'c-pink-darker'
-                        ])
-                    </div>
+                    @include('home._user_giant_button', [
+                        'href' => route('support-the-game'),
+                        'label' => osu_trans('home.user.buttons.support'),
+                        'icon' => 'heart',
+                        'colour' => 'c-pink-darker'
+                    ])
 
-                    <div class="user-home__button">
-                        @include('home._user_giant_button', [
-                            'href' => route('store.products.index'),
-                            'label' => osu_trans('home.user.buttons.store'),
-                            'icon' => 'shopping-cart',
-                            'colour' => 'c-darkorange'
-                        ])
-                    </div>
+                    @include('home._user_giant_button', [
+                        'href' => route('store.products.index'),
+                        'label' => osu_trans('home.user.buttons.store'),
+                        'icon' => 'shopping-cart',
+                        'colour' => 'c-darkorange'
+                    ])
                 </div>
 
                 @if ($dailyChallenge)
