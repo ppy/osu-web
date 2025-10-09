@@ -17,9 +17,7 @@ use Ds\Set;
 
 class NominateBeatmapset
 {
-    /** @var Set<string> */
-    private Set $beatmapRulesets;
-
+    private array $nominationLevels;
     /** @var Set<string> */
     private Set $nominatedRulesets;
 
@@ -29,16 +27,12 @@ class NominateBeatmapset
             throw new UnsupportedNominationException();
         }
 
-        $this->beatmapRulesets = new Set($beatmapset->playmodesStr());
         $this->nominatedRulesets = new Set($rulesets);
-
-        if ($this->beatmapRulesets->intersect($this->nominatedRulesets)->count() === 0) {
-            throw new InvariantException(osu_trans('beatmapsets.nominate.hybrid_requires_modes'));
-        }
-
-        if ($this->nominatedRulesets->diff($this->beatmapRulesets)->count() > 0) {
-            throw new InvariantException(osu_trans('beatmapsets.nominate.invalid_ruleset'));
-        }
+        $this->nominationLevels = array_filter(
+            $this->user->nominationModes(),
+            fn ($ruleset) => $this->nominatedRulesets->contains($ruleset),
+            ARRAY_FILTER_USE_KEY,
+        );
     }
 
     public static function requiredNominationsConfig()
@@ -73,7 +67,7 @@ class NominateBeatmapset
                 $event = $this->beatmapset->events()->create($eventParams);
                 $this->beatmapset->beatmapsetNominations()->create([
                     'event_id' => $event->getKey(),
-                    'modes' => $eventParams['comment']['modes'],
+                    'modes' => $this->nominationLevels,
                     'user_id' => $this->user->getKey(),
                 ]);
 
@@ -118,10 +112,24 @@ class NominateBeatmapset
 
     private function assertRulesetNomination()
     {
+        $beatmapsetRulesets = new Set($this->beatmapset->playmodesStr());
+        if ($beatmapsetRulesets->intersect($this->nominatedRulesets)->count() === 0) {
+            throw new InvariantException(osu_trans('beatmapsets.nominate.hybrid_requires_modes'));
+        }
+
+        if ($this->nominatedRulesets->diff($beatmapsetRulesets)->count() > 0) {
+            throw new InvariantException(osu_trans('beatmapsets.nominate.invalid_ruleset'));
+        }
+
+        $noPermissions = $this->nominatedRulesets->diff(new Set(array_keys($this->nominationLevels)));
+        if (!$noPermissions->isEmpty()) {
+            throw new InvariantException(osu_trans('beatmapsets.nominate.incorrect_mode', ['mode' => $noPermissions->first()]));
+        }
+
         // NOTE: This assumption is only valid for the current nomination rules. (see requiredNominationsConfig)
         // LimitedBNs cannot be the only nominator for a non-main ruleset and since they only require 1 nomination,
         // it implies LimitedBNs can only nominate one ruleset (effectively the main).
-        if ($this->user->isLimitedBN() && $this->nominatedRulesets->count() > 1) {
+        if (in_array('limited', $this->nominationLevels, true) && $this->nominatedRulesets->count() > 1) {
             throw new InvariantException(osu_trans('beatmapsets.nominate.bng_limited_too_many_rulesets'));
         }
 
@@ -154,23 +162,15 @@ class NominateBeatmapset
             }
         }
 
-        $nominationsByType = $this->beatmapset->nominationsByType();
-
         // assert rulesets have correct nominators
-        foreach ($this->nominatedRulesets as $ruleset) {
-            if (!$this->user->isFullBN($ruleset) && !$this->user->isNAT($ruleset)) {
-                if (!$this->user->isLimitedBN($ruleset)) {
-                    throw new InvariantException(osu_trans('beatmapsets.nominate.incorrect_mode', ['mode' => $ruleset]));
-                }
-
-                if ($mainRuleset !== null) {
-                    $requiredCount = $mainRuleset === $ruleset ? $config['main_ruleset'] : $config['non_main_ruleset'];
-                    if (
-                        $nominationCount[$ruleset] >= $requiredCount
-                        && (static::nominationCount($nominationsByType, 'full', $ruleset) === 0)
-                    ) {
-                        throw new InvariantException(osu_trans('beatmapsets.nominate.full_nomination_required'));
-                    }
+        foreach ($this->nominationLevels as $ruleset => $level) {
+            if ($level === 'limited' && $mainRuleset !== null) {
+                $requiredCount = $mainRuleset === $ruleset ? $config['main_ruleset'] : $config['non_main_ruleset'];
+                if (
+                    $nominationCount[$ruleset] >= $requiredCount
+                    && (static::nominationCount($this->beatmapset->nominationsByType(), 'full', $ruleset) === 0)
+                ) {
+                    throw new InvariantException(osu_trans('beatmapsets.nominate.full_nomination_required'));
                 }
             }
         }
