@@ -15,7 +15,7 @@ id                  | integer                             | The ID of this score
 is_perfect_combo    | boolean                             | Whether the user has achieved perfect combo using lazer logic.<sup>1</sup>
 legacy_perfect      | boolean                             | Whether the user has achieved perfect combo using stable logic.<sup>1</sup>
 legacy_score_id     | integer?                            | Only present on scores set in stable. The ID of this score in the old ID scheme preceding lazer.
-legacy_total_score  | integer                             | Only present on scores set in stable. The total score achieved by the user in stable's scoring algorithm (colloquially known as "score V1").
+legacy_total_score  | integer                             | Only present on scores set in stable (will be 0 on scores set in lazer). The total score achieved by the user in stable's scoring algorithm (colloquially known as "score V1").
 max_combo           | integer                             | The largest combo achieved by the user during gameplay.
 maximum_statistics  | [ScoreStatistics](#scorestatistics) | The best possible score statistics achievable on the map the user played.
 mods                | [Mod](#mod)[]                       | The mods used when setting this score.
