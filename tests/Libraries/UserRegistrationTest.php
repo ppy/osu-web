@@ -10,6 +10,7 @@ use App\Libraries\UserRegistration;
 use App\Models\Count;
 use App\Models\User;
 use App\Models\UserCoverPreset;
+use App\Models\UserGroupEvent;
 use Tests\TestCase;
 
 class UserRegistrationTest extends TestCase
@@ -22,6 +23,7 @@ class UserRegistrationTest extends TestCase
 
         $this->expectCountChange(fn () => User::count(), 1);
         $this->expectCountChange(fn () => Count::totalUsers()->count, 1);
+        $this->expectCountChange(fn () => UserGroupEvent::count(), 0);
         $reg = new UserRegistration($attrs);
         $thrown = $this->runSubject($reg);
 
@@ -29,8 +31,6 @@ class UserRegistrationTest extends TestCase
 
         $user = $reg->user()->fresh();
         $this->assertNotNull($user->cover()->presetId());
-        $this->assertTrue($user->userGroups->every(fn ($userGroup) =>
-            $userGroup->user_pending === false));
     }
 
     public function testRequiresUsername()
