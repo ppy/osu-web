@@ -20,12 +20,26 @@ function formatAchievedPercent(percent: number) {
   return formatNumber(percent, precision, { style: 'percent' });
 }
 
+function getTier(percent: number|null|undefined) {
+  if (percent != null) {
+    if (percent < 0.00001) {
+      return ['lustrous', 'Rare!'];
+    } else if (percent < 0.0001) {
+      return ['gold', 'Uncommon'];
+    }
+  }
+
+  return null;
+}
+
 interface Props {
   achievedAt?: string;
   achievement: AchievementJson;
 }
 
 export default function AchievementBadgePopup({ achievedAt, achievement }: Props) {
+  const tier = getTier(achievement.achieved_percent);
+
   return (
     <div className='tooltip-achievement'>
       <div className='tooltip-achievement__grouping'>
@@ -67,6 +81,16 @@ export default function AchievementBadgePopup({ achievedAt, achievement }: Props
       </div>
 
       <div className='tooltip-achievement__achieved'>
+        {tier != null &&
+          <div
+            className='tooltip-achievement__rarity'
+            style={{
+              '--bg': `var(--level-tier-${tier[0]})`,
+            } as React.CSSProperties}
+          >
+            {tier[1]}
+          </div>
+        }
         {achievement.achieved_percent != null &&
           <div>
             {trans('users.show.extra.achievements.achieved_by_percent_user', {
