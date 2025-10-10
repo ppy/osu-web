@@ -5,6 +5,7 @@
 
 return [
     'none' => 'No group history found!',
+    'view' => 'View group history',
 
     'event' => [
         'actor' => 'by :user',
