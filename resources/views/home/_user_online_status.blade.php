@@ -6,7 +6,7 @@
     $stats = $stats ?? new App\Libraries\CurrentStats;
 @endphp
 <div class="user-online-status">
-    <div class="user-online-status__item">
+    <div>
         <div class="user-online-status__label">
             {{ osu_trans('home.user.header.stats.friends') }}
         </div>
@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <div class="user-online-status__item">
+    <div>
         <div class="user-online-status__label">
             {{ osu_trans('home.user.header.stats.games') }}
         </div>
@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <div class="user-online-status__item">
+    <div>
         <div class="user-online-status__label">
             {{ osu_trans('home.user.header.stats.online') }}
         </div>
@@ -34,8 +34,7 @@
     </div>
 
     <div
-        class="js-fancy-graph user-online-status__item user-online-status__item--chart"
-        data-src="banchostats"
+        class="js-fancy-graph user-online-status__chart"
+        data-chart-data="{{ json_encode($stats->graphData) }}"
     ></div>
-    <script id="banchostats" type="application/json">{!! json_encode($stats->graphData) !!}</script>
 </div>
