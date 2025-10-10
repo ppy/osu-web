@@ -86,5 +86,10 @@ class Kernel extends ConsoleKernel
         $schedule->command('daily-challenge:user-stats-calculate')
             ->cron('10 0 * * *')
             ->onOneServer();
+
+        $schedule->command('user-count-by-ruleset:recalculate')
+            ->cron('20 0 * * *')
+            ->withoutOverlapping(120)
+            ->onOneServer();
     }
 }

@@ -6,8 +6,31 @@ import TimeWithTooltip from 'components/time-with-tooltip';
 import AchievementJson from 'interfaces/achievement-json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
 import AchievementBadgeIcon from './achievement-badge-icon';
+
+function formatAchievedPercent(percent: number) {
+  const precision = percent < 0.01
+    ? 4
+    : percent < 0.1
+      ? 3
+      : 2;
+
+  return formatNumber(percent, precision, { style: 'percent' });
+}
+
+function getTier(percent: number | null | undefined) {
+  if (percent != null) {
+    if (percent < 0.00001) {
+      return ['lustrous', 'Rare!'];
+    } else if (percent < 0.0001) {
+      return ['gold', 'Uncommon'];
+    }
+  }
+
+  return null;
+}
 
 interface Props {
   achievedAt?: string;
@@ -15,54 +38,77 @@ interface Props {
 }
 
 export default function AchievementBadgePopup({ achievedAt, achievement }: Props) {
+  const tier = getTier(achievement.achieved_percent);
+
   return (
     <div className='tooltip-achievement'>
-      <div className='tooltip-achievement__badge'>
-        <AchievementBadgeIcon
-          achievement={achievement}
-          modifiers={{
-            'dynamic-height': true,
-            locked: achievedAt == null,
-          }}
-        />
-      </div>
-
       <div className='tooltip-achievement__grouping'>
         {achievement.grouping}
       </div>
 
-      <div className={classWithModifiers('tooltip-achievement__detail-container', { hoverable: achievement.instructions != null })}>
-        <div className='tooltip-achievement__detail tooltip-achievement__detail--normal'>
-          <div className='tooltip-achievement__name'>
-            {achievement.name}
-          </div>
-          <div
-            dangerouslySetInnerHTML={{ __html: achievement.description }}
-            className='tooltip-achievement__description'
+      <div className={classWithModifiers('tooltip-achievement__middle')}>
+        <div className='tooltip-achievement__badge'>
+          <AchievementBadgeIcon
+            achievement={achievement}
+            modifiers={{
+              'dynamic-height': true,
+              locked: achievedAt == null,
+            }}
           />
         </div>
-        {achievement.instructions != null && (
-          <div className='tooltip-achievement__detail tooltip-achievement__detail--hover'>
+
+        <div className={classWithModifiers('tooltip-achievement__detail-container', {
+          hoverable: achievement.instructions != null,
+        })}>
+          <div className={classWithModifiers('tooltip-achievement__detail', { normal: achievement.instructions != null })}>
+            <div className='tooltip-achievement__name'>
+              {achievement.name}
+            </div>
             <div
-              dangerouslySetInnerHTML={{ __html: achievement.instructions }}
-              className='tooltip-achievement__instructions'
+              dangerouslySetInnerHTML={{ __html: achievement.description }}
+              className='tooltip-achievement__description'
             />
           </div>
-        )}
+          {achievement.instructions != null &&
+            <div className='tooltip-achievement__detail tooltip-achievement__detail--hover'>
+              <div
+                dangerouslySetInnerHTML={{ __html: achievement.instructions }}
+                className='tooltip-achievement__instructions'
+              />
+            </div>
+          }
+        </div>
       </div>
 
-      {achievedAt != null ? (
+      <div className='tooltip-achievement__achieved'>
+        {tier != null &&
+          <div
+            className='tooltip-achievement__rarity'
+            style={{
+              '--bg': `var(--level-tier-${tier[0]})`,
+            } as React.CSSProperties}
+          >
+            {tier[1]}
+          </div>
+        }
+        {achievement.achieved_percent != null &&
+          <div>
+            {trans('users.show.extra.achievements.achieved_by_percent_user', {
+              percent: formatAchievedPercent(achievement.achieved_percent),
+            })}
+          </div>
+        }
         <div className='tooltip-achievement__date'>
-          <StringWithComponent
-            mappings={{ date: <TimeWithTooltip dateTime={achievedAt} /> }}
-            pattern={trans('users.show.extra.achievements.achieved-on')}
-          />
+          {achievedAt == null ? (
+            trans('users.show.extra.achievements.locked')
+          ) : (
+            <StringWithComponent
+              mappings={{ date: <TimeWithTooltip dateTime={achievedAt} /> }}
+              pattern={trans('users.show.extra.achievements.achieved-on')}
+            />
+          )}
         </div>
-      ) : (
-        <div className='tooltip-achievement__date'>
-          {trans('users.show.extra.achievements.locked')}
-        </div>
-      )}
+      </div>
     </div>
   );
 }
