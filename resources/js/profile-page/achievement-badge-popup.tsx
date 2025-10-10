@@ -20,7 +20,7 @@ function formatAchievedPercent(percent: number) {
   return formatNumber(percent, precision, { style: 'percent' });
 }
 
-function getTier(percent: number|null|undefined) {
+function getTier(percent: number | null | undefined) {
   if (percent != null) {
     if (percent < 0.00001) {
       return ['lustrous', 'Rare!'];
