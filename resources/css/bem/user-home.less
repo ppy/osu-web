@@ -22,15 +22,14 @@
   }
 
   &__beatmapsets {
-    margin: -10px 0;
-  }
-
-  &__button {
-    margin: 10px 0;
+    margin: 0 calc(var(--padding-x) * -1);
+    display: grid;
+    gap: 10px;
   }
 
   &__buttons {
-    margin: -10px 0;
+    display: grid;
+    gap: 10px;
   }
 
   &__news {
@@ -76,17 +75,19 @@
   }
 
   &__right-sidebar {
+    --padding-x: 20px;
     background-color: @osu-colour-b4;
     width: 100%;
     margin: 0;
-    padding: 20px;
+    padding: 20px var(--padding-x);
 
     @media @desktop {
       .default-box-shadow();
+      --padding-x: 10px;
       margin-left: 10px;
       margin-bottom: 10px;
       width: calc(40% - 10px);
-      padding: 20px 10px 10px;
+      padding-bottom: 10px;
     }
   }
 
