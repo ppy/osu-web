@@ -340,7 +340,8 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
             <div
               className={`${bn}__stripe`} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
               contentEditable={false}
-            />
+              // the stripe element becomes editable if it is completely empty for some reason.
+            ><span /></div>
             <div className={`${bn}__message-container`}>
               {this.props.children}
             </div>
