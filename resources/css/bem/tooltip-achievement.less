@@ -98,7 +98,8 @@
   &__rarity {
     width: max-content;
     margin: 0 auto;
-    padding: 4px 16px;
+    // rightmost letter has extra padding from letter-spacing
+    padding: 4px calc(16px - $letter-spacing) 4px 16px;
     background: linear-gradient(var(--bg));
     border-radius: 10000px;
     color: hsl(var(--hsl-b6));
