@@ -75,7 +75,7 @@ export default class NewReview extends React.Component<Props> {
 
   render(): React.ReactNode {
     const floatClass = 'beatmap-discussion-new-float';
-    const placeholder = this.noPermissionText;
+    const placeholder = this.mounted ? this.noPermissionText : '';
 
     return (
       <div className={classWithModifiers(floatClass, { pinned: this.pinned })} style={{ top: this.cssTop }}>

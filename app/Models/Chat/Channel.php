@@ -423,8 +423,9 @@ class Channel extends Model
             throw new API\ChatMessageEmptyException(osu_trans('api.error.chat.empty'));
         }
 
+        $filteredContent = $this->isAnnouncement() ? $content : app('chat-filters')->filter($content);
         $maxLength = $this->messageLengthLimit();
-        if (mb_strlen($content, 'UTF-8') > $maxLength) {
+        if (mb_strlen($filteredContent, 'UTF-8') > $maxLength) {
             throw new API\ChatMessageTooLongException(osu_trans('api.error.chat.too_long'));
         }
 
@@ -456,7 +457,7 @@ class Channel extends Model
         }
 
         $message = new Message([
-            'content' => $this->isAnnouncement() ? $content : app('chat-filters')->filter($content),
+            'content' => $filteredContent,
             'is_action' => $isAction,
             'timestamp' => $now,
         ]);
