@@ -2,18 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .user-online-status {
-  display: flex;
-  flex-wrap: wrap;
-  color: @osu-colour-c1;
-  margin: -10px;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: 20px;
 
-  &__item {
-    padding: 10px;
-
-    &--chart {
-      height: 70px;
-      width: 100%;
-    }
+  &__chart {
+    height: 50px;
+    grid-column: 1 / -1;
   }
 
   &__label {

@@ -34,7 +34,9 @@ export class EditorToolbar extends React.Component {
     }
 
     const domSelection = window.getSelection();
-    return domSelection?.getRangeAt(0);
+    return domSelection != null && domSelection.rangeCount > 0
+      ? domSelection.getRangeAt(0)
+      : null;
   }
 
   get visible() {
