@@ -7,6 +7,7 @@
 
     $newsPostLargePreviews = NewsPost::LANDING_LIMIT;
     $currentUser = Auth::user();
+    $queryForRecentBeatmapsets = 'ranked>'.json_date(Carbon\Carbon::now()->subDays(30));
 @endphp
 @extends('master')
 
@@ -111,6 +112,9 @@
                     @foreach ($newBeatmapsets as $beatmapset)
                         @include('home._user_beatmapset', ['type' => 'new'])
                     @endforeach
+                    <a href="{{ route('beatmapsets.index', ['q' => $queryForRecentBeatmapsets]) }}">
+                        {{ osu_trans('common.buttons.see_more') }}
+                    </a>
                 </div>
 
                 <h3 class='user-home__beatmap-list-title'>
@@ -121,6 +125,9 @@
                     @foreach ($popularBeatmapsets as $beatmapset)
                         @include('home._user_beatmapset', ['type' => 'popular'])
                     @endforeach
+                    <a href="{{ route('beatmapsets.index', ['q' => $queryForRecentBeatmapsets, 'sort' => 'favourites_desc']) }}">
+                        {{ osu_trans('common.buttons.see_more') }}
+                    </a>
                 </div>
             </div>
         </div>
