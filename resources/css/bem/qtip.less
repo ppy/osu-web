@@ -6,11 +6,11 @@
 
   &--achievement {
     .default-box-shadow();
-    border-radius: 30px;
+    --border-radius: 32px;
+    border-radius: var(--border-radius);
     background-color: @osu-colour-b6;
     border: 0 solid transparent;
     width: 200px;
-    line-height: normal;
 
     .qtip-content {
       overflow: visible;

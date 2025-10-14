@@ -74,7 +74,7 @@ export default class AchievementBadge extends React.PureComponent<Props> {
         classes: 'qtip qtip--achievement',
         tip: {
           height: 20,
-          width: 30,
+          width: 56,
         },
       },
     };

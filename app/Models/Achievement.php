@@ -46,6 +46,7 @@ class Achievement extends Model
     public function getAttribute($key)
     {
         return match ($key) {
+            'achieved_count',
             'achievement_id',
             'description',
             'grouping',
@@ -61,6 +62,13 @@ class Achievement extends Model
 
             'mode' => $this->getMode(),
         };
+    }
+
+    public function refreshAchievedCount(): void
+    {
+        $countQuery = UserAchievement::where('achievement_id', $this->getKey())->selectRaw('COUNT(*)')->toRawSql();
+        $this->update(['achieved_count' => \DB::raw("({$countQuery})")]);
+        $this->refresh();
     }
 
     private function getMode(): ?string

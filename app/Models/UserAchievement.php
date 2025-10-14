@@ -50,6 +50,7 @@ class UserAchievement extends Model
             }
 
             Event::generate('achievement', compact('achievement', 'user'));
+            $achievement->incrementInstance('achieved_count');
 
             (new UserAchievementUnlock($achievement, $user))->dispatch();
 
