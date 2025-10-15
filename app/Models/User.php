@@ -127,6 +127,7 @@ use Request;
  * @property-read UserStatistics\Osu|null $statisticsOsu
  * @property-read UserStatistics\Taiko|null $statisticsTaiko
  * @property-read Collection<Store\Address> $storeAddresses
+ * @property ?int $support_length
  * @property-read Collection<UserDonation> $supporterTagPurchases
  * @property-read Collection<UserDonation> $supporterTags
  * @property-read Team|null $team
@@ -807,6 +808,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'osu_playmode',
             'osu_testversion',
             'remember_token',
+            'support_length',
             'user_actkey',
             'user_allow_massemail',
             'user_allow_viewemail',
@@ -1940,21 +1942,21 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->fresh();
     }
 
-    public function supportLength()
+    public function refreshSupportLength(): int
     {
-        return $this->memoize(__FUNCTION__, function () {
-            $supportLength = 0;
+        $supportLength = 0;
 
-            foreach ($this->supporterTagPurchases as $support) {
-                if ($support->cancel === true) {
-                    $supportLength -= $support->length;
-                } else {
-                    $supportLength += $support->length;
-                }
+        foreach ($this->supporterTagPurchases as $support) {
+            if ($support->cancel === true) {
+                $supportLength -= $support->length;
+            } else {
+                $supportLength += $support->length;
             }
+        }
 
-            return $supportLength;
-        });
+        $this->update(['support_length' => $supportLength]);
+
+        return $supportLength;
     }
 
     public function supportLevel()
@@ -1963,7 +1965,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             return 0;
         }
 
-        $length = $this->supportLength();
+        $length = $this->support_length;
+        $length ??= $this->refreshSupportLength();
 
         if ($length < 12) {
             return 1;

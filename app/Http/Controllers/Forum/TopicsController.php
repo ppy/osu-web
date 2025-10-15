@@ -494,7 +494,6 @@ class TopicsController extends Controller
             'lastEditor',
             'user.country',
             'user.rank',
-            'user.supporterTagPurchases',
             'user.team',
             'user.userGroups',
         ]);
