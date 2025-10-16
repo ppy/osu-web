@@ -7,7 +7,7 @@ import AchievementJson from 'interfaces/achievement-json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
-import { trans } from 'utils/lang';
+import { trans, transChoice } from 'utils/lang';
 import AchievementBadgeIcon from './achievement-badge-icon';
 
 function formatAchievedPercent(percent: number) {
@@ -93,9 +93,10 @@ export default function AchievementBadgePopup({ achievedAt, achievement }: Props
         }
         {achievement.achieved_percent != null &&
           <div>
-            {trans('users.show.extra.achievements.achieved_by_percent_user', {
-              percent: formatAchievedPercent(achievement.achieved_percent),
-            })}
+            {transChoice('common.count.player', achievement.achieved_count)}
+            {achievement.achieved_percent > 0 &&
+              ` (${formatAchievedPercent(achievement.achieved_percent)})`
+            }
           </div>
         }
         <div className='tooltip-achievement__date'>
