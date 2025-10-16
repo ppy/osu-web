@@ -89,19 +89,4 @@ class UserClient extends Model
     {
         return $this->belongsTo(Build::class, 'osu_md5', 'hash');
     }
-
-    public function isLatest()
-    {
-        if ($this->build === null) {
-            return false;
-        }
-
-        $latestBuild = Build::select('build_id')
-            ->where([
-                'test_build' => false,
-                'stream_id' => $this->build->stream_id,
-            ])->last();
-
-        return $this->build->getKey() === optional($latestBuild)->getKey();
-    }
 }
