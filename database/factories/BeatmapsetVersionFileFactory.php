@@ -15,15 +15,22 @@ class BeatmapsetVersionFileFactory extends Factory
 {
     protected $model = BeatmapsetVersionFile::class;
 
-    private static function randomExt(): string
+    private static function randomFilename(): string
     {
-        return '.'.array_rand_val([
+        $ext = '.'.array_rand_val([
             'jpg',
             'mp3',
             'osb',
             'osu',
             'png',
         ]);
+
+        static $chars = [...range('A', 'Z'), ...range('a', 'z'), ...range('0', '9'), ''];
+
+        return implode(array_map(
+            fn (): string => array_rand_val($chars),
+            array_fill(0, 32, ''),
+        )).$ext;
     }
 
     public function copyFrom(BeatmapsetVersionFile $versionFile): static
@@ -38,7 +45,7 @@ class BeatmapsetVersionFileFactory extends Factory
     {
         return [
             'file_id' => BeatmapsetFile::factory(),
-            'filename' => fn (): string => $this->faker->word().static::randomExt(),
+            'filename' => static::randomFilename(...),
             'version_id' => BeatmapsetVersion::factory(),
         ];
     }
