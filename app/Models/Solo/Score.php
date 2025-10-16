@@ -14,6 +14,7 @@ use App\Libraries\Score\ScoringMode;
 use App\Libraries\Score\UserRank;
 use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
+use App\Models\Build;
 use App\Models\Model;
 use App\Models\Multiplayer\ScoreLink as MultiplayerScoreLink;
 use App\Models\Score as LegacyScore;
@@ -154,6 +155,11 @@ class Score extends Model implements Traits\ReportableInterface
         return $this->belongsTo(Beatmap::class, 'beatmap_id');
     }
 
+    public function build()
+    {
+        return $this->belongsTo(Build::class, 'build_id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -269,6 +275,7 @@ class Score extends Model implements Traits\ReportableInterface
             'legacy_perfect' => $this->isPerfectLegacyCombo(),
 
             'beatmap',
+            'build',
             'performance',
             'processHistory',
             'reportedIn',

@@ -6,6 +6,7 @@
 namespace App\Models;
 
 use App\Libraries\Commentable;
+use App\Traits\Memoizes;
 use Carbon\Carbon;
 
 /**
@@ -28,6 +29,7 @@ use Carbon\Carbon;
  */
 class Build extends Model implements Commentable
 {
+    use Memoizes;
     use Traits\CommentableDefaults;
 
     public $timestamps = false;
@@ -195,9 +197,51 @@ class Build extends Model implements Commentable
         return "{$this->updateStream->pretty_name} {$this->displayVersion()}";
     }
 
+    public function isLatest(): bool
+    {
+        $parent = $this->parent();
+
+        return !static
+            ::where([
+                'test_build' => false,
+                'stream_id' => $parent->stream_id,
+            ])->where('build_id', '>', $parent->getKey())
+            ->exists();
+    }
+
     public function notificationCover()
     {
         // no image
+    }
+
+    public function parent(): ?static
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            $streamId = $this->stream_id;
+
+            if ($streamId !== null) {
+                return $this;
+            }
+
+            $versionParts = explode('-', $this->version);
+            $streamName = $versionParts[1] ?? null;
+
+            if ($streamName !== null) {
+                $stream = UpdateStream::firstWhere('name', $streamName);
+
+                if ($stream !== null) {
+                    $build = $stream->builds()->firstWhere('version', $versionParts[0]);
+
+                    if ($build !== null) {
+                        $build->setRelation('updateStream', $stream);
+
+                        return $build;
+                    }
+                }
+            }
+
+            return null;
+        });
     }
 
     public function platform(): string
