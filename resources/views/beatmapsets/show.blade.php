@@ -31,7 +31,7 @@
                         </span>
                     </a>
                 @endif
-                <a class="admin-menu-item" href="{{ $beatmapset->coverURL('raw') }}" target="_blank">
+                <a class="admin-menu-item" href="{{ $beatmapset->coverURL('fullsize') }}" target="_blank">
                     <span class="admin-menu-item__content">
                         <span class="admin-menu-item__label admin-menu-item__label--icon">
                             <span class="fas fa-image"></span>
