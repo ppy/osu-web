@@ -25,10 +25,14 @@
   &--main {
     margin-left: auto;
     bottom: -@_height;
-    transition: bottom 120ms;
+    transition:
+      bottom 120ms,
+      opacity 120ms;
+    opacity: 0;
 
     &[data-audio-visible="1"] {
       bottom: 0;
+      opacity: 1;
     }
   }
 
