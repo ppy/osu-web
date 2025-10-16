@@ -33,8 +33,9 @@ class NewForumTopic
         if ($this->forum->isHelpForum()) {
             $buildName = '';
 
-            $build = $this->user->clients()->last('timestamp')?->build
-                ?? $this->user->soloScores()->whereNotNull('build_id')->last()?->build;
+            $build = $this->user->soloScores()->last()?->build
+                // the build above will be null if the user last played on stable
+                ?? $this->user->clients()->last('timestamp')?->build;
             $stream = $build?->parent()?->updateStream;
 
             if ($stream !== null) {
