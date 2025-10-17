@@ -106,6 +106,7 @@ interface HypeData {
 }
 
 interface BeatmapsetJsonDefaultAttributes {
+  anime_cover: boolean;
   artist: string;
   artist_unicode: string;
   covers: BeatmapsetCovers;
@@ -132,6 +133,7 @@ export default BeatmapsetJson;
 
 export function deletedBeatmapset(): BeatmapsetJson {
   return {
+    anime_cover: false,
     artist: '',
     artist_unicode: '',
     covers: {

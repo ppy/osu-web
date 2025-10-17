@@ -5,17 +5,17 @@
 @php
     $class = class_with_modifiers('beatmapset-cover', $modifiers);
 
+    $showVisual = true;
+    $isAnimeCover = $beatmapset->anime_cover;
     $isNsfw = $beatmapset->nsfw;
-    if ($isNsfw) {
-        $attributesBag = Request::instance()->attributes;
-        $userShowNsfw = $attributesBag->get('user_beatmapset_show_nsfw');
-        if ($userShowNsfw === null) {
-            $userShowNsfw = App\Models\UserProfileCustomization::forUser(Auth::user())['beatmapset_show_nsfw'];
-            $attributesBag->set('user_beatmapset_show_nsfw', $userShowNsfw);
-        }
+
+    if ($isNsfw || $isAnimeCover) {
+        $preferences = App\Models\UserProfileCustomization::forUser(Auth::user());
+        $showVisual = (!$isNsfw || $preferences['beatmapset_show_nsfw'])
+            && (!$isAnimeCover || $preferences['beatmapset_show_anime_cover']);
     }
 
-    $style = !$isNsfw || $userShowNsfw
+    $style = $showVisual
         ? css_var_2x('--bg', $beatmapset->coverURL($size))
         : '';
 @endphp

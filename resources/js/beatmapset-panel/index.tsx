@@ -19,7 +19,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Transition } from 'react-transition-group';
 import { getDiffColour, group as groupBeatmaps } from 'utils/beatmap-helper';
-import { getArtist, getTitle, showVisual, toggleFavourite } from 'utils/beatmapset-helper';
+import { getArtist, getTitle, showAudio, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber, formatNumberSuffixed } from 'utils/html';
 import { trans } from 'utils/lang';
@@ -239,9 +239,8 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     return this.props.beatmapset.hype != null;
   }
 
-  @computed
-  private get showVisual() {
-    return showVisual(this.props.beatmapset);
+  private get showAudio() {
+    return showAudio(this.props.beatmapset);
   }
 
   @computed
@@ -269,7 +268,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
       [`size-${core.userPreferences.get('beatmapset_card_size')}`]: true,
       'with-hype-counts': this.showHypeCounts,
     });
-    if (this.showVisual) {
+    if (this.showAudio) {
       blockClass += ' js-audio--player';
     }
 
@@ -578,7 +577,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   private renderPlayArea() {
     return (
       <div className='beatmapset-panel__play-container'>
-        {this.showVisual && (
+        {this.showAudio && (
           <button className='beatmapset-panel__play js-audio--play' type='button'>
             <span className='play-button' />
           </button>
