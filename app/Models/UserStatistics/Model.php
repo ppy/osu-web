@@ -191,6 +191,19 @@ abstract class Model extends BaseModel
         return $value === 0 || $this->rank_score === 0.0 ? null : $value;
     }
 
+    public function globalRankPercent(): ?float
+    {
+        $rank = $this->globalRank();
+
+        if ($rank === null) {
+            return null;
+        }
+
+        $count = app('user-count-by-ruleset')->get(true, $this->getMode());
+
+        return $count === null ? null : $rank / max(1, $count);
+    }
+
     public function isRanked()
     {
         return $this->globalRank() !== null;
