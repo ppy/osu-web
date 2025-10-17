@@ -38,6 +38,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->assertTrue($donor->osu_subscriber);
         $this->assertEqualsUpToOneSecond($expectedExpiry, $donor->osu_subscriptionexpiry);
         $this->assertSame(2, $donor->osu_featurevotes);
+        $this->assertSame(1, $donor->support_length);
     }
 
     public function testDonateSupporterTagToOthers()
@@ -70,6 +71,8 @@ class SupporterTagFulfillmentTest extends TestCase
         // votes go to donor.
         $this->assertSame(2, $donor->osu_featurevotes);
         $this->assertSame(0, $giftee->osu_featurevotes);
+
+        $this->assertSame(1, $donor->support_length);
     }
 
     /**
@@ -197,6 +200,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->assertEqualsUpToOneSecond($now, $donor->osu_subscriptionexpiry);
         $this->assertSame(0, $donor->osu_featurevotes);
         $this->assertFalse($donor->osu_subscriber);
+        $this->assertSame(0, $donor->support_length);
     }
 
     public function testPartiallyRevokedOrder()
