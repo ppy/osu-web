@@ -9,6 +9,7 @@ namespace App\Singletons;
 
 use App\Models\Beatmap;
 use App\Models\Count;
+use App\Models\CountryStatistics;
 use App\Models\UserStatistics;
 use App\Traits\Memoizes;
 
@@ -25,22 +26,23 @@ class UserCountByRuleset
 
     private static function getFromDb(): array
     {
-        $counts = [];
+        $counts = ['active' => [], 'all' => []];
         foreach (Beatmap::MODES as $rulesetName => $rulesetId) {
-            $counts[$rulesetName] = UserStatistics\Model
+            $counts['active'][$rulesetName] = (int) CountryStatistics::where('mode', $rulesetId)->sum('user_count');
+            $counts['all'][$rulesetName] = UserStatistics\Model
                 ::getClass($rulesetName)
                 ::select('user_id')
                 ->count();
         }
-        $counts['_all'] = max([...$counts, Count::totalUsers()->count]);
+        $counts['all']['_all'] = max([...$counts['all'], Count::totalUsers()->count]);
 
         return $counts;
     }
 
-    public function get(?string $rulesetName): ?int
+    public function get(bool $activeOnly, ?string $rulesetName): ?int
     {
         $data = $this->memoize(__FUNCTION__, fn (): ?array => \Cache::get(static::KEY));
 
-        return $data[$rulesetName ?? '_all'] ?? null;
+        return $data[$activeOnly ? 'active' : 'all'][$rulesetName ?? '_all'] ?? null;
     }
 }
