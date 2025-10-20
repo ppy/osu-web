@@ -3,6 +3,15 @@
 
 .rank-value {
   --colour: hsl(var(--hsl-c2)), hsl(var(--hsl-c2));
+  --font-weight: bold;
   .fancy-text(var(--colour));
-  font-weight: 400;
+  font-weight: var(--font-weight);
+
+  &--base {
+    --font-weight: 400;
+  }
+
+  &--iron {
+    --font-weight: 400;
+  }
 }

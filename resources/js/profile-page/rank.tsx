@@ -6,6 +6,7 @@ import RankHighestJson from 'interfaces/rank-highest-json';
 import UserStatisticsJson, { RankType } from 'interfaces/user-statistics-json';
 import * as moment from 'moment';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
 
@@ -77,7 +78,7 @@ export default function Rank({ highest, stats, type }: Props) {
       modifiers='rank'
       value={
         <div
-          className='rank-value'
+          className={classWithModifiers('rank-value', tier ?? 'base')}
           data-html-title={tooltip.join('')}
           data-tooltip-position='bottom left'
           style={{
