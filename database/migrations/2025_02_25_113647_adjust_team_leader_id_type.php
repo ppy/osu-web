@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('teams', function (Blueprint $table) {
-            $table->unsignedBigInteger('leader_id')->change();
+            $table->unsignedInteger('leader_id')->change();
         });
     }
 
