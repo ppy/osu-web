@@ -31,15 +31,16 @@ class NewForumTopic
         $body = null;
 
         if ($this->forum->isHelpForum()) {
-            $client = $this->user->clients()->last('timestamp');
-
             $buildName = '';
 
-            if ($client !== null && $client->build !== null && $client->build->updateStream !== null) {
-                $build = $client->build;
-                $stream = $build->updateStream;
-                $buildName = $stream->pretty_name.' '.$build->displayVersion();
-                if ($client->isLatest()) {
+            $build = $this->user->soloScores()->last()?->build
+                // the build above will be null if the user last played on stable
+                ?? $this->user->clients()->last('timestamp')?->build;
+            $stream = $build?->parent()?->updateStream;
+
+            if ($stream !== null) {
+                $buildName = $stream->pretty_name.' '.$build->version;
+                if ($build->isLatest()) {
                     $buildName .= ' (latest)';
                 }
             }
