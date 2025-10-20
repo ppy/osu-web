@@ -158,7 +158,7 @@ export class UserList extends React.PureComponent<Props> {
               <BigButton
                 href={route('group-history.index', { group_id: this.props.group.id })}
                 icon='fas fa-history'
-                modifiers='user-list-title'
+                modifiers='rounded-thin'
                 text={trans('group_history.view')}
               />
             </h1>

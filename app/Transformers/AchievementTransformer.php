@@ -16,7 +16,7 @@ class AchievementTransformer extends TransformerAbstract
         $userCount = app('user-count-by-ruleset')->get($rulesetName);
         $achievedPercent = $userCount === null
             ? null
-            : min(1, $achievement->achieved_count / $userCount);
+            : min(1, $achievement->achieved_count / max(1, $userCount));
 
         return [
             'achieved_percent' => $achievedPercent,
