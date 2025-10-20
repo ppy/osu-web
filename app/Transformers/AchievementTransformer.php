@@ -17,7 +17,7 @@ class AchievementTransformer extends TransformerAbstract
         $achievedCount = $achievement->achieved_count;
         $achievedPercent = $userCount === null
             ? null
-            : min(1, $achievedCount / $userCount);
+            : min(1, $achievedCount / max(1, $userCount));
 
         return [
             'achieved_count' => $achievedCount,
