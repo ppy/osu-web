@@ -16,10 +16,10 @@ class SentryMetrics
 
         $response = $next($request);
 
-        $end = microtime(true);
-        $duration = $end - $start;
+        $sampleRateInversed = $GLOBALS['cfg']['osu']['sentry']['log_sample_rate_inversed'];
+        if ($sampleRateInversed !== null && rand(1, $sampleRateInversed) <= 100) {
+            $end = microtime(true);
 
-        if ($duration > $GLOBALS['cfg']['osu']['sentry']['min_log_duration']) {
             $data = DatadogMetrics::makeLogTags($request, $response);
             $name = "{$data['namespace']}/{$data['controller']}:{$data['action']}";
 
