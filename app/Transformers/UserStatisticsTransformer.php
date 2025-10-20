@@ -39,6 +39,7 @@ class UserStatisticsTransformer extends TransformerAbstract
                 'progress' => $stats->currentLevelProgressPercent(),
             ],
             'global_rank' => $stats->globalRank(),
+            'global_rank_percent' => $stats->globalRankPercent(),
             'global_rank_exp' => null,
             'pp' => $stats->rank_score,
             'pp_exp' => 0,
@@ -63,9 +64,7 @@ class UserStatisticsTransformer extends TransformerAbstract
 
     public function includeCountryRank(?UserStatistics\Model $stats = null)
     {
-        if ($stats !== null) {
-            return $this->primitive($stats->countryRank());
-        }
+        return $this->primitive($stats?->countryRank());
     }
 
     // TODO: remove this after country_rank is deployed
