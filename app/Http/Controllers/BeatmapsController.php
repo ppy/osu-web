@@ -75,7 +75,7 @@ class BeatmapsController extends Controller
             'type' => $type,
             'user' => $currentUser,
         ]);
-        $scores = $esFetch->all()->loadMissing(['beatmap', 'user.country', 'user.team', 'processHistory']);
+        $scores = $esFetch->all()->loadMissing(['beatmap', 'user.country', 'user.team']);
         $userScore = $esFetch->userBest();
         $scoreTransformer = new ScoreTransformer($legacyFormat);
 
@@ -492,7 +492,7 @@ class BeatmapsController extends Controller
             'sort' => 'score_desc',
             'user_id' => (int) $userId,
         ]);
-        $scores = (new ScoreSearch($params))->records()->loadMissing('processHistory');
+        $scores = (new ScoreSearch($params))->records();
 
         return [
             'scores' => json_collection($scores, new ScoreTransformer()),

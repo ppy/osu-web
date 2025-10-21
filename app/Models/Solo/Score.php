@@ -21,8 +21,10 @@ use App\Models\Score as LegacyScore;
 use App\Models\ScoreToken;
 use App\Models\Traits;
 use App\Models\User;
+use App\Support\ScoreCollection;
 use Carbon\CarbonImmutable;
 use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Database\Eloquent\Attributes\CollectedBy;
 use Illuminate\Database\Eloquent\Builder;
 use LaravelRedis;
 
@@ -51,6 +53,7 @@ use LaravelRedis;
  * @property User $user
  * @property int $user_id
  */
+#[CollectedBy(ScoreCollection::class)]
 class Score extends Model implements Traits\ReportableInterface
 {
     use Traits\Reportable, Traits\WithDbCursorHelper, Traits\WithWeightedPp;
@@ -61,6 +64,7 @@ class Score extends Model implements Traits\ReportableInterface
         'old' => [['column' => 'id', 'order' => 'ASC']],
     ];
 
+    public ScoreCollection $collection;
     public $timestamps = false;
 
     protected $casts = [
@@ -394,7 +398,10 @@ class Score extends Model implements Traits\ReportableInterface
         return null;
     }
 
-    public function isProcessed(): bool
+    /**
+     * The value is only accurate if the instance was fetched with `forListing` scope
+     */
+    public function isProcessed(): ?bool
     {
         if ($this->legacy_score_id !== null) {
             return true;
@@ -404,7 +411,9 @@ class Score extends Model implements Traits\ReportableInterface
             return $this->attributes['processed_version'] !== null;
         }
 
-        return $this->processHistory !== null;
+        $this->collection ??= new ScoreCollection([$this]);
+
+        return $this->getKey() <= $this->collection->lastProcessedScoreId();
     }
 
     public function legacyScore(): ?LegacyScore\Best\Model

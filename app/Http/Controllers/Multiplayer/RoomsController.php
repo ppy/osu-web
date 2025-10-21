@@ -55,7 +55,6 @@ class RoomsController extends Controller
             'playlistItem.beatmap.beatmapset',
             'playlistItem.detailEvent',
             'playlistItem.scoreLinks.score',
-            'playlistItem.scoreLinks.score.processHistory',
         ])->limit($params['limit']);
 
         if (isset($params['after'])) {
