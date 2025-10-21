@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('team_applications', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->nullable(false);
+            $table->unsignedInteger('user_id')->nullable(false);
             $table->unsignedBigInteger('team_id')->nullable(false);
             $table->timestampsTz();
 

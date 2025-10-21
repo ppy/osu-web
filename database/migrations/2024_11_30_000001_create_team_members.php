@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('team_members', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->primary();
+            $table->unsignedInteger('user_id')->primary();
             $table->unsignedBigInteger('team_id')->nullable(false);
             $table->timestampTz('created_at')->useCurrent();
             $table->timestampTz('updated_at')->useCurrent();
