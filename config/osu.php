@@ -13,6 +13,11 @@ foreach (explode(',', env('CLIENT_TOKEN_KEYS') ?? '') as $entry) {
     }
 }
 
+$sentryLogSampleRate = get_float(env('OSU_SENTRY_LOG_SAMPLE_RATE')) ?? 0;
+// inverse so it can be used directly using `rand(1, $val) <= 100`
+// (also multiply by 100 so 0.9 and the likes still works)
+$sentryLogSampleRateInversed = $sentryLogSampleRate <= 0 ? null : (int) (100 / $sentryLogSampleRate);
+
 // osu config~
 return [
     'achievement' => [
@@ -200,7 +205,8 @@ return [
     ],
 
     'sentry' => [
-        'min_log_duration' => get_float(env('OSU_SENTRY_MIN_LOG_DURATION_MS') ?? 500) / 1000,
+        // inverse so it can be used directly using `rand(1, $val) === 1`
+        'log_sample_rate_inversed' => $sentryLogSampleRateInversed,
     ],
     'store' => [
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE') ?? '')),
@@ -244,6 +250,7 @@ return [
         'allow_email_login' => get_bool(env('USER_ALLOW_EMAIL_LOGIN')) ?? true,
         'allow_registration' => get_bool(env('ALLOW_REGISTRATION')) ?? true,
         'allowed_rename_groups' => explode(' ', env('USER_ALLOWED_RENAME_GROUPS', 'default')),
+        'always_require_verification' => get_bool(env('USER_ALWAYS_REQUIRE_VERIFICATION')) ?? false,
         'bypass_verification' => get_bool(env('USER_BYPASS_VERIFICATION')) ?? false,
         'inactive_force_password_reset' => get_bool(env('USER_INACTIVE_FORCE_PASSWORD_RESET') ?? false),
         'inactive_seconds_verification' => (get_int(env('USER_INACTIVE_DAYS_VERIFICATION')) ?? 180) * 86400,

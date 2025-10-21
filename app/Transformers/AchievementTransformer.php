@@ -14,11 +14,13 @@ class AchievementTransformer extends TransformerAbstract
         $rulesetName = $achievement->mode;
 
         $userCount = app('user-count-by-ruleset')->get($rulesetName);
+        $achievedCount = $achievement->achieved_count;
         $achievedPercent = $userCount === null
             ? null
-            : min(1, $achievement->achieved_count / max(1, $userCount));
+            : min(1, $achievedCount / max(1, $userCount));
 
         return [
+            'achieved_count' => $achievedCount,
             'achieved_percent' => $achievedPercent,
             'icon_url' => $achievement->iconUrl(),
             'id' => $achievement->achievement_id,

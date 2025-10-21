@@ -275,7 +275,6 @@ return [
 
             'achievements' => [
                 'achieved-on' => 'Achieved on :date',
-                'achieved_by_percent_user' => ':percent of players',
                 'locked' => 'Locked',
                 'title' => 'Achievements',
             ],

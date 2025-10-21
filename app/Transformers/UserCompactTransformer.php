@@ -127,7 +127,6 @@ class UserCompactTransformer extends TransformerAbstract
         return [
             ...static::CARD_INCLUDES_PRELOAD,
             User::statisticsRelationName($rulesetName),
-            'supporterTagPurchases',
         ];
     }
 
