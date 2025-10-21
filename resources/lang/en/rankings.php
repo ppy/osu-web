@@ -44,8 +44,13 @@ return [
         'global' => 'global',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
+        'scores' => 'top scores',
         'seasons' => 'seasons',
         'team' => 'team',
+    ],
+
+    'scores' => [
+        'empty' => 'the data is being calculated...',
     ],
 
     'seasons' => [
