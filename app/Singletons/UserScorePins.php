@@ -16,14 +16,10 @@ class UserScorePins
 
     public function isPinned(Solo\Score $score): bool
     {
-        $attributes = \Request::instance()->attributes;
-        $pins = $attributes->get(static::REQUEST_ATTRIBUTE_KEY);
-
-        if ($pins === null) {
-            $pins = new Set(\Auth::user()?->scorePins()->pluck('score_id') ?? []);
-
-            $attributes->set(static::REQUEST_ATTRIBUTE_KEY, $pins);
-        }
+        $pins = request_attribute_remember(
+            static::REQUEST_ATTRIBUTE_KEY,
+            fn () => new Set(\Auth::user()?->scorePins()->pluck('score_id') ?? []),
+        );
 
         return $pins->contains($score->getKey());
     }

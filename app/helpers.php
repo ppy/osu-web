@@ -20,14 +20,10 @@ use Sentry\State\Scope;
 
 function api_version(): int
 {
-    $request = request();
-    $version = $request->attributes->get('api_version');
-    if ($version === null) {
-        $version = get_int($request->header('x-api-version')) ?? 0;
-        $request->attributes->set('api_version', $version);
-    }
-
-    return $version;
+    return request_attribute_remember(
+        'api_version',
+        fn (HttpRequest $request): int => get_int($request->header('x-api-version')) ?? 0,
+    );
 }
 
 function array_reject_null(iterable $array): array
@@ -715,6 +711,23 @@ function read_image_properties_from_string($string)
 function replace_tags_with_spaces($body)
 {
     return preg_replace('#<[^>]+>#', ' ', $body);
+}
+
+function request_attribute_remember(string $key, callable $callback): mixed
+{
+    $request = Request::instance();
+    $attributes = $request->attributes;
+
+    $hasValue = $attributes->has($key);
+
+    if ($hasValue) {
+        $value = $attributes->get($key);
+    } else {
+        $value = $callback($request);
+        $attributes->set($key, $value);
+    }
+
+    return $value;
 }
 
 function request_country($request = null)
