@@ -250,6 +250,7 @@ return [
         'allow_email_login' => get_bool(env('USER_ALLOW_EMAIL_LOGIN')) ?? true,
         'allow_registration' => get_bool(env('ALLOW_REGISTRATION')) ?? true,
         'allowed_rename_groups' => explode(' ', env('USER_ALLOWED_RENAME_GROUPS', 'default')),
+        'always_require_verification' => get_bool(env('USER_ALWAYS_REQUIRE_VERIFICATION')) ?? false,
         'bypass_verification' => get_bool(env('USER_BYPASS_VERIFICATION')) ?? false,
         'inactive_force_password_reset' => get_bool(env('USER_INACTIVE_FORCE_PASSWORD_RESET') ?? false),
         'inactive_seconds_verification' => (get_int(env('USER_INACTIVE_DAYS_VERIFICATION')) ?? 180) * 86400,

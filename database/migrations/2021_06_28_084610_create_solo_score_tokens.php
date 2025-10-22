@@ -21,7 +21,7 @@ class CreateSoloScoreTokens extends Migration
         Schema::create('solo_score_tokens', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('score_id')->nullable();
-            $table->bigInteger('user_id');
+            $table->unsignedInteger('user_id');
             $table->mediumInteger('beatmap_id');
             $table->smallInteger('ruleset_id');
             $table->timestamps();

@@ -5,6 +5,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
+
 class VerifyUserAlways extends VerifyUser
 {
     const GET_ACTION_METHODS = [
@@ -13,9 +15,13 @@ class VerifyUserAlways extends VerifyUser
         'OPTIONS' => true,
     ];
 
-    public static function isRequired($user)
+    public static function isRequired(?User $user): bool
     {
-        return $user !== null && ($user->isPrivileged() || $user->isInactive());
+        return $user !== null
+            && (
+                $GLOBALS['cfg']['osu']['user']['always_require_verification']
+                || $user->isPrivileged()
+                || $user->isInactive());
     }
 
     public function requiresVerification($request)
