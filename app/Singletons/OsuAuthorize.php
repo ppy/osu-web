@@ -78,12 +78,10 @@ class OsuAuthorize
             $object === null ? null : [$object->getTable(), $object->getKey()],
         ]);
 
-        $authMap = request()->attributes->get(static::REQUEST_ATTRIBUTE_KEY);
-
-        if ($authMap === null) {
-            $authMap = new Ds\Map();
-            request()->attributes->set(static::REQUEST_ATTRIBUTE_KEY, $authMap);
-        }
+        $authMap = request_attribute_remember(
+            static::REQUEST_ATTRIBUTE_KEY,
+            fn (): Ds\Map => new Ds\Map(),
+        );
 
         $auth = $authMap->get($cacheKey, null);
 

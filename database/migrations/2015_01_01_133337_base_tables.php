@@ -1257,7 +1257,7 @@ class BaseTables extends Migration
             $table->unsignedMediumInteger('user_id')->default(0);
             $table->unsignedMediumInteger('forum_id')->default(0);
             $table->unsignedMediumInteger('topic_id')->default(0);
-            $table->unsignedMediumInteger('reportee_id')->default(0);
+            $table->unsignedInteger('reportee_id')->default(0);
             $table->string('log_ip', 40)->default('');
             $table->unsignedInteger('log_time')->default(0);
             $table->text('log_operation');
