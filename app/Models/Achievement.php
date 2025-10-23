@@ -66,9 +66,18 @@ class Achievement extends Model
 
     public function refreshAchievedCount(): void
     {
-        $countQuery = UserAchievement::where('achievement_id', $this->getKey())->selectRaw('COUNT(*)')->toRawSql();
-        $this->update(['achieved_count' => \DB::raw("({$countQuery})")]);
+        $countQuery = UserAchievement::where('achievement_id', $this->getKey())->selectRaw('COUNT(*)');
+
+        $this->update(['achieved_count' => \DB::raw("({$countQuery->toRawSql()})")]);
         $this->refresh();
+
+        // exclude achievement from restricted user if it's achieved by less than 10k users
+        if ($this->achieved_count < 10000) {
+            $countQuery->whereHas('user', fn ($q) => $q->default());
+
+            $this->update(['achieved_count' => \DB::raw("({$countQuery->toRawSql()})")]);
+            $this->refresh();
+        }
     }
 
     private function getMode(): ?string
