@@ -405,6 +405,9 @@ class BBCodeFromDB
     public function toEditor()
     {
         $text = $this->text;
+        if ($text === null) {
+            return '';
+        }
 
         // remove list item closing tags
         $text = str_replace("[/*:m:{$this->uid}]", '', $text);

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('score_replay_stats', function (Blueprint $table) {
             $table->bigInteger('score_id')->unsigned()->primary();
-            $table->bigInteger('user_id')->unsigned();
+            $table->unsignedInteger('user_id');
             $table->integer('watch_count')->unsigned()->default(0);
             $table->index(['user_id', 'watch_count']);
             $table->index('watch_count');
