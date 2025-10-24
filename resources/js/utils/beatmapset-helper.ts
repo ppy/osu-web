@@ -38,8 +38,13 @@ export function makeSearchQueryOption(key: string, value: string) {
   return `${key}=""${value.replace(/"/g, '\\"')}""`;
 }
 
-export function showVisual(beatmapset: BeatmapsetJson) {
+export function showAudio(beatmapset: BeatmapsetJson) {
   return !beatmapset.nsfw || core.userPreferences.get('beatmapset_show_nsfw');
+}
+
+export function showVisual(beatmapset: BeatmapsetJson, forceShowNsfw: boolean = false) {
+  return (forceShowNsfw || !beatmapset.nsfw || core.userPreferences.get('beatmapset_show_nsfw'))
+    && (!beatmapset.anime_cover || core.userPreferences.get('beatmapset_show_anime_cover'));
 }
 
 export const toggleFavourite = action((beatmapset: BeatmapsetJson) => {

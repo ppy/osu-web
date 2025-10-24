@@ -45,6 +45,7 @@ use Illuminate\Database\QueryException;
 
 /**
  * @property bool $active
+ * @property bool $anime_cover
  * @property \Illuminate\Database\Eloquent\Collection $allBeatmaps Beatmap
  * @property int $approved
  * @property \Carbon\Carbon|null $approved_date
@@ -119,6 +120,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     const CASTS = [
         'active' => 'boolean',
+        'anime_cover' => 'boolean',
         'approved_date' => 'datetime',
         'comment_locked' => 'boolean',
         'cover_updated_at' => 'datetime',
@@ -1012,6 +1014,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             'thread_icon_date_json' => $this->getJsonTimeFast($key),
 
             'active',
+            'anime_cover',
             'comment_locked',
             'discussion_locked',
             'download_disabled',

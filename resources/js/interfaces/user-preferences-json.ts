@@ -12,6 +12,7 @@ export function defaultUserPreferencesJson(): UserPreferencesJson {
     audio_volume: 0.45,
     beatmapset_card_size: 'normal',
     beatmapset_download: 'all',
+    beatmapset_show_anime_cover: true,
     beatmapset_show_nsfw: false,
     beatmapset_title_show_original: false,
     comments_show_deleted: false,
@@ -32,6 +33,7 @@ export default interface UserPreferencesJson {
   audio_volume: number;
   beatmapset_card_size: BeatmapsetCardSize;
   beatmapset_download: 'all' | 'no_video' | 'direct';
+  beatmapset_show_anime_cover: boolean;
   beatmapset_show_nsfw: boolean;
   beatmapset_title_show_original: boolean;
   comments_show_deleted: boolean;
