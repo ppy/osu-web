@@ -23,7 +23,6 @@ class ScoreTransformer extends TransformerAbstract
     const MULTIPLAYER_BASE_PRELOAD = [
         'scoreLink.playlistItem',
         'scoreLink.score',
-        'scoreLink.score.processHistory',
         'scoreLink.user.team',
     ];
 
@@ -32,7 +31,6 @@ class ScoreTransformer extends TransformerAbstract
     const USER_PROFILE_INCLUDES_PRELOAD = [
         'beatmap',
         'beatmap.beatmapset',
-        'processHistory',
         // it's for user profile so the user is already available
         // 'user',
     ];
