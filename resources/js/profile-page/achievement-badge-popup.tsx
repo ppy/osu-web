@@ -46,7 +46,9 @@ export default function AchievementBadgePopup({ achievedAt, achievement }: Props
         {achievement.grouping}
       </div>
 
-      <div className={classWithModifiers('tooltip-achievement__middle')}>
+      <div className={classWithModifiers('tooltip-achievement__middle', {
+        hoverable: achievement.instructions != null,
+      })}>
         <div className='tooltip-achievement__badge'>
           <AchievementBadgeIcon
             achievement={achievement}
@@ -57,9 +59,7 @@ export default function AchievementBadgePopup({ achievedAt, achievement }: Props
           />
         </div>
 
-        <div className={classWithModifiers('tooltip-achievement__detail-container', {
-          hoverable: achievement.instructions != null,
-        })}>
+        <div className='tooltip-achievement__detail-container'>
           <div className={classWithModifiers('tooltip-achievement__detail', { normal: achievement.instructions != null })}>
             <div className='tooltip-achievement__name'>
               {achievement.name}
