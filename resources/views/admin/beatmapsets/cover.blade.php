@@ -32,11 +32,14 @@
                 <i class="fas fa-fw fa-trash"></i>
                 {{osu_trans('admin.beatmapsets.covers.remove')}}
             </button>
-            @foreach (array_merge(['raw', 'fullsize'], $beatmapset->coverSizes()) as $size)
-                <h3>{{$size}}</h3>
-                <a href="{{$beatmapset->coverURL($size)}}">
-                    <div>{{$beatmapset->coverURL($size)}}</div>
-                    <img class="beatmapset-cover-admin__img" src="{{$beatmapset->coverURL($size)}}">
+            @foreach (['fullsize', ...$beatmapset->coverSizes()] as $size)
+                @php
+                    $url = $beatmapset->coverURL($size);
+                @endphp
+                <h3>{{ $size }}</h3>
+                <a href="{{ $url }}">
+                    <div>{{ $url }}</div>
+                    <img class="beatmapset-cover-admin__img" src="{{ $url }}">
                 </a>
             @endforeach
         </div>

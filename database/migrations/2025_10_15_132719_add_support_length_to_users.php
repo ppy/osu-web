@@ -13,18 +13,15 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('score_replay_stats', function (Blueprint $table) {
-            $table->bigInteger('score_id')->unsigned()->primary();
-            $table->unsignedInteger('user_id');
-            $table->integer('watch_count')->unsigned()->default(0);
-            $table->index(['user_id', 'watch_count']);
-            $table->index('watch_count');
-            $table->timestamps();
+        Schema::table('phpbb_users', function (Blueprint $table) {
+            $table->unsignedInteger('support_length')->nullable(true)->after('osu_subscriptionexpiry');
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('score_replay_stats');
+        Schema::table('phpbb_users', function (Blueprint $table) {
+            $table->dropColumn('support_length');
+        });
     }
 };

@@ -7,7 +7,7 @@ import AchievementJson from 'interfaces/achievement-json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
-import { trans } from 'utils/lang';
+import { trans, transChoice } from 'utils/lang';
 import AchievementBadgeIcon from './achievement-badge-icon';
 
 function formatAchievedPercent(percent: number) {
@@ -46,7 +46,9 @@ export default function AchievementBadgePopup({ achievedAt, achievement }: Props
         {achievement.grouping}
       </div>
 
-      <div className={classWithModifiers('tooltip-achievement__middle')}>
+      <div className={classWithModifiers('tooltip-achievement__middle', {
+        hoverable: achievement.instructions != null,
+      })}>
         <div className='tooltip-achievement__badge'>
           <AchievementBadgeIcon
             achievement={achievement}
@@ -57,9 +59,7 @@ export default function AchievementBadgePopup({ achievedAt, achievement }: Props
           />
         </div>
 
-        <div className={classWithModifiers('tooltip-achievement__detail-container', {
-          hoverable: achievement.instructions != null,
-        })}>
+        <div className='tooltip-achievement__detail-container'>
           <div className={classWithModifiers('tooltip-achievement__detail', { normal: achievement.instructions != null })}>
             <div className='tooltip-achievement__name'>
               {achievement.name}
@@ -93,9 +93,10 @@ export default function AchievementBadgePopup({ achievedAt, achievement }: Props
         }
         {achievement.achieved_percent != null &&
           <div>
-            {trans('users.show.extra.achievements.achieved_by_percent_user', {
-              percent: formatAchievedPercent(achievement.achieved_percent),
-            })}
+            {transChoice('common.count.player', achievement.achieved_count)}
+            {achievement.achieved_percent > 0 &&
+              ` (${formatAchievedPercent(achievement.achieved_percent)})`
+            }
           </div>
         }
         <div className='tooltip-achievement__date'>

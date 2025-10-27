@@ -483,6 +483,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return '//b.ppy.sh/preview/'.$this->beatmapset_id.'.mp3';
     }
 
+    public function removeCover($targetFilename): void
+    {
+        \Storage::delete($this->coverPath().$targetFilename);
+    }
+
     public function removeCovers()
     {
         try {
@@ -576,7 +581,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
                     return false;
                 }
                 throw $e;
+            } finally {
+                $this->removeCover('raw.jpg');
             }
+
             $this->storeCover('fullsize.jpg', get_stream_filename($optimized));
 
             // use thumbnailer to generate (and then upload) all our variants
