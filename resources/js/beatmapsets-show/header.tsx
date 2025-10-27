@@ -100,7 +100,7 @@ export default class Header extends React.Component<Props> {
         <div className='beatmapset-header__cover'>
           <BeatmapsetCover
             beatmapset={this.controller.beatmapset}
-            forceShowVisual // check already covered by parent component
+            forceShowNsfw // check already covered by parent component
             modifiers='full'
             size='cover'
           />
