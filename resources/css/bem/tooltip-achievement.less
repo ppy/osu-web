@@ -38,11 +38,13 @@
     overflow-wrap: anywhere;
 
     &--hover {
-      opacity: var(--opacity-hover);
+      opacity: var(--opacity-detail-hover);
+      pointer-events: var(--pointer-events-detail-hover);
     }
 
     &--normal {
-      opacity: var(--opacity-normal);
+      opacity: var(--opacity-detail-normal);
+      pointer-events: var(--pointer-events-detail-normal);
     }
   }
 
@@ -50,16 +52,6 @@
     display: grid;
     grid-template-areas: "content";
     line-height: normal;
-
-    &--hoverable {
-      --opacity-normal: 1;
-      --opacity-hover: 0;
-
-      &:hover {
-        --opacity-normal: 0;
-        --opacity-hover: 1;
-      }
-    }
   }
 
   &__grouping {
@@ -88,6 +80,20 @@
     display: grid;
     gap: 16px;
     padding: 16px var(--padding-x);
+
+    &--hoverable {
+      --opacity-detail-hover: 0;
+      --opacity-detail-normal: 1;
+      --pointer-events-detail-hover: none;
+      --pointer-events-detail-normal: auto;
+
+      &:hover {
+        --opacity-detail-hover: 1;
+        --opacity-detail-normal: 0;
+        --pointer-events-detail-hover: auto;
+        --pointer-events-detail-normal: none;
+      }
+    }
   }
 
   &__name {
