@@ -87,13 +87,16 @@ export default observer(function Score(props: Props) {
               switch (m) {
                 case 'combo':
                   value =
-                    (<span className={classWithModifiers('mp-history-player-score__combo', { perfect: props.score.is_perfect_combo })}>
+                    (<span className={classWithModifiers('mp-history-player-score__value', { perfect: props.score.is_perfect_combo })}>
                       {formatNumber(props.score.max_combo)}
                     </span>);
                   break;
 
                 case 'accuracy':
-                  value = formatNumber(props.score.accuracy, 2, { style: 'percent' });
+                  value =
+                    (<span className={classWithModifiers('mp-history-player-score__value', { perfect: props.score.accuracy === 1 })}>
+                      {formatNumber(props.score.accuracy, 2, { style: 'percent' })}
+                    </span>);
                   break;
 
                 case 'score':
