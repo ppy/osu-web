@@ -4,6 +4,7 @@
 import BeatmapJson from './beatmap-json';
 import LegacyMatchGameJson, { LegacyMatchScoringType } from './legacy-match-game-json';
 import { RealtimeRoomType, roomTypeFromLegacy } from './room-json';
+import { RulesetId } from './ruleset';
 import ScoreJson from './score-json';
 import ScoreModJson from './score-mod-json';
 
@@ -55,7 +56,7 @@ export default interface PlaylistItemJson {
   played_at: null | string;
   required_mods: ScoreModJson[];
   room_id: number;
-  ruleset_id: number;
+  ruleset_id: RulesetId;
 }
 
 export interface PlaylistItemJsonForMultiplayerEvent extends PlaylistItemJson {

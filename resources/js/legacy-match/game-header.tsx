@@ -7,7 +7,7 @@ import TimeWithTooltip from 'components/time-with-tooltip';
 import { deletedBeatmap } from 'interfaces/beatmap-json';
 import { deletedBeatmapset } from 'interfaces/beatmapset-json';
 import { PlaylistItemJsonForMultiplayerEvent } from 'interfaces/playlist-item-json';
-import { rulesets } from 'interfaces/ruleset';
+import { rulesetIdToName } from 'interfaces/ruleset';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import * as React from 'react';
@@ -24,7 +24,7 @@ interface Props {
 const timeFormat = 'LTS';
 
 export default observer(function GameHeader(props: Props) {
-  const beatmap = props.data.beatmaps[props.playlistItem.beatmap_id] ?? deletedBeatmap(rulesets[props.playlistItem.ruleset_id]);
+  const beatmap = props.data.beatmaps[props.playlistItem.beatmap_id] ?? deletedBeatmap(rulesetIdToName[props.playlistItem.ruleset_id]);
   const beatmapset = props.data.beatmapsets[beatmap.beatmapset_id] ?? deletedBeatmapset();
 
   let title = getTitle(beatmapset);
@@ -65,7 +65,7 @@ export default observer(function GameHeader(props: Props) {
         <span className='mp-history-game__stat'>
           {props.playlistItem.freestyle
             ? trans('matches.game.freestyle')
-            : trans(`beatmaps.mode.${rulesets[props.playlistItem.ruleset_id]}`)}
+            : trans(`beatmaps.mode.${rulesetIdToName[props.playlistItem.ruleset_id]}`)}
         </span>
         <span className='mp-history-game__stat'>{trans(`matches.game.scoring-type.${props.playlistItem.legacy_scoring_type ?? 'score'}`)}</span>
       </div>
