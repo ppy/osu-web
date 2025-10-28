@@ -73,14 +73,14 @@ class HomeController extends Controller
 
         $platform = match (true) {
             // Try matching most likely platform first
-            $agent->is('Windows') => 'windows_x64',
+            $agent->isPlatform('Windows') => 'windows_x64',
             // iPadOS detection apparently doesn't work on newer version
             // and detected as macOS instead.
             ($agent->isiOS() || $agent->isiPadOS()) => $platform = 'ios',
             // FIXME: Figure out a way to differentiate Intel and Apple Silicon.
-            $agent->is('OS X') => 'macos_as',
+            $agent->isPlatform('OS X') => 'macos_as',
             $agent->isAndroidOS() => 'android',
-            $agent->is('Linux') => 'linux_x64',
+            $agent->isPlatform('Linux') => 'linux_x64',
             default => 'windows_x64',
         };
 
