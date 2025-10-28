@@ -20,17 +20,13 @@ class Agent extends MobileDetect
     #[\Override]
     public function getRules(): array
     {
-        static $rules;
-
-        if (!isset($rules)) {
-            $rules = [
-                ...static::$browsers,
-                ...static::$operatingSystems,
-                ...static::$phoneDevices,
-                ...static::$tabletDevices,
-                ...static::$additionalOperatingSystems,
-            ];
-        }
+        static $rules = [
+            ...static::$browsers,
+            ...static::$operatingSystems,
+            ...static::$phoneDevices,
+            ...static::$tabletDevices,
+            ...static::$additionalOperatingSystems,
+        ];
 
         return $rules;
     }
