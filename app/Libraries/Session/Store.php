@@ -9,10 +9,10 @@ namespace App\Libraries\Session;
 
 use App\Events\UserSessionEvent;
 use App\Interfaces\SessionVerificationInterface;
+use App\Libraries\Agent;
 use Illuminate\Redis\Connections\PhpRedisConnection;
 use Illuminate\Session\Store as BaseStore;
 use Illuminate\Support\Arr;
-use Jenssegers\Agent\Agent;
 
 class Store extends BaseStore implements SessionVerificationInterface
 {
@@ -112,6 +112,7 @@ class Store extends BaseStore implements SessionVerificationInterface
 
         $sessionMeta = [];
         $agent = new Agent();
+        $agent->setUserAgent(\Request::header('User-Agent'));
         $expiredIds = [];
         foreach ($sessions as $id => $session) {
             if ($session === null) {
