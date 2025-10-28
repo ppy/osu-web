@@ -59,6 +59,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     public function transform(Beatmapset $beatmapset)
     {
         return [
+            'anime_cover' => $beatmapset->anime_cover,
             'artist' => $beatmapset->artist,
             'artist_unicode' => $beatmapset->artist_unicode,
             'covers' => $beatmapset->allCoverURLs(),

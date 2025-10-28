@@ -25,6 +25,11 @@ class Count extends Model
         return "pp_rank_column_{$ruleset}";
     }
 
+    public static function lastProcessedScoreId(): static
+    {
+        return static::firstOrCreate(['name' => 'last_processed_score_id'], ['count' => 0]);
+    }
+
     public static function totalUsers(): static
     {
         return static::firstOrCreate(['name' => 'usercount'], ['count' => 0]);
