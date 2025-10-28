@@ -180,7 +180,7 @@ class BBCodeForDB
         // internal url
         $text = preg_replace(
             "#{$spaces[0]}({$internalUrl}/([^\s]+?))(?={$spaces[1]})#",
-            "\\1<!-- m --><a href='\\2' rel='nofollow'>\\3</a><!-- m -->",
+            "\\1<!-- m --><a href=\"\\2\">\\3</a><!-- m -->",
             $text
         );
 
