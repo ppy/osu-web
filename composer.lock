@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7e560369074a3282da127bdd06ad8d8b",
+    "content-hash": "fda864044257792a659f0888b97b1ed3",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -2362,58 +2362,6 @@
             "time": "2025-02-09T15:57:21+00:00"
         },
         {
-            "name": "jaybizzle/crawler-detect",
-            "version": "v1.3.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/JayBizzle/Crawler-Detect.git",
-                "reference": "d3b7ff28994e1b0de764ab7412fa269a79634ff3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/d3b7ff28994e1b0de764ab7412fa269a79634ff3",
-                "reference": "d3b7ff28994e1b0de764ab7412fa269a79634ff3",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8|^5.5|^6.5|^9.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Jaybizzle\\CrawlerDetect\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mark Beech",
-                    "email": "m@rkbee.ch",
-                    "role": "Developer"
-                }
-            ],
-            "description": "CrawlerDetect is a PHP class for detecting bots/crawlers/spiders via the user agent",
-            "homepage": "https://github.com/JayBizzle/Crawler-Detect/",
-            "keywords": [
-                "crawler",
-                "crawler detect",
-                "crawler detector",
-                "crawlerdetect",
-                "php crawler detect"
-            ],
-            "support": {
-                "issues": "https://github.com/JayBizzle/Crawler-Detect/issues",
-                "source": "https://github.com/JayBizzle/Crawler-Detect/tree/v1.3.4"
-            },
-            "time": "2025-03-05T23:12:10+00:00"
-        },
-        {
             "name": "jean85/pretty-package-versions",
             "version": "2.1.1",
             "source": {
@@ -2472,89 +2420,6 @@
                 "source": "https://github.com/Jean85/pretty-package-versions/tree/2.1.1"
             },
             "time": "2025-03-19T14:43:43+00:00"
-        },
-        {
-            "name": "jenssegers/agent",
-            "version": "v2.6.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jenssegers/agent.git",
-                "reference": "daa11c43729510b3700bc34d414664966b03bffe"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jenssegers/agent/zipball/daa11c43729510b3700bc34d414664966b03bffe",
-                "reference": "daa11c43729510b3700bc34d414664966b03bffe",
-                "shasum": ""
-            },
-            "require": {
-                "jaybizzle/crawler-detect": "^1.2",
-                "mobiledetect/mobiledetectlib": "^2.7.6",
-                "php": ">=5.6"
-            },
-            "require-dev": {
-                "php-coveralls/php-coveralls": "^2.1",
-                "phpunit/phpunit": "^5.0|^6.0|^7.0"
-            },
-            "suggest": {
-                "illuminate/support": "Required for laravel service providers"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "aliases": {
-                        "Agent": "Jenssegers\\Agent\\Facades\\Agent"
-                    },
-                    "providers": [
-                        "Jenssegers\\Agent\\AgentServiceProvider"
-                    ]
-                },
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Jenssegers\\Agent\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jens Segers",
-                    "homepage": "https://jenssegers.com"
-                }
-            ],
-            "description": "Desktop/mobile user agent parser with support for Laravel, based on Mobiledetect",
-            "homepage": "https://github.com/jenssegers/agent",
-            "keywords": [
-                "Agent",
-                "browser",
-                "desktop",
-                "laravel",
-                "mobile",
-                "platform",
-                "user agent",
-                "useragent"
-            ],
-            "support": {
-                "issues": "https://github.com/jenssegers/agent/issues",
-                "source": "https://github.com/jenssegers/agent/tree/v2.6.4"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/jenssegers",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/jenssegers/agent",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2020-06-13T08:05:20+00:00"
         },
         {
             "name": "knplabs/github-api",
@@ -4774,32 +4639,35 @@
         },
         {
             "name": "mobiledetect/mobiledetectlib",
-            "version": "2.8.45",
+            "version": "4.8.09",
             "source": {
                 "type": "git",
                 "url": "https://github.com/serbanghita/Mobile-Detect.git",
-                "reference": "96aaebcf4f50d3d2692ab81d2c5132e425bca266"
+                "reference": "a06fe2e546a06bb8c2639d6823d5250b2efb3209"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/serbanghita/Mobile-Detect/zipball/96aaebcf4f50d3d2692ab81d2c5132e425bca266",
-                "reference": "96aaebcf4f50d3d2692ab81d2c5132e425bca266",
+                "url": "https://api.github.com/repos/serbanghita/Mobile-Detect/zipball/a06fe2e546a06bb8c2639d6823d5250b2efb3209",
+                "reference": "a06fe2e546a06bb8c2639d6823d5250b2efb3209",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.0.0"
+                "php": ">=8.0",
+                "psr/cache": "^3.0",
+                "psr/simple-cache": "^3"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.8.36"
+                "friendsofphp/php-cs-fixer": "^v3.65.0",
+                "phpbench/phpbench": "^1.2",
+                "phpstan/phpstan": "^1.12.x-dev",
+                "phpunit/phpunit": "^9.6.18",
+                "squizlabs/php_codesniffer": "^3.11.1"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Detection": "namespaced/"
-                },
-                "classmap": [
-                    "Mobile_Detect.php"
-                ]
+                "psr-4": {
+                    "Detection\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -4824,7 +4692,7 @@
             ],
             "support": {
                 "issues": "https://github.com/serbanghita/Mobile-Detect/issues",
-                "source": "https://github.com/serbanghita/Mobile-Detect/tree/2.8.45"
+                "source": "https://github.com/serbanghita/Mobile-Detect/tree/4.8.09"
             },
             "funding": [
                 {
@@ -4832,7 +4700,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-07T21:57:25+00:00"
+            "time": "2024-12-10T15:32:06+00:00"
         },
         {
             "name": "monolog/monolog",

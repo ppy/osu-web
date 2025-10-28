@@ -6,6 +6,7 @@
 namespace App\Http\Controllers;
 
 use App;
+use App\Libraries\Agent;
 use App\Libraries\CurrentStats;
 use App\Libraries\MenuContent;
 use App\Libraries\Search\AllSearch;
@@ -19,7 +20,6 @@ use App\Models\UserDonation;
 use App\Transformers\MenuImageTransformer;
 use Auth;
 use Carbon\CarbonImmutable;
-use Jenssegers\Agent\Agent;
 use Request;
 
 /**
@@ -68,7 +68,8 @@ class HomeController extends Controller
             'windows_x64' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Windows 8.1']).' (x64)',
         ];
 
-        $agent = new Agent(Request::server());
+        $agent = new Agent();
+        $agent->setUserAgent(\Request::header('User-Agent'));
 
         $platform = match (true) {
             // Try matching most likely platform first
