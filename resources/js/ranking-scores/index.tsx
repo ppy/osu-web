@@ -85,7 +85,7 @@ export default function RankingScores(props: Props) {
             </div>
             <div className='ranking-page-grid-item__col ranking-page-grid-item__col--number'>
               <span className={classWithModifiers('ranking-page-grid-item__value', { perfect: score.is_perfect_combo })}>
-                {formatNumber(score.max_combo)}
+                {formatNumber(score.max_combo)}x
               </span>
             </div>
             <div className='ranking-page-grid-item__col ranking-page-grid-item__col--number'>
