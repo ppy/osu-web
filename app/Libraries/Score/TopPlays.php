@@ -46,7 +46,7 @@ class TopPlays
         \Cache::put($this->key, $data);
     }
 
-    public function get(): array
+    public function get(): ?array
     {
         return \Cache::get($this->key);
     }
