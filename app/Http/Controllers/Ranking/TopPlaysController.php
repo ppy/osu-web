@@ -14,7 +14,7 @@ use App\Models\Solo\Score;
 use App\Transformers\ScoreTransformer;
 use Symfony\Component\HttpFoundation\Response;
 
-class ScoresController extends Controller
+class TopPlaysController extends Controller
 {
     const int PAGE_SIZE = 100;
     const int PAGES = 10; // top 1000
@@ -42,7 +42,7 @@ class ScoresController extends Controller
             ? null
             : json_collection($scores, new ScoreTransformer(), ['beatmap', 'beatmapset', 'user.country', 'user.team']);
 
-        return ext_view('rankings.scores', compact(
+        return ext_view('rankings.top_plays', compact(
             'rulesetName',
             'scores',
             'scoresJson',

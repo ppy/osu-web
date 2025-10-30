@@ -35,7 +35,7 @@ class RankingController extends Controller
     const TYPES = [
         'global',
         'country',
-        'scores',
+        'top_plays',
         'team',
         'multiplayer',
         'daily_challenge',
@@ -71,13 +71,13 @@ class RankingController extends Controller
             ]),
             'kudosu' => route('rankings.kudosu'),
             'multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
-            'scores' => route('rankings.scores', ['mode' => $params['mode'] ?? default_mode()]),
             'seasons' => route('seasons.show', ['season' => 'latest']),
             'team' => route('rankings', [
                 'mode' => $params['mode'] ?? default_mode(),
                 'type' => $params['type'],
                 'sort' => $params['sort'] ?? null,
             ]),
+            'top_plays' => route('rankings.top-plays', ['mode' => $params['mode'] ?? default_mode()]),
         };
     }
 
