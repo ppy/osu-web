@@ -3,20 +3,20 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('rankings.index', [
-    'currentRoute' => 'rankings.scores',
+    'currentRoute' => 'rankings.top-plays',
     'hasPager' => $scores !== null,
-    'params' => ['mode' => $rulesetName, 'type' => 'scores'],
-    'titlePrepend' => osu_trans('rankings.type.scores'),
+    'params' => ['mode' => $rulesetName, 'type' => 'top_plays'],
+    'titlePrepend' => osu_trans('rankings.type.top_plays'),
 ])
 
 @if ($scores === null)
     @section('scores')
-        {{ osu_trans('rankings.scores.empty') }}
+        {{ osu_trans('rankings.top_plays.empty') }}
     @endsection
 @else
     @section('scores')
         <div
-            class="u-contents js-react--ranking-scores"
+            class="u-contents js-react--ranking-top-plays"
             data-props="{{ json_encode([
                 'first_score_rank' => $scores->firstItem(),
                 'scores' => $scoresJson,
@@ -41,6 +41,6 @@
                 @endforeach
             </div>
         </div>
-        @include('layout._react_js', ['src' => 'js/ranking-scores.js'])
+        @include('layout._react_js', ['src' => 'js/ranking-top-plays.js'])
     @endsection
 @endif

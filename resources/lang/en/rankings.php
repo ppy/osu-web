@@ -37,6 +37,10 @@ return [
         'insufficient_history' => 'This user has less than 30 days of recent ranking history.',
     ],
 
+    'top_plays' => [
+        'empty' => 'the data is being calculated...',
+    ],
+
     'type' => [
         'charts' => 'spotlights (old)',
         'country' => 'country',
@@ -44,13 +48,9 @@ return [
         'global' => 'global',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
-        'scores' => 'top scores',
+        'top_plays' => 'top plays',
         'seasons' => 'seasons',
         'team' => 'team',
-    ],
-
-    'scores' => [
-        'empty' => 'the data is being calculated...',
     ],
 
     'seasons' => [

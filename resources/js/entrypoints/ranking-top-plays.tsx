@@ -2,9 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import core from 'osu-core-singleton';
-import RankingScores from 'ranking-scores';
+import RankingTopPlays from 'ranking-top-plays';
 import * as React from 'react';
 
-core.reactTurbolinks.register('ranking-scores', (container) => (
-  <RankingScores {...(JSON.parse(container.dataset.props ?? ''))} />
+core.reactTurbolinks.register('ranking-top-plays', (container) => (
+  <RankingTopPlays {...(JSON.parse(container.dataset.props ?? ''))} />
 ));
