@@ -38,7 +38,7 @@ return [
     ],
 
     'top_plays' => [
-        'empty' => 'the data is being calculated...',
+        'empty' => 'The data is being calculated...',
     ],
 
     'type' => [
