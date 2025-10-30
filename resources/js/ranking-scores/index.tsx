@@ -18,7 +18,6 @@ import { displayMods, hasMenu, rank } from 'utils/score-helper';
 
 interface Props {
   first_score_rank: number;
-  ruleset_id: number;
   scores: ScoreJsonForTopPlays[];
 }
 
