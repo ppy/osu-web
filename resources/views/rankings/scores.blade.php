@@ -19,7 +19,6 @@
             class="u-contents js-react--ranking-scores"
             data-props="{{ json_encode([
                 'first_score_rank' => $scores->firstItem(),
-                'ruleset_id' => $rulesetId,
                 'scores' => $scoresJson,
             ]) }}"
         >

@@ -44,7 +44,6 @@ class ScoresController extends Controller
 
         return ext_view('rankings.scores', compact(
             'rulesetName',
-            'rulesetId',
             'scores',
             'scoresJson',
         ));
