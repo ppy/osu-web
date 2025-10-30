@@ -12,7 +12,7 @@ Link to &lt;<!-- m --><a href='http://example.com/path:1/hello' rel='nofollow'>h
 Link to <!-- m --><a href='http://example.com/path:1/hello&gt;world' rel='nofollow'>http://example.com/path:1/hello&gt;world</a><!-- m --> The angle brackets should be included.
 
 Relative test
-Link to <!-- m --><a href='http://localhost/path:1/hello' rel='nofollow'>path:1/hello</a><!-- m --> the domain part should be excluded.
+Link to <!-- m --><a href="http://localhost/path:1/hello">path:1/hello</a><!-- m --> the domain part should be excluded.
 
 At start of a block tag
 [quote:1]<!-- m --><a href='https://example.com' rel='nofollow'>https://example.com</a><!-- m --> test[/quote:1]
