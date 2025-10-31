@@ -71,7 +71,7 @@ class ScoresController extends Controller
 
         $score = $soloScore->legacyScore() ?? $soloScore;
 
-        $file = $score->getReplayFile();
+        $file = $score->replayFile()?->get();
         if ($file === null) {
             abort(404);
         }

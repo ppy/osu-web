@@ -77,11 +77,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         return $this->replay ? new LegacyReplayFile($this) : null;
     }
 
-    public function getReplayFile(): ?string
-    {
-        return $this->replayFile()?->get();
-    }
-
     public function macroForListing(): \Closure
     {
         return function ($query, $limit) {
