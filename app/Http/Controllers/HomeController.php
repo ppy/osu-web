@@ -6,6 +6,7 @@
 namespace App\Http\Controllers;
 
 use App;
+use App\Libraries\Agent;
 use App\Libraries\CurrentStats;
 use App\Libraries\MenuContent;
 use App\Libraries\Search\AllSearch;
@@ -19,7 +20,6 @@ use App\Models\UserDonation;
 use App\Transformers\MenuImageTransformer;
 use Auth;
 use Carbon\CarbonImmutable;
-use Jenssegers\Agent\Agent;
 use Request;
 
 /**
@@ -68,18 +68,19 @@ class HomeController extends Controller
             'windows_x64' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Windows 8.1']).' (x64)',
         ];
 
-        $agent = new Agent(Request::server());
+        $agent = new Agent();
+        $agent->setUserAgent(\Request::header('User-Agent'));
 
         $platform = match (true) {
             // Try matching most likely platform first
-            $agent->is('Windows') => 'windows_x64',
+            $agent->isPlatform('Windows') => 'windows_x64',
             // iPadOS detection apparently doesn't work on newer version
             // and detected as macOS instead.
             ($agent->isiOS() || $agent->isiPadOS()) => $platform = 'ios',
             // FIXME: Figure out a way to differentiate Intel and Apple Silicon.
-            $agent->is('OS X') => 'macos_as',
+            $agent->isPlatform('OS X') => 'macos_as',
             $agent->isAndroidOS() => 'android',
-            $agent->is('Linux') => 'linux_x64',
+            $agent->isPlatform('Linux') => 'linux_x64',
             default => 'windows_x64',
         };
 
