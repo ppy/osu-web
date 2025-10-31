@@ -34,6 +34,7 @@ class TopicTransformer extends TransformerAbstract
             'type' => $topic->typeStr($topic->topic_type),
             'updated_at' => json_time($topic->topic_last_post_time),
             'user_id' => $topic->topic_poster,
+            'views' => $topic->topic_views,
         ];
     }
 
