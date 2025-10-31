@@ -13,6 +13,10 @@ $defaults = [
     ],
     'connectionPool' => [SimpleConnectionPool::class],
 ];
+
+$defaultsSlow = $defaults;
+$defaultsSlow['connectionParams']['client']['timeout'] = get_float(env('ES_SLOW_CLIENT_TIMEOUT')) ?? 60;
+
 $parseHosts = fn ($envName) => explode(' ', presence(env($envName)) ?? 'localhost:9200');
 
 return [
@@ -23,5 +27,9 @@ return [
         'solo_scores' => array_merge($defaults, [
             'hosts' => $parseHosts('ES_SOLO_SCORES_HOST'),
         ]),
+        'scores_slow' => [
+            ...$defaultsSlow,
+            'hosts' => $parseHosts('ES_SOLO_SCORES_HOST'),
+        ],
     ],
 ];

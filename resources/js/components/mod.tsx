@@ -4,7 +4,7 @@
 import ScoreModJson from 'interfaces/score-mod-json';
 import modNames from 'mod-names.json';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 import { modDetails } from 'utils/score-helper';
 
 // English only until the labels are translated.
@@ -117,14 +117,15 @@ function getExtendedContent(scoreModJson: ScoreModJson): string | null {
 
 interface Props {
   mod: ScoreModJson;
+  modifiers?: Modifiers;
 }
 
-export default function Mod({ mod }: Props) {
+export default function Mod({ mod, modifiers }: Props) {
   const modJson = modDetails(mod);
   const extendedContent = getExtendedContent(mod);
 
   return (
-    <div className={classWithModifiers('mod', `type-${modJson.type}`)} title={`${modJson.name}${settingsLabel(modJson, mod)}`}>
+    <div className={classWithModifiers('mod', `type-${modJson.type}`, modifiers)} title={`${modJson.name}${settingsLabel(modJson, mod)}`}>
       <div
         className={classWithModifiers('mod__icon', mod.acronym)}
         data-acronym={modJson.acronym}
