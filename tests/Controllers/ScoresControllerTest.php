@@ -228,12 +228,11 @@ class ScoresControllerTest extends TestCase
         parent::setUp();
 
         // fake all the replay disks
-        $disks = [SoloScore::replayFileDiskName()];
-        foreach (['local', 's3'] as $type) {
-            foreach (Beatmap::MODES as $ruleset => $_rulesetId) {
-                $disks[] = "{$type}-legacy-replay-{$ruleset}";
-            }
-        }
+        $type = $GLOBALS['cfg']['filesystems']['default'];
+        $disks = [
+            "{$type}-solo-replay",
+            ...prefix_strings("{$type}-legacy-replay-", array_keys(Beatmap::MODES)),
+        ];
         foreach ($disks as $disk) {
             Storage::fake($disk);
         }
