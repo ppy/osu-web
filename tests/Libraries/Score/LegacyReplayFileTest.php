@@ -3,22 +3,22 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace Tests\Libraries;
+namespace Tests\Libraries\Score;
 
-use App\Libraries\ReplayFile;
+use App\Libraries\Score\LegacyReplayFile;
 use App\Models\Beatmap;
 use App\Models\Score\Best;
 use App\Models\User;
 use Tests\TestCase;
 
-class ReplayFileTest extends TestCase
+class LegacyReplayFileTest extends TestCase
 {
     public function testEndChunk()
     {
         // known good end chunk.
         $known = 'd75c989400000000';
 
-        $replayFile = new ReplayFile($this->knownScore());
+        $replayFile = new LegacyReplayFile($this->knownScore());
 
         $this->assertSame($known, bin2hex($replayFile->endChunk()));
     }
@@ -28,7 +28,7 @@ class ReplayFileTest extends TestCase
         // known good header.
         $known = '0056ef33010b2039323536623735613064663334356262623237396533353438303732396631340b08492e522e5265616c0b2033393336326435393239313738633162626265373465323130646639316232399e000600000016000500000059911f00460101784200000b008014b73dec8dd508';
 
-        $replayFile = new ReplayFile($this->knownScore());
+        $replayFile = new LegacyReplayFile($this->knownScore());
 
         $this->assertSame($known, bin2hex($replayFile->headerChunk()));
     }
@@ -37,7 +37,7 @@ class ReplayFileTest extends TestCase
     {
         $known = '00bc7b33010b2039323536623735613064663334356262623237396533353438303732396631340b08492e522e5265616c0b2033393336326435393239313738633162626265373465323130646639316232399e000600000016000500000059911f00460101784200000b008014b73dec8dd508';
 
-        $replayFile = new ReplayFile($this->knownScore(true, null));
+        $replayFile = new LegacyReplayFile($this->knownScore(true, null));
 
         $this->assertSame($known, bin2hex($replayFile->headerChunk()));
     }
@@ -46,7 +46,7 @@ class ReplayFileTest extends TestCase
     {
         $known = '00bc7b33010b2039323536623735613064663334356262623237396533353438303732396631340b08492e522e5265616c0b2033393336326435393239313738633162626265373465323130646639316232399e000600000016000500000059911f00460101784200000b008014b73dec8dd508';
 
-        $replayFile = new ReplayFile($this->knownScore(false));
+        $replayFile = new LegacyReplayFile($this->knownScore(false));
 
         $this->assertSame($known, bin2hex($replayFile->headerChunk()));
     }
