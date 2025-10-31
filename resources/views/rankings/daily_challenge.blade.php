@@ -201,14 +201,19 @@
                         </td>
                         <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                             <span class="{{ class_with_modifiers(
-                                'ranking-page-table__combo',
+                                'ranking-page-table__value',
                                 ['perfect' => $score->is_perfect_combo],
                             ) }}">
                                 {{ i18n_number_format($score->max_combo) }}
                             </span>
                         </td>
                         <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                            {{ format_percentage($score->accuracy) }}
+                            <span class="{{ class_with_modifiers(
+                                'ranking-page-table__value',
+                                ['perfect' => $score->accuracy === 1.0],
+                            ) }}">
+                                {{ format_percentage($score->accuracy) }}
+                            </span>
                         </td>
                         <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                             {{ i18n_number_format($agg->attempts) }}

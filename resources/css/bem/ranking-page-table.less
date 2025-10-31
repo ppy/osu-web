@@ -62,12 +62,6 @@
     }
   }
 
-  &__combo {
-    &--perfect {
-      color: hsl(@beatmap-score--hsl-perfect);
-    }
-  }
-
   &__heading {
     font-weight: normal;
     color: hsl(var(--hsl-f1));
@@ -109,6 +103,12 @@
 
     &:hover {
       --bg: hsl(var(--hsl-b3));
+    }
+  }
+
+  &__value {
+    &--perfect {
+      color: hsl(@beatmap-score--hsl-perfect);
     }
   }
 }
