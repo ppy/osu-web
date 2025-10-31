@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapJson from './beatmap-json';
-import Ruleset from './ruleset';
+import Ruleset, { RulesetId } from './ruleset';
 import { LegacyMatchScoreJson } from './score-json';
 
 export type LegacyMatchScoringType =
@@ -24,7 +24,7 @@ export default interface LegacyMatchGameJson {
   id: number;
   match_id: number;
   mode: Ruleset;
-  mode_int: number;
+  mode_int: RulesetId;
   mods: string[];
   scores: LegacyMatchScoreJson[];
   scoring_type: LegacyMatchScoringType;

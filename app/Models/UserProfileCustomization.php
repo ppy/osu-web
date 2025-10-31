@@ -23,6 +23,7 @@ class UserProfileCustomization extends Model
         'audio_volume' => 0.45,
         'beatmapset_card_size' => self::BEATMAPSET_CARD_SIZES[0],
         'beatmapset_download' => self::BEATMAPSET_DOWNLOAD[0],
+        'beatmapset_show_anime_cover' => true,
         'beatmapset_show_nsfw' => false,
         'beatmapset_title_show_original' => false,
         'comments_show_deleted' => false,
@@ -157,6 +158,16 @@ class UserProfileCustomization extends Model
         }
 
         $this->setOption('beatmapset_download', $value);
+    }
+
+    public function getBeatmapsetShowAnimeCoverAttribute()
+    {
+        return $this->options['beatmapset_show_anime_cover'] ?? static::DEFAULTS['beatmapset_show_anime_cover'];
+    }
+
+    public function setBeatmapsetShowAnimeCoverAttribute($value)
+    {
+        $this->setOption('beatmapset_show_anime_cover', get_bool($value));
     }
 
     public function getBeatmapsetShowNsfwAttribute()
