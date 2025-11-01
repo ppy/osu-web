@@ -66,9 +66,9 @@ class BeatmapMirror extends Model
         return $regionalMirror ?? self::getRandom();
     }
 
-    public function macroGetDefault(): callable
+    public function macroGetDefault(Builder $query): ?static
     {
-        return fn (Builder $query): ?static => $query
+        return $query
             ->where('version', '>=', static::MIN_VERSION_TO_USE)
             ->where('is_master', true)
             ->first();

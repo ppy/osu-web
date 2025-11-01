@@ -82,44 +82,42 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         return $this->replayFile()?->get();
     }
 
-    public function macroForListing(): \Closure
+    public function macroForListing($query, $limit)
     {
-        return function ($query, $limit) {
-            $limit = \Number::clamp($limit ?? 50, 1, $GLOBALS['cfg']['osu']['beatmaps']['max_scores']);
-            $newQuery = (clone $query)->with('user')->limit($limit + 100);
+        $limit = \Number::clamp($limit ?? 50, 1, $GLOBALS['cfg']['osu']['beatmaps']['max_scores']);
+        $newQuery = (clone $query)->with('user')->limit($limit + 100);
 
-            $result = [];
-            $offset = 0;
-            $baseResultCount = 0;
-            $finalize = function (array $result) {
-                return array_values($result);
-            };
+        $result = [];
+        $offset = 0;
+        $baseResultCount = 0;
+        $finalize = function (array $result) {
+            return array_values($result);
+        };
 
-            while (true) {
-                $baseResult = $newQuery->offset($offset)->get();
-                $baseResultCount = count($baseResult);
+        while (true) {
+            $baseResult = $newQuery->offset($offset)->get();
+            $baseResultCount = count($baseResult);
 
-                if ($baseResultCount === 0) {
-                    break;
-                }
-
-                $offset += $baseResultCount;
-
-                foreach ($baseResult as $entry) {
-                    if (isset($result[$entry->user_id])) {
-                        continue;
-                    }
-
-                    $result[$entry->user_id] = $entry;
-
-                    if (count($result) >= $limit) {
-                        return $finalize($result);
-                    }
-                }
+            if ($baseResultCount === 0) {
+                break;
             }
 
-            return $finalize($result);
-        };
+            $offset += $baseResultCount;
+
+            foreach ($baseResult as $entry) {
+                if (isset($result[$entry->user_id])) {
+                    continue;
+                }
+
+                $result[$entry->user_id] = $entry;
+
+                if (count($result) >= $limit) {
+                    return $finalize($result);
+                }
+            }
+        }
+
+        return $finalize($result);
     }
 
     public function url(): string
