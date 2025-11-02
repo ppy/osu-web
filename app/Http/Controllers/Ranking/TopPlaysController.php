@@ -19,13 +19,14 @@ class TopPlaysController extends Controller
     const int PAGE_SIZE = 100;
     const int PAGES = 10; // top 1000
 
-    public function show(string $rulesetName): Response
+    public function show(?string $rulesetName = null): Response
     {
-        $rulesetId = Beatmap::MODES[$rulesetName] ?? abort(422, 'invalid ruleset parameter');
-        $page = get_int(\Request::input('page')) ?? 1;
-        if ($page < 1 || $page > static::PAGES) {
-            abort(422, 'invalid page parameter');
+        if ($rulesetName === null) {
+            return ujs_redirect(route('rankings.top-plays', ['mode' => default_mode()]));
         }
+
+        $rulesetId = Beatmap::MODES[$rulesetName] ?? abort(422, 'invalid ruleset parameter');
+        $page = \Number::clamp(get_int(\Request::input('page')) ?? 1, 1, static::PAGES);
         $data = new TopPlays($rulesetId)->get();
         $scores = $data === null
             ? null
