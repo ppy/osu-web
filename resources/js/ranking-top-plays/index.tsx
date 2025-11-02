@@ -14,7 +14,7 @@ import { getTitle } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { displayMods, hasMenu, rank } from 'utils/score-helper';
+import { displayMods, hasMenu } from 'utils/score-helper';
 
 interface Props {
   first_score_rank: number;
@@ -44,7 +44,6 @@ export default function RankingScores(props: Props) {
           <div className='ranking-page-grid-item__col'>
             {trans('beatmapsets.show.scoreboard.headers.mods')}
           </div>
-          <div className='ranking-page-grid-item__col' />
           <div className='ranking-page-grid-item__col' />
         </div>
       </div>
@@ -105,11 +104,6 @@ export default function RankingScores(props: Props) {
             <div className='ranking-page-grid-item__col'>
               <div className='ranking-page-grid-item__icons u-hover'>
                 {displayMods(score).map((mod) => <Mod key={mod.acronym} mod={mod} modifiers='dynamic' />)}
-              </div>
-            </div>
-            <div className='ranking-page-grid-item__col'>
-              <div className='ranking-page-grid-item__icons'>
-                <div className={`score-rank score-rank--${rank(score)}`} />
               </div>
             </div>
             <div className='ranking-page-grid-item__col ranking-page-grid-item__col--menu u-hover'>
