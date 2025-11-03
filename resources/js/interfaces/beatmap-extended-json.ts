@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapJson from './beatmap-json';
+import { RulesetId } from './ruleset';
 
 export function isValid(x: BeatmapJson | BeatmapExtendedJson): x is BeatmapExtendedJson {
   return (x as BeatmapExtendedJson).accuracy != null;
@@ -21,7 +22,7 @@ export default interface BeatmapExtendedJson extends BeatmapJson {
   hit_length: number;
   is_scoreable: boolean;
   last_updated: string;
-  mode_int: number;
+  mode_int: RulesetId;
   passcount: number;
   playcount: number;
   ranked: number;

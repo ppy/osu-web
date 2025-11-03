@@ -5,7 +5,7 @@ import FlagCountry from 'components/flag-country';
 import Mod from 'components/mod';
 import UserLink from 'components/user-link';
 import { PlaylistItemJsonForMultiplayerEvent } from 'interfaces/playlist-item-json';
-import { rulesets } from 'interfaces/ruleset';
+import { rulesetIdToName } from 'interfaces/ruleset';
 import ScoreJson from 'interfaces/score-json';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
@@ -32,7 +32,7 @@ function renderVersion(props: Props) {
   return (
     <a href={route('beatmaps.show', { beatmap: props.score.beatmap_id })}>
       <span
-        className={`fal fa-extra-mode-${rulesets[props.score.ruleset_id]}`}
+        className={`fal fa-extra-mode-${rulesetIdToName[props.score.ruleset_id]}`}
       /> {version}
     </a>
   );
@@ -59,7 +59,7 @@ export default observer(function Score(props: Props) {
               className='mp-history-player-score__country-flag'
               href={route('rankings', {
                 country: user.country?.code,
-                mode: rulesets[props.score.ruleset_id],
+                mode: rulesetIdToName[props.score.ruleset_id],
                 type: 'performance',
               })}
             >
@@ -87,13 +87,16 @@ export default observer(function Score(props: Props) {
               switch (m) {
                 case 'combo':
                   value =
-                    (<span className={classWithModifiers('mp-history-player-score__combo', { perfect: props.score.is_perfect_combo })}>
+                    (<span className={classWithModifiers('mp-history-player-score__value', { perfect: props.score.is_perfect_combo })}>
                       {formatNumber(props.score.max_combo)}
                     </span>);
                   break;
 
                 case 'accuracy':
-                  value = formatNumber(props.score.accuracy, 2, { style: 'percent' });
+                  value =
+                    (<span className={classWithModifiers('mp-history-player-score__value', { perfect: props.score.accuracy === 1 })}>
+                      {formatNumber(props.score.accuracy, 2, { style: 'percent' })}
+                    </span>);
                   break;
 
                 case 'score':
