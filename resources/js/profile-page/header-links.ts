@@ -9,11 +9,12 @@ import { trans } from 'utils/lang';
 
 type LinkMode = 'modding' | 'show' | MultiplayerTypeGroup;
 
-const nonBotModes: LinkMode[] = ['modding', 'playlists', 'realtime'];
+const nonBotModes: LinkMode[] = ['modding', 'playlists', 'realtime', 'quickplay'];
 
 const url = {
   modding: (userId: number) => route('users.modding.index', { user: userId }),
   playlists: (userId: number) => route('users.multiplayer.index', { typeGroup: 'playlists', user: userId }),
+  quickplay: (userId: number) => route('users.multiplayer.index', { typeGroup: 'quickplay', user: userId }),
   realtime: (userId: number) => route('users.multiplayer.index', { typeGroup: 'realtime', user: userId }),
   show: (userId: number) => route('users.show', { user: userId }),
 };
