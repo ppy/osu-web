@@ -21,7 +21,7 @@
                                     <i class="fas fa-fw fa-{{$session['mobile'] ? 'mobile-alt' : 'desktop'}}"></i>
                                 </span>
                                 <span class="user-session-list-session__title">
-                                    {{$session['mobile'] ? $session['device'] : $session['platform']}} ({{$session['browser']}})
+                                    {{$session['platform']}} ({{$session['browser']}})
                                     @if($currentSessionId === $sessionId)
                                         <span class="user-session-list-session__current-badge">{{osu_trans('accounts.security.current_session')}}</span>
                                     @endif
