@@ -30,12 +30,6 @@
     display: flex;
   }
 
-  &__combo {
-    &--perfect {
-      color: hsl(@beatmap-score--hsl-perfect);
-    }
-  }
-
   &__country-flag {
     align-self: center;
   }
@@ -208,6 +202,12 @@
       @media @desktop {
         font-size: 25px;
       }
+    }
+  }
+
+  &__value {
+    &--perfect {
+      color: hsl(@beatmap-score--hsl-perfect);
     }
   }
 }
