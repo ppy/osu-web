@@ -44,12 +44,14 @@ interface UserStatisticsBaseJson {
 export interface UserStatisticsRankedJson extends UserStatisticsBaseJson {
   country_rank?: number;
   global_rank: number;
+  global_rank_percent: number;
   is_ranked: true;
 }
 
 interface UserStatisticsUnrankedJson extends UserStatisticsBaseJson {
   country_rank?: null;
   global_rank: null;
+  global_rank_percent: null;
   is_ranked: false;
 }
 
