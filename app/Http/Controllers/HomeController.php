@@ -70,7 +70,7 @@ class HomeController extends Controller
 
         $deviceDetector = new DeviceDetector(\Request::header('User-Agent'));
         $deviceDetector->parse();
-        $family = $deviceDetector->getOs()['family'];
+        $family = $deviceDetector->getOs('family');
 
         $platform = match ($family) {
             // Try matching most likely platform first

@@ -131,8 +131,8 @@ class Store extends BaseStore implements SessionVerificationInterface
             $sessionMeta[$id] = [
                 ...$meta,
                 'mobile' => $deviceDetector->isMobile() || $deviceDetector->isTablet(),
-                'platform' => $deviceDetector->getOs()['family'],
-                'browser' => $deviceDetector->getClient()['name'],
+                'platform' => $deviceDetector->getOs('family'),
+                'browser' => $deviceDetector->getClient('name'),
                 'verified' => (bool) ($session['verified'] ?? false),
             ];
         }
