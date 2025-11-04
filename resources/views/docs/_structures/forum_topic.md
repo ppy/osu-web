@@ -15,6 +15,7 @@ title         | string
 type          | `normal` \| `sticky` \| `announcement`
 updated_at    | [Timestamp](#timestamp)
 user_id       | integer
+views         | integer
 
 <div id="forum-topic-poll" data-unique="forum-topic-poll"></div>
 
