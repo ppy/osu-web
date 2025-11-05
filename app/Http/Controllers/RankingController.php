@@ -38,6 +38,7 @@ class RankingController extends Controller
         'top_plays',
         'team',
         'playlists',
+        'quickplay',
         'daily_challenge',
         'kudosu',
     ];
@@ -72,6 +73,7 @@ class RankingController extends Controller
                 'featured' => route('multiplayer.rooms.show', ['room' => 'latest']),
                 'seasons' => route('seasons.show', ['season' => 'latest']),
             },
+            'quickplay' => route('rankings.quickplay', ['mode' => $params['mode'] ?? default_mode()]),
             'team' => route('rankings', [
                 'mode' => $params['mode'] ?? default_mode(),
                 'type' => $params['type'],

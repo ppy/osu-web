@@ -53,12 +53,20 @@ return [
         'seasons' => 'seasons',
     ],
 
+    'quickplay' => [
+        'plays' => 'Plays',
+        'points' => 'Points',
+        'rating' => 'Rating',
+        'wins' => 'Wins',
+    ],
+
     'type' => [
         'country' => 'country',
         'daily_challenge' => 'daily challenge',
         'global' => 'global',
         'kudosu' => 'kudosu',
         'playlists' => 'playlists',
+        'quickplay' => 'quick play',
         'team' => 'team',
         'top_plays' => 'top plays',
     ],
