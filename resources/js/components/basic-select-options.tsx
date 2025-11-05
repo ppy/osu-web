@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import SelectOptions, { OptionRenderProps } from 'components/select-options';
+import Ruleset from 'interfaces/ruleset';
 import SelectOptionJson from 'interfaces/select-option-json';
 import { route } from 'laroute';
 import * as React from 'react';
@@ -10,12 +11,18 @@ import { fail } from 'utils/fail';
 import { navigate } from 'utils/turbolinks';
 import { updateQueryString } from 'utils/url';
 
-interface Props {
+interface PropsBase {
   currentItem: SelectOptionJson;
   items: SelectOptionJson[];
   modifiers?: Modifiers;
-  type: 'daily_challenge' | 'download' | 'multiplayer' | 'seasons' | 'spotlight';
 }
+
+type Props = PropsBase & ({
+  type: 'daily_challenge' | 'download' | 'multiplayer' | 'seasons' | 'spotlight';
+} | {
+  ruleset: Ruleset;
+  type: 'quickplay';
+});
 
 export default class BasicSelectOptions extends React.PureComponent<Props> {
   render() {
@@ -42,6 +49,8 @@ export default class BasicSelectOptions extends React.PureComponent<Props> {
         return route('download', { platform: id });
       case 'multiplayer':
         return route('multiplayer.rooms.show', { room: id ?? 'latest' });
+      case 'quickplay':
+        return route('rankings.quickplay', { mode: this.props.ruleset, pool: id ?? undefined });
       case 'seasons':
         return route('seasons.show', { season: id ?? 'latest' });
       case 'spotlight':
