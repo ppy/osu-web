@@ -3,9 +3,9 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('rankings.index', [
-    'currentRoute' => 'rankings.top-plays',
     'hasPager' => $scores !== null,
     'params' => ['mode' => $rulesetName, 'type' => 'top_plays'],
+    'rulesetSelectorUrlFn' => fn (string $r): string => route('rankings.top-plays', ['mode' => $r]),
     'titlePrepend' => osu_trans('rankings.type.top_plays'),
 ])
 

@@ -9,6 +9,7 @@ use App\Libraries\SessionVerification;
 use Illuminate\Auth\Access\AuthorizationException as LaravelAuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\ItemNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Session\TokenMismatchException;
@@ -31,6 +32,7 @@ class Handler extends ExceptionHandler
         AuthenticationException::class,
         LaravelAuthorizationException::class,
         ModelNotFoundException::class,
+        ItemNotFoundException::class,
         TokenMismatchException::class,
         \Illuminate\Validation\ValidationException::class,
         \Laravel\Octane\Exceptions\DdException::class,
@@ -63,6 +65,8 @@ class Handler extends ExceptionHandler
         if (method_exists($e, 'getStatusCode')) {
             return $e->getStatusCode();
         } elseif ($e instanceof ModelNotFoundException) {
+            return 404;
+        } elseif ($e instanceof ItemNotFoundException) {
             return 404;
         } elseif ($e instanceof NotFoundHttpException) {
             return 404;

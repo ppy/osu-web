@@ -951,6 +951,7 @@ function page_title()
         'main.store_controller._' => 'store._',
         'multiplayer.rooms_controller._' => 'main.ranking_controller._',
         'ranking.daily_challenge_controller._' => 'main.ranking_controller._',
+        'ranking.quickplay_controller._' => 'main.ranking_controller._',
         'ranking.top_plays_controller._' => 'main.ranking_controller._',
         default => $controllerKey,
     };
