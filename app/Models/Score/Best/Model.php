@@ -5,7 +5,7 @@
 
 namespace App\Models\Score\Best;
 
-use App\Libraries\ReplayFile;
+use App\Libraries\Score\LegacyReplayFile;
 use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\ReplayViewCount;
@@ -72,14 +72,9 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         };
     }
 
-    public function replayFile(): ?ReplayFile
+    public function replayFile(): ?LegacyReplayFile
     {
-        return $this->replay ? new ReplayFile($this) : null;
-    }
-
-    public function getReplayFile(): ?string
-    {
-        return $this->replayFile()?->get();
+        return $this->replay ? new LegacyReplayFile($this) : null;
     }
 
     public function macroForListing($query, $limit)

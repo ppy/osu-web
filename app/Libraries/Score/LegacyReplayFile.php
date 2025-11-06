@@ -3,14 +3,15 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Libraries;
+namespace App\Libraries\Score;
 
 use App\Exceptions\InvariantException;
+use App\Interfaces\ScoreReplayFileInterface;
 use App\Models\Beatmap;
 use App\Models\Score\Best\Model as ScoreBest;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
-class ReplayFile
+class LegacyReplayFile implements ScoreReplayFileInterface
 {
     const DEFAULT_VERSION = 20151228;
 

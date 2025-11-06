@@ -19,7 +19,7 @@ use App\Models\UserDonation;
 use App\Transformers\MenuImageTransformer;
 use Auth;
 use Carbon\CarbonImmutable;
-use Jenssegers\Agent\Agent;
+use DeviceDetector\DeviceDetector;
 use Request;
 
 /**
@@ -68,18 +68,19 @@ class HomeController extends Controller
             'windows_x64' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Windows 8.1']).' (x64)',
         ];
 
-        $agent = new Agent(Request::server());
+        $deviceDetector = new DeviceDetector(\Request::header('User-Agent') ?? '');
+        $deviceDetector->parse();
+        $family = $deviceDetector->getOs('family');
 
-        $platform = match (true) {
+        $platform = match ($family) {
             // Try matching most likely platform first
-            $agent->is('Windows') => 'windows_x64',
-            // iPadOS detection apparently doesn't work on newer version
-            // and detected as macOS instead.
-            ($agent->isiOS() || $agent->isiPadOS()) => $platform = 'ios',
+            'Windows' => 'windows_x64',
+            // current iPadOS declares itself as a desktop browser.
+            'iOS' => 'ios',
             // FIXME: Figure out a way to differentiate Intel and Apple Silicon.
-            $agent->is('OS X') => 'macos_as',
-            $agent->isAndroidOS() => 'android',
-            $agent->is('Linux') => 'linux_x64',
+            'Mac' => 'macos_as',
+            'Android' => 'android',
+            'GNU/Linux' => 'linux_x64',
             default => 'windows_x64',
         };
 
