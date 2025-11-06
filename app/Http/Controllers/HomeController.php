@@ -68,7 +68,7 @@ class HomeController extends Controller
             'windows_x64' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Windows 8.1']).' (x64)',
         ];
 
-        $deviceDetector = new DeviceDetector(\Request::header('User-Agent'));
+        $deviceDetector = new DeviceDetector(\Request::header('User-Agent') ?? '');
         $deviceDetector->parse();
         $family = $deviceDetector->getOs('family');
 
