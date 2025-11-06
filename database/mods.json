@@ -3134,16 +3134,16 @@
         "Type": "Conversion",
         "Settings": [
           {
-            "Name": "drain_rate",
-            "Type": "number",
-            "Label": "HP Drain",
-            "Description": "Override a beatmap's set HP."
-          },
-          {
             "Name": "overall_difficulty",
             "Type": "number",
             "Label": "Accuracy",
             "Description": "Override a beatmap's set OD."
+          },
+          {
+            "Name": "drain_rate",
+            "Type": "number",
+            "Label": "HP Drain",
+            "Description": "Override a beatmap's set HP."
           },
           {
             "Name": "extended_limits",
