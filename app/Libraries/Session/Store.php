@@ -125,7 +125,7 @@ class Store extends BaseStore implements SessionVerificationInterface
 
             $meta = $session['meta'];
 
-            $deviceDetector->setUserAgent($meta['agent']);
+            $deviceDetector->setUserAgent($meta['agent'] ?? '');
             $deviceDetector->parse();
 
             $sessionMeta[$id] = [
