@@ -30,15 +30,15 @@ function globalTier(stats: UserStatisticsJson) {
 
   return percent < 0.0005
     ? 'radiant'
-    : percent < 0.0025
+    : percent < 0.0015
       ? 'rhodium'
       : percent < 0.005
         ? 'platinum'
-        : percent < 0.025
+        : percent < 0.015
           ? 'gold'
           : percent < 0.05
             ? 'silver'
-            : percent < 0.25
+            : percent < 0.15
               ? 'bronze'
               : percent < 0.5
                 ? 'iron'
