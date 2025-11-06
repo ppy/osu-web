@@ -627,39 +627,37 @@ class Order extends Model
             ->first();
     }
 
-    public function macroItemsQuantities(): \Closure
+    public function macroItemsQuantities($baseQuery)
     {
-        return function ($query) {
-            $query = clone $query;
+        $query = clone $baseQuery;
 
-            $order = new self();
-            $orderItem = new OrderItem();
-            $product = new Product();
+        $order = new self();
+        $orderItem = new OrderItem();
+        $product = new Product();
 
-            $query
-                ->join(
-                    $orderItem->getTable(),
-                    $order->qualifyColumn('order_id'),
-                    '=',
-                    $orderItem->qualifyColumn('order_id')
-                )
-                ->join(
-                    $product->getTable(),
-                    $orderItem->qualifyColumn('product_id'),
-                    '=',
-                    $product->qualifyColumn('product_id')
-                )
-                ->whereNotNull($product->qualifyColumn('weight'))
-                ->groupBy($orderItem->qualifyColumn('product_id'))
-                ->groupBy($product->qualifyColumn('name'))
-                ->select(
-                    DB::raw("SUM({$orderItem->qualifyColumn('quantity')}) AS quantity"),
-                    $product->qualifyColumn('name'),
-                    $orderItem->qualifyColumn('product_id')
-                );
+        $query
+            ->join(
+                $orderItem->getTable(),
+                $order->qualifyColumn('order_id'),
+                '=',
+                $orderItem->qualifyColumn('order_id')
+            )
+            ->join(
+                $product->getTable(),
+                $orderItem->qualifyColumn('product_id'),
+                '=',
+                $product->qualifyColumn('product_id')
+            )
+            ->whereNotNull($product->qualifyColumn('weight'))
+            ->groupBy($orderItem->qualifyColumn('product_id'))
+            ->groupBy($product->qualifyColumn('name'))
+            ->select(
+                DB::raw("SUM({$orderItem->qualifyColumn('quantity')}) AS quantity"),
+                $product->qualifyColumn('name'),
+                $orderItem->qualifyColumn('product_id')
+            );
 
-            return $query->get();
-        };
+        return $query->get();
     }
 
     private function lockForReserve(?array $productIds = null)

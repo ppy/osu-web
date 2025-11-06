@@ -22,7 +22,7 @@ class MacroableModelScope implements Scope
 
         foreach ($model->getMacros() as $macro) {
             $fname = 'macro'.ucfirst($macro);
-            $builder->macro($macro, $model->$fname());
+            $builder->macro($macro, $model->$fname(...));
         }
     }
 }
