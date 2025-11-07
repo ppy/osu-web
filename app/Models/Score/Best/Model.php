@@ -20,10 +20,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
 {
     use Traits\Reportable, Traits\WithDbCursorHelper, Traits\WithWeightedPp;
 
-    protected array $macros = [
-        'forListing',
-    ];
-
     const SORTS = [
         'score_asc' => [
             ['column' => 'score', 'order' => 'ASC'],
@@ -75,44 +71,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
     public function replayFile(): ?LegacyReplayFile
     {
         return $this->replay ? new LegacyReplayFile($this) : null;
-    }
-
-    public function macroForListing($query, $limit)
-    {
-        $limit = \Number::clamp($limit ?? 50, 1, $GLOBALS['cfg']['osu']['beatmaps']['max_scores']);
-        $newQuery = (clone $query)->with('user')->limit($limit + 100);
-
-        $result = [];
-        $offset = 0;
-        $baseResultCount = 0;
-        $finalize = function (array $result) {
-            return array_values($result);
-        };
-
-        while (true) {
-            $baseResult = $newQuery->offset($offset)->get();
-            $baseResultCount = count($baseResult);
-
-            if ($baseResultCount === 0) {
-                break;
-            }
-
-            $offset += $baseResultCount;
-
-            foreach ($baseResult as $entry) {
-                if (isset($result[$entry->user_id])) {
-                    continue;
-                }
-
-                $result[$entry->user_id] = $entry;
-
-                if (count($result) >= $limit) {
-                    return $finalize($result);
-                }
-            }
-        }
-
-        return $finalize($result);
     }
 
     public function url(): string
