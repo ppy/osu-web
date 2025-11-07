@@ -6,6 +6,9 @@
   --font-weight: bold;
   .fancy-text(var(--colour));
   font-weight: var(--font-weight);
+  // allow the fancy text to fill the characters overflowing to descender part
+  padding-bottom: 0.2em;
+  margin-bottom: -$padding-bottom;
 
   &--base {
     --font-weight: 400;
