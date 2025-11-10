@@ -204,7 +204,7 @@ class UsersController extends Controller
 
         $request = \Request::instance();
 
-        if (!starts_with($request->header('User-Agent'), $GLOBALS['cfg']['osu']['client']['user_agent'])) {
+        if (!starts_with($request->header('User-Agent') ?? '', $GLOBALS['cfg']['osu']['client']['user_agent'])) {
             return error_popup(osu_trans('users.store.from_client'), 403);
         }
 

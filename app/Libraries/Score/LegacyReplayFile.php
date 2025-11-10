@@ -6,11 +6,12 @@
 namespace App\Libraries\Score;
 
 use App\Exceptions\InvariantException;
+use App\Interfaces\ScoreReplayFileInterface;
 use App\Models\Beatmap;
 use App\Models\Score\Best\Model as ScoreBest;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
-class LegacyReplayFile
+class LegacyReplayFile implements ScoreReplayFileInterface
 {
     const DEFAULT_VERSION = 20151228;
 
