@@ -39,7 +39,7 @@ export type RealtimeRoomType =
   | 'tag_team_versus'
   | 'team_versus';
 
-export type RoomType = 'playlists' | RealtimeRoomType;
+export type RoomType = 'matchmaking' | 'playlists' | RealtimeRoomType;
 
 interface RoomJsonAvailableIncludes {
   current_playlist_item: PlaylistItemJson | null;
