@@ -95,45 +95,39 @@ abstract class Model extends BaseModel
         return $this->lockForUpdate()->find($this->getKey());
     }
 
-    public function macroGetWithHasMore()
+    public function macroGetWithHasMore($query)
     {
-        return function ($query) {
-            $limit = $query->getQuery()->limit;
-            if ($limit === null) {
-                throw new Exception('"getWithHasMore" was called on query without "limit" specified');
-            }
-            $moreLimit = $limit + 1;
-            $result = $query->limit($moreLimit)->get();
+        $limit = $query->getQuery()->limit;
+        if ($limit === null) {
+            throw new Exception('"getWithHasMore" was called on query without "limit" specified');
+        }
+        $moreLimit = $limit + 1;
+        $result = $query->limit($moreLimit)->get();
 
-            $hasMore = $result->count() === $moreLimit;
+        $hasMore = $result->count() === $moreLimit;
 
-            if ($hasMore) {
-                $result->pop();
-            }
+        if ($hasMore) {
+            $result->pop();
+        }
 
-            return [$result, $hasMore];
-        };
+        return [$result, $hasMore];
     }
 
-    public function macroLast()
+    public function macroLast($baseQuery, $column = null)
     {
-        return function ($baseQuery, $column = null) {
-            $query = clone $baseQuery;
+        $query = clone $baseQuery;
 
-            return $query->orderBy($column ?? $this->getKeyName(), 'DESC')->first();
-        };
+        return $query->orderBy($column ?? $this->getKeyName(), 'DESC')->first();
     }
 
-    public function macroRealCount()
+    public function macroRealCount($baseQuery)
     {
-        return function ($baseQuery) {
-            $query = clone $baseQuery;
-            $query->unorder();
-            $query->getQuery()->offset = null;
-            $query->limit(null);
+        $query = clone $baseQuery;
+        $query->unorder();
+        $query->getQuery()->offset = null;
+        $query->limit(null);
 
-            return min($query->count(), $GLOBALS['cfg']['osu']['pagination']['max_count']);
-        };
+        return min($query->count(), $GLOBALS['cfg']['osu']['pagination']['max_count']);
     }
 
     public function refresh()

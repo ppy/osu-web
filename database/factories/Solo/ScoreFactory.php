@@ -53,7 +53,7 @@ class ScoreFactory extends Factory
         return $this
             ->state(['has_replay' => true])
             ->afterCreating(function ($score) {
-                Score::replayFileStorage()->put($score->getKey(), 'placeholder replay file');
+                $score->replayFile()->put('placeholder replay file');
             });
     }
 

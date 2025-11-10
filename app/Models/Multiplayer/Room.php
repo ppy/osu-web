@@ -254,12 +254,11 @@ class Room extends Model
         return $this->belongsTo(PlaylistItem::class, 'current_playlist_item_id');
     }
 
-    public function macroDailyChallengeFor(): \Closure
+    public function macroDailyChallengeFor(Builder $query, CarbonImmutable $date): ?static
     {
-        return fn (Builder $query, CarbonImmutable $date): ?static
-            => static::dailyChallenges()
-                ->whereBetween('starts_at', [$date->startOfDay(), $date->endOfDay()])
-                ->last();
+        return static::dailyChallenges()
+            ->whereBetween('starts_at', [$date->startOfDay(), $date->endOfDay()])
+            ->last();
     }
 
     public function host()
