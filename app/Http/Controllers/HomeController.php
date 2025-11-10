@@ -69,12 +69,8 @@ class HomeController extends Controller
             'windows_x64' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Windows 8.1']).' (x64)',
         ];
 
-        $platform = request('platform');
+        $platform = get_string(request('platform'));
         if (!array_key_exists($platform, $lazerPlatformNames)) {
-            $platform = null;
-        }
-
-        if ($platform === null) {
             $deviceDetector = new DeviceDetector(\Request::header('User-Agent') ?? '');
             $deviceDetector->parse();
             $family = $deviceDetector->getOs('family');
