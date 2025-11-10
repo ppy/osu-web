@@ -5,6 +5,8 @@
 
 namespace App\Models\ReplayViewCount;
 
+use App\Exceptions\ClassNotFoundException;
+use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
 use App\Models\Score\Best as ScoreBest;
 
@@ -14,6 +16,15 @@ abstract class Model extends BaseModel
 
     public $timestamps = false;
     public $incrementing = false;
+
+    public static function getClass(string $ruleset): string
+    {
+        if (!Beatmap::isModeValid($ruleset)) {
+            throw new ClassNotFoundException();
+        }
+
+        return get_class_namespace(static::class).'\\'.studly_case($ruleset);
+    }
 
     protected static function suffix()
     {

@@ -8,14 +8,14 @@ namespace App\Libraries\Score;
 use App\Exceptions\InvariantException;
 use App\Interfaces\ScoreReplayFileInterface;
 use App\Models\Beatmap;
-use App\Models\Score\Best\Model as ScoreBest;
+use App\Models\Solo\Score;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
 class LegacyReplayFile implements ScoreReplayFileInterface
 {
     const DEFAULT_VERSION = 20151228;
 
-    public function __construct(private ScoreBest $score)
+    public function __construct(private Score $score)
     {
     }
 
@@ -31,7 +31,7 @@ class LegacyReplayFile implements ScoreReplayFileInterface
      */
     public function endChunk()
     {
-        return pack('q', $this->score->score_id);
+        return pack('q', $this->score->legacy_score_id);
     }
 
     public function get(): ?string
@@ -46,11 +46,6 @@ class LegacyReplayFile implements ScoreReplayFileInterface
                 .$this->endChunk();
     }
 
-    public function getVersion()
-    {
-        return $this->score->replayViewCount?->version ?? static::DEFAULT_VERSION;
-    }
-
     /**
      * Generates the header chunk for replay files.
      *
@@ -58,40 +53,41 @@ class LegacyReplayFile implements ScoreReplayFileInterface
      */
     public function headerChunk(): string
     {
-        $score = $this->score;
-        $beatmap = $score->beatmap()->withTrashed()->first();
+        $legacyScore = $this->score->legacyScore();
+        $version = $legacyScore->replayViewCount?->version ?? static::DEFAULT_VERSION;
+        $beatmap = $legacyScore->beatmap()->withTrashed()->first();
 
         if ($beatmap === null) {
             throw new InvariantException('score is missing beatmap');
         }
 
-        $mode = Beatmap::MODES[$score->getMode()];
-        $user = $score->user;
+        $mode = Beatmap::MODES[$legacyScore->getMode()];
+        $user = $legacyScore->user;
 
         if ($user === null) {
             throw new InvariantException('score is missing user');
         }
 
-        $md5 = md5("{$score->maxcombo}osu{$user->username}{$beatmap->checksum}{$score->score}{$score->rank}");
-        $ticks = $score->date->timestamp * 10000000 + 621355968000000000; // Conversion to dotnet DateTime.Ticks.
+        $md5 = md5("{$legacyScore->maxcombo}osu{$user->username}{$beatmap->checksum}{$legacyScore->score}{$legacyScore->rank}");
+        $ticks = $legacyScore->date->timestamp * 10000000 + 621355968000000000; // Conversion to dotnet DateTime.Ticks.
 
         // easier debugging with array and implode instead of plain string concatenation.
         $components = [
             pack('c', $mode),
-            pack('i', $this->getVersion()),
+            pack('i', $version),
             pack_str($beatmap->checksum),
             pack_str($user->username),
             pack_str($md5),
-            pack('S', $score->count300),
-            pack('S', $score->count100),
-            pack('S', $score->count50),
-            pack('S', $score->countgeki),
-            pack('S', $score->countkatu),
-            pack('S', $score->countmiss),
-            pack('i', $score->score),
-            pack('S', $score->maxcombo),
-            pack('c', $score->perfect),
-            pack('i', $score->getAttributes()['enabled_mods']),
+            pack('S', $legacyScore->count300),
+            pack('S', $legacyScore->count100),
+            pack('S', $legacyScore->count50),
+            pack('S', $legacyScore->countgeki),
+            pack('S', $legacyScore->countkatu),
+            pack('S', $legacyScore->countmiss),
+            pack('i', $legacyScore->score),
+            pack('S', $legacyScore->maxcombo),
+            pack('c', $legacyScore->perfect),
+            pack('i', $legacyScore->getAttributes()['enabled_mods']),
             pack_str(''), // outputs 0b00 from site, 00 if exported from game client.
             pack('q', $ticks),
         ];
@@ -106,7 +102,7 @@ class LegacyReplayFile implements ScoreReplayFileInterface
 
     private function path(): string
     {
-        return (string) $this->score->getKey();
+        return (string) $this->score->legacy_score_id;
     }
 
     private function storage(): Filesystem

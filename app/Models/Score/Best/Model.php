@@ -5,7 +5,6 @@
 
 namespace App\Models\Score\Best;
 
-use App\Libraries\Score\LegacyReplayFile;
 use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\ReplayViewCount;
@@ -66,11 +65,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
             'reportedIn',
             'user' => $this->getRelationValue($key),
         };
-    }
-
-    public function replayFile(): ?LegacyReplayFile
-    {
-        return $this->replay ? new LegacyReplayFile($this) : null;
     }
 
     public function url(): string
@@ -135,22 +129,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    /**
-     * This doesn't delete the score in elasticsearch.
-     */
-    public function delete()
-    {
-        $result = $this->getConnection()->transaction(function () {
-            $this->replayViewCount?->delete();
-
-            return parent::delete();
-        });
-
-        $this->replayFile()?->delete();
-
-        return $result;
     }
 
     protected function newReportableExtraParams(): array
