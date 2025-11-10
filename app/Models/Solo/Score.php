@@ -405,7 +405,7 @@ class Score extends Model implements Traits\ReportableInterface
     {
         $id = $this->legacy_score_id;
 
-        return $id === null
+        return $id === null || $id === 0
             ? null
             : LegacyScore\Best\Model::getClass($this->getMode())::find($id);
     }
