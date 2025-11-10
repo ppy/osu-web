@@ -56,7 +56,6 @@
   &__banner-tail {
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
   }
 
   &__example {
@@ -71,8 +70,6 @@
     font-size: @font-size--title-small;
 
     &--separator {
-      pointer-events: none;
-
       &::before {
         content: "•";
       }
@@ -164,14 +161,12 @@
     height: 24px;
     border-radius: $height;
 
-    border: solid #fff 2px;
-    color: #fff;
+    border: solid currentColor 2px;
     font-weight: 700;
     padding-bottom: 2px; // more center the number
   }
 
   &__text {
-    color: hsl(var(--hsl-c1));
     font-size: @font-size--normal;
 
     &--description {
