@@ -18,6 +18,12 @@ return [
         ],
     ],
 
+    'series' => [
+        'none' => 'Uncategorised',
+        'project_loved' => 'Project Loved',
+        'the_followpoint' => 'The Followpoint',
+    ],
+
     'show' => [
         'by' => 'by :user',
 

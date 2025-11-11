@@ -44,6 +44,7 @@ class Notification extends Model
     const CHANNEL_TEAM = 'channel_team';
     const COMMENT_NEW = 'comment_new';
     const FORUM_TOPIC_REPLY = 'forum_topic_reply';
+    const NEWS_POST_NEW = 'news_post_new';
     const TEAM_APPLICATION_ACCEPT = 'team_application_accept';
     const TEAM_APPLICATION_REJECT = 'team_application_reject';
     const TEAM_APPLICATION_STORE = 'team_application_store';
@@ -71,6 +72,7 @@ class Notification extends Model
         self::CHANNEL_TEAM => 'channel_team',
         self::COMMENT_NEW => 'comment',
         self::FORUM_TOPIC_REPLY => 'forum_topic_reply',
+        self::NEWS_POST_NEW => 'news_post',
         self::TEAM_APPLICATION_ACCEPT => 'team_application',
         self::TEAM_APPLICATION_REJECT => 'team_application',
         self::TEAM_APPLICATION_STORE => 'team_application',
