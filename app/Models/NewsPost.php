@@ -6,11 +6,13 @@
 namespace App\Models;
 
 use App\Exceptions\GitHubNotFoundException;
+use App\Jobs\Notifications\NewsPostNew;
 use App\Libraries\Commentable;
 use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
 use App\Traits\Memoizes;
 use Carbon\Carbon;
+use Ds\Set;
 use Exception;
 
 /**
@@ -37,6 +39,13 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     const DASHBOARD_LIMIT = 8;
     // also for number of large posts in user dashboard
     const LANDING_LIMIT = 4;
+
+    // Ordered according to how they'll display in notification settings.
+    const SERIES = [
+        'project_loved',
+        'the_followpoint',
+        'none', // uncategorised
+    ];
 
     const SORTS = [
         'published_asc' => [
@@ -295,9 +304,12 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
         });
     }
 
-    public function series(): ?string
+    public function series(): string
     {
-        return presence(snake_case($this->page['header']['series'] ?? ''));
+        static $allSeries = new Set(static::SERIES);
+
+        $series = snake_case($this->page['header']['series'] ?? 'none');
+        return $allSeries->contains($series) ? $series : 'none';
     }
 
     public function sync($force = false)
@@ -382,6 +394,15 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     public function previewText()
     {
         return first_paragraph($this->bodyHtml());
+    }
+
+    public function save(array $options = [])
+    {
+        if ($this->isDirty('published_at') && $this->getOriginal('published_at') === null) {
+            $this->getConnection()->afterCommit(fn () => new NewsPostNew($this)->dispatch());
+        }
+
+        return parent::save($options);
     }
 
     public function title()
