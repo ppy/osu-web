@@ -11,7 +11,6 @@ use App\Exceptions\OrderNotModifiableException;
 use App\Models\Country;
 use App\Models\User;
 use Carbon\Carbon;
-use DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -90,8 +89,6 @@ class Order extends Model
         'shipped_at' => 'datetime',
         'shipping' => 'float',
     ];
-
-    protected array $macros = ['itemsQuantities'];
 
     protected static function splitTransactionId($value)
     {
@@ -625,41 +622,6 @@ class Order extends Model
             ->inCart()
             ->with('items.product')
             ->first();
-    }
-
-    public function macroItemsQuantities(): \Closure
-    {
-        return function ($query) {
-            $query = clone $query;
-
-            $order = new self();
-            $orderItem = new OrderItem();
-            $product = new Product();
-
-            $query
-                ->join(
-                    $orderItem->getTable(),
-                    $order->qualifyColumn('order_id'),
-                    '=',
-                    $orderItem->qualifyColumn('order_id')
-                )
-                ->join(
-                    $product->getTable(),
-                    $orderItem->qualifyColumn('product_id'),
-                    '=',
-                    $product->qualifyColumn('product_id')
-                )
-                ->whereNotNull($product->qualifyColumn('weight'))
-                ->groupBy($orderItem->qualifyColumn('product_id'))
-                ->groupBy($product->qualifyColumn('name'))
-                ->select(
-                    DB::raw("SUM({$orderItem->qualifyColumn('quantity')}) AS quantity"),
-                    $product->qualifyColumn('name'),
-                    $orderItem->qualifyColumn('product_id')
-                );
-
-            return $query->get();
-        };
     }
 
     private function lockForReserve(?array $productIds = null)

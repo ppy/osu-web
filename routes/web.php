@@ -339,7 +339,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('extra-pages/{page}', 'UsersController@extraPages')->name('extra-page');
         Route::put('page', 'UsersController@updatePage')->name('page');
         Route::group(['namespace' => 'Users'], function () {
-            Route::resource('{typeGroup}', 'MultiplayerController', ['only' => 'index'])->where(['typeGroup' => 'multiplayer|playlists|realtime'])->names('multiplayer');
+            Route::resource('{typeGroup}', 'MultiplayerController', ['only' => 'index'])->where(['typeGroup' => 'multiplayer|playlists|quickplay|realtime'])->names('multiplayer');
 
             Route::group(['as' => 'modding.', 'prefix' => 'modding'], function () {
                 Route::get('/', 'ModdingHistoryController@index')->name('index');

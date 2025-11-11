@@ -10,6 +10,7 @@ namespace App\Models\Solo;
 use App\Enums\Ruleset;
 use App\Enums\ScoreRank;
 use App\Exceptions\InvariantException;
+use App\Libraries\Score\ReplayFile;
 use App\Libraries\Score\ScoringMode;
 use App\Libraries\Score\UserRank;
 use App\Libraries\Search\ScoreSearchParams;
@@ -23,7 +24,6 @@ use App\Models\Traits;
 use App\Models\User;
 use App\Support\ScoreCollection;
 use Carbon\CarbonImmutable;
-use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Database\Eloquent\Attributes\CollectedBy;
 use Illuminate\Database\Eloquent\Builder;
 use LaravelRedis;
@@ -142,16 +142,6 @@ class Score extends Model implements Traits\ReportableInterface
         $params['ranked'] = $params['passed'] && $beatmap !== null && $beatmap->approved > 0;
 
         return $params;
-    }
-
-    public static function replayFileDiskName(): string
-    {
-        return "{$GLOBALS['cfg']['filesystems']['default']}-solo-replay";
-    }
-
-    public static function replayFileStorage(): Filesystem
-    {
-        return \Storage::disk(static::replayFileDiskName());
     }
 
     public function beatmap()
@@ -340,11 +330,6 @@ class Score extends Model implements Traits\ReportableInterface
         return Beatmap::modeStr($this->ruleset_id);
     }
 
-    public function getReplayFile(): ?string
-    {
-        return static::replayFileStorage()->get($this->getKey());
-    }
-
     public function isLegacy(): bool
     {
         return $this->legacy_score_id !== null;
@@ -420,7 +405,7 @@ class Score extends Model implements Traits\ReportableInterface
     {
         $id = $this->legacy_score_id;
 
-        return $id === null
+        return $id === null || $id === 0
             ? null
             : LegacyScore\Best\Model::getClass($this->getMode())::find($id);
     }
@@ -516,6 +501,13 @@ class Score extends Model implements Traits\ReportableInterface
         LaravelRedis::lpush($GLOBALS['cfg']['osu']['scores']['processing_queue'], json_encode([
             'Score' => $this->getAttributes(),
         ]));
+    }
+
+    public function replayFile(): ?ReplayFile
+    {
+        return !$this->isLegacy() && $this->has_replay
+            ? new ReplayFile($this)
+            : null;
     }
 
     public function trashed(): bool

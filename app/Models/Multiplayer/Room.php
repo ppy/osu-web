@@ -76,6 +76,7 @@ class Room extends Model
     const TYPE_GROUPS = [
         'playlists' => [self::PLAYLIST_TYPE],
         'realtime' => self::REALTIME_STANDARD_TYPES,
+        'quickplay' => [self::MATCHMAKING_TYPE],
     ];
 
     const PLAYLIST_TYPE = 'playlists';
@@ -234,12 +235,11 @@ class Room extends Model
         return $this->belongsTo(PlaylistItem::class, 'current_playlist_item_id');
     }
 
-    public function macroDailyChallengeFor(): \Closure
+    public function macroDailyChallengeFor(Builder $query, CarbonImmutable $date): ?static
     {
-        return fn (Builder $query, CarbonImmutable $date): ?static
-            => static::dailyChallenges()
-                ->whereBetween('starts_at', [$date->startOfDay(), $date->endOfDay()])
-                ->last();
+        return static::dailyChallenges()
+            ->whereBetween('starts_at', [$date->startOfDay(), $date->endOfDay()])
+            ->last();
     }
 
     public function host()
@@ -345,6 +345,13 @@ class Room extends Model
                 LIMIT {$limit}
             ) recent_participants
         ", 'recent_participant_ids');
+    }
+
+    public function getNameAttribute(?string $value): ?string
+    {
+        return $this->isMatchmaking() && $value === 'Unnamed room'
+            ? 'Quick Play Match'
+            : $value;
     }
 
     public function assertCorrectPassword(?string $password): void
