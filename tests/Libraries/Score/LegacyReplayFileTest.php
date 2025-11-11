@@ -8,6 +8,7 @@ namespace Tests\Libraries\Score;
 use App\Libraries\Score\LegacyReplayFile;
 use App\Models\Beatmap;
 use App\Models\Score\Best;
+use App\Models\Solo\Score;
 use App\Models\User;
 use Tests\TestCase;
 
@@ -61,7 +62,9 @@ class LegacyReplayFileTest extends TestCase
         $user = User::find($userId) ?? User::factory()->create(['user_id' => $userId]);
         $user->fill(['username' => 'I.R.Real'])->saveOrExplode(['skipValidations' => true]);
 
-        $score = Best\Osu::make([
+        $legacyScoreId = 2493013207;
+        Best\Osu::find($legacyScoreId)?->delete();
+        $legacyScore = Best\Osu::create([
             'score_id' => 2493013207,
             'beatmap_id' => $beatmapId,
             'user_id' => $userId,
@@ -82,13 +85,17 @@ class LegacyReplayFileTest extends TestCase
             'hidden' => 0,
             'country_acronym' => 'DE',
         ]);
+        $score = Score::make([
+            'legacy_score_id' => $legacyScoreId,
+            'ruleset_id' => 0,
+        ]);
 
         if ($hasReplayRecord) {
-            $score->setRelation('replayViewCount', $score->replayViewCount()->make([
-                'score_id' => 2493013207,
+            $legacyScore->replayViewCount()->create([
+                'score_id' => $legacyScoreId,
                 'play_count' => 1,
                 'version' => $version,
-            ]));
+            ]);
         }
 
         return $score;

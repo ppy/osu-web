@@ -7,6 +7,7 @@ namespace App\Jobs;
 
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
+use App\Models\ReplayViewCount;
 use App\Models\Score\Best\Model;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -51,20 +52,20 @@ class RemoveBeatmapsetBestScores implements ShouldQueue
         $beatmapIds = model_pluck($this->beatmapset->beatmaps(), 'beatmap_id');
 
         foreach (Beatmap::MODES as $mode => $_modeInt) {
-            $class = Model::getClass($mode);
-            // Just delete until no more matching rows.
-            $query = $class
+            $scoreClass = Model::getClass($mode);
+            $replayViewCountClass = ReplayViewCount\Model::getClass($mode);
+
+            $query = $scoreClass
                 ::with('user')
                 ->whereIn('beatmap_id', $beatmapIds)
                 ->where('score_id', '<=', $this->maxScoreIds[$mode] ?? 0)
-                ->orderBy('score', 'ASC')
-                ->limit(1000);
-            $scores = $query->get();
-
-            while ($scores->count() > 0) {
-                $scores->each->delete();
-                $scores = $query->get();
-            }
+                ->select('score_id')
+                ->chunkById(1000, function ($scores) use ($replayViewCountClass, $scoreClass) {
+                    $ids = $scores->pluck('score_id')->all();
+                    $scoreClass::whereKey($ids)->delete();
+                    $replayViewCountClass::whereKey($ids)->delete();
+                    // the actual replay file is deleted by non-legacy score deletion job
+                });
         }
     }
 

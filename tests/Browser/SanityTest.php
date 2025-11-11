@@ -44,8 +44,9 @@ use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
 use App\Models\NewsPost;
 use App\Models\Notification;
-use App\Models\Score;
+use App\Models\Score\Best as ScoreBest;
 use App\Models\Season;
+use App\Models\Solo\Score;
 use App\Models\Store;
 use App\Models\Team;
 use App\Models\Tournament;
@@ -281,7 +282,8 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['news'] = new ScaffoldDummy('2014-06-21-meet-yuzu');
 
         // score factory
-        self::$scaffolding['score'] = Score\Best\Osu::factory()->withReplay()->create();
+        self::$scaffolding['legacy_score'] = ScoreBest\Osu::factory()->create(['replay' => true]);
+        self::$scaffolding['score'] = Score::factory()->withReplay()->create(['legacy_score_id' => self::$scaffolding['legacy_score']]);
 
         self::$scaffolding['room'] = Room::factory()->create(['category' => 'spotlight']);
 
@@ -469,12 +471,12 @@ class SanityTest extends DuskTestCase
                 'daily_challenge' => DailyChallengeDateHelper::roomId(self::$scaffolding['daily_challenge_room']),
             ],
             'scores.download-legacy' => [
-                'rulesetOrScore' => static::$scaffolding['score']->getMode(),
-                'score' => static::$scaffolding['score']->getKey(),
+                'rulesetOrScore' => static::$scaffolding['legacy_score']->getMode(),
+                'score' => static::$scaffolding['legacy_score']->getKey(),
             ],
             'scores.show' => [
-                'rulesetOrScore' => static::$scaffolding['score']->getMode(),
-                'score' => static::$scaffolding['score']->getKey(),
+                'rulesetOrScore' => static::$scaffolding['legacy_score']->getMode(),
+                'score' => static::$scaffolding['legacy_score']->getKey(),
             ],
             'legal' => [
                 'locale' => 'en',

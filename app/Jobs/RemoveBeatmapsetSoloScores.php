@@ -68,6 +68,7 @@ class RemoveBeatmapsetSoloScores implements ShouldQueue
             ->chunkById(1000, function ($scores) {
                 $this->recordUserBestScores($scores);
                 $this->deleteScores($scores);
+                $this->deleteLegacyScoreReplayFiles($scores);
             });
         BeatmapLeader
             ::whereIn('beatmap_id', $beatmapIds)
@@ -79,6 +80,18 @@ class RemoveBeatmapsetSoloScores implements ShouldQueue
     public function middleware(): array
     {
         return [new WithoutOverlapping((string) $this->beatmapsetId, $this->timeout, $this->timeout)];
+    }
+
+    private function deleteLegacyScoreReplayFiles(Collection $scores): void
+    {
+        $deletedReplayIds = [];
+        foreach ($scores as $score) {
+            if ($score->isLegacy()) {
+                $score->replayFile()?->delete();
+                $deletedReplayIds[] = $score->getKey();
+            }
+        }
+        Score::whereKey($deletedReplayIds)->update(['has_replay' => false]);
     }
 
     private function deleteScores(Collection $scores): void

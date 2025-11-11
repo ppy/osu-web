@@ -250,10 +250,9 @@ class ScoresControllerTest extends TestCase
         $this->otherUser = User::factory()->create();
 
         UserStatistics\Osu::factory()->create(['user_id' => $this->user->user_id]);
-        $this->score = Osu::factory()->withReplay()->create(['user_id' => $this->user->user_id]);
-        $this->soloScore = SoloScore::factory()->create([
+        $this->score = Osu::factory()->create(['replay' => true, 'user_id' => $this->user->user_id]);
+        $this->soloScore = SoloScore::factory()->withReplay()->create([
             'beatmap_id' => $this->score->beatmap_id,
-            'has_replay' => true,
             'legacy_score_id' => $this->score->getKey(),
             'user_id' => $this->score->user_id,
         ]);

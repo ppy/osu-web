@@ -43,13 +43,4 @@ abstract class ModelFactory extends Factory
             'countmiss' => fn (array $attr) => round($attr['maxcombo'] * 0.05),
         ];
     }
-
-    public function withReplay()
-    {
-        return $this->state([
-            'replay' => true,
-        ])->afterCreating(function ($score) {
-            $score->replayFile()->put('this-is-totally-a-legit-replay');
-        });
-    }
 }

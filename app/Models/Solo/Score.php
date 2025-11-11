@@ -10,6 +10,8 @@ namespace App\Models\Solo;
 use App\Enums\Ruleset;
 use App\Enums\ScoreRank;
 use App\Exceptions\InvariantException;
+use App\Interfaces\ScoreReplayFileInterface;
+use App\Libraries\Score\LegacyReplayFile;
 use App\Libraries\Score\ReplayFile;
 use App\Libraries\Score\ScoringMode;
 use App\Libraries\Score\UserRank;
@@ -23,6 +25,7 @@ use App\Models\ScoreToken;
 use App\Models\Traits;
 use App\Models\User;
 use App\Support\ScoreCollection;
+use App\Traits\Memoizes;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Attributes\CollectedBy;
 use Illuminate\Database\Eloquent\Builder;
@@ -56,7 +59,7 @@ use LaravelRedis;
 #[CollectedBy(ScoreCollection::class)]
 class Score extends Model implements Traits\ReportableInterface
 {
-    use Traits\Reportable, Traits\WithDbCursorHelper, Traits\WithWeightedPp;
+    use Memoizes, Traits\Reportable, Traits\WithDbCursorHelper, Traits\WithWeightedPp;
 
     const DEFAULT_SORT = 'old';
 
@@ -403,11 +406,13 @@ class Score extends Model implements Traits\ReportableInterface
 
     public function legacyScore(): ?LegacyScore\Best\Model
     {
-        $id = $this->legacy_score_id;
+        return $this->memoize(__FUNCTION__, function () {
+            $id = $this->legacy_score_id;
 
-        return $id === null || $id === 0
-            ? null
-            : LegacyScore\Best\Model::getClass($this->getMode())::find($id);
+            return $id === null || $id === 0
+                ? null
+                : LegacyScore\Best\Model::getClass($this->getMode())::find($id);
+        });
     }
 
     public function makeLegacyEntry(): LegacyScore\Model
@@ -503,11 +508,14 @@ class Score extends Model implements Traits\ReportableInterface
         ]));
     }
 
-    public function replayFile(): ?ReplayFile
+    public function replayFile(): ?ScoreReplayFileInterface
     {
-        return !$this->isLegacy() && $this->has_replay
-            ? new ReplayFile($this)
-            : null;
+        return $this->has_replay
+            ? (
+                $this->isLegacy()
+                    ? new LegacyReplayFile($this)
+                    : new ReplayFile($this)
+            ) : null;
     }
 
     public function trashed(): bool
