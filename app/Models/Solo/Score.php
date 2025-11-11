@@ -10,6 +10,8 @@ namespace App\Models\Solo;
 use App\Enums\Ruleset;
 use App\Enums\ScoreRank;
 use App\Exceptions\InvariantException;
+use App\Interfaces\ScoreReplayFileInterface;
+use App\Libraries\Score\LegacyReplayFile;
 use App\Libraries\Score\ReplayFile;
 use App\Libraries\Score\ScoringMode;
 use App\Libraries\Score\UserRank;
@@ -514,11 +516,14 @@ class Score extends Model implements Traits\ReportableInterface
         ]));
     }
 
-    public function replayFile(): ?ReplayFile
+    public function replayFile(): ?ScoreReplayFileInterface
     {
-        return !$this->isLegacy() && $this->has_replay
-            ? new ReplayFile($this)
-            : null;
+        return $this->has_replay
+            ? (
+                $this->isLegacy()
+                    ? new LegacyReplayFile($this->legacyScore)
+                    : new ReplayFile($this)
+            ) : null;
     }
 
     public function trashed(): bool
