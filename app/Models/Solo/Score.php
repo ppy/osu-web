@@ -16,15 +16,14 @@ use App\Libraries\Score\UserRank;
 use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
 use App\Models\Build;
+use App\Models\Count;
 use App\Models\Model;
 use App\Models\Multiplayer\ScoreLink as MultiplayerScoreLink;
 use App\Models\Score as LegacyScore;
 use App\Models\ScoreToken;
 use App\Models\Traits;
 use App\Models\User;
-use App\Support\ScoreCollection;
 use Carbon\CarbonImmutable;
-use Illuminate\Database\Eloquent\Attributes\CollectedBy;
 use Illuminate\Database\Eloquent\Builder;
 use LaravelRedis;
 
@@ -53,7 +52,6 @@ use LaravelRedis;
  * @property User $user
  * @property int $user_id
  */
-#[CollectedBy(ScoreCollection::class)]
 class Score extends Model implements Traits\ReportableInterface
 {
     use Traits\Reportable, Traits\WithDbCursorHelper, Traits\WithWeightedPp;
@@ -64,7 +62,6 @@ class Score extends Model implements Traits\ReportableInterface
         'old' => [['column' => 'id', 'order' => 'ASC']],
     ];
 
-    public ScoreCollection $collection;
     public $timestamps = false;
 
     protected $casts = [
@@ -396,9 +393,12 @@ class Score extends Model implements Traits\ReportableInterface
             return $this->attributes['processed_version'] !== null;
         }
 
-        $this->collection ??= new ScoreCollection([$this]);
+        $lastProcessedScoreId = request_attribute_remember(
+            'last_processed_score_id',
+            fn (): int => Count::lastProcessedScoreId()->count,
+        );
 
-        return $this->getKey() <= $this->collection->lastProcessedScoreId();
+        return $this->getKey() <= $lastProcessedScoreId;
     }
 
     public function legacyScore(): ?LegacyScore\Best\Model

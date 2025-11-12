@@ -17,14 +17,13 @@ use App\Models\Season;
 use App\Models\SeasonRoom;
 use App\Models\Traits\WithDbCursorHelper;
 use App\Models\User;
-use App\Support\RoomCollection;
 use App\Traits\Memoizes;
 use App\Transformers\Multiplayer\RoomTransformer;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 use Ds\Set;
-use Illuminate\Database\Eloquent\Attributes\CollectedBy;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -54,7 +53,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $queue_mode
  * @property bool $auto_skip
  */
-#[CollectedBy(RoomCollection::class)]
 class Room extends Model
 {
     use Memoizes, SoftDeletes, WithDbCursorHelper;
@@ -90,7 +88,7 @@ class Room extends Model
     const REALTIME_QUEUE_MODES = [ 'host_only', 'all_players', 'all_players_round_robin' ];
     const REALTIME_STATUSES = ['idle', 'playing'];
 
-    public RoomCollection $collection;
+    public ?array $preloadedRecentParticipants = null;
 
     protected $attributes = [
         'participant_count' => 0,
@@ -106,6 +104,27 @@ class Room extends Model
         'dailyChallengeFor',
     ];
     protected $table = 'multiplayer_rooms';
+
+    /**
+     * Using this requires the collection to be queried with withRecentParticipantIds scope.
+     */
+    public static function preloadRecentParticipants(Collection $rooms)
+    {
+        $allUserIds = $rooms->map->recent_participant_ids->flatten();
+        $allUsersByKey = User::whereKey($allUserIds)->get()->keyBy('user_id');
+
+        foreach ($rooms as $room) {
+            $users = [];
+            foreach ($room->recent_participant_ids as $userId) {
+                $user = $allUsersByKey[$userId] ?? null;
+
+                if ($user !== null) {
+                    $users[] = $user;
+                }
+            }
+            $room->preloadedRecentParticipants = $users;
+        }
+    }
 
     public static function responseJson(array $rawParams): array
     {
@@ -590,16 +609,8 @@ class Room extends Model
 
     public function recentParticipants(): array
     {
-        if (isset($this->collection) && array_key_exists('recent_participant_ids', $this->attributes)) {
-            $userMap = $this->collection->recentParticipantByUserId();
-            $ret = [];
-            foreach ($this->recent_participant_ids as $userId) {
-                $user = $userMap[$userId] ?? null;
-                if ($user !== null) {
-                    $ret[] = $user;
-                }
-            }
-            return $ret;
+        if ($this->preloadedRecentParticipants !== null) {
+            return $this->preloadedRecentParticipants;
         }
 
         return $this
