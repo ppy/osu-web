@@ -445,7 +445,7 @@ class Beatmap extends Model implements AfterCommit
             $value = $this->getRawAttribute('difficultyrating');
         }
 
-        return round($value, 2);
+        return $value;
     }
 
     private function getDiffSize()
