@@ -6,22 +6,62 @@
     use App\Transformers\SelectOptionTransformer;
 
     $selectOptionTransformer = new SelectOptionTransformer();
+    $season = $room->season;
+    if ($season !== null) {
+        $type = 'seasons';
+        $titlePrefix = osu_trans('rankings.type.season_room');
+    } elseif ($room->isFeatured()) {
+        $type = 'multiplayer';
+        $titlePrefix = osu_trans('rankings.type.multiplayer');
+    } else {
+        $type = null;
+        $titlePrefix = match (true) {
+            $room->isMatchmaking() => '',
+            $room->isRealtime() => osu_trans('layout.header.users.realtime'),
+            default => osu_trans('layout.header.users.playlists'),
+        };
+    }
+    if ($titlePrefix !== '') {
+        $titlePrefix .= ': ';
+    }
 @endphp
 @extends('rankings.index', [
     'hasFilter' => false,
     'hasMode' => false,
-    'params' => ['type' => 'multiplayer'],
-    'titlePrepend' => osu_trans('rankings.type.multiplayer').': '.$room->name,
+    'params' => ['type' => $type],
+    'titlePrepend' => "{$titlePrefix}{$room->name}",
 ])
 
 @section('ranking-header')
     <div class="osu-page osu-page--ranking-info">
-        @include('objects._basic_select_options', ['selectOptions' => [
-            'currentItem' => json_item($room, $selectOptionTransformer),
-            'items' => json_collection($rooms, $selectOptionTransformer),
-            'type' => 'multiplayer',
-        ]])
+        @if ($season !== null)
+            <span>
+                <a
+                    class="btn-osu-big btn-osu-big--rounded-thin"
+                    href="{{ route('seasons.show', ['season' => $season->getKey()]) }}"
+                >
+                    {{ osu_trans('rankings.seasons.summary') }}
+                </a>
+            </span>
+        @endif
+        @if ($rooms !== null)
+            @include('objects._basic_select_options', ['selectOptions' => [
+                'currentItem' => json_item($room, $selectOptionTransformer),
+                'items' => json_collection($rooms, $selectOptionTransformer),
+                'type' => 'multiplayer',
+            ]])
+        @endif
 
+        @if ($rooms === null)
+            <div class="counter-box counter-box--ranking">
+                <div class="counter-box__title">
+                    {{ osu_trans('rankings.multiplayer.room_name') }}
+                </div>
+                <div class="counter-box__count">
+                    {{ $room->name }}
+                </div>
+            </div>
+        @endif
         <div class="grid-items grid-items--ranking-info-bar">
             <div class="counter-box counter-box--ranking">
                 <div class="counter-box__title">
