@@ -45,15 +45,19 @@ return [
         'empty' => 'The data is being calculated...',
     ],
 
-    'type' => [
+    'playlists' => [
         'charts' => 'spotlights (old)',
+        'featured' => 'featured',
+        'season_room' => 'season room',
+        'seasons' => 'seasons',
+    ],
+
+    'type' => [
         'country' => 'country',
         'daily_challenge' => 'daily challenge',
         'global' => 'global',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'multiplayer',
-        'season_room' => 'season room',
-        'seasons' => 'seasons',
+        'playlists' => 'playlists',
         'team' => 'team',
         'top_plays' => 'top plays',
     ],

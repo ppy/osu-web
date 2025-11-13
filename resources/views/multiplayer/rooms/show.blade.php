@@ -8,13 +8,13 @@
     $selectOptionTransformer = new SelectOptionTransformer();
     $season = $room->season;
     if ($season !== null) {
-        $type = 'seasons';
-        $titlePrefix = osu_trans('rankings.type.season_room');
+        $list = 'seasons';
+        $titlePrefix = osu_trans('rankings.playlists.season_room');
     } elseif ($room->isFeatured()) {
-        $type = 'multiplayer';
-        $titlePrefix = osu_trans('rankings.type.multiplayer');
+        $list = 'featured';
+        $titlePrefix = osu_trans('rankings.playlists.featured');
     } else {
-        $type = null;
+        $list = null;
         $titlePrefix = match (true) {
             $room->isMatchmaking() => '',
             $room->isRealtime() => osu_trans('layout.header.users.realtime'),
@@ -24,16 +24,23 @@
     if ($titlePrefix !== '') {
         $titlePrefix .= ': ';
     }
+    $params = [
+        'type' => $list === null ? null : 'playlists',
+        'list' => $list,
+    ];
 @endphp
 @extends('rankings.index', [
     'hasFilter' => false,
     'hasMode' => false,
-    'params' => ['type' => $type],
+    'params' => $params,
     'titlePrepend' => "{$titlePrefix}{$room->name}",
 ])
 
 @section('ranking-header')
     <div class="osu-page osu-page--ranking-info">
+        @if ($list !== null)
+            @include('rankings._playlist_selector', compact('params'))
+        @endif
         @if ($season !== null)
             <span>
                 <a
