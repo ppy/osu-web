@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { padStart } from 'lodash';
+import { floor, padStart } from 'lodash';
 import { CSSProperties } from 'react';
 import { urlPresence } from './css';
 
@@ -82,6 +82,10 @@ export function formatNumber(num: number, precision?: number, options?: Intl.Num
   }
 
   return num.toLocaleString(locale ?? window.currentLocale, options);
+}
+
+export function formatStarRating(num: number) {
+  return formatNumber(floor(num, 2), 2);
 }
 
 const defaultSuffixedNumberOptions = {
