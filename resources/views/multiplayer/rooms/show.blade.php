@@ -6,16 +6,30 @@
     use App\Transformers\SelectOptionTransformer;
 
     $selectOptionTransformer = new SelectOptionTransformer();
+    $season = $room->season;
+    [$type, $titlePrefix] = $season === null
+        ? ['multiplayer', osu_trans('rankings.type.multiplayer')]
+        : ['seasons', osu_trans('rankings.type.season_room')];
 @endphp
 @extends('rankings.index', [
     'hasFilter' => false,
     'hasMode' => false,
-    'params' => ['type' => 'multiplayer'],
-    'titlePrepend' => osu_trans('rankings.type.multiplayer').': '.$room->name,
+    'params' => ['type' => $type],
+    'titlePrepend' => $titlePrefix.': '.$room->name,
 ])
 
 @section('ranking-header')
     <div class="osu-page osu-page--ranking-info">
+        @if ($season !== null)
+            <span>
+                <a
+                    class="btn-osu-big btn-osu-big--rounded-thin"
+                    href="{{ route('seasons.show', ['season' => $season->getKey()]) }}"
+                >
+                    {{ osu_trans('rankings.seasons.summary') }}
+                </a>
+            </span>
+        @endif
         @include('objects._basic_select_options', ['selectOptions' => [
             'currentItem' => json_item($room, $selectOptionTransformer),
             'items' => json_collection($rooms, $selectOptionTransformer),
