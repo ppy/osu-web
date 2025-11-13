@@ -20,7 +20,7 @@ interface Props {
 export default function Main(props: Props) {
   return (
     <>
-      <div className='osu-page osu-page--ranking-info'>
+      <div className='osu-page osu-page--ranking-info osu-page--ranking-info-extra'>
         <BasicSelectOptions
           currentItem={{
             id: props.currentSeason.id,
