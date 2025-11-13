@@ -30,17 +30,6 @@ abstract class Model extends BaseModel
     ];
     protected $primaryKey = 'score_id';
 
-    public static function getClassByRulesetId(int $rulesetId): ?string
-    {
-        $ruleset = Beatmap::modeStr($rulesetId);
-
-        if ($ruleset !== null) {
-            return static::getClass($ruleset);
-        }
-
-        return null;
-    }
-
     public static function getClass(string $ruleset): string
     {
         if (!Beatmap::isModeValid($ruleset)) {

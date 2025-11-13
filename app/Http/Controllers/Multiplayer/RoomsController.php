@@ -168,6 +168,7 @@ class RoomsController extends Controller
             ->with($includes)
             ->withRecentParticipantIds()
             ->get();
+        Room::preloadRecentParticipants($rooms);
 
         $rooms->each->findAndSetCurrentPlaylistItem();
         $rooms->loadMissing('currentPlaylistItem.beatmap.beatmapset');

@@ -6,7 +6,7 @@ import BeatmapBasicStats from 'components/beatmap-basic-stats';
 import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { formatNumber } from 'utils/html';
+import { formatNumber, formatStarRating } from 'utils/html';
 import { trans } from 'utils/lang';
 import Controller from './controller';
 
@@ -145,7 +145,7 @@ export default class Stats extends React.Component<Props> {
     switch (key) {
       case 'difficulty_rating':
         label = 'stars';
-        value = formatNumber(rawValue, 2);
+        value = formatStarRating(rawValue);
         break;
       case 'cs':
         if (this.props.controller.currentBeatmap.mode === 'mania') {
