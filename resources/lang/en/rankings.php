@@ -41,15 +41,19 @@ return [
         'insufficient_history' => 'This user has less than 30 days of recent ranking history.',
     ],
 
-    'type' => [
+    'playlists' => [
         'charts' => 'spotlights (old)',
+        'featured' => 'featured',
+        'season_room' => 'season room',
+        'seasons' => 'seasons',
+    ],
+
+    'type' => [
         'country' => 'country',
         'daily_challenge' => 'daily challenge',
         'global' => 'global',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'multiplayer',
-        'season_room' => 'season room',
-        'seasons' => 'seasons',
+        'playlists' => 'playlists',
         'team' => 'team',
     ],
 

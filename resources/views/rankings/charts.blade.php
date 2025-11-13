@@ -6,6 +6,7 @@
 
 @section('ranking-header')
     <div class="osu-page osu-page--ranking-info">
+        @include('rankings._playlist_selector')
         @include('objects._basic_select_options', compact('selectOptions'))
 
         <div class="grid-items grid-items--ranking-info-bar">
