@@ -274,7 +274,11 @@ class RoomsController extends Controller
         $highScores = $room->topScores()->paginate();
         $roomsQuery = Room::orderByDesc('id');
         if ($room->season === null) {
-            $roomsQuery->featured();
+            if ($room->isFeatured()) {
+                $roomsQuery->featured();
+            } else {
+                $roomsQuery = null;
+            }
         } else {
             $seasonRoomIds = SeasonRoom::where('season_id', $room->season->getKey())->select('room_id');
             $roomsQuery->whereIn('id', $seasonRoomIds);
@@ -288,7 +292,7 @@ class RoomsController extends Controller
             'beatmaps' => $beatmaps,
             'beatmapsets' => $beatmapsets,
             'room' => $room,
-            'rooms' => $roomsQuery->get(),
+            'rooms' => $roomsQuery?->get(),
             'scores' => $highScores,
             'userScore' => $userScore,
         ]);

@@ -5,13 +5,17 @@
 @php
     use App\Http\Controllers\RankingController;
 
-    $links = [];
-    foreach (RankingController::TYPES as $tab) {
-        $links[] = [
-            'active' => $tab === $params['type'],
-            'title' => osu_trans("rankings.type.{$tab}"),
-            'url' => RankingController::url([...$params, 'type' => $tab]),
-        ];
+    if ($params['type'] === null) {
+        $links = null;
+    } else {
+        $links = [];
+        foreach (RankingController::TYPES as $tab) {
+            $links[] = [
+                'active' => $tab === $params['type'],
+                'title' => osu_trans("rankings.type.{$tab}"),
+                'url' => RankingController::url([...$params, 'type' => $tab]),
+            ];
+        }
     }
 
     $currentRoute ??= 'rankings';
