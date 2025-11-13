@@ -295,6 +295,11 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
         });
     }
 
+    public function series(): ?string
+    {
+        return presence(snake_case($this->page['header']['series'] ?? ''));
+    }
+
     public function sync($force = false)
     {
         if (!$force && !$this->needsSync()) {
