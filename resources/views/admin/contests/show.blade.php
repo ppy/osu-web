@@ -110,7 +110,7 @@
                 </div>
             @endif
 
-            <div class="js-react--admin-contest-user-entry-list"></div>
+            <div class="js-react" data-react="admin-contest-user-entry-list"></div>
         </div>
     </div>
 @endsection

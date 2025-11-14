@@ -7,7 +7,7 @@
 ])
 
 @section('content')
-  <div class="js-react--beatmaps" data-advanced-search="{{ (int) $canAdvancedSearch }}"></div>
+  <div class="js-react" data-react="beatmaps" data-advanced-search="{{ (int) $canAdvancedSearch }}"></div>
   {{--
     this should content a server side react.js render which doesn't exist in hhvm
     because the only library for it, which is experimental, requires PHP extension

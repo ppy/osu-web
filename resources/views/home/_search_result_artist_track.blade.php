@@ -10,7 +10,7 @@
 <div class="u-contents js-audio--group">
     @foreach ($search->data() as $entry)
         <div
-            class="js-react--artist-track u-contents"
+            class="js-react u-contents"
             data-props="{{ json_encode([
                 'modifiers' => 'search',
                 'showAlbum' => true,
@@ -20,6 +20,7 @@
                     $transformer::CARD_INCLUDES,
                 ),
             ]) }}"
+            data-react="artist-track"
         ></div>
     @endforeach
 </div>

@@ -28,7 +28,7 @@
         'background' => $headerCover,
     ])
 
-    <div class="js-react--forum-post-report hidden"></div>
+    <div class="js-react hidden" data-react="forum-post-report"></div>
     <div
         class="hidden js-forum--topic-meta"
         data-user-can-moderate="{{ $userCanModerate }}"
