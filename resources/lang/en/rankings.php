@@ -33,18 +33,27 @@ return [
         'used' => 'Spent',
     ],
 
+    'multiplayer' => [
+        'room_name' => 'Room Name',
+    ],
+
     'performance' => [
         'insufficient_history' => 'This user has less than 30 days of recent ranking history.',
     ],
 
-    'type' => [
+    'playlists' => [
         'charts' => 'spotlights (old)',
+        'featured' => 'featured',
+        'season_room' => 'season room',
+        'seasons' => 'seasons',
+    ],
+
+    'type' => [
         'country' => 'country',
         'daily_challenge' => 'daily challenge',
         'global' => 'global',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'multiplayer',
-        'seasons' => 'seasons',
+        'playlists' => 'playlists',
         'team' => 'team',
     ],
 
@@ -52,6 +61,7 @@ return [
         'empty' => 'There are no rooms in this season yet.',
         'ongoing' => 'This season is still ongoing (there will be more playlists added).',
         'room_count' => 'Playlist count',
+        'summary' => 'View Season Summary',
         'url' => 'Display more informations on that season.',
         'validation' => [
             'not_enough_factors' => 'there is not enough score factors for proper calculation',
