@@ -7,7 +7,7 @@
 ])
 
 @section('content')
-    <div class="u-contents js-react--multiplayer-room-events"></div>
+    <div class="u-contents js-react" data-react="multiplayer-room-events"></div>
     <script id="json-events" type="application/json">
         {!! json_encode($json) !!}
     </script>

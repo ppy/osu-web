@@ -18,7 +18,7 @@
                 }
             @endphp
             @if ($variants !== null)
-                <div class="js-react--ranking-variant-filter u-contents">
+                <div class="js-react u-contents" data-react="ranking-variant-filter">
                     <div class="ranking-filter">
                         <div class="ranking-filter__title">
                             {{ osu_trans('rankings.filter.variant.title') }}

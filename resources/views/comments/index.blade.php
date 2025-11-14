@@ -34,7 +34,7 @@
         'theme' => 'comments',
     ]])
     <div class="osu-page osu-page--comments">
-        <div class="js-react--comments-index u-contents"></div>
+        <div class="js-react u-contents" data-react="comments-index"></div>
 
         @include('objects._pagination_v2', ['object' => $commentPagination])
     </div>

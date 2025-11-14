@@ -5,7 +5,7 @@
 @extends('master', ['titlePrepend' => $match->name])
 
 @section('content')
-    <div class="js-react--mp-history"></div>
+    <div class="js-react" data-react="mp-history"></div>
 @endsection
 
 @section("script")

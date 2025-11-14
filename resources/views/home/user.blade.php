@@ -16,7 +16,7 @@
 
     <div class="osu-page">
         @if (count($menuImages) > 0)
-            <div class="js-react--menu-images u-contents">
+            <div class="js-react u-contents" data-react="menu-images">
                 <div class="menu-images menu-images--placeholder">
                     <div class="menu-images__images">
                         {!! spinner() !!}

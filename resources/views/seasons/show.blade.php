@@ -27,7 +27,7 @@
 @endif
 
 @section('ranking-header')
-    <div class="js-react--seasons-show"></div>
+    <div class="js-react" data-react="seasons-show"></div>
 @endsection
 
 @section('scores')
