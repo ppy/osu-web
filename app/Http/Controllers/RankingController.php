@@ -35,6 +35,7 @@ class RankingController extends Controller
     const TYPES = [
         'global',
         'country',
+        'top_plays',
         'team',
         'multiplayer',
         'daily_challenge',
@@ -76,6 +77,7 @@ class RankingController extends Controller
                 'type' => $params['type'],
                 'sort' => $params['sort'] ?? null,
             ]),
+            'top_plays' => route('rankings.top-plays', ['mode' => $params['mode'] ?? default_mode()]),
         };
     }
 

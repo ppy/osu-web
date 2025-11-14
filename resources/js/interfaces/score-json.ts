@@ -118,6 +118,8 @@ export type ScoreJsonForShow = ScoreJson
 
 export type ScoreJsonForUser = ScoreJson & Required<Pick<ScoreJson, 'beatmap' | 'beatmapset'>>;
 
+export type ScoreJsonForTopPlays = ScoreJson & Required<Pick<ScoreJson, 'beatmap' | 'beatmapset' | 'user'>>;
+
 export function isScoreJsonForUser(score: ScoreJson): score is ScoreJsonForUser {
   return score.beatmap != null && score.beatmapset != null;
 }
