@@ -107,7 +107,7 @@
                 </div>
             </form>
 
-            <div class="js-react--beatmap-discussion-events" id="events"></div>
+            <div class="js-react" data-react="beatmap-discussion-events" id="events"></div>
             @include('objects._pagination_v2', ['object' => $paginator->fragment('events')])
         </div>
     </div>

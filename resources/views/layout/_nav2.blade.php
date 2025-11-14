@@ -53,7 +53,7 @@
             </div>
         @endforeach
 
-        <div class="nav2__col nav2__col--menu js-react--quick-search-button">
+        <div class="nav2__col nav2__col--menu js-react" data-react="quick-search-button">
             <a
                 href="{{ route('search') }}"
                 class="
@@ -97,8 +97,9 @@
             <div class="nav2__col nav2__col--notifications">
                 <div class="nav2__notification-container">
                     <a
-                        class="nav-button nav-button--notifications js-click-menu js-react--chat-icon"
+                        class="nav-button nav-button--notifications js-click-menu js-react"
                         data-click-menu-target="nav2-chat-notification-widget"
+                        data-react="chat-icon"
                         data-turbo-permanent
                         id="notification-widget-chat-icon"
                         href="{{ route('chat.index') }}"
@@ -109,8 +110,9 @@
                         </span>
                     </a>
                     <div
-                        class="nav-click-popup js-click-menu js-react--notification-widget"
+                        class="nav-click-popup js-click-menu js-react"
                         data-click-menu-id="nav2-chat-notification-widget"
+                        data-react="notification-widget"
                         data-visibility="hidden"
                         data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup hidden', 'only' => 'channel']) }}"
                         data-turbo-permanent
@@ -118,8 +120,9 @@
                     ></div>
 
                     <a
-                        class="nav-button nav-button--notifications js-click-menu js-react--main-notification-icon"
+                        class="nav-button nav-button--notifications js-click-menu js-react"
                         data-click-menu-target="nav2-notification-widget"
+                        data-react="main-notification-icon"
                         data-turbo-permanent
                         id="notification-widget-icon"
                         href="{{ route('notifications.index') }}"
@@ -130,8 +133,9 @@
                         </span>
                     </a>
                     <div
-                        class="nav-click-popup js-click-menu js-react--notification-widget"
+                        class="nav-click-popup js-click-menu js-react"
                         data-click-menu-id="nav2-notification-widget"
+                        data-react="notification-widget"
                         data-visibility="hidden"
                         data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup hidden', 'excludes' => ['channel']]) }}"
                         data-turbo-permanent

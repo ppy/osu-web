@@ -17,7 +17,7 @@
     ]])
 
     <div class="osu-page">
-        <div class="js-react--contest-judge"></div>
+        <div class="js-react" data-react="contest-judge"></div>
     </div>
 @endsection
 
