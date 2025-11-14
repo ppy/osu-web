@@ -22,7 +22,7 @@
     <div class="osu-page osu-page--wiki osu-page--wiki-main">
         @include('wiki._notice')
 
-        <div class="js-react--wiki-search"></div>
+        <div class="js-react" data-react="wiki-search"></div>
 
         <div class="wiki-main-page">
             {!! $page->get()["output"] !!}

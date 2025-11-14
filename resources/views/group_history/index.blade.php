@@ -6,7 +6,7 @@
 
 @section('content')
     <div
-        class="js-react--group-history u-contents"
+        class="js-react u-contents" data-react="group-history"
         data-json="{{ json_encode($json) }}"
     ></div>
     @include('layout._react_js', ['src' => 'js/group-history.js'])

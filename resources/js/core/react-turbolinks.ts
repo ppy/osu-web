@@ -30,19 +30,21 @@ export default class ReactTurbolinks {
   boot = () => {
     if (!this.pageReady || window.newBody == null) return;
 
-    for (const [name, elementFn] of this.components.entries()) {
-      const containers = window.newBody.querySelectorAll(`.js-react--${name}`);
+    for (const container of window.newBody.querySelectorAll('.js-react')) {
+      if (!(container instanceof HTMLElement)) {
+        continue;
+      }
+      const name = container.dataset.react ?? '';
+      const elementFn = this.components.get(name);
 
-      for (const container of containers) {
-        if (!(container instanceof HTMLElement) || this.renderedContainers.has(container)) {
-          continue;
+      if (elementFn != null) {
+        if (!this.renderedContainers.has(container)) {
+          this.renderedContainers.add(container);
+
+          runInAction(() => {
+            ReactDOM.render(elementFn(container), container);
+          });
         }
-
-        this.renderedContainers.add(container);
-
-        runInAction(() => {
-          ReactDOM.render(elementFn(container), container);
-        });
       }
     }
   };

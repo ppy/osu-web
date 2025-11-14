@@ -122,7 +122,7 @@
         </div>
     </div>
 
-    <div class="osu-page js-react--landing-news">
+    <div class="osu-page js-react" data-react="landing-news">
     </div>
 
     <footer class="osu-layout__section osu-layout__section--landing-footer">

@@ -21,11 +21,12 @@
     @endsection
     @section('scores')
         <div
-            class="u-contents js-react--ranking-top-plays"
+            class="u-contents js-react"
             data-props="{{ json_encode([
                 'first_score_rank' => $scores->firstItem(),
                 'scores' => $scoresJson,
             ]) }}"
+            data-react="ranking-top-plays"
         >
             <div class="ranking-page-grid">
                 <div class="ranking-page-grid-item ranking-page-grid-item--header">

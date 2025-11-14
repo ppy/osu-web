@@ -33,7 +33,7 @@
     <div class="osu-page osu-page--ranking-info">
         @include('rankings._playlist_selector')
     </div>
-    <div class="js-react--seasons-show u-contents"></div>
+    <div class="js-react u-contents" data-react="seasons-show"></div>
 @endsection
 
 @section('scores')
