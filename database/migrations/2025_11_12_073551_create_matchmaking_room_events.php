@@ -17,7 +17,8 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('room_id');
             $table->string('event_type');
-            $table->bigInteger('playlist_item_id')->nullable();
+            $table->bigInteger('playlist_item_id')->nullable()
+                ->comment('This normally maps to multiplayer_playlist_items, but can also be -1 to indicate a "random" selection.');
             $table->unsignedInteger('user_id')->nullable();
             $table->timestamps();
             $table->json('event_detail')->nullable();
