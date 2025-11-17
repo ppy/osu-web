@@ -31,7 +31,7 @@ class TopPlaysController extends Controller
         $scores = $data === null
             ? null
             : Score
-                ::whereIntegerInRaw('id', $data['ids'])
+                ::whereIntegerInRaw('id', array_slice($data['ids'], 0, (int) ($page * static::PAGE_SIZE * 1.5)))
                 ->with('user.team')
                 ->with('beatmap.beatmapset')
                 ->whereHas('user')
