@@ -48,11 +48,11 @@
                 <div class="download-page__banner-content download-page__banner-content--tail">
                     <div class="download-page__text download-page__text--download-stable">
                         <div>
-                            {{ osu_trans('home.download.stable_text') }}
+                            {{ osu_trans('home.download.stable_text') }}:
                         </div>
                         @if (($lazerInfoUrl = osu_url('lazer_info')) !== null)
                             <a href="{{ $lazerInfoUrl }}">
-                                {{ osu_trans('home.download.action_lazer_info') }}
+                                ({{ osu_trans('home.download.action_lazer_info') }})
                             </a>
                         @endif
                     </div>
