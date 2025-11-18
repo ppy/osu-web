@@ -69,7 +69,7 @@ class ScoresController extends Controller
             ])->firstOrFail();
         }
 
-        $score = $soloScore->legacyScore() ?? $soloScore;
+        $score = $soloScore->legacyScore ?? $soloScore;
 
         $file = $score->replayFile()?->get();
         if ($file === null) {
