@@ -48,7 +48,7 @@
     "d3": "^7.1.1",
     "dotenv": "^8.2.0",
     "fork-ts-checker-webpack-plugin": "^8.0",
-    "glob": "^10.3.4",
+    "glob": "^11.1.0",
     "highlight.js": "^11.7.0",
     "imports-loader": "^4.0.1",
     "inter-ui": "^3.9.0",
