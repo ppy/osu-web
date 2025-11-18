@@ -100,9 +100,10 @@
                         <div class="download-page__text download-page__text--description">
                             {{ osu_trans("home.download.steps.download.description") }}
                         </div>
-                        <div class="download-page__example">
-                            {{-- TODO: placeholder --}}
-                        </div>
+                        {!! img2x([
+                            'class' => 'download-page__example',
+                            'src' => '/images/layout/download-step-1.jpg',
+                        ]) !!}
                     </div>
                     <div class="download-page__step">
                         <span class="download-page__step-number">2</span>
@@ -112,9 +113,10 @@
                         <div class="download-page__text download-page__text--description">
                             {{ osu_trans('home.download.steps.register.description') }}
                         </div>
-                        <div class="download-page__example">
-                            {{-- TODO: placeholder --}}
-                        </div>
+                        {!! img2x([
+                            'class' => 'download-page__example',
+                            'src' => '/images/layout/download-step-2.png',
+                        ]) !!}
                     </div>
                     <div class="download-page__step">
                         <span class="download-page__step-number">3</span>
@@ -129,9 +131,10 @@
                                 )
                             ]) !!}
                         </div>
-                        <div class="download-page__example">
-                            {{-- TODO: placeholder --}}
-                        </div>
+                        {!! img2x([
+                            'class' => 'download-page__example',
+                            'src' => '/images/layout/download-step-3.jpg',
+                        ]) !!}
                     </div>
                 </div>
 
