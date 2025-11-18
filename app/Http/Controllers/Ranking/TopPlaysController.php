@@ -28,22 +28,29 @@ class TopPlaysController extends Controller
         $rulesetId = Beatmap::MODES[$rulesetName] ?? abort(422, 'invalid ruleset parameter');
         $page = \Number::clamp(get_int(\Request::input('page')) ?? 1, 1, static::PAGES);
         $data = new TopPlays($rulesetId)->get();
-        $scores = $data === null
-            ? null
-            : Score
-                ::whereIntegerInRaw('id', array_slice($data['ids'], 0, (int) ($page * static::PAGE_SIZE * 1.5)))
-                ->with('user.team')
-                ->with('beatmap.beatmapset')
-                ->whereHas('user')
-                ->whereHas('beatmap.beatmapset')
-                ->orderByDesc('pp')
-                ->paginate(static::PAGE_SIZE, ['*'], 'page', $page, static::PAGE_SIZE * static::PAGES);
 
-        $scoresJson = $scores === null
-            ? null
-            : json_collection($scores, new ScoreTransformer(), ['beatmap', 'beatmapset', 'user.country', 'user.team']);
+        if (isset($data)) {
+            $lastUpdate = parse_time_to_carbon($data['time']);
 
-        $lastUpdate = parse_time_to_carbon($data['time']);
+            $scores = Score
+                    ::whereIntegerInRaw('id', array_slice($data['ids'], 0, (int) ($page * static::PAGE_SIZE * 1.5)))
+                    ->with('user.team')
+                    ->with('beatmap.beatmapset')
+                    ->whereHas('user')
+                    ->whereHas('beatmap.beatmapset')
+                    ->orderByDesc('pp')
+                    ->paginate(static::PAGE_SIZE, ['*'], 'page', $page, static::PAGE_SIZE * static::PAGES);
+
+            $scoresJson = json_collection(
+                $scores,
+                new ScoreTransformer(),
+                ['beatmap', 'beatmapset', 'user.country', 'user.team'],
+            );
+        } else {
+            $lastUpdate = null;
+            $scores = null;
+            $scoresJson = null;
+        }
 
         return ext_view('rankings.top_plays', compact(
             'lastUpdate',
