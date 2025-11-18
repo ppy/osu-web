@@ -43,7 +43,10 @@ class TopPlaysController extends Controller
             ? null
             : json_collection($scores, new ScoreTransformer(), ['beatmap', 'beatmapset', 'user.country', 'user.team']);
 
+        $lastUpdate = parse_time_to_carbon($data['time']);
+
         return ext_view('rankings.top_plays', compact(
+            'lastUpdate',
             'rulesetName',
             'scores',
             'scoresJson',
