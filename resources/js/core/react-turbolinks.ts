@@ -13,7 +13,7 @@ import { currentUrl } from 'utils/turbolinks';
 type ElementFn = (container: HTMLElement) => React.ReactElement;
 
 export default class ReactTurbolinks {
-  private readonly components = new Map<string, ElementFn>();
+  private readonly components: Partial<Record<string, ElementFn>> = {};
   private newVisit = true;
   private pageReady = false;
   private readonly renderedContainers = new Set<HTMLElement>();
@@ -35,7 +35,7 @@ export default class ReactTurbolinks {
         continue;
       }
       const name = container.dataset.react ?? '';
-      const elementFn = this.components.get(name);
+      const elementFn = this.components[name];
 
       if (elementFn != null) {
         if (!this.renderedContainers.has(container)) {
@@ -50,9 +50,9 @@ export default class ReactTurbolinks {
   };
 
   register(name: string, elementFn: ElementFn) {
-    if (this.components.has(name)) return;
+    if (this.components[name] != null) return;
 
-    this.components.set(name, elementFn);
+    this.components[name] = elementFn;
 
     this.boot();
   }
