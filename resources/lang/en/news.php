@@ -19,9 +19,23 @@ return [
     ],
 
     'series' => [
+        'beatmap_spotlights' => 'Beatmap Spotlights',
+        'community_contests' => 'Community Contests',
+        'community_tournaments' => 'Community Tournaments',
+        'fanart_contests' => 'Fanart Contests',
+        'featured_artists' => 'Featured Artists',
+        'game_updates' => 'Game Updates',
+        'mappers_guild' => 'Mappers\' Guild',
+        'monthly_beatmapping_contest' => 'Monthly Beatmapping Contest',
+        'merch_runs' => 'Merch Runs',
+        'miscellaneous' => 'Miscellaneous',
         'none' => 'Uncategorised',
+        'official_contests' => 'Official Contests',
+        'offline_events' => 'Offline Events',
+        'online_events' => 'Online Events',
         'project_loved' => 'Project Loved',
-        'the_followpoint' => 'The Followpoint',
+        'ranking_system_updates' => 'Performance',
+        'world_cups' => 'World Cups',
     ],
 
     'show' => [
