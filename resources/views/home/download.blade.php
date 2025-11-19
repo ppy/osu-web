@@ -34,8 +34,8 @@
                                     {{ $version }}
                                 </div>
                             </div>
-                            <span class='btn-osu-big__icon'>
-                                <span class='fas fa-fw fa-download'></span>
+                            <span class="btn-osu-big__icon">
+                                <span class="svg-icon svg-icon--download"></span>
                             </span>
                         </div>
                     </a>
@@ -66,8 +66,8 @@
                                     {{ osu_trans('home.download.os.windows') }}
                                 </div>
                             </div>
-                            <span class='btn-osu-big__icon'>
-                                <span class='fas fa-fw fa-download'></span>
+                            <span class="btn-osu-big__icon">
+                                <span class="svg-icon svg-icon--download"></span>
                             </span>
                         </div>
                     </a>
