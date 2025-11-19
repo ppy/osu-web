@@ -43,7 +43,21 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     // Ordered according to how they'll display in notification settings.
     const SERIES = [
         'project_loved',
-        'the_followpoint',
+        'beatmap_spotlights',
+        'featured_artists',
+        'fanart_contests',
+        'mappers_guild',
+        'ranking_system_updates',
+        'game_updates',
+        'merch_runs',
+        'world_cups',
+        'monthly_beatmapping_contest',
+        'official_contests',
+        'community_contests',
+        'community_tournaments',
+        'offline_events',
+        'online_events',
+        'miscellaneous',
         'none', // uncategorised
     ];
 
