@@ -45,7 +45,7 @@ return new class extends Migration
             $table->dropIndex(['pool_id', 'total_points']);
             $table->dropPrimary();
 
-            $table->integer('rating');
+            $table->integer('rating')->default(1500);
 
             $table->smallInteger('ruleset_id');
             $table->index(['ruleset_id', 'first_placements']);
