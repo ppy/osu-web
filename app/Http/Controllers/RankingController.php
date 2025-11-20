@@ -37,10 +37,9 @@ class RankingController extends Controller
         'country',
         'top_plays',
         'team',
-        'multiplayer',
+        'playlists',
+        'quickplay',
         'daily_challenge',
-        'seasons',
-        'charts',
         'kudosu',
     ];
 
@@ -55,10 +54,6 @@ class RankingController extends Controller
         array $params,
     ): string {
         return match ($params['type']) {
-            'charts' => route('rankings', [
-                'mode' => $params['mode'] ?? default_mode(),
-                'type' => $params['type'],
-            ]),
             'country' => route('rankings', [
                 'mode' => $params['mode'] ?? default_mode(),
                 'type' => $params['type'],
@@ -70,8 +65,15 @@ class RankingController extends Controller
                 'type' => $params['type'],
             ]),
             'kudosu' => route('rankings.kudosu'),
-            'multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
-            'seasons' => route('seasons.show', ['season' => 'latest']),
+            'playlists' => match ($params['list'] ?? 'seasons') {
+                'charts' => route('rankings', [
+                    'mode' => $params['mode'] ?? default_mode(),
+                    'type' => 'charts',
+                ]),
+                'featured' => route('multiplayer.rooms.show', ['room' => 'latest']),
+                'seasons' => route('seasons.show', ['season' => 'latest']),
+            },
+            'quickplay' => route('rankings.quickplay', ['mode' => $params['mode'] ?? default_mode()]),
             'team' => route('rankings', [
                 'mode' => $params['mode'] ?? default_mode(),
                 'type' => $params['type'],
@@ -477,6 +479,8 @@ class RankingController extends Controller
             'items' => json_collection($spotlights, $selectOptionTransformer),
             'type' => 'spotlight',
         ];
+        $params['list'] = 'charts';
+        $params['type'] = 'playlists';
 
         return ext_view(
             'rankings.charts',
