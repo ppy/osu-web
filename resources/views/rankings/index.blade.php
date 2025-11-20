@@ -14,6 +14,7 @@
         ];
     }
 
+    $currentRoute ??= 'rankings';
     $hasFilter ??= true;
     $hasMode ??= true;
     $hasPager ??= true;
@@ -26,7 +27,7 @@
     @section('rulesetSelector')
         @include('objects._ruleset_selector', [
             'currentRuleset' => $params['mode'],
-            'urlFn' => fn (string $r): string => route('rankings', [
+            'urlFn' => fn (string $r): string => route($currentRoute, [
                 ...$params,
                 'mode' => $r,
                 'variant' => $r === $params['mode'] ? ($params['variant'] ?? null) : null,

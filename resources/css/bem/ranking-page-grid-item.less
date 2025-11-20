@@ -1,0 +1,84 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.ranking-page-grid-item {
+  --bg: hsl(var(--hsl-b4));
+  --bg-hover: hsl(var(--hsl-b3));
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  display: grid;
+  position: relative;
+  background-color: var(--bg);
+  border-radius: @border-radius-base;
+  padding: 6px 6px 6px 20px;
+
+  &:hover {
+    --bg: var(--bg-hover);
+  }
+
+  &--header {
+    --bg: transparent;
+    --bg-hover: transparent;
+    color: hsl(var(--hsl-f1));
+  }
+
+  &__col {
+    display: flex;
+    align-items: center;
+
+    &--beatmap {
+      min-width: 100px;
+      max-width: 300px;
+      overflow: hidden;
+    }
+
+    &--header {
+      justify-content: center;
+    }
+
+    &--menu {
+      position: relative;
+      width: 30px;
+      border-radius: @border-radius-large;
+
+      &:hover {
+        background-color: hsl(var(--hsl-b2));
+      }
+    }
+
+    &--number {
+      color: hsl(var(--hsl-f1));
+    }
+
+    &--number-focus {
+      color: hsl(var(--hsl-c1));
+    }
+  }
+
+  &__content {
+    grid-column: 1 / -1;
+    display: grid;
+    position: relative;
+    pointer-events: none;
+    grid-template-columns: subgrid;
+  }
+
+  &__icons {
+    display: flex;
+    font-size: 20px; // icon size
+    height: 1em; // used for placeholder
+    max-width: 10em;
+    overflow: hidden; // TODO: replace with proper overflowing mods display
+  }
+
+  &__link-bg {
+    inset: 0;
+    position: absolute;
+  }
+
+  &__value {
+    &--perfect {
+      color: hsla(@beatmap-score--hsl-perfect, 90%);
+    }
+  }
+}
