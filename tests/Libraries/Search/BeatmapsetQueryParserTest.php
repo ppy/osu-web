@@ -37,6 +37,7 @@ class BeatmapsetQueryParserTest extends TestCase
             ['artist=hello', ['keywords' => null, 'options' => ['artist' => 'hello']]],
             ['artist="hello world"', ['keywords' => null, 'options' => ['artist' => 'hello world']]],
             ['created=2017', ['keywords' => null, 'options' => ['created' => ['gte' => static::parseTime('2017-01-01'), 'lt' => static::parseTime('2018-01-01')]]]],
+            ['submitted=2017', ['keywords' => null, 'options' => ['created' => ['gte' => static::parseTime('2017-01-01'), 'lt' => static::parseTime('2018-01-01')]]]],
             ['ranked>2018', ['keywords' => null, 'options' => ['ranked' => ['gte' => static::parseTime('2019-01-01')]]]],
             ['ranked<2018-05', ['keywords' => null, 'options' => ['ranked' => ['lt' => static::parseTime('2018-05-01')]]]],
             ['ranked<=2018.05', ['keywords' => null, 'options' => ['ranked' => ['lt' => static::parseTime('2018-06-01')]]]],
