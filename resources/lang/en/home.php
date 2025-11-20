@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Download osu!',
-        'action_lazer' => 'Download osu!(lazer)',
-        'action_lazer_description' => 'the next major update to osu!',
         'action_lazer_info' => 'check this page for more information',
-        'action_lazer_title' => 'try osu!(lazer)',
-        'action_title' => 'download osu!',
+        'download' => 'Download',
         'for_os' => 'for :os',
         'macos-fallback' => 'macOS users',
         'mirror' => 'mirror',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version or later',
         'other_os' => 'other platforms',
         'quick_start_guide' => 'quick start guide',
-        'tagline' => "let's get<br>you started!",
+        'stable_text' => 'if you\'re looking for the older one',
+        'tagline_1' => 'let\'s get you',
+        'tagline_2' => 'started!',
         'video-guide' => 'video guide',
 
         'help' => [

@@ -21,6 +21,11 @@
     }
   }
 
+  &--download {
+    --option-padding: 10px 20px;
+    --option-select-padding: 5px 20px;
+  }
+
   &--ranking {
     --option-select-padding: 5px 10px;
   }
@@ -77,6 +82,12 @@
 
     --option-hover-bg: hsla(var(--hsl-b6), 0.6);
     --option-padding: var(--option-select-padding);
+
+    .@{_top}--download & {
+      border-radius: @border-radius--extra;
+      font-size: @font-size--normal;
+      min-width: 180px;
+    }
   }
 
   &__selector {
@@ -92,5 +103,13 @@
     background-color: @osu-colour-b5;
     overflow-y: var(--selector-overflow-y);
     max-height: var(--selector-max-height);
+
+    // selector on download page shows 'other platforms' but full text in options
+    .@{_top}--download & {
+      left: initial;
+      right: 0;
+      width: initial;
+      border-radius: @border-radius--extra;
+    }
   }
 }
