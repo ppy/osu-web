@@ -14,11 +14,24 @@ class TitleFilterTest extends TestCase
     public static function dataProvider(): array
     {
         return [
-            [['q' => 'title=best'], [0, 1, 2]],
-            [['q' => 'title="best beatmap"'], [1, 2]],
+            [['q' => 'best'], [0, 1, 2, 3, 4]],
+            [['q' => 'best beatmap'], [0, 1, 2, 3, 4]],
+            [['q' => '"best beatmap"'], [1, 2, 3]],
+            [['q' => '-best'], []],
+            [['q' => '-best -beatmap'], []],
+            [['q' => '-"best beatmap"'], [0, 4]],
+
+            [['q' => 'title=best'], [0, 1, 2, 3]],
+            [['q' => 'title="best beatmap"'], [1, 2, 3]],
             [['q' => 'title="the beatmap"'], [1, 2]],
-            [['q' => 'title=""best beatmap""'], [1, 2]],
+            [['q' => 'title=""best beatmap""'], [1, 2, 3]],
             [['q' => 'title=""the beatmap""'], []],
+
+            [['q' => '-title=best'], [4]],
+            [['q' => '-title="best beatmap"'], [0, 4]],
+            [['q' => '-title="the beatmap"'], [0, 3, 4]],
+            [['q' => '-title=""best beatmap""'], [0, 4]],
+            [['q' => '-title=""the beatmap""'], [0, 1, 2, 3, 4]],
         ];
     }
 
@@ -29,7 +42,8 @@ class TitleFilterTest extends TestCase
             static::$beatmapsets = [
                 $factory->create(['title' => 'best']),
                 $factory->create(['title' => 'the best beatmap']),
-                $factory->create(['title_unicode' => 'the best beatmapよ']),
+                $factory->create(['title' => 'the best beatmap', 'title_unicode' => 'ダ best beatmap']),
+                $factory->create(['title' => 'best beatmap']),
                 $factory->create(['artist' => 'the best artist']),
             ];
         });
