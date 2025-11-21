@@ -114,6 +114,7 @@ return [
     'client' => [
         'check_version' => get_bool(env('CLIENT_CHECK_VERSION')) ?? true,
         'default_build_id' => get_int(env('DEFAULT_BUILD_ID')) ?? 0,
+        'download_stream' => get_int(env('CLIENT_DOWNLOAD_STREAM')) ?? 7,
         'token_keys' => $clientTokenKeys,
         'token_lifetime' => (get_float(env('CLIENT_TOKEN_LIFETIME_HOUR')) ?? 0.25) * 3600,
         'token_queue' => env('CLIENT_TOKEN_QUEUE') ?? 'token-queue',
@@ -230,6 +231,7 @@ return [
         'lazer_dl.ios' => presence(env('OSU_URL_LAZER_IOS')) ?? '/home/testflight',
         'lazer_dl.linux_x64' => presence(env('OSU_URL_LAZER_LINUX_X64')) ?? 'https://github.com/ppy/osu/releases/latest/download/osu.AppImage',
         'lazer_dl.macos_as' => presence(env('OSU_URL_LAZER_MACOS_AS')) ?? 'https://github.com/ppy/osu/releases/latest/download/osu.app.Apple.Silicon.zip',
+        'lazer_dl.macos_intel' => presence(env('OSU_URL_LAZER_MACOS_INTEL')) ?? 'https://github.com/ppy/osu/releases/latest/download/osu.app.Intel.zip',
         'lazer_dl.windows_x64' => presence(env('OSU_URL_LAZER_WINDOWS_X64')) ?? 'https://github.com/ppy/osu/releases/latest/download/install.exe',
         'lazer_dl_other' => presence(env('OSU_URL_LAZER_OTHER')) ?? 'https://github.com/ppy/osu/#running-osu',
         'lazer_info' => presence(env('OSU_URL_LAZER_INFO')),

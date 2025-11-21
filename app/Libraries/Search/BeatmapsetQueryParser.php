@@ -90,6 +90,8 @@ class BeatmapsetQueryParser
                     $option = static::makeTextOption($op, $m['value']);
                     break;
                 case 'created':
+                case 'submitted':
+                    $key = 'created';
                     $option = static::makeDateRangeOption($op, $m['value']);
                     break;
                 case 'ranked':
