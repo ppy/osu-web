@@ -441,6 +441,11 @@ class Room extends Model
         return $this->ends_at !== null && Carbon::now()->gte($this->ends_at);
     }
 
+    public function isFeatured(): bool
+    {
+        return $this->category === 'featured_artist';
+    }
+
     public function isRealtime()
     {
         static $realtimeTypes;
