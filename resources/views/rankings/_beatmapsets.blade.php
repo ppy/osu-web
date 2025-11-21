@@ -6,8 +6,9 @@
 <div class="{{ class_with_modifiers('rankings-beatmapsets', $modifiers ?? null, ['single' => count($beatmapsets) === 1]) }}">
     @foreach ($beatmapsets as $beatmapset)
         <div
-            class="js-react--beatmapset-panel u-contents"
+            class="js-react u-contents"
             data-beatmapset-panel="{{ json_encode(['beatmapset' => json_item($beatmapset, 'Beatmapset', ['beatmaps'])]) }}"
+            data-react="beatmapset-panel"
         >
             <div class="beatmapset-panel beatmapset-panel--size-normal"></div>
         </div>

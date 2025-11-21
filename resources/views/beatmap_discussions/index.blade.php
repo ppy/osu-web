@@ -142,7 +142,7 @@
                 </div>
             </form>
 
-            <div class="js-react--beatmap-discussions-history">
+            <div class="js-react" data-react="beatmap-discussions-history">
                 <div class="beatmapset-activities__spinner">{!! spinner() !!}</div>
             </div>
 
