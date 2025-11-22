@@ -14,6 +14,11 @@
         {{ osu_trans('rankings.top_plays.empty') }}
     @endsection
 @else
+    @section('scores-header')
+        <p>
+            <small>{{ osu_trans('rankings.top_plays.last_updated') }}: {!! timeago($lastUpdate) !!}</small>
+        </p>
+    @endsection
     @section('scores')
         <div
             class="u-contents js-react--ranking-top-plays"
