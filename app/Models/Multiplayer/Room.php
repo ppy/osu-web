@@ -319,7 +319,7 @@ class Room extends Model
 
     public function scopeFeatured(Builder $query): Builder
     {
-        return $query->whereIn('category', ['featured_artist', 'spotlight']);
+        return $query->whereIn('category', ['featured_artist']);
     }
 
     public function scopeHasParticipated($query, ?User $user)
@@ -439,6 +439,11 @@ class Room extends Model
     public function hasEnded()
     {
         return $this->ends_at !== null && Carbon::now()->gte($this->ends_at);
+    }
+
+    public function isFeatured(): bool
+    {
+        return $this->category === 'featured_artist';
     }
 
     public function isRealtime()

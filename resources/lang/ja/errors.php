@@ -7,7 +7,7 @@ return [
     'load_failed' => 'データの読み込みに失敗しました。',
     'missing_route' => '不正なURLまたは不正なリクエストです。',
     'no_restricted_access' => 'アカウントが制限されている状態では実行できません。',
-    'param_too_large' => '',
+    'param_too_large' => ':nameパラメータは最大:count_delimited個の項目を持つことができます|:nameパラメータは最大:count_delimited個の項目を持つことができます',
     'supporter_only' => 'osu!サポーター限定の機能です。',
     'unknown' => '不明のエラーが発生しました。',
 

@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Изтегли osu!',
-        'action_lazer' => 'Изтегли osu!(lazer)',
-        'action_lazer_description' => 'предстоящата основна актуализация на osu!',
         'action_lazer_info' => 'разгледайте тази страница за повече информация',
-        'action_lazer_title' => 'изпробвайте osu!(lazer)',
-        'action_title' => 'изтеглете osu!',
+        'download' => '',
         'for_os' => 'за :os',
         'macos-fallback' => 'macOS потребители',
         'mirror' => 'алтернативна връзка',
@@ -95,8 +91,9 @@ return [
         'os_version_or_later' => ':os_version и нагоре',
         'other_os' => 'други платформи',
         'quick_start_guide' => 'ръководство за започване',
-        'tagline' => "нека ви помогнем<br>
-да започнете!",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => 'видео ръководство',
 
         'help' => [

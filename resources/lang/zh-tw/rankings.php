@@ -37,6 +37,10 @@ return [
         'insufficient_history' => '這個使用者擁有少於30天的排行紀錄。',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => '月賽',
         'country' => '國家',
@@ -44,14 +48,17 @@ return [
         'global' => '全球',
         'kudosu' => 'kudosu',
         'multiplayer' => '多人遊戲',
+        'season_room' => '',
         'seasons' => '季',
         'team' => '隊伍',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => '目前這個賽季暫無房間。',
         'ongoing' => '這個賽季仍在進行中 (更多歌單即將加入)。',
         'room_count' => '歌單數量',
+        'summary' => '',
         'url' => '顯示這個賽季的更多資訊。',
         'validation' => [
             'not_enough_factors' => '沒有足夠的評分因素以進行正確的計算',

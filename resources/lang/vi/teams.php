@@ -157,7 +157,7 @@ return [
         ],
 
         'statistics' => [
-            'empty_slots' => '',
+            'empty_slots' => 'Còn trống :count_delimited chỗ|Còn trống :count_delimited chỗ',
             'leader' => 'Trưởng đội',
             'rank' => 'Hạng',
         ],

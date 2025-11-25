@@ -16,7 +16,7 @@ import * as React from 'react';
 import { hasGuestOwners } from 'utils/beatmap-helper';
 import { downloadLimited, getArtist, getTitle, makeSearchQueryOption, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
-import { formatNumber } from 'utils/html';
+import { formatNumber, formatStarRating } from 'utils/html';
 import { trans } from 'utils/lang';
 import { beatmapDownloadDirect, wikiUrl } from 'utils/url';
 import BeatmapPicker from './beatmap-picker';
@@ -300,7 +300,7 @@ export default class Header extends React.Component<Props> {
           <span className='beatmapset-header__diff-extra beatmapset-header__diff-extra--star-difficulty'>
             {trans('beatmapsets.show.stats.stars')}
             {' '}
-            {formatNumber(beatmap.difficulty_rating, 2)}
+            {formatStarRating(beatmap.difficulty_rating)}
           </span>
         )}
       </span>

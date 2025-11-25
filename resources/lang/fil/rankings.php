@@ -37,6 +37,10 @@ return [
         'insufficient_history' => '',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'Mga Spotlight',
         'country' => 'bansa',
@@ -44,14 +48,17 @@ return [
         'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
+        'season_room' => '',
         'seasons' => 'mga panahon',
         'team' => '',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Wala pang mga kwarto sa season na ito.',
         'ongoing' => 'Ang season na ito ay nagpapatuloy pa rin (magkakaroon pa ng mga playlist na idaragdag).',
         'room_count' => 'Bilang ng playlist',
+        'summary' => '',
         'url' => 'Magpakita ng higit pang mga impormasyon sa season na iyon.',
         'validation' => [
             'not_enough_factors' => '',

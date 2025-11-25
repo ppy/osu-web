@@ -53,6 +53,7 @@ return [
             'discussion' => 'דיוני מפה',
             'index' => 'רשימת מפות',
             'show' => 'מידע על המפה',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => 'יומן שינויים',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'תחרויות',
             'judge' => '',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'קבוצות',
@@ -118,6 +122,9 @@ return [
             '_' => 'טורנירים',
         ],
         'user_cover_presets_controller' => [
+            '_' => '',
+        ],
+        'user_totp_controller' => [
             '_' => '',
         ],
         'users_controller' => [

@@ -28,6 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'info',
             'discussions' => 'diskuze',
+            'versions' => '',
         ],
 
         'changelog' => [
@@ -52,6 +53,7 @@ return [
         'users' => [
             'modding' => 'módování',
             'playlists' => 'playlisty',
+            'quickplay' => '',
             'realtime' => 'multiplayer',
             'show' => 'informace',
         ],
@@ -151,11 +153,11 @@ return [
         ],
         '500' => [
             'error' => 'Ale ne! Něco se pokazilo! ;_;',
-            'description' => "Jsme automaticky oznámeni o každé chybě.",
+            'description' => "Jsme automaticky upozorněni na každou chybu.",
         ],
         'fatal' => [
             'error' => 'Ale né! Něco se pokazilo (Fatálně)! ;_;',
-            'description' => "Jsme automaticky oznámeni o každé chybě.",
+            'description' => "Jsme automaticky upozorněni na každou chybu.",
         ],
         '503' => [
             'error' => 'Vypnuté kvůli údržbě!',

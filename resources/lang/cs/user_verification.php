@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Ověřovací kód vypršel, byl zaslán nový ověřovací email.',
         'incorrect_key' => 'Nesprávný ověřovací kód.',
         'retries_exceeded' => 'Nesprávný ověřovací kód. Limit pokusů dosažen, byl zaslán nový ověřovací email.',
         'reissued' => 'Ověřovací kód znovu vygenerován, byl zaslán nový ověřovací email.',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => 'Vyskytl se neznámý problém, byl zaslán nový ověřovací email.',
     ],
 ];

@@ -129,6 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'i-block ang mga pribadong mensahe mula sa mga taong hindi nasa iyong listahan ng mga kaibigan',
         'hide_online' => 'itago ang iyong presensya online',
+        'hide_online_info' => '',
         'title' => 'Privacy',
     ],
 
@@ -147,6 +148,21 @@ return [
 
     'update_password' => [
         'update' => 'i-update',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

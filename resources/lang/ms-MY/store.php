@@ -80,7 +80,7 @@ return [
             'prepared' => [
                 'title' => 'Pesanan anda kini disiapkan!',
                 'line_1' => 'Sila tunggu sebentar lagi untuk penghantaran. Maklumat penjejakan akan muncul di sini setelah pesanan telah diproses dan dihantar yang akan mengambil masa hingga 5 hari (tetapi biasanya kurang!) bergantung kepada kesibukan kami.',
-                'line_2' => 'Kami mengirim semua pesanan dari Jepun menggunakan pelbagai perkhidmatan penghantaran bergantung kepada nilai dan berat. Kawasan ini akan kemas kini dengan tentuan setelah pesanan dihantar.',
+                'line_2' => 'Kami mengirim semua pesanan dari Jepun menggunakan pelbagai perkhidmatan penghantaran yang bergantung kepada nilai dan berat. Kawasan ini akan kemas kini dengan tentuan setelah pesanan dihantar.',
             ],
             'processing' => [
                 'title' => 'Bayaran anda belum disahkan!',
@@ -94,7 +94,7 @@ return [
                 'title' => 'Pesanan anda telah dihantar!',
                 'tracking_details' => 'Butiran penjejakan adalah berikut:',
                 'no_tracking_details' => [
-                    '_' => "Kami tidak mempunyai butiran penjejakan kerana bungkusan anda dihantar melalui Air Mail tetapi anda boleh menjangkakan penerimaan dalam masa 1-3 minggu. Bagi Eropah, sesekali pemeriksaan kastam boleh melewatkan pesanan di luar kawalan kami. Sekiranya anda mempunyai keraguan, sila balas emel pengesahan pesanan yang diterima (atau :link).",
+                    '_' => "Kami tidak mempunyai butiran penjejakan kerana bungkusan anda dihantar melalui Air Mail tetapi anda boleh menjangkakan penerimaan dalam masa 1-3 minggu. Untuk Eropah, sesekali pemeriksaan kastam boleh melewatkan pesanan di luar kawalan kami. Sekiranya anda mempunyai keraguan, sila balas emel pengesahan pesanan yang diterima (atau :link).",
                     'link_text' => 'kirimi kami e-mel',
                 ],
             ],
@@ -172,7 +172,7 @@ return [
             'out_with_alternative' => 'Malangnya barang ini tiada dalam simpanan. Gunakan menu ke bawah untuk memilih jenis yang lain atau semak semula nanti!',
         ],
 
-        'add_to_cart' => 'Masukkan ke Troli',
+        'add_to_cart' => 'Tambah ke Troli',
         'notify' => 'Beritahu saya ketika telah tersedia!',
         'out_of_stock' => 'Tiada dalam simpanan',
 

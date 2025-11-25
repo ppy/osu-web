@@ -6,7 +6,7 @@
     class="js-react--basic-select-options"
     data-basic-select-options="{{ json_encode($selectOptions) }}"
 >
-    <div class="select-options">
+    <div class="{{ class_with_modifiers('select-options', $selectOptions['modifiers'] ?? null) }}">
         <div class="select-options__select">
             <span class="select-options__option">
                 <div class="u-ellipsis-overflow">

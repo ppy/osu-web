@@ -69,7 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Visa omslagsbilden i full storlek',
-            'page' => '',
+            'page' => 'Visa administratörssida',
         ],
 
         'deleted_banner' => [
@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Betygsspridning',
             'nominations' => 'Nomineringar',
             'playcount' => 'Antal gånger spelad',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

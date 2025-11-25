@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => 'フレンドリストにいない人からのプライベートメッセージをブロックする',
         'hide_online' => 'オンライン状態を隠す',
+        'hide_online_info' => '',
         'title' => 'プライバシー',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => '更新',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

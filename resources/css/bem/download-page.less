@@ -2,57 +2,186 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .download-page {
+  --content-margin: 40px;
+
   @number-width: 30px;
   @number-margin-right: 5px;
 
-  position: relative;
+  @button-width: 420px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: $gap;
+
+  @media @narrow {
+    --content-margin: 20px;
+  }
+
+  &__banner {
+    .at2x-simple("~@images/headers/download-v2.jpg");
+    background-size: cover;
+    display: flex;
+    justify-content: flex-end;
+    min-height: 420px; // use min-height in case the tagline is too many lines
+
+    border-radius: 0 0 @border-radius--extra @border-radius--extra;
+  }
+
+  &__banner-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: var(--content-margin);
+    padding: 10px;
+    max-width: calc(@button-width + 20px); // button + side paddings
+
+    background: hsla(var(--hsl-b5), 0.5);
+
+    &--main {
+      align-items: flex-end;
+      gap: 10px;
+      border-radius: @border-radius--extra;
+    }
+
+    &--tail {
+      width: 100%;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+
+  &__banner-tail {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__example {
+    background: hsl(var(--hsl-b3));
+    border-radius: @border-radius--extra;
+    height: 120px;
+    max-width: 280px;
+    object-fit: cover;
+  }
+
+  &__extra-link {
+    .link-white();
+    font-size: @font-size--title-small;
+
+    &--separator {
+      &::before {
+        content: "•";
+      }
+    }
+  }
+
+  &__extra-links {
+    display: flex;
+    flex: none;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  &__guide {
+    .default-box-shadow();
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: hsl(var(--hsl-b4));
+    border-radius: @border-radius--extra;
+    margin: 0 @gutter-v2;
+  }
+
+  &__guide-content {
+    padding: @border-radius--extra;
+  }
+
+  &__header {
+    .default-box-shadow();
+
+    display: flex;
+    flex-direction: column;
+    background: hsl(var(--hsl-b4));
+    border-radius: 0 0 @border-radius--extra @border-radius--extra;
+  }
 
   &__help {
     padding-top: 20px;
     font-size: @font-size--normal;
   }
 
-  &__step {
+  &__tagline {
+    display: flex;
+    flex-direction: column;
+    font-size: @font-size--title;
+    line-height: 1; // bring the 2 lines closer but don't go less than 1 otherwise cjk text overlaps
+    padding: 40px 0;
+
     @media @desktop {
-      max-width: 220px;
+      padding: 40px;
     }
   }
 
-  &__steps {
+  &__tagline-1 {
+    margin-right: 110px; // makes the en text look like it's pushed about 50% left.
+  }
+
+  &__tagline-2 {
+    font-size: @font-size--large-4;
+    align-self: flex-end;
+  }
+
+  &__video {
+    background: hsl(var(--hsl-b6));
+    border-radius: @border-radius--extra;
+  }
+
+  &__step {
     display: flex;
     flex-direction: column;
     gap: 10px;
+  }
+
+  &__steps {
+    display: grid;
+    grid-auto-flow: row;
+    gap: 40px;
 
     @media @desktop {
-      flex-direction: row;
+      grid-auto-columns: minmax(0, 1fr);
+      grid-auto-flow: column;
       justify-content: space-between;
     }
   }
 
   &__step-number {
-    .circle(@number-width);
     .center-content();
+    width: 60px;
+    height: 24px;
+    border-radius: $height;
 
-    border: solid @osu-colour-h1 2px;
-    color: #fff;
+    border: solid currentColor 2px;
     font-weight: 700;
-    margin-right: @number-margin-right;
-    flex: none;
     padding-bottom: 2px; // more center the number
   }
 
   &__text {
-    color: @osu-colour-c1;
     font-size: @font-size--normal;
 
     &--description {
-      padding-left: (@number-width + @number-margin-right);
+      color: hsl(var(--hsl-c2));
+    }
+
+    &--download-stable {
+      align-self: center;
+      text-align: center;
+      margin-bottom: 5px;
     }
 
     &--title {
-      .center-content();
       font-size: @font-size--title-small-4;
-      margin-bottom: 10px;
     }
   }
 }

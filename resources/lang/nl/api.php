@@ -24,6 +24,7 @@ return [
 
         'forum' => [
             'write' => 'Maak en bewerk forumonderwerpen en berichten namens u.',
+            'write_manage' => '',
         ],
 
         'friends' => [

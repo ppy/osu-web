@@ -37,6 +37,10 @@ return [
         'insufficient_history' => 'Tento uživatel má méně než 30 dní nedávné ranking historie. ',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'výběry (staré)',
         'country' => 'stát',
@@ -44,14 +48,17 @@ return [
         'global' => 'svět',
         'kudosu' => 'kudosu',
         'multiplayer' => 'hra pro více hráčů',
+        'season_room' => '',
         'seasons' => 'sezóny',
         'team' => 'týmy',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'V této sezóně nejsou žádné místnosti.',
         'ongoing' => 'Tato sezóna stále probíhá (více playlistů bude přidáno průběhem času).',
         'room_count' => 'Počet playlistů',
+        'summary' => '',
         'url' => 'Zobrazit více informací pro tuto sezónu.',
         'validation' => [
             'not_enough_factors' => 'neexistuje dostatek prvků skóre pro řádný výpočet',

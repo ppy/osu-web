@@ -28,6 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'info',
             'discussions' => 'diskussion',
+            'versions' => '',
         ],
 
         'changelog' => [
@@ -52,6 +53,7 @@ return [
         'users' => [
             'modding' => 'modding',
             'playlists' => 'playlister',
+            'quickplay' => '',
             'realtime' => 'multiplayer',
             'show' => 'info',
         ],

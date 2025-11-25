@@ -64,7 +64,7 @@ return [
     ],
 
     'github_user' => [
-        'info' => "만약 osu! 오픈 소스 리포지토리의 기여자이신 경우, GitHub 계정을 연동하시면 변경 사항 항목이 osu! 프로필과 연동돼요. 기여 이력이 없는 GitHub 계정의 경우에는 osu!와 연동할 수 없어요.",
+        'info' => "osu! 오픈 소스 리포지토리의 기여자이신 경우, GitHub 계정을 연동하시면 변경 사항 항목이 osu! 프로필과 연동돼요. 기여 이력이 없는 GitHub 계정의 경우에는 osu!와 연동할 수 없어요.",
         'link' => 'GitHub 계정 연결',
         'title' => 'GitHub',
         'unlink' => 'GitHub 계정 연결 해제',
@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => '친구 목록에 없는 사람들이 보낸 개인 메시지를 차단',
         'hide_online' => '온라인 상태 숨기기',
+        'hide_online_info' => '',
         'title' => '개인 정보',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => '변경',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

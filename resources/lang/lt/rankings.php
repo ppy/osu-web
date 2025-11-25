@@ -10,12 +10,12 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'top_10p' => '',
-        'top_50p' => '',
+        'beatmap' => 'Sunkumas',
+        'top_10p' => 'Top 10% Rezultatas',
+        'top_50p' => 'Top 50% Rezultatas',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'Nurodytoje datoje dar nėra kasdienio iššūkio!',
+            'past' => 'Nurodytoje datoje nėra kasdienio iššūkio!',
         ],
     ],
 
@@ -34,27 +34,34 @@ return [
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Šis vartotojas turi mažiau nei 30 dienų pastarojo reitingo istorijos.',
+    ],
+
+    'top_plays' => [
+        'empty' => '',
     ],
 
     'type' => [
         'charts' => 'pasižymėje',
-        'country' => 'Šalimis',
-        'daily_challenge' => '',
-        'global' => '',
+        'country' => 'šalys',
+        'daily_challenge' => 'kasdieniai iššūkiai',
+        'global' => 'pasaulis',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'žaidimas tinkle',
+        'multiplayer' => 'žaidimai tinkle',
+        'season_room' => '',
         'seasons' => 'sezonai',
-        'team' => '',
+        'team' => 'komandos',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Dar nėra kambariu šiame sezone.',
         'ongoing' => 'Šis sezonas dar tęsiasi (bus pridėta daugiau grojaraščių).',
         'room_count' => 'Grojaraščių skaičius',
+        'summary' => '',
         'url' => 'Rodyti daugiau informacijos apie šį sezoną.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'nepakankamai rezultatų daugiklių deramam apskaičiavimui',
         ],
     ],
 
@@ -69,8 +76,8 @@ return [
         'accuracy' => 'Tikslumas',
         'active_users' => 'Aktyvūs Vartotojai',
         'country' => 'Šalis',
-        'division' => '',
-        'members' => '',
+        'division' => 'Divizija',
+        'members' => 'Nariai',
         'play_count' => 'Sužaidimų Skaičius',
         'performance' => 'Rezultatyvumas',
         'total_score' => 'Iš viso taškų',

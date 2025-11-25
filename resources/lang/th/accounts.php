@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => 'บล็อกข้อความส่วนตัวจากคนที่ไม่ได้อยู่ในรายชื่อเพื่อน',
         'hide_online' => 'ซ่อนสถานะออนไลน์ของคุณ',
+        'hide_online_info' => '',
         'title' => 'ความเป็นส่วนตัว',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => 'อัปเดต',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

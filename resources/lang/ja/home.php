@@ -27,7 +27,7 @@ return [
         'title' => '検索',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'もっと注目アーティストの検索結果を見る',
         ],
         'beatmapset' => [
             'login_required' => 'ログインしてビートマップを検索',
@@ -54,7 +54,7 @@ return [
 
         'mode' => [
             'all' => '全て',
-            'artist_track' => '',
+            'artist_track' => '注目アーティストトラック',
             'beatmapset' => 'ビートマップ',
             'forum_post' => 'フォーラム',
             'team' => 'チーム',
@@ -63,7 +63,7 @@ return [
         ],
 
         'team' => [
-            'more_simple' => '',
+            'more_simple' => 'もっとチームの検索結果を見る',
         ],
 
         'user' => [
@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'osu!をダウンロード',
-        'action_lazer' => 'osu!(lazer)をダウンロード',
-        'action_lazer_description' => '次の大規模アップデート',
         'action_lazer_info' => '詳細はこちらのページをご覧ください',
-        'action_lazer_title' => 'osu!(lazer)を試す',
-        'action_title' => 'osu!をダウンロード',
+        'download' => '',
         'for_os' => ':os 版',
         'macos-fallback' => 'macOSユーザー',
         'mirror' => 'ミラー',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version 以降',
         'other_os' => '他のプラットフォーム',
         'quick_start_guide' => 'クイックスタートガイド',
-        'tagline' => "さぁ、<br>始めよう！",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => '説明動画',
 
         'help' => [
@@ -142,11 +140,11 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'デイリーチャレンジビートマップ',
             'new' => '最新のRankedビートマップ',
             'popular' => '人気のビートマップ',
             'by_user' => 'by :user',
-            'resets' => '',
+            'resets' => ':endsにリセット',
         ],
         'buttons' => [
             'download' => 'osu!をダウンロード',
@@ -155,7 +153,7 @@ return [
         ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => '管理コンソールを開く',
             ],
         ],
     ],

@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Ten kod wygasł. Wysłano nowy kod weryfikacyjny.',
         'incorrect_key' => 'Wprowadzono nieprawidłowy kod weryfikacyjny.',
         'retries_exceeded' => 'Wprowadzono nieprawidłowy kod weryfikacyjny. Liczba prób została przekroczona, w związku z czym wysłaliśmy nowy kod weryfikacyjny.',
         'reissued' => 'Wygenerowano nowy kod weryfikacyjny. Sprawdź swoją skrzynkę odbiorczą.',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => 'Wystąpił nieoczekiwany błąd. Wysłano nowy kod weryfikacyjny.',
     ],
 ];

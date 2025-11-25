@@ -76,6 +76,7 @@ return [
         'minutes' => ':count_delimited minuto|:count_delimited mga minuto',
         'months' => ':count_delimited buwan|:count_delimited mga buwan',
         'notifications' => ':count_delimited na notipikasyon|:count_delimited na mga notipikasyon',
+        'player' => '',
         'plus_others' => '+ :count_delimited na iba pa!|+ :count_delimited na iba pa!',
         'post' => ':count_delimited na post|:count_delimited na mga post',
         'second_short_unit' => 'sec|secs',

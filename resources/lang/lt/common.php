@@ -74,15 +74,16 @@ return [
         'item' => ':count_delimited vienetas|:count_delimited vienetai',
         'minute_short_unit' => 'minutė/minutės',
         'minutes' => ':count_delimited minutė|:count_delimited minučių',
-        'months' => ':count_delimited mėnesis|:count_delimited mėnesiai',
+        'months' => ':count_delimited mėnesis|:count_delimited mėnesių',
         'notifications' => ':count_delimited pranešimas|:count_delimited pranešimų',
+        'player' => '',
         'plus_others' => '+ :count_delimited kitas!|:count_delimited kiti!',
         'post' => ':count_delimited įrašas|:count_delimited įrašų',
         'second_short_unit' => 'skunde|sekundes',
         'star_priority' => ':count_delimited žvaigždžių pirmenybė|:count_delimited žvaigždžių pirmenybės',
         'update' => ':count_delimited atnaujinimas|:count_delimited atnaujinimų',
         'view' => ':count_delimited peržiūra|:count_delimited peržiūrų',
-        'years' => 'Prieš:count_delimited metus| Prieš:count_delimited metus',
+        'years' => ':count_delimited metai|:count_delimited metų',
     ],
 
     'countdown' => [
@@ -94,10 +95,10 @@ return [
 
     'datetime' => [
         'month' => [
-            'php' => '',
+            'php' => 'mėn',
         ],
         'year' => [
-            'php' => '',
+            'php' => 'm',
         ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
@@ -111,7 +112,7 @@ return [
     'device' => [
         'keyboard' => 'Klaviatūra',
         'mouse' => 'Pele',
-        'tablet' => 'Grafinė planšete',
+        'tablet' => 'Grafinė Planšetė',
         'touch' => 'Liečiamu Ekranu',
     ],
 

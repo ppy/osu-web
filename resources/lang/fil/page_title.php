@@ -53,6 +53,7 @@ return [
             'discussion' => 'beatmap discussion',
             'index' => 'beatmap listing',
             'show' => 'beatmap info',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => 'changelog',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'mga paligsahan',
             'judge' => 'paghuhuga sa paligsahan',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'mga grupo',
@@ -118,6 +122,9 @@ return [
             '_' => 'tournaments',
         ],
         'user_cover_presets_controller' => [
+            '_' => '',
+        ],
+        'user_totp_controller' => [
             '_' => '',
         ],
         'users_controller' => [

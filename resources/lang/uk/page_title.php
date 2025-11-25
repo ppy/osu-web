@@ -53,6 +53,7 @@ return [
             'discussion' => 'обговорення бітмапи',
             'index' => 'бібліотека бітмап',
             'show' => 'інформація про бітмапу',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => 'історія змін',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'конкурси',
             'judge' => 'суддівство конкурсу',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'групи',
@@ -119,6 +123,9 @@ return [
         ],
         'user_cover_presets_controller' => [
             '_' => 'пресети обкладинок',
+        ],
+        'user_totp_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'інформація про гравця',

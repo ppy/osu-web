@@ -24,6 +24,7 @@ return [
 
         'forum' => [
             'write' => 'あなたの代わりにフォーラムのトピックに投稿または編集します。',
+            'write_manage' => '',
         ],
 
         'friends' => [

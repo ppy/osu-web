@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Апошнія паведамленні',
                 'show_more' => 'убачыць больш паведамленняў',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Нядаўняя актыўнасць',
             ],

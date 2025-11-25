@@ -5,16 +5,24 @@
 @php
     use App\Http\Controllers\RankingController;
 
-    $links = [];
-    foreach (RankingController::TYPES as $tab) {
-        $links[] = [
-            'active' => $tab === $params['type'],
-            'title' => osu_trans("rankings.type.{$tab}"),
-            'url' => RankingController::url([...$params, 'type' => $tab]),
-        ];
+    if ($params['type'] === null) {
+        $links = null;
+    } else {
+        $links = [];
+        foreach (RankingController::TYPES as $tab) {
+            $links[] = [
+                'active' => $tab === $params['type'],
+                'title' => osu_trans("rankings.type.{$tab}"),
+                'url' => RankingController::url([...$params, 'type' => $tab]),
+            ];
+        }
     }
 
-    $currentRoute ??= 'rankings';
+    $rulesetSelectorUrlFn ??= fn (string $r): string => route('rankings', [
+        ...$params,
+        'mode' => $r,
+        'variant' => $r === $params['mode'] ? ($params['variant'] ?? null) : null,
+    ]);
     $hasFilter ??= true;
     $hasMode ??= true;
     $hasPager ??= true;
@@ -27,11 +35,7 @@
     @section('rulesetSelector')
         @include('objects._ruleset_selector', [
             'currentRuleset' => $params['mode'],
-            'urlFn' => fn (string $r): string => route($currentRoute, [
-                ...$params,
-                'mode' => $r,
-                'variant' => $r === $params['mode'] ? ($params['variant'] ?? null) : null,
-            ]),
+            'urlFn' => $rulesetSelectorUrlFn,
         ])
     @endsection
 @endif

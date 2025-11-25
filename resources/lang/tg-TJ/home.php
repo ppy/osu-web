@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => '',
-        'action_lazer' => '',
-        'action_lazer_description' => '',
         'action_lazer_info' => '',
-        'action_lazer_title' => '',
-        'action_title' => '',
+        'download' => '',
         'for_os' => '',
         'macos-fallback' => '',
         'mirror' => '',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => '',
         'other_os' => '',
         'quick_start_guide' => '',
-        'tagline' => "",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => '',
 
         'help' => [

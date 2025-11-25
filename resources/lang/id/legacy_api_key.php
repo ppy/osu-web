@@ -8,7 +8,7 @@ return [
     'none' => 'Tidak ada kunci.',
 
     'docs' => [
-        '_' => 'Dokumentasi lebih lanjut seputar API osu! dapat dilihat pada :github.',
+        '_' => 'Dokumentasi lebih lanjut seputar API osu! dapat dilihat di :github.',
         'github' => 'GitHub',
     ],
 

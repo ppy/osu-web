@@ -37,6 +37,10 @@ return [
         'insufficient_history' => 'ผู้ใช้คนนี้มีประวัติการจัดอันดับล่าสุดน้อยกว่า 30 วัน',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'โดดเด่น',
         'country' => 'ประเทศ',
@@ -44,14 +48,17 @@ return [
         'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'โหมดผู้เล่นหลายคน',
+        'season_room' => '',
         'seasons' => 'ซีซั่น',
         'team' => 'ทีม',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'ยังไม่มีห้องในซีซั่นนี้',
         'ongoing' => 'ซีซั่นนี้ยังคงดำเนินต่อไป (จะมีการเพิ่มเพลย์ลิสต์เพิ่มเติม)',
         'room_count' => 'จำนวนเพลย์ลิสต์',
+        'summary' => '',
         'url' => 'แสดงข้อมูลเพิ่มเติมในซีซั่นนั้น',
         'validation' => [
             'not_enough_factors' => '',

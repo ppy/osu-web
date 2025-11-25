@@ -37,6 +37,10 @@ return [
         'insufficient_history' => '',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'spotlights',
         'country' => 'država',
@@ -44,14 +48,17 @@ return [
         'global' => '',
         'kudosu' => '',
         'multiplayer' => 'večigralski način',
+        'season_room' => '',
         'seasons' => 'sezone',
         'team' => '',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'V tej sezoni še ni nobenih sob.',
         'ongoing' => 'Trenutna sezona je še v teku (več seznamov bo dodanih kmalu).',
         'room_count' => 'Število seznamov',
+        'summary' => '',
         'url' => 'Prikaži več informacij o tej sezoni.',
         'validation' => [
             'not_enough_factors' => '',

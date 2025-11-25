@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'none_running' => '当前暂无正在进行的比赛，请过段时间再来查看！',
+        'none_running' => '当前暂无正在进行的比赛，请过段时间再来查看吧！',
         'registration_period' => '报名时间： :start 至 :end',
 
         'header' => [

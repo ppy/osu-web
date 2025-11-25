@@ -84,7 +84,7 @@ return [
             'logged-out' => 'Vous devez vous connecter pour pouvoir télécharger des beatmaps !',
             'mapped_by' => 'mappée par :mapper',
             'mapped_by_guest' => 'guest difficulty par :mapper',
-            'unfavourite' => 'Retirer ce beatmapset des favoris',
+            'unfavourite' => 'Retirer cette beatmap des favoris',
             'updated_timeago' => 'dernière mise à jour le :timeago',
 
             'download' => [
@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Écart de notation',
             'nominations' => 'Nominations',
             'playcount' => 'Nombre de parties',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

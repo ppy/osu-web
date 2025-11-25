@@ -401,6 +401,9 @@ return [
                 'title_longer' => 'פוסטים אחרונים',
                 'show_more' => 'ראה עוד פוסטים',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'אחרון',
             ],

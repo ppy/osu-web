@@ -10,7 +10,7 @@ return [
         'client_missing_owner' => 'Klientovi chybí vlastník.',
         'client_unauthorized' => 'Klient není autorizován.',
         'delegate_bot_only' => 'Delegace s klientskými údaji je k dispozici pouze pro chatboty.',
-        'delegate_client_credentials_only' => 'rozsah delegace je platný pouze pro client_credentials tokeny.',
+        'client_credentials_only' => '',
         'delegate_invalid_combination' => 'Pro tuto kombinaci rozsahů není delegace podporována.',
         'delegate_required' => 'rozsah delegáta je vyžadován.',
         'empty' => 'Tokeny bez rozsahu nejsou platné.',

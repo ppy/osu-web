@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Mã xác thực này đã hết hạn, email xác thực mới đã được gửi.',
         'incorrect_key' => 'Mã xác thực không chính xác.',
         'retries_exceeded' => 'Mã xác thực không chính xác. Vượt quá giới hạn lần thử lại, email xác thực mới đã được gửi.',
         'reissued' => 'Mã xác thực đã được làm mới, email xác thực mới đã được gửi.',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => 'Một lỗi không xác định đã xảy ra, email xác thực mới đã được gửi.',
     ],
 ];

@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'المنشورات الحديثة',
                 'show_more' => 'عرض المزيد من المنشورات',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'الأخيرة',
             ],

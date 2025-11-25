@@ -37,6 +37,10 @@ return [
         'insufficient_history' => 'Denna spelare har mindre än 30 dagar av nylig rankinghistorik.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'i rampljuset',
         'country' => 'land',
@@ -44,14 +48,17 @@ return [
         'global' => 'global ',
         'kudosu' => 'kudosu',
         'multiplayer' => 'flerspelarläge',
+        'season_room' => '',
         'seasons' => 'säsonger',
         'team' => 'lag',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Det finns inga rum i denna säsong ännu.',
         'ongoing' => 'Denna säsong pågår fortfarande (det kommer läggas till fler spellistor).',
         'room_count' => 'Antal spellistor',
+        'summary' => '',
         'url' => 'Visa mer information om den säsongen.',
         'validation' => [
             'not_enough_factors' => 'det finns inte tillräckligt med poängfaktorer för korrekt beräkning',

@@ -69,6 +69,7 @@
 
     @media @desktop {
       position: relative;
+      flex-wrap: nowrap;
     }
 
     &--grid {
@@ -97,10 +98,16 @@
     }
   }
 
+  &__checkbox-label-info {
+    margin-top: 5px;
+    font-weight: normal;
+    display: block;
+  }
+
   &__checkbox-status {
     pointer-events: none;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     width: max-content;
 
     @media @desktop {

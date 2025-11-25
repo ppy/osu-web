@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'osu! 다운로드',
-        'action_lazer' => 'osu!(lazer) 다운로드',
-        'action_lazer_description' => 'osu!의 다음 메이저 업데이트',
         'action_lazer_info' => '이 페이지에서 자세한 정보를 확인해보세요.',
-        'action_lazer_title' => 'osu!(lazer) 체험하기',
-        'action_title' => 'osu! 다운로드',
+        'download' => '',
         'for_os' => ':os 전용',
         'macos-fallback' => 'macOS 유저',
         'mirror' => '미러',
@@ -95,11 +91,13 @@ return [
         'os_version_or_later' => ':os_version 이상',
         'other_os' => '다른 플랫폼',
         'quick_start_guide' => '빠른 시작 안내',
-        'tagline' => "시작해 보세요!",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => '영상 가이드',
 
         'help' => [
-            '_' => '만약 게임 시작이나 계정 등록에 문제가 발생했다면, :help_forum_link 하거나 :support_button 해 주세요.',
+            '_' => '만약 게임 시작이나 계정 등록에 문제가 발생했다면, :help_forum_link하거나 :support_button해 주세요.',
             'help_forum_link' => '도움말 포럼을 확인',
             'support_button' => '지원 팀에 연락',
         ],

@@ -126,8 +126,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'Activ',
+            'ended' => 'Încheiat',
         ],
     ],
 
@@ -398,6 +398,9 @@ return [
                 'title' => 'Postări',
                 'title_longer' => 'Postări recente',
                 'show_more' => 'vedeți mai multe postări',
+            ],
+            'quickplay' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Recent',

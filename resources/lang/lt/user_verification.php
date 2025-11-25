@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Atpažinimo kodas pasibaigė. Naujas patvirtinimo pranešimas išsiųstas.',
         'incorrect_key' => 'Neteisingas patvirtinimo kodas.',
         'retries_exceeded' => 'Neteisingas atpažinimo kodas. Bandymų limitas pasiektas, išsiųstas naujas patvitinimo pranešimas.',
         'reissued' => 'Naujas atpažinimo kodas sukurtas, išsiųstas patvirtinimo pranešimas.',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => 'Iškilo nežinoma problema, naujas patvirtinimo pranešimas išsiųstas.',
     ],
 ];

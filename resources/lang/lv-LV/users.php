@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Jaunākās ziņas',
                 'show_more' => 'apskatīt vairāk rakstus',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Nesenie',
             ],

@@ -80,7 +80,7 @@ return [
         'confirm_restore' => 'Tikrai gražinti temą?',
         'deleted' => 'ištrintos temos',
         'go_to_latest' => 'peržiūrėti naujausius įrašus',
-        'go_to_unread' => '',
+        'go_to_unread' => 'peržiūrėti pirmą neskaitytą pranešimą',
         'has_replied' => 'Jūs atsakėte į šią temą',
         'in_forum' => 'tarp :forum',
         'latest_post' => ':when iš :user',
@@ -296,24 +296,24 @@ return [
         ],
 
         'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Pašalinti "osu!lazer" žymę',
+            'to_0_done' => 'Pašalinta "osu!lazer" žymė',
+            'to_1' => 'Pridėti "osu!lazer" žymę',
+            'to_1_done' => 'Pridėta "osu!lazer" žymė',
         ],
 
         'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Pašalinti "osu!stable" žymę',
+            'to_0_done' => 'Pašalinta "osu!stable" žymė',
+            'to_1' => 'Pridėti "osu!stable" žymę',
+            'to_1_done' => 'Pridėta "osu!stable" žymė',
         ],
 
         'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Pašalinti "osu!web" žymę',
+            'to_0_done' => 'Pašalinta "osu!web" žymė',
+            'to_1' => 'Pridėti "osu!web" žymę',
+            'to_1_done' => 'Pridėta "osu!web" žymė',
         ],
 
         'lock' => [

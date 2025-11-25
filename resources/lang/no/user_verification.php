@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Bekreftelseskoden har utløpt, ny bekreftelsesmail sendt.',
         'incorrect_key' => 'Ugyldig bekreftelseskode.',
         'retries_exceeded' => 'Ugyldig bekreftelseskode. Antall tillatte forsøk overskredet, ny bekreftelsesmail sendt.',
         'reissued' => 'Bekreftelseskoden har blitt gjenutgitt, ny bekreftelsesmail sendt.',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => 'Et ukjent problem har forekommet, ny bekreftelsesmail sendt.',
     ],
 ];

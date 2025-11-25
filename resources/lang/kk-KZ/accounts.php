@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => 'достардан келмеген жеке хабарламаларды бұғаттау',
         'hide_online' => 'желіде екеніңізді жасыру',
+        'hide_online_info' => '',
         'title' => 'Құпиялық',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => 'жаңарту',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

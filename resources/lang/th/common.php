@@ -76,6 +76,7 @@ return [
         'minutes' => ':count_delimited นาที|:count_delimited นาที',
         'months' => ':count_delimited เดือน|:count_delimited เดือน',
         'notifications' => ':count_delimited การแจ้งเตือน|:count_delimited การแจ้งเตือนทั้งหมด',
+        'player' => '',
         'plus_others' => '+ :count_delimited อัน!|+ :count_delimited อัน!',
         'post' => ':count_delimited โพสต์|:count_delimited โพสต์',
         'second_short_unit' => 'วินาที|วินาที',

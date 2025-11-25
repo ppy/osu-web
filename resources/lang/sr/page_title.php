@@ -53,6 +53,7 @@ return [
             'discussion' => 'дискусија за мапу',
             'index' => 'листинг мапа',
             'show' => 'информације о мапи',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => 'списак измена',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'такмичења',
             'judge' => '',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'групе',
@@ -118,6 +122,9 @@ return [
             '_' => 'турнири',
         ],
         'user_cover_presets_controller' => [
+            '_' => '',
+        ],
+        'user_totp_controller' => [
             '_' => '',
         ],
         'users_controller' => [

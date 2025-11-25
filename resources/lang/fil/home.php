@@ -82,13 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'I-download ang osu!',
-        'action_lazer' => 'I-download ang osu!(lazer)',
-        'action_lazer_description' => 'ang susunod na major update sa osu!',
         'action_lazer_info' => 'tingnan ang pahinang ito para sa karagdagang impormasyon',
-        'action_lazer_title' => 'subukan ang osu!(lazer)',
-        'action_title' => 'i-download ang osu!
-',
+        'download' => '',
         'for_os' => 'para sa :os',
         'macos-fallback' => 'mga gumagamit ng macOS',
         'mirror' => 'mirror',
@@ -96,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version o mas bago',
         'other_os' => 'iba pang mga platform',
         'quick_start_guide' => 'gabay sa mabilis na pagsisimula',
-        'tagline' => "tayo nang<br>simulan ito!",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => 'video na panggabay',
 
         'help' => [

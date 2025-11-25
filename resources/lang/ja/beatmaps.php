@@ -149,9 +149,9 @@ return [
 
         'stats' => [
             'deleted' => '削除済み',
-            'mapper_notes' => '注意',
+            'mapper_notes' => 'メモ',
             'mine' => '自分',
-            'pending' => 'Pending',
+            'pending' => '未解決',
             'praises' => '称賛',
             'resolved' => '解決済み',
             'total' => '全て',
@@ -301,7 +301,7 @@ return [
         'leaderboard' => 'リーダーボード',
         'loved' => 'Loved',
         'mine' => 'マイマップ',
-        'pending' => 'Pending & WIP',
+        'pending' => 'Pending',
         'wip' => 'WIP',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',

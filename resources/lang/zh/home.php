@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => '下载 osu!',
-        'action_lazer' => '下载 osu!(lazer)',
-        'action_lazer_description' => 'osu! 的下一个主要更新',
         'action_lazer_info' => '更多详情请查阅本页面',
-        'action_lazer_title' => '尝试 osu!(lazer)',
-        'action_title' => '下载 osu!',
+        'download' => '',
         'for_os' => '适用于 :os',
         'macos-fallback' => 'macOS 用户',
         'mirror' => '从镜像服务器下载',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version 或更高版本',
         'other_os' => '其他平台',
         'quick_start_guide' => '快速入门指南',
-        'tagline' => "准备好开始你的节奏之旅吧！",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => '视频教程',
 
         'help' => [

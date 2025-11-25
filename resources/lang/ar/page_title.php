@@ -53,6 +53,7 @@ return [
             'discussion' => 'مناقشة الخريطة',
             'index' => 'قائمة الخرائط',
             'show' => 'معلومات الخريطة',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => 'سِجل التغييرات',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'المسابقات',
             'judge' => 'تحكيم المسابقة',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'المجموعات',
@@ -119,6 +123,9 @@ return [
         ],
         'user_cover_presets_controller' => [
             '_' => 'أغلفة المستخدم المعدَّة',
+        ],
+        'user_totp_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'معلومات اللاعب',

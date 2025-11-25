@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Шкала рэйтынгу',
             'nominations' => 'Намінацыі',
             'playcount' => 'Колькасць гульняў',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

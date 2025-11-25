@@ -14,30 +14,31 @@ return [
     ],
 
     'judge' => [
-        'comments' => '',
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'comments' => 'komentarai',
+        'hide_judged' => 'slėpti vertintus pateikimus',
+        'nav_title' => 'vertintojas',
+        'no_current_vote' => 'dar nebalsavote.',
+        'update' => 'atnaujinti',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'nenurodyti taškai',
+            'contest_vote_judged' => 'negalite balsuoti jau vertintuose konkursuose',
         ],
-        'voted' => '',
+        'voted' => 'Jau balsavote šiame pateikime.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'score_std' => '',
-        'total_score' => '',
-        'total_score_std' => '',
+        '_' => '
+Vertinimo rezultatai',
+        'creator' => 'kūrėjas',
+        'score' => 'Rezultatas',
+        'score_std' => 'Standartizuotas Rezultatas',
+        'total_score' => 'bendras rezultatas',
+        'total_score_std' => 'bendras standartizuotas rezultatas',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Jus esate vertintojas šiame konkurse. Vertinkite pateikimus čia!',
+        'judged_notice' => 'Šis konkursas naudoja vertinimo sistemą, vertintojai tvarkosi su pateikimais.',
         'login_required' => 'Balsavimui reikia prisijungti.',
         'over' => 'Balsavimas šitam konkursui baigėsi',
         'show_voted_only' => 'Rodyti balsus',
@@ -89,7 +90,7 @@ return [
         'list' => 'balsai',
         'count' => ':count_delimited balsas|:count_delimited balsų',
         'points' => ':count_delimited taškas|:count_delimited taškų',
-        'points_float' => '',
+        'points_float' => ':points taškai',
     ],
 
     'dates' => [
@@ -110,7 +111,7 @@ return [
 
     'show' => [
         'admin' => [
-            'page' => '',
+            'page' => 'Peržiūrėti informaciją ir pateikimus',
         ],
     ],
 ];

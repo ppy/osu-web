@@ -53,6 +53,7 @@ return [
             'discussion' => '',
             'index' => 'карталар тізімі',
             'show' => '',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => '',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'сайыстар',
             'judge' => '',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'группалар',
@@ -118,6 +122,9 @@ return [
             '_' => 'жарыстар',
         ],
         'user_cover_presets_controller' => [
+            '_' => '',
+        ],
+        'user_totp_controller' => [
             '_' => '',
         ],
         'users_controller' => [

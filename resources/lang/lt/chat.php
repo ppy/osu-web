@@ -18,8 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Ar norite paslėpti šį kanalą? Jūs toliau gausite žinutes iš šio kanalo.',
         'create' => 'kurti skelbimą',
-        'join' => '',
-        'none' => '',
+        'join' => 'pridėti kanalą',
+        'none' => 'joks kanalas',
 
         'list' => [
             'title' => [
@@ -27,7 +27,7 @@ return [
                 'GROUP' => 'Grupės',
                 'PM' => 'Tiesioginės žinutės',
                 'PUBLIC' => 'Kanalai',
-                'TEAM' => '',
+                'TEAM' => 'Komanda',
             ],
         ],
     ],
@@ -65,6 +65,6 @@ return [
     ],
 
     'join_channels' => [
-        'loading' => '',
+        'loading' => 'Kraunamas kanalų sąrašas...',
     ],
 ];

@@ -45,6 +45,9 @@
 
                     <span class="account-edit-entry__checkbox-label">
                         {{ osu_trans('accounts.privacy.hide_online') }}
+                        <span class="account-edit-entry__checkbox-label-info">
+                            {{ osu_trans('accounts.privacy.hide_online_info') }}
+                        </span>
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">

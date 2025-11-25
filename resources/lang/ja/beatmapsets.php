@@ -69,7 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'フルサイズのカバー画像を表示',
-            'page' => '',
+            'page' => '管理ページを表示',
         ],
 
         'deleted_banner' => [
@@ -224,6 +224,8 @@ return [
             'rating-spread' => '評価分布',
             'nominations' => 'ノミネーション',
             'playcount' => 'プレイ数',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

@@ -21,7 +21,7 @@ return [
             'title' => 'El. Paštas',
             'locked' => [
                 '_' => 'Prašome susisiekti su :accounts jei tau reikia atnaujinti el. paštą.',
-                'accounts' => '',
+                'accounts' => 'paskyros pagalbos komanda',
             ],
         ],
 
@@ -64,15 +64,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
+        'info' => "Jei prisidedate prie osu! atvirojo kodo saugyklų, susiejant jūsų GitHub paskyrą galite pririšti jūsų pakeitimų pateiktis prie jūsų osu! paskyros. GitHub paskyros be jokios prisidėjimų prie osu! istorijos negali būti susietos.",
         'link' => 'Susieti GitHub paskyrą',
         'title' => 'GitHub',
-        'unlink' => '',
+        'unlink' => 'Atsieti GitHub paskyrą',
 
         'error' => [
             'already_linked' => 'Ši GitHub paskyra jau yra susieta su kitu naudotuju.',
-            'no_contribution' => '',
-            'unverified_email' => '',
+            'no_contribution' => 'Negalima susieti GitHub paskyros be įnašų istorijos osu! saugyklose.',
+            'unverified_email' => 'Prašome patvirtinti jūsų pagrindinį el. pašto adresą GitHub platformoje, tada vėl bandyti susieti su savo paskyra.',
         ],
     ],
 
@@ -86,9 +86,9 @@ return [
         'options' => [
             '_' => 'pristatymo būdai',
             'beatmap_owner_change' => 'svečio sunkumas',
-            'beatmapset:modding' => 'beatmap\'ų modifikacijos',
+            'beatmapset:modding' => 'beatmap\'ų taisymai',
             'channel_message' => 'privatūs susirašinėjimai',
-            'channel_team' => '',
+            'channel_team' => 'komandos žinutės',
             'comment_new' => 'nauji komentarai',
             'forum_topic_reply' => 'temos atsakymas',
             'mail' => 'paštas',
@@ -128,6 +128,7 @@ return [
     'privacy' => [
         'friends_only' => 'blokuoti privačias žinutes iš žmonių kurių nėra draugų sąraše',
         'hide_online' => 'paslėpti jūsų prisijungimo sesiją',
+        'hide_online_info' => '',
         'title' => 'Privatumas',
     ],
 
@@ -146,6 +147,21 @@ return [
 
     'update_password' => [
         'update' => 'atnaujinti',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

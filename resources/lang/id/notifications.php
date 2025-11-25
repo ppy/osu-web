@@ -40,7 +40,7 @@ return [
             '_' => 'Beatmap',
 
             'beatmap_owner_change' => [
-                '_' => 'Guest difficulty',
+                '_' => 'Tingkat kesulitan tamu',
                 'beatmap_owner_change' => 'Kamu telah terdaftar sebagai pemilik tingkat kesulitan ":beatmap" pada beatmap ":title"',
                 'beatmap_owner_change_compact' => 'Kamu telah terdaftar sebagai pemilik dari tingkat kesulitan ":beatmap"',
             ],
@@ -215,7 +215,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => 'Kamu telah terdaftar sebagai pemilik guest difficulty pada beatmap ":title"',
+                'beatmap_owner_change' => 'Kamu telah terdaftar sebagai pemilik tingkat kesulitan tamu pada beatmap ":title"',
             ],
 
             'beatmapset_discussion' => [

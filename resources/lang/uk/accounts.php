@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => 'не отримувати приватні повідомлення від людей, яких немає у моєму списку друзів',
         'hide_online' => 'приховувати вашу присутність "В мережі"',
+        'hide_online_info' => '',
         'title' => 'Конфіденційність',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => 'оновити',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

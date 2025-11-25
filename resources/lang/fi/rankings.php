@@ -37,6 +37,10 @@ return [
         'insufficient_history' => 'Tällä käyttäjällä on alle 30 päivää viimeaikaista rankkaushistoriaa.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'kohdevalot (vanha)',
         'country' => 'maat',
@@ -44,14 +48,17 @@ return [
         'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'moninpelit',
+        'season_room' => '',
         'seasons' => 'kaudet',
         'team' => '',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Tällä kaudella ei ole vielä huoneita.',
         'ongoing' => 'Tämä kausi on edelleen käynnissä (lisää soittolistoja tullaan lisäämään).',
         'room_count' => 'Soittolistojen määrä',
+        'summary' => '',
         'url' => 'Lisätietoja tästä kaudesta.',
         'validation' => [
             'not_enough_factors' => '',

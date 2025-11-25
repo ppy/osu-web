@@ -12,7 +12,7 @@ return [
             '_' => ':action :items?',
             'disable' => 'Išjungti',
             'enable' => 'Įjungti',
-            'items' => '',
+            'items' => ':count_delimited viršelis|:count_delimited viršelių',
         ],
 
         'create_form' => [

@@ -8,6 +8,7 @@ return [
         'active' => '',
         'ended' => '',
         'playlists' => 'รายการเพลง',
+        'quickplay' => '',
         'realtime' => 'โหมดผู้เล่นหลายคน',
     ],
 

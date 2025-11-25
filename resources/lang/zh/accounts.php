@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => '屏蔽来自陌生人的私信',
         'hide_online' => '隐藏在线状态',
+        'hide_online_info' => '',
         'title' => '隐私',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => '更新',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

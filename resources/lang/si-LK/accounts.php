@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => '',
         'hide_online' => '',
+        'hide_online_info' => '',
         'title' => '',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => '',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

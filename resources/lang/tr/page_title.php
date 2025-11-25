@@ -53,6 +53,7 @@ return [
             'discussion' => 'beatmap tartışma',
             'index' => 'beatmap kataloğu',
             'show' => 'beatmap bilgisi',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => 'değişiklik kayıtları',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'yarışmalar',
             'judge' => 'yarışma yargısı',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'gruplar',
@@ -119,6 +123,9 @@ return [
         ],
         'user_cover_presets_controller' => [
             '_' => 'kullanıcı kapak fotoğrafı ön ayarları',
+        ],
+        'user_totp_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'oyuncu bilgisi',

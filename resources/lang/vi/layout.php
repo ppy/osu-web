@@ -28,6 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'thông tin',
             'discussions' => 'thảo luận',
+            'versions' => '',
         ],
 
         'changelog' => [
@@ -52,6 +53,7 @@ return [
         'users' => [
             'modding' => 'modding',
             'playlists' => 'danh sách phát',
+            'quickplay' => '',
             'realtime' => 'nhiều người chơi',
             'show' => 'thông tin',
         ],

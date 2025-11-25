@@ -128,6 +128,7 @@ return [
     'privacy' => [
         'friends_only' => 'blokovať súkromné správy od osôb mimo vášho zoznamu priateľov',
         'hide_online' => 'skryť online status',
+        'hide_online_info' => '',
         'title' => 'Súkromie',
     ],
 
@@ -146,6 +147,21 @@ return [
 
     'update_password' => [
         'update' => 'aktualizovať',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

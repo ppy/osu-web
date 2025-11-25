@@ -23,7 +23,7 @@ return [
         'deleted' => 'Dipadam oleh :editor :delete_time.',
         'deny_kudosu' => 'tolak kudosu',
         'edit' => 'sunting',
-        'edited' => 'Terakhir disunting oleh :editor :update_time.',
+        'edited' => 'Suntingan terkini oleh :editor :update_time.',
         'guest' => 'Kesukaran tamu oleh :user',
         'kudosu_denied' => 'Pemerolehan kudosu ditolak.',
         'message_placeholder_deleted_beatmap' => 'Kesukaran ini tidak boleh dibincangkan lagi kerana telah dipadam.',
@@ -144,7 +144,7 @@ return [
         'sort' => [
             'created_at' => 'Masa dicipta',
             'timeline' => 'Garis Masa',
-            'updated_at' => 'Kemas kini terakhir',
+            'updated_at' => 'Pengemaskinian terkini',
         ],
 
         'stats' => [
@@ -204,7 +204,7 @@ return [
         'disqualified_at' => 'Tersingkir :time_ago (:reason).',
         'disqualified_no_reason' => 'tiada sebab ditentukan',
         'disqualify' => 'Singkirkan',
-        'incorrect_state' => 'Ralat menjalankan tindakan, cuba segar semula halaman.',
+        'incorrect_state' => 'Terdapat ralat menjalankan tindakan. Cuba segar semula halaman.',
         'love' => 'Gemar',
         'love_choose' => 'Pilih kesukaran untuk kegemaran',
         'love_confirm' => 'Adakah anda gemar peta rentak ini?',

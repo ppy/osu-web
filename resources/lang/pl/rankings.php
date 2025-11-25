@@ -37,6 +37,10 @@ return [
         'insufficient_history' => 'Ten użytkownik jest pozycjonowany w rankingu globalnym przez okres krótszy niż 30 dni.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'wyróżnionych',
         'country' => 'krajowy',
@@ -44,14 +48,17 @@ return [
         'global' => 'globalny',
         'kudosu' => 'kudosu',
         'multiplayer' => 'wieloosobowy',
+        'season_room' => '',
         'seasons' => 'sezony',
         'team' => 'zespołów',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Brak gier w tym sezonie.',
         'ongoing' => 'Ten sezon nadal trwa - wkrótce zostanie dodanych więcej gier.',
         'room_count' => 'Liczba gier',
+        'summary' => '',
         'url' => 'Dowiedz się więcej o tym sezonie.',
         'validation' => [
             'not_enough_factors' => 'brak wystarczającej liczby parametrów do przeprowadzenia obliczeń',

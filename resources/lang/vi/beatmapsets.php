@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Phân Loại Đánh Giá',
             'nominations' => 'Đề cử',
             'playcount' => 'Đã chơi',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

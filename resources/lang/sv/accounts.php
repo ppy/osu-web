@@ -88,7 +88,7 @@ return [
             'beatmap_owner_change' => 'gästsvårighetsgrad',
             'beatmapset:modding' => 'beatmapmodding',
             'channel_message' => 'privata chattmeddelanden',
-            'channel_team' => '',
+            'channel_team' => 'lagchattsmeddelanden',
             'comment_new' => 'nya kommentarer',
             'forum_topic_reply' => 'ämnessvar',
             'mail' => 'e-post',
@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => 'blockera privata meddelanden från icke-vänner',
         'hide_online' => 'dölj din online-närvaro',
+        'hide_online_info' => '',
         'title' => 'Sekretess',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => 'uppdatera',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

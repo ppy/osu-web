@@ -28,6 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'معلومات',
             'discussions' => 'المناقشة',
+            'versions' => '',
         ],
 
         'changelog' => [
@@ -52,6 +53,7 @@ return [
         'users' => [
             'modding' => 'الاِقتراح',
             'playlists' => 'قوائم التشغيل',
+            'quickplay' => '',
             'realtime' => 'لعب جماعي',
             'show' => 'معلومات',
         ],

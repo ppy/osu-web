@@ -28,6 +28,7 @@ return [
         'beatmapsets' => [
             'show' => '정보',
             'discussions' => '토론',
+            'versions' => '',
         ],
 
         'changelog' => [
@@ -52,6 +53,7 @@ return [
         'users' => [
             'modding' => '모딩',
             'playlists' => '플레이리스트',
+            'quickplay' => '',
             'realtime' => '멀티플레이어',
             'show' => '정보',
         ],

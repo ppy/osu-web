@@ -24,7 +24,7 @@ return [
         'deny_kudosu' => 'tolak kudosu',
         'edit' => 'sunting',
         'edited' => 'Terakhir disunting oleh :editor :update_time.',
-        'guest' => 'Guest difficulty oleh :user',
+        'guest' => 'Tingkat kesulitan tamu oleh :user',
         'kudosu_denied' => 'Perolehan kudosu ditolak.',
         'message_placeholder_deleted_beatmap' => 'Tingkat kesulitan ini telah dihapus sehingga diskusi lebih lanjut tidak lagi diperkenankan.',
         'message_placeholder_locked' => 'Diskusi pada beatmap ini telah ditutup.',

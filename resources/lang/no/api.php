@@ -24,6 +24,7 @@ return [
 
         'forum' => [
             'write' => 'Opprett og rediger forumemner og innlegg på dine vegne.',
+            'write_manage' => '',
         ],
 
         'friends' => [

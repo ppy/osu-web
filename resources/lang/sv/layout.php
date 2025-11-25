@@ -28,6 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'info',
             'discussions' => 'diskussion',
+            'versions' => '',
         ],
 
         'changelog' => [
@@ -52,6 +53,7 @@ return [
         'users' => [
             'modding' => 'modding',
             'playlists' => 'spellistor',
+            'quickplay' => '',
             'realtime' => 'multiplayer',
             'show' => 'info',
         ],
@@ -113,7 +115,7 @@ return [
             'copyright' => 'Copyright (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Sekretess',
-            'rules' => '',
+            'rules' => 'Regler',
             'server_status' => 'Serverstatus',
             'source_code' => 'Källkod',
             'terms' => 'Användarvillkor',

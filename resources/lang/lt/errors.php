@@ -30,7 +30,7 @@ return [
         'generic' => 'Įvyko klaida apdorojant jūsų apmokėjimą.',
     ],
     'scores' => [
-        'invalid_id' => '',
+        'invalid_id' => 'Negalimas rezultato id.',
     ],
     'search' => [
         'default' => 'Negalėjome rasti rezultatų, prašome bandyti vėliau.',
@@ -38,6 +38,6 @@ return [
         'operation_timeout_exception' => 'Paieška labiau užimta, nei įprastai, pabandykite vėliau.',
     ],
     'user_report' => [
-        'recently_reported' => "",
+        'recently_reported' => "Jus nesenai jau buvote pranešę.",
     ],
 ];

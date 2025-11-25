@@ -37,6 +37,10 @@ return [
         'insufficient_history' => 'Aquest usuari té menys de 30 dies d\'historial de classificació recent.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'en el focus (vell)',
         'country' => 'país',
@@ -44,14 +48,17 @@ return [
         'global' => 'global',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multijugador',
+        'season_room' => '',
         'seasons' => 'temporades',
         'team' => 'equip',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Encara no hi ha sales en aquesta temporada.',
         'ongoing' => 'Aquesta temporada encara està en curs (s\'afegiran més llistes de reproducció).',
         'room_count' => 'Nombre de llistes de reproducció',
+        'summary' => '',
         'url' => 'Mostra més informació sobre la temporada.',
         'validation' => [
             'not_enough_factors' => 'no hi ha prou factors de puntuació per a un càlcul adequat',

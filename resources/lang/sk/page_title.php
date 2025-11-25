@@ -53,6 +53,7 @@ return [
             'discussion' => '',
             'index' => '',
             'show' => '',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => '',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => '',
             'judge' => '',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'skupiny',
@@ -118,6 +122,9 @@ return [
             '_' => '',
         ],
         'user_cover_presets_controller' => [
+            '_' => '',
+        ],
+        'user_totp_controller' => [
             '_' => '',
         ],
         'users_controller' => [

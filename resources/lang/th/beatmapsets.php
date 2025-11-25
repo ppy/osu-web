@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'การกระจายคะแนนโหวต',
             'nominations' => 'การเสนอชื่อ',
             'playcount' => 'จำนวนครั้งที่เล่น',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [
