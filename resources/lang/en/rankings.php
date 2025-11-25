@@ -43,6 +43,7 @@ return [
 
     'top_plays' => [
         'empty' => 'The data is being calculated...',
+        'last_updated' => 'Last updated',
     ],
 
     'playlists' => [
