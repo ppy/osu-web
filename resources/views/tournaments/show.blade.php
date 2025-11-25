@@ -85,7 +85,11 @@
 
             @if($tournament->isRegistrationOpen())
                 <div class='tournament__countdown-timer'>
-                    <div class='js-react--countdownTimer' data-deadline='{{json_time($tournament->signup_close)}}'></div>
+                    <div
+                        class='js-react'
+                        data-react='countdownTimer'
+                        data-deadline='{{json_time($tournament->signup_close)}}'
+                    ></div>
                 </div>
 
                 <div class="tournament__body">

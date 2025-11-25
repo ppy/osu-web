@@ -10,7 +10,7 @@
 ])
 
 @section('content')
-    <div class="js-react--beatmap-discussions u-contents"></div>
+    <div class="js-react u-contents" data-react="beatmap-discussions"></div>
 @endsection
 
 @section ("script")

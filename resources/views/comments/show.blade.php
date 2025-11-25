@@ -26,7 +26,7 @@
     ]])
 
     <div class="osu-page osu-page--comment">
-        <div class="js-react--comments-show u-contents"></div>
+        <div class="js-react u-contents" data-react="comments-show"></div>
     </div>
 
     <script id="json-show" type="application/json">

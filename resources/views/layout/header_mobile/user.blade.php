@@ -19,8 +19,9 @@
         </a>
     @else
         <div
-            class="navbar-mobile-item__main js-react--user-card"
+            class="navbar-mobile-item__main js-react"
             data-is-current-user="1"
+            data-react="user-card"
         ></div>
 
         @include('layout._score_mode_toggle', ['class' => 'navbar-mobile-item__main'])
