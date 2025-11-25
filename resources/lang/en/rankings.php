@@ -33,6 +33,10 @@ return [
         'used' => 'Spent',
     ],
 
+    'multiplayer' => [
+        'room_name' => 'Room Name',
+    ],
+
     'performance' => [
         'insufficient_history' => 'This user has less than 30 days of recent ranking history.',
     ],

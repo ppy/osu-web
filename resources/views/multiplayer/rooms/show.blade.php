@@ -7,15 +7,29 @@
 
     $selectOptionTransformer = new SelectOptionTransformer();
     $season = $room->season;
-    [$type, $titlePrefix] = $season === null
-        ? ['multiplayer', osu_trans('rankings.type.multiplayer')]
-        : ['seasons', osu_trans('rankings.type.season_room')];
+    if ($season !== null) {
+        $type = 'seasons';
+        $titlePrefix = osu_trans('rankings.type.season_room');
+    } elseif ($room->isFeatured()) {
+        $type = 'multiplayer';
+        $titlePrefix = osu_trans('rankings.type.multiplayer');
+    } else {
+        $type = null;
+        $titlePrefix = match (true) {
+            $room->isMatchmaking() => '',
+            $room->isRealtime() => osu_trans('layout.header.users.realtime'),
+            default => osu_trans('layout.header.users.playlists'),
+        };
+    }
+    if ($titlePrefix !== '') {
+        $titlePrefix .= ': ';
+    }
 @endphp
 @extends('rankings.index', [
     'hasFilter' => false,
     'hasMode' => false,
     'params' => ['type' => $type],
-    'titlePrepend' => $titlePrefix.': '.$room->name,
+    'titlePrepend' => "{$titlePrefix}{$room->name}",
 ])
 
 @section('ranking-header')
@@ -30,12 +44,24 @@
                 </a>
             </span>
         @endif
-        @include('objects._basic_select_options', ['selectOptions' => [
-            'currentItem' => json_item($room, $selectOptionTransformer),
-            'items' => json_collection($rooms, $selectOptionTransformer),
-            'type' => 'multiplayer',
-        ]])
+        @if ($rooms !== null)
+            @include('objects._basic_select_options', ['selectOptions' => [
+                'currentItem' => json_item($room, $selectOptionTransformer),
+                'items' => json_collection($rooms, $selectOptionTransformer),
+                'type' => 'multiplayer',
+            ]])
+        @endif
 
+        @if ($rooms === null)
+            <div class="counter-box counter-box--ranking">
+                <div class="counter-box__title">
+                    {{ osu_trans('rankings.multiplayer.room_name') }}
+                </div>
+                <div class="counter-box__count">
+                    {{ $room->name }}
+                </div>
+            </div>
+        @endif
         <div class="grid-items grid-items--ranking-info-bar">
             <div class="counter-box counter-box--ranking">
                 <div class="counter-box__title">
