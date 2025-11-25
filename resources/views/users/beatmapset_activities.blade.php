@@ -11,7 +11,7 @@
 @section('content')
     @include('users._restricted_banner', compact('user'))
 
-    <div class="js-react--modding-profile u-contents"></div>
+    <div class="js-react u-contents" data-react="modding-profile"></div>
 @endsection
 
 @section ("script")

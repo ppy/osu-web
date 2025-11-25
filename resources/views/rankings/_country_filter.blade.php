@@ -10,7 +10,7 @@
     $country = $countryStats?->country;
 @endphp
 
-<div class="js-react--ranking-country-filter u-contents">
+<div class="js-react u-contents" data-react="ranking-country-filter">
     <div class="ranking-filter ranking-filter--full">
         <div class="ranking-filter__title">
             {{ osu_trans('rankings.countries.title') }}

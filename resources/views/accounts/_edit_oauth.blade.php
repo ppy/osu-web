@@ -14,7 +14,7 @@
             <div class="account-edit-entry">
                 <div class="account-edit-entry__label account-edit-entry__label--top-pinned">{{ osu_trans('accounts.oauth.authorized_clients') }}</div>
                 <div class="account-edit-entry__group">
-                    <div class="js-react--authorized-clients"></div>
+                    <div class="js-react" data-react="authorized-clients"></div>
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
             <div class="account-edit-entry">
                 <div class="account-edit-entry__label account-edit-entry__label--top-pinned">{{ osu_trans('accounts.oauth.own_clients') }}</div>
                 <div class="account-edit-entry__group">
-                    <div class="js-react--own-clients"></div>
+                    <div class="js-react" data-react="own-clients"></div>
                 </div>
             </div>
         </div>

@@ -10,7 +10,7 @@
 ])
 
 @section('content')
-    <div class="js-react--beatmapset-page u-contents"></div>
+    <div class="js-react u-contents" data-react="beatmapset-page"></div>
     @if ($currentUser?->isModerator() || $currentUser?->isAdmin())
         <div class="admin-menu">
             <button class="admin-menu__button js-menu" data-menu-target="admin-beatmapset" type="button">

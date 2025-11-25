@@ -5,7 +5,7 @@
 @extends('master')
 
 @section('content')
-    <div class="js-react--notifications-index u-contents"></div>
+    <div class="js-react u-contents" data-react="notifications-index"></div>
 @endsection
 
 @section("script")

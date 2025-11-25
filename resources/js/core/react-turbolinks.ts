@@ -13,7 +13,7 @@ import { currentUrl } from 'utils/turbolinks';
 type ElementFn = (container: HTMLElement) => React.ReactElement;
 
 export default class ReactTurbolinks {
-  private readonly components = new Map<string, ElementFn>();
+  private readonly components: Partial<Record<string, ElementFn>> = {};
   private newVisit = true;
   private pageReady = false;
   private readonly renderedContainers = new Set<HTMLElement>();
@@ -30,27 +30,29 @@ export default class ReactTurbolinks {
   boot = () => {
     if (!this.pageReady || window.newBody == null) return;
 
-    for (const [name, elementFn] of this.components.entries()) {
-      const containers = window.newBody.querySelectorAll(`.js-react--${name}`);
+    for (const container of window.newBody.querySelectorAll('.js-react')) {
+      if (!(container instanceof HTMLElement)) {
+        continue;
+      }
+      const name = container.dataset.react ?? '';
+      const elementFn = this.components[name];
 
-      for (const container of containers) {
-        if (!(container instanceof HTMLElement) || this.renderedContainers.has(container)) {
-          continue;
+      if (elementFn != null) {
+        if (!this.renderedContainers.has(container)) {
+          this.renderedContainers.add(container);
+
+          runInAction(() => {
+            ReactDOM.render(elementFn(container), container);
+          });
         }
-
-        this.renderedContainers.add(container);
-
-        runInAction(() => {
-          ReactDOM.render(elementFn(container), container);
-        });
       }
     }
   };
 
   register(name: string, elementFn: ElementFn) {
-    if (this.components.has(name)) return;
+    if (this.components[name] != null) return;
 
-    this.components.set(name, elementFn);
+    this.components[name] = elementFn;
 
     this.boot();
   }

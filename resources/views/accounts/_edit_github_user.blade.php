@@ -11,7 +11,8 @@
 
     <div class="account-edit__input-groups">
         <div
-            class="account-edit__input-group js-react--github-user"
+            class="account-edit__input-group js-react"
+            data-react="github-user"
             data-user="{{ json_encode($githubUser) }}"
         ></div>
     </div>
