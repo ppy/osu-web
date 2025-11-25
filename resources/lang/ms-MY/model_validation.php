@@ -96,7 +96,7 @@ return [
             'invalid_max_options' => 'Pilihan setiap pengguna tidak boleh melebihi jumlah pilihan tersedia.',
             'minimum_one_selection' => 'Minimum satu pilihan per pengguna diperlukan.',
             'minimum_two_options' => 'Sekurang-kurangnya dua pilihan diperlukan.',
-            'too_many_options' => 'Melebihi jumlah maksimum pilihan yang dibenarkan.',
+            'too_many_options' => 'Pilihan melebihi jumlah yang dibenarkan.',
 
             'attributes' => [
                 'title' => 'Judul tinjauan',
@@ -105,7 +105,7 @@ return [
 
         'topic_vote' => [
             'required' => 'Buat pilihan ketika mengundi.',
-            'too_many' => 'Pilihan melebihi jumlah yang dibenarkan.',
+            'too_many' => 'Pemilihan melebihi jumlah yang dibenarkan.',
         ],
     ],
 
@@ -134,7 +134,7 @@ return [
     'team' => [
         'invalid_characters' => ':attribute ini mengandungi aksara tidak sah.',
         'used' => ':attribute ini telah digunakan.',
-        'word_not_allowed' => ':attribute ini tidak dibenarkan.',
+        'word_not_allowed' => 'Pilihan :attribute ini tidak dibenarkan.',
 
         'attributes' => [
             'default_ruleset_id' => 'Cara main asal',
@@ -166,7 +166,7 @@ return [
         'username_too_short' => 'Nama pengguna pintaan terlalu pendek.',
         'username_too_long' => 'Nama pengguna pintaan terlalu panjang.',
         'weak' => 'Kata laluan disenarai hitam.',
-        'wrong_current_password' => 'Kata laluan semasa tidak betul.',
+        'wrong_current_password' => 'Kata laluan semasa salah.',
         'wrong_email_confirmation' => 'Pengesahan e-mel tidak sepadan.',
         'wrong_password_confirmation' => 'Pengesahan kata laluan tidak sepadan.',
         'too_long' => 'Melebihi panjang maksimum iaitu :limit aksara sahaja.',

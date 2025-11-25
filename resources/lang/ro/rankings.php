@@ -37,6 +37,10 @@ return [
         'insufficient_history' => 'Acest utilizator are mai puțin de 30 de zile de istoric în clasamente.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'promovări',
         'country' => 'național',
@@ -44,14 +48,17 @@ return [
         'global' => 'global',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
+        'season_room' => '',
         'seasons' => 'sezoane',
         'team' => 'echipă',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Nu există camere încă în acest sezon.',
         'ongoing' => 'Acest sezon este în curs de desfășurare (vor fi adăugate mai multe playlist-uri).',
         'room_count' => 'Număr playlist-uri',
+        'summary' => '',
         'url' => 'Afișează mai multe informații despre acel sezon.',
         'validation' => [
             'not_enough_factors' => 'nu există suficienți factori de evaluare a scorului pentru un calcul corect',

@@ -8,6 +8,7 @@ return [
         'active' => '',
         'ended' => '',
         'playlists' => 'плэйліст',
+        'quickplay' => '',
         'realtime' => 'мультыплэер',
     ],
 

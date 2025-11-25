@@ -168,15 +168,15 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
-                'policy' => '',
+                '_' => 'Lütfen telif hakkı ihlallerini :policy\'ne göre :mail adresine DMCA talebi göndererek bildiriniz.',
+                'policy' => 'osu! telif hakkı yönergesi',
             ],
             'message_2' => '',
         ],
 
         'options' => [
             'cheating' => 'Kuraldışı oyun / Hile',
-            'copyright_infringement' => '',
+            'copyright_infringement' => 'Telif hakkı ihlali',
             'inappropriate_chat' => 'Uygunsuz sohbet davranışı',
             'insults' => 'Bana / başkalarına hakaret',
             'multiple_accounts' => 'Birden fazla hesap kullanımı',
@@ -398,6 +398,9 @@ return [
                 'title' => 'Gönderiler',
                 'title_longer' => 'Son Gönderiler',
                 'show_more' => 'daha fazla gönderi gör',
+            ],
+            'quickplay' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Son',

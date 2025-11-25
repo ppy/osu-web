@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Senaste Inläggen',
                 'show_more' => 'se fler inlägg',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Senaste',
             ],

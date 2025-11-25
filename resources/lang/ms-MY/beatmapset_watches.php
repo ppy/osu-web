@@ -15,7 +15,7 @@ return [
 
         'table' => [
             'empty' => 'Tiada perbincangan peta rentak diikuti.',
-            'last_update' => 'Pengemaskinian terakhir',
+            'last_update' => 'Pengemaskinian terkini',
             'open_issues' => 'Isu terbuka',
             'state' => 'Keadaan',
             'title' => 'Judul',

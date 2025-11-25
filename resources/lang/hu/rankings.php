@@ -37,6 +37,10 @@ return [
         'insufficient_history' => 'Ennek a felhasználónak kevesebb, mint 30 napos rangsorolási előzménye van.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'Reflektorfény',
         'country' => 'Ország',
@@ -44,14 +48,17 @@ return [
         'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'többjátékos',
+        'season_room' => '',
         'seasons' => 'szezonok',
         'team' => 'csapat',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Ebben a szezonban még nincsenek szobák.',
         'ongoing' => 'Ez a szezon még folyamatban van (lesznek még játéklisták).',
         'room_count' => 'Játéklista száma',
+        'summary' => '',
         'url' => 'További információk megjelenítése az adott szezonról.',
         'validation' => [
             'not_enough_factors' => '',

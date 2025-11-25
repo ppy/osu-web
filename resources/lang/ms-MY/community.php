@@ -56,7 +56,7 @@ return [
 
             'country_ranking' => [
                 'title' => 'Pangkat Kebangsaan',
-                'description' => 'Takluklah tanah airmu sebelum menakluki jagat.',
+                'description' => 'Takluk yang dekat sebelum kautakluk jagat.',
             ],
 
             'mod_filtering' => [
@@ -95,7 +95,7 @@ return [
             ],
 
             'speedy_downloads' => [
-                'title' => 'Muat Turun Cepat',
+                'title' => 'Muat Turun Laju',
                 'description' => 'Sekatan muat turun lebih longgar, terutamanya ketika menggunakan osu!direct.',
             ],
 
@@ -129,7 +129,7 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Muat Naik Lebih Banyak Peta Rentak',
-                'description' => 'Jumlah peta rentak tergantung yang anda boleh miliki dikira dari nilai pangkal dengan tambahan bagi setiap peta rentak berpangkat yang anda kini miliki (terhad).<br/><br/>Biasanya jumlah ini adalah :base + :bonus setiap peta rentak berpangkat (hingga :bonus_max). Sekiranya anda penyokong, jumlah ini naik ke :supporter_base + :supporter_bonus setiap peta rentak berpangkat (hingga :supporter_bonus_max).',
+                'description' => 'Jumlah peta rentak tergantung yang anda boleh miliki dikira dari nilai pangkal dengan tambahan untuk setiap peta rentak berpangkat yang anda kini miliki (terhad).<br/><br/>Biasanya jumlah ini adalah :base + :bonus setiap peta rentak berpangkat (hingga :bonus_max). Sekiranya anda penyokong, jumlah ini naik ke :supporter_base + :supporter_bonus setiap peta rentak berpangkat (hingga :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => 'Papan Pendahulu Kawan',
@@ -138,14 +138,14 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => '',
+            'contribution_with_duration' => 'Terima kasih atas sokongan anda! Setakat ini, anda telah menyumbang sejumlah :dollars jadi anda memperoleh tag "Supporter" selama :duration.',
             'not_yet' => "Anda tidak pernah mempunyai tag osu!supporter :(",
             'valid_until' => 'Tag osu!supporter semasa anda sah hingga :date!',
             'was_valid_until' => 'Tag osu!supporter anda sebelumnya sah hingga :date!',
 
             'gifted' => [
-                '_' => '',
-                'users' => '',
+                '_' => 'Dari jumlah sumbangan anda, anda telah menghadiahkan sejumlah :dollars tag kepada :users yang mencakupi :duration. Berbudinya!',
+                'users' => ':count_delimited pengguna lain',
             ],
         ],
     ],

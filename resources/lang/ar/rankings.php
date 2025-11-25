@@ -37,6 +37,10 @@ return [
         'insufficient_history' => 'لهذا المستخدم سِجل ترتيب يقل عن 30 يوماً.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'منطقة ألأضواء',
         'country' => 'الدولة',
@@ -44,14 +48,17 @@ return [
         'global' => '',
         'kudosu' => 'كودوسو',
         'multiplayer' => 'متعدد اللاعبين',
+        'season_room' => '',
         'seasons' => 'مواسم',
         'team' => '',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'لا توجد غرف في هذا الموسم حتى الآن.',
         'ongoing' => 'هذا الموسم لا يزال جاريا (سيتم إضافة المزيد من قوائم التشغيل).',
         'room_count' => 'عدد قوائم التشغيل',
+        'summary' => '',
         'url' => 'عرض المزيد من المعلومات عن هذا الموسم.',
         'validation' => [
             'not_enough_factors' => '',

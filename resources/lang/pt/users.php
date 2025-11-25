@@ -126,8 +126,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'Ativas',
+            'ended' => 'Concluídas',
         ],
     ],
 
@@ -169,14 +169,14 @@ return [
         'dmca' => [
             'message_1' => [
                 '_' => '',
-                'policy' => '',
+                'policy' => 'a política de direitos de autor do osu!',
             ],
             'message_2' => '',
         ],
 
         'options' => [
             'cheating' => 'Jogada suja / Fazer batota',
-            'copyright_infringement' => '',
+            'copyright_infringement' => 'Violação de direitos de autor',
             'inappropriate_chat' => 'Comportamento inadequado na conversa',
             'insults' => 'Insulto a mim ou a outros',
             'multiple_accounts' => 'Utilização de contas múltiplas',
@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Publicações recentes',
                 'show_more' => 'ver mais publicações',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Recente',
             ],
@@ -502,7 +505,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Precisão de acertos',
-            'hits_per_play' => '',
+            'hits_per_play' => 'Cliques por partida',
             'level' => 'Nível :level',
             'level_progress' => 'Progresso ao próximo nível',
             'maximum_combo' => 'Combo máximo',

@@ -13,7 +13,7 @@ return [
         'see_more_news' => 'pogledaj još vijesti',
 
         'slogan' => [
-            'main' => 'najbolja besplatna ritmička igra',
+            'main' => 'najbolja besplatna ritamska igra',
             'sub' => 'ritam je samo jedan klik od tebe',
         ],
     ],
@@ -27,12 +27,12 @@ return [
         'title' => 'pretraži',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'Vidi još rezultata pretraživanja za pjesme istaknutih izvođača',
         ],
         'beatmapset' => [
             'login_required' => 'Prijavi se kako bi pretražio beatmape',
             'more' => 'Još :count rezultata u pretraživanju beatmapa',
-            'more_simple' => 'Pogledaj još rezultata pretraživanja beatmapa',
+            'more_simple' => 'Vidi još rezultata pretraživanja beatmapa',
             'title' => 'Beatmape',
         ],
 
@@ -46,7 +46,7 @@ return [
             'label' => [
                 'forum' => 'pretrži u forumima',
                 'forum_children' => 'uključi podforume',
-                'include_deleted' => '',
+                'include_deleted' => 'uključi izbrisane objave',
                 'topic_id' => 'tema #',
                 'username' => 'autor',
             ],
@@ -54,16 +54,16 @@ return [
 
         'mode' => [
             'all' => 'svi',
-            'artist_track' => '',
+            'artist_track' => 'pjesma istaknutog izvođača',
             'beatmapset' => 'beatmapa',
             'forum_post' => 'forum',
-            'team' => '',
+            'team' => 'tim',
             'user' => 'igrač',
             'wiki_page' => 'wiki',
         ],
 
         'team' => [
-            'more_simple' => '',
+            'more_simple' => 'Vidi više rezultata pretraživanja za timove',
         ],
 
         'user' => [
@@ -82,20 +82,18 @@ return [
     ],
 
     'download' => [
-        'action' => 'Preuzmi osu!',
-        'action_lazer' => '',
-        'action_lazer_description' => '',
-        'action_lazer_info' => '',
-        'action_lazer_title' => '',
-        'action_title' => '',
-        'for_os' => '',
+        'action_lazer_info' => 'provjeri ovu stranicu za više informacija',
+        'download' => '',
+        'for_os' => 'za :os',
         'macos-fallback' => 'macOS korisnici',
         'mirror' => 'mirror',
-        'or' => '',
-        'os_version_or_later' => '',
-        'other_os' => '',
-        'quick_start_guide' => '',
-        'tagline' => "idemo<br>započeti!",
+        'or' => 'ili',
+        'os_version_or_later' => ':os_version ili slično',
+        'other_os' => 'druge platforme',
+        'quick_start_guide' => 'vodič za brzi početak',
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => 'video vodič',
 
         'help' => [
@@ -142,11 +140,11 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Beatmap dana',
             'new' => 'Nove rangirane beatmape',
             'popular' => 'Popularne beatmape',
             'by_user' => 'od :user',
-            'resets' => '',
+            'resets' => 'se resetira za :ends',
         ],
         'buttons' => [
             'download' => 'Preuzmi osu!',
@@ -155,7 +153,7 @@ return [
         ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => 'Otvori admin konzolu',
             ],
         ],
     ],

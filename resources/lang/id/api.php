@@ -24,6 +24,7 @@ return [
 
         'forum' => [
             'write' => 'Membuat dan menyunting topik forum serta postingan forum atas nama akunmu.',
+            'write_manage' => '',
         ],
 
         'friends' => [

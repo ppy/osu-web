@@ -53,6 +53,7 @@ return [
             'discussion' => 'συζήτηση beatmap',
             'index' => 'beatmap listing',
             'show' => 'beatmap info',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => 'αρχείο αλλαγών',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'διαγωνισμοί',
             'judge' => 'διαγωνισμός κρίνοντας',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'ομάδες',
@@ -119,6 +123,9 @@ return [
         ],
         'user_cover_presets_controller' => [
             '_' => 'προεπιλογές καλύμματος χρήστη',
+        ],
+        'user_totp_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'πληροφορίες παίκτη',

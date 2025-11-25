@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Nag-expire na ang verification code, nagpadala na ng bagong verification code.',
         'incorrect_key' => 'Maling verification code.',
         'retries_exceeded' => 'Maling verification code. Lumampas sa limitasyon ng pag-ulit, nagpadala ng bagong verification email.',
         'reissued' => 'Nagpalabas muli ng verfication code, nagpadala ng bagong verification email.',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => 'May naganap na problemang hindi alam, nagpadala ng bagong verification email.',
     ],
 ];

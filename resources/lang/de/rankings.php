@@ -37,6 +37,10 @@ return [
         'insufficient_history' => 'Der kürzliche Ranking-Verlauf dieses Benutzers ist kleiner als 30 Tage.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'Spotlights (alt)',
         'country' => 'Länder',
@@ -44,14 +48,17 @@ return [
         'global' => 'Global',
         'kudosu' => 'Kudosu',
         'multiplayer' => 'Mehrspieler',
+        'season_room' => '',
         'seasons' => 'Seasons',
         'team' => 'Teams',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Es existieren noch keine Räume in dieser Season.',
         'ongoing' => 'Diese Season ist noch im Gange (es werden weitere Playlists hinzugefügt).',
         'room_count' => 'Anzahl der Playlists',
+        'summary' => '',
         'url' => 'Weitere Informationen zu dieser Season anzeigen.',
         'validation' => [
             'not_enough_factors' => 'Es gibt nicht genügend Score-Faktoren für eine korrekte Berechnung',

@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'پست های اخیر',
                 'show_more' => 'دیدن پست های بیشتر',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'اخیر',
             ],

@@ -76,6 +76,7 @@ return [
         'minutes' => '',
         'months' => '',
         'notifications' => '',
+        'player' => '',
         'plus_others' => '',
         'post' => '',
         'second_short_unit' => '',

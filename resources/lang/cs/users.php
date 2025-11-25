@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Poslední příspěvky',
                 'show_more' => 'zobrazit více příspěvků',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Nedávné',
             ],

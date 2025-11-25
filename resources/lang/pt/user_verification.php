@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'O código de verificação está expirado, um novo email de verificação foi enviado.',
         'incorrect_key' => 'Código de verificação incorreto.',
         'retries_exceeded' => 'Código de verificação incorreto. O limite de tentativas foi excedido, um novo email de verificação foi enviado.',
         'reissued' => 'Código de verificação reenviado, um novo email de verificação foi enviado.',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => 'Ocorreu um problema desconhecido, um novo email de verificação foi enviado.',
     ],
 ];

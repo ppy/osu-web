@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => 'blokiranje zasebnih sporočil ljudi, ki niso na vašem seznamu prijateljev',
         'hide_online' => 'skrij svojo prisotnost',
+        'hide_online_info' => '',
         'title' => 'Zasebnost',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => 'posodobi',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

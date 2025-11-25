@@ -24,6 +24,7 @@ return [
 
         'forum' => [
             'write' => 'Gumuwa at mag-edit ng mga paksa at mga post ng forum sa iyong ngalan.',
+            'write_manage' => '',
         ],
 
         'friends' => [

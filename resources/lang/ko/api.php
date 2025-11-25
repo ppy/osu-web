@@ -24,6 +24,7 @@ return [
 
         'forum' => [
             'write' => '당신을 대신하여 포럼 주제와 게시글을 만들고 수정합니다.',
+            'write_manage' => '',
         ],
 
         'friends' => [

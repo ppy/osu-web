@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Der Bestätigungscode ist abgelaufen, eine neue E-Mail wurde gesendet.',
         'incorrect_key' => 'Inkorrekter Bestätigungscode.',
         'retries_exceeded' => 'Inkorrekter Bestätigungscode. Wiederholungslimit wurde überschritten, eine neue E-Mail wurde gesendet.',
         'reissued' => 'Neuer Bestätigungscode wurde angefordert, eine neue E-Mail wurde gesendet.',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => 'Ein unbekannter Fehler ist aufgetreten, eine neue E-Mail wurde gesendet.',
     ],
 ];

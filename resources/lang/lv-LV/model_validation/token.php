@@ -10,7 +10,7 @@ return [
         'client_missing_owner' => 'Klientam trūkst īpašnieks.',
         'client_unauthorized' => 'Klients nav autorizēts.',
         'delegate_bot_only' => 'Deleģēšana ar klienta pilnvarām ir pieejama tikai tērzēšanas robotiem.',
-        'delegate_client_credentials_only' => 'delegāta darbības joma ir derīga tikai klienta_akreditācijas žetoniem.',
+        'client_credentials_only' => '',
         'delegate_invalid_combination' => 'Šai darbības jomu kombinācijai deleģēšana netiek atbalstīta.',
         'delegate_required' => 'ir nepieciešama delegāta darbības joma.',
         'empty' => 'Žetoni bez darbības jomām nav derīgi.',

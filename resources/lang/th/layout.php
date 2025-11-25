@@ -28,6 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'ข้อมูล',
             'discussions' => 'การสนทนา',
+            'versions' => '',
         ],
 
         'changelog' => [
@@ -52,6 +53,7 @@ return [
         'users' => [
             'modding' => 'การดัดแปลง',
             'playlists' => 'รายการเพลง',
+            'quickplay' => '',
             'realtime' => 'ผู้เล่นหลายคน',
             'show' => 'ข้อมูล',
         ],

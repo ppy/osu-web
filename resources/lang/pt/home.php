@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Descarrega o osu!',
-        'action_lazer' => 'Descarregar o osu!(lazer)',
-        'action_lazer_description' => 'a próxima grande atualização do osu!',
         'action_lazer_info' => 'verifica esta página para obter mais informações',
-        'action_lazer_title' => 'experimenta osu!(lazer)',
-        'action_title' => 'descarregar o osu!',
+        'download' => '',
         'for_os' => 'para :os',
         'macos-fallback' => 'utilizadores de macOS',
         'mirror' => 'link alternativo',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version ou superior',
         'other_os' => 'outras plataformas',
         'quick_start_guide' => 'guia de início rápido',
-        'tagline' => "vamos pôr-te<br>a mexer!",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => 'vídeo de guia',
 
         'help' => [

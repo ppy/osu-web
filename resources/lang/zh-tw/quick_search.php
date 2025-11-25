@@ -15,8 +15,19 @@ return [
     ],
 
     'result' => [
-        'empty_for' => '沒有找到:modes搜尋結果',
         'more' => '更多:mode的搜尋結果',
         'title' => ':mode搜尋結果',
+
+        'no_results' => [
+            '_' => '',
+
+            'artist_track' => '',
+            'beatmapset' => '',
+            'forum_post' => '',
+            'other' => '',
+            'team' => '',
+            'user' => '',
+            'wiki_page' => '',
+        ],
     ],
 ];

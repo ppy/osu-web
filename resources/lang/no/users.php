@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Nylige Innlegg',
                 'show_more' => 'se flere innlegg',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Nylige',
             ],

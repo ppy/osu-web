@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Bekræftelseskoden er udløbet, og en ny email med bekræftelseskode er blevet sendt.',
         'incorrect_key' => 'Ugyldig bekræftelseskode.',
         'retries_exceeded' => 'Ugyldig bekræftelseskode, og du har brugt for mange forsøg. En ny email med bekræftelseskode er blevet sendt.',
         'reissued' => 'En email med en ny bekræftelseskode er blevet sendt.',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => 'Der opstod et ukendt problem. En ny email med bekræftelseskode er blevet sendt.',
     ],
 ];

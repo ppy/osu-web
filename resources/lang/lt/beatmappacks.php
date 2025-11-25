@@ -17,7 +17,7 @@ return [
     ],
 
     'show' => [
-        'created_by' => '',
+        'created_by' => 'sukūrė :author',
         'download' => 'Atsisiųsti',
         'item' => [
             'cleared' => 'išvalyta',
@@ -32,7 +32,7 @@ return [
     'mode' => [
         'artist' => 'Atlikėjas/Albumas',
         'chart' => 'Verti dėmesio',
-        'featured' => 'Rekomenduojami Atlikėjai',
+        'featured' => 'Ryškusis Atlikėjas',
         'loved' => 'Projektas Mylimi',
         'standard' => 'Įprasti',
         'theme' => 'Teminiai',

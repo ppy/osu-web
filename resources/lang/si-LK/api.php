@@ -24,6 +24,7 @@ return [
 
         'forum' => [
             'write' => '',
+            'write_manage' => '',
         ],
 
         'friends' => [

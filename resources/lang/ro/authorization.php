@@ -113,7 +113,7 @@ return [
                 'deleted' => 'Această postare nu poate fi editată.',
                 'locked' => 'Postarea nu poate fi editată.',
                 'no_forum_access' => 'Accesul la forum-ul solicitat este necesar.',
-                'no_permission' => '',
+                'no_permission' => 'Nu ai permisiunea de a edita.',
                 'not_owner' => 'Doar creatorul poate edita această postare.',
                 'topic_locked' => 'Nu poți edita o postare al unui subiect închis.',
             ],

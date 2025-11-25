@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Diffusione della valutazione',
             'nominations' => 'Nomine',
             'playcount' => 'Volte giocata',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

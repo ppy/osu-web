@@ -128,6 +128,7 @@ return [
     'privacy' => [
         'friends_only' => 'блокировать личные сообщения не от друзей',
         'hide_online' => 'скрывать, что я в сети',
+        'hide_online_info' => '',
         'title' => 'Конфиденциальность',
     ],
 
@@ -146,6 +147,21 @@ return [
 
     'update_password' => [
         'update' => 'сохранить',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

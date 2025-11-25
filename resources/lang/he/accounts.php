@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => 'לחסום הודעות פרטיות מאנשים לא ברשימת החברים שלך',
         'hide_online' => 'הסתר את הנוכחות המקוונת שלך',
+        'hide_online_info' => '',
         'title' => '僅用於中文',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => 'עדכן',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

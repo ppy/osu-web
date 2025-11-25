@@ -24,6 +24,7 @@ return [
 
         'forum' => [
             'write' => 'Tavā vārdā izveidot un rediģēt foruma tēmas un ziņojumus.',
+            'write_manage' => '',
         ],
 
         'friends' => [

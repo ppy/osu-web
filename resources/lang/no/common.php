@@ -76,6 +76,7 @@ return [
         'minutes' => '::count_delimited minutt|:count_delimited minutter',
         'months' => '::count_delimited måned|:count_delimited måneder',
         'notifications' => ':count_delimited varsling|:count_delimited varsler',
+        'player' => '',
         'plus_others' => '+ :count_delimited annen!|+ :count_delimited andre!',
         'post' => ':count_delimited innlegg|:count_delimited innlegg',
         'second_short_unit' => 's|s',

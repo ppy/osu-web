@@ -316,7 +316,7 @@ return [
         'other' => 'Інші',
         'novelty' => 'Нестандартні',
         'hip-hop' => 'Хіп-хоп',
-        'electronic' => 'Електро',
+        'electronic' => 'Електронна',
         'metal' => 'Метал',
         'classical' => 'Класична',
         'folk' => 'Народна',

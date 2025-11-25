@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => '该验证码已经过期，已重新发送新的验证邮件至绑定邮箱。',
         'incorrect_key' => '验证码错误。',
         'retries_exceeded' => '验证码错误且重试次数已达上限，已重新发送新的验证邮件至绑定邮箱。',
         'reissued' => '已重新发送新的验证邮件至绑定邮箱。',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => '发生了未知的错误，已重新发送新的验证邮件至绑定邮箱。',
     ],
 ];

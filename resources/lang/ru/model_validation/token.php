@@ -10,7 +10,7 @@ return [
         'client_missing_owner' => 'У клиента отсутствует владелец.',
         'client_unauthorized' => 'Клиент не авторизован.',
         'delegate_bot_only' => 'Делегирование с Client Credentials доступно только чат-ботам.',
-        'delegate_client_credentials_only' => 'область (scope) делегирования допустима только для токенов client_credentials.',
+        'client_credentials_only' => '',
         'delegate_invalid_combination' => 'Делегирование не поддерживается для данной комбинации scope.',
         'delegate_required' => 'область (scope) делегирования обязательна.',
         'empty' => 'Токены без scope недействительны.',

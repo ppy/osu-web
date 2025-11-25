@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => 'arkadaş listende olmayan kişilerden gelen mesajları engelle',
         'hide_online' => 'çevrimiçi durumunu gizle',
+        'hide_online_info' => '',
         'title' => 'Gizlilik',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => 'güncelle',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

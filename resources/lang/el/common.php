@@ -76,6 +76,7 @@ return [
         'minutes' => ':count λεπτό|:count λεπτά',
         'months' => ':count μήνας|:count μήνες',
         'notifications' => 'Ειδοποιήσεις:count_delimited:count_delimited',
+        'player' => '',
         'plus_others' => '+ :count_delimited άλλα!|+ :count_delimited άλλα!',
         'post' => ':count_delimited δημοσιεύσεις|:count_delimited δημοσιεύσεις',
         'second_short_unit' => 'δευτ.|δευτ.',

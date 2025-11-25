@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => 'bloker privatbeskeder fra folk der ikke er på din venneliste',
         'hide_online' => 'skjul din online status',
+        'hide_online_info' => '',
         'title' => 'Privatliv',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => 'opdater',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

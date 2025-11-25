@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Kode verifikasi telah kedaluwarsa, email verifikasi baru telah dikirim.',
         'incorrect_key' => 'Kode verifikasi salah.',
         'retries_exceeded' => 'Kode verifikasi salah. Batas percobaan terlampaui, email verifikasi baru telah dikirim.',
         'reissued' => 'Kode verifikasi diperbarui, email verifikasi baru telah dikirim.',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => 'Terjadi masalah yang tidak diketahui, email verifikasi baru telah dikirim.',
     ],
 ];

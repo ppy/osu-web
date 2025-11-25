@@ -10,7 +10,7 @@ return [
         'client_missing_owner' => 'Il client ha un proprietario mancante.',
         'client_unauthorized' => 'Il client non è autorizzato.',
         'delegate_bot_only' => 'La delegazione con le credenziali del client è solo disponibile ai chat bot.',
-        'delegate_client_credentials_only' => '',
+        'client_credentials_only' => '',
         'delegate_invalid_combination' => '',
         'delegate_required' => '',
         'empty' => '',

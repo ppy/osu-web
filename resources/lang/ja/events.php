@@ -14,7 +14,7 @@ return [
     'empty' => "このユーザーはまだ何も活動記録がありません！",
     'rank' => '<strong><em>:user</em></strong>が<em>:beatmap</em>で:rankを取得しました！（:mode）',
     'rank_lost' => '<strong><em>:user</em></strong>が<em>:beatmap</em>の一位を失いました・・・（:mode）',
-    'user_support_again' => '<strong>:user</strong>が再びosu!をサポートすることを選びました！- あなたの寛大さに感謝します！',
+    'user_support_again' => '<strong>:user</strong>が再びosu!を支援してくれました - あなたの寛大さに感謝します！',
     'user_support_first' => '<strong>:user</strong>はosu!サポーターになりました！ - あなたの寛大さに感謝します！',
     'user_support_gift' => '<strong>:user</strong>はosu!サポーターギフトを貰いました！',
     'username_change' => '<strong>:previousUsername</strong>は<strong><em>:user</strong></em>にユーザー名を変更しました！',

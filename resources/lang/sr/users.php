@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Скорије Објаве',
                 'show_more' => 'видите још објава',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Скорашње',
             ],

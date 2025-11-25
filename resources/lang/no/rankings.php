@@ -37,6 +37,10 @@ return [
         'insufficient_history' => 'Denne brukeren har mindre enn 30 dager av nylig rang historie.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'Rampelyset',
         'country' => 'Land',
@@ -44,14 +48,17 @@ return [
         'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'flerspiller',
+        'season_room' => '',
         'seasons' => 'sesonger',
         'team' => '',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Det er ingen rom i denne sesongen ennå.',
         'ongoing' => 'Denne sesongen er pågående (flere spillelister vil bli lagt til).',
         'room_count' => 'Antall spillelister',
+        'summary' => '',
         'url' => 'Vis mer informasjon om den sesongen.',
         'validation' => [
             'not_enough_factors' => '',

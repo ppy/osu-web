@@ -224,6 +224,8 @@ return [
             'rating-spread' => '평점 분포도',
             'nominations' => '노미네이션',
             'playcount' => '플레이 횟수',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

@@ -8,6 +8,7 @@ return [
         'active' => '',
         'ended' => '',
         'playlists' => 'danh sách phát',
+        'quickplay' => '',
         'realtime' => 'nhiều người chơi',
     ],
 

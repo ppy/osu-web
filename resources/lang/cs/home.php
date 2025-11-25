@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Stáhnout osu!',
-        'action_lazer' => 'Stáhnout osu!(lazer)',
-        'action_lazer_description' => 'další velká aktualizace pro osu!',
-        'action_lazer_info' => 'více informací naleznete na této stránce',
-        'action_lazer_title' => 'zkusit osu!(lazer)',
-        'action_title' => 'stáhnout osu!',
+        'action_lazer_info' => 'více informací najdeš na této stránce',
+        'download' => '',
         'for_os' => 'pro :os',
         'macos-fallback' => 'macOS uživatelé',
         'mirror' => 'mirror',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version nebo novější ',
         'other_os' => 'ostatní platformy',
         'quick_start_guide' => 'příručka pro začátečníky',
-        'tagline' => "pusťme se<br>do toho!",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => 'videonávod',
 
         'help' => [

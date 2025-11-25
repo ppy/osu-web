@@ -138,14 +138,14 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => '',
+            'contribution_with_duration' => 'いつもご支援いただきありがとうございます！ これまでに合計 :dollars 米ドルをご支援いただいたことで、:durationの「サポーター」タグを獲得しました。',
             'not_yet' => "osu!サポータータグをまだ持っていません :(",
             'valid_until' => 'あなたのosu!サポータータグは:dateまで有効です！',
             'was_valid_until' => 'あなたのosu!サポータータグは:dateに期限切れになりました。',
 
             'gifted' => [
-                '_' => '',
-                'users' => '',
+                '_' => 'あなたの総額のうち :dollars 米ドル分のタグを :users に贈っています、これは :duration の期間を支えていることになります。信じられないほど寛大です！',
+                'users' => ':count_delimited人の他のユーザー|:count_delimited人の他のユーザー',
             ],
         ],
     ],

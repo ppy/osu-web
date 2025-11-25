@@ -53,6 +53,7 @@ return [
             'discussion' => 'การสนทนาเกี่ยวกับบีทแมพ',
             'index' => 'รายการบีทแมพ',
             'show' => 'ข้อมูลบีทแมพ',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => 'การเปลี่ยนแปลง',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'การแข่งขัน',
             'judge' => 'การตัดสินการแข่งขัน',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'กลุ่ม',
@@ -120,6 +124,9 @@ return [
         ],
         'user_cover_presets_controller' => [
             '_' => 'พรีเซ็ตปกของผู้ใช้',
+        ],
+        'user_totp_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'ข้อมูลผู้เล่น',

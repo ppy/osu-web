@@ -224,6 +224,8 @@ return [
             'rating-spread' => '評分狀況',
             'nominations' => '提名',
             'playcount' => '遊玩次數',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

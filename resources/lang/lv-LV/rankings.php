@@ -37,6 +37,10 @@ return [
         'insufficient_history' => 'Šim lietotājam ir mazāk nekā 30 dienas ar neseno novietojuma vēsturi.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'prožektoru gaismā (vecs)',
         'country' => 'valsts',
@@ -44,14 +48,17 @@ return [
         'global' => 'globāli',
         'kudosu' => 'kudosu',
         'multiplayer' => 'daudzspēlētāju režīms',
+        'season_room' => '',
         'seasons' => 'sezonas',
         'team' => 'komanda',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Šajā sezonā pašlaik vēl nav istabu.',
         'ongoing' => 'Šī sezona vēl notiek (tiks pievienoti vairāk dziesmu saraksti).',
         'room_count' => 'Dziesmu sarakstu skaits',
+        'summary' => '',
         'url' => 'Parādīt vairāk informāciju par to sezonu.',
         'validation' => [
             'not_enough_factors' => 'nav pietiekami daudz punktu faktori, lai veiktu kārtīgas kalkulācijas',

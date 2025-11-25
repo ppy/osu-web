@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'reset' => '',
+            'reset' => 'resetiraj',
             'rules' => 'Provjeri da li je tvoj avatar u skladu s :link.<br/>To znači da mora biti <strong>prikladno za sve uzraste</strong>. tj. bez golotinje, vulgarnosti ili sugestivnog sadržaja.',
             'rules_link' => 'pravilima zajednice',
         ],
@@ -20,15 +20,15 @@ return [
             'new_confirmation' => 'potvrda adrese e-pošte',
             'title' => 'E-pošta',
             'locked' => [
-                '_' => '',
-                'accounts' => '',
+                '_' => 'Molimo te kontaktiraj :accounts ako trebaš ažurirati email.',
+                'accounts' => 'tim za korisničku podršku',
             ],
         ],
 
         'legacy_api' => [
-            'api' => '',
-            'irc' => '',
-            'title' => '',
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Stariji API',
         ],
 
         'password' => [
@@ -39,11 +39,11 @@ return [
         ],
 
         'profile' => [
-            'country' => '',
+            'country' => 'država',
             'title' => 'Profil',
 
             'country_change' => [
-                '_' => "",
+                '_' => "Izgleda da zemlja tvog računa ne odgovara tvojoj zemlji prebivališta. :update_link.",
                 'update_link' => 'Promjeni na :country',
             ],
 
@@ -64,15 +64,15 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
-        'link' => '',
+        'info' => "Ako doprinosiš osu! open-source repozitorijima, povezivanjem svojeg GitHub računa ovdje ćeš asocirati svoje dnevnike promjena sa svojim osu! profilom. GitHub računi sa praznom povijesti doprinosa za osu! se ne mogu povezati.",
+        'link' => 'Poveži GitHub Račun',
         'title' => 'GitHub',
-        'unlink' => '',
+        'unlink' => 'Ukloni vezu GitHub Računa',
 
         'error' => [
-            'already_linked' => 'Ovaj GitHub nalog je vec povezan drugom korisniku.',
-            'no_contribution' => '',
-            'unverified_email' => '',
+            'already_linked' => 'Ovaj GitHub račun je već povezan s drugim korisnikom.',
+            'no_contribution' => 'Nije moguće povezati GitHub račun bez povijesti doprinosa u osu! repozitoriju.',
+            'unverified_email' => 'Molimo te povrdi svoj glavni email na GitHubu te zatim pokušaj ponovo povezati račun.',
         ],
     ],
 
@@ -88,7 +88,7 @@ return [
             'beatmap_owner_change' => 'gostova težina',
             'beatmapset:modding' => 'modificiranje beatmapa',
             'channel_message' => 'privatne chat poruke',
-            'channel_team' => '',
+            'channel_team' => 'poruke timskog čavrljanja',
             'comment_new' => 'nove komentare',
             'forum_topic_reply' => 'odgovor na temu',
             'mail' => 'pošta',
@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => 'blokiraj privatne poruke od osoba koje nisu na tvojoj listi prijatelja',
         'hide_online' => 'sakrij svoju prisutnost na mreži',
+        'hide_online_info' => '',
         'title' => 'Privatnost',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => 'ažuriraj',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

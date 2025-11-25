@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => 'chặn tin nhắn từ những người không có trong danh sách bạn bè của bạn',
         'hide_online' => 'ẩn trạng thái của bạn khi bạn online',
+        'hide_online_info' => '',
         'title' => 'Quyền Riêng Tư',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => 'cập nhật',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

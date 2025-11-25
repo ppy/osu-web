@@ -37,6 +37,10 @@ return [
         'insufficient_history' => '该玩家的排名历史数据少于 30 天。',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => '季赛（旧版）',
         'country' => '国家/地区',
@@ -44,14 +48,17 @@ return [
         'global' => '全球',
         'kudosu' => 'Kudosu',
         'multiplayer' => '多人游戏',
+        'season_room' => '',
         'seasons' => '季赛',
         'team' => '战队',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => '本季赛暂无可用房间。',
         'ongoing' => '当前季赛仍在进行中（将陆续追加更多歌单）。',
         'room_count' => '歌单数量',
+        'summary' => '',
         'url' => '显示该季赛更多信息。',
         'validation' => [
             'not_enough_factors' => '当前得分系数不足，无法完成有效计算',

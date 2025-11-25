@@ -6,7 +6,7 @@
 return [
     'availability' => [
         'disabled' => 'Ova beatmapa trenutno nije dostupna za preuzimanje.',
-        'parts-removed' => 'Dijelovi ove beatmape su uklonjeni na zahtjev vlasnika ili noslitelja prava treće strane.',
+        'parts-removed' => 'Dijelovi ove beatmape su uklonjeni na zahtjev vlasnika ili nositelja prava treće strane.',
         'more-info' => 'Klikni ovdje za više informacija.',
         'rule_violation' => 'Neka sredstva sadržana u ovoj mapi su uklonjena nakon što su ocijenjena kao neprikladna za korištenje u osu!.',
     ],
@@ -17,11 +17,11 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Uspori, igraj više.',
-        'no_mirrors' => '',
+        'no_mirrors' => 'Nema dostupnih servera za preuzimanje.',
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Istaknut umjetnik',
+        'label' => 'Istaknuti Izvođač',
     ],
 
     'index' => [
@@ -141,7 +141,7 @@ return [
             'description' => 'Opis',
             'genre' => 'Žanr',
             'language' => 'Jezik',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Maperske Oznake',
             'no_scores' => 'Podaci se još kalkuliraju...',
             'nominators' => 'Nominatori',
             'nsfw' => 'Eksplicitni sadržaj',
@@ -150,7 +150,7 @@ return [
             'source' => 'Izvor',
             'storyboard' => 'Ova beatmapa sadrži storyboard',
             'success-rate' => 'Stopa uspjeha',
-            'user_tags' => '',
+            'user_tags' => 'Korisničke Oznake',
             'video' => 'Ova beatmapa sadrži video',
         ],
 
@@ -173,7 +173,7 @@ return [
             'global' => 'Globalni rang',
             'supporter-link' => 'Klikni <a href=":link">ovdje</a> da vidiš sve otmjene značajke koje dobivaš!',
             'supporter-only' => 'Moraš biti osu!supporter da bi pristupio/la ljestvicama specifičnim za prijatelje, državu ili mod!',
-            'team' => '',
+            'team' => 'Timski Rang',
             'title' => 'Scoreboard',
 
             'headers' => [
@@ -195,7 +195,7 @@ return [
                 'friend' => 'Nitko od tvojih prijatelja još nije postavio rezultat na ovoj mapi!',
                 'global' => 'Još nema rezultata. Možda bi trebao/la pokušati postaviti jednog?',
                 'loading' => 'Učitavanje rezultata...',
-                'team' => '',
+                'team' => 'Nitko iz tvog tima još nije postavio rezultat na ovoj mapi!',
                 'unranked' => 'Nerangirane beatmape.',
             ],
             'score' => [
@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Širenje ocjena',
             'nominations' => 'Nominacije ',
             'playcount' => 'Broj igranja',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

@@ -37,6 +37,10 @@ return [
         'insufficient_history' => 'Ce joueur a moins de 30 jours d\'activité dans le classement.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'spotlights (ancien)',
         'country' => 'pays',
@@ -44,14 +48,17 @@ return [
         'global' => 'global',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multijoueur',
+        'season_room' => '',
         'seasons' => 'saisons',
         'team' => 'équipe',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Il n\'y a pas encore de salles pour cette saison.',
         'ongoing' => 'Cette saison est toujours en cours (d\'autres playlists seront ajoutées).',
         'room_count' => 'Nombre de playlists',
+        'summary' => '',
         'url' => 'Afficher plus d\'informations sur cette saison.',
         'validation' => [
             'not_enough_factors' => 'Il n\'y a pas suffisamment de facteurs de score pour établir un calcul correct',

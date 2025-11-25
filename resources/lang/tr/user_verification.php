@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Doğrulama kodunun süresi doldu, yeni doğrulama e-postası yollandı.',
         'incorrect_key' => 'Hatalı doğrulama kodu.',
         'retries_exceeded' => 'Hatalı doğrulama kodu. Tekrar deneme sınırı aşıldı, yeni doğrulama e-postası gönderildi.',
         'reissued' => 'Doğrulama kodu yeniden verildi, yeni e-posta gönderildi.',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => 'Bilinmeyen hata oluştu, yeni doğrulama e-postası gönderildi.',
     ],
 ];

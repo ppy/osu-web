@@ -55,16 +55,16 @@ return [
         'contact' => 'Susisiekti:',
         'date' => 'Data:',
         'echeck_delay' => 'Kadangi jūsų mokėjote el. čekiu, pervedimas gali užtrukti iki 10 dienų kol praeis per PayPal sistemą!',
-        'echeck_denied' => '',
+        'echeck_denied' => 'Paypal atšaukė eCheck apmokėjimą.',
         'hide_from_activity' => 'osu!rėmėjo žymos šiame užsakyme nerodomos jūsų pastarojoje veikloje.',
-        'sent_via' => '',
-        'shipping_to' => '',
-        'title' => '',
+        'sent_via' => 'Siunčiama Per:',
+        'shipping_to' => 'Pristatymas:',
+        'title' => 'Sąskaitos faktūra',
         'title_compact' => 'sąskaita',
 
         'status' => [
             'cancelled' => [
-                'title' => '',
+                'title' => 'Jūsų užsakymas buvo atšauktas',
                 'line_1' => [
                     '_' => "",
                     'link_text' => '',
@@ -78,7 +78,7 @@ return [
                 ],
             ],
             'prepared' => [
-                'title' => '',
+                'title' => 'Jūsų užsakymas ruošiamas!',
                 'line_1' => '',
                 'line_2' => '',
             ],
@@ -95,7 +95,7 @@ return [
                 'tracking_details' => '',
                 'no_tracking_details' => [
                     '_' => "",
-                    'link_text' => '',
+                    'link_text' => 'atsiuskite mums el. laišką',
                 ],
             ],
         ],
@@ -111,15 +111,15 @@ return [
         'resume' => 'Tęsti Apmokėjimą',
         'shipping_and_handling' => '',
         'shopify_expired' => 'Ši apmokėjimo nuoroda nebegalioja.',
-        'subtotal' => '',
+        'subtotal' => 'Tarpinė suma',
         'total' => 'Iš viso',
 
         'details' => [
-            'order_number' => '',
-            'payment_terms' => '',
-            'salesperson' => '',
-            'shipping_method' => '',
-            'shipping_terms' => '',
+            'order_number' => 'Užsakymas #',
+            'payment_terms' => 'Mokėjimo Sąlygos',
+            'salesperson' => 'Pardavėjas',
+            'shipping_method' => 'Pristatymo Būdas',
+            'shipping_terms' => 'Pristatymo Sąlygos',
             'title' => 'Užsakymo Informacija',
         ],
 
@@ -156,9 +156,9 @@ return [
         ],
 
         'thanks' => [
-            'title' => '',
+            'title' => 'Dėkojame už jūsų užsakymą!',
             'line_1' => [
-                '_' => '',
+                '_' => 'Netrukus gausite patvirtinimo el. laišką. Jei turite klausimų, :link!',
                 'link_text' => 'susisiekite su mumis',
             ],
         ],
@@ -174,7 +174,7 @@ return [
 
         'add_to_cart' => 'Įdėti į krepšelį',
         'notify' => 'Informuokite mane kai bus!',
-        'out_of_stock' => '',
+        'out_of_stock' => 'Išparduota',
 
         'notification_success' => 'kai prekė atsiras mes jums pranešime. Atšaukimui spausk :link',
         'notification_remove_text' => 'čia',
@@ -197,7 +197,7 @@ return [
         'checking' => 'Tikrinama ar galimas :username...',
         'placeholder' => 'Reikalingas naudotojo vardas',
         'label' => 'Naujas naudotojo vardas',
-        'current' => '',
+        'current' => 'Jūsų dabartinis vartotojo vardas yra ":username".',
 
         'require_login' => [
             '_' => 'Tau turi būti :link, kad pakeistum vardą!',

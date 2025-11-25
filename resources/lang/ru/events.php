@@ -9,14 +9,14 @@ return [
     'beatmapset_approve' => ':beatmapset от <strong>:user</strong> стала :approval!',
     'beatmapset_delete' => ':beatmapset была удалена.',
     'beatmapset_revive' => '<strong>:user</strong> воскресил(а) карту :beatmapset.',
-    'beatmapset_update' => '<strong><em>:user</em></strong> обновил(а) карту "<em>:beatmapset</em>"',
-    'beatmapset_upload' => '<strong><em>:user</em></strong> опубликовал(а) карту ":beatmapset"',
+    'beatmapset_update' => '<strong><em>:user</em></strong> обновил карту "<em>:beatmapset</em>"',
+    'beatmapset_upload' => '<strong><em>:user</em></strong> опубликовал карту ":beatmapset"',
     'empty' => "Этот пользователь за последнее время не сделал ничего интересного!",
     'rank' => ':user занял(а) :rank на карте :beatmap (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> потерял(а) первенство на карте <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> снова поддержал(а) osu! — спасибо за щедрость!',
     'user_support_first' => '<strong>:user</strong> поддержал(а) osu! — спасибо за щедрость!',
-    'user_support_gift' => '<strong>:user</strong> получил(а) тег osu!supporter в подарок!',
+    'user_support_gift' => '<strong>:user</strong> получил тег osu!supporter в подарок!',
     'username_change' => '<strong>:previousUsername</strong> сменил(а) ник на <strong><em>:user</em></strong>!',
 
     'beatmapset_status' => [

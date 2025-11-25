@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => '該驗證碼已經過期，新驗證碼已經重新發送。',
         'incorrect_key' => '驗證碼錯誤。',
         'retries_exceeded' => '驗證碼錯誤次數超過限制次數，新驗證碼已經重新發送。',
         'reissued' => '新驗證碼已經重新發送。',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => '發生了未知的錯誤，新驗證碼已經重新發送。',
     ],
 ];

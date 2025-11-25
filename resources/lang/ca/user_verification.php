@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'El codi de verificació ha caducat, s\'ha enviat un correu electrònic de verificació nou.',
         'incorrect_key' => 'Codi de verificació incorrecte.',
         'retries_exceeded' => 'Codi de verificació incorrecte. S\'ha excedit el límit de reintents, s\'ha enviat un correu electrònic de verificació nou.',
         'reissued' => 'S\'ha reeditat el codi de verificació, s\'ha enviat un nou correu electrònic de verificació.',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => 'S\'ha produït un problema desconegut, s\'ha enviat un correu electrònic de verificació nou.',
     ],
 ];

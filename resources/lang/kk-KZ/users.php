@@ -399,6 +399,9 @@ return [
                 'title_longer' => '',
                 'show_more' => '',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => '',
             ],

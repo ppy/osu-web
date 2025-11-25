@@ -10,7 +10,7 @@ return [
         'client_missing_owner' => '',
         'client_unauthorized' => 'クライアントは承認されていません。',
         'delegate_bot_only' => '',
-        'delegate_client_credentials_only' => '',
+        'client_credentials_only' => '',
         'delegate_invalid_combination' => '',
         'delegate_required' => '',
         'empty' => '',

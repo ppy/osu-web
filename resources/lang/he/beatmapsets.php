@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'התפרסות דירוג',
             'nominations' => 'מינויים',
             'playcount' => 'מספר משחקים',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

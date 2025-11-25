@@ -5,10 +5,11 @@
 
 return [
     'empty' => [
-        'active' => '',
-        'ended' => '',
-        'playlists' => 'grojaraščių',
-        'realtime' => 'žaidimų tinkle',
+        'active' => 'Šiuo metu nėra jokiose vykstančiuose osu!(lazer) :type_group žaidimuose!',
+        'ended' => 'Dar nėra jokiuose užbaigtuose osu!(lazer) :type_group žaidimuose!',
+        'playlists' => 'grojaraščio',
+        'quickplay' => '',
+        'realtime' => 'tinklo',
     ],
 
     'room' => [
@@ -17,8 +18,8 @@ return [
         'map_count' => ':count_delimited bitmapas|:count_delimited bitmapai',
         'player_count' => ':count_delimited žaidėjas|:count_delimited žaidėjų',
         'time_left' => ':time liko',
-        'view_history' => '',
-        'view_summary' => '',
+        'view_history' => 'Peržiūrėti Istoriją',
+        'view_summary' => 'Peržiūrėti Santrauką',
 
         'errors' => [
             'duration_too_long' => 'Per ilga trūkmė.',

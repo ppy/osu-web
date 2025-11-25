@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'osu! жүктеу',
-        'action_lazer' => 'osu!(lazer) жүктеу',
-        'action_lazer_description' => '',
         'action_lazer_info' => '',
-        'action_lazer_title' => '',
-        'action_title' => '',
+        'download' => '',
         'for_os' => ':os-қа',
         'macos-fallback' => 'macOS қолданушылар',
         'mirror' => 'айна',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version немесе жаңарақ',
         'other_os' => 'басқа платформалар',
         'quick_start_guide' => '',
-        'tagline' => "",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => '',
 
         'help' => [

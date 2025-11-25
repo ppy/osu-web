@@ -10,7 +10,7 @@ return [
         'client_missing_owner' => 'Le propriétaire de ce client n\'est pas spécifié.',
         'client_unauthorized' => 'Ce client n\'est pas autorisé.',
         'delegate_bot_only' => 'La délégation avec des "Client Credentials" n\'est disponible que pour les bots de tchat.',
-        'delegate_client_credentials_only' => 'Le scope "delegate" n\'est valide que pour les jetons de type "client_credentials".',
+        'client_credentials_only' => '',
         'delegate_invalid_combination' => 'La délégation n\'est pas supportée pour cette combinaison de scopes.',
         'delegate_required' => 'Le scope "delegate" est requis.',
         'empty' => 'Les jetons sans scopes ne sont pas valides.',

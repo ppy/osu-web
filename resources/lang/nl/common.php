@@ -76,6 +76,7 @@ return [
         'minutes' => ':count_delimited minuut|:count_delimited minuten',
         'months' => ':count_delimited maand|:count_delimited maanden',
         'notifications' => ':count_delimited melding|:count_delimited meldingen',
+        'player' => '',
         'plus_others' => '+ :count_delimited andere!|+ :count_delimited anderen!',
         'post' => ':count_delimited bericht|:count_delimited berichten',
         'second_short_unit' => 'second|seconden',

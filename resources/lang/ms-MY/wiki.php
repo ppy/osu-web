@@ -22,7 +22,7 @@ return [
 
         'translation' => [
             'legal' => 'Terjemahan ini disediakan sekadar kemudahan sahaja. Teks :default asli merupakan versi teks yang sah di sisi undang-undang secara tunggal.',
-            'outdated' => 'Halaman ini mengandungi terjemahan kandungan asal yang usang. Sila semak :default bagi maklumat paling jitu (dan silalah juga bantu mengemas kini terjemahan sekiranya anda mampu)!',
+            'outdated' => 'Halaman ini mengandungi terjemahan kandungan asal yang usang. Sila semak :default untuk maklumat terjitu (dan silalah juga bantu mengemas kini terjemahan sekiranya anda mampu)!',
 
             'default' => 'Versi Bahasa Inggeris',
         ],

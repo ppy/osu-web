@@ -5,9 +5,10 @@
 
 return [
     'empty' => [
-        'active' => '',
-        'ended' => '',
+        'active' => '現在進行中のosu!(lazer) :type_groupゲームはありません！',
+        'ended' => 'まだ終了したosu!(lazer) :type_groupゲームはありません！',
         'playlists' => 'プレイリスト',
+        'quickplay' => '',
         'realtime' => 'マルチプレイヤー',
     ],
 
@@ -17,8 +18,8 @@ return [
         'map_count' => ':count_delimited マップ',
         'player_count' => ':count_delimited プレイヤー',
         'time_left' => '残り :time',
-        'view_history' => '',
-        'view_summary' => '',
+        'view_history' => '履歴を見る',
+        'view_summary' => '概要を見る',
 
         'errors' => [
             'duration_too_long' => '時間が長すぎます。',

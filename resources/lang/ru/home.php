@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Скачать osu!',
-        'action_lazer' => 'Скачать osu!(lazer)',
-        'action_lazer_description' => 'следующее глобальное обновление osu!',
         'action_lazer_info' => 'статья с подробной информацией',
-        'action_lazer_title' => 'попробовать osu!(lazer)',
-        'action_title' => 'скачать osu!',
+        'download' => '',
         'for_os' => 'для :os',
         'macos-fallback' => 'для macOS',
         'mirror' => 'зеркало',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version или новее',
         'other_os' => 'другие платформы',
         'quick_start_guide' => 'краткая инструкция',
-        'tagline' => "давайте<br>начнём!",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => 'видеоинструкция',
 
         'help' => [

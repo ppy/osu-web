@@ -53,6 +53,7 @@ return [
             'discussion' => 'ビートマップディスカッション',
             'index' => 'ビートマップリスト',
             'show' => 'ビートマップ情報',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => '更新履歴',
@@ -70,6 +71,9 @@ return [
             '_' => 'コンテスト',
             'judge' => 'コンテストの審査',
         ],
+        'group_history_controller' => [
+            '_' => '',
+        ],
         'groups_controller' => [
             'show' => 'グループ',
         ],
@@ -81,7 +85,7 @@ return [
             'testflight' => 'testflight',
         ],
         'legacy_matches_controller' => [
-            '_' => '',
+            '_' => 'マッチ',
         ],
         'legal_controller' => [
             '_' => '情報',
@@ -120,6 +124,9 @@ return [
         'user_cover_presets_controller' => [
             '_' => 'ユーザーカバープリセット',
         ],
+        'user_totp_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
             '_' => 'プレイヤー情報',
             'create' => 'アカウント作成',
@@ -131,7 +138,7 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            'events' => '',
+            'events' => 'ルームの履歴',
         ],
     ],
     'passport' => [

@@ -28,6 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'információ',
             'discussions' => 'beszélgetés',
+            'versions' => '',
         ],
 
         'changelog' => [
@@ -52,6 +53,7 @@ return [
         'users' => [
             'modding' => 'modolás',
             'playlists' => 'játéklisták',
+            'quickplay' => '',
             'realtime' => 'többjátékos',
             'show' => 'információ',
         ],
