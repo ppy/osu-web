@@ -95,6 +95,8 @@ export default class TooltipDefault
     # Automagically add qtips when text becomes truncated (and auto-removes
     # them when text becomes... un-truncated)
     target = e.currentTarget
+    return if target.dataset.ellipsisTooltip == '0'
+
     $target = $(target)
     api = $target.qtip('api')
 
