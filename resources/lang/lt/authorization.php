@@ -62,7 +62,7 @@ return [
 
     'beatmap_tag' => [
         'store' => [
-            'no_score' => '',
+            'no_score' => 'Turite įveikti beatmap\'ą kad galėtumėte pridėti žymę.',
         ],
     ],
 
@@ -71,7 +71,7 @@ return [
         'friends_only' => 'Vartotojas šiuo metu užblokavo žinutės iš žmonių, kurie nėra vartotojo draugų sąraše.',
         'moderated' => 'Šiuo momentu šis kanalas yra prižiūrimas.',
         'no_access' => 'Jūs neturite leidimo įeiti į šį kanalą.',
-        'no_announce' => '',
+        'no_announce' => 'Jūs neturite leidimo skelbti pranešimo.',
         'receive_friends_only' => 'Naudotojas gali negalėti atsakyti, nes priėmat žinutes tik iš žmonių jūsų draugų sąraše.',
         'restricted' => 'Būnant užblokuotam, apribotam, užtildytam, jūs negalite siųsti žinučių.',
         'silenced' => 'Būnant užblokuotam, apribotam, užtildytam, jūs negalite siųsti žinučių.',
@@ -87,7 +87,7 @@ return [
     ],
 
     'contest' => [
-        'judging_not_active' => '',
+        'judging_not_active' => 'Vertinimas šiame konkurse nėra aktyvus.',
         'voting_over' => 'Po konkurso balsavimo pabaigos, balso keitimas nebegalimas.',
 
         'entry' => [
@@ -113,7 +113,7 @@ return [
                 'deleted' => 'Ištrinto įrašo negalima redaguoti.',
                 'locked' => 'Įrašo redagavimas buvo uždraustas.',
                 'no_forum_access' => 'Prieiga prie norimo forumo reikalauja papildomų teisių.',
-                'no_permission' => '',
+                'no_permission' => 'Nėra leidimo keisti.',
                 'not_owner' => 'Tik įrašo autorius gali ištrinti įrašą.',
                 'topic_locked' => 'Po temos užrakinimo trinti įrašų negalima.',
             ],
@@ -179,14 +179,14 @@ return [
 
     'room' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'Tik kambario savininkas gali jį uždaryti.',
         ],
     ],
 
     'score' => [
         'pin' => [
             'disabled_type' => "Negalima prisegti šio tipo rezultato",
-            'failed' => "",
+            'failed' => "Negalite prisegti neįveiktą rezultatą.",
             'not_owner' => 'Tik rezultato savininkas gali prisegti rezultatą.',
             'too_many' => 'Prisegta perdaug rezultatų.',
         ],
@@ -195,19 +195,19 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
-                'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'already_member' => "Jūs jau komandos dalis.",
+                'already_other_member' => "Jūs jau kitos komandos dalis.",
+                'currently_applying' => 'Jus jau turite laukianti prisijungimo prie komandos prašymą.',
+                'team_closed' => 'Komanda šiuo metu nepriima jokių prisijungimo prašymų.',
+                'team_full' => "Šita komanda jau pilna ir negali priimti daugiau narių.",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "Komandos vadovas negali palikti komandos.",
+            'not_member' => 'Ne komandos narys.',
         ],
         'store' => [
-            'require_supporter_tag' => '',
+            'require_supporter_tag' => 'reikalinga osu!rėmėjo žymė kad  sukurti komandą.',
         ],
     ],
 

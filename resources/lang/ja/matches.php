@@ -25,12 +25,12 @@ return [
             'player_joined_no_user' => 'プレイヤーがマッチに参加しました',
             'player_kicked' => ':user はマッチから退出させられました',
             'player_kicked_no_user' => 'プレイヤーがマッチから追放されました',
-            'player_left' => '',
-            'player_left_no_user' => '',
-            'room_created' => '',
-            'room_created_no_user' => '',
-            'room_disbanded' => '',
-            'room_disbanded_no_user' => '',
+            'player_left' => ':user がマッチから退出しました',
+            'player_left_no_user' => 'プレイヤーがマッチから退出しました',
+            'room_created' => ':user によってマッチが作成されました',
+            'room_created_no_user' => 'マッチが作成されました',
+            'room_disbanded' => 'マッチが解散しました',
+            'room_disbanded_no_user' => 'マッチが解散しました',
         ],
 
         'score' => [
@@ -42,10 +42,10 @@ return [
         ],
 
         'team_types' => [
-            'head_to_head' => '',
-            'tag_coop' => '',
-            'tag_team_versus' => '',
-            'team_versus' => '',
+            'head_to_head' => '個人戦',
+            'tag_coop' => '協力モード',
+            'tag_team_versus' => 'タッグチーム戦',
+            'team_versus' => 'チーム戦',
         ],
 
         'teams' => [
@@ -54,7 +54,7 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '',
+        'freestyle' => 'フリースタイル',
 
         'scoring-type' => [
             'score' => '最高スコア',

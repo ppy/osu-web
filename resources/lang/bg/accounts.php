@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => 'блокиране на лични съобщения от хора, които не са ми приятели',
         'hide_online' => 'скриване на моето онлайн присъствие',
+        'hide_online_info' => '',
         'title' => 'Поверителност',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => 'обнови',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

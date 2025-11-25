@@ -28,6 +28,7 @@ return [
         'beatmapsets' => [
             'show' => '信息',
             'discussions' => '讨论',
+            'versions' => '',
         ],
 
         'changelog' => [
@@ -52,6 +53,7 @@ return [
         'users' => [
             'modding' => '摸图',
             'playlists' => '歌单',
+            'quickplay' => '',
             'realtime' => '多人游戏',
             'show' => '信息',
         ],

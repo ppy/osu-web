@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => 'bloķēt privātās ziņas no cilvēkiem, kuri nav jūsu draugu sarakstā',
         'hide_online' => 'slēpt jūsu tiešsaistes klātbūtni',
+        'hide_online_info' => '',
         'title' => 'Konfidencialitāte',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => 'atjaunināt',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

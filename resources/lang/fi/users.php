@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Viimeaikaiset julkaisut',
                 'show_more' => 'katso lisää julkaisuja',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Viimeisimmät',
             ],

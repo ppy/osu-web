@@ -76,6 +76,7 @@ return [
         'minutes' => ':count_delimited dakika|:count_delimited dakika',
         'months' => ':count_delimited ay|:count_delimited ay',
         'notifications' => ':count_delimited bildirim|:count_delimited bildirim',
+        'player' => '',
         'plus_others' => '+ :count_delimited tane daha!|+ :count_delimited tane daha!',
         'post' => ':count_delimited gönderi|:count_delimited gönderi',
         'second_short_unit' => 'sn|sn',
@@ -94,10 +95,10 @@ return [
 
     'datetime' => [
         'month' => [
-            'php' => '',
+            'php' => ' ay',
         ],
         'year' => [
-            'php' => '',
+            'php' => ' yıl',
         ],
         'year_month' => [
             'moment' => 'MMMM YYYY',

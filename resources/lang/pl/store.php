@@ -110,7 +110,7 @@ return [
         'paid_on' => 'Zamówienie złożone :date',
         'resume' => 'Wznów zamówienie',
         'shipping_and_handling' => 'Dostawa i obsługa zamówienia',
-        'shopify_expired' => 'Łącze do płatności za to zamówienie wygasło.',
+        'shopify_expired' => 'Link do płatności za to zamówienie wygasł.',
         'subtotal' => 'Łącznie',
         'total' => 'Łącznie',
 

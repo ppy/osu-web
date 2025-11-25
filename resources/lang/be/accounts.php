@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => 'заблакаваць прыватныя паведамленні ад людзей не з вашага спісу сяброў',
         'hide_online' => 'схаваць маю анлайн прысутнасць',
+        'hide_online_info' => '',
         'title' => 'Прыватнасць',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => 'абнавіць',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

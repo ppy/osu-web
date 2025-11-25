@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Sťahovať!',
-        'action_lazer' => '',
-        'action_lazer_description' => '',
         'action_lazer_info' => 'klikni sem pre viac informácií',
-        'action_lazer_title' => 'skús osu!(lazer)',
-        'action_title' => 'stiahnite is osu!',
+        'download' => '',
         'for_os' => 'pre :os',
         'macos-fallback' => 'macOS užívateľ',
         'mirror' => 'mirror',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => '',
         'other_os' => '',
         'quick_start_guide' => '',
-        'tagline' => "poďme začať!",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => 'video návod',
 
         'help' => [

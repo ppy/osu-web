@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Seneste Opslag',
                 'show_more' => 'se flere opslag',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Seneste',
             ],

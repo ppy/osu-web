@@ -39,6 +39,10 @@ return [
         'insufficient_history' => '',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'istaknuto',
         'country' => 'države',
@@ -46,14 +50,17 @@ return [
         'global' => '',
         'kudosu' => '',
         'multiplayer' => 'multiplayer',
+        'season_room' => '',
         'seasons' => '',
         'team' => '',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => '',
         'ongoing' => '',
         'room_count' => '',
+        'summary' => '',
         'url' => '',
         'validation' => [
             'not_enough_factors' => '',

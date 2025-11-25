@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => 'bloquear los mensajes privados de las personas que no estén en tu lista de amigos',
         'hide_online' => 'ocultar tu presencia en línea',
+        'hide_online_info' => '',
         'title' => 'Privacidad',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => 'actualizar',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

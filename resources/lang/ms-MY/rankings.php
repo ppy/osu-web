@@ -14,8 +14,8 @@ return [
         'top_10p' => 'Markah 10% Teratas',
         'top_50p' => 'Markah 50% Teratas',
         'unavailable' => [
-            'future' => 'Belum ada cabaran harian pada tarikh ditentukan!',
-            'past' => 'Tiada cabaran harian pada tarikh ditentukan!',
+            'future' => 'Belum ada cabaran harian pada tarikh yang ditentukan!',
+            'past' => 'Tiada cabaran harian pada tarikh yang ditentukan!',
         ],
     ],
 
@@ -28,13 +28,17 @@ return [
     ],
 
     'kudosu' => [
-        'total' => 'Diterima',
+        'total' => 'Diperoleh',
         'available' => 'Tersedia',
         'used' => 'Digunakan',
     ],
 
     'performance' => [
         'insufficient_history' => 'Sejarah pangkat terkini pengguna ini kurang daripada 30 hari.',
+    ],
+
+    'top_plays' => [
+        'empty' => '',
     ],
 
     'type' => [
@@ -44,14 +48,17 @@ return [
         'global' => 'sejagat',
         'kudosu' => 'kudosu',
         'multiplayer' => 'pemain ramai',
+        'season_room' => '',
         'seasons' => 'musim',
         'team' => 'pasukan',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Musim ini belum memiliki bilik.',
         'ongoing' => 'Musim ini masih berlangsung (lebih banyak senarai main akan ditambah).',
         'room_count' => 'Jumlah senarai main',
+        'summary' => '',
         'url' => 'Paparkan lebih banyak maklumat tentang musim tersebut.',
         'validation' => [
             'not_enough_factors' => 'faktor permarkahan tidak cukup untuk pengiraan sah',

@@ -24,6 +24,7 @@ return [
 
         'forum' => [
             'write' => 'Csak a saját nevedben hozz létre és szerkessz fórum hozzászólásokat.',
+            'write_manage' => '',
         ],
 
         'friends' => [

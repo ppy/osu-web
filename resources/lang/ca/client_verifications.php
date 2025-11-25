@@ -6,7 +6,7 @@
 return [
     'completed' => [
         'home' => 'Anar al tauler de control',
-        'logout' => 'Tancar sessió',
+        'logout' => 'Tanca la sessió',
         'text' => 'Ara podeu tancar aquesta pestanya/finestra',
         'title' => 'la verificació del client d\'osu! s\'ha completat',
     ],

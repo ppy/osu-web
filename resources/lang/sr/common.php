@@ -76,6 +76,7 @@ return [
         'minutes' => ':count_delimited минут|:count_delimited минута',
         'months' => ':count_delimited месец|:count_delimited месеци',
         'notifications' => ':count_delimited нотификација|:count_delimited нотификације',
+        'player' => '',
         'plus_others' => '+ :count_delimited друго!|:count_delimited других!',
         'post' => ':count_delimited објава|:count_delimited објаве',
         'second_short_unit' => 'секунда|секунде',

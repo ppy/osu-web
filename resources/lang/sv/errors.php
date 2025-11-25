@@ -7,7 +7,7 @@ return [
     'load_failed' => 'Misslyckades att ladda data.',
     'missing_route' => 'Ogiltig url eller felaktig metod av begäran.',
     'no_restricted_access' => 'Du kan inte utföra denna åtgärd medan ditt konto är begränsat.',
-    'param_too_large' => '',
+    'param_too_large' => ':name parameter har ett maximum av:count_delimited artikel|:name parameter har ett maximum av :count_delimited artiklar',
     'supporter_only' => 'Du måste vara en osu!supporter för att använda denna funktion.',
     'unknown' => 'Okänt fel uppstod.',
 

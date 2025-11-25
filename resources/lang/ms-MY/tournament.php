@@ -28,7 +28,7 @@ return [
         'info_page' => 'Halaman Maklumat',
         'login_to_register' => 'Sila :login untuk lihat butiran pendaftaran!',
         'not_yet_entered' => 'Anda tidak didaftar untuk kejohanan ini.',
-        'rank_too_low' => 'Maaf, anda tidak memenuhi kelayakan pangkat bagi kejohanan ini!',
+        'rank_too_low' => 'Maaf, anda tidak memenuhi kelayakan pangkat untuk kejohanan ini!',
         'registration_ends' => 'Pendaftaran tutup pada :date',
 
         'button' => [

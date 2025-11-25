@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Posts récents',
                 'show_more' => 'voir plus de posts',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Activité récente',
             ],

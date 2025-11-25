@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Verifikācijas kodam beidzies termiņš, aizsūtīts jauns verifikācijas e-pasts.',
         'incorrect_key' => 'Nepareizs verifikācijas kods.',
         'retries_exceeded' => 'Nepareizs verifikācijas kods. Mēģinājumu limits pārsniegts, aizsūtīts jauns verifikācijas e-pasts.',
         'reissued' => 'Verifikācijas kods atkārtoti izsniegts, aizstūtīts jauns verifikācijas e-pasts.',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => 'Uzradās nepazīstama problēma, aizsūtīts jauns verifikācijas e-pasts.',
     ],
 ];

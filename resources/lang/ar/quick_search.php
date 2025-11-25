@@ -15,8 +15,19 @@ return [
     ],
 
     'result' => [
-        'empty_for' => 'لا يوجد نتائج لـ:modes',
         'more' => 'المزيد من نتائج بحت :mode',
         'title' => 'نتائج بحث :mode',
+
+        'no_results' => [
+            '_' => '',
+
+            'artist_track' => '',
+            'beatmapset' => '',
+            'forum_post' => '',
+            'other' => '',
+            'team' => '',
+            'user' => '',
+            'wiki_page' => '',
+        ],
     ],
 ];

@@ -53,6 +53,7 @@ return [
             'discussion' => '谱面讨论',
             'index' => '谱面列表',
             'show' => '谱面信息',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => '更新日志',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => '评选',
             'judge' => '竞赛打分',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => '用户组',
@@ -119,6 +123,9 @@ return [
         ],
         'user_cover_presets_controller' => [
             '_' => '用户封面图预设',
+        ],
+        'user_totp_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => '玩家信息',

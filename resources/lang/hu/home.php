@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'osu! letöltése',
-        'action_lazer' => 'Töltsd le osu!(lazer)-t',
-        'action_lazer_description' => 'az új nagy frissítése osu!-nak',
         'action_lazer_info' => 'lásd ezt az oldalt több információért',
-        'action_lazer_title' => 'próbáld ki osu!lazer-t',
-        'action_title' => 'osu! letöltése',
+        'download' => '',
         'for_os' => ':os operációs rendszerhez',
         'macos-fallback' => 'macOS használók',
         'mirror' => 'tükör',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version vagy újabb',
         'other_os' => 'egyéb platoformok',
         'quick_start_guide' => 'gyors útmutató',
-        'tagline' => "vágjunk<br>bele!",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => 'videó útmutató',
 
         'help' => [

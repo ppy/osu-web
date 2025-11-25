@@ -53,6 +53,7 @@ return [
             'discussion' => 'beatmap razprava',
             'index' => 'seznam beatmap',
             'show' => 'info beatmape',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => 'dnevnik sprememb',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'tekmovanja',
             'judge' => '',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'skupine',
@@ -118,6 +122,9 @@ return [
             '_' => 'turnirji',
         ],
         'user_cover_presets_controller' => [
+            '_' => '',
+        ],
+        'user_totp_controller' => [
             '_' => '',
         ],
         'users_controller' => [

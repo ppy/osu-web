@@ -37,6 +37,10 @@ return [
         'insufficient_history' => '',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'Baner',
         'country' => 'Land',
@@ -44,14 +48,17 @@ return [
         'global' => '',
         'kudosu' => '',
         'multiplayer' => 'multiplayer',
+        'season_room' => '',
         'seasons' => 'sæsoner',
         'team' => '',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Der er ingen rum i denne sæson endnu.',
         'ongoing' => 'Denne sæson er stadig i gang (der vil være flere playlister tilføjet).',
         'room_count' => 'Playlist-antal',
+        'summary' => '',
         'url' => 'Vis flere oplysninger om den sæson.',
         'validation' => [
             'not_enough_factors' => '',

@@ -17,19 +17,20 @@ return [
         'identify' => 'Mengenali dan membaca profil awam anda.',
 
         'chat' => [
-            'read' => 'Baca pesanan bagi pihak anda.',
-            'write' => 'Kirim pesanan bagi pihak anda.',
-            'write_manage' => 'Memasuki dan meninggalkan saluran bagi pihak anda.',
+            'read' => 'Baca pesanan untuk pihak anda.',
+            'write' => 'Kirim pesanan untuk pihak anda.',
+            'write_manage' => 'Memasuki dan meninggalkan saluran untuk pihak anda.',
         ],
 
         'forum' => [
-            'write' => 'Mencipta dan menyunting tajuk dan hantaran forum bagi pihak anda.',
+            'write' => 'Mencipta dan menyunting tajuk dan hantaran forum untuk pihak anda.',
+            'write_manage' => '',
         ],
 
         'friends' => [
             'read' => 'Melihat ikutan anda.',
         ],
 
-        'public' => 'Membaca data awam bagi pihak anda.',
+        'public' => 'Membaca data awam untuk pihak anda.',
     ],
 ];

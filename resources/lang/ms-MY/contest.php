@@ -15,19 +15,19 @@ return [
 
     'judge' => [
         'comments' => 'komen',
-        'hide_judged' => 'sorok penyertaan yang diadili',
-        'nav_title' => 'pengadil',
+        'hide_judged' => 'sorok penyertaan yang telah dinilai',
+        'nav_title' => 'penilai',
         'no_current_vote' => 'anda belum mengundi.',
         'update' => 'kemas kini',
         'validation' => [
             'missing_score' => 'markah tiada',
-            'contest_vote_judged' => 'tidak boleh mengundi dalam peraduan berpengadil',
+            'contest_vote_judged' => 'tidak boleh mengundi dalam peraduan berpenilai',
         ],
         'voted' => 'Anda telah menyerahkan undian untuk penyertaan ini.',
     ],
 
     'judge_results' => [
-        '_' => 'Hasil pengadilan',
+        '_' => 'Hasil penilaian',
         'creator' => 'pencipta',
         'score' => 'Markah',
         'score_std' => 'Markah Terpiawai',
@@ -36,8 +36,8 @@ return [
     ],
 
     'voting' => [
-        'judge_link' => 'Anda pengadil peraduan ini. Adili penyertaan di sini!',
-        'judged_notice' => 'Peraduan ini menggunakan tatanan pengadilan. Pengadil kini memproses penyertaan.',
+        'judge_link' => 'Anda penilai peraduan ini. Nilai penyertaan di sini!',
+        'judged_notice' => 'Peraduan ini menggunakan tatanan penilaian. Penilai kini memproses penyertaan.',
         'login_required' => 'Sila daftar masuk untuk mengundi.',
         'over' => 'Pengundian untuk peraduan ini telah tamat',
         'show_voted_only' => 'Tunjukkan undian',
@@ -77,7 +77,7 @@ return [
             'music' => 'Hanya fail .mp3 diterima untuk peraduan.',
         ],
 
-        'wrong_dimensions' => 'Penyertaan bagi peraduan mesti :widthx:height',
+        'wrong_dimensions' => 'Penyertaan untuk peraduan mesti :widthx:height',
         'too_big' => 'Penyertaan peraduan ini hanya dibolehkan hingga :limit.',
     ],
 
@@ -110,7 +110,7 @@ return [
 
     'show' => [
         'admin' => [
-            'page' => '',
+            'page' => 'Lihat maklumat dan masukan',
         ],
     ],
 ];

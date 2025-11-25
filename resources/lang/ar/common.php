@@ -76,6 +76,7 @@ return [
         'minutes' => ':count_delimited دقيقة|:count_delimited دقائق',
         'months' => ':count_delimited شهر|:count_delimited أشهر',
         'notifications' => ':count_delimited أِشعار|:count_delimited أِشعارات',
+        'player' => '',
         'plus_others' => '+ :count_delimited اخر!|+ :count_delimited اخرون!',
         'post' => ':count_delimited منشور|:count_delimited منشورات',
         'second_short_unit' => 'ثانية|ثواني',

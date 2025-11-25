@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Razpon Ocen',
             'nominations' => 'Nominacije',
             'playcount' => 'Število igranj',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

@@ -68,10 +68,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
+        'checking' => 'Tikrinama, ar yra atnaujinimų...',
         'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'no_updates' => 'Atnaujinimų nėra.',
+        'updating' => 'Atnaujinama...',
     ],
 
     'reply' => [

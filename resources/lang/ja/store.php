@@ -174,7 +174,7 @@ return [
 
         'add_to_cart' => 'カートに入れる',
         'notify' => '入荷したら通知する',
-        'out_of_stock' => '',
+        'out_of_stock' => '在庫切れ',
 
         'notification_success' => '入荷されたら通知を受け取ることができます。:linkからキャンセルできます',
         'notification_remove_text' => 'ここ',

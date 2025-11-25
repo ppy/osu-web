@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Mga Bagong Post',
                 'show_more' => 'higit pang mga post',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Kamakailan',
             ],

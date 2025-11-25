@@ -14,8 +14,8 @@ return [
         'top_10p' => '上位10%スコア',
         'top_50p' => '上位50%スコア',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => '指定された日付のデイリーチャレンジはまだありません！',
+            'past' => '指定された日付のデイリーチャレンジはありません！',
         ],
     ],
 
@@ -37,6 +37,10 @@ return [
         'insufficient_history' => 'このユーザーの最近のランキング履歴は30日未満です。',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'スポットライト',
         'country' => '国別',
@@ -44,14 +48,17 @@ return [
         'global' => 'グローバル',
         'kudosu' => 'kudosu',
         'multiplayer' => 'マルチプレイ',
+        'season_room' => '',
         'seasons' => 'シーズン',
         'team' => 'チーム',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => '今シーズンはまだルームがありません。',
         'ongoing' => '今シーズンはまだ継続中です（プレイリストはさらに追加される予定）。',
         'room_count' => 'プレイリスト数',
+        'summary' => '',
         'url' => 'そのシーズンに関する詳細情報を表示する。',
         'validation' => [
             'not_enough_factors' => '適切に計算するためのスコア要素が不足しています',

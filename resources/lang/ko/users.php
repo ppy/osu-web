@@ -219,7 +219,7 @@ return [
 ',
             'daily_streak_current' => '현재 연속 진행일',
             'playcount' => '참여 일수',
-            'title' => '일일미션',
+            'title' => '일일 도전',
             'top_10p_placements' => '상위 10%',
             'top_50p_placements' => '상위 50%',
             'weekly' => '연속 진행주',
@@ -380,7 +380,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '유저가 비트맵 제작 과정에 얼마나 기여했는지에 기반합니다. 더 많은 정보를 얻고싶으시다면 :link를 참고해주세요.',
+                    '_' => '유저가 비트맵 제작 과정에 얼마나 기여했는지에 기반합니다. 더 많은 정보는 :link에서 확인해 보세요.',
                     'link' => '이 페이지',
                 ],
             ],
@@ -399,6 +399,9 @@ return [
                 'title' => '게시글',
                 'title_longer' => '최근 게시글',
                 'show_more' => '글 더 보기',
+            ],
+            'quickplay' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => '최근 활동',

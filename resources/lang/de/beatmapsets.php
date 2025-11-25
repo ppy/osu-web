@@ -177,7 +177,7 @@ return [
             'title' => 'Punkte-Anzeige',
 
             'headers' => [
-                'accuracy' => 'Präzision',
+                'accuracy' => 'Genauigkeit',
                 'combo' => 'Maximale Combo',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
@@ -212,7 +212,7 @@ return [
             'cs' => 'Circle-Size',
             'cs-mania' => 'Tasten-Anzahl',
             'drain' => 'HP-Drain',
-            'accuracy' => 'Präzision',
+            'accuracy' => 'Genauigkeit',
             'ar' => 'Approach-Rate',
             'stars' => 'Sterne',
             'total_length' => 'Länge (Drain length: :hit_length)',
@@ -223,7 +223,9 @@ return [
             'user-rating' => 'User-Bewertungen',
             'rating-spread' => 'Bewertungsverteilung',
             'nominations' => 'Nominierungen',
-            'playcount' => 'Playcount',
+            'playcount' => 'Anzahl der Spiele',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

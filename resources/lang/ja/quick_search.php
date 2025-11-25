@@ -15,8 +15,19 @@ return [
     ],
 
     'result' => [
-        'empty_for' => ':modes の結果なし',
         'more' => 'その他の :mode 検索結果',
         'title' => ':mode の検索結果',
+
+        'no_results' => [
+            '_' => '',
+
+            'artist_track' => '',
+            'beatmapset' => '',
+            'forum_post' => '',
+            'other' => '',
+            'team' => '',
+            'user' => '',
+            'wiki_page' => '',
+        ],
     ],
 ];

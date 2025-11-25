@@ -76,6 +76,7 @@ return [
         'minutes' => 'un minut|:count_delimited minute|:count_delimited de minute',
         'months' => 'o lună|:count_delimited luni|:count_delimited de luni',
         'notifications' => 'o notificare|:count_delimited notificări|:count_delimited de notificări',
+        'player' => '',
         'plus_others' => '+ un altul!|+ :count_delimited alții!',
         'post' => 'o postare|:count_delimited postări|:count_delimited de postări',
         'second_short_unit' => 'secundă|secunde',

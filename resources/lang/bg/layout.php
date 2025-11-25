@@ -28,6 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'инфо',
             'discussions' => 'дискусия',
+            'versions' => '',
         ],
 
         'changelog' => [
@@ -52,6 +53,7 @@ return [
         'users' => [
             'modding' => 'редакции',
             'playlists' => 'плейлисти',
+            'quickplay' => '',
             'realtime' => 'мултиплейър',
             'show' => 'инфо',
         ],

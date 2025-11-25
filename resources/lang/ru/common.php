@@ -76,6 +76,7 @@ return [
         'minutes' => ':count_delimited минута|:count_delimited минуты|:count_delimited минут',
         'months' => ':count_delimited месяц|:count_delimited месяца|:count_delimited месяцев',
         'notifications' => ':count_delimited уведомление|:count_delimited уведомления|:count_delimited уведомлений',
+        'player' => '',
         'plus_others' => '+ ещё :count_delimited игрок!|+ ещё :count_delimited игрока!|+ ещё :count_delimited игроков!',
         'post' => ':count_delimited пост|:count_delimited поста|:count_delimited постов',
         'second_short_unit' => 'сек',

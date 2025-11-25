@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Kôd za potvrdu je istekao, poslana je nova e-pošta za potvrdu.',
         'incorrect_key' => 'Netočan kôd za potvrdu.',
         'retries_exceeded' => 'Krivi kôd za potvrdu. Prekoračeno je ograničenje ponovnog pokušavanja, poslana je nova e-poruka za potvrdu.',
         'reissued' => 'Kôd za potvrdu ponovno izdan, poslana je nova e-pošta za potvrdu.',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => 'Došlo je do nepoznatog problema, poslana je nova e-pošta za potvrdu.',
     ],
 ];

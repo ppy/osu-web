@@ -8,6 +8,7 @@ return [
         'active' => '',
         'ended' => '',
         'playlists' => 'játéklista',
+        'quickplay' => '',
         'realtime' => 'többjátékos',
     ],
 

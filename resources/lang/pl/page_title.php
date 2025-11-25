@@ -53,6 +53,7 @@ return [
             'discussion' => 'dyskusja beatmapy',
             'index' => 'lista beatmap',
             'show' => 'informacje o beatmapie',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => 'zmiany',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'konkursy',
             'judge' => 'ocena prac konkursowych',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'grupy',
@@ -119,6 +123,9 @@ return [
         ],
         'user_cover_presets_controller' => [
             '_' => 'konfiguracja domyślnych teł profili',
+        ],
+        'user_totp_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'informacje o użytkowniku',

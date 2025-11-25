@@ -15,22 +15,22 @@ return [
         'winner_by' => ':winner skirtumu :difference',
 
         'events' => [
-            'game_aborted' => '',
-            'game_aborted_no_user' => '',
-            'game_completed' => '',
-            'game_completed_no_user' => '',
-            'host_changed' => '',
-            'host_changed_no_user' => '',
-            'player_joined' => '',
-            'player_joined_no_user' => '',
-            'player_kicked' => '',
-            'player_kicked_no_user' => '',
-            'player_left' => '',
-            'player_left_no_user' => '',
-            'room_created' => '',
-            'room_created_no_user' => '',
-            'room_disbanded' => '',
-            'room_disbanded_no_user' => '',
+            'game_aborted' => 'žaidimas atšauktas',
+            'game_aborted_no_user' => 'žaidimas atšauktas',
+            'game_completed' => 'žaidimas baigėsi',
+            'game_completed_no_user' => 'žaidimas baigėsi',
+            'host_changed' => ':user tapo šeimininku',
+            'host_changed_no_user' => 'pasikeitė šeimininkas',
+            'player_joined' => ':user prisijungė prie mačo',
+            'player_joined_no_user' => 'žaidėjas prisijungė prie mačo',
+            'player_kicked' => ':user išmestas iš mačo',
+            'player_kicked_no_user' => 'žaidėjas išmestas iš mačo',
+            'player_left' => ':user paliko mačą',
+            'player_left_no_user' => 'žaidėjas paliko mačą',
+            'room_created' => ':user sukūrė mačą',
+            'room_created_no_user' => 'mačas sukurtas',
+            'room_disbanded' => 'mačas buvo išardytas',
+            'room_disbanded_no_user' => 'mačas buvo išardytas',
         ],
 
         'score' => [
@@ -42,10 +42,10 @@ return [
         ],
 
         'team_types' => [
-            'head_to_head' => '',
-            'tag_coop' => '',
-            'tag_team_versus' => '',
-            'team_versus' => '',
+            'head_to_head' => 'Kiekvienas už save',
+            'tag_coop' => 'Pakaitinis Ko-op',
+            'tag_team_versus' => 'Pakaitinės Komandos',
+            'team_versus' => 'Komandos',
         ],
 
         'teams' => [
@@ -54,7 +54,7 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '',
+        'freestyle' => 'Laisvo Stiliaus',
 
         'scoring-type' => [
             'score' => 'Daugiausiai Taškų',

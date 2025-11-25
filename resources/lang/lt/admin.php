@@ -56,7 +56,7 @@ return [
 
                 'users' => [
                     'header' => 'Naudotojas',
-                    'cover_presets' => '',
+                    'cover_presets' => 'Profilio Viršelių Ruošiniai',
                 ],
             ],
         ],

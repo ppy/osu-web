@@ -24,6 +24,7 @@ return [
 
         'forum' => [
             'write' => 'Vytvořte a upravujte témata fóra a příspěvky vaším jménem.',
+            'write_manage' => '',
         ],
 
         'friends' => [

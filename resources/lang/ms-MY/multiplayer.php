@@ -5,9 +5,10 @@
 
 return [
     'empty' => [
-        'active' => '',
-        'ended' => '',
+        'active' => 'Kini tidak berada di dalam mainan sedang berjalan :type_group osu!(lazer)!',
+        'ended' => 'Belum berada di dalam mainan :type_group osu!(lazer) lengkap!',
         'playlists' => 'senarai main',
+        'quickplay' => '',
         'realtime' => 'pemain ramai',
     ],
 

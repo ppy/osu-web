@@ -7,7 +7,7 @@ return [
     'invalid_ruleset' => '',
 
     'change_owner' => [
-        'too_many' => '',
+        'too_many' => 'Previše gostujućih mappera.',
     ],
 
     'discussion-votes' => [
@@ -31,7 +31,7 @@ return [
         'message_placeholder_silenced' => "Ne možeš objavljivati raspravu dok si utišan/a.",
         'message_type_select' => 'Odaberi vrstu komentara',
         'reply_notice' => 'Pritisni enter za odgovor.',
-        'reply_resolve_notice' => '',
+        'reply_resolve_notice' => 'Pritisni enter za odgovor. Pritisni ctrl+enter kako bi odgovorio i riješio.',
         'reply_placeholder' => 'Upiši svoj odgovor ovdje',
         'require-login' => 'Molimo da se prijaviš kako bi objavljivao ili odgovorio/la',
         'resolved' => 'Riješeno',

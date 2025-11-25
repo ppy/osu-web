@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Спампаваць osu!',
-        'action_lazer' => 'Спампаваць osu!(lazer)',
-        'action_lazer_description' => 'наступнае глабальнае абнаўленне osu!',
         'action_lazer_info' => 'артыкул з падрабязнай інфармацыяй',
-        'action_lazer_title' => 'паспрабаваць osu!(lazer)',
-        'action_title' => 'спампаваць osu!',
+        'download' => '',
         'for_os' => 'для :os',
         'macos-fallback' => 'для macOS',
         'mirror' => 'люстэрка',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version ці навей',
         'other_os' => 'iншыя платформы',
         'quick_start_guide' => 'кароткае кіраўніцтва',
-        'tagline' => "давай<br>распачнем!",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => 'відэа дапаможнік',
 
         'help' => [

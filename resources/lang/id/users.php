@@ -289,7 +289,7 @@ return [
                     'title' => 'Beatmap Graveyard',
                 ],
                 'guest' => [
-                    'title' => 'Beatmap dengan Kontribusi Guest Difficulty',
+                    'title' => 'Beatmap dengan Kontribusi Tingkat Kesulitan',
                 ],
                 'loved' => [
                     'title' => 'Beatmap Loved',
@@ -398,6 +398,9 @@ return [
                 'title' => 'Postingan',
                 'title_longer' => 'Postingan Terkini',
                 'show_more' => 'lihat lebih banyak postingan',
+            ],
+            'quickplay' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Aktivitas Terkini',

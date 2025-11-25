@@ -5,18 +5,29 @@
 
 return [
     'mode' => [
-        'artist_track' => '',
-        'beatmapset' => 'Beatmap\'as',
-        'forum_post' => 'Forumas',
+        'artist_track' => 'Ryškiojo Atlikėjo Kūrinių',
+        'beatmapset' => 'Beatmap\'ų',
+        'forum_post' => 'Forumo',
         'other' => 'Kiti',
-        'team' => '',
-        'user' => 'Žaidėjas',
+        'team' => 'Komandų',
+        'user' => 'Žaidėjų',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty_for' => 'Nerasta tarp :modes',
         'more' => 'Daugiau :mode Paieškos Rezultatų',
         'title' => ':mode Paieškos Rezultatai',
+
+        'no_results' => [
+            '_' => '',
+
+            'artist_track' => '',
+            'beatmapset' => '',
+            'forum_post' => '',
+            'other' => '',
+            'team' => '',
+            'user' => '',
+            'wiki_page' => '',
+        ],
     ],
 ];

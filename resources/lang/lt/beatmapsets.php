@@ -17,11 +17,11 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Neskubėk, pažaisk daugiau.',
-        'no_mirrors' => '',
+        'no_mirrors' => 'Nėra laisvų atsiuntimo serverių.',
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Rekomenduojami atlikėjai',
+        'label' => 'Ryškusis Atlikėjas',
     ],
 
     'index' => [
@@ -46,7 +46,7 @@ return [
         'hybrid_requires_modes' => 'Mišriame beatmap\'e reikia pasirinkti bent vieną rėžimą nominavimui.',
         'incorrect_mode' => 'Jūs neturite leidimo nominuoti šiam rėžimui: :mode',
         'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_ruleset' => 'Šioje nominacijoje yra negalimų rėžimų.',
         'too_many' => 'Nominavimo reikalavimai jau patenkinti.',
         'too_many_non_main_ruleset' => '',
 
@@ -55,7 +55,7 @@ return [
             'different_nominator_warning' => '',
             'header' => 'Nominuoti Beatmap\'ą',
             'hybrid_warning' => 'pastaba: jūs galite nominuoti tik kartą, tai prašom užtikrinti, kad nominuojate visus rėžimus, kuriuos ketinote',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'Šiuo metu :ruleset yra pagrindinis rėžimas',
             'which_modes' => 'Kokiems rėžimams nominuoti?',
         ],
     ],
@@ -69,7 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => '',
-            'page' => '',
+            'page' => 'Rodyti administracinį puslapį',
         ],
 
         'deleted_banner' => [
@@ -141,7 +141,7 @@ return [
             'description' => 'Aprašymas',
             'genre' => 'Žanras',
             'language' => 'Kalba',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Kūrėjo Žymės',
             'no_scores' => 'Duomenys dar apskaičiuojami...',
             'nominators' => 'Nominatoriai',
             'nsfw' => 'Eksplicitinis turinys',
@@ -150,7 +150,7 @@ return [
             'source' => 'Šaltinis',
             'storyboard' => 'Šis beatmap\'as turi foninę animaciją',
             'success-rate' => 'Įveikimų Rodiklis',
-            'user_tags' => '',
+            'user_tags' => 'Vartotojų Žymės',
             'video' => 'Šis beatmap\'as turi vaizdo įrašą',
         ],
 
@@ -173,7 +173,7 @@ return [
             'global' => 'Pasauliniai Rezultatai',
             'supporter-link' => 'Spausk <a href=":link">čia</a>, kad pamatytum visus privalomus, kuriuos gausi!',
             'supporter-only' => 'Tu turi būti osu!rėmėjas, kad pasiektum draugų, šalių ar konkrečių modų rezultatus!',
-            'team' => '',
+            'team' => 'Komandos Rezultatai',
             'title' => 'Rezultatų lenta',
 
             'headers' => [
@@ -195,7 +195,7 @@ return [
                 'friend' => 'Niekas iš jūsų draugų dar nenustatė rezultato šiam bitmapui!',
                 'global' => 'Jokiu rezultatų. Galbūt norėtum pabandyti nustatyti koki?',
                 'loading' => 'Įkeliami rezultatai...',
-                'team' => '',
+                'team' => 'Niekas iš jūsų komandos dar nenustatė rezultato šiam bitmapui!',
                 'unranked' => 'Nereitinguotas beatmap\'as.',
             ],
             'score' => [
@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Vertinimų Išsidėstymas',
             'nominations' => 'Nominacijos',
             'playcount' => 'Sužaidimų skaičius',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

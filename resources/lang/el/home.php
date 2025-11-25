@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Λήψη osu!',
-        'action_lazer' => 'Κατέβασε το osu!(lazer)',
-        'action_lazer_description' => 'Η νέα μεγάλη ενημέρωση στο osu!',
         'action_lazer_info' => 'δες αυτήν τη σελίδα για περισσότερες πληροφορίες',
-        'action_lazer_title' => 'δοκίμασε το osu!(lazer)',
-        'action_title' => 'κατέβασε το osu!',
+        'download' => '',
         'for_os' => 'για :os',
         'macos-fallback' => 'χρήστες macOS',
         'mirror' => 'mirror',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version ή μεγαλύτερο',
         'other_os' => 'άλλες πλατφόρμες',
         'quick_start_guide' => 'οδηγός γρήγορης εκκίνησης',
-        'tagline' => "ας<br>αρχίσουμε!",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => 'οδηγός βίντεο',
 
         'help' => [

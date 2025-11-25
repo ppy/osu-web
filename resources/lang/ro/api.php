@@ -24,6 +24,7 @@ return [
 
         'forum' => [
             'write' => 'Să creeze și editeze subiecte și postări din forum în numele tău.',
+            'write_manage' => '',
         ],
 
         'friends' => [

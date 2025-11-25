@@ -58,7 +58,7 @@ return [
         'form' => [
             'password' => 'contrasenya',
             'password_confirmation' => 'confirmació de contrasenya',
-            'submit' => 'crear compte',
+            'submit' => 'crea compte',
             'user_email' => 'correu electrònic',
             'user_email_confirmation' => 'confirmació per correu electrònic',
             'username' => 'nom d’usuari',
@@ -398,6 +398,9 @@ return [
                 'title' => 'Publicacions',
                 'title_longer' => 'Publicacions recents',
                 'show_more' => 'veure més publicacions',
+            ],
+            'quickplay' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Recent',

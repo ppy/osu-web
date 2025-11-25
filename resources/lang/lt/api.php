@@ -17,13 +17,14 @@ return [
         'identify' => 'Nustatyti jūsų tapatybę ir skaityti jūsų viešąjį profilį.',
 
         'chat' => [
-            'read' => '',
+            'read' => 'Skaitykite žinutes jūsų vardu.',
             'write' => 'Siųsti žinutes jūsų vardu.',
-            'write_manage' => '',
+            'write_manage' => 'Pridėti ir palikti kanalus jūsų vardu.',
         ],
 
         'forum' => [
             'write' => 'Kurti ir redaguoti forumo temas ir įrašus jūsų vardu.',
+            'write_manage' => '',
         ],
 
         'friends' => [

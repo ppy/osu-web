@@ -81,7 +81,7 @@ return [
 
             'customisation' => [
                 'title' => '커스터마이징',
-                'description' => "여러분의 유저 페이지를 원하는 기호에 맞게 수정할 수 있습니다.",
+                'description' => "여러분의 유저 페이지를 기호에 맞게 수정할 수 있습니다.",
             ],
 
             'beatmap_filters' => [
@@ -144,8 +144,8 @@ return [
             'was_valid_until' => '지난 osu! 서포터 태그는 :date까지 유효했습니다.',
 
             'gifted' => [
-                '_' => '회원님의 총 기부 이력을 살펴보니, :users 님에게 총 :dollars 의 가치가 있는 :duration 기간의 태그를 선물하셨네요. 정말 대단하신데요!',
-                'users' => ':count_delimited 명의 회원이 있음|:count_delimited 명의 회원들이 있음',
+                '_' => '회원님의 총 기부 이력을 살펴보니, :users에게 총 :dollars의 가치가 있는 :duration 기간의 태그를 선물하셨네요. 정말 대단하신데요!',
+                'users' => ':count_delimited 명의 회원님|:count_delimited 명의 회원님 분들',
             ],
         ],
     ],

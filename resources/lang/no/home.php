@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Last ned osu!',
-        'action_lazer' => 'Last ned osu!(lazer)',
-        'action_lazer_description' => 'den neste store oppdateringen til osu!',
         'action_lazer_info' => 'sjekk denne siden for mer informasjon',
-        'action_lazer_title' => 'prøv osu!(lazer)',
-        'action_title' => 'last ned osu!',
+        'download' => '',
         'for_os' => 'for :os',
         'macos-fallback' => 'macOS brukere',
         'mirror' => 'alternativ link',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version eller senere',
         'other_os' => 'andre plattformer',
         'quick_start_guide' => 'hurtigveiledning',
-        'tagline' => "la oss<br>få deg i gang!",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => 'video veiledning',
 
         'help' => [

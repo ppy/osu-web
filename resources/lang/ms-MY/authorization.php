@@ -18,7 +18,7 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Anda telah mencapai had pencalonan anda buat hari ini. Sila cuba lagi esok.',
-            'incorrect_state' => 'Terdapat ralat ketika menjalankan tindakan itu. Sila segar semula halaman.',
+            'incorrect_state' => 'Terdapat ralat menjalankan tindakan. Cuba segar semula halaman.',
             'owner' => "Peta rentak sendiri tidak boleh dicalonkan.",
             'set_metadata' => 'Anda mesti menetapkan genre dan bahasa terlebih dahulu sebelum pencalonan.',
         ],
@@ -87,7 +87,7 @@ return [
     ],
 
     'contest' => [
-        'judging_not_active' => 'Pengadilan untuk peraduan ini tidak giat.',
+        'judging_not_active' => 'Penilaian untuk peraduan ini tidak giat.',
         'voting_over' => 'Anda tidak boleh mengubah undian setelah tempoh mengundi untuk peraduan ini telah tamat.',
 
         'entry' => [
@@ -103,7 +103,7 @@ return [
 
         'post' => [
             'delete' => [
-                'only_last_post' => 'Hanya hantaran terakhir boleh dipadam.',
+                'only_last_post' => 'Hanya hantaran terkini boleh dipadam.',
                 'locked' => 'Hantaran pada tajuk terkunci tidak boleh dipadam.',
                 'no_forum_access' => 'Capaian ke forum pintaan diperlukan.',
                 'not_owner' => 'Hanya penghantar boleh memadam hantaran ini.',
@@ -113,7 +113,7 @@ return [
                 'deleted' => 'Tidak boleh sunting hantaran yang dipadam.',
                 'locked' => 'Hantaran ini dikunci daripada disunting.',
                 'no_forum_access' => 'Capaian ke forum pintaan diperlukan.',
-                'no_permission' => '',
+                'no_permission' => 'Tidak diizinkan untuk menyunting.',
                 'not_owner' => 'Hanya penghantar boleh menyunting hantaran ini.',
                 'topic_locked' => 'Hantaran pada tajuk terkunci tidak boleh disunting.',
             ],
@@ -126,7 +126,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Sila sunting hantaran sebelumnya daripada menghantar semula.',
+                'double_post' => 'Sila sunting hantaran terkini daripada menghantar semula.',
                 'locked' => 'Tidak boleh membalas bebenang yang dikunci.',
                 'no_forum_access' => 'Capaian ke forum pintaan diperlukan.',
                 'no_permission' => 'Tidak diizinkan untuk membalas.',

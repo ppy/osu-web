@@ -46,8 +46,8 @@ return [
             '_' => 'pretraživanje pjesama',
 
             'exclusive_only' => [
-                'all' => '',
-                'exclusive_only' => '',
+                'all' => 'Sve',
+                'exclusive_only' => 'osu! originali',
             ],
 
             'form' => [
@@ -55,9 +55,9 @@ return [
                 'album' => 'Album',
                 'artist' => 'Izvođač',
                 'bpm_gte' => 'Minimalni BPM',
-                'bpm_lte' => 'Maximalni BPM',
+                'bpm_lte' => 'Maksimalni BPM',
                 'empty' => 'Nisu pronađene pjesme koje odgovaraju kriterijima pretraživanja.',
-                'exclusive_only' => '',
+                'exclusive_only' => 'Vrsta',
                 'genre' => 'Žanr',
                 'genre_all' => 'Sve',
                 'length_gte' => 'Minimalna dužina',

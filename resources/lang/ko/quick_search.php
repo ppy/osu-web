@@ -15,8 +15,19 @@ return [
     ],
 
     'result' => [
-        'empty_for' => ':modes 검색 결과가 없습니다',
         'more' => '더많은 :mode 검색 결과',
         'title' => ':mode 검색 결과',
+
+        'no_results' => [
+            '_' => '',
+
+            'artist_track' => '',
+            'beatmapset' => '',
+            'forum_post' => '',
+            'other' => '',
+            'team' => '',
+            'user' => '',
+            'wiki_page' => '',
+        ],
     ],
 ];

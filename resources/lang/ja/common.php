@@ -76,6 +76,7 @@ return [
         'minutes' => ':count_delimited分',
         'months' => ':count_delimitedヶ月',
         'notifications' => ':count_delimited 件の通知',
+        'player' => '',
         'plus_others' => '+ :count_delimited',
         'post' => ':count_delimited 投稿',
         'second_short_unit' => '秒',
