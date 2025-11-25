@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Nedavne objave',
                 'show_more' => 'prikaži več objav',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Nedavno',
             ],

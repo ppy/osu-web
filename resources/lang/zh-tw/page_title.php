@@ -53,6 +53,7 @@ return [
             'discussion' => '圖譜討論',
             'index' => '圖譜清單',
             'show' => '圖譜資訊',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => '更新日誌',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => '評選',
             'judge' => '競賽評分',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => '群組',
@@ -119,6 +123,9 @@ return [
         ],
         'user_cover_presets_controller' => [
             '_' => '使用者封面預設',
+        ],
+        'user_totp_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => '玩家資訊',

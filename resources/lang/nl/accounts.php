@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => 'blokkeer privéberichten van mensen niet in jouw vriendenlijst',
         'hide_online' => 'verberg je online aanwezigheid',
+        'hide_online_info' => '',
         'title' => 'Privacy',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => 'bijwerken',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

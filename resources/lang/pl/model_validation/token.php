@@ -5,15 +5,15 @@
 
 return [
     'invalid_scope' => [
-        'all_scope_no_client_credentials' => '',
-        'all_scope_no_mix' => '',
-        'client_missing_owner' => '',
-        'client_unauthorized' => '',
-        'delegate_bot_only' => '',
-        'delegate_client_credentials_only' => '',
-        'delegate_invalid_combination' => '',
-        'delegate_required' => '',
-        'empty' => '',
-        'bot_only' => '',
+        'all_scope_no_client_credentials' => '* nie jest dozwolone przy uwierzytelnianiu poprzez dane klienta',
+        'all_scope_no_mix' => '* nie jest kompatybilne z innymi uprawnieniami',
+        'client_missing_owner' => 'Klient nie posiada właściciela.',
+        'client_unauthorized' => 'Klient nie jest uwierzytelniony.',
+        'delegate_bot_only' => 'Uprawnienie „delegate” jest dopuszczalne wyłącznie dla botów czatu.',
+        'client_credentials_only' => '',
+        'delegate_invalid_combination' => 'Użycie „delegate” nie jest dozwolone przy tej kombinacji uprawnień.',
+        'delegate_required' => 'Wymagane jest uprawnienie „delegate”.',
+        'empty' => 'Tokeny bez zdefiniowanych uprawnień są nieprawidłowe.',
+        'bot_only' => 'To uprawnienie jest dostępne wyłącznie dla botów czatu i Twoich własnych klientów.',
     ],
 ];

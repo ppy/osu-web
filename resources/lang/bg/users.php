@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Скорошни публикации',
                 'show_more' => 'виж повече публикации',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Скорошна активност',
             ],

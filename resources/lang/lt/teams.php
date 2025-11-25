@@ -6,164 +6,164 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Pridėti vartotoją į komandą.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Atšauktas prisijungimo prašymas.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Atmestas prisijungimo prašymas.',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Prašoma leisti prisijungti prie komandos.',
         ],
     ],
 
     'card' => [
-        'members' => '',
+        'members' => ':count_delimited narys|:count_delimited narių',
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'Sukurti Komanda',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => 'Jūsų komandos pavadinimas. Kol kas pavadinimas negalės buti pakeistas.',
+            'short_name_help' => 'Daugiausiai 4 simboliai.',
+            'title' => "Sukurkime naują komandą",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "Žaiskite su draugais, dabartiniais ar naujais. Jus šiuo metu ne esate jokioje komandoje. Prisijunkite prie egzistuojančios komandos aplankydami jų komandos puslapį arba sukurkite savo komanda šiame puslapyje.",
+            'title' => 'Komanda!',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Komanda pašalinta.',
     ],
 
     'edit' => [
-        'ok' => '',
-        'title' => '',
+        'ok' => 'Nustatymai sėkmingai išsaugoti.',
+        'title' => 'Komandos Nustatymai',
 
         'description' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Aprašymas',
+            'title' => 'Komandos Aprašymas',
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Komandos Vėliava',
+            'title' => 'Nustatyti Komandos Vėliavą',
         ],
 
         'header' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Antraštės Paveikslėlis',
+            'title' => 'Nustatyti Antraštės Paveikslėlį',
         ],
 
         'settings' => [
-            'application_help' => '',
-            'default_ruleset_help' => '',
-            'flag_help' => '',
-            'header_help' => '',
-            'title' => '',
+            'application_help' => 'Ar leisti žmonėms pateikti prisijungimo prie komandos prašymą',
+            'default_ruleset_help' => 'Šis rėžimas pasirenkamas automatiškai kai aplankomas komandos puslapis',
+            'flag_help' => 'Didžiausias galimas dydis :width×:height',
+            'header_help' => 'Didžiausias galimas dydis :width×:height',
+            'title' => 'Komandos Nustatymai',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => 'Uždara',
+                'state_1' => 'Atvira',
             ],
         ],
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'nustatymai',
+        'leaderboard' => 'rezultatų lenta',
+        'show' => 'info',
 
         'members' => [
-            'index' => '',
+            'index' => 'tvarkyti narius',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
+        'global_rank' => 'Pasaulinis Reitingas',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '',
+            'success' => 'Komandos narys pašalintas',
         ],
 
         'index' => [
-            'title' => '',
+            'title' => 'Tvarkyti Narius',
 
             'applications' => [
-                'accept_confirm' => '',
-                'created_at' => '',
-                'empty' => '',
-                'empty_slots' => '',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
-                'title' => '',
+                'accept_confirm' => 'Pridėti vartotoją :user į komandą?',
+                'created_at' => 'Prašyta',
+                'empty' => 'Nėra šiuo metu prisijungimo prašymų.',
+                'empty_slots' => 'Laisvos vietos',
+                'empty_slots_overflow' => ':count_delimited vartotojų perteklius|:count_delimited vartotojų perteklius',
+                'reject_confirm' => 'Atmesti vartotojo :user prisijungimo prašymą?',
+                'title' => 'Prisijungimo Prašymai',
             ],
 
             'table' => [
-                'joined_at' => '',
-                'remove' => '',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
-                'status' => '',
-                'title' => '',
+                'joined_at' => 'Prisijungė',
+                'remove' => 'Pašalinti',
+                'remove_confirm' => 'Pašalinti vartotoją :user iš komandos?',
+                'set_leader' => 'Perleisti komandos vadovavimą',
+                'set_leader_confirm' => 'Perleisti komandos vadovavimą vartotojui :user?',
+                'status' => 'Būsena',
+                'title' => 'Dabartiniai Nariai',
             ],
 
             'status' => [
-                'status_0' => '',
-                'status_1' => '',
+                'status_0' => 'Neaktyvus',
+                'status_1' => 'Aktyvus',
             ],
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'Vartotojoas :user tapo komandos vadovų.',
         ],
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Paliko komandą ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'chat' => '',
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'chat' => 'Komandos Pokalbiai',
+            'destroy' => 'Išardyti Komandą',
+            'join' => 'Prisijungimo Prašymas',
+            'join_cancel' => 'Atšaukti Prisijungimą',
+            'part' => 'Palikti Komandą',
         ],
 
         'info' => [
-            'created' => '',
+            'created' => 'Sukurta',
         ],
 
         'members' => [
-            'members' => '',
-            'owner' => '',
+            'members' => 'Komandos Nariai',
+            'owner' => 'Komandos Vadovas',
         ],
 
         'sections' => [
-            'about' => '',
-            'info' => '',
-            'members' => '',
+            'about' => 'Apie Mus!',
+            'info' => 'Info',
+            'members' => 'Nariai',
         ],
 
         'statistics' => [
-            'empty_slots' => '',
-            'leader' => '',
-            'rank' => '',
+            'empty_slots' => ':count_delimited laisva vieta|:count_delimited laisvų vietų',
+            'leader' => 'Komandos Vadovas',
+            'rank' => 'Reitingas',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'Komanda sukurta.',
     ],
 ];

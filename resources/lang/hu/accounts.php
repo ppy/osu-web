@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => 'privát üzenetek tiltása olyan személyektől, akik nincsenek a baráti listádon',
         'hide_online' => 'online állapot elrejtése',
+        'hide_online_info' => '',
         'title' => 'Adatvédelem',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => 'mentés',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

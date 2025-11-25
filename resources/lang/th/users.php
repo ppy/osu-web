@@ -400,6 +400,9 @@ return [
                 'title_longer' => 'โพสต์ล่าสุด',
                 'show_more' => 'ดูโพสต์อื่นๆ เพิ่มเติม',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'ล่า​สุด',
             ],

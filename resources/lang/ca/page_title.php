@@ -53,6 +53,7 @@ return [
             'discussion' => 'discusió de mapes',
             'index' => 'llista de mapes',
             'show' => 'info del mapes',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => 'registre de canvis',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'concursos',
             'judge' => 'avaluació del concurs',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'grups',
@@ -120,9 +124,12 @@ return [
         'user_cover_presets_controller' => [
             '_' => 'preseleccions de la portada d\'usuari',
         ],
+        'user_totp_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
             '_' => 'informació del jugador',
-            'create' => 'crear un compte',
+            'create' => 'crea un compte',
             'disabled' => 'avís',
         ],
         'wiki_controller' => [

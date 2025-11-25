@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Unduh osu!',
-        'action_lazer' => 'Unduh osu!(lazer)',
-        'action_lazer_description' => 'versi utama osu! yang akan datang',
         'action_lazer_info' => 'kunjungi halaman ini untuk informasi lebih lanjut',
-        'action_lazer_title' => 'coba osu!(lazer)',
-        'action_title' => 'unduh osu!',
+        'download' => '',
         'for_os' => 'untuk :os',
         'macos-fallback' => 'osu! versi macOS',
         'mirror' => 'tautan alternatif',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version atau lebih tinggi',
         'other_os' => 'platform lainnya',
         'quick_start_guide' => 'panduan singkat',
-        'tagline' => "mari persiapkan<br>dirimu!",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => 'panduan video',
 
         'help' => [
@@ -146,7 +144,7 @@ return [
             'new' => 'Beatmap Ranked Terbaru',
             'popular' => 'Beatmap Terpopuler Saat Ini',
             'by_user' => 'oleh :user',
-            'resets' => 'berakhir dalam :ends',
+            'resets' => 'berakhir :ends',
         ],
         'buttons' => [
             'download' => 'Unduh osu!',

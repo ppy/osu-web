@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => 'blochează mesajele private de la oameni care nu sunt pe lista ta de prieteni',
         'hide_online' => 'ascunde-ți prezența online',
+        'hide_online_info' => '',
         'title' => 'Confidențialitate',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => 'actualizează',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

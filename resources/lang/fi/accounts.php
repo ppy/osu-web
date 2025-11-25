@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => 'estä yksityisviestit henkilöiltä jotka eivät ole kaverilistallasi',
         'hide_online' => 'piilota paikallaolotilasi',
+        'hide_online_info' => '',
         'title' => 'Yksityisyys',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => 'päivitä',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

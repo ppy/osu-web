@@ -76,6 +76,7 @@ return [
         'minutes' => ':count_delimited minuutti|:count_delimited minuuttia',
         'months' => ':count kuukausi|:count kuukautta',
         'notifications' => ':count_delimited ilmoitus|:count_delimited ilmoitusta',
+        'player' => '',
         'plus_others' => '+ :count_delimited muu!|+ :count_delimited muita!',
         'post' => ':count_delimited viesti|:count_delimited viestiä',
         'second_short_unit' => 's|s',

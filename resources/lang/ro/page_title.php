@@ -53,6 +53,7 @@ return [
             'discussion' => 'discuție beatmap',
             'index' => 'lista beatmap-uri',
             'show' => 'info beatmap',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => 'istoric schimbări',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'concursuri',
             'judge' => 'evaluare concurs',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'grupuri',
@@ -119,6 +123,9 @@ return [
         ],
         'user_cover_presets_controller' => [
             '_' => 'preset-uri coperți utilizator',
+        ],
+        'user_totp_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'info jucător',

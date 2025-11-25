@@ -38,6 +38,10 @@ return [
         'insufficient_history' => 'Este utilizador tem menos de 30 dias de histórico de classificações recentes.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'Em destaque',
         'country' => 'País',
@@ -45,14 +49,17 @@ return [
         'global' => 'global',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multijogador',
+        'season_room' => '',
         'seasons' => 'temporadas',
         'team' => 'equipa',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Ainda não há salas nesta temporada.',
         'ongoing' => 'Esta temporada ainda está em curso (serão acrescentadas mais listas de reprodução).',
         'room_count' => 'Soma das listas de reprodução',
+        'summary' => '',
         'url' => 'Mostrar mais informações sobre a época.',
         'validation' => [
             'not_enough_factors' => 'não existem elementos de pontuação suficientes para um cálculo correto',

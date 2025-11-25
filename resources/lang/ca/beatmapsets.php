@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Desglossament de valoracions',
             'nominations' => 'Nominacions',
             'playcount' => 'Vegades jugat',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Ratings-distribution',
             'nominations' => 'Nomineringer',
             'playcount' => 'Playcount',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

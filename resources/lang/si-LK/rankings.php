@@ -37,6 +37,10 @@ return [
         'insufficient_history' => '',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => '',
         'country' => '',
@@ -44,14 +48,17 @@ return [
         'global' => '',
         'kudosu' => '',
         'multiplayer' => '',
+        'season_room' => '',
         'seasons' => '',
         'team' => '',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => '',
         'ongoing' => '',
         'room_count' => '',
+        'summary' => '',
         'url' => '',
         'validation' => [
             'not_enough_factors' => '',

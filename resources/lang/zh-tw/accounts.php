@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => '封鎖非好友的私人訊息',
         'hide_online' => '隱藏線上狀態',
+        'hide_online_info' => '',
         'title' => '隱私權政策',
     ],
 
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => '更新',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

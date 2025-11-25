@@ -11,8 +11,8 @@ return [
         'avatar' => [
             'title' => 'Avatar',
             'reset' => 'tetap semula',
-            'rules' => 'Sila pastikan avatar anda akur pada :link.<br/>Hal ini bermakna avatar anda mesti <strong>sesuai bagi penglihatan umum,</strong> iaitu senonoh serta tidak menyinggung.',
-            'rules_link' => 'Pertimbangan kandungan visual',
+            'rules' => 'Sila pastikan avatar anda akur pada :link.<br/>Hal ini bermakna avatar anda mesti <strong>sesuai untuk penglihatan umum,</strong> iaitu senonoh serta tidak menyinggung.',
+            'rules_link' => 'Pertimbangan kandungan tampak',
         ],
 
         'email' => [
@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => 'sekat pesanan peribadi daripada orang yang tiada pada senarai kawan',
         'hide_online' => 'sorok kehadiran dalam talian',
+        'hide_online_info' => '',
         'title' => 'Kebersendirian',
     ],
 
@@ -134,7 +135,7 @@ return [
         'current_session' => 'semasa',
         'end_session' => 'Akhiri Sesi',
         'end_session_confirmation' => 'Tindakan ini akan langsung menamatkan sesi anda pada peranti itu. Adakah anda pasti?',
-        'last_active' => 'Terakhir aktif:',
+        'last_active' => 'Kegiatan terkini:',
         'title' => 'Keselamatan',
         'web_sessions' => 'sesi sesawang',
     ],
@@ -145,6 +146,21 @@ return [
 
     'update_password' => [
         'update' => 'kemas kini',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

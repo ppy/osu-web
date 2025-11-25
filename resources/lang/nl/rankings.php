@@ -37,6 +37,10 @@ return [
         'insufficient_history' => '',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'in de schijnwerpers',
         'country' => 'landelijk',
@@ -44,14 +48,17 @@ return [
         'global' => '',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
+        'season_room' => '',
         'seasons' => 'seizoenen',
         'team' => '',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Er zijn nog geen ruimtes in dit seizoen.',
         'ongoing' => 'Dit seizoen is nog steeds gaande (er zullen meer afspeellijsten toegevoegd worden).',
         'room_count' => 'Aantal afspeellijsten',
+        'summary' => '',
         'url' => 'Geef meer informatie weer over dat seizoen.',
         'validation' => [
             'not_enough_factors' => '',

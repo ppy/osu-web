@@ -8,7 +8,7 @@ return [
         'disabled' => 'Peta rentak ini kini tidak tersedia untuk dimuat turun.',
         'parts-removed' => 'Sebahagian peta rentak ini telah dipadam atas permintaan pencipta atau pemegang hak pihak ketiga.',
         'more-info' => 'Semak sini untuk maklumat lanjut.',
-        'rule_violation' => 'Beberapa aset dalam peta ini telah dipadam setelah dipertimbangkan tidak sesuai digunakan dalam osu!.',
+        'rule_violation' => 'Beberapa aset dalam peta ini telah dipadam setelah dinilai tidak sesuai digunakan dalam osu!.',
     ],
 
     'cover' => [
@@ -54,7 +54,7 @@ return [
             'confirmation' => 'Adakah anda pasti ingin mencalonkan peta rentak ini?',
             'different_nominator_warning' => 'Pelayakan peta rentak ini dengan pencalon berbeza akan menetap semula giliran kelayakkannya.',
             'header' => 'Calonkan Peta Rentak',
-            'hybrid_warning' => 'catatan: anda hanya boleh mencalon sekali jadi sila pastikan anda mencalon bagi semua mod mainan yang dikehendaki',
+            'hybrid_warning' => 'catatan: anda hanya boleh mencalon sekali jadi sila pastikan anda mencalon untuk semua mod mainan yang dikehendaki',
             'current_main_ruleset' => 'Cara main utama semasa: :ruleset',
             'which_modes' => 'Mod yang mana dicalonkan?',
         ],
@@ -69,7 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Lihat gambar kulit ukuran penuh',
-            'page' => '',
+            'page' => 'Lihat halaman pentadbir',
         ],
 
         'deleted_banner' => [
@@ -85,7 +85,7 @@ return [
             'mapped_by' => 'petaan :mapper',
             'mapped_by_guest' => 'kesukaran tamu oleh :mapper',
             'unfavourite' => 'nyahsuka peta rentak ini',
-            'updated_timeago' => 'terakhir dikemas kini :timeago',
+            'updated_timeago' => 'pengemaskinian terkini :timeago',
 
             'download' => [
                 '_' => 'Muat Turun',
@@ -106,7 +106,7 @@ return [
             'qualified' => 'dilayakkan :timeago',
             'ranked' => 'berpangkat :timeago',
             'submitted' => 'diserahkan :timeago',
-            'updated' => 'terakhir dikemas kini :timeago',
+            'updated' => 'pengemaskinian terkini :timeago',
         ],
 
         'favourites' => [
@@ -178,7 +178,7 @@ return [
 
             'headers' => [
                 'accuracy' => 'Kejituan',
-                'combo' => 'Kombo Maks',
+                'combo' => 'Gabungan Maks',
                 'miss' => 'Terlepas',
                 'mods' => 'P\'suai',
                 'pin' => 'Semat',
@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Sebaran Nilai',
             'nominations' => 'Pencalonan',
             'playcount' => 'Jumlah Mainan',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

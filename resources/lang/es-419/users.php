@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Publicaciones recientes',
                 'show_more' => 'ver más publicaciones',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Reciente',
             ],

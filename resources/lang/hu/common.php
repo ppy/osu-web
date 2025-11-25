@@ -76,6 +76,7 @@ return [
         'minutes' => ':count_delimited perc |:count_delimited percek',
         'months' => ':count_delimited hónap|:count_delimited hónap',
         'notifications' => ':count_delimited értesítés|:count_delimited értesítések',
+        'player' => '',
         'plus_others' => '+ :count_delimited más!|+ :count_delimited mások!',
         'post' => ':count_delimited hozzászólás|:count_delimited hozzászólás',
         'second_short_unit' => 'mp|mp',

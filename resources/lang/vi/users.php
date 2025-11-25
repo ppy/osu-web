@@ -126,7 +126,7 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
+            'active' => 'Đang hoạt động',
             'ended' => 'Đã kết thúc',
         ],
     ],
@@ -398,6 +398,9 @@ return [
                 'title' => 'Bài viết',
                 'title_longer' => 'Bài viết gần đây',
                 'show_more' => 'xem bài viết khác',
+            ],
+            'quickplay' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Gần Đây',

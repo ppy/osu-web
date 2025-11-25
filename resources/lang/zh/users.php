@@ -399,6 +399,9 @@ return [
                 'title_longer' => '最近回复',
                 'show_more' => '查看更多回复',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => '最近活动',
             ],

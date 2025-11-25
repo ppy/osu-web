@@ -26,7 +26,7 @@ return [
             'deleted' => 'Uključi izbrisane rasprave ',
             'mode' => 'Mod beatmape',
             'only_unresolved' => 'Pokaži samo neriješene rasprave',
-            'show_review_embeds' => '',
+            'show_review_embeds' => 'Pokaži objave recenzije',
             'types' => 'Vrsta poruke',
             'username' => 'Korisničko ime',
 
@@ -67,10 +67,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
-        'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'checking' => 'Provjeravanje za novosti...',
+        'has_updates' => 'Rasprava ima novosti, klikni da osvježiš stranicu.',
+        'no_updates' => 'Nema ažuriranja.',
+        'updating' => 'Ažuriranje...',
     ],
 
     'reply' => [

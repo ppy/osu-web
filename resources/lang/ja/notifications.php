@@ -128,9 +128,9 @@ return [
                 '_' => '新しいチームメッセージ',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':usernameが":title"で発言',
+                    'channel_team_compact' => ':usernameが":title"で発言',
+                    'channel_team_group' => ':usernameが":title"で発言',
                 ],
             ],
         ],
@@ -178,12 +178,12 @@ return [
                 'team_application_accept' => "あなたは既にチーム :title に参加しています",
                 'team_application_accept_compact' => "あなたは既にチーム :title に参加しています",
 
-                'team_application_group' => '',
+                'team_application_group' => 'チーム参加リクエストの更新',
 
                 'team_application_reject' => 'チーム :title への参加リクエストが却下されました',
                 'team_application_reject_compact' => 'チーム :title への参加リクエストが却下されました',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_store' => ':title があなたのチームへの参加をリクエストしました',
+                'team_application_store_compact' => ':title があなたのチームへの参加をリクエストしました',
             ],
         ],
 
@@ -245,13 +245,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => '":name" で新しいお知らせがあります',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => ':usernameから新しいメッセージが届きました',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'チーム ":name" に新しいメッセージがあります',
             ],
         ],
 
@@ -277,7 +277,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "あなたは既にチーム :title に参加しています",
                 'team_application_reject' => 'チーム :title への参加リクエストが却下されました',
-                'team_application_store' => '',
+                'team_application_store' => ':title があなたのチームへの参加をリクエストしました',
             ],
         ],
 

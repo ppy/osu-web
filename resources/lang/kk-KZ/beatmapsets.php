@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Рейтингтің таралуы',
             'nominations' => 'Номинациялар',
             'playcount' => 'Ойын саны',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

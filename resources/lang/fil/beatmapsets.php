@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Pagkakalatag ng Rating',
             'nominations' => 'Mga Nominasyon',
             'playcount' => 'Bilang ng Paglaro',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Legutóbbi bejegyzések',
                 'show_more' => 'láss további bejegyzéseket',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Legutóbbi',
             ],

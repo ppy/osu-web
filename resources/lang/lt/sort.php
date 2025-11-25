@@ -38,9 +38,9 @@ return [
     ],
 
     'teams' => [
-        'relevance' => '',
-        'name' => '',
-        'short-name' => '',
+        'relevance' => 'Aktualumas',
+        'name' => 'Pavadinimas',
+        'short-name' => 'Trumpasis Pavadinimas',
     ],
 
     'users' => [

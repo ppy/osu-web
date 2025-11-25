@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => '',
         'incorrect_key' => '',
         'retries_exceeded' => '',
         'reissued' => '',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => '',
     ],
 ];

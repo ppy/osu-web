@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Muat turun osu!',
-        'action_lazer' => 'Muat turun osu!(lazer)',
-        'action_lazer_description' => 'pengemaskinian besar seterusnya osu!',
         'action_lazer_info' => 'semak halaman ini untuk maklumat lanjut',
-        'action_lazer_title' => 'cuba osu!(lazer)',
-        'action_title' => 'muat turun osu!',
+        'download' => '',
         'for_os' => 'untuk :os',
         'macos-fallback' => 'pengguna macOS',
         'mirror' => 'cermin',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version atau kemudian',
         'other_os' => 'pelantar lain',
         'quick_start_guide' => 'panduan permulaan cepat',
-        'tagline' => "mari<br>mulakan!",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => 'panduan video',
 
         'help' => [
@@ -155,7 +153,7 @@ return [
         ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => 'Buka konsol pentadbir',
             ],
         ],
     ],

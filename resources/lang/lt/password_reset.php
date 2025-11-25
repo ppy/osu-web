@@ -37,7 +37,7 @@ return [
         'username' => 'Įrašykite el. pašto adresą arba naudotojo vardą',
 
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Jūsų paskyra nenaudojama jau ilgą laiką. Kad užtikrinti paskyros saugumą atnaujinti slaptažodį.",
         ],
         'support' => [
             '_' => 'Reikia tolimesnės pagalbos? Susisiekite su mumis per :button.',

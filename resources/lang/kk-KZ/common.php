@@ -76,6 +76,7 @@ return [
         'minutes' => ':count_delimited минут|:count_delimited минут',
         'months' => ':count_delimited ай',
         'notifications' => ':count_delimited хабарландыру',
+        'player' => '',
         'plus_others' => '+ тағы :count_delimited адам!',
         'post' => ':count_delimited жазба',
         'second_short_unit' => 'сек|сек',

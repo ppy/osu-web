@@ -30,6 +30,7 @@ return [
 
 ',
             'discussions' => 'rasprava',
+            'versions' => '',
         ],
 
         'changelog' => [
@@ -54,6 +55,7 @@ return [
         'users' => [
             'modding' => 'modificiranje',
             'playlists' => 'popisi za reprodukciju',
+            'quickplay' => '',
             'realtime' => 'multiplayer',
             'show' => 'informacije
 

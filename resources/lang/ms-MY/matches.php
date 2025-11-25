@@ -36,7 +36,7 @@ return [
         'score' => [
             'stats' => [
                 'accuracy' => 'Kejituan',
-                'combo' => 'Kombo',
+                'combo' => 'Gabungan',
                 'score' => 'Markah',
             ],
         ],
@@ -59,7 +59,7 @@ return [
         'scoring-type' => [
             'score' => 'Markah Tertinggi',
             'accuracy' => 'Kejituan Tertinggi',
-            'combo' => 'Kombo Tertinggi',
+            'combo' => 'Gabungan Tertinggi',
             'scorev2' => 'Markah V2',
         ],
     ],

@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Graf hodnocení',
             'nominations' => 'Nominace',
             'playcount' => 'Počet zahrání',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

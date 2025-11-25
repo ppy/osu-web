@@ -10,7 +10,7 @@ return [
     'image' => 'Obraz',
     'imagemap' => 'Mapa obrazu',
     'italic' => 'Kursywa',
-    'link' => 'Łącze',
+    'link' => 'Link',
     'list' => 'Lista punktowana',
     'list_numbered' => 'Lista numerowana',
     'size' => [

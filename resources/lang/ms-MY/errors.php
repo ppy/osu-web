@@ -5,9 +5,9 @@
 
 return [
     'load_failed' => 'Pemuatan data gagal.',
-    'missing_route' => 'URL tidak sah atau kaedah permintaan tidak betul.',
+    'missing_route' => 'URL tidak sah atau kaedah permintaan salah.',
     'no_restricted_access' => 'Anda tidak boleh menjalankan tindakan ini ketika akaun anda dalam keadaan disekat.',
-    'param_too_large' => '',
+    'param_too_large' => 'Parameter :name tidak boleh melebihi :count_delimited butir',
     'supporter_only' => 'Anda mesti menjadi osu!supporter untuk menggunakan ciri ini.',
     'unknown' => 'Ralat tidak diketahui berlaku.',
 

@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Tải xuống osu!',
-        'action_lazer' => 'Tải xuông osu!(lazer)',
-        'action_lazer_description' => 'bản cập nhật lớn tiếp theo của osu!',
         'action_lazer_info' => 'nhấp vào đây để biết thêm thông tin',
-        'action_lazer_title' => 'thử osu!(lazer)',
-        'action_title' => 'tải xuống osu!',
+        'download' => '',
         'for_os' => 'dành cho :os',
         'macos-fallback' => 'người dùng macOS',
         'mirror' => 'liên kết phụ',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version trở lên',
         'other_os' => 'nền tảng khác',
         'quick_start_guide' => 'hướng dẫn nhanh',
-        'tagline' => "hãy<br>bắt đầu!",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => 'hướng dẫn bằng video',
 
         'help' => [

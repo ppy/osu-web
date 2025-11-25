@@ -138,7 +138,7 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => '',
+            'contribution_with_duration' => 'Sürekli desteğin için teşekkürler! Şimdiye kadar toplam :dollars bağışladın, ve bu sana :duration boyunca "Supporter" etiketini kazandırdı.',
             'not_yet' => "Henüz bir osu!supporter etiketiniz yok :(",
             'valid_until' => 'Şu anki osu!supporter etiketiniz :date tarihine kadar geçerli!',
             'was_valid_until' => 'osu!supporter etiketiniz :date tarihine kadar geçerliydi.',

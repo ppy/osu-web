@@ -207,7 +207,7 @@ return [
                 '_' => 'Новая медаль',
                 'user_achievement_unlock' => 'Получена медаль ":title"!',
                 'user_achievement_unlock_compact' => 'Получена медаль ":title"!',
-                'user_achievement_unlock_group' => 'Медали получены!',
+                'user_achievement_unlock_group' => 'Получены новые медали!',
             ],
         ],
     ],

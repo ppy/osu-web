@@ -37,6 +37,10 @@ return [
         'insufficient_history' => 'Pengguna ini memiliki riwayat peringkat terkini yang kurang dari 30 hari.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'spotlight (versi lawas)',
         'country' => 'negara',
@@ -44,14 +48,17 @@ return [
         'global' => 'global',
         'kudosu' => 'kudosu',
         'multiplayer' => 'multiplayer',
+        'season_room' => '',
         'seasons' => 'musim',
         'team' => 'tim',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Musim ini belum memiliki ruangan.',
         'ongoing' => 'Musim ini sedang berlangsung (ke depannya, akan terdapat lebih banyak playlist untuk dimainkan)',
         'room_count' => 'Jumlah playlist',
+        'summary' => '',
         'url' => 'Menampilkan informasi lebih lanjut seputar musim yang dipilih.',
         'validation' => [
             'not_enough_factors' => 'faktor skor yang ada tidak cukup untuk perhitungan yang layak',

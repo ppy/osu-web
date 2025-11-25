@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Prenesi osu!',
-        'action_lazer' => 'Prenesi osu!(lazer)',
-        'action_lazer_description' => 'naslednja glavna posodobitev osu!',
         'action_lazer_info' => 'preveri to stran za več informacij',
-        'action_lazer_title' => 'poskusi osu!(lazer)',
-        'action_title' => 'prenesi osu!',
+        'download' => '',
         'for_os' => 'za :os',
         'macos-fallback' => 'macOS uporabniki',
         'mirror' => 'mirror',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version ali novejši',
         'other_os' => 'ostale platforme',
         'quick_start_guide' => 'navodila za hiter začetek',
-        'tagline' => "pa<br>začnimo!",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => 'video vodič',
 
         'help' => [

@@ -27,12 +27,12 @@ return [
         'title' => 'paieška',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'Rodyti daugiau ryškiojo atlikėjo kūrinių paieškos rezultatų',
         ],
         'beatmapset' => [
             'login_required' => 'Prisijunkite, kad ieškoti bitmapų',
             'more' => ':count dar beatmap\'ų paieškos rezultatų',
-            'more_simple' => ' Žiūrėti daugiau bitmapų paieškos rezultatų',
+            'more_simple' => ' Žiūrėti daugiau beatmap\'ų paieškos rezultatų',
             'title' => 'Beatmap\'ai',
         ],
 
@@ -54,16 +54,16 @@ return [
 
         'mode' => [
             'all' => 'visi',
-            'artist_track' => '',
+            'artist_track' => 'ryškiojo atlikėjo kūrinys',
             'beatmapset' => 'beatmap\'as',
             'forum_post' => 'forumas',
-            'team' => '',
+            'team' => 'komanda',
             'user' => 'žaidėjas',
             'wiki_page' => 'wiki',
         ],
 
         'team' => [
-            'more_simple' => '',
+            'more_simple' => ' Žiūrėti daugiau komandų paieškos rezultatų',
         ],
 
         'user' => [
@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Atsisiųsti osu!',
-        'action_lazer' => 'Atsisiųsti osu!(lazer)',
-        'action_lazer_description' => 'kitas didesnis osu! atnaujinimas.',
         'action_lazer_info' => 'peržiūrėk šį puslapį dėl papildomos informacijos',
-        'action_lazer_title' => 'išbandyk osu!(lazer)',
-        'action_title' => 'atsisiųsti osu!',
+        'download' => '',
         'for_os' => 'skirtas :os',
         'macos-fallback' => 'macOS vartotojams',
         'mirror' => 'dubliavimas',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version arba vėlesnė',
         'other_os' => 'kitos platformos',
         'quick_start_guide' => 'pagalba pradedančiam',
-        'tagline' => "gaukime <br> ko jums reikia pradžiai!",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => 'vaizdo gidas',
 
         'help' => [
@@ -142,11 +140,11 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Kasdienio Iššūkio Beatmap\'as',
             'new' => 'Nauji Reitinguoti Beatmap\'ai',
             'popular' => 'Populiarūs Beatmap\'ai',
             'by_user' => 'sukūrė :user',
-            'resets' => '',
+            'resets' => 'pasikeis :ends',
         ],
         'buttons' => [
             'download' => 'Atsisiųsti osu!',
@@ -155,7 +153,7 @@ return [
         ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => 'Atidaryti administracinę konsole',
             ],
         ],
     ],

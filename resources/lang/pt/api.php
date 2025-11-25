@@ -24,6 +24,7 @@ return [
 
         'forum' => [
             'write' => 'Criar e editar tópicos e publicações do fórum em teu nome.',
+            'write_manage' => '',
         ],
 
         'friends' => [

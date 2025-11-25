@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Verificatiecode is verlopen, nieuwe verificatie e-mail verstuurd.',
         'incorrect_key' => 'Onjuiste verificatiecode.',
         'retries_exceeded' => 'Onjuiste verificatiecode. Limiet opnieuw proberen overschreden, nieuwe verificatie e-mail verstuurd.',
         'reissued' => 'Verificatiecode is hermaakt, nieuwe verificatie e-mail verstuurd.',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => 'Onbekend probleem trad op, nieuwe verificatie e-mail verstuurd.',
     ],
 ];

@@ -99,7 +99,7 @@ return [
     'user_verification' => [
         'code' => 'Twój kod weryfikacyjny to:',
         'code_hint' => 'Możesz wprowadzić kod ze spacjami lub bez.',
-        'link' => 'Ewentualnie możesz kliknąć odnośnik poniżej, aby dokończyć proces weryfikacji:',
+        'link' => 'Ewentualnie możesz kliknąć link poniżej, aby dokończyć proces weryfikacji:',
         'report' => 'Jeżeli to nie Ty, odpowiedz na tę wiadomość NATYCHMIAST, gdyż Twoje konto może być zagrożone.',
         'subject' => 'Weryfikacja konta osu!',
 

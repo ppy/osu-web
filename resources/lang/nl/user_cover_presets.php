@@ -18,16 +18,16 @@ return [
         'create_form' => [
             'files' => '',
             'submit' => '',
-            'title' => '',
+            'title' => 'Nieuwe Toevoegen',
         ],
 
         'item' => [
             'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_enable' => 'Klik om in te schakelen',
+            'enabled' => 'Ingeschakeld',
+            'disabled' => 'Uitgeschakeld',
+            'image_store' => 'Afbeelding instellen',
+            'image_update' => 'Vervang Afbeelding',
         ],
     ],
     'store' => [

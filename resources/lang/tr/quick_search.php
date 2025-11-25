@@ -15,8 +15,19 @@ return [
     ],
 
     'result' => [
-        'empty_for' => ':modes için bir sonuç yok',
         'more' => ':mode için Daha Fazla Arama Sonuçları',
         'title' => ':mode için Arama Sonuçları',
+
+        'no_results' => [
+            '_' => '',
+
+            'artist_track' => '',
+            'beatmapset' => '',
+            'forum_post' => '',
+            'other' => '',
+            'team' => '',
+            'user' => '',
+            'wiki_page' => '',
+        ],
     ],
 ];

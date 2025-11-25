@@ -38,6 +38,10 @@ Belirtilen tarihte günlük meydan okuma yok!',
         'insufficient_history' => 'Bu kullanıcının son sıralama geçmişi 30 günden azdır.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'Öne Çıkanlar',
         'country' => 'Ülke',
@@ -45,14 +49,17 @@ Belirtilen tarihte günlük meydan okuma yok!',
         'global' => 'küresel',
         'kudosu' => 'kudosu',
         'multiplayer' => 'çok oyunculu',
+        'season_room' => '',
         'seasons' => 'sezonlar',
         'team' => 'takım',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Bu sezonda henüz oda bulunmamaktadır.',
         'ongoing' => 'Bu sezon hala devam etmektedir (daha fazla çalma listesi eklenecektir).',
         'room_count' => 'Oynatma listesi sayısı',
+        'summary' => '',
         'url' => 'Bu sezon hakkında daha fazla bilgi görüntüleyin.',
         'validation' => [
             'not_enough_factors' => 'düzgün hesaplama için yeterince skor faktörü yok',

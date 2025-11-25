@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Verifieringskoden har löpt ut, ett nytt bekräftelsemejl har skickats.',
         'incorrect_key' => 'Felaktig bekräftelsekod.',
         'retries_exceeded' => 'Felaktig bekräftelsekod. Försöksgränsen har uppnåtts, ett nytt bekräftelsemejl har skickats.',
         'reissued' => 'Verifieringskod återutfärdad, ett nytt bekräftelsemail har skickats.',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => 'Ett okänt problem uppstod, ett nytt bekräftelsemejl har skickats.',
     ],
 ];

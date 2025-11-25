@@ -279,7 +279,7 @@ return [
     ],
     'general' => [
         'converts' => 'Įtraukti konvertuotus beatmap\'us',
-        'featured_artists' => 'Rekomenduojami atlikėjai',
+        'featured_artists' => 'Ryškieji Atlikėjai',
         'follows' => 'Sekami kūrėjai',
         'recommended' => 'Rekomenduojamas sunkumas',
         'spotlights' => 'Pasižymėję beatmap\'ai',

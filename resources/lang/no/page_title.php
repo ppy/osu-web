@@ -53,6 +53,7 @@ return [
             'discussion' => 'beatmapdiskusjon',
             'index' => 'beatmapliste',
             'show' => 'beatmap info',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => 'endringslogg',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'konkurranser',
             'judge' => 'konkurransedømming',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'grupper',
@@ -118,6 +122,9 @@ return [
             '_' => 'turneringer',
         ],
         'user_cover_presets_controller' => [
+            '_' => '',
+        ],
+        'user_totp_controller' => [
             '_' => '',
         ],
         'users_controller' => [

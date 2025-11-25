@@ -127,6 +127,7 @@ return [
     'privacy' => [
         'friends_only' => 'Αποκλεισμός των ιδιωτικών μηνυμάτων από άτομα που δεν βρίσκονται στη λίστα φίλων σας',
         'hide_online' => 'απόκρυψη παρουσίας',
+        'hide_online_info' => '',
         'title' => 'Απόρρητο',
     ],
 
@@ -146,6 +147,21 @@ return [
     'update_password' => [
         'update' => 'ενημέρωση
 ',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

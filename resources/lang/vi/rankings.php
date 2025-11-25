@@ -37,6 +37,10 @@ return [
         'insufficient_history' => 'Người dùng này có lịch sử xếp hạng ít hơn 30 ngày.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'tiêu điểm',
         'country' => 'quốc gia',
@@ -44,14 +48,17 @@ return [
         'global' => 'toàn cầu',
         'kudosu' => 'kudosu',
         'multiplayer' => 'nhiều người chơi',
+        'season_room' => '',
         'seasons' => 'mùa',
         'team' => 'đội',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Hiện tại chưa có phòng nào ở mùa này.',
         'ongoing' => 'Mùa đang diễn ra (sẽ có nhiều playlist được thêm vào).',
         'room_count' => 'Số danh sách phát',
+        'summary' => '',
         'url' => 'Hiện thêm thông tin về mùa đó.',
         'validation' => [
             'not_enough_factors' => 'không có đủ các hệ số điểm để tính toán một cách bình thường',

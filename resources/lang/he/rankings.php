@@ -37,6 +37,10 @@ return [
         'insufficient_history' => '',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+    ],
+
     'type' => [
         'charts' => 'זרקורים',
         'country' => 'מדינה',
@@ -44,14 +48,17 @@ return [
         'global' => 'גלובלי',
         'kudosu' => '',
         'multiplayer' => 'רב משתתפים',
+        'season_room' => '',
         'seasons' => '',
         'team' => '',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => '',
         'ongoing' => '',
         'room_count' => '',
+        'summary' => '',
         'url' => '',
         'validation' => [
             'not_enough_factors' => '',

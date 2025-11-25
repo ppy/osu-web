@@ -24,6 +24,7 @@ return [
 
         'forum' => [
             'write' => 'Tạo và chỉnh sửa các chủ đề và bài đăng trên diễn đàn thay mặt bạn.',
+            'write_manage' => '',
         ],
 
         'friends' => [
