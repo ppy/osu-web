@@ -75,7 +75,11 @@ export default function RankingScores(props: Props) {
                   className='ranking-page-table-main__link u-hover'
                   tooltipPosition='right center'
                   user={score.user}
-                />
+                >
+                  <span className='u-ellipsis-overflow' data-ellipsis-tooltip='0'>
+                    {score.user.username}
+                  </span>
+                </UserLink>
               </div>
             </div>
             <div className='ranking-page-grid-item__col ranking-page-grid-item__col--beatmap'>
