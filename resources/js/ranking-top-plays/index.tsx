@@ -57,24 +57,26 @@ export default function RankingScores(props: Props) {
             <div className='ranking-page-grid-item__col ranking-page-grid-item__col--number ranking-page-grid-item__col--number-focus'>
               #{formatNumber(i + props.first_score_rank)}
             </div>
-            <div className='ranking-page-table-main'>
-              <span className='ranking-page-table-main__flag'>
-                <span className='u-contents u-hover'>
-                  <FlagCountry country={score.user.country} />
-                </span>
-              </span>
-              {score.user.team != null &&
+            <div className='ranking-page-grid-item__col ranking-page-grid-item__col--main'>
+              <div className='ranking-page-table-main'>
                 <span className='ranking-page-table-main__flag'>
-                  <a className='u-contents u-hover' href={route('teams.show', { team: score.user.team.id })}>
-                    <FlagTeam team={score.user.team} />
-                  </a>
+                  <span className='u-contents u-hover'>
+                    <FlagCountry country={score.user.country} />
+                  </span>
                 </span>
-              }
-              <UserLink
-                className='ranking-page-table-main__link u-hover'
-                tooltipPosition='right center'
-                user={score.user}
-              />
+                {score.user.team != null &&
+                  <span className='ranking-page-table-main__flag'>
+                    <a className='u-contents u-hover' href={route('teams.show', { team: score.user.team.id })}>
+                      <FlagTeam team={score.user.team} />
+                    </a>
+                  </span>
+                }
+                <UserLink
+                  className='ranking-page-table-main__link u-hover'
+                  tooltipPosition='right center'
+                  user={score.user}
+                />
+              </div>
             </div>
             <div className='ranking-page-grid-item__col ranking-page-grid-item__col--beatmap'>
               <a className='u-ellipsis-overflow u-hover' href={route('beatmaps.show', { beatmap: score.beatmap_id })}>
