@@ -32,6 +32,7 @@ export function urlGroup(item: Notification) {
     case 'forum_topic':
       return route('forum.topics.show', { start: 'unread', topic: item.objectId });
     case 'news_post':
+      // TODO: change to use slug if available. (And comment if possible?)
       return route('news.show', { key: 'id', news: item.objectId });
     case 'team':
       return route('teams.show', { team: item.objectId });
@@ -74,7 +75,7 @@ export function urlSingular(item: Notification) {
     case 'forum_topic_reply':
       return route('forum.posts.show', { post: item.details.postId });
     case 'news_post_new':
-      return route('news.show', { key: 'id', news: item.objectId });
+      return route('news.show', { news: item.details.slug });
     case 'team_application_accept':
     case 'team_application_reject':
     case 'team_application_store':
