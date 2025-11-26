@@ -122,9 +122,11 @@ class UserNotificationOption extends Model
         $this->attributes['name'] = $value;
     }
 
-    public function getSeries(): array
+    public function getSeries(): ?array
     {
-        return $this->details['series'] ?? NewsPost::SERIES;
+        return $this->name === static::NEWS_POST
+            ? $this->details['series'] ?? NewsPost::SERIES
+            : null;
     }
 
     public function isValid()

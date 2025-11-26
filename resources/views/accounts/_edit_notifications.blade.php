@@ -150,7 +150,7 @@
                     </div>
                     @php
                         $name = UserNotificationOption::NEWS_POST;
-                        $series = ($notificationOptions[UserNotificationOption::NEWS_POST] ?? new UserNotificationOption())->getSeries();
+                        $series = ($notificationOptions[$name] ?? new UserNotificationOption(compact('name')))->getSeries();
                     @endphp
                     <form
                         class="account-edit-entry__checkboxes account-edit-entry__checkboxes--grid js-account-edit js-account-edit-auto-submit"
