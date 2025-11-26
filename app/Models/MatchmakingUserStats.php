@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -30,8 +31,40 @@ class MatchmakingUserStats extends Model
     protected $primaryKey = ':composite';
     protected $primaryKeys = ['user_id', 'pool_id'];
 
+    public function pool(): BelongsTo
+    {
+        return $this->belongsTo(MatchmakingPool::class);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function scopeDefault(Builder $query): Builder
+    {
+        return $query
+            ->whereHas('user', fn (Builder $q): Builder => $q->default())
+            ->where('plays', '>=', 5);
+    }
+
+    public function scopeWithRank(Builder $query): void
+    {
+        $rankQuery = new static()
+            // mainly so whereHas in default() uses the correct table alias
+            ->setTable('mus')
+            ->newQuery()
+            ->from($this->tableName(true), 'mus')
+            ->selectRaw('COUNT(*) + 1')
+            ->default()
+            ->whereColumn('rating', '>', $query->qualifyColumn('rating'))
+            ->whereColumn('pool_id', '=', $query->qualifyColumn('pool_id'));
+
+        $query->addSelect(['rank' => $rankQuery]);
+    }
+
+    public function scopeWhereRulesetId(Builder $query, int $rulesetId): Builder
+    {
+        return $query->whereHas('pool', fn ($q) => $q->where('ruleset_id', $rulesetId));
     }
 }
