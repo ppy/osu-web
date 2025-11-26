@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -30,8 +31,31 @@ class MatchmakingUserStats extends Model
     protected $primaryKey = ':composite:';
     protected $primaryKeys = ['user_id', 'pool_id'];
 
+    public function pool(): BelongsTo
+    {
+        return $this->belongsTo(MatchmakingPool::class);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function scopeWithRank(Builder $query): Builder
+    {
+        $query->addSelect([
+            'rank' => static
+                ::selectRaw('COUNT(*) + 1')
+                ->from($this->tableName(true), 'mus')
+                ->whereColumn('rating', '>', $query->qualifyColumn('rating'))
+                ->whereColumn('pool_id', '=', $query->qualifyColumn('pool_id')),
+        ]);
+
+        return $query;
+    }
+
+    public function scopeWhereRulesetId(Builder $query, int $rulesetId): Builder
+    {
+        return $query->whereHas('pool', fn ($q) => $q->where('ruleset_id', $rulesetId));
     }
 }
