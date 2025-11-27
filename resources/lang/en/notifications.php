@@ -161,7 +161,7 @@ return [
             ],
 
             'news_post' => [
-                '_' => 'News',
+                '_' => 'News (:series)',
 
                 'news_post_new' => ':title',
                 'news_post_new_compact' => ':title',
@@ -274,7 +274,7 @@ return [
             ],
 
             'news_post' => [
-                'news_post_new' => 'News ":title"',
+                'news_post_new' => 'News (:series): ":title"',
             ],
         ],
 
