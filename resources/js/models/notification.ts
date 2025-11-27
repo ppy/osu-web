@@ -12,6 +12,7 @@ import NotificationDeletable from 'notifications/notification-deletable';
 import { NotificationIdentity } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
 import core from 'osu-core-singleton';
+import { trans } from 'utils/lang';
 import { presence } from 'utils/string';
 
 export default class Notification implements NotificationReadable, NotificationDeletable {
@@ -38,6 +39,17 @@ export default class Notification implements NotificationReadable, NotificationD
 
   @computed get displayType() {
     return displayType(this);
+  }
+
+  get formattedDetails() {
+    if (this.name !== 'news_post_new') {
+      return this.details;
+    }
+
+    return {
+      ...this.details,
+      series: trans(`news.series.${this.details.series}`),
+    };
   }
 
   get identity(): NotificationIdentity {

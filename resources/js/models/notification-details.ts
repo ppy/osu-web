@@ -11,6 +11,7 @@ export default interface NotificationDetails extends Record<string, any> {
     problems: number;
     suggestions: number;
   };
+  series?: string;
   slug?: string;
   title: string;
   titleUnicode?: string | null;
