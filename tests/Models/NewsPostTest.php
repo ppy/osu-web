@@ -18,9 +18,9 @@ class NewsPostTest extends TestCase
     public static function dataProviderForNewsPostSeries(): array
     {
         return [
-            [null, 'none'],
-            ['none', 'none'],
-            ['not real', 'none'],
+            [null, NewsPost::SERIES_NONE],
+            [NewsPost::SERIES_NONE, NewsPost::SERIES_NONE],
+            ['not real', NewsPost::SERIES_NONE],
             ['project_loved', 'project_loved'],
             ['Project Loved', 'project_loved'],
         ];
@@ -29,12 +29,12 @@ class NewsPostTest extends TestCase
     public static function dataProviderForNotificationDelivery(): array
     {
         return [
-            [['none'], 'none', false], // default setting for news is no notifications
-            [['push' => true, 'series' => ['none']], 'none', true],
-            [['push' => true, 'series' => ['none']], null, true], // news post with no series defaults to none
-            [['push' => true, 'series' => []], 'none', false],
-            [['push' => true, 'series' => ['none']], 'project_loved', false],
-            [['push' => true, 'series' => ['none', 'project_loved']], 'project_loved', true],
+            [[NewsPost::SERIES_NONE], NewsPost::SERIES_NONE, false], // default setting for news is no notifications
+            [['push' => true, 'series' => [NewsPost::SERIES_NONE]], NewsPost::SERIES_NONE, true],
+            [['push' => true, 'series' => [NewsPost::SERIES_NONE]], null, true], // news post with no series defaults to none
+            [['push' => true, 'series' => []], NewsPost::SERIES_NONE, false],
+            [['push' => true, 'series' => [NewsPost::SERIES_NONE]], 'project_loved', false],
+            [['push' => true, 'series' => [NewsPost::SERIES_NONE, 'project_loved']], 'project_loved', true],
             // not setting any series is equivalent to all series
             [['push' => true, 'series' => null], 'project_loved', true],
             [['push' => true], 'project_loved', true],

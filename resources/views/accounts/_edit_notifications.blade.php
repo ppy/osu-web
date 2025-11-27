@@ -144,38 +144,36 @@
 
         <div class="account-edit__input-group">
             <div class="account-edit-entry account-edit-entry--no-label">
-                <div>
-                    <div class="account-edit-entry__checkboxes-label">
-                        {{ osu_trans('accounts.notifications.news_post') }}
-                    </div>
-                    @php
-                        $name = UserNotificationOption::NEWS_POST;
-                        $series = ($notificationOptions[$name] ?? new UserNotificationOption(compact('name')))->getSeries();
-                    @endphp
-                    <form
-                        class="account-edit-entry__checkboxes account-edit-entry__checkboxes--grid js-account-edit js-account-edit-auto-submit"
-                        data-account-edit-type="array"
-                        data-url="{{ route('account.notification-options') }}"
-                        data-field="{{ "user_notification_option[{$name}][details][series]" }}"
-                    >
-                        @foreach (App\Models\NewsPost::SERIES as $key)
-                            <label class="account-edit-entry__checkbox">
-                                @include('objects._switch', ['locals' => [
-                                    'checked' => in_array($key, $series, true),
-                                    'value' => $key,
-                                ]])
-
-                                <span class="account-edit-entry__checkbox-label account-edit-entry__checkbox-label--grid">
-                                    {{ osu_trans("news.series.{$key}") }}
-                                </span>
-                            </label>
-                        @endforeach
-
-                        <div class="account-edit-entry__checkbox-status">
-                            @include('accounts._edit_entry_status', ['modifiers' => ['left']])
-                        </div>
-                    </form>
+                <div class="account-edit-entry__checkboxes-label">
+                    {{ osu_trans('accounts.notifications.news_post') }}
                 </div>
+                @php
+                    $name = UserNotificationOption::NEWS_POST;
+                    $series = ($notificationOptions[$name] ?? new UserNotificationOption(compact('name')))->getSeries();
+                @endphp
+                <form
+                    class="account-edit-entry__checkboxes account-edit-entry__checkboxes--grid js-account-edit js-account-edit-auto-submit"
+                    data-account-edit-type="array"
+                    data-url="{{ route('account.notification-options') }}"
+                    data-field="{{ "user_notification_option[{$name}][details][series]" }}"
+                >
+                    @foreach (App\Models\NewsPost::SERIES as $key)
+                        <label class="account-edit-entry__checkbox">
+                            @include('objects._switch', ['locals' => [
+                                'checked' => in_array($key, $series, true),
+                                'value' => $key,
+                            ]])
+
+                            <span class="account-edit-entry__checkbox-label account-edit-entry__checkbox-label--grid">
+                                {{ osu_trans("news.series.{$key}") }}
+                            </span>
+                        </label>
+                    @endforeach
+
+                    <div class="account-edit-entry__checkbox-status">
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
+                    </div>
+                </form>
             </div>
         </div>
     </div>

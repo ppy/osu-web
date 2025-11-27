@@ -42,24 +42,26 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
     // Ordered according to how they'll display in notification settings.
     const SERIES = [
-        'project_loved',
-        'beatmap_spotlights',
-        'featured_artists',
-        'fanart_contests',
-        'mappers_guild',
-        'ranking_system_updates',
         'game_updates',
-        'merch_runs',
+        'ranking_system_updates',
+        'featured_artists',
         'world_cups',
-        'monthly_beatmapping_contest',
+        'community_tournaments',
         'official_contests',
         'community_contests',
-        'community_tournaments',
+        'monthly_beatmapping_contest',
+        'fanart_contests',
         'offline_events',
         'online_events',
-        'miscellaneous',
-        'none', // uncategorised
+        'project_loved',
+        'beatmap_spotlights',
+        'mappers_guild',
+        'merch_runs',
+        self::SERIES_NONE,
     ];
+
+    // const for unset or mismatched series.
+    const SERIES_NONE = 'miscellaneous';
 
     const SORTS = [
         'published_asc' => [
@@ -322,8 +324,8 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     {
         static $allSeries = new Set(static::SERIES);
 
-        $series = snake_case($this->page['header']['series'] ?? 'none');
-        return $allSeries->contains($series) ? $series : 'none';
+        $series = snake_case($this->page['header']['series'] ?? static::SERIES_NONE);
+        return $allSeries->contains($series) ? $series : static::SERIES_NONE;
     }
 
     public function sync($force = false)
