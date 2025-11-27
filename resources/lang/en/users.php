@@ -470,6 +470,12 @@ return [
             'twitter' => 'Twitter',
             'website' => 'Website',
         ],
+
+        'matchmaking' => [
+            'details_soon' => 'Details coming soon!',
+            'title' => 'Quick Play',
+        ],
+
         'not_found' => [
             'reason_1' => 'They may have changed their username.',
             'reason_2' => 'The account may be temporarily unavailable due to security or abuse issues.',

@@ -1231,6 +1231,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(UserMonthlyPlaycount::class);
     }
 
+    public function matchmakingStats()
+    {
+        return $this->hasMany(MatchmakingUserStats::class);
+    }
+
     public function notificationOptions()
     {
         return $this->hasMany(UserNotificationOption::class);
