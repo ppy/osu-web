@@ -46,7 +46,7 @@ class NewsPostNew extends BroadcastNotificationBase
             ->whereNotNull('details')
             ->chunkById(1000, function ($options) use (&$ids, $series) {
                 foreach ($options as $option) {
-                    if (in_array($series, $option->getSeries(), true)) {
+                    if (in_array($series, $option->getNewsPostSeries(), true)) {
                         $ids[] = $option->user_id;
                     }
                 }
