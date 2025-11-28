@@ -78,7 +78,10 @@ export default class Item extends React.Component<Props> {
       return null;
     }
 
-    const label = trans(`notifications.item.${this.props.item.displayType}.${this.props.item.category}._`);
+    const label = trans(
+      `notifications.item.${this.props.item.displayType}.${this.props.item.category}._`,
+      this.props.item.formattedDetails,
+    );
 
     if (label === '') {
       return null;

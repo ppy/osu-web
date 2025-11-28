@@ -46,6 +46,10 @@ class UserNotificationDigest extends Mailable
                     $baseKey = "{$baseKey}_self";
                 }
 
+                if ($notification->name === 'news_post_new' && isset($details['series'])) {
+                    $details['series'] = osu_trans("news.series.{$details['series']}");
+                }
+
                 $this->groups[$key] = [
                     'text' => osu_trans($baseKey, $details),
                 ];
