@@ -32,4 +32,16 @@ class MatchmakingPool extends Model
     {
         return $this->hasMany(MatchmakingUserStats::class, 'pool_id');
     }
+
+    public function getDisplayName(): string
+    {
+        $name = $this->name;
+
+        $variantName = Beatmap::VARIANT_BY_ID[$this->ruleset_id][$this->variant_id];
+        $prefix = $variantName === ''
+            ? ''
+            : "[{$variantName}] ";
+
+        return $prefix.$name;
+    }
 }

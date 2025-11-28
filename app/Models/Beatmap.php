@@ -74,6 +74,23 @@ class Beatmap extends Model implements AfterCommit
         'mania' => 3,
     ];
 
+    const VARIANT_BY_ID = [
+        self::MODES['osu'] => [
+            0 => '',
+        ],
+        self::MODES['taiko'] => [
+            0 => '',
+        ],
+        self::MODES['fruits'] => [
+            0 => '',
+        ],
+        self::MODES['mania'] => [
+            0 => '',
+            4 => '4k',
+            7 => '7k',
+        ],
+    ];
+
     const VARIANTS = [
         'mania' => ['4k', '7k'],
     ];

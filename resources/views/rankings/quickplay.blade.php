@@ -4,12 +4,14 @@
 --}}
 @php
     use App\Http\Controllers\Ranking\QuickplayController;
-    use App\Transformers\SelectOptionTransformer;
 
-    $selectOptionTransformer = new SelectOptionTransformer();
     $params = [
         'mode' => $rulesetName,
         'sort' => $sort,
+    ];
+    $poolSelectOptionTransformer = fn ($pool) => [
+        'id' => $pool->getKey(),
+        'text' => $pool->getDisplayName(),
     ];
 @endphp
 @extends('rankings.index', [
@@ -23,8 +25,8 @@
     @section('ranking-header')
         <div class="osu-page osu-page--ranking-info">
             @include('objects._basic_select_options', ['selectOptions' => [
-                'currentItem' => json_item($pool, $selectOptionTransformer),
-                'items' => json_collection($pools, $selectOptionTransformer),
+                'currentItem' => json_item($pool, $poolSelectOptionTransformer),
+                'items' => json_collection($pools, $poolSelectOptionTransformer),
                 'ruleset' => $rulesetName,
                 'type' => 'quickplay',
             ]])
