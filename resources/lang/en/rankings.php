@@ -33,6 +33,13 @@ return [
         'used' => 'Spent',
     ],
 
+    'matchmaking' => [
+        'plays' => 'Plays',
+        'points' => 'Points',
+        'rating' => 'Rating',
+        'wins' => 'Wins',
+    ],
+
     'multiplayer' => [
         'room_name' => 'Room Name',
     ],
@@ -53,20 +60,13 @@ return [
         'seasons' => 'seasons',
     ],
 
-    'quickplay' => [
-        'plays' => 'Plays',
-        'points' => 'Points',
-        'rating' => 'Rating',
-        'wins' => 'Wins',
-    ],
-
     'type' => [
         'country' => 'country',
         'daily_challenge' => 'daily challenge',
         'global' => 'global',
         'kudosu' => 'kudosu',
+        'matchmaking' => 'quick play',
         'playlists' => 'playlists',
-        'quickplay' => 'quick play',
         'team' => 'team',
         'top_plays' => 'top plays',
     ],

@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    use App\Http\Controllers\Ranking\QuickplayController;
+    use App\Http\Controllers\Ranking\MatchmakingController;
 
     $params = [
         'mode' => $rulesetName,
@@ -16,8 +16,8 @@
 @endphp
 @extends('rankings.index', [
     'hasPager' => $scores !== null,
-    'params' => [...$params, 'type' => 'quickplay'],
-    'rulesetSelectorUrlFn' => fn (string $r): string => route('rankings.quickplay', [...$params, 'mode' => $r]),
+    'params' => [...$params, 'type' => 'matchmaking'],
+    'rulesetSelectorUrlFn' => fn (string $r): string => route('rankings.matchmaking', [...$params, 'mode' => $r]),
     'titlePrepend' => osu_trans('rankings.type.top_plays'),
 ])
 
@@ -28,7 +28,7 @@
                 'currentItem' => json_item($pool, $poolSelectOptionTransformer),
                 'items' => json_collection($pools, $poolSelectOptionTransformer),
                 'ruleset' => $rulesetName,
-                'type' => 'quickplay',
+                'type' => 'matchmaking',
             ]])
         </div>
     @endsection
@@ -40,12 +40,12 @@
             <div class="sort__item sort__item--title">
                 {{ osu_trans('sort._') }}
             </div>
-            @foreach (QuickplayController::SORTS as $newSort => $_dbColumns)
+            @foreach (MatchmakingController::SORTS as $newSort => $_dbColumns)
                 <a
                     class="{{ class_with_modifiers('sort__item', 'button', ['active' => $newSort === $params['sort']]) }}"
-                    href="{{ route('rankings.quickplay', [...$params, 'pool' => $pool->getKey(), 'sort' => $newSort]) }}"
+                    href="{{ route('rankings.matchmaking', [...$params, 'pool' => $pool->getKey(), 'sort' => $newSort]) }}"
                 >
-                    {{ osu_trans("rankings.quickplay.{$newSort}") }}
+                    {{ osu_trans("rankings.matchmaking.{$newSort}") }}
                 </a>
             @endforeach
         </div>
@@ -53,7 +53,7 @@
 @endsection
 
 @section('scores')
-    <div class="ranking-page-grid ranking-page-grid--quickplay">
+    <div class="ranking-page-grid ranking-page-grid--matchmaking">
         <div class="ranking-page-grid-item ranking-page-grid-item--header">
             <div class="ranking-page-grid-item__content">
                 <div class="ranking-page-grid-item__col">
@@ -61,16 +61,16 @@
                 <div class="ranking-page-grid-item__col">
                 </div>
                 <div class="ranking-page-grid-item__col">
-                    {{ osu_trans('rankings.quickplay.wins') }}
+                    {{ osu_trans('rankings.matchmaking.wins') }}
                 </div>
                 <div class="ranking-page-grid-item__col">
-                    {{ osu_trans('rankings.quickplay.plays') }}
+                    {{ osu_trans('rankings.matchmaking.plays') }}
                 </div>
                 <div class="{{ class_with_modifiers('ranking-page-grid-item__col', ['number-focus' => $sort === 'points']) }}">
-                    {{ osu_trans('rankings.quickplay.points') }}
+                    {{ osu_trans('rankings.matchmaking.points') }}
                 </div>
                 <div class="{{ class_with_modifiers('ranking-page-grid-item__col', ['number-focus' => $sort === 'rating']) }}">
-                    {{ osu_trans('rankings.quickplay.rating') }}
+                    {{ osu_trans('rankings.matchmaking.rating') }}
                 </div>
             </div>
         </div>

@@ -21,7 +21,7 @@ type Props = PropsBase & ({
   type: 'daily_challenge' | 'download' | 'multiplayer' | 'seasons' | 'spotlight';
 } | {
   ruleset: Ruleset;
-  type: 'quickplay';
+  type: 'matchmaking';
 });
 
 export default class BasicSelectOptions extends React.PureComponent<Props> {
@@ -47,10 +47,10 @@ export default class BasicSelectOptions extends React.PureComponent<Props> {
         return route('daily-challenge.show', { daily_challenge: id ?? fail('missing id parameter') });
       case 'download':
         return route('download', { platform: id });
+      case 'matchmaking':
+        return route('rankings.matchmaking', { mode: this.props.ruleset, pool: id ?? undefined });
       case 'multiplayer':
         return route('multiplayer.rooms.show', { room: id ?? 'latest' });
-      case 'quickplay':
-        return route('rankings.quickplay', { mode: this.props.ruleset, pool: id ?? undefined });
       case 'seasons':
         return route('seasons.show', { season: id ?? 'latest' });
       case 'spotlight':

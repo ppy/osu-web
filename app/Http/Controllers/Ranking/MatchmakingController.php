@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Beatmap;
 use App\Models\MatchmakingPool;
 
-class QuickplayController extends Controller
+class MatchmakingController extends Controller
 {
     const SORTS = [
         'points' => [['total_points', 'DESC'], ['rating', 'DESC']],
@@ -26,7 +26,7 @@ class QuickplayController extends Controller
         if ($poolId === null) {
             $pool = MatchmakingPool::where(['ruleset_id' => $rulesetId])->firstOrFail();
 
-            return ujs_redirect(route('rankings.quickplay', ['mode' => $rulesetName, 'pool' => $pool->getKey()]));
+            return ujs_redirect(route('rankings.matchmaking', ['mode' => $rulesetName, 'pool' => $pool->getKey()]));
         }
 
         $pools = MatchmakingPool::where(['ruleset_id' => $rulesetId])->get();
@@ -47,7 +47,7 @@ class QuickplayController extends Controller
         }
         $scores = $query->paginate();
 
-        return ext_view('rankings.quickplay', compact(
+        return ext_view('rankings.matchmaking', compact(
             'pool',
             'pools',
             'rulesetName',
