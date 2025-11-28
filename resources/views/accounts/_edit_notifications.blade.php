@@ -158,7 +158,7 @@
                     data-field="{{ "user_notification_option[{$name}][details][series]" }}"
                 >
                     @foreach (App\Models\NewsPost::SERIES as $key)
-                        <label class="account-edit-entry__checkbox">
+                        <label class="account-edit-entry__checkbox account-edit-entry__checkbox--no-wrap">
                             @include('objects._switch', ['locals' => [
                                 'checked' => in_array($key, $series, true),
                                 'value' => $key,
