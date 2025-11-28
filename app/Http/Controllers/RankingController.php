@@ -38,6 +38,7 @@ class RankingController extends Controller
         'top_plays',
         'team',
         'playlists',
+        'matchmaking',
         'daily_challenge',
         'kudosu',
     ];
@@ -64,6 +65,7 @@ class RankingController extends Controller
                 'type' => $params['type'],
             ]),
             'kudosu' => route('rankings.kudosu'),
+            'matchmaking' => route('rankings.matchmaking', ['mode' => $params['mode'] ?? default_mode()]),
             'playlists' => match ($params['list'] ?? 'seasons') {
                 'charts' => route('rankings', [
                     'mode' => $params['mode'] ?? default_mode(),
