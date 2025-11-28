@@ -18,6 +18,7 @@ import { displayMods, hasMenu } from 'utils/score-helper';
 
 interface Props {
   first_score_rank: number;
+  mode: string;
   scores: ScoreJsonForTopPlays[];
 }
 
@@ -60,9 +61,9 @@ export default function RankingScores(props: Props) {
             <div className='ranking-page-grid-item__col ranking-page-grid-item__col--main'>
               <div className='ranking-page-table-main'>
                 <span className='ranking-page-table-main__flag'>
-                  <span className='u-contents u-hover'>
+                  <a className='u-contents u-hover' href={route('rankings.top-plays', { country: score.user.country_code, mode: props.mode })}>
                     <FlagCountry country={score.user.country} />
-                  </span>
+                  </a>
                 </span>
                 {score.user.team != null &&
                   <span className='ranking-page-table-main__flag'>
