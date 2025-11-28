@@ -472,7 +472,6 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => 'Details coming soon!',
             'title' => 'Quick Play',
         ],
 

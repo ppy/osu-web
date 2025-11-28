@@ -98,7 +98,7 @@
                         $sort === 'rating' ? 'number-focus' : 'number',
                     ) }}">
                         @php
-                            [$provisionalTitle, $provisionalSign] = $score->plays < $score::MIN_PLAYS_NON_PROVISIONAL
+                            [$provisionalTitle, $provisionalSign] = $score->isRatingProvisional()
                                 ? [osu_trans('rankings.matchmaking.provisional'), '*']
                                 : ['', ''];
                         @endphp
