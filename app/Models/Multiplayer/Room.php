@@ -74,14 +74,14 @@ class Room extends Model
     const TYPE_GROUPS = [
         'playlists' => [self::PLAYLIST_TYPE],
         'realtime' => self::REALTIME_STANDARD_TYPES,
-        'quickplay' => [self::MATCHMAKING_TYPE],
+        'quickplay' => self::MATCHMAKING_TYPES,
     ];
 
     const PLAYLIST_TYPE = 'playlists';
-    const MATCHMAKING_TYPE = 'matchmaking';
+    const MATCHMAKING_TYPES = ['matchmaking', 'ranked_play'];
     const REALTIME_DEFAULT_TYPE = 'head_to_head';
     const REALTIME_STANDARD_TYPES = ['head_to_head', 'team_versus'];
-    const REALTIME_TYPES = [...self::REALTIME_STANDARD_TYPES, self::MATCHMAKING_TYPE];
+    const REALTIME_TYPES = [...self::REALTIME_STANDARD_TYPES, ...self::MATCHMAKING_TYPES];
 
     const PLAYLIST_QUEUE_MODE = 'host_only';
     const REALTIME_DEFAULT_QUEUE_MODE = 'host_only';
@@ -457,7 +457,11 @@ class Room extends Model
 
     public function isMatchmaking()
     {
-        return $this->type === static::MATCHMAKING_TYPE;
+        static $matchmakingTypes;
+
+        $matchmakingTypes ??= new Set(static::MATCHMAKING_TYPES);
+
+        return $matchmakingTypes->contains($this->type);
     }
 
     public function isScoreSubmissionStillAllowed()
