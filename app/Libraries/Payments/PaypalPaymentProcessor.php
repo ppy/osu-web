@@ -9,6 +9,7 @@ namespace App\Libraries\Payments;
 
 use App\Models\Store\Order;
 use Carbon\Carbon;
+use Sentry\Severity;
 use Sentry\State\Scope;
 
 class PaypalPaymentProcessor extends PaymentProcessor
@@ -92,6 +93,32 @@ class PaypalPaymentProcessor extends PaymentProcessor
         return $this['payment_status'] ?? $this['txn_type'];
     }
 
+    #[\Override]
+    public function pending()
+    {
+        parent::pending();
+
+        \DB::connection('mysql-store')->transaction(function () {
+            $order = $this->getOrder()->lockSelf();
+
+            $reason = $this['pending_reason'] === 'echeck' ? Order::PENDING_ECHECK : $this['pending_reason'];
+            // Log warning if non echeck pending status will overwrite the echeck field.
+            if ($order->tracking_code === Order::PENDING_ECHECK && $order->tracking_code !== $reason) {
+                app('sentry')->getClient()->captureMessage(
+                    "Trying to overwrite pending echeck with {$reason}",
+                    new Severity(Severity::WARNING),
+                    (new Scope())->setExtra('order_id', $order->getKey())
+                );
+            } else {
+                $order->tracking_code = $reason;
+            }
+
+            $order->transaction_id = $this->getTransactionId();
+            $order->saveOrExplode();
+        });
+    }
+
+    #[\Override]
     public function rejected()
     {
         parent::rejected();
