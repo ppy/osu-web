@@ -76,6 +76,10 @@
       display: flex;
       justify-content: center;
     }
+
+    &--no-wrap {
+      flex-wrap: nowrap;
+    }
   }
 
   &__checkbox-label {
@@ -87,7 +91,6 @@
 
     &--grid {
       margin-bottom: 0;
-      width: auto;
       order: 0;
     }
 
@@ -124,6 +127,11 @@
 
     @media @desktop {
       position: relative;
+    }
+
+    &--grid {
+      display: grid;
+      grid-template-columns: auto auto;
     }
 
     &--vertical {

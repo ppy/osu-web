@@ -18,6 +18,25 @@ return [
         ],
     ],
 
+    'series' => [
+        'beatmap_spotlights' => 'Beatmap Spotlights',
+        'community_contests' => 'community contests',
+        'community_tournaments' => 'community tournaments',
+        'fanart_contests' => 'art contests',
+        'featured_artists' => 'Featured Artist announcements',
+        'game_updates' => 'client and website updates',
+        'mappers_guild' => 'Mappers\' Guild',
+        'monthly_beatmapping_contest' => 'Monthly Beatmapping Contest',
+        'merch_runs' => 'osu! merchandise',
+        'miscellaneous' => 'miscellaneous announcements',
+        'official_contests' => 'official contests',
+        'offline_events' => 'offline events',
+        'online_events' => 'online events',
+        'project_loved' => 'Project Loved',
+        'ranking_system_updates' => 'ranking system updates',
+        'world_cups' => 'osu! World Cups',
+    ],
+
     'show' => [
         'by' => 'by :user',
 
