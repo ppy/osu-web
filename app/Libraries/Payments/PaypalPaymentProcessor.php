@@ -146,8 +146,6 @@ class PaypalPaymentProcessor extends PaymentProcessor
             }
         }
 
-        $this->validatePendingStatus();
-
         // just check if IPN transaction id is as expected with the Paypal v2 API.
         $capturedId = $this->getOrder()->getTransactionId();
         $transactionId = $this->getNotificationType() === NotificationType::REFUND
@@ -205,25 +203,5 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
         return in_array($status, $ignoredStatuses, true)
             || in_array($this['txn_type'], $ignoredTxnTypes, true);
-    }
-
-    /**
-     * Runs validations related to Pending status;
-     * adds errors into validationErrors(), does not return anything.
-     */
-    private function validatePendingStatus()
-    {
-        if ($this->getNotificationType() !== NotificationType::PENDING) {
-            return;
-        }
-
-        // only recognize echecks
-        if ($this['pending_reason'] !== 'echeck') {
-            $this->validationErrors()->add(
-                'pending_reason',
-                '.paypal.not_echeck',
-                ['actual' => $this['pending_reason']]
-            );
-        }
     }
 }
