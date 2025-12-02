@@ -26,6 +26,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('archive-forum-topics')
+            ->cron('*/30 * * * *')
+            ->withoutOverlapping(120)
+            ->onOneServer();
+
         $schedule->command('store:cleanup-stale-orders')
             ->daily()
             ->onOneServer();
