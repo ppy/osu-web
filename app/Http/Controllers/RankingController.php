@@ -398,8 +398,8 @@ class RankingController extends Controller
 
                 $maxResults = static::MAX_RESULTS;
 
-                // use slower row count as there's no statistics entry for variants
-                if ($params['variant'] !== null) {
+                // use slower row count as there's no country statistics entry for variants
+                if ($params['variant'] !== null && $countryStats !== null) {
                     sort($params);
                     $cacheKey = 'ranking_count:'.json_encode($params);
 
