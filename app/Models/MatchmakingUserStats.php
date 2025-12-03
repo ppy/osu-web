@@ -27,7 +27,7 @@ class MatchmakingUserStats extends Model
     protected $casts = [
         'elo_data' => 'array',
     ];
-    protected $primaryKey = ':composite:';
+    protected $primaryKey = ':composite';
     protected $primaryKeys = ['user_id', 'pool_id'];
 
     public function user(): BelongsTo
