@@ -14,16 +14,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('matchmaking_user_stats', function (Blueprint $table) {
-            $table->integer('rating')->virtualAs("ROUND(JSON_EXTRACT(elo_data, '$.approximate_posterior.mu'), 0)");
-            $table->index(['pool_id', 'rating']);
+            $table->integer('rating')->storedAs("ROUND(JSON_EXTRACT(elo_data, '$.approximate_posterior.mu'), 0)");
+            $table->dropIndex(['pool_id', 'total_points']);
+            $table->index(['pool_id', 'rating', 'total_points'], 'pool_rating');
+            $table->index(['pool_id', 'total_points', 'rating'], 'pool_points');
         });
     }
 
     public function down(): void
     {
         Schema::table('matchmaking_user_stats', function (Blueprint $table) {
-            $table->dropIndex(['pool_id', 'rating']);
+            $table->dropIndex('pool_rating');
+            $table->dropIndex('pool_points');
             $table->dropColumn('rating');
+            $table->index(['pool_id', 'total_points']);
         });
     }
 };
