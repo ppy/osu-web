@@ -36,7 +36,7 @@ class MatchmakingController extends Controller
             ->allUserStats()
             ->with('user.team')
             ->whereHas('user', fn ($q) => $q->default())
-            ->where('elo_data->contest_count', '>=', 5);
+            ->where('plays', '>=', 5);
 
         $sort = get_string(request('sort'));
         if (!array_key_exists($sort, static::SORTS)) {

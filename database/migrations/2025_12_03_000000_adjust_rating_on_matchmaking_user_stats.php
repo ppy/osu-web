@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::table('matchmaking_user_stats', function (Blueprint $table) {
             $table->integer('rating')->storedAs("ROUND(JSON_EXTRACT(elo_data, '$.approximate_posterior.mu'), 0)");
+            $table->integer('plays')->storedAs("JSON_EXTRACT(elo_data, '$.contest_count')");
             $table->dropIndex(['pool_id', 'total_points']);
-            $table->index(['pool_id', 'rating', 'total_points'], 'pool_rating');
-            $table->index(['pool_id', 'total_points', 'rating'], 'pool_points');
+            $table->index(['pool_id', 'plays', 'rating', 'total_points'], 'pool_rating');
+            $table->index(['pool_id', 'plays', 'total_points', 'rating'], 'pool_points');
         });
     }
 
@@ -27,6 +28,7 @@ return new class extends Migration
             $table->dropIndex('pool_rating');
             $table->dropIndex('pool_points');
             $table->dropColumn('rating');
+            $table->dropColumn('plays');
             $table->index(['pool_id', 'total_points']);
         });
     }
