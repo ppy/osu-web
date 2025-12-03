@@ -9,10 +9,6 @@
         'mode' => $rulesetName,
         'sort' => $sort,
     ];
-    $poolSelectOptionTransformer = fn ($pool) => [
-        'id' => $pool->getKey(),
-        'text' => $pool->getDisplayName(),
-    ];
 @endphp
 @extends('rankings.index', [
     'hasPager' => $scores !== null,
@@ -25,8 +21,10 @@
     @section('ranking-header')
         <div class="osu-page osu-page--ranking-info">
             @include('objects._basic_select_options', ['selectOptions' => [
-                'currentItem' => json_item($pool, $poolSelectOptionTransformer),
-                'items' => json_collection($pools, $poolSelectOptionTransformer),
+                ...json_options($pool, $pools, fn ($pool) => [
+                    'id' => $pool->getKey(),
+                    'text' => $pool->getDisplayName(),
+                ]),
                 'ruleset' => $rulesetName,
                 'type' => 'matchmaking',
             ]])

@@ -15,7 +15,6 @@ use App\Models\User;
 use App\Models\UserStatistics;
 use App\Transformers\BeatmapsetTransformer;
 use App\Transformers\CountryStatisticsTransformer;
-use App\Transformers\SelectOptionTransformer;
 use App\Transformers\SpotlightTransformer;
 use App\Transformers\TeamStatisticsTransformer;
 use App\Transformers\UserCompactTransformer;
@@ -473,10 +472,8 @@ class RankingController extends Controller
         }
 
         $scoreCount ??= $spotlight->participantCount($params['mode']);
-        $selectOptionTransformer = new SelectOptionTransformer();
         $selectOptions = [
-            'currentItem' => json_item($spotlight, $selectOptionTransformer),
-            'items' => json_collection($spotlights, $selectOptionTransformer),
+            ...json_options($spotlight, $spotlights),
             'type' => 'spotlight',
         ];
         $params['list'] = 'charts';
