@@ -398,7 +398,11 @@ class RankingController extends Controller
 
                 $maxResults = static::MAX_RESULTS;
 
-                // use slower row count as there's no statistics entry for variants
+                if ($countryStats === null) {
+                    return $maxResults;
+                }
+
+                // use slower row count as there's no country statistics entry for variants
                 if ($params['variant'] !== null) {
                     sort($params);
                     $cacheKey = 'ranking_count:'.json_encode($params);
@@ -411,9 +415,7 @@ class RankingController extends Controller
                     );
                 }
 
-                return $countryStats === null
-                    ? $maxResults
-                    : min($countryStats->user_count, $maxResults);
+                return min($countryStats->user_count, $maxResults);
         }
     }
 
