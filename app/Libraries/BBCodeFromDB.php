@@ -44,7 +44,7 @@ class BBCodeFromDB
 
         foreach ($matches as $match) {
             $proxiedSrc = proxy_media(html_entity_decode_better($match['url']));
-            $tag = '<audio controls="controls" preload="none" src="'.$proxiedSrc.'"></audio>';
+            $tag = '<audio controls="controls" preload="none" src="' . $proxiedSrc . '"></audio>';
 
             $text = str_replace($match[0], $tag, $text);
         }
@@ -85,8 +85,18 @@ class BBCodeFromDB
 
     public function parseCentre($text)
     {
-        $text = str_replace("[centre:{$this->uid}]", '<center>', $text);
+        $text = str_replace("[centre:{$this->uid}]", '<center>', $text); // isn't <center> deprecated in html5?
         $text = str_replace("[/centre:{$this->uid}]", '</center>', $text);
+
+        return $text;
+    }
+
+    public function parseRight($text)
+    {
+        // i have to use custom bbcode.less css to include all elements inside right tag.
+        // mann why html gotta not have a <right> element
+        $text = str_replace("[right:{$this->uid}]", "<div class='right'>", $text);
+        $text = str_replace("[/right:{$this->uid}]", '</div>', $text);
 
         return $text;
     }
@@ -172,7 +182,7 @@ class BBCodeFromDB
                         }
                         $imageHtml = tag('img', $imageAttributes);
 
-                        return tag('div', ['class' => 'imagemap'], $imageHtml.$linksHtml);
+                        return tag('div', ['class' => 'imagemap'], $imageHtml . $linksHtml);
                     },
                     $unescaped,
                 );
@@ -297,7 +307,7 @@ class BBCodeFromDB
     // stolen from: www/forum/includes/functions.php:2845
     public function parseSmilies($text)
     {
-        return preg_replace('#<!\-\- s(.*?) \-\-><img src="\{SMILIES_PATH\}\/(.*?) \/><!\-\- s\1 \-\->#', '<img class="smiley" src="'.osu_url('smilies').'/\2 />', $text);
+        return preg_replace('#<!\-\- s(.*?) \-\-><img src="\{SMILIES_PATH\}\/(.*?) \/><!\-\- s\1 \-\->#', '<img class="smiley" src="' . osu_url('smilies') . '/\2 />', $text);
     }
 
     public function parseStrike($text)
@@ -330,7 +340,7 @@ class BBCodeFromDB
     {
         $text = preg_replace_callback(
             "#\[size=(\d+):{$this->uid}\]#",
-            fn ($m) => '<span style="font-size:'.\Number::clamp((int) $m[1], 30, 200).'%;">',
+            fn ($m) => '<span style="font-size:' . \Number::clamp((int) $m[1], 30, 200) . '%;">',
             $text,
         );
         $text = strtr($text, ["[/size:{$this->uid}]" => '</span>']);
@@ -372,6 +382,7 @@ class BBCodeFromDB
         $text = $this->parseAudio($text);
         $text = $this->parseBold($text);
         $text = $this->parseCentre($text);
+        $text = $this->parseRight($text);
         $text = $this->parseInlineCode($text);
         $text = $this->parseColour($text);
         $text = $this->parseEmail($text);
@@ -459,7 +470,7 @@ class BBCodeFromDB
                 ];
             } elseif (!empty($quotePositions)) {
                 $quoteEnd = $match['end'][1] + strlen($match['end'][0]);
-                $text = substr($text, 0, array_pop($quotePositions)[0]).substr($text, $quoteEnd);
+                $text = substr($text, 0, array_pop($quotePositions)[0]) . substr($text, $quoteEnd);
             }
         }
 

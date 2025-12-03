@@ -92,6 +92,32 @@
     font-size: inherit;
   }
 
+  // i need to have inclusion FOR elements (imagemap, spoilerbox, audio, youtube, and maybe others)
+
+  .right {
+    text-align: right;
+
+    >* {
+      text-align: right;
+    }
+
+    div,
+    code,
+    h2,
+    h4,
+    blockquote,
+    img,
+    ol,
+    ul,
+    pre {
+      display: block;
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+
+  }
+
   .unordered {
     list-style-type: disc;
   }

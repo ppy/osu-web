@@ -62,10 +62,11 @@ class BBCodeForDB
     /**
      * Handles:
      * - Centre (centre).
+     * - Right (right).
      */
     public function parseBlockSimple($text)
     {
-        foreach (['centre'] as $tag) {
+        foreach (['centre', 'right'] as $tag) {
             $text = preg_replace(
                 "#\[{$tag}](.*?)\[/{$tag}\]#s",
                 "[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
@@ -221,7 +222,7 @@ class BBCodeForDB
         $text = str_replace('[/*]', '', $text);
 
         $text = preg_replace($patterns[0], "[\\1:{$this->uid}]", $text, $limit);
-        $text = preg_replace('/'.preg_quote($patterns[1], '/').'/', "[/list:o:{$this->uid}]", $text, $limit);
+        $text = preg_replace('/' . preg_quote($patterns[1], '/') . '/', "[/list:o:{$this->uid}]", $text, $limit);
 
         return $text;
     }
@@ -310,7 +311,7 @@ class BBCodeForDB
         $limit = min($counts);
 
         $text = preg_replace($patterns[0], "[\\1:{$this->uid}]", $text, $limit);
-        $text = preg_replace('/'.preg_quote($patterns[1], '/').'/', "[/quote:{$this->uid}]", $text, $limit);
+        $text = preg_replace('/' . preg_quote($patterns[1], '/') . '/', "[/quote:{$this->uid}]", $text, $limit);
 
         return $text;
     }
@@ -387,7 +388,7 @@ class BBCodeForDB
         $text = $this->parseQuote($text);
         $text = $this->parseList($text);
 
-        $text = $this->parseBlockSimple($text);
+        $text = $this->parseBlockSimple($text); // nice should work. remove this comment when final pr.
         $text = $this->parseProfile($text);
         $text = $this->parseImage($text);
         $text = $this->parseMultilineSimple($text);
