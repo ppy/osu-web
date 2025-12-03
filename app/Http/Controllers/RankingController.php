@@ -15,7 +15,6 @@ use App\Models\User;
 use App\Models\UserStatistics;
 use App\Transformers\BeatmapsetTransformer;
 use App\Transformers\CountryStatisticsTransformer;
-use App\Transformers\SelectOptionTransformer;
 use App\Transformers\SpotlightTransformer;
 use App\Transformers\TeamStatisticsTransformer;
 use App\Transformers\UserCompactTransformer;
@@ -38,6 +37,7 @@ class RankingController extends Controller
         'top_plays',
         'team',
         'playlists',
+        'matchmaking',
         'daily_challenge',
         'kudosu',
     ];
@@ -64,6 +64,7 @@ class RankingController extends Controller
                 'type' => $params['type'],
             ]),
             'kudosu' => route('rankings.kudosu'),
+            'matchmaking' => route('rankings.matchmaking', ['mode' => $params['mode'] ?? default_mode()]),
             'playlists' => match ($params['list'] ?? 'seasons') {
                 'charts' => route('rankings', [
                     'mode' => $params['mode'] ?? default_mode(),
@@ -473,10 +474,8 @@ class RankingController extends Controller
         }
 
         $scoreCount ??= $spotlight->participantCount($params['mode']);
-        $selectOptionTransformer = new SelectOptionTransformer();
         $selectOptions = [
-            'currentItem' => json_item($spotlight, $selectOptionTransformer),
-            'items' => json_collection($spotlights, $selectOptionTransformer),
+            ...json_options($spotlight, $spotlights),
             'type' => 'spotlight',
         ];
         $params['list'] = 'charts';

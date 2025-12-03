@@ -33,6 +33,13 @@ return [
         'used' => 'Spent',
     ],
 
+    'matchmaking' => [
+        'plays' => 'Plays',
+        'points' => 'Points',
+        'rating' => 'Rating',
+        'wins' => 'Wins',
+    ],
+
     'multiplayer' => [
         'room_name' => 'Room Name',
     ],
@@ -58,6 +65,7 @@ return [
         'daily_challenge' => 'daily challenge',
         'global' => 'global',
         'kudosu' => 'kudosu',
+        'matchmaking' => 'quick play',
         'playlists' => 'playlists',
         'team' => 'team',
         'top_plays' => 'top plays',
