@@ -21,7 +21,7 @@ export default class Matchmaking extends React.Component<Props> {
     }
 
     for (const stats of this.props.allStats) {
-      if (stats.rank > highestRank.rank) {
+      if (stats.rank < highestRank.rank) {
         highestRank = stats;
       }
     }
