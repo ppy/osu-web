@@ -34,11 +34,7 @@ class MatchmakingController extends Controller
         $pools = $poolsQuery->get();
 
         $pool = $pools->findOrFail($poolId);
-        $query = $pool
-            ->allUserStats()
-            ->with('user.team')
-            ->whereHas('user', fn ($q) => $q->default())
-            ->where('plays', '>=', 5);
+        $query = $pool->allUserStats()->with('user.team')->default();
 
         $sort = get_string(request('sort'));
         if (!array_key_exists($sort, static::SORTS)) {
