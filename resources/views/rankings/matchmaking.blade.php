@@ -5,15 +5,12 @@
 @php
     use App\Http\Controllers\Ranking\MatchmakingController;
 
-    $params = [
-        'mode' => $rulesetName,
-        'sort' => $sort,
-    ];
+    $params = ['mode' => $rulesetName];
 @endphp
 @extends('rankings.index', [
     'hasPager' => $scores !== null,
     'params' => [...$params, 'type' => 'matchmaking'],
-    'rulesetSelectorUrlFn' => fn (string $r): string => route('rankings.matchmaking', [...$params, 'mode' => $r]),
+    'rulesetSelectorUrlFn' => fn (string $r): string => route('rankings.matchmaking', [...$params, 'mode' => $r, 'sort' => $sort]),
     'titlePrepend' => osu_trans('rankings.type.top_plays'),
 ])
 
@@ -40,7 +37,7 @@
             </div>
             @foreach (MatchmakingController::SORTS as $newSort => $_dbColumns)
                 <a
-                    class="{{ class_with_modifiers('sort__item', 'button', ['active' => $newSort === $params['sort']]) }}"
+                    class="{{ class_with_modifiers('sort__item', 'button', ['active' => $newSort === $sort]) }}"
                     href="{{ route('rankings.matchmaking', [...$params, 'pool' => $pool->getKey(), 'sort' => $newSort]) }}"
                 >
                     {{ osu_trans("rankings.matchmaking.{$newSort}") }}
