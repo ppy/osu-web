@@ -19,6 +19,12 @@ class FeaturedArtistFilterTest extends TestCase
         return [
             [['q' => 'featured_artist=1'], [0, 2, 4]],
             [['c' => 'featured_artists'], [0, 1, 2, 3, 4, 5]],
+            [['q' => '-featured_artist=1'], [1, 3, 5, 6]],
+            [['c' => 'featured_artists'], [0, 1, 2, 3, 4, 5]],
+            [
+                ['c' => 'featured_artists', 'q' => '-featured_artist=1'],
+                [1, 3, 5],
+            ],
         ];
     }
 

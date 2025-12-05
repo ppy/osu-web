@@ -9,6 +9,7 @@ use App\Events\NewPrivateNotificationEvent;
 use App\Exceptions\InvalidScopeException;
 use App\Http\Middleware\AuthApi;
 use App\Jobs\Notifications\BroadcastNotificationBase;
+use App\Libraries\Elasticsearch\Es;
 use App\Libraries\OAuth\EncodeToken;
 use App\Libraries\Search\ScoreSearch;
 use App\Libraries\Session\Store as SessionStore;
@@ -47,6 +48,15 @@ class TestCase extends BaseTestCase
     ];
 
     protected array $expectedCountsCallbacks = [];
+
+    public static function deleteAllEsBeatmapsets(): void
+    {
+        Es::getClient()->deleteByQuery([
+            'body' => ['query' => ['match_all' => new \stdClass()]],
+            'index' => Beatmapset::esIndexName(),
+            'refresh' => true,
+        ]);
+    }
 
     public static function regularOAuthScopesDataProvider()
     {
