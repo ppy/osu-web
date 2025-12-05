@@ -243,6 +243,9 @@
       "user_id": {
         "type": "long"
       },
+      "user_tags": {
+        "type": "text"
+      },
       "video": {
         "type": "boolean"
       }
