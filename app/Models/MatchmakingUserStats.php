@@ -23,6 +23,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class MatchmakingUserStats extends Model
 {
+    const MIN_PLAYS_RANKED = 5;
+
     public $incrementing = false;
 
     protected $casts = [
@@ -45,7 +47,7 @@ class MatchmakingUserStats extends Model
     {
         return $query
             ->whereHas('user', fn (Builder $q): Builder => $q->default())
-            ->where('plays', '>=', 5);
+            ->where('plays', '>=', static::MIN_PLAYS_RANKED);
     }
 
     public function scopeWithRank(Builder $query): void
@@ -66,5 +68,12 @@ class MatchmakingUserStats extends Model
     public function scopeWhereRulesetId(Builder $query, int $rulesetId): Builder
     {
         return $query->whereHas('pool', fn ($q) => $q->where('ruleset_id', $rulesetId));
+    }
+
+    public function getRankAttribute(?int $value): ?int
+    {
+        return $value === null || $this->plays < static::MIN_PLAYS_RANKED
+            ? null
+            : $value;
     }
 }

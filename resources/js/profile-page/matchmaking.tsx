@@ -14,15 +14,15 @@ interface Props {
 @observer
 export default class Matchmaking extends React.Component<Props> {
   render() {
-    let highestRank = this.props.allStats[0];
-
-    if (highestRank == null) {
-      return null;
-    }
-
+    let highestRank: null | number = null;
     for (const stats of this.props.allStats) {
-      if (stats.rank < highestRank.rank) {
-        highestRank = stats;
+      const rank = stats.rank;
+      if (rank != null) {
+        if (highestRank == null) {
+          highestRank = rank;
+        } else if (rank < highestRank) {
+          highestRank = rank;
+        }
       }
     }
 
@@ -33,7 +33,7 @@ export default class Matchmaking extends React.Component<Props> {
         </div>
         <div className='daily-challenge__value-box'>
           <div className='daily-challenge__value'>
-            #{formatNumber(highestRank.rank)}
+            {highestRank == null ? '-' : `#${formatNumber(highestRank)}`}
           </div>
         </div>
       </div>
