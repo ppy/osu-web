@@ -4,6 +4,7 @@
 import { RulesetId, RulesetVariantId } from './ruleset';
 
 export default interface MatchmakingPoolJson {
+  active: boolean;
   id: number;
   name: string;
   ruleset_id: RulesetId;
