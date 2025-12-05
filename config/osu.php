@@ -130,8 +130,11 @@ return [
     'forum' => [
         'admin_forum_id' => get_int(env('ADMIN_FORUM_ID')) ?? 28,
         'double_post_allowed_forum_ids' => array_map('intval', explode(' ', env('DOUBLE_POST_ALLOWED_FORUM_IDS', '52 68 84 114'))),
+        'feature_completed_forum_id' => get_int(env('FEATURE_COMPLETED_FORUM_ID')) ?? 30,
         'feature_forum_id' => get_int(env('FEATURE_FORUM_ID')) ?? 4,
         'feature_topic_small_star_min' => get_int(env('FEATURE_TOPIC_SMALL_STAR_MIN')) ?? 1000,
+        'help_archived_forum_id' => get_int(env('HELP_ARCHIVED_FORUM_ID')) ?? 29,
+        'help_confirmed_forum_id' => get_int(env('HELP_CONFIRMED_FORUM_ID')) ?? 101,
         'help_forum_id' => get_int(env('HELP_FORUM_ID')) ?? 5,
         'initial_help_forum_ids' => array_map('intval', explode(' ', env('INITIAL_HELP_FORUM_IDS', '5 47 85'))),
         'issue_forum_ids' => array_map('intval', explode(' ', env('ISSUE_FORUM_IDS', '4 5 29 30 101'))),
