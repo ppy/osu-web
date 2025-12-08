@@ -43,7 +43,7 @@ class MatchmakingController extends Controller
         foreach (static::SORTS[$sort] as $dbSort) {
             $query->orderBy(...$dbSort);
         }
-        $scores = $query->paginate();
+        $scores = $query->paginate()->withQueryString();
 
         return ext_view('rankings.matchmaking', compact(
             'pool',
