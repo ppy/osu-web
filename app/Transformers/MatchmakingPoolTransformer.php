@@ -14,6 +14,7 @@ class MatchmakingPoolTransformer extends TransformerAbstract
     public function transform(MatchmakingPool $pool): array
     {
         return [
+            'active' => $pool->active,
             'id' => $pool->getKey(),
             'name' => $pool->name,
             'ruleset_id' => $pool->ruleset_id,

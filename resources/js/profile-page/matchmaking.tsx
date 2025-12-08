@@ -14,10 +14,14 @@ interface Props {
 @observer
 export default class Matchmaking extends React.Component<Props> {
   render() {
+    if (this.props.allStats.length === 0) {
+      return null;
+    }
     let highestRank: null | number = null;
     for (const stats of this.props.allStats) {
       const rank = stats.rank;
-      if (rank != null) {
+      // only show active stats for profile page
+      if (stats.pool.active && rank != null) {
         if (highestRank == null) {
           highestRank = rank;
         } else if (rank < highestRank) {
