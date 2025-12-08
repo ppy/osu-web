@@ -11,7 +11,7 @@
     'hasPager' => $scores !== null,
     'params' => [...$params, 'type' => 'matchmaking'],
     'rulesetSelectorUrlFn' => fn (string $r): string => route('rankings.matchmaking', [...$params, 'mode' => $r, 'sort' => $sort]),
-    'titlePrepend' => osu_trans('rankings.type.top_plays'),
+    'titlePrepend' => osu_trans('rankings.type.matchmaking').': '.$pool->getDisplayName(),
 ])
 
 @if (count($pools) > 1)
