@@ -40,6 +40,33 @@
                     <div class="team-settings__item">
                         <label class="input-container">
                             <span class="input-container__label">
+                                {{ osu_trans('model_validation.team.attributes.name') }}
+                            </span>
+                            <input
+                                name="team[name]"
+                                class="input-text"
+                                value="{{ $team->name }}"
+                            />
+                        </label>
+                    </div>
+
+                    <div class="team-settings__item">
+                        <label class="input-container">
+                            <span class="input-container__label">
+                                {{ osu_trans('model_validation.team.attributes.short_name') }}
+                            </span>
+                            <input
+                                name="team[short_name]"
+                                class="input-text"
+                                value="{{ $team->short_name }}"
+                                maxlength="{{ App\Models\Team::MAX_FIELD_LENGTHS['short_name'] }}"
+                            />
+                        </label>
+                    </div>
+
+                    <div class="team-settings__item">
+                        <label class="input-container">
+                            <span class="input-container__label">
                                 {{ osu_trans('model_validation.team.attributes.url') }}
                             </span>
                             <input
