@@ -951,6 +951,7 @@ function page_title()
         'main.store_controller._' => 'store._',
         'multiplayer.rooms_controller._' => 'main.ranking_controller._',
         'ranking.daily_challenge_controller._' => 'main.ranking_controller._',
+        'ranking.matchmaking_controller._' => 'main.ranking_controller._',
         'ranking.top_plays_controller._' => 'main.ranking_controller._',
         default => $controllerKey,
     };
@@ -1440,6 +1441,16 @@ function json_collection($model, $transformer, $includes = null)
 function json_item($model, $transformer, $includes = null)
 {
     return json_collection([$model], $transformer, $includes)[0] ?? null;
+}
+
+function json_options(mixed $current, iterable $items, ?callable $transformer = null): array
+{
+    $transformer ??= new App\Transformers\SelectOptionTransformer();
+
+    return [
+        'currentItem' => $current === null ? null : json_item($current, $transformer),
+        'items' => json_collection($items, $transformer),
+    ];
 }
 
 function fast_imagesize($url, ?string $logErrorId = null)

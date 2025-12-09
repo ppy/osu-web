@@ -1437,8 +1437,9 @@ class OsuAuthorize
             return $prefix.'locked';
         }
 
-        $isFirstPost = $post->getKey() === $post->topic->topic_first_post_id;
-        if (!ForumAuthorize::aclCheck($user, $isFirstPost ? 'f_post' : 'f_reply', $forum)) {
+        // There is a case of allowing users to reply to and edit the starting post but not post to the forum.
+        // Apparently should be no cases of f_post not existing without f_reply permission
+        if (!ForumAuthorize::aclCheck($user, 'f_reply', $forum)) {
             return $prefix.'no_permission';
         }
 

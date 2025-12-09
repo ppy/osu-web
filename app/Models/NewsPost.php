@@ -414,11 +414,14 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
     public function save(array $options = [])
     {
-        if ($this->isDirty('published_at') && $this->getOriginal('published_at') === null) {
-            $this->getConnection()->afterCommit(fn () => new NewsPostNew($this)->dispatch());
-        }
+        // adding afterCommit needs to be after the transaction starts
+        return $this->getConnection()->transaction(function () use ($options) {
+            if ($this->isDirty('published_at') && $this->getOriginal('published_at') === null) {
+                $this->getConnection()->afterCommit(fn () => new NewsPostNew($this)->dispatch());
+            }
 
-        return parent::save($options);
+            return parent::save($options);
+        });
     }
 
     public function title()

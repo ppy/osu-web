@@ -15,7 +15,7 @@ interface CountryOption extends Option {
 }
 
 interface Props {
-  current?: CountryOption;
+  currentItem: CountryOption | null;
   items: CountryOption[];
 }
 
@@ -51,7 +51,7 @@ export default class RankingFilter extends React.Component<Props> {
           onChange={this.onChange}
           options={this.items}
           renderOption={this.handleRenderOption}
-          selected={this.props.current ?? allCountries}
+          selected={this.props.currentItem ?? allCountries}
         />
       </div>
     );

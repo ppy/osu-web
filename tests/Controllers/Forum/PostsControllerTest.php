@@ -21,10 +21,10 @@ class PostsControllerTest extends TestCase
         // $first, $newText, $group, $forumGroups, $authorize, $aclGroup, $statusCode
         return [
             // default acl post
-            [true, null, null, [], 'post', null, 422],
-            [true, null, null, [], 'reply', null, 403],
-            [true, 'new text', null, [], 'post', null, 200],
-            [true, 'new text', null, [], 'reply', null, 403],
+            [true, null, null, [], 'post', null, 403],
+            [true, null, null, [], 'reply', null, 422],
+            [true, 'new text', null, [], 'post', null, 403],
+            [true, 'new text', null, [], 'reply', null, 200],
             [true, 'new text', null, [], null, null, 403],
             [true, 'new text', 'loved', [], null, null, 403],
             [true, 'new text', 'loved', ['loved'], null, null, 200],
@@ -42,10 +42,10 @@ class PostsControllerTest extends TestCase
 
             // specific group acl post
             [true, 'new text', null, [], 'post', 'gmt', 403],
-            [true, 'new text', 'loved', [], 'post', 'loved', 200],
+            [true, 'new text', 'loved', [], 'post', 'loved', 403],
             [true, 'new text', 'loved', [], 'post', 'gmt', 403],
             [true, 'new text', null, [], 'reply', 'gmt', 403],
-            [true, 'new text', 'loved', [], 'reply', 'loved', 403],
+            [true, 'new text', 'loved', [], 'reply', 'loved', 200],
             [true, 'new text', 'loved', [], 'reply', 'gmt', 403],
 
             // specific group acl reply

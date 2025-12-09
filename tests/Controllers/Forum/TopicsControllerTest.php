@@ -89,20 +89,21 @@ class TopicsControllerTest extends TestCase
 
     public static function dataProviderForTestUpdate(): array
     {
+        // editing uses reply acl
         // $newTitle, $group, $forumGroups, $authorize, $aclGroup, $statusCode
         return [
             // default acl
-            [null, null, [], 'post', null, 422],
-            ['new title', null, [], 'post', null, 204],
+            [null, null, [], 'reply', null, 422],
+            ['new title', null, [], 'reply', null, 204],
             ['new title', null, [], null, null, 403],
             ['new title', 'loved', [], null, null, 403],
             ['new title', 'loved', ['loved'], null, null, 204],
             ['new title', 'gmt', [], null, null, 204],
 
             // specific group acl
-            ['new title', null, [], 'post', 'gmt', 403],
-            ['new title', 'loved', [], 'post', 'loved', 204],
-            ['new title', 'loved', [], 'post', 'gmt', 403],
+            ['new title', null, [], 'reply', 'gmt', 403],
+            ['new title', 'loved', [], 'reply', 'loved', 204],
+            ['new title', 'loved', [], 'reply', 'gmt', 403],
         ];
     }
 
@@ -566,7 +567,7 @@ class TopicsControllerTest extends TestCase
         $user = User::factory()->withGroup($group)->create();
         $client = Client::factory()->create();
         $topic = Topic::factory()
-            ->for(Forum::factory()->withAuthorize('post', $aclGroup))
+            ->for(Forum::factory()->withAuthorize('reply', $aclGroup))
             ->withPost()
             ->create(['topic_poster' => $user]);
 
