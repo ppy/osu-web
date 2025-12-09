@@ -388,7 +388,7 @@ class BBCodeForDB
         $text = $this->parseQuote($text);
         $text = $this->parseList($text);
 
-        $text = $this->parseBlockSimple($text); // nice should work. remove this comment when final pr.
+        $text = $this->parseBlockSimple($text);
         $text = $this->parseProfile($text);
         $text = $this->parseImage($text);
         $text = $this->parseMultilineSimple($text);
