@@ -1,34 +1,35 @@
-FROM --platform=$BUILDPLATFORM debian:12 as buildenv
+FROM --platform=$BUILDPLATFORM almalinux:9-minimal as buildenv
 
-RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-https lsb-release ca-certificates curl gnupg
-
-RUN curl -fsSLo /usr/share/keyrings/deb.sury.org-php.gpg https://packages.sury.org/php/apt.gpg
-RUN echo "deb [signed-by=/usr/share/keyrings/deb.sury.org-php.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
-
-RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /usr/share/keyrings/nodesource.gpg
-RUN echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" > /etc/apt/sources.list.d/nodesource.list
-
-RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    build-essential \
-    git \
-    nodejs \
-    php8.4 \
-    php8.4-common \
-    php8.4-curl \
-    php8.4-ds \
-    php8.4-gd \
-    php8.4-intl \
-    php8.4-mbstring \
-    php8.4-mysql \
-    php8.4-redis \
-    php8.4-sqlite3 \
-    php8.4-swoole \
-    php8.4-tokenizer \
-    php8.4-xml \
-    php8.4-zip \
-    zip
+RUN echo "install_weak_deps=False" >> /etc/dnf/dnf.conf && \
+    microdnf install -y epel-release && \
+    rpm -i https://rpm.henderkes.com/static-php-1-0.noarch.rpm && \
+    microdnf module enable -y nodejs:20 php-zts:static-8.4 && \
+    microdnf install -y \
+      frankenphp \
+      git \
+      nodejs \
+      npm \
+      php-zts-cli \
+      php-zts-ds \
+      php-zts-fileinfo \
+      php-zts-ffi \
+      php-zts-ftp \
+      php-zts-gd \
+      php-zts-gettext \
+      php-zts-intl \
+      php-zts-mysqli \
+      php-zts-mysqlnd \
+      php-zts-pdo \
+      php-zts-pdo_mysql \
+      php-zts-pdo_sqlite \
+      php-zts-redis \
+      php-zts-shmop \
+      php-zts-sysvmsg \
+      php-zts-sysvsem \
+      php-zts-sysvshm \
+      php-zts-xsl \
+      php-zts-zip && \
+    microdnf clean all
 
 RUN npm install -g yarn
 
@@ -43,32 +44,37 @@ COPY package.json yarn.lock ./
 RUN yarn --prod --ignore-optional --frozen-lockfile
 
 
-FROM debian:12 as runenv
+FROM almalinux:9-minimal as runenv
 
-RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-https lsb-release ca-certificates curl
-
-RUN curl -sSLo /usr/share/keyrings/deb.sury.org-php.gpg https://packages.sury.org/php/apt.gpg
-RUN echo "deb [signed-by=/usr/share/keyrings/deb.sury.org-php.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
-
-RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    jhead \
-    nginx \
-    php8.4 \
-    php8.4-common \
-    php8.4-curl \
-    php8.4-ds \
-    php8.4-gd \
-    php8.4-intl \
-    php8.4-mbstring \
-    php8.4-mysql \
-    php8.4-redis \
-    php8.4-sqlite3 \
-    php8.4-swoole \
-    php8.4-tokenizer \
-    php8.4-xml \
-    php8.4-zip
+RUN echo "install_weak_deps=False" >> /etc/dnf/dnf.conf && \
+    microdnf install -y epel-release && \
+    rpm -i https://rpm.henderkes.com/static-php-1-0.noarch.rpm && \
+    microdnf module enable -y php-zts:static-8.4 && \
+    microdnf install -y \
+      frankenphp \
+      jhead \
+      nginx \
+      php-zts-cli \
+      php-zts-ds \
+      php-zts-fileinfo \
+      php-zts-ffi \
+      php-zts-ftp \
+      php-zts-gd \
+      php-zts-gettext \
+      php-zts-intl \
+      php-zts-mysqli \
+      php-zts-mysqlnd \
+      php-zts-pdo \
+      php-zts-pdo_mysql \
+      php-zts-pdo_sqlite \
+      php-zts-redis \
+      php-zts-shmop \
+      php-zts-sysvmsg \
+      php-zts-sysvsem \
+      php-zts-sysvshm \
+      php-zts-xsl \
+      php-zts-zip && \
+    microdnf clean all
 
 RUN rm -f /var/log/nginx/access.log /var/log/nginx/error.log && \
     ln -s /dev/stdout /var/log/nginx/access.log && \
@@ -86,6 +92,7 @@ RUN yarn production
 
 RUN php artisan ip2asn:update
 RUN php artisan scribe:generate
+RUN php artisan octane:install --server=frankenphp
 
 RUN rm -rf node_modules
 
