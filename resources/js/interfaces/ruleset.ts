@@ -18,4 +18,11 @@ export function ensureRuleset(maybeRuleset: string): Ruleset | undefined {
 export type RulesetId = keyof typeof rulesetIdToName;
 type Ruleset = typeof rulesetIdToName[RulesetId];
 
+export const rulesetVariantIdToName = {
+  0: '',
+  4: '4k',
+  7: '7k',
+};
+export type RulesetVariantId = keyof typeof rulesetVariantIdToName;
+
 export default Ruleset;

@@ -18,6 +18,7 @@ import { trans } from 'utils/lang';
 import Controller from './controller';
 import DailyChallenge from './daily-challenge';
 import Links from './links';
+import Matchmaking from './matchmaking';
 import ProfileEditButton from './profile-edit-button';
 
 interface Props {
@@ -69,6 +70,7 @@ export default class Detail extends React.Component<Props> {
                 <Rank stats={this.user.statistics} type='country' />
               </div>
               <div className='profile-detail__values'>
+                <Matchmaking allStats={this.user.matchmaking_stats} />
                 <DailyChallenge stats={this.user.daily_challenge_user_stats} />
               </div>
             </div>

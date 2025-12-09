@@ -924,6 +924,7 @@ class UsersController extends Controller
             'account_history',
             'current_season_stats',
             'daily_challenge_user_stats',
+            'matchmaking_stats.pool',
             'page',
             'pending_beatmapset_count',
             'rank_highest',

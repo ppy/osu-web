@@ -304,6 +304,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('rankings/kudosu', 'RankingController@kudosu')->name('rankings.kudosu');
     Route::resource('rankings/daily-challenge', 'Ranking\DailyChallengeController', ['only' => ['index', 'show']]);
+    Route::get('rankings/quickplay/{mode?}/{pool?}', 'Ranking\MatchmakingController@show')->name('rankings.matchmaking');
     Route::get('rankings/top-plays/{mode?}', 'Ranking\TopPlaysController@show')->name('rankings.top-plays');
     Route::get('rankings/{mode?}/{type?}/{sort?}', 'RankingController@index')->name('rankings');
 
