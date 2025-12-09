@@ -222,7 +222,7 @@ class BBCodeForDB
         $text = str_replace('[/*]', '', $text);
 
         $text = preg_replace($patterns[0], "[\\1:{$this->uid}]", $text, $limit);
-        $text = preg_replace('/' . preg_quote($patterns[1], '/') . '/', "[/list:o:{$this->uid}]", $text, $limit);
+        $text = preg_replace('/'.preg_quote($patterns[1], '/').'/', "[/list:o:{$this->uid}]", $text, $limit);
 
         return $text;
     }
@@ -311,7 +311,7 @@ class BBCodeForDB
         $limit = min($counts);
 
         $text = preg_replace($patterns[0], "[\\1:{$this->uid}]", $text, $limit);
-        $text = preg_replace('/' . preg_quote($patterns[1], '/') . '/', "[/quote:{$this->uid}]", $text, $limit);
+        $text = preg_replace('/'.preg_quote($patterns[1], '/').'/', "[/quote:{$this->uid}]", $text, $limit);
 
         return $text;
     }
