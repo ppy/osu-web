@@ -85,7 +85,7 @@ class BBCodeFromDB
 
     public function parseCentre($text)
     {
-        $text = str_replace("[centre:{$this->uid}]", '<center>', $text); // isn't <center> deprecated in html5?
+        $text = str_replace("[centre:{$this->uid}]", '<center>', $text);
         $text = str_replace("[/centre:{$this->uid}]", '</center>', $text);
 
         return $text;
@@ -93,8 +93,6 @@ class BBCodeFromDB
 
     public function parseRight($text)
     {
-        // i have to use custom bbcode.less css to include all elements inside right tag.
-        // mann why html gotta not have a <right> element
         $text = str_replace("[right:{$this->uid}]", "<div class='right'>", $text);
         $text = str_replace("[/right:{$this->uid}]", '</div>', $text);
 

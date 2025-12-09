@@ -62,7 +62,7 @@ class BBCodeForDB
     /**
      * Handles:
      * - Centre (centre).
-     * - Right (right).
+     * - Right  (right).
      */
     public function parseBlockSimple($text)
     {
