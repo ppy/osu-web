@@ -331,10 +331,10 @@ class Topic extends Model implements AfterCommit
             return $title;
         }
 
-        $tags = [];
-        foreach (static::ISSUE_TAGS as $tag) {
-            $tags[] = "[{$tag}]";
-        }
+        static $tags = array_map(
+            fn (string $t): string => "[{$t}]",
+            static::ISSUE_TAGS,
+        );
 
         return trim(str_ireplace($tags, '', $title));
     }
