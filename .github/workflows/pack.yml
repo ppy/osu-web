@@ -3,8 +3,7 @@ name: Build and publish
 on:
   push:
     branches:
-      - master
-      - private-staging
+      - '*'
     tags:
       - '*'
 
@@ -25,7 +24,7 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            pppy/osu-web
+            ghcr.io/thepoon/osu-web
           # generate Docker tags based on the following events/attributes
           # on tag event: tag using git tag, and as latest if the tag doesn't contain hyphens (pre-releases)
           # on push event: tag using git sha, branch name and as latest-dev
@@ -43,8 +42,9 @@ jobs:
         name: Login to DockerHub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          registry: https://ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       -
         name: Build and push
         uses: docker/build-push-action@v5
