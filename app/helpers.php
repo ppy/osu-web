@@ -1077,6 +1077,7 @@ function issue_icon($issue)
 {
     $fa = match ($issue) {
         'added' => 'fas fa-cogs',
+        'archived' => 'fas fa-archive',
         'assigned' => 'fas fa-user',
         'confirmed' => 'fas fa-exclamation-triangle',
         'duplicate' => 'fas fa-copy',
