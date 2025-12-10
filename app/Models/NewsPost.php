@@ -27,9 +27,6 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string|null $tumblr_id
  * @property \Carbon\Carbon|null $updated_at
  * @property string|null $version
- * @method static Builder default()
- * @method static Builder published()
- * @method static Builder year(?int $year)
  */
 class NewsPost extends Model implements Commentable, Wiki\WikiObject
 {
@@ -173,21 +170,21 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
         }
     }
 
-    public function scopeDefault(Builder $query): Builder
+    public function scopeDefault(Builder $query): void
     {
-        return $query->published()->orderBy('published_at', 'DESC');
+        $query->published()->orderBy('published_at', 'DESC');
     }
 
-    public function scopePublished(Builder $query): Builder
+    public function scopePublished(Builder $query): void
     {
-        return $query->whereNotNull('published_at')
+        $query->whereNotNull('published_at')
             ->where('published_at', '<=', Carbon::now());
     }
 
-    public function scopeYear(Builder $query, ?int $year): ?Builder
+    public function scopeYear(Builder $query, ?int $year): void
     {
         if ($year === null) {
-            return null;
+            return;
         }
 
         $baseStart = Carbon::create($year);
@@ -200,7 +197,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
         $end = Carbon::create($year + 1);
 
-        return $query
+        $query
             ->where('published_at', '>=', $start ?? $baseStart)
             ->where('published_at', '<', $end);
     }
