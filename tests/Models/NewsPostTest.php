@@ -6,6 +6,7 @@
 namespace Tests\Models;
 
 use App\Events\NewPrivateNotificationEvent;
+use App\Models\Count;
 use App\Models\NewsPost;
 use App\Models\Notification;
 use App\Models\User;
@@ -56,6 +57,7 @@ class NewsPostTest extends TestCase
 
         NewsPost::factory()->create(['published_at' => now()]);
 
+        $this->artisan('notifications:news-published');
         $this->runFakeQueue();
 
         \Event::assertNotDispatched(NewPrivateNotificationEvent::class);
@@ -74,6 +76,7 @@ class NewsPostTest extends TestCase
 
         NewsPost::factory()->series($series)->create(['published_at' => now()]);
 
+        $this->artisan('notifications:news-published');
         $this->runFakeQueue();
 
         if ($shouldNotify) {
@@ -86,9 +89,30 @@ class NewsPostTest extends TestCase
         }
     }
 
+    public function testUnpublishedNewsPostDoesNotNotify()
+    {
+        $user = User::factory()->create();
+        $user->notificationOptions()->create([
+            'name' => UserNotificationOption::NEWS_POST,
+            'details' => ['push' => true, 'series' => null],
+        ]);
+
+        $this->expectCountChange(fn () => Notification::count(), 0);
+
+        NewsPost::factory()->create(['published_at' => null]);
+
+        $this->artisan('notifications:news-published');
+        $this->runFakeQueue();
+
+        \Event::assertNotDispatched(NewPrivateNotificationEvent::class);
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
+
+        // start with non-silly date.
+        Count::lastNewsPostPublishedAtNotified()->update(['count' => now()->subHours(1)->timestamp]);
 
         \Queue::fake();
         \Event::fake();

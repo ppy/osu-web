@@ -6,7 +6,6 @@
 namespace App\Models;
 
 use App\Exceptions\GitHubNotFoundException;
-use App\Jobs\Notifications\NewsPostNew;
 use App\Libraries\Commentable;
 use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
@@ -14,6 +13,7 @@ use App\Traits\Memoizes;
 use Carbon\Carbon;
 use Ds\Set;
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property string $commentable_identifier
@@ -27,6 +27,9 @@ use Exception;
  * @property string|null $tumblr_id
  * @property \Carbon\Carbon|null $updated_at
  * @property string|null $version
+ * @method static Builder default()
+ * @method static Builder published()
+ * @method static Builder year(?int $year)
  */
 class NewsPost extends Model implements Commentable, Wiki\WikiObject
 {
@@ -170,21 +173,21 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
         }
     }
 
-    public function scopeDefault($query)
+    public function scopeDefault(Builder $query): Builder
     {
         return $query->published()->orderBy('published_at', 'DESC');
     }
 
-    public function scopePublished($query)
+    public function scopePublished(Builder $query): Builder
     {
         return $query->whereNotNull('published_at')
             ->where('published_at', '<=', Carbon::now());
     }
 
-    public function scopeYear($query, $year)
+    public function scopeYear(Builder $query, ?int $year): ?Builder
     {
         if ($year === null) {
-            return;
+            return null;
         }
 
         $baseStart = Carbon::create($year);
@@ -410,18 +413,6 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     public function previewText()
     {
         return first_paragraph($this->bodyHtml());
-    }
-
-    public function save(array $options = [])
-    {
-        // adding afterCommit needs to be after the transaction starts
-        return $this->getConnection()->transaction(function () use ($options) {
-            if ($this->isDirty('published_at') && $this->getOriginal('published_at') === null) {
-                $this->getConnection()->afterCommit(fn () => new NewsPostNew($this)->dispatch());
-            }
-
-            return parent::save($options);
-        });
     }
 
     public function title()
