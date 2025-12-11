@@ -68,6 +68,11 @@ class Kernel extends ConsoleKernel
             ->cron('14 1 * * *')
             ->onOneServer();
 
+        $schedule->command('notifications:news-published')
+            ->everyThirtyMinutes()
+            ->withoutOverlapping(120)
+            ->onOneServer();
+
         $schedule->command('notifications:send-mail')
             ->hourly()
             ->withoutOverlapping(120)

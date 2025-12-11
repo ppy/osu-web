@@ -39,4 +39,12 @@ class Count extends Model
     {
         return static::firstOrCreate(['name' => 'last_mail_user_notification_id_sent'], ['count' => 0]);
     }
+
+    public static function lastNewsPostPublishedAtNotified(): static
+    {
+        return static::firstOrCreate(
+            ['name' => 'last_news_post_published_at_notified'],
+            ['count' => NewsPost::default()->first()?->published_at->timestamp ?? 0],
+        );
+    }
 }
