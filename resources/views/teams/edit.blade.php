@@ -54,7 +54,7 @@
                             </span>
                             <input
                                 name="team[name]"
-                                class="input-text"
+                                class="input-text @if($daysRemainingRename > 0) input-text--disabled @endif"
                                 value="{{ $team->name }}"
                                 @disabled($daysRemainingRename > 0)
                             />
@@ -77,7 +77,7 @@
                             </span>
                             <input
                                 name="team[short_name]"
-                                class="input-text"
+                                class="input-text @if($daysRemainingRename > 0) input-text--disabled @endif"
                                 value="{{ $team->short_name }}"
                                 maxlength="{{ App\Models\Team::MAX_FIELD_LENGTHS['short_name'] }}"
                                 @disabled($daysRemainingRename > 0)
