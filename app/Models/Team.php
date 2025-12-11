@@ -32,7 +32,12 @@ class Team extends Model implements AfterCommit, Indexable, Traits\ReportableInt
         'url' => 255,
     ];
 
-    protected $casts = ['is_open' => 'bool'];
+    const RENAME_COOLDOWN_DAYS = 7;
+
+    protected $casts = [
+        'is_open' => 'bool',
+        'name_changed_at' => 'datetime'
+    ];
 
     private Uploader $header;
     private Uploader $flag;
@@ -231,6 +236,16 @@ class Team extends Model implements AfterCommit, Indexable, Traits\ReportableInt
             if ($value === null) {
                 $this->validationErrors()->add($field, 'required');
             } elseif ($this->isDirty($field)) {
+                // Check renaming cooldown period for existing teams
+                if ($this->exists && $this->name_changed_at !== null) {
+                    $daysSinceLastChange = $this->name_changed_at->diffInDays(now());
+
+                    if ($daysSinceLastChange < static::RENAME_COOLDOWN_DAYS) {
+                        $daysRemaining = static::RENAME_COOLDOWN_DAYS - $daysSinceLastChange;
+                        $this->validationErrors()->add($field, '.cooldown', ['days' => $daysRemaining]);
+                    }
+                }
+
                 // printable ascii characters
                 if (!preg_match('/^[ -~]+$/', $value)) {
                     $this->validationErrors()->add($field, '.invalid_characters');
