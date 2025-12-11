@@ -22,16 +22,16 @@ class DateFilterTest extends TestCase
             // BeatmapsetQueryParserTest will test the other date formats are equivalent.
             $year = 2023 + $index;
 
-            $data[] = [['q' => "{$key}={$year}"], [2, 3, 4]];
-            $data[] = [['q' => "{$key}={$year}-02"], [2, 3]];
+            $data[] = [['q' => "{$key}={$year}"], [4, 3, 2]];
+            $data[] = [['q' => "{$key}={$year}-02"], [3, 2]];
             $data[] = [['q' => "{$key}={$year}-02-28"], [3]];
-            $data[] = [['q' => "{$key}={$year}"], [2, 3, 4]];
+            $data[] = [['q' => "{$key}={$year}"], [4, 3, 2]];
 
             $year = 2022 + $index;
-            $data[] = [['q' => "{$key}>{$year}"], [2, 3, 4]];
-            $data[] = [['q' => "{$key}>={$year}"], [1, 2, 3, 4]];
+            $data[] = [['q' => "{$key}>{$year}"], [4, 3, 2]];
+            $data[] = [['q' => "{$key}>={$year}"], [4, 3, 2, 1]];
             $data[] = [['q' => "{$key}<{$year}"], [0]];
-            $data[] = [['q' => "{$key}<={$year}"], [0, 1]];
+            $data[] = [['q' => "{$key}<={$year}"], [1, 0]];
         }
 
         return $data;
