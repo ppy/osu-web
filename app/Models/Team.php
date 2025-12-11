@@ -314,6 +314,10 @@ class Team extends Model implements AfterCommit, Indexable, Traits\ReportableInt
             return false;
         }
 
+        if ($this->exists && ($this->isDirty('name') || $this->isDirty('short_name'))) {
+            $this->name_changed_at = now();
+        }
+
         if (!$this->exists) {
             return $this->getConnection()->transaction(function () use ($options) {
                 return (new Chat\Channel())->getConnection()->transaction(function () use ($options) {
