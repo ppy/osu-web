@@ -76,6 +76,8 @@ RUN echo "install_weak_deps=False" >> /etc/dnf/dnf.conf && \
       php-zts-zip && \
     microdnf clean all
 
+RUN ln -s /app/docker/php.ini /etc/php-zts/conf.d/zz-osuweb.ini
+
 RUN rm -f /var/log/nginx/access.log /var/log/nginx/error.log && \
     ln -s /dev/stdout /var/log/nginx/access.log && \
     ln -s /dev/stderr /var/log/nginx/error.log

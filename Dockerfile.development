@@ -40,6 +40,8 @@ RUN npm install -g yarn
 
 RUN curl -L "https://getcomposer.org/download/latest-2.x/composer.phar" > /usr/local/bin/composer && chmod 755 /usr/local/bin/composer
 
+RUN ln -s /app/docker/php.ini /etc/php-zts/conf.d/zz-osuweb.ini
+
 WORKDIR /app
 
 RUN groupadd osuweb && useradd -g osuweb -d /app/.docker osuweb
