@@ -97,7 +97,14 @@
                         'ranking-page-grid-item__col',
                         $sort === 'rating' ? 'number-focus' : 'number',
                     ) }}">
-                        {{ i18n_number_format($score->rating) }}
+                        @php
+                            [$provisionalTitle, $provisionalSign] = $score->plays < $score::MIN_PLAYS_NON_PROVISIONAL
+                                ? [osu_trans('rankings.matchmaking.provisional'), '*']
+                                : ['', ''];
+                        @endphp
+                        <span title="{{ $provisionalTitle }}">
+                            {{ i18n_number_format($score->rating).$provisionalSign }}
+                        </span>
                     </div>
                 </div>
             </div>
