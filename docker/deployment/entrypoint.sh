@@ -15,7 +15,7 @@ _octane() {
   /app/artisan config:cache
   /app/artisan route:cache
 
-  exec /app/artisan octane:start --server=frankenphp --host=0.0.0.0 "$@"
+  exec /app/artisan octane:start --host=0.0.0.0 "$@"
 }
 
 case "$command" in

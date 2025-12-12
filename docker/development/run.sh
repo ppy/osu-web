@@ -34,7 +34,7 @@ _octane() {
         sleep 1
     done
 
-    exec ./artisan octane:start --server=frankenphp --host=0.0.0.0 "$@"
+    exec ./artisan octane:start --host=0.0.0.0 "$@"
 }
 
 _schedule() {
