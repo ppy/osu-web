@@ -25,7 +25,6 @@ jobs:
           APP_KEY=base64:q7U5qyAkedR1F6UhN0SQlUxBpAMDyfHy3NNFkqmiMqA=
           APP_URL=http://localhost:8000
           DB_HOST=127.0.0.1
-          DUSK_DRIVER_URL=http://127.0.0.1:9515
           ES_SOLO_SCORES_HOST=http://localhost:9200
           GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
           NOTIFICATION_ENDPOINT=ws://localhost:2345
