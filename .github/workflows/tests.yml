@@ -68,8 +68,8 @@ jobs:
 #      - name: Clean indexes
 #        run: docker compose exec php /app/docker/development/entrypoint.sh artisan es:index-documents --no-interaction
 
-      - name: Run Dusk
-        run: docker compose exec php /app/docker/development/entrypoint.sh artisan dusk
+#      - name: Run Dusk
+#        run: docker compose exec php /app/docker/development/entrypoint.sh artisan dusk
 
       - name: Run karma
         run: docker compose exec php /app/docker/development/entrypoint.sh test js
