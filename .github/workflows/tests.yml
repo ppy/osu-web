@@ -5,92 +5,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  APP_ENV: testing
-  APP_KEY: base64:q7U5qyAkedR1F6UhN0SQlUxBpAMDyfHy3NNFkqmiMqA=
-  APP_URL: http://localhost:8000
-  DB_HOST: 127.0.0.1
-  DUSK_DRIVER_URL: http://127.0.0.1:9515
-  ES_SOLO_SCORES_HOST: http://localhost:9200
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  NOTIFICATION_ENDPOINT: ws://localhost:2345
-  OSU_INSTALL_DEV: 1
-  OSU_USE_SYSTEM_COMPOSER: 1
-  OSU_DB_CREATE: 1
-  PAYMENT_SANDBOX: true
-  PASSPORT_PRIVATE_KEY: |+
-    -----BEGIN PRIVATE KEY-----
-    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
-    qkWREaw6Mt2MfHwSFoJooagIuAIHMGw=
-    -----END PRIVATE KEY-----
-  PASSPORT_PUBLIC_KEY: |+
-    -----BEGIN PUBLIC KEY-----
-    MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAphHR98Mmw37UoQ5ADxwP
-    +N5gHpTo9d+aoahFlLzN789oIFTE/Vk/QPn2YhWc2XNCvRgsypaZ0kZW+ccnMLaF
-    AlC/7zsbbNnKT7vzlU4sg6xfPuELY7lQDE7oBXXGrVE7kF28WsGzRgWs5DN/gRnd
-    Z0gLjTMBGOqHepBBNThkv3j5BnLWcX4f1jphXk/RrUC8jEmm+O/MIz0uPrwMo4Bx
-    7gTmKmbBW7v1lFEZgGuqk2BqGe8dtUdNLz+345x2oc3s4nQ8AHurPV19DYnoeXxs
-    qbIDkEqcIhV4hDUzmy/EUioRbDeK1mL+ybRqTsBerk3/IqI//YkNhtlmtM3oHcy2
-    qaymcSwTANF6kDhtpVs0bo1vM77461g6NVsQM+SbyszjXB1NKO724A9O7hbItUCQ
-    ifLExc6vxhqigNY3PkXoQ234Nol5vN1fIqLrZqXfQqd8JsKmbL/OLArVZ5R+gxNP
-    eI/aegNuaIvvsK9zNlyMbOdQqIU7LTFGHZ5bHcSz3haftL+dI1NVn6jOXpBRMWWL
-    jyPrpFMb6yffQYTgLtFjJUET6SNasXiJJh90y1ySKwv+5M2J8qpFGynolz2XJq+V
-    guz1jhIlRmg6O+thTZc71fg0vcUjcLuPy2z7VNX4YcPpkmev68NPCWpCAqi0zjMy
-    HQZdh/ScL40oDGb6HRdKan0CAwEAAQ==
-    -----END PUBLIC KEY-----
-  REDIS_HOST: 127.0.0.1
-  SHOPIFY_DOMAIN: notarealdomainortld
-  SHOPIFY_STOREFRONT_TOKEN: notreal
-  SLACK_ENDPOINT: https://myconan.net/null/
-
 jobs:
   tests:
     strategy:
@@ -98,72 +12,58 @@ jobs:
         php: ['8.4']
     name: Tests
     runs-on: ubuntu-latest
+    env:
+      PHP_VERSION: ${{ matrix.php }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
-      # otherwise docker compose will create .env directory
-      - name: Create blank env file
-        run: '> .env'
+      - name: Create .env
+        run: |
+          cat > .env <<EOF
+          APP_ENV=testing
+          APP_URL=http://nginx
+          GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
+          PAYMENT_SANDBOX=true
+          EOF
 
-      - name: Services
-        run: 'docker compose up --quiet-pull --wait
-          beatmap-difficulty-lookup-cache
-          db
-          elasticsearch
-          notification-server
-          redis
-          score-indexer
-        '
+      - name: Create .env.testing
+        run: |
+          ln -s .env .env.testing
 
-      - name: Setup node.js
-        uses: actions/setup-node@v4
-        with:
-          cache: yarn
-          node-version: '20'
-
-      - name: Set php version
-        uses: shivammathur/setup-php@v2
-        with:
-          extensions: redis, swoole
-          tools: composer:v2
-          php-version: ${{ matrix.php }}
-          coverage: none
-
-      - name: Get composer cache directory
-        id: composercache
-        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-
-      - name: Cache composer
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.composercache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
+      - name: Create .env.dusk.local
+        run: |
+          ln -s .env .env.dusk.local
 
       - name: Get current date
         id: current-date
         run: echo "today=$(date '+%Y%m%d')" >> "$GITHUB_OUTPUT"
 
       - name: Cache ip2asn
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: database/ip2asn/
           key: ip2asn-${{ steps.current-date.outputs.today }}
           restore-keys: ip2asn-
 
-      - run: ./build.sh
+      - name: Cache composer
+        uses: actions/cache@v5
+        with:
+          path: .docker/.cache/composer/files/
+          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
 
-      - name: Setup indices
-        run: |
-          php artisan es:index-documents --no-interaction
-          php artisan es:index-wiki --create-only --no-interaction
+      - name: Spin up Docker dev environment
+        run: ./bin/docker_dev.sh -d
+
+      - name: Wait for migrations to be done
+        run: docker compose logs -t -f migrator
 
       - name: Generate docs
-        run: php artisan scribe:generate
+        run: docker compose exec php /app/docker/development/entrypoint.sh artisan scribe:generate
 
       - name: Run PHPUnit
-        run: ./bin/phpunit.sh
+        run: docker compose exec php /app/docker/development/entrypoint.sh test phpunit
 
       # TODO: workaround things (beatmaps) being indexed during test above and not cleaned up.
       # This used to cause beatmap listing returning cursor with Long.MIN_VALUE for null timetamp
@@ -171,17 +71,17 @@ jobs:
       # but has since been fixed.
       # Something should still be done regarding es index between tests though.
       - name: Clean indexes
-        run: php artisan es:index-documents --no-interaction
+        run: docker compose exec php /app/docker/development/entrypoint.sh artisan es:index-documents --no-interaction
 
       - name: Run Dusk
-        run: ./bin/run_dusk.sh
+        run: docker compose exec php /app/docker/development/entrypoint.sh artisan dusk
 
       - name: Run karma
-        run: yarn karma start --single-run --browsers ChromeHeadless
+        run: docker compose run --rm testjs
 
       # this only tests that the rollback functions are valid and doesn't check
       # if they actually do what they're expected to do.
       - name: Migration rollback test
         run: |
-          php artisan migrate:reset | tee rollback.log
+          docker compose exec php /app/docker/development/entrypoint.sh artisan migrate:reset | tee rollback.log
           grep -Fq 'no rolling back from this migration =)' rollback.log

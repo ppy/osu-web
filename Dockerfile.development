@@ -1,9 +1,11 @@
 FROM almalinux:10-minimal
 
+ARG PHP_VERSION=8.4
+
 RUN echo "install_weak_deps=False" >> /etc/dnf/dnf.conf && \
     microdnf install -y epel-release && \
     rpm -i https://rpm.henderkes.com/static-php-1-0.noarch.rpm && \
-    microdnf module enable -y php-zts:static-8.4 && \
+    microdnf module enable -y php-zts:static-$PHP_VERSION && \
     microdnf install -y \
       chromedriver \
       chromium \
