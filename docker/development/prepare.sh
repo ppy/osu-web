@@ -41,8 +41,6 @@ _run yarn --network-timeout 100000 --frozen-lockfile
 
 _run composer install
 
-_run artisan dusk:chrome-driver
-
 if [ -d storage/oauth-public.key ]; then
     echo "oauth-public.key is a directory. Removing it"
     rmdir storage/oauth-public.key
