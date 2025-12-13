@@ -28,9 +28,6 @@ jobs:
           ES_SOLO_SCORES_HOST=http://elasticsearch:9200
           GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
           NOTIFICATION_ENDPOINT=ws://nginx/home/notifications/feed
-          OSU_INSTALL_DEV=1
-          OSU_USE_SYSTEM_COMPOSER=1
-          OSU_DB_CREATE=1
           PAYMENT_SANDBOX=true
           REDIS_HOST=redis
           SHOPIFY_DOMAIN=notarealdomainortld
