@@ -72,7 +72,7 @@ jobs:
 #        run: docker compose exec php /app/docker/development/entrypoint.sh artisan dusk
 
       - name: Run karma
-        run: docker compose exec php /app/docker/development/entrypoint.sh test js
+        run: docker compose exec php env CHROME_NO_SANDBOX=1 /app/docker/development/entrypoint.sh test js
 
       # this only tests that the rollback functions are valid and doesn't check
       # if they actually do what they're expected to do.
