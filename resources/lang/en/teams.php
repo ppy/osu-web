@@ -67,6 +67,8 @@ return [
             'flag_help' => 'Maximum size of :width×:height',
             'header_help' => 'Maximum size of :width×:height',
             'title' => 'Team Settings',
+            'rename_cooldown' => 'You can change the team\'s name and tag once every 7 days',
+            'rename_cooldown_active' => 'You can change the team\'s name and tag once every 7 days. :days days remaining.',
 
             'application_state' => [
                 'state_0' => 'Closed',
