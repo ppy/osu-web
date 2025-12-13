@@ -22,7 +22,6 @@ jobs:
         run: |
           cat > .env <<EOF
           APP_ENV=testing
-          APP_KEY=base64:q7U5qyAkedR1F6UhN0SQlUxBpAMDyfHy3NNFkqmiMqA=
           APP_URL=http://nginx
           DB_HOST=db
           ES_SOLO_SCORES_HOST=http://elasticsearch:9200
