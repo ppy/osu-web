@@ -74,6 +74,15 @@ jobs:
 #      - name: Clean indexes
 #        run: docker compose exec php /app/docker/development/entrypoint.sh artisan es:index-documents --no-interaction
 
+      - name: ls storage
+        run: ls -lha ./storage
+
+      - name: cat passwd
+        run: cat /etc/passwd
+
+      - name: Get notification-server id
+        run: docker compose run --rm notification-server id
+
       - name: Get notification-server logs
         run: docker compose logs -t notification-server
 
