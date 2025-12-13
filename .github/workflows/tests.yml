@@ -23,16 +23,16 @@ jobs:
           cat > .env <<EOF
           APP_ENV=testing
           APP_KEY=base64:q7U5qyAkedR1F6UhN0SQlUxBpAMDyfHy3NNFkqmiMqA=
-          APP_URL=http://localhost:8000
-          DB_HOST=127.0.0.1
-          ES_SOLO_SCORES_HOST=http://localhost:9200
+          APP_URL=http://nginx
+          DB_HOST=db
+          ES_SOLO_SCORES_HOST=http://elasticsearch:9200
           GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
-          NOTIFICATION_ENDPOINT=ws://localhost:2345
+          NOTIFICATION_ENDPOINT=ws://nginx/home/notifications/feed
           OSU_INSTALL_DEV=1
           OSU_USE_SYSTEM_COMPOSER=1
           OSU_DB_CREATE=1
           PAYMENT_SANDBOX=true
-          REDIS_HOST=127.0.0.1
+          REDIS_HOST=redis
           SHOPIFY_DOMAIN=notarealdomainortld
           SHOPIFY_STOREFRONT_TOKEN=notreal
           SLACK_ENDPOINT=https://myconan.net/null/
