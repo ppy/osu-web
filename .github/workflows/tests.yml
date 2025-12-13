@@ -108,12 +108,6 @@ jobs:
       - name: Create blank env file
         run: '> .env'
 
-      - name: Spin up Docker dev environment
-        run: ./bin/docker_dev.sh -d
-
-      - name: Wait for migrations to be done
-        run: docker compose wait migrator
-
       - name: Get current date
         id: current-date
         run: echo "today=$(date '+%Y%m%d')" >> "$GITHUB_OUTPUT"
@@ -124,6 +118,12 @@ jobs:
           path: database/ip2asn/
           key: ip2asn-${{ steps.current-date.outputs.today }}
           restore-keys: ip2asn-
+
+      - name: Spin up Docker dev environment
+        run: ./bin/docker_dev.sh -d
+
+      - name: Wait for migrations to be done
+        run: docker compose wait migrator
 
       - name: Generate docs
         run: docker compose exec php /app/docker/development/entrypoint.sh artisan scribe:generate
