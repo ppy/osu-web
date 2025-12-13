@@ -49,7 +49,7 @@ FROM almalinux:10-minimal as runenv
 RUN echo "install_weak_deps=False" >> /etc/dnf/dnf.conf && \
     microdnf install -y epel-release && \
     rpm -i https://rpm.henderkes.com/static-php-1-0.noarch.rpm && \
-    microdnf module enable -y php-zts:static-$PHP_VERSION && \
+    microdnf module enable -y php-zts:static-8.4 && \
     microdnf install -y \
       exiv2 \
       frankenphp \
