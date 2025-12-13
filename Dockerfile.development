@@ -36,6 +36,7 @@ RUN echo "install_weak_deps=False" >> /etc/dnf/dnf.conf && \
       php-zts-sysvshm \
       php-zts-xsl \
       php-zts-zip \
+      unzip \
       util-linux && \
     microdnf clean all
 

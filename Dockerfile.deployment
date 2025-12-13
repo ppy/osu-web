@@ -28,7 +28,8 @@ RUN echo "install_weak_deps=False" >> /etc/dnf/dnf.conf && \
       php-zts-sysvsem \
       php-zts-sysvshm \
       php-zts-xsl \
-      php-zts-zip && \
+      php-zts-zip \
+      unzip && \
     microdnf clean all
 
 RUN npm install -g yarn
