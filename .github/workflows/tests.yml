@@ -23,15 +23,10 @@ jobs:
           cat > .env <<EOF
           APP_ENV=testing
           APP_URL=http://nginx
-          DB_HOST=db
-          ES_SOLO_SCORES_HOST=http://elasticsearch:9200
           GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
-          NOTIFICATION_ENDPOINT=ws://nginx/home/notifications/feed
           PAYMENT_SANDBOX=true
-          REDIS_HOST=redis
           SHOPIFY_DOMAIN=notarealdomainortld
           SHOPIFY_STOREFRONT_TOKEN=notreal
-          SLACK_ENDPOINT=https://myconan.net/null/
           EOF
 
       - name: Create .env.testing
