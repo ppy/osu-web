@@ -50,7 +50,7 @@ _test() {
 
     case "$command" in
         browser) _test_browser "$@";;
-        js) exec yarn karma start --single-run --browsers ChromeHeadless "$@";;
+        js) exec yarn karma start --single-run --browsers ChromeCustom "$@";;
         phpunit) exec ./bin/phpunit.sh "$@";;
     esac
 }
