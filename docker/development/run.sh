@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export CHROME_BIN=/usr/bin/chromium
+export CHROME_BIN=/usr/bin/chromium-browser
 export DUSK_WEBDRIVER_BIN=/usr/bin/chromedriver
 export LANG="C.UTF-8"
 export LC_ALL="C.UTF-8"
