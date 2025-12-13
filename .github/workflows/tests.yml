@@ -54,7 +54,7 @@ jobs:
         run: ./bin/docker_dev.sh -d
 
       - name: Wait for migrations to be done
-        run: docker compose wait migrator
+        run: docker compose logs -t -f migrator
 
       - name: Generate docs
         run: docker compose exec php /app/docker/development/entrypoint.sh artisan scribe:generate
