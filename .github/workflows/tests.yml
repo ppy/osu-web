@@ -9,7 +9,7 @@ jobs:
   tests:
     strategy:
       matrix:
-        php: ['8.4']
+        php: [ '8.4' ]
     name: Tests
     runs-on: ubuntu-latest
     env:
@@ -45,6 +45,13 @@ jobs:
           path: database/ip2asn/
           key: ip2asn-${{ steps.current-date.outputs.today }}
           restore-keys: ip2asn-
+
+      - name: Cache composer
+        uses: actions/cache@v4
+        with:
+          path: .docker/.cache/composer/files/
+          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
 
       - name: Spin up Docker dev environment
         run: ./bin/docker_dev.sh -d
