@@ -74,6 +74,9 @@ jobs:
 #      - name: Clean indexes
 #        run: docker compose exec php /app/docker/development/entrypoint.sh artisan es:index-documents --no-interaction
 
+      - name: id
+        run: id
+
       - name: ls storage
         run: ls -lha ./storage
 
