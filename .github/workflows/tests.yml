@@ -24,8 +24,6 @@ jobs:
           APP_ENV=testing
           APP_URL=http://nginx
           GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
-          SHOPIFY_DOMAIN=notarealdomainortld
-          SHOPIFY_STOREFRONT_TOKEN=notreal
           EOF
 
       - name: Create .env.testing
