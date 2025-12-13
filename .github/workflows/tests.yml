@@ -76,7 +76,7 @@ jobs:
       # but has since been fixed.
       # Something should still be done regarding es index between tests though.
       - name: Clean indexes
-        run: php artisan es:index-documents --no-interaction
+        run: docker compose exec php /app/docker/development/entrypoint.sh artisan es:index-documents --no-interaction
 
       - name: Run Dusk
         run: docker compose exec php /app/docker/development/entrypoint.sh test browser
