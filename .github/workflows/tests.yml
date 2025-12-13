@@ -95,9 +95,11 @@ jobs:
   tests:
     strategy:
       matrix:
-        php: ['8.4']
+        php: ['8.4', '8.5']
     name: Tests
     runs-on: ubuntu-latest
+    env:
+      PHP_VERSION: ${{ matrix.php }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -106,40 +108,11 @@ jobs:
       - name: Create blank env file
         run: '> .env'
 
-      - name: Services
-        run: 'docker compose up --quiet-pull --wait
-          beatmap-difficulty-lookup-cache
-          db
-          elasticsearch
-          notification-server
-          redis
-          score-indexer
-        '
+      - name: Spin up Docker dev environment
+        run: ./bin/docker_dev.sh -d
 
-      - name: Setup node.js
-        uses: actions/setup-node@v4
-        with:
-          cache: yarn
-          node-version: '20'
-
-      - name: Set php version
-        uses: shivammathur/setup-php@v2
-        with:
-          extensions: redis, swoole
-          tools: composer:v2
-          php-version: ${{ matrix.php }}
-          coverage: none
-
-      - name: Get composer cache directory
-        id: composercache
-        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-
-      - name: Cache composer
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.composercache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
+      - name: Wait for migrations to be done
+        run: docker compose wait migrator
 
       - name: Get current date
         id: current-date
@@ -152,18 +125,11 @@ jobs:
           key: ip2asn-${{ steps.current-date.outputs.today }}
           restore-keys: ip2asn-
 
-      - run: ./build.sh
-
-      - name: Setup indices
-        run: |
-          php artisan es:index-documents --no-interaction
-          php artisan es:index-wiki --create-only --no-interaction
-
       - name: Generate docs
-        run: php artisan scribe:generate
+        run: docker compose exec php /app/docker/development/entrypoint.sh artisan scribe:generate
 
       - name: Run PHPUnit
-        run: ./bin/phpunit.sh
+        run: docker compose exec php /app/docker/development/entrypoint.sh test phpunit
 
       # TODO: workaround things (beatmaps) being indexed during test above and not cleaned up.
       # This used to cause beatmap listing returning cursor with Long.MIN_VALUE for null timetamp
@@ -174,14 +140,14 @@ jobs:
         run: php artisan es:index-documents --no-interaction
 
       - name: Run Dusk
-        run: ./bin/run_dusk.sh
+        run: docker compose exec php /app/docker/development/entrypoint.sh test browser
 
       - name: Run karma
-        run: yarn karma start --single-run --browsers ChromeHeadless
+        run: docker compose exec php /app/docker/development/entrypoint.sh test js
 
       # this only tests that the rollback functions are valid and doesn't check
       # if they actually do what they're expected to do.
       - name: Migration rollback test
         run: |
-          php artisan migrate:reset | tee rollback.log
+          docker compose exec php /app/docker/development/entrypoint.sh artisan migrate:reset | tee rollback.log
           grep -Fq 'no rolling back from this migration =)' rollback.log
