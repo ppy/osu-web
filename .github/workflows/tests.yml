@@ -37,11 +37,11 @@ jobs:
 
       - name: Create .env.testing
         run: |
-          cp .env .env.testing
+          ln -s .env .env.testing
 
       - name: Create .env.dusk.local
         run: |
-          cp .env .env.dusk.local
+          ln -s .env .env.dusk.local
 
       - name: Get current date
         id: current-date
