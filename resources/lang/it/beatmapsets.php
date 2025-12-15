@@ -83,7 +83,7 @@ return [
             'favourite_login' => 'Accedi per aggiungere questa beatmap ai preferiti',
             'logged-out' => 'devi accedere se vuoi scaricare le beatmap!',
             'mapped_by' => 'mappata da :mapper',
-            'mapped_by_guest' => 'difficoltà guest di :mapper',
+            'mapped_by_guest' => 'difficoltà ospitata di :mapper',
             'unfavourite' => 'Non mi piace questa beatmap',
             'updated_timeago' => 'ultimo aggiornamento :timeago',
 
@@ -224,8 +224,8 @@ return [
             'rating-spread' => 'Diffusione della valutazione',
             'nominations' => 'Nomine',
             'playcount' => 'Volte giocata',
-            'favourites' => '',
-            'no_favourites' => '',
+            'favourites' => 'Preferiti',
+            'no_favourites' => 'Nessun preferito per ora',
         ],
 
         'status' => [

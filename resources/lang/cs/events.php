@@ -4,26 +4,26 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'achievement' => '<strong><em>:user</em></strong> získal "<strong>:achievement</strong>" medajli!',
+    'achievement' => ':user získal ":achievement" medaili!',
     'beatmap_playcount' => ':beatmap byla zahrána už :count-krát!',
-    'beatmapset_approve' => ':beatmapset od <strong>:user</strong> byl :approval!',
+    'beatmapset_approve' => ':beatmapset od :user byl :approval!',
     'beatmapset_delete' => ':beatmapset byl odstraněn.',
-    'beatmapset_revive' => ':beatmapset byl probrán z věčného spánku uživatelem <strong>:user</strong>.',
-    'beatmapset_update' => '<strong><em>:user</em></strong> aktualizoval mapu "<em>:beatmapset</em>"',
-    'beatmapset_upload' => '<strong><em>:user</em></strong> zveřejnil novou mapu ":beatmapset"',
+    'beatmapset_revive' => ':beatmapset byl probrán z věčného spánku uživatelem :user.',
+    'beatmapset_update' => ':user aktualizoval beatmapu ":beatmapset"',
+    'beatmapset_upload' => ':user odeslal novou beatmapu ":beatmapset"',
     'empty' => "Tento uživatel neudělal v nejbližší minulosti nic pozoruhodného!",
     'rank' => ':user získal :rank na mapě :beatmap (:mode)',
-    'rank_lost' => '<strong><em>:user</em></strong> ztratil první místo na mapě <em>:beatmap</em> (:mode)',
-    'user_support_again' => '<strong>:user</strong> se opět rozhodl podpořit osu! - díky za tvou štědrost!',
-    'user_support_first' => '<strong>:user</strong> podpořil osu! - díky za tvou štědrost!',
-    'user_support_gift' => '<strong>:user</strong> obdržel dar osu! supporteru!',
-    'username_change' => '<strong>:previousUsername</strong> se přejmenoval na <strong><em>:user</em></strong>!',
+    'rank_lost' => ':user ztratil první místo na mapě :beatmap (:mode)',
+    'user_support_again' => ':user se opět rozhodl podpořit osu! - díky za tvou štědrost!',
+    'user_support_first' => ':user podpořil osu! - díky za tvou štědrost!',
+    'user_support_gift' => ':user obdržel dar osu!supporteru!',
+    'username_change' => ':previousUsername se přejmenoval na :user!',
 
     'beatmapset_status' => [
-        'approved' => 'schváleno',
-        'loved' => 'oblíbené',
-        'qualified' => 'kvalifikováno',
-        'ranked' => 'hodnoceno',
+        'approved' => 'schválen',
+        'loved' => 'oblíben komunitou',
+        'qualified' => 'kvalifikován',
+        'ranked' => 'hodnocen',
     ],
 
     'value' => [

@@ -159,6 +159,13 @@ return [
                 'comment_reply' => ':username ответил ":content" под новостью ":title"',
                 'comment_reply_compact' => ':username ответил ":content"',
             ],
+
+            'news_post' => [
+                '_' => '',
+
+                'news_post_new' => '',
+                'news_post_new_compact' => '',
+            ],
         ],
 
         'forum_topic' => [
@@ -264,6 +271,10 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Новые комментарии под новостью ":title"',
+            ],
+
+            'news_post' => [
+                'news_post_new' => '',
             ],
         ],
 

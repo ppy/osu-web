@@ -21,7 +21,7 @@ return [
     'buttons' => [
         'authorise' => 'Autoriser',
         'authorising' => 'Autoriserer...',
-        'back' => '',
+        'back' => 'Tilbake',
         'back_to_previous' => 'Returner til forrige posisjon',
         'back_to_top' => 'Tilbake til toppen',
         'cancel' => 'Avbryt',
@@ -39,7 +39,7 @@ return [
         'pin' => 'fest',
         'post' => 'Del',
         'read_more' => 'les mer',
-        'refresh' => '',
+        'refresh' => 'Oppdater',
         'reply' => 'Svar',
         'reply_reopen' => 'Svar og åpne igjen',
         'reply_resolve' => 'Svar og marker som løst',

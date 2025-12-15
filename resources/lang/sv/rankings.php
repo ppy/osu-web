@@ -33,23 +33,41 @@ return [
         'used' => 'Spenderat',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Denna spelare har mindre än 30 dagar av nylig rankinghistorik.',
     ],
 
     'top_plays' => [
         'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'i rampljuset',
         'country' => 'land',
         'daily_challenge' => 'daglig utmaning',
         'global' => 'global ',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'flerspelarläge',
-        'season_room' => '',
-        'seasons' => 'säsonger',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'lag',
         'top_plays' => '',
     ],

@@ -33,23 +33,41 @@ return [
         'used' => 'Đã dùng',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Người dùng này có lịch sử xếp hạng ít hơn 30 ngày.',
     ],
 
     'top_plays' => [
         'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'tiêu điểm',
         'country' => 'quốc gia',
         'daily_challenge' => 'thử thách hằng ngày',
         'global' => 'toàn cầu',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'nhiều người chơi',
-        'season_room' => '',
-        'seasons' => 'mùa',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'đội',
         'top_plays' => '',
     ],

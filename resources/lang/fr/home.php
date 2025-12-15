@@ -83,7 +83,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'consultez cette page pour plus d\'informations',
-        'download' => '',
+        'download' => 'Télécharger',
         'for_os' => 'pour :os',
         'macos-fallback' => 'utilisateurs macOS',
         'mirror' => 'miroir',
@@ -91,7 +91,7 @@ return [
         'os_version_or_later' => ':os_version ou plus',
         'other_os' => 'autres plateformes',
         'quick_start_guide' => 'guide de démarrage rapide',
-        'stable_text' => '',
+        'stable_text' => 'si vous cherchez l\'ancienne version',
         'tagline_1' => '',
         'tagline_2' => '',
         'video-guide' => 'guide vidéo',

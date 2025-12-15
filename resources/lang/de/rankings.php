@@ -33,32 +33,50 @@ return [
         'used' => 'Ausgegeben',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Der kürzliche Ranking-Verlauf dieses Benutzers ist kleiner als 30 Tage.',
     ],
 
     'top_plays' => [
-        'empty' => '',
+        'empty' => 'Die Daten werden noch verarbeitet...',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'Spotlights (alt)',
         'country' => 'Länder',
         'daily_challenge' => 'Tägliche Herausforderung',
         'global' => 'Global',
         'kudosu' => 'Kudosu',
-        'multiplayer' => 'Mehrspieler',
-        'season_room' => '',
-        'seasons' => 'Seasons',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'Teams',
-        'top_plays' => '',
+        'top_plays' => 'Top-Spiele',
     ],
 
     'seasons' => [
         'empty' => 'Es existieren noch keine Räume in dieser Season.',
         'ongoing' => 'Diese Season ist noch im Gange (es werden weitere Playlists hinzugefügt).',
         'room_count' => 'Anzahl der Playlists',
-        'summary' => '',
+        'summary' => 'Seasonübersicht anzeigen',
         'url' => 'Weitere Informationen zu dieser Season anzeigen.',
         'validation' => [
             'not_enough_factors' => 'Es gibt nicht genügend Score-Faktoren für eine korrekte Berechnung',

@@ -53,7 +53,7 @@ return [
             'discussion' => 'discusión del mapa',
             'index' => 'lista de mapas',
             'show' => 'información del mapa',
-            'versions' => '',
+            'versions' => 'historial de las versiones del mapa',
         ],
         'changelog_controller' => [
             '_' => 'registro de cambios',
@@ -72,7 +72,7 @@ return [
             'judge' => 'evaluación del concurso',
         ],
         'group_history_controller' => [
-            '_' => '',
+            '_' => 'historial de grupos',
         ],
         'groups_controller' => [
             'show' => 'grupos',
@@ -125,7 +125,7 @@ return [
             '_' => 'portadas preestablecidas',
         ],
         'user_totp_controller' => [
-            '_' => '',
+            '_' => 'aplicación de autenticación',
         ],
         'users_controller' => [
             '_' => 'información del jugador',

@@ -470,6 +470,12 @@ return [
             'twitter' => '',
             'website' => 'Web Stránka',
         ],
+
+        'matchmaking' => [
+            'details_soon' => '',
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Možno si zmenil užívateľské meno.',
             'reason_2' => 'Účet môže byť dočasne nedostupný z dôvodu problému s bezpečnosťou alebo zneužitím.',

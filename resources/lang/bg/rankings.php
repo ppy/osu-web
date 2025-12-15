@@ -33,23 +33,41 @@ return [
         'used' => 'Похарчени',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Потребителят има по-малко от 30 дни скорошна история в класирането.',
     ],
 
     'top_plays' => [
         'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'под прожекторите',
         'country' => 'държава',
         'daily_challenge' => 'предизвикателство',
         'global' => 'Глобално',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'мултиплейър',
-        'season_room' => '',
-        'seasons' => 'сезони',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'отбор',
         'top_plays' => '',
     ],

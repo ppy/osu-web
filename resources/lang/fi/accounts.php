@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'vastaanota ilmoituksia uusista ongelmista seuraavien pelimuotojen kelpuutetuissa rytmikartoissa',
         'beatmapset_disqualify' => 'vastaanota ilmoituksia, kun rytmikarttoja hylätään seuraavissa pelimuodoissa',
         'comment_reply' => 'vastaanota ilmoituksia vastauksista kommentteihisi',
+        'news_post' => '',
         'title' => 'Ilmoitukset',
         'topic_auto_subscribe' => 'ota automaattisesti ilmoitukset käyttöön tekemillesi uusille foorumiaiheille',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'aihevastaus',
             'mail' => 'posti',
             'mapping' => 'mappaaja',
+            'news_post' => '',
             'push' => 'push',
         ],
     ],

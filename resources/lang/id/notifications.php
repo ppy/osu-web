@@ -159,6 +159,13 @@ return [
                 'comment_reply' => ':username membalas komentar yang kamu tulis pada ":title" dengan ":content"',
                 'comment_reply_compact' => ':username membalas komentarmu dengan ":content"',
             ],
+
+            'news_post' => [
+                '_' => '',
+
+                'news_post_new' => '',
+                'news_post_new_compact' => '',
+            ],
         ],
 
         'forum_topic' => [
@@ -264,6 +271,10 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Terdapat komentar baru pada topik berita ":title"',
+            ],
+
+            'news_post' => [
+                'news_post_new' => '',
             ],
         ],
 

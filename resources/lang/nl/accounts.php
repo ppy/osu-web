@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'ontvang meldingen voor nieuw probleem op gekwalificeerde beatmaps van de volgende modes',
         'beatmapset_disqualify' => 'ontvang meldingen voor wanneer beatmaps van de volgende modes zijn gediskwalificeerd',
         'comment_reply' => 'ontvang meldingen voor reacties op uw reacties',
+        'news_post' => '',
         'title' => 'Meldingen',
         'topic_auto_subscribe' => 'automatisch meldingen inschakelen op nieuwe forum onderwerpen die u maakt',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'topic antwoord',
             'mail' => 'e-mail',
             'mapping' => 'beatmap mapper',
+            'news_post' => '',
             'push' => 'push',
         ],
     ],

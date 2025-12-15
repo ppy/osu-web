@@ -19,15 +19,15 @@ return [
         'title' => ':mode 검색 결과',
 
         'no_results' => [
-            '_' => '',
+            '_' => ':mode 검색 결과가 없습니다',
 
-            'artist_track' => '',
-            'beatmapset' => '',
-            'forum_post' => '',
-            'other' => '',
-            'team' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'artist_track' => '공식 아티스트 곡',
+            'beatmapset' => '비트맵',
+            'forum_post' => '포럼',
+            'other' => '기타',
+            'team' => '팀',
+            'user' => '플레이어',
+            'wiki_page' => '위키',
         ],
     ],
 ];

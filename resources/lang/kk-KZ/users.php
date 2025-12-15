@@ -470,6 +470,12 @@ return [
             'twitter' => '',
             'website' => '',
         ],
+
+        'matchmaking' => [
+            'details_soon' => '',
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => '',
             'reason_2' => '',

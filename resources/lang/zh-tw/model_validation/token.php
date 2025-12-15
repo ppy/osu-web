@@ -10,7 +10,7 @@ return [
         'client_missing_owner' => '這個使用者缺乏擁有者。',
         'client_unauthorized' => '這個使用者沒有被授權。',
         'delegate_bot_only' => '委託使用者憑證只能用於聊天室機器人。',
-        'client_credentials_only' => '',
+        'client_credentials_only' => '此權限範圍僅對客戶端憑證模式的令牌有效。',
         'delegate_invalid_combination' => '委託不適用於多重範圍。',
         'delegate_required' => '必須包含委託範圍。',
         'empty' => '沒有範圍的憑證碼是不合格的。',

@@ -33,23 +33,41 @@ return [
         'used' => 'Зрасходавана',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Гэты карыстальнік пачаў гуляць рэйтынгавыя карты менш за 30 дзён таму.',
     ],
 
     'top_plays' => [
         'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'па чартам',
         'country' => 'па краінам',
         'daily_challenge' => 'па картах дня',
         'global' => 'глабальны',
         'kudosu' => 'кудосу',
-        'multiplayer' => 'мультыплэер',
-        'season_room' => '',
-        'seasons' => 'па сезонах',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'па камандах',
         'top_plays' => '',
     ],

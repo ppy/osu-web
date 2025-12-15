@@ -470,6 +470,12 @@ return [
             'twitter' => '',
             'website' => 'Lloc web',
         ],
+
+        'matchmaking' => [
+            'details_soon' => '',
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Potser ha canviat el seu nom d\'usuari.',
             'reason_2' => 'Per motius de seguretat o d\'abús, el compte pot estar no disponible temporalment.',

@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'ta emot aviseringar om nya problem på kvalificerade beatmaps i följande spellägen',
         'beatmapset_disqualify' => 'ta emot aviseringar när beatmaps för följande lägen diskvalificeras',
         'comment_reply' => 'ta emot aviseringar för svar på dina kommentarer',
+        'news_post' => '',
         'title' => 'Aviseringar',
         'topic_auto_subscribe' => 'aktivera aviseringar automatiskt på nya forumtrådar som du skapar ',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'ämnessvar',
             'mail' => 'e-post',
             'mapping' => 'beatmap-ägare',
+            'news_post' => '',
             'push' => 'push',
         ],
     ],

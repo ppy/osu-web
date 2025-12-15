@@ -24,7 +24,7 @@ return [
 
         'forum' => [
             'write' => '以你的名义创建和编辑论坛的主题与帖子。',
-            'write_manage' => '',
+            'write_manage' => '管理你发布的论坛主题与帖子。',
         ],
 
         'friends' => [

@@ -224,8 +224,8 @@ return [
             'rating-spread' => 'Écart de notation',
             'nominations' => 'Nominations',
             'playcount' => 'Nombre de parties',
-            'favourites' => '',
-            'no_favourites' => '',
+            'favourites' => 'Favoris',
+            'no_favourites' => 'Aucun favori pour le moment',
         ],
 
         'status' => [

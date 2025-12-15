@@ -470,6 +470,12 @@ return [
             'twitter' => '',
             'website' => '個人網站',
         ],
+
+        'matchmaking' => [
+            'details_soon' => '',
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => '他可能已經更換了使用者名稱。',
             'reason_2' => '該帳號因安全或濫用問題故暫不開放。',

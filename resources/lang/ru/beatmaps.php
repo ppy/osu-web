@@ -245,7 +245,7 @@ return [
             'prompt' => 'введите ключевые слова...',
             'login_required' => 'Войдите в аккаунт, чтобы начать поиск',
             'options' => 'Больше настроек поиска',
-            'supporter_filter' => 'Фильтрация по критерию :filters требует наличия тега osu!supporter',
+            'supporter_filter' => 'Фильтрация по критерию :filters доступна только с тегом osu!supporter',
             'not-found' => 'нет результатов',
             'not-found-quote' => '... увы, ничего не найдено.',
             'filters' => [
@@ -272,8 +272,8 @@ return [
                 'nominations' => 'Номинациям',
             ],
             'supporter_filter_quote' => [
-                '_' => 'Фильтрация по критерию :filters требует :link',
-                'link_text' => 'тег osu!supporter',
+                '_' => 'Фильтрация по критерию :filters доступна только с :link',
+                'link_text' => 'тегом osu!supporter',
             ],
         ],
     ],

@@ -19,15 +19,15 @@ return [
         'title' => ':mode-Suchergebnisse',
 
         'no_results' => [
-            '_' => '',
+            '_' => 'Keine Ergebnisse für :mode',
 
-            'artist_track' => '',
-            'beatmapset' => '',
-            'forum_post' => '',
-            'other' => '',
-            'team' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'artist_track' => 'Featured-Artist-Songs',
+            'beatmapset' => 'Beatmaps',
+            'forum_post' => 'Foren',
+            'other' => 'Sonstiges',
+            'team' => 'Teams',
+            'user' => 'Spieler',
+            'wiki_page' => 'Wiki',
         ],
     ],
 ];

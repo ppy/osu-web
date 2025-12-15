@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => '',
         'beatmapset_disqualify' => '',
         'comment_reply' => '',
+        'news_post' => '',
         'title' => '',
         'topic_auto_subscribe' => '',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => '',
             'mail' => '',
             'mapping' => '',
+            'news_post' => '',
             'push' => '',
         ],
     ],

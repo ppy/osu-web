@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'saņemt paziņojumus par jaunām problēmām, kas saistītas ar kvalificētām šādu spēles veida ritma-kartēmmap',
         'beatmapset_disqualify' => 'saņemt paziņojumus, kad tiek diskvalificētas šāda spēles veida  ritma-kartes',
         'comment_reply' => 'saņemt paziņojumus par atbildēm uz saviem komentāriem',
+        'news_post' => '',
         'title' => 'Paziņojumi',
         'topic_auto_subscribe' => 'automātiski ieslēgt paziņojumus foruma tematiem, kurus esiet izveidojis',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'tēmas atbilde',
             'mail' => 'pasts',
             'mapping' => 'ritma-kartes izveidotājs',
+            'news_post' => '',
             'push' => 'piespiestu',
         ],
     ],
@@ -127,7 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'bloķēt privātās ziņas no cilvēkiem, kuri nav jūsu draugu sarakstā',
         'hide_online' => 'slēpt jūsu tiešsaistes klātbūtni',
-        'hide_online_info' => '',
+        'hide_online_info' => 'tas atbilst “nerādīt tiešsaistē” režīmam osu!lazer',
         'title' => 'Konfidencialitāte',
     ],
 
@@ -149,17 +151,17 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => 'Autentifikatora lietotne',
+        'usage_note' => 'Verifikācijai izmanto autentifikatora lietotni e-pasta vietā. E-pasta verifikācija joprojām būs pieejama kā rezerves opcija.',
 
         'button' => [
-            'remove' => '',
-            'setup' => '',
+            'remove' => 'Noņemt',
+            'setup' => 'Pievienot autentifikatora lietotni',
         ],
         'status' => [
-            'label' => '',
-            'not_set' => '',
-            'set' => '',
+            'label' => 'statuss',
+            'not_set' => 'Nav konfigurēts',
+            'set' => 'Konfigurēts',
         ],
     ],
 

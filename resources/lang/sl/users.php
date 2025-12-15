@@ -470,6 +470,12 @@ return [
             'twitter' => '',
             'website' => 'Spletna stran',
         ],
+
+        'matchmaking' => [
+            'details_soon' => '',
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Morda si je spremenil svoje uporabniško ime.',
             'reason_2' => 'Račun je lahko začasno nedostopen zaradi varnostnih težav ali težav z zlorabo.',

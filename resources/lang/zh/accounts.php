@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => '接收以下游戏模式在过审 (Qualified) 谱面上的新问题通知：',
         'beatmapset_disqualify' => '接收以下游戏模式谱面下架 (DQ) 时的通知：',
         'comment_reply' => '在你的评论被回复时接收通知',
+        'news_post' => '',
         'title' => '通知',
         'topic_auto_subscribe' => '自动启用自己创建的主题的通知',
 
@@ -93,12 +94,13 @@ return [
             'forum_topic_reply' => '主题回复',
             'mail' => '邮件',
             'mapping' => '谱师',
+            'news_post' => '',
             'push' => '推送',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => '已授权的第三方',
+        'authorized_clients' => '已授权的第三方应用',
         'own_clients' => '拥有的客户端',
         'title' => '开放授权',
     ],
@@ -127,7 +129,7 @@ return [
     'privacy' => [
         'friends_only' => '屏蔽来自陌生人的私信',
         'hide_online' => '隐藏在线状态',
-        'hide_online_info' => '',
+        'hide_online_info' => '将同步到 osu!lazer 的隐身模式',
         'title' => '隐私',
     ],
 
@@ -149,17 +151,17 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => '身份验证器应用',
+        'usage_note' => '使用身份验证器应用而不是电子邮件进行验证。电子邮件验证仍会作为备用选项。',
 
         'button' => [
-            'remove' => '',
-            'setup' => '',
+            'remove' => '移除',
+            'setup' => '添加身份验证器应用',
         ],
         'status' => [
-            'label' => '',
-            'not_set' => '',
-            'set' => '',
+            'label' => '状态',
+            'not_set' => '未设置',
+            'set' => '已设置',
         ],
     ],
 

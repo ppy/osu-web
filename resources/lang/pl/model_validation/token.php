@@ -10,7 +10,7 @@ return [
         'client_missing_owner' => 'Klient nie posiada właściciela.',
         'client_unauthorized' => 'Klient nie jest uwierzytelniony.',
         'delegate_bot_only' => 'Uprawnienie „delegate” jest dopuszczalne wyłącznie dla botów czatu.',
-        'client_credentials_only' => '',
+        'client_credentials_only' => 'To uprawnienie jest dozwolone wyłącznie dla tokenów wygenerowanych przez uwierzytelnianie poprzez dane klienta.',
         'delegate_invalid_combination' => 'Użycie „delegate” nie jest dozwolone przy tej kombinacji uprawnień.',
         'delegate_required' => 'Wymagane jest uprawnienie „delegate”.',
         'empty' => 'Tokeny bez zdefiniowanych uprawnień są nieprawidłowe.',

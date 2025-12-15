@@ -53,7 +53,7 @@ return [
             'discussion' => 'dyskusja beatmapy',
             'index' => 'lista beatmap',
             'show' => 'informacje o beatmapie',
-            'versions' => '',
+            'versions' => 'historia beatmapy',
         ],
         'changelog_controller' => [
             '_' => 'zmiany',
@@ -72,7 +72,7 @@ return [
             'judge' => 'ocena prac konkursowych',
         ],
         'group_history_controller' => [
-            '_' => '',
+            '_' => 'historia grupy',
         ],
         'groups_controller' => [
             'show' => 'grupy',
@@ -125,7 +125,7 @@ return [
             '_' => 'konfiguracja domyślnych teł profili',
         ],
         'user_totp_controller' => [
-            '_' => '',
+            '_' => 'aplikacja uwierzytelniająca',
         ],
         'users_controller' => [
             '_' => 'informacje o użytkowniku',

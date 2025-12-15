@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'rebre notificacions de nous problemes en mapes qualificats dels següents modes',
         'beatmapset_disqualify' => 'rebre notificacions per quan els mapes dels següents modes siguin desqualificats',
         'comment_reply' => 'rebre notificacions de respostes als teus comentaris',
+        'news_post' => '',
         'title' => 'Notificacions',
         'topic_auto_subscribe' => 'habilita automàticament les notificacions en els nous temes de fòrum que creis or responguis',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'resposta del tema',
             'mail' => 'correu',
             'mapping' => 'edició de mapes',
+            'news_post' => '',
             'push' => 'emergent',
         ],
     ],

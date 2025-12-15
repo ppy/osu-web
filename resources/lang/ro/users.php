@@ -470,6 +470,12 @@ return [
             'twitter' => '',
             'website' => 'Site web',
         ],
+
+        'matchmaking' => [
+            'details_soon' => '',
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'S-ar putea să-și fi schimbat numele de utilizator.',
             'reason_2' => 'Contul tău poate fi indisponibil momentan din cauza problemelor legate de securitate sau abuz.',

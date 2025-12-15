@@ -400,7 +400,7 @@ return [
                 'show_more' => 'ver mais publicações',
             ],
             'quickplay' => [
-                'title' => '',
+                'title' => 'Partidas Rápidas',
             ],
             'recent_activity' => [
                 'title' => 'Recente',
@@ -470,6 +470,12 @@ return [
             'twitter' => '',
             'website' => 'Website',
         ],
+
+        'matchmaking' => [
+            'details_soon' => '',
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Talvez o usuário tenha mudado seu nome.',
             'reason_2' => 'A conta pode estar temporariamente indisponível devido a problemas de abuso ou de segurança.',

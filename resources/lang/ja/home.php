@@ -83,7 +83,7 @@ return [
 
     'download' => [
         'action_lazer_info' => '詳細はこちらのページをご覧ください',
-        'download' => '',
+        'download' => 'ダウンロード',
         'for_os' => ':os 版',
         'macos-fallback' => 'macOSユーザー',
         'mirror' => 'ミラー',
@@ -91,9 +91,9 @@ return [
         'os_version_or_later' => ':os_version 以降',
         'other_os' => '他のプラットフォーム',
         'quick_start_guide' => 'クイックスタートガイド',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => '古い方をお探しならこちら',
+        'tagline_1' => 'さぁ、あなたも',
+        'tagline_2' => '始めましょう！',
         'video-guide' => '説明動画',
 
         'help' => [
