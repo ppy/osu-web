@@ -161,6 +161,13 @@ return [
                 'comment_reply' => ':username 在 ":title" 下回复：":content"',
                 'comment_reply_compact' => ':username 回复：":content"',
             ],
+
+            'news_post' => [
+                '_' => '',
+
+                'news_post_new' => '',
+                'news_post_new_compact' => '',
+            ],
         ],
 
         'forum_topic' => [
@@ -267,6 +274,10 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => '新闻 ":title" 有新的评论',
+            ],
+
+            'news_post' => [
+                'news_post_new' => '',
             ],
         ],
 

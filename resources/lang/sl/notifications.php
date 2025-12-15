@@ -159,6 +159,13 @@ return [
                 'comment_reply' => ':username je odgovoril z ":content" na ":title"',
                 'comment_reply_compact' => ':username je odgovoril z ":content"',
             ],
+
+            'news_post' => [
+                '_' => '',
+
+                'news_post_new' => '',
+                'news_post_new_compact' => '',
+            ],
         ],
 
         'forum_topic' => [
@@ -264,6 +271,10 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Novica ":title" ima nove komentarje',
+            ],
+
+            'news_post' => [
+                'news_post_new' => '',
             ],
         ],
 

@@ -470,6 +470,12 @@ return [
             'twitter' => '',
             'website' => 'Nettside',
         ],
+
+        'matchmaking' => [
+            'details_soon' => '',
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'De kan ha endret brukernavnet sitt.',
             'reason_2' => 'Kontoen kan være midlertidig utilgjengelig på grunn av sikkerhetsproblemer eller misbruk.',

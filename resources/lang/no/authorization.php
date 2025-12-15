@@ -113,7 +113,7 @@ return [
                 'deleted' => 'Kan ikke redigere slettet innlegg.',
                 'locked' => 'Innlegget er låst fra redigering.',
                 'no_forum_access' => 'Adgang til forespurt forum kreves.',
-                'no_permission' => '',
+                'no_permission' => 'Du har ikke rettighetene til å redigere dette.',
                 'not_owner' => 'Bare senderen kan redigere innlegget.',
                 'topic_locked' => 'Kan ikke redigere innlegget i et låst emne.',
             ],
@@ -195,16 +195,16 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
+                'already_member' => "Du er allerede en del av et lag.",
+                'already_other_member' => "Du er allerede en del av et annet lag.",
                 'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'team_closed' => 'Laget tar ikke imot nye medlemmer.',
+                'team_full' => "Laget er fullt, og kan ikke ta imot flere medlemmer.",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "Lagleder kan ikke forlate laget.",
+            'not_member' => 'Ikke et medlem av laget.',
         ],
         'store' => [
             'require_supporter_tag' => '',

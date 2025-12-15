@@ -283,25 +283,25 @@ return [
                 'title' => 'Beatmapy',
 
                 'favourite' => [
-                    'title' => 'Oblíbené Beatmapy',
+                    'title' => 'Oblíbené beatmapy',
                 ],
                 'graveyard' => [
-                    'title' => 'Pohřbené Beatmapy',
+                    'title' => 'Pohřbené beatmapy',
                 ],
                 'guest' => [
-                    'title' => 'Beatmapy účasti hosta',
+                    'title' => 'Beatmapy s účastí jako host',
                 ],
                 'loved' => [
-                    'title' => 'Oblíbené Beatmapy',
+                    'title' => 'Beatmapy oblíbené komunitou',
                 ],
                 'nominated' => [
-                    'title' => 'Nominované Hodnocené Beatmapy',
+                    'title' => 'Nominované hodnocené beatmapy',
                 ],
                 'pending' => [
-                    'title' => 'Čekající Beatmapy',
+                    'title' => 'Čekající beatmapy',
                 ],
                 'ranked' => [
-                    'title' => 'Hodnocené Beatmapy',
+                    'title' => 'Hodnocené beatmapy',
                 ],
             ],
             'discussions' => [
@@ -323,7 +323,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'počet zahrání',
-                    'title' => 'Nejhranější mapy',
+                    'title' => 'Nejhranější beatmapy',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'přesnost: :percentage',
@@ -400,7 +400,7 @@ return [
                 'show_more' => 'zobrazit více příspěvků',
             ],
             'quickplay' => [
-                'title' => '',
+                'title' => 'Zápasy Rychlé hry',
             ],
             'recent_activity' => [
                 'title' => 'Nedávné',
@@ -470,6 +470,12 @@ return [
             'twitter' => '',
             'website' => 'Webové stránky',
         ],
+
+        'matchmaking' => [
+            'details_soon' => '',
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Možná si změnil uživatelské jméno.',
             'reason_2' => 'Účet může být dočasně nedostupný z důvodu problémů s bezpečností, nebo zneužitím.',
@@ -518,10 +524,10 @@ return [
             'total_hits' => 'Celkově zásahů',
             'total_score' => 'Celkové skóre',
             // modding stats
-            'graveyard_beatmapset_count' => 'Pohřbené Beatmapy',
-            'loved_beatmapset_count' => 'Oblíbené Beatmapy',
-            'pending_beatmapset_count' => 'Čekající Beatmapy',
-            'ranked_beatmapset_count' => 'Hodnocené Beatmapy',
+            'graveyard_beatmapset_count' => 'Pohřbené beatmapy',
+            'loved_beatmapset_count' => 'Beatmapy oblíbené komunitou',
+            'pending_beatmapset_count' => 'Čekající beatmapy',
+            'ranked_beatmapset_count' => 'Hodnocené beatmapy',
         ],
     ],
 

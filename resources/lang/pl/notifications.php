@@ -159,6 +159,13 @@ return [
                 'comment_reply' => 'Nowa odpowiedź od użytkownika :username pod „:title”: „:content”',
                 'comment_reply_compact' => 'Nowa odpowiedź od użytkownika :username: „:content”',
             ],
+
+            'news_post' => [
+                '_' => '',
+
+                'news_post_new' => '',
+                'news_post_new_compact' => '',
+            ],
         ],
 
         'forum_topic' => [
@@ -264,6 +271,10 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'W wiadomości „:title” pojawiły się nowe komentarze',
+            ],
+
+            'news_post' => [
+                'news_post_new' => '',
             ],
         ],
 

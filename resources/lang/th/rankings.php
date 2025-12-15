@@ -33,23 +33,41 @@ return [
         'used' => 'ใช้',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'ผู้ใช้คนนี้มีประวัติการจัดอันดับล่าสุดน้อยกว่า 30 วัน',
     ],
 
     'top_plays' => [
         'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'โดดเด่น',
         'country' => 'ประเทศ',
         'daily_challenge' => 'ชาเลนจ์ประจำวัน',
         'global' => '',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'โหมดผู้เล่นหลายคน',
-        'season_room' => '',
-        'seasons' => 'ซีซั่น',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'ทีม',
         'top_plays' => '',
     ],

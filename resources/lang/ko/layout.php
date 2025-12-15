@@ -28,7 +28,7 @@ return [
         'beatmapsets' => [
             'show' => '정보',
             'discussions' => '토론',
-            'versions' => '',
+            'versions' => '버전 이력',
         ],
 
         'changelog' => [
@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => '모딩',
             'playlists' => '플레이리스트',
-            'quickplay' => '',
+            'quickplay' => '빠른 플레이',
             'realtime' => '멀티플레이어',
             'show' => '정보',
         ],

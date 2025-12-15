@@ -19,15 +19,15 @@ return [
         'title' => 'Hasil Pencarian :mode',
 
         'no_results' => [
-            '_' => '',
+            '_' => 'Tidak ada hasil untuk :mode',
 
-            'artist_track' => '',
-            'beatmapset' => '',
-            'forum_post' => '',
-            'other' => '',
-            'team' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'artist_track' => 'Lagu Featured Artist',
+            'beatmapset' => 'Beatmap',
+            'forum_post' => 'Forum',
+            'other' => 'Lainnya',
+            'team' => 'Tim',
+            'user' => 'Pemain',
+            'wiki_page' => 'Wiki',
         ],
     ],
 ];

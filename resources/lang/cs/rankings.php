@@ -33,32 +33,50 @@ return [
         'used' => 'Použito',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Tento uživatel má méně než 30 dní nedávné ranking historie. ',
     ],
 
     'top_plays' => [
-        'empty' => '',
+        'empty' => 'Data se vypočítávají...',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'výběry (staré)',
         'country' => 'stát',
         'daily_challenge' => 'denní výzva',
         'global' => 'svět',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'hra pro více hráčů',
-        'season_room' => '',
-        'seasons' => 'sezóny',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'týmy',
-        'top_plays' => '',
+        'top_plays' => 'nejlepší výkony',
     ],
 
     'seasons' => [
         'empty' => 'V této sezóně nejsou žádné místnosti.',
         'ongoing' => 'Tato sezóna stále probíhá (více playlistů bude přidáno průběhem času).',
         'room_count' => 'Počet playlistů',
-        'summary' => '',
+        'summary' => 'Zobrazit shrnutí sezóny',
         'url' => 'Zobrazit více informací pro tuto sezónu.',
         'validation' => [
             'not_enough_factors' => 'neexistuje dostatek prvků skóre pro řádný výpočet',

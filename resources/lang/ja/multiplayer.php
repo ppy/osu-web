@@ -8,7 +8,7 @@ return [
         'active' => '現在進行中のosu!(lazer) :type_groupゲームはありません！',
         'ended' => 'まだ終了したosu!(lazer) :type_groupゲームはありません！',
         'playlists' => 'プレイリスト',
-        'quickplay' => '',
+        'quickplay' => 'クイックプレイ',
         'realtime' => 'マルチプレイヤー',
     ],
 

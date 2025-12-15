@@ -11,7 +11,7 @@ return [
         'actor' => '',
 
         'message' => [
-            'group_add' => '',
+            'group_add' => '建立:group。',
             'group_remove' => '',
             'group_rename' => '',
             'user_add' => '',
@@ -27,9 +27,9 @@ return [
         'group' => '',
         'group_all' => '',
         'max_date' => '',
-        'min_date' => '',
-        'user' => '',
-        'user_prompt' => '',
+        'min_date' => '從',
+        'user' => '使用者',
+        'user_prompt' => '使用者名稱或ID',
     ],
 
     'staff_log' => [

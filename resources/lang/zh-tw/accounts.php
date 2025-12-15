@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => '接收以下模式的合格圖譜新問題通知',
         'beatmapset_disqualify' => '在以下模式的圖譜被標記為取消資格時收到通知',
         'comment_reply' => '接收您留言被回覆的通知',
+        'news_post' => '',
         'title' => '通知',
         'topic_auto_subscribe' => '自動啟用您建立或回覆的新論壇主題通知',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => '主題回覆',
             'mail' => '郵件',
             'mapping' => '譜師',
+            'news_post' => '',
             'push' => '推送',
         ],
     ],
@@ -127,7 +129,7 @@ return [
     'privacy' => [
         'friends_only' => '封鎖非好友的私人訊息',
         'hide_online' => '隱藏線上狀態',
-        'hide_online_info' => '',
+        'hide_online_info' => '這會使你的帳號在 osu!lazer 中處於離線狀態',
         'title' => '隱私權政策',
     ],
 
@@ -149,17 +151,17 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => '驗證應用程式',
+        'usage_note' => '會以驗證應用程式代替電子郵件驗證。 電子郵件驗證仞然會以備用的驗證方式做使用。',
 
         'button' => [
-            'remove' => '',
-            'setup' => '',
+            'remove' => '移除',
+            'setup' => '新增驗證應用程式',
         ],
         'status' => [
-            'label' => '',
-            'not_set' => '',
-            'set' => '',
+            'label' => '狀態',
+            'not_set' => '未設定',
+            'set' => '已設定',
         ],
     ],
 

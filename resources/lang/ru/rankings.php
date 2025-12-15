@@ -33,32 +33,50 @@ return [
         'used' => 'Потрачено',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Этот пользователь начал играть рейтинговые карты менее 30 дней назад.',
     ],
 
     'top_plays' => [
-        'empty' => '',
+        'empty' => 'Идёт обработка данных...',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'по чартам (устарел)',
         'country' => 'по странам',
         'daily_challenge' => 'по картам дня',
         'global' => 'мировой',
         'kudosu' => 'по кудосу',
-        'multiplayer' => 'в мультиплеере',
-        'season_room' => '',
-        'seasons' => 'по сезонам',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'по командам',
-        'top_plays' => '',
+        'top_plays' => 'по лучшим играм',
     ],
 
     'seasons' => [
         'empty' => 'В этом сезоне ещё нет комнат.',
         'ongoing' => 'Этот сезон все ещё продолжается (плейлисты ещё будут добавляться).',
         'room_count' => 'Количество плейлистов',
-        'summary' => '',
+        'summary' => 'Открыть сводку сезона',
         'url' => 'Открыть подробную статью об этом сезоне.',
         'validation' => [
             'not_enough_factors' => 'не набрано достаточно критериев для корректного подсчёта очков',

@@ -33,23 +33,41 @@ return [
         'used' => 'Ξοδεύτηκαν',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Αυτός ο χρήστης έχει λιγότερο από 30 ημέρες πρόσφατου ιστορικού κατάταξης.',
     ],
 
     'top_plays' => [
         'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'Spotlights',
         'country' => 'Χώρας',
         'daily_challenge' => 'ημερήσια πρόκληση',
         'global' => 'παγκόσμια',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'multiplayer',
-        'season_room' => '',
-        'seasons' => 'εποχές',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'ομάδα',
         'top_plays' => '',
     ],

@@ -33,23 +33,41 @@ return [
         'used' => 'Потрошен',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Овај корисник има мање од 30 дана недавне историје рангирања.',
     ],
 
     'top_plays' => [
         'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'колекције',
         'country' => 'држава',
         'daily_challenge' => 'дневни изазов',
         'global' => '',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'мултиплејер',
-        'season_room' => '',
-        'seasons' => 'сезоне',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'тим',
         'top_plays' => '',
     ],

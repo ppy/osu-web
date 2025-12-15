@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'értesítések kérése kvalifikált beatmapok problémáival kapcsolatban a következő módokból',
         'beatmapset_disqualify' => 'értesíts, ha a következő játékmódok egy beatmapje diszkvalifikálva lett',
         'comment_reply' => 'értesítések küldése a kommentjeidre érkezett válaszokról',
+        'news_post' => '',
         'title' => 'Értesítések',
         'topic_auto_subscribe' => 'az általad létrehozott új fórum témák értesítéseinek automatikus bekapcsolása',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'Válaszolj erre a témára',
             'mail' => 'e-mail',
             'mapping' => 'beatmap készítő',
+            'news_post' => '',
             'push' => 'Elöjövő',
         ],
     ],

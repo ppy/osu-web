@@ -24,7 +24,7 @@ return [
 
         'forum' => [
             'write' => 'tworzyć i edytować posty oraz wątki na forum w twoim imieniu.',
-            'write_manage' => '',
+            'write_manage' => 'zarządzać wątkami i postami na forum w twoim imieniu.',
         ],
 
         'friends' => [

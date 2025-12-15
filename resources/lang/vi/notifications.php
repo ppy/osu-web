@@ -160,6 +160,13 @@ return [
                 'comment_reply' => ':username đã gửi lại ":content" trên ":title"',
                 'comment_reply_compact' => ':username đã gửi lại ":content"',
             ],
+
+            'news_post' => [
+                '_' => '',
+
+                'news_post_new' => '',
+                'news_post_new_compact' => '',
+            ],
         ],
 
         'forum_topic' => [
@@ -265,6 +272,10 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Tin mới ":title" đã có bình luận mới',
+            ],
+
+            'news_post' => [
+                'news_post_new' => '',
             ],
         ],
 

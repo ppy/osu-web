@@ -470,6 +470,12 @@ return [
             'twitter' => '',
             'website' => 'Verkkosivu',
         ],
+
+        'matchmaking' => [
+            'details_soon' => '',
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Hän on saattanut vaihtaa käyttäjänimensä.',
             'reason_2' => 'Käyttäjätunnus voi olla tilapäisesti poissa käytöstä turvallisuussyistä tai väärinkäytön seurauksena.',

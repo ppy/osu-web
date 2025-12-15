@@ -289,7 +289,7 @@ return [
                     'title' => 'Beatmap Abbandonate',
                 ],
                 'guest' => [
-                    'title' => 'Beatmap Partecipazione Ospite',
+                    'title' => 'Beatmap Ospitate',
                 ],
                 'loved' => [
                     'title' => 'Beatmap Amate',
@@ -400,7 +400,7 @@ return [
                 'show_more' => 'guarda più post',
             ],
             'quickplay' => [
-                'title' => '',
+                'title' => 'Scontri di Quick Play',
             ],
             'recent_activity' => [
                 'title' => 'Recenti',
@@ -470,6 +470,12 @@ return [
             'twitter' => '',
             'website' => 'Sito',
         ],
+
+        'matchmaking' => [
+            'details_soon' => '',
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Potrebbero aver cambiato il loro nome utente.',
             'reason_2' => 'L\'account potrebbe essere temporaneamente non disponibile a causa di problemi di sicurezza o abuso.',

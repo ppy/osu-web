@@ -83,17 +83,17 @@ return [
 
     'download' => [
         'action_lazer_info' => 'siehe hier für weitere Informationen',
-        'download' => '',
+        'download' => 'Spiel herunterladen',
         'for_os' => 'für :os',
         'macos-fallback' => 'macOS-Benutzer',
-        'mirror' => 'mirror',
+        'mirror' => 'Mirror',
         'or' => 'oder',
         'os_version_or_later' => ':os_version oder höher',
         'other_os' => 'andere Plattformen',
         'quick_start_guide' => 'Schnellstart',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => 'Wenn du die ältere Version suchst',
+        'tagline_1' => 'Jetzt geht der Spaß',
+        'tagline_2' => 'richtig los!',
         'video-guide' => 'Videoanleitung (Englisch)',
 
         'help' => [

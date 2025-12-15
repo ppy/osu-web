@@ -82,8 +82,8 @@ return [
     ],
 
     'download' => [
-        'action_lazer_info' => 'více informací najdeš na této stránce',
-        'download' => '',
+        'action_lazer_info' => 'najdeš více informací na této stránce',
+        'download' => 'Stáhnout',
         'for_os' => 'pro :os',
         'macos-fallback' => 'macOS uživatelé',
         'mirror' => 'mirror',
@@ -91,9 +91,9 @@ return [
         'os_version_or_later' => ':os_version nebo novější ',
         'other_os' => 'ostatní platformy',
         'quick_start_guide' => 'příručka pro začátečníky',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => 'pokud hledáš staršího klienta',
+        'tagline_1' => 'pusťme se',
+        'tagline_2' => 'do toho!',
         'video-guide' => 'videonávod',
 
         'help' => [

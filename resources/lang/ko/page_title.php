@@ -53,7 +53,7 @@ return [
             'discussion' => '비트맵 토론',
             'index' => '비트맵 목록',
             'show' => '비트맵 정보',
-            'versions' => '',
+            'versions' => '비트맵 버전 이력',
         ],
         'changelog_controller' => [
             '_' => '변경 사항',
@@ -72,7 +72,7 @@ return [
             'judge' => '콘테스트 심사',
         ],
         'group_history_controller' => [
-            '_' => '',
+            '_' => '그룹 기록',
         ],
         'groups_controller' => [
             'show' => '그룹',
@@ -125,7 +125,7 @@ return [
             '_' => '유저 커버 프리셋',
         ],
         'user_totp_controller' => [
-            '_' => '',
+            '_' => '인증 앱',
         ],
         'users_controller' => [
             '_' => '플레이어 정보',

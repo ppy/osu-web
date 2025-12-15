@@ -33,25 +33,43 @@ return [
         'used' => '使用済み',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'このユーザーの最近のランキング履歴は30日未満です。',
     ],
 
     'top_plays' => [
-        'empty' => '',
+        'empty' => 'データを計算中・・・',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'スポットライト',
         'country' => '国別',
         'daily_challenge' => 'デイリーチャレンジ',
         'global' => 'グローバル',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'マルチプレイ',
-        'season_room' => '',
-        'seasons' => 'シーズン',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'チーム',
-        'top_plays' => '',
+        'top_plays' => 'トッププレイ',
     ],
 
     'seasons' => [

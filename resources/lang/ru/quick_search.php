@@ -19,15 +19,15 @@ return [
         'title' => 'Результаты поиска по :mode',
 
         'no_results' => [
-            '_' => '',
+            '_' => 'Нет результатов поиска по :mode',
 
-            'artist_track' => '',
-            'beatmapset' => '',
-            'forum_post' => '',
-            'other' => '',
-            'team' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'artist_track' => 'трекам избранных исполнителей',
+            'beatmapset' => 'картам',
+            'forum_post' => 'форуму',
+            'other' => 'прочему',
+            'team' => 'командам',
+            'user' => 'игрокам',
+            'wiki_page' => 'вики',
         ],
     ],
 ];

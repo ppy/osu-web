@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'Erhalte Benachrichtigungen für neue Probleme auf qualifizierten Beatmaps von folgenden Modi',
         'beatmapset_disqualify' => 'Erhalte Benachrichtigungen, wenn Beatmaps der folgenden Modi disqualifiziert werden',
         'comment_reply' => 'Erhalte Benachrichtigungen für Antworten auf deine Kommentare',
+        'news_post' => '',
         'title' => 'Benachrichtigungen',
         'topic_auto_subscribe' => 'Benachrichtigungen zu den Forenposts, die du erstellt oder auf die du geantwortet hast, immer aktivieren',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'Antwort auf Forenthema',
             'mail' => 'Mail',
             'mapping' => 'Beatmap-Mapper',
+            'news_post' => '',
             'push' => 'Push',
         ],
     ],
@@ -127,7 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'Blockiere Nachrichten von Benutzern, die nicht in deiner Freundesliste sind',
         'hide_online' => 'Online-Status verbergen',
-        'hide_online_info' => '',
+        'hide_online_info' => 'Dies entspricht dem "Offline"-Modus in osu!lazer',
         'title' => 'Privatsphäre',
     ],
 
@@ -149,17 +151,17 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => 'Zwei-Faktor-Authentifizierung',
+        'usage_note' => 'Nutze die Authentifizierungs-App anstatt der E-Mail zur Authentifizierung. Die Authentifizierung per E-Mail wird weiterhin als Alternative zur Verfügung stehen.',
 
         'button' => [
-            'remove' => '',
-            'setup' => '',
+            'remove' => 'Entfernen',
+            'setup' => 'Zwei-Faktor-Authentifizierung hinzufügen',
         ],
         'status' => [
-            'label' => '',
-            'not_set' => '',
-            'set' => '',
+            'label' => 'Status',
+            'not_set' => 'Deaktiviert',
+            'set' => 'Aktiviert',
         ],
     ],
 

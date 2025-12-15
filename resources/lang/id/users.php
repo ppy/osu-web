@@ -400,7 +400,7 @@ return [
                 'show_more' => 'lihat lebih banyak postingan',
             ],
             'quickplay' => [
-                'title' => '',
+                'title' => 'Pertandingan Permainan Kilat',
             ],
             'recent_activity' => [
                 'title' => 'Aktivitas Terkini',
@@ -470,6 +470,12 @@ return [
             'twitter' => '',
             'website' => 'Website',
         ],
+
+        'matchmaking' => [
+            'details_soon' => '',
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Pengguna ini telah mengubah nama penggunanya.',
             'reason_2' => 'Pengguna ini telah dinonaktifkan untuk sementara waktu karena memiliki riwayat masalah yang berhubungan dengan keamanan atau penyalahgunaan akun.',

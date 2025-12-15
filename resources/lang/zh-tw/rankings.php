@@ -33,23 +33,41 @@ return [
         'used' => '已使用',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => '這個使用者擁有少於30天的排行紀錄。',
     ],
 
     'top_plays' => [
-        'empty' => '',
+        'empty' => '資料還在計算中……',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => '月賽',
         'country' => '國家',
         'daily_challenge' => '每日挑戰',
         'global' => '全球',
         'kudosu' => 'kudosu',
-        'multiplayer' => '多人遊戲',
-        'season_room' => '',
-        'seasons' => '季',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => '隊伍',
         'top_plays' => '',
     ],

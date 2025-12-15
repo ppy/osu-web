@@ -470,6 +470,12 @@ return [
             'twitter' => '',
             'website' => 'Laman Sesawang',
         ],
+
+        'matchmaking' => [
+            'details_soon' => '',
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Dia mungkin telah mengubah nama penggunanya.',
             'reason_2' => 'Akaun ini mungkin tiada sementara ekoran isu keselamatan atau penyalahgunaan.',

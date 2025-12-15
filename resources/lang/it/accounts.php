@@ -80,12 +80,13 @@ return [
         'beatmapset_discussion_qualified_problem' => 'ricevi notifiche per nuovi problemi sulle beatmap qualificate delle seguenti modalità',
         'beatmapset_disqualify' => 'ricevi notifiche quando le beatmap delle seguenti modalità vengono squalificate',
         'comment_reply' => 'ricevi notifiche per le risposte ai tuoi commenti',
+        'news_post' => '',
         'title' => 'Notifiche',
         'topic_auto_subscribe' => 'attiva automaticamente le notifiche sui nuovi topic che crei nel forum',
 
         'options' => [
             '_' => 'opzioni di notifica',
-            'beatmap_owner_change' => 'difficoltà guest',
+            'beatmap_owner_change' => 'difficoltà ospitata',
             'beatmapset:modding' => 'modding delle beatmap',
             'channel_message' => 'messaggi privati',
             'channel_team' => 'messaggi chat della squadra',
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'risposta al topic',
             'mail' => 'mail',
             'mapping' => 'mapper di beatmap',
+            'news_post' => '',
             'push' => 'push',
         ],
     ],
@@ -127,7 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'blocca messaggi privati da chi non è nella tua lista amici',
         'hide_online' => 'nascondi il tuo stato online',
-        'hide_online_info' => '',
+        'hide_online_info' => 'su osu!lazer, funziona come l\'opzione "Mostrati offline"',
         'title' => 'Privacy',
     ],
 
@@ -149,17 +151,17 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => 'Autenticatore',
+        'usage_note' => 'Utilizza un\'app di autenticazione invece dell\'email per verificare l\'accesso. La verifica con email rimarrà comunque un\'opzione di riserva.',
 
         'button' => [
-            'remove' => '',
-            'setup' => '',
+            'remove' => 'Rimuovi',
+            'setup' => 'Inserisci app di autenticazione',
         ],
         'status' => [
-            'label' => '',
-            'not_set' => '',
-            'set' => '',
+            'label' => 'stato',
+            'not_set' => 'Non configurato',
+            'set' => 'Configurato',
         ],
     ],
 

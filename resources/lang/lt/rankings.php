@@ -33,23 +33,41 @@ return [
         'used' => 'Panaudota',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Šis vartotojas turi mažiau nei 30 dienų pastarojo reitingo istorijos.',
     ],
 
     'top_plays' => [
         'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'pasižymėje',
         'country' => 'šalys',
         'daily_challenge' => 'kasdieniai iššūkiai',
         'global' => 'pasaulis',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'žaidimai tinkle',
-        'season_room' => '',
-        'seasons' => 'sezonai',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'komandos',
         'top_plays' => '',
     ],

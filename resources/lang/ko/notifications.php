@@ -159,6 +159,13 @@ return [
                 'comment_reply' => '":title"에 달린 :username님의 답글: ":content"',
                 'comment_reply_compact' => ':username 님의 답글: ":content"',
             ],
+
+            'news_post' => [
+                '_' => '',
+
+                'news_post_new' => '',
+                'news_post_new_compact' => '',
+            ],
         ],
 
         'forum_topic' => [
@@ -264,6 +271,10 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => '뉴스 ":title"에 새로운 댓글이 달렸습니다.',
+            ],
+
+            'news_post' => [
+                'news_post_new' => '',
             ],
         ],
 

@@ -4,36 +4,36 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'none' => '',
-    'view' => '',
+    'none' => 'Nenalezena žádná historie skupin!',
+    'view' => 'Zobrazit historii skupin',
 
     'event' => [
-        'actor' => '',
+        'actor' => 'uživatelem :user',
 
         'message' => [
-            'group_add' => '',
-            'group_remove' => '',
-            'group_rename' => '',
-            'user_add' => '',
-            'user_add_with_playmodes' => '',
-            'user_add_playmodes' => '',
-            'user_remove' => '',
-            'user_remove_playmodes' => '',
-            'user_set_default' => '',
+            'group_add' => ':group vytvořena.',
+            'group_remove' => ':group smazána.',
+            'group_rename' => ':previous_group byla přejmenována na :group.',
+            'user_add' => ':user byl přidán do :group.',
+            'user_add_with_playmodes' => ':user byl přidán do :group pro :rulesets.',
+            'user_add_playmodes' => ':rulesets přidáno k členství uživatele :user ve skupině :group.',
+            'user_remove' => ':user byl odebrán z :group.',
+            'user_remove_playmodes' => ':rulesets odebráno z členství uživatele :user ve skupině :group.',
+            'user_set_default' => 'Výchozí skupina uživatele :user byla nastavena na :group.',
         ],
     ],
 
     'form' => [
-        'group' => '',
-        'group_all' => '',
-        'max_date' => '',
-        'min_date' => '',
-        'user' => '',
-        'user_prompt' => '',
+        'group' => 'Skupina',
+        'group_all' => 'Všechny skupiny',
+        'max_date' => 'Do',
+        'min_date' => 'Od',
+        'user' => 'Uživatel',
+        'user_prompt' => 'Uživatelské jméno nebo ID',
     ],
 
     'staff_log' => [
-        '_' => '',
-        'wiki_articles' => '',
+        '_' => 'Starší historii skupin lze nalézt ve :wiki_articles.',
+        'wiki_articles' => 'wiki článcích záznamů o změnách kolektivu',
     ],
 ];

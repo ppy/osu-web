@@ -470,6 +470,12 @@ return [
             'twitter' => '',
             'website' => 'Hjemmeside',
         ],
+
+        'matchmaking' => [
+            'details_soon' => '',
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'De kan have ændret deres brugernavn.',
             'reason_2' => 'Kontoen kan være midlertidigt utilgængelig pga. sikkerhedsproblemer eller misbrug.',

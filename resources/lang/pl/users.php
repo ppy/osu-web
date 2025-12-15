@@ -400,7 +400,7 @@ return [
                 'show_more' => 'zobacz więcej postów',
             ],
             'quickplay' => [
-                'title' => '',
+                'title' => 'Mecze w trybie szybkiej gry',
             ],
             'recent_activity' => [
                 'title' => 'Ostatnie',
@@ -470,6 +470,12 @@ return [
             'twitter' => '',
             'website' => 'Strona internetowa',
         ],
+
+        'matchmaking' => [
+            'details_soon' => '',
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Użytkownik mógł zmienić swoją nazwę.',
             'reason_2' => 'Konto użytkownika mogło zostać zablokowane.',

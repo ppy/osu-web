@@ -39,7 +39,7 @@ return [
         'forum_post' => [
             'all' => '모든 포럼',
             'link' => '포럼 검색하기',
-            'login_required' => '포럼을 검색하기 위해서 로그인',
+            'login_required' => '포럼을 검색하려면 로그인해 주세요',
             'more_simple' => '포럼 검색 결과 더 보기',
             'title' => '포럼',
 
@@ -67,7 +67,7 @@ return [
         ],
 
         'user' => [
-            'login_required' => '유저를 검색하기 위해서 로그인',
+            'login_required' => '사용자를 검색하려면 로그인해 주세요',
             'more' => ':count명의 플레이어 검색 결과 더 보기',
             'more_simple' => '플레이어 검색 결과 더 보기',
             'more_hidden' => '플레이어 검색은 최대 :max명 까지 가능합니다. 다른 검색어로 시도해보세요.',
@@ -83,7 +83,7 @@ return [
 
     'download' => [
         'action_lazer_info' => '이 페이지에서 자세한 정보를 확인해보세요.',
-        'download' => '',
+        'download' => '다운로드',
         'for_os' => ':os 전용',
         'macos-fallback' => 'macOS 유저',
         'mirror' => '미러',
@@ -91,9 +91,9 @@ return [
         'os_version_or_later' => ':os_version 이상',
         'other_os' => '다른 플랫폼',
         'quick_start_guide' => '빠른 시작 안내',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => '이전 버전을 찾으신다면',
+        'tagline_1' => '우리 한 번',
+        'tagline_2' => '시작해볼까요!',
         'video-guide' => '영상 가이드',
 
         'help' => [
@@ -113,7 +113,7 @@ return [
                 'description' => '로그인을 하시거나 새로운 계정을 생성하시려면 게임 시작 시 나타나는 절차를 따라주세요.',
             ],
             'download' => [
-                'title' => '게임 다운로드!',
+                'title' => '게임 설치하기',
                 'description' => '위의 버튼을 클릭해서 프로그램을 다운로드받고, 실행해 보세요!',
             ],
             'beatmaps' => [

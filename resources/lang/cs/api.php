@@ -23,8 +23,8 @@ return [
         ],
 
         'forum' => [
-            'write' => 'Vytvořte a upravujte témata fóra a příspěvky vaším jménem.',
-            'write_manage' => '',
+            'write' => 'Vytvářet a upravovat témata fóra a příspěvky vaším jménem.',
+            'write_manage' => 'Spravovat témata fóra a příspěvky vaším jménem.',
         ],
 
         'friends' => [

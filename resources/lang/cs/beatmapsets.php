@@ -102,7 +102,7 @@ return [
 
         'details_date' => [
             'approved' => 'schváleno :timeago',
-            'loved' => 'oblíbeno :timeago',
+            'loved' => 'oblíbeno komunitou :timeago',
             'qualified' => 'kvalifikováno :timeago',
             'ranked' => 'hodnoceno :timeago',
             'submitted' => 'odesláno :timeago',
@@ -114,15 +114,15 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Podpoř tuto mapu, pokud sis užili její hraní, a pomoz jí postoupit do <strong>Schváleného</strong> stavu.',
+            'action' => 'Podpoř tuto mapu, pokud sis užili její hraní, a pomoz jí postoupit do <strong>Hodnoceného</strong> stavu.',
 
             'current' => [
                 '_' => 'Tato mapa je právě :status.',
 
                 'status' => [
                     'pending' => 'čekající',
-                    'qualified' => 'kvalifikované',
-                    'wip' => 'rozpracované',
+                    'qualified' => 'kvalifikovaná',
+                    'wip' => 'rozdělaná',
                 ],
             ],
 
@@ -196,7 +196,7 @@ return [
                 'global' => 'Zatím žádné skóre. Možná by ses o to měl pokusit!',
                 'loading' => 'Načítání skóre...',
                 'team' => 'Nikdo z tvého týmu na této mapě zatím žádné skóre nenahrál!',
-                'unranked' => 'Neschválená beatmapa.',
+                'unranked' => 'Nehodnocená beatmapa.',
             ],
             'score' => [
                 'first' => 'V čele',
@@ -224,17 +224,17 @@ return [
             'rating-spread' => 'Graf hodnocení',
             'nominations' => 'Nominace',
             'playcount' => 'Počet zahrání',
-            'favourites' => '',
-            'no_favourites' => '',
+            'favourites' => 'V oblíbených',
+            'no_favourites' => 'Nikdo ještě nepřidal do oblíbených',
         ],
 
         'status' => [
-            'ranked' => 'Schválené',
-            'approved' => 'Schválené',
-            'loved' => 'Oblíbené',
-            'qualified' => 'Kvalifikované',
-            'wip' => 'Nedodělané',
-            'pending' => 'Nevyřízené',
+            'ranked' => 'Hodnocená',
+            'approved' => 'Schválená',
+            'loved' => 'Oblíbená komunitou',
+            'qualified' => 'Kvalifikovaná',
+            'wip' => 'Rozdělaná',
+            'pending' => 'Čekající',
             'graveyard' => 'Hřbitov',
         ],
     ],

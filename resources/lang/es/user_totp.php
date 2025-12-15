@@ -5,27 +5,27 @@
 
 return [
     'create' => [
-        'finish' => '',
-        'key' => '',
-        'key_copy' => '',
-        'key_link' => '',
-        'password' => '',
-        'start' => '',
+        'finish' => 'Finalizar',
+        'key' => 'Escanea el código QR con la aplicación de autenticación e introduce el código de verificación',
+        'key_copy' => 'O haz clic en este enlace para copiar la clave para la aplicación de autenticación',
+        'key_link' => 'Usa este enlace si estás usando un teléfono móvil',
+        'password' => 'Para configurar la verificación mediante una aplicación de autenticación, introduce tu contraseña actual',
+        'start' => 'Continuar',
     ],
 
     'destroy' => [
-        'missing' => '',
-        'ok' => '',
+        'missing' => 'No tienes configurada la verificación mediante una aplicación de autenticación.',
+        'ok' => 'Se ha eliminado la verificación mediante una aplicación de autenticación.',
     ],
 
     'edit' => [
-        'password' => '',
-        'start' => '',
+        'password' => 'Introduce tu contraseña actual para eliminar la verificación mediante una aplicación de autenticación.',
+        'start' => 'Eliminar',
     ],
 
     'store' => [
-        'existing' => '',
-        'ok' => '',
-        'restart' => '',
+        'existing' => 'Ya tienes configurada la verificación mediante una aplicación de autenticación.',
+        'ok' => 'Se ha configurado la verificación mediante una aplicación de autenticación',
+        'restart' => 'Se ha producido un error. Reinicia el proceso.',
     ],
 ];
