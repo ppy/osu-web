@@ -106,7 +106,7 @@ class ScoresController extends Controller
             function () use ($file) {
                 echo $file;
             },
-            "replay-{$score->getMode()}_{$score->beatmap_id}_{$score->getKey()}.osr",
+            "solo-replay-{$score->getMode()}_{$score->beatmap_id}_{$score->getKey()}.osr",
             ['Content-Type' => 'application/x-osu-replay'],
         );
     }
