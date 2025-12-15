@@ -224,8 +224,8 @@ return [
             'rating-spread' => 'Шкала рейтингу',
             'nominations' => 'Номінації',
             'playcount' => 'Кількість ігор',
-            'favourites' => '',
-            'no_favourites' => '',
+            'favourites' => 'Вподобані',
+            'no_favourites' => 'Поки немає вподобаних',
         ],
 
         'status' => [

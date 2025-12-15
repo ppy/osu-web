@@ -159,6 +159,13 @@ return [
                 'comment_reply' => ':username ha respost ":content" a ":title"',
                 'comment_reply_compact' => ':username ha respost ":content"',
             ],
+
+            'news_post' => [
+                '_' => '',
+
+                'news_post_new' => '',
+                'news_post_new_compact' => '',
+            ],
         ],
 
         'forum_topic' => [
@@ -264,6 +271,10 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Les novetats ":title" tenen nous comentaris',
+            ],
+
+            'news_post' => [
+                'news_post_new' => '',
             ],
         ],
 

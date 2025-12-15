@@ -53,7 +53,7 @@ return [
             'discussion' => 'diskuze o beatmapě',
             'index' => 'seznam beatmap',
             'show' => 'info o beatmapě',
-            'versions' => '',
+            'versions' => 'historie verzí beatmapy',
         ],
         'changelog_controller' => [
             '_' => 'seznam změn',
@@ -72,7 +72,7 @@ return [
             'judge' => 'hodnocení soutěže',
         ],
         'group_history_controller' => [
-            '_' => '',
+            '_' => 'historie skupin',
         ],
         'groups_controller' => [
             'show' => 'skupiny',
@@ -125,7 +125,7 @@ return [
             '_' => 'přednastavení uživatelského záhlaví',
         ],
         'user_totp_controller' => [
-            '_' => '',
+            '_' => 'ověřovací aplikace',
         ],
         'users_controller' => [
             '_' => 'informace o hráči',

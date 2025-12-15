@@ -224,7 +224,7 @@ return [
             'rating-spread' => 'Vurderingsskjema',
             'nominations' => 'Nominasjoner',
             'playcount' => 'Spillforsøk',
-            'favourites' => '',
+            'favourites' => 'Favoritter',
             'no_favourites' => '',
         ],
 

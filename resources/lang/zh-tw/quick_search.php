@@ -19,15 +19,15 @@ return [
         'title' => ':mode搜尋結果',
 
         'no_results' => [
-            '_' => '',
+            '_' => '沒有找到:mode搜尋結果',
 
-            'artist_track' => '',
-            'beatmapset' => '',
-            'forum_post' => '',
-            'other' => '',
-            'team' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'artist_track' => '精選藝術家曲目',
+            'beatmapset' => '圖譜',
+            'forum_post' => '論壇',
+            'other' => '其他',
+            'team' => '隊伍',
+            'user' => '玩家',
+            'wiki_page' => '維基百科',
         ],
     ],
 ];

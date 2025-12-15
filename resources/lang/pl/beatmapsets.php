@@ -224,8 +224,8 @@ return [
             'rating-spread' => 'Rozkład ocen',
             'nominations' => 'Nominacje',
             'playcount' => 'Liczba zagrań',
-            'favourites' => '',
-            'no_favourites' => '',
+            'favourites' => 'Polubienia',
+            'no_favourites' => 'Brak polubień',
         ],
 
         'status' => [

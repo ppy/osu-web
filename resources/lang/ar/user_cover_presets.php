@@ -5,20 +5,20 @@
 
 return [
     'index' => [
-        'batch_disable' => 'التعطيل محدد',
-        'batch_enable' => 'التفعيل محدد',
+        'batch_disable' => 'تعطيل المحدد',
+        'batch_enable' => 'تفعيل المحدد',
 
         'batch_confirm' => [
             '_' => ':action :items؟',
             'disable' => 'تعطيل',
             'enable' => 'تفعيل',
-            'items' => ':count_delimited غلاف|:count_delimited اغلفه',
+            'items' => ':count_delimited غلاف|:count_delimited أغلفة',
         ],
 
         'create_form' => [
             'files' => 'ملفات',
             'submit' => 'احفظ',
-            'title' => 'أضف جديد',
+            'title' => 'أضف جديداً',
         ],
 
         'item' => [
@@ -32,6 +32,6 @@ return [
     ],
     'store' => [
         'failed' => 'حدث خطأ عند إنشاء الغلاف: :error',
-        'ok' => 'تم إنشاء الغلافات',
+        'ok' => 'أُنشئت الغلافات',
     ],
 ];

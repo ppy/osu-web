@@ -24,7 +24,7 @@ return [
 
         'forum' => [
             'write' => '以您的身分建立或編輯論壇主題和貼文。',
-            'write_manage' => '',
+            'write_manage' => '以您的身分管理論壇主題和貼文。',
         ],
 
         'friends' => [

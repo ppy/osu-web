@@ -470,6 +470,12 @@ return [
             'twitter' => '',
             'website' => 'Tinklalapis',
         ],
+
+        'matchmaking' => [
+            'details_soon' => '',
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Vartotojas greičiausiai pasikeitė savo vartotojo vardą.',
             'reason_2' => 'Vartotojas gali būti laikinai nepasiekiamas dėl saugumo arba piktnaudžiavimo.',

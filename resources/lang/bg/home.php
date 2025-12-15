@@ -83,7 +83,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'разгледайте тази страница за повече информация',
-        'download' => '',
+        'download' => 'Изтегли',
         'for_os' => 'за :os',
         'macos-fallback' => 'macOS потребители',
         'mirror' => 'алтернативна връзка',

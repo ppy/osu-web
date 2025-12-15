@@ -33,23 +33,41 @@ return [
         'used' => 'Gastado',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Este usuario tiene menos de 30 días en su historial de clasificación reciente.',
     ],
 
     'top_plays' => [
         'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'spotlights (viejo)',
         'country' => 'países',
         'daily_challenge' => 'desafío diario',
         'global' => 'global',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'multijugador',
-        'season_room' => '',
-        'seasons' => 'temporadas',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'equipos',
         'top_plays' => '',
     ],

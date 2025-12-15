@@ -76,7 +76,7 @@ return [
         'minutes' => ':count Minute|:count Minuten',
         'months' => ':count Monat|:count Monate',
         'notifications' => ':count_delimited Benachrichtigung|:count_delimited Benachrichtigungen',
-        'player' => '',
+        'player' => ':count_delimited Spieler|:count_delimited Spieler',
         'plus_others' => '+ :count_delimited anderer!|+ :count_delimited andere!',
         'post' => ':count_delimited Post|:count_delimited Posts',
         'second_short_unit' => 'sek.|sek.',

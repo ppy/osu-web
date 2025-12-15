@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'לקבל הודעת בעת תקלה במפה מאומתת במודים הנלווים',
         'beatmapset_disqualify' => 'קבלת התראות עבור כאשר מפות השייכות למצבי המשחק הבאים נפסלות',
         'comment_reply' => 'קבל התראות עבור מענות לתגובות שלכם',
+        'news_post' => '',
         'title' => 'התראות',
         'topic_auto_subscribe' => 'קבלת התראות אוטומטית בפורום אשר נוצר על ידך',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'תגובה על הנושא',
             'mail' => 'דואר אלקטרוני',
             'mapping' => '',
+            'news_post' => '',
             'push' => 'דחיפה',
         ],
     ],

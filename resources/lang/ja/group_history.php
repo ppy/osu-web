@@ -25,7 +25,7 @@ return [
 
     'form' => [
         'group' => '',
-        'group_all' => '',
+        'group_all' => 'すべてのグループ',
         'max_date' => '',
         'min_date' => '',
         'user' => '',

@@ -10,7 +10,7 @@ return [
         'client_missing_owner' => '客户端缺少所有者。',
         'client_unauthorized' => '客户端未授权。',
         'delegate_bot_only' => '只有聊天机器人可以使用包含客户端认证的委托。',
-        'client_credentials_only' => '',
+        'client_credentials_only' => '该权限范围仅对客户端凭证模式的令牌有效。',
         'delegate_invalid_combination' => '在此作用域组合下无法使用委托。',
         'delegate_required' => '需要填写委托作用域。',
         'empty' => '不包含作用域的令牌无效。',

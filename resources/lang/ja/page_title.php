@@ -53,7 +53,7 @@ return [
             'discussion' => 'ビートマップディスカッション',
             'index' => 'ビートマップリスト',
             'show' => 'ビートマップ情報',
-            'versions' => '',
+            'versions' => 'ビートマップのバージョン履歴',
         ],
         'changelog_controller' => [
             '_' => '更新履歴',
@@ -72,7 +72,7 @@ return [
             'judge' => 'コンテストの審査',
         ],
         'group_history_controller' => [
-            '_' => '',
+            '_' => 'グループの履歴',
         ],
         'groups_controller' => [
             'show' => 'グループ',
@@ -125,7 +125,7 @@ return [
             '_' => 'ユーザーカバープリセット',
         ],
         'user_totp_controller' => [
-            '_' => '',
+            '_' => '認証アプリ',
         ],
         'users_controller' => [
             '_' => 'プレイヤー情報',

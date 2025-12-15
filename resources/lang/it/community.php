@@ -81,7 +81,7 @@ return [
 
             'customisation' => [
                 'title' => 'Personalizzazione',
-                'description' => "Puoi spiccare caricando un'immagine personalizzata o creando una sezione 'io!' totalmente personalizzabile nel tuo profilo.",
+                'description' => "Puoi spiccare caricando un'immagine personalizzata, creare una sezione 'io!' totalmente personalizzabile, oppure cambiare colore a tuo piacimento nel profilo utente.",
             ],
 
             'beatmap_filters' => [

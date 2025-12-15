@@ -33,32 +33,50 @@ return [
         'used' => 'Spesi',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Questo utente ha un recente storico di classifica inferiore a 30 giorni.',
     ],
 
     'top_plays' => [
-        'empty' => '',
+        'empty' => 'I dati sono in fase di calcolo...',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'spotlight (archivio)',
         'country' => 'paese',
         'daily_challenge' => 'sfida giornaliera',
         'global' => 'globale',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'multigiocatore',
-        'season_room' => '',
-        'seasons' => 'stagioni',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'squadra',
-        'top_plays' => '',
+        'top_plays' => 'migliori partite',
     ],
 
     'seasons' => [
         'empty' => 'Non ci sono ancora partite per questa stagione.',
         'ongoing' => 'Questa stagione è ancora in corso (verranno aggiunte altre playlist).',
         'room_count' => 'Conteggio playlist',
-        'summary' => '',
+        'summary' => 'Vedi Riepilogo Stagione',
         'url' => 'Mostra ulteriori informazioni su quella stagione.',
         'validation' => [
             'not_enough_factors' => 'non ci sono indicatori sufficienti per il calcolo',

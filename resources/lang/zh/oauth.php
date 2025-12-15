@@ -17,7 +17,7 @@ return [
         'confirm_revoke' => '你确定要撤回给予的权限吗？',
         'scopes_title' => '此应用能够：',
         'owned_by' => ':user 所有',
-        'none' => '没有已经授权的第三方',
+        'none' => '没有已授权的第三方应用',
 
         'revoked' => [
             'false' => '撤除访问权限',

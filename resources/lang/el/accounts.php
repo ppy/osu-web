@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'λαμβάνετε ειδοποιήσεις για νέα προβλήματα σε πιστοποιημένους beatmaps των παρακάτω λειτουργιών',
         'beatmapset_disqualify' => 'λαμβάνετε ειδοποιήσεις για το πότε τα beatmaps των παρακάτω λειτουργιών αποκλείονται',
         'comment_reply' => 'λαμβάνετε ειδοποιήσεις για απαντήσεις στα σχόλιά σας',
+        'news_post' => '',
         'title' => 'Ειδοποιήσεις',
         'topic_auto_subscribe' => 'αυτόματη ενεργοποίηση ειδοποιήσεων για τα νέα θέματα που δημιουργείτε στο φόρουμ',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'απάντηση θέματος',
             'mail' => 'mail',
             'mapping' => 'beatmap mapper',
+            'news_post' => '',
             'push' => 'push',
         ],
     ],

@@ -19,15 +19,15 @@ return [
         'title' => 'Výsledky vyhledávání pro :mode',
 
         'no_results' => [
-            '_' => '',
+            '_' => 'Žádné výsledky pro :mode',
 
-            'artist_track' => '',
-            'beatmapset' => '',
-            'forum_post' => '',
-            'other' => '',
-            'team' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'artist_track' => 'Skladby oficiálních umělců',
+            'beatmapset' => 'Beatmapy',
+            'forum_post' => 'Fóra',
+            'other' => 'Ostatní',
+            'team' => 'Týmy',
+            'user' => 'Hráči',
+            'wiki_page' => 'Wiki',
         ],
     ],
 ];

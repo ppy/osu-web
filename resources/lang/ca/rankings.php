@@ -33,23 +33,41 @@ return [
         'used' => 'Gastat',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Aquest usuari té menys de 30 dies d\'historial de classificació recent.',
     ],
 
     'top_plays' => [
         'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'en el focus (vell)',
         'country' => 'país',
         'daily_challenge' => 'repte diari',
         'global' => 'global',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'multijugador',
-        'season_room' => '',
-        'seasons' => 'temporades',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'equip',
         'top_plays' => '',
     ],

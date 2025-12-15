@@ -34,23 +34,41 @@ Belirtilen tarihte günlük meydan okuma yok!',
         'used' => 'Harcanan',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Bu kullanıcının son sıralama geçmişi 30 günden azdır.',
     ],
 
     'top_plays' => [
         'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'Öne Çıkanlar',
         'country' => 'Ülke',
         'daily_challenge' => 'günlük meydan okuma',
         'global' => 'küresel',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'çok oyunculu',
-        'season_room' => '',
-        'seasons' => 'sezonlar',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'takım',
         'top_plays' => '',
     ],

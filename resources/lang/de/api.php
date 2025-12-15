@@ -24,7 +24,7 @@ return [
 
         'forum' => [
             'write' => 'Forenposts und Beiträge in deinem Namen erstellen und bearbeiten.',
-            'write_manage' => '',
+            'write_manage' => 'Verwalte Forenbeiträge in deinem Namen.',
         ],
 
         'friends' => [

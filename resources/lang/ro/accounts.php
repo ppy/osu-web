@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'primește notificări pentru probleme noi pe hărți calificate pentru modurile următoare',
         'beatmapset_disqualify' => 'primește notificări când beatmap-urile din modurile următoare sunt descalificate',
         'comment_reply' => 'primește notificări pentru răspunsurile la comentariile tale',
+        'news_post' => '',
         'title' => 'Notificări',
         'topic_auto_subscribe' => 'activează automat notificările pe subiecte noi din forum pe care le creați',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'răspuns subiect',
             'mail' => 'mail',
             'mapping' => 'creator beatmap',
+            'news_post' => '',
             'push' => 'push',
         ],
     ],

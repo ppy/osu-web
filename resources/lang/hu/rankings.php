@@ -33,23 +33,41 @@ return [
         'used' => 'Elköltve',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Ennek a felhasználónak kevesebb, mint 30 napos rangsorolási előzménye van.',
     ],
 
     'top_plays' => [
         'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'Reflektorfény',
         'country' => 'Ország',
         'daily_challenge' => 'napi kihívás',
         'global' => '',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'többjátékos',
-        'season_room' => '',
-        'seasons' => 'szezonok',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'csapat',
         'top_plays' => '',
     ],

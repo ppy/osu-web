@@ -28,7 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'info',
             'discussions' => 'diskusi',
-            'versions' => '',
+            'versions' => 'riwayat versi',
         ],
 
         'changelog' => [
@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'modding',
             'playlists' => 'playlist',
-            'quickplay' => '',
+            'quickplay' => 'permainan kilat',
             'realtime' => 'multiplayer',
             'show' => 'info',
         ],

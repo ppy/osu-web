@@ -33,23 +33,41 @@ return [
         'used' => 'Käytetty',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Tällä käyttäjällä on alle 30 päivää viimeaikaista rankkaushistoriaa.',
     ],
 
     'top_plays' => [
         'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'kohdevalot (vanha)',
         'country' => 'maat',
         'daily_challenge' => 'päivittäinen haaste',
         'global' => '',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'moninpelit',
-        'season_room' => '',
-        'seasons' => 'kaudet',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => '',
         'top_plays' => '',
     ],

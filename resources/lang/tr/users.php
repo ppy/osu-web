@@ -470,6 +470,12 @@ return [
             'twitter' => '',
             'website' => 'Web sitesi',
         ],
+
+        'matchmaking' => [
+            'details_soon' => '',
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Kullanıcı adını değiştirmiş olabilir.',
             'reason_2' => 'Bu hesap kötüye kullanım veya güvenlik sebepleriyle geçici olarak kullanım dışı olabilir.',

@@ -83,7 +83,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'sprawdź ten artykuł, aby dowiedzieć się więcej',
-        'download' => '',
+        'download' => 'Pobierz',
         'for_os' => 'dla systemu :os',
         'macos-fallback' => 'użytkownicy macOS',
         'mirror' => 'serwer lustrzany',
@@ -91,9 +91,9 @@ return [
         'os_version_or_later' => ':os_version lub nowszych',
         'other_os' => 'inne platformy',
         'quick_start_guide' => 'krótki przewodnik',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => 'jeżeli szukasz starego klienta gry',
+        'tagline_1' => 'rozpocznij swoją',
+        'tagline_2' => 'przygodę!',
         'video-guide' => 'poradnik',
 
         'help' => [

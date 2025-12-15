@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'recevoir des notifications lorsqu\'un nouveau problème est posté sur les beatmaps qualifiées dans les modes suivants',
         'beatmapset_disqualify' => 'recevoir des notifications lorsque des beatmaps sont disqualifiées dans les modes suivants',
         'comment_reply' => 'recevoir des notifications pour des réponses à vos commentaires',
+        'news_post' => '',
         'title' => 'Notifications',
         'topic_auto_subscribe' => 'activer automatiquement les notifications sur les nouveaux sujets que vous créez ou auxquels vous avez répondu sur le forum',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'réponse à un sujet',
             'mail' => 'mail',
             'mapping' => 'créateur de beatmap',
+            'news_post' => '',
             'push' => 'push',
         ],
     ],
@@ -149,17 +151,17 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => 'Application d\'authentification',
+        'usage_note' => 'Utiliser une application d\'authentification au lieu de la vérification par courriel. La vérification par courriel est toujours disponible en tant qu\'option de recours.',
 
         'button' => [
-            'remove' => '',
-            'setup' => '',
+            'remove' => 'Retirer',
+            'setup' => 'Ajouter une application d\'authentification',
         ],
         'status' => [
-            'label' => '',
-            'not_set' => '',
-            'set' => '',
+            'label' => 'statut',
+            'not_set' => 'Non configuré',
+            'set' => 'Configuré',
         ],
     ],
 

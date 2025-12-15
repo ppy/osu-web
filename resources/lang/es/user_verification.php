@@ -21,16 +21,16 @@ return [
     ],
 
     'box_totp' => [
-        'heading' => '',
+        'heading' => 'Introduce el código de tu aplicación de autenticación.',
 
         'info' => [
             'logout' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'También puedes :link.',
+                'link' => 'cerrar la sesión',
             ],
             'mail_fallback' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Si no puedes acceder a tu aplicación de autenticación, :link.',
+                'link' => 'puedes verificarte usando tu correo electrónico en su lugar',
             ],
         ],
     ],
@@ -40,8 +40,8 @@ return [
         'incorrect_key' => 'Código de verificación incorrecto.',
         'retries_exceeded' => 'Código de verificación incorrecto. Límite de intentos excedido, nuevo correo de verificación enviado.',
         'reissued' => 'Código de verificación reemitido, nuevo correo de verificación enviado.',
-        'totp_used_key' => '',
-        'totp_gone' => '',
+        'totp_used_key' => 'El código de verificación ya se ha usado. Por favor, espera y usa uno nuevo.',
+        'totp_gone' => 'Se ha eliminado el token de autenticación y se ha cambiado a la verificación por correo electrónico. Se ha enviado el correo electrónico de verificación.',
         'unknown' => 'Ha ocurrido un problema desconocido, nuevo correo de verificación enviado.',
     ],
 ];

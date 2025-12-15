@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'nhận thông báo về vấn đề mới ở các beatmap đủ tiêu chuẩn của chế độ này',
         'beatmapset_disqualify' => 'nhận thông báo khi beatmap ở các chế độ sau bị từ chối',
         'comment_reply' => 'nhận thông báo khi có phản hồi đến bình luận của bạn',
+        'news_post' => '',
         'title' => 'Thông báo',
         'topic_auto_subscribe' => 'tự động nhận thông báo cho các chủ đề bạn tạo trong forum',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'trả lời chủ đề',
             'mail' => 'thư',
             'mapping' => 'người tạo beatmap',
+            'news_post' => '',
             'push' => 'đẩy',
         ],
     ],

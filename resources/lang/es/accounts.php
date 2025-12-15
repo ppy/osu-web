@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'recibir notificaciones de nuevos problemas en mapas calificados de los siguientes modos',
         'beatmapset_disqualify' => 'recibir notificaciones para cuando se descalifiquen los mapas de los siguientes modos',
         'comment_reply' => 'recibir notificaciones de respuestas a tus comentarios',
+        'news_post' => '',
         'title' => 'Notificaciones',
         'topic_auto_subscribe' => 'activar automáticamente las notificaciones en nuevos temas del foro que cree',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'respuestas a temas',
             'mail' => 'correo',
             'mapping' => 'creadores de mapas',
+            'news_post' => '',
             'push' => 'push',
         ],
     ],
@@ -127,7 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'bloquear los mensajes privados de personas que no están en tu lista de amigos',
         'hide_online' => 'ocultar tu presencia en línea',
-        'hide_online_info' => '',
+        'hide_online_info' => 'esto se relaciona con el modo «aparecer desconectado» en osu!lazer',
         'title' => 'Privacidad',
     ],
 
@@ -149,17 +151,17 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => 'Aplicación de autenticación',
+        'usage_note' => 'Usa una aplicación de autenticación en lugar del correo electrónico para la verificación. La verificación por correo electrónico seguirá estando disponible como alternativa.',
 
         'button' => [
-            'remove' => '',
-            'setup' => '',
+            'remove' => 'Eliminar',
+            'setup' => 'Añadir aplicación de autenticación',
         ],
         'status' => [
-            'label' => '',
-            'not_set' => '',
-            'set' => '',
+            'label' => 'estado',
+            'not_set' => 'No configurado',
+            'set' => 'Configurado',
         ],
     ],
 

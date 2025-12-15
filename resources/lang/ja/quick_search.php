@@ -19,15 +19,15 @@ return [
         'title' => ':mode の検索結果',
 
         'no_results' => [
-            '_' => '',
+            '_' => ':mode の結果なし',
 
-            'artist_track' => '',
-            'beatmapset' => '',
-            'forum_post' => '',
-            'other' => '',
-            'team' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'artist_track' => '注目アーティストトラック',
+            'beatmapset' => 'ビートマップ',
+            'forum_post' => 'フォーラム',
+            'other' => 'その他',
+            'team' => 'チーム',
+            'user' => 'プレイヤー',
+            'wiki_page' => 'Wiki',
         ],
     ],
 ];

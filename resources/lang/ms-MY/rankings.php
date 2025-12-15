@@ -33,23 +33,41 @@ return [
         'used' => 'Digunakan',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Sejarah pangkat terkini pengguna ini kurang daripada 30 hari.',
     ],
 
     'top_plays' => [
         'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'sorotan (lama)',
         'country' => 'negara',
         'daily_challenge' => 'cabaran harian',
         'global' => 'sejagat',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'pemain ramai',
-        'season_room' => '',
-        'seasons' => 'musim',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'pasukan',
         'top_plays' => '',
     ],

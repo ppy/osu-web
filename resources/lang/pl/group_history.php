@@ -4,36 +4,36 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'none' => '',
-    'view' => '',
+    'none' => 'Nie znaleziono żadnych zdarzeń w historii grupy!',
+    'view' => 'Wyświetl historię grupy',
 
     'event' => [
-        'actor' => '',
+        'actor' => 'przez :user',
 
         'message' => [
-            'group_add' => '',
-            'group_remove' => '',
-            'group_rename' => '',
-            'user_add' => '',
-            'user_add_with_playmodes' => '',
+            'group_add' => ':group została stworzona.',
+            'group_remove' => ':group została usunięta.',
+            'group_rename' => ':previous_group zmieniła nazwę na :group.',
+            'user_add' => ':user został dodany do :group.',
+            'user_add_with_playmodes' => ':user został dodany do :group dla :rulesets.',
             'user_add_playmodes' => '',
-            'user_remove' => '',
+            'user_remove' => ':user został usunięty z :group.',
             'user_remove_playmodes' => '',
-            'user_set_default' => '',
+            'user_set_default' => 'Domyślna grupa :user została ustawiona na :group.',
         ],
     ],
 
     'form' => [
-        'group' => '',
-        'group_all' => '',
-        'max_date' => '',
-        'min_date' => '',
-        'user' => '',
-        'user_prompt' => '',
+        'group' => 'Grupa',
+        'group_all' => 'Wszystkie grupy',
+        'max_date' => 'Do',
+        'min_date' => 'Od',
+        'user' => 'Użytkownik',
+        'user_prompt' => 'Nazwa lub ID użytkownika',
     ],
 
     'staff_log' => [
-        '_' => '',
-        'wiki_articles' => '',
+        '_' => 'Wcześniejsze zmiany w grupach są udokumentowane w :wiki_articles.',
+        'wiki_articles' => 'artykułach na wiki',
     ],
 ];

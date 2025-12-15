@@ -76,7 +76,7 @@ return [
         'minutes' => ':count분',
         'months' => ':count달',
         'notifications' => '알림 :count_delimited개',
-        'player' => '',
+        'player' => ':count_delimited명의 플레이어',
         'plus_others' => '+ :count_delimited 기타!',
         'post' => ':count_delimited개의 게시글',
         'second_short_unit' => '초',

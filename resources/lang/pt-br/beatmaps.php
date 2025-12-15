@@ -7,7 +7,7 @@ return [
     'invalid_ruleset' => 'Regras especificadas inválidas.',
 
     'change_owner' => [
-        'too_many' => 'Muitos mapeadores convidados.',
+        'too_many' => 'Muitos mappers convidados.',
     ],
 
     'discussion-votes' => [

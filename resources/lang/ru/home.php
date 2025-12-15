@@ -82,8 +82,8 @@ return [
     ],
 
     'download' => [
-        'action_lazer_info' => 'статья с подробной информацией',
-        'download' => '',
+        'action_lazer_info' => 'узнайте больше о новой версии здесь',
+        'download' => 'Скачать',
         'for_os' => 'для :os',
         'macos-fallback' => 'для macOS',
         'mirror' => 'зеркало',
@@ -91,9 +91,9 @@ return [
         'os_version_or_later' => ':os_version или новее',
         'other_os' => 'другие платформы',
         'quick_start_guide' => 'краткая инструкция',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => 'если ищете устаревшую версию игры',
+        'tagline_1' => 'давайте начнём',
+        'tagline_2' => 'играть!',
         'video-guide' => 'видеоинструкция',
 
         'help' => [

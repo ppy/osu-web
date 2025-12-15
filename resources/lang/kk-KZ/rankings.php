@@ -33,23 +33,41 @@ return [
         'used' => '',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => '',
     ],
 
     'top_plays' => [
         'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => '',
         'country' => 'ел',
         'daily_challenge' => '',
         'global' => '',
         'kudosu' => 'kudosu',
-        'multiplayer' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => '',
         'top_plays' => '',
     ],

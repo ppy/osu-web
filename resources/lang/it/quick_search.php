@@ -19,15 +19,15 @@ return [
         'title' => 'Ricerca per :mode',
 
         'no_results' => [
-            '_' => '',
+            '_' => 'Nessun risultato tra :mode',
 
-            'artist_track' => '',
-            'beatmapset' => '',
-            'forum_post' => '',
-            'other' => '',
-            'team' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'artist_track' => 'le tracce di artisti in primo piano',
+            'beatmapset' => 'le beatmap',
+            'forum_post' => 'i forum',
+            'other' => 'le altre cose',
+            'team' => 'le squadre',
+            'user' => 'i giocatori',
+            'wiki_page' => 'le wiki',
         ],
     ],
 ];
