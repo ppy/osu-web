@@ -56,6 +56,8 @@ module.exports = function(config) {
   config.set({
     autoWatch: true,
     basePath: '.',
+    colors: true,
+    concurrency: Infinity,
     customLaunchers: {
       ChromeCustom: {
         base: 'ChromeHeadless',
@@ -63,8 +65,6 @@ module.exports = function(config) {
         flags: process.env.CHROME_NO_SANDBOX ? ['--no-sandbox'] : [],
       },
     },
-    colors: true,
-    concurrency: Infinity,
     exclude: [],
     files,
     frameworks: ['jasmine', 'webpack'],
