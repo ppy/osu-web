@@ -21,7 +21,7 @@ class ArchiveForumTopics extends Command
         $topics = Topic
             ::where('forum_id', $GLOBALS['cfg']['osu']['forum']['feature_forum_id'])
             ->archivable()
-            ->hasAnyTags(['resolved', 'added', 'duplicate', 'denied'])
+            ->hasAnyTags(['resolved', 'added', 'duplicate', 'denied', 'invalid'])
             ->get();
         $targetForum = Forum::findOrFail($GLOBALS['cfg']['osu']['forum']['feature_completed_forum_id']);
 
@@ -37,7 +37,7 @@ class ArchiveForumTopics extends Command
                 $GLOBALS['cfg']['osu']['forum']['help_forum_id'],
                 $GLOBALS['cfg']['osu']['forum']['help_confirmed_forum_id'],
             ])->archivable()
-            ->hasAnyTags(['resolved', 'added', 'duplicate', 'denied'])
+            ->hasAnyTags(['resolved', 'added', 'duplicate', 'denied', 'invalid'])
             ->get();
         $targetForum = Forum::findOrFail($GLOBALS['cfg']['osu']['forum']['help_archived_forum_id']);
 
