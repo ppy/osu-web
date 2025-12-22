@@ -69,4 +69,9 @@ class MatchmakingUserStats extends Model
     {
         return $query->whereHas('pool', fn ($q) => $q->where('ruleset_id', $rulesetId));
     }
+
+    public function isRatingProvisional(): bool
+    {
+        return $this->plays < static::MIN_PLAYS_NON_PROVISIONAL;
+    }
 }
