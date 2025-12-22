@@ -20,6 +20,8 @@ class MatchmakingUserStatsTransformer extends TransformerAbstract
     {
         return [
             'first_placements' => $stats->first_placements,
+            'is_rating_provisional' => $stats->isRatingProvisional(),
+            'plays' => $stats->plays,
             'pool_id' => $stats->pool_id,
             'rank' => $stats->rank,
             'rating' => $stats->rating,
