@@ -363,9 +363,11 @@ class UserSummary extends Model
             fn () => $this
                 ->user
                 ->soloScores()
+                ->where('id', '>=', $GLOBALS['cfg']['osu']['scores']['user_summary_min_id'])
                 ->where('preserve', true)
                 ->whereBetween('ended_at', $this->timeRange())
                 ->whereHas('beatmap', fn ($q) => $q->scoreable())
+                ->with(['beatmap.beatmapset.track.artist', 'beatmap.beatmapOwners.user'])
                 ->get(),
         );
     }
