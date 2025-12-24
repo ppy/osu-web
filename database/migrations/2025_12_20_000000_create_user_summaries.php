@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('share_key');
             $table->timestamps();
             $table->unique(['user_id', 'year']);
+            $table->index(['year', 'processed']);
         });
     }
 
