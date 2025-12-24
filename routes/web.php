@@ -126,6 +126,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
     });
 
+    Route::get('ss/{id}/{hash}', 'ScreenshotsController@show')->name('screenshots.show');
+
     Route::group(['prefix' => 'score-pins/{score}', 'as' => 'score-pins.'], function () {
         Route::post('reorder', 'ScorePinsController@reorder')->name('reorder');
         Route::delete('/', 'ScorePinsController@destroy')->name('destroy');
@@ -612,6 +614,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         // Tags
         Route::apiResource('tags', 'TagsController', ['only' => ['index']]);
+
+        Route::post('screenshots', 'ScreenshotsController@store')->name('screenshots.store');
     });
 });
 
