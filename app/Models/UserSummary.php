@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Traits\Memoizes;
-use App\Transformers\ScoreTransformer;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -306,15 +305,13 @@ class UserSummary extends Model
 
     private function generateTopPlaysSummary(): array
     {
-        return json_collection(
-            $this
-                ->userScoresBestPpByBeatmapId()
-                ->sortByDesc('pp')
-                ->slice(0, 20)
-                ->values()
-                ->all(),
-            new ScoreTransformer(),
-        );
+        return $this
+            ->userScoresBestPpByBeatmapId()
+            ->sortByDesc('pp')
+            ->slice(0, 20)
+            ->values()
+            ->pluck('id')
+            ->all();
     }
 
     private function summariseHighScores(array $scores): array
