@@ -80,7 +80,7 @@ class UserSummary extends Model
         $summary = $this->summary_data;
 
         return array_values(array_unique([
-            ...array_map(fn ($m) => $m['beatmap_id'], $summary['top_plays']),
+            ...Solo\Score::whereKey($summary['top_plays'])->pluck('beatmap_id'),
             ...array_map(fn ($m) => $m['scores']['score_best_beatmap_id'], $summary['favourite_mappers']),
             ...array_map(fn ($m) => $m['scores']['score_best_beatmap_id'], $summary['favourite_artists']),
         ]));
