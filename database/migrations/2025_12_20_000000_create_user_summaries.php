@@ -24,6 +24,7 @@ return new class extends Migration
             $table->unique(['user_id', 'year']);
             $table->index(['year', 'processed']);
         });
+        DB::statement('ALTER TABLE user_summaries ROW_FORMAT=compressed');
     }
 
     public function down(): void
