@@ -29,7 +29,10 @@ class YearlyPlaycount extends Model
             ::where('user_id', $userId)
             ->whereBetween('year_month', ["{$yearString}01", "{$yearString}12"])
             ->sum('playcount');
-        $pos = static::where('year', $year)->where('playcount', '>', $playcount)->count();
+        $posFn = fn () => static::where('year', $year)->where('playcount', '>', $playcount)->count();
+        $pos = $playcount < 10000
+            ? (int) \Cache::remember("yearly_playcount_users:{$year}:{$playcount}", 86400, $posFn)
+            : $posFn();
 
         return [
             'playcount' => $playcount,
