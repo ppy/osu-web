@@ -97,6 +97,12 @@ return [
             'visibility' => 'public',
         ],
 
+        'local-screenshot' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/screenshot'),
+            'visibility' => 'private',
+        ],
+
         's3' => [
             ...$s3Default,
             'base_url' => env('S3_BASE_URL'),
@@ -121,6 +127,12 @@ return [
         's3-solo-replay' => [
             ...$s3Default,
             'bucket' => presence(env('S3_SOLO_REPLAY_BUCKET')) ?? 'solo-scores-replays',
+        ],
+
+        's3-screenshot' => [
+            ...$s3Default,
+            'bucket' => presence(env('S3_SCREENSHOT_BUCKET')) ?? 'screenshots',
+            'visibility' => 'private',
         ],
     ],
 
