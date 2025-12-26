@@ -63,7 +63,34 @@ class ImageProcessor
             return;
         }
 
-        exec('jhead -autorot -purejpg -q '.escapeshellarg($this->inputPath));
+        $exifRotation = exec('exiv2 --key Exif.Thumbnail.Orientation -P v '.escapeshellarg($this->inputPath));
+
+        $args = '';
+        switch ((int) $exifRotation) {
+            case 2:
+                $args = '-flip horizontal';
+                break;
+            case 3:
+                $args = '-rotate 180';
+                break;
+            case 4:
+                $args = '-flip vertical';
+                break;
+            case 5:
+                $args = '-transpose';
+                break;
+            case 6:
+                $args = '-rotate 90';
+                break;
+            case 7:
+                $args = '-transverse';
+                break;
+            case 8:
+                $args = '-rotate 270';
+                break;
+        }
+
+        exec('jpegtran '.$args.' -trim -outfile '.escapeshellarg($this->inputPath).' '.escapeshellarg($this->inputPath));
         $this->parseInput();
     }
 
