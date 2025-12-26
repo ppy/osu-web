@@ -44,8 +44,8 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => 'Really delete post?',
-        'confirm_restore' => 'Really restore post?',
+        'confirm_destroy' => 'Are you sure you want to delete this post?',
+        'confirm_restore' => 'Are you sure you want to restore this post?',
         'edited' => 'Last edited by :user :when, edited :count_delimited time in total.|Last edited by :user :when, edited :count_delimited times in total.',
         'posted_at' => 'posted :when',
         'posted_by_in' => 'posted by :username in :forum',
@@ -76,8 +76,8 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => 'Really delete topic?',
-        'confirm_restore' => 'Really restore topic?',
+        'confirm_destroy' => 'Are you sure you want to delete this topic?',
+        'confirm_restore' => 'Are you sure you want to restore this topic?',
         'deleted' => 'deleted topic',
         'go_to_latest' => 'view latest post',
         'go_to_unread' => 'view first unread post',
