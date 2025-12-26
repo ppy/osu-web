@@ -6,6 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Screenshot;
+use Carbon\Carbon;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\File;
@@ -33,15 +34,44 @@ class ScreenshotsController extends Controller
         return response()->json([
             'url' => route('screenshots.show', [
                 'screenshot' => $screenshot->getKey(),
-                'hash' => substr(md5($screenshot->getKey().config('osu.screenshots.shared_secret')), 0, 4),
+                'hash' => $this->hash($screenshot->getKey()),
             ]),
         ], 201);
     }
 
     public function show($screenshot, string $hash)
     {
-        // TODO: move this logic over from legacy web
-        //       this empty method is left as a placeholder for the route used above to work
+        abort_if($this->hash($screenshot) !== $hash, 404);
+
+        return $this->showBase($screenshot);
+    }
+
+    public function showLegacy($screenshot)
+    {
+        abort_if($screenshot >= config('osu.screenshots.legacy_id_cutoff'), 404);
+
+        return $this->showBase($screenshot);
+    }
+
+    private function showBase($id)
+    {
+        $screenshot = Screenshot::findOrFail($id);
+        $screenshot->hits++;
+        $screenshot->last_access = Carbon::now();
+        $screenshot->save();
+
+        $file = $this->storage()->get("{$screenshot->getKey()}.jpg");
+
+        abort_if(!$file, 404);
+
+        return response()->stream(function () use ($file) {
+            echo $file;
+        }, 200, ['Content-Type' => 'image/jpeg']);
+    }
+
+    private function hash(int $id): string
+    {
+        return substr(md5($id.config('osu.screenshots.shared_secret')), 0, 4);
     }
 
     private function storage(): Filesystem

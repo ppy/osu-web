@@ -329,5 +329,6 @@ return [
     ],
     'screenshots' => [
         'shared_secret' => presence(env('SCREENSHOTS_SHARED_SECRET')) ?? '1234567890abcd',
+        'legacy_id_cutoff' => presence(env('SCREENSHOTS_LEGACY_ID_CUTOFF')) ?? 1,
     ],
 ];

@@ -126,6 +126,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
     });
 
+    Route::get('ss/{screenshot}', 'ScreenshotsController@showLegacy')->name('screenshots.show-legacy');
     Route::get('ss/{screenshot}/{hash}', 'ScreenshotsController@show')->name('screenshots.show');
 
     Route::group(['prefix' => 'score-pins/{score}', 'as' => 'score-pins.'], function () {
