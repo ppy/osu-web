@@ -7,22 +7,104 @@ declare(strict_types=1);
 
 namespace Tests\Controllers;
 
+use App\Models\Screenshot;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
-use Storage;
+use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class ScreenshotsControllerTest extends TestCase
 {
-    public function testScreenshot()
+    public function testStore()
     {
-        Storage::fake('local-screenshot');
-
         $user = User::factory()->create();
         $this->actAsScopedUser($user);
 
-        $this->postJson(route('api.screenshots.store'), [
+        \Storage::fake('local-screenshot');
+
+        $url = $this->postJson(route('api.screenshots.store'), [
             'screenshot' => UploadedFile::fake()->image('screenshot.jpg'),
-        ])->assertOk()->assertJson(['url' => 'http://localhost/ss/1/9784']); // md5("1"."1234567890abcd")
+        ])->assertOk()->assertJson(fn (AssertableJson $json) =>
+            $json->whereType('url', 'string'))->json('url');
+
+        $matches = [];
+
+        $this->assertGreaterThan(0, preg_match('/https?:\/\/.+\/(\d+)\/(.{4})/', $url, $matches));
+
+        \Storage::disk('local-screenshot')->assertExists("{$matches[1]}.jpg");
+        $this->assertEquals(Screenshot::urlHash(intval($matches[1])), $matches[2]);
+    }
+
+    public function testShow()
+    {
+        $user = User::factory()->create();
+        $screenshot = Screenshot::factory()->create(['user_id' => $user->getKey()]);
+        \Storage::fake('local-screenshot')->putFileAs('/', UploadedFile::fake()->image('ss.jpg'), "{$screenshot->getKey()}.jpg");
+
+        $this->get(route('screenshots.show', [
+            'screenshot' => $screenshot->getKey(),
+            'hash' => Screenshot::urlHash($screenshot->getKey()),
+        ]))->assertOk()->assertHeader('Content-Type', 'image/jpeg');
+    }
+
+    /**
+     * @depends testShow
+     */
+    public function testShowInvalidHash()
+    {
+        $user = User::factory()->create();
+        $screenshot = Screenshot::factory()->create(['screenshot_id' => 727, 'user_id' => $user->getKey()]);
+
+        $this->get(route('screenshots.show', [
+            'screenshot' => 727,
+            'hash' => 'asdf',
+        ]))->assertNotFound();
+
+        $after = $screenshot->refresh();
+
+        // Ensure stats aren't updated after a missed hit
+        self::assertEquals($screenshot->hits, $after->hits);
+        self::assertEquals($screenshot->last_access, $after->last_access);
+    }
+
+    public function testShowLegacy()
+    {
+        \Storage::fake('local-screenshot');
+
+        $user = User::factory()->create();
+        $screenshot = Screenshot::factory()->create(['user_id' => $user->getKey()]);
+        \Storage::disk('local-screenshot')->putFileAs('/', UploadedFile::fake()->image('ss.jpg'), "{$screenshot->getKey()}.jpg");
+
+        config_set('osu.screenshots.legacy_id_cutoff', $screenshot->getKey() + 1);
+
+        $this->get(route('screenshots.show-legacy', [
+            'screenshot' => $screenshot->getKey(),
+        ]))->assertOk()->assertHeader('Content-Type', 'image/jpeg');
+    }
+
+    public function testShowLegacyIdAboveCutoff()
+    {
+        config_set('osu.screenshots.legacy_id_cutoff', 727000);
+
+        $this->get(route('screenshots.show-legacy', [
+            'screenshot' => 727001,
+        ]))->assertNotFound();
+    }
+
+    public function testShowUpdatesStats()
+    {
+        $screenshot = Screenshot::factory()->create();
+        \Storage::fake('local-screenshot')->putFileAs('/', UploadedFile::fake()->image('ss.jpg'), "{$screenshot->getKey()}.jpg");
+
+        $this->get(route('screenshots.show', [
+            'screenshot' => $screenshot->getKey(),
+            'hash' => Screenshot::urlHash($screenshot->getKey()),
+        ]))->assertOk();
+
+        $screenshot = $screenshot->refresh();
+
+        self::assertEquals(1, $screenshot->hits);
+        self::assertEqualsUpToOneSecond(Carbon::now(), $screenshot->last_access);
     }
 }

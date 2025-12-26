@@ -31,22 +31,32 @@ class Screenshot extends Model
         'deleted' => 'boolean',
     ];
 
+    public static function isLegacyId(int $id): bool
+    {
+        return $id < $GLOBALS['cfg']['osu']['screenshots']['legacy_id_cutoff'];
+    }
+
+    public static function urlHash(int $id): string
+    {
+        return substr(md5($id.$GLOBALS['cfg']['osu']['screenshots']['shared_secret']), 0, 4);
+    }
+
     public function store($file): void
     {
         $this->storage()->putFileAs('/', $file, "{$this->getKey()}.jpg");
+    }
+
+    public function fetch(): ?string
+    {
+        return $this->storage()->get("{$this->getKey()}.jpg");
     }
 
     public function url(): string
     {
         return route('screenshots.show', [
             'screenshot' => $this->getKey(),
-            'hash' => $this->urlHash(),
+            'hash' => self::urlHash($this->getKey()),
         ]);
-    }
-
-    public function urlHash(): string
-    {
-        return substr(md5($this->getKey().$GLOBALS['cfg']['osu']['screenshots']['shared_secret']), 0, 4);
     }
 
     private function storage(): Filesystem

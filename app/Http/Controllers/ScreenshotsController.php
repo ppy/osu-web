@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\Screenshot;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\File;
 
@@ -33,9 +34,34 @@ class ScreenshotsController extends Controller
         ]);
     }
 
-    public function show($screenshot, string $hash)
+    public function show($id, string $hash)
     {
-        // TODO: move this logic over from legacy web
-        //       this empty method is left as a placeholder for the route used above to work
+        abort_if(Screenshot::urlHash(intval($id)) !== $hash, 404);
+
+        return $this->showBase($id);
+    }
+
+    public function showLegacy(int $id)
+    {
+        abort_if(!Screenshot::isLegacyId(intval($id)), 404);
+
+        return $this->showBase($id);
+    }
+
+    private function showBase($id)
+    {
+        $screenshot = Screenshot::findOrFail($id);
+        $screenshot->update([
+            'hits' => $screenshot->hits + 1,
+            'last_access' => Carbon::now(),
+        ]);
+
+        $file = $screenshot->fetch();
+
+        abort_if(!$file, 404);
+
+        return response()->stream(function () use ($file) {
+            echo $file;
+        }, 200, ['Content-Type' => 'image/jpeg']);
     }
 }
