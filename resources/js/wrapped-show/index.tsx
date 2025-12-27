@@ -460,6 +460,7 @@ export default class WrappedShow extends React.Component<Props> {
           <div className='wrapped__list-details'>
             {this.renderListDetailsTitle(
               <div className={classWithModifiers('wrapped__text')}>{selectedItem.artist.name}</div>,
+              'centred',
             )}
             <div className='wrapped__stats wrapped__stats--dense'>
               <WrappedStat title='Plays' value={selectedItem.scores.score_count} />
@@ -496,7 +497,10 @@ export default class WrappedShow extends React.Component<Props> {
         </div>
         <div className='wrapped__list-details'>
           {this.renderListDetailsTitle(
-            <div className={classWithModifiers('wrapped__text')}>{mapper?.username}</div>,
+            <div className={classWithModifiers('wrapped__text', 'container')}>
+              <div className={classWithModifiers('wrapped__text')}>{mapper?.username}</div>
+            </div>,
+            'centred',
           )}
           <div className='wrapped__stats wrapped__stats--dense'>
             <WrappedStat title='Plays' value={selectedItem.scores.score_count} />
@@ -551,9 +555,9 @@ export default class WrappedShow extends React.Component<Props> {
     );
   }
 
-  private renderListDetailsTitle(content: React.ReactNode) {
+  private renderListDetailsTitle(content: React.ReactNode, modifiers?: Modifiers) {
     return (
-      <div className={classWithModifiers('wrapped__list-details-title')}>
+      <div className={classWithModifiers('wrapped__list-details-title', modifiers)}>
         <div
           className='wrapped__rank'
           style={{ '--rank-colour': rankColours[this.selectedListIndex] ?? '' } as React.CSSProperties}
@@ -705,10 +709,14 @@ export default class WrappedShow extends React.Component<Props> {
                   </span>
                 </div>
                 <div className={classWithModifiers('wrapped__text', 'bottom')}>
-                  <DifficultyBadge rating={selectedBeatmap.difficulty_rating} />
-                  <span className={classWithModifiers('wrapped__text', 'difficulty')}>{selectedBeatmap.version}</span>
-                  {' '}
-                  <Mappers beatmap={selectedBeatmap} />
+                  <span className='wrapped__difficulty-badge'>
+                    <DifficultyBadge rating={selectedBeatmap.difficulty_rating} />
+                  </span>
+                  <span>
+                    <span className={classWithModifiers('wrapped__text', 'difficulty')}>{selectedBeatmap.version}</span>
+                    {' '}
+                    <Mappers beatmap={selectedBeatmap} />
+                  </span>
                 </div>
               </div>,
             )}
