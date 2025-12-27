@@ -271,37 +271,8 @@ class UserTest extends TestCase
         }
     }
 
-    public function testHasBadStandingForModeratorWithHistory()
+    public function testInBadStandingActiveSilence()
     {
-        config_set('osu.user.ban_persist_days', 28);
-        $viewer = User::factory()->withGroup('gmt')->create();
-        $user = User::factory()->create();
-
-        // single short silence, inactive
-        UserAccountHistory::factory()->create([
-            'user_id' => $user->user_id,
-            'ban_status' => UserAccountHistory::TYPES['silence'],
-            'timestamp' => CarbonImmutable::now()->subDays(2),
-            'period' => 60,
-        ]);
-
-        // should be true for moderator because history exists
-        $this->assertTrue($user->hasBadStanding($viewer));
-    }
-
-    public function testHasBadStandingForModeratorCleanUser()
-    {
-        config_set('osu.user.ban_persist_days', 28);
-        $viewer = User::factory()->withGroup('gmt')->create();
-        $user = User::factory()->create();
-
-        // no history
-        $this->assertFalse($user->hasBadStanding($viewer));
-    }
-
-    public function testHasBadStandingActiveSilence()
-    {
-        config_set('osu.user.ban_persist_days', 28);
         $user = User::factory()->create();
         UserAccountHistory::factory()->create([
             'user_id' => $user->user_id,
@@ -310,12 +281,11 @@ class UserTest extends TestCase
             'period' => 600, // active
         ]);
 
-        $this->assertTrue($user->hasBadStanding());
+        $this->assertTrue($user->inBadStanding());
     }
 
-    public function testHasBadStandingLongPastSilence()
+    public function testInBadStandingLongPastSilence()
     {
-        config_set('osu.user.ban_persist_days', 28);
         $user = User::factory()->create();
         UserAccountHistory::factory()->create([
             'user_id' => $user->user_id,
@@ -324,12 +294,11 @@ class UserTest extends TestCase
             'period' => 1440 * 60, // 24 hours
         ]);
 
-        $this->assertTrue($user->hasBadStanding());
+        $this->assertTrue($user->inBadStanding());
     }
 
-    public function testHasBadStandingShortPastSilence()
+    public function testInBadStandingShortPastSilence()
     {
-        config_set('osu.user.ban_persist_days', 28);
         $user = User::factory()->create();
         UserAccountHistory::factory()->create([
             'user_id' => $user->user_id,
@@ -339,12 +308,11 @@ class UserTest extends TestCase
         ]);
 
         // regular user should not see warning for single short inactive silence
-        $this->assertFalse($user->hasBadStanding());
+        $this->assertFalse($user->inBadStanding());
     }
 
-    public function testHasBadStandingMultipleShortSilences()
+    public function testInBadStandingMultipleShortSilences()
     {
-        config_set('osu.user.ban_persist_days', 28);
         $user = User::factory()->create();
 
         // 3 short silences
@@ -358,6 +326,6 @@ class UserTest extends TestCase
         }
 
         // 3 infringements should trigger warning
-        $this->assertTrue($user->hasBadStanding());
+        $this->assertTrue($user->inBadStanding());
     }
 }

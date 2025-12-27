@@ -1078,10 +1078,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     /**
      * Determine if the user has a "bad standing" based on recent infringements.
      *
-     * @param User|null $viewer The user viewing the profile.
      * @return bool
      */
-    public function hasBadStanding(?User $viewer = null): bool
+    public function inBadStanding(): bool
     {
         $silences = $this->accountHistories()
             ->recent()
@@ -1092,12 +1091,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             return false;
         }
 
-        if ($viewer?->isModerator()) {
-            return true;
-        }
-
         foreach ($silences as $silence) {
-            if ($silence->endTime()->isAfter()) {
+            if ($silence->endTime()->isFuture()) {
                 return true;
             }
         }
