@@ -26,6 +26,7 @@
   --stat-title-size: 20px;
   --stat-value-size: 52px;
 
+  --switcher-icon-border: 8px;
   --switcher-icon-height: 40px;
   --switcher-icon-height-active: 80px;
   --switcher-icon-width-active: 120px;
@@ -73,6 +74,12 @@
     --gap-mid: 20px;
     --stat-title-size: 16px;
     --stat-value-size: 40px;
+
+    --switcher-icon-border: 2px;
+    --switcher-icon-width-active: 60px;
+    --switcher-icon-height-active: 40px;
+    --switcher-icon-height: 40px;
+
     --text-title-size: 16px;
     --text-regular-size: 16px;
     --user-height: 32px;
@@ -257,6 +264,7 @@
       --border-radius: 10px;
       --list-item-height: 80px;
       --list-item-width: 80px;
+      --list-item-selected-width: 80px;
     }
   }
 
@@ -510,23 +518,20 @@
     align-items: center;
     justify-content: center;
 
-    @media @narrow-up {
-      height: var(--switcher-icon-height-active);
-      padding-bottom: 20px;
-      // fake half bar
-      background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        transparent 38%,
-        hsl(var(--hsl-pink-4)) 38%,
-        hsl(var(--hsl-pink-4)) 100%
-      );
-    }
+    height: var(--switcher-icon-height-active);
+    padding-bottom: 20px;
+    // fake half bar
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 38%,
+      hsl(var(--hsl-pink-4)) 38%,
+      hsl(var(--hsl-pink-4)) 100%
+    );
 
     @media @narrow {
-      flex: 1;
-      gap: 2px;
-      background-color: hsl(var(--hsl-pink-4));
+      gap: 6px;
+      padding-bottom: 10px;
     }
   }
 
@@ -534,30 +539,21 @@
     position: relative;
     overflow: hidden;
     width: var(--switcher-icon-height);
-    height: $width;
-    border-radius: $width;
-    background-color: black;
+    height: var(--switcher-icon-height);
+    border-radius: var(--switcher-icon-height);
+    // background-color: black;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
 
     &--active {
       width: var(--switcher-icon-width-active);
       height: var(--switcher-icon-height-active);
-      border: 8px solid #fff;
+      border: var(--switcher-icon-border) solid #fff;
     }
 
     img {
       object-fit: cover;
       width: 100%;
       height: 100%;
-    }
-
-    @media @narrow {
-      --switcher-icon-width-active: 32px;
-      --switcher-icon-height-active: 8px;
-      --switcher-icon-height: 8px;
-
-      position: static;
-      bottom: unset;
     }
   }
 
