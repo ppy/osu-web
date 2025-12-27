@@ -82,4 +82,12 @@
       .at2x("~@images/backgrounds/page-000.png", 500px, 500px);
     }
   }
+
+  &--wrapped {
+    background-color: hsl(var(--hsl-pink-4));
+    // so we don't have to mess with master blade
+    & .osu-layout__section {
+      margin-bottom: 0;
+    }
+  }
 }
