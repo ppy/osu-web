@@ -290,8 +290,9 @@ export default class WrappedShow extends React.Component<Props> {
           />
           <div className='wrapped__background wrapped__background--gradient' />
           {this.renderHeader()}
+          {this.renderHeaderSummaryMobile()}
 
-          <div className='wrapped__page-mark'>
+          <div className={classWithModifiers('wrapped__page-mark', { summary: this.isSummaryPage })}>
             <span className='wrapped__page-number'>{this.selectedIndex}</span>
             <span className='wrapped__page-title'>{this.pageTitle}</span>
           </div>
@@ -544,6 +545,26 @@ export default class WrappedShow extends React.Component<Props> {
         </div>
         <img className='wrapped__logo' src='/images/wrapped/logo.svg' />
       </div>
+    );
+  }
+
+  // version of the header just for mobile because it just has to be different
+  private renderHeaderSummaryMobile() {
+    if (this.selectedPageType !== 'summary') return null;
+
+    return (
+      <>
+        <div className={classWithModifiers('wrapped__header', 'summary-mobile')}>
+          <div className={classWithModifiers('wrapped__user', 'summary-mobile')}>
+            <span
+              className='wrapped__user-avatar'
+              style={{ backgroundImage: urlPresence(this.user.avatar_url) }}
+            />
+            <span className={classWithModifiers('wrapped__username', 'summary-mobile')}>{this.user.username}</span>
+          </div>
+          <img className='wrapped__summary-logo' src='/images/wrapped/wrapped-summary-logo.svg' />
+        </div>
+      </>
     );
   }
 
