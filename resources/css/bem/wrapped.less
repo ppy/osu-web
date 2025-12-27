@@ -4,7 +4,11 @@
 .wrapped {
   @_max-height: 1000px;
   @_transition: all ease-in-out 200ms;
-  --bg-gradient: linear-gradient(235.9deg, #ffffff 23.33%, #ffe599 67.87%);
+  --bg-gradient: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0.9) 100%);
+
   // --content-left: 292px;
   --content-left: 200px; // --page-gutter
   --favourite-mapper-avatar-size: 60px;
@@ -25,6 +29,8 @@
 
   --stat-title-size: 20px;
   --stat-value-size: 52px;
+
+  --selected-gradient: linear-gradient(235.9deg, #ffffff 23.33%, #ffe599 67.87%);
 
   --switcher-icon-border: 8px;
   --switcher-icon-height: 40px;
@@ -54,6 +60,11 @@
 
   &--summary {
     --avatar-padding: 8px;
+    --bg-gradient: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.9) 100%);
+
     --header-height: 115px;
     --mark-offset: -300px;
     --mark-opacity: 0;
@@ -103,17 +114,23 @@
     top: 0;
     left: 0;
 
+    object-fit: cover;
     background-color: #333;
-    background-image: var(--bg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
     backdrop-filter: var(--bg-filter, initial);
     height: 100%;
     width: 100%;
 
+    will-change: opacity;
+    opacity: 0;
+    transition: opacity 300ms ease-out;
+
     &--gradient {
-      background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.9));
+      opacity: 1;
+      background: var(--bg-gradient);
+    }
+
+    &--loaded {
+      opacity: 1;
     }
   }
 
@@ -128,9 +145,7 @@
     gap: var(--gap-inner);
 
     position: relative;
-    // background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.9));
-    // height: 100%;
-    padding: 0 20px var(--gap) var(--content-left);
+    padding: 0 20px var(--gap-mid) var(--content-left);
 
     &--summary {
       display: grid;
@@ -229,7 +244,7 @@
         content: "";
         position: absolute;
         inset: -4px -4px -20px -4px;
-        background: var(--bg-gradient);
+        background: var(--selected-gradient);
         filter: blur(0);
         transform: translate3d(0, 0, -1px);
         border-radius: inherit;
@@ -249,6 +264,13 @@
       width: var(--list-item-selected-width);
     }
 
+    @media @narrow {
+      --border-radius: 10px;
+      --list-item-height: 80px;
+      --list-item-width: 80px;
+      --list-item-selected-width: 80px;
+    }
+
     &--summary-beatmap {
       --list-item-height: 60px;
       --list-item-width: 260px;
@@ -258,13 +280,6 @@
         --list-item-height: 42px;
         --list-item-width: 140px;
       }
-    }
-
-    @media @narrow {
-      --border-radius: 10px;
-      --list-item-height: 80px;
-      --list-item-width: 80px;
-      --list-item-selected-width: 80px;
     }
   }
 
@@ -419,7 +434,7 @@
         padding: 8px 16px;
         width: fit-content; // don't stretch background fill
         border-radius: 100px;
-        background: var(--bg-gradient), #d9d9d9;
+        background: var(--selected-gradient), #d9d9d9;
         filter: none;
       }
     }
@@ -429,7 +444,7 @@
     display: inline-block;
     font-size: var(--stat-value-size);
     color: #fff;
-    background: var(--bg-gradient);
+    background: var(--selected-gradient);
     background-clip: text;
     -webkit-text-fill-color: transparent;
     // text-shadow colours the text :|
@@ -543,11 +558,13 @@
     border-radius: var(--switcher-icon-height);
     // background-color: black;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+    filter: brightness(0.5);
 
     &--active {
       width: var(--switcher-icon-width-active);
       height: var(--switcher-icon-height-active);
       border: var(--switcher-icon-border) solid #fff;
+      filter: none;
     }
 
     img {
@@ -573,16 +590,18 @@
     gap: var(--gap);
     padding-bottom: var(--gap-mid);
 
-    &::after {
-      content: "";
-      position: absolute;
-      width: calc(
-        100% + var(--content-left) + var(--gap)
-      ); // extend for extra space on the sides
-      height: 4px;
-      bottom: 0;
-      left: calc(-1 * var(--content-left));
-      background: #ff99c7;
+    @media @narrow-up {
+      &::after {
+        content: "";
+        position: absolute;
+        width: calc(
+          100% + var(--content-left) + var(--gap)
+        ); // extend for extra space on the sides
+        height: 4px;
+        bottom: 0;
+        left: calc(-1 * var(--content-left));
+        background: #ff99c7;
+      }
     }
 
     @media @narrow {

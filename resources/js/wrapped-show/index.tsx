@@ -7,7 +7,7 @@ import FlagCountry from 'components/flag-country';
 import StringWithComponent from 'components/string-with-component';
 import UserAvatar from 'components/user-avatar';
 import UserJson from 'interfaces/user-json';
-import { intersection } from 'lodash';
+import { debounce, intersection } from 'lodash';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import React from 'react';
@@ -164,10 +164,12 @@ function WrappedStatItems(props: { children?: React.ReactNode; modifiers?: Modif
 @observer
 export default class WrappedShow extends React.Component<Props> {
   private readonly availablePages: PageType[];
+  @observable private backgroundLoaded = false;
   private readonly beatmaps = mapBy(this.props.related_beatmaps, 'id');
   private readonly ref = React.createRef<HTMLDivElement>();
   @observable private selectedIndex = 0;
   @observable private selectedListIndex = 0;
+  private readonly setBackgroundLoadedDebounced = debounce(() => this.setBackgroundLoaded(), 100);
   private readonly user;
   private readonly users = mapBy(this.props.related_users, 'id');
 
@@ -281,6 +283,11 @@ export default class WrappedShow extends React.Component<Props> {
           {/* pseudo elements won't show up in saved image */}
           {/* gradient separated from content background so it's not effected by the padding, etc */}
           <div className='wrapped__background' />
+          <img
+            className={classWithModifiers('wrapped__background', { loaded: this.backgroundLoaded })}
+            onLoad={this.handleBackgroundLoad}
+            src={url.replace('/covers/cover', '/covers/fullsize')}
+          />
           <div className='wrapped__background wrapped__background--gradient' />
           {this.renderHeader()}
 
@@ -322,6 +329,8 @@ export default class WrappedShow extends React.Component<Props> {
           : this.beatmaps.get(this.props.summary.favourite_mappers[index]?.scores.score_best_beatmap_id);
         return beatmap?.beatmapset?.covers.cover ?? this.fallbackBackground;
       }
+      case 'summary':
+        return this.beatmaps.get(this.props.summary.top_plays[0]?.beatmap_id)?.beatmapset?.covers.cover ?? this.fallbackBackground;
       case 'top_plays': {
         const beatmap = index == null
           ? this.beatmaps.get(this.selectedTopPlay.beatmap_id)
@@ -333,6 +342,11 @@ export default class WrappedShow extends React.Component<Props> {
     return summaryBackgroundUrls[this.user.id % summaryBackgroundUrls.length];
   }
 
+  @action
+  private readonly handleBackgroundLoad = () => {
+    this.setBackgroundLoadedDebounced();
+  };
+
   // @action doesn't work for some reason?
   private readonly handleKeyDown = (e: KeyboardEvent) => runInAction(() => {
     switch (e.key) {
@@ -343,6 +357,7 @@ export default class WrappedShow extends React.Component<Props> {
             e.preventDefault();
             this.selectedListIndex++;
             this.scrollSelectedListElementIntoView();
+            this.backgroundLoaded = false;
             return;
           }
         }
@@ -351,6 +366,7 @@ export default class WrappedShow extends React.Component<Props> {
           e.preventDefault();
           this.selectedIndex++;
           this.selectedListIndex = 0;
+          this.backgroundLoaded = false;
         }
         return;
       case 'ArrowLeft':
@@ -360,6 +376,7 @@ export default class WrappedShow extends React.Component<Props> {
             e.preventDefault();
             this.selectedListIndex--;
             this.scrollSelectedListElementIntoView();
+            this.backgroundLoaded = false;
             return;
           }
         }
@@ -368,6 +385,7 @@ export default class WrappedShow extends React.Component<Props> {
           e.preventDefault();
           this.selectedIndex--;
           this.selectedListIndex = 0;
+          this.backgroundLoaded = false;
         }
         return;
     }
@@ -389,7 +407,7 @@ export default class WrappedShow extends React.Component<Props> {
   // };
 
   @action
-  private readonly handleSelectMapper = (e: React.MouseEvent<HTMLElement>) => {
+  private readonly handleSelectListItem = (e: React.MouseEvent<HTMLElement>) => {
     const element = htmlElementOrNull(e.currentTarget);
     if (element == null) return;
 
@@ -400,6 +418,7 @@ export default class WrappedShow extends React.Component<Props> {
       e.preventDefault();
       this.selectedListIndex = index;
       this.scrollSelectedListElementIntoView(element);
+      this.backgroundLoaded = false;
     }
   };
 
@@ -414,6 +433,7 @@ export default class WrappedShow extends React.Component<Props> {
     if (index >= 0 && index < this.availablePages.length) {
       this.selectedIndex = index;
       this.selectedListIndex = 0;
+      this.backgroundLoaded = false;
     }
   };
 
@@ -441,7 +461,7 @@ export default class WrappedShow extends React.Component<Props> {
                 key={index}
                 className={classWithModifiers('wrapped__list-item', 'beatmap', { selected: this.selectedListIndex === index })}
                 data-index={index}
-                onClick={this.handleSelectMapper}
+                onClick={this.handleSelectListItem}
               >
                 <BeatmapsetCover
                   beatmapset={this.beatmaps.get(item.scores.score_best_beatmap_id)?.beatmapset}
@@ -483,7 +503,7 @@ export default class WrappedShow extends React.Component<Props> {
                 key={item.mapper_id}
                 className={classWithModifiers('wrapped__list-item', { selected: this.selectedListIndex === index })}
                 data-index={index}
-                onClick={this.handleSelectMapper}
+                onClick={this.handleSelectListItem}
               >
                 <UserAvatar modifiers='wrapped' user={this.users.get(item.mapper_id)} />
               </div>
@@ -659,7 +679,7 @@ export default class WrappedShow extends React.Component<Props> {
                 key={play.id}
                 className={classWithModifiers('wrapped__list-item', 'beatmap', { selected: this.selectedListIndex === index })}
                 data-index={index}
-                onClick={this.handleSelectMapper}
+                onClick={this.handleSelectListItem}
               >
                 <BeatmapsetCover
                   beatmapset={this.beatmaps.get(play.beatmap_id)?.beatmapset}
@@ -708,5 +728,10 @@ export default class WrappedShow extends React.Component<Props> {
   // boxing the primitive for observe is annoying so just use querySelector.
   private scrollSelectedListElementIntoView(element?: HTMLElement) {
     (element ?? document.querySelector('.wrapped__list-item--selected'))?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
+
+  @action
+  private setBackgroundLoaded() {
+    this.backgroundLoaded = true;
   }
 }
