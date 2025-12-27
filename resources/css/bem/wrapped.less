@@ -1,0 +1,659 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.wrapped {
+  @_max-height: 1000px;
+  @_transition: all ease-in-out 200ms;
+  --bg-gradient: linear-gradient(235.9deg, #ffffff 23.33%, #ffe599 67.87%);
+  // --content-left: 292px;
+  --content-left: 200px; // --page-gutter
+  --favourite-mapper-avatar-size: 60px;
+  --gap: 80px; // general flex/grid gap
+  --gap-mid: 40px;
+  --gap-inner: 20px; // gap inside elements
+  --header-height: 70px;
+
+  --list-item-height: 140px;
+  --list-item-width: 140px;
+  --list-item-selected-width: 140px;
+
+  --mark-offset: -100px;
+  --mark-opacity: 1;
+
+  --page-mark-height: 68px;
+  --page-mark-top: 100px;
+
+  --stat-title-size: 20px;
+  --stat-value-size: 52px;
+
+  --switcher-icon-height: 40px;
+  --switcher-icon-height-active: 80px;
+  --switcher-icon-width-active: 120px;
+
+  --text-title-size: 24px;
+  --text-regular-size: 20px;
+
+  // how far off the top the page header is
+  --top-summary: 40px;
+
+  --avatar-padding: 5px;
+  --user-height: var(--header-height);
+
+  background-color: hsl(var(--hsl-pink-4));
+  position: relative;
+  // this margin is useles now;
+  // we're using a fixed background now because the bars make it look odd while scrolling vertically.
+  // margin: 60px 0;
+  height: 100%;
+  width: 100%;
+  min-height: 600px;
+  // max-height: @_max-height;
+  display: flex;
+  flex-direction: column;
+
+  &--summary {
+    --avatar-padding: 8px;
+    --header-height: 115px;
+    --mark-offset: -300px;
+    --mark-opacity: 0;
+    --page-mark-top: 0;
+  }
+
+  @media @mobile {
+    --avatar-padding: 5px;
+    --content-left: 10px;
+    --gap: 40px;
+    --header-height: 70px;
+    --mark-offset: var(--content-left);
+  }
+
+  @media @narrow {
+    --avatar-padding: 0px;
+    --favourite-mapper-avatar-size: 42px;
+    --gap-mid: 20px;
+    --stat-title-size: 16px;
+    --stat-value-size: 40px;
+    --text-title-size: 16px;
+    --text-regular-size: 16px;
+    --user-height: 32px;
+    margin-top: 10px;
+    margin-bottom: 0;
+
+    display: grid;
+    grid-template-rows: auto 40px;
+    // min-height: unset;
+    max-height: unset;
+  }
+
+  &__save {
+    // button for testing
+    position: fixed;
+    bottom: 0;
+  }
+
+  &__background {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background-color: #333;
+    background-image: var(--bg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: var(--bg-filter, initial);
+    height: 100%;
+    width: 100%;
+
+    &--gradient {
+      background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.9));
+    }
+  }
+
+  &__container {
+    position: relative;
+    flex: 1;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-inner);
+
+    position: relative;
+    // background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.9));
+    // height: 100%;
+    padding: 0 20px var(--gap) var(--content-left);
+
+    &--summary {
+      display: grid;
+      grid-template-rows: auto auto;
+      gap: var(--gap-mid);
+      overflow-x: scroll;
+    }
+
+    @media @narrow {
+      padding-right: var(--content-left);
+    }
+  }
+
+  &__header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--content-left);
+
+    height: var(--header-height);
+    width: 100%;
+    margin-top: calc(var(--header-height) / 2);
+
+    transition: @_transition;
+
+    &--summary {
+      margin-top: var(--top-summary);
+    }
+
+    @media @narrow {
+      flex-direction: row-reverse;
+      margin-top: 0;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    padding-left: var(--content-left);
+    padding-right: var(--gap);
+
+    @media @narrow {
+      gap: 4px;
+    }
+  }
+
+  &__list-container {
+    position: relative;
+    padding: 4px 4px 40px 4px; // additional space for selected, values are negative of inset.
+    margin-left: calc(-1 * var(--content-left));
+    margin-right: calc(-1 * var(--gap));
+    width: 100vw;
+    overflow-x: scroll;
+
+    @media @narrow {
+      padding: 2px 2px 20px 2px;
+    }
+  }
+
+  &__list-details-title {
+    display: flex;
+    position: relative;
+    margin-bottom: var(--gap-mid);
+  }
+
+  &__list-item {
+    --border-radius: 20px; // also sets on beatmap-cover
+    --list-item-height: 140px;
+    --list-item-width: 140px;
+    --list-item-selected-width: 140px;
+
+    position: relative;
+    flex: none;
+    border-radius: var(--border-radius);
+    transform-style: preserve-3d;
+    height: var(--list-item-height);
+    width: var(--list-item-width);
+    box-shadow:
+      0 2px 4px 0 rgba(0, 0, 0, 0.25),
+      0 8px 16px 0 rgba(0, 0, 0, 0.25);
+
+    &--beatmap {
+      --list-item-selected-width: 280px;
+
+      @media @narrow {
+        --list-item-selected-width: 140px;
+      }
+    }
+
+    &--selected {
+      box-shadow: none;
+
+      &::before {
+        content: "";
+        position: absolute;
+        inset: -4px -4px -20px -4px;
+        background: var(--bg-gradient);
+        filter: blur(0);
+        transform: translate3d(0, 0, -1px);
+        border-radius: inherit;
+        pointer-events: none;
+        box-shadow:
+          0 2px 4px 0 rgba(0, 0, 0, 0.25),
+          0 8px 16px 0 rgba(0, 0, 0, 0.25);
+
+        @media @narrow {
+          inset: -2px -2px -10px -2px;
+          box-shadow:
+            0 1px 2px 0 rgba(0, 0, 0, 0.25),
+            0 4px 8px 0 rgba(0, 0, 0, 0.25);
+        }
+      }
+
+      width: var(--list-item-selected-width);
+    }
+
+    &--summary-beatmap {
+      --list-item-height: 60px;
+      --list-item-width: 260px;
+
+      @media @narrow {
+        --border-radius: 8px;
+        --list-item-height: 42px;
+        --list-item-width: 140px;
+      }
+    }
+
+    @media @narrow {
+      --border-radius: 10px;
+      --list-item-height: 80px;
+      --list-item-width: 80px;
+    }
+  }
+
+  &__page-mark {
+    pointer-events: none;
+    opacity: var(--mark-opacity);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--page-mark-top);
+    margin-left: var(--mark-offset);
+    margin-bottom: 10px; // compensate for missing thingy
+
+    @media @desktop {
+      margin-bottom: 0;
+      transition: all ease-in-out 200ms;
+      flex-wrap: nowrap;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("~@images/wrapped/thing.svg");
+      // scale svg down a bit to have more space in the middle of the page.
+      width: 286px;
+      height: 68px;
+      // width: calc(var(--page-gutter) - 20px);
+      // height: var(--page-mark-height);
+    }
+
+    @media @narrow-up {
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+
+  &__page-number {
+    .center-content();
+    .default-text-shadow();
+    font-size: 24px;
+    font-weight: bold;
+    // 50px so the circle in mobile is the "correct" size.
+    width: 50px;
+    height: 50px;
+    flex: none; // prevent squashing when things go wrong.
+    position: relative;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("~@images/wrapped/circle.svg");
+
+    @media @desktop {
+      position: absolute;
+      // the positioning is magic.
+      left: 227px;
+      bottom: 10px;
+      background-image: none;
+    }
+  }
+
+  &__page-title {
+    .default-text-shadow();
+    position: relative;
+    font-size: 52px;
+    font-weight: bold;
+
+    @media @desktop {
+      // attempt to vertically align with page number
+      position: absolute;
+      top: -3px;
+      left: calc(var(--content-left) + 100px);
+    }
+
+    @media @narrow-up {
+      .center-content();
+      white-space: nowrap; // no idea
+    }
+  }
+
+  // per-page stuff
+  &__favourite-mapper {
+    display: flex;
+    gap: var(--gap-inner);
+  }
+
+  &__favourite-mapper-avatar {
+    width: var(--favourite-mapper-avatar-size);
+  }
+
+  &__summary-list-item-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__summary-list-item-title {
+    font-size: var(--text-title-size);
+    font-weight: bold;
+  }
+
+  &__summary-list-item-value {
+    font-size: var(--text-regular-size);
+  }
+
+  &__stat {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    white-space: nowrap;
+  }
+
+  &__stats {
+    display: grid;
+    // just making the total width + gap 320px
+    // 300px should be enough to fit the largest numbers currently...
+    grid-template-columns: repeat(auto-fill, 300px);
+    gap: var(--gap-inner);
+
+    &--dense {
+      grid-template-columns: repeat(auto-fill, 250px);
+    }
+  }
+
+  &__stat-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-inner);
+    margin-top: var(--gap-inner);
+    color: #fff;
+
+    &--summary {
+      @media @narrow-up {
+        display: grid;
+        grid-auto-flow: column dense;
+        grid-template-rows: repeat(5, 1fr);
+      }
+      gap: 10px var(--gap);
+    }
+  }
+
+  &__stat-title {
+    color: #fff;
+    white-space: nowrap; // always single line.
+    line-height: 1;
+    font-size: 20px;
+    font-weight: bold;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+
+    &--fancy {
+      @media @narrow-up {
+        color: #000;
+        font-size: 24px;
+        padding: 8px 16px;
+        width: fit-content; // don't stretch background fill
+        border-radius: 100px;
+        background: var(--bg-gradient), #d9d9d9;
+        filter: none;
+      }
+    }
+  }
+
+  &__stat-value {
+    display: inline-block;
+    font-size: var(--stat-value-size);
+    color: #fff;
+    background: var(--bg-gradient);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    // text-shadow colours the text :|
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+
+    &--fancy {
+      @media @narrow-up {
+        margin-left: 16px; // match the left padding on stat-title
+      }
+    }
+  }
+
+  &__text {
+    font-size: 32px;
+    font-weight: bold;
+
+    &--artist {
+      font-size: 20px;
+      font-weight: normal;
+    }
+
+    &--bottom {
+      display: flex;
+      gap: 5px;
+      font-size: 14px;
+      font-weight: normal;
+    }
+
+    &--container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    &--difficulty {
+      font-size: inherit;
+      font-weight: bold;
+    }
+
+    &--top {
+      font-size: 24px;
+
+      @media @narrow {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  &__rank {
+    --rank-colour: #fff;
+    .center-content();
+    position: relative;
+    flex: none;
+    width: 100px;
+    height: 48px;
+    margin-right: 20px;
+    margin-left: -$width - $margin-right;
+    border-radius: 100px;
+    color: #000;
+    background: linear-gradient(
+      235.9deg,
+      #fff 23.33%,
+      var(--rank-colour) 67.87%
+    );
+    font-size: 40px;
+    font-weight: bold;
+
+    @media @mobile {
+      margin-left: 0;
+      margin-right: 10px;
+    }
+
+    @media @narrow {
+      font-size: 20px;
+      width: 50px;
+      height: 24px;
+    }
+  }
+
+  &__switcher {
+    position: relative;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+
+    @media @narrow-up {
+      height: var(--switcher-icon-height-active);
+      padding-bottom: 20px;
+      // fake half bar
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 38%,
+        hsl(var(--hsl-pink-4)) 38%,
+        hsl(var(--hsl-pink-4)) 100%
+      );
+    }
+
+    @media @narrow {
+      flex: 1;
+      gap: 2px;
+      background-color: hsl(var(--hsl-pink-4));
+    }
+  }
+
+  &__switcher-item {
+    position: relative;
+    overflow: hidden;
+    width: var(--switcher-icon-height);
+    height: $width;
+    border-radius: $width;
+    background-color: black;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+
+    &--active {
+      width: var(--switcher-icon-width-active);
+      height: var(--switcher-icon-height-active);
+      border: 8px solid #fff;
+    }
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+
+    @media @narrow {
+      --switcher-icon-width-active: 32px;
+      --switcher-icon-height-active: 8px;
+      --switcher-icon-height: 8px;
+
+      position: static;
+      bottom: unset;
+    }
+  }
+
+  &__top-plays {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    @media @narrow {
+      gap: 10px;
+    }
+  }
+
+  &__top-stats {
+    position: relative;
+    display: flex;
+    gap: var(--gap);
+    padding-bottom: var(--gap-mid);
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: calc(
+        100% + var(--content-left) + var(--gap)
+      ); // extend for extra space on the sides
+      height: 4px;
+      bottom: 0;
+      left: calc(-1 * var(--content-left));
+      background: #ff99c7;
+    }
+
+    @media @narrow {
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__bottom-stats {
+    display: flex;
+    gap: var(--gap);
+
+    @media @narrow {
+      flex-direction: column;
+    }
+  }
+
+  &__logo {
+    height: 70px;
+
+    // needs to be smaller for narrower screens or it might clip into username
+    @media @narrow {
+      height: 50px;
+    }
+  }
+
+  &__user {
+    background: rgba(0, 0, 0, 0.3);
+    height: var(--user-height);
+    border-radius: var(--user-height);
+    padding: 0 var(--user-height) 0 var(--avatar-padding);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    transition: @_transition;
+
+    @media @narrow {
+      flex-direction: row-reverse;
+      padding: 0 var(--avatar-padding) 0 var(--user-height);
+    }
+  }
+
+  &__user-avatar {
+    .circle(calc(var(--user-height) - 2 * var(--avatar-padding)));
+
+    background-color: #333;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+
+    transition: @_transition;
+  }
+
+  &__user-flag {
+    @media @narrow {
+      display: none;
+    }
+  }
+
+  &__username {
+    &--summary {
+      @media @narrow-up {
+        font-size: 32px;
+        font-weight: bold;
+      }
+    }
+  }
+}

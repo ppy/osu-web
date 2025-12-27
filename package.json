@@ -50,6 +50,7 @@
     "fork-ts-checker-webpack-plugin": "^8.0",
     "glob": "^11.1.0",
     "highlight.js": "^11.7.0",
+    "html-to-image": "^1.11.13",
     "imports-loader": "^4.0.1",
     "inter-ui": "^3.9.0",
     "is-hotkey": "^0.1.6",
