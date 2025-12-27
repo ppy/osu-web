@@ -284,7 +284,6 @@ export default class WrappedShow extends React.Component<Props> {
           ref={this.ref}
           className='wrapped__container'
         >
-          {/* pseudo elements won't show up in saved image */}
           {/* gradient separated from content background so it's not effected by the padding, etc */}
           <div className='wrapped__background' />
           <img
@@ -309,7 +308,6 @@ export default class WrappedShow extends React.Component<Props> {
         <div className='wrapped__switcher'>
           {this.availablePages.map((page, index) => this.renderSwitcher(page, index))}
         </div>
-        {/* <button className='wrapped__save' onClick={this.handleSaveAsImage}>Save</button> */}
       </div>
     );
   }
@@ -393,21 +391,6 @@ export default class WrappedShow extends React.Component<Props> {
         return;
     }
   });
-
-  // private readonly handleSaveAsImage = () => {
-  //   if (this.ref.current == null) return;
-  //   toPng(this.ref.current).then((data) => {
-  //     const img = new Image();
-  //     img.src = data;
-
-  //     const a = document.createElement('a');
-  //     a.href = data;
-  //     a.download = `wrapped_page_${this.selectedIndex}.png`;
-  //     document.body.appendChild(a);
-  //     a.click();
-  //     document.body.removeChild(a);
-  //   });
-  // };
 
   @action
   private readonly handleSelectListItem = (e: React.MouseEvent<HTMLElement>) => {
