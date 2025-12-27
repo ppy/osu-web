@@ -8,8 +8,8 @@ import StringWithComponent from 'components/string-with-component';
 import UserAvatar from 'components/user-avatar';
 import UserJson from 'interfaces/user-json';
 import { debounce, intersection } from 'lodash';
-import { action, makeObservable, observable, runInAction } from 'mobx';
-import { observer } from 'mobx-react';
+import { action, autorun, makeObservable, observable, runInAction } from 'mobx';
+import { disposeOnUnmount, observer } from 'mobx-react';
 import React from 'react';
 import { hasGuestOwners } from 'utils/beatmap-helper';
 import { getArtist, getTitle } from 'utils/beatmapset-helper';
@@ -165,6 +165,7 @@ function WrappedStatItems(props: { children?: React.ReactNode; modifiers?: Modif
 export default class WrappedShow extends React.Component<Props> {
   private readonly availablePages: PageType[];
   @observable private backgroundLoaded = false;
+  private backgroundPrevious?: string;
   private readonly beatmaps = mapBy(this.props.related_beatmaps, 'id');
   private readonly ref = React.createRef<HTMLDivElement>();
   @observable private selectedIndex = 0;
@@ -256,6 +257,11 @@ export default class WrappedShow extends React.Component<Props> {
     document.addEventListener('keydown', this.handleKeyDown);
 
     makeObservable(this);
+
+    disposeOnUnmount(
+      this,
+      autorun(() => this.setBackgroundLoading(this.backgroundForPage(this.selectedPageType).replace('/covers/cover', '/covers/fullsize'))),
+    );
   }
 
   componentWillUnmount() {
@@ -266,8 +272,6 @@ export default class WrappedShow extends React.Component<Props> {
     const url= this.backgroundForPage(this.selectedPageType);
 
     const style = {
-      // quick and dirty replace, 2x also ended up being necessary
-      '--bg': urlPresence(url.replace('/covers/cover', '/covers/fullsize')),
       '--bg-filter': this.selectedPageType === 'statistics' ? 'blur(2px)' : undefined,
     } as React.CSSProperties;
 
@@ -286,6 +290,7 @@ export default class WrappedShow extends React.Component<Props> {
           <img
             className={classWithModifiers('wrapped__background', { loaded: this.backgroundLoaded })}
             onLoad={this.handleBackgroundLoad}
+            // quick and dirty replace, 2x also ended up being necessary
             src={url.replace('/covers/cover', '/covers/fullsize')}
           />
           <div className='wrapped__background wrapped__background--gradient' />
@@ -344,7 +349,8 @@ export default class WrappedShow extends React.Component<Props> {
   }
 
   @action
-  private readonly handleBackgroundLoad = () => {
+  private readonly handleBackgroundLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    this.backgroundPrevious = e.currentTarget.src;
     this.setBackgroundLoadedDebounced();
   };
 
@@ -358,7 +364,6 @@ export default class WrappedShow extends React.Component<Props> {
             e.preventDefault();
             this.selectedListIndex++;
             this.scrollSelectedListElementIntoView();
-            this.backgroundLoaded = false;
             return;
           }
         }
@@ -367,7 +372,6 @@ export default class WrappedShow extends React.Component<Props> {
           e.preventDefault();
           this.selectedIndex++;
           this.selectedListIndex = 0;
-          this.backgroundLoaded = false;
         }
         return;
       case 'ArrowLeft':
@@ -377,7 +381,6 @@ export default class WrappedShow extends React.Component<Props> {
             e.preventDefault();
             this.selectedListIndex--;
             this.scrollSelectedListElementIntoView();
-            this.backgroundLoaded = false;
             return;
           }
         }
@@ -386,7 +389,6 @@ export default class WrappedShow extends React.Component<Props> {
           e.preventDefault();
           this.selectedIndex--;
           this.selectedListIndex = 0;
-          this.backgroundLoaded = false;
         }
         return;
     }
@@ -419,7 +421,6 @@ export default class WrappedShow extends React.Component<Props> {
       e.preventDefault();
       this.selectedListIndex = index;
       this.scrollSelectedListElementIntoView(element);
-      this.backgroundLoaded = false;
     }
   };
 
@@ -434,7 +435,6 @@ export default class WrappedShow extends React.Component<Props> {
     if (index >= 0 && index < this.availablePages.length) {
       this.selectedIndex = index;
       this.selectedListIndex = 0;
-      this.backgroundLoaded = false;
     }
   };
 
@@ -754,5 +754,12 @@ export default class WrappedShow extends React.Component<Props> {
   @action
   private setBackgroundLoaded() {
     this.backgroundLoaded = true;
+  }
+
+  @action
+  private setBackgroundLoading(url: string) {
+    if (url === this.backgroundPrevious) return;
+
+    this.backgroundLoaded = false;
   }
 }
