@@ -11,6 +11,7 @@ use App\Libraries\Session\Store;
 use App\Models\OAuth\Token;
 use App\Models\User;
 use App\Models\UsernameChangeHistory;
+use App\Models\UserAccountHistory;
 use Carbon\CarbonImmutable;
 use Database\Factories\OAuth\RefreshTokenFactory;
 use Tests\TestCase;
@@ -268,5 +269,63 @@ class UserTest extends TestCase
         if (!$valid) {
             $this->assertArrayHasKey('user_discord', $user->validationErrors()->all());
         }
+    }
+
+    public function testInBadStandingActiveSilence()
+    {
+        $user = User::factory()->create();
+        UserAccountHistory::factory()->create([
+            'user_id' => $user->user_id,
+            'ban_status' => UserAccountHistory::TYPES['silence'],
+            'timestamp' => CarbonImmutable::now()->subMinutes(5),
+            'period' => 600, // active
+        ]);
+
+        $this->assertTrue($user->inBadStanding());
+    }
+
+    public function testInBadStandingLongPastSilence()
+    {
+        $user = User::factory()->create();
+        UserAccountHistory::factory()->create([
+            'user_id' => $user->user_id,
+            'ban_status' => UserAccountHistory::TYPES['silence'],
+            'timestamp' => CarbonImmutable::now()->subDays(2),
+            'period' => 1440 * 60, // 24 hours
+        ]);
+
+        $this->assertTrue($user->inBadStanding());
+    }
+
+    public function testInBadStandingShortPastSilence()
+    {
+        $user = User::factory()->create();
+        UserAccountHistory::factory()->create([
+            'user_id' => $user->user_id,
+            'ban_status' => UserAccountHistory::TYPES['silence'],
+            'timestamp' => CarbonImmutable::now()->subDays(2),
+            'period' => 600, // 10 minutes
+        ]);
+
+        // regular user should not see warning for single short inactive silence
+        $this->assertFalse($user->inBadStanding());
+    }
+
+    public function testInBadStandingMultipleShortSilences()
+    {
+        $user = User::factory()->create();
+
+        // 3 short silences
+        for ($i = 0; $i < 3; $i++) {
+            UserAccountHistory::factory()->create([
+                'user_id' => $user->user_id,
+                'ban_status' => UserAccountHistory::TYPES['silence'],
+                'timestamp' => CarbonImmutable::now()->subDays(10 + $i),
+                'period' => 60,
+            ]);
+        }
+
+        // 3 infringements should trigger warning
+        $this->assertTrue($user->inBadStanding());
     }
 }
