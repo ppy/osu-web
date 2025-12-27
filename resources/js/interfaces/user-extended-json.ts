@@ -32,6 +32,7 @@ type UserExtendedDefaultIncludes =
 
 interface UserExtendedAdditionalAttributes {
   discord: string | null;
+  has_bad_standing: boolean;
   has_supported: boolean;
   interests: string | null;
   join_date: string;

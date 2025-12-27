@@ -1075,6 +1075,43 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->isGMT() || $this->isNAT();
     }
 
+    /**
+     * Determine if the user has a "bad standing" based on recent infringements.
+     *
+     * @param User|null $viewer The user viewing the profile.
+     * @return bool
+     */
+    public function hasBadStanding(?User $viewer = null): bool
+    {
+        $silences = $this->accountHistories()
+            ->recent()
+            ->where('ban_status', UserAccountHistory::TYPES['silence'])
+            ->get();
+
+        if ($silences->isEmpty()) {
+            return false;
+        }
+
+        if ($viewer?->isModerator()) {
+            return true;
+        }
+
+        foreach ($silences as $silence) {
+            if ($silence->endTime()->isAfter()) {
+                return true;
+            }
+        }
+
+        $recentCount = $silences->count();
+        $longestPeriod = $silences->max('period') ?? 0;
+
+        if ($longestPeriod >= 1440 * 60 || $recentCount >= 3) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function isAlumni()
     {
         return $this->isGroup(app('groups')->byIdentifier('alumni'));
