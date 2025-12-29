@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetCover from 'components/beatmapset-cover';
+import ClickToCopy from 'components/click-to-copy';
 import DifficultyBadge from 'components/difficulty-badge';
 import FlagCountry from 'components/flag-country';
 import StringWithComponent from 'components/string-with-component';
@@ -294,13 +295,12 @@ export default class WrappedShow extends React.Component<WrappedData> {
         <div className='wrapped__switcher'>
           {this.availablePages.map((page, index) => this.renderSwitcher(page, index))}
 
-          <a
+          <ClickToCopy
             className={classWithModifiers('wrapped__switcher-item', 'share-link')}
-            href={this.props.share_link}
-          >
-            <span className="fas fa-link" /> Share
-          </a>
-
+            label={<><span className="fas fa-link" /> Share</>}
+            tooltipPosition='top center'
+            value={this.props.share_link}
+          />
         </div>
       </div>
     );
