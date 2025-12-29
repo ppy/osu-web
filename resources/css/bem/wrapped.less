@@ -702,7 +702,7 @@
     background: rgba(0, 0, 0, 0.3);
     height: var(--user-height);
     border-radius: var(--user-height);
-    padding: 0 var(--user-height) 0 var(--avatar-padding);
+    padding: 0 calc(var(--user-height) / 2) 0 var(--avatar-padding);
     display: flex;
     gap: 10px;
     align-items: center;
@@ -711,7 +711,7 @@
 
     @media @narrow {
       flex-direction: row-reverse;
-      padding: 0 var(--avatar-padding) 0 var(--user-height);
+      padding: 0 var(--avatar-padding) 0 calc(var(--user-height) / 2);
     }
 
     // over JUST for 1 page on mobile
@@ -719,7 +719,7 @@
       --user-height: 42px;
       display: inline-flex;
       flex-direction: row;
-      padding: 0 var(--user-height) 0 var(--avatar-padding);
+      padding: 0 calc(var(--user-height) / 2) 0 var(--avatar-padding);
     }
   }
 
