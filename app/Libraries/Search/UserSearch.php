@@ -57,6 +57,22 @@ class UserSearch extends RecordSearch
                 ->should(['multi_match' => array_merge(['query' => $this->params->queryString], $lowercase_stick)])
                 ->should(['multi_match' => array_merge(['query' => $this->params->queryString], $whitespace_stick)])
                 ->should(['match_phrase' => ['username._slop' => $this->params->queryString]]);
+
+            $query->should([
+                'exists' => [
+                    'field' => 'groups',
+                    'boost' => 2.0,
+                ],
+            ]);
+
+            $query->should([
+                'range' => [
+                    'user_lastvisit' => [
+                        'gte' => 'now-7d',
+                        'boost' => 1.5,
+                    ],
+                ],
+            ]);
         }
 
         if ($this->params->recentOnly) {
