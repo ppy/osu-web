@@ -60,6 +60,14 @@
   display: flex;
   flex-direction: column;
 
+  &--favourite_mappers {
+    --bg-filter: blur(8px);
+  }
+
+  &--statistics {
+    --bg-filter: blur(2px);
+  }
+
   &--summary {
     --avatar-padding: 8px;
     --bg-gradient: linear-gradient(
@@ -377,7 +385,7 @@
       left: calc(var(--content-left) + 100px);
     }
 
-    @media @narrow-up {
+    @media @desktop {
       .center-content();
       white-space: nowrap; // no idea
     }

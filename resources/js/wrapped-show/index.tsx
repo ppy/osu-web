@@ -267,21 +267,14 @@ export default class WrappedShow extends React.Component<WrappedData> {
   render() {
     const url= this.backgroundForPage(this.selectedPageType);
 
-    const style = {
-      '--bg-filter': this.selectedPageType === 'statistics' ? 'blur(2px)' : undefined,
-    } as React.CSSProperties;
-
     return (
-      <div
-        className={classWithModifiers('wrapped', { summary: this.isSummaryPage })}
-        style={style}
-      >
+      <div className={classWithModifiers('wrapped', this.selectedPageType)}>
         <div
           ref={this.ref}
           className='wrapped__container'
         >
           {/* gradient separated from content background so it's not effected by the padding, etc */}
-          <div className='wrapped__background' />
+          <div className={classWithModifiers('wrapped__background')} />
           <img
             className={classWithModifiers('wrapped__background', { loaded: this.backgroundLoaded })}
             onLoad={this.handleBackgroundLoad}
@@ -324,10 +317,10 @@ export default class WrappedShow extends React.Component<WrappedData> {
         return beatmap?.beatmapset?.covers.cover ?? this.fallbackBackground;
       }
       case 'favourite_mappers': {
-        const beatmap = index == null
-          ? this.beatmaps.get(this.selectedFavouriteMapper.scores.score_best_beatmap_id)
-          : this.beatmaps.get(this.props.summary.favourite_mappers[index]?.scores.score_best_beatmap_id);
-        return beatmap?.beatmapset?.covers.cover ?? this.fallbackBackground;
+        const user = index == null
+          ? this.users.get(this.selectedFavouriteMapper.mapper_id)
+          : this.users.get(this.props.summary.favourite_mappers[index]?.mapper_id);
+        return user?.avatar_url ?? '/images/layout/avatar-guest@2x.png';
       }
       case 'summary':
         return this.beatmaps.get(this.props.summary.top_plays[0]?.beatmap_id)?.beatmapset?.covers.cover ?? this.fallbackBackground;
