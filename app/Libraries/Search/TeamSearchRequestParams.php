@@ -24,4 +24,9 @@ class TeamSearchRequestParams extends TeamSearchParams
         $this->from = $this->pageAsFrom($this->page);
         $this->parseSort($params['sort']);
     }
+
+    public function isLoginRequired(): bool
+    {
+        return true;
+    }
 }

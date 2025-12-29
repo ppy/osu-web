@@ -95,6 +95,16 @@
     &--notice {
       font-size: @font-size--title-small;
       text-align: center;
+
+      .textual-button {
+        .link-default();
+        .link-plain();
+        font-weight: 700;
+
+        .link-hover({
+          text-decoration: underline;
+        });
+      }
     }
 
     &--more {
