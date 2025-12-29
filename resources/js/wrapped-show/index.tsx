@@ -100,7 +100,7 @@ function TopPlay(props: { beatmap?: BeatmapForWrappedJson; play: TopPlay }) {
           {beatmapset != null ? getTitle(beatmapset) : trans('beatmapsets.cover.deleted')}
         </div>
         <div className='wrapped__summary-list-item-value'>
-          {formatNumber(Math.round(props.play.pp))}pp
+          <span className={`fal fa-extra-mode-${rulesetIdToName[props.play.ruleset_id]}`} />{formatNumber(Math.round(props.play.pp))}pp
         </div>
       </div>
     </a>
