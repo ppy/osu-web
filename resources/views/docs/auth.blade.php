@@ -382,7 +382,7 @@ Restricted users can grant authorization like anyone else. If your client should
                 'example' => 'client_credentials',
             ],
             'scope' => [
-                'description' => 'Must be `public`; other scopes have no meaningful effect.',
+                'description' => 'A space-delimited string of [scopes](#scopes). Supports `public` and [delegation](#client-credentials-delegation) scopes (like `delegate` or `forum.write_manage`). Note: delegatable scopes cannot be combined with non-delegatable ones (like `public`).',
                 'name' => 'scope',
                 'required' => true,
                 'type' => 'string',
@@ -478,7 +478,8 @@ fetch("{{ $GLOBALS['cfg']['app']['url'] }}/api/[version]/[endpoint]", {
 
 <p>
     Client Credentials Grant tokens may be allowed to act on behalf of the owner of the OAuth client (delegation) by requesting the {{ ApidocRouteHelper::scopeBadge('delegate') }} scope, in addition to other scopes supporting delegation.
-    When using delegation, scopes that support delegation cannot be used together with scopes that do not support delegation.
+    When using the Client Credentials grant with scopes that support delegation, all requested scopes must support delegation.
+    You cannot mix delegatable and non-delegatable scopes in a single request.
     Delegation is only available to <a href="{{ $wikiUrl }}">Chat Bot</a>s.
 </p>
 
