@@ -7,6 +7,7 @@ import FlagCountry from 'components/flag-country';
 import StringWithComponent from 'components/string-with-component';
 import UserAvatar from 'components/user-avatar';
 import UserJson from 'interfaces/user-json';
+import { route } from 'laroute';
 import { debounce, intersection } from 'lodash';
 import { action, autorun, makeObservable, observable, runInAction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
@@ -448,7 +449,9 @@ export default class WrappedShow extends React.Component<WrappedData> {
         {selectedBeatmap != null && (
           <div className='wrapped__list-details'>
             {this.renderListDetailsTitle(
-              <div className={classWithModifiers('wrapped__text')}>{selectedItem.artist.name}</div>,
+              <a className={classWithModifiers('wrapped__text', 'container')} href={route('beatmapsets.show', { beatmapset: selectedBeatmap.beatmapset_id })}>
+                <div className={classWithModifiers('wrapped__text')}>{selectedItem.artist.name}</div>
+              </a>,
               'centred',
             )}
             <div className='wrapped__stats wrapped__stats--dense'>
@@ -486,9 +489,9 @@ export default class WrappedShow extends React.Component<WrappedData> {
         </div>
         <div className='wrapped__list-details'>
           {this.renderListDetailsTitle(
-            <div className={classWithModifiers('wrapped__text', 'container')}>
+            <a className={classWithModifiers('wrapped__text', 'container')} href={route('users.show', { user: mapper?.id })}>
               <div className={classWithModifiers('wrapped__text')}>{mapper?.username}</div>
-            </div>,
+            </a>,
             'centred',
           )}
           <div className='wrapped__stats wrapped__stats--dense'>
@@ -690,7 +693,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
         {selectedBeatmap != null && (
           <div className='wrapped__list-details'>
             {this.renderListDetailsTitle(
-              <div className={classWithModifiers('wrapped__text', 'container')}>
+              <a className={classWithModifiers('wrapped__text', 'container')} href={route('beatmapsets.show', { beatmapset: selectedBeatmap.beatmapset_id })}>
                 <div className={classWithModifiers('wrapped__text', 'top')}>
                   {title}
                   <span className={classWithModifiers('wrapped__text', 'artist')}>
@@ -707,7 +710,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
                     <Mappers beatmap={selectedBeatmap} />
                   </span>
                 </div>
-              </div>,
+              </a>,
             )}
             <div className='wrapped__stats wrapped__stats--dense'>
               <WrappedStat title='Rank' value={selectedItem.rank} />
