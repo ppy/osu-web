@@ -43,7 +43,6 @@ const pageTitles: Record<PageType, string> = {
   favourite_artists: 'Favourite Artists',
   favourite_mappers: 'Favourite Mappers',
   mapping: 'Beatmapping',
-  statistics: 'Statistics',
   summary: 'Summary',
   top_plays: 'Top Plays',
 };
