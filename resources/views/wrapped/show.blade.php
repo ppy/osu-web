@@ -1,5 +1,5 @@
 @extends('master', [
-    'titleOverride' => osu_trans('home.landing.title'),
+    'titleOverride' => "osu!wrapped 2025: {$summary->user->username}",
     'blank' => 'true',
     'bodyAdditionalClasses' => 'osu-layout--wrapped'
 ])

@@ -11,6 +11,7 @@ export default interface WrappedData {
   related_beatmaps: BeatmapForWrappedJson[];
   related_users: UserJson[];
   summary: Summary;
+  user_id: number;
 }
 
 export interface DailyChallenge {

@@ -21,10 +21,6 @@ import { getInt } from 'utils/math';
 import { switchNever } from 'utils/switch-never';
 import WrappedData, { BeatmapForWrappedJson, FavouriteMapper, TopPlay } from './data';
 
-type Props = WrappedData & {
-  user_id: number;
-};
-
 /* eslint-disable sort-keys */
 const pageTypeMapping = {
   summary: 'summary',
@@ -162,7 +158,7 @@ function WrappedStatItems(props: { children?: React.ReactNode; modifiers?: Modif
 }
 
 @observer
-export default class WrappedShow extends React.Component<Props> {
+export default class WrappedShow extends React.Component<WrappedData> {
   private readonly availablePages: PageType[];
   @observable private backgroundLoaded = false;
   private backgroundPrevious?: string;
