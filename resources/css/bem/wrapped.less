@@ -112,11 +112,6 @@
     --user-height: 32px;
     margin-top: 10px;
     margin-bottom: 0;
-
-    display: grid;
-    grid-template-rows: auto 40px;
-    // min-height: unset;
-    max-height: unset;
   }
 
   &__save {
@@ -228,9 +223,7 @@
     .own-layer();
     position: relative;
     padding: 4px 4px 40px 4px; // additional space for selected, values are negative of inset.
-    margin-left: calc(-1 * var(--content-left));
-    margin-right: calc(-1 * var(--gap));
-    width: 100vw;
+    margin-right: -20px; // something for mobile
     overflow-x: scroll;
 
     @media @narrow {
