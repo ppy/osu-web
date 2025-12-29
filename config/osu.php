@@ -267,7 +267,7 @@ return [
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),
         'verification_key_length_hex' => 8,
         'verification_key_tries_limit' => 8,
-        'wrapped_enabled' => get_bool(env('USER_WRAPPED_ENABLED')) ?? true,
+        'wrapped_enabled' => get_bool(env('USER_WRAPPED_ENABLED')) ?? false,
         'max_follows' => get_int(env('USER_MAX_FOLLOWS')) ?? 5000,
         'max_friends' => get_int(env('USER_MAX_FRIENDS')) ?? 250,
         'max_friends_supporter' => get_int(env('USER_MAX_FRIENDS_SUPPORTER')) ?? 500,
