@@ -293,6 +293,14 @@ export default class WrappedShow extends React.Component<WrappedData> {
         </div>
         <div className='wrapped__switcher'>
           {this.availablePages.map((page, index) => this.renderSwitcher(page, index))}
+
+          <a
+            className={classWithModifiers('wrapped__switcher-item', 'share-link')}
+            href={this.props.share_link}
+          >
+            <span className="fas fa-link" /> Share
+          </a>
+
         </div>
       </div>
     );
