@@ -411,6 +411,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-width: 0;
   }
 
   &__summary-list-item-title {
@@ -460,10 +461,9 @@
     &--summary {
       @media @narrow-up {
         display: grid;
-        grid-auto-flow: column dense;
-        grid-template-rows: repeat(5, 1fr);
+        grid-template-columns: repeat(auto-fill, minmax(auto, 500px));
       }
-      gap: 10px var(--gap);
+      gap: 10px var(--gap-inner);
     }
   }
 
@@ -654,6 +654,7 @@
   &__top-stats {
     position: relative;
     display: flex;
+    flex-wrap: wrap;
     gap: var(--gap);
     padding-bottom: var(--gap-mid);
 
@@ -670,16 +671,12 @@
         background: #ff99c7;
       }
     }
-
-    @media @narrow {
-      gap: 20px;
-      flex-wrap: wrap;
-    }
   }
 
   &__bottom-stats {
     display: flex;
-    gap: var(--gap);
+    flex-direction: column;
+    gap: var(--gap-mid);
 
     @media @narrow {
       flex-direction: column;

@@ -95,7 +95,7 @@ function TopPlay(props: { beatmap?: BeatmapForWrappedJson; play: TopPlay }) {
         />
       </div>
       <div className='wrapped__summary-list-item-text'>
-        <div className='wrapped__summary-list-item-title'>
+        <div className='wrapped__summary-list-item-title u-ellipsis-overflow'>
           {beatmapset != null ? getTitle(beatmapset) : trans('beatmapsets.cover.deleted')}
         </div>
         <div className='wrapped__summary-list-item-value'>
