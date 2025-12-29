@@ -413,7 +413,6 @@ export default class WrappedShow extends React.Component<WrappedData> {
       e.preventDefault();
       this.selectedListIndex = index;
       this.scrollSelectedListElementIntoView(element);
-      window.scrollTo(0, 0);
     }
   };
 
@@ -428,6 +427,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
     if (index >= 0 && index < this.availablePages.length) {
       this.selectedIndex = index;
       this.selectedListIndex = 0;
+      window.scrollTo(0, 0);
     }
   };
 
