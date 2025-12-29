@@ -40,12 +40,12 @@ type PageType = keyof typeof pageTypeMapping;
 const listTypes = new Set<DisplayType>(['beatmaps', 'mappers']) as Set<unknown>;
 
 const pageTitles: Record<PageType, string> = {
-  daily_challenge: 'Daily Challenge',
-  favourite_artists: 'Favourite Artists',
-  favourite_mappers: 'Favourite Mappers',
+  daily_challenge: 'Daily challenge',
+  favourite_artists: 'Favourite artists',
+  favourite_mappers: 'Favourite mappers',
   mapping: 'Beatmapping',
   summary: 'Summary',
-  top_plays: 'Top Plays',
+  top_plays: 'Top plays',
 };
 
 const rankColours = ['#ffe599', '#bab9b8', '#fd9a68'];
