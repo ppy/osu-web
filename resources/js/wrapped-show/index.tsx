@@ -7,6 +7,7 @@ import DifficultyBadge from 'components/difficulty-badge';
 import FlagCountry from 'components/flag-country';
 import StringWithComponent from 'components/string-with-component';
 import UserAvatar from 'components/user-avatar';
+import { rulesetIdToName } from 'interfaces/ruleset';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce, intersection } from 'lodash';
@@ -698,7 +699,8 @@ export default class WrappedShow extends React.Component<WrappedData> {
                     {` ${trans('beatmapsets.show.details.by_artist', { artist })}`}
                   </span>
                 </div>
-                <div className={classWithModifiers('wrapped__text', 'bottom')}>
+                <div className={classWithModifiers('wrapped__text', ['beatmap-line', 'bottom'])}>
+                  <span className={`fal fa-extra-mode-${rulesetIdToName[selectedItem.ruleset_id]}`} />
                   <span className='wrapped__difficulty-badge'>
                     <DifficultyBadge rating={selectedBeatmap.difficulty_rating} />
                   </span>

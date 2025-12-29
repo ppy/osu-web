@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapJson from 'interfaces/beatmap-json';
+import { RulesetId } from 'interfaces/ruleset';
 import UserJson from 'interfaces/user-json';
 import WithBeatmapOwners from 'interfaces/with-beatmap-owners';
 
@@ -100,7 +101,7 @@ export interface TopPlay {
   rank: string;
   ranked: boolean;
   replay: boolean;
-  ruleset_id: number;
+  ruleset_id: RulesetId;
   started_at: null;
   statistics: {
     great: number;
