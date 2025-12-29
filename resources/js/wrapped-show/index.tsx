@@ -377,6 +377,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
           e.preventDefault();
           this.selectedIndex++;
           this.selectedListIndex = 0;
+          window.scrollTo(0, 0);
         }
         return;
       case 'ArrowLeft':
@@ -394,6 +395,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
           e.preventDefault();
           this.selectedIndex--;
           this.selectedListIndex = this.currentList.length - 1;
+          window.scrollTo(0, 0);
         }
         return;
     }
@@ -411,6 +413,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
       e.preventDefault();
       this.selectedListIndex = index;
       this.scrollSelectedListElementIntoView(element);
+      window.scrollTo(0, 0);
     }
   };
 
