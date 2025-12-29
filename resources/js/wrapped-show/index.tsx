@@ -382,7 +382,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
         if (this.selectedIndex > 0) {
           e.preventDefault();
           this.selectedIndex--;
-          this.selectedListIndex = 0;
+          this.selectedListIndex = this.currentList.length - 1;
         }
         return;
     }
