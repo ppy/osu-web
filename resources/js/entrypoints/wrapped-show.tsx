@@ -6,6 +6,6 @@ import React from 'react';
 import { parseJson } from 'utils/json';
 import WrappedShow from 'wrapped-show';
 
-core.reactTurbolinks.register('wrapped-show', (container: HTMLElement) => (
+core.reactTurbolinks.register('wrapped-show', () => (
   <WrappedShow {...parseJson('json-wrapped-show')} />
 ));
