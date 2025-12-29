@@ -40,7 +40,7 @@ type PageType = keyof typeof pageTypeMapping;
 const listTypes = new Set<DisplayType>(['beatmaps', 'mappers']) as Set<unknown>;
 
 const pageTitles: Record<PageType, string> = {
-  daily_challenge: 'Daily challenge',
+  daily_challenge: 'Daily challenges',
   favourite_artists: 'Favourite artists',
   favourite_mappers: 'Favourite mappers',
   mapping: 'Beatmapping',
