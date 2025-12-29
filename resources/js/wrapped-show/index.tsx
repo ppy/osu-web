@@ -116,14 +116,6 @@ interface WrappedStatProps {
   value: number | string | React.ReactNode;
 }
 
-// not really random backgrounds.
-const summaryBackgroundUrls = [
-  'https://assets.ppy.sh/user-cover-presets/18/d208ed867fba75a6529e2f66796ea65fc7507a62a316b7d4311c2bd82e6c30b0.jpeg',
-  'https://assets.ppy.sh/user-cover-presets/19/2d85fcc09cd17097e0043c88646aa73371bbef2499970c276b409bc9b260717c.jpeg',
-  'https://assets.ppy.sh/user-cover-presets/7/4a0ccb7b7fdd5c4238b11f0e7c686760fe2c99c6472b19400e82d1a8ff503e31.jpeg',
-  'https://assets.ppy.sh/user-cover-presets/20/7be0bc7d933b0b5fefb043fbd11e5018d75f7f64c2a78a8a50148d96ed6745b5.jpeg',
-];
-
 function WrappedStat(props: WrappedStatProps) {
   if ((props.skippable ?? false) && props.value === 0) {
     return null;
@@ -184,10 +176,6 @@ export default class WrappedShow extends React.Component<WrappedData> {
 
   get hasList() {
     return listTypes.has(pageTypeMapping[this.selectedPageType]);
-  }
-
-  get fallbackBackground() {
-    return summaryBackgroundUrls[this.user.id % summaryBackgroundUrls.length];
   }
 
   get isSummaryPage() {
@@ -307,35 +295,34 @@ export default class WrappedShow extends React.Component<WrappedData> {
   }
 
   private backgroundForPage(page: PageType, index?: number) {
-    // TODO: actual from data
     switch (page) {
       case 'daily_challenge':
-        return summaryBackgroundUrls[(this.user.id + 1) % summaryBackgroundUrls.length];
+        return this.fallbackBackground(1);
       case 'mapping':
-        return summaryBackgroundUrls[(this.user.id + 2) % summaryBackgroundUrls.length];
+        return this.fallbackBackground(2);
       case 'favourite_artists': {
         const beatmap = index == null
           ? this.beatmaps.get(this.selectedFavouriteArtist.scores.score_best_beatmap_id)
           : this.beatmaps.get(this.props.summary.favourite_artists[index]?.scores.score_best_beatmap_id);
-        return beatmap?.beatmapset?.covers.cover ?? this.fallbackBackground;
+        return beatmap?.beatmapset?.covers.cover ?? this.fallbackBackground(3);
       }
       case 'favourite_mappers': {
         const user = index == null
           ? this.users.get(this.selectedFavouriteMapper.mapper_id)
           : this.users.get(this.props.summary.favourite_mappers[index]?.mapper_id);
-        return user?.cover?.url ?? this.fallbackBackground;
+        return user?.cover?.url ?? this.fallbackBackground(4);
       }
       case 'summary':
-        return this.user.cover?.url ?? this.fallbackBackground;
+        return this.user.cover?.url ?? this.fallbackBackground(5);
       case 'top_plays': {
         const beatmap = index == null
           ? this.beatmaps.get(this.selectedTopPlay.beatmap_id)
           : this.beatmaps.get(this.props.summary.top_plays[index]?.beatmap_id);
-        return beatmap?.beatmapset?.covers.cover ?? this.fallbackBackground;
+        return beatmap?.beatmapset?.covers.cover ?? this.fallbackBackground(0);
       }
     }
 
-    return summaryBackgroundUrls[this.user.id % summaryBackgroundUrls.length];
+    return this.fallbackBackground();
   }
 
   private backgroundForSwitcher(page: PageType, index?: number) {
@@ -351,6 +338,10 @@ export default class WrappedShow extends React.Component<WrappedData> {
       default:
         return this.backgroundForPage(page, index);
     }
+  }
+
+  private fallbackBackground(offset?: number) {
+    return `/images/wrapped/fallback_${(this.user.id + (offset ?? 0)) % 6}.jpeg`;
   }
 
   @action
