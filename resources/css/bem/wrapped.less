@@ -5,9 +5,10 @@
   @_max-height: 1000px;
   @_transition: all ease-in-out 200ms;
   --bg-gradient: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.5),
-        rgba(0, 0, 0, 0.9));
+    to bottom,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.9)
+  );
 
   // --content-left: 292px;
   --content-left: 200px; // --page-gutter
@@ -30,7 +31,11 @@
   --stat-title-size: 20px;
   --stat-value-size: 52px;
 
-  --selected-gradient: linear-gradient(235.9deg, #ffffff 23.33%, #ffe599 67.87%);
+  --selected-gradient: linear-gradient(
+    235.9deg,
+    #ffffff 23.33%,
+    #ffe599 67.87%
+  );
 
   --switcher-icon-border: 8px;
   --switcher-icon-height: 40px;
@@ -71,9 +76,10 @@
   &--summary {
     --avatar-padding: 8px;
     --bg-gradient: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.7),
-        rgba(0, 0, 0, 0.9));
+      to bottom,
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.9)
+    );
 
     --header-height: 115px;
     --mark-offset: -300px;
@@ -155,7 +161,8 @@
     gap: var(--gap-inner);
 
     position: relative;
-    padding: 0 20px calc(var(--gap-mid) + var(--switcher-icon-height-active)) var(--content-left);
+    padding: 0 20px calc(var(--gap-mid) + var(--switcher-icon-height-active))
+      var(--content-left);
 
     &--summary {
       display: grid;
