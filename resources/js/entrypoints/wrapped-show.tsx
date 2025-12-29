@@ -5,7 +5,6 @@ import core from 'osu-core-singleton';
 import React from 'react';
 import { parseJson } from 'utils/json';
 import WrappedShow from 'wrapped-show';
-import sampleData from 'wrapped-show/sums/summary-8447637.json';
 
 core.reactTurbolinks.register('wrapped-show', (container: HTMLElement) => (
   <WrappedShow {...parseJson('json-wrapped-show')} />
