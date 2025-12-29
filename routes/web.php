@@ -413,7 +413,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'HomeController@index')->name('home');
 
     if ($GLOBALS['cfg']['osu']['user']['wrapped_enabled']) {
-        Route::get('/wrapped/{userId}', 'WrappedController@show');
+        Route::get('/wrapped/{userId}', 'WrappedController@show')->name('wrapped');
     }
 
     // redirects go here
