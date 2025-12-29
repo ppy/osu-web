@@ -469,10 +469,14 @@
     color: #fff;
 
     &--summary {
-      @media @narrow-up {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(auto, 500px));
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+
+      @media @narrow {
+        // I hope no screens are this small but 300px is too small to fit other things already.
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       }
+
       gap: 10px var(--gap-inner);
     }
   }
