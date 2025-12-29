@@ -13,4 +13,11 @@
     z-index: @z-index--overlay;
     opacity: 0.4;
   }
+
+  //prevent jumpy height resize when search bar hides on mobile browsers
+  @media @mobile {
+    &[data-visibility="visible"] {
+      height: 100lvh;
+    }
+  }
 }
