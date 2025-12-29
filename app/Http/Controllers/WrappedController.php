@@ -24,11 +24,23 @@ class WrappedController extends Controller
 
     public function show($userId)
     {
-        $summary = UserSummary::where(['user_id' => $userId, 'year' => static::YEAR])->firstOrFail();
+        // validate user id and ban status
+        $user = User::default()->findOrFail($userId);
 
         $currentUser = \Auth::user();
 
-        if ($currentUser?->getKey() !== $summary->user_id && !hash_equals($summary->share_key, get_string(request('share')) ?? '')) {
+        $viewingOwn = $currentUser?->getKey() === $user->getKey();
+        if ($viewingOwn) {
+            UserSummary::markViewed($currentUser->getKey());
+        }
+
+        $summary = UserSummary::where(['user_id' => $user->getKey(), 'year' => static::YEAR])->first();
+
+        if ($summary === null) {
+            abort(404, "It doesn't seem the user has played in 2025!");
+        }
+
+        if (!$viewingOwn && !hash_equals($summary->share_key, get_string(request('share')) ?? '')) {
             abort(403, 'Please ask the user for the share url!');
         }
 

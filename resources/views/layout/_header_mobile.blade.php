@@ -55,7 +55,10 @@
                     </a>
                     @if ($GLOBALS['cfg']['osu']['user']['wrapped_enabled'])
                         <a
-                            class="mobile-menu-tab mobile-menu-tab--link-button"
+                            class="{{ class_with_modifiers('mobile-menu-tab', [
+                                'link-button' => true,
+                                'wrapped-first' => !has_viewed_wrapped($currentUser->getKey()),
+                            ]) }}"
                             href="{{ route('wrapped', $currentUser->getKey()) }}"
                             title="View your summary of 2025!"
                         >

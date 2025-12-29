@@ -38,4 +38,14 @@
       color: hsl(var(--hsl-c1));
     }
   }
+
+  &--wrapped {
+    &:hover {
+      color: @pink;
+    }
+  }
+
+  &--wrapped-first {
+    animation: glow-pulse 2s infinite, grow-and-shrink 2s infinite;
+  }
 }

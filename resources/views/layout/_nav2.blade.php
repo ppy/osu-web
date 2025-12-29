@@ -101,7 +101,10 @@
                 <div class="nav2__col">
                     <a
                         href="{{ route('wrapped', $currentUser->getKey()) }}"
-                        class="nav-button nav-button--support"
+                        class="{{ class_with_modifiers('nav-button', [
+                            'wrapped' => true,
+                            'wrapped-first' => !has_viewed_wrapped($currentUser->getKey()),
+                        ]) }}"
                         title="View your summary of 2025!"
                         data-tooltip-position="bottom center"
                     >
