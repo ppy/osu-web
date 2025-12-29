@@ -52,13 +52,13 @@ const rankColours = ['#ffe599', '#bab9b8', '#fd9a68'];
 
 function FavouriteMapper(props: { mapper: FavouriteMapper; user?: UserJson }) {
   return (
-    <div className='wrapped__favourite-mapper'>
+    <a className='wrapped__favourite-mapper' href={route('users.show', { user: props.mapper.mapper_id })}>
       <div className='wrapped__favourite-mapper-avatar'><UserAvatar modifiers='full-circle' user={props.user} /></div>
       <div className='wrapped__summary-list-item-text'>
         <div className='wrapped__summary-list-item-title'>{props.user?.username ?? trans('users.deleted')}</div>
         <div className='wrapped__summary-list-item-value'>{formatNumber(props.mapper.scores.score_count)} plays</div>
       </div>
-    </div>
+    </a>
   );
 }
 
@@ -86,7 +86,7 @@ function Mappers(props: { beatmap: BeatmapForWrappedJson }) {
 function TopPlay(props: { beatmap?: BeatmapForWrappedJson; play: TopPlay }) {
   const beatmapset = props.beatmap?.beatmapset;
   return (
-    <div className={classWithModifiers('wrapped__top-plays', 'summary-beatmap')}>
+    <a className={classWithModifiers('wrapped__top-plays', 'summary-beatmap')} href={route('beatmaps.show', { beatmap: props.play.beatmap_id })}>
       <div className={classWithModifiers('wrapped__list-item', 'summary-beatmap')}
       >
         <BeatmapsetCover
@@ -103,7 +103,7 @@ function TopPlay(props: { beatmap?: BeatmapForWrappedJson; play: TopPlay }) {
           {formatNumber(Math.round(props.play.pp))} pp
         </div>
       </div>
-    </div>
+    </a>
   );
 }
 
@@ -449,7 +449,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
         {selectedBeatmap != null && (
           <div className='wrapped__list-details'>
             {this.renderListDetailsTitle(
-              <a className={classWithModifiers('wrapped__text', 'container')} href={route('beatmapsets.show', { beatmapset: selectedBeatmap.beatmapset_id })}>
+              <a className={classWithModifiers('wrapped__text', 'container')} href={route('beatmaps.show', { beatmap: selectedBeatmap.id })}>
                 <div className={classWithModifiers('wrapped__text')}>{selectedItem.artist.name}</div>
               </a>,
               'centred',
@@ -693,7 +693,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
         {selectedBeatmap != null && (
           <div className='wrapped__list-details'>
             {this.renderListDetailsTitle(
-              <a className={classWithModifiers('wrapped__text', 'container')} href={route('beatmapsets.show', { beatmapset: selectedBeatmap.beatmapset_id })}>
+              <a className={classWithModifiers('wrapped__text', 'container')} href={route('beatmaps.show', { beatmap: selectedBeatmap.id })}>
                 <div className={classWithModifiers('wrapped__text', 'top')}>
                   {title}
                   <span className={classWithModifiers('wrapped__text', 'artist')}>
