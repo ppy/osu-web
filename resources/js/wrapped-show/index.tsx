@@ -326,7 +326,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
         return user?.avatar_url ?? '/images/layout/avatar-guest@2x.png';
       }
       case 'summary':
-        return this.beatmaps.get(this.props.summary.top_plays[0]?.beatmap_id)?.beatmapset?.covers.cover ?? this.fallbackBackground;
+        return this.user.cover?.url ?? this.fallbackBackground;
       case 'top_plays': {
         const beatmap = index == null
           ? this.beatmaps.get(this.selectedTopPlay.beatmap_id)
