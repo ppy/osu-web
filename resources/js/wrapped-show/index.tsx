@@ -112,7 +112,7 @@ interface WrappedStatProps {
   round?: boolean;
   skippable?: boolean;
   title: string;
-  value: number | string;
+  value: number | string | React.ReactNode;
 }
 
 // not really random backgrounds.
@@ -711,7 +711,10 @@ export default class WrappedShow extends React.Component<WrappedData> {
             )}
             <div className='wrapped__stats wrapped__stats--dense'>
               <WrappedStat round title='pp' value={selectedItem.pp} />
-              <WrappedStat title='Rank' value={selectedItem.rank} />
+              <WrappedStat
+                title='Rank'
+                value={<div className={classWithModifiers('score-rank', ['wrapped', selectedItem.rank])} />}
+              />
               <WrappedStat title='Score' value={selectedItem.total_score} />
               <WrappedStat percent title='Accuracy' value={selectedItem.accuracy} />
               <WrappedStat title='Max Combo' value={selectedItem.max_combo} />
