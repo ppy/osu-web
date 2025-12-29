@@ -323,7 +323,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
         const user = index == null
           ? this.users.get(this.selectedFavouriteMapper.mapper_id)
           : this.users.get(this.props.summary.favourite_mappers[index]?.mapper_id);
-        return user?.avatar_url ?? '/images/layout/avatar-guest@2x.png';
+        return user?.cover?.url ?? this.fallbackBackground;
       }
       case 'summary':
         return this.user.cover?.url ?? this.fallbackBackground;
@@ -336,6 +336,21 @@ export default class WrappedShow extends React.Component<WrappedData> {
     }
 
     return summaryBackgroundUrls[this.user.id % summaryBackgroundUrls.length];
+  }
+
+  private backgroundForSwitcher(page: PageType, index?: number) {
+    switch (page) {
+      case 'favourite_mappers': {
+        const user = index == null
+          ? this.users.get(this.selectedFavouriteMapper.mapper_id)
+          : this.users.get(this.props.summary.favourite_mappers[index]?.mapper_id);
+        return user?.avatar_url ?? '/images/layout/avatar-guest@2x.png';
+      }
+      case 'summary':
+        return this.user.avatar_url;
+      default:
+        return this.backgroundForPage(page, index);
+    }
   }
 
   @action
@@ -642,7 +657,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
         data-index={index}
         onClick={this.handleSwitcherOnClick}
       >
-        <img src={this.backgroundForPage(page, 0)} />
+        <img src={this.backgroundForSwitcher(page, 0)} />
       </div>
     );
   }
