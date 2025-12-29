@@ -626,7 +626,6 @@ export default class WrappedShow extends React.Component<WrappedData> {
             value={`top ${formatNumber(summary.scores.playcount.top_percent, 2, { style: 'percent' })}`}
           />
           <WrappedStat modifiers='fancy' title='Total playcount' value={summary.scores.playcount.playcount} />
-          <WrappedStat modifiers='fancy' round title='Total pp' value={summary.scores.pp} />
           <WrappedStat modifiers='fancy' title='Highest score' value={summary.scores.score} />
           <WrappedStat modifiers='fancy' percent title='Average accuracy' value={summary.scores.acc} />
           <WrappedStat modifiers='fancy' title='Highest combo' value={summary.scores.combo} />
