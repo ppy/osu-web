@@ -296,7 +296,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
 
           <ClickToCopy
             className={classWithModifiers('wrapped__switcher-item', 'share-link')}
-            label={<><span className="fas fa-link" /> Share</>}
+            label={<><span className="fas fa-link" /><span className='wrapped__share-label'> Share</span></>}
             tooltipPosition='top center'
             value={this.props.share_link}
           />
