@@ -27,7 +27,6 @@ const pageTypeMapping = {
   summary: 'summary',
   top_plays: 'beatmaps',
   daily_challenge: 'plain',
-  statistics: 'plain',
   favourite_mappers: 'mappers',
   favourite_artists: 'beatmaps',
   mapping: 'plain',
@@ -245,11 +244,8 @@ export default class WrappedShow extends React.Component<WrappedData> {
 
     this.availablePages = [
       'summary',
-      'statistics',
       ...intersection(Object.keys(pageTypeMapping), [...keys.values()]) as PageType[],
     ];
-
-    // console.log(this.availablePages);
 
     document.addEventListener('keydown', this.handleKeyDown);
 
@@ -309,8 +305,6 @@ export default class WrappedShow extends React.Component<WrappedData> {
         return summaryBackgroundUrls[(this.user.id + 1) % summaryBackgroundUrls.length];
       case 'mapping':
         return summaryBackgroundUrls[(this.user.id + 2) % summaryBackgroundUrls.length];
-      case 'statistics':
-        return this.user.cover?.url ?? this.fallbackBackground;
       case 'favourite_artists': {
         const beatmap = index == null
           ? this.beatmaps.get(this.selectedFavouriteArtist.scores.score_best_beatmap_id)
@@ -589,8 +583,6 @@ export default class WrappedShow extends React.Component<WrappedData> {
         return this.renderMapping();
       case 'summary':
         return this.renderSummary();
-      case 'statistics':
-        return this.renderStatistics();
       case 'top_plays':
         return this.renderTopPlays();
       default:
@@ -599,51 +591,34 @@ export default class WrappedShow extends React.Component<WrappedData> {
     }
   }
 
-  private renderStatistics() {
-    const summary = this.props.summary;
-
-    return (
-      <div className='wrapped__stats'>
-        <WrappedStat
-          modifiers='fancy'
-          percent
-          title='Plays Percentile'
-          value={summary.scores.playcount.top_percent}
-        />
-        <WrappedStat modifiers='fancy' title='Beatmaps Played' value={summary.scores.playcount.playcount} />
-        <WrappedStat modifiers='fancy' title='Position' value={summary.scores.playcount.pos} />
-
-        <WrappedStat modifiers='fancy' round title='Total pp' value={summary.scores.pp} />
-        <WrappedStat modifiers='fancy' percent title='Average Accuracy' value={summary.scores.acc} />
-        <WrappedStat modifiers='fancy' title='Highest Combo' value={summary.scores.combo} />
-        <WrappedStat modifiers='fancy' title='Highest Score' value={summary.scores.score} />
-
-        <WrappedStat modifiers='fancy' title='Medals Collected' value={summary.medals} />
-        <WrappedStat modifiers='fancy' title='Replays Watched' value={summary.replays} />
-      </div>
-    );
-  }
-
   private renderSummary() {
     const summary = this.props.summary;
 
     return (
       <>
         <div className='wrapped__top-stats'>
-          <WrappedStat modifiers='fancy' title='Beatmaps Played' value={summary.scores.playcount.playcount} />
-          <WrappedStat modifiers='fancy' title='pp' value={Math.round(summary.scores.pp)} />
-          <WrappedStat modifiers='fancy' title='Highest Score' value={summary.scores.score} />
-          <WrappedStat modifiers='fancy' title='Medals' value={summary.medals} />
-          <WrappedStat modifiers='fancy' skippable title='Daily Challenge Streak' value={summary.daily_challenge.highest_streak} />
-          <WrappedStat modifiers='fancy' skippable title='Replays Watched' value={summary.replays} />
+          <WrappedStat
+            modifiers='fancy'
+            title='Dedication level'
+            value={`top ${formatNumber(summary.scores.playcount.top_percent, 2, { style: 'percent' })}`}
+          />
+          <WrappedStat modifiers='fancy' title='Beatmaps played' value={summary.scores.playcount.playcount} />
+          <WrappedStat modifiers='fancy' round title='Total pp' value={summary.scores.pp} />
+          <WrappedStat modifiers='fancy' title='Highest score' value={summary.scores.score} />
+          <WrappedStat modifiers='fancy' percent title='Average accuracy' value={summary.scores.acc} />
+          <WrappedStat modifiers='fancy' title='Highest combo' value={summary.scores.combo} />
+          <WrappedStat modifiers='fancy' title='Highest score' value={summary.scores.score} />
+          <WrappedStat modifiers='fancy' title='Medals collected' value={summary.medals} />
+          <WrappedStat modifiers='fancy' skippable title='Replays watched by others' value={summary.replays} />
+          <WrappedStat modifiers='fancy' skippable title='Daily challenge streak' value={summary.daily_challenge.highest_streak} />
         </div>
         <div className='wrapped__bottom-stats'>
-          <WrappedStatItems modifiers={['fancy', 'summary']} title='Your Favourite Mappers'>
+          <WrappedStatItems modifiers={['fancy', 'summary']} title='Your favourite mappers'>
             {summary.favourite_mappers.map((value) =>
               <FavouriteMapper key={value.mapper_id} mapper={value} user={this.users.get(value.mapper_id)} />,
             )}
           </WrappedStatItems>
-          <WrappedStatItems modifiers={['fancy', 'summary']} title='Your Top Plays'>
+          <WrappedStatItems modifiers={['fancy', 'summary']} title='Your top plays'>
             {summary.top_plays.map((value) => <TopPlay key={value.id} beatmap={this.beatmaps.get(value.beatmap_id)} play={value} />)}
           </WrappedStatItems>
         </div>
