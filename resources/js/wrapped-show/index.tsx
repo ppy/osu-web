@@ -213,7 +213,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
     return this.availablePages[this.selectedIndex];
   }
 
-  constructor(props: Props) {
+  constructor(props: WrappedData) {
     super(props);
 
     const user = this.users.get(props.user_id);
