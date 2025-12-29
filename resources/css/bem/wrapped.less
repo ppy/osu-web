@@ -151,12 +151,13 @@
   }
 
   &__content {
-    display: flex;
-    flex-direction: column;
+    --content-padding-right: 20px;
+    display: grid;
     gap: var(--gap-inner);
+    width: 100%;
 
     position: relative;
-    padding: 0 20px calc(var(--gap-mid) + var(--switcher-icon-height-active))
+    padding: 0 var(--content-padding-right) calc(var(--gap-mid) + var(--switcher-icon-height-active))
       var(--content-left);
 
     &--summary {
@@ -168,6 +169,7 @@
 
     @media @narrow {
       padding-right: var(--content-left);
+      --content-padding-right: var(--content-left);
     }
   }
 
@@ -225,7 +227,7 @@
     position: relative;
     padding: 4px 4px 40px 4px; // additional space for selected, values are negative of inset.
     margin-left: calc(-1 * var(--content-left));
-    margin-right: -20px; // something for mobile
+    margin-right: calc(-1 * var(--content-padding-right)); // something for mobile
     overflow-x: scroll;
 
     @media @narrow {
