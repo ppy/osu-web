@@ -713,8 +713,8 @@ export default class WrappedShow extends React.Component<WrappedData> {
               </a>,
             )}
             <div className='wrapped__stats wrapped__stats--dense'>
-              <WrappedStat title='Rank' value={selectedItem.rank} />
               <WrappedStat round title='pp' value={selectedItem.pp} />
+              <WrappedStat title='Rank' value={selectedItem.rank} />
               <WrappedStat title='Score' value={selectedItem.total_score} />
               <WrappedStat percent title='Accuracy' value={selectedItem.accuracy} />
               <WrappedStat title='Max Combo' value={selectedItem.max_combo} />
