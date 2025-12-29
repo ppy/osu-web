@@ -39,7 +39,6 @@ class WrappedController extends Controller
         );
 
         $json = [
-            'summary' => $data,
             'related_users' => json_collection(
                 User::with(UserCompactTransformer::CARD_INCLUDES_PRELOAD)->find($summary->relatedUserIds()),
                 new UserCompactTransformer(),
@@ -50,6 +49,8 @@ class WrappedController extends Controller
                 new BeatmapCompactTransformer(),
                 ['beatmapset.user', 'owners'],
             ),
+            'share_link' => route('wrapped', ['userId' => $summary->user_id, 'share' => $summary->share_key]),
+            'summary' => $data,
             'user_id' => $summary->user_id,
         ];
 

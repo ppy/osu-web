@@ -10,6 +10,7 @@ export type BeatmapForWrappedJson = WithBeatmapOwners<BeatmapJson> & Required<Pi
 export default interface WrappedData {
   related_beatmaps: BeatmapForWrappedJson[];
   related_users: UserJson[];
+  share_link: string;
   summary: Summary;
   user_id: number;
 }
