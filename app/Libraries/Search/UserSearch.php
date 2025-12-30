@@ -56,10 +56,12 @@ class UserSearch extends RecordSearch
 
             $boost_groups = [
                 'staff_bn' => array_values(array_filter([
+                    $getGroupId('ppy'),
                     $getGroupId('gmt'),
                     $getGroupId('nat'),
                     $getGroupId('bng'),
                     $getGroupId('bng_limited'),
+                    $getGroupId('dev'),
                 ])),
                 'contributors' => array_values(array_filter([
                     $getGroupId('alumni'),
