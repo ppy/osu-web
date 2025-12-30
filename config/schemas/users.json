@@ -8,9 +8,6 @@
       "is_old": {
         "type": "boolean"
       },
-      "groups": { 
-        "type": "integer"
-      },
       "previous_usernames": {
         "type": "text",
         "analyzer": "username_lower"
@@ -24,6 +21,9 @@
       },
       "user_warnings": {
         "type": "short"
+      },
+      "groups": {
+        "type": "integer"
       },
       "username": {
         "type": "text",

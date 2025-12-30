@@ -49,30 +49,45 @@ class UserSearch extends RecordSearch
             ->filter(['term' => ['user_warnings' => 0]])
             ->filter(['term' => ['user_type' => 0]]);
 
+        static $boost_groups = null;
+
+        if ($boost_groups === null) {
+            $getGroupId = fn ($identifier) => app('groups')->byIdentifier($identifier)?->getKey();
+
+            $boost_groups = [
+                'staff_bn' => array_values(array_filter([
+                    $getGroupId('gmt'),
+                    $getGroupId('nat'),
+                    $getGroupId('bng'),
+                    $getGroupId('bng_limited'),
+                ])),
+                'contributors' => array_values(array_filter([
+                    $getGroupId('alumni'),
+                    $getGroupId('loved'),
+                ])),
+            ];
+        }
+
         if ($this->params->queryString !== null) {
-            $query->shouldMatch(1)
+            $textQuery = (new BoolQuery())->shouldMatch(1)
                 ->should(['term' => ['_id' => ['value' => $this->params->queryString, 'boost' => 100]]])
-                ->should(['match' => ['username.raw' => ['query' => $this->params->queryString, 'boost' => 5]]])
+                ->should(['match' => ['username.raw' => ['query' => $this->params->queryString, 'boost' => 10]]])
                 ->should(['match' => ['previous_usernames' => ['query' => $this->params->queryString]]])
                 ->should(['multi_match' => array_merge(['query' => $this->params->queryString], $lowercase_stick)])
                 ->should(['multi_match' => array_merge(['query' => $this->params->queryString], $whitespace_stick)])
                 ->should(['match_phrase' => ['username._slop' => $this->params->queryString]]);
 
-            $query->should([
-                'exists' => [
-                    'field' => 'groups',
-                    'boost' => 2.0,
-                ],
-            ]);
+            $query->must($textQuery);
 
-            $query->should([
-                'range' => [
-                    'user_lastvisit' => [
-                        'gte' => 'now-7d',
-                        'boost' => 1.5,
-                    ],
-                ],
-            ]);
+            if ($boost_groups['staff_bn']) {
+                $query->should(['terms' => ['groups' => $boost_groups['staff_bn'], 'boost' => 5]]);
+            }
+
+            if ($boost_groups['contributors']) {
+                $query->should(['terms' => ['groups' => $boost_groups['contributors'], 'boost' => 2]]);
+            }
+
+            $query->should(['range' => ['user_lastvisit' => ['gte' => 'now-30d/d', 'boost' => 1.5]]]);
         }
 
         if ($this->params->recentOnly) {
