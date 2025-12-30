@@ -703,10 +703,6 @@ class Room extends Model
 
         $playlistItemsCount = count($playlistItems);
 
-        if ($playlistItemsCount < 1) {
-            throw new InvariantException('room must have at least one playlist item');
-        }
-
         if ($this->isMatchmaking()) {
             $banchoBotId = $GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id'];
             foreach ($playlistItems as $item) {
@@ -714,6 +710,8 @@ class Room extends Model
             }
         } elseif ($this->isRealtime() && $playlistItemsCount !== 1) {
             throw new InvariantException('realtime room must have exactly one playlist item');
+        } elseif (!$this->isRealtime() && $playlistItemsCount < 1) {
+            throw new InvariantException('room must have at least one playlist item');
         }
 
         if (mb_strlen($this->name) > 100) {
