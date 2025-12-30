@@ -9,6 +9,8 @@ interface MatchmakingUserStatsJsonAvailableIncludes {
 
 interface MatchmakingUserStatsJsonDefaultAttributes {
   first_placements: number;
+  is_rating_provisional: boolean;
+  plays: number;
   pool_id: number;
   rank: null | number;
   rating: number;
