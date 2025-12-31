@@ -498,7 +498,7 @@ class UserCompactTransformer extends TransformerAbstract
     {
         return ($team = $user->team) === null
             ? $this->null()
-            : $this->item($team, new TeamTransformer());
+            : $this->item($team, new TeamCompactTransformer());
     }
 
     public function includeUnreadPmCount(User $user)
