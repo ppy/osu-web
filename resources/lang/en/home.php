@@ -151,6 +151,9 @@ return [
             'support' => 'Support osu!',
             'store' => 'osu!store',
         ],
+        'livestreams' => [
+            'title' => 'Featured Livestream',
+        ],
         'show' => [
             'admin' => [
                 'page' => 'Open admin console',

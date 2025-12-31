@@ -14,6 +14,7 @@ use App\Models\BeatmapDownload;
 use App\Models\Beatmapset;
 use App\Models\Build;
 use App\Models\Forum\Post;
+use App\Models\LivestreamCollection;
 use App\Models\Multiplayer\Room;
 use App\Models\NewsPost;
 use App\Models\UserDonation;
@@ -65,9 +66,9 @@ class HomeController extends Controller
             'android' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Android 5']),
             'ios' => osu_trans('home.download.os_version_or_later', ['os_version' => 'iOS 13.4']),
             'linux_x64' => 'Linux (x64)',
-            'macos_as' => osu_trans('home.download.os_version_or_later', ['os_version' => 'macOS 12']).' (Apple Silicon)',
-            'macos_intel' => osu_trans('home.download.os_version_or_later', ['os_version' => 'macOS 12']).' (Intel)',
-            'windows_x64' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Windows 10']).' (x64)',
+            'macos_as' => osu_trans('home.download.os_version_or_later', ['os_version' => 'macOS 12']) . ' (Apple Silicon)',
+            'macos_intel' => osu_trans('home.download.os_version_or_later', ['os_version' => 'macOS 12']) . ' (Intel)',
+            'windows_x64' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Windows 10']) . ' (x64)',
         ];
 
         $platform = get_string(request('platform'));
@@ -133,12 +134,16 @@ class HomeController extends Controller
 
             $dailyChallenge = Room::dailyChallengeFor(CarbonImmutable::now());
 
+            $livestream = new LivestreamCollection();
+            $featuredStream = $livestream->featured();
+
             return ext_view('home.user', compact(
                 'menuImages',
                 'newBeatmapsets',
                 'news',
                 'popularBeatmapsets',
                 'dailyChallenge',
+                'featuredStream',
             ));
         } else {
             $news = json_collection($news, 'NewsPost');
@@ -256,7 +261,7 @@ class HomeController extends Controller
             $expiration = $user->osu_subscriptionexpiry?->addDays(1);
             $current = $expiration?->isFuture() ?? false;
 
-            static $lengthSumFn = fn ($p) => $p['length'] * ($p['cancel'] ? -1 : 1);
+            static $lengthSumFn = fn($p) => $p['length'] * ($p['cancel'] ? -1 : 1);
             // purchased
             $tagPurchases = $user->supporterTagPurchases;
             $dollars = $tagPurchases->sum('amount');
@@ -273,7 +278,7 @@ class HomeController extends Controller
                     ($giftedUsers[$gift->target_user_id] ?? 0)
                     + ($gift->cancel ? -1 : 1);
             }
-            $giftedUsers = count(array_filter($giftedUsers, fn ($count) => $count > 0));
+            $giftedUsers = count(array_filter($giftedUsers, fn($count) => $count > 0));
 
             $supporterStatus = [
                 // current status

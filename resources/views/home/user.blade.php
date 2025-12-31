@@ -92,6 +92,18 @@
                     ])
                 </div>
 
+                @if ($featuredStream !== null)
+                    <h3 class="user-home__beatmap-list-title">
+                        <a href="{{ route('livestreams.index') }}">
+                            {{ osu_trans('home.user.livestreams.title') }}
+                        </a>
+                    </h3>
+
+                    <div class="user-home__livestream">
+                        @include('home._user_livestream', ['stream' => $featuredStream])
+                    </div>
+                @endif
+
                 @if ($dailyChallenge)
                     <h3 class="user-home__beatmap-list-title">
                         <a href="{{ wiki_url("Gameplay/Daily_challenge") }}">
