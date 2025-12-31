@@ -77,6 +77,15 @@ class ContestTest extends TestCase
         ];
     }
 
+    public static function dataProviderForTestAllowedExtensionsOverride(): array
+    {
+        return [
+            [null, null],
+            [['jpg', 'png'], ['jpg', 'png']],
+            [['mp3', 'wav', 'flac'], ['mp3', 'wav', 'flac']],
+        ];
+    }
+
     /**
      * @dataProvider dataProviderForTestAssertVoteRequirementPlaylistBeatmapsets
      */
@@ -229,5 +238,19 @@ class ContestTest extends TestCase
             'extra_options' => $extraOptions,
         ]);
         $this->assertSame($result, $contest->show_judges);
+    }
+
+    /**
+     * @dataProvider dataProviderForTestAllowedExtensionsOverride
+     */
+    public function testAllowedExtensionsOverride(?array $allowedExtensionsOverride, ?array $result): void
+    {
+        $extraOptions = $allowedExtensionsOverride === null
+            ? null
+            : ['allowed_extensions_override' => $allowedExtensionsOverride];
+        $contest = Contest::factory()->create([
+            'extra_options' => $extraOptions,
+        ]);
+        $this->assertSame($result, $contest->allowed_extensions_override);
     }
 }

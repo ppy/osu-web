@@ -34,16 +34,19 @@ export class Uploader extends React.Component
   componentDidMount: =>
     switch @props.contest.type
       when 'art'
-        allowedExtensions = ['.jpg', '.jpeg', '.png']
-        maxSize = 8*1024*1024
+        defaultExtensions = ['jpg', 'jpeg', 'png']
+        maxSize = 8 * 1024 * 1024
 
       when 'beatmap'
-        allowedExtensions = ['.osu', '.osz']
-        maxSize = 32*1024*1024
+        defaultExtensions = ['osu', 'osz']
+        maxSize = 32 * 1024 * 1024
 
       when 'music'
-        allowedExtensions = ['.mp3']
-        maxSize = 16*1024*1024
+        defaultExtensions = ['mp3']
+        maxSize = 16 * 1024 * 1024
+
+    rawExtensions = @props.contest.allowed_extensions_override ? defaultExtensions
+    allowedExtensions = rawExtensions.map (ext) -> ".#{ext.toLowerCase()}"
 
 
     $dropzone = $(@dropzoneRef.current)
