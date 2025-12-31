@@ -116,6 +116,7 @@ interface BeatmapsetJsonDefaultAttributes {
   id: number;
   nsfw: boolean;
   offset: number;
+  pack_tags: string[];
   play_count: number;
   preview_url: string;
   source: string;
@@ -148,6 +149,7 @@ export function deletedBeatmapset(): BeatmapsetJson {
     id: 0,
     nsfw: false,
     offset: 0,
+    pack_tags: [],
     play_count: 0,
     preview_url: '',
     source: '',
