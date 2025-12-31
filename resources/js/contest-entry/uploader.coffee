@@ -38,7 +38,7 @@ export class Uploader extends React.Component
         maxSize = 8 * 1024 * 1024
 
       when 'beatmap'
-        defaultExtensions = ['osu', 'osz']
+        defaultExtensions = ['osz']
         maxSize = 32 * 1024 * 1024
 
       when 'music'

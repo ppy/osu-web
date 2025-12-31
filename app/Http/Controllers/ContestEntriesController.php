@@ -155,7 +155,6 @@ class ContestEntriesController extends Controller
                 $maxFilesize = 8 * 1024 * 1024;
                 break;
             case 'beatmap':
-                $defaultExtensions[] = 'osu';
                 $defaultExtensions[] = 'osz';
                 $maxFilesize = 32 * 1024 * 1024;
                 break;
