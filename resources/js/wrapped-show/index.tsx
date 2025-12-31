@@ -150,6 +150,30 @@ function WrappedStatItems(props: { children?: React.ReactNode; modifiers?: Modif
   );
 }
 
+const fallbackBackgrounds = [
+  'https://assets.ppy.sh/user-contest-entries/17286/f65a2f08ef895d2fe7098a1e0f405c1cbc6562e8282b0058d12e163639bf013d_opt.jpg',
+  'https://assets.ppy.sh/user-contest-entries/17311/5c0acd6c13b2006931792bd334317c0dac94023b0feef715b30172ba6787cbcd_opt.jpg',
+  'https://assets.ppy.sh/user-contest-entries/17312/46eb143dd726dc2cb2e6425add0cb22b2d13fa5b8eef91b9e8151c2d7220250f_opt.jpg',
+  'https://assets.ppy.sh/user-contest-entries/17358/72864cf6f8d7248ad5fa8688c39317de214a2831b244c926cbc62f49617cdc05_opt.jpg',
+  'https://assets.ppy.sh/user-contest-entries/17373/318feb50698c1c0f8c78a6bb885e8f64f3949f6cbf1af27a51e1d88fd96733c9_opt.jpg',
+  'https://assets.ppy.sh/user-contest-entries/17378/8caa97afe3ead3b3b26f580b7a6566876e3fa4cd22ab0ea46c1bd9d6729a133e_opt.jpg',
+  'https://assets.ppy.sh/user-contest-entries/17381/2948cc8cd6590962d5ece568a8d4899721df46f319f7b8db86dcc5c69acfc8e9_opt.jpg',
+  'https://assets.ppy.sh/user-contest-entries/17387/cd5220bce19270220ed8b71a8e389539c3ab8ef1d56bcfe8350ca06d8a6be8b9_opt.jpg',
+  'https://assets.ppy.sh/user-contest-entries/17401/b547ad60297ba2aff6aaf78ba33658571dd1105192447b3eb4ecf7766fd43ea8_opt.jpg',
+  'https://assets.ppy.sh/user-contest-entries/17420/86dc9583e438109cb8e9be02002b2c94aacc1fc71fb481956f66ae3c17b66ffa_opt.jpg',
+  'https://assets.ppy.sh/user-contest-entries/17448/4437b8525f27ce3ebcb92a53a1aa42c96be8748885ea98e8ed516ec4c1291b9b_opt.jpg',
+  'https://assets.ppy.sh/user-contest-entries/17475/80fe53a7f834514d612c17cfa4fca519c306fb935634bb019c8e5721dd8837e9_opt.jpg',
+  'https://assets.ppy.sh/user-contest-entries/17493/c4cff4ce8b33425cb13e53f5c8b00c37a88c951fe24bc403bec7e693da624b20_opt.jpg',
+  'https://assets.ppy.sh/user-contest-entries/17514/1426e1730740cbc762c7d1542f86eae250d121b7399f79b31071462e47ccdbd7_opt.jpg',
+  'https://assets.ppy.sh/user-contest-entries/17535/28f85409420cc111fa2f260bcce53e9075e9f3181a7ed998ba1f514391a08054_opt.jpg',
+  'https://assets.ppy.sh/user-contest-entries/17568/2a8b726a9fb7f854e5c6a2e3f00c7118fe3673e6201c04845e18a483fd7408d1_opt.jpg',
+  'https://assets.ppy.sh/user-contest-entries/17577/d3938f3e4fe1319492004a8fcbda5024efa4e285519ce84018b5bdf13f9051a2_opt.jpg',
+  'https://assets.ppy.sh/user-contest-entries/17589/d17cf7dad01d106c172ff7c7f84787445af06fbc0d2c8a2f9afbc302d7d0097c_opt.jpg',
+  'https://assets.ppy.sh/user-contest-entries/17594/cce6d58a404d7c76985b0a38f87238f749102cab5e406939b6080770b6e21cb5_opt.jpg',
+  'https://assets.ppy.sh/user-contest-entries/17596/9112eeefc5e0099949d246202a15703c7846958037b2b4ef15f81152cce23e69_opt.jpg',
+  'https://assets.ppy.sh/user-contest-entries/17600/1d410c7657a6d5d688692bf8aa95f15cdefd0309f1fdd614294566311076c923_opt.jpg',
+];
+
 @observer
 export default class WrappedShow extends React.Component<WrappedData> {
   private readonly availablePages: PageType[];
@@ -336,12 +360,14 @@ export default class WrappedShow extends React.Component<WrappedData> {
       case 'summary':
         return this.user.avatar_url;
       default:
-        return this.backgroundForPage(page, index);
+        // full size fallback images don't scale well into the switcher so use a smaller preview version;
+        // the replace shouldn't be matching any other urls.
+        return this.backgroundForPage(page, index).replace('https://assets.ppy.sh/user-contest-entries/', '/images/wrapped/');
     }
   }
 
   private fallbackBackground(offset?: number) {
-    return `/images/wrapped/fallback_${(this.user.id + (offset ?? 0)) % 6}.jpeg`;
+    return fallbackBackgrounds[(this.user.id + (offset ?? 0)) % fallbackBackgrounds.length];
   }
 
   @action
