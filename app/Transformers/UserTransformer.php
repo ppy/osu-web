@@ -35,6 +35,7 @@ class UserTransformer extends UserCompactTransformer
             ...$result,
             'cover_url' => $user->cover()->url(), // TODO: deprecated.
             'discord' => $user->user_discord,
+            'in_bad_standing' => $user->inBadStanding() || (\Auth::user()?->isModerator() === true && $user->accountHistories->isNotEmpty()),
             'has_supported' => $user->hasSupported(),
             'interests' => $user->user_interests,
             'join_date' => json_time($user->user_regdate),

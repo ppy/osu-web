@@ -95,7 +95,7 @@ export default class AccountStanding extends React.Component<ExtraPageProps> {
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={false} />
 
-        {this.latest != null && (
+        {this.props.controller.state.user.in_bad_standing && (
           <div className='page-extra__alert page-extra__alert--warning'>
             <StringWithComponent
               mappings={{ username: <strong>{this.props.controller.state.user.username}</strong> }}
