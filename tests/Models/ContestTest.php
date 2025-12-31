@@ -251,6 +251,6 @@ class ContestTest extends TestCase
         $contest = Contest::factory()->create([
             'extra_options' => $extraOptions,
         ]);
-        $this->assertSame($result, $contest->allowed_extensions_override);
+        $this->assertSame($result, $contest->getAllowedExtensionsOverride());
     }
 }
