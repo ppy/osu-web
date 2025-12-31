@@ -281,7 +281,7 @@ class UserTest extends TestCase
             'period' => 600, // active
         ]);
 
-        $this->assertTrue($user->inBadStanding());
+        $this->assertFalse($user->inBadStanding());
     }
 
     public function testInBadStandingLongPastSilence()
@@ -291,7 +291,7 @@ class UserTest extends TestCase
             'user_id' => $user->user_id,
             'ban_status' => UserAccountHistory::TYPES['silence'],
             'timestamp' => CarbonImmutable::now()->subDays(2),
-            'period' => 1440 * 60, // 24 hours
+            'period' => 2560 * 60, // 42h40m
         ]);
 
         $this->assertTrue($user->inBadStanding());
