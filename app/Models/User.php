@@ -1093,14 +1093,14 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         foreach ($silences as $silence) {
             if ($silence->endTime()->isFuture()) {
-                return true;
+                return false;
             }
         }
 
         $recentCount = $silences->count();
         $longestPeriod = $silences->max('period') ?? 0;
 
-        if ($longestPeriod >= 1440 * 60 || $recentCount >= 3) {
+        if ($longestPeriod >= 2560 * 60 || $recentCount >= 3) {
             return true;
         }
 
