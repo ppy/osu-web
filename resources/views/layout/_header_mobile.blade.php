@@ -53,6 +53,18 @@
                             {{ $user->username }}
                         </span>
                     </a>
+                    @if ($GLOBALS['cfg']['osu']['user']['wrapped_enabled'])
+                        <a
+                            class="{{ class_with_modifiers('mobile-menu-tab', [
+                                'link-button' => true,
+                                'wrapped-first' => !has_viewed_wrapped($currentUser->getKey()),
+                            ]) }}"
+                            href="{{ route('wrapped', $currentUser->getKey()) }}"
+                            title="View your summary of 2025!"
+                        >
+                            <span class="fas fa-star"></span>
+                        </a>
+                    @endif
                 @else
                     <button
                         class="mobile-menu-tab mobile-menu-tab--user js-user-link"

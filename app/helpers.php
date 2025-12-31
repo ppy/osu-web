@@ -2003,3 +2003,8 @@ function migration(string $name): Migration
 {
     return require database_path("migrations/{$name}.php");
 }
+
+function has_viewed_wrapped(int $userId): bool
+{
+    return request_attribute_remember('wrapped', fn () => App\Models\UserSummary::hasViewed($userId));
+}

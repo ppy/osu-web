@@ -6,8 +6,10 @@ import * as React from 'react';
 import { trans } from 'utils/lang';
 
 interface Props {
-  label?: string;
+  className?: string;
+  label?: string | React.ReactNode;
   showIcon: boolean;
+  tooltipPosition?: string;
   value: string;
   valueAsUrl: boolean;
 }
@@ -45,10 +47,10 @@ export default class ClickToCopy extends React.Component<Props> {
     return (
       <a
         ref={this.linkRef}
-        className={bn}
+        className={this.props.className ?? bn}
         data-tooltip-hide-events='mouseleave'
         data-tooltip-pin-position
-        data-tooltip-position='bottom center'
+        data-tooltip-position={this.props.tooltipPosition ?? 'bottom center'}
         href={this.props.valueAsUrl ? this.props.value : '#'}
         onClick={this.onClick}
         onMouseLeave={this.onMouseLeave}

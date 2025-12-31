@@ -56,6 +56,17 @@ class UserSummary extends Model
         return $summary;
     }
 
+    public static function hasViewed(int $userId): bool
+    {
+        return \Cache::get("wrapped:view:{$userId}") === '1';
+    }
+
+    public static function markViewed(int $userId): bool
+    {
+        // 1 month
+        return \Cache::put("wrapped:view:{$userId}", '1', 3 * 30 * 24 * 3600);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
