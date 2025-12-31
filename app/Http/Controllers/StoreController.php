@@ -52,6 +52,15 @@ class StoreController extends Controller
         }
 
         if ($order->shopify_url !== null) {
+            $host = parse_url($order->shopify_url, PHP_URL_HOST);
+            $trustedHost = config('store.shopify.domain');
+            $isSafe = ($host === $trustedHost) ||
+                      ($host && (str_ends_with($host, '.ppy.sh') || str_ends_with($host, '.myshopify.com')));
+
+            if (!$isSafe) {
+                abort(400, 'Untrusted redirect destination');
+            }
+
             return redirect($order->shopify_url);
         }
 

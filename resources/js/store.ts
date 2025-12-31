@@ -111,7 +111,7 @@ export class Store {
     };
 
     await $.post(route('store.checkout.store'), params);
-    window.location.href = data.cartCreate.cart.checkoutUrl;
+    this.validateAndRedirect(data.cartCreate.cart.checkoutUrl);
   }
 
   resumeCheckout(event: ClickEvent) {
@@ -123,7 +123,7 @@ export class Store {
     // TODO: replace the links with just links...
     if (provider === 'shopify' && status !== 'cancelled') {
       if (shopifyUrl != null) {
-        window.location.href = shopifyUrl;
+        this.validateAndRedirect(shopifyUrl);
       } else if (providerReference != null) {
         this.resumeShopifyCheckout(providerReference);
       } else {
@@ -164,7 +164,28 @@ export class Store {
       popup(trans('store.order.shopify_expired'), 'info');
       hideLoadingOverlay();
     } else {
-      window.location.href = data.cart.checkoutUrl;
+      this.validateAndRedirect(data.cart.checkoutUrl);
+    }
+  }
+
+  private validateAndRedirect(url: string | null | undefined) {
+    if (!url) return;
+
+    try {
+      const parsed = new URL(url);
+      const isSafe = parsed.hostname === window.location.hostname ||
+        parsed.hostname.endsWith('.ppy.sh') ||
+        parsed.hostname.endsWith('.myshopify.com');
+
+      if (isSafe) {
+        window.location.href = url;
+      } else {
+        console.error('Blocked unsafe redirect to:', url);
+      }
+    } catch (e) {
+      if (url.startsWith('/') && !url.startsWith('//')) {
+        window.location.href = url;
+      }
     }
   }
 
