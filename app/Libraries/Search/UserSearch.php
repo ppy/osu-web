@@ -62,10 +62,14 @@ class UserSearch extends RecordSearch
                     $getGroupId('bng'),
                     $getGroupId('bng_limited'),
                     $getGroupId('dev'),
+                    $getGroupId('support'),
+                    $getGroupId('featured_artist'),
                 ])),
                 'contributors' => array_values(array_filter([
                     $getGroupId('alumni'),
                     $getGroupId('loved'),
+                    $getGroupId('beatmap_spotlights'),
+                    $getGroupId('tournament_staff'),
                 ])),
             ];
         }
