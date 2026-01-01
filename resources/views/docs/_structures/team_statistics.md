@@ -13,11 +13,12 @@
 
 A dictionary containing gameplay statistics of a team, for a certain ruleset.
 
-| Field        | Type    | Description |
-|--------------|---------|-------------|
-| play_count   | integer |             |
-| ranked_score | integer |             |
-| performance  | integer |             |
-| ruleset_id   | integer |             |
-| team_id      | integer |             |
+| Field        | Type     | Description                                                    |
+|--------------|----------|----------------------------------------------------------------|
+| play_count   | integer  |                                                                |
+| ranked_score | integer  |                                                                |
+| performance  | integer  |                                                                |
+| rank         | integer? | Current rank of this team in the respective ruleset's rankings |
+| ruleset_id   | integer  |                                                                |
+| team_id      | integer  |                                                                |
 
