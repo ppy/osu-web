@@ -6,10 +6,11 @@
 namespace App\Transformers;
 
 use App\Models\TeamStatistics;
+use League\Fractal\Resource\Primitive;
 
 class TeamStatisticsTransformer extends TransformerAbstract
 {
-    protected array $availableIncludes = ['member_count', 'team'];
+    protected array $availableIncludes = ['rank', 'member_count', 'team'];
 
     public function transform(TeamStatistics $stat)
     {
@@ -22,9 +23,14 @@ class TeamStatisticsTransformer extends TransformerAbstract
         ];
     }
 
+    public function includeRank(TeamStatistics $stat): Primitive
+    {
+        return $this->primitive($stat->getRank());
+    }
+
     public function includeTeam(TeamStatistics $stat)
     {
-        return $this->item($stat->team, new TeamTransformer());
+        return $this->item($stat->team, new TeamCompactTransformer());
     }
 
     public function includeMemberCount(TeamStatistics $stat)

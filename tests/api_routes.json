@@ -1685,5 +1685,21 @@
             "App\\Http\\Middleware\\RequireScopes"
         ],
         "scopes": []
+    },
+    {
+        "uri": "api/v2/teams/{team}/{mode?}",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\TeamsController@show",
+        "middlewares": [
+          "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+          "App\\Http\\Middleware\\RequireScopes",
+          "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
     }
 ]

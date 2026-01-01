@@ -9,15 +9,22 @@ namespace App\Transformers;
 
 use App\Models\Team;
 
-class TeamTransformer extends TransformerAbstract
+class TeamTransformer extends TeamCompactTransformer
 {
+    protected array $defaultIncludes = [
+        'leader',
+        'members_count',
+        'empty_slots',
+    ];
+
     public function transform(Team $team): array
     {
         return [
-            'flag_url' => $team->flag()->url(),
-            'id' => $team->getKey(),
-            'name' => $team->name,
-            'short_name' => $team->short_name,
+            ...parent::transform($team),
+            'cover_url' => $team->header()->url(),
+            'default_ruleset' => $team->default_ruleset,
+            'created_at' => json_time($team->created_at),
+            'description' => $team->description,
         ];
     }
 }
