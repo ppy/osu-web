@@ -444,9 +444,9 @@ class Contest extends Model
         return $this->getExtraOptions()['forced_height'] ?? null;
     }
 
-    public function getAllowedExtensionsOverride()
+    public function getAllowedExtensions()
     {
-        return $this->getExtraOptions()['allowed_extensions_override'] ?? null;
+        return $this->getExtraOptions()['allowed_extensions'] ?? null;
     }
 
     public function showEntryUser(): bool

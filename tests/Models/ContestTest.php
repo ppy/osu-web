@@ -247,10 +247,10 @@ class ContestTest extends TestCase
     {
         $extraOptions = $allowedExtensionsOverride === null
             ? null
-            : ['allowed_extensions_override' => $allowedExtensionsOverride];
+            : ['allowed_extensions' => $allowedExtensionsOverride];
         $contest = Contest::factory()->create([
             'extra_options' => $extraOptions,
         ]);
-        $this->assertSame($result, $contest->getAllowedExtensionsOverride());
+        $this->assertSame($result, $contest->getAllowedExtensions());
     }
 }
