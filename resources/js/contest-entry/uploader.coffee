@@ -14,6 +14,16 @@ import { nextVal } from 'utils/seq'
 el = React.createElement
 
 export class Uploader extends React.Component
+  @DEFAULT_EXTENSIONS =
+    art: ['jpg', 'jpeg', 'png']
+    beatmap: ['osz']
+    music: ['mp3']
+
+  @MAX_FILESIZE =
+    art: 8 * 1024 * 1024
+    beatmap: 32 * 1024 * 1024
+    music: 16 * 1024 * 1024
+
   constructor: (props) ->
     super props
 
@@ -32,18 +42,9 @@ export class Uploader extends React.Component
 
 
   componentDidMount: =>
-    switch @props.contest.type
-      when 'art'
-        allowedExtensions = ['.jpg', '.jpeg', '.png']
-        maxSize = 8*1024*1024
-
-      when 'beatmap'
-        allowedExtensions = ['.osu', '.osz']
-        maxSize = 32*1024*1024
-
-      when 'music'
-        allowedExtensions = ['.mp3']
-        maxSize = 16*1024*1024
+    rawExtensions = @props.contest.allowed_extensions ? @constructor.DEFAULT_EXTENSIONS[@props.contest.type]
+    allowedExtensions = rawExtensions.map (ext) -> ".#{ext.toLowerCase()}"
+    maxSize = @constructor.MAX_FILESIZE[@props.contest.type]
 
 
     $dropzone = $(@dropzoneRef.current)

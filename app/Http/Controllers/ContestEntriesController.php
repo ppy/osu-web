@@ -18,6 +18,18 @@ use Request;
 
 class ContestEntriesController extends Controller
 {
+    private const DEFAULT_EXTENSIONS = [
+        'art' => ['jpg', 'jpeg', 'png'],
+        'beatmap' => ['osz'],
+        'music' => ['mp3'],
+    ];
+
+    private const MAX_FILESIZE = [
+        'art' => 8 * 1024 * 1024,
+        'beatmap' => 32 * 1024 * 1024,
+        'music' => 16 * 1024 * 1024,
+    ];
+
     public function judgeResults($contestId, $id)
     {
         $contest = Contest::findOrFail($contestId)
@@ -145,25 +157,9 @@ class ContestEntriesController extends Controller
 
         priv_check('ContestEntryStore', $contest)->ensureCan();
 
-        $allowedExtensions = [];
-        $maxFilesize = 0;
-        switch ($contest->type) {
-            case 'art':
-                $allowedExtensions[] = 'jpg';
-                $allowedExtensions[] = 'jpeg';
-                $allowedExtensions[] = 'png';
-                $maxFilesize = 8 * 1024 * 1024;
-                break;
-            case 'beatmap':
-                $allowedExtensions[] = 'osu';
-                $allowedExtensions[] = 'osz';
-                $maxFilesize = 32 * 1024 * 1024;
-                break;
-            case 'music':
-                $allowedExtensions[] = 'mp3';
-                $maxFilesize = 16 * 1024 * 1024;
-                break;
-        }
+        $allowedExtensions = $contest->getAllowedExtensions() ?? self::DEFAULT_EXTENSIONS[$contest->type];
+
+        $maxFilesize = self::MAX_FILESIZE[$contest->type];
 
         if (!in_array(strtolower($file->getClientOriginalExtension()), $allowedExtensions, true)) {
             abort(
