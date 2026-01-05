@@ -382,7 +382,7 @@ Restricted users can grant authorization like anyone else. If your client should
                 'example' => 'client_credentials',
             ],
             'scope' => [
-                'description' => 'A space-delimited string of [scopes](#scopes). Supports `public` and [delegation](#client-credentials-delegation) scopes (like `delegate` or `forum.write_manage`). Note: delegatable scopes cannot be combined with non-delegatable ones (like `public`).',
+                'description' => 'A space-delimited string of [scopes](#scopes). Only `public` and scopes that allow [delegation](#client-credentials-delegation) are supported.
                 'name' => 'scope',
                 'required' => true,
                 'type' => 'string',
