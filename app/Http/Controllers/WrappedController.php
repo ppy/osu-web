@@ -61,7 +61,7 @@ class WrappedController extends Controller
                 new BeatmapCompactTransformer(),
                 ['beatmapset.user', 'owners'],
             ),
-            'share_link' => route('wrapped', ['userId' => $summary->user_id, 'share' => $summary->share_key]),
+            'share_link' => route('wrapped', ['user' => $summary->user_id, 'share' => $summary->share_key]),
             'summary' => $data,
             'user_id' => $summary->user_id,
         ];
