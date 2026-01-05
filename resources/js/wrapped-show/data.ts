@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapJson from 'interfaces/beatmap-json';
-import { RulesetId } from 'interfaces/ruleset';
+import ScoreJson from 'interfaces/score-json';
 import UserJson from 'interfaces/user-json';
 import WithBeatmapOwners from 'interfaces/with-beatmap-owners';
 
@@ -72,49 +72,6 @@ export interface Scores {
   score: number;
 }
 
-// note: maybe be out of date.
-export interface TopPlay {
-  accuracy: number;
-  beatmap_id: number;
-  best_id: null;
-  build_id: null;
-  classic_total_score: number;
-  ended_at: string;
-  has_replay: boolean;
-  id: number;
-  is_perfect_combo: boolean;
-  legacy_perfect: boolean;
-  legacy_score_id: number;
-  legacy_total_score: number;
-  max_combo: number;
-  maximum_statistics: {
-    great: number;
-    legacy_combo_increase: number;
-  };
-  mods: {
-    acronym: string;
-  }[];
-  passed: boolean;
-  pp: number;
-  preserve: boolean;
-  processed: boolean;
-  rank: string;
-  ranked: boolean;
-  replay: boolean;
-  ruleset_id: RulesetId;
-  started_at: null;
-  statistics: {
-    great: number;
-    meh: number;
-    miss: number;
-    ok: number;
-  };
-  total_score: number;
-  total_score_without_mods: number;
-  type: string;
-  user_id: number;
-}
-
 interface Summary {
   daily_challenge: DailyChallenge;
   favourite_artists: FavouriteArtist[];
@@ -123,6 +80,6 @@ interface Summary {
   medals: number;
   replays: number;
   scores: Scores;
-  top_plays: TopPlay[];
+  top_plays: ScoreJson[];
   user: UserJson;
 }

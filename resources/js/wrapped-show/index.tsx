@@ -8,9 +8,10 @@ import FlagCountry from 'components/flag-country';
 import StringWithComponent from 'components/string-with-component';
 import UserAvatar from 'components/user-avatar';
 import { rulesetIdToName } from 'interfaces/ruleset';
+import ScoreJson from 'interfaces/score-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { debounce, intersection } from 'lodash';
+import { debounce, intersection, upperFirst } from 'lodash';
 import { action, autorun, makeObservable, observable, runInAction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import React from 'react';
@@ -21,8 +22,9 @@ import { formatNumber, htmlElementOrNull } from 'utils/html';
 import { trans, transArray } from 'utils/lang';
 import { mapBy } from 'utils/map';
 import { getInt } from 'utils/math';
+import { calculateStatisticsFor } from 'utils/score-helper';
 import { switchNever } from 'utils/switch-never';
-import WrappedData, { BeatmapForWrappedJson, FavouriteMapper, TopPlay } from './data';
+import WrappedData, { BeatmapForWrappedJson, FavouriteMapper } from './data';
 
 /* eslint-disable sort-keys */
 const pageTypeMapping = {
@@ -83,7 +85,7 @@ function Mappers(props: { beatmap: BeatmapForWrappedJson }) {
   );
 }
 
-function TopPlay(props: { beatmap?: BeatmapForWrappedJson; play: TopPlay }) {
+function TopPlay(props: { beatmap?: BeatmapForWrappedJson; play: ScoreJson }) {
   const beatmapset = props.beatmap?.beatmapset;
   return (
     <a className={classWithModifiers('wrapped__top-plays', 'summary-beatmap')} href={route('scores.show', { rulesetOrScore: props.play.id })}>
@@ -100,7 +102,7 @@ function TopPlay(props: { beatmap?: BeatmapForWrappedJson; play: TopPlay }) {
           {beatmapset != null ? getTitle(beatmapset) : trans('beatmapsets.cover.deleted')}
         </div>
         <div className='wrapped__summary-list-item-value'>
-          <span className={`fal fa-extra-mode-${rulesetIdToName[props.play.ruleset_id]}`} />{formatNumber(Math.round(props.play.pp))}pp
+          <span className={`fal fa-extra-mode-${rulesetIdToName[props.play.ruleset_id]}`} />{formatNumber(Math.round(props.play.pp ?? 0))}pp
         </div>
       </div>
     </a>
@@ -714,10 +716,13 @@ export default class WrappedShow extends React.Component<WrappedData> {
               <WrappedStat title='Score' value={selectedItem.total_score} />
               <WrappedStat percent title='Accuracy' value={selectedItem.accuracy} />
               <WrappedStat title='Max Combo' value={selectedItem.max_combo} />
-              <WrappedStat title='Great' value={selectedItem.statistics.great ?? 0} />
-              <WrappedStat title='Ok' value={selectedItem.statistics.ok ?? 0} />
-              <WrappedStat title='Meh' value={selectedItem.statistics.meh ?? 0} />
-              <WrappedStat title='Miss' value={selectedItem.statistics.miss ?? 0} />
+              {calculateStatisticsFor(selectedItem, 'leaderboard').map((attr) => (
+                <WrappedStat
+                  key={attr.label.short}
+                  title={upperFirst(attr.label.short)}
+                  value={attr.value}
+                />
+              ))}
             </div>
           </div>
         )}
