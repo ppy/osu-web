@@ -18,12 +18,6 @@ use Request;
 
 class ContestEntriesController extends Controller
 {
-    private const DEFAULT_EXTENSIONS = [
-        'art' => ['jpg', 'jpeg', 'png'],
-        'beatmap' => ['osz'],
-        'music' => ['mp3'],
-    ];
-
     private const MAX_FILESIZE = [
         'art' => 8 * 1024 * 1024,
         'beatmap' => 32 * 1024 * 1024,
@@ -157,14 +151,14 @@ class ContestEntriesController extends Controller
 
         priv_check('ContestEntryStore', $contest)->ensureCan();
 
-        $allowedExtensions = $contest->getAllowedExtensions() ?? self::DEFAULT_EXTENSIONS[$contest->type];
+        $allowedExtensions = $contest->getAllowedExtensions();
 
         $maxFilesize = self::MAX_FILESIZE[$contest->type];
 
         if (!in_array(strtolower($file->getClientOriginalExtension()), $allowedExtensions, true)) {
             abort(
                 422,
-                'Files for this contest must have one of the following extensions: '.implode(', ', $allowedExtensions)
+                'Files for this contest must have one of the following extensions: ' . implode(', ', $allowedExtensions)
             );
         }
 

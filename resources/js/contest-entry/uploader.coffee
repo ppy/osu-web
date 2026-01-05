@@ -14,11 +14,6 @@ import { nextVal } from 'utils/seq'
 el = React.createElement
 
 export class Uploader extends React.Component
-  @DEFAULT_EXTENSIONS =
-    art: ['jpg', 'jpeg', 'png']
-    beatmap: ['osz']
-    music: ['mp3']
-
   @MAX_FILESIZE =
     art: 8 * 1024 * 1024
     beatmap: 32 * 1024 * 1024
@@ -42,8 +37,7 @@ export class Uploader extends React.Component
 
 
   componentDidMount: =>
-    rawExtensions = @props.contest.allowed_extensions ? @constructor.DEFAULT_EXTENSIONS[@props.contest.type]
-    allowedExtensions = rawExtensions.map (ext) -> ".#{ext.toLowerCase()}"
+    allowedExtensions = @props.contest.allowed_extensions.map (ext) -> ".#{ext.toLowerCase()}"
     maxSize = @constructor.MAX_FILESIZE[@props.contest.type]
 
 

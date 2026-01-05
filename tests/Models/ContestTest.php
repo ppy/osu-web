@@ -49,10 +49,10 @@ class ContestTest extends TestCase
     public static function dataProviderForTestCalculateScoresStd()
     {
         return [
-            [fn () => 3, [0.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0]],
-            [fn ($entry, $judge) => $judge->getKey() % 4, [0.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0]],
-            [fn ($entry, $user) => $entry->getKey() % 4, [5.3665631459996, 1.78885438199984, -1.78885438199984, -5.3665631459996], [1.3416407864999, 0.44721359549996, -0.44721359549996, -1.3416407864999]],
-            [fn ($entry, $user) => 10 - $entry->getKey() % 4, [5.3665631459996, 1.78885438199984, -1.78885438199984, -5.3665631459996], [1.3416407864999, 0.44721359549996, -0.44721359549996, -1.3416407864999]],
+            [fn() => 3, [0.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0]],
+            [fn($entry, $judge) => $judge->getKey() % 4, [0.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0]],
+            [fn($entry, $user) => $entry->getKey() % 4, [5.3665631459996, 1.78885438199984, -1.78885438199984, -5.3665631459996], [1.3416407864999, 0.44721359549996, -0.44721359549996, -1.3416407864999]],
+            [fn($entry, $user) => 10 - $entry->getKey() % 4, [5.3665631459996, 1.78885438199984, -1.78885438199984, -5.3665631459996], [1.3416407864999, 0.44721359549996, -0.44721359549996, -1.3416407864999]],
         ];
     }
 
@@ -77,12 +77,15 @@ class ContestTest extends TestCase
         ];
     }
 
-    public static function dataProviderForTestAllowedExtensionsOverride(): array
+    public static function dataProviderForTestAllowedExtensions(): array
     {
         return [
-            [null, null],
-            [['jpg', 'png'], ['jpg', 'png']],
-            [['mp3', 'wav', 'flac'], ['mp3', 'wav', 'flac']],
+            ['art', null, ['jpg', 'jpeg', 'png']],
+            ['beatmap', null, ['osz']],
+            ['music', null, ['mp3']],
+            ['art', ['jpg', 'png'], ['jpg', 'png']],
+            ['beatmap', ['osz', 'zip'], ['osz', 'zip']],
+            ['music', ['mp3', 'wav', 'flac'], ['mp3', 'wav', 'flac']],
         ];
     }
 
@@ -241,16 +244,17 @@ class ContestTest extends TestCase
     }
 
     /**
-     * @dataProvider dataProviderForTestAllowedExtensionsOverride
+     * @dataProvider dataProviderForTestAllowedExtensions
      */
-    public function testAllowedExtensionsOverride(?array $allowedExtensionsOverride, ?array $result): void
+    public function testAllowedExtensions(string $type, ?array $allowedExtensions, array $expectedResult): void
     {
-        $extraOptions = $allowedExtensionsOverride === null
+        $extraOptions = $allowedExtensions === null
             ? null
-            : ['allowed_extensions' => $allowedExtensionsOverride];
+            : ['allowed_extensions' => $allowedExtensions];
         $contest = Contest::factory()->create([
+            'type' => $type,
             'extra_options' => $extraOptions,
         ]);
-        $this->assertSame($result, $contest->getAllowedExtensions());
+        $this->assertSame($expectedResult, $contest->getAllowedExtensions());
     }
 }
