@@ -201,6 +201,7 @@ return [
         'index_max_id_distance' => get_int(env('SCORE_INDEX_MAX_ID_DISTANCE')) ?? 10_000_000,
         'processing_queue' => presence(env('SCORES_PROCESSING_QUEUE')) ?? 'osu-queue:score-statistics',
         'submission_enabled' => get_bool(env('SCORES_SUBMISSION_ENABLED')) ?? true,
+        'user_summary_min_id' => get_int(env('SCORES_USER_SUMMARY_MIN_ID')) ?? 4101082566,
     ],
 
     'seasonal' => [
@@ -266,6 +267,7 @@ return [
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),
         'verification_key_length_hex' => 8,
         'verification_key_tries_limit' => 8,
+        'wrapped_enabled' => get_bool(env('USER_WRAPPED_ENABLED')) ?? false,
         'max_follows' => get_int(env('USER_MAX_FOLLOWS')) ?? 5000,
         'max_friends' => get_int(env('USER_MAX_FRIENDS')) ?? 250,
         'max_friends_supporter' => get_int(env('USER_MAX_FRIENDS_SUPPORTER')) ?? 500,
