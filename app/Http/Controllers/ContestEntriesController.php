@@ -153,7 +153,7 @@ class ContestEntriesController extends Controller
         if (!in_array(strtolower($file->getClientOriginalExtension()), $allowedExtensions, true)) {
             abort(
                 422,
-                'Files for this contest must have one of the following extensions: ' . implode(', ', $allowedExtensions)
+                'Files for this contest must have one of the following extensions: '.implode(', ', $allowedExtensions)
             );
         }
 

@@ -115,7 +115,7 @@ class Contest extends Model
                 $beatmapIdsQuery = Multiplayer\PlaylistItem::whereIn('room_id', $roomIds)->select('beatmap_id');
                 $requiredBeatmapsetCount = Beatmap::whereIn('beatmap_id', $beatmapIdsQuery)->distinct('beatmapset_id')->count();
                 $playedScoreIdsQuery = Multiplayer\ScoreLink
-                    ::whereHas('playlistItem', fn($q) => $q->whereIn('room_id', $roomIds))
+                    ::whereHas('playlistItem', fn ($q) => $q->whereIn('room_id', $roomIds))
                     ->where(['user_id' => $user->getKey()])
                     ->select('score_id');
                 if ($mustPass) {
@@ -140,7 +140,7 @@ class Contest extends Model
             $judgeScores[$judge->user_id] = $judge->stdDev();
         }
 
-        $judgeVotes = ContestJudgeVote::whereHas('entry', fn($q) => $q->where('contest_id', $this->getKey()))->get();
+        $judgeVotes = ContestJudgeVote::whereHas('entry', fn ($q) => $q->where('contest_id', $this->getKey()))->get();
         foreach ($judgeVotes as $vote) {
             [$stdDev, $mean] = $judgeScores[$vote->user_id];
             $vote->update(['total_score_std' => $stdDev === 0.0 ? 0 : ($vote->totalScore() - $mean) / $stdDev]);
@@ -283,9 +283,9 @@ class Contest extends Model
 
                 return osu_trans('contest.dates.starts._', ['date' => $date]);
             case 'entry':
-                return i18n_date($this->entry_starts_at) . ' - ' . i18n_date($this->entry_ends_at);
+                return i18n_date($this->entry_starts_at).' - '.i18n_date($this->entry_ends_at);
             case 'voting':
-                return i18n_date($this->voting_starts_at) . ' - ' . i18n_date($this->voting_ends_at);
+                return i18n_date($this->voting_starts_at).' - '.i18n_date($this->voting_ends_at);
             default:
                 if ($this->voting_ends_at === null) {
                     return osu_trans('contest.dates.ended_no_date');
@@ -326,7 +326,7 @@ class Contest extends Model
             return Cache::remember(
                 "contest_entries_with_votes_{$this->id}",
                 300,
-                fn() => $query->with(['contest', ...$preloads])->withScore($this)->get()
+                fn () => $query->with(['contest', ...$preloads])->withScore($this)->get()
             );
         } elseif ($this->isBestOf()) {
             if ($user === null) {
@@ -422,7 +422,7 @@ class Contest extends Model
     public function usersVotedCount(): int
     {
         return cache()->remember(
-            static::class . ':' . __FUNCTION__ . ':' . $this->getKey(),
+            static::class.':'.__FUNCTION__.':'.$this->getKey(),
             300,
             fn() => $this->votes()->distinct('user_id')->count(),
         );
