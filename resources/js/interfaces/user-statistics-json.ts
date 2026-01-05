@@ -25,6 +25,7 @@ interface UserStatisticsBaseJson {
   global_rank: number | null;
   grade_counts: Record<Grade, number>;
   hit_accuracy: number;
+  accuracy: number;
   is_ranked: boolean;
   level: {
     current: number;
