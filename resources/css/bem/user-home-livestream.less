@@ -2,55 +2,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .user-home-livestream {
-  @_top: user-home-livestream;
-
+  .default-border-radius();
+  .default-box-shadow();
+  width: 100%;
+  padding-top: (100% * 9 / 16);
   position: relative;
+  overflow: hidden;
+  background-color: @osu-colour-b4;
+  box-sizing: border-box;
 
-  &__content {
-    &:link {
-      text-decoration: none;
-    }
-  }
-
-  &__image {
-    .default-border-radius();
-    .default-box-shadow();
+  &__player {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding-top: (100% * 9 / 16);
-    background-size: cover;
-
-    .@{_top}:hover & {
-      .thicker-box-shadow();
-    }
-  }
-
-  &__text {
-    text-align: center;
-    font-weight: 400;
-
-    &--title {
-      color: @osu-colour-l1;
-      font-size: @font-size--livestream-item-title;
-      margin: 5px 0 0;
-
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    &--name {
-      color: @osu-colour-f1;
-      font-size: @font-size--livestream-item-name-small;
-      margin: 5px 0 0;
-
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    &--detail {
-      color: @osu-colour-f1;
-      font-size: @font-size--livestream-item-detail;
-      margin: 0;
-    }
+    height: 100%;
   }
 }
-

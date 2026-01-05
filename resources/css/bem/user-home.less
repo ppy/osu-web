@@ -32,8 +32,7 @@
     gap: 10px;
   }
 
-  &__news {
-    padding: 0 0 20px;
+  &__left-section {
     flex: none;
     width: 100%;
 
@@ -41,6 +40,31 @@
       margin-right: 10px;
       width: calc(60% - 10px);
     }
+  }
+
+  &__left-title {
+    margin: 0;
+    padding: 20px 0 10px @gutter-v2;
+    font-size: @font-size--large;
+    font-weight: bold;
+    color: @osu-colour-l1;
+
+    display: flex;
+    align-items: flex-end;
+
+    @media @desktop {
+      padding-left: 0;
+    }
+  }
+
+  &__livestream-section {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  &__news {
+    padding: 0 0 20px;
+    width: 100%;
   }
 
   &__news-posts-group {
@@ -56,21 +80,6 @@
       color: @osu-colour-l1;
       padding: 20px;
       text-align: center;
-    }
-  }
-
-  &__news-title {
-    margin: 0;
-    padding: 20px 0 10px @gutter-v2;
-    font-size: @font-size--large;
-    font-weight: bold;
-    color: @osu-colour-l1;
-
-    display: flex;
-    align-items: flex-end;
-
-    @media @desktop {
-      padding-left: 0;
     }
   }
 

@@ -151,7 +151,7 @@ return [
             'support' => 'Support osu!',
             'store' => 'osu!store',
         ],
-        'livestreams' => [
+        'livestream' => [
             'title' => 'Featured Livestream',
         ],
         'show' => [
