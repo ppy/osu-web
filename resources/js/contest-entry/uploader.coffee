@@ -14,11 +14,6 @@ import { nextVal } from 'utils/seq'
 el = React.createElement
 
 export class Uploader extends React.Component
-  @MAX_FILESIZE =
-    art: 8 * 1024 * 1024
-    beatmap: 32 * 1024 * 1024
-    music: 16 * 1024 * 1024
-
   constructor: (props) ->
     super props
 
@@ -38,7 +33,7 @@ export class Uploader extends React.Component
 
   componentDidMount: =>
     allowedExtensions = @props.contest.allowed_extensions.map (ext) -> ".#{ext.toLowerCase()}"
-    maxSize = @constructor.MAX_FILESIZE[@props.contest.type]
+    maxSize = @props.contest.max_filesize
 
 
     $dropzone = $(@dropzoneRef.current)

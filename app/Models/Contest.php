@@ -54,6 +54,12 @@ class Contest extends Model
         'music' => ['mp3'],
     ];
 
+    private const MAX_FILESIZE = [
+        'art' => 8 * 1024 * 1024,
+        'beatmap' => 32 * 1024 * 1024,
+        'music' => 16 * 1024 * 1024,
+    ];
+
     protected $casts = [
         'entry_ends_at' => 'datetime',
         'entry_starts_at' => 'datetime',
@@ -453,6 +459,11 @@ class Contest extends Model
     public function getAllowedExtensions(): array
     {
         return $this->getExtraOptions()['allowed_extensions'] ?? self::DEFAULT_EXTENSIONS[$this->type] ?? [];
+    }
+
+    public function getMaxFilesize(): int
+    {
+        return self::MAX_FILESIZE[$this->type] ?? 0;
     }
 
     public function showEntryUser(): bool

@@ -18,11 +18,6 @@ use Request;
 
 class ContestEntriesController extends Controller
 {
-    private const MAX_FILESIZE = [
-        'art' => 8 * 1024 * 1024,
-        'beatmap' => 32 * 1024 * 1024,
-        'music' => 16 * 1024 * 1024,
-    ];
 
     public function judgeResults($contestId, $id)
     {
@@ -153,7 +148,7 @@ class ContestEntriesController extends Controller
 
         $allowedExtensions = $contest->getAllowedExtensions();
 
-        $maxFilesize = self::MAX_FILESIZE[$contest->type];
+        $maxFilesize = $contest->getMaxFilesize();
 
         if (!in_array(strtolower($file->getClientOriginalExtension()), $allowedExtensions, true)) {
             abort(

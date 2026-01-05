@@ -89,6 +89,15 @@ class ContestTest extends TestCase
         ];
     }
 
+    public static function dataProviderForTestMaxFilesize(): array
+    {
+        return [
+            ['art', 8 * 1024 * 1024],
+            ['beatmap', 32 * 1024 * 1024],
+            ['music', 16 * 1024 * 1024],
+        ];
+    }
+
     /**
      * @dataProvider dataProviderForTestAssertVoteRequirementPlaylistBeatmapsets
      */
@@ -256,5 +265,16 @@ class ContestTest extends TestCase
             'extra_options' => $extraOptions,
         ]);
         $this->assertSame($expectedResult, $contest->getAllowedExtensions());
+    }
+
+    /**
+     * @dataProvider dataProviderForTestMaxFilesize
+     */
+    public function testMaxFilesize(string $type, int $expectedResult): void
+    {
+        $contest = Contest::factory()->create([
+            'type' => $type,
+        ]);
+        $this->assertSame($expectedResult, $contest->getMaxFilesize());
     }
 }

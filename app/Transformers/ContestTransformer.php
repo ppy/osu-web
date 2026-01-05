@@ -45,6 +45,7 @@ class ContestTransformer extends TransformerAbstract
             'forced_width' => $contest->getForcedWidth(),
             'forced_height' => $contest->getForcedHeight(),
             'allowed_extensions' => $contest->getAllowedExtensions(),
+            'max_filesize' => $contest->getMaxFilesize(),
             'voting_ends_at' => json_time($contest->voting_ends_at),
         ];
     }
