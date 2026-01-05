@@ -382,7 +382,7 @@ Restricted users can grant authorization like anyone else. If your client should
                 'example' => 'client_credentials',
             ],
             'scope' => [
-                'description' => 'A space-delimited string of [scopes](#scopes). Only `public` and scopes that allow [delegation](#client-credentials-delegation) are supported.
+                'description' => 'A space-delimited string of [scopes](#scopes). Only `public` and scopes that allow [delegation](#client-credentials-delegation) are supported.',
                 'name' => 'scope',
                 'required' => true,
                 'type' => 'string',
