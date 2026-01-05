@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
@@ -15,11 +17,6 @@ use App\Transformers\UserCompactTransformer;
 
 class WrappedController extends Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function show($userId)
     {
         // validate user id and ban status
