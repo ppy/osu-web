@@ -261,7 +261,7 @@ class HomeController extends Controller
             $expiration = $user->osu_subscriptionexpiry?->addDays(1);
             $current = $expiration?->isFuture() ?? false;
 
-            static $lengthSumFn = fn($p) => $p['length'] * ($p['cancel'] ? -1 : 1);
+            static $lengthSumFn = fn ($p) => $p['length'] * ($p['cancel'] ? -1 : 1);
             // purchased
             $tagPurchases = $user->supporterTagPurchases;
             $dollars = $tagPurchases->sum('amount');
@@ -278,7 +278,7 @@ class HomeController extends Controller
                     ($giftedUsers[$gift->target_user_id] ?? 0)
                     + ($gift->cancel ? -1 : 1);
             }
-            $giftedUsers = count(array_filter($giftedUsers, fn($count) => $count > 0));
+            $giftedUsers = count(array_filter($giftedUsers, fn ($count) => $count > 0));
 
             $supporterStatus = [
                 // current status
