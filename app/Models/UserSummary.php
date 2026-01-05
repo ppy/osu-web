@@ -63,7 +63,7 @@ class UserSummary extends Model
 
     public static function markViewed(int $userId): bool
     {
-        // 1 month
+        // 3 months
         return \Cache::put("wrapped:view:{$userId}", '1', 3 * 30 * 24 * 3600);
     }
 
