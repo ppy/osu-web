@@ -479,7 +479,6 @@ fetch("{{ $GLOBALS['cfg']['app']['url'] }}/api/[version]/[endpoint]", {
 <p>
     Client Credentials Grant tokens may be allowed to act on behalf of the owner of the OAuth client (delegation) by requesting the {{ ApidocRouteHelper::scopeBadge('delegate') }} scope, in addition to other scopes supporting delegation.
     When using the Client Credentials grant with scopes that support delegation, all requested scopes must support delegation.
-    You cannot mix delegatable and non-delegatable scopes in a single request.
     Delegation is only available to <a href="{{ $wikiUrl }}">Chat Bot</a>s.
 </p>
 
