@@ -18,7 +18,6 @@ use Request;
 
 class ContestEntriesController extends Controller
 {
-
     public function judgeResults($contestId, $id)
     {
         $contest = Contest::findOrFail($contestId)
@@ -147,7 +146,6 @@ class ContestEntriesController extends Controller
         priv_check('ContestEntryStore', $contest)->ensureCan();
 
         $allowedExtensions = $contest->getAllowedExtensions();
-
         $maxFilesize = $contest->getMaxFilesize();
 
         if (!in_array(strtolower($file->getClientOriginalExtension()), $allowedExtensions, true)) {
