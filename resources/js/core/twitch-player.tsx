@@ -43,9 +43,11 @@ export default class TwitchPlayer {
       || div.dataset.twitchPlayerStarted === 'true') return;
 
     div.dataset.twitchPlayerStarted = 'true';
-    const options = {
+    const options: Record<string, unknown> = {
+      autoplay: div.dataset.autoplay === 'true',
       channel: div.dataset.channel,
       height: '100%',
+      muted: div.dataset.muted === 'true',
       width: '100%',
     };
 
