@@ -105,7 +105,10 @@ function TopPlay(props: { beatmap?: BeatmapForWrappedJson; play: ScoreJson }) {
           {beatmapset != null ? getTitle(beatmapset) : trans('beatmapsets.cover.deleted')}
         </div>
         <div className='wrapped__summary-list-item-value'>
-          <span className={`fal fa-extra-mode-${rulesetIdToName[props.play.ruleset_id]}`} />{formatNumber(Math.round(props.play.pp ?? 0))}pp
+          <span className={`fal fa-extra-mode-${rulesetIdToName[props.play.ruleset_id]}`} />
+          <span title={formatNumber(props.play.pp ?? 0)}>
+            {formatNumber(Math.round(props.play.pp ?? 0))}pp
+          </span>
         </div>
       </div>
     </a>
@@ -488,6 +491,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
                 round
                 scoreId={selectedItem.scores.pp_best_score_id}
                 title='Best pp'
+                tooltip={formatNumber(selectedItem.scores.pp_best)}
                 value={selectedItem.scores.pp_best}
               />
               <WrappedStat
@@ -495,7 +499,12 @@ export default class WrappedShow extends React.Component<WrappedData> {
                 title='Best score'
                 value={selectedItem.scores.score_best}
               />
-              <WrappedStat round title='Average pp' value={selectedItem.scores.pp_avg} />
+              <WrappedStat
+                round
+                title='Average pp'
+                tooltip={formatNumber(selectedItem.scores.pp_avg)}
+                value={selectedItem.scores.pp_avg}
+              />
               <WrappedStat round title='Average score' value={selectedItem.scores.score_avg} />
             </div>
           </div>
@@ -537,6 +546,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
               round
               scoreId={selectedItem.scores.pp_best_score_id}
               title='Best pp'
+              tooltip={formatNumber(selectedItem.scores.pp_best)}
               value={selectedItem.scores.pp_best}
             />
             <WrappedStat
@@ -544,7 +554,12 @@ export default class WrappedShow extends React.Component<WrappedData> {
               title='Best score'
               value={selectedItem.scores.score_best}
             />
-            <WrappedStat round title='Average pp' value={selectedItem.scores.pp_avg} />
+            <WrappedStat
+              round
+              title='Average pp'
+              tooltip={formatNumber(selectedItem.scores.pp_avg)}
+              value={selectedItem.scores.pp_avg}
+            />
             <WrappedStat round title='Average score' value={selectedItem.scores.score_avg} />
           </div>
         </div>
@@ -693,8 +708,10 @@ export default class WrappedShow extends React.Component<WrappedData> {
           />
           <WrappedStat
             modifiers='fancy'
+            round
             scoreId={summary.scores.pp_score_id}
             title='Highest pp'
+            tooltip={formatNumber(summary.scores.pp)}
             value={summary.scores.pp}
           />
           <WrappedStat modifiers='fancy' title='Medals collected' value={summary.medals} />
@@ -781,7 +798,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
               </a>,
             )}
             <div className='wrapped__stats wrapped__stats--dense'>
-              <WrappedStat round title='pp' value={selectedItem.pp} />
+              <WrappedStat round title='pp' tooltip={formatNumber(selectedItem.pp)} value={selectedItem.pp} />
               <WrappedStat
                 title='Rank'
                 value={<div className={classWithModifiers('score-rank', ['wrapped', selectedItem.rank])} />}
