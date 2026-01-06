@@ -127,6 +127,9 @@ return [
         's3-screenshot' => [
             ...$s3Default,
             'bucket' => presence(env('S3_SCREENSHOT_BUCKET')) ?? 'screenshots',
+            'key' => env('S3_SCREENSHOT_KEY'),
+            'region' => env('S3_SCREENSHOT_REGION'),
+            'secret' => env('S3_SCREENSHOT_SECRET'),
             'visibility' => 'private',
         ],
 
