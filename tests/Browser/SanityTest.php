@@ -490,7 +490,7 @@ class SanityTest extends DuskTestCase
                 'locale' => 'en',
             ],
             'screenshots.show' => [
-                 'hash' => md5(self::$scaffolding['screenshot']->getKey().config('osu.screenshots.shared_secret')),
+                 'hash' => self::$scaffolding['screenshot']->urlHash(),
             ],
         ];
 

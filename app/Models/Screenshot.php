@@ -40,8 +40,13 @@ class Screenshot extends Model
     {
         return route('screenshots.show', [
             'screenshot' => $this->getKey(),
-            'hash' => substr(md5($this->getKey().$GLOBALS['cfg']['osu']['screenshots']['shared_secret']), 0, 4),
+            'hash' => $this->urlHash(),
         ]);
+    }
+
+    public function urlHash(): string
+    {
+        return substr(md5($this->getKey().$GLOBALS['cfg']['osu']['screenshots']['shared_secret']), 0, 4);
     }
 
     private function storage(): Filesystem
