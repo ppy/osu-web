@@ -496,7 +496,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
                 value={selectedItem.scores.score_best}
               />
               <WrappedStat round title='Average pp' value={selectedItem.scores.pp_avg} />
-              <WrappedStat round title='Average Score' value={selectedItem.scores.score_avg} />
+              <WrappedStat round title='Average score' value={selectedItem.scores.score_avg} />
             </div>
           </div>
         )}
@@ -545,7 +545,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
               value={selectedItem.scores.score_best}
             />
             <WrappedStat round title='Average pp' value={selectedItem.scores.pp_avg} />
-            <WrappedStat round title='Average Score' value={selectedItem.scores.score_avg} />
+            <WrappedStat round title='Average score' value={selectedItem.scores.score_avg} />
           </div>
         </div>
       </>
