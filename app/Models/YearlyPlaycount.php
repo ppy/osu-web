@@ -18,9 +18,10 @@ class YearlyPlaycount extends Model
 
     public static function getPosition(int $year, int $userId): array
     {
+        static $cacheDuration = 86400;
         $users = (int) \Cache::remember(
             "yearly_playcount_users:{$year}",
-            86400,
+            $cacheDuration,
             fn () => max(1, static::where('year', $year)->count()),
         );
 
@@ -31,7 +32,7 @@ class YearlyPlaycount extends Model
             ->sum('playcount');
         $posFn = fn () => static::where('year', $year)->where('playcount', '>', $playcount)->count();
         $pos = $playcount < 10000
-            ? (int) \Cache::remember("yearly_playcount_users:{$year}:{$playcount}", 86400, $posFn)
+            ? (int) \Cache::remember("yearly_playcount_users:{$year}:{$playcount}", $cacheDuration, $posFn)
             : $posFn();
 
         return [
