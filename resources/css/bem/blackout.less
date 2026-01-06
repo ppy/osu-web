@@ -4,6 +4,7 @@
 .blackout {
   .full-size();
   position: fixed;
+  height: 100lvh;
   z-index: @z-index--blackout;
   backface-visibility: hidden;
   background-color: #000;
@@ -12,12 +13,5 @@
   &--overlay {
     z-index: @z-index--overlay;
     opacity: 0.4;
-  }
-
-  //prevent jumpy height resize when search bar hides on mobile browsers
-  @media @mobile {
-    &[data-visibility="visible"] {
-      height: 100lvh;
-    }
   }
 }
