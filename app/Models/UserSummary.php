@@ -94,8 +94,8 @@ class UserSummary extends Model
 
         return array_values(array_unique([
             ...Solo\Score::whereKey($summary['top_plays'])->pluck('beatmap_id'),
-            ...array_map(fn ($m) => $m['scores']['score_best_beatmap_id'], $summary['favourite_mappers']),
-            ...array_map(fn ($m) => $m['scores']['score_best_beatmap_id'], $summary['favourite_artists']),
+            ...array_map(fn ($m) => $m['scores']['score_best_beatmap_id'] ?? null, $summary['favourite_mappers']),
+            ...array_map(fn ($m) => $m['scores']['score_best_beatmap_id'] ?? null, $summary['favourite_artists']),
         ]));
     }
 
