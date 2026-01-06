@@ -467,7 +467,11 @@ export default class WrappedShow extends React.Component<WrappedData> {
             {this.props.summary.favourite_artists.map((item, index) => (
               <div
                 key={index}
-                className={classWithModifiers('wrapped__list-item', 'beatmap', { selected: this.selectedListIndex === index })}
+                className={classWithModifiers(
+                  'wrapped__list-item',
+                  ['beatmap', 'link'],
+                  { selected: this.selectedListIndex === index },
+                )}
                 data-index={index}
                 onClick={this.handleSelectListItem}
               >
@@ -527,7 +531,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
             {this.props.summary.favourite_mappers.map((item, index) => (
               <div
                 key={item.mapper_id}
-                className={classWithModifiers('wrapped__list-item', { selected: this.selectedListIndex === index })}
+                className={classWithModifiers('wrapped__list-item', 'link', { selected: this.selectedListIndex === index })}
                 data-index={index}
                 onClick={this.handleSelectListItem}
               >
@@ -764,7 +768,11 @@ export default class WrappedShow extends React.Component<WrappedData> {
             {this.props.summary.top_plays.map((play, index) => (
               <div
                 key={play.id}
-                className={classWithModifiers('wrapped__list-item', 'beatmap', { selected: this.selectedListIndex === index })}
+                className={classWithModifiers(
+                  'wrapped__list-item',
+                  ['beatmap', 'link'],
+                  { selected: this.selectedListIndex === index },
+                )}
                 data-index={index}
                 onClick={this.handleSelectListItem}
               >
