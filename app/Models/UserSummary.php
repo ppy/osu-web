@@ -334,8 +334,10 @@ class UserSummary extends Model
         $ret = [
             'pp_avg' => 0,
             'pp_best' => 0,
+            'pp_best_score_id' => 0,
             'score_avg' => 0,
             'score_best' => 0,
+            'score_best_score_id' => 0,
             'score_count' => count($scores),
         ];
         $ppScoreCount = 0;
@@ -344,6 +346,7 @@ class UserSummary extends Model
             if ($pp !== null) {
                 if ($pp > $ret['pp_best']) {
                     $ret['pp_best'] = $pp;
+                    $ret['pp_best_score_id'] = $score->getKey();
                 }
                 $ret['pp_avg'] += $pp;
                 $ppScoreCount++;
@@ -351,6 +354,7 @@ class UserSummary extends Model
             if ($score->total_score > $ret['score_best']) {
                 $ret['score_best'] = $score->total_score;
                 $ret['score_best_beatmap_id'] = $score->beatmap_id;
+                $ret['score_best_score_id'] = $score->getKey();
             }
             $ret['score_avg'] += $score->total_score;
         }
