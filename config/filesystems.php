@@ -90,17 +90,17 @@ return [
             'base_url' => "{$appUrl}/uploads/central",
         ],
 
+        'local-screenshot' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/screenshot'),
+            'visibility' => 'private',
+        ],
+
         'local-solo-replay' => [
             'driver' => 'local',
             'root' => public_path('uploads/solo-replay'),
             'base_url' => "{$appUrl}/uploads/solo-replay",
             'visibility' => 'public',
-        ],
-
-        'local-screenshot' => [
-            'driver' => 'local',
-            'root' => public_path('uploads/screenshot'),
-            'visibility' => 'private',
         ],
 
         's3' => [
@@ -124,15 +124,15 @@ return [
             'region' => env('S3_CENTRAL_BUCKET_REGION'),
         ],
 
-        's3-solo-replay' => [
-            ...$s3Default,
-            'bucket' => presence(env('S3_SOLO_REPLAY_BUCKET')) ?? 'solo-scores-replays',
-        ],
-
         's3-screenshot' => [
             ...$s3Default,
             'bucket' => presence(env('S3_SCREENSHOT_BUCKET')) ?? 'screenshots',
             'visibility' => 'private',
+        ],
+
+        's3-solo-replay' => [
+            ...$s3Default,
+            'bucket' => presence(env('S3_SOLO_REPLAY_BUCKET')) ?? 'solo-scores-replays',
         ],
     ],
 
