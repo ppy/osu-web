@@ -425,7 +425,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
   };
 
   @action
-  private readonly handleSwitcherOnClick = (e: React.MouseEvent<HTMLElement>) => {
+  private readonly handleSwitcherOnClick = (e: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>) => {
     const element = htmlElementOrNull(e.currentTarget);
     if (element == null) return;
 
