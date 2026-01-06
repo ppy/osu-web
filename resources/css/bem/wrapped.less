@@ -181,6 +181,8 @@
   &__header {
     position: relative;
     display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     align-items: center;
     justify-content: space-between;
     padding: 0 var(--content-left);
@@ -731,6 +733,7 @@
 
   &__logo {
     height: 70px;
+    margin-left: auto;
 
     // needs to be smaller for narrower screens or it might clip into username
     @media @narrow {
@@ -739,7 +742,6 @@
   }
 
   &__user {
-    .link-white();
     background: rgba(0, 0, 0, 0.3);
     height: var(--user-height);
     border-radius: var(--user-height);
@@ -783,6 +785,7 @@
   }
 
   &__username {
+    .link-white();
     &--summary {
       @media @narrow-up {
         font-size: 32px;

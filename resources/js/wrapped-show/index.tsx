@@ -12,7 +12,7 @@ import ScoreJson from 'interfaces/score-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce, intersection, upperFirst } from 'lodash';
-import { action, autorun, makeObservable, observable, runInAction } from 'mobx';
+import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import React from 'react';
 import { hasGuestOwners } from 'utils/beatmap-helper';
@@ -202,6 +202,11 @@ export default class WrappedShow extends React.Component<WrappedData> {
 
   get selectedPageType() {
     return this.availablePages[this.selectedIndex];
+  }
+
+  @computed
+  get userUrl() {
+    return route('users.show', { user: this.user.id });
   }
 
   constructor(props: WrappedData) {
@@ -521,7 +526,6 @@ export default class WrappedShow extends React.Component<WrappedData> {
 
   private renderHeader() {
     const summary = this.selectedPageType === 'summary';
-    const userLink = route('users.show', { user: this.user.id });
     return (
       <div className={classWithModifiers('wrapped__header', { summary })}>
         <div className='wrapped__user'>
@@ -531,7 +535,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
           />
           <a
             className='wrapped__user-avatar'
-            href={userLink}
+            href={this.userUrl}
             style={{ backgroundImage: urlPresence(this.user.avatar_url) }}
           />
           {this.isSummaryPage && (
@@ -541,7 +545,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
           )}
           <a
             className={classWithModifiers('wrapped__username', { summary })}
-            href={userLink}
+            href={this.userUrl}
           >
             {this.user.username}
           </a>
@@ -559,11 +563,21 @@ export default class WrappedShow extends React.Component<WrappedData> {
       <>
         <div className={classWithModifiers('wrapped__header', 'summary-mobile')}>
           <div className={classWithModifiers('wrapped__user', 'summary-mobile')}>
-            <span
+            <a
+              className='wrapped__header-logo'
+              href={route('home')}
+            />
+            <a
               className='wrapped__user-avatar'
               style={{ backgroundImage: urlPresence(this.user.avatar_url) }}
+              href={this.userUrl}
             />
-            <span className={classWithModifiers('wrapped__username', 'summary-mobile')}>{this.user.username}</span>
+            <a
+              className={classWithModifiers('wrapped__username', 'summary-mobile')}
+              href={this.userUrl}
+            >
+              {this.user.username}
+            </a>
           </div>
           <img className='wrapped__summary-logo' src='/images/wrapped/wrapped-summary-logo.svg' />
         </div>
