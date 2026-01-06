@@ -5,6 +5,7 @@ import BeatmapsetCover from 'components/beatmapset-cover';
 import ClickToCopy from 'components/click-to-copy';
 import DifficultyBadge from 'components/difficulty-badge';
 import FlagCountry from 'components/flag-country';
+import Mod from 'components/mod';
 import StringWithComponent from 'components/string-with-component';
 import UserAvatar from 'components/user-avatar';
 import { rulesetIdToName } from 'interfaces/ruleset';
@@ -145,7 +146,7 @@ function WrappedStat(props: WrappedStatProps) {
     <div className={classWithModifiers('wrapped__stat', props.modifiers)}>
       <div className={classWithModifiers('wrapped__stat-title', props.modifiers)}>{props.title}</div>
       <div className={classWithModifiers('wrapped__stat-value', props.modifiers)}>
-        <span title={props.tooltip} data-tooltip-position='right center'>
+        <span data-tooltip-position='right center' title={props.tooltip}>
           {props.scoreId == null || props.scoreId === 0
             ? text
             : <a className='link link--white' href={route('scores.show', { rulesetOrScore: props.scoreId })}>{text}</a>
@@ -803,7 +804,11 @@ export default class WrappedShow extends React.Component<WrappedData> {
               <WrappedStat round title='pp' tooltip={formatNumber(selectedItem.pp)} value={selectedItem.pp} />
               <WrappedStat
                 title='Rank'
-                value={<div className={classWithModifiers('score-rank', ['wrapped', selectedItem.rank])} />}
+                value={
+                  <div className='wrapped__stat-value-icon'>
+                    <div className={classWithModifiers('score-rank', selectedItem.rank)} />
+                  </div>
+                }
               />
               <WrappedStat title='Score' value={selectedItem.total_score} />
               <WrappedStat percent title='Accuracy' value={selectedItem.accuracy} />
@@ -815,6 +820,14 @@ export default class WrappedShow extends React.Component<WrappedData> {
                   value={attr.value}
                 />
               ))}
+              <WrappedStat
+                title='Mods'
+                value={
+                  <div className='wrapped__stat-value-icon'>
+                    {selectedItem.mods.map((mod) => <Mod key={mod.acronym} mod={mod} />)}
+                  </div>
+                }
+              />
             </div>
           </div>
         )}
