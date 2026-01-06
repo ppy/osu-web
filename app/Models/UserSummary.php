@@ -346,7 +346,7 @@ class UserSummary extends Model
                 $ret['pp_avg'] += $pp;
                 $ppScoreCount++;
             }
-            if ($score->total_score > $ret['score_best']) {
+            if ($score->total_score > $ret['score_best'] || $ret['score_best'] === 0) {
                 $ret['score_best'] = $score->total_score;
                 $ret['score_best_beatmap_id'] = $score->beatmap_id;
             }
