@@ -357,7 +357,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
     switch (e.key) {
       case 'ArrowDown':
       case 'ArrowRight':
-        if (e.shiftKey && this.hasList && this.currentList.length > 0) {
+        if (this.hasList && this.currentList.length > 0) {
           if (this.selectedListIndex < this.currentList.length - 1) {
             e.preventDefault();
             this.selectedListIndex++;
@@ -375,7 +375,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
         return;
       case 'ArrowLeft':
       case 'ArrowUp':
-        if (e.shiftKey && this.hasList && this.currentList.length > 0) {
+        if (this.hasList && this.currentList.length > 0) {
           if (this.selectedListIndex > 0) {
             e.preventDefault();
             this.selectedListIndex--;
