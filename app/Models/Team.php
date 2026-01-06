@@ -19,9 +19,6 @@ use App\Libraries\UsernameValidation;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-/**
- * @property-read string $default_ruleset
- */
 class Team extends Model implements AfterCommit, Indexable, Traits\ReportableInterface
 {
     use Traits\Es\TeamSearch, Traits\Reportable;
@@ -68,11 +65,6 @@ class Team extends Model implements AfterCommit, Indexable, Traits\ReportableInt
     public function statistics(): HasMany
     {
         return $this->hasMany(TeamStatistics::class);
-    }
-
-    public function getDefaultRulesetAttribute(): ?string
-    {
-        return Beatmap::modeStr($this->attributes['default_ruleset_id']);
     }
 
     public function setDefaultRulesetIdAttribute(?int $value): void

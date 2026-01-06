@@ -6,7 +6,7 @@
   "short_name": "TEAM",
   "flag_url": "https://assets.ppy.sh/teams/flag/1/b46fb10dbfd8a35dc50e6c00296c0dc6172dffc3ed3d3a4b379277ba498399f.png",
   "cover_url": "https://assets.ppy.sh/teams/header/1/33e5b115557a4a44377d2c8510a55badd7dd014173595192ad2f82ee053a3302.jpeg",
-  "default_ruleset": "osu",
+  "default_ruleset_id": 0,
   "created_at": "2025-12-30T00:48:32+00:00",
   "description": "[b]example description[/b]",
   "leader": {
@@ -37,13 +37,13 @@
 
 Represents a team. Extends [Team](#team) object with additional attributes.
 
-| Field           | Type                              | Description                                   |
-|-----------------|-----------------------------------|-----------------------------------------------|
-| cover_url       | string?                           | URL to the cover image                        |
-| default_ruleset | [Ruleset](#ruleset)               |                                               |
-| created_at      | [Timestamp](#timestamp)           |                                               |
-| description     | string?                           |                                               |
-| statistics      | [TeamStatistics](#teamstatistics) | The team's gameplay stats for a given ruleset |
+| Field              | Type                              | Description                                   |
+|--------------------|-----------------------------------|-----------------------------------------------|
+| cover_url          | string?                           | URL to the cover image                        |
+| default_ruleset_id | integer?                          |                                               |
+| created_at         | [Timestamp](#timestamp)           |                                               |
+| description        | string?                           |                                               |
+| statistics         | [TeamStatistics](#teamstatistics) | The team's gameplay stats for a given ruleset |
 
 
 
