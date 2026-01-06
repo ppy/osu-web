@@ -555,7 +555,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         });
 
         Route::group(['as' => 'teams.', 'prefix' => 'teams/{team}'], function () {
-            Route::get('{mode?}', 'TeamsController@show')->middleware('require-scopes:public')->name('show');
+            Route::get('{ruleset?}', 'TeamsController@show')->middleware('require-scopes:public')->name('show');
         });
 
         Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');

@@ -12,8 +12,8 @@ use App\Exceptions\ModelNotSavedException;
 use App\Models\Beatmap;
 use App\Models\Team;
 use App\Models\User;
+use App\Transformers\TeamExtendedTransformer;
 use App\Transformers\TeamStatisticsTransformer;
-use App\Transformers\TeamTransformer;
 use App\Transformers\UserCompactTransformer;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -182,7 +182,7 @@ class TeamsController extends Controller
 
         if (is_api_request()) {
             $jsonTeam = [
-                ...json_item($team, new TeamTransformer()),
+                ...json_item($team, new TeamExtendedTransformer()),
                 'statistics' => json_item($statistics, new TeamStatisticsTransformer(), ['rank']),
             ];
 

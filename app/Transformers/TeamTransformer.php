@@ -8,10 +8,12 @@ declare(strict_types=1);
 namespace App\Transformers;
 
 use App\Models\Team;
+use League\Fractal\Resource\Item;
+use League\Fractal\Resource\Primitive;
 
-class TeamTransformer extends TeamCompactTransformer
+class TeamTransformer extends TransformerAbstract
 {
-    protected array $defaultIncludes = [
+    protected array $availableIncludes = [
         'leader',
         'members_count',
         'empty_slots',
@@ -20,11 +22,25 @@ class TeamTransformer extends TeamCompactTransformer
     public function transform(Team $team): array
     {
         return [
-            ...parent::transform($team),
-            'cover_url' => $team->header()->url(),
-            'default_ruleset_id' => $team->default_ruleset_id,
-            'created_at' => json_time($team->created_at),
-            'description' => $team->description,
+            'flag_url' => $team->flag()->url(),
+            'id' => $team->getKey(),
+            'name' => $team->name,
+            'short_name' => $team->short_name,
         ];
+    }
+
+    public function includeLeader(Team $team): Item
+    {
+        return $this->item($team->leader, new UserCompactTransformer());
+    }
+
+    public function includeMembersCount(Team $team): Primitive
+    {
+        return $this->primitive($team->members()->count());
+    }
+
+    public function includeEmptySlots(Team $team): Primitive
+    {
+        return $this->primitive($team->emptySlots());
     }
 }

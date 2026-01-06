@@ -30,7 +30,7 @@ class TeamStatisticsTransformer extends TransformerAbstract
 
     public function includeTeam(TeamStatistics $stat)
     {
-        return $this->item($stat->team, new TeamCompactTransformer());
+        return $this->item($stat->team, new TeamTransformer());
     }
 
     public function includeMemberCount(TeamStatistics $stat)
