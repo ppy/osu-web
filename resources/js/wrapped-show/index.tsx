@@ -53,12 +53,15 @@ const pageTitles: Record<PageType, string> = {
 const rankColours = ['#ffe599', '#bab9b8', '#fd9a68'];
 
 function FavouriteMapper(props: { mapper: FavouriteMapper; user?: UserJson }) {
+  const value = props.mapper.scores.score_count;
+  const unit = value === 1 ? 'play' : 'plays';
+
   return (
     <a className='wrapped__favourite-mapper' href={route('users.show', { user: props.mapper.mapper_id })}>
       <div className='wrapped__favourite-mapper-avatar'><UserAvatar modifiers='full-circle' user={props.user} /></div>
       <div className='wrapped__summary-list-item-text'>
         <div className='wrapped__summary-list-item-title'>{props.user?.username ?? trans('users.deleted')}</div>
-        <div className='wrapped__summary-list-item-value'>{formatNumber(props.mapper.scores.score_count)} plays</div>
+        <div className='wrapped__summary-list-item-value'>{formatNumber(value)} {unit}</div>
       </div>
     </a>
   );
