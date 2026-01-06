@@ -597,8 +597,8 @@ export default class WrappedShow extends React.Component<WrappedData> {
             />
             <a
               className='wrapped__user-avatar'
-              style={{ backgroundImage: urlPresence(this.user.avatar_url) }}
               href={this.userUrl}
+              style={{ backgroundImage: urlPresence(this.user.avatar_url) }}
             />
             <a
               className={classWithModifiers('wrapped__username', 'summary-mobile')}
