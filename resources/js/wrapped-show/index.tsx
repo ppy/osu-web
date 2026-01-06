@@ -702,6 +702,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
         className={classWithModifiers('wrapped__switcher-item', { active: index === this.selectedIndex })}
         data-index={index}
         onClick={this.handleSwitcherOnClick}
+        onTouchEnd={this.handleSwitcherOnClick}
         title={pageTitles[page]}
       >
         <img src={this.backgroundForSwitcher(page, 0)} />
