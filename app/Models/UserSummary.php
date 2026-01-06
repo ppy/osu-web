@@ -290,24 +290,28 @@ class UserSummary extends Model
         $summary = [
             'acc' => 0,
             'combo' => 0,
+            'combo_score_id' => 0,
             'pp' => 0,
+            'pp_score_id' => 0,
             'score' => 0,
+            'score_score_id' => 0,
         ];
         foreach ($scores as $score) {
             if ($summary['combo'] < $score->max_combo) {
                 $summary['combo'] = $score->max_combo;
+                $summary['combo_score_id'] = $score->getKey();
             }
             if ($summary['score'] < $score->total_score) {
                 $summary['score'] = $score->total_score;
+                $summary['score_score_id'] = $score->getKey();
+            }
+            if ($score->pp !== null && $summary['pp'] < $score->pp) {
+                $summary['pp'] = $score->pp;
+                $summary['pp_score_id'] = $score->getKey();
             }
             $summary['acc'] += $score->accuracy;
         }
         $summary['acc'] /= max(1, count($scores));
-
-        $scoresByBeatmapId = $this->userScoresBestPpByBeatmapId();
-        foreach ($scoresByBeatmapId as $score) {
-            $summary['pp'] += $score->pp;
-        }
 
         $summary['playcount'] = YearlyPlaycount::getPosition($this->year, $this->user_id);
 

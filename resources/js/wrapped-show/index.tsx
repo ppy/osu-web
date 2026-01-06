@@ -113,6 +113,7 @@ interface WrappedStatProps {
   modifiers?: Modifiers;
   percent?: boolean;
   round?: boolean;
+  scoreId?: number;
   skippable?: boolean;
   title: string;
   tooltip?: string;
@@ -137,7 +138,12 @@ function WrappedStat(props: WrappedStatProps) {
   return (
     <div className={classWithModifiers('wrapped__stat', props.modifiers)} title={props.tooltip}>
       <div className={classWithModifiers('wrapped__stat-title', props.modifiers)}>{props.title}</div>
-      <div className={classWithModifiers('wrapped__stat-value', props.modifiers)}>{text}</div>
+      <div className={classWithModifiers('wrapped__stat-value', props.modifiers)}>
+        {props.scoreId == null || props.scoreId === 0
+          ? text
+          : <a href={route('scores.show', { rulesetOrScore: props.scoreId })}>{text}</a>
+        }
+      </div>
     </div>
   );
 }
@@ -649,9 +655,25 @@ export default class WrappedShow extends React.Component<WrappedData> {
             value={`top ${formatNumber(summary.scores.playcount.top_percent, 0, { style: 'percent' })}`}
           />
           <WrappedStat modifiers='fancy' title='Total playcount' value={summary.scores.playcount.playcount} />
-          <WrappedStat modifiers='fancy' title='Highest score' value={summary.scores.score} />
           <WrappedStat modifiers='fancy' percent title='Average accuracy' value={summary.scores.acc} />
-          <WrappedStat modifiers='fancy' title='Highest combo' value={summary.scores.combo} />
+          <WrappedStat
+            modifiers='fancy'
+            scoreId={summary.scores.score_score_id}
+            title='Highest score'
+            value={summary.scores.score}
+          />
+          <WrappedStat
+            modifiers='fancy'
+            scoreId={summary.scores.combo_score_id}
+            title='Highest combo'
+            value={summary.scores.combo}
+          />
+          <WrappedStat
+            modifiers='fancy'
+            scoreId={summary.scores.pp_score_id}
+            title='Highest pp'
+            value={summary.scores.pp}
+          />
           <WrappedStat modifiers='fancy' title='Medals collected' value={summary.medals} />
           <WrappedStat modifiers='fancy' skippable title='Replays watched by others' value={summary.replays} />
           <WrappedStat modifiers='fancy' skippable title='Daily challenge streak' value={summary.daily_challenge.highest_streak} />

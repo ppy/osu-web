@@ -63,13 +63,16 @@ export interface Mapping {
 export interface Scores {
   acc: number;
   combo: number;
+  combo_score_id: number;
   playcount: {
     playcount: number;
     pos: number;
     top_percent: number;
   };
   pp: number;
+  pp_score_id: number;
   score: number;
+  score_score_id: number;
 }
 
 interface Summary {
