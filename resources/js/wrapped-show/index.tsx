@@ -809,7 +809,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
               </a>,
             )}
             <div className='wrapped__stats wrapped__stats--dense'>
-              <WrappedStat round title='pp' tooltip={formatNumber(selectedItem.pp)} value={selectedItem.pp} />
+              <WrappedStat round title='pp' tooltip={formatNumber(selectedItem.pp ?? 0)} value={selectedItem.pp} />
               <WrappedStat
                 title='Rank'
                 value={
