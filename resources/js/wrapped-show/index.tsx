@@ -149,7 +149,7 @@ function WrappedStat(props: WrappedStatProps) {
         <span data-tooltip-position='right center' title={props.tooltip}>
           {props.scoreId == null || props.scoreId === 0
             ? text
-            : <a className='link link--white' href={route('scores.show', { rulesetOrScore: props.scoreId })}>{text}</a>
+            : <a className='wrapped__stat-value-link' href={route('scores.show', { rulesetOrScore: props.scoreId })}>{text}</a>
           }
         </span>
       </div>

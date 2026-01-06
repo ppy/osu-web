@@ -31,10 +31,11 @@
   --stat-title-size: 20px;
   --stat-value-size: 52px;
 
+  @_value-base-colour: #ffe599;
   --selected-gradient: linear-gradient(
     235.9deg,
     #ffffff 23.33%,
-    #ffe599 67.87%
+    @_value-base-colour 67.87%
   );
 
   --switcher-icon-border: 8px;
@@ -561,6 +562,14 @@
     margin-top: 0.4em;
     font-size: 0.8em;
     --mod-height: 1em;
+  }
+
+  &__stat-value-link {
+    color: @_value-base-colour;
+
+    .link-hover({
+      color: @_value-base-colour;
+    });
   }
 
   &__text {
