@@ -144,7 +144,7 @@ function WrappedStat(props: WrappedStatProps) {
       <div className={classWithModifiers('wrapped__stat-value', props.modifiers)}>
         {props.scoreId == null || props.scoreId === 0
           ? text
-          : <a href={route('scores.show', { rulesetOrScore: props.scoreId })}>{text}</a>
+          : <a className='link link--white' href={route('scores.show', { rulesetOrScore: props.scoreId })}>{text}</a>
         }
       </div>
     </div>
