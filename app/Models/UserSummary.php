@@ -27,6 +27,8 @@ class UserSummary extends Model
 {
     use Memoizes;
 
+    const DEFAULT_YEAR = 2025;
+
     protected $casts = [
         'processed' => 'bool',
         'summary_data' => 'array',
@@ -92,8 +94,8 @@ class UserSummary extends Model
 
         return array_values(array_unique([
             ...Solo\Score::whereKey($summary['top_plays'])->pluck('beatmap_id'),
-            ...array_map(fn ($m) => $m['scores']['score_best_beatmap_id'], $summary['favourite_mappers']),
-            ...array_map(fn ($m) => $m['scores']['score_best_beatmap_id'], $summary['favourite_artists']),
+            ...array_map(fn ($m) => $m['scores']['score_best_beatmap_id'] ?? null, $summary['favourite_mappers']),
+            ...array_map(fn ($m) => $m['scores']['score_best_beatmap_id'] ?? null, $summary['favourite_artists']),
         ]));
     }
 
@@ -351,7 +353,7 @@ class UserSummary extends Model
                 $ret['pp_avg'] += $pp;
                 $ppScoreCount++;
             }
-            if ($score->total_score > $ret['score_best']) {
+            if ($score->total_score > $ret['score_best'] || $ret['score_best'] === 0) {
                 $ret['score_best'] = $score->total_score;
                 $ret['score_best_beatmap_id'] = $score->beatmap_id;
                 $ret['score_best_score_id'] = $score->getKey();
