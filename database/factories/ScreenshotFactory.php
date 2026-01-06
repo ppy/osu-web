@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Models\Screenshot;
+use App\Models\User;
 
 class ScreenshotFactory extends Factory
 {
@@ -15,6 +16,8 @@ class ScreenshotFactory extends Factory
 
     public function definition(): array
     {
-        return []; // nothing in this model to fake
+        return [
+            'user_id' => User::factory(),
+        ];
     }
 }
