@@ -15,8 +15,6 @@ use App\Transformers\UserCompactTransformer;
 
 class WrappedController extends Controller
 {
-    private const YEAR = 2025;
-
     public function __construct()
     {
         parent::__construct();
@@ -34,7 +32,7 @@ class WrappedController extends Controller
             UserSummary::markViewed($currentUser->getKey());
         }
 
-        $summary = UserSummary::where(['user_id' => $user->getKey(), 'year' => static::YEAR])->first();
+        $summary = UserSummary::where(['user_id' => $user->getKey(), 'year' => UserSummary::DEFAULT_YEAR])->first();
 
         if ($summary === null) {
             abort(404, "It doesn't seem the user has played in 2025!");

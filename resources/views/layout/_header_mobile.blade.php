@@ -57,7 +57,7 @@
                         <a
                             class="{{ class_with_modifiers('mobile-menu-tab', [
                                 'link-button' => true,
-                                'wrapped-first' => !has_viewed_wrapped($currentUser->getKey()),
+                                'wrapped-first' => !has_viewed_wrapped(),
                             ]) }}"
                             href="{{ route('wrapped', $currentUser->getKey()) }}"
                             title="View your summary of 2025!"

@@ -10,6 +10,7 @@ use App\Http\Controllers\RankingController;
 use App\Libraries\Base64Url;
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
+use App\Models\UserSummary;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Illuminate\Database\Migrations\Migration;
@@ -2004,7 +2005,11 @@ function migration(string $name): Migration
     return require database_path("migrations/{$name}.php");
 }
 
-function has_viewed_wrapped(int $userId): bool
+function has_viewed_wrapped(): bool
 {
-    return request_attribute_remember('wrapped', fn () => App\Models\UserSummary::hasViewed($userId));
+    return request_attribute_remember('wrapped', function () {
+        $user = Auth::user();
+
+        return $user->user_regdate->year <= UserSummary::DEFAULT_YEAR && UserSummary::hasViewed($user->getKey());
+    });
 }
