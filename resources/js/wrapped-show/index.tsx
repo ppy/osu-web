@@ -723,10 +723,10 @@ export default class WrappedShow extends React.Component<WrappedData> {
         data-index={index}
         onClick={this.handleSwitcherOnClick}
         onTouchEnd={this.handleSwitcherOnClick}
-        title={pageTitles[page]}
         style={{
           '--bg': urlPresence(this.backgroundForSwitcher(page, 0)),
         } as React.CSSProperties}
+        title={pageTitles[page]}
       />
     );
   }
