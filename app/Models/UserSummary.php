@@ -292,24 +292,28 @@ class UserSummary extends Model
         $summary = [
             'acc' => 0,
             'combo' => 0,
+            'combo_score_id' => 0,
             'pp' => 0,
+            'pp_score_id' => 0,
             'score' => 0,
+            'score_score_id' => 0,
         ];
         foreach ($scores as $score) {
             if ($summary['combo'] < $score->max_combo) {
                 $summary['combo'] = $score->max_combo;
+                $summary['combo_score_id'] = $score->getKey();
             }
             if ($summary['score'] < $score->total_score) {
                 $summary['score'] = $score->total_score;
+                $summary['score_score_id'] = $score->getKey();
+            }
+            if ($score->pp !== null && $summary['pp'] < $score->pp) {
+                $summary['pp'] = $score->pp;
+                $summary['pp_score_id'] = $score->getKey();
             }
             $summary['acc'] += $score->accuracy;
         }
         $summary['acc'] /= max(1, count($scores));
-
-        $scoresByBeatmapId = $this->userScoresBestPpByBeatmapId();
-        foreach ($scoresByBeatmapId as $score) {
-            $summary['pp'] += $score->pp;
-        }
 
         $summary['playcount'] = YearlyPlaycount::getPosition($this->year, $this->user_id);
 
@@ -332,8 +336,10 @@ class UserSummary extends Model
         $ret = [
             'pp_avg' => 0,
             'pp_best' => 0,
+            'pp_best_score_id' => 0,
             'score_avg' => 0,
             'score_best' => 0,
+            'score_best_score_id' => 0,
             'score_count' => count($scores),
         ];
         $ppScoreCount = 0;
@@ -342,6 +348,7 @@ class UserSummary extends Model
             if ($pp !== null) {
                 if ($pp > $ret['pp_best']) {
                     $ret['pp_best'] = $pp;
+                    $ret['pp_best_score_id'] = $score->getKey();
                 }
                 $ret['pp_avg'] += $pp;
                 $ppScoreCount++;
@@ -349,6 +356,7 @@ class UserSummary extends Model
             if ($score->total_score > $ret['score_best'] || $ret['score_best'] === 0) {
                 $ret['score_best'] = $score->total_score;
                 $ret['score_best_beatmap_id'] = $score->beatmap_id;
+                $ret['score_best_score_id'] = $score->getKey();
             }
             $ret['score_avg'] += $score->total_score;
         }

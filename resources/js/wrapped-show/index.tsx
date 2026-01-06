@@ -5,6 +5,7 @@ import BeatmapsetCover from 'components/beatmapset-cover';
 import ClickToCopy from 'components/click-to-copy';
 import DifficultyBadge from 'components/difficulty-badge';
 import FlagCountry from 'components/flag-country';
+import Mod from 'components/mod';
 import StringWithComponent from 'components/string-with-component';
 import UserAvatar from 'components/user-avatar';
 import { rulesetIdToName } from 'interfaces/ruleset';
@@ -12,7 +13,7 @@ import ScoreJson from 'interfaces/score-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce, intersection, upperFirst } from 'lodash';
-import { action, autorun, makeObservable, observable, runInAction } from 'mobx';
+import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import React from 'react';
 import { hasGuestOwners } from 'utils/beatmap-helper';
@@ -53,12 +54,15 @@ const pageTitles: Record<PageType, string> = {
 const rankColours = ['#ffe599', '#bab9b8', '#fd9a68'];
 
 function FavouriteMapper(props: { mapper: FavouriteMapper; user?: UserJson }) {
+  const value = props.mapper.scores.score_count;
+  const unit = value === 1 ? 'play' : 'plays';
+
   return (
     <a className='wrapped__favourite-mapper' href={route('users.show', { user: props.mapper.mapper_id })}>
       <div className='wrapped__favourite-mapper-avatar'><UserAvatar modifiers='full-circle' user={props.user} /></div>
       <div className='wrapped__summary-list-item-text'>
         <div className='wrapped__summary-list-item-title'>{props.user?.username ?? trans('users.deleted')}</div>
-        <div className='wrapped__summary-list-item-value'>{formatNumber(props.mapper.scores.score_count)} plays</div>
+        <div className='wrapped__summary-list-item-value'>{formatNumber(value)} {unit}</div>
       </div>
     </a>
   );
@@ -102,7 +106,10 @@ function TopPlay(props: { beatmap?: BeatmapForWrappedJson; play: ScoreJson }) {
           {beatmapset != null ? getTitle(beatmapset) : trans('beatmapsets.cover.deleted')}
         </div>
         <div className='wrapped__summary-list-item-value'>
-          <span className={`fal fa-extra-mode-${rulesetIdToName[props.play.ruleset_id]}`} />{formatNumber(Math.round(props.play.pp ?? 0))}pp
+          <span className={`fal fa-extra-mode-${rulesetIdToName[props.play.ruleset_id]}`} />
+          <span title={formatNumber(props.play.pp ?? 0)}>
+            {formatNumber(Math.round(props.play.pp ?? 0))}pp
+          </span>
         </div>
       </div>
     </a>
@@ -113,8 +120,10 @@ interface WrappedStatProps {
   modifiers?: Modifiers;
   percent?: boolean;
   round?: boolean;
+  scoreId?: number;
   skippable?: boolean;
   title: string;
+  tooltip?: string;
   value: number | string | React.ReactNode;
 }
 
@@ -136,7 +145,14 @@ function WrappedStat(props: WrappedStatProps) {
   return (
     <div className={classWithModifiers('wrapped__stat', props.modifiers)}>
       <div className={classWithModifiers('wrapped__stat-title', props.modifiers)}>{props.title}</div>
-      <div className={classWithModifiers('wrapped__stat-value', props.modifiers)}>{text}</div>
+      <div className={classWithModifiers('wrapped__stat-value', props.modifiers)}>
+        <span data-tooltip-position='right center' title={props.tooltip}>
+          {props.scoreId == null || props.scoreId === 0
+            ? text
+            : <a className='wrapped__stat-value-link' href={route('scores.show', { rulesetOrScore: props.scoreId })}>{text}</a>
+          }
+        </span>
+      </div>
     </div>
   );
 }
@@ -202,6 +218,11 @@ export default class WrappedShow extends React.Component<WrappedData> {
 
   get selectedPageType() {
     return this.availablePages[this.selectedIndex];
+  }
+
+  @computed
+  get userUrl() {
+    return route('users.show', { user: this.user.id });
   }
 
   constructor(props: WrappedData) {
@@ -357,7 +378,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
     switch (e.key) {
       case 'ArrowDown':
       case 'ArrowRight':
-        if (e.shiftKey && this.hasList && this.currentList.length > 0) {
+        if (this.hasList && this.currentList.length > 0) {
           if (this.selectedListIndex < this.currentList.length - 1) {
             e.preventDefault();
             this.selectedListIndex++;
@@ -375,7 +396,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
         return;
       case 'ArrowLeft':
       case 'ArrowUp':
-        if (e.shiftKey && this.hasList && this.currentList.length > 0) {
+        if (this.hasList && this.currentList.length > 0) {
           if (this.selectedListIndex > 0) {
             e.preventDefault();
             this.selectedListIndex--;
@@ -410,7 +431,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
   };
 
   @action
-  private readonly handleSwitcherOnClick = (e: React.MouseEvent<HTMLElement>) => {
+  private readonly handleSwitcherOnClick = (e: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>) => {
     const element = htmlElementOrNull(e.currentTarget);
     if (element == null) return;
 
@@ -446,7 +467,11 @@ export default class WrappedShow extends React.Component<WrappedData> {
             {this.props.summary.favourite_artists.map((item, index) => (
               <div
                 key={index}
-                className={classWithModifiers('wrapped__list-item', 'beatmap', { selected: this.selectedListIndex === index })}
+                className={classWithModifiers(
+                  'wrapped__list-item',
+                  ['beatmap', 'link'],
+                  { selected: this.selectedListIndex === index },
+                )}
                 data-index={index}
                 onClick={this.handleSelectListItem}
               >
@@ -469,10 +494,25 @@ export default class WrappedShow extends React.Component<WrappedData> {
             )}
             <div className='wrapped__stats wrapped__stats--dense'>
               <WrappedStat title='Plays' value={selectedItem.scores.score_count} />
-              <WrappedStat round title='Best pp' value={selectedItem.scores.pp_best} />
-              <WrappedStat title='Best Score' value={selectedItem.scores.score_best} />
-              <WrappedStat round title='Average pp' value={selectedItem.scores.pp_avg} />
-              <WrappedStat round title='Average Score' value={selectedItem.scores.score_avg} />
+              <WrappedStat
+                round
+                scoreId={selectedItem.scores.pp_best_score_id}
+                title='Best pp'
+                tooltip={formatNumber(selectedItem.scores.pp_best)}
+                value={selectedItem.scores.pp_best}
+              />
+              <WrappedStat
+                scoreId={selectedItem.scores.score_best_score_id}
+                title='Best score'
+                value={selectedItem.scores.score_best}
+              />
+              <WrappedStat
+                round
+                title='Average pp'
+                tooltip={formatNumber(selectedItem.scores.pp_avg)}
+                value={selectedItem.scores.pp_avg}
+              />
+              <WrappedStat round title='Average score' value={selectedItem.scores.score_avg} />
             </div>
           </div>
         )}
@@ -491,7 +531,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
             {this.props.summary.favourite_mappers.map((item, index) => (
               <div
                 key={item.mapper_id}
-                className={classWithModifiers('wrapped__list-item', { selected: this.selectedListIndex === index })}
+                className={classWithModifiers('wrapped__list-item', 'link', { selected: this.selectedListIndex === index })}
                 data-index={index}
                 onClick={this.handleSelectListItem}
               >
@@ -509,10 +549,25 @@ export default class WrappedShow extends React.Component<WrappedData> {
           )}
           <div className='wrapped__stats wrapped__stats--dense'>
             <WrappedStat title='Plays' value={selectedItem.scores.score_count} />
-            <WrappedStat round title='Best pp' value={selectedItem.scores.pp_best} />
-            <WrappedStat title='Best Score' value={selectedItem.scores.score_best} />
-            <WrappedStat round title='Average pp' value={selectedItem.scores.pp_avg} />
-            <WrappedStat round title='Average Score' value={selectedItem.scores.score_avg} />
+            <WrappedStat
+              round
+              scoreId={selectedItem.scores.pp_best_score_id}
+              title='Best pp'
+              tooltip={formatNumber(selectedItem.scores.pp_best)}
+              value={selectedItem.scores.pp_best}
+            />
+            <WrappedStat
+              scoreId={selectedItem.scores.score_best_score_id}
+              title='Best score'
+              value={selectedItem.scores.score_best}
+            />
+            <WrappedStat
+              round
+              title='Average pp'
+              tooltip={formatNumber(selectedItem.scores.pp_avg)}
+              value={selectedItem.scores.pp_avg}
+            />
+            <WrappedStat round title='Average score' value={selectedItem.scores.score_avg} />
           </div>
         </div>
       </>
@@ -523,9 +578,14 @@ export default class WrappedShow extends React.Component<WrappedData> {
     const summary = this.selectedPageType === 'summary';
     return (
       <div className={classWithModifiers('wrapped__header', { summary })}>
-        <a className='wrapped__user' href={route('users.show', { user: this.user.id })}>
-          <span
+        <div className='wrapped__user'>
+          <a
+            className='wrapped__header-logo'
+            href={route('home')}
+          />
+          <a
             className='wrapped__user-avatar'
+            href={this.userUrl}
             style={{ backgroundImage: urlPresence(this.user.avatar_url) }}
           />
           {this.isSummaryPage && (
@@ -533,8 +593,13 @@ export default class WrappedShow extends React.Component<WrappedData> {
               <FlagCountry country={this.user.country} modifiers={['flat', 'large']} />
             </span>
           )}
-          <span className={classWithModifiers('wrapped__username', { summary })}>{this.user.username}</span>
-        </a>
+          <a
+            className={classWithModifiers('wrapped__username', { summary })}
+            href={this.userUrl}
+          >
+            {this.user.username}
+          </a>
+        </div>
         <img className='wrapped__logo' src='/images/wrapped/logo.svg' />
       </div>
     );
@@ -548,11 +613,21 @@ export default class WrappedShow extends React.Component<WrappedData> {
       <>
         <div className={classWithModifiers('wrapped__header', 'summary-mobile')}>
           <div className={classWithModifiers('wrapped__user', 'summary-mobile')}>
-            <span
+            <a
+              className='wrapped__header-logo'
+              href={route('home')}
+            />
+            <a
               className='wrapped__user-avatar'
+              href={this.userUrl}
               style={{ backgroundImage: urlPresence(this.user.avatar_url) }}
             />
-            <span className={classWithModifiers('wrapped__username', 'summary-mobile')}>{this.user.username}</span>
+            <a
+              className={classWithModifiers('wrapped__username', 'summary-mobile')}
+              href={this.userUrl}
+            >
+              {this.user.username}
+            </a>
           </div>
           <img className='wrapped__summary-logo' src='/images/wrapped/wrapped-summary-logo.svg' />
         </div>
@@ -582,7 +657,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
         <WrappedStat modifiers='fancy' skippable title='Ranked' value={mapping.ranked} />
         <WrappedStat modifiers='fancy' skippable title='Nominated' value={mapping.nominations} />
         <WrappedStat modifiers='fancy' skippable title='Loved' value={mapping.loved} />
-        <WrappedStat modifiers='fancy' skippable title='Made' value={mapping.created} />
+        <WrappedStat modifiers='fancy' skippable title='Created' value={mapping.created} />
         <WrappedStat modifiers='fancy' skippable title='Guest difficulties' value={mapping.guest} />
         <WrappedStat modifiers='fancy' skippable title='Kudosu received' value={mapping.kudosu} />
         <WrappedStat modifiers='fancy' skippable title='Discussions' value={mapping.discussions} />
@@ -612,6 +687,8 @@ export default class WrappedShow extends React.Component<WrappedData> {
 
   private renderSummary() {
     const summary = this.props.summary;
+    const playcountPercentile = summary.scores.playcount.top_percent;
+    const playcountPercentilePrecision = playcountPercentile < 0.01 ? 2 : 0;
 
     return (
       <>
@@ -619,13 +696,31 @@ export default class WrappedShow extends React.Component<WrappedData> {
           <WrappedStat
             modifiers='fancy'
             title='Dedication level'
-            value={`top ${formatNumber(summary.scores.playcount.top_percent, 2, { style: 'percent' })}`}
+            tooltip='This is the percentile of how much you played relative to all other active users'
+            value={`top ${formatNumber(playcountPercentile, playcountPercentilePrecision, { style: 'percent' })}`}
           />
           <WrappedStat modifiers='fancy' title='Total playcount' value={summary.scores.playcount.playcount} />
-          <WrappedStat modifiers='fancy' title='Highest score' value={summary.scores.score} />
           <WrappedStat modifiers='fancy' percent title='Average accuracy' value={summary.scores.acc} />
-          <WrappedStat modifiers='fancy' title='Highest combo' value={summary.scores.combo} />
-          <WrappedStat modifiers='fancy' title='Highest score' value={summary.scores.score} />
+          <WrappedStat
+            modifiers='fancy'
+            scoreId={summary.scores.score_score_id}
+            title='Highest score'
+            value={summary.scores.score}
+          />
+          <WrappedStat
+            modifiers='fancy'
+            scoreId={summary.scores.combo_score_id}
+            title='Highest combo'
+            value={summary.scores.combo}
+          />
+          <WrappedStat
+            modifiers='fancy'
+            round
+            scoreId={summary.scores.pp_score_id}
+            title='Highest pp'
+            tooltip={formatNumber(summary.scores.pp)}
+            value={summary.scores.pp}
+          />
           <WrappedStat modifiers='fancy' title='Medals collected' value={summary.medals} />
           <WrappedStat modifiers='fancy' skippable title='Replays watched by others' value={summary.replays} />
           <WrappedStat modifiers='fancy' skippable title='Daily challenge streak' value={summary.daily_challenge.highest_streak} />
@@ -651,10 +746,12 @@ export default class WrappedShow extends React.Component<WrappedData> {
         className={classWithModifiers('wrapped__switcher-item', { active: index === this.selectedIndex })}
         data-index={index}
         onClick={this.handleSwitcherOnClick}
+        onTouchEnd={this.handleSwitcherOnClick}
+        style={{
+          '--bg': urlPresence(this.backgroundForSwitcher(page, 0)),
+        } as React.CSSProperties}
         title={pageTitles[page]}
-      >
-        <img src={this.backgroundForSwitcher(page, 0)} />
-      </div>
+      />
     );
   }
 
@@ -671,7 +768,11 @@ export default class WrappedShow extends React.Component<WrappedData> {
             {this.props.summary.top_plays.map((play, index) => (
               <div
                 key={play.id}
-                className={classWithModifiers('wrapped__list-item', 'beatmap', { selected: this.selectedListIndex === index })}
+                className={classWithModifiers(
+                  'wrapped__list-item',
+                  ['beatmap', 'link'],
+                  { selected: this.selectedListIndex === index },
+                )}
                 data-index={index}
                 onClick={this.handleSelectListItem}
               >
@@ -708,10 +809,14 @@ export default class WrappedShow extends React.Component<WrappedData> {
               </a>,
             )}
             <div className='wrapped__stats wrapped__stats--dense'>
-              <WrappedStat round title='pp' value={selectedItem.pp} />
+              <WrappedStat round title='pp' tooltip={formatNumber(selectedItem.pp ?? 0)} value={selectedItem.pp} />
               <WrappedStat
                 title='Rank'
-                value={<div className={classWithModifiers('score-rank', ['wrapped', selectedItem.rank])} />}
+                value={
+                  <div className='wrapped__stat-value-icon'>
+                    <div className={classWithModifiers('score-rank', selectedItem.rank)} />
+                  </div>
+                }
               />
               <WrappedStat title='Score' value={selectedItem.total_score} />
               <WrappedStat percent title='Accuracy' value={selectedItem.accuracy} />
@@ -723,6 +828,14 @@ export default class WrappedShow extends React.Component<WrappedData> {
                   value={attr.value}
                 />
               ))}
+              <WrappedStat
+                title='Mods'
+                value={
+                  <div className='wrapped__stat-value-icon'>
+                    {selectedItem.mods.map((mod) => <Mod key={mod.acronym} mod={mod} />)}
+                  </div>
+                }
+              />
             </div>
           </div>
         )}

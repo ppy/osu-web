@@ -38,8 +38,12 @@ class WrappedController extends Controller
             abort(404, "It doesn't seem the user has played in 2025!");
         }
 
-        if (!$viewingOwn && !hash_equals($summary->share_key, get_string(request('share')) ?? '')) {
-            abort(403, 'Please ask the user for the share url!');
+        if (!hash_equals($summary->share_key, get_string(request('share')) ?? '')) {
+            if ($viewingOwn) {
+                return ujs_redirect(route('wrapped', ['user' => $summary->user_id, 'share' => $summary->share_key]));
+            } else {
+                abort(403, 'Please ask the user for the share url!');
+            }
         }
 
         $data = $summary->summary_data;
