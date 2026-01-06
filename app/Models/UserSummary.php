@@ -27,6 +27,8 @@ class UserSummary extends Model
 {
     use Memoizes;
 
+    const DEFAULT_YEAR = 2025;
+
     protected $casts = [
         'processed' => 'bool',
         'summary_data' => 'array',

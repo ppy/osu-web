@@ -15,7 +15,6 @@ use Illuminate\Console\Command;
 class UserGenerateSummaries extends Command
 {
     private const QUEUE_KEY = 'user_generate_summaries';
-    private const YEAR = 2025;
 
     protected $signature = 'user:generate-summaries {--task=}';
 
@@ -63,7 +62,7 @@ class UserGenerateSummaries extends Command
     {
         while (($userId = \LaravelRedis::lpop(static::QUEUE_KEY)) !== false) {
             $this->info("Generating summary for user id: {$userId}");
-            UserSummary::createForUser(static::YEAR, (int) $userId);
+            UserSummary::createForUser(UserSummary::DEFAULT_YEAR, (int) $userId);
         }
     }
 
@@ -71,7 +70,7 @@ class UserGenerateSummaries extends Command
     {
         if (\LaravelRedis::exists(static::QUEUE_KEY) === 0) {
             $this->info('Generating user list: getting user ids');
-            $startTime = CarbonImmutable::now()->setYear(static::YEAR)->startOfYear();
+            $startTime = CarbonImmutable::now()->setYear(UserSummary::DEFAULT_YEAR)->startOfYear();
             $timeRange = array_map(
                 fn ($t) => $t->format('ym'),
                 [$startTime, $startTime->endOfYear()],
@@ -89,7 +88,7 @@ class UserGenerateSummaries extends Command
         }
 
         $this->info('Requeuing unprocessed summaries');
-        $unprocessedUserIds = UserSummary::where('year', static::YEAR)->where('processed', false)->pluck('user_id');
+        $unprocessedUserIds = UserSummary::where('year', UserSummary::DEFAULT_YEAR)->where('processed', false)->pluck('user_id');
         if (count($unprocessedUserIds) > 0) {
             \LaravelRedis::rpush(static::QUEUE_KEY, ...$unprocessedUserIds);
         }
