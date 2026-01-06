@@ -1687,7 +1687,7 @@
         "scopes": []
     },
     {
-        "uri": "api/v2/teams/{team}/{mode?}",
+        "uri": "api/v2/teams/{team}/{ruleset?}",
         "methods": [
             "GET",
             "HEAD"
