@@ -37,7 +37,7 @@ class YearlyPlaycount extends Model
         return [
             'playcount' => $playcount,
             'pos' => $pos + 1,
-            'top_percent' => max(0.01, $pos / $users),
+            'top_percent' => $pos / $users,
         ];
     }
 }
