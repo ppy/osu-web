@@ -5,7 +5,7 @@
 <div class="search-result search-result--{{ $mode }}">
     @if (!auth()->check() && $search->isLoginRequired())
         <div class="search-result__row search-result__row--notice">
-            <a href="{{ route('login') }}" class="search-result__login-link js-user-link">
+            <a href="{{ route('login') }}" class="js-user-link">
                 {{ osu_trans("home.search.{$mode}.login_required") }}
             </a>
         </div>
