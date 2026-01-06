@@ -521,11 +521,17 @@ export default class WrappedShow extends React.Component<WrappedData> {
 
   private renderHeader() {
     const summary = this.selectedPageType === 'summary';
+    const userLink = route('users.show', { user: this.user.id });
     return (
       <div className={classWithModifiers('wrapped__header', { summary })}>
-        <a className='wrapped__user' href={route('users.show', { user: this.user.id })}>
-          <span
+        <div className='wrapped__user'>
+          <a
+            className='wrapped__header-logo'
+            href={route('home')}
+          />
+          <a
             className='wrapped__user-avatar'
+            href={userLink}
             style={{ backgroundImage: urlPresence(this.user.avatar_url) }}
           />
           {this.isSummaryPage && (
@@ -533,8 +539,13 @@ export default class WrappedShow extends React.Component<WrappedData> {
               <FlagCountry country={this.user.country} modifiers={['flat', 'large']} />
             </span>
           )}
-          <span className={classWithModifiers('wrapped__username', { summary })}>{this.user.username}</span>
-        </a>
+          <a
+            className={classWithModifiers('wrapped__username', { summary })}
+            href={userLink}
+          >
+            {this.user.username}
+          </a>
+        </div>
         <img className='wrapped__logo' src='/images/wrapped/logo.svg' />
       </div>
     );

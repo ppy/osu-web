@@ -210,6 +210,33 @@
     }
   }
 
+  &__header-logo {
+    aspect-ratio: 1;
+    height: calc(var(--user-height) - 2 * var(--avatar-padding));
+    transform: scale(1.1); // removes backgrond padding
+    --bg-opacity: 0;
+
+    &::after {
+      .full-size();
+      content: "";
+      background-image: url("~@images/layout/osu-lazer-logo-white.svg");
+      background-size: contain;
+    }
+
+    &::before {
+      .full-size();
+      content: "";
+      background-image: url("~@images/layout/osu-lazer-logo-triangles.svg");
+      background-size: contain;
+      opacity: var(--bg-opacity);
+      transition: all 100ms ease-in-out;
+    }
+
+    &:hover {
+      --bg-opacity: 1;
+    }
+  }
+
   &__list {
     display: flex;
     flex-direction: row;
