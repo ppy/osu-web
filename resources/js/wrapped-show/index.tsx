@@ -646,7 +646,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
             modifiers='fancy'
             title='Dedication level'
             tooltip='This is the percentile of how much you played relative to all other active users'
-            value={`top ${formatNumber(summary.scores.playcount.top_percent, 2, { style: 'percent' })}`}
+            value={`top ${formatNumber(summary.scores.playcount.top_percent, 0, { style: 'percent' })}`}
           />
           <WrappedStat modifiers='fancy' title='Total playcount' value={summary.scores.playcount.playcount} />
           <WrappedStat modifiers='fancy' title='Highest score' value={summary.scores.score} />
