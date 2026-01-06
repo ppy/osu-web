@@ -21,7 +21,7 @@
 <meta charset="utf-8">
 <meta name="description" content="{{ $opengraph['description'] ?? osu_trans('layout.defaults.page_description') }}">
 <meta name="keywords" content="osu, peppy, ouendan, elite, beat, agents, ds, windows, game, taiko, tatsujin, simulator, sim, xna, ddr, beatmania, osu!, osume">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
 
 <meta name="turbo-cache-control" content="no-preview">
 <meta name="turbo-prefetch" content="false">
