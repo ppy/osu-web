@@ -19,7 +19,7 @@ export default class WindowSize {
 
     makeObservable(this);
 
-    $(window).on('resize', this.handleResize);
+    window.addEventListener('resize', this.handleResize);
   }
 
   @action
