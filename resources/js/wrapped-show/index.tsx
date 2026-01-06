@@ -724,9 +724,10 @@ export default class WrappedShow extends React.Component<WrappedData> {
         onClick={this.handleSwitcherOnClick}
         onTouchEnd={this.handleSwitcherOnClick}
         title={pageTitles[page]}
-      >
-        <img src={this.backgroundForSwitcher(page, 0)} />
-      </div>
+        style={{
+          '--bg': urlPresence(this.backgroundForSwitcher(page, 0)),
+        } as React.CSSProperties}
+      />
     );
   }
 

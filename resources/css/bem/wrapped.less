@@ -660,7 +660,7 @@
     width: var(--switcher-icon-height);
     height: var(--switcher-icon-height);
     border-radius: var(--switcher-icon-height);
-    // background-color: black;
+    .at2x("~@images/layout/beatmaps/default-bg.png");
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
     filter: brightness(0.5);
 
@@ -685,10 +685,12 @@
       font-size: 0.8em;
     }
 
-    img {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
+    &::before {
+      .full-size();
+      content: '';
+      background-image: var(--bg);
+      background-size: cover;
+      background-position: center;
     }
   }
 
