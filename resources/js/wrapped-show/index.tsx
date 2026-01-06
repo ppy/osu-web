@@ -608,7 +608,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
         <WrappedStat modifiers='fancy' skippable title='Ranked' value={mapping.ranked} />
         <WrappedStat modifiers='fancy' skippable title='Nominated' value={mapping.nominations} />
         <WrappedStat modifiers='fancy' skippable title='Loved' value={mapping.loved} />
-        <WrappedStat modifiers='fancy' skippable title='Made' value={mapping.created} />
+        <WrappedStat modifiers='fancy' skippable title='Created' value={mapping.created} />
         <WrappedStat modifiers='fancy' skippable title='Guest difficulties' value={mapping.guest} />
         <WrappedStat modifiers='fancy' skippable title='Kudosu received' value={mapping.kudosu} />
         <WrappedStat modifiers='fancy' skippable title='Discussions' value={mapping.discussions} />
