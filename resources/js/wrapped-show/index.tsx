@@ -115,6 +115,7 @@ interface WrappedStatProps {
   round?: boolean;
   skippable?: boolean;
   title: string;
+  tooltip?: string;
   value: number | string | React.ReactNode;
 }
 
@@ -134,7 +135,7 @@ function WrappedStat(props: WrappedStatProps) {
       : formatNumber(value);
 
   return (
-    <div className={classWithModifiers('wrapped__stat', props.modifiers)}>
+    <div className={classWithModifiers('wrapped__stat', props.modifiers)} title={props.tooltip}>
       <div className={classWithModifiers('wrapped__stat-title', props.modifiers)}>{props.title}</div>
       <div className={classWithModifiers('wrapped__stat-value', props.modifiers)}>{text}</div>
     </div>
@@ -644,6 +645,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
           <WrappedStat
             modifiers='fancy'
             title='Dedication level'
+            tooltip='This is the percentile of how much you played relative to all other active users'
             value={`top ${formatNumber(summary.scores.playcount.top_percent, 2, { style: 'percent' })}`}
           />
           <WrappedStat modifiers='fancy' title='Total playcount' value={summary.scores.playcount.playcount} />
