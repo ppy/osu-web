@@ -142,13 +142,15 @@ function WrappedStat(props: WrappedStatProps) {
       : formatNumber(value);
 
   return (
-    <div className={classWithModifiers('wrapped__stat', props.modifiers)} title={props.tooltip}>
+    <div className={classWithModifiers('wrapped__stat', props.modifiers)}>
       <div className={classWithModifiers('wrapped__stat-title', props.modifiers)}>{props.title}</div>
       <div className={classWithModifiers('wrapped__stat-value', props.modifiers)}>
-        {props.scoreId == null || props.scoreId === 0
-          ? text
-          : <a className='link link--white' href={route('scores.show', { rulesetOrScore: props.scoreId })}>{text}</a>
-        }
+        <span title={props.tooltip} data-tooltip-position='right center'>
+          {props.scoreId == null || props.scoreId === 0
+            ? text
+            : <a className='link link--white' href={route('scores.show', { rulesetOrScore: props.scoreId })}>{text}</a>
+          }
+        </span>
       </div>
     </div>
   );
