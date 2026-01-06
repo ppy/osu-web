@@ -650,7 +650,6 @@ export default class WrappedShow extends React.Component<WrappedData> {
           <WrappedStat modifiers='fancy' title='Highest score' value={summary.scores.score} />
           <WrappedStat modifiers='fancy' percent title='Average accuracy' value={summary.scores.acc} />
           <WrappedStat modifiers='fancy' title='Highest combo' value={summary.scores.combo} />
-          <WrappedStat modifiers='fancy' title='Highest score' value={summary.scores.score} />
           <WrappedStat modifiers='fancy' title='Medals collected' value={summary.medals} />
           <WrappedStat modifiers='fancy' skippable title='Replays watched by others' value={summary.replays} />
           <WrappedStat modifiers='fancy' skippable title='Daily challenge streak' value={summary.daily_challenge.highest_streak} />
