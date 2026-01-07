@@ -472,8 +472,7 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
-            'title' => '',
+            'title' => 'Быстрая игра',
         ],
 
         'not_found' => [

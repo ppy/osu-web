@@ -69,7 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Xem ảnh bìa kích thước đầy đủ',
-            'page' => '',
+            'page' => 'Xem trang quản trị viên',
         ],
 
         'deleted_banner' => [
@@ -224,8 +224,8 @@ return [
             'rating-spread' => 'Phân Loại Đánh Giá',
             'nominations' => 'Đề cử',
             'playcount' => 'Đã chơi',
-            'favourites' => '',
-            'no_favourites' => '',
+            'favourites' => 'Mục ưa thích',
+            'no_favourites' => 'Hiện chưa có mục yêu thích',
         ],
 
         'status' => [

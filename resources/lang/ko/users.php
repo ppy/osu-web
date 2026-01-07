@@ -401,7 +401,7 @@ return [
                 'show_more' => '글 더 보기',
             ],
             'quickplay' => [
-                'title' => '빠른 플레이 경기',
+                'title' => '빠른 대전 경기',
             ],
             'recent_activity' => [
                 'title' => '최근 활동',
@@ -473,8 +473,7 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
-            'title' => '',
+            'title' => '빠른 대전',
         ],
 
         'not_found' => [

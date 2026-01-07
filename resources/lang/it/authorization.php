@@ -132,7 +132,7 @@ return [
                 'no_permission' => 'Non hai i permessi per rispondere.',
 
                 'user' => [
-                    'require_login' => 'Effettua il login per poter rispondere.',
+                    'require_login' => 'Accedi per rispondere.',
                     'restricted' => "Non puoi rispondere mentre sei limitato.",
                     'silenced' => "Non puoi rispondere mentre sei silenziato.",
                 ],
