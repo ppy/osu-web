@@ -2,7 +2,11 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@foreach ($search->data() as $team)
+@php
+    $teams = $search->data();
+    $teams->loadCount('members');
+@endphp
+@foreach ($teams as $team)
     @php
         $url = route('teams.show', $team);
     @endphp
@@ -30,7 +34,7 @@
             </h3>
 
             <div class="team-card__members">
-                {{ osu_trans_choice('teams.card.members', $team->members()->count()) }}
+                {{ osu_trans_choice('teams.card.members', $team->members_count) }}
             </div>
 
             @php
