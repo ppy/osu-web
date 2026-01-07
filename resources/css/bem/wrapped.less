@@ -1,0 +1,824 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.wrapped {
+  @_max-height: 1000px;
+  @_transition: all ease-in-out 200ms;
+  --bg-gradient: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.9)
+  );
+
+  // --content-left: 292px;
+  --content-left: 200px; // --page-gutter
+  --favourite-mapper-avatar-size: 60px;
+  --gap: 80px; // general flex/grid gap
+  --gap-mid: 40px;
+  --gap-inner: 20px; // gap inside elements
+  --header-height: 70px;
+
+  --list-item-height: 140px;
+  --list-item-width: 140px;
+  --list-item-selected-width: 140px;
+
+  --mark-offset: -100px;
+  --mark-opacity: 1;
+
+  --page-mark-height: 68px;
+  --page-mark-top: 100px;
+
+  --stat-title-size: 20px;
+  --stat-value-size: 52px;
+
+  @_value-base-colour: #ffe599;
+  --selected-gradient: linear-gradient(
+    235.9deg,
+    #ffffff 23.33%,
+    @_value-base-colour 67.87%
+  );
+
+  --switcher-icon-border: 8px;
+  --switcher-icon-height: 40px;
+  --switcher-icon-height-active: 80px;
+  --switcher-icon-width-active: 120px;
+
+  --summary-mobile-pos: none;
+
+  --text-title-size: 24px;
+  --text-regular-size: 20px;
+
+  // how far off the top the page header is
+  --top-summary: 40px;
+
+  --avatar-padding: 5px;
+  --user-height: var(--header-height);
+
+  background-color: hsl(var(--hsl-pink-4));
+  position: relative;
+  // this margin is useles now;
+  // we're using a fixed background now because the bars make it look odd while scrolling vertically.
+  // margin: 60px 0;
+  height: 100%;
+  width: 100%;
+  min-height: 600px;
+  // max-height: @_max-height;
+  display: flex;
+  flex-direction: column;
+
+  &--favourite_mappers {
+    --bg-filter: blur(8px);
+  }
+
+  &--statistics {
+    --bg-filter: blur(2px);
+  }
+
+  &--summary {
+    --avatar-padding: 8px;
+    --bg-gradient: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.9)
+    );
+
+    --header-height: 115px;
+    --mark-offset: -300px;
+    --mark-opacity: 0;
+    --page-mark-top: 0;
+  }
+
+  @media @mobile {
+    --avatar-padding: 5px;
+    --content-left: 10px;
+    --gap: 40px;
+    --header-height: 70px;
+    --mark-offset: var(--content-left);
+  }
+
+  @media @narrow {
+    --avatar-padding: 0px;
+    --favourite-mapper-avatar-size: 42px;
+    --gap-mid: 20px;
+    --stat-title-size: 16px;
+    --stat-value-size: 40px;
+    --summary-mobile-pos: flex;
+    --switcher-icon-border: 2px;
+    --switcher-icon-width-active: 60px;
+    --switcher-icon-height-active: 40px;
+    --switcher-icon-height: 40px;
+
+    --text-title-size: 16px;
+    --text-regular-size: 16px;
+    --user-height: 32px;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+
+  &__save {
+    // button for testing
+    position: fixed;
+    bottom: 0;
+  }
+
+  &__background {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    object-fit: cover;
+    background-color: #333;
+    backdrop-filter: var(--bg-filter, initial);
+    height: 100%;
+    width: 100%;
+
+    will-change: opacity;
+    opacity: 0;
+    transition: opacity 1000ms ease-in-out;
+
+    &--gradient {
+      opacity: 1;
+      background: var(--bg-gradient);
+    }
+
+    &--loaded {
+      opacity: 1;
+    }
+  }
+
+  &__container {
+    position: relative;
+    flex: 1;
+  }
+
+  &__content {
+    --content-padding-right: 20px;
+    display: grid;
+    gap: var(--gap-inner);
+    width: 100%;
+
+    position: relative;
+    padding: 0 var(--content-padding-right)
+      calc(var(--gap-mid) + var(--switcher-icon-height-active))
+      var(--content-left);
+
+    &--summary {
+      display: grid;
+      grid-template-rows: auto auto;
+      gap: var(--gap-mid);
+      overflow-x: scroll;
+    }
+
+    @media @narrow {
+      padding-right: var(--content-left);
+      --content-padding-right: var(--content-left);
+    }
+  }
+
+  &__difficulty-badge {
+    height: var(--text-regular-size);
+  }
+
+  &__header {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--content-left);
+
+    // height: var(--header-height);
+    width: 100%;
+    margin-top: calc(var(--header-height) / 2);
+
+    transition: @_transition;
+
+    @media @narrow {
+      flex-direction: row-reverse;
+      margin-top: 0;
+    }
+
+    &--summary {
+      @media @narrow {
+        display: none;
+      }
+    }
+
+    &--summary-mobile {
+      margin-bottom: var(--gap);
+      flex-direction: column;
+      align-items: flex-start;
+      display: var(--summary-mobile-pos);
+    }
+  }
+
+  &__header-logo {
+    aspect-ratio: 1;
+    height: calc(var(--user-height) - 2 * var(--avatar-padding));
+    transform: scale(1.1); // removes backgrond padding
+    --bg-opacity: 0;
+
+    &::after {
+      .full-size();
+      content: "";
+      background-image: url("~@images/layout/osu-lazer-logo-white.svg");
+      background-size: contain;
+    }
+
+    &::before {
+      .full-size();
+      content: "";
+      background-image: url("~@images/layout/osu-lazer-logo-triangles.svg");
+      background-size: contain;
+      opacity: var(--bg-opacity);
+      transition: all 100ms ease-in-out;
+    }
+
+    &:hover {
+      --bg-opacity: 1;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    padding-left: var(--content-left);
+    padding-right: var(--gap);
+
+    @media @narrow {
+      gap: 4px;
+    }
+  }
+
+  &__list-container {
+    .own-layer();
+    .fancy-scrollbar();
+    position: relative;
+    padding: 4px 4px 40px 4px; // additional space for selected, values are negative of inset.
+    margin-left: calc(-1 * var(--content-left));
+    margin-right: calc(-1 * var(--content-padding-right));
+    overflow-x: scroll;
+
+    @media @narrow {
+      padding: 2px 2px 20px 2px;
+    }
+  }
+
+  &__list-details-title {
+    display: flex;
+    position: relative;
+    margin-bottom: var(--gap-mid);
+
+    &--centred {
+      align-items: center;
+    }
+  }
+
+  &__list-item {
+    --border-radius: 20px; // also sets on beatmap-cover
+    --list-item-height: 140px;
+    --list-item-width: 140px;
+    --list-item-selected-width: 140px;
+
+    position: relative;
+    flex: none;
+    border-radius: var(--border-radius);
+    transform-style: preserve-3d;
+    height: var(--list-item-height);
+    width: var(--list-item-width);
+    box-shadow:
+      0 2px 4px 0 rgba(0, 0, 0, 0.25),
+      0 8px 16px 0 rgba(0, 0, 0, 0.25);
+
+    &--beatmap {
+      --list-item-selected-width: 280px;
+
+      @media @narrow {
+        --list-item-selected-width: 140px;
+      }
+    }
+
+    &--link {
+      cursor: pointer;
+    }
+
+    &--selected {
+      box-shadow: none;
+
+      &::before {
+        content: "";
+        position: absolute;
+        inset: -4px -4px -20px -4px;
+        background: var(--selected-gradient);
+        filter: blur(0);
+        transform: translate3d(0, 0, -1px);
+        border-radius: inherit;
+        pointer-events: none;
+        box-shadow:
+          0 2px 4px 0 rgba(0, 0, 0, 0.25),
+          0 8px 16px 0 rgba(0, 0, 0, 0.25);
+
+        @media @narrow {
+          inset: -2px -2px -10px -2px;
+          box-shadow:
+            0 1px 2px 0 rgba(0, 0, 0, 0.25),
+            0 4px 8px 0 rgba(0, 0, 0, 0.25);
+        }
+      }
+
+      width: var(--list-item-selected-width);
+    }
+
+    @media @narrow {
+      --border-radius: 10px;
+      --list-item-height: 80px;
+      --list-item-width: 80px;
+      --list-item-selected-width: 80px;
+    }
+
+    &--summary-beatmap {
+      --list-item-height: 60px;
+      --list-item-width: 260px;
+
+      @media @narrow {
+        --border-radius: 8px;
+        --list-item-height: 42px;
+        --list-item-width: 140px;
+      }
+    }
+  }
+
+  &__page-mark {
+    pointer-events: none;
+    opacity: var(--mark-opacity);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--page-mark-top);
+    margin-left: var(--mark-offset);
+    margin-bottom: 10px; // compensate for missing thingy
+
+    @media @desktop {
+      margin-bottom: 0;
+      transition: all ease-in-out 200ms;
+      flex-wrap: nowrap;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("~@images/wrapped/thing.svg");
+      // scale svg down a bit to have more space in the middle of the page.
+      width: 286px;
+      height: 68px;
+      // width: calc(var(--page-gutter) - 20px);
+      // height: var(--page-mark-height);
+    }
+
+    @media @narrow-up {
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+    }
+
+    &--summary {
+      @media @narrow {
+        display: none;
+      }
+    }
+  }
+
+  &__page-number {
+    .center-content();
+    .default-text-shadow();
+    font-size: 24px;
+    font-weight: bold;
+    // 50px so the circle in mobile is the "correct" size.
+    width: 50px;
+    height: 50px;
+    flex: none; // prevent squashing when things go wrong.
+    position: relative;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("~@images/wrapped/circle.svg");
+
+    @media @desktop {
+      position: absolute;
+      // the positioning is magic.
+      left: 227px;
+      bottom: 10px;
+      background-image: none;
+    }
+  }
+
+  &__page-title {
+    .default-text-shadow();
+    position: relative;
+    font-size: 52px;
+    font-weight: bold;
+
+    @media @desktop {
+      // attempt to vertically align with page number
+      position: absolute;
+      top: -3px;
+      left: calc(var(--content-left) + 100px);
+    }
+
+    @media @desktop {
+      .center-content();
+      white-space: nowrap; // no idea
+    }
+  }
+
+  // per-page stuff
+  &__favourite-mapper {
+    .link-white();
+    display: flex;
+    gap: var(--gap-inner);
+  }
+
+  &__favourite-mapper-avatar {
+    width: var(--favourite-mapper-avatar-size);
+  }
+
+  &__share-label {
+    @media @mobile {
+      display: none;
+    }
+  }
+
+  &__summary-list-item-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  &__summary-list-item-title {
+    font-size: var(--text-title-size);
+    font-weight: bold;
+  }
+
+  &__summary-list-item-value {
+    display: flex;
+    gap: calc(var(--text-regular-size) / 2);
+    align-items: center;
+    font-size: var(--text-regular-size);
+  }
+
+  &__summary-logo {
+    position: relative;
+
+    @media @narrow-up {
+      display: none;
+    }
+  }
+
+  &__stat {
+    .own-layer();
+    display: flex;
+    flex-direction: column;
+    color: black;
+    white-space: nowrap;
+  }
+
+  &__stats {
+    display: grid;
+    // just making the total width + gap 320px
+    // 300px should be enough to fit the largest numbers currently...
+    grid-template-columns: repeat(auto-fill, 300px);
+    gap: var(--gap-inner);
+
+    &--dense {
+      grid-template-columns: repeat(auto-fill, 250px);
+    }
+  }
+
+  &__stat-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-inner);
+    margin-top: var(--gap-inner);
+    color: #fff;
+
+    &--summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+
+      @media @narrow {
+        // I hope no screens are this small but 300px is too small to fit other things already.
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+
+      gap: 10px var(--gap-inner);
+    }
+  }
+
+  &__stat-title {
+    color: #fff;
+    white-space: nowrap; // always single line.
+    line-height: 1;
+    font-size: 20px;
+    font-weight: bold;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+
+    &--fancy {
+      @media @narrow-up {
+        color: #000;
+        font-size: 24px;
+        padding: 8px 16px;
+        width: fit-content; // don't stretch background fill
+        border-radius: 100px;
+        background: var(--selected-gradient), #d9d9d9;
+        filter: none;
+      }
+    }
+  }
+
+  &__stat-value {
+    display: inline-block;
+    font-size: var(--stat-value-size);
+    color: #fff;
+    background: var(--selected-gradient);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    // text-shadow colours the text :|
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+
+    &--fancy {
+      @media @narrow-up {
+        margin-left: 16px; // match the left padding on stat-title
+      }
+
+      .link-hover({
+        color: #fff;
+      });
+    }
+  }
+
+  &__stat-value-icon {
+    display: flex;
+    margin-top: 0.4em;
+    font-size: 0.8em;
+    --mod-height: 1em;
+  }
+
+  &__stat-value-link {
+    color: @_value-base-colour;
+
+    .link-hover({
+      color: @_value-base-colour;
+    });
+  }
+
+  &__text {
+    color: #fff;
+    font-size: 32px;
+    font-weight: bold;
+    overflow-wrap: anywhere;
+
+    &--artist {
+      font-size: 20px;
+      font-weight: normal;
+    }
+
+    &--beatmap-line {
+      align-items: center;
+    }
+
+    &--bottom {
+      display: flex;
+      gap: 5px;
+      font-size: 14px;
+      font-weight: normal;
+    }
+
+    &--container {
+      .link-plain();
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    &--difficulty {
+      font-size: inherit;
+      font-weight: bold;
+    }
+
+    &--top {
+      font-size: 24px;
+
+      @media @narrow {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  &__rank {
+    --rank-colour: #fff;
+    .center-content();
+    position: relative;
+    flex: none;
+    width: 100px;
+    height: 48px;
+    margin-right: 20px;
+    margin-left: -$width - $margin-right;
+    border-radius: 100px;
+    color: #000;
+    background: linear-gradient(
+      235.9deg,
+      #fff 23.33%,
+      var(--rank-colour) 67.87%
+    );
+    font-size: 40px;
+    font-weight: bold;
+
+    @media @mobile {
+      margin-left: 0;
+      margin-right: 10px;
+    }
+
+    @media @narrow {
+      font-size: 20px;
+      width: 50px;
+      height: 24px;
+    }
+  }
+
+  &__switcher {
+    .own-layer();
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+
+    height: var(--switcher-icon-height-active);
+    padding-bottom: 20px;
+    // fake half bar
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.5) 38%,
+      hsl(var(--hsl-pink-4)) 38%,
+      hsl(var(--hsl-pink-4)) 100%
+    );
+
+    @media @narrow {
+      gap: 6px;
+      padding-bottom: 10px;
+    }
+  }
+
+  &__switcher-item {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    width: var(--switcher-icon-height);
+    height: var(--switcher-icon-height);
+    border-radius: var(--switcher-icon-height);
+    .at2x("~@images/layout/beatmaps/default-bg.png");
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+    filter: brightness(0.5);
+
+    &--active {
+      width: var(--switcher-icon-width-active);
+      height: var(--switcher-icon-height-active);
+      border: var(--switcher-icon-border) solid #fff;
+      filter: none;
+    }
+
+    &--share-link {
+      .link-plain();
+      background: hsl(var(--hsl-b5));
+      width: auto;
+      padding-left: 15px;
+      padding-right: 15px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: hsl(var(--hsl-c1));
+      filter: none;
+      font-size: 0.8em;
+    }
+
+    &::before {
+      .full-size();
+      content: "";
+      background-image: var(--bg);
+      background-size: cover;
+      background-position: center;
+    }
+  }
+
+  &__top-plays {
+    .link-white();
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    @media @narrow {
+      gap: 10px;
+    }
+  }
+
+  &__top-stats {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-inner) var(--gap);
+    padding-bottom: var(--gap-mid);
+
+    @media @narrow-up {
+      &::after {
+        content: "";
+        position: absolute;
+        width: calc(
+          100% + var(--content-left) + var(--gap)
+        ); // extend for extra space on the sides
+        height: 4px;
+        bottom: 0;
+        left: calc(-1 * var(--content-left));
+        background: #ff99c7;
+      }
+    }
+  }
+
+  &__bottom-stats {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-mid);
+
+    @media @narrow {
+      flex-direction: column;
+    }
+  }
+
+  &__logo {
+    height: 70px;
+    margin-left: auto;
+
+    // needs to be smaller for narrower screens or it might clip into username
+    @media @narrow {
+      height: 50px;
+      margin-left: 0;
+    }
+  }
+
+  &__user {
+    background: rgba(0, 0, 0, 0.3);
+    height: var(--user-height);
+    border-radius: var(--user-height);
+    padding: 0 calc(var(--user-height) / 3) 0 var(--avatar-padding);
+    display: flex;
+    gap: 15px;
+    align-items: center;
+
+    transition: @_transition;
+
+    @media @narrow {
+      flex-direction: row-reverse;
+      padding: 0 var(--avatar-padding) 0 calc(var(--user-height) / 3);
+    }
+
+    // over JUST for 1 page on mobile
+    &--summary-mobile {
+      --user-height: 42px;
+      display: inline-flex;
+      flex-direction: row;
+      padding: 0 calc(var(--user-height) / 3) 0 var(--avatar-padding);
+    }
+  }
+
+  &__user-avatar {
+    .circle(calc(var(--user-height) - 2 * var(--avatar-padding)));
+
+    background-color: #333;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+
+    transition: @_transition;
+  }
+
+  &__user-flag {
+    @media @narrow {
+      display: none;
+    }
+  }
+
+  &__username {
+    .link-white();
+    &--summary {
+      @media @narrow-up {
+        font-size: 32px;
+        font-weight: bold;
+      }
+    }
+  }
+}
