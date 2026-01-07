@@ -81,7 +81,7 @@ return [
 
         'reasons' => [
             'compromised' => 'Il tuo account sembra essere stato compromesso. Potrebbe essere disattivato temporaneamente mentre la sua identità viene confermata.',
-            'opening' => 'Ci sono una serie di motivi che possono causare la disabilitazione del tuo account:',
+            'opening' => 'Ci sono una serie di motivi che possono causare la disattivazione del tuo account:',
 
             'tos' => [
                 '_' => 'Hai violato una o più delle nostre :community_rules, oppure uno o più :tos.',
@@ -400,7 +400,7 @@ return [
                 'show_more' => 'guarda più post',
             ],
             'quickplay' => [
-                'title' => 'Scontri di Quick Play',
+                'title' => 'Sessioni di Quick Play',
             ],
             'recent_activity' => [
                 'title' => 'Recenti',
@@ -472,8 +472,7 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
-            'title' => '',
+            'title' => 'Quick Play',
         ],
 
         'not_found' => [
