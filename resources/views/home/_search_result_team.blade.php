@@ -4,7 +4,7 @@
 --}}
 @php
     $teams = $search->data();
-    $teams->loadCount('members');
+    $teams->loadCount(['members' => fn ($q) => $q->whereHas('user', fn ($qq) => $qq->default())]);
 @endphp
 @foreach ($teams as $team)
     @php
