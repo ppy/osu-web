@@ -414,7 +414,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/', 'HomeController@index')->name('home');
 
-    Route::get('wrapped/{user}', 'WrappedController@show')->name('wrapped');
+    Route::get('wrapped/{user?}', 'WrappedController@show')->name('wrapped');
 
     // redirects go here
     route_redirect('forum/p/{post}', 'forum.posts.show');
