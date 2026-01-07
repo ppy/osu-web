@@ -68,6 +68,7 @@ class UserCompactTransformer extends TransformerAbstract
         'follow_user_mapping',
         'follower_count',
         'friends',
+        'global_rank',
         'graveyard_beatmapset_count',
         'groups',
         'guest_beatmapset_count',
@@ -278,6 +279,14 @@ class UserCompactTransformer extends TransformerAbstract
             $user->relationFriends,
             new UserRelationTransformer()
         );
+    }
+
+    public function includeGlobalRank(User $user)
+    {
+        return $this->primitive([
+            'rank' => $user->statistics($this->mode)?->globalRank(),
+            'ruleset_id' => Beatmap::MODES[$this->mode],
+        ]);
     }
 
     public function includeGraveyardBeatmapsetCount(User $user)
